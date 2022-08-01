@@ -1,0 +1,69 @@
+<ng-preview-options
+  [previewItems]="[
+'label',
+'hint',
+'rtl',
+'showRequiredStar',
+'disabled',
+'readonly',
+]"
+  [(label)]="label"
+  [(hint)]="hint"
+  [(rtl)]="rtl"
+  [(showRequiredStar)]="showRequiredStar"
+  [(disabled)]="disabled"
+  [(readonly)]="readonly"
+></ng-preview-options>
+<div class="container">
+  <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
+    <h4>Preview</h4>
+    <ng-single-checkbox
+      formControlName="c1"
+      [errors]="{ required: 'error' }"
+      [label]="label"
+      [hint]="hint"
+      [rtl]="rtl"
+      [showRequiredStar]="showRequiredStar"
+      [disabled]="disabled"
+      [tabindex]="tabindex"
+      [ariaLabelledBy]="ariaLabelledBy"
+      [ariaLabel]="ariaLabel"
+      [style]="style"
+      [styleClass]="styleClass"
+      [labelStyleClass]="labelStyleClass"
+      [checkboxIcon]="checkboxIcon"
+      [readonly]="readonly"
+      [required]="required"
+      [trueValue]="trueValue"
+      [falseValue]="falseValue"
+    >
+    </ng-single-checkbox>
+    <ng-button type="submit" label="submit"></ng-button>
+  </form>
+  <h4>NG MODEL</h4>
+  VALUE :
+  <pre>{{binding | json}}</pre>
+  <ng-single-checkbox
+    name="myInput"
+    required
+    [(ngModel)]="binding"
+    [errors]="{ required: 'error' }"
+    [label]="label"
+    [hint]="hint"
+    [rtl]="rtl"
+    [showRequiredStar]="showRequiredStar"
+    [disabled]="disabled"
+    [tabindex]="tabindex"
+    [ariaLabelledBy]="ariaLabelledBy"
+    [ariaLabel]="ariaLabel"
+    [style]="style"
+    [styleClass]="styleClass"
+    [labelStyleClass]="labelStyleClass"
+    [checkboxIcon]="checkboxIcon"
+    [readonly]="readonly"
+    [required]="required"
+    [trueValue]="trueValue"
+    [falseValue]="falseValue"
+  >
+  </ng-single-checkbox>
+</div>

@@ -1,0 +1,175 @@
+:host ::ng-deep {
+  .wrapper {
+    display: flex;
+    position: relative;
+    direction: ltr;
+
+    p-autoComplete,
+    .p-autocomplete,
+    .p-inputtext,
+    small {
+      width: 100%;
+    }
+
+    .field {
+      flex-grow: 1;
+
+      &.p-input-icon-right {
+        .p-inputtext {
+          padding-right: 2rem;
+        }
+      }
+
+      &.p-input-icon-left {
+        .p-inputtext {
+          padding-left: 2rem;
+        }
+      }
+    }
+
+    i {
+      z-index: 200;
+    }
+
+    small {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+    }
+
+    &.ltr {
+      .p-inputtext,
+      label,
+      small {
+        direction: ltr;
+      }
+
+      small {
+        left: 0;
+      }
+
+      p-autoComplete {
+        &.has-before {
+          .p-inputtext {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+
+          .p-autocomplete-dd .p-inputtext {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+
+        &.has-after {
+          .p-inputtext {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+
+          .p-autocomplete-dd .p-button {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+      }
+
+      .field.has-dropdown {
+        &.p-input-icon-right {
+          i {
+            right: calc(0.75rem + 3rem)
+          }
+        }
+      }
+    }
+
+    &.rtl {
+      text-align: right;
+
+      .p-inputtext,
+      .p-autocomplete .p-autocomplete-items,
+      label,
+      small {
+        direction: rtl;
+      }
+
+      small {
+        right: 0;
+      }
+
+      .p-autocomplete {
+        flex-direction: row-reverse;
+
+        .p-autocomplete-loader {
+          right: auto;
+          left: 0.5rem;
+        }
+      }
+
+      .p-autocomplete-dd {
+        .p-inputtext {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          border-top-right-radius: var(--border-radius);
+          border-bottom-right-radius: var(--border-radius);
+        }
+
+        .p-button {
+          border-top-left-radius: var(--border-radius);
+          border-bottom-left-radius: var(--border-radius);
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      p-autoComplete {
+        &.has-after {
+          .p-inputtext {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+
+          .p-autocomplete-dd {
+            .p-inputtext {
+              border-radius: 0;
+            }
+          }
+        }
+
+        &.has-before {
+          .p-autocomplete-dd {
+            .p-button {
+              border-radius: 0;
+            }
+          }
+        }
+      }
+
+      .field {
+        &.p-float-label {
+          label {
+            right: 0.5rem;
+            left: auto;
+          }
+        }
+
+        &.has-dropdown {
+          &.p-input-icon-left {
+            i {
+              left: calc(0.75rem + 3rem)
+            }
+          }
+        }
+
+        .p-autocomplete-token {
+          margin-left: 0.5rem;
+          margin-right: 0;
+        }
+
+        .p-autocomplete-token-icon {
+          margin-right: 0.5rem;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}

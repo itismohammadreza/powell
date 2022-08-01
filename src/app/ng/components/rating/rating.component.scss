@@ -1,0 +1,50 @@
+$root: "p-rating";
+$wrapper: "p-rating ::ng-deep .p-rating";
+
+#{$root},
+#{$wrapper},
+small {
+  display: block;
+  width: 100%;
+}
+
+.wrapper { direction: ltr;
+  .field{
+    position: relative;
+    .error {
+      position: absolute;
+      top: 100%;
+    }
+  }
+  &.ltr {
+    .field{
+      .error {
+        left: 0;
+      }
+    }
+    label, small {
+      direction: ltr;
+    }
+  }
+  &.rtl { text-align: right;
+    .field{
+      .error {
+        right: 0;
+      }
+      #{$wrapper} {
+        direction: rtl;
+        .p-rating-icon {
+          margin-left: 0;
+          margin-right: 0.5rem;
+
+          &:first-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+    label, small {
+      direction: rtl;
+    }
+  }
+}

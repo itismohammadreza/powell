@@ -1,0 +1,20 @@
+<p-splitButton
+  (onClick)="emitter('onClick',$event)"
+  (onDropdownClick)="emitter('onDropdownClick',$event)"
+  [appendTo]="appendTo"
+  [badge]="badge"
+  [class.rtl]="rtl"
+  [dir]="rtl ? 'rtl' : 'ltr'"
+  [disabled]="disabled"
+  [iconPos]="iconPos"
+  [icon]="icon"
+  [items]="items"
+  [label]="label"
+  [model]="items"
+  badgeClass="p-badge-{{ badgeColor }}"
+  styleClass="p-button-{{ appearance }} p-button-{{ color }} p-button-{{
+    size
+  }} p-button-{{ rounded ? 'rounded' : '' }} p-button-{{
+    raised ? 'raised' : ''
+  }}"
+></p-splitButton>

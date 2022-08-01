@@ -1,0 +1,33 @@
+:host {
+  display: none;
+
+  .jw-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2000;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .jw-modal-body {
+      padding: 20px;
+      background: #fff;
+      margin: 40px;
+    }
+  }
+
+  .jw-modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.75;
+    z-index: 1500;
+  }
+}

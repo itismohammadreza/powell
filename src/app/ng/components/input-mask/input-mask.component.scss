@@ -1,0 +1,89 @@
+$root: "p-inputMask";
+$wrapper: "p-inputMask ::ng-deep .p-inputmask";
+$inputEl: "p-inputMask ::ng-deep .p-inputtext";
+
+#{$root},
+#{$wrapper},
+#{$inputEl},
+small {
+  display: block;
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  position: relative;
+
+  .field {
+    flex-grow: 1;
+  }
+
+  #{$root} {
+    &.has-before ::ng-deep .p-inputtext {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &.has-after ::ng-deep .p-inputtext {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  .field{
+    position: relative;
+
+    &.p-input-icon-left {
+      #{$inputEl} {
+        padding-left: 2rem;
+      }
+    }
+
+    .error {
+      position: absolute;
+      top: 100%;
+    }
+  }
+
+  &.ltr {
+    .field{
+      .error {
+        left: 0;
+      }
+    }
+
+    #{$inputEl},
+    label, small {
+      direction: ltr;
+    }
+  }
+
+  &.rtl {
+    .field{
+      &.p-float-label {
+        label {
+          right: 0.5rem;
+          left: auto;
+        }
+
+        &.p-input-icon-right {
+          label {
+            right: 2rem;
+          }
+        }
+      }
+
+      .error {
+        right: 0;
+      }
+
+      &.p-input-icon-right #{$inputEl} {
+        padding-right: 2rem;
+      }
+    }
+
+    label, small {
+      direction: rtl;
+    }
+  }
+}

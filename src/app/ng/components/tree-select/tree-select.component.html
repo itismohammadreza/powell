@@ -1,0 +1,14 @@
+<p-treeSelect>
+  <ng-template pTemplate="value" let-item *ngIf="valueTemplate">
+    <ng-container *ngTemplateOutlet="valueTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="header" let-item let-options="options" *ngIf="headerTemplate">
+    <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item,options:options}"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="empty" let-item *ngIf="emptyTemplate">
+    <ng-container *ngTemplateOutlet="emptyTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="footer" let-item let-options="options" *ngIf="footerTemplate">
+    <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item,options:options}"></ng-container>
+  </ng-template>
+</p-treeSelect>

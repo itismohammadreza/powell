@@ -1,0 +1,46 @@
+<ng-preview-options [previewItems]="[
+'appearance',
+'iconPos',
+'color',
+'badgeColor',
+'label',
+'newColor',
+'newLabel',
+'icon',
+'badge',
+'disabled',
+'rounded',
+'raised',
+'full',
+'selectiveSize',
+]"
+                    [(appearance)]="appearance"
+                    [(iconPos)]="iconPos"
+                    [(color)]="color"
+                    [(badgeColor)]="badgeColor"
+                    [(label)]="label"
+                    [(icon)]="icon"
+                    [(badge)]="badge"
+                    [(disabled)]="disabled"
+                    [(rounded)]="rounded"
+                    [(raised)]="raised"
+                    [(full)]="full"
+                    [(selectiveSize)]="size">
+</ng-preview-options>
+<ng-button-async [newLabel]="newLabel"
+                 [newColor]="newColor"
+                 [appearance]="appearance"
+                 [iconPos]="iconPos"
+                 [color]="color"
+                 [badgeColor]="badgeColor"
+                 [label]="label"
+                 [icon]="icon"
+                 [disabled]="disabled"
+                 [type]="type"
+                 [rounded]="rounded"
+                 [raised]="raised"
+                 [full]="full"
+                 [badge]="badge"
+                 [size]="size"
+                 (clickAsync)="onClick($event)">
+</ng-button-async>

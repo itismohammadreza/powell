@@ -1,0 +1,83 @@
+$inputEl: "textarea";
+
+#{$inputEl},
+small {
+  display: block;
+  width: 100%;
+}
+
+.wrapper {
+  direction: ltr;
+
+  #{$inputEl}.has-before {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  #{$inputEl}.has-after {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  #{$inputEl}.has-after.has-before {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .field {
+    position: relative;
+
+    .error {
+      position: absolute;
+      top: 100%;
+    }
+  }
+
+  &.ltr {
+    .field {
+
+      .error {
+        left: 0;
+      }
+    }
+
+    #{$inputEl},
+    label, small {
+      direction: ltr;
+    }
+  }
+
+  &.rtl {
+    text-align: right;
+
+    .field {
+      &.p-float-label {
+        label {
+          right: 0.5rem;
+          left: auto;
+        }
+
+        &.p-input-icon-right {
+          label {
+            right: 2rem;
+          }
+        }
+      }
+
+      .error {
+        right: 0;
+      }
+    }
+
+    #{$inputEl},
+    label, small {
+      direction: rtl;
+    }
+  }
+}

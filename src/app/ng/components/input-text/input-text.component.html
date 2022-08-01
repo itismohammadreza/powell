@@ -1,0 +1,66 @@
+<div [ngClass]="{
+      rtl: rtl,
+      ltr: !rtl,
+      'flex-column-reverse': labelPos == 'fix-top',
+      'align-items-center': labelPos == 'fix-side',
+      'align-items-end': labelPos == 'fix-top' && rtl,
+      'flex-row': labelPos == 'fix-side' && rtl,
+      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+    }" class="wrapper">
+  <div [ngClass]="{
+      'w-100': labelPos == 'fix-top',
+      'p-float-label': labelPos == 'float',
+      'p-input-icon-left': !addon && icon && iconPos == 'left',
+      'p-input-icon-right': !addon && icon && iconPos == 'right',
+      'p-inputtext-sm': inputSize == 'sm',
+      'p-inputtext-lg': inputSize == 'lg',
+      'p-input-filled': filled
+    }" class="field">
+    <i *ngIf="icon && !addon" [ngClass]="icon"></i>
+    <input
+      pInputText
+      [attr.id]="inputId"
+      [attr.maxlength]="maxlength"
+      [attr.placeholder]="placeholder"
+      [attr.type]="type"
+
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [(ngModel)]="value"
+      [pKeyFilter]="keyFilter"
+      [ngAddon]="addon"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+      (blur)="_onBlur()"
+      (change)="_onChange($event)"
+      (click)="emitter('onClick', $event)"
+      (focus)="emitter('onFocus', $event)"
+      (input)="_onInput($event)"
+      (keydown)="_onKeydown($event)"
+      (keyup)="_onKeyup($event)"
+      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
+      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
+    />
+    <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
+      {{ label }}
+    </label>
+  </div>
+  <label
+    *ngIf="label && labelPos != 'float'"
+    [attr.for]="inputId"
+    [ngClass]="{
+      'mb-0': labelPos == 'fix-side',
+      'ml-4': rtl,
+      'mr-4': !rtl,
+      'text-muted': disabled
+    }"
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label }}
+  </label>
+  <small *ngIf="hint">{{ hint }}</small>
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
+      {{ error.value }}
+    </small>
+  </ng-container>
+</div>
+

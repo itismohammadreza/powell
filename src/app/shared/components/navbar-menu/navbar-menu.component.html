@@ -1,0 +1,109 @@
+<nav class="navbar navbar-expand-sm shadow-sm fixed-top">
+  <ng-button
+    icon="pi pi-bars"
+    color="primary"
+    appearance="text"
+    *ngIf="!sidebarLock && menuType != 'hover' && menuType != 'horizontal'"
+    (click)="handleSidebarToggler()"
+  >
+  </ng-button>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav p-0 m{{ fa ? 'r' : 'l' }}-auto">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/auth"
+          routerLinkActive="active"
+        >{{ "Login" | translate }}</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link py-0">
+          <ng-dropdown
+            [value]="selectedLanguage"
+            [options]="[
+              { label: 'LTR', value: 'en' },
+              { label: 'RTL', value: 'fa' }
+            ]"
+            [rtl]="fa"
+            (onChange)="changeLang($event)"
+          ></ng-dropdown>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link py-0">
+          <ng-dropdown
+            [value]="selectedTheme"
+            [options]="themes"
+            [rtl]="fa"
+            (onChange)="changeTheme($event)"
+          ></ng-dropdown>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link py-0">
+          <ng-dropdown
+            [value]="menuType"
+            [options]="menuTypes"
+            [rtl]="fa"
+            (onChange)="onMenuTypeChange($event)"
+          ></ng-dropdown>
+        </a>
+      </li>
+      <li
+        class="nav-item p{{ fa ? 'r' : 'l' }}-4 m{{
+          fa ? 'r' : 'l'
+        }}-4 border-{{ fa ? 'right' : 'left' }}"
+        (click)="accountMenu.toggle($event)"
+      >
+        <span class="m{{ fa ? 'l' : 'r' }}-3">{{ "admin" }}</span>
+        <p-avatar shape="circle" size="large" icon="pi pi-user"></p-avatar>
+      </li>
+    </ul>
+  </div>
+</nav>
+<p-menubar [model]="sidebarItems" *ngIf="menuType == 'horizontal'">
+  <ng-template pTemplate="start">
+    <ng-logo width="50px"></ng-logo>
+  </ng-template>
+</p-menubar>
+<p-sidebar
+  [blockScroll]="isModalSidebar"
+  [modal]="isModalSidebar"
+  [showCloseIcon]="false"
+  [position]="fa ? 'right' : 'left'"
+  [transitionOptions]="'200ms'"
+  [visible]="sidebarVisible"
+  (visibleChange)="toggleSidebar($event)"
+>
+  <div class="d-flex align-items-center justify-content-between py-3 mb-3 border-bottom sticky-top section-top">
+    <ng-logo width="50px"></ng-logo>
+    <i class="border rounded-circle p-2 bg-light pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
+       (click)="handleSidebarLockToggler()"></i>
+  </div>
+  <p-panelMenu [multiple]="false" [model]="sidebarItems"></p-panelMenu>
+</p-sidebar>
+<p-sidebar
+  [class.lock]="sidebarLock"
+  [blockScroll]="true"
+  [modal]="false"
+  [closeOnEscape]="true"
+  [showCloseIcon]="false"
+  [position]="fa ? 'right' : 'left'"
+  [(visible)]="settingSidebarVisible"
+>
+  <i
+    pRipple
+    class="pi pi-lock{{
+      !sidebarLock ? '-open' : ''
+    }} h3 mb-0 text-center d-block py-4 sticky-top shadow-sm"
+    (click)="handleSidebarLockToggler()"
+  ></i>
+  <p-panelMenu [multiple]="false" [model]="sidebarItems"></p-panelMenu>
+</p-sidebar>
+<p-menu
+  #accountMenu
+  [baseZIndex]="1000"
+  [popup]="true"
+  [model]="accountItems"
+></p-menu>

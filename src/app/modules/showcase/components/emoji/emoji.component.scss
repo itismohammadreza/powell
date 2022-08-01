@@ -1,0 +1,78 @@
+.body {
+  position: relative;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30vmin;
+  width: 30vmin;
+  opacity: 0.5;
+  background: rgb(247, 247, 45);
+  background: radial-gradient(
+      circle,
+      rgba(247, 247, 45, 1) 73%,
+      rgba(191, 187, 27, 0.00043767507002800965) 79%
+  );
+  border-radius: 50%;
+  box-shadow: 1px 1px 5px black;
+  transition: 0.4s;
+  z-index: 5000;
+
+  .eye {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vmin;
+    width: 10vmin;
+    margin: auto;
+    margin-top: 7vmin;
+    border-radius: 50%;
+    background: radial-gradient(#dbdbdb, #ffffff);
+    box-shadow: inset 1px 1px 5px black;
+    clip-path: circle(50px at center);
+    transition: 0.4s;
+    overflow: hidden;
+
+    .eye-color {
+      transition: transform 0.4s;
+      position: absolute;
+      height: 5vmin;
+      width: 5vmin;
+      border-radius: 50%;
+      background: rgb(38, 38, 38);
+      background: radial-gradient(
+          circle,
+          rgba(38, 38, 38, 1) 67%,
+          rgba(210, 210, 210, 0.7875525210084033) 69%
+      );
+    }
+  }
+
+  .mouth {
+    position: absolute;
+    top: 22vmin;
+    height: 0.8vmin;
+    width: 12vmin;
+    border-radius: 10px;
+    background-color: rgb(55, 55, 55);
+    box-shadow: inset 1px 1px 5px black;
+    transition: 0.4s;
+  }
+
+  &.hover {
+    cursor: none;
+
+    &,
+    .eye-color {
+      transform: scale(1.15)
+    }
+
+    .mouth {
+      top: 20vmin;
+      width: 6vmin;
+      height: 9vmin;
+      border-radius: 50%;
+    }
+  }
+}

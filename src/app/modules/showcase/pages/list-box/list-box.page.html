@@ -1,0 +1,125 @@
+<ng-preview-options
+  [previewItems]="[
+'label',
+'filled',
+'labelWidth',
+'hint',
+'rtl',
+'showRequiredStar',
+'labelPos',
+'checkbox',
+'disabled',
+'filter',
+'filterPlaceHolder',
+'emptyFilterMessage',
+'multiple',
+'readonly',
+'emptyMessage',
+'showToggleAll',
+]"
+  [(label)]="label"
+  [(filled)]="filled"
+  [(labelWidth)]="labelWidth"
+  [(hint)]="hint"
+  [(rtl)]="rtl"
+  [(showRequiredStar)]="showRequiredStar"
+  [(labelPos)]="labelPos"
+  [(checkbox)]="checkbox"
+  [(disabled)]="disabled"
+  [(filter)]="filter"
+  [(filterPlaceHolder)]="filterPlaceHolder"
+  [(emptyFilterMessage)]="emptyFilterMessage"
+  [(multiple)]="multiple"
+  [(readonly)]="readonly"
+  [(emptyMessage)]="emptyMessage"
+  [(showToggleAll)]="showToggleAll"
+></ng-preview-options>
+<div class="container">
+  <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
+    <h4>Preview</h4>
+    <ng-list-box
+      formControlName="c1"
+      [errors]="{ required: 'error' }"
+      [label]="label"
+      [filled]="filled"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [showRequiredStar]="showRequiredStar"
+      [labelPos]="labelPos"
+      [ariaFilterLabel]="ariaFilterLabel"
+      [checkbox]="checkbox"
+      [dataKey]="dataKey"
+      [disabled]="disabled"
+      [filter]="filter"
+      [filterMatchMode]="filterMatchMode"
+      [filterValue]="filterValue"
+      [filterLocale]="filterLocale"
+      [filterPlaceHolder]="filterPlaceHolder"
+      [emptyFilterMessage]="emptyFilterMessage"
+      [listStyle]="listStyle"
+      [listStyleClass]="listStyleClass"
+      [metaKeySelection]="metaKeySelection"
+      [multiple]="multiple"
+      [readonly]="readonly"
+      [emptyMessage]="emptyMessage"
+      [options]="options"
+      [optionLabel]="optionLabel"
+      [optionValue]="optionValue"
+      [optionDisabled]="optionDisabled"
+      [optionGroupLabel]="optionGroupLabel"
+      [optionGroupChildren]="optionGroupChildren"
+      [group]="group"
+      [showToggleAll]="showToggleAll"
+      [style]="style"
+      [styleClass]="styleClass"
+      [addon]="addon"
+    >
+    </ng-list-box>
+    <ng-button type="submit" label="submit"></ng-button>
+  </form>
+  <h4>NG MODEL</h4>
+  VALUE :
+  <pre>{{binding | json}}</pre>
+  <ng-list-box
+    name="myInput"
+    required
+    [(ngModel)]="binding"
+    [errors]="{ required: 'error' }"
+    [label]="label"
+    [filled]="filled"
+    [labelWidth]="labelWidth"
+    [hint]="hint"
+    [rtl]="rtl"
+    [showRequiredStar]="showRequiredStar"
+    [labelPos]="labelPos"
+    [ariaFilterLabel]="ariaFilterLabel"
+    [checkbox]="checkbox"
+    [dataKey]="dataKey"
+    [disabled]="disabled"
+    [filter]="filter"
+    [filterMatchMode]="filterMatchMode"
+    [filterValue]="filterValue"
+    [filterLocale]="filterLocale"
+    [filterPlaceHolder]="filterPlaceHolder"
+    [emptyFilterMessage]="emptyFilterMessage"
+    [listStyle]="listStyle"
+    [listStyleClass]="listStyleClass"
+    [metaKeySelection]="metaKeySelection"
+    [multiple]="multiple"
+    [readonly]="readonly"
+    [emptyMessage]="emptyMessage"
+    [options]="options"
+    [optionLabel]="optionLabel"
+    [optionValue]="optionValue"
+    [optionDisabled]="optionDisabled"
+    [optionGroupLabel]="optionGroupLabel"
+    [optionGroupChildren]="optionGroupChildren"
+    [group]="group"
+    [showToggleAll]="showToggleAll"
+    [style]="style"
+    [styleClass]="styleClass"
+    [addon]="addon"
+  >
+  </ng-list-box>
+</div>

@@ -1,0 +1,40 @@
+<p-galleria
+  dir="ltr"
+  [value]="images"
+  [autoPlay]="autoPlay"
+  [responsiveOptions]="responsiveOptions"
+  [showIndicatorsOnItem]="showIndicatorsOnItem"
+  [showIndicators]="showIndicators"
+  [showThumbnails]="showThumbnails"
+  [showItemNavigators]="showItemNavigators"
+  [showThumbnailNavigators]="showThumbnailNavigators"
+  [showItemNavigatorsOnHover]="showItemNavigatorsOnHover"
+  [changeItemOnIndicatorHover]="changeItemOnIndicatorHover"
+  [circular]="circular"
+  [indicatorsPosition]="indicatorsPosition"
+  [thumbnailsPosition]="thumbnailsPosition"
+  [fullScreen]="fullScreen"
+  [visible]="visible"
+  [numVisible]="numVisible"
+  [activeIndex]="activeIndex"
+  (visibleChange)="onVisibleChane($event)">
+  <ng-template pTemplate="item" let-item>
+    <img
+      [alt]="item.alt"
+      [src]="item.preview || 'assets/images/loader.gif'"
+      class="w-100"
+    />
+  </ng-template>
+  <ng-template pTemplate="thumbnail" let-item>
+    <img
+      [alt]="item.alt"
+      [src]="item.thumbnail || 'assets/images/loader.gif'"
+    />
+  </ng-template>
+  <ng-template pTemplate="caption" let-item>
+    <div class="galleria-caption text-{{rtl ? 'right' : 'left'}}" *ngIf="item.caption">
+      <h4>{{item.caption.title}}</h4>
+      <p class="mb-0">{{item.caption.subtitle}}</p>
+    </div>
+  </ng-template>
+</p-galleria>

@@ -1,0 +1,41 @@
+$root: "p-toggleButton";
+$wrapper: "p-toggleButton ::ng-deep .p-togglebutton";
+
+small {
+  display: block;
+  width: 100%;
+}
+
+#{$root} {
+  display: flex;
+}
+
+.wrapper { direction: ltr;
+  .field{
+    position: relative;
+    .error {
+      position: absolute;
+      top: 100%;
+    }
+  }
+  &.ltr {
+    .field{
+      .error {
+        left: 0;
+      }
+    }
+    label, small {
+      direction: ltr;
+    }
+  }
+  &.rtl { text-align: right;
+    .field{
+      .error {
+        right: 0;
+      }
+    }
+    label, small {
+      direction: rtl;
+    }
+  }
+}

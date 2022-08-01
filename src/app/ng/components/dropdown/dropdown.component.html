@@ -1,0 +1,114 @@
+<div [ngClass]="{
+      rtl: rtl,
+      ltr: !rtl,
+      'flex-column-reverse': labelPos == 'fix-top',
+      'align-items-center': labelPos == 'fix-side',
+      'align-items-end': labelPos == 'fix-top' && rtl,
+      'flex-row': labelPos == 'fix-side' && rtl,
+      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+    }" class="wrapper">
+  <div
+    [ngClass]="{
+      'w-100': labelPos == 'fix-top',
+      'p-float-label': labelPos == 'float',
+      'p-input-icon-left': !addon && icon && iconPos == 'left',
+      'p-input-icon-right': !addon && icon && iconPos == 'right',
+      'p-inputtext-sm': inputSize == 'sm',
+      'p-inputtext-lg': inputSize == 'lg',
+      'p-input-filled': filled
+    }" class="field">
+    <i *ngIf="icon && !addon" [ngClass]="icon"></i>
+
+    <p-dropdown
+      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
+      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
+      (onBlur)="_onBlur()"
+      (onChange)="_onChange($event)"
+      (onClick)="emitter('onClick',$event)"
+      (onFocus)="emitter('onFocus',$event)"
+      (onHide)="emitter('onHide',$event)"
+      (onShow)="emitter('onShow',$event)"
+      [(ngModel)]="value"
+      [appendTo]="appendTo"
+      [autoDisplayFirst]="autoDisplayFirst"
+      [autofocusFilter]="autofocusFilter"
+      [autofocus]="autofocus"
+      [baseZIndex]="1000"
+      [dataKey]="dataKey"
+
+[disabled]="disabled"
+      [editable]="editable"
+      [emptyFilterMessage]="emptyFilterMessage"
+      [filterBy]="filterBy"
+      [filterMatchMode]="filterMatchMode"
+      [filterPlaceholder]="filterPlaceholder"
+      [filterValue]="filterValue"
+      [filter]="filter"
+      [group]="group"
+      [inputId]="inputId"
+      [maxlength]="maxlength"
+      [ngAddon]="addon"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+      [optionDisabled]="optionDisabled"
+      [optionGroupChildren]="optionGroupChildren"
+      [optionGroupLabel]="optionGroupLabel"
+      [optionLabel]="optionLabel"
+      [optionValue]="optionValue"
+      [options]="options"
+      [placeholder]="placeholder"
+      [readonly]="readonly"
+      [resetFilterOnHide]="resetFilterOnHide"
+      [scrollHeight]="scrollHeight"
+      [showClear]="showClear"
+      [tooltipPosition]="tooltipPosition"
+      [tooltip]="tooltip"
+    >
+      <ng-template pTemplate="item" let-item *ngIf="itemTemplate">
+        <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item}"></ng-container>
+      </ng-template>
+      <ng-template pTemplate="selectedItem" let-item *ngIf="selectedItemTemplate">
+        <ng-container *ngTemplateOutlet="selectedItemTemplate;context:{$implicit:item}"></ng-container>
+      </ng-template>
+      <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
+        <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
+      </ng-template>
+      <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
+        <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
+      </ng-template>
+      <ng-template pTemplate="emptyfilter" let-item *ngIf="emptyFilterTemplate">
+        <ng-container *ngTemplateOutlet="emptyFilterTemplate;context:{$implicit:item}"></ng-container>
+      </ng-template>
+      <ng-template pTemplate="empty" let-item *ngIf="emptyTemplate">
+        <ng-container *ngTemplateOutlet="emptyTemplate;context:{$implicit:item}"></ng-container>
+      </ng-template>
+      <ng-template pTemplate="group" let-item *ngIf="groupTemplate">
+        <ng-container *ngTemplateOutlet="groupTemplate;context:{$implicit:item}"></ng-container>
+      </ng-template>
+    </p-dropdown>
+    <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
+      {{ label }}
+    </label>
+    <ng-container *ngFor="let error of errors | keyvalue">
+      <small
+        *ngIf="showError(error.key)"
+        [class.mt-4]="hint"
+        class="p-error"
+      >
+        {{ error.value }}
+      </small>
+    </ng-container>
+  </div>
+  <label
+    *ngIf="label && labelPos != 'float'"
+    [attr.for]="inputId"
+    [ngClass]="{
+      'mb-0': labelPos == 'fix-side',
+      'ml-4': rtl,
+      'mr-4': !rtl,
+      'text-muted': disabled
+    }"
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null"
+  >{{ label }}</label>
+</div>
+
+<small *ngIf="hint">{{ hint }}</small>

@@ -1,0 +1,5 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <ng-dynamic-el *ngFor="let item of config" [config]="item" [formControlName]="item.formControlName"></ng-dynamic-el>
+<!--  <ng-input-text [formControlName]="item.formControlName" *ngFor="let item of config"></ng-input-text>-->
+  <ng-button label="submit" type="submit"></ng-button>
+</form>

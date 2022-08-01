@@ -1,0 +1,308 @@
+@use "sass:list";
+@use "sass:string";
+@import "variable";
+
+@mixin fa-icon($icon) {
+  background: none;
+  display: inline-block;
+  font: normal normal bold 14px/1 "Font Awesome 5 Pro";
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-indent: 0px !important;
+  text-align: center;
+
+  &:before {
+    content: $icon;
+  }
+}
+
+@mixin text-style(
+  $color: #414141,
+  $size: null,
+  $line-height: normal,
+  $font-weight: normal
+) {
+  color: $color;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  @if ($size) {
+    font-size: $size;
+  } @else {
+    //font-size: $font-size-sm;
+    @include medium() {
+      //font-size: $font-size-md;
+    }
+  }
+}
+
+// positions: top-right / top-left / top-center / bottom-right / bottom-left / bottom-center /
+//            left-top / left-center / left-bottom / right-top / right-center / right-bottom /
+//            both-y-left / both-y-left / both-y-left / both-x-top / both-x-top / both-x-top
+@mixin addLine(
+  $width: 60px,
+  $height: 2px,
+  $space: 15px,
+  $bgColor: $primary,
+  $position: "bottom-right",
+  $hoverable: false
+) {
+  $isTop: str-slice($position, 1, 3) == 'top';
+  $isBottom: str-slice($position, 1, 6) == 'bottom';
+  $isLeft: str-slice($position, 1, 4) == 'left';
+  $isRight: str-slice($position, 1, 5) == 'right';
+  $isBoth: str-slice($position, 1, 4) == 'both';
+  $isBothX: str-slice($position, 1, 6) == 'both-x';
+  $isBothY: str-slice($position, 1, 6) == 'both-y';
+  position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    width: #{$width};
+    height: #{$height};
+    background: $bgColor;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    background: $bgColor;
+  }
+  @if ($isTop) {
+    margin-top: $space;
+    &:before {
+      top: -#{$space};
+    }
+  }
+  @if ($isBottom) {
+    margin-bottom: $space;
+    &:before {
+      bottom: -#{$space};
+      top: auto;
+    }
+  }
+  @if ($isLeft) {
+    margin-left: $space;
+    &:before {
+      left: -#{$space};
+    }
+  }
+  @if ($isRight) {
+    margin-right: $space;
+    &:before {
+      right: -#{$space};
+      left: auto;
+    }
+  }
+  @if ($isBothX) {
+    margin-left: $space;
+    margin-right: $space;
+    &:before {
+      left: -#{$space};
+    }
+    &:after {
+      width: #{$width};
+      height: #{$height};
+      background: $bgColor;
+      right: -#{$space};
+      left: auto;
+    }
+  }
+  @if ($isBothY) {
+    margin-top: $space;
+    margin-bottom: $space;
+    &:before {
+      top: -#{$space};
+    }
+    &:after {
+      width: #{$width};
+      height: #{$height};
+      background: $bgColor;
+      bottom: -#{$space};
+    }
+  }
+  @if ($position == 'top-right' or $position == 'bottom-right') {
+    &:before {
+      right: 0;
+      left: auto;
+    }
+  } @else if ($position == 'top-left' or $position == 'bottom-left') {
+    &:before {
+      left: 0;
+    }
+  } @else if ($position == 'top-center' or $position == 'bottom-center') {
+    &:before {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  } @else if ($position == 'left-top' or $position == 'right-top') {
+    &:before {
+      top: 0;
+    }
+  } @else if ($position == 'left-center' or $position == 'right-center') {
+    &:before {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  } @else if ($position == 'left-bottom' or $position == 'right-bottom') {
+    &:before {
+      bottom: 0;
+      top: auto;
+    }
+  } @else if ($position == 'both-y-left') {
+    &:before, &:after {
+      left: 0;
+    }
+  } @else if ($position == 'both-y-center') {
+    &:before, &:after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  } @else if ($position == 'both-y-right') {
+    &:before, &:after {
+      right: 0;
+      left: auto;
+    }
+  } @else if ($position == 'both-x-top') {
+    &:before, &:after {
+      top: 0;
+    }
+  } @else if ($position == 'both-x-center') {
+    &:before, &:after {
+      top: 50%;
+      transform: translateY(-50%)
+    }
+  } @else if ($position == 'both-x-bottom') {
+    &:before, &:after {
+      bottom: 0;
+      top: auto;
+    }
+  }
+  @if ($hoverable != false) {
+    @if ($isTop or $isBottom or $isBothY) {
+      &:before, &:after {
+        width: 0;
+        transition: width 0.4s;
+      }
+      &:hover {
+        &:before {
+          height: $height;
+          width: 100%;
+        }
+      }
+    }
+    @if ($isLeft or $isRight or $isBothX) {
+      &:before, &:after {
+        height: 0;
+        transition: height 0.4s;
+      }
+      &:hover {
+        &:before {
+          width: $width;
+          height: 100%;
+        }
+      }
+    }
+    @if ($isBothY) {
+      &:hover {
+        &:after {
+          height: $height;
+          width: 100%;
+        }
+      }
+    }
+
+    @if ($isBothX) {
+      &:hover {
+        &:after {
+          width: $width;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $name);
+  @if not $n {
+    @error "breakpoint `#{$name}` not found in `#{$breakpoints}`";
+  }
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $max: map-get($breakpoints, $name);
+  @return if($max and $max > 0, $max - .02, null);
+}
+
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+}
+
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($lower, $breakpoints);
+  $max: breakpoint-max($upper, $breakpoints);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($lower, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
+  $min:  breakpoint-min($name, $breakpoints);
+  $next: breakpoint-next($name, $breakpoints);
+  $max:  breakpoint-max($next);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($name, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($next, $breakpoints) {
+      @content;
+    }
+  }
+}

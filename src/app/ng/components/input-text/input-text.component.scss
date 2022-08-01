@@ -1,0 +1,59 @@
+:host ::ng-deep {
+  .wrapper {
+    display: flex;
+    position: relative;
+    direction: ltr; // set direction of component ltr by default and base of this, implement rtl direction
+
+    .field {
+      flex-grow: 1;
+    }
+
+    .p-inputtext,
+    small {
+      display: block;
+      width: 100% !important;
+    }
+
+    small {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+    }
+
+    i {
+      z-index: 200;
+    }
+
+    &.ltr {
+      small {
+        left: 0;
+      }
+    }
+
+    &.rtl {
+      .p-inputtext,
+      label,
+      small {
+        direction: rtl;
+      }
+
+      .field {
+        &.p-float-label {
+          label {
+            right: 0.5rem;
+            left: auto;
+          }
+
+          &.p-input-icon-right {
+            label {
+              right: 2rem;
+            }
+          }
+        }
+      }
+
+      small {
+        right: 0;
+      }
+    }
+  }
+}

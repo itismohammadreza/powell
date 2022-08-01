@@ -1,0 +1,118 @@
+$inputEl: "input";
+
+#{$inputEl},
+small {
+  display: block;
+  width: 100%;
+}
+
+.dp-material.dp-popup {
+  z-index: 2000000000;
+}
+
+dp-date-picker {
+  display: inline !important;
+}
+
+
+.wrapper {
+  display: flex;
+  position: relative;
+
+  .field {
+    flex-grow: 1;
+  }
+  #{$inputEl}.has-before {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+  #{$inputEl}.has-after {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+  #{$inputEl}.has-after.has-before {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .field{
+    position: relative;
+    ::ng-deep dp-date-picker {
+      display: inline;
+    }
+    .error {
+      position: absolute;
+      top: 100%;
+    }
+
+    i.clearable {
+      cursor: pointer;
+      &:hover {
+        color: #000000;
+      }
+    }
+
+    .inline-wrapper {
+      dp-day-calendar,
+      dp-month-calendar,
+      dp-time-select {
+        border: 1px solid #e0e0e0;
+        border-radius: 3px;
+
+        ::ng-deep .dp-calendar-nav-container {
+          border-right: 0;
+          border-left: 0;
+          border-top: 0;
+        }
+
+        &.ng-invalid.ng-dirty {
+          border-color: #f44336;
+        }
+      }
+    }
+  }
+  &.ltr {
+    .field{
+
+      .error {
+        left: 0;
+      }
+    }
+
+    #{$inputEl},
+    label, small {
+      direction: ltr;
+    }
+  }
+  &.rtl { text-align: right;
+    .field{
+      &.p-float-label {
+        label {
+          right: 0.5rem;
+          left: auto;
+        }
+        &.p-input-icon-right {
+          label {
+            right: 2rem;
+          }
+        }
+      }
+      .error {
+        right: 0;
+      }
+    }
+    .inline-wrapper {
+      direction: rtl;
+    }
+    #{$inputEl},
+    label, small {
+      direction: rtl;
+    }
+  }
+}

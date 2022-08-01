@@ -1,0 +1,53 @@
+<ng-preview-options
+  [previewItems]="[
+'label',
+'labelWidth',
+'hint',
+'rtl',
+'showRequiredStar',
+'labelPos',
+'readonly'
+]"
+  [(label)]="label"
+  [(labelWidth)]="labelWidth"
+  [(hint)]="hint"
+  [(rtl)]="rtl"
+  [(showRequiredStar)]="showRequiredStar"
+  [(labelPos)]="labelPos"
+  [(readonly)]="readonly"
+></ng-preview-options>
+<div class="container">
+  <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
+    <h4>Preview</h4>
+    <ng-editor
+      formControlName="c1"
+      [errors]="{ required: 'error' }"
+      [label]="label"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [showRequiredStar]="showRequiredStar"
+      [labelPos]="labelPos"
+      [readonly]="readonly"
+    >
+    </ng-editor>
+    <ng-button type="submit" label="submit"></ng-button>
+  </form>
+  <h4>NG MODEL</h4>
+  VALUE :
+  <pre>{{binding | json}}</pre>
+  <ng-editor
+    name="myInput"
+    required
+    [(ngModel)]="binding"
+    [errors]="{ required: 'error' }"
+    [label]="label"
+    [labelWidth]="labelWidth"
+    [hint]="hint"
+    [rtl]="rtl"
+    [showRequiredStar]="showRequiredStar"
+    [labelPos]="labelPos"
+    [readonly]="readonly"
+  >
+  </ng-editor>
+</div>

@@ -1,0 +1,35 @@
+small {
+  display: block;
+  width: 100%;
+}
+
+.wrapper { direction: ltr;
+  .field{
+    position: relative;
+    .error {
+      position: absolute;
+      top: 100%;
+    }
+  }
+  &.ltr {
+    .field{
+      .error {
+        left: 0;
+      }
+    }
+    label, small {
+      direction: ltr;
+    }
+  }
+  &.rtl { text-align: right;
+    .field{
+      .error {
+        right: 0;
+      }
+      direction: rtl;
+    }
+    label, small {
+      direction: rtl;
+    }
+  }
+}

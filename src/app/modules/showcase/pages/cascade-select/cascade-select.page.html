@@ -1,0 +1,77 @@
+<ng-preview-options
+  [previewItems]="['label','filled','labelWidth','hint','rtl','showRequiredStar','labelPos','iconPos','placeholder','readonly','disabled','icon','selectiveSize']"
+  [(label)]="label"
+  [(filled)]="filled"
+  [(labelWidth)]="labelWidth"
+  [(hint)]="hint"
+  [(rtl)]="rtl"
+  [(showRequiredStar)]="showRequiredStar"
+  [(labelPos)]="labelPos"
+  [(iconPos)]="iconPos"
+  [(placeholder)]="placeholder"
+  [(readonly)]="readonly"
+  [(disabled)]="disabled"
+  [(icon)]="icon"
+  [(selectiveSize)]="inputSize"
+></ng-preview-options>
+
+<form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
+  <h4>PREVIEW</h4>
+  <ng-cascade-select
+    [options]="options"
+    optionLabel="cname"
+    optionValue="code"
+    optionGroupLabel="name"
+    [addon]="addon"
+    [label]="label"
+    [filled]="filled"
+    [labelWidth]="labelWidth"
+    [hint]="hint"
+    [showRequiredStar]="showRequiredStar"
+    [labelPos]="labelPos"
+    [iconPos]="iconPos"
+    [disabled]="disabled"
+    [appendTo]="appendTo"
+    [placeholder]="placeholder"
+    [icon]="icon"
+    [inputSize]="inputSize"
+    [dataKey]="dataKey"
+    [optionGroupChildren]="['states', 'cities']"
+    [errors]="{ required: 'error' }"
+    [rtl]="rtl"
+    formControlName="c1"
+  ></ng-cascade-select>
+
+  <ng-button type="submit" label="submit"></ng-button>
+</form>
+
+<h4>NG MODEL</h4>
+VALUE :
+<br>
+{{binding}}
+<ng-cascade-select
+  name="myInput"
+  required
+  [(ngModel)]="binding"
+  [options]="options"
+  optionLabel="cname"
+  optionValue="code"
+  optionGroupLabel="name"
+  [addon]="addon"
+  [label]="label"
+  [filled]="filled"
+  [labelWidth]="labelWidth"
+  [hint]="hint"
+  [showRequiredStar]="showRequiredStar"
+  [labelPos]="labelPos"
+  [iconPos]="iconPos"
+  [disabled]="disabled"
+  [appendTo]="appendTo"
+  [placeholder]="placeholder"
+  [icon]="icon"
+  [inputSize]="inputSize"
+  [dataKey]="dataKey"
+  [optionGroupChildren]="['states', 'cities']"
+  [errors]="{ required: 'error' }"
+  [rtl]="rtl"
+></ng-cascade-select>

@@ -1,0 +1,94 @@
+<ng-preview-options
+  [previewItems]="[
+'label',
+'filled',
+'labelWidth',
+'hint',
+'rtl',
+'showRequiredStar',
+'labelPos',
+'iconPos',
+'icon',
+'selectiveSize',
+'max',
+'disabled',
+'placeholder',
+'allowDuplicate',
+'addOnTab',
+'addOnBlur',
+]
+"
+  [(label)]="label"
+  [(filled)]="filled"
+  [(labelWidth)]="labelWidth"
+  [(hint)]="hint"
+  [(rtl)]="rtl"
+  [(showRequiredStar)]="showRequiredStar"
+  [(labelPos)]="labelPos"
+  [(iconPos)]="iconPos"
+  [(icon)]="icon"
+  [(selectiveSize)]="inputSize"
+  [(max)]="max"
+  [(disabled)]="disabled"
+  [(placeholder)]="placeholder"
+  [(allowDuplicate)]="allowDuplicate"
+  [(addOnTab)]="addOnTab"
+  [(addOnBlur)]="addOnBlur"
+></ng-preview-options>
+<div class="container">
+  <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
+    <h4>Preview</h4>
+    <ng-chips
+      formControlName="c1"
+      field="name"
+      [errors]="{ required: 'error' }"
+      [label]="label"
+      [filled]="filled"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [showRequiredStar]="showRequiredStar"
+      [labelPos]="labelPos"
+      [iconPos]="iconPos"
+      [icon]="icon"
+      [inputSize]="inputSize"
+      [max]="max"
+      [disabled]="disabled"
+      [placeholder]="placeholder"
+      [allowDuplicate]="allowDuplicate"
+      [addOnTab]="addOnTab"
+      [addOnBlur]="addOnBlur"
+      [addon]="addon"
+    >
+    </ng-chips>
+    <ng-button type="submit" label="submit"></ng-button>
+  </form>
+
+  <h4>NG MODEL</h4>
+  VALUE :
+  <pre>{{binding | json}}</pre>
+  <ng-chips
+    name="myInput"
+    required
+    [(ngModel)]="binding"
+    field="name"
+    [errors]="{ required: 'error' }"
+    [label]="label"
+    [labelWidth]="labelWidth"
+    [hint]="hint"
+    [rtl]="rtl"
+    [showRequiredStar]="showRequiredStar"
+    [labelPos]="labelPos"
+    [iconPos]="iconPos"
+    [icon]="icon"
+    [inputSize]="inputSize"
+    [max]="max"
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    [allowDuplicate]="allowDuplicate"
+    [addOnTab]="addOnTab"
+    [addOnBlur]="addOnBlur"
+    [addon]="addon"
+  >
+  </ng-chips>
+</div>

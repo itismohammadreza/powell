@@ -1,0 +1,9 @@
+:host {
+  direction: ltr;
+  &.full {
+    &,
+    & ::ng-deep .p-button {
+      width: 100%;
+    }
+  }
+}

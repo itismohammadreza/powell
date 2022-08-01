@@ -1,0 +1,18 @@
+p-toast {
+  direction: ltr;
+  &.rtl { text-align: right;
+    ::ng-deep p-toastitem {
+      .p-toast-message {
+        border-width: 0 6px 0 0 !important;
+      }
+      .p-toast-message-content {
+        border-width: 0 6px 0 0 !important;
+        flex-direction: row-reverse;
+      }
+      .p-toast-message-text {
+        text-align: right !important;
+        margin: 0 1rem 0 0 !important;
+      }
+    }
+  }
+}

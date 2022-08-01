@@ -1,0 +1,47 @@
+<p-dialog
+  [(visible)]="visible"
+  [class.rtl]="options.rtl"
+  [header]="options.header"
+  [draggable]="options.draggable"
+  [keepInViewport]="options.keepInViewport"
+  [resizable]="options.resizable"
+  [contentStyle]="options.contentStyle"
+  [modal]="options.modal"
+  [position]="options.position"
+  [blockScroll]="options.blockScroll"
+  [closeOnEscape]="options.closeOnEscape"
+  [dismissableMask]="options.dismissableMask"
+  [closable]="options.closable"
+  [appendTo]="options.appendTo"
+  [style]="options.style"
+  [styleClass]="options.styleClass"
+  [maskStyleClass]="options.maskStyleClass"
+  [contentStyleClass]="options.contentStyleClass"
+  [showHeader]="options.showHeader"
+  [baseZIndex]="options.baseZIndex"
+  [autoZIndex]="options.autoZIndex"
+  [minX]="options.minX"
+  [minY]="options.minY"
+  [focusOnShow]="options.focusOnShow"
+  [focusTrap]="options.focusTrap"
+  [maximizable]="options.maximizable"
+  [breakpoints]="options.breakpoints"
+  [transitionOptions]="options.transitionOptions"
+>
+  <div [innerHTML]="options.message | ngSafe:'html'"></div>
+  <ng-template pTemplate="footer">
+    <ng-button
+      *ngIf="options.buttonLabel"
+      [appearance]="options.buttonAppearance"
+      [color]="options.buttonColor"
+      [full]="options.buttonFull"
+      [iconPos]="options.buttonIconPos"
+      [icon]="options.buttonIcon"
+      [label]="options.buttonLabel"
+      [raised]="options.buttonRaised"
+      [rounded]="options.buttonRounded"
+      [size]="options.buttonSize"
+      (click)="onButtonClick()"
+    ></ng-button>
+  </ng-template>
+</p-dialog>

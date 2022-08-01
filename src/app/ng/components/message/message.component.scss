@@ -1,0 +1,23 @@
+p-messages {
+  direction: ltr;
+  &.rtl { text-align: right;
+    ::ng-deep .p-message {
+      border-width: 0 6px 0 0;
+    }
+    ::ng-deep .p-message-wrapper {
+      flex-direction: row-reverse;
+      .p-message-icon {
+        margin-right: 0;
+        margin-left: 0.5rem;
+      }
+      .p-message-detail {
+        margin-left: 0;
+        margin-right: 0.5rem;
+      }
+      .p-message-close.p-link {
+        margin-right: auto;
+        margin-left: 0;
+      }
+    }
+  }
+}

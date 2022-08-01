@@ -1,0 +1,154 @@
+$root: "p-multiSelect";
+$wrapper: "p-multiSelect ::ng-deep .p-multiselect";
+$inputEl: "p-multiSelect ::ng-deep .p-inputtext";
+
+#{$root},
+#{$wrapper},
+#{$inputEl},
+small {
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  position: relative;
+
+  .field {
+    flex-grow: 1;
+  }
+
+  #{$root} {
+    &.has-before ::ng-deep .p-multiselect {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &.has-after ::ng-deep .p-multiselect {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  .field{
+    i {
+      z-index: 200;
+    }
+
+    position: relative;
+
+    .error {
+      position: absolute;
+      top: 100%;
+    }
+  }
+
+  &.ltr {
+    .field{
+
+
+      .error {
+        left: 0;
+      }
+
+      &.p-input-icon-left #{$wrapper} {
+        padding-left: 2rem;
+      }
+
+      &.p-input-icon-right {
+        i {
+          right: 2.5rem;
+        }
+      }
+    }
+
+    #{$inputEl},
+    label, small {
+      direction: ltr;
+    }
+  }
+
+  &.rtl {
+    text-align: right;
+
+    .field{
+      &.p-float-label {
+        label {
+          right: 0.5rem;
+          left: auto;
+        }
+
+        &.p-input-icon-right {
+          label {
+            right: 2rem;
+          }
+        }
+      }
+
+      .error {
+        right: 0;
+      }
+
+      &.p-input-icon-right #{$wrapper} {
+        padding-right: 2rem;
+      }
+
+      &.p-input-icon-left {
+        i {
+          left: 2.5rem;
+        }
+      }
+    }
+
+    #{$wrapper} .p-multiselect-items .p-checkbox {
+      margin-right: 0;
+      margin-left: 0.5rem;
+    }
+
+    #{$inputEl},
+    #{$wrapper} .p-multiselect-items,
+    #{$wrapper} .p-placeholder,
+    #{$wrapper} .p-multiselect-label,
+    label, small {
+      direction: rtl;
+    }
+
+    #{$wrapper} {
+      flex-direction: row-reverse;
+
+      .p-multiselect-header {
+        flex-direction: row-reverse;
+
+        .p-checkbox {
+          margin-left: 0.5rem;
+          margin-right: 0;
+        }
+
+        .p-multiselect-close {
+          margin-right: 0.5rem;
+          margin-left: 0;
+        }
+
+        .p-multiselect-filter-icon {
+          left: 0.5rem;
+          right: auto;
+        }
+
+        .p-inputtext {
+          padding-left: 1.5rem;
+        }
+      }
+
+      &.p-multiselect-chip {
+        .p-multiselect-token {
+          margin-right: 0;
+          margin-left: 0.5rem;
+
+          .p-multiselect-token-icon {
+            margin-left: 0;
+            margin-right: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+}

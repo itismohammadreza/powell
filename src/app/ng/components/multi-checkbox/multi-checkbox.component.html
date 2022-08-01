@@ -1,0 +1,67 @@
+<div [ngClass]="{
+      rtl: rtl,
+      ltr: !rtl,
+      'flex-column-reverse': labelPos == 'fix-top',
+      'align-items-center': labelPos == 'fix-side',
+      'align-items-end': labelPos == 'fix-top' && rtl,
+      'flex-row': labelPos == 'fix-side' && rtl,
+      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+    }" class="wrapper">
+  <div
+    [attr.id]="inputId"
+    [ngClass]="{
+      'w-100': labelPos == 'fix-top',
+      'flex-row': orientation == 'horizontal',
+      'flex-column': orientation == 'vertical'
+    }"
+    class="flex-grow-1 d-flex"
+  >
+    <div
+      *ngFor="let item of options"
+      [ngClass]="{
+        'mr-4': orientation == 'horizontal' && !rtl,
+        'ml-4': orientation == 'horizontal' && rtl,
+        'mb-2': orientation == 'vertical'
+      }"
+      class="d-flex align-items-center"
+    >
+      <p-checkbox
+        (onChange)="_onChange()"
+        [(ngModel)]="value"
+        [disabled]="item[optionDisabled]"
+        [inputId]="item.id"
+        [name]="groupName"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [value]="item[optionValue]"
+      ></p-checkbox>
+      <label
+        [attr.for]="item.id"
+        [ngClass]="{
+          'ml-2': !rtl,
+          'mr-2': rtl
+        }"
+        class="mb-0"
+        >{{ item[optionLabel] }}</label
+      >
+    </div>
+    <ng-container *ngFor="let error of errors | keyvalue">
+      <small *ngIf="showError(error.key)" [class.mt-4]="hint"
+        class="p-error">
+        {{ error.value }}
+      </small>
+    </ng-container>
+  </div>
+  <label
+    *ngIf="label && labelPos != 'float'"
+    [attr.for]="inputId"
+    [ngClass]="{
+      'mb-0': labelPos == 'fix-side',
+      'ml-4': rtl,
+      'mr-4': !rtl,
+      'text-muted': disabled
+    }"
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null"
+    >{{ label }}</label>
+</div>
+
+<small *ngIf="hint">{{ hint }}</small>

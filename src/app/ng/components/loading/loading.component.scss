@@ -1,0 +1,25 @@
+.loading {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  transition: all 0.5s;
+  visibility: hidden;
+  z-index: 900000000000000;
+  &.on {
+    visibility: visible;
+    opacity: 1;
+  }
+  &.off {
+    visibility: hidden;
+    opacity: 0;
+  }
+}

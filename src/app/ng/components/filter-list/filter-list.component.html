@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <ng-input-text
+        [(ngModel)]="query"
+        [inputSize]="inputSize"
+        [label]="inputLabel"
+        [placeholder]="inputPlaceholder"
+        [rtl]="rtl"
+        icon="pi pi-search"
+      >
+      </ng-input-text>
+    </div>
+    <ng-container
+      *ngFor="let item of list | ngFilter: searchField:query"
+      [ngTemplateOutletContext]="{ $implicit: item }"
+      [ngTemplateOutlet]="layoutTemplate"
+    >
+    </ng-container>
+    <div class="col-12 py-5">
+      <ng-empty
+        *ngIf="(list | ngFilter: searchField:query).length == 0"
+        [message]="emptyMessage"
+      ></ng-empty>
+    </div>
+  </div>
+</div>

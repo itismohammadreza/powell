@@ -1,0 +1,89 @@
+<ng-preview-options
+  [previewItems]="[
+'label',
+'filled',
+'labelWidth',
+'hint',
+'rtl',
+'showRequiredStar',
+'labelPos',
+'iconPos',
+'icon',
+'selectiveSize',
+'readonly',
+'disabled',
+'maxlength',
+'placeholder',
+'keyFilter',
+]"
+  [(label)]="label"
+  [(filled)]="filled"
+  [(labelWidth)]="labelWidth"
+  [(hint)]="hint"
+  [(rtl)]="rtl"
+  [(showRequiredStar)]="showRequiredStar"
+  [(labelPos)]="labelPos"
+  [(iconPos)]="iconPos"
+  [(icon)]="icon"
+  [(selectiveSize)]="inputSize"
+  [(readonly)]="readonly"
+  [(disabled)]="disabled"
+  [(maxlength)]="maxlength"
+  [(placeholder)]="placeholder"
+  [(keyFilter)]="keyFilter"
+></ng-preview-options>
+<div class="container">
+  <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
+    <h4>Preview</h4>
+    <ng-input-text
+      formControlName="c1"
+      [errors]="{ required: 'error' }"
+      [label]="label"
+      [filled]="filled"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [showRequiredStar]="showRequiredStar"
+      [labelPos]="labelPos"
+      [iconPos]="iconPos"
+      [icon]="icon"
+      [inputSize]="inputSize"
+      [readonly]="readonly"
+      [disabled]="disabled"
+      [maxlength]="maxlength"
+      [placeholder]="placeholder"
+      [type]="type"
+      [keyFilter]="keyFilter"
+      [addon]="addon"
+    >
+    </ng-input-text>
+    <ng-button type="submit" label="submit"></ng-button>
+  </form>
+  <h4>NG MODEL</h4>
+  VALUE :
+  <pre>{{binding | json}}</pre>
+  <ng-input-text
+    name="myInput"
+    required
+    [(ngModel)]="binding"
+    [errors]="{ required: 'error' }"
+    [label]="label"
+    [filled]="filled"
+    [labelWidth]="labelWidth"
+    [hint]="hint"
+    [rtl]="rtl"
+    [showRequiredStar]="showRequiredStar"
+    [labelPos]="labelPos"
+    [iconPos]="iconPos"
+    [icon]="icon"
+    [inputSize]="inputSize"
+    [readonly]="readonly"
+    [disabled]="disabled"
+    [maxlength]="maxlength"
+    [placeholder]="placeholder"
+    [type]="type"
+    [keyFilter]="keyFilter"
+    [addon]="addon"
+  >
+  </ng-input-text>
+</div>

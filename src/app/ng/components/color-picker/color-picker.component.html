@@ -1,0 +1,86 @@
+<div [ngClass]="{
+      rtl: rtl,
+      ltr: !rtl,
+      'flex-column-reverse': labelPos == 'fix-top',
+      'align-items-center': labelPos == 'fix-side',
+      'align-items-end': labelPos == 'fix-top' && rtl,
+      'flex-row': labelPos == 'fix-side' && rtl,
+      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+    }" class="wrapper">
+  <div [ngClass]="{'w-100': labelPos == 'fix-top'}" class="field">
+    <ng-container *ngIf="!inline">
+      <div
+        [ngClass]="{ 'flex-row': rtl, 'flex-row-reverse': !rtl }"
+        class="color-picker d-flex align-items-stretch"
+      >
+        <p-colorPicker
+          (onChange)="_onChangeColorPicker($event)"
+          (onHide)="emitter('onHide',$event)"
+          (onShow)="emitter('onShow',$event)"
+          [(ngModel)]="value"
+          [appendTo]="appendTo"
+          [baseZIndex]="1000"
+          [disabled]="disabled"
+          [format]="format"
+          [inline]="false"
+        ></p-colorPicker>
+        <ng-input-text
+          (onBlur)="_onBlur()"
+          (onChange)="_onChangeInput($event)"
+          (onFocus)="emitter('onFocus', $event)"
+          (onInput)="_onInput($event)"
+          (onKeydown)="_onKeydown($event)"
+          (onKeyup)="_onKeyup($event)"
+          [(ngModel)]="value"
+          [disabled]="disabled"
+          [filled]="filled"
+          [iconPos]="iconPos"
+          [icon]="icon"
+          [inputId]="inputId"
+          [inputSize]="inputSize"
+          [labelPos]="labelPos == 'float' ? 'float' : null"
+          [label]="labelPos == 'float' ? label : null"
+          [maxlength]="maxlength"
+          [placeholder]="placeholder"
+          [readonly]="readonly"
+          [rtl]="false"
+          [showRequiredStar]="labelPos == 'float' ? showRequiredStar : false"
+        ></ng-input-text>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="inline">
+      <div class="inline-wrapper">
+        <p-colorPicker
+          (onChange)="_onChangeColorPicker($event)"
+          (onHide)="emitter('onHide',$event)"
+          (onShow)="emitter('onShow',$event)"
+          [(ngModel)]="value"
+          [appendTo]="appendTo"
+          [disabled]="disabled"
+          [format]="format"
+          [inline]="true"
+          [inputId]="inputId"
+        ></p-colorPicker>
+      </div>
+    </ng-container>
+    <ng-container *ngFor="let error of errors | keyvalue">
+      <small *ngIf="showError(error.key)" [class.mt-4]="hint"
+             class="p-error">
+        {{ error.value }}
+      </small>
+    </ng-container>
+  </div>
+  <label
+    *ngIf="label && labelPos != 'float'"
+    [attr.for]="inputId"
+    [ngClass]="{
+      'mb-0': labelPos == 'fix-side',
+      'ml-4': rtl,
+      'mr-4': !rtl,
+      'text-muted': disabled
+    }"
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null"
+  >{{ label }}</label>
+</div>
+
+<small *ngIf="hint">{{ hint }}</small>

@@ -1,0 +1,19 @@
+:host ::ng-deep {
+  p-dialog {
+    &.rtl {
+      .p-dialog {
+        &-header {
+          flex-direction: row-reverse;
+        }
+
+        &-content {
+          direction: rtl;
+        }
+
+        &-footer {
+          text-align: left;
+        }
+      }
+    }
+  }
+}

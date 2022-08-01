@@ -1,0 +1,49 @@
+$root: "p-inputSwitch";
+$wrapper: "p-inputSwitch ::ng-deep .p-inputswitch";
+
+small {
+  display: block;
+  width: 100%;
+}
+
+#{$root} {
+  display: flex;
+}
+
+#{$wrapper} {
+  border: 1px solid transparent;
+  border-radius: 30px;
+}
+
+.wrapper { direction: ltr;
+  .field{
+    position: relative;
+    .error {
+      position: absolute;
+      top: 100%;
+    }
+  }
+  &.ltr {
+    .field{
+      .error {
+        left: 0;
+      }
+    }
+    label, small {
+      direction: ltr;
+    }
+  }
+  &.rtl { text-align: right;
+    .field{
+      .error {
+        right: 0;
+      }
+    }
+    label,
+    .error,
+    ~ small,
+    #{$root} {
+      direction: rtl;
+    }
+  }
+}

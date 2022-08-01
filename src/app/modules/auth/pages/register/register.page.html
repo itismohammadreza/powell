@@ -1,0 +1,78 @@
+<div class="container-fluid h-100">
+  <div class="row align-content-center justify-content-center h-100">
+    <div class="col-12">
+      <form
+        class="form-row justify-content-center"
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="p-4 box rounded-lg shadow">
+          <ng-logo class="text-center mb-2"></ng-logo>
+          <h3 class="text-center">ثبت نام</h3>
+          <ng-input-text
+            formControlName="email"
+            [showRequiredStar]="false"
+            icon="pi pi-user"
+            placeholder="نام کاربری"
+            [errors]="{'required':'این فیلد الزامیست.','email':'ایمیل نامعتبر است.'}"
+            [rtl]="fa"
+          ></ng-input-text>
+          <ng-input-text
+            type="password"
+            icon="pi pi-key"
+            [showRequiredStar]="false"
+            formControlName="password"
+            placeholder="رمز عبور"
+            [errors]="{'required': 'این فیلد الزامیست.'}"
+            [rtl]="fa"
+          ></ng-input-text>
+          <ng-input-text
+            type="password"
+            icon="pi pi-key"
+            [showRequiredStar]="false"
+            formControlName="confirmPassword"
+            placeholder="تکرار رمز عبور"
+            [errors]="{'required': 'این فیلد الزامیست.'}"
+            [rtl]="fa"
+          ></ng-input-text>
+          <small class="p-error mt-n4"
+                 *ngIf="form.hasError('notSame') && !form.get('confirmPassword').hasError('required')">
+            رمزعبور و تکرار مطابقت ندارند
+          </small>
+          <ng-button
+            [full]="true"
+            type="submit"
+            label="ورود"
+          ></ng-button>
+          <small class="text-muted mt-3 text-center">
+            حساب کاربری دارید؟
+            <a class="text-decoration-none" routerLink="/auth/login"> وارد شوید</a>
+          </small>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="background">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>

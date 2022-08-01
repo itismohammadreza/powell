@@ -1,0 +1,16 @@
+<div class="main-content {{getClasses()}}">
+  <ng-navbar-menu
+    [menuType]="menuType"
+    [sidebarVisible]="sidebarVisible"
+    [sidebarLock]="sidebarLock"
+    [sidebarItems]="sidebarItems"
+    (menuTypeChange)="onMenuTypeChange($event)"
+    (sidebarVisibleChange)="onSidebarVisibleChange($event)"
+    (sidebarLockChange)="onSidebarLockChange($event)"
+  ></ng-navbar-menu>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
+<ng-loading></ng-loading>
+<p-scrollTop></p-scrollTop>

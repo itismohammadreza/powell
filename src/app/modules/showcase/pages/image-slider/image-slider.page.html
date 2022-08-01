@@ -1,0 +1,49 @@
+<h4>PREVIEW</h4>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-7 mb-4">
+      <ng-image-slider
+        indicatorsPosition="top"
+        thumbnailsPosition="bottom"
+        [showIndicators]="true"
+        [showIndicatorsOnItem]="true"
+        [showThumbnails]="true"
+        [showItemNavigators]="true"
+        [showThumbnailNavigators]="true"
+        [changeItemOnIndicatorHover]="false"
+        [showItemNavigatorsOnHover]="true"
+        [images]="images">
+      </ng-image-slider>
+    </div>
+  </div>
+</div>
+
+<h4>CUSTOM CONTENT</h4>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-7">
+      <div class="row">
+        <div *ngFor="let image of images; let index = index;" class="col-3">
+          <img class="w-100" [src]="image.preview" [alt]="image.alt" style="cursor: pointer"
+               (click)="imageClick(index)"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h4>FULL SCREEN</h4>
+<ng-button label="open slider" (click)="onOpenSlider()"></ng-button>
+<ng-image-slider
+  [showIndicators]="true"
+  [showIndicatorsOnItem]="true"
+  [showThumbnails]="true"
+  [showItemNavigators]="true"
+  [showThumbnailNavigators]="true"
+  [changeItemOnIndicatorHover]="false"
+  [showItemNavigatorsOnHover]="true"
+  [activeIndex]="activeIndex"
+  [(visible)]="visible"
+  [fullScreen]="true"
+  [images]="images">
+</ng-image-slider>

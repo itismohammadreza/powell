@@ -1,0 +1,43 @@
+.p-dynamic-dialog {
+  direction: ltr;
+
+  form {
+    > *:not(.footer):not(:nth-last-child(2)) {
+      margin-bottom: 2rem;
+    }
+    .footer {
+      direction: ltr;
+    }
+  }
+
+  &.ltr {
+    .footer {
+      flex-direction: row-reverse;
+      ng-button[type="submit"] {
+        margin-left: 1rem;
+      }
+    }
+  }
+  &.rtl {
+    text-align: right;
+    .p-dialog-header {
+      flex-direction: row-reverse;
+    }
+    .p-dialog-content {
+      flex-direction: row-reverse;
+      .p-confirm-dialog-message {
+        margin-right: 1rem;
+        margin-left: 0;
+      }
+    }
+    .p-dialog-footer {
+      text-align: left;
+    }
+    .footer {
+      flex-direction: row;
+      ng-button[type="submit"] {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

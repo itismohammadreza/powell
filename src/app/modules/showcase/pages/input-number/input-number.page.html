@@ -1,0 +1,146 @@
+<ng-preview-options
+  [previewItems]="[
+'label',
+'filled',
+'labelWidth',
+'hint',
+'rtl',
+'showRequiredStar',
+'labelPos',
+'iconPos',
+'icon',
+'selectiveSize',
+'format',
+'showButtons',
+'buttonLayout',
+'incrementButtonIcon',
+'decrementButtonIcon',
+'prefix',
+'suffix',
+'currency',
+'currencyDisplay',
+'minFractionDigits',
+'maxFractionDigits',
+'min',
+'max',
+'step',
+'placeholder',
+'size',
+'maxlength',
+'disabled',
+]"
+  [(label)]="label"
+  [(filled)]="filled"
+  [(labelWidth)]="labelWidth"
+  [(hint)]="hint"
+  [(rtl)]="rtl"
+  [(showRequiredStar)]="showRequiredStar"
+  [(labelPos)]="labelPos"
+  [(iconPos)]="iconPos"
+  [(icon)]="icon"
+  [(selectiveSize)]="inputSize"
+  [(format)]="format"
+  [(showButtons)]="showButtons"
+  [(buttonLayout)]="buttonLayout"
+  [(incrementButtonIcon)]="incrementButtonIcon"
+  [(decrementButtonIcon)]="decrementButtonIcon"
+  [(prefix)]="prefix"
+  [(suffix)]="suffix"
+  [(currency)]="currency"
+  [(currencyDisplay)]="currencyDisplay"
+  [(minFractionDigits)]="minFractionDigits"
+  [(maxFractionDigits)]="maxFractionDigits"
+  [(min)]="min"
+  [(max)]="max"
+  [(step)]="step"
+  [(placeholder)]="placeholder"
+  [(size)]="size"
+  [(maxlength)]="maxlength"
+  [(disabled)]="disabled"
+>
+</ng-preview-options>
+<div class="container">
+  <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
+    <h4>Preview</h4>
+    <ng-input-number
+      formControlName="c1"
+      [errors]="{ required: 'error' }"
+      [label]="label"
+      [filled]="filled"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [showRequiredStar]="showRequiredStar"
+      [labelPos]="labelPos"
+      [iconPos]="iconPos"
+      [icon]="icon"
+      [inputSize]="inputSize"
+      [format]="format"
+      [showButtons]="showButtons"
+      [buttonLayout]="buttonLayout"
+      [incrementButtonIcon]="incrementButtonIcon"
+      [decrementButtonIcon]="decrementButtonIcon"
+      [mode]="mode"
+      [prefix]="prefix"
+      [suffix]="suffix"
+      [currency]="currency"
+      [currencyDisplay]="currencyDisplay"
+      [useGrouping]="useGrouping"
+      [minFractionDigits]="minFractionDigits"
+      [maxFractionDigits]="maxFractionDigits"
+      [min]="min"
+      [max]="max"
+      [step]="step"
+      [placeholder]="placeholder"
+      [size]="size"
+      [maxlength]="maxlength"
+      [disabled]="disabled"
+      [title]="title"
+      [addon]="addon"
+    >
+    </ng-input-number>
+    <ng-button type="submit" label="submit"></ng-button>
+  </form>
+  <h4>NG MODEL</h4>
+  VALUE :
+  <pre>{{binding | json}}</pre>
+  <ng-input-number
+    name="myInput"
+    required
+    [(ngModel)]="binding"
+    [errors]="{ required: 'error' }"
+    [label]="label"
+    [filled]="filled"
+    [labelWidth]="labelWidth"
+    [hint]="hint"
+    [rtl]="rtl"
+    [showRequiredStar]="showRequiredStar"
+    [labelPos]="labelPos"
+    [iconPos]="iconPos"
+    [icon]="icon"
+    [inputSize]="inputSize"
+    [format]="format"
+    [showButtons]="showButtons"
+    [buttonLayout]="buttonLayout"
+    [incrementButtonIcon]="incrementButtonIcon"
+    [decrementButtonIcon]="decrementButtonIcon"
+    [mode]="mode"
+    [prefix]="prefix"
+    [suffix]="suffix"
+    [currency]="currency"
+    [currencyDisplay]="currencyDisplay"
+    [useGrouping]="useGrouping"
+    [minFractionDigits]="minFractionDigits"
+    [maxFractionDigits]="maxFractionDigits"
+    [min]="min"
+    [max]="max"
+    [step]="step"
+    [placeholder]="placeholder"
+    [size]="size"
+    [maxlength]="maxlength"
+    [disabled]="disabled"
+    [title]="title"
+    [addon]="addon"
+  >
+  </ng-input-number>
+</div>

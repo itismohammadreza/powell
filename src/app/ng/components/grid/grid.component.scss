@@ -1,0 +1,17 @@
+@import "../../../../../node_modules/ag-grid-community/src/styles/ag-grid.scss";
+@import "../../../../../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
+
+.ag-theme-alpine {
+  @include ag-theme-alpine();
+  &,
+  & input,
+  & textarea {
+    font-family: IRANSans;
+  }
+
+  .button-renderer{
+    display: flex;
+    align-items: center;
+    line-height: 0;
+  }
+}

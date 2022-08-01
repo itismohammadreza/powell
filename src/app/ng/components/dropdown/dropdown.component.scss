@@ -1,0 +1,129 @@
+$root: "p-dropdown";
+$wrapper: "p-dropdown ::ng-deep .p-dropdown";
+$inputEl: "p-dropdown ::ng-deep .p-inputtext";
+
+#{$root},
+#{$wrapper},
+#{$inputEl},
+small {
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  position: relative;
+  direction: ltr;
+
+  .field {
+    flex-grow: 1;
+  }
+
+  #{$root} {
+    &.has-before ::ng-deep .p-dropdown {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &.has-after ::ng-deep .p-dropdown {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  .field {
+    i {
+      z-index: 200;
+    }
+
+    position: relative;
+
+    .error {
+      position: absolute;
+      top: 100%;
+    }
+  }
+
+  &.ltr {
+    .field {
+
+      .error {
+        left: 0;
+      }
+
+      &.p-input-icon-left #{$inputEl} {
+        padding-left: 2rem;
+      }
+
+      &.p-input-icon-right {
+        i {
+          right: 2.5rem;
+        }
+
+        #{$wrapper} .p-dropdown-clear-icon {
+          left: auto;
+          right: 4.357rem;
+        }
+      }
+    }
+
+    #{$inputEl},
+    label, small {
+      direction: ltr;
+    }
+  }
+
+  &.rtl {
+    text-align: right;
+
+    .field {
+      &.p-float-label {
+        label {
+          right: 0.5rem;
+          left: auto;
+        }
+
+        &.p-input-icon-right {
+          label {
+            right: 2rem;
+          }
+        }
+      }
+
+      .error {
+        right: 0;
+      }
+
+      &.p-input-icon-right {
+        #{$inputEl} {
+          padding-right: 2rem;
+        }
+
+        #{$wrapper} .p-dropdown-clear-icon {
+          right: auto;
+          left: 2.357rem;
+        }
+      }
+
+      &.p-input-icon-left {
+        i {
+          left: 2.5rem;
+        }
+
+        #{$wrapper} .p-dropdown-clear-icon {
+          right: auto;
+          left: 4.357rem;
+        }
+      }
+    }
+
+    #{$inputEl},
+    #{$wrapper} .p-dropdown-items,
+    label, small {
+      direction: rtl;
+    }
+
+    #{$wrapper} {
+      flex-direction: row-reverse;
+    }
+  }
+}

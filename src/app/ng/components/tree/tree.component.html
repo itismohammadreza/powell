@@ -1,0 +1,66 @@
+<div class="wrapper">
+  <div
+    [ngClass]="{
+      'w-100': labelPos == 'fix-top'
+    }"
+    class="field"
+  >
+    <p-tree
+      (onFilter)="emitter('onFocus',$event)"
+      (onNodeCollapse)="emitter('onNodeCollapse',$event)"
+      (onNodeContextMenuSelect)="emitter('onNodeContextMenuSelect',$event)"
+      (onNodeDrop)="emitter('onFocus',$event)"
+      (onNodeExpand)="emitter('onFocus',$event)"
+      (onNodeSelect)="_onNodeSelect($event)"
+      (onNodeUnselect)="_onNodeUnselect($event)"
+      (selectionChange)="_onSelectionChange($event)"
+      [attr.id]="inputId"
+      [contextMenu]="contextMenu"
+      [draggableNodes]="draggableNodes"
+      [draggableScope]="draggableScope"
+      [droppableNodes]="droppableNodes"
+      [droppableScope]="droppableScope"
+      [emptyMessage]="emptyMessage"
+      [filterBy]="filterBy"
+      [filterLocale]="filterLocale"
+      [filterMode]="filterMode"
+      [filterPlaceholder]="filterPlaceholder"
+      [filter]="filter"
+      [indentation]="indentation"
+      [layout]="layout"
+      [loading]="loading"
+      [maxBufferPx]="maxBufferPx"
+      [metaKeySelection]="metaKeySelection"
+      [minBufferPx]="minBufferPx"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+      [propagateSelectionDown]="propagateSelectionDown"
+      [propagateSelectionUp]="propagateSelectionUp"
+      [scrollHeight]="scrollHeight"
+      [selectionMode]="selectionMode"
+      [selection]="selection"
+      [trackBy]="trackBy"
+      [validateDrop]="validateDrop"
+      [value]="items"
+      [virtualNodeHeight]="virtualNodeHeight"
+      [virtualScroll]="virtualScroll"
+    ></p-tree>
+    <ng-container *ngFor="let error of errors | keyvalue">
+      <small *ngIf="showError(error.key)" [class.mt-4]="hint"
+        class="p-error">
+        {{ error.value }}
+      </small>
+    </ng-container>
+  </div>
+  <label
+    *ngIf="label && labelPos != 'float'"
+    [attr.for]="inputId"
+    [ngClass]="{
+      'mb-0': labelPos == 'fix-side',
+      'ml-4': rtl,
+      'mr-4': !rtl
+    }"
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null"
+    >{{ label }}</label>
+</div>
+
+<small *ngIf="hint">{{ hint }}</small>

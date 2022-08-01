@@ -1,0 +1,65 @@
+<ng-container *ngIf="!multiple">
+  <div class="single-wrapper">
+    <span
+      class="wrapper w-100 justify-content-around align-items-center"
+    >
+      <ng-template #noImage>
+        <div class="placeholder border rounded">
+          <i class="pi pi-image text-muted"></i>
+        </div>
+      </ng-template>
+      <div *ngIf="filesToShow[0]; else noImage" class="position-relative image">
+        <img [src]="filesToShow[0]" />
+        <i
+          (click)="onSingleRemove($event)"
+          *ngIf="!readonly"
+          class="trash pi pi-trash"
+        ></i>
+      </div>
+      <label
+        (click)="singleUploader.click()"
+        *ngIf="!readonly"
+        class="p-1 mb-0 border bg-light"
+        >{{ label }}</label
+      >
+      <input
+        #singleUploader
+        (change)="onSingleSelect($event)"
+        [attr.accept]="accept"
+        type="file"
+      />
+    </span>
+  </div>
+</ng-container>
+<ng-container *ngIf="multiple">
+  <div class="multiple-wrapper">
+    <div
+      (click)="multiUploader.click()"
+      *ngIf="!readonly"
+      [class.forbidden]="filesToEmit?.length == fileLimit"
+      class="image-uploader d-flex align-items-center justify-content-center"
+    >
+      <i class="pi pi-camera h2 mb-0"></i>
+      <input
+        #multiUploader
+        (change)="onMultipleSelect($event)"
+        [accept]="accept"
+        type="file"
+      />
+    </div>
+    <div
+      *ngFor="let item of filesToShow; let i = index"
+      class="image-item mr-1 mb-1"
+    >
+      <div
+        [style.backgroundImage]="'url(' + item + ')'"
+        class="image-item-image"
+      ></div>
+      <i
+        (click)="onMultipleRemove($event, item, i)"
+        *ngIf="!readonly"
+        class="image-item-trash pi pi-trash"
+      ></i>
+    </div>
+  </div>
+</ng-container>

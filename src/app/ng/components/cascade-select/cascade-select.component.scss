@@ -1,0 +1,113 @@
+:host ::ng-deep {
+  .wrapper {
+    display: flex;
+    position: relative;
+    direction: ltr;
+
+    p-cascadeSelect,
+    .p-cascadeselect,
+    .p-inputwrapper,
+    small {
+      width: 100%;
+    }
+
+    .field {
+      flex-grow: 1;
+
+      &.p-input-icon-right {
+        .p-cascadeselect-label {
+          padding-right: 2rem;
+        }
+      }
+
+      &.p-input-icon-left {
+        .p-cascadeselect-label {
+          padding-left: 2rem;
+        }
+      }
+    }
+
+    i {
+      z-index: 200;
+    }
+
+    small {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+    }
+
+    p-cascadeSelect {
+      &.has-before {
+        .p-cascadeselect {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+
+      &.has-after {
+        .p-cascadeselect {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+    }
+
+    &.ltr {
+      .p-inputwrapper,
+      label,
+      small {
+        direction: ltr;
+      }
+
+      small {
+        left: 0
+      }
+    }
+
+    &.rtl {
+      text-align: right;
+
+      .p-cascadeselect-label,
+      .p-cascadeselect .p-cascadeselect-items,
+      label, small {
+        direction: rtl;
+      }
+
+      .field {
+        &.p-float-label {
+          label {
+            right: 0.5rem;
+            left: auto;
+          }
+        }
+
+        &.p-input-icon-left {
+          i {
+            right: auto;
+            left: calc(0.75rem + 3rem)
+          }
+        }
+      }
+
+      .p-cascadeselect {
+        flex-direction: row-reverse;
+      }
+
+      .p-cascadeselect-group-icon {
+        margin-left: 0;
+        margin-right: auto;
+
+        &:before {
+          content: "\e931";
+        }
+      }
+
+      @media(min-width: 575px) {
+        .p-cascadeselect-item-active > .p-cascadeselect-sublist {
+          left: auto;
+          right: 100%;
+        }
+      }
+    }
+  }
+}

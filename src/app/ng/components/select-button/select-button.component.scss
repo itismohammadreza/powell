@@ -1,0 +1,93 @@
+$root: "p-selectButton";
+$wrapper: "p-selectButton ::ng-deep .p-selectbutton";
+
+// #{$root},
+// #{$wrapper},
+// .root,
+small {
+  display: block;
+  width: 100%;
+}
+
+.wrapper { direction: ltr;
+  #{$root} {
+    &.has-before ::ng-deep .p-button {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &.has-after ::ng-deep .p-button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+  .field{
+    position: relative;
+    .error {
+      position: absolute;
+      top: 100%;
+    }
+  }
+  &.ltr {
+    .field{
+      .error {
+        left: 0;
+      }
+    }
+    label, small {
+      direction: ltr;
+    }
+  }
+  &.rtl { text-align: right;
+    .field{
+      .error {
+        right: 0;
+      }
+      .root {
+        display: flex;
+        justify-content: flex-end;
+      }
+      #{$wrapper} {
+        direction: rtl;
+        .p-button:first-of-type {
+          border-bottom-left-radius: 0;
+          border-top-left-radius: 0;
+          border-bottom-right-radius: 3px;
+          border-top-right-radius: 3px;
+        }
+        .p-button:last-of-type {
+          border-bottom-left-radius: 3px;
+          border-top-left-radius: 3px;
+          border-bottom-right-radius: 0;
+          border-top-right-radius: 0;
+        }
+        .p-button:not(:last-child) {
+          border-right: 1px solid;
+          border-color: #ced4da;
+          border-left: 0;
+        }
+        .p-button.p-highlight {
+          border-color: #2196f3;
+        }
+      }
+
+      #{$root} {
+        &.ng-invalid.ng-dirty {
+          ::ng-deep .p-button {
+            border-color: #f44336;
+          }
+        }
+        &.has-before ::ng-deep .p-button:first-of-type {
+          border-top-right-radius: 0 !important;
+          border-bottom-right-radius: 0 !important;
+        }
+        &.has-after ::ng-deep .p-button:last-of-type {
+          border-top-left-radius: 0 !important;
+          border-bottom-left-radius: 0 !important;
+        }
+      }
+    }
+    label, small {
+      direction: rtl;
+    }
+  }
+}

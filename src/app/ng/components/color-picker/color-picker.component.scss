@@ -1,0 +1,81 @@
+$root: "p-colorPicker";
+$wrapper: "p-colorPicker ::ng-deep .p-colorpicker";
+$inputEl: "p-colorPicker ::ng-deep .p-inputtext";
+$outerInputEl: "ng-input-text ::ng-deep .p-inputtext";
+
+small {
+  display: block;
+  width: 100%;
+}
+
+.wrapper {
+  direction: ltr;
+  ng-input-text {
+    flex-grow: 1;
+  }
+
+  #{$wrapper},
+  #{$inputEl} {
+    height: 100%;
+    width: 2.5rem;
+  }
+
+  #{$root} {
+    &.has-before ::ng-deep .p-inputtext {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &.has-after ::ng-deep .p-inputtext {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+  .field{
+    position: relative;
+    .error {
+      position: absolute;
+      top: 100%;
+    }
+  }
+  &.ltr {
+    .field{
+      .error {
+        left: 0;
+      }
+      #{$inputEl} {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      #{$outerInputEl} {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+    #{$inputEl},
+    label, small {
+      direction: ltr;
+    }
+  }
+  &.rtl { text-align: right;
+    .field{
+      .error {
+        right: 0;
+      }
+      #{$outerInputEl} {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      #{$inputEl} {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+    .inline-wrapper {
+      direction: rtl;
+    }
+    #{$inputEl},
+    label, small {
+      direction: rtl;
+    }
+  }
+}

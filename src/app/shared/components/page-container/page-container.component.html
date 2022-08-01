@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <p-toolbar>
+        <div class="p-toolbar-group-left">
+          <h1>{{ header }}</h1>
+        </div>
+        <div class="p-toolbar-group-right">
+          <ng-content select="ng-button"></ng-content>
+        </div>
+      </p-toolbar>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

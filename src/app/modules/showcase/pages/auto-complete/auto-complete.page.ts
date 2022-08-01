@@ -1,0 +1,134 @@
+import {Component, OnInit} from '@angular/core';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {NgAddon, NgLabelPosition} from '@ng/models/forms';
+import {NgPosition, NgSize} from '@ng/models/offset';
+
+@Component({
+  selector: 'ng-auto-complete-page',
+  templateUrl: './auto-complete.page.html',
+  styleUrls: ['./auto-complete.page.scss']
+})
+export class AutoCompletePage implements OnInit {
+  form = new UntypedFormGroup({
+    c1: new UntypedFormControl(null, [Validators.required]),
+  });
+  binding: any;
+
+  hint: string = '';
+  label: string = 'label';
+  labelPos: NgLabelPosition = 'fix-side';
+  labelWidth: number = 100;
+  icon: string = 'pi pi-home';
+  iconPos: NgPosition = 'left';
+  inputSize: NgSize = 'md';
+  filled: boolean = false;
+  showRequiredStar: boolean = true;
+  rtl: boolean = true;
+  placeholder: string = '';
+  readonly: boolean = false;
+  disabled: boolean = false;
+  addon: NgAddon = {
+    before: {
+      type: 'icon',
+      icon: 'pi pi-home',
+    },
+    after: {
+      type: 'button',
+      label: 'home',
+    },
+  };
+
+  scrollHeight: string = '200px';
+  dropdown: boolean = false;
+  multiple: boolean = false;
+  minlength: number = 0;
+  maxlength: number;
+  size: number = 0;
+  emptyMessage: string = '';
+  forceSelection: boolean = false;
+  dropdownMode: 'blank' | 'current' = 'blank';
+  unique: boolean = false;
+  suggestions = [
+    {name: 'Afghanistan', code: 'AF'},
+    {name: 'Albania', code: 'AL'},
+    {name: 'Algeria', code: 'DZ'},
+    {name: 'American Samoa', code: 'AS'},
+    {name: 'Andorra', code: 'AD'},
+    {name: 'Angola', code: 'AO'},
+    {name: 'Anguilla', code: 'AI'},
+    {name: 'Antarctica', code: 'AQ'},
+    {name: 'Antigua and Barbuda', code: 'AG'},
+    {name: 'Argentina', code: 'AR'},
+    {name: 'Armenia', code: 'AM'},
+    {name: 'Aruba', code: 'AW'},
+    {name: 'Australia', code: 'AU'},
+    {name: 'Austria', code: 'AT'},
+    {name: 'Azerbaijan', code: 'AZ'},
+    {name: 'Bahamas', code: 'BS'},
+    {name: 'Bahrain', code: 'BH'},
+    {name: 'Bangladesh', code: 'BD'},
+    {name: 'Barbados', code: 'BB'},
+    {name: 'Belarus', code: 'BY'},
+    {name: 'Belgium', code: 'BE'},
+    {name: 'Belize', code: 'BZ'},
+    {name: 'Benin', code: 'BJ'},
+    {name: 'Bermuda', code: 'BM'},
+    {name: 'Bhutan', code: 'BT'},
+    {name: 'Bolivia', code: 'BO'},
+    {name: 'Bosnia and Herzegovina', code: 'BA'},
+    {name: 'Botswana', code: 'BW'},
+    {name: 'Bouvet Island', code: 'BV'},
+    {name: 'Brazil', code: 'BR'},
+    {name: 'British Indian Ocean Territory', code: 'IO'},
+    {name: 'Brunei Darussalam', code: 'BN'},
+    {name: 'Bulgaria', code: 'BG'},
+    {name: 'Burkina Faso', code: 'BF'},
+    {name: 'Burundi', code: 'BI'},
+    {name: 'Cambodia', code: 'KH'},
+    {name: 'Cameroon', code: 'CM'},
+    {name: 'Canada', code: 'CA'},
+    {name: 'Cape Verde', code: 'CV'},
+    {name: 'Cayman Islands', code: 'KY'},
+    {name: 'Central African Republic', code: 'CF'},
+    {name: 'Chad', code: 'TD'},
+    {name: 'Chile', code: 'CL'},
+    {name: 'China', code: 'CN'},
+    {name: 'Christmas Island', code: 'CX'},
+    {name: 'Cocos (Keeling) Islands', code: 'CC'},
+    {name: 'Colombia', code: 'CO'},
+    {name: 'Comoros', code: 'KM'},
+    {name: 'Congo', code: 'CG'},
+    {name: 'Congo, The Democratic Republic of the', code: 'CD'},
+    {name: 'Cook Islands', code: 'CK'},
+    {name: 'Costa Rica', code: 'CR'},
+    {name: 'Cote DIvoire', code: 'CI'},
+    {name: 'Croatia', code: 'HR'},
+    {name: 'Cuba', code: 'CU'},
+    {name: 'Cyprus', code: 'CY'},
+    {name: 'Czech Republic', code: 'CZ'},
+    {name: 'Denmark', code: 'DK'},
+    {name: 'Djibouti', code: 'DJ'},
+    {name: 'Dominica', code: 'DM'}
+  ];
+  filteredSuggestions: any[] = [];
+
+  filter(event) {
+    const filtered: any[] = [];
+    const query = event.query;
+    for (const s of this.suggestions) {
+      if (s.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        filtered.push(s);
+      }
+    }
+    this.filteredSuggestions = filtered;
+  }
+
+  submit() {
+  }
+
+  ngOnInit(): void {
+  }
+
+  onAddonChange(event: any) {
+  }
+}

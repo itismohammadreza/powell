@@ -1,0 +1,79 @@
+$root: "p-fileUpload";
+$wrapper: "p-fileUpload ::ng-deep .p-fileUpload";
+
+#{$root},
+#{$wrapper},
+#{$root} ::ng-deep .p-fileupload-basic .p-button.p-fileupload-choose,
+small {
+  width: 100%;
+}
+
+.wrapper {
+  .field{
+    position: relative;
+    .error {
+      position: absolute;
+      top: 100%;
+    }
+
+    #{$root} {
+      &.ng-invalid.ng-dirty {
+        ::ng-deep .p-fileupload-buttonbar,
+        ::ng-deep .p-fileupload-content {
+          border-color: #f44336;
+        }
+      }
+    }
+  }
+  &.ltr {
+    .field{
+      .error {
+        left: 0;
+      }
+    }
+    label, small {
+      direction: ltr;
+    }
+  }
+  &.rtl { text-align: right;
+    .field{
+      .error {
+        right: 0;
+      }
+    }
+    label,
+    .error,
+    ~ small,
+    #{$root} {
+      direction: rtl;
+    }
+
+    #{$root} ::ng-deep .p-message {
+      border-width: 0 6px 0 0;
+    }
+    #{$root} ::ng-deep .p-message-wrapper {
+      .p-message-icon {
+        margin-right: 0;
+        margin-left: 0.5rem;
+      }
+      .p-message-detail {
+        margin-left: 0;
+        margin-right: 0.5rem;
+      }
+      .p-message-close.p-link {
+        margin-right: auto;
+        margin-left: 0;
+      }
+    }
+    #{$root} ::ng-deep .p-fileupload-buttonbar {
+      .p-button {
+        margin-left: 0.5rem;
+        margin-right: 0;
+      }
+      .p-button-icon {
+        margin-left: 0.5rem;
+        margin-right: 0;
+      }
+    }
+  }
+}

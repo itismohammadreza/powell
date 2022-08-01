@@ -1,0 +1,69 @@
+$root: ".fr-editor";
+
+:host {
+  width: 100%;
+  &.ng-invalid.ng-dirty ::ng-deep,
+  &.ng-invalid.ng-touched ::ng-deep {
+    .fr-toolbar {
+      border-color: #f44336;
+    }
+    .fr-wrapper {
+      border-right-color: #f44336;
+      border-left-color: #f44336;
+    }
+    .fr-second-toolbar {
+      border-right-color: #f44336;
+      border-left-color: #f44336;
+      border-bottom-color: #f44336;
+    }
+  }
+}
+
+#{$root},
+small {
+  display: block;
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  position: relative;
+
+  .field {
+    flex-grow: 1;
+  }
+  .field{
+    position: relative;
+    .error {
+      position: absolute;
+      top: 100%;
+    }
+  }
+  &.ltr {
+    .field{
+      .error {
+        left: 0;
+      }
+    }
+
+    label, small {
+      direction: ltr;
+    }
+  }
+  &.rtl {
+    text-align: right;
+    .field{
+      .error {
+        right: 0;
+      }
+
+      ::ng-deep .fr-element {
+        text-align: right;
+      }
+    }
+
+    label, small {
+      direction: rtl;
+    }
+  }
+}

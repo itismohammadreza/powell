@@ -1,0 +1,68 @@
+$root: "p-tree";
+$wrapper: "p-tree ::ng-deep .p-tree";
+
+#{$wrapper},
+small {
+  display: block;
+  width: 100%;
+}
+
+#{$root} {
+  display: flex;
+  &.ng-invalid.ng-dirty {
+    ::ng-deep .p-tree {
+      border-color: #f44336;
+    }
+  }
+}
+
+.wrapper { direction: ltr;
+  .field{
+    position: relative;
+    .error {
+      position: absolute;
+      top: 100%;
+    }
+  }
+
+  &.ltr {
+    .field{
+      .error {
+        left: 0;
+      }
+    }
+    label, small {
+      direction: ltr;
+    }
+  }
+  &.rtl { text-align: right;
+    .field{
+      .error {
+        right: 0;
+      }
+    }
+    label,
+    .error,
+    ~ small,
+    #{$root} {
+      direction: rtl;
+    }
+
+    #{$wrapper} ::ng-deep {
+      .p-tree-toggler,
+      .p-checkbox,
+      .p-treenode-icon {
+        margin-right: 0;
+        margin-left: 0.5rem;
+      }
+
+      .p-treenode-children {
+        padding: 0 1rem 0 0;
+      }
+
+      .pi-chevron-right:before {
+        content: "\e900";
+      }
+    }
+  }
+}

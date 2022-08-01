@@ -1,0 +1,39 @@
+<p-confirmDialog
+  #cd
+  [class.rtl]="options.rtl"
+  [closable]="options.closable"
+  [dismissableMask]="options.dismissableMask"
+  [position]="options.position"
+  [style]="options.style"
+  [focusTrap]="options.focusTrap"
+  [appendTo]="options.appendTo"
+  [baseZIndex]="options.baseZIndex"
+  [autoZIndex]="options.autoZIndex"
+  [breakpoints]="options.breakpoints"
+  [transitionOptions]="options.transitionOptions"
+  [styleClass]="options.styleClass"
+  [maskStyleClass]="options.maskStyleClass"
+>
+  <ng-template pTemplate="footer">
+    <ng-button
+      (click)="cd.reject()"
+      *ngIf="options.rejectVisible"
+      [appearance]="options.rejectAppearance"
+      [color]="options.rejectColor"
+      [iconPos]="options.rtl ? 'right' : 'left'"
+      [icon]="options.rejectIcon"
+      [label]="options.rejectLabel"
+      [styleClass]="options.rejectButtonStyleClass"
+    ></ng-button>
+    <ng-button
+      (click)="cd.accept()"
+      *ngIf="options.acceptVisible"
+      [appearance]="options.acceptAppearance"
+      [color]="options.acceptColor"
+      [iconPos]="options.rtl ? 'right' : 'left'"
+      [icon]="options.acceptIcon"
+      [label]="options.acceptLabel"
+      [styleClass]="options.acceptButtonStyleClass"
+    ></ng-button>
+  </ng-template>
+</p-confirmDialog>

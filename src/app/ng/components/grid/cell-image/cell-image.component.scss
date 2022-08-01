@@ -1,0 +1,124 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+///////////////////////////////////////////////////
+$single: ".single-wrapper";
+$multiple: ".multiple-wrapper";
+
+#{$single},
+#{$multiple} {
+  width: 100%;
+}
+
+.trash {
+  position: absolute;
+  z-index: 200;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  transition: all 0.2s;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+#{$multiple} {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  height: 100%;
+  .image-item {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #fff;
+    outline: none;
+    transition: all 0.4s;
+
+    &:hover {
+      cursor: pointer;
+      .trash {
+        opacity: 1;
+      }
+    }
+    &-image {
+      height: 40px;
+      background-color: #f5f5f5;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+  }
+
+  .image-uploader {
+    width: 40px;
+    height: 40px;
+    border: 1px dashed #bdbdbd;
+    color: #bdbdbd;
+    border-radius: 3px;
+    text-align: center;
+    margin: 0 3px;
+    cursor: pointer;
+    position: relative;
+    input {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 1e-5;
+      pointer-events: none;
+      width: 100%;
+      z-index: 2000;
+    }
+  }
+
+  .forbidden {
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+  }
+}
+
+#{$single} {
+  &,
+  & .wrapper {
+    height: 100%;
+  }
+  .wrapper {
+    overflow: hidden;
+  }
+  .placeholder {
+    text-align: center;
+    i {
+      font-size: 2rem;
+      vertical-align: middle;
+    }
+  }
+  .image:hover {
+    cursor: pointer;
+    .trash {
+      opacity: 1;
+    }
+  }
+  label {
+    cursor: pointer;
+  }
+  input {
+    position: fixed;
+    top: -100em;
+    opacity: 0;
+  }
+  img,
+  .placeholder {
+    width: 100px;
+  }
+}

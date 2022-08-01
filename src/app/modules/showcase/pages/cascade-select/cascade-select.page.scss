@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  padding: 30px;
+}
+
+ng-cascade-select {
+  display: block;
+  width: 300px;
+  margin: auto;
+}
+
+h4 {
+  background-color: var(--surface-d);
+  font-size: 20px;
+  text-align: center;
+  font-weight: 300;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+
+  &:not(:first-child) {
+    margin-top: 60px;
+  }
+}
+
+[formControlName*="c"] {
+  margin-bottom: 20px;
+  display: block;
+}

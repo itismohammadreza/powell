@@ -1,0 +1,23 @@
+p-confirmDialog {
+  direction: ltr;
+  &.rtl { text-align: right;
+    ::ng-deep .p-dialog-header {
+      flex-direction: row-reverse;
+    }
+    ::ng-deep .p-dialog-content {
+      flex-direction: row-reverse;
+      .p-confirm-dialog-message {
+        margin-right: 1rem;
+        margin-left: 0;
+      }
+    }
+    ::ng-deep .p-dialog-footer {
+      text-align: left;
+    }
+    ::ng-deep p-footer {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+  }
+}
