@@ -27,8 +27,8 @@ export class ButtonAsyncPage implements OnInit {
   color: NgColor = 'primary';
   badgeColor: NgColor = 'secondary';
   size: NgSize = 'md';
-  newLabel: string;
-  newColor: NgColor;
+  newLabel: string = 'New Label';
+  newColor: NgColor = 'secondary';
 
   ngOnInit(): void {
   }

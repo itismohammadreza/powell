@@ -1,5 +1,19 @@
 <ng-preview-options
-  [previewItems]="['label','filled','labelWidth','hint','rtl','showRequiredStar','labelPos','iconPos','placeholder','readonly','disabled','icon','selectiveSize']"
+  [previewItems]="[
+  'label',
+  'filled',
+  'labelWidth',
+  'hint',
+  'rtl',
+  'showRequiredStar',
+  'labelPos',
+  'iconPos',
+  'placeholder',
+  'readonly',
+  'disabled',
+  'icon',
+  'selectiveSize'
+  ]"
   [(label)]="label"
   [(filled)]="filled"
   [(labelWidth)]="labelWidth"
@@ -31,11 +45,9 @@
     [labelPos]="labelPos"
     [iconPos]="iconPos"
     [disabled]="disabled"
-    [appendTo]="appendTo"
     [placeholder]="placeholder"
     [icon]="icon"
     [inputSize]="inputSize"
-    [dataKey]="dataKey"
     [optionGroupChildren]="['states', 'cities']"
     [errors]="{ required: 'error' }"
     [rtl]="rtl"
@@ -66,11 +78,9 @@ VALUE :
   [labelPos]="labelPos"
   [iconPos]="iconPos"
   [disabled]="disabled"
-  [appendTo]="appendTo"
   [placeholder]="placeholder"
   [icon]="icon"
   [inputSize]="inputSize"
-  [dataKey]="dataKey"
   [optionGroupChildren]="['states', 'cities']"
   [errors]="{ required: 'error' }"
   [rtl]="rtl"

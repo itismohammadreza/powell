@@ -5,7 +5,9 @@
       'align-items-center': labelPos == 'fix-side',
       'align-items-end': labelPos == 'fix-top' && rtl,
       'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+      'flex-row-reverse': labelPos == 'fix-side' && !rtl,
+      'p-cascadeselect-clearable': showClear,
+      'p-cascadeselect-filled': value
     }" class="wrapper">
   <div [ngClass]="{
       'w-100': labelPos == 'fix-top',
@@ -23,6 +25,7 @@
       [disabled]="disabled"
       [inputId]="inputId"
       [ngAddon]="addon"
+      [showClear]="showClear"
       [optionGroupChildren]="optionGroupChildren"
       [optionGroupLabel]="optionGroupLabel"
       [optionLabel]="optionLabel"

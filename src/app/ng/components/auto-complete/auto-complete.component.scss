@@ -37,12 +37,6 @@
     }
 
     &.ltr {
-      .p-inputtext,
-      label,
-      small {
-        direction: ltr;
-      }
-
       small {
         left: 0;
       }

@@ -9,6 +9,11 @@ import {NgPosition, NgSize} from '@ng/models/offset';
   styleUrls: ['./chips.page.scss'],
 })
 export class ChipsPage implements OnInit {
+  form = new UntypedFormGroup({
+    c1: new UntypedFormControl(null, [Validators.required]),
+  });
+  binding;
+
   label: string;
   filled: boolean = false;
   labelWidth: number;
@@ -27,10 +32,9 @@ export class ChipsPage implements OnInit {
   addOnBlur: boolean = false;
   addon: NgAddon;
 
-  form = new UntypedFormGroup({
-    c1: new UntypedFormControl(null, [Validators.required]),
-  });
-  binding;
-  submit() {}
-  ngOnInit(): void {}
+  submit() {
+  }
+
+  ngOnInit(): void {
+  }
 }

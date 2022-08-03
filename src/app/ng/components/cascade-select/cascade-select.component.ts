@@ -63,6 +63,7 @@ export class CascadeSelectComponent implements OnInit, ControlValueAccessor, Aft
   @Input() optionGroupChildren: string[] = ['items'];
   @Input() placeholder: string;
   @Input() disabled: boolean = false;
+  @Input() showClear: boolean = true;
   @Input() dataKey: string;
   @Input() tabindex: number;
   @Input() ariaLabelledBy: string;

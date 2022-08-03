@@ -231,6 +231,9 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() filterPlaceholderChange = new EventEmitter();
   @Input() scrollHeight: string;
   @Output() scrollHeightChange = new EventEmitter();
+  @Input() newLabel: string;
+  @Output() newLabelChange = new EventEmitter();
+
   @Input() minlength: number;
   @Output() minlengthChange = new EventEmitter();
   @Input() maxFileSize: number;
@@ -265,6 +268,7 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() labelWidthChange = new EventEmitter();
   @Input() indentation: number;
   @Output() indentationChange = new EventEmitter();
+
   @Input() rounded: boolean;
   @Output() roundedChange = new EventEmitter();
   @Input() raised: boolean;
@@ -347,6 +351,7 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() filterChange = new EventEmitter();
   @Input() showImagePreview: boolean;
   @Output() showImagePreviewChange = new EventEmitter();
+
   @Input() dropdownMode: 'blank' | 'current';
   @Output() dropdownModeChange = new EventEmitter();
   @Input() resultType: 'base64' | 'file';
@@ -387,6 +392,8 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() colorChange = new EventEmitter();
   @Input() appearance: NgButtonAppearance;
   @Output() appearanceChange = new EventEmitter();
+  @Input() newColor: NgColor;
+  @Output() newColorChange = new EventEmitter();
   @Input() badgeColor: NgColor;
   @Output() badgeColorChange = new EventEmitter();
 

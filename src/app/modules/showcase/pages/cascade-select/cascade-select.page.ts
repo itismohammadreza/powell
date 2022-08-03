@@ -96,24 +96,22 @@ export class CascadeSelectPage implements OnInit {
   showRequiredStar: boolean = true;
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
-  addon: NgAddon //= {
-  // before: {
-  //   type: 'icon',
-  //   icon: 'pi pi-home',
-  // },
-  // after: {
-  //   type: 'button',
-  //   icon: 'pi pi-home',
-  //   label: 'test'
-  // }
-  //};
+  addon: NgAddon = {
+    before: {
+      type: 'icon',
+      icon: 'pi pi-home',
+    },
+    after: {
+      type: 'button',
+      icon: 'pi pi-home',
+      label: 'test'
+    }
+  };
   disabled: boolean = false;
   readonly: boolean = false;
-  appendTo: any;
   placeholder: string = '';
   icon: string = 'pi pi-home';
   inputSize: NgSize = 'md';
-  dataKey: string = '';
 
   submit() {
   }
