@@ -1,5 +1,7 @@
 :host {
   direction: ltr;
+  display: inline-block;
+
   &.full {
     &,
     & ::ng-deep .p-button {
