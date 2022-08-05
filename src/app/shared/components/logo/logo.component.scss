@@ -1,3 +1,7 @@
-img {
-  cursor: pointer;
+:host {
+  display: inline-block;
+
+  img {
+    cursor: pointer;
+  }
 }
