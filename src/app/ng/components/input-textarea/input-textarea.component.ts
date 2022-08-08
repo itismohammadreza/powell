@@ -42,16 +42,16 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Input() icon: string;
   @Input() rows: number;
   @Input() cols: number;
-  @Input() autoResize: boolean = false;
-  @Input() readonly: boolean = false;
-  @Input() disabled: boolean = false;
-  @Input() filled: boolean = false;
+  @Input() autoResize: boolean;
+  @Input() readonly: boolean;
+  @Input() disabled: boolean;
+  @Input() filled: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() maxlength: number;
   @Input() labelWidth: number;
   @Input() placeholder: string;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgPosition = 'left';
   @Input() addon: NgAddon
@@ -106,14 +106,12 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar) {
-        if (this.isRequired(currentControl)) {
-          if (this.label) {
-            this.label += ' *';
-          }
-          if (this.placeholder) {
-            this.placeholder += ' *';
-          }
+      if (this.showRequiredStar && this.isRequired()) {
+        if (this.label) {
+          this.label += ' *';
+        }
+        if (this.placeholder) {
+          this.placeholder += ' *';
         }
       }
     }
@@ -162,19 +160,17 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
     return "id" + Math.random().toString(16).slice(2)
   }
 
-  isRequired(control: AbstractControl): boolean {
-    let isRequired = false;
-    const formControl = new UntypedFormControl();
-    for (const key in control) {
-      if (Object.prototype.hasOwnProperty.call(control, key)) {
-        formControl[key] = control[key];
+  isRequired(): boolean {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
       }
     }
-    formControl.setValue(null);
-    if (formControl.errors?.required) {
-      isRequired = true;
-    }
-    return isRequired;
+    return false;
   }
 
   isInvalid() {

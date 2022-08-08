@@ -3,31 +3,41 @@ small {
   width: 100%;
 }
 
-.wrapper { direction: ltr;
-  .field{
+.multi-checkbox-wrapper {
+  direction: ltr;
+
+  .field {
     position: relative;
+
     .error {
       position: absolute;
       top: 100%;
     }
   }
+
   &.ltr {
-    .field{
+    .field {
       .error {
         left: 0;
       }
     }
+
     label, small {
       direction: ltr;
     }
   }
-  &.rtl { text-align: right;
-    .field{
+
+  &.rtl {
+    text-align: right;
+
+    .field {
       .error {
         right: 0;
       }
+
       direction: rtl;
     }
+
     label, small {
       direction: rtl;
     }

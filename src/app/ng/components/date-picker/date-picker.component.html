@@ -6,7 +6,7 @@
       'align-items-end': labelPos == 'fix-top' && rtl,
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
-    }" class="wrapper">
+    }" class="date-picker-wrapper">
   <div [ngClass]="{
       'w-100': labelPos == 'fix-top',
       'p-float-label': labelPos == 'float',
@@ -32,8 +32,7 @@
         [attr.id]="inputId"
         [attr.id]="inputId"
         [attr.placeholder]="placeholder"
-
-[disabled]="disabled"
+        [disabled]="disabled"
         [dpDayPicker]="config"
         [mode]="datePickerMode"
         [ngAddon]="addon"
@@ -44,12 +43,12 @@
         pInputText
         theme="dp-material"
       />
-      <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">{{
-        label
-        }}</label>
+      <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
+        {{ label }}
+      </label>
     </ng-container>
     <ng-container *ngIf="inline">
-      <div [ngSwitch]="datePickerMode" class="inline-wrapper">
+      <div [ngSwitch]="datePickerMode" class="date-picker-inline-wrapper">
         <!-- DOES NOT SUPPORT YET! -->
         <!-- <dp-day-time-calendar
           *ngSwitchCase="'daytime'"
@@ -81,15 +80,6 @@
         ></dp-time-select>
       </div>
     </ng-container>
-    <ng-container *ngFor="let error of errors | keyvalue">
-      <small
-        *ngIf="showError(error.key)"
-        [class.mt-4]="hint"
-        class="p-error"
-      >
-        {{ error.value }}
-      </small>
-    </ng-container>
   </div>
   <label
     *ngIf="label && labelPos != 'float'"
@@ -100,8 +90,13 @@
       'mr-4': !rtl,
       'text-muted': disabled
     }"
-    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null"
-  >{{ label }}</label>
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label }}
+  </label>
+  <small *ngIf="hint">{{ hint }}</small>
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
+      {{ error.value }}
+    </small>
+  </ng-container>
 </div>
-
-<small *ngIf="hint">{{ hint }}</small>

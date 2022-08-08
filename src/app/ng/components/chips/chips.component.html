@@ -6,7 +6,7 @@
       'align-items-end': labelPos == 'fix-top' && rtl,
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
-    }" class="wrapper">
+    }" class="chips-wrapper">
   <div [ngClass]="{
       'w-100': labelPos == 'fix-top',
       'p-float-label': labelPos == 'float',
@@ -29,8 +29,7 @@
       [addOnBlur]="addOnBlur"
       [addOnTab]="addOnTab"
       [allowDuplicate]="allowDuplicate"
-
-[disabled]="disabled"
+      [disabled]="disabled"
       [field]="field"
       [inputId]="inputId"
       [max]="max"
@@ -42,19 +41,9 @@
         <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item}"></ng-container>
       </ng-template>
     </p-chips>
-
-    <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">{{
-      label
-      }}</label>
-    <ng-container *ngFor="let error of errors | keyvalue">
-      <small
-        *ngIf="showError(error.key)"
-        [class.mt-4]="hint"
-        class="p-error"
-      >
-        {{ error.value }}
-      </small>
-    </ng-container>
+    <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
+      {{ label }}
+    </label>
   </div>
   <label
     *ngIf="label && labelPos != 'float'"
@@ -65,8 +54,13 @@
       'mr-4': !rtl,
       'text-muted': disabled
     }"
-    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null"
-  >{{ label }}</label>
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label }}
+  </label>
+  <small *ngIf="hint">{{ hint }}</small>
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
+      {{ error.value }}
+    </small>
+  </ng-container>
 </div>
-
-<small *ngIf="hint">{{ hint }}</small>

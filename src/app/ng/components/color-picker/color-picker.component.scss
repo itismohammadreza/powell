@@ -1,81 +1,90 @@
-$root: "p-colorPicker";
-$wrapper: "p-colorPicker ::ng-deep .p-colorpicker";
-$inputEl: "p-colorPicker ::ng-deep .p-inputtext";
-$outerInputEl: "ng-input-text ::ng-deep .p-inputtext";
-
-small {
-  display: block;
-  width: 100%;
-}
-
-.wrapper {
-  direction: ltr;
-  ng-input-text {
-    flex-grow: 1;
-  }
-
-  #{$wrapper},
-  #{$inputEl} {
-    height: 100%;
-    width: 2.5rem;
-  }
-
-  #{$root} {
-    &.has-before ::ng-deep .p-inputtext {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-    &.has-after ::ng-deep .p-inputtext {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-  }
-  .field{
+:host ::ng-deep {
+  .color-picker-wrapper {
+    display: flex;
     position: relative;
-    .error {
-      position: absolute;
-      top: 100%;
+    direction: ltr;
+
+    small {
+      display: block;
+      width: 100%;
     }
-  }
-  &.ltr {
-    .field{
-      .error {
+
+    .field,
+    ng-input-text {
+      flex-grow: 1;
+    }
+
+    .p-colorpicker-preview {
+      height: auto;
+      width: 3rem;
+    }
+
+    p-colorPicker {
+      &.has-before .p-inputtext {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      &.has-after .p-inputtext {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+
+    small {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+    }
+
+    &.ltr {
+      small {
         left: 0;
       }
-      #{$inputEl} {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
+
+      .field {
+        .p-colorpicker-preview {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        ng-input-text .p-inputtext {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
       }
-      #{$outerInputEl} {
+
+      .addon-after {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
       }
     }
-    #{$inputEl},
-    label, small {
-      direction: ltr;
-    }
-  }
-  &.rtl { text-align: right;
-    .field{
-      .error {
+
+    &.rtl {
+      .p-colorpicker-preview,
+      label,
+      small {
+        direction: rtl;
+      }
+
+      small, {
         right: 0;
       }
-      #{$outerInputEl} {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
+
+      .field {
+        ng-input-text .p-inputtext {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        .p-colorpicker-preview {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
       }
-      #{$inputEl} {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
+
+      .inline-wrapper {
+        direction: rtl;
       }
-    }
-    .inline-wrapper {
-      direction: rtl;
-    }
-    #{$inputEl},
-    label, small {
-      direction: rtl;
     }
   }
 }

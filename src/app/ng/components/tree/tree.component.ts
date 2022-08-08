@@ -42,7 +42,7 @@ export class TreeComponent implements OnInit, ControlValueAccessor {
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() errors: NgError;
@@ -61,20 +61,20 @@ export class TreeComponent implements OnInit, ControlValueAccessor {
   @Input() metaKeySelection: boolean = true;
   @Input() propagateSelectionUp: boolean = true;
   @Input() propagateSelectionDown: boolean = true;
-  @Input() loading: boolean = false;
+  @Input() loading: boolean;
   @Input() loadingIcon: string = 'pi pi-spinner';
   @Input() emptyMessage: string = 'No records found';
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() togglerAriaLabel: string;
-  @Input() validateDrop: boolean = false;
-  @Input() filter: boolean = false;
+  @Input() validateDrop: boolean;
+  @Input() filter: boolean;
   @Input() filterBy: string = 'label';
   @Input() filterMode: NgTreeFilterMode = 'lenient';
   @Input() filterPlaceholder: string;
   @Input() filterLocale: string = undefined;
   @Input() scrollHeight: string;
-  @Input() virtualScroll: boolean = false;
+  @Input() virtualScroll: boolean;
   @Input() virtualNodeHeight: number;
   @Input() minBufferPx: number;
   @Input() maxBufferPx: number;
@@ -127,11 +127,9 @@ export class TreeComponent implements OnInit, ControlValueAccessor {
       rootForm.ngSubmit.subscribe(() => {
         currentControl.markAsTouched();
       });
-      if (this.showRequiredStar) {
-        if (this.isRequired(currentControl)) {
-          if (this.label) {
-            this.label += ' *';
-          }
+      if (this.showRequiredStar && this.isRequired()) {
+        if (this.label) {
+          this.label += ' *';
         }
       }
     }
@@ -174,19 +172,17 @@ export class TreeComponent implements OnInit, ControlValueAccessor {
   }
 
 
-  isRequired(control: AbstractControl): boolean {
-    let isRequired = false;
-    const formControl = new UntypedFormControl();
-    for (const key in control) {
-      if (Object.prototype.hasOwnProperty.call(control, key)) {
-        formControl[key] = control[key];
+  isRequired(): boolean {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
       }
     }
-    formControl.setValue(null);
-    if (formControl.errors?.required) {
-      isRequired = true;
-    }
-    return isRequired;
+    return false;
   }
 
   writeValue(value: any) {

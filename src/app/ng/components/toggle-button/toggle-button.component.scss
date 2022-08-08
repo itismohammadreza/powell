@@ -10,30 +10,39 @@ small {
   display: flex;
 }
 
-.wrapper { direction: ltr;
-  .field{
+.toggle-button-wrapper {
+  direction: ltr;
+
+  .field {
     position: relative;
+
     .error {
       position: absolute;
       top: 100%;
     }
   }
+
   &.ltr {
-    .field{
+    .field {
       .error {
         left: 0;
       }
     }
+
     label, small {
       direction: ltr;
     }
   }
-  &.rtl { text-align: right;
-    .field{
+
+  &.rtl {
+    text-align: right;
+
+    .field {
       .error {
         right: 0;
       }
     }
+
     label, small {
       direction: rtl;
     }

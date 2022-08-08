@@ -39,10 +39,10 @@ import {NgPosition, NgSize} from '@ng/models/offset';
 export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = false;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgPosition = 'left';
@@ -55,17 +55,17 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() mask: string = '99-999999';
   @Input() slotChar: string = '_';
   @Input() autoClear: boolean = true;
-  @Input() unmask: boolean = false;
+  @Input() unmask: boolean;
   @Input() style: any;
   @Input() styleClass: string;
   @Input() placeholder: string;
   @Input() size: number;
   @Input() maxlength: number;
   @Input() tabindex: number;
-  @Input() disabled: boolean = false;
-  @Input() readonly: boolean = false;
+  @Input() disabled: boolean;
+  @Input() readonly: boolean;
   @Input() characterPattern: string = '[A-Za-z]';
-  @Input() autoFocus: boolean = false;
+  @Input() autoFocus: boolean;
   @Input() autocomplete: string;
   @Input() ariaLabel: string;
   @Input() ariaRequired: boolean;
@@ -118,14 +118,12 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar) {
-        if (this.isRequired(currentControl)) {
-          if (this.label) {
-            this.label += ' *';
-          }
-          if (this.placeholder) {
-            this.placeholder += ' *';
-          }
+      if (this.showRequiredStar && this.isRequired()) {
+        if (this.label) {
+          this.label += ' *';
+        }
+        if (this.placeholder) {
+          this.placeholder += ' *';
         }
       }
     }
@@ -164,19 +162,17 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   }
 
 
-  isRequired(control: AbstractControl): boolean {
-    let isRequired = false;
-    const formControl = new UntypedFormControl();
-    for (const key in control) {
-      if (Object.prototype.hasOwnProperty.call(control, key)) {
-        formControl[key] = control[key];
+  isRequired(): boolean {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
       }
     }
-    formControl.setValue(null);
-    if (formControl.errors?.required) {
-      isRequired = true;
-    }
-    return isRequired;
+    return false;
   }
 
   writeValue(value: any) {

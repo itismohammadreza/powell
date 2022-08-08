@@ -39,7 +39,7 @@ export class DialogComponent {
     minimizeIcon: 'pi pi-window-minimize',
     maximizeIcon: 'pi pi-window-maximize',
   };
-  visible: boolean = false;
+  visible: boolean;
 
   onButtonClick() {
     this.visible = false;

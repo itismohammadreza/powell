@@ -10,7 +10,7 @@ export class MapComponent implements OnInit {
   @Input() latLng: [number, number] = [46.879966, -121.726909];
   @Input() zoom: number = 10;
   @Input() height: string = '50vh';
-  @Input() readonly: boolean = false;
+  @Input() readonly: boolean;
   @Output() mapChange: EventEmitter<[number, number]> = new EventEmitter();
   options: any;
   layers: Marker<any>[];

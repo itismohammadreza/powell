@@ -9,64 +9,80 @@ small {
   width: 100%;
 }
 
-.wrapper { direction: ltr;
+.list-box-wrapper {
+  direction: ltr;
+
   #{$root} {
     &.has-before ::ng-deep .p-listbox {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
+
     &.has-after ::ng-deep .p-listbox {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
   }
-  .field{
+
+  .field {
     position: relative;
+
     .error {
       position: absolute;
       top: 100%;
     }
   }
+
   &.ltr {
-    .field{
+    .field {
       .error {
         left: 0;
       }
     }
+
     #{$inputEl},
     label, small {
       direction: ltr;
     }
   }
-  &.rtl { text-align: right;
-    .field{
+
+  &.rtl {
+    text-align: right;
+
+    .field {
       .error {
         right: 0;
       }
     }
+
     #{$wrapper} {
       .p-listbox-list .p-checkbox {
         margin-right: 0;
         margin-left: 0.5rem;
       }
+
       .p-listbox-header {
         flex-direction: row-reverse;
+
         .p-checkbox {
           margin-right: 0;
           margin-left: 0.5rem;
         }
       }
+
       .p-listbox-filter-container {
         .p-listbox-filter {
           padding-right: 0.5rem;
           padding-left: 1.5rem;
         }
+
         .p-listbox-filter-icon {
           right: auto;
           left: 0.5rem;
         }
       }
     }
+
     #{$inputEl},
     #{$wrapper} .p-listbox-list,
     label, small {

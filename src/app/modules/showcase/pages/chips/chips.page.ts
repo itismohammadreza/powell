@@ -14,23 +14,34 @@ export class ChipsPage implements OnInit {
   });
   binding;
 
-  label: string;
-  filled: boolean = false;
-  labelWidth: number;
-  hint: string;
-  rtl: boolean = false;
-  showRequiredStar: boolean = true;
-  labelPos: NgLabelPosition = 'fix-top';
+  hint: string = '';
+  label: string = 'label';
+  labelPos: NgLabelPosition = 'fix-side';
+  labelWidth: number = 100;
+  icon: string = 'pi pi-home';
   iconPos: NgPosition = 'left';
-  icon: string;
   inputSize: NgSize = 'md';
-  max: number;
+  filled: boolean = false;
+  showRequiredStar: boolean = true;
+  rtl: boolean = true;
+  placeholder: string = '';
+  readonly: boolean = false;
   disabled: boolean = false;
-  placeholder: string;
+  addon: NgAddon// = {
+    // before: {
+    //   type: 'icon',
+    //   icon: 'pi pi-home',
+    // },
+    // after: {
+    //   type: 'button',
+    //   label: 'home',
+    // },
+ // };
+
   allowDuplicate: boolean = false;
+  max: number;
   addOnTab: boolean = false;
   addOnBlur: boolean = false;
-  addon: NgAddon;
 
   submit() {
   }

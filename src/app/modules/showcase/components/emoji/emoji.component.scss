@@ -57,7 +57,7 @@
     border-radius: 10px;
     background-color: rgb(55, 55, 55);
     box-shadow: inset 1px 1px 5px black;
-    transition: 0.4s;
+    transition: 0.2s;
   }
 
   &.hover {
@@ -65,14 +65,30 @@
 
     &,
     .eye-color {
-      transform: scale(1.15)
+      animation: vibrate 0.1s infinite;
     }
 
     .mouth {
-      top: 20vmin;
-      width: 6vmin;
-      height: 9vmin;
+      top: 19vmin;
+      width: 7vmin;
+      height: 10vmin;
       border-radius: 50%;
     }
+  }
+}
+
+
+@keyframes vibrate {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }

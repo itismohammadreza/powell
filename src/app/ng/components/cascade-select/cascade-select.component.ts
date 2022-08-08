@@ -44,10 +44,10 @@ import {TemplateDirective} from '@ng/directives/template.directive';
 export class CascadeSelectComponent implements OnInit, ControlValueAccessor, AfterContentInit {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = false;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgPosition = 'left';
@@ -62,7 +62,7 @@ export class CascadeSelectComponent implements OnInit, ControlValueAccessor, Aft
   @Input() optionGroupLabel: string = 'label';
   @Input() optionGroupChildren: string[] = ['items'];
   @Input() placeholder: string;
-  @Input() disabled: boolean = false;
+  @Input() disabled: boolean;
   @Input() showClear: boolean = true;
   @Input() dataKey: string;
   @Input() tabindex: number;
@@ -121,14 +121,12 @@ export class CascadeSelectComponent implements OnInit, ControlValueAccessor, Aft
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar) {
-        if (this.isRequired(currentControl)) {
-          if (this.label) {
-            this.label += ' *';
-          }
-          if (this.placeholder) {
-            this.placeholder += ' *';
-          }
+      if (this.showRequiredStar && this.isRequired()) {
+        if (this.label) {
+          this.label += ' *';
+        }
+        if (this.placeholder) {
+          this.placeholder += ' *';
         }
       }
     }
@@ -183,19 +181,17 @@ export class CascadeSelectComponent implements OnInit, ControlValueAccessor, Aft
   }
 
 
-  isRequired(control: AbstractControl): boolean {
-    let isRequired = false;
-    const formControl = new UntypedFormControl();
-    for (const key in control) {
-      if (Object.prototype.hasOwnProperty.call(control, key)) {
-        formControl[key] = control[key];
+  isRequired(): boolean {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
       }
     }
-    formControl.setValue(null);
-    if (formControl.errors?.required) {
-      isRequired = true;
-    }
-    return isRequired;
+    return false;
   }
 
   writeValue(value: any) {

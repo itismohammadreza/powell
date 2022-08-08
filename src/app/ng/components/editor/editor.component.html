@@ -6,7 +6,7 @@
       'align-items-end': labelPos == 'fix-top' && rtl,
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
-    }" class="wrapper">
+    }" class="editor-wrapper">
   <div
     [ngClass]="{
       'w-100': labelPos == 'fix-top'
@@ -36,8 +36,9 @@
       'ml-4': rtl,
       'mr-4': !rtl
     }"
-    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null"
-  >{{ label }}</label>
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label }}
+  </label>
 </div>
 
 <small *ngIf="hint">{{ hint }}</small>

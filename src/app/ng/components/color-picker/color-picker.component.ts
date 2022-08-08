@@ -21,8 +21,8 @@ import {
   NgControl,
   NgModel
 } from '@angular/forms';
-import { NgAddon, NgColorFormat, NgError, NgLabelPosition } from '@ng/models/forms';
-import { NgPosition, NgSize } from '@ng/models/offset';
+import {NgAddon, NgColorFormat, NgError, NgLabelPosition} from '@ng/models/forms';
+import {NgPosition, NgSize} from '@ng/models/offset';
 
 @Component({
   selector: 'ng-color-picker',
@@ -40,13 +40,13 @@ import { NgPosition, NgSize } from '@ng/models/offset';
 export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = false;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() icon: string;
   @Input() inputSize: NgSize;
-  @Input() readonly: boolean = false;
+  @Input() readonly: boolean;
   @Input() maxlength: number = 7;
   @Input() placeholder: string;
   @Input() showRequiredStar: boolean = true;
@@ -57,11 +57,11 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   // native properties
   @Input() style: any;
   @Input() styleClass: string;
-  @Input() inline: boolean = false;
+  @Input() inline: boolean;
   @Input() format: string = 'hex';
   @Input() appendTo: any;
   @Input() tabindex: number;
-  @Input() disabled: boolean = false;
+  @Input() disabled: boolean;
   @Input() baseZIndex: number = 1000;
   @Input() autoZIndex: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
@@ -115,18 +115,15 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar) {
-        if (this.isRequired(currentControl)) {
-          if (this.label && this.labelPos !== 'float') {
-            this.label += ' *';
-          }
+      if (this.showRequiredStar && this.isRequired()) {
+        if (this.label && this.labelPos !== 'float') {
+          this.label += ' *';
         }
       }
     }
   }
 
   _onChangeColorPicker(event) {
-    this.value = JSON.stringify(event.value);
     this.onChange.emit(event);
     this.onModelChange(event.value);
   }
@@ -182,19 +179,17 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   }
 
 
-  isRequired(control: AbstractControl): boolean {
-    let isRequired = false;
-    const formControl = new UntypedFormControl();
-    for (const key in control) {
-      if (Object.prototype.hasOwnProperty.call(control, key)) {
-        formControl[key] = control[key];
+  isRequired(): boolean {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
       }
     }
-    formControl.setValue(null);
-    if (formControl.errors?.required) {
-      isRequired = true;
-    }
-    return isRequired;
+    return false;
   }
 
   writeValue(value: any) {

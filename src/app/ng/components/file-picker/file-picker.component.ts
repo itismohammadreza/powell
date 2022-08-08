@@ -1,4 +1,4 @@
-import { HttpHeaders } from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
 import {
   ChangeDetectorRef,
   Component,
@@ -24,8 +24,8 @@ import {
   NgControl,
   NgModel,
 } from '@angular/forms';
-import { NgError, NgInputFileMode, NgLabelPosition } from '@ng/models/forms';
-import { FileUpload } from 'primeng/fileupload';
+import {NgError, NgInputFileMode, NgLabelPosition} from '@ng/models/forms';
+import {FileUpload} from 'primeng/fileupload';
 
 @Component({
   selector: 'ng-file-picker',
@@ -40,24 +40,23 @@ import { FileUpload } from 'primeng/fileupload';
   ],
 })
 export class FilePickerComponent
-  implements OnInit, OnChanges, ControlValueAccessor
-{
+  implements OnInit, OnChanges, ControlValueAccessor {
   @ViewChild(FileUpload) fileUploadComponent: FileUpload;
   @Input() value: any = [];
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() errors: NgError;
-  @Input() disabled: boolean = false;
+  @Input() disabled: boolean;
   @Input() name: string;
   @Input() url: string;
   @Input() multiple: boolean = true;
-  @Input() withCredentials: boolean = false;
+  @Input() withCredentials: boolean;
   @Input() customUpload: boolean = true;
-  @Input() auto: boolean = false;
+  @Input() auto: boolean;
   @Input() accept: string;
   @Input() method: string = 'post';
   @Input() maxFileSize: number;
@@ -75,7 +74,7 @@ export class FilePickerComponent
   @Input() invalidFileSizeMessageDetail: string = 'حداکثر سایز فایل {0} است.';
   @Input() invalidFileTypeMessageSummary: string = '{0} - نوع فایل نامعتبر است.';
   @Input() invalidFileLimitMessageDetail: string = 'حداکثر مجاز به انتخاب {0} فایل هستید.';
-  @Input() invalidFileLimitMessageSummary: string ='مجاز به انتخاب فایل بیشتری نیستید.';
+  @Input() invalidFileLimitMessageSummary: string = 'مجاز به انتخاب فایل بیشتری نیستید.';
   @Input() invalidFileTypeMessageDetail: string = 'فرمت مجاز : {0}';
   @Output() onProgress = new EventEmitter();
   @Output() onSelect = new EventEmitter();
@@ -93,11 +92,14 @@ export class FilePickerComponent
   selectedFiles: any[] = [];
   filesToEmit: (string | ArrayBuffer | File)[] | any;
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {}
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  }
 
-  onModelChange: any = (_: any) => {};
+  onModelChange: any = (_: any) => {
+  };
 
-  onModelTouched: any = () => {};
+  onModelTouched: any = () => {
+  };
 
   ngOnChanges() {
     if (this.isImage(this.value)) {
@@ -132,11 +134,9 @@ export class FilePickerComponent
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar) {
-        if (this.isRequired(currentControl)) {
-          if (this.label) {
-            this.label += ' *';
-          }
+      if (this.showRequiredStar && this.isRequired()) {
+        if (this.label) {
+          this.label += ' *';
         }
       }
     }
@@ -316,19 +316,17 @@ export class FilePickerComponent
   }
 
 
-  isRequired(control: AbstractControl): boolean {
-    let isRequired = false;
-    const formControl = new UntypedFormControl();
-    for (const key in control) {
-      if (Object.prototype.hasOwnProperty.call(control, key)) {
-        formControl[key] = control[key];
+  isRequired(): boolean {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
       }
     }
-    formControl.setValue(null);
-    if (formControl.errors?.required) {
-      isRequired = true;
-    }
-    return isRequired;
+    return false;
   }
 
   writeValue(value: any) {
@@ -380,7 +378,7 @@ export class FilePickerComponent
     while (n--) {
       u8arr[n] = bstr.charCodeAt(n);
     }
-    return new File([u8arr], filename, { type: mime });
+    return new File([u8arr], filename, {type: mime});
   }
 
   isImageUrl(url: string) {

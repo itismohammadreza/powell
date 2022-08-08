@@ -1,5 +1,5 @@
 :host ::ng-deep {
-  .wrapper {
+  .cascade-select-wrapper {
     display: flex;
     position: relative;
     direction: ltr;
@@ -25,20 +25,20 @@
           padding-left: 2rem;
         }
       }
-    }
 
-    p-cascadeSelect {
-      &.has-before {
-        .p-cascadeselect {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
+      p-cascadeSelect {
+        &.has-before {
+          .p-cascadeselect {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
         }
-      }
 
-      &.has-after {
-        .p-cascadeselect {
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
+        &.has-after {
+          .p-cascadeselect {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
         }
       }
     }
@@ -50,22 +50,6 @@
     small {
       position: absolute;
       top: calc(100% + 0.25rem);
-    }
-
-    p-cascadeSelect {
-      &.has-before {
-        .p-cascadeselect {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-        }
-      }
-
-      &.has-after {
-        .p-cascadeselect {
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-        }
-      }
     }
 
     &.p-cascadeselect-clearable.p-cascadeselect-filled {

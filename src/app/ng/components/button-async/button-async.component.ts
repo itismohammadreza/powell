@@ -10,12 +10,12 @@ import {NgColor} from '@ng/models/color';
 })
 export class ButtonAsyncComponent implements OnInit, OnChanges {
 
-  @Input() disabled: boolean = false;
+  @Input() disabled: boolean;
   @Input() iconPos: NgPosition = 'left';
   @Input() type: NgButtonType = 'button';
-  @Input() rounded: boolean = false;
-  @Input() raised: boolean = false;
-  @Input() full: boolean = false;
+  @Input() rounded: boolean;
+  @Input() raised: boolean;
+  @Input() full: boolean;
   @Input() badge: string;
   @Input() badgeColor: NgColor = 'primary';
   @Input() size: NgSize = 'md';
@@ -31,7 +31,7 @@ export class ButtonAsyncComponent implements OnInit, OnChanges {
   @Output() defaultStateChange = new EventEmitter();
   @Output() clickAsync = new EventEmitter();
 
-  loading: boolean = false;
+  loading: boolean;
   _tmpLabel: string;
   _tmpIcon: string;
   _tmpAppearance: NgButtonAppearance;

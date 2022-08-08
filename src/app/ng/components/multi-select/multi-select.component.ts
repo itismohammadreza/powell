@@ -41,10 +41,10 @@ import {TemplateDirective} from '@ng/directives/template.directive';
 export class MultiSelectComponent implements OnInit, ControlValueAccessor, AfterContentInit {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = false;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgPosition = 'left';
@@ -57,12 +57,12 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() appendTo: any;
   @Input() ariaFilterLabel: string;
   @Input() ariaLabelledBy: string;
-  @Input() autofocusFilter: boolean = false;
+  @Input() autofocusFilter: boolean;
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: number = 1000;
   @Input() defaultLabel: string = 'Choose';
   @Input() dataKey: string;
-  @Input() disabled: boolean = false;
+  @Input() disabled: boolean;
   @Input() displaySelectedLabel: boolean = true;
   @Input() dropdownIcon: string = 'pi pi-chevron-down';
   @Input() emptyFilterMessage: string = 'No results found';
@@ -81,13 +81,13 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() optionDisabled: string = 'disabled';
   @Input() optionGroupLabel: string = 'label';
   @Input() optionGroupChildren: string = 'items';
-  @Input() group: boolean = false;
-  @Input() overlayVisible: boolean = false;
+  @Input() group: boolean;
+  @Input() overlayVisible: boolean;
   @Input() panelStyle: object;
   @Input() placeholder: string;
-  @Input() readonly: boolean = false;
+  @Input() readonly: boolean;
   @Input() emptyMessage: string = 'No records found.';
-  @Input() resetFilterOnHide: boolean = false;
+  @Input() resetFilterOnHide: boolean;
   @Input() scrollHeight: string = '200px';
   @Input() selectedItemsLabel: string | 'ellipsis' = 'ellipsis';
   @Input() selectionLimit: number;
@@ -101,7 +101,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() tooltipStyleClass: string;
   @Input() tooltipPosition: NgPosition = 'top';
   @Input() tooltipPositionStyle: string = 'absolute';
-  @Input() virtualScroll: boolean = false;
+  @Input() virtualScroll: boolean;
   @Output() onClick = new EventEmitter();
   @Output() onChange = new EventEmitter();
   @Output() onFocus = new EventEmitter();
@@ -160,14 +160,12 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar) {
-        if (this.isRequired(currentControl)) {
-          if (this.label) {
-            this.label += ' *';
-          }
-          if (this.placeholder) {
-            this.placeholder += ' *';
-          }
+      if (this.showRequiredStar && this.isRequired()) {
+        if (this.label) {
+          this.label += ' *';
+        }
+        if (this.placeholder) {
+          this.placeholder += ' *';
         }
       }
     }
@@ -239,19 +237,17 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   }
 
 
-  isRequired(control: AbstractControl): boolean {
-    let isRequired = false;
-    const formControl = new UntypedFormControl();
-    for (const key in control) {
-      if (Object.prototype.hasOwnProperty.call(control, key)) {
-        formControl[key] = control[key];
+  isRequired(): boolean {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
       }
     }
-    formControl.setValue(null);
-    if (formControl.errors?.required) {
-      isRequired = true;
-    }
-    return isRequired;
+    return false;
   }
 
   writeValue(value: any) {

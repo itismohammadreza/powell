@@ -8,7 +8,7 @@ import {NgSize} from '@ng/models/offset';
 })
 export class FilterListComponent {
   @Input() inputPlaceholder: string = '';
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() inputLabel: string;
   @Input() inputSize: NgSize = 'md';
   @Input() list: any[];

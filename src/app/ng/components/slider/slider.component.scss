@@ -8,30 +8,39 @@ small {
   width: 100%;
 }
 
-.wrapper { direction: ltr;
-  .field{
+.slider-wrapper {
+  direction: ltr;
+
+  .field {
     position: relative;
+
     .error {
       position: absolute;
       top: 100%;
     }
   }
+
   &.ltr {
-    .field{
+    .field {
       .error {
         left: 0;
       }
     }
+
     label, small {
       direction: ltr;
     }
   }
-  &.rtl { text-align: right;
-    .field{
+
+  &.rtl {
+    text-align: right;
+
+    .field {
       .error {
         right: 0;
       }
     }
+
     label, small {
       direction: rtl;
     }

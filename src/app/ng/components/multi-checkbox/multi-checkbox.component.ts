@@ -45,13 +45,13 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() orientation: NgOrientation = 'vertical';
   @Input() errors: NgError;
   // native properties
-  @Input() disabled: boolean = false;
+  @Input() disabled: boolean;
   @Input() tabindex: number;
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
@@ -59,7 +59,7 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() styleClass: string;
   @Input() labelStyleClass: string;
   @Input() checkboxIcon: string = 'pi pi-check';
-  @Input() readonly: boolean = false;
+  @Input() readonly: boolean;
   @Input() trueValue: any;
   @Input() falseValue: any;
   @Output() onChange = new EventEmitter();
@@ -109,11 +109,9 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor {
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar) {
-        if (this.isRequired(currentControl)) {
-          if (this.label) {
-            this.label += ' *';
-          }
+      if (this.showRequiredStar && this.isRequired()) {
+        if (this.label) {
+          this.label += ' *';
         }
       }
     }
@@ -142,19 +140,17 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor {
   }
 
 
-  isRequired(control: AbstractControl): boolean {
-    let isRequired = false;
-    const formControl = new UntypedFormControl();
-    for (const key in control) {
-      if (Object.prototype.hasOwnProperty.call(control, key)) {
-        formControl[key] = control[key];
+  isRequired(): boolean {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
       }
     }
-    formControl.setValue(null);
-    if (formControl.errors?.required) {
-      isRequired = true;
-    }
-    return isRequired;
+    return false;
   }
 
   writeValue(value: any) {

@@ -40,20 +40,20 @@ import {TemplateDirective} from '@ng/directives/template.directive';
 export class ListBoxComponent implements OnInit, ControlValueAccessor, AfterContentInit {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = false;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() errors: NgError;
   @Input() addon: NgAddon
   // native properties
   @Input() ariaFilterLabel: string;
-  @Input() checkbox: boolean = false;
+  @Input() checkbox: boolean;
   @Input() dataKey: string;
-  @Input() disabled: boolean = false;
-  @Input() filter: boolean = false;
+  @Input() disabled: boolean;
+  @Input() filter: boolean;
   @Input() filterMatchMode: NgFilterMatchMode = 'contains';
   @Input() filterValue: string;
   @Input() filterLocale: string = undefined;
@@ -62,8 +62,8 @@ export class ListBoxComponent implements OnInit, ControlValueAccessor, AfterCont
   @Input() listStyle: string;
   @Input() listStyleClass: string;
   @Input() metaKeySelection: boolean = true;
-  @Input() multiple: boolean = false;
-  @Input() readonly: boolean = false;
+  @Input() multiple: boolean;
+  @Input() readonly: boolean;
   @Input() emptyMessage: string = 'No records found';
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
@@ -71,7 +71,7 @@ export class ListBoxComponent implements OnInit, ControlValueAccessor, AfterCont
   @Input() optionDisabled: string = 'disabled';
   @Input() optionGroupLabel: string = 'label';
   @Input() optionGroupChildren: string = 'items';
-  @Input() group: boolean = false;
+  @Input() group: boolean;
   @Input() showToggleAll: boolean = true;
   @Input() style: any;
   @Input() styleClass: string;
@@ -128,11 +128,9 @@ export class ListBoxComponent implements OnInit, ControlValueAccessor, AfterCont
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar) {
-        if (this.isRequired(currentControl)) {
-          if (this.label) {
-            this.label += ' *';
-          }
+      if (this.showRequiredStar && this.isRequired()) {
+        if (this.label) {
+          this.label += ' *';
         }
       }
     }
@@ -205,19 +203,17 @@ export class ListBoxComponent implements OnInit, ControlValueAccessor, AfterCont
   }
 
 
-  isRequired(control: AbstractControl): boolean {
-    let isRequired = false;
-    const formControl = new UntypedFormControl();
-    for (const key in control) {
-      if (Object.prototype.hasOwnProperty.call(control, key)) {
-        formControl[key] = control[key];
+  isRequired(): boolean {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
       }
     }
-    formControl.setValue(null);
-    if (formControl.errors?.required) {
-      isRequired = true;
-    }
-    return isRequired;
+    return false;
   }
 
   writeValue(value: any) {

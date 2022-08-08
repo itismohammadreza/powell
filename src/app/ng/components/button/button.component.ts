@@ -21,10 +21,10 @@ import {TemplateDirective} from '@ng/directives/template.directive';
 })
 export class ButtonComponent implements AfterContentInit {
   @Input() appearance: NgButtonAppearance;
-  @Input() rounded: boolean = false;
-  @Input() raised: boolean = false;
+  @Input() rounded: boolean;
+  @Input() raised: boolean;
   @Input() color: NgColor = 'primary';
-  @Input() full: boolean = false;
+  @Input() full: boolean;
   @Input() badgeColor: NgColor = 'primary';
   @Input() size: NgSize = 'md';
   // native properties
@@ -34,9 +34,9 @@ export class ButtonComponent implements AfterContentInit {
   @Input() iconPos: NgPosition = 'left';
   @Input() badge: string;
   @Input() badgeClass: string;
-  @Input() loading: boolean = false;
+  @Input() loading: boolean;
   @Input() loadingIcon: string = 'pi pi-spinner pi-spin';
-  @Input() disabled: boolean = false;
+  @Input() disabled: boolean;
   @Input() style: any;
   @Input() styleClass: any;
   @Output() onClick = new EventEmitter();

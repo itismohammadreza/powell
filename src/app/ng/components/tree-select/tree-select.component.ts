@@ -23,7 +23,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit {
   @Input() options: any[];
   @Input() scrollHeight: string = '400px';
   @Input() placeholder: string;
-  @Input() disabled: boolean = false;
+  @Input() disabled: boolean;
   @Input() tabindex: string;
   @Input() ariaLabelledBy: string;
   @Input() selectionMode: NgSelectionMode;

@@ -6,48 +6,34 @@
       'align-items-end': labelPos == 'fix-top' && rtl,
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
-    }" class="wrapper">
+    }" class="select-button-wrapper">
   <div
     [ngClass]="{
       'w-100': labelPos == 'fix-top'
     }"
     class="field"
   >
-    <div class="root">
-      <p-selectButton
-        (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-        (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
-        (onChange)="_onChange($event)"
-        (onOptionClick)="_onOptionClick($event)"
-        [(ngModel)]="value"
-        [attr.id]="inputId"
-        [dataKey]="dataKey"
-
-[disabled]="disabled"
-        [multiple]="multiple"
-        [ngAddon]="addon"
-        [ngClass]="{
-'ng-invalid ng-dirty': isInvalid()
-        }"
-        [optionDisabled]="optionDisabled"
-        [optionLabel]="optionLabel"
-        [optionValue]="optionValue"
-        [options]="options"
-      >
-        <ng-template *ngIf="itemTemplate">
-          <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>
-        </ng-template>
-      </p-selectButton>
-    </div>
-    <ng-container *ngFor="let error of errors | keyvalue">
-      <small
-        *ngIf="showError(error.key)"
-        [class.mt-4]="hint"
-        class="p-error"
-      >
-        {{ error.value }}
-      </small>
-    </ng-container>
+    <p-selectButton
+      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
+      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
+      (onChange)="_onChange($event)"
+      (onOptionClick)="_onOptionClick($event)"
+      [(ngModel)]="value"
+      [attr.id]="inputId"
+      [dataKey]="dataKey"
+      [disabled]="disabled"
+      [multiple]="multiple"
+      [ngAddon]="addon"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+      [optionDisabled]="optionDisabled"
+      [optionLabel]="optionLabel"
+      [optionValue]="optionValue"
+      [options]="options"
+    >
+      <ng-template *ngIf="itemTemplate">
+        <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>
+      </ng-template>
+    </p-selectButton>
   </div>
   <label
     *ngIf="label && labelPos != 'float'"
@@ -58,8 +44,13 @@
       'mr-4': !rtl,
       'text-muted': disabled
     }"
-    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null"
-  >{{ label }}</label>
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label }}
+  </label>
+  <small *ngIf="hint">{{ hint }}</small>
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
+      {{ error.value }}
+    </small>
+  </ng-container>
 </div>
-
-<small *ngIf="hint">{{ hint }}</small>

@@ -11,14 +11,14 @@ export class KnobComponent implements OnInit {
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() errors: NgError;
   // native properties
   @Input() size: number = 100;
-  @Input() disabled: boolean = false;
-  @Input() readonly: boolean = false;
+  @Input() disabled: boolean;
+  @Input() readonly: boolean;
   @Input() step: number;
   @Input() min: number = 0;
   @Input() max: number = 100;

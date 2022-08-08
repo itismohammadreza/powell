@@ -34,16 +34,16 @@ export class NavbarMenuComponent
       }
     }
   ];
-  settingSidebarVisible: boolean = false;
+  settingSidebarVisible: boolean;
   selectedLanguage = this.translationService.getDefaultLang();
   selectedTheme = 'lara-light-indigo';
   sidebarItems: MenuItem[];
   themes: MenuItem[];
   menuTypes: MenuItem[];
 
-  @Input() sidebarVisible: boolean = false;
+  @Input() sidebarVisible: boolean;
   @Output() sidebarVisibleChange = new EventEmitter<boolean>();
-  @Input() sidebarLock: boolean = false;
+  @Input() sidebarLock: boolean;
   @Output() sidebarLockChange = new EventEmitter<boolean>();
   @Input() menuType: MenuType;
   @Output() menuTypeChange = new EventEmitter<MenuType>();

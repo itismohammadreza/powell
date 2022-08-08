@@ -1,5 +1,6 @@
 import {
-  AfterContentInit, AfterViewInit,
+  AfterContentInit,
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -20,8 +21,6 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  NgModel,
-  UntypedFormControl,
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
@@ -43,10 +42,10 @@ import {TemplateDirective} from '@ng/directives/template.directive';
 export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = false;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() icon: string;
   @Input() labelPos: NgLabelPosition = 'fix-top';
@@ -58,11 +57,11 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() suggestions: any[];
   @Input() field: string;
   @Input() scrollHeight: string = '200px';
-  @Input() dropdown: boolean = false;
-  @Input() multiple: boolean = false;
+  @Input() dropdown: boolean;
+  @Input() multiple: boolean;
   @Input() dropdownIcon: string = 'pi pi-chevron-down';
   @Input() minlength: number = 1;
-  @Input() completeOnFocus: boolean = false;
+  @Input() completeOnFocus: boolean;
   @Input() style: any;
   @Input() inputStyle: any;
   @Input() panelStyle: any;
@@ -70,21 +69,21 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() inputStyleClass: string;
   @Input() panelStyleClass: string;
   @Input() optionGroupLabel: string = 'label';
-  @Input() group: boolean = false;
+  @Input() group: boolean;
   @Input() optionGroupChildren: string;
   @Input() placeholder: string;
-  @Input() readonly: boolean = false;
-  @Input() disabled: boolean = false;
+  @Input() readonly: boolean;
+  @Input() disabled: boolean;
   @Input() maxlength: number;
   @Input() size: number;
   @Input() appendTo: any;
   @Input() tabIndex: any;
   @Input() dataKey: string;
-  @Input() autoHighlight: boolean = false;
+  @Input() autoHighlight: boolean;
   @Input() type: string = 'text';
-  @Input() showEmptyMessage: boolean = false;
+  @Input() showEmptyMessage: boolean;
   @Input() emptyMessage: string = 'No records found.';
-  @Input() autofocus: boolean = false;
+  @Input() autofocus: boolean;
   @Input() forceSelection: boolean = true;
   @Input() dropdownMode: 'blank' | 'current' = 'blank';
   @Input() baseZIndex: number = 1000;
@@ -96,13 +95,13 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() dropdownAriaLabel: string;
   @Input() unique: boolean = true;
   @Input() autocomplete: string;
-  @Input() virtualScroll: boolean = false;
+  @Input() virtualScroll: boolean;
   @Input() itemSize: number;
   @Input() delay: number = 300;
   @Input() immutable: boolean = true;
-  @Input() showClear: boolean = false;
+  @Input() showClear: boolean;
   @Input() virtualScrollItemSize: number;
-  @Input() lazy: boolean = false;
+  @Input() lazy: boolean;
   @Output() completeMethod = new EventEmitter();
   @Output() onFocus = new EventEmitter();
   @Output() onBlur = new EventEmitter();
@@ -169,15 +168,13 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   }
 
   ngAfterViewInit() {
-    if (this.showRequiredStar) {
-      if (this.isRequired()) {
+    if (this.showRequiredStar && this.isRequired()) {
         if (this.label) {
           this.label += ' *';
         }
         if (this.placeholder) {
           this.placeholder += ' *';
         }
-      }
       this.cd.detectChanges();
     }
   }
@@ -281,7 +278,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
       }
     }
     return false;
-  };
+  }
 
   writeValue(value: any) {
     this.value = value;

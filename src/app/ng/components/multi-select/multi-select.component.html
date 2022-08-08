@@ -6,7 +6,7 @@
       'align-items-end': labelPos == 'fix-top' && rtl,
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
-    }" class="wrapper">
+    }" class="multi-select-wrapper">
   <div [ngClass]="{
       'w-100': labelPos == 'fix-top',
       'p-float-label': labelPos == 'float',
@@ -32,8 +32,7 @@
       [baseZIndex]="1000"
       [dataKey]="dataKey"
       [defaultLabel]="defaultLabel"
-
-[disabled]="disabled"
+      [disabled]="disabled"
       [displaySelectedLabel]="displaySelectedLabel"
       [display]="display"
       [emptyFilterMessage]="emptyFilterMessage"
@@ -63,8 +62,6 @@
       [tooltip]="tooltip"
       [virtualScroll]="virtualScroll"
     >
-
-
       <ng-template pTemplate="item" let-item *ngIf="itemTemplate">
         <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item}"></ng-container>
       </ng-template>
@@ -87,19 +84,9 @@
         <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
       </ng-template>
     </p-multiSelect>
-
     <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
       {{ label }}
     </label>
-    <ng-container *ngFor="let error of errors | keyvalue">
-      <small
-        *ngIf="showError(error.key)"
-        [class.mt-4]="hint"
-        class="p-error"
-      >
-        {{ error.value }}
-      </small>
-    </ng-container>
   </div>
   <label
     *ngIf="label && labelPos != 'float'"
@@ -110,8 +97,13 @@
       'mr-4': !rtl,
       'text-muted': disabled
     }"
-    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null"
-  >{{ label }}</label>
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label }}
+  </label>
+  <small *ngIf="hint">{{ hint }}</small>
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
+      {{ error.value }}
+    </small>
+  </ng-container>
 </div>
-
-<small *ngIf="hint">{{ hint }}</small>

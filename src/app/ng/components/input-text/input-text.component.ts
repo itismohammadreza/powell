@@ -38,18 +38,18 @@ import {NgPosition, NgSize} from '@ng/models/offset';
 export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = false;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgPosition = 'left';
   @Input() errors: NgError;
   @Input() icon: string;
   @Input() inputSize: NgSize = 'md';
-  @Input() readonly: boolean = false;
-  @Input() disabled: boolean = false;
+  @Input() readonly: boolean;
+  @Input() disabled: boolean;
   @Input() maxlength: number;
   @Input() placeholder: string;
   @Input() type: NgInputTypes = 'text';
@@ -68,8 +68,6 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-
-  // TODO: یا باید ایکن بندازه یا بیفور افتر
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
@@ -126,8 +124,8 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
     //       currentControl.markAsTouched();
     //     }
     //   });
-    //   if (this.showRequiredStar) {
-    //     if (this.isRequired(currentControl)) {
+    //   if (this.showRequiredStar && this.isRequired()) {
+    //     if (this.isRequired()) {
     //       if (this.label) {
     //         this.label += ' *';
     //       }
@@ -140,14 +138,12 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   }
 
   ngAfterViewInit() {
-    if (this.showRequiredStar) {
-      if (this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
-        if (this.placeholder) {
-          this.placeholder += ' *';
-        }
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
+      }
+      if (this.placeholder) {
+        this.placeholder += ' *';
       }
       this.cd.detectChanges();
     }

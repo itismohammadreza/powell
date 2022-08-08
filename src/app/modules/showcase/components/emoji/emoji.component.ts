@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'ng-emoji',
@@ -26,5 +26,4 @@ export class EmojiComponent implements OnInit {
   onMouseLeave(event) {
     event.target.classList.remove('hover');
   }
-
 }

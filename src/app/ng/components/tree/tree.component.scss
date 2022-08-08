@@ -9,6 +9,7 @@ small {
 
 #{$root} {
   display: flex;
+
   &.ng-invalid.ng-dirty {
     ::ng-deep .p-tree {
       border-color: #f44336;
@@ -16,9 +17,12 @@ small {
   }
 }
 
-.wrapper { direction: ltr;
-  .field{
+.tree-wrapper {
+  direction: ltr;
+
+  .field {
     position: relative;
+
     .error {
       position: absolute;
       top: 100%;
@@ -26,21 +30,26 @@ small {
   }
 
   &.ltr {
-    .field{
+    .field {
       .error {
         left: 0;
       }
     }
+
     label, small {
       direction: ltr;
     }
   }
-  &.rtl { text-align: right;
-    .field{
+
+  &.rtl {
+    text-align: right;
+
+    .field {
       .error {
         right: 0;
       }
     }
+
     label,
     .error,
     ~ small,

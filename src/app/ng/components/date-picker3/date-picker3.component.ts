@@ -121,7 +121,7 @@ export class DatePicker3Component implements OnInit, OnDestroy, ControlValueAcce
 
   @Input() rangeSeparator: string = '-';
 
-  @Input() inline: boolean = false;
+  @Input() inline: boolean;
 
   @Input() showOtherMonths: boolean = true;
 
@@ -151,13 +151,13 @@ export class DatePicker3Component implements OnInit, OnDestroy, ControlValueAcce
 
   @Input() stepSecond: number = 1;
 
-  @Input() showSeconds: boolean = false;
+  @Input() showSeconds: boolean;
 
   @Input() required: boolean;
 
   @Input() showOnFocus: boolean = true;
 
-  @Input() showWeek: boolean = false;
+  @Input() showWeek: boolean;
 
   @Input() dataType: string = 'date';
 
@@ -179,7 +179,7 @@ export class DatePicker3Component implements OnInit, OnDestroy, ControlValueAcce
 
   @Input() panelStyle: any;
 
-  @Input() keepInvalid: boolean = false;
+  @Input() keepInvalid: boolean;
 
   @Input() hideOnDateTimeSelect: boolean = true;
 
@@ -1050,7 +1050,7 @@ export class DatePicker3Component implements OnInit, OnDestroy, ControlValueAcce
   }
 
   isDateBetween(start, end, dateMeta) {
-    let between: boolean = false;
+    let between: boolean;
     if (start && end) {
       let date: moment.Moment = moment([dateMeta.year, dateMeta.month, dateMeta.day]);
       return start.unix() <= date.unix() && end.unix() >= date.unix();

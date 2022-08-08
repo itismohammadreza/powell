@@ -101,19 +101,6 @@ export class AddonDirective implements OnInit {
   }
 
   addToDOM(el: any, pos: string) {
-    // let target = this.el.nativeElement;
-    // if (target.parentNode.classList.contains('p-float-label')) {
-    //   target = target.parentNode.parentNode;
-    // }
-    // target.parentNode.classList.add('p-inputgroup');
-    // if (pos === 'after') {
-    //   this.el.nativeElement.classList.add('has-after');
-    //   this.renderer.appendChild(target.parentNode, el);
-    // } else if (pos === 'before') {
-    //   this.el.nativeElement.classList.add('has-before');
-    //   this.renderer.insertBefore(target.parentNode, el, target);
-    // }
-    // TODO: add float label support for addon
     let target = this.el.nativeElement;
     if (target.parentNode.classList.contains('p-float-label')) {
       target = target.parentNode;

@@ -16,10 +16,10 @@ export class SplitButtonComponent implements OnInit {
   @Input() iconPos: NgPosition = 'left';
   @Input() appendTo: any;
   @Input() appearance: NgButtonAppearance = 'outlined';
-  @Input() disabled: boolean = false;
-  @Input() rtl: boolean = false;
-  @Input() rounded: boolean = false;
-  @Input() raised: boolean = false;
+  @Input() disabled: boolean;
+  @Input() rtl: boolean;
+  @Input() rounded: boolean;
+  @Input() raised: boolean;
   @Input() badge: string | number = 2;
   @Input() badgeColor: NgColor = 'primary';
   @Input() color: NgColor = 'primary';

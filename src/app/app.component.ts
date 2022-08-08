@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, ActivationStart, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRoute, ActivationStart, Router} from '@angular/router';
+import {filter} from 'rxjs/operators';
+
 /*
   TODO:
 - use custom sidebar instead of p-sidebar
 - add size support to addOnDirective (when change input size, addon size also should be changed).
 - and add disable state support for addon button when the input is disabled.
-- remove extra styles in components if exist.
 - add show/hide password feature to password component.
+- implement dual labeled switch component (label left and label right)
 - add onLabel and offLabel for switch component.
 - add async feature for switch component (just like button async).
 - add hook support in dialog form config (just like angular formly to implement cascade mode).
@@ -24,10 +25,13 @@ import { filter } from 'rxjs/operators';
   {
     templateHtml: (item)=>{ return `<img src=${item.imageUrl} />`}
   }
-  also implement shamsi-miladi date RENDERER + FILTER + EDITOR for table and grid.
+  also implement shamsi-miladi date RENDERER + FILTER + EDITOR for table.
 - add ng-template support for table.
 - add ng-template support for image slider.
-- add preventDefault support for toast.
+- add preventDuplicate support for toast.
+- place hint in top of component instead of bottom
+- move .error to .field div
+- make component .ts file logic like inputtext
 */
 @Component({
   selector: 'app-root',

@@ -41,10 +41,10 @@ import {TemplateDirective} from '@ng/directives/template.directive';
 export class ChipsComponent implements OnInit, ControlValueAccessor, AfterContentInit {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = false;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgPosition = 'left';
@@ -55,7 +55,7 @@ export class ChipsComponent implements OnInit, ControlValueAccessor, AfterConten
   // native properties
   @Input() field: string;
   @Input() max: number;
-  @Input() disabled: boolean = false;
+  @Input() disabled: boolean;
   @Input() style: any;
   @Input() styleClass: string;
   @Input() placeholder: string;
@@ -64,8 +64,8 @@ export class ChipsComponent implements OnInit, ControlValueAccessor, AfterConten
   @Input() allowDuplicate: boolean = true;
   @Input() inputStyle: string;
   @Input() inputStyleClass: string;
-  @Input() addOnTab: boolean = false;
-  @Input() addOnBlur: boolean = false;
+  @Input() addOnTab: boolean;
+  @Input() addOnBlur: boolean;
   @Input() separator: string;
   @Output() onAdd = new EventEmitter();
   @Output() onRemove = new EventEmitter();
@@ -117,14 +117,12 @@ export class ChipsComponent implements OnInit, ControlValueAccessor, AfterConten
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar) {
-        if (this.isRequired(currentControl)) {
-          if (this.label) {
-            this.label += ' *';
-          }
-          if (this.placeholder) {
-            this.placeholder += ' *';
-          }
+      if (this.showRequiredStar && this.isRequired()) {
+        if (this.label) {
+          this.label += ' *';
+        }
+        if (this.placeholder) {
+          this.placeholder += ' *';
         }
       }
     }
@@ -177,19 +175,17 @@ export class ChipsComponent implements OnInit, ControlValueAccessor, AfterConten
   }
 
 
-  isRequired(control: AbstractControl): boolean {
-    let isRequired = false;
-    const formControl = new UntypedFormControl();
-    for (const key in control) {
-      if (Object.prototype.hasOwnProperty.call(control, key)) {
-        formControl[key] = control[key];
+  isRequired(): boolean {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
       }
     }
-    formControl.setValue(null);
-    if (formControl.errors?.required) {
-      isRequired = true;
-    }
-    return isRequired;
+    return false;
   }
 
   writeValue(value: any) {

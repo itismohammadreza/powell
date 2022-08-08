@@ -40,15 +40,15 @@ export class RatingComponent implements OnInit, ControlValueAccessor {
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() errors: NgError;
   // native properties
   @Input() stars: number = 5;
   @Input() cancel: boolean = true;
-  @Input() disabled: boolean = false;
-  @Input() readonly: boolean = false;
+  @Input() disabled: boolean;
+  @Input() readonly: boolean;
   @Input() iconOnClass: string = 'pi pi-star';
   @Input() iconOffClass: string = 'pi pi-star-o';
   @Input() iconCancelClass: string = 'pi pi-ban';
@@ -98,11 +98,9 @@ export class RatingComponent implements OnInit, ControlValueAccessor {
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar) {
-        if (this.isRequired(currentControl)) {
-          if (this.label) {
-            this.label += ' *';
-          }
+      if (this.showRequiredStar && this.isRequired()) {
+        if (this.label) {
+          this.label += ' *';
         }
       }
     }
@@ -136,19 +134,17 @@ export class RatingComponent implements OnInit, ControlValueAccessor {
   }
 
 
-  isRequired(control: AbstractControl): boolean {
-    let isRequired = false;
-    const formControl = new UntypedFormControl();
-    for (const key in control) {
-      if (Object.prototype.hasOwnProperty.call(control, key)) {
-        formControl[key] = control[key];
+  isRequired(): boolean {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
       }
     }
-    formControl.setValue(null);
-    if (formControl.errors?.required) {
-      isRequired = true;
-    }
-    return isRequired;
+    return false;
   }
 
   writeValue(value: any) {

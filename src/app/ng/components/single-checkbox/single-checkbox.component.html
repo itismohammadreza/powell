@@ -3,7 +3,7 @@
     rtl: rtl,
     ltr: !rtl
   }"
-  class="wrapper"
+  class="single-checkbox-wrapper"
 >
   <div class="flex-grow-1 d-flex">
     <div class="d-flex align-items-center">
@@ -19,19 +19,19 @@
         [attr.for]="inputId"
         [ngClass]="{
           'ml-2': !rtl,
-          'mr-2': rtl
+          'mr-2': rtl,
+          'text-muted': disabled
         }"
         class="mb-0"
-      >{{ label }}</label
       >
+        {{ label }}
+      </label>
     </div>
+    <small *ngIf="hint">{{ hint }}</small>
     <ng-container *ngFor="let error of errors | keyvalue">
-      <small *ngIf="showError(error.key)" [class.mt-4]="hint"
-             class="p-error">
+      <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
         {{ error.value }}
       </small>
     </ng-container>
   </div>
 </div>
-
-<small *ngIf="hint">{{ hint }}</small>

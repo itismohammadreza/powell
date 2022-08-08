@@ -6,13 +6,12 @@
       'align-items-end': labelPos == 'fix-top' && rtl,
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
-    }" class="wrapper">
+    }" class="slider-wrapper">
   <div
     [ngClass]="{
       'w-100': labelPos == 'fix-top'
     }"
-    class="field"
-  >
+    class="field">
     <p-slider
       (onChange)="_onChange($event)"
       (onSlideEnd)="_onSlideEnd($event)"
@@ -26,12 +25,6 @@
       [range]="range"
       [step]="step"
     ></p-slider>
-    <ng-container *ngFor="let error of errors | keyvalue">
-      <small *ngIf="showError(error.key)" [class.mt-4]="hint"
-        class="p-error">
-        {{ error.value }}
-      </small>
-    </ng-container>
   </div>
   <label
     *ngIf="label && labelPos != 'float'"
@@ -42,8 +35,13 @@
       'mr-4': !rtl,
       'text-muted': disabled
     }"
-    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null"
-    >{{ label }}</label>
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label }}
+  </label>
+  <small *ngIf="hint">{{ hint }}</small>
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
+      {{ error.value }}
+    </small>
+  </ng-container>
 </div>
-
-<small *ngIf="hint">{{ hint }}</small>

@@ -14,28 +14,37 @@ export class ColorPickerPage implements OnInit {
   });
   binding;
 
+  hint: string = '';
+  label: string = 'label';
+  labelPos: NgLabelPosition = 'fix-side';
+  labelWidth: number = 100;
+  icon: string = 'pi pi-home';
+  iconPos: NgPosition = 'left';
+  inputSize: NgSize = 'md';
+  filled: boolean = false;
+  showRequiredStar: boolean = true;
+  rtl: boolean = true;
+  placeholder: string = '';
+  readonly: boolean = false;
+  disabled: boolean = false;
+  addon: NgAddon = {
+    // before: {
+    //   type: 'icon',
+    //   icon: 'pi pi-home',
+    // },
+    after: {
+      type: 'button',
+      label: 'home',
+    },
+  };
+
+  maxlength: number = 7;
+  inline: boolean = false;
+  format: NgColorFormat = 'hex';
+
   submit() {
   }
 
   ngOnInit(): void {
   }
-
-  label: string;
-  filled: boolean = false;
-  labelWidth: number;
-  hint: string;
-  rtl: boolean = false;
-  icon: string;
-  inputSize: NgSize;
-  readonly: boolean = false;
-  maxlength: number = 7;
-  placeholder: string;
-  showRequiredStar: boolean = true;
-  labelPos: NgLabelPosition = 'fix-top';
-  iconPos: NgPosition = 'left';
-  inline: boolean = false;
-  format: NgColorFormat = 'hex';
-  appendTo: any;
-  disabled: boolean = false;
-  addon: NgAddon;
 }

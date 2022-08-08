@@ -15,13 +15,12 @@ import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
+  UntypedFormGroup,
 } from '@angular/forms';
 import {NgAddon, NgDatePickerMode, NgError, NgLabelPosition} from '@ng/models/forms';
 import {NgPosition, NgSize} from '@ng/models/offset';
@@ -41,13 +40,13 @@ import {ECalendarValue, IDatePickerConfig} from 'ng2-jalali-date-picker';
     },
   ],
 })
-export class DatePickerComponent  implements OnInit, ControlValueAccessor, OnChanges {
+export class DatePickerComponent implements OnInit, ControlValueAccessor, OnChanges {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = false;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgPosition = 'left';
@@ -56,13 +55,13 @@ export class DatePickerComponent  implements OnInit, ControlValueAccessor, OnCha
   @Input() appendTo: any = 'body';
   @Input() icon: string;
   @Input() inputSize: NgSize = 'md';
-  @Input() readonly: boolean = false;
-  @Input() disabled: boolean = false;
+  @Input() readonly: boolean;
+  @Input() disabled: boolean;
   @Input() maxlength: number;
   @Input() placeholder: string;
   @Input() datePickerMode: NgDatePickerMode = 'day';
-  @Input() inline: boolean = false;
-  @Input() clearable: boolean = false;
+  @Input() inline: boolean;
+  @Input() clearable: boolean;
   @Input() addon: NgAddon
   @Output() onChange = new EventEmitter();
   @Output() onBlur = new EventEmitter();
@@ -176,14 +175,12 @@ export class DatePickerComponent  implements OnInit, ControlValueAccessor, OnCha
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar) {
-        if (this.isRequired(currentControl)) {
-          if (this.label) {
-            this.label += ' *';
-          }
-          if (this.placeholder) {
-            this.placeholder += ' *';
-          }
+      if (this.showRequiredStar && this.isRequired()) {
+        if (this.label) {
+          this.label += ' *';
+        }
+        if (this.placeholder) {
+          this.placeholder += ' *';
         }
       }
     }
@@ -274,19 +271,17 @@ export class DatePickerComponent  implements OnInit, ControlValueAccessor, OnCha
   }
 
 
-  isRequired(control: AbstractControl): boolean {
-    let isRequired = false;
-    const formControl = new UntypedFormControl();
-    for (const key in control) {
-      if (Object.prototype.hasOwnProperty.call(control, key)) {
-        formControl[key] = control[key];
+  isRequired(): boolean {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
       }
     }
-    formControl.setValue(null);
-    if (formControl.errors?.required) {
-      isRequired = true;
-    }
-    return isRequired;
+    return false;
   }
 
   writeValue(value: any) {

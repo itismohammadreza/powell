@@ -45,10 +45,10 @@ import {TemplateDirective} from '@ng/directives/template.directive';
 export class DropdownComponent implements OnInit, ControlValueAccessor, AfterContentInit {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = false;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgPosition = 'left';
@@ -68,30 +68,30 @@ export class DropdownComponent implements OnInit, ControlValueAccessor, AfterCon
   @Input() panelStyle: any;
   @Input() styleClass: string;
   @Input() panelStyleClass: string;
-  @Input() filter: boolean = false;
+  @Input() filter: boolean;
   @Input() filterValue: string;
   @Input() filterBy: string;
   @Input() filterMatchMode: NgFilterMatchMode = 'contains';
   @Input() filterPlaceholder: string;
   @Input() filterLocale: string;
-  @Input() disabled: boolean = false;
-  @Input() readonly: boolean = false;
+  @Input() disabled: boolean;
+  @Input() readonly: boolean;
   @Input() emptyMessage: string = 'No records found.';
   @Input() emptyFilterMessage: string = 'No result found.';
   @Input() ariaLabelledBy: string;
-  @Input() editable: boolean = false;
+  @Input() editable: boolean;
   @Input() maxlength: number;
   @Input() appendTo: any;
   @Input() tabindex: number;
   @Input() placeholder: string;
   @Input() dataKey: string;
-  @Input() autofocus: boolean = false;
-  @Input() autofocusFilter: boolean = false;
-  @Input() resetFilterOnHide: boolean = false;
+  @Input() autofocus: boolean;
+  @Input() autofocusFilter: boolean;
+  @Input() resetFilterOnHide: boolean;
   @Input() dropdownIcon: string = 'pi pi-chevron-down';
   @Input() autoDisplayFirst: boolean = true;
-  @Input() group: boolean = false;
-  @Input() showClear: boolean = false;
+  @Input() group: boolean;
+  @Input() showClear: boolean;
   @Input() baseZIndex: number = 1000;
   @Input() autoZIndex: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
@@ -163,14 +163,12 @@ export class DropdownComponent implements OnInit, ControlValueAccessor, AfterCon
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar) {
-        if (this.isRequired(currentControl)) {
-          if (this.label) {
-            this.label += ' *';
-          }
-          if (this.placeholder) {
-            this.placeholder += ' *';
-          }
+      if (this.showRequiredStar && this.isRequired()) {
+        if (this.label) {
+          this.label += ' *';
+        }
+        if (this.placeholder) {
+          this.placeholder += ' *';
         }
       }
     }
@@ -242,19 +240,17 @@ export class DropdownComponent implements OnInit, ControlValueAccessor, AfterCon
   }
 
 
-  isRequired(control: AbstractControl): boolean {
-    let isRequired = false;
-    const formControl = new UntypedFormControl();
-    for (const key in control) {
-      if (Object.prototype.hasOwnProperty.call(control, key)) {
-        formControl[key] = control[key];
+  isRequired(): boolean {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
       }
     }
-    formControl.setValue(null);
-    if (formControl.errors?.required) {
-      isRequired = true;
-    }
-    return isRequired;
+    return false;
   }
 
   writeValue(value: any) {

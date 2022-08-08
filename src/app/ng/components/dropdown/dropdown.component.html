@@ -6,7 +6,7 @@
       'align-items-end': labelPos == 'fix-top' && rtl,
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
-    }" class="wrapper">
+    }" class="dropdown-wrapper">
   <div
     [ngClass]="{
       'w-100': labelPos == 'fix-top',
@@ -35,8 +35,7 @@
       [autofocus]="autofocus"
       [baseZIndex]="1000"
       [dataKey]="dataKey"
-
-[disabled]="disabled"
+      [disabled]="disabled"
       [editable]="editable"
       [emptyFilterMessage]="emptyFilterMessage"
       [filterBy]="filterBy"
@@ -88,15 +87,6 @@
     <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
       {{ label }}
     </label>
-    <ng-container *ngFor="let error of errors | keyvalue">
-      <small
-        *ngIf="showError(error.key)"
-        [class.mt-4]="hint"
-        class="p-error"
-      >
-        {{ error.value }}
-      </small>
-    </ng-container>
   </div>
   <label
     *ngIf="label && labelPos != 'float'"
@@ -107,8 +97,13 @@
       'mr-4': !rtl,
       'text-muted': disabled
     }"
-    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null"
-  >{{ label }}</label>
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label }}
+  </label>
+  <small *ngIf="hint">{{ hint }}</small>
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
+      {{ error.value }}
+    </small>
+  </ng-container>
 </div>
-
-<small *ngIf="hint">{{ hint }}</small>
