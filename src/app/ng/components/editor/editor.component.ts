@@ -191,22 +191,25 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
 
   _onChange(event: any) {
     this.onChange.emit(event);
-    this.onModelChange(event.core.getContents());
+    this.onModelChange(this.editorInstance.getText() ? event.core.getContents() : null);
   }
 
   _onInput(event: any) {
     this.onInput.emit(event);
-    this.onModelChange(event.core.getContents());
+    // todo: when type only one letter, the required error is appear! check result.
+    const result = this.editorInstance.getText() ? event.core.getContents() : null;
+    console.log(result)
+    this.onModelChange(this.editorInstance.getText() ? event.core.getContents() : null);
   }
 
   _onKeyDown(event: any) {
     this.onKeyDown.emit(event);
-    this.onModelChange(event.core.getContents());
+    this.onModelChange(this.editorInstance.getText() ? event.core.getContents() : null);
   }
 
   _onKeyUp(event: any) {
     this.onKeyUp.emit(event);
-    this.onModelChange(event.core.getContents());
+    this.onModelChange(this.editorInstance.getText() ? event.core.getContents() : null);
   }
 
   _onBlur(event: any) {
