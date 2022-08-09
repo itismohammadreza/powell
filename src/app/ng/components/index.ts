@@ -17,10 +17,6 @@ import {EmptyComponent} from './empty/empty.component';
 import {FilePickerComponent} from './file-picker/file-picker.component';
 import {FilePicker2Component} from './file-picker2/file-picker2.component';
 import {FilterListComponent} from './filter-list/filter-list.component';
-// import {CellButtonComponent} from './grid/cell-button/cell-button.component';
-// import {CellDatepickerComponent} from './grid/cell-datepicker/cell-datepicker.component';
-// import {CellImageComponent} from './grid/cell-image/cell-image.component';
-// import {GridComponent} from './grid/grid.component';
 import {InputMaskComponent} from './input-mask/input-mask.component';
 import {InputNumberComponent} from './input-number/input-number.component';
 import {InputPasswordComponent} from './input-password/input-password.component';
@@ -80,9 +76,6 @@ export const COMPONENTS: Type<any>[] = [
   FilePickerComponent,
   FilePicker2Component,
   FilterListComponent,
-  // CellButtonComponent,
-  // CellDatepickerComponent,
-  // CellImageComponent,
   ErrorComponent,
   ImageSliderComponent,
   InputMaskComponent,
@@ -106,7 +99,6 @@ export const COMPONENTS: Type<any>[] = [
   SplitButtonComponent,
   SwitchComponent,
   // TableComponent,
-  // GridComponent,
   ToastComponent,
   ToggleButtonComponent,
   TreeComponent,

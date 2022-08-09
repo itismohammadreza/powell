@@ -36,13 +36,16 @@
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/suneditor/dist/css/suneditor.min.css",
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/quill/dist/quill.js"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/assets/styles", "src/assets"]
+              "includePaths": [
+                "src/assets/styles",
+                "src/assets"
+              ]
             }
           },
           "configurations": {

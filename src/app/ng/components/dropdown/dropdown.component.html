@@ -5,7 +5,9 @@
       'align-items-center': labelPos == 'fix-side',
       'align-items-end': labelPos == 'fix-top' && rtl,
       'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+      'flex-row-reverse': labelPos == 'fix-side' && !rtl,
+      'p-dropdown-clearable': showClear,
+      'p-dropdown-filled': value
     }" class="dropdown-wrapper">
   <div
     [ngClass]="{
@@ -18,7 +20,6 @@
       'p-input-filled': filled
     }" class="field">
     <i *ngIf="icon && !addon" [ngClass]="icon"></i>
-
     <p-dropdown
       (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
       (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"

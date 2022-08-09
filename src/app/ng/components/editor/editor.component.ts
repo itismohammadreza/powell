@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -22,6 +23,10 @@ import {
   NgModel,
 } from '@angular/forms';
 import {NgError, NgLabelPosition} from '@ng/models/forms';
+import {Core} from 'suneditor/src/lib/core';
+import {SunEditorOptions} from "suneditor/src/options";
+import plugins from 'suneditor/src/plugins';
+import {NgxSuneditorComponent} from "ngx-suneditor";
 
 @Component({
   selector: 'ng-editor',
@@ -35,22 +40,83 @@ import {NgError, NgLabelPosition} from '@ng/models/forms';
     },
   ],
 })
-export class EditorComponent implements OnInit, ControlValueAccessor {
+export class EditorComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;
+  @Input() disabled: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
-  @Input() readonly: boolean;
+  @Input() editorOptions: SunEditorOptions = {
+    plugins: plugins,
+    minWidth: '100%',
+    buttonList: [
+      ["undo", "redo"],
+      ["font", "fontSize", "formatBlock"],
+      ["paragraphStyle", "blockquote"],
+      ["bold", "underline", "italic", "strike", "subscript", "superscript"],
+      ["fontColor", "hiliteColor", "textStyle"],
+      ["removeFormat"],
+      ["outdent", "indent"],
+      ["align", "horizontalRule", "list", "lineHeight"],
+      ["table", "link", "image", "video", "audio"],
+      ["fullScreen", "showBlocks", "codeView"],
+      ["preview", "print"],
+      ["save", "template"],
+    ],
+  };
   @Input() errors: NgError;
-  @Output() onChange = new EventEmitter();
+  @Input() content: string
+  @Input() options: SunEditorOptions;
+  @Input() onDrop_param: boolean = true;
+  @Input() onCopy_param: boolean = true;
+  @Input() onCut_param: boolean = true;
+  @Input() onAudioUploadError_param: boolean | undefined = true;
+  @Input() onImageUploadBefore_param: boolean | undefined = true;
+  @Input() onImageUploadError_param: boolean | undefined = true;
+  @Input() onVideoUploadBefore_param: boolean | undefined = true;
+  @Input() onVideoUploadError_param: boolean | undefined = true;
+  @Input() onAudioUploadBefore_param: boolean | undefined = true;
+  @Input() onResizeEditor_param: Object | undefined = {};
+  @Input() imageUploadHandler: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
+  @Input() videoUploadHandler: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
+  @Input() audioUploadHandler: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
+  @Input() localStorageConfig = {id: 'ngxSunEditor', autoSave: false, autoLoad: false}
+  @Output() created = new EventEmitter()
+  @Output() onload = new EventEmitter()
+  @Output() onScroll = new EventEmitter()
+  @Output() onMouseDown = new EventEmitter()
+  @Output() onClick = new EventEmitter()
+  @Output() onInput = new EventEmitter()
+  @Output() onKeyDown = new EventEmitter()
+  @Output() onKeyUp = new EventEmitter()
+  @Output() onFocus = new EventEmitter()
+  @Output() onBlur = new EventEmitter()
+  @Output() onResizeEditor = new EventEmitter()
+  @Output() onAudioUploadBefore = new EventEmitter()
+  @Output() onVideoUploadError = new EventEmitter()
+  @Output() onVideoUploadBefore = new EventEmitter()
+  @Output() onImageUploadError = new EventEmitter()
+  @Output() onImageUploadBefore = new EventEmitter()
+  @Output() onAudioUploadError = new EventEmitter()
+  @Output() onDrop = new EventEmitter()
+  @Output() onChange = new EventEmitter()
+  @Output() showController = new EventEmitter()
+  @Output() toggleFullScreen = new EventEmitter()
+  @Output() toggleCodeView = new EventEmitter()
+  @Output() showInline = new EventEmitter()
+  @Output() onAudioUpload = new EventEmitter()
+  @Output() onVideoUpload = new EventEmitter()
+  @Output() onImageUpload = new EventEmitter()
+  @Output() onCut = new EventEmitter()
+  @Output() onCopy = new EventEmitter()
 
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  options: any;
+  editorInstance: NgxSuneditorComponent
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
@@ -62,82 +128,6 @@ export class EditorComponent implements OnInit, ControlValueAccessor {
   };
 
   ngOnInit() {
-    this.options = {
-      toolbarButtons: {
-        moreText: {
-          buttons: [
-            'align',
-            'embedly',
-            'emoticons',
-            'insertFile',
-            'insertImage',
-            'insertLink',
-            'insertTable',
-            'insertVideo',
-            'print',
-            'specialCharacters',
-            'bold',
-            'italic',
-            'underline',
-            'strikeThrough',
-            'subscript',
-            'superscript',
-            'fontFamily',
-            'fontSize',
-            'textColor',
-            'backgroundColor',
-            'inlineClass',
-            'inlineStyle',
-            'clearFormatting',
-          ],
-        },
-        moreParagraph: {
-          buttons: [
-            'alignLeft',
-            'alignCenter',
-            'alignRight',
-            'alignJustify',
-            'formatOLSimple',
-            'formatOL',
-            'formatUL',
-            'paragraphFormat',
-            'paragraphStyle',
-            'lineHeight',
-            'outdent',
-            'indent',
-            'quote',
-          ],
-        },
-        moreRich: {
-          buttons: [
-            'insertLink',
-            'insertImage',
-            'insertVideo',
-            'insertTable',
-            'fontAwesome',
-            'specialCharacters',
-            'embedly',
-            'insertFile',
-            'insertHR',
-          ],
-        },
-        moreMisc: {
-          buttons: [
-            'undo',
-            'redo',
-            'fullscreen',
-            'print',
-            'getPDF',
-            'spellChecker',
-            'selectAll',
-            'html',
-            'help',
-          ],
-          align: 'right',
-        },
-      },
-      imageAllowedTypes: ['jpeg', 'jpg', 'png'],
-    };
     let parentForm: UntypedFormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -162,17 +152,24 @@ export class EditorComponent implements OnInit, ControlValueAccessor {
       rootForm.ngSubmit.subscribe(() => {
         currentControl.markAsTouched();
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
       }
     }
   }
 
-  _onChange(event) {
-    this.onChange.emit(event);
-    this.onModelChange(event);
+  _created(event: NgxSuneditorComponent) {
+    this.editorInstance = event;
+    this.created.emit(event)
+  }
+
+  emitter(name: string, event: any) {
+    (this[name] as EventEmitter<any>).emit(event);
   }
 
   getId() {
@@ -191,7 +188,6 @@ export class EditorComponent implements OnInit, ControlValueAccessor {
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {
@@ -217,5 +213,14 @@ export class EditorComponent implements OnInit, ControlValueAccessor {
 
   registerOnTouched(fn) {
     this.onModelTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean) {
+    if (isDisabled) {
+      this.editorInstance.disabled()
+    } else {
+      this.editorInstance.enabled()
+    }
+    this.cd.markForCheck()
   }
 }

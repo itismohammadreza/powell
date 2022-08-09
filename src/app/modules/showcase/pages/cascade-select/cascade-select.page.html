@@ -1,32 +1,30 @@
 <ng-preview-options
   [previewItems]="[
-  'label',
-  'filled',
-  'labelWidth',
   'hint',
-  'rtl',
-  'showRequiredStar',
+  'label',
   'labelPos',
-  'iconPos',
-  'placeholder',
-  'readonly',
-  'disabled',
+  'labelWidth',
   'icon',
-  'selectiveSize'
+  'iconPos',
+  'selectiveSize',
+  'filled',
+  'showRequiredStar',
+  'rtl',
+  'placeholder',
+  'disabled'
   ]"
-  [(label)]="label"
-  [(filled)]="filled"
-  [(labelWidth)]="labelWidth"
   [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(showRequiredStar)]="showRequiredStar"
+  [(label)]="label"
   [(labelPos)]="labelPos"
-  [(iconPos)]="iconPos"
-  [(placeholder)]="placeholder"
-  [(readonly)]="readonly"
-  [(disabled)]="disabled"
+  [(labelWidth)]="labelWidth"
   [(icon)]="icon"
+  [(iconPos)]="iconPos"
   [(selectiveSize)]="inputSize"
+  [(filled)]="filled"
+  [(showRequiredStar)]="showRequiredStar"
+  [(rtl)]="rtl"
+  [(placeholder)]="placeholder"
+  [(disabled)]="disabled"
 ></ng-preview-options>
 
 <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
@@ -36,24 +34,22 @@
     optionLabel="cname"
     optionValue="code"
     optionGroupLabel="name"
-    [addon]="addon"
-    [label]="label"
-    [filled]="filled"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [showRequiredStar]="showRequiredStar"
-    [labelPos]="labelPos"
-    [iconPos]="iconPos"
-    [disabled]="disabled"
-    [placeholder]="placeholder"
-    [icon]="icon"
-    [inputSize]="inputSize"
+    formControlName="c1"
     [optionGroupChildren]="['states', 'cities']"
     [errors]="{ required: 'error' }"
+    [hint]="hint"
+    [label]="label"
+    [labelPos]="labelPos"
+    [labelWidth]="labelWidth"
+    [icon]="icon"
+    [iconPos]="iconPos"
+    [inputSize]="inputSize"
+    [filled]="filled"
+    [showRequiredStar]="showRequiredStar"
     [rtl]="rtl"
-    formControlName="c1"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
   ></ng-cascade-select>
-
   <ng-button type="submit" label="submit"></ng-button>
 </form>
 
@@ -69,19 +65,18 @@ VALUE :
   optionLabel="cname"
   optionValue="code"
   optionGroupLabel="name"
-  [addon]="addon"
-  [label]="label"
-  [filled]="filled"
-  [labelWidth]="labelWidth"
-  [hint]="hint"
-  [showRequiredStar]="showRequiredStar"
-  [labelPos]="labelPos"
-  [iconPos]="iconPos"
-  [disabled]="disabled"
-  [placeholder]="placeholder"
-  [icon]="icon"
-  [inputSize]="inputSize"
   [optionGroupChildren]="['states', 'cities']"
   [errors]="{ required: 'error' }"
+  [hint]="hint"
+  [label]="label"
+  [labelPos]="labelPos"
+  [labelWidth]="labelWidth"
+  [icon]="icon"
+  [iconPos]="iconPos"
+  [inputSize]="inputSize"
+  [filled]="filled"
+  [showRequiredStar]="showRequiredStar"
   [rtl]="rtl"
+  [placeholder]="placeholder"
+  [disabled]="disabled"
 ></ng-cascade-select>

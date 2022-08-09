@@ -37,7 +37,7 @@ import {MessageModule} from 'primeng/message';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import {PasswordModule} from 'primeng/password';
 import {TreeModule} from 'primeng/tree';
-import {EditorModule} from 'primeng/editor';
+// import {EditorModule} from 'primeng/editor';
 import {PickListModule} from 'primeng/picklist';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {InplaceModule} from 'primeng/inplace';
@@ -77,9 +77,9 @@ import {ChipModule} from 'primeng/chip';
 import {ScrollTopModule} from 'primeng/scrolltop';
 import {SkeletonModule} from 'primeng/skeleton';
 import {TagModule} from 'primeng/tag';
-import {Type} from '@angular/core';
 import {TreeSelectModule} from 'primeng/treeselect';
 import {AccordionModule} from 'primeng/accordion';
+import {Type} from '@angular/core';
 
 export const MODULES: Type<any>[] = [
   AutoCompleteModule,
@@ -101,7 +101,7 @@ export const MODULES: Type<any>[] = [
   DialogModule,
   DataViewModule,
   DynamicDialogModule,
-  EditorModule,
+  // EditorModule,
   FileUploadModule,
   GMapModule,
   GalleriaModule,

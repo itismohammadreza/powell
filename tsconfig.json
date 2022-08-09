@@ -38,7 +38,8 @@
     "module": "es2020",
     "lib": [
       "es2020",
-      "dom"
+      "dom",
+      "scripthost" // suneditor uses this
     ]
   },
   "angularCompilerOptions": {

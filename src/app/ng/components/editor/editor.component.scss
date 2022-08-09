@@ -1,69 +1,61 @@
-$root: ".fr-editor";
 
-:host {
-  width: 100%;
-  &.ng-invalid.ng-dirty ::ng-deep,
-  &.ng-invalid.ng-touched ::ng-deep {
-    .fr-toolbar {
-      border-color: #f44336;
-    }
-    .fr-wrapper {
-      border-right-color: #f44336;
-      border-left-color: #f44336;
-    }
-    .fr-second-toolbar {
-      border-right-color: #f44336;
-      border-left-color: #f44336;
-      border-bottom-color: #f44336;
-    }
-  }
-}
-
-#{$root},
-small {
-  display: block;
-  width: 100%;
-}
-
-.editor-wrapper {
-  display: flex;
-  position: relative;
-
-  .field {
-    flex-grow: 1;
-  }
-  .field{
+:host ::ng-deep {
+  .editor-wrapper {
+    display: flex;
     position: relative;
-    .error {
-      position: absolute;
-      top: 100%;
+    direction: ltr; // set direction of component ltr by default and base of this, implement rtl direction
+
+    .field {
+      flex-grow: 1;
     }
-  }
-  &.ltr {
-    .field{
-      .error {
+
+    .p-inputtext,
+    small {
+      display: block;
+      width: 100% !important;
+    }
+
+    small {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+    }
+
+    i {
+      z-index: 200;
+    }
+
+    &.ltr {
+      small {
         left: 0;
       }
     }
 
-    label, small {
-      direction: ltr;
-    }
-  }
-  &.rtl {
-    text-align: right;
-    .field{
-      .error {
+    &.rtl {
+      .p-inputtext,
+      label,
+      small {
+        direction: rtl;
+      }
+
+      .field {
+        &.p-float-label {
+          label {
+            right: 0.5rem;
+            left: auto;
+          }
+
+          &.p-input-icon-right {
+            label {
+              right: 2rem;
+            }
+          }
+        }
+      }
+
+      small {
         right: 0;
       }
-
-      ::ng-deep .fr-element {
-        text-align: right;
-      }
-    }
-
-    label, small {
-      direction: rtl;
     }
   }
+
 }

@@ -1,48 +1,47 @@
 <ng-preview-options
   [previewItems]="[
-'label',
-'filled',
-'labelWidth',
-'hint',
-'rtl',
-'showRequiredStar',
-'labelPos',
-'iconPos',
-'scrollHeight',
-'filter',
-'filterPlaceholder',
-'disabled',
-'readonly',
-'editable',
-'maxlength',
-'placeholder',
-'icon',
-'selectiveSize',
-'resetFilterOnHide',
-'emptyFilterMessage',
-'autoDisplayFirst',
-'showClear',
-'tooltip',
-'tooltipPosition',
-]"
-  [(label)]="label"
-  [(filled)]="filled"
-  [(labelWidth)]="labelWidth"
+  'hint',
+  'label',
+  'labelPos',
+  'labelWidth',
+  'icon',
+  'iconPos',
+  'selectiveSize',
+  'filled',
+  'showRequiredStar',
+  'rtl',
+  'placeholder',
+  'disabled',
+  'scrollHeight',
+  'filter',
+  'filterPlaceholder',
+  'editable',
+  'maxlength',
+  'resetFilterOnHide',
+  'emptyFilterMessage',
+  'autoDisplayFirst',
+  'showClear',
+  'tooltip',
+  'tooltipPosition',
+  ]"
   [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(showRequiredStar)]="showRequiredStar"
+  [(label)]="label"
   [(labelPos)]="labelPos"
+  [(labelWidth)]="labelWidth"
+  [(icon)]="icon"
   [(iconPos)]="iconPos"
+  [(selectiveSize)]="inputSize"
+  [(filled)]="filled"
+  [(showRequiredStar)]="showRequiredStar"
+  [(rtl)]="rtl"
+  [(placeholder)]="placeholder"
+  [(readonly)]="readonly"
+  [(disabled)]="disabled"
   [(scrollHeight)]="scrollHeight"
   [(filter)]="filter"
   [(filterPlaceholder)]="filterPlaceholder"
-  [(disabled)]="disabled"
-  [(readonly)]="readonly"
   [(editable)]="editable"
   [(maxlength)]="maxlength"
-  [(placeholder)]="placeholder"
-  [(icon)]="icon"
-  [(selectiveSize)]="inputSize"
   [(resetFilterOnHide)]="resetFilterOnHide"
   [(emptyFilterMessage)]="emptyFilterMessage"
   [(autoDisplayFirst)]="autoDisplayFirst"
@@ -56,6 +55,7 @@
     <ng-dropdown
       formControlName="c1"
       [errors]="{ required: 'error' }"
+      [addon]="addon"
       [label]="label"
       [filled]="filled"
       [labelWidth]="labelWidth"
@@ -66,35 +66,22 @@
       [iconPos]="iconPos"
       [scrollHeight]="scrollHeight"
       [options]="options"
-      [optionLabel]="optionLabel"
-      [optionValue]="optionValue"
-      [optionDisabled]="optionDisabled"
-      [optionGroupLabel]="optionGroupLabel"
-      [optionGroupChildren]="optionGroupChildren"
-      [filter]="filter"
-      [filterValue]="filterValue"
-      [filterBy]="filterBy"
-      [filterMatchMode]="filterMatchMode"
-      [filterPlaceholder]="filterPlaceholder"
       [disabled]="disabled"
       [readonly]="readonly"
-      [editable]="editable"
-      [maxlength]="maxlength"
-      [appendTo]="appendTo"
       [placeholder]="placeholder"
       [icon]="icon"
       [inputSize]="inputSize"
-      [dataKey]="dataKey"
-      [autofocus]="autofocus"
+      [filter]="filter"
+      [filterPlaceholder]="filterPlaceholder"
+      [editable]="editable"
+      [maxlength]="maxlength"
       [autofocusFilter]="autofocusFilter"
       [resetFilterOnHide]="resetFilterOnHide"
       [emptyFilterMessage]="emptyFilterMessage"
       [autoDisplayFirst]="autoDisplayFirst"
-      [group]="group"
       [showClear]="showClear"
       [tooltip]="tooltip"
       [tooltipPosition]="tooltipPosition"
-      [addon]="addon"
     >
     </ng-dropdown>
     <ng-button type="submit" label="submit"></ng-button>
@@ -117,31 +104,19 @@
     [iconPos]="iconPos"
     [scrollHeight]="scrollHeight"
     [options]="options"
-    [optionLabel]="optionLabel"
-    [optionValue]="optionValue"
-    [optionDisabled]="optionDisabled"
-    [optionGroupLabel]="optionGroupLabel"
-    [optionGroupChildren]="optionGroupChildren"
     [filter]="filter"
-    [filterValue]="filterValue"
-    [filterBy]="filterBy"
-    [filterMatchMode]="filterMatchMode"
     [filterPlaceholder]="filterPlaceholder"
     [disabled]="disabled"
     [readonly]="readonly"
     [editable]="editable"
     [maxlength]="maxlength"
-    [appendTo]="appendTo"
     [placeholder]="placeholder"
     [icon]="icon"
     [inputSize]="inputSize"
-    [dataKey]="dataKey"
-    [autofocus]="autofocus"
     [autofocusFilter]="autofocusFilter"
     [resetFilterOnHide]="resetFilterOnHide"
     [emptyFilterMessage]="emptyFilterMessage"
     [autoDisplayFirst]="autoDisplayFirst"
-    [group]="group"
     [showClear]="showClear"
     [tooltip]="tooltip"
     [tooltipPosition]="tooltipPosition"

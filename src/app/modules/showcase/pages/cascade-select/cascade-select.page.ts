@@ -14,6 +14,32 @@ export class CascadeSelectPage implements OnInit {
     c2: new UntypedFormControl(null, [Validators.required, Validators.minLength(2)])
   });
   binding = '';
+
+  label: string = 'label';
+  filled: boolean = false;
+  labelWidth: number = 100;
+  hint: string = '';
+  rtl: boolean = false;
+  showRequiredStar: boolean = true;
+  labelPos: NgLabelPosition = 'fix-side';
+  iconPos: NgPosition = 'left';
+  addon: NgAddon = {
+    before: {
+      type: 'icon',
+      icon: 'pi pi-home',
+    },
+    after: {
+      type: 'button',
+      icon: 'pi pi-home',
+      label: 'test'
+    }
+  };
+  disabled: boolean = false;
+  readonly: boolean = false;
+  placeholder: string = '';
+  icon: string = 'pi pi-home';
+  inputSize: NgSize = 'md';
+
   options = [
     {
       name: 'Australia',
@@ -88,30 +114,6 @@ export class CascadeSelectPage implements OnInit {
       ]
     }
   ];
-  label: string = 'label';
-  filled: boolean = false;
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = false;
-  showRequiredStar: boolean = true;
-  labelPos: NgLabelPosition = 'fix-side';
-  iconPos: NgPosition = 'left';
-  addon: NgAddon = {
-    before: {
-      type: 'icon',
-      icon: 'pi pi-home',
-    },
-    after: {
-      type: 'button',
-      icon: 'pi pi-home',
-      label: 'test'
-    }
-  };
-  disabled: boolean = false;
-  readonly: boolean = false;
-  placeholder: string = '';
-  icon: string = 'pi pi-home';
-  inputSize: NgSize = 'md';
 
   submit() {
   }

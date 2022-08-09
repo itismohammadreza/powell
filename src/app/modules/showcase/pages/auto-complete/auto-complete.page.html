@@ -1,27 +1,27 @@
 <ng-preview-options
   [previewItems]="[
-'hint',
-'label',
-'labelPos',
-'labelWidth',
-'icon',
-'iconPos',
-'selectiveSize',
-'filled',
-'showRequiredStar',
-'rtl',
-'placeholder',
-'readonly',
-'disabled',
-'scrollHeight',
-'dropdown',
-'multiple',
-'minlength',
-'maxlength',
-'size',
-'emptyMessage',
-'dropdownMode',
-'unique',
+  'hint',
+  'label',
+  'labelPos',
+  'labelWidth',
+  'icon',
+  'iconPos',
+  'selectiveSize',
+  'filled',
+  'showRequiredStar',
+  'rtl',
+  'placeholder',
+  'readonly',
+  'disabled',
+  'scrollHeight',
+  'dropdown',
+  'multiple',
+  'minlength',
+  'maxlength',
+  'size',
+  'emptyMessage',
+  'dropdownMode',
+  'unique'
   ]"
   [(hint)]="hint"
   [(label)]="label"
@@ -66,8 +66,6 @@
       [placeholder]="placeholder"
       [readonly]="readonly"
       [disabled]="disabled"
-      [addon]="addon"
-      [errors]="{ required: 'error' }"
       [scrollHeight]="scrollHeight"
       [dropdown]="dropdown"
       [multiple]="multiple"
@@ -78,6 +76,8 @@
       [dropdownMode]="dropdownMode"
       [unique]="unique"
       [suggestions]="filteredSuggestions"
+      [addon]="addon"
+      [errors]="{ required: 'error' }"
       (completeMethod)="filter($event)"
     >
     </ng-auto-complete>

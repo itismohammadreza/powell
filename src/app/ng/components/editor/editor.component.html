@@ -7,26 +7,115 @@
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
     }" class="editor-wrapper">
-  <div
-    [ngClass]="{
-      'w-100': labelPos == 'fix-top'
-    }"
-    class="field"
-  >
-    <textarea
-      (froalaModelChange)="_onChange($event)"
-      [attr.id]="inputId"
-      [froalaEditor]="options"
-      [froalaModel]="value"
-      class="fr-editor"
-    ></textarea>
-
-    <ng-container *ngFor="let error of errors | keyvalue">
-      <small *ngIf="showError(error.key)" [class.mt-4]="hint"
-             class="p-error">
-        {{ error.value }}
-      </small>
-    </ng-container>
+  <div [ngClass]="{ 'w-100': labelPos == 'fix-top'}" class="field">
+    <!--    <p-editor-->
+    <!--      [attr.id]="inputId"-->
+    <!--      [(ngModel)]="value"-->
+    <!--      [style]="style"-->
+    <!--      [styleClass]="styleClass"-->
+    <!--      [placeholder]="placeholder"-->
+    <!--      [readonly]="readonly"-->
+    <!--      [formats]="formats"-->
+    <!--      [modules]="modules"-->
+    <!--      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"-->
+    <!--      (onInit)="_onInit($event)"-->
+    <!--      (onTextChange)="_onTextChange($event)"-->
+    <!--      (onSelectionChange)="_onSelectionChange($event)">-->
+    <!--      <ng-template pTemplate="header">-->
+    <!--        <div id="toolbar-container">-->
+    <!--          <span class="ql-formats">-->
+    <!--            <select class="ql-font"></select>-->
+    <!--            <select class="ql-size"></select>-->
+    <!--          </span>-->
+    <!--          <span class="ql-formats">-->
+    <!--            <button class="ql-bold"></button>-->
+    <!--            <button class="ql-italic"></button>-->
+    <!--            <button class="ql-underline"></button>-->
+    <!--            <button class="ql-strike"></button>-->
+    <!--          </span>-->
+    <!--          <span class="ql-formats">-->
+    <!--            <select class="ql-color"></select>-->
+    <!--            <select class="ql-background"></select>-->
+    <!--          </span>-->
+    <!--          <span class="ql-formats">-->
+    <!--            <button class="ql-script" value="sub"></button>-->
+    <!--            <button class="ql-script" value="super"></button>-->
+    <!--          </span>-->
+    <!--          <span class="ql-formats">-->
+    <!--            <button class="ql-header" value="1"></button>-->
+    <!--            <button class="ql-header" value="2"></button>-->
+    <!--            <button class="ql-blockquote"></button>-->
+    <!--            <button class="ql-code-block"></button>-->
+    <!--          </span>-->
+    <!--          <span class="ql-formats">-->
+    <!--            <button class="ql-list" value="ordered"></button>-->
+    <!--            <button class="ql-list" value="bullet"></button>-->
+    <!--            <button class="ql-indent" value="-1"></button>-->
+    <!--            <button class="ql-indent" value="+1"></button>-->
+    <!--          </span>-->
+    <!--          <span class="ql-formats">-->
+    <!--            <button class="ql-direction" value="rtl"></button>-->
+    <!--            <select class="ql-align"></select>-->
+    <!--          </span>-->
+    <!--          <span class="ql-formats">-->
+    <!--            <button class="ql-link"></button>-->
+    <!--            <button class="ql-image"></button>-->
+    <!--            <button class="ql-video"></button>-->
+    <!--            <button class="ql-formula"></button>-->
+    <!--          </span>-->
+    <!--          <span class="ql-formats">-->
+    <!--            <button class="ql-clean"></button>-->
+    <!--          </span>-->
+    <!--        </div>-->
+    <!--      </ng-template>-->
+    <!--    </p-editor>-->
+    <ngx-suneditor
+      [options]="editorOptions"
+      [editorID]="inputId"
+      [content]="value"
+      [onDrop_param]="onDrop_param"
+      [onCopy_param]="onCopy_param"
+      [onCut_param]="onCut_param"
+      [onAudioUploadError_param]="onAudioUploadError_param"
+      [onImageUploadBefore_param]="onImageUploadBefore_param"
+      [onImageUploadError_param]="onImageUploadError_param"
+      [onVideoUploadBefore_param]="onVideoUploadBefore_param"
+      [onVideoUploadError_param]="onVideoUploadError_param"
+      [onAudioUploadBefore_param]="onAudioUploadBefore_param"
+      [onResizeEditor_param]="onResizeEditor_param"
+      [imageUploadHandler]="imageUploadHandler"
+      [videoUploadHandler]="videoUploadHandler"
+      [audioUploadHandler]="audioUploadHandler"
+      [localStorageConfig]="localStorageConfig"
+      (created)="_created($event)"
+      (onload)="emitter('onload',$event)"
+      (onScroll)="emitter('onScroll',$event)"
+      (onMouseDown)="emitter('onMouseDown',$event)"
+      (onClick)="emitter('onClick',$event)"
+      (onInput)="emitter('onInput',$event)"
+      (onKeyDown)="emitter('onKeyDown',$event)"
+      (onKeyUp)="emitter('onKeyUp',$event)"
+      (onFocus)="emitter('onFocus',$event)"
+      (onBlur)="emitter('onBlur',$event)"
+      (onResizeEditor)="emitter('onResizeEditor',$event)"
+      (onAudioUploadBefore)="emitter('onAudioUploadBefore',$event)"
+      (onVideoUploadError)="emitter('onVideoUploadError',$event)"
+      (onVideoUploadBefore)="emitter('onVideoUploadBefore',$event)"
+      (onImageUploadError)="emitter('onImageUploadError',$event)"
+      (onImageUploadBefore)="emitter('onImageUploadBefore',$event)"
+      (onAudioUploadError)="emitter('onAudioUploadError',$event)"
+      (onDrop)="emitter('onDrop',$event)"
+      (onChange)="emitter('onChange',$event)"
+      (showController)="emitter('showController',$event)"
+      (toggleFullScreen)="emitter('toggleFullScreen',$event)"
+      (toggleCodeView)="emitter('toggleCodeView',$event)"
+      (showInline)="emitter('showInline',$event)"
+      (onAudioUpload)="emitter('onAudioUpload',$event)"
+      (onVideoUpload)="emitter('onVideoUpload',$event)"
+      (onImageUpload)="emitter('onImageUpload',$event)"
+      (onCut)="emitter('onCut',$event)"
+      (onCopy)="emitter('onCopy',$event)"
+    ></ngx-suneditor>
   </div>
   <label
     *ngIf="label && labelPos != 'float'"
@@ -34,11 +123,17 @@
     [ngClass]="{
       'mb-0': labelPos == 'fix-side',
       'ml-4': rtl,
-      'mr-4': !rtl
+      'mr-4': !rtl,
+      'text-muted': disabled
     }"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>
+  <small *ngIf="hint">{{ hint }}</small>
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
+      {{ error.value }}
+    </small>
+  </ng-container>
 </div>
 
-<small *ngIf="hint">{{ hint }}</small>
