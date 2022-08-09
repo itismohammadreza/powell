@@ -58,8 +58,8 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Output() onInput = new EventEmitter();
   @Output() onClick = new EventEmitter();
   @Output() onChange = new EventEmitter();
-  @Output() onKeydown = new EventEmitter();
-  @Output() onKeyup = new EventEmitter();
+  @Output() onKeyDown = new EventEmitter();
+  @Output() onKeyUp = new EventEmitter();
   @Output() onBlur = new EventEmitter();
   @Output() onFocus = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
@@ -172,15 +172,15 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
     (this[name] as EventEmitter<any>).emit(event);
   }
 
-  _onKeydown(event: KeyboardEvent) {
+  _onKeyDown(event: KeyboardEvent) {
     const inputElement = event.target as HTMLInputElement;
-    this.onKeydown.emit(event);
+    this.onKeyDown.emit(event);
     this.onModelChange(inputElement.value);
   }
 
-  _onKeyup(event: KeyboardEvent) {
+  _onKeyUp(event: KeyboardEvent) {
     const inputElement = event.target as HTMLInputElement;
-    this.onKeyup.emit(event);
+    this.onKeyUp.emit(event);
     this.onModelChange(inputElement.value);
   }
 

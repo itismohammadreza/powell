@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -44,7 +45,7 @@ import {NgPosition, NgSize} from '@ng/models/offset';
     },
   ],
 })
-export class InputNumberComponent implements OnInit, ControlValueAccessor {
+export class InputNumberComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: number;
   @Input() label: string;
   @Input() filled: boolean;
@@ -140,14 +141,18 @@ export class InputNumberComponent implements OnInit, ControlValueAccessor {
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
-        if (this.placeholder) {
-          this.placeholder += ' *';
-        }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
       }
+      if (this.placeholder) {
+        this.placeholder += ' *';
+      }
+      this.cd.detectChanges();
     }
   }
 

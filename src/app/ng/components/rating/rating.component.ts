@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -35,7 +36,7 @@ import {NgError, NgLabelPosition} from '@ng/models/forms';
     },
   ],
 })
-export class RatingComponent implements OnInit, ControlValueAccessor {
+export class RatingComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -98,11 +99,15 @@ export class RatingComponent implements OnInit, ControlValueAccessor {
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
       }
+      this.cd.detectChanges();
     }
   }
 

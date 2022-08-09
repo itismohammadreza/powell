@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -38,7 +39,7 @@ import {ContextMenu} from 'primeng/contextmenu';
     },
   ],
 })
-export class TreeComponent implements OnInit, ControlValueAccessor {
+export class TreeComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
@@ -127,11 +128,15 @@ export class TreeComponent implements OnInit, ControlValueAccessor {
       rootForm.ngSubmit.subscribe(() => {
         currentControl.markAsTouched();
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
       }
+      this.cd.detectChanges();
     }
   }
 

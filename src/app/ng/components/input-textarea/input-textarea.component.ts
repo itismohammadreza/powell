@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -36,7 +37,7 @@ import {NgPosition} from '@ng/models/offset';
     },
   ],
 })
-export class InputTextareaComponent implements OnInit, ControlValueAccessor {
+export class InputTextareaComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() icon: string;
@@ -59,8 +60,8 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Output() onResize = new EventEmitter();
   @Output() onInput = new EventEmitter();
   @Output() onChange = new EventEmitter();
-  @Output() onKeydown = new EventEmitter();
-  @Output() onKeyup = new EventEmitter();
+  @Output() onKeyDown = new EventEmitter();
+  @Output() onKeyUp = new EventEmitter();
   @Output() onBlur = new EventEmitter();
   @Output() onFocus = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
@@ -106,14 +107,18 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
-        if (this.placeholder) {
-          this.placeholder += ' *';
-        }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
       }
+      if (this.placeholder) {
+        this.placeholder += ' *';
+      }
+      this.cd.detectChanges();
     }
   }
 
@@ -144,15 +149,15 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
     (this[name] as EventEmitter<any>).emit(event);
   }
 
-  _onKeydown(event: KeyboardEvent) {
+  _onKeyDown(event: KeyboardEvent) {
     const inputElement = event.target as HTMLTextAreaElement;
-    this.onKeydown.emit(event);
+    this.onKeyDown.emit(event);
     this.onModelChange(inputElement.value);
   }
 
-  _onKeyup(event: KeyboardEvent) {
+  _onKeyUp(event: KeyboardEvent) {
     const inputElement = event.target as HTMLTextAreaElement;
-    this.onKeyup.emit(event);
+    this.onKeyUp.emit(event);
     this.onModelChange(inputElement.value);
   }
 

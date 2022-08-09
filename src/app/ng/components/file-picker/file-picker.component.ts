@@ -1,5 +1,6 @@
 import {HttpHeaders} from '@angular/common/http';
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -40,7 +41,7 @@ import {FileUpload} from 'primeng/fileupload';
   ],
 })
 export class FilePickerComponent
-  implements OnInit, OnChanges, ControlValueAccessor {
+  implements OnInit, OnChanges, AfterViewInit, ControlValueAccessor {
   @ViewChild(FileUpload) fileUploadComponent: FileUpload;
   @Input() value: any = [];
   @Input() label: string;
@@ -101,11 +102,6 @@ export class FilePickerComponent
   onModelTouched: any = () => {
   };
 
-  ngOnChanges() {
-    if (this.isImage(this.value)) {
-      this.init(this.value);
-    }
-  }
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;
@@ -134,11 +130,21 @@ export class FilePickerComponent
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
+    }
+  }
+
+  ngOnChanges() {
+    if (this.isImage(this.value)) {
+      this.init(this.value);
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
       }
+      this.cd.detectChanges();
     }
   }
 

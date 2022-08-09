@@ -169,12 +169,12 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
 
   ngAfterViewInit() {
     if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
-        if (this.placeholder) {
-          this.placeholder += ' *';
-        }
+      if (this.label) {
+        this.label += ' *';
+      }
+      if (this.placeholder) {
+        this.placeholder += ' *';
+      }
       this.cd.detectChanges();
     }
   }

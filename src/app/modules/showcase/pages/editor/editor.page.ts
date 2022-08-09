@@ -12,14 +12,20 @@ export class EditorPage implements OnInit {
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;
-  submit() {}
-  ngOnInit(): void {}
 
-  label: string;
-  labelWidth: number;
-  hint: string;
+
+  label: string = 'label';
+  labelWidth: number = 100;
+  hint: string = '';
   rtl: boolean = false;
   showRequiredStar: boolean = true;
   labelPos: NgLabelPosition = 'fix-top';
   readonly: boolean = false;
+  disabled: boolean = false;
+
+  submit() {
+  }
+
+  ngOnInit(): void {
+  }
 }

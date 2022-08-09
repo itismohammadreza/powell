@@ -1,5 +1,5 @@
 import {
-  AfterContentInit,
+  AfterContentInit, AfterViewInit,
   ChangeDetectorRef,
   Component, ContentChildren,
   EventEmitter,
@@ -37,7 +37,7 @@ import {TemplateDirective} from '@ng/directives/template.directive';
     },
   ],
 })
-export class ListBoxComponent implements OnInit, ControlValueAccessor, AfterContentInit {
+export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -128,11 +128,15 @@ export class ListBoxComponent implements OnInit, ControlValueAccessor, AfterCont
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
       }
+      this.cd.detectChanges();
     }
   }
 

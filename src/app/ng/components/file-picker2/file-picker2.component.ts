@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -40,7 +41,7 @@ import {UtilsService} from '@ng/services';
   ],
 })
 export class FilePicker2Component
-  implements OnInit, OnChanges, ControlValueAccessor {
+  implements OnInit, OnChanges, AfterViewInit, ControlValueAccessor {
   @Input() value: any = [];
   @Input() errors: NgError;
   @Input() label: string;
@@ -110,17 +111,21 @@ export class FilePicker2Component
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
-      }
     }
   }
 
   ngOnChanges() {
     if (this.isImage(this.value)) {
       this.init(this.value);
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
+      }
+      this.cd.detectChanges();
     }
   }
 

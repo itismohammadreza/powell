@@ -1,5 +1,5 @@
 import {
-  AfterContentInit,
+  AfterContentInit, AfterViewInit,
   ChangeDetectorRef,
   Component, ContentChildren,
   EventEmitter,
@@ -38,7 +38,7 @@ import {TemplateDirective} from '@ng/directives/template.directive';
     },
   ],
 })
-export class InputPasswordComponent implements OnInit, ControlValueAccessor, AfterContentInit {
+export class InputPasswordComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -70,8 +70,8 @@ export class InputPasswordComponent implements OnInit, ControlValueAccessor, Aft
   @Input() placeholder: string;
   @Output() onInput = new EventEmitter();
   @Output() onChange = new EventEmitter();
-  @Output() onKeydown = new EventEmitter();
-  @Output() onKeyup = new EventEmitter();
+  @Output() onKeyDown = new EventEmitter();
+  @Output() onKeyUp = new EventEmitter();
   @Output() onBlur = new EventEmitter();
   @Output() onFocus = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
@@ -121,14 +121,18 @@ export class InputPasswordComponent implements OnInit, ControlValueAccessor, Aft
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
-        if (this.placeholder) {
-          this.placeholder += ' *';
-        }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
       }
+      if (this.placeholder) {
+        this.placeholder += ' *';
+      }
+      this.cd.detectChanges();
     }
   }
 
@@ -169,15 +173,15 @@ export class InputPasswordComponent implements OnInit, ControlValueAccessor, Aft
     this.onModelTouched();
   }
 
-  _onKeydown(event: KeyboardEvent) {
+  _onKeyDown(event: KeyboardEvent) {
     const inputElement = event.target as HTMLInputElement;
-    this.onKeydown.emit(event);
+    this.onKeyDown.emit(event);
     this.onModelChange(inputElement.value);
   }
 
-  _onKeyup(event: KeyboardEvent) {
+  _onKeyUp(event: KeyboardEvent) {
     const inputElement = event.target as HTMLInputElement;
-    this.onKeyup.emit(event);
+    this.onKeyUp.emit(event);
     this.onModelChange(inputElement.value);
   }
 

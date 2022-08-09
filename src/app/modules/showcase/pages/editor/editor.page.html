@@ -1,19 +1,21 @@
 <ng-preview-options
   [previewItems]="[
-'label',
-'labelWidth',
-'hint',
-'rtl',
-'showRequiredStar',
-'labelPos',
-'readonly'
-]"
+  'label',
+  'labelWidth',
+  'hint',
+  'rtl',
+  'showRequiredStar',
+  'labelPos',
+  'disabled',
+  'readonly'
+  ]"
   [(label)]="label"
   [(labelWidth)]="labelWidth"
   [(hint)]="hint"
   [(rtl)]="rtl"
   [(showRequiredStar)]="showRequiredStar"
   [(labelPos)]="labelPos"
+  [(disabled)]="disabled"
   [(readonly)]="readonly"
 ></ng-preview-options>
 <div class="container">
@@ -29,6 +31,7 @@
       [showRequiredStar]="showRequiredStar"
       [labelPos]="labelPos"
       [readonly]="readonly"
+      [disabled]="disabled"
     >
     </ng-editor>
     <ng-button type="submit" label="submit"></ng-button>
@@ -48,6 +51,7 @@
     [showRequiredStar]="showRequiredStar"
     [labelPos]="labelPos"
     [readonly]="readonly"
+    [disabled]="disabled"
   >
   </ng-editor>
 </div>

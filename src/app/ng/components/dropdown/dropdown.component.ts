@@ -1,5 +1,5 @@
 import {
-  AfterContentInit,
+  AfterContentInit, AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -42,7 +42,7 @@ import {TemplateDirective} from '@ng/directives/template.directive';
     },
   ],
 })
-export class DropdownComponent implements OnInit, ControlValueAccessor, AfterContentInit {
+export class DropdownComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -163,14 +163,18 @@ export class DropdownComponent implements OnInit, ControlValueAccessor, AfterCon
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
-        if (this.placeholder) {
-          this.placeholder += ' *';
-        }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
       }
+      if (this.placeholder) {
+        this.placeholder += ' *';
+      }
+      this.cd.detectChanges();
     }
   }
 

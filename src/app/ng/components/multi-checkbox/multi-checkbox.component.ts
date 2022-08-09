@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -36,7 +37,7 @@ import {NgOrientation} from '@ng/models/offset';
     },
   ],
 })
-export class MultiCheckboxComponent implements OnInit, ControlValueAccessor {
+export class MultiCheckboxComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any[];
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
@@ -109,11 +110,15 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor {
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
       }
+      this.cd.detectChanges();
     }
   }
 

@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -37,7 +38,7 @@ import {NgPosition, NgSize} from '@ng/models/offset';
   ]
 })
 
-export class ColorPickerComponent implements OnInit, ControlValueAccessor {
+export class ColorPickerComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -68,8 +69,8 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() hideTransitionOptions: string = '.1s linear';
   @Output() onInput = new EventEmitter();
   @Output() onChange = new EventEmitter();
-  @Output() onKeydown = new EventEmitter();
-  @Output() onKeyup = new EventEmitter();
+  @Output() onKeyDown = new EventEmitter();
+  @Output() onKeyUp = new EventEmitter();
   @Output() onBlur = new EventEmitter();
   @Output() onFocus = new EventEmitter();
   @Output() onShow = new EventEmitter();
@@ -115,11 +116,18 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label && this.labelPos !== 'float') {
-          this.label += ' *';
-        }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
       }
+      if (this.placeholder) {
+        this.placeholder += ' *';
+      }
+      this.cd.detectChanges();
     }
   }
 
@@ -145,15 +153,15 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
     this.onModelTouched();
   }
 
-  _onKeydown(event: KeyboardEvent) {
+  _onKeyDown(event: KeyboardEvent) {
     const inputElement = event.target as HTMLInputElement;
-    this.onKeydown.emit(event);
+    this.onKeyDown.emit(event);
     this.onModelChange(inputElement.value);
   }
 
-  _onKeyup(event: KeyboardEvent) {
+  _onKeyUp(event: KeyboardEvent) {
     const inputElement = event.target as HTMLInputElement;
-    this.onKeyup.emit(event);
+    this.onKeyUp.emit(event);
     this.onModelChange(inputElement.value);
   }
 

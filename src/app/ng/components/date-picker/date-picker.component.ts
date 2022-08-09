@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -40,7 +41,7 @@ import {ECalendarValue, IDatePickerConfig} from 'ng2-jalali-date-picker';
     },
   ],
 })
-export class DatePickerComponent implements OnInit, ControlValueAccessor, OnChanges {
+export class DatePickerComponent implements OnInit, OnChanges, AfterViewInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -175,19 +176,23 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor, OnChan
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
-        if (this.placeholder) {
-          this.placeholder += ' *';
-        }
-      }
     }
   }
 
   ngOnChanges() {
     this.config.locale = moment.locale(this.locale);
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
+      }
+      if (this.placeholder) {
+        this.placeholder += ' *';
+      }
+      this.cd.detectChanges();
+    }
   }
 
   _onChange(event) {

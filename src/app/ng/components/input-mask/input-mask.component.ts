@@ -74,7 +74,7 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Output() onBlur = new EventEmitter();
   @Output() onComplete = new EventEmitter();
   @Output() onInput = new EventEmitter();
-  @Output() onKeydown = new EventEmitter();
+  @Output() onKeyDown = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
 
@@ -118,14 +118,18 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
-        if (this.placeholder) {
-          this.placeholder += ' *';
-        }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
       }
+      if (this.placeholder) {
+        this.placeholder += ' *';
+      }
+      this.cd.detectChanges();
     }
   }
 

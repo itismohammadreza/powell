@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgInputTypes, NgKeyFilter, NgLabelPosition} from '@ng/models/forms';
 import {NgPosition, NgSize} from '@ng/models/offset';
-import {LanguageChecker} from '@core/utils';
 
 @Component({
   selector: 'ng-input-text-page',

@@ -8,69 +8,8 @@
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
     }" class="editor-wrapper">
   <div [ngClass]="{ 'w-100': labelPos == 'fix-top'}" class="field">
-    <!--    <p-editor-->
-    <!--      [attr.id]="inputId"-->
-    <!--      [(ngModel)]="value"-->
-    <!--      [style]="style"-->
-    <!--      [styleClass]="styleClass"-->
-    <!--      [placeholder]="placeholder"-->
-    <!--      [readonly]="readonly"-->
-    <!--      [formats]="formats"-->
-    <!--      [modules]="modules"-->
-    <!--      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"-->
-    <!--      (onInit)="_onInit($event)"-->
-    <!--      (onTextChange)="_onTextChange($event)"-->
-    <!--      (onSelectionChange)="_onSelectionChange($event)">-->
-    <!--      <ng-template pTemplate="header">-->
-    <!--        <div id="toolbar-container">-->
-    <!--          <span class="ql-formats">-->
-    <!--            <select class="ql-font"></select>-->
-    <!--            <select class="ql-size"></select>-->
-    <!--          </span>-->
-    <!--          <span class="ql-formats">-->
-    <!--            <button class="ql-bold"></button>-->
-    <!--            <button class="ql-italic"></button>-->
-    <!--            <button class="ql-underline"></button>-->
-    <!--            <button class="ql-strike"></button>-->
-    <!--          </span>-->
-    <!--          <span class="ql-formats">-->
-    <!--            <select class="ql-color"></select>-->
-    <!--            <select class="ql-background"></select>-->
-    <!--          </span>-->
-    <!--          <span class="ql-formats">-->
-    <!--            <button class="ql-script" value="sub"></button>-->
-    <!--            <button class="ql-script" value="super"></button>-->
-    <!--          </span>-->
-    <!--          <span class="ql-formats">-->
-    <!--            <button class="ql-header" value="1"></button>-->
-    <!--            <button class="ql-header" value="2"></button>-->
-    <!--            <button class="ql-blockquote"></button>-->
-    <!--            <button class="ql-code-block"></button>-->
-    <!--          </span>-->
-    <!--          <span class="ql-formats">-->
-    <!--            <button class="ql-list" value="ordered"></button>-->
-    <!--            <button class="ql-list" value="bullet"></button>-->
-    <!--            <button class="ql-indent" value="-1"></button>-->
-    <!--            <button class="ql-indent" value="+1"></button>-->
-    <!--          </span>-->
-    <!--          <span class="ql-formats">-->
-    <!--            <button class="ql-direction" value="rtl"></button>-->
-    <!--            <select class="ql-align"></select>-->
-    <!--          </span>-->
-    <!--          <span class="ql-formats">-->
-    <!--            <button class="ql-link"></button>-->
-    <!--            <button class="ql-image"></button>-->
-    <!--            <button class="ql-video"></button>-->
-    <!--            <button class="ql-formula"></button>-->
-    <!--          </span>-->
-    <!--          <span class="ql-formats">-->
-    <!--            <button class="ql-clean"></button>-->
-    <!--          </span>-->
-    <!--        </div>-->
-    <!--      </ng-template>-->
-    <!--    </p-editor>-->
     <ngx-suneditor
-      [options]="editorOptions"
+      [options]="options"
       [editorID]="inputId"
       [content]="value"
       [onDrop_param]="onDrop_param"
@@ -92,11 +31,11 @@
       (onScroll)="emitter('onScroll',$event)"
       (onMouseDown)="emitter('onMouseDown',$event)"
       (onClick)="emitter('onClick',$event)"
-      (onInput)="emitter('onInput',$event)"
-      (onKeyDown)="emitter('onKeyDown',$event)"
-      (onKeyUp)="emitter('onKeyUp',$event)"
+      (onInput)="_onInput($event)"
+      (onKeyDown)="_onKeyDown($event)"
+      (onKeyUp)="_onKeyUp($event)"
       (onFocus)="emitter('onFocus',$event)"
-      (onBlur)="emitter('onBlur',$event)"
+      (onBlur)="_onBlur($event)"
       (onResizeEditor)="emitter('onResizeEditor',$event)"
       (onAudioUploadBefore)="emitter('onAudioUploadBefore',$event)"
       (onVideoUploadError)="emitter('onVideoUploadError',$event)"
@@ -105,7 +44,7 @@
       (onImageUploadBefore)="emitter('onImageUploadBefore',$event)"
       (onAudioUploadError)="emitter('onAudioUploadError',$event)"
       (onDrop)="emitter('onDrop',$event)"
-      (onChange)="emitter('onChange',$event)"
+      (onChange)="_onChange($event)"
       (showController)="emitter('showController',$event)"
       (toggleFullScreen)="emitter('toggleFullScreen',$event)"
       (toggleCodeView)="emitter('toggleCodeView',$event)"

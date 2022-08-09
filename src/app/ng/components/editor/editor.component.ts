@@ -6,9 +6,9 @@ import {
   forwardRef,
   InjectFlags,
   Injector,
-  Input,
+  Input, OnChanges,
   OnInit,
-  Output,
+  Output, SimpleChanges,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -40,16 +40,17 @@ import {NgxSuneditorComponent} from "ngx-suneditor";
     },
   ],
 })
-export class EditorComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class EditorComponent implements OnInit, OnChanges, AfterViewInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() disabled: boolean;
+  @Input() readonly: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
-  @Input() editorOptions: SunEditorOptions = {
+  @Input() options: SunEditorOptions = {
     plugins: plugins,
     minWidth: '100%',
     buttonList: [
@@ -69,7 +70,6 @@ export class EditorComponent implements OnInit, AfterViewInit, ControlValueAcces
   };
   @Input() errors: NgError;
   @Input() content: string
-  @Input() options: SunEditorOptions;
   @Input() onDrop_param: boolean = true;
   @Input() onCopy_param: boolean = true;
   @Input() onCut_param: boolean = true;
@@ -155,11 +155,28 @@ export class EditorComponent implements OnInit, AfterViewInit, ControlValueAcces
     }
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (!this.editorInstance) {
+      return
+    }
+    if (changes.readonly) {
+      this.editorInstance.readOnly(changes.readonly.currentValue)
+    }
+    if (changes.disabled) {
+      if (changes.disabled.currentValue) {
+        this.editorInstance.disabled();
+      } else {
+        this.editorInstance.enabled()
+      }
+    }
+  }
+
   ngAfterViewInit() {
     if (this.showRequiredStar && this.isRequired()) {
       if (this.label) {
         this.label += ' *';
       }
+      this.cd.detectChanges();
     }
   }
 
@@ -170,6 +187,32 @@ export class EditorComponent implements OnInit, AfterViewInit, ControlValueAcces
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
+  }
+
+  _onChange(event: any) {
+    this.onChange.emit(event);
+    this.onModelChange(event.core.getContents());
+  }
+
+  _onInput(event: any) {
+    this.onInput.emit(event);
+    this.onModelChange(event.core.getContents());
+  }
+
+  _onKeyDown(event: any) {
+    this.onKeyDown.emit(event);
+    this.onModelChange(event.core.getContents());
+  }
+
+  _onKeyUp(event: any) {
+    this.onKeyUp.emit(event);
+    this.onModelChange(event.core.getContents());
+  }
+
+  _onBlur(event: any) {
+    console.log('blur');
+    this.onBlur.emit(event);
+    this.onModelTouched();
   }
 
   getId() {

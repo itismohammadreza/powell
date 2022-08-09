@@ -1,5 +1,5 @@
 import {
-  AfterContentInit,
+  AfterContentInit, AfterViewInit,
   ChangeDetectorRef,
   Component, ContentChildren,
   EventEmitter,
@@ -38,7 +38,7 @@ import {TemplateDirective} from '@ng/directives/template.directive';
     },
   ],
 })
-export class MultiSelectComponent implements OnInit, ControlValueAccessor, AfterContentInit {
+export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValueAccessor, AfterContentInit {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -160,14 +160,18 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
           currentControl.markAsTouched();
         }
       });
-      if (this.showRequiredStar && this.isRequired()) {
-        if (this.label) {
-          this.label += ' *';
-        }
-        if (this.placeholder) {
-          this.placeholder += ' *';
-        }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
       }
+      if (this.placeholder) {
+        this.placeholder += ' *';
+      }
+      this.cd.detectChanges();
     }
   }
 
