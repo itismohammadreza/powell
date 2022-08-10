@@ -1,40 +1,73 @@
 <p-galleria
   dir="ltr"
   [value]="images"
-  [autoPlay]="autoPlay"
+  [activeIndex]="activeIndex"
+  [fullScreen]="fullScreen"
+  [visible]="visible"
+  [numVisible]="numVisible"
   [responsiveOptions]="responsiveOptions"
-  [showIndicatorsOnItem]="showIndicatorsOnItem"
-  [showIndicators]="showIndicators"
-  [showThumbnails]="showThumbnails"
   [showItemNavigators]="showItemNavigators"
   [showThumbnailNavigators]="showThumbnailNavigators"
   [showItemNavigatorsOnHover]="showItemNavigatorsOnHover"
   [changeItemOnIndicatorHover]="changeItemOnIndicatorHover"
   [circular]="circular"
-  [indicatorsPosition]="indicatorsPosition"
+  [autoPlay]="autoPlay"
+  [transitionInterval]="transitionInterval"
+  [showThumbnails]="showThumbnails"
   [thumbnailsPosition]="thumbnailsPosition"
-  [fullScreen]="fullScreen"
-  [visible]="visible"
-  [numVisible]="numVisible"
-  [activeIndex]="activeIndex"
-  (visibleChange)="onVisibleChane($event)">
-  <ng-template pTemplate="item" let-item>
-    <img
-      [alt]="item.alt"
-      [src]="item.preview || 'assets/images/loader.gif'"
-      class="w-100"
-    />
+  [verticalThumbnailViewPortHeight]="verticalThumbnailViewPortHeight"
+  [showIndicators]="showIndicators"
+  [showIndicatorsOnItem]="showIndicatorsOnItem"
+  [indicatorsPosition]="indicatorsPosition"
+  [baseZIndex]="baseZIndex"
+  [maskClass]="maskClass"
+  [containerStyle]="containerStyle"
+  [showTransitionOptions]="showTransitionOptions"
+  [galleriaClass]="galleriaClass"
+  [hideTransitionOption]="hideTransitionOptions"
+  (visibleChange)="onVisibleChange($event)"
+  (activeIndexChange)="onActiveIndexChange($event)"
+>
+  <ng-template pTemplate="header" *ngIf="headerTemplate">
+    <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
   </ng-template>
   <ng-template pTemplate="thumbnail" let-item>
-    <img
-      [alt]="item.alt"
-      [src]="item.thumbnail || 'assets/images/loader.gif'"
-    />
+    <ng-container *ngIf="thumbnailTemplate;else thumbnailAlternative">
+      <ng-container *ngTemplateOutlet="thumbnailTemplate;context:{$implicit:item}"></ng-container>
+    </ng-container>
+    <ng-template #thumbnailAlternative>
+      <div class="row no-gutters justify-content-center" *ngIf="item.thumbnail">
+        <img [src]="item.thumbnail"/>
+      </div>
+    </ng-template>
+  </ng-template>
+  <ng-template pTemplate="item" let-item>
+    <ng-container *ngIf="itemTemplate;else itemAlternative">
+      <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item}"></ng-container>
+    </ng-container>
+    <ng-template #itemAlternative>
+      <img
+        [alt]="item.alt"
+        [src]="item.preview || 'assets/images/loader.gif'"
+        class="w-100"
+      />
+    </ng-template>
+  </ng-template>
+  <ng-template pTemplate="indicator" let-index *ngIf="indicatorTemplate">
+    <ng-container *ngTemplateOutlet="indicatorTemplate;context:{$implicit:index}"></ng-container>
   </ng-template>
   <ng-template pTemplate="caption" let-item>
-    <div class="galleria-caption text-{{rtl ? 'right' : 'left'}}" *ngIf="item.caption">
-      <h4>{{item.caption.title}}</h4>
-      <p class="mb-0">{{item.caption.subtitle}}</p>
-    </div>
+    <ng-container *ngIf="captionTemplate;else captionAlternative">
+      <ng-container *ngTemplateOutlet="captionTemplate;context:{$implicit:item}"></ng-container>
+    </ng-container>
+    <ng-template #captionAlternative>
+      <div class="galleria-caption text-{{rtl ? 'right' : 'left'}}" *ngIf="item.caption">
+        <h4>{{item.caption.title}}</h4>
+        <p class="mb-0">{{item.caption.subtitle}}</p>
+      </div>
+    </ng-template>
+  </ng-template>
+  <ng-template pTemplate="footer" *ngIf="footerTemplate">
+    <ng-container *ngTemplateOutlet="footerTemplate;"></ng-container>
   </ng-template>
 </p-galleria>

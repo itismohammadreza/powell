@@ -1,8 +1,9 @@
 import {HttpHeaders} from '@angular/common/http';
 import {
+  AfterContentInit,
   AfterViewInit,
   ChangeDetectorRef,
-  Component,
+  Component, ContentChildren,
   EventEmitter,
   forwardRef,
   InjectFlags,
@@ -10,7 +11,7 @@ import {
   Input,
   OnChanges,
   OnInit,
-  Output,
+  Output, QueryList, TemplateRef,
   ViewChild,
 } from '@angular/core';
 import {
@@ -26,6 +27,7 @@ import {
 } from '@angular/forms';
 import {NgError, NgInputFileMode, NgLabelPosition} from '@ng/models/forms';
 import {FileUpload} from 'primeng/fileupload';
+import {TemplateDirective} from "@ng/directives/template.directive";
 
 @Component({
   selector: 'ng-file-picker',
@@ -40,7 +42,7 @@ import {FileUpload} from 'primeng/fileupload';
   ],
 })
 export class FilePickerComponent
-  implements OnInit, OnChanges, AfterViewInit, ControlValueAccessor {
+  implements OnInit, OnChanges, AfterViewInit, AfterContentInit, ControlValueAccessor {
   @ViewChild(FileUpload) fileUploadComponent: FileUpload;
   @Input() value: any = [];
   @Input() label: string;
@@ -85,12 +87,16 @@ export class FilePickerComponent
   @Output() onUpload = new EventEmitter();
   @Output() onSend = new EventEmitter();
   @Output() uploadHandler = new EventEmitter();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
   selectedFiles: any[] = [];
   filesToEmit: (string | ArrayBuffer | File)[] | any;
+  toolbarTemplate: TemplateRef<any>;
+  fileTemplate: TemplateRef<any>;
+  contentTemplate: TemplateRef<any>;
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
@@ -144,6 +150,24 @@ export class FilePickerComponent
       }
       this.cd.detectChanges();
     }
+  }
+
+  ngAfterContentInit() {
+    this.templates.forEach((item: TemplateDirective) => {
+      switch (item.getType()) {
+        case 'toolbar':
+          this.toolbarTemplate = item.templateRef;
+          break;
+
+        case 'file':
+          this.fileTemplate = item.templateRef;
+          break;
+
+        case 'content':
+          this.contentTemplate = item.templateRef;
+          break;
+      }
+    })
   }
 
   _onRemove(event) {

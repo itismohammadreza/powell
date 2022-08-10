@@ -10,8 +10,6 @@ import {
 } from '@angular/core';
 import {NgPosition, NgSelectionMode, NgSize} from '@ng/models/offset';
 import {NgColDef} from '@ng/models/table';
-// import {jsPDF} from 'jspdf';
-// import 'jspdf-autotable';
 import {MenuItem, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {NgTableAction} from '../../models/table';
@@ -82,8 +80,7 @@ export class TableComponent implements OnChanges {
   @Input() showFirstLastIcon: boolean = true;
   @Input() totalRecords: number = 0;
   @Input() paginatorDropdownAppendTo: any = 'body';
-  @Input() currentPageReportTemplate: string =
-    '{first}-{last} of {totalRecords}';
+  @Input() currentPageReportTemplate: string = '{first}-{last} of {totalRecords}';
   @Input() rowsPerPageOptions: number[] = [10, 20, 50];
   @Output() onFileButtonClick = new EventEmitter();
   @Output() contextMenuSelectionChange = new EventEmitter();
@@ -124,6 +121,10 @@ export class TableComponent implements OnChanges {
     }
   }
 
+  emitter(name: string, event: any) {
+    (this[name] as EventEmitter<any>).emit(event);
+  }
+
   onSelectionChange(event) {
     this.selection = event;
     this.selectionChange.emit(this.selection);
@@ -132,66 +133,6 @@ export class TableComponent implements OnChanges {
   onContextMenuSelectionChange(event) {
     this.contextMenuSelection = event;
     this.contextMenuSelectionChange.emit(this.contextMenuSelection);
-  }
-
-  _onRowSelect(event) {
-    this.onRowSelect.emit(event);
-  }
-
-  _onRowUnselect(event) {
-    this.onRowUnselect.emit(event);
-  }
-
-  _onPage(event) {
-    this.onPage.emit(event);
-  }
-
-  _onSort(event) {
-    this.onSort.emit(event);
-  }
-
-  _onFilter(event) {
-    this.onFilter.emit(event);
-  }
-
-  _onContextMenuSelect(event) {
-    this.onContextMenuSelect.emit(event);
-  }
-
-  _onColResize(event) {
-    this.onColResize.emit(event);
-  }
-
-  _onColReorder(event) {
-    this.onColReorder.emit(event);
-  }
-
-  _onRowReorder(event) {
-    this.onRowReorder.emit(event);
-  }
-
-  _onEditInit(event) {
-    this.onEditInit.emit(event);
-  }
-
-  _onEditComplete(event) {
-    this.onEditComplete.emit(event);
-  }
-
-  _onEditCancel(event) {
-    this.onEditCancel.emit(event);
-  }
-
-  _onHeaderCheckboxToggle(event) {
-    this.onHeaderCheckboxToggle.emit(event);
-  }
-
-  _onStateSave(event) {
-    this.onStateSave.emit(event);
-  }
-
-  _onStateRestore(event) {
-    this.onStateRestore.emit(event);
   }
 
   onCellEdit(rowData: any, field: string, newValue: any) {
@@ -215,39 +156,12 @@ export class TableComponent implements OnChanges {
   }
 
   exportPdf() {
-    // const doc: any = new jsPDF();
-    // doc.autoTable(
-    //   this.colDef.map((col) => ({title: col.header, dataKey: col.field})),
-    //   this.items
-    // );
-    // doc.save('list.pdf');
   }
 
   exportExcel() {
-    // import('xlsx').then((xlsx) => {
-    //   const worksheet = xlsx.utils.json_to_sheet(this.items);
-    //   const workbook = {Sheets: {data: worksheet}, SheetNames: ['data']};
-    //   const excelBuffer: any = xlsx.write(workbook, {
-    //     bookType: 'xlsx',
-    //     type: 'array',
-    //   });
-    //   this.saveAsExcelFile(excelBuffer, 'list');
-    // });
   }
 
   saveAsExcelFile(buffer: any, fileName: string): void {
-    // import('file-saver').then((FileSaver) => {
-    //   let EXCEL_TYPE =
-    //     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-    //   let EXCEL_EXTENSION = '.xlsx';
-    //   const data: Blob = new Blob([buffer], {
-    //     type: EXCEL_TYPE,
-    //   });
-    //   FileSaver.saveAs(
-    //     data,
-    //     fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION
-    //   );
-    // });
   }
 
   getClass(rowData: any, item: NgTableAction): string[] {

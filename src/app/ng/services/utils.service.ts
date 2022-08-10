@@ -394,7 +394,6 @@ export class UtilsService {
     return result;
   }
 
-
   checkConnectionState(callback: any) {
     const imageUrl = 'https://via.placeholder.com/2000x2000';
     const downloadSize = 4995374;
@@ -426,7 +425,7 @@ export class UtilsService {
     );
   }
 
-  disableWindowBackButton() {
+  disableBrowserBackButton() {
     history.pushState(null, null, location.href);
     this.location.onPopState(() => {
       history.pushState(null, null, location.href);

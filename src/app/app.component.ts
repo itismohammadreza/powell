@@ -27,7 +27,6 @@ import {filter} from 'rxjs/operators';
   }
   also implement shamsi-miladi date RENDERER + FILTER + EDITOR for table.
 - add ng-template support for table.
-- add ng-template support for image slider.
 - add preventDuplicate support for toast.
 - place hint in top of component instead of bottom
 - move .error to .field div
