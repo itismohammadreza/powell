@@ -13,8 +13,12 @@ export class FilePickerPage implements OnInit {
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;
-  submit() {}
-  ngOnInit(): void {}
+
+  submit() {
+  }
+
+  ngOnInit(): void {
+  }
 
   label: string;
   labelWidth: number;
@@ -29,7 +33,7 @@ export class FilePickerPage implements OnInit {
   withCredentials: boolean = false;
   customUpload: boolean = true;
   auto: boolean = false;
-  accept: string;
+  accept: string = 'image/*, .pdf';
   method: string = 'post';
   maxFileSize: number;
   previewWidth: number = 50;
@@ -46,6 +50,6 @@ export class FilePickerPage implements OnInit {
   invalidFileSizeMessageDetail: string = 'حداکثر سایز فایل {0} است.';
   invalidFileTypeMessageSummary: string = '{0} - نوع فایل نامعتبر است.';
   invalidFileLimitMessageDetail: string = 'حداکثر مجاز به انتخاب {0} فایل هستید.';
-  invalidFileLimitMessageSummary: string ='مجاز به انتخاب فایل بیشتری نیستید.';
+  invalidFileLimitMessageSummary: string = 'مجاز به انتخاب فایل بیشتری نیستید.';
   invalidFileTypeMessageDetail: string = 'فرمت مجاز : {0}';
 }

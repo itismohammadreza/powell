@@ -17,13 +17,12 @@ import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
+  UntypedFormGroup,
 } from '@angular/forms';
 import {NgError, NgInputFileMode, NgLabelPosition} from '@ng/models/forms';
 import {FileUpload} from 'primeng/fileupload';
@@ -58,7 +57,7 @@ export class FilePickerComponent
   @Input() withCredentials: boolean;
   @Input() customUpload: boolean = true;
   @Input() auto: boolean;
-  @Input() accept: string;
+  @Input() accept: string = 'image/*';
   @Input() method: string = 'post';
   @Input() maxFileSize: number;
   @Input() previewWidth: number = 50;
@@ -101,7 +100,6 @@ export class FilePickerComponent
 
   onModelTouched: any = () => {
   };
-
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;

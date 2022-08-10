@@ -77,16 +77,6 @@ const routes: Routes = [
     data: {title: 'date'}
   },
   {
-    path: 'date-picker2',
-    component: DatePicker2Page,
-    data: {title: 'date2'}
-  },
-  {
-    path: 'date-picker3',
-    component: DatePicker3Page,
-    data: {title: 'date3'}
-  },
-  {
     path: 'dynamic-dialog',
     component: DynamicDialogPage,
     data: {title: 'dynamic-dialog'}
