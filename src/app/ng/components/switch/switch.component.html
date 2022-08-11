@@ -7,12 +7,7 @@
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
     }" class="switch-wrapper">
-  <div
-    [ngClass]="{
-      'w-100': labelPos == 'fix-top'
-    }"
-    class="field"
-  >
+  <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field">
     <p-inputSwitch
       (onChange)="_onChange($event)"
       [(ngModel)]="value"
@@ -22,8 +17,7 @@
       [readonly]="readonly"
     ></p-inputSwitch>
     <ng-container *ngFor="let error of errors | keyvalue">
-      <small *ngIf="showError(error.key)" [class.mt-4]="hint"
-        class="p-error">
+      <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
         {{ error.value }}
       </small>
     </ng-container>

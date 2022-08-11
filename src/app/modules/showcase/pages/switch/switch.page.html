@@ -1,14 +1,24 @@
 <ng-preview-options
-[previewItems]="[]"></ng-preview-options>
+  [previewItems]="[
+  'label',
+  'labelPos',
+  'rtl'
+  ]"
+  [(label)]="label"
+  [(labelPos)]="labelPos"
+  [(rtl)]="rtl"
+></ng-preview-options>
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
-    <ng-chips
+    <ng-switch
       formControlName="c1"
-      field="name"
+      [label]="label"
+      [labelPos]="labelPos"
+      [rtl]="rtl"
       [errors]="{ required: 'error' }"
     >
-    </ng-chips>
+    </ng-switch>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
   <h4>NG MODEL</h4>
@@ -19,7 +29,6 @@
     required
     [(ngModel)]="binding"
     field="name"
-    [errors]="{ required: 'error' }"
-  >
+    [errors]="{ required: 'error' }">
   </ng-chips>
 </div>

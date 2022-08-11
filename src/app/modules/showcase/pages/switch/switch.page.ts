@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {NgLabelPosition} from "@ng/models/forms";
 
 @Component({
   selector: 'ng-switch-page',
@@ -11,6 +12,13 @@ export class SwitchPage implements OnInit {
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;
-  submit() {}
-  ngOnInit(): void {}
+  label: string = 'label'
+  labelPos: NgLabelPosition = 'fix-side'
+  rtl: boolean = false
+
+  submit() {
+  }
+
+  ngOnInit(): void {
+  }
 }

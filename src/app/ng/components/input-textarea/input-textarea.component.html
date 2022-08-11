@@ -15,8 +15,7 @@
       'p-input-icon-right': !addon && icon && iconPos == 'right',
       'p-input-filled': filled
     }"
-    class="field"
-  >
+    class="field">
     <i *ngIf="icon && !addon" [ngClass]="icon"></i>
     <textarea
       (blur)="_onBlur()"
