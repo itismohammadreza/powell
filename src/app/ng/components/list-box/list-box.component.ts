@@ -56,7 +56,7 @@ export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit
   @Input() filter: boolean;
   @Input() filterMatchMode: NgFilterMatchMode = 'contains';
   @Input() filterValue: string;
-  @Input() filterLocale: string = undefined;
+  @Input() filterLocale: string;
   @Input() filterPlaceHolder: string;
   @Input() emptyFilterMessage: string = 'No results found';
   @Input() listStyle: string;
@@ -85,12 +85,13 @@ export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  headerTemplate: TemplateRef<any>;
   itemTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
-  headerTemplate: TemplateRef<any>;
-  footerTemplate: TemplateRef<any>;
+  filterTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
   emptyFilterTemplate: TemplateRef<any>;
+  footerTemplate: TemplateRef<any>;
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
@@ -143,6 +144,10 @@ export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {
       switch (item.getType()) {
+        case 'header':
+          this.headerTemplate = item.templateRef;
+          break;
+
         case 'item':
           this.itemTemplate = item.templateRef;
           break;
@@ -151,12 +156,8 @@ export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit
           this.groupTemplate = item.templateRef;
           break;
 
-        case 'header':
-          this.headerTemplate = item.templateRef;
-          break;
-
-        case 'footer':
-          this.footerTemplate = item.templateRef;
+        case 'filter':
+          this.filterTemplate = item.templateRef;
           break;
 
         case 'empty':
@@ -165,6 +166,10 @@ export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit
 
         case 'emptyfilter':
           this.emptyFilterTemplate = item.templateRef;
+          break;
+
+        case 'footer':
+          this.footerTemplate = item.templateRef;
           break;
       }
     });

@@ -31,6 +31,12 @@ import {filter} from 'rxjs/operators';
 - place hint in top of component instead of bottom
 - move .error to .field div
 - make component .ts file logic like inputtext
+- use typescript utility-types (e.u Partial<..>) in components as need. for example in knob we can't have labelPos = 'float', but it can accept now!
+  fix this by using utility-types and exclude 'float' in labelPos input property.
+- remove extra <label> tag for those components that can't accept float-label mode.
+- implement ng-devider component just like AntDisign-NG-ZORRRO
+- implement ng-empty component just like AntDisign-NG-ZORRRO
+- implement ng-status component just like AntDisign-NG-ZORRRO
 */
 @Component({
   selector: 'app-root',
