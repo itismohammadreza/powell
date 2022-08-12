@@ -240,10 +240,9 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
     this.onDropdownClick.emit(event);
   }
 
-  _onClear(event: InputEvent) {
-    const inputElement = event.target as HTMLInputElement;
-    this.onClear.emit(event);
-    this.onModelChange(inputElement.value);
+  _onClear() {
+    this.onClear.emit();
+    this.onModelChange(null);
   }
 
   emitter(name: string, event: any) {

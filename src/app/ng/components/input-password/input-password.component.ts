@@ -71,12 +71,14 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
   @Input() style: any;
   @Input() styleClass: string;
   @Input() placeholder: string;
+  @Input() showClear: boolean;
   @Output() onInput = new EventEmitter();
   @Output() onChange = new EventEmitter();
   @Output() onKeyDown = new EventEmitter();
   @Output() onKeyUp = new EventEmitter();
   @Output() onBlur = new EventEmitter();
   @Output() onFocus = new EventEmitter();
+  @Output() onClear = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
@@ -186,6 +188,11 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
     const inputElement = event.target as HTMLInputElement;
     this.onKeyUp.emit(event);
     this.onModelChange(inputElement.value);
+  }
+
+  _onClear() {
+    this.onClear.emit();
+    this.onModelChange(null);
   }
 
   emitter(name: string, event: any) {

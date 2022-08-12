@@ -41,7 +41,7 @@
       (onComplete)="emitter('onComplete', $event)"
       (onFocus)="emitter('onFocus', $event)"
       (onInput)="_onInput($event)"
-      (onClear)="emitter('onClear',$event)"
+      (onClear)="_onClear()"
     ></p-inputMask>
     <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
       {{ label }}

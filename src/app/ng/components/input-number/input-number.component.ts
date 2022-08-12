@@ -96,6 +96,7 @@ export class InputNumberComponent implements OnInit, AfterViewInit, ControlValue
   @Output() onFocus = new EventEmitter();
   @Output() onBlur = new EventEmitter();
   @Output() onInput = new EventEmitter();
+  @Output() onClear = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
 
@@ -162,6 +163,11 @@ export class InputNumberComponent implements OnInit, AfterViewInit, ControlValue
   _onBlur() {
     this.onBlur.emit();
     this.onModelTouched();
+  }
+
+  _onClear() {
+    this.onClear.emit();
+    this.onModelChange(null);
   }
 
   emitter(name: string, event: any) {

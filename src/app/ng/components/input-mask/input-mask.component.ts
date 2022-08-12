@@ -144,6 +144,11 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
     this.onModelTouched();
   }
 
+  _onClear() {
+    this.onClear.emit();
+    this.onModelChange(null);
+  }
+
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
   }
