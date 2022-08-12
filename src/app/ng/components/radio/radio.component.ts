@@ -53,7 +53,7 @@ export class RadioComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Input() errors: NgError;
   // native properties
   @Input() disabled: boolean;
-  @Input() tabindex: number;
+  @Input() tabindex: any;
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
   @Input() style: any;

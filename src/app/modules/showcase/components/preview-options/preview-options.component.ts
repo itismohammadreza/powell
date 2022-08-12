@@ -436,7 +436,7 @@ export class PreviewOptionsComponent implements OnInit {
 
   private createComponent(cmp: Type<any>, previewItem: string, row: 'firstRow' | 'secondRow') {
     const cmpRef = this[row].createComponent(cmp);
-    cmpRef.location.nativeElement.classList.add('col-3');
+    cmpRef.location.nativeElement.classList.add('col-md-3');
     cmpRef.instance.label = previewItem;
     cmpRef.instance.value = this[previewItem];
     switch (cmp) {

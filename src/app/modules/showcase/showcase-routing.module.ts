@@ -37,7 +37,6 @@ import {KnobPage} from '@modules/showcase/pages/knob/knob.page';
 import {TreeSelectPage} from '@modules/showcase/pages/tree-select/tree-select.page';
 import {DatePicker2Page} from '@modules/showcase/pages/date-picker2/date-picker2.page';
 import {DatePicker3Page} from '@modules/showcase/pages/date-picker3/date-picker3.page';
-import {DynamicDialogPage} from '@modules/showcase/pages/dynamic-dialog/dynamic-dialog.page';
 import {ButtonAsyncPage} from '@modules/showcase/pages/button-async/button-async.page';
 
 const routes: Routes = [
@@ -75,11 +74,6 @@ const routes: Routes = [
     path: 'date-picker',
     component: DatePickerPage,
     data: {title: 'date'}
-  },
-  {
-    path: 'dynamic-dialog',
-    component: DynamicDialogPage,
-    data: {title: 'dynamic-dialog'}
   },
   {
     path: 'dynamic-form',

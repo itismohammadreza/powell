@@ -34,7 +34,6 @@ export class MainPage extends LanguageChecker implements OnInit {
       'color-picker',
       'date-picker',
       'dynamic-form',
-      'dynamic-dialog',
       'dropdown',
       'editor',
       'file-picker',

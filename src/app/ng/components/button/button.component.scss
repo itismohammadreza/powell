@@ -4,8 +4,29 @@
 
   &.full {
     &,
-    & ::ng-deep .p-button {
+    ::ng-deep .p-button {
       width: 100%;
+    }
+  }
+
+  ::ng-deep .p-button {
+    &.p-button-icon-only {
+      padding: 0.75rem 0;
+
+      &.p-button-sm {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      &.p-button-md {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      &.p-button-lg {
+        width: 4rem;
+        height: 4rem;
+      }
     }
   }
 }

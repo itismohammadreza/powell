@@ -45,7 +45,7 @@ export class SingleCheckboxComponent implements OnInit, AfterViewInit, ControlVa
   @Input() errors: NgError;
   // native properties
   @Input() disabled: boolean;
-  @Input() tabindex: number;
+  @Input() tabindex: any;
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
   @Input() style: any;

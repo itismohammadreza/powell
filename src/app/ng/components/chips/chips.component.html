@@ -18,6 +18,24 @@
     }" class="field">
     <i *ngIf="icon && !addon" [ngClass]="icon"></i>
     <p-chips
+      [(ngModel)]="value"
+      [field]="field"
+      [max]="max"
+      [disabled]="disabled"
+      [style]="style"
+      [styleClass]="styleClass"
+      [placeholder]="placeholder"
+      [tabindex]="tabindex"
+      [ariaLabelledBy]="ariaLabelledBy"
+      [allowDuplicate]="allowDuplicate"
+      [inputStyle]="inputStyle"
+      [inputStyleClass]="inputStyleClass"
+      [addOnTab]="addOnTab"
+      [addOnBlur]="addOnBlur"
+      [separator]="separator"
+      [inputId]="inputId"
+      [ngAddon]="addon"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       (onAdd)="_onAdd($event)"
       (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
       (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
@@ -25,17 +43,6 @@
       (onChipClick)="emitter('onChipClick', $event)"
       (onFocus)="emitter('onFocus', $event)"
       (onRemove)="_onRemove($event)"
-      [(ngModel)]="value"
-      [addOnBlur]="addOnBlur"
-      [addOnTab]="addOnTab"
-      [allowDuplicate]="allowDuplicate"
-      [disabled]="disabled"
-      [field]="field"
-      [inputId]="inputId"
-      [max]="max"
-      [ngAddon]="addon"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [placeholder]="placeholder"
     >
       <ng-template pTemplate="item" let-item *ngIf="itemTemplate">
         <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item}"></ng-container>

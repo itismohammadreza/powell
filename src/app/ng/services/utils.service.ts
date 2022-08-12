@@ -1,8 +1,7 @@
 import {
   ApplicationRef,
-  ComponentFactoryResolver,
-  ComponentRef,
-  EmbeddedViewRef,
+  ComponentRef, createComponent,
+  EmbeddedViewRef, Inject,
   Injectable,
   Injector,
   Type,
@@ -30,7 +29,7 @@ import {fromEvent, merge, Observable, Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {NumberToPersianWord} from './num-to-per-word';
 import {DialogComponent} from '@ng/components/dialog/dialog.component';
-import {LocationStrategy} from '@angular/common';
+import {DOCUMENT, LocationStrategy} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -46,11 +45,11 @@ export class UtilsService {
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private dialogService: DialogService,
-    private resolver: ComponentFactoryResolver,
     private filterService: FilterService,
     private injector: Injector,
     private appRef: ApplicationRef,
     private location: LocationStrategy,
+    @Inject(DOCUMENT) private document: any
   ) {
   }
 
@@ -108,8 +107,8 @@ export class UtilsService {
         rejectIcon: options.rejectIcon,
         acceptVisible: options.acceptVisible,
         rejectVisible: options.rejectVisible,
-        acceptButtonStyleClass: options.acceptButtonStyleClass,
-        rejectButtonStyleClass: options.rejectButtonStyleClass,
+        acceptButtonStyleClass: options.acceptStyleClass,
+        rejectButtonStyleClass: options.rejectStyleClass,
         defaultFocus: options.defaultFocus,
       });
     });
@@ -368,11 +367,12 @@ export class UtilsService {
   }
 
   addComponentToBody<T>(component: Type<T>, pos: 'appendChild' | 'prepend' = 'appendChild'): ComponentRef<T> {
-    const factory = this.resolver.resolveComponentFactory(component);
-    const componentRef = factory.create(this.injector);
+    const componentRef = createComponent(component, {
+      environmentInjector: this.appRef.injector,
+      elementInjector: this.injector
+    })
     this.appRef.attachView(componentRef.hostView);
-    const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
-    document.body[pos](domElem);
+    this.document.body[pos](componentRef.location.nativeElement);
     return componentRef;
   }
 

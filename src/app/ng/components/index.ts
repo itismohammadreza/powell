@@ -49,7 +49,6 @@ import {Dialog2Component} from './dialog2/dialog2.component';
 import {ButtonAsyncComponent} from '@ng/components/button-async/button-async.component';
 import {KnobComponent} from '@ng/components/knob/knob.component';
 import {TreeSelectComponent} from '@ng/components/tree-select/tree-select.component';
-import {ErrorComponent} from '@ng/components/error/error.component';
 
 export const COMPONENTS: Type<any>[] = [
   AutoCompleteComponent,
@@ -76,7 +75,6 @@ export const COMPONENTS: Type<any>[] = [
   FilePickerComponent,
   FilePicker2Component,
   FilterListComponent,
-  ErrorComponent,
   ImageSliderComponent,
   InputMaskComponent,
   InputNumberComponent,

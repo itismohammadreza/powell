@@ -61,7 +61,7 @@ export class ColorPickerComponent implements OnInit, AfterViewInit, ControlValue
   @Input() inline: boolean;
   @Input() format: string = 'hex';
   @Input() appendTo: any;
-  @Input() tabindex: number;
+  @Input() tabindex: any;
   @Input() disabled: boolean;
   @Input() baseZIndex: number = 1000;
   @Input() autoZIndex: boolean = true;

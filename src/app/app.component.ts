@@ -37,6 +37,8 @@ import {filter} from 'rxjs/operators';
 19- implement ng-devider component just like AntDisign-NG-ZORRRO
 20- implement ng-empty component just like AntDisign-NG-ZORRRO
 21- implement ng-status component just like AntDisign-NG-ZORRRO
+22- check showClear functionality that may forget to add, and also check showClear when icon is provided.
+23- add specific class to hint and error and icon elements and edit .scss file.
 */
 @Component({
   selector: 'app-root',

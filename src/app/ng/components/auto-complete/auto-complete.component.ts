@@ -77,7 +77,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() maxlength: number;
   @Input() size: number;
   @Input() appendTo: any;
-  @Input() tabIndex: any;
+  @Input() tabindex: any;
   @Input() dataKey: string;
   @Input() autoHighlight: boolean;
   @Input() type: string = 'text';

@@ -47,7 +47,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   // native properties
   @Input() style: any;
   @Input() styleClass: string;
-  @Input() tabindex: number;
+  @Input() tabindex: any;
   @Input() ariaLabelledBy: string;
   @Input() disabled: boolean;
   @Input() readonly: boolean;

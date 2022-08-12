@@ -1,6 +1,5 @@
-import {Component, EventEmitter, OnInit, Output, ViewContainerRef} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgDialog} from '@ng/models/overlay';
-import {UtilsService} from '@ng/services';
 import {Subject} from 'rxjs';
 
 @Component({

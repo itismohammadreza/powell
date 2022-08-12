@@ -50,8 +50,8 @@ export interface NgConfirmOptions {
   autoZIndex?: boolean;
   breakpoints?: any;
   transitionOptions?: string;
-  acceptButtonStyleClass?: string;
-  rejectButtonStyleClass?: string;
+  acceptStyleClass?: string;
+  rejectStyleClass?: string;
   style?: any;
   styleClass?: string;
   maskStyleClass?: string;

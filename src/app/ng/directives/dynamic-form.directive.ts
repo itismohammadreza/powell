@@ -1,5 +1,4 @@
 import {
-  ComponentFactoryResolver,
   Directive,
   Host,
   Input,
@@ -24,14 +23,12 @@ export class DynamicFormDirective implements OnInit {
   };
 
   constructor(@Optional() @Host() @SkipSelf() private parent: ControlContainer,
-              private resolver: ComponentFactoryResolver,
               private ngControl: NgControl,
               private vcRef: ViewContainerRef) {
   }
 
   ngOnInit() {
-    const factory = this.resolver.resolveComponentFactory<any>(this.elements[this.ngDynamicForm.type]);
-    const cmpRef = this.vcRef.createComponent(factory);
+    const cmpRef = this.vcRef.createComponent<any>(this.elements[this.ngDynamicForm.type]);
     (this.parent.formDirective as FormGroupDirective).form.addControl(this.ngDynamicForm.formControlName, new UntypedFormControl('', [Validators.required]));
     setTimeout(() => {
       cmpRef.instance.ngControl = this.ngControl;

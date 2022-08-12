@@ -51,7 +51,7 @@
       top: calc(100% + 0.25rem);
     }
 
-    &.p-dropdown-clearable.p-dropdown-filled {
+    &.is-clearable.has-value {
       .field > i {
         display: none;
       }

@@ -96,7 +96,7 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
   @Input() showToggleAll: boolean = true;
   @Input() style: any;
   @Input() styleClass: string;
-  @Input() tabindex: number;
+  @Input() tabindex: any;
   @Input() tooltip: any;
   @Input() tooltipStyleClass: string;
   @Input() tooltipPosition: NgPosition = 'top';

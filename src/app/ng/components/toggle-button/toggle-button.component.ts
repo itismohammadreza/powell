@@ -55,7 +55,7 @@ export class ToggleButtonComponent implements OnInit, AfterViewInit, ControlValu
   @Input() style: any;
   @Input() styleClass: string;
   @Input() disabled: boolean;
-  @Input() tabindex: number;
+  @Input() tabindex: any;
   @Input() ariaLabelledBy: string;
   @Output() onChange = new EventEmitter();
 

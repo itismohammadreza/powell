@@ -82,7 +82,7 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   @Input() editable: boolean;
   @Input() maxlength: number;
   @Input() appendTo: any;
-  @Input() tabindex: number;
+  @Input() tabindex: any;
   @Input() placeholder: string;
   @Input() dataKey: string;
   @Input() autofocus: boolean;

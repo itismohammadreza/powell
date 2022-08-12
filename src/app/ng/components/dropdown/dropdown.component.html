@@ -6,8 +6,8 @@
       'align-items-end': labelPos == 'fix-top' && rtl,
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl,
-      'p-dropdown-clearable': showClear,
-      'p-dropdown-filled': value
+      'is-clearable': showClear,
+      'has-value': value
     }" class="dropdown-wrapper">
   <div
     [ngClass]="{

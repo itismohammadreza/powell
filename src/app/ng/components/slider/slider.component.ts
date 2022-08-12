@@ -56,7 +56,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
   @Input() range: boolean;
   @Input() style: any;
   @Input() styleClass: any;
-  @Input() tabindex: number;
+  @Input() tabindex: any;
   @Input() ariaLabelledBy: string;
   @Output() onChange = new EventEmitter();
   @Output() onSlideEnd = new EventEmitter();

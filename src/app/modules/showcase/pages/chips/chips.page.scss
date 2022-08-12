@@ -11,10 +11,7 @@ h4 {
   padding: 0.5rem;
   text-transform: uppercase;
   border-radius: 0.5rem;
-
-  &:not(:first-child) {
-    margin-top: 60px;
-  }
+  margin-top: 60px;
 }
 
 [formControlName*="c"] {

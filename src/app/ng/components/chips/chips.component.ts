@@ -59,7 +59,7 @@ export class ChipsComponent implements OnInit, AfterViewInit, AfterContentInit, 
   @Input() style: any;
   @Input() styleClass: string;
   @Input() placeholder: string;
-  @Input() tabindex: number;
+  @Input() tabindex: any;
   @Input() ariaLabelledBy: string;
   @Input() allowDuplicate: boolean = true;
   @Input() inputStyle: string;
