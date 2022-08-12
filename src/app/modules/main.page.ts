@@ -70,7 +70,7 @@ export class MainPage extends LanguageChecker implements OnInit {
   }
 
   handleResize() {
-    if (window.innerWidth < 767) {
+    if (this.document.defaultView.innerWidth < 767) {
       this.onMenuTypeChange('overlay');
       this.toggleOverlayDisplay(false);
     } else {

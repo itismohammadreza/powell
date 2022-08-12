@@ -327,8 +327,8 @@ export class UtilsService {
 
   checkConnection(): Observable<boolean> {
     return merge(
-      fromEvent(window, 'offline').pipe(map(() => false)),
-      fromEvent(window, 'online').pipe(map(() => true)),
+      fromEvent(this.document.defaultView, 'offline').pipe(map(() => false)),
+      fromEvent(this.document.defaultView, 'online').pipe(map(() => true)),
     ).pipe(map(() => navigator.onLine));
   }
 
@@ -407,8 +407,8 @@ export class UtilsService {
 
   checkOnlineState(): Observable<boolean> {
     return merge(
-      fromEvent(window, 'offline').pipe(map(() => false)),
-      fromEvent(window, 'online').pipe(map(() => true)),
+      fromEvent(this.document.defaultView, 'offline').pipe(map(() => false)),
+      fromEvent(this.document.defaultView, 'online').pipe(map(() => true)),
       new Observable((observer: Observer<boolean>) => {
         observer.next(navigator.onLine);
         observer.complete();

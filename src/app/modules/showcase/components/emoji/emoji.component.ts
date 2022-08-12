@@ -12,9 +12,10 @@ export class EmojiComponent implements OnInit {
 
   ngOnInit() {
     const eyes = this.document.querySelectorAll('.eye-color');
-    window.addEventListener('mousemove', (event) => {
-      const x = (event.clientX / (window.innerWidth * 2)) * 100;
-      const y = (event.clientY / (window.innerHeight * 2)) * 100;
+    const windowObj = this.document.defaultView;
+    windowObj.addEventListener('mousemove', (event) => {
+      const x = (event.clientX / (windowObj.innerWidth * 2)) * 100;
+      const y = (event.clientY / (windowObj.innerHeight * 2)) * 100;
       eyes.forEach((e: any) => {
         e.style.left = `${x}%`;
         e.style.top = `${y}%`;
