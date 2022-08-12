@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'ng-emoji',
@@ -6,9 +7,11 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./emoji.component.scss']
 })
 export class EmojiComponent implements OnInit {
+  constructor(@Inject(DOCUMENT) private document: Document) {
+  }
 
   ngOnInit() {
-    const eyes = document.querySelectorAll('.eye-color');
+    const eyes = this.document.querySelectorAll('.eye-color');
     window.addEventListener('mousemove', (event) => {
       const x = (event.clientX / (window.innerWidth * 2)) * 100;
       const y = (event.clientY / (window.innerHeight * 2)) * 100;

@@ -67,7 +67,7 @@ export class NavbarMenuComponent
   constructor(
     private router: Router,
     private utilsService: UtilsService,
-    private authService: AuthService
+    private authService: AuthService,
   ) {
     super();
   }
@@ -77,7 +77,7 @@ export class NavbarMenuComponent
   }
 
   changeTheme(event) {
-    const themeElement = document.getElementById('theme-link');
+    const themeElement = this.document.getElementById('theme-link');
     themeElement.setAttribute(
       'href',
       themeElement.getAttribute('href').replace(this.selectedTheme, event.value)

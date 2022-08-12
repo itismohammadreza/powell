@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, Inject, OnInit} from '@angular/core';
 import {LanguageChecker} from '@core/utils';
 import {MenuType} from '@core/models';
 import {MenuItem} from 'primeng/api';
@@ -122,8 +122,8 @@ export class MainPage extends LanguageChecker implements OnInit {
   }
 
   toggleOverlayDisplay(activate: boolean) {
-    const overlay = document.querySelector('.p-sidebar-mask');
-    const body = document.body;
+    const overlay = this.document.querySelector('.p-sidebar-mask');
+    const body = this.document.body;
     if (activate) {
       overlay?.classList.remove('d-none');
       body.classList.add('p-overflow-hidden');
@@ -134,7 +134,7 @@ export class MainPage extends LanguageChecker implements OnInit {
   }
 
   toggleOverlayVisibility(activate: boolean) {
-    const overlay = document.querySelector('.p-sidebar-mask') as any;
+    const overlay = this.document.querySelector('.p-sidebar-mask') as any;
     if (overlay) {
       if (activate) {
         overlay.style.transitionDuration = '0.2ms';

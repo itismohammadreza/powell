@@ -2,7 +2,7 @@ import {
   ApplicationRef,
   ComponentRef,
   createComponent,
-  EmbeddedViewRef,
+  EmbeddedViewRef, Inject,
   Injectable,
   Injector,
   Type
@@ -11,6 +11,7 @@ import {DynamicDialogComponent} from '@ng/components/dynamic-dialog/dynamic-dial
 import {DynamicDialogConfig} from '@ng/components/dynamic-dialog/dynamic-dialog-config';
 import {DynamicDialogRef} from '@ng/components/dynamic-dialog/dynamic-dialog-ref';
 import {DynamicDialogInjector} from '@ng/components/dynamic-dialog/dynamic-dialog-injector';
+import {DOCUMENT} from "@angular/common";
 
 
 @Injectable({
@@ -20,7 +21,8 @@ export class DynamicDialogService {
   dialogComponentRef: ComponentRef<DynamicDialogComponent>;
 
   constructor(private appRef: ApplicationRef,
-              private injector: Injector) {
+              private injector: Injector,
+              @Inject(DOCUMENT) private document: Document) {
   }
 
   public open(componentType: Type<any>, config: DynamicDialogConfig) {
@@ -65,7 +67,7 @@ export class DynamicDialogService {
     })
     this.appRef.attachView(componentRef.hostView);
     const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
-    document.body.appendChild(domElem);
+    this.document.body.appendChild(domElem);
     this.dialogComponentRef = componentRef;
     this.dialogComponentRef.instance.onClose.subscribe(() => {
       this.removeDialogComponentFromBody();

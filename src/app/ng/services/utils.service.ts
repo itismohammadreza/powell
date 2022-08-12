@@ -1,12 +1,4 @@
-import {
-  ApplicationRef,
-  ComponentRef, createComponent,
-  EmbeddedViewRef, Inject,
-  Injectable,
-  Injector,
-  Type,
-  ViewContainerRef
-} from '@angular/core';
+import {ApplicationRef, ComponentRef, createComponent, Inject, Injectable, Injector, Type} from '@angular/core';
 import {UntypedFormGroup} from '@angular/forms';
 import {ConfirmPopupComponent} from '@ng/components/confirm-popup/confirm-popup.component';
 import {ConfirmComponent} from '@ng/components/confirm/confirm.component';
@@ -19,7 +11,6 @@ import {
   NgDialog,
   NgDialogFormConfig,
   NgDialogFormOptions,
-  NgMessage,
   NgMessageOptions,
   NgToastOptions
 } from '@ng/models/overlay';
@@ -49,7 +40,7 @@ export class UtilsService {
     private injector: Injector,
     private appRef: ApplicationRef,
     private location: LocationStrategy,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: Document
   ) {
   }
 
@@ -57,7 +48,7 @@ export class UtilsService {
   //                              MESSAGE                                 //
   //////////////////////////////////////////////////////////////////////////
   showMessage(options: NgMessageOptions): void {
-    if (!document.body.contains((this.messageCmpRef?.hostView as EmbeddedViewRef<any>)?.rootNodes[0])) {
+    if (!this.document.body.contains(this.messageCmpRef?.location.nativeElement)) {
       this.messageCmpRef = this.addComponentToBody(MessageComponent, 'prepend');
     }
     Object.assign(this.messageCmpRef.instance.options, options);
@@ -70,7 +61,7 @@ export class UtilsService {
   //                                TOAST                                 //
   //////////////////////////////////////////////////////////////////////////
   showToast(options: NgToastOptions): void {
-    if (!document.body.contains((this.toastCmpRef?.hostView as EmbeddedViewRef<any>)?.rootNodes[0])) {
+    if (!this.document.body.contains(this.toastCmpRef?.location.nativeElement)) {
       this.toastCmpRef = this.addComponentToBody(ToastComponent);
     }
     Object.assign(this.toastCmpRef.instance.options, options);
@@ -83,7 +74,7 @@ export class UtilsService {
   //                           CONFIRM POPUP                              //
   //////////////////////////////////////////////////////////////////////////
   showConfirmPopup(options: NgConfirmPopupOptions): Promise<boolean> {
-    if (!document.body.contains((this.confirmPopupCmpRef?.hostView as EmbeddedViewRef<any>)?.rootNodes[0])) {
+    if (!this.document.body.contains(this.confirmPopupCmpRef?.location.nativeElement)) {
       this.confirmPopupCmpRef = this.addComponentToBody(ConfirmPopupComponent);
     }
     Object.assign(this.confirmPopupCmpRef.instance.options, options);
@@ -115,7 +106,7 @@ export class UtilsService {
   }
 
   showConfirm(options: NgConfirmOptions): Promise<boolean> {
-    if (!document.body.contains((this.confirmCmpRef?.hostView as EmbeddedViewRef<any>)?.rootNodes[0])) {
+    if (!this.document.body.contains(this.confirmCmpRef?.location.nativeElement)) {
       this.confirmCmpRef = this.addComponentToBody(ConfirmComponent);
     }
     Object.assign(this.confirmCmpRef.instance.options, options);
@@ -148,7 +139,7 @@ export class UtilsService {
   //                              DIALOG                                  //
   //////////////////////////////////////////////////////////////////////////
   showDialog(options: NgDialog): Promise<void> {
-    if (!document.body.contains((this.dialogCmpRef?.hostView as EmbeddedViewRef<any>)?.rootNodes[0])) {
+    if (!this.document.body.contains(this.dialogCmpRef?.location.nativeElement)) {
       this.dialogCmpRef = this.addComponentToBody(DialogComponent);
     }
     Object.assign(this.dialogCmpRef.instance.options, options);
