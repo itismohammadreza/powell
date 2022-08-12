@@ -2,7 +2,8 @@ import {
   ApplicationRef,
   ComponentRef,
   createComponent,
-  EmbeddedViewRef, Inject,
+  EmbeddedViewRef,
+  Inject,
   Injectable,
   Injector,
   Type
@@ -12,7 +13,6 @@ import {DynamicDialogConfig} from '@ng/components/dynamic-dialog/dynamic-dialog-
 import {DynamicDialogRef} from '@ng/components/dynamic-dialog/dynamic-dialog-ref';
 import {DynamicDialogInjector} from '@ng/components/dynamic-dialog/dynamic-dialog-injector';
 import {DOCUMENT} from "@angular/common";
-
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class DynamicDialogService {
               @Inject(DOCUMENT) private document: Document) {
   }
 
-  public open(componentType: Type<any>, config: DynamicDialogConfig) {
+  open(componentType: Type<any>, config: DynamicDialogConfig) {
     const dialogRef = this.appendDialogComponentToBody(config);
     this.dialogComponentRef.instance.childComponentType = componentType;
     return dialogRef;

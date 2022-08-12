@@ -18,15 +18,12 @@ import {DynamicDialogRef} from './dynamic-dialog-ref';
 })
 export class DynamicDialogComponent implements AfterViewInit, OnDestroy {
   componentRef: ComponentRef<any>;
-
+  childComponentType: Type<any>;
+  private _onClose = new Subject<any>();
+  onClose = this._onClose.asObservable();
   @ViewChild('insertion', {read: ViewContainerRef})
   insertionPoint: ViewContainerRef;
-
-  private readonly _onClose = new Subject<any>();
-  public onClose = this._onClose.asObservable();
-
-  childComponentType: Type<any>;
-
+  
   constructor(private cd: ChangeDetectorRef, private dialogRef: DynamicDialogRef) {
   }
 

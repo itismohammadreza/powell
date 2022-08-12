@@ -14,13 +14,12 @@ import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
+  UntypedFormGroup,
 } from '@angular/forms';
 import {NgError, NgLabelPosition} from '@ng/models/forms';
 import {NgPosition} from '@ng/models/offset';
@@ -147,7 +146,6 @@ export class ToggleButtonComponent implements OnInit, AfterViewInit, ControlValu
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {

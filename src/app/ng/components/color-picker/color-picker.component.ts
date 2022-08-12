@@ -14,15 +14,14 @@ import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  NgModel
+  NgModel,
+  UntypedFormGroup
 } from '@angular/forms';
-import {NgAddon, NgColorFormat, NgError, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
 import {NgPosition, NgSize} from '@ng/models/offset';
 
 @Component({
@@ -185,7 +184,6 @@ export class ColorPickerComponent implements OnInit, AfterViewInit, ControlValue
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {

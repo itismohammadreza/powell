@@ -37,7 +37,6 @@ import {MessageModule} from 'primeng/message';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import {PasswordModule} from 'primeng/password';
 import {TreeModule} from 'primeng/tree';
-// import {EditorModule} from 'primeng/editor';
 import {PickListModule} from 'primeng/picklist';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {InplaceModule} from 'primeng/inplace';
@@ -101,7 +100,6 @@ export const MODULES: Type<any>[] = [
   DialogModule,
   DataViewModule,
   DynamicDialogModule,
-  // EditorModule,
   FileUploadModule,
   GMapModule,
   GalleriaModule,

@@ -2,15 +2,14 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
+  Inject,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
   Output,
-  SimpleChanges,
-  Injectable,
-  Inject,
-  PLATFORM_ID
+  PLATFORM_ID,
+  SimpleChanges
 } from '@angular/core';
 import {DOCUMENT, isPlatformBrowser} from '@angular/common';
 
@@ -18,17 +17,15 @@ import {DOCUMENT, isPlatformBrowser} from '@angular/common';
   selector: '[ngClickOutside]',
 })
 export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
-
   @Input() attachOutsideOnClick: boolean = false;
   @Input() delayClickOutsideInit: boolean = false;
   @Input() exclude: string = '';
   @Input() excludeBeforeClick: boolean = false;
   @Input() clickOutsideEvents: string = '';
-
   @Output() ngClickOutside: EventEmitter<Event> = new EventEmitter<Event>();
 
-  private _nodesExcluded: Array<HTMLElement> = [];
-  private _events: Array<string> = ['click'];
+  _nodesExcluded: Array<HTMLElement> = [];
+  _events: Array<string> = ['click'];
 
   constructor(private _el: ElementRef,
               @Inject(PLATFORM_ID) protected platformId: object,
@@ -64,7 +61,7 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  private _init() {
+  _init() {
     if (this.clickOutsideEvents !== '') {
       this._events = this.clickOutsideEvents.split(' ');
     }
@@ -78,7 +75,7 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  private _initOnClickBody() {
+  _initOnClickBody() {
     if (this.delayClickOutsideInit) {
       setTimeout(this._initClickListeners.bind(this));
     } else {
@@ -86,11 +83,11 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  private _initClickListeners() {
+  _initClickListeners() {
     this._events.forEach(e => this.document.body.addEventListener(e, this._onClickBody));
   }
 
-  private _excludeCheck() {
+  _excludeCheck() {
     if (this.exclude) {
       try {
         const nodes = Array.from(this.document.querySelectorAll(this.exclude)) as Array<HTMLElement>;
@@ -103,7 +100,7 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  private _onClickBody(ev: Event) {
+  _onClickBody(ev: Event) {
     if (this.excludeBeforeClick) {
       this._excludeCheck();
     }
@@ -117,7 +114,7 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  private _shouldExclude(target): boolean {
+  _shouldExclude(target): boolean {
     for (let excludedNode of this._nodesExcluded) {
       if (excludedNode.contains(target)) {
         return true;

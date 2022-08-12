@@ -1,7 +1,6 @@
 import {NgModule, Type} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AuthGuard} from '@core/guard';
-import {NotFoundComponent} from '@ng/components/not-found/not-found.component';
 
 export const routes: Routes = [
   {
@@ -17,12 +16,8 @@ export const routes: Routes = [
     // canLoad: [AuthGuard],
   },
   {
-    path: '404',
-    component: NotFoundComponent,
-  },
-  {
     path: '**',
-    redirectTo: '/404',
+    redirectTo: '',
     pathMatch: 'full',
   },
 ];

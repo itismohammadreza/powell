@@ -14,7 +14,7 @@ import {filter} from 'rxjs/operators';
 06- add onLabel and offLabel for switch component.
 07- add async feature for switch component (just like button async).
 08- add hook support in dialog form config (just like angular formly to implement cascade mode).
-09- datepicker component has a 'moment' variable in 'select' function that conflict with 'moment' in import statement. check it!
+09- datepicker component has a 'moment' variable in 'onSelect' function that is in conflict with 'moment' in import statement. check it!
 10- add whiteboard component.
 11- in table component, add templateString and templateHTML support (that accept a function returns a string or htmlTemplate to render in cells)
     for example if we want display item.startDate+/+item.startMonth+/+item.startYear in a cell, we use templateString
@@ -28,15 +28,15 @@ import {filter} from 'rxjs/operators';
     also implement shamsi-miladi date RENDERER + FILTER + EDITOR for table.
 12- add ng-template support for table.
 13- add preventDuplicate support for toast.
-14- place hint in top of component instead of bottom
-15- move .error to .field div
-16- make components ngOnInit logic like inputtext
+14- place hint in top of component instead of bottom.
+15- move .error to .field div.
+16- make components ngOnInit logic like inputtext.
 17- use typescript utility-types (e.u Partial<..>) in components as need. for example in knob we can't have labelPos = 'float', but it can accept now!
     fix this by using utility-types and exclude 'float' in labelPos input property.
-18- remove extra <label> tag for those components that can't accept float-label mode.
-19- implement ng-devider component just like AntDisign-NG-ZORRRO
-20- implement ng-empty component just like AntDisign-NG-ZORRRO
-21- implement ng-status component just like AntDisign-NG-ZORRRO
+18- implement moment utility service.
+19- implement ng-devider component just like AntDisign-NG-ZORRRO.
+20- implement ng-empty component just like AntDisign-NG-ZORRRO.
+21- implement ng-status component just like AntDisign-NG-ZORRRO.
 22- check showClear functionality that may forget to add, and also check showClear when icon is provided.
 23- add specific class to hint and error and icon elements and edit .scss file.
 */

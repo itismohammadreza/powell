@@ -185,7 +185,6 @@ export class InputNumberComponent implements OnInit, AfterViewInit, ControlValue
     );
   }
 
-
   isRequired(): boolean {
     if (this.ngControl) {
       const control = this.ngControl.control;

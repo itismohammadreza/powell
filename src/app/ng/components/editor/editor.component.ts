@@ -6,21 +6,22 @@ import {
   forwardRef,
   InjectFlags,
   Injector,
-  Input, OnChanges,
+  Input,
+  OnChanges,
   OnInit,
-  Output, SimpleChanges,
+  Output,
+  SimpleChanges,
 } from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
+  UntypedFormGroup,
 } from '@angular/forms';
 import {NgError, NgLabelPosition} from '@ng/models/forms';
 import {Core} from 'suneditor/src/lib/core';
@@ -198,7 +199,6 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
     this.onInput.emit(event);
     // todo: when type only one letter, the required error is appear! check result.
     const result = this.editorInstance.getText() ? event.core.getContents() : null;
-    console.log(result)
     this.onModelChange(this.editorInstance.getText() ? event.core.getContents() : null);
   }
 

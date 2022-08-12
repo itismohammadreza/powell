@@ -1,9 +1,9 @@
 import {
   AfterContentInit,
   Component,
-  ContentChildren, EventEmitter,
+  ContentChildren,
+  EventEmitter,
   Input,
-  OnInit,
   Output,
   QueryList,
   TemplateRef

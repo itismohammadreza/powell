@@ -5,11 +5,11 @@ import {UtilsService} from '@ng/services';
   name: 'ngSafePerWord',
 })
 export class SafePerWordPipe implements PipeTransform {
-  constructor(private utlisService: UtilsService) {}
+  constructor(private utilsService: UtilsService) {}
 
   transform(value: string): string {
     if (value)
-      return this.utlisService.replaceArabicLettersWithPersianLetters(value);
+      return this.utilsService.replaceArabicLettersWithPersianLetters(value);
     else return null;
   }
 }

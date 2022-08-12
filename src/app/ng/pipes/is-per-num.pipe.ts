@@ -5,9 +5,9 @@ import {UtilsService} from '@ng/services';
   name: 'ngIsPerNum',
 })
 export class IsPerNumPipe implements PipeTransform {
-  constructor(private utlisService: UtilsService) {}
+  constructor(private utilsService: UtilsService) {}
 
   transform(value: string): boolean {
-    if (value) return this.utlisService.isPersianNumber(value);
+    if (value) return this.utilsService.isPersianNumber(value);
   }
 }

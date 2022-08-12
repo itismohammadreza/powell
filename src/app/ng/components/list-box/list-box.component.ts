@@ -1,26 +1,29 @@
 import {
-  AfterContentInit, AfterViewInit,
+  AfterContentInit,
+  AfterViewInit,
   ChangeDetectorRef,
-  Component, ContentChildren,
+  Component,
+  ContentChildren,
   EventEmitter,
   forwardRef,
   InjectFlags,
   Injector,
   Input,
   OnInit,
-  Output, QueryList, TemplateRef,
+  Output,
+  QueryList,
+  TemplateRef,
 } from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
+  UntypedFormGroup,
 } from '@angular/forms';
 import {NgAddon, NgError, NgFilterMatchMode, NgLabelPosition,} from '@ng/models/forms';
 import {TemplateDirective} from '@ng/directives/template.directive';
@@ -210,7 +213,6 @@ export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {

@@ -12,7 +12,7 @@ import {NgPosition, NgSelectionMode, NgSize} from '@ng/models/offset';
 import {NgColDef} from '@ng/models/table';
 import {MenuItem, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
-import {NgTableAction} from '../../models/table';
+import {NgTableAction} from '@ng/models/table';
 
 @Component({
   selector: 'ng-table',
@@ -103,18 +103,6 @@ export class TableComponent implements OnChanges {
   @Output() onActionClick = new EventEmitter();
   @ViewChild('dt') table: Table;
 
-  get hasCaption() {
-    return (
-      this.header ||
-      this.globalFilterFields ||
-      this.exportCsvBtn ||
-      this.exportExcelBtn ||
-      this.exportPdfBtn ||
-      this.exportSelectionBtn ||
-      this.resetBtn
-    );
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.items) {
       this.items = changes.items.currentValue;
@@ -183,5 +171,17 @@ export class TableComponent implements OnChanges {
     } else {
       this.onFileButtonClick.emit(rowData);
     }
+  }
+
+  get hasCaption() {
+    return (
+      this.header ||
+      this.globalFilterFields ||
+      this.exportCsvBtn ||
+      this.exportExcelBtn ||
+      this.exportPdfBtn ||
+      this.exportSelectionBtn ||
+      this.resetBtn
+    );
   }
 }

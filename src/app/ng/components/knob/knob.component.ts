@@ -2,7 +2,8 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  EventEmitter, forwardRef,
+  EventEmitter,
+  forwardRef,
   InjectFlags,
   Injector,
   Input,
@@ -12,9 +13,11 @@ import {
 import {NgError, NgLabelPosition} from '@ng/models/forms';
 import {
   AbstractControl,
-  ControlContainer, ControlValueAccessor,
+  ControlContainer,
+  ControlValueAccessor,
   FormControlName,
-  FormGroupDirective, NG_VALUE_ACCESSOR,
+  FormGroupDirective,
+  NG_VALUE_ACCESSOR,
   NgControl,
   UntypedFormGroup
 } from "@angular/forms";

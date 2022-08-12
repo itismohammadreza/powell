@@ -5,8 +5,6 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './page-container.component.html',
   styleUrls: ['./page-container.component.scss'],
 })
-export class PageContainerComponent implements OnInit {
+export class PageContainerComponent {
   @Input() header: string;
-
-  ngOnInit(): void {}
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {NgButtonAppearance, NgButtonType} from '@ng/models/button';
 import {NgPosition, NgSize} from '@ng/models/offset';
 import {NgColor} from '@ng/models/color';
@@ -9,7 +9,6 @@ import {NgColor} from '@ng/models/color';
   styleUrls: ['./button-async.component.scss']
 })
 export class ButtonAsyncComponent implements OnInit, OnChanges {
-
   @Input() disabled: boolean;
   @Input() iconPos: NgPosition = 'left';
   @Input() type: NgButtonType = 'button';

@@ -56,7 +56,6 @@ export class CascadeSelectComponent implements OnInit, AfterViewInit, AfterConte
   @Input() inputSize: NgSize = 'md';
   @Input() addon: NgAddon
   // native properties
-
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';
@@ -183,7 +182,6 @@ export class CascadeSelectComponent implements OnInit, AfterViewInit, AfterConte
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {

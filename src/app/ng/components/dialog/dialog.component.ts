@@ -8,10 +8,8 @@ import {Subject} from 'rxjs';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent {
-
   private _onHide = new Subject();
   onHide = this._onHide.asObservable();
-
   options: NgDialog = {
     draggable: true,
     keepInViewport: true,

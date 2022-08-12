@@ -18,7 +18,7 @@ export class DialogFormComponent implements OnInit {
   form = new UntypedFormGroup({});
   formConfig: NgDialogFormConfig[];
   formOptions: NgDialogFormOptions;
-  unsubscribeSignal: Subject<void> = new Subject();
+  destroy$: Subject<void> = new Subject();
 
   constructor(
     @Optional() private dialogConfig: DynamicDialogConfig,
@@ -48,13 +48,10 @@ export class DialogFormComponent implements OnInit {
       if (config.formControlName) {
         this.form.addControl(config.formControlName, new UntypedFormControl(null));
       }
-      // if (config.errors) {
-      //   this.getValidatorErrors(config);
-      // }
       if (config.rules) {
         this.form
           .get(config.formControlName)
-          .valueChanges.pipe(takeUntil(this.unsubscribeSignal.asObservable()))
+          .valueChanges.pipe(takeUntil(this.destroy$))
           .subscribe((res) => {
             this.handleRules(config, res);
           });
@@ -171,14 +168,14 @@ export class DialogFormComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       this.dialogRef.close(this.form.value);
-      this.unsubscribeSignal.next();
-      this.unsubscribeSignal.unsubscribe();
+      this.destroy$.next();
+      this.destroy$.unsubscribe();
     }
   }
 
   onCancel() {
     this.dialogRef.close(null);
-    this.unsubscribeSignal.next();
-    this.unsubscribeSignal.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.unsubscribe();
   }
 }

@@ -6,7 +6,7 @@ import {LoaderService} from '@core/utils';
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
 })
-export class LoadingComponent implements OnInit {
+export class LoadingComponent {
   loading: boolean;
 
   constructor(private loaderService: LoaderService) {
@@ -14,6 +14,4 @@ export class LoadingComponent implements OnInit {
       this.loading = v;
     });
   }
-
-  ngOnInit(): void {}
 }

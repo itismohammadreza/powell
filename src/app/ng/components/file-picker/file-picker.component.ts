@@ -3,7 +3,8 @@ import {
   AfterContentInit,
   AfterViewInit,
   ChangeDetectorRef,
-  Component, ContentChildren,
+  Component,
+  ContentChildren,
   EventEmitter,
   forwardRef,
   InjectFlags,
@@ -11,7 +12,9 @@ import {
   Input,
   OnChanges,
   OnInit,
-  Output, QueryList, TemplateRef,
+  Output,
+  QueryList,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import {
@@ -342,7 +345,6 @@ export class FilePickerComponent
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {

@@ -1,13 +1,5 @@
-import {
-  Directive,
-  Host,
-  Input,
-  OnInit,
-  Optional,
-  SkipSelf,
-  ViewContainerRef
-} from '@angular/core';
-import {ControlContainer, UntypedFormControl, FormGroupDirective, NgControl, Validators} from '@angular/forms';
+import {Directive, Host, Input, OnInit, Optional, SkipSelf, ViewContainerRef} from '@angular/core';
+import {ControlContainer, FormGroupDirective, NgControl, UntypedFormControl, Validators} from '@angular/forms';
 import {InputTextComponent} from '@ng/components/input-text/input-text.component';
 import {InputNumberComponent} from '@ng/components/input-number/input-number.component';
 
@@ -15,8 +7,8 @@ import {InputNumberComponent} from '@ng/components/input-number/input-number.com
   selector: '[ngDynamicForm]'
 })
 export class DynamicFormDirective implements OnInit {
-
   @Input() ngDynamicForm;
+  
   elements = {
     text: InputTextComponent,
     number: InputNumberComponent
