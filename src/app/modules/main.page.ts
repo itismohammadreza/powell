@@ -1,4 +1,4 @@
-import {Component, HostListener, Inject, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {LanguageChecker} from '@core/utils';
 import {MenuType} from '@core/models';
 import {MenuItem} from 'primeng/api';
