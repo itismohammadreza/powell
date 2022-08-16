@@ -11,8 +11,7 @@
     [ngClass]="{
       'w-100': labelPos == 'fix-top'
     }"
-    class="field"
-  >
+    class="field">
     <p-fileUpload
       (onBeforeUpload)="_onBeforeUpload($event)"
       (onClear)="_onClear()"
@@ -51,16 +50,16 @@
       [url]="url"
       [withCredentials]="withCredentials"
     >
+      <ng-template pTemplate="toolbar" *ngIf="toolbarTemplate">
+        <ng-container *ngTemplateOutlet="toolbarTemplate"></ng-container>
+      </ng-template>
+      <ng-template pTemplate="file" let-file *ngIf="fileTemplate">
+        <ng-container *ngTemplateOutlet="fileTemplate;context:{$implicit:file}"></ng-container>
+      </ng-template>
+      <ng-template pTemplate="content" let-files *ngIf="contentTemplate">
+        <ng-container *ngTemplateOutlet="contentTemplate;context:{$implicit:files}"></ng-container>
+      </ng-template>
     </p-fileUpload>
-    <ng-container *ngFor="let error of errors | keyvalue">
-      <small
-        *ngIf="showError(error.key)"
-        [class.mt-4]="hint"
-        class="p-error"
-      >
-        {{ error.value }}
-      </small>
-    </ng-container>
   </div>
   <label
     *ngIf="label && labelPos != 'float'"
@@ -74,6 +73,10 @@
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>
+  <small *ngIf="hint">{{ hint }}</small>
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
+      {{ error.value }}
+    </small>
+  </ng-container>
 </div>
-
-<small *ngIf="hint">{{ hint }}</small>

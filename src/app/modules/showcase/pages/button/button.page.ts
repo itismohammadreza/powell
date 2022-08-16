@@ -1,9 +1,12 @@
 import {Component, ViewContainerRef} from '@angular/core';
 import {UserService} from '@core/http';
-import {UtilsService} from '@ng/services';
+import {DynamicDialogService, UtilsService} from '@ng/services';
 import {NgButtonAppearance, NgButtonType} from '@ng/models/button';
 import {NgPosition, NgSize} from '@ng/models/offset';
 import {NgColor} from '@ng/models/color';
+import {
+  DynamicDialogSampleComponent
+} from "@modules/showcase/components/dynamic-dialog-sample/dynamic-dialog-sample.component";
 
 @Component({
   selector: 'ng-button-page',
@@ -14,9 +17,12 @@ export class ButtonPage {
   constructor(
     private utilsService: UtilsService,
     private vcRef: ViewContainerRef,
-    private userService: UserService
+    private userService: UserService,
+    private dialog: DynamicDialogService
   ) {
   }
+
+  customDialogResult: any;
 
   label: string = 'Sample';
   icon: string = 'pi pi-user';
@@ -126,6 +132,13 @@ export class ButtonPage {
       if (result) {
       } else {
       }
+    });
+  }
+
+  showCustomDynamicDialog() {
+    const ref = this.dialog.open(DynamicDialogSampleComponent, {data: {message: 'I am a dynamic component inside of a dialog!'}});
+    ref.afterClosed.subscribe(result => {
+      this.customDialogResult = result;
     });
   }
 

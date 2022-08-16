@@ -6,8 +6,8 @@
       'align-items-end': labelPos == 'fix-top' && rtl,
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl,
-      'p-cascadeselect-clearable': showClear,
-      'p-cascadeselect-filled': value
+      'is-clearable': showClear,
+      'has-value': value
     }" class="cascade-select-wrapper">
   <div [ngClass]="{
       'w-100': labelPos == 'fix-top',
@@ -20,18 +20,21 @@
     }" class="field">
     <i *ngIf="icon && !addon" [ngClass]="icon"></i>
     <p-cascadeSelect
-      [appendTo]="appendTo"
-      [dataKey]="dataKey"
-      [disabled]="disabled"
-      [inputId]="inputId"
-      [ngAddon]="addon"
-      [showClear]="showClear"
-      [optionGroupChildren]="optionGroupChildren"
-      [optionGroupLabel]="optionGroupLabel"
+      [options]="options"
       [optionLabel]="optionLabel"
       [optionValue]="optionValue"
-      [options]="options"
+      [optionGroupLabel]="optionGroupLabel"
+      [optionGroupChildren]="optionGroupChildren"
       [placeholder]="placeholder"
+      [disabled]="disabled"
+      [dataKey]="dataKey"
+      [tabindex]="tabindex"
+      [appendTo]="appendTo"
+      [style]="style"
+      [styleClass]="styleClass"
+      [showClear]="showClear"
+      [inputId]="inputId"
+      [ngAddon]="addon"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [(ngModel)]="value"
       (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"

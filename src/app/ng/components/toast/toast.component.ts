@@ -7,7 +7,6 @@ import {NgToastOptions} from '@ng/models/overlay';
   styleUrls: ['./toast.component.scss'],
 })
 export class ToastComponent {
-
   options: NgToastOptions = {
     rtl: true,
     baseZIndex: 1000,

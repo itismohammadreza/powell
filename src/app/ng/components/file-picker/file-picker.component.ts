@@ -1,8 +1,10 @@
 import {HttpHeaders} from '@angular/common/http';
 import {
+  AfterContentInit,
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  ContentChildren,
   EventEmitter,
   forwardRef,
   InjectFlags,
@@ -11,22 +13,24 @@ import {
   OnChanges,
   OnInit,
   Output,
+  QueryList,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
+  UntypedFormGroup,
 } from '@angular/forms';
 import {NgError, NgInputFileMode, NgLabelPosition} from '@ng/models/forms';
 import {FileUpload} from 'primeng/fileupload';
+import {TemplateDirective} from "@ng/directives/template.directive";
 
 @Component({
   selector: 'ng-file-picker',
@@ -41,7 +45,7 @@ import {FileUpload} from 'primeng/fileupload';
   ],
 })
 export class FilePickerComponent
-  implements OnInit, OnChanges, AfterViewInit, ControlValueAccessor {
+  implements OnInit, OnChanges, AfterViewInit, AfterContentInit, ControlValueAccessor {
   @ViewChild(FileUpload) fileUploadComponent: FileUpload;
   @Input() value: any = [];
   @Input() label: string;
@@ -58,7 +62,7 @@ export class FilePickerComponent
   @Input() withCredentials: boolean;
   @Input() customUpload: boolean = true;
   @Input() auto: boolean;
-  @Input() accept: string;
+  @Input() accept: string = 'image/*';
   @Input() method: string = 'post';
   @Input() maxFileSize: number;
   @Input() previewWidth: number = 50;
@@ -86,12 +90,16 @@ export class FilePickerComponent
   @Output() onUpload = new EventEmitter();
   @Output() onSend = new EventEmitter();
   @Output() uploadHandler = new EventEmitter();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
   selectedFiles: any[] = [];
   filesToEmit: (string | ArrayBuffer | File)[] | any;
+  toolbarTemplate: TemplateRef<any>;
+  fileTemplate: TemplateRef<any>;
+  contentTemplate: TemplateRef<any>;
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
@@ -101,7 +109,6 @@ export class FilePickerComponent
 
   onModelTouched: any = () => {
   };
-
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;
@@ -146,6 +153,24 @@ export class FilePickerComponent
       }
       this.cd.detectChanges();
     }
+  }
+
+  ngAfterContentInit() {
+    this.templates.forEach((item: TemplateDirective) => {
+      switch (item.getType()) {
+        case 'toolbar':
+          this.toolbarTemplate = item.templateRef;
+          break;
+
+        case 'file':
+          this.fileTemplate = item.templateRef;
+          break;
+
+        case 'content':
+          this.contentTemplate = item.templateRef;
+          break;
+      }
+    })
   }
 
   _onRemove(event) {
@@ -320,7 +345,6 @@ export class FilePickerComponent
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {

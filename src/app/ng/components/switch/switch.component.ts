@@ -13,13 +13,12 @@ import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
+  UntypedFormGroup,
 } from '@angular/forms';
 import {NgError, NgLabelPosition} from '@ng/models/forms';
 
@@ -47,7 +46,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   // native properties
   @Input() style: any;
   @Input() styleClass: string;
-  @Input() tabindex: number;
+  @Input() tabindex: any;
   @Input() ariaLabelledBy: string;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
@@ -143,7 +142,6 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {

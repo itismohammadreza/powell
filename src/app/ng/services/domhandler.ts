@@ -93,7 +93,7 @@ export class DomHandler {
 
   static relativePosition(element: any, target: any): void {
     let elementDimensions = element.offsetParent
-      ? { width: element.offsetWidth, height: element.offsetHeight }
+      ? {width: element.offsetWidth, height: element.offsetHeight}
       : this.getHiddenElementDimensions(element);
     const targetHeight = target.offsetHeight;
     const targetOffset = target.getBoundingClientRect();
@@ -132,7 +132,7 @@ export class DomHandler {
 
   static absolutePosition(element: any, target: any): void {
     let elementDimensions = element.offsetParent
-      ? { width: element.offsetWidth, height: element.offsetHeight }
+      ? {width: element.offsetWidth, height: element.offsetHeight}
       : this.getHiddenElementDimensions(element);
     let elementOuterHeight = elementDimensions.height;
     let elementOuterWidth = elementDimensions.width;
@@ -163,9 +163,9 @@ export class DomHandler {
       left = Math.max(
         0,
         targetOffset.left +
-          windowScrollLeft +
-          targetOuterWidth -
-          elementOuterWidth
+        windowScrollLeft +
+        targetOuterWidth -
+        elementOuterWidth
       );
     else left = targetOffset.left + windowScrollLeft;
 
@@ -177,9 +177,9 @@ export class DomHandler {
     return element['parentNode'] === null
       ? parents
       : this.getParents(
-          element.parentNode,
-          parents.concat([element.parentNode])
-        );
+        element.parentNode,
+        parents.concat([element.parentNode])
+      );
   }
 
   static getScrollableParents(element: any) {
@@ -289,7 +289,7 @@ export class DomHandler {
 
       if (+opacity < 1) {
         (window.requestAnimationFrame && requestAnimationFrame(tick)) ||
-          setTimeout(tick, 16);
+        setTimeout(tick, 16);
       }
     };
 
@@ -427,7 +427,7 @@ export class DomHandler {
       w = win.innerWidth || e.clientWidth || g.clientWidth,
       h = win.innerHeight || e.clientHeight || g.clientHeight;
 
-    return { width: w, height: h };
+    return {width: w, height: h};
   }
 
   static getOffset(el) {
@@ -517,10 +517,10 @@ export class DomHandler {
     return typeof HTMLElement === 'object'
       ? obj instanceof HTMLElement
       : obj &&
-          typeof obj === 'object' &&
-          obj !== null &&
-          obj.nodeType === 1 &&
-          typeof obj.nodeName === 'string';
+      typeof obj === 'object' &&
+      obj !== null &&
+      obj.nodeType === 1 &&
+      typeof obj.nodeName === 'string';
   }
 
   static calculateScrollbarWidth(el?: HTMLElement): number {

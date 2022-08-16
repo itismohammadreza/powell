@@ -33,15 +33,11 @@ export class MainPage extends LanguageChecker implements OnInit {
       'chips',
       'color-picker',
       'date-picker',
-      'date-picker2',
-      'date-picker3',
       'dynamic-form',
-      'dynamic-dialog',
       'dropdown',
       'editor',
       'file-picker',
       'file-picker2',
-      'grid',
       'image-slider',
       'mask',
       'number',
@@ -74,7 +70,7 @@ export class MainPage extends LanguageChecker implements OnInit {
   }
 
   handleResize() {
-    if (window.innerWidth < 767) {
+    if (this.document.defaultView.innerWidth < 767) {
       this.onMenuTypeChange('overlay');
       this.toggleOverlayDisplay(false);
     } else {
@@ -126,8 +122,8 @@ export class MainPage extends LanguageChecker implements OnInit {
   }
 
   toggleOverlayDisplay(activate: boolean) {
-    const overlay = document.querySelector('.p-sidebar-mask');
-    const body = document.body;
+    const overlay = this.document.querySelector('.p-sidebar-mask');
+    const body = this.document.body;
     if (activate) {
       overlay?.classList.remove('d-none');
       body.classList.add('p-overflow-hidden');
@@ -138,7 +134,7 @@ export class MainPage extends LanguageChecker implements OnInit {
   }
 
   toggleOverlayVisibility(activate: boolean) {
-    const overlay = document.querySelector('.p-sidebar-mask') as any;
+    const overlay = this.document.querySelector('.p-sidebar-mask') as any;
     if (overlay) {
       if (activate) {
         overlay.style.transitionDuration = '0.2ms';

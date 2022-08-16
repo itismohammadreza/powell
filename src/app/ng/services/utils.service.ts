@@ -1,13 +1,4 @@
-import {
-  ApplicationRef,
-  ComponentFactoryResolver,
-  ComponentRef,
-  EmbeddedViewRef,
-  Injectable,
-  Injector,
-  Type,
-  ViewContainerRef
-} from '@angular/core';
+import {ApplicationRef, ComponentRef, createComponent, Inject, Injectable, Injector, Type} from '@angular/core';
 import {UntypedFormGroup} from '@angular/forms';
 import {ConfirmPopupComponent} from '@ng/components/confirm-popup/confirm-popup.component';
 import {ConfirmComponent} from '@ng/components/confirm/confirm.component';
@@ -20,7 +11,6 @@ import {
   NgDialog,
   NgDialogFormConfig,
   NgDialogFormOptions,
-  NgMessage,
   NgMessageOptions,
   NgToastOptions
 } from '@ng/models/overlay';
@@ -30,7 +20,7 @@ import {fromEvent, merge, Observable, Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {NumberToPersianWord} from './num-to-per-word';
 import {DialogComponent} from '@ng/components/dialog/dialog.component';
-import {LocationStrategy} from '@angular/common';
+import {DOCUMENT, LocationStrategy} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -46,11 +36,11 @@ export class UtilsService {
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private dialogService: DialogService,
-    private resolver: ComponentFactoryResolver,
     private filterService: FilterService,
     private injector: Injector,
     private appRef: ApplicationRef,
     private location: LocationStrategy,
+    @Inject(DOCUMENT) private document: Document
   ) {
   }
 
@@ -58,7 +48,7 @@ export class UtilsService {
   //                              MESSAGE                                 //
   //////////////////////////////////////////////////////////////////////////
   showMessage(options: NgMessageOptions): void {
-    if (!document.body.contains((this.messageCmpRef?.hostView as EmbeddedViewRef<any>)?.rootNodes[0])) {
+    if (!this.document.body.contains(this.messageCmpRef?.location.nativeElement)) {
       this.messageCmpRef = this.addComponentToBody(MessageComponent, 'prepend');
     }
     Object.assign(this.messageCmpRef.instance.options, options);
@@ -71,7 +61,7 @@ export class UtilsService {
   //                                TOAST                                 //
   //////////////////////////////////////////////////////////////////////////
   showToast(options: NgToastOptions): void {
-    if (!document.body.contains((this.toastCmpRef?.hostView as EmbeddedViewRef<any>)?.rootNodes[0])) {
+    if (!this.document.body.contains(this.toastCmpRef?.location.nativeElement)) {
       this.toastCmpRef = this.addComponentToBody(ToastComponent);
     }
     Object.assign(this.toastCmpRef.instance.options, options);
@@ -84,7 +74,7 @@ export class UtilsService {
   //                           CONFIRM POPUP                              //
   //////////////////////////////////////////////////////////////////////////
   showConfirmPopup(options: NgConfirmPopupOptions): Promise<boolean> {
-    if (!document.body.contains((this.confirmPopupCmpRef?.hostView as EmbeddedViewRef<any>)?.rootNodes[0])) {
+    if (!this.document.body.contains(this.confirmPopupCmpRef?.location.nativeElement)) {
       this.confirmPopupCmpRef = this.addComponentToBody(ConfirmPopupComponent);
     }
     Object.assign(this.confirmPopupCmpRef.instance.options, options);
@@ -108,15 +98,15 @@ export class UtilsService {
         rejectIcon: options.rejectIcon,
         acceptVisible: options.acceptVisible,
         rejectVisible: options.rejectVisible,
-        acceptButtonStyleClass: options.acceptButtonStyleClass,
-        rejectButtonStyleClass: options.rejectButtonStyleClass,
+        acceptButtonStyleClass: options.acceptStyleClass,
+        rejectButtonStyleClass: options.rejectStyleClass,
         defaultFocus: options.defaultFocus,
       });
     });
   }
 
   showConfirm(options: NgConfirmOptions): Promise<boolean> {
-    if (!document.body.contains((this.confirmCmpRef?.hostView as EmbeddedViewRef<any>)?.rootNodes[0])) {
+    if (!this.document.body.contains(this.confirmCmpRef?.location.nativeElement)) {
       this.confirmCmpRef = this.addComponentToBody(ConfirmComponent);
     }
     Object.assign(this.confirmCmpRef.instance.options, options);
@@ -149,7 +139,7 @@ export class UtilsService {
   //                              DIALOG                                  //
   //////////////////////////////////////////////////////////////////////////
   showDialog(options: NgDialog): Promise<void> {
-    if (!document.body.contains((this.dialogCmpRef?.hostView as EmbeddedViewRef<any>)?.rootNodes[0])) {
+    if (!this.document.body.contains(this.dialogCmpRef?.location.nativeElement)) {
       this.dialogCmpRef = this.addComponentToBody(DialogComponent);
     }
     Object.assign(this.dialogCmpRef.instance.options, options);
@@ -337,8 +327,8 @@ export class UtilsService {
 
   checkConnection(): Observable<boolean> {
     return merge(
-      fromEvent(window, 'offline').pipe(map(() => false)),
-      fromEvent(window, 'online').pipe(map(() => true)),
+      fromEvent(this.document.defaultView, 'offline').pipe(map(() => false)),
+      fromEvent(this.document.defaultView, 'online').pipe(map(() => true)),
     ).pipe(map(() => navigator.onLine));
   }
 
@@ -368,11 +358,12 @@ export class UtilsService {
   }
 
   addComponentToBody<T>(component: Type<T>, pos: 'appendChild' | 'prepend' = 'appendChild'): ComponentRef<T> {
-    const factory = this.resolver.resolveComponentFactory(component);
-    const componentRef = factory.create(this.injector);
+    const componentRef = createComponent(component, {
+      environmentInjector: this.appRef.injector,
+      elementInjector: this.injector
+    })
     this.appRef.attachView(componentRef.hostView);
-    const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
-    document.body[pos](domElem);
+    this.document.body[pos](componentRef.location.nativeElement);
     return componentRef;
   }
 
@@ -393,7 +384,6 @@ export class UtilsService {
     result += '' + secs;
     return result;
   }
-
 
   checkConnectionState(callback: any) {
     const imageUrl = 'https://via.placeholder.com/2000x2000';
@@ -417,8 +407,8 @@ export class UtilsService {
 
   checkOnlineState(): Observable<boolean> {
     return merge(
-      fromEvent(window, 'offline').pipe(map(() => false)),
-      fromEvent(window, 'online').pipe(map(() => true)),
+      fromEvent(this.document.defaultView, 'offline').pipe(map(() => false)),
+      fromEvent(this.document.defaultView, 'online').pipe(map(() => true)),
       new Observable((observer: Observer<boolean>) => {
         observer.next(navigator.onLine);
         observer.complete();
@@ -426,7 +416,7 @@ export class UtilsService {
     );
   }
 
-  disableWindowBackButton() {
+  disableBrowserBackButton() {
     history.pushState(null, null, location.href);
     this.location.onPopState(() => {
       history.pushState(null, null, location.href);

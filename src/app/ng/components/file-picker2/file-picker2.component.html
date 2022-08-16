@@ -12,77 +12,60 @@
       'w-100': labelPos == 'fix-top',
       'ng-invalid ng-dirty': isInvalid()
     }"
-    class="field"
-  >
-    <ng-container *ngIf="!multiple">
-      <div class="file-picker-single-wrapper">
-        <div *ngIf="showImagePreview" [class.p-2]="filesToShow.length != 0">
-          <img [src]="filesToShow[0]" class="rounded w-100" />
-        </div>
-        <div class="d-flex align-content-center buttonbar">
-          <input
-            onclick="this.value = null"
-            (change)="onSingleSelect($event)"
-            [accept]="accept"
-            [attr.id]="inputId"
-            [disabled]="disabled"
-            type="file"
-          />
-          <label
-            [attr.for]="inputId"
-            class="btn btn-{{ color }} mb-0 flex-grow-1 text-center"
-            >{{ chooseLabel }}</label
-          >
-          <i
-            (click)="onSingleDelete()"
-            *ngIf="filesToShow.length != 0"
-            class="pi pi-trash"
-          ></i>
-        </div>
+    class="field">
+    <div class="file-picker-single-wrapper" *ngIf="!multiple">
+      <input
+        class="sr-only"
+        onclick="this.value = null"
+        [accept]="accept"
+        [disabled]="disabled"
+        type="file"
+        #singleUploader
+        (change)="onSingleSelect($event)"
+      />
+      <div class="preview rounded-top p-3" [ngSwitch]="getFileType(filesToShow[0]?.base64)">
+        <img *ngSwitchCase="'image'" [src]="filesToShow[0]?.base64" class="rounded-top mw-100"/>
+        <i *ngSwitchCase="'file'" class="pi pi-file h2 mb-0"></i>
       </div>
-    </ng-container>
-    <ng-container *ngIf="multiple">
-      <div [class.flex-row-reverse]="rtl" class="file-picker-multiple-wrapper">
-        <div
-          (click)="uploader.click()"
-          *ngIf="!readonly"
-          [class.forbidden]="filesToEmit?.length == fileLimit"
-          class="image-uploader d-flex align-items-center justify-content-center"
-        >
-          <i class="pi pi-camera h2 mb-0"></i>
-          <input
-            #uploader
-            onclick="this.value = null"
-            (change)="onMultipleSelect($event)"
-            [accept]="accept"
-            type="file"
-          />
-        </div>
-        <div
-          *ngFor="let item of filesToShow; let i = index"
-          class="image-item mr-3 mb-2"
-        >
-          <div
-            [style.backgroundImage]="'url(' + item + ')'"
-            class="image-item-image"
+      <button (click)="singleUploader.click()" class="w-100 btn btn-{{ color }}">{{ chooseLabel }}</button>
+      <button class="btn btn-danger" (click)="onSingleDelete()"
+              *ngIf="filesToShow.length != 0"><i class="pi pi-trash"></i>
+      </button>
+    </div>
+
+    <div [class.flex-row-reverse]="rtl" class="file-picker-multiple-wrapper" *ngIf="multiple">
+      <input
+        class="sr-only"
+        onclick="this.value = null"
+        [accept]="accept"
+        [disabled]="disabled"
+        type="file"
+        #multipleUploader
+        (change)="onMultipleSelect($event)"
+      />
+      <div
+        (click)="multipleUploader.click()"
+        *ngIf="!readonly"
+        [class.forbidden]="filesToEmit?.length == fileLimit"
+        class="image-uploader d-flex align-items-center justify-content-center">
+        <i class="pi pi-paperclip h2 mb-0"></i>
+      </div>
+      <div *ngFor="let item of filesToShow; let i = index" class="image-item mr-3 mb-2">
+        <ng-container [ngSwitch]="getFileType(item.base64)">
+          <div *ngSwitchCase="'image'"
+               [style.backgroundImage]="'url(' + item.base64 + ')'"
+               class="image-item-image"
           ></div>
-          <i
-            (click)="onMultipleDelete($event, i)"
-            *ngIf="!readonly"
-            class="image-item-trash pi pi-trash"
-          ></i>
-        </div>
+          <div *ngSwitchCase="'file'" class="image-item-preview">
+            <i class="pi pi-file h2 my-3 mb-0"></i>
+          </div>
+          <div class="small px-1 bg-dark text-white p-1 text-truncate">{{item.name}}</div>
+        </ng-container>
+        <button class="btn image-item-trash" (click)="onMultipleDelete($event, i)"
+                *ngIf="!readonly"><i class="pi pi-trash"></i>
+        </button>
       </div>
-    </ng-container>
-    <ng-container *ngFor="let error of errors | keyvalue">
-      <small
-        *ngIf="showError(error.key)"
-        [class.mt-4]="hint"
-        class="p-error"
-      >
-        {{ error.value }}
-      </small>
-    </ng-container>
+    </div>
   </div>
   <label
     *ngIf="label && labelPos != 'float'"
@@ -95,6 +78,11 @@
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>
+  <small *ngIf="hint">{{ hint }}</small>
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
+      {{ error.value }}
+    </small>
+  </ng-container>
 </div>
 
-<small *ngIf="hint">{{ hint }}</small>

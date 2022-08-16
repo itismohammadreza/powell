@@ -11,9 +11,28 @@ import {AuthService} from '@core/http';
   templateUrl: './navbar-menu.component.html',
   styleUrls: ['./navbar-menu.component.scss']
 })
-export class NavbarMenuComponent
-  extends LanguageChecker
-  implements OnInit {
+export class NavbarMenuComponent extends LanguageChecker implements OnInit {
+  @Input() sidebarVisible: boolean;
+  @Input() sidebarLock: boolean;
+  @Input() menuType: MenuType;
+  @Input() user: any;
+  @Input('sidebarItems') set setSidebarItems(items: MenuItem[]) {
+    this.sidebarItems = items;
+    for (const item of this.sidebarItems) {
+      if (item.routerLink) {
+        Object.assign(item, {
+          command: () => {
+            if (!this.sidebarLock && this.menuType == 'overlay') {
+              this.toggleSidebar(false);
+            }
+          }
+        });
+      }
+    }
+  };
+  @Output() sidebarVisibleChange = new EventEmitter<boolean>();
+  @Output() sidebarLockChange = new EventEmitter<boolean>();
+  @Output() menuTypeChange = new EventEmitter<MenuType>();
 
   accountItems: MenuItem[] = [
     {
@@ -41,33 +60,10 @@ export class NavbarMenuComponent
   themes: MenuItem[];
   menuTypes: MenuItem[];
 
-  @Input() sidebarVisible: boolean;
-  @Output() sidebarVisibleChange = new EventEmitter<boolean>();
-  @Input() sidebarLock: boolean;
-  @Output() sidebarLockChange = new EventEmitter<boolean>();
-  @Input() menuType: MenuType;
-  @Output() menuTypeChange = new EventEmitter<MenuType>();
-  @Input() user: any;
-
-  @Input('sidebarItems') set setSidebarItems(items: MenuItem[]) {
-    this.sidebarItems = items;
-    for (const item of this.sidebarItems) {
-      if (item.routerLink) {
-        Object.assign(item, {
-          command: () => {
-            if (!this.sidebarLock && this.menuType == 'overlay') {
-              this.toggleSidebar(false);
-            }
-          }
-        });
-      }
-    }
-  };
-
   constructor(
     private router: Router,
     private utilsService: UtilsService,
-    private authService: AuthService
+    private authService: AuthService,
   ) {
     super();
   }
@@ -77,7 +73,7 @@ export class NavbarMenuComponent
   }
 
   changeTheme(event) {
-    const themeElement = document.getElementById('theme-link');
+    const themeElement = this.document.getElementById('theme-link');
     themeElement.setAttribute(
       'href',
       themeElement.getAttribute('href').replace(this.selectedTheme, event.value)
@@ -90,12 +86,12 @@ export class NavbarMenuComponent
     this.selectedLanguage = event.value;
   }
 
-  handleSidebarToggler() {
+  handleSidebarToggle() {
     this.sidebarVisible = !this.sidebarVisible;
     this.toggleSidebar(this.sidebarVisible);
   }
 
-  handleSidebarLockToggler() {
+  handleSidebarLockToggle() {
     this.sidebarLock = !this.sidebarLock;
     this.toggleSidebarLock(this.sidebarLock);
   }

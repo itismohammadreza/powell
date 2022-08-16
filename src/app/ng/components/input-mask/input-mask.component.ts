@@ -13,13 +13,12 @@ import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
+  UntypedFormGroup,
 } from '@angular/forms';
 import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
 import {NgPosition, NgSize} from '@ng/models/offset';
@@ -61,11 +60,12 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder: string;
   @Input() size: number;
   @Input() maxlength: number;
-  @Input() tabindex: number;
+  @Input() tabindex: any;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
   @Input() characterPattern: string = '[A-Za-z]';
   @Input() autoFocus: boolean;
+  @Input() showClear: boolean;
   @Input() autocomplete: string;
   @Input() ariaLabel: string;
   @Input() ariaRequired: boolean;
@@ -74,7 +74,7 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Output() onBlur = new EventEmitter();
   @Output() onComplete = new EventEmitter();
   @Output() onInput = new EventEmitter();
-  @Output() onKeyDown = new EventEmitter();
+  @Output() onClear = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
 
@@ -144,6 +144,11 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
     this.onModelTouched();
   }
 
+  _onClear() {
+    this.onClear.emit();
+    this.onModelChange(null);
+  }
+
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
   }
@@ -164,7 +169,6 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {

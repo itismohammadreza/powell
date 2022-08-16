@@ -2,13 +2,7 @@ import {YearModel} from './model/year.model';
 import {MonthModel} from './model/month.model';
 import {DayModel} from './model/day.model';
 import * as moment from 'jalali-moment';
-import {
-  Component,
-  HostListener,
-  Input,
-  OnDestroy,
-  OnInit
-} from '@angular/core';
+import {Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
 
 @Component({
   selector: 'ng-date-picker2',
@@ -16,67 +10,7 @@ import {
   styleUrls: ['./date-picker2.component.scss']
 })
 export class DatePicker2Component implements OnInit, OnDestroy {
-
-  id: string;
-  containerInlineStyle: object = {};
-  weekDays: Array<string>;
-  //
-  private preventClose: boolean;
-  private uiYearViewModel = true;
-  private uiMonthViewModel = true;
-  //
-  viewDateTitle = '';
-  viewModes: Array<string> = ['day'];
-  currentViewMode = 0;
-  //
-  private today: moment.Moment;
-  private selectedDate: moment.Moment;
-  private viewDate: moment.Moment;
-  //
-  years: YearModel[] = [];
-  months: MonthModel[] = [];
-  days: Array<DayModel[]> = [];
-  //
-  private hour = 0;
-  private minute = 0;
-  private second = 0;
-  //
-  hourText = '';
-  minuteText = '';
-  secondText = '';
-  amPmText = '';
-  //
-  private fastTimeChangeTimeOut = 345;
-  private fastTimeChangeInterval = 123;
-  //
-  private increaseHourTimeout: any;
-  private increaseHourInterval: any;
-  //
-  private decreaseHourTimeout: any;
-  private decreaseHourInterval: any;
-  //
-  private increaseMinuteTimeout: any;
-  private increaseMinuteInterval: any;
-  //
-  private decreaseMinuteTimeout: any;
-  private decreaseMinuteInterval: any;
-  //
-  private increaseSecondTimeout: any;
-  private increaseSecondInterval: any;
-  //
-  private decreaseSecondTimeout: any;
-  private decreaseSecondInterval: any;
-  //
-  private wasInsideClick = false;
-  private inputEventFocusListener: any;
-  private inputEventInputListener: any;
-  //
-  private inputPosition: Array<number>;
-  private inputSize: Array<number>;
   @Input() input: HTMLInputElement;
-  // date
-  // tslint:disable-next-line:variable-name
-  private _dateValue: string | number = '';
   @Input() dateValue: string | number = '';
   @Input() dateInitValue = true;
   @Input() dateIsGregorian = false;
@@ -88,8 +22,7 @@ export class DatePicker2Component implements OnInit, OnDestroy {
   };
   @Input() dateOnSelect: (shamsiDate: string, gregorianDate: string, timestamp: number) => void = () => {
   };
-  // time
-  _timeEnable = true;
+
   @Input()
   set timeEnable(value: boolean) {
     this._timeEnable = value;
@@ -98,15 +31,13 @@ export class DatePicker2Component implements OnInit, OnDestroy {
   }
 
   @Input() timeShowSecond = true;
-  // tslint:disable-next-line:variable-name
-  _timeMeridian = false;
+
   @Input()
   set timeMeridian(value: boolean) {
     this._timeMeridian = value;
     this.seTimeText();
   }
 
-  // ui
   @Input() uiTheme = 'default';
   @Input() uiIsVisible = false;
   @Input() uiHideOnOutsideClick = true;
@@ -138,6 +69,51 @@ export class DatePicker2Component implements OnInit, OnDestroy {
   @Input() uiInitViewMode: 'year' | 'month' | 'day' = 'day';
   @Input() uiTodayBtnEnable = true;
 
+  id: string;
+  containerInlineStyle: object = {};
+  weekDays: Array<string>;
+  preventClose: boolean;
+  uiYearViewModel = true;
+  uiMonthViewModel = true;
+  viewDateTitle = '';
+  viewModes: Array<string> = ['day'];
+  currentViewMode = 0;
+  today: moment.Moment;
+  selectedDate: moment.Moment;
+  viewDate: moment.Moment;
+  years: YearModel[] = [];
+  months: MonthModel[] = [];
+  days: Array<DayModel[]> = [];
+  hour = 0;
+  minute = 0;
+  second = 0;
+  hourText = '';
+  minuteText = '';
+  secondText = '';
+  amPmText = '';
+  fastTimeChangeTimeOut = 345;
+  fastTimeChangeInterval = 123;
+  increaseHourTimeout: any;
+  increaseHourInterval: any;
+  decreaseHourTimeout: any;
+  decreaseHourInterval: any;
+  increaseMinuteTimeout: any;
+  increaseMinuteInterval: any;
+  decreaseMinuteTimeout: any;
+  decreaseMinuteInterval: any;
+  increaseSecondTimeout: any;
+  increaseSecondInterval: any;
+  decreaseSecondTimeout: any;
+  decreaseSecondInterval: any;
+  wasInsideClick = false;
+  inputEventFocusListener: any;
+  inputEventInputListener: any;
+  inputPosition: Array<number>;
+  inputSize: Array<number>;
+  _dateValue: string | number = '';
+  _timeMeridian = false;
+  _timeEnable = true;
+
   ngOnInit(): void {
     this.setId();
     // moment.loadPersian({
@@ -145,19 +121,14 @@ export class DatePicker2Component implements OnInit, OnDestroy {
     //   dialect: 'persian-modern'
     // });
     this.setWeekDays();
-    //
     this.setViewModes();
     this.setInitViewMode();
-    //
     this.setToday();
     this.setDateInitValue();
-    //
     this.setSelectedDate();
     this.setViewDate();
-    //
     this.setTime();
     this.seTimeText();
-    //
     this.setInputValue();
     this.lockInputValue();
     this.setShowOnInputFocus();
@@ -300,22 +271,17 @@ export class DatePicker2Component implements OnInit, OnDestroy {
 
   setDays(): void {
     this.days = [];
-    //
     const prevMonthDetails: Array<Array<number>> = [];
     const currentMonthDetails: Array<Array<number>> = [];
     const nextMonthDetails: Array<Array<number>> = [];
-    //
     const prevMonth = moment(this.viewDate);
     const currentMonth = moment(this.viewDate);
     const nextMonth = moment(this.viewDate);
-    //
     prevMonth.add(-1, 'jMonth');
     nextMonth.add(1, 'jMonth');
-    //
     const currentMonthDays = moment.jDaysInMonth(currentMonth.jYear(), currentMonth.jMonth());
     const prevMonthDays = moment.jDaysInMonth(prevMonth.jYear(), prevMonth.jMonth());
     const nextMonthDays = moment.jDaysInMonth(nextMonth.jYear(), nextMonth.jMonth());
-    //
     for (let i = 0; i < prevMonthDays; i++) {
       prevMonthDetails.push([prevMonth.valueOf(), prevMonth.jYear(), prevMonth.jMonth(), prevMonth.jDate()]);
       prevMonth.add(1, 'day');
@@ -328,7 +294,6 @@ export class DatePicker2Component implements OnInit, OnDestroy {
       nextMonthDetails.push([nextMonth.valueOf(), nextMonth.jYear(), nextMonth.jMonth(), nextMonth.jDate()]);
       nextMonth.add(1, 'day');
     }
-    //
     for (let row = 0; row < 6; row++) {
       const rowValue: DayModel[] = [];
       for (let col = 0; col < 7; col++) {

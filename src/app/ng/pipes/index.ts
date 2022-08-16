@@ -5,7 +5,7 @@ import {EnToPerNumPipe} from './en-to-per-num.pipe';
 import {FileNamePipe} from './file-name.pipe';
 import {FilterPipe} from './filter.pipe';
 import {IsPerNumPipe} from './is-per-num.pipe';
-import {NumtoPerWordPipe} from './num-to-per-word.pipe';
+import {NgNumToPerWordPipe} from './num-to-per-word.pipe';
 import {PerToEnNumPipe} from './per-to-en-num.pipe';
 import {SafePerWordPipe} from './safe-per-word.pipe';
 import {SafePipe} from './safe.pipe';
@@ -21,7 +21,7 @@ export const PIPES: Type<any>[] = [
   ToBase64Pipe,
   EnToPerNumPipe,
   IsPerNumPipe,
-  NumtoPerWordPipe,
+  NgNumToPerWordPipe,
   PerToEnNumPipe,
   SafePerWordPipe,
   MonthTextPipe

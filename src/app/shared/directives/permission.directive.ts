@@ -1,48 +1,31 @@
-import {
-  Directive,
-  Input,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
-import {UserService} from '@core/http';
+import {Directive, Input, OnInit, TemplateRef, ViewContainerRef,} from '@angular/core';
 
 @Directive({
   selector: '[ngPermission]',
 })
-export class PermissionDirective implements OnInit {
-  private currentUser;
-  private permissions = [];
-  private logicalOp = 'AND';
-  private isHidden = true;
-
-  constructor(
-    private templateRef: TemplateRef<any>,
-    private viewContainer: ViewContainerRef,
-    private userService: UserService
-  ) {
-  }
-
-  ngOnInit() {
-    // this.userService.currentUser.subscribe((user) => {
-    //   this.currentUser = user;
-    //   this.updateView();
-    // });
-  }
-
-  @Input()
-  set hasPermission(val) {
+export class PermissionDirective {
+  @Input() set hasPermission(val: string[]) {
     this.permissions = val;
     this.updateView();
   }
 
-  @Input()
-  set hasPermissionOp(permop) {
-    this.logicalOp = permop;
+  @Input() set hasPermissionOp(val: 'AND' | 'OR') {
+    this.logicalOp = val;
     this.updateView();
   }
 
-  private updateView() {
+  currentUser: any;
+  permissions: string[] = [];
+  logicalOp: 'AND' | 'OR' = 'AND';
+  isHidden: boolean = true;
+
+  constructor(
+    private templateRef: TemplateRef<any>,
+    private viewContainer: ViewContainerRef,
+  ) {
+  }
+
+  updateView() {
     if (this.checkPermission()) {
       if (this.isHidden) {
         this.viewContainer.createEmbeddedView(this.templateRef);
@@ -54,9 +37,8 @@ export class PermissionDirective implements OnInit {
     }
   }
 
-  private checkPermission() {
+  checkPermission() {
     let hasPermission = false;
-
     if (this.currentUser && this.currentUser.permissions) {
       for (const checkPermission of this.permissions) {
         const permissionFound = this.currentUser.permissions.find(
@@ -105,7 +87,6 @@ Mode 2 for this directive :
       this.viewContainer.createEmbeddedView(this.templateRef);
     }
   }
-
 
   Usage Sample :
   sapose current user role is 'user' and this section is visible just for admins :

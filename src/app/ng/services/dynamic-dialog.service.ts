@@ -1,17 +1,18 @@
 import {
-  Injectable,
-  ComponentFactoryResolver,
   ApplicationRef,
-  Injector,
-  Type,
+  ComponentRef,
+  createComponent,
   EmbeddedViewRef,
-  ComponentRef
+  Inject,
+  Injectable,
+  Injector,
+  Type
 } from '@angular/core';
 import {DynamicDialogComponent} from '@ng/components/dynamic-dialog/dynamic-dialog.component';
 import {DynamicDialogConfig} from '@ng/components/dynamic-dialog/dynamic-dialog-config';
 import {DynamicDialogRef} from '@ng/components/dynamic-dialog/dynamic-dialog-ref';
 import {DynamicDialogInjector} from '@ng/components/dynamic-dialog/dynamic-dialog-injector';
-
+import {DOCUMENT} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +20,14 @@ import {DynamicDialogInjector} from '@ng/components/dynamic-dialog/dynamic-dialo
 export class DynamicDialogService {
   dialogComponentRef: ComponentRef<DynamicDialogComponent>;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private appRef: ApplicationRef, private injector: Injector) {
+  constructor(private appRef: ApplicationRef,
+              private injector: Injector,
+              @Inject(DOCUMENT) private document: Document) {
   }
 
-  public open(componentType: Type<any>, config: DynamicDialogConfig) {
+  open(componentType: Type<any>, config: DynamicDialogConfig) {
     const dialogRef = this.appendDialogComponentToBody(config);
-
     this.dialogComponentRef.instance.childComponentType = componentType;
-
     return dialogRef;
   }
 
@@ -42,7 +43,6 @@ export class DynamicDialogService {
       sub.unsubscribe();
     });
 
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(DynamicDialogComponent);
     // یه وقتایی پیش میاد که میخایم یه چیزی رو پرواید کنیم ولی به این صورت که هر بار یه ولیوی جدید به ما بده . خب پس نمیتونیم توی اپ ماژول یا روت پروایدش کنیم . از طرفی
     // میخایم این چیزی که پرواید کردیم رو توی یه کامپوننت داینامیک استفادش کنیم . ینی کانستراکتور اون کاپوننت داینامیک ، میخاد از این کلاسه استفاده کنه و ما میخایم هر بار که کامپوننت رو انداختیم ، یه ولیوی جدید داشته باشه . اونم چه
     // ولیویی؟ احسنت، ولیویی که خود کاربر داده رو میخایم ست کنیم توی پروایدمون و پاسش بدیم به کامپوننت.
@@ -61,19 +61,17 @@ export class DynamicDialogService {
     //     }
     //   ]
     // });
-    const componentRef = componentFactory.create(new DynamicDialogInjector(this.injector, map));
-
+    const componentRef = createComponent(DynamicDialogComponent, {
+      environmentInjector: this.appRef.injector,
+      elementInjector: new DynamicDialogInjector(this.injector, map)
+    })
     this.appRef.attachView(componentRef.hostView);
-
     const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
-    document.body.appendChild(domElem);
-
+    this.document.body.appendChild(domElem);
     this.dialogComponentRef = componentRef;
-
     this.dialogComponentRef.instance.onClose.subscribe(() => {
       this.removeDialogComponentFromBody();
     });
-
     return dialogRef;
   }
 

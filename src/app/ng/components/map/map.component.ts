@@ -12,16 +12,13 @@ export class MapComponent implements OnInit {
   @Input() height: string = '50vh';
   @Input() readonly: boolean;
   @Output() mapChange: EventEmitter<[number, number]> = new EventEmitter();
+
   options: any;
   layers: Marker<any>[];
 
   constructor(private cd: ChangeDetectorRef) {
   }
-
-  onMapReady(event: any): void {
-    event.on('click', this.onMapClick.bind(this));
-  }
-
+  
   ngOnInit(): void {
     this.options = {
       layers: [tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')],
@@ -29,6 +26,10 @@ export class MapComponent implements OnInit {
       center: latLng(this.latLng[0], this.latLng[1]),
     };
     this.layers = [this.setLayer([this.latLng[0], this.latLng[1]])];
+  }
+
+  onMapReady(event: any): void {
+    event.on('click', this.onMapClick.bind(this));
   }
 
   onMapClick(event: any): void {

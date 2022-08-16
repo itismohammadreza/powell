@@ -4,8 +4,7 @@
     color="primary"
     appearance="text"
     *ngIf="!sidebarLock && menuType != 'hover' && menuType != 'horizontal'"
-    (click)="handleSidebarToggler()"
-  >
+    (click)="handleSidebarToggle()">
   </ng-button>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav p-0 m{{ fa ? 'r' : 'l' }}-auto">
@@ -79,7 +78,7 @@
   <div class="d-flex align-items-center justify-content-between py-3 mb-3 border-bottom sticky-top section-top">
     <ng-logo width="50px"></ng-logo>
     <i class="border rounded-circle p-2 bg-light pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
-       (click)="handleSidebarLockToggler()"></i>
+       (click)="handleSidebarLockToggle()"></i>
   </div>
   <p-panelMenu [multiple]="false" [model]="sidebarItems"></p-panelMenu>
 </p-sidebar>
@@ -97,8 +96,8 @@
     class="pi pi-lock{{
       !sidebarLock ? '-open' : ''
     }} h3 mb-0 text-center d-block py-4 sticky-top shadow-sm"
-    (click)="handleSidebarLockToggler()"
-  ></i>
+    (click)="handleSidebarLockToggle()">
+  </i>
   <p-panelMenu [multiple]="false" [model]="sidebarItems"></p-panelMenu>
 </p-sidebar>
 <p-menu

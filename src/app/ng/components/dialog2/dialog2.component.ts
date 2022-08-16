@@ -1,4 +1,5 @@
-import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, Inject, OnDestroy, OnInit} from '@angular/core';
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'ng-dialog2',
@@ -7,11 +8,11 @@ import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 })
 export class Dialog2Component implements OnInit, OnDestroy {
 
-  constructor(private element: ElementRef) {
+  constructor(private element: ElementRef, @Inject(DOCUMENT) private document: Document) {
   }
 
   ngOnInit(): void {
-    document.body.appendChild(this.element.nativeElement);
+    this.document.body.appendChild(this.element.nativeElement);
     this.element.nativeElement.addEventListener('click', el => {
       if (el.target.className === 'jw-modal') {
         this.close();
@@ -25,13 +26,13 @@ export class Dialog2Component implements OnInit, OnDestroy {
 
   open(): void {
     this.element.nativeElement.style.display = 'block';
-    document.body.classList.add('jw-modal-open');
-    document.body.style.overflow = 'hidden';
+    this.document.body.classList.add('jw-modal-open');
+    this.document.body.style.overflow = 'hidden';
   }
 
   close(): void {
     this.element.nativeElement.style.display = 'none';
-    document.body.classList.remove('jw-modal-open');
-    document.body.style.overflow = 'auto';
+    this.document.body.classList.remove('jw-modal-open');
+    this.document.body.style.overflow = 'auto';
   }
 }

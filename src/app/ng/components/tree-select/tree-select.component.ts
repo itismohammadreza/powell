@@ -6,7 +6,8 @@ import {
   Input,
   OnInit,
   Output,
-  QueryList, TemplateRef
+  QueryList,
+  TemplateRef
 } from '@angular/core';
 import {NgSelectionMode} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
@@ -17,7 +18,6 @@ import {TemplateDirective} from '@ng/directives/template.directive';
   styleUrls: ['./tree-select.component.scss']
 })
 export class TreeSelectComponent implements OnInit, AfterContentInit {
-
   // native properties
   @Input() selection: any;
   @Input() options: any[];

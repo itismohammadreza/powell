@@ -9,7 +9,6 @@ import {ConfirmPopupComponent} from './confirm-popup/confirm-popup.component';
 import {ConfirmComponent} from './confirm/confirm.component';
 // import {DatePickerComponent} from './date-picker/date-picker.component';
 // import {DatePicker2Component} from './date-picker2/date-picker2.component';
-// import {DatePicker3Component} from './date-picker3/date-picker3.component';
 import {DialogFormComponent} from './dialog-form/dialog-form.component';
 import {DropdownComponent} from './dropdown/dropdown.component';
 import {EditorComponent} from './editor/editor.component';
@@ -28,7 +27,6 @@ import {MapComponent} from './map/map.component';
 import {MessageComponent} from './message/message.component';
 import {MultiCheckboxComponent} from './multi-checkbox/multi-checkbox.component';
 import {MultiSelectComponent} from './multi-select/multi-select.component';
-import {NotFoundComponent} from './not-found/not-found.component';
 import {RadioComponent} from './radio/radio.component';
 import {RatingComponent} from './rating/rating.component';
 import {SelectButtonComponent} from './select-button/select-button.component';
@@ -49,7 +47,6 @@ import {Dialog2Component} from './dialog2/dialog2.component';
 import {ButtonAsyncComponent} from '@ng/components/button-async/button-async.component';
 import {KnobComponent} from '@ng/components/knob/knob.component';
 import {TreeSelectComponent} from '@ng/components/tree-select/tree-select.component';
-import {ErrorComponent} from '@ng/components/error/error.component';
 
 export const COMPONENTS: Type<any>[] = [
   AutoCompleteComponent,
@@ -63,7 +60,6 @@ export const COMPONENTS: Type<any>[] = [
   ConfirmPopupComponent,
   // DatePickerComponent,
   // DatePicker2Component,
-  // DatePicker3Component,
   DialogComponent,
   Dialog2Component,
   DynamicFormComponent,
@@ -76,7 +72,6 @@ export const COMPONENTS: Type<any>[] = [
   FilePickerComponent,
   FilePicker2Component,
   FilterListComponent,
-  ErrorComponent,
   ImageSliderComponent,
   InputMaskComponent,
   InputNumberComponent,
@@ -90,7 +85,6 @@ export const COMPONENTS: Type<any>[] = [
   MessageComponent,
   MultiCheckboxComponent,
   MultiSelectComponent,
-  NotFoundComponent,
   RadioComponent,
   RatingComponent,
   SelectButtonComponent,

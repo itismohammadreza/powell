@@ -1,5 +1,5 @@
 export class NumberToPersianWord {
-  private s_0_9 = new Array(
+  private s_0_9 = [
     'صفر',
     'یک',
     'دو',
@@ -10,8 +10,8 @@ export class NumberToPersianWord {
     'هفت',
     'هشت',
     'نه'
-  );
-  private s_10_19 = new Array(
+  ];
+  private s_10_19 = [
     'ده',
     'یازده',
     'دوازده',
@@ -22,8 +22,8 @@ export class NumberToPersianWord {
     'هفده',
     'هجده',
     'نوزده'
-  );
-  private s_20_90 = new Array(
+  ];
+  private s_20_90 = [
     'بیست',
     'سی',
     'چهل',
@@ -32,8 +32,8 @@ export class NumberToPersianWord {
     'هفتاد',
     'هشتاد',
     'نود'
-  );
-  private s_100_900 = new Array(
+  ];
+  private s_100_900 = [
     'صد',
     'دویست',
     'سیصد',
@@ -43,49 +43,43 @@ export class NumberToPersianWord {
     'هفتصد',
     'هشتصد',
     'نهصد'
-  );
-  private s_Parts = new Array('هزار', 'میلیون', 'میلیارد', 'تريليون');
+  ];
+  private s_Parts = ['هزار', 'میلیون', 'میلیارد', 'تريليون'];
   private splitter = ' و ';
   private veryBig = 'تعریف نشده';
   private negative = 'منفی';
 
-  public convertNumberToString(inputNumber) {
-    var tempNumber = Math.abs(inputNumber).toString();
-
+  convertNumberToString(inputNumber: string | number) {
+    const tempNumber = Math.abs(+inputNumber).toString();
     if (tempNumber.length == 0) {
       return '';
     }
-
     if (tempNumber === '0') {
       return this.s_0_9[0];
     }
-
-    var partCount = Math.ceil(parseInt(tempNumber).toString().length / 3);
-
+    const partCount = Math.ceil(parseInt(tempNumber).toString().length / 3);
     if (this.s_Parts.length < partCount) {
       return this.veryBig;
     }
 
-    var partFullString = new Array();
+    const partFullString = [];
 
-    for (var i = 0; i < partCount; i++) {
-      var numberLength3;
-
-      var lengthToSelectFirtPart;
+    for (let i = 0; i < partCount; i++) {
+      let numberLength3: string;
+      let lengthToSelectFirstPart: number = 0;
       if (i == 0) {
-        lengthToSelectFirtPart = tempNumber.length - (partCount - 1) * 3;
-        numberLength3 = tempNumber.substr(i * 3, lengthToSelectFirtPart);
+        lengthToSelectFirstPart = tempNumber.length - (partCount - 1) * 3;
+        numberLength3 = tempNumber.substr(i * 3, lengthToSelectFirstPart);
       } else {
         numberLength3 = tempNumber.substr(
-          lengthToSelectFirtPart + (i - 1) * 3,
+          lengthToSelectFirstPart + (i - 1) * 3,
           3
         );
       }
 
-      var partInWord = this.getPart(numberLength3);
-
-      var partIndex = partCount - 2 - i;
-      var partPreFix = this.s_Parts[partIndex];
+      const partInWord = this.getPart(numberLength3);
+      const partIndex = partCount - 2 - i;
+      let partPreFix = this.s_Parts[partIndex];
 
       if (i == partCount - 1) {
         partPreFix = '';
@@ -114,9 +108,9 @@ export class NumberToPersianWord {
       }
     }
 
-    var outString = '';
+    let outString = '';
 
-    for (var i = 0; i < partFullString.length; i++) {
+    for (let i = 0; i < partFullString.length; i++) {
       outString += partFullString[i];
     }
 
@@ -132,7 +126,7 @@ export class NumberToPersianWord {
       return '';
     }
 
-    var number = numberIn3.toString();
+    let number = numberIn3.toString();
 
     switch (number.length) {
       case 1:
@@ -143,11 +137,11 @@ export class NumberToPersianWord {
         break;
     }
 
-    var outString = '';
+    let outString = '';
 
-    var n1 = parseInt(number.substr(0, 1));
-    var n2 = parseInt(number.substr(1, 1));
-    var n3 = parseInt(number.substr(2, 1));
+    const n1 = parseInt(number.substr(0, 1));
+    const n2 = parseInt(number.substr(1, 1));
+    const n3 = parseInt(number.substr(2, 1));
 
     if (n1 != 0) {
       switch (n2) {

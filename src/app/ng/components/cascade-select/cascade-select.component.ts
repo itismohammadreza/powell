@@ -1,5 +1,6 @@
 import {
-  AfterContentInit, AfterViewInit,
+  AfterContentInit,
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -22,7 +23,6 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
-  UntypedFormControl,
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
@@ -65,8 +65,7 @@ export class CascadeSelectComponent implements OnInit, AfterViewInit, AfterConte
   @Input() disabled: boolean;
   @Input() showClear: boolean = true;
   @Input() dataKey: string;
-  @Input() tabindex: number;
-  @Input() ariaLabelledBy: string;
+  @Input() tabindex: any;
   @Input() appendTo: any;
   @Input() style: any;
   @Input() styleClass: string;
@@ -183,7 +182,6 @@ export class CascadeSelectComponent implements OnInit, AfterViewInit, AfterConte
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {

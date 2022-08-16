@@ -1,1 +1,54 @@
-<p-knob [(ngModel)]="value" [min]="-50" [max]="50"></p-knob>
+<div [ngClass]="{
+      rtl: rtl,
+      ltr: !rtl,
+      'flex-column-reverse': labelPos == 'fix-top',
+      'align-items-center': labelPos == 'fix-side',
+      'align-items-end': labelPos == 'fix-top' && rtl,
+      'flex-row': labelPos == 'fix-side' && rtl,
+      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+    }" class="knob-wrapper">
+  <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field">
+    <p-knob
+      [(ngModel)]="value"
+      [id]="inputId"
+      [size]="size"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [step]="step"
+      [min]="min"
+      [max]="max"
+      [valueColor]="valueColor"
+      [rangeColor]="rangeColor"
+      [textColor]="textColor"
+      [strokeWidth]="strokeWidth"
+      [showValue]="showValue"
+      [valueTemplate]="valueTemplate"
+      [style]="style"
+      [styleClass]="styleClass"
+      (onChange)="_onChange($event)"
+    >
+    </p-knob>
+
+  </div>
+  <label
+    *ngIf="label && labelPos != 'float'"
+    [attr.for]="inputId"
+    [ngClass]="{
+      'mb-0': labelPos == 'fix-side',
+      'ml-4': rtl,
+      'mr-4': !rtl,
+      'text-muted': disabled
+    }"
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label }}
+  </label>
+  <small *ngIf="hint">{{ hint }}</small>
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
+      {{ error.value }}
+    </small>
+  </ng-container>
+</div>
+
+
+

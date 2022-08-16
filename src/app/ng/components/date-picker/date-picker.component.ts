@@ -275,7 +275,6 @@ export class DatePickerComponent implements OnInit, OnChanges, AfterViewInit, Co
     );
   }
 
-
   isRequired(): boolean {
     if (this.ngControl) {
       const control = this.ngControl.control;

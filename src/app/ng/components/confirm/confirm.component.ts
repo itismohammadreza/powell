@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgConfirmOptions} from '@ng/models/overlay';
 
 @Component({
@@ -6,7 +6,7 @@ import {NgConfirmOptions} from '@ng/models/overlay';
   templateUrl: './confirm.component.html',
   styleUrls: ['./confirm.component.scss'],
 })
-export class ConfirmComponent implements OnInit {
+export class ConfirmComponent{
   options: NgConfirmOptions = {
     rtl: false,
     closable: true,
@@ -24,7 +24,4 @@ export class ConfirmComponent implements OnInit {
     breakpoints: {'960px': '75vw', '640px': '100vw'},
     transitionOptions: '400ms cubic-bezier(0.25, 0.8, 0.25, 1)',
   };
-
-  ngOnInit() {
-  }
 }

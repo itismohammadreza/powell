@@ -14,13 +14,12 @@ import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
+  UntypedFormGroup,
 } from '@angular/forms';
 import {NgError, NgLabelPosition} from '@ng/models/forms';
 import {NgOrientation} from '@ng/models/offset';
@@ -53,7 +52,7 @@ export class RadioComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Input() errors: NgError;
   // native properties
   @Input() disabled: boolean;
-  @Input() tabindex: number;
+  @Input() tabindex: any;
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
   @Input() style: any;
@@ -147,7 +146,6 @@ export class RadioComponent implements OnInit, AfterViewInit, ControlValueAccess
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {

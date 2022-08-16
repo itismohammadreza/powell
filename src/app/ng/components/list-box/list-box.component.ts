@@ -1,26 +1,29 @@
 import {
-  AfterContentInit, AfterViewInit,
+  AfterContentInit,
+  AfterViewInit,
   ChangeDetectorRef,
-  Component, ContentChildren,
+  Component,
+  ContentChildren,
   EventEmitter,
   forwardRef,
   InjectFlags,
   Injector,
   Input,
   OnInit,
-  Output, QueryList, TemplateRef,
+  Output,
+  QueryList,
+  TemplateRef,
 } from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
+  UntypedFormGroup,
 } from '@angular/forms';
 import {NgAddon, NgError, NgFilterMatchMode, NgLabelPosition,} from '@ng/models/forms';
 import {TemplateDirective} from '@ng/directives/template.directive';
@@ -56,7 +59,7 @@ export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit
   @Input() filter: boolean;
   @Input() filterMatchMode: NgFilterMatchMode = 'contains';
   @Input() filterValue: string;
-  @Input() filterLocale: string = undefined;
+  @Input() filterLocale: string;
   @Input() filterPlaceHolder: string;
   @Input() emptyFilterMessage: string = 'No results found';
   @Input() listStyle: string;
@@ -85,12 +88,13 @@ export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  headerTemplate: TemplateRef<any>;
   itemTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
-  headerTemplate: TemplateRef<any>;
-  footerTemplate: TemplateRef<any>;
+  filterTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
   emptyFilterTemplate: TemplateRef<any>;
+  footerTemplate: TemplateRef<any>;
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
@@ -143,6 +147,10 @@ export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {
       switch (item.getType()) {
+        case 'header':
+          this.headerTemplate = item.templateRef;
+          break;
+
         case 'item':
           this.itemTemplate = item.templateRef;
           break;
@@ -151,12 +159,8 @@ export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit
           this.groupTemplate = item.templateRef;
           break;
 
-        case 'header':
-          this.headerTemplate = item.templateRef;
-          break;
-
-        case 'footer':
-          this.footerTemplate = item.templateRef;
+        case 'filter':
+          this.filterTemplate = item.templateRef;
           break;
 
         case 'empty':
@@ -165,6 +169,10 @@ export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit
 
         case 'emptyfilter':
           this.emptyFilterTemplate = item.templateRef;
+          break;
+
+        case 'footer':
+          this.footerTemplate = item.templateRef;
           break;
       }
     });
@@ -205,7 +213,6 @@ export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {

@@ -1,14 +1,5 @@
-import {
-  ComponentFactoryResolver,
-  Directive,
-  Host,
-  Input,
-  OnInit,
-  Optional,
-  SkipSelf,
-  ViewContainerRef
-} from '@angular/core';
-import {ControlContainer, UntypedFormControl, FormGroupDirective, NgControl, Validators} from '@angular/forms';
+import {Directive, Host, Input, OnInit, Optional, SkipSelf, ViewContainerRef} from '@angular/core';
+import {ControlContainer, FormGroupDirective, NgControl, UntypedFormControl, Validators} from '@angular/forms';
 import {InputTextComponent} from '@ng/components/input-text/input-text.component';
 import {InputNumberComponent} from '@ng/components/input-number/input-number.component';
 
@@ -16,22 +7,20 @@ import {InputNumberComponent} from '@ng/components/input-number/input-number.com
   selector: '[ngDynamicForm]'
 })
 export class DynamicFormDirective implements OnInit {
-
   @Input() ngDynamicForm;
+  
   elements = {
     text: InputTextComponent,
     number: InputNumberComponent
   };
 
   constructor(@Optional() @Host() @SkipSelf() private parent: ControlContainer,
-              private resolver: ComponentFactoryResolver,
               private ngControl: NgControl,
               private vcRef: ViewContainerRef) {
   }
 
   ngOnInit() {
-    const factory = this.resolver.resolveComponentFactory<any>(this.elements[this.ngDynamicForm.type]);
-    const cmpRef = this.vcRef.createComponent(factory);
+    const cmpRef = this.vcRef.createComponent<any>(this.elements[this.ngDynamicForm.type]);
     (this.parent.formDirective as FormGroupDirective).form.addControl(this.ngDynamicForm.formControlName, new UntypedFormControl('', [Validators.required]));
     setTimeout(() => {
       cmpRef.instance.ngControl = this.ngControl;

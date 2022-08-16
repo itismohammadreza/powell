@@ -5,11 +5,11 @@ import {UtilsService} from '@ng/services';
   name: 'ngPerToEnNum',
 })
 export class PerToEnNumPipe implements PipeTransform {
-  constructor(private utlisService: UtilsService) {}
+  constructor(private utilsService: UtilsService) {}
 
   transform(value: string): string | number {
     try {
-      if (value) return this.utlisService.persianNumberToEng(value);
+      if (value) return this.utilsService.persianNumberToEng(value);
       else return null;
     } catch (e) {
       return 0;

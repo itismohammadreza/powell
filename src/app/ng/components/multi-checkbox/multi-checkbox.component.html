@@ -14,8 +14,7 @@
       'flex-row': orientation == 'horizontal',
       'flex-column': orientation == 'vertical'
     }"
-    class="flex-grow-1 d-flex"
-  >
+    class="flex-grow-1 d-flex">
     <div
       *ngFor="let item of options"
       [ngClass]="{
@@ -40,9 +39,9 @@
           'ml-2': !rtl,
           'mr-2': rtl
         }"
-        class="mb-0"
-        >{{ item[optionLabel] }}</label
-      >
+        class="mb-0">
+        {{ item[optionLabel] }}
+      </label>
     </div>
   </div>
   <label

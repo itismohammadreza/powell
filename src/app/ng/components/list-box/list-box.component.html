@@ -12,8 +12,7 @@
       'w-100': labelPos == 'fix-top',
       'p-input-filled': filled
     }"
-    class="field"
-  >
+    class="field">
     <p-listbox
       (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
       (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
@@ -39,28 +38,28 @@
       [readonly]="readonly"
       [showToggleAll]="showToggleAll"
     >
+      <ng-template pTemplate="header" *ngIf="headerTemplate">
+        <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+      </ng-template>
       <ng-template pTemplate="item" let-item *ngIf="itemTemplate">
         <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item}"></ng-container>
       </ng-template>
-      <ng-template pTemplate="group" let-item *ngIf="groupTemplate">
-        <ng-container *ngTemplateOutlet="groupTemplate;context:{$implicit:item}"></ng-container>
+      <ng-template pTemplate="group" let-group *ngIf="groupTemplate">
+        <ng-container *ngTemplateOutlet="groupTemplate;context:{$implicit:group}"></ng-container>
       </ng-template>
-      <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
-        <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
+      <ng-template pTemplate="filter" let-options="options" *ngIf="filterTemplate">
+        <ng-container *ngTemplateOutlet="filterTemplate;context:{options:options}"></ng-container>
       </ng-template>
-      <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
-        <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
+      <ng-template pTemplate="empty" *ngIf="emptyTemplate">
+        <ng-container *ngTemplateOutlet="emptyTemplate;context"></ng-container>
       </ng-template>
-      <ng-template pTemplate="empty" let-item *ngIf="emptyTemplate">
-        <ng-container *ngTemplateOutlet="emptyTemplate;context:{$implicit:item}"></ng-container>
+      <ng-template pTemplate="emptyfilter" *ngIf="emptyFilterTemplate">
+        <ng-container *ngTemplateOutlet="emptyFilterTemplate"></ng-container>
       </ng-template>
-      <ng-template pTemplate="emptyfilter" let-item *ngIf="emptyFilterTemplate">
-        <ng-container *ngTemplateOutlet="emptyFilterTemplate;context:{$implicit:item}"></ng-container>
+      <ng-template pTemplate="footer" *ngIf="footerTemplate">
+        <ng-container *ngTemplateOutlet="footerTemplate;context"></ng-container>
       </ng-template>
     </p-listbox>
-    <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
-      {{ label }}
-    </label>
   </div>
   <label
     *ngIf="label && labelPos != 'float'"

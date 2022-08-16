@@ -1,5 +1,6 @@
-import {AfterViewInit, Directive, ElementRef, NgZone, OnDestroy,} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, Inject, NgZone, OnDestroy,} from '@angular/core';
 import {DomHandler} from '@ng/services';
+import {DOCUMENT} from "@angular/common";
 
 /*
 .p-ripple {
@@ -40,7 +41,8 @@ export class RippleDirective implements AfterViewInit, OnDestroy {
   animationListener: any;
   mouseDownListener: any;
 
-  constructor(public el: ElementRef, public zone: NgZone) {}
+  constructor(public el: ElementRef, public zone: NgZone, @Inject(DOCUMENT) private document: Document) {
+  }
 
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
@@ -73,12 +75,12 @@ export class RippleDirective implements AfterViewInit, OnDestroy {
     let x =
       event.pageX -
       offset.left +
-      document.body.scrollTop -
+      this.document.body.scrollTop -
       DomHandler.getWidth(ink) / 2;
     let y =
       event.pageY -
       offset.top +
-      document.body.scrollLeft -
+      this.document.body.scrollLeft -
       DomHandler.getHeight(ink) / 2;
 
     ink.style.top = y + 'px';
@@ -107,7 +109,7 @@ export class RippleDirective implements AfterViewInit, OnDestroy {
   }
 
   create() {
-    let ink = document.createElement('span');
+    let ink = this.document.createElement('span');
     ink.className = 'p-ink';
     this.el.nativeElement.appendChild(ink);
 

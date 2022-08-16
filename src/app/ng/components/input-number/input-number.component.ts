@@ -14,13 +14,12 @@ import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
+  UntypedFormGroup,
 } from '@angular/forms';
 import {
   NgAddon,
@@ -88,16 +87,16 @@ export class InputNumberComponent implements OnInit, AfterViewInit, ControlValue
   @Input() placeholder: string;
   @Input() size: number;
   @Input() maxlength: number;
-  @Input() tabindex: number;
+  @Input() tabindex: any;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
   @Input() title: string;
-  @Input() ariaLabel: string;
-  @Input() ariaRequired: boolean;
   @Input() autocomplete: string;
+  @Input() showClear: boolean = false;
   @Output() onFocus = new EventEmitter();
   @Output() onBlur = new EventEmitter();
   @Output() onInput = new EventEmitter();
+  @Output() onClear = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
 
@@ -166,6 +165,11 @@ export class InputNumberComponent implements OnInit, AfterViewInit, ControlValue
     this.onModelTouched();
   }
 
+  _onClear() {
+    this.onClear.emit();
+    this.onModelChange(null);
+  }
+
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
   }
@@ -186,7 +190,6 @@ export class InputNumberComponent implements OnInit, AfterViewInit, ControlValue
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {

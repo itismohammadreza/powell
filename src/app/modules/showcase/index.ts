@@ -42,7 +42,6 @@ import {KnobPage} from '@modules/showcase/pages/knob/knob.page';
 import {TreeSelectPage} from '@modules/showcase/pages/tree-select/tree-select.page';
 import {DatePicker2Page} from '@modules/showcase/pages/date-picker2/date-picker2.page';
 import {DatePicker3Page} from '@modules/showcase/pages/date-picker3/date-picker3.page';
-import {DynamicDialogPage} from '@modules/showcase/pages/dynamic-dialog/dynamic-dialog.page';
 import {DynamicDialogSampleComponent} from '@modules/showcase/components/dynamic-dialog-sample/dynamic-dialog-sample.component';
 import {ButtonAsyncPage} from '@modules/showcase/pages/button-async/button-async.page';
 
@@ -65,7 +64,6 @@ export const COMPONENTS: Type<any>[] = [
   DatePickerPage,
   DatePicker2Page,
   DatePicker3Page,
-  DynamicDialogPage,
   DynamicDialogSampleComponent,
   DynamicFormPage,
   DropdownPage,

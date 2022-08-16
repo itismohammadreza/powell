@@ -1,12 +1,11 @@
 import {
-  Component,
-  Type,
-  ComponentFactoryResolver,
-  ViewChild,
-  OnDestroy,
-  ComponentRef,
   AfterViewInit,
   ChangeDetectorRef,
+  Component,
+  ComponentRef,
+  OnDestroy,
+  Type,
+  ViewChild,
   ViewContainerRef
 } from '@angular/core';
 import {Subject} from 'rxjs';
@@ -19,16 +18,13 @@ import {DynamicDialogRef} from './dynamic-dialog-ref';
 })
 export class DynamicDialogComponent implements AfterViewInit, OnDestroy {
   componentRef: ComponentRef<any>;
-
+  childComponentType: Type<any>;
+  private _onClose = new Subject<any>();
+  onClose = this._onClose.asObservable();
   @ViewChild('insertion', {read: ViewContainerRef})
   insertionPoint: ViewContainerRef;
-
-  private readonly _onClose = new Subject<any>();
-  public onClose = this._onClose.asObservable();
-
-  childComponentType: Type<any>;
-
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cd: ChangeDetectorRef, private dialogRef: DynamicDialogRef) {
+  
+  constructor(private cd: ChangeDetectorRef, private dialogRef: DynamicDialogRef) {
   }
 
   ngAfterViewInit() {
@@ -45,10 +41,8 @@ export class DynamicDialogComponent implements AfterViewInit, OnDestroy {
   }
 
   loadChildComponent(componentType: Type<any>) {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
-    const viewContainerRef = this.insertionPoint;
-    viewContainerRef.clear();
-    this.componentRef = viewContainerRef.createComponent(componentFactory);
+    this.insertionPoint.clear();
+    this.componentRef = this.insertionPoint.createComponent(componentType);
   }
 
   ngOnDestroy() {

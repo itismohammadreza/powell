@@ -1,26 +1,29 @@
 import {
-  AfterContentInit, AfterViewInit,
+  AfterContentInit,
+  AfterViewInit,
   ChangeDetectorRef,
-  Component, ContentChildren,
+  Component,
+  ContentChildren,
   EventEmitter,
   forwardRef,
   InjectFlags,
   Injector,
   Input,
   OnInit,
-  Output, QueryList, TemplateRef,
+  Output,
+  QueryList,
+  TemplateRef,
 } from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
+  UntypedFormGroup,
 } from '@angular/forms';
 import {NgAddon, NgError, NgFilterMatchMode, NgLabelPosition} from '@ng/models/forms';
 import {NgPosition, NgSize} from '@ng/models/offset';
@@ -96,7 +99,7 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
   @Input() showToggleAll: boolean = true;
   @Input() style: any;
   @Input() styleClass: string;
-  @Input() tabindex: number;
+  @Input() tabindex: any;
   @Input() tooltip: any;
   @Input() tooltipStyleClass: string;
   @Input() tooltipPosition: NgPosition = 'top';
@@ -239,7 +242,6 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {

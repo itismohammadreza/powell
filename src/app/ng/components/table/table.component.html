@@ -1,21 +1,21 @@
 <p-table
   #dt
   (contextMenuSelectionChange)="onContextMenuSelectionChange($event)"
-  (onColReorder)="_onColReorder($event)"
-  (onColResize)="_onColResize($event)"
-  (onContextMenuSelect)="_onContextMenuSelect($event)"
-  (onEditCancel)="_onEditCancel($event)"
-  (onEditComplete)="_onEditComplete($event)"
-  (onEditInit)="_onEditInit($event)"
-  (onFilter)="_onFilter($event)"
-  (onHeaderCheckboxToggle)="_onHeaderCheckboxToggle($event)"
-  (onPage)="_onPage($event)"
-  (onRowReorder)="_onRowReorder($event)"
-  (onRowSelect)="_onRowSelect($event)"
-  (onRowUnselect)="_onRowUnselect($event)"
-  (onSort)="_onSort($event)"
-  (onStateRestore)="_onStateRestore($event)"
-  (onStateSave)="_onStateSave($event)"
+  (onColReorder)="emitter('onColReorder',$event)"
+  (onColResize)="emitter('onColResize',$event)"
+  (onContextMenuSelect)="emitter('onContextMenuSelect',$event)"
+  (onEditCancel)="emitter('onEditCancel',$event)"
+  (onEditComplete)="emitter('onEditComplete',$event)"
+  (onEditInit)="emitter('onEditInit',$event)"
+  (onFilter)="emitter('onFilter',$event)"
+  (onHeaderCheckboxToggle)="emitter('onHeaderCheckboxToggle',$event)"
+  (onPage)="emitter('onPage',$event)"
+  (onRowReorder)="emitter('onRowReorder',$event)"
+  (onRowSelect)="emitter('onRowSelect',$event)"
+  (onRowUnselect)="emitter('onRowUnselect',$event)"
+  (onSort)="emitter('onSort',$event)"
+  (onStateRestore)="emitter('onStateRestore',$event)"
+  (onStateSave)="emitter('onStateSave',$event)"
   (selectionChange)="onSelectionChange($event)"
   [alwaysShowPaginator]="alwaysShowPaginator"
   [autoLayout]="autoLayout"
@@ -292,11 +292,11 @@
                 let-value
                 pTemplate="filter"
               >
-<!--                <ng-date-picker-->
-<!--                  (onChange)="filter($event.dateObj)"-->
-<!--                  [inline]="true"-->
-<!--                  [locale]="col.renderer.locale"-->
-<!--                ></ng-date-picker>-->
+                <!--                <ng-date-picker-->
+                <!--                  (onChange)="filter($event.dateObj)"-->
+                <!--                  [inline]="true"-->
+                <!--                  [locale]="col.renderer.locale"-->
+                <!--                ></ng-date-picker>-->
               </ng-template>
             </p-columnFilter>
             <p-columnFilter
@@ -344,8 +344,7 @@
     let-columns="columns"
     let-rowData
     let-rowIndex="rowIndex"
-    pTemplate="body"
-  >
+    pTemplate="body">
     <tr
       [pContextMenuRowDisabled]="!contextMenuItems"
       [pContextMenuRowIndex]="rowIndex"
@@ -558,7 +557,8 @@
   </ng-template>
   <ng-template let-columns pTemplate="emptymessage">
     <tr>
-      <td [attr.colspan]="actions ? (selectableRows && (selectionMode == 'checkbox' || selectionMode == 'radio')) ? columns.length + 2 : columns.length + 1 : columns.length">
+      <td
+        [attr.colspan]="actions ? (selectableRows && (selectionMode == 'checkbox' || selectionMode == 'radio')) ? columns.length + 2 : columns.length + 1 : columns.length">
         <ng-empty [message]="emptyMessage"></ng-empty>
       </td>
     </tr>

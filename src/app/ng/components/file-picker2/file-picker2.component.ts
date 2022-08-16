@@ -10,23 +10,20 @@ import {
   OnChanges,
   OnInit,
   Output,
-  ViewContainerRef,
 } from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
+  UntypedFormGroup,
 } from '@angular/forms';
 import {NgColor} from '@ng/models/color';
 import {NgError, NgLabelPosition} from '@ng/models/forms';
-import {UtilsService} from '@ng/services';
 
 @Component({
   selector: 'ng-file-picker2',
@@ -49,7 +46,6 @@ export class FilePicker2Component
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
-  @Input() showImagePreview: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() disabled: boolean;
   @Input() readonly: boolean;
@@ -65,14 +61,13 @@ export class FilePicker2Component
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  filesToShow: any = [];
-  filesToEmit: any = [];
+  filesToShow: any[] = [];
+  filesToEmit: any[] = [];
   _chooseLabel: string;
 
   constructor(
     private cd: ChangeDetectorRef,
     private injector: Injector,
-    private utilsService: UtilsService,
   ) {
   }
 
@@ -131,28 +126,29 @@ export class FilePicker2Component
 
   async onSingleSelect(event) {
     const file: File = event.target.files[0];
-    this.filesToShow.push(await this.fileToBase64(file));
+    this.filesToShow.push({name: file.name, base64: await this.fileToBase64(file)});
     this.chooseLabel = file.name;
     if (this.resultType == 'base64') {
-      this.filesToEmit = await this.fileToBase64(file);
+      this.filesToEmit.push(await this.fileToBase64(file));
     } else if (this.resultType == 'file') {
-      this.filesToEmit = file;
+      this.filesToEmit.push(file);
     }
-    this.onSelect.emit(this.filesToEmit);
-    this.onModelChange(this.filesToEmit);
+    this.onSelect.emit(this.filesToEmit[0]);
+    this.onModelChange(this.filesToEmit[0]);
   }
 
   onSingleDelete() {
     this.filesToEmit = [];
     this.filesToShow = [];
     this.chooseLabel = this._chooseLabel;
+    this.onRemove.emit();
     this.onModelChange(null);
   }
 
   async onMultipleSelect(event) {
     if (this.filesToEmit.length < this.fileLimit) {
       const file: File = event.target.files[0];
-      this.filesToShow.push(await this.fileToBase64(file));
+      this.filesToShow.push({name: file.name, base64: await this.fileToBase64(file)});
       if (this.resultType == 'base64') {
         this.filesToEmit.push(await this.fileToBase64(file));
       } else if (this.resultType == 'file') {
@@ -164,19 +160,11 @@ export class FilePicker2Component
   }
 
   onMultipleDelete(event, index: number) {
-    this.utilsService
-      .showConfirm({header: 'حذف فایل', message: 'تصویر حذف شود؟'})
-      .then((res) => {
-        if (res) {
-          {
-            event.stopPropagation();
-            this.onRemove.emit(this.filesToEmit[index]);
-            this.filesToShow.splice(index, 1);
-            this.filesToEmit.splice(index, 1);
-            this.onModelChange(this.filesToEmit);
-          }
-        }
-      });
+    event.stopPropagation();
+    this.onRemove.emit(this.filesToEmit[index]);
+    this.filesToShow.splice(index, 1);
+    this.filesToEmit.splice(index, 1);
+    this.onModelChange(this.filesToEmit);
   }
 
   async init(value: any) {
@@ -189,7 +177,7 @@ export class FilePicker2Component
       const resultToShow = [];
       const resultToEmit = [];
       for (const item of value) {
-        //Array of files
+        // item is a file
         if (item instanceof File) {
           resultToShow.push(await this.fileToBase64(item));
           if (wantBase64) {
@@ -198,9 +186,8 @@ export class FilePicker2Component
             resultToEmit.push(item);
           }
         }
-        //Array of string
         if (typeof item == 'string') {
-          //string is base64
+          // item is base64
           if (item.startsWith('src=')) {
             resultToShow.push(item);
             if (wantBase64) {
@@ -208,7 +195,7 @@ export class FilePicker2Component
             } else if (wantFile) {
               resultToEmit.push(this.base64toFile(item, item.split('/').pop()));
             }
-            //string is url
+            // item is url
           } else {
             resultToShow.push(await this.urlToBase64(item));
             if (wantBase64) {
@@ -297,7 +284,6 @@ export class FilePicker2Component
     );
   }
 
-
   isRequired(): boolean {
     if (this.ngControl) {
       const control = this.ngControl.control;
@@ -352,52 +338,49 @@ export class FilePicker2Component
   }
 
   base64toFile(dataurl: any, filename: string): File {
-    var arr = dataurl.split(','),
-      mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]),
-      n = bstr.length,
-      u8arr = new Uint8Array(n);
+    const arr = dataurl.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
     while (n--) {
       u8arr[n] = bstr.charCodeAt(n);
     }
     return new File([u8arr], filename, {type: mime});
   }
 
-  isImageUrl(url: string) {
-    return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
-  }
-
-  isImageFile(file: File) {
-    return file && file['type'].split('/')[0] === 'image';
-  }
-
   isImage(value: any) {
+    const isImageUrl = (url: string) => {
+      return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
+    }
+
+    const isImageFile = (file: File) => {
+      return file && file['type'].split('/')[0] === 'image';
+    }
+
+    const isImageBase64 = (url: string) => {
+      const ext = url.substring(url.indexOf('/') + 1, url.indexOf(';base64'));
+      return ['png', 'jpg', 'jpeg', 'gif', 'tif', 'tiff'].indexOf(ext) > -1;
+    }
+
     let result = false;
     if (Array.isArray(value)) {
-      if (
-        value.every((item) => item instanceof File && this.isImageFile(item))
-      ) {
+      if (!value.length) {
+        return false;
+      }
+      if (value.every((item) => item instanceof File && isImageFile(item))) {
         result = true;
       }
-      if (
-        value.every(
-          (item) =>
-            typeof item == 'string' &&
-            (this.isImageUrl(item) || item.startsWith('src='))
-        )
-      ) {
+      if (value.every((item) => typeof item == 'string' && (isImageUrl(item) || isImageBase64(item)))) {
         result = true;
       }
-    } else if (value instanceof File && this.isImageFile(value)) {
+    } else if (value instanceof File && isImageFile(value)) {
       result = true;
-    } else if (
-      typeof value == 'string' &&
-      (this.isImageUrl(value) || value.startsWith('src='))
-    ) {
+    } else if (typeof value == 'string' && (isImageUrl(value) || isImageBase64(value))) {
       result = true;
     } else if (value instanceof FileList) {
       for (let i = 0; i < value.length; i++) {
-        if (this.isImageFile(value.item(i))) {
+        if (isImageFile(value.item(i))) {
           result = true;
           continue;
         } else {
@@ -407,5 +390,15 @@ export class FilePicker2Component
       }
     }
     return result;
+  }
+
+  getFileType(file: any) {
+    let result;
+    if (!!file && this.isImage(file)) {
+      result = 'image';
+    } else {
+      result = 'file';
+    }
+    return result
   }
 }

@@ -1,6 +1,5 @@
-import {Component, EventEmitter, OnInit, Output, ViewContainerRef} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgDialog} from '@ng/models/overlay';
-import {UtilsService} from '@ng/services';
 import {Subject} from 'rxjs';
 
 @Component({
@@ -9,10 +8,8 @@ import {Subject} from 'rxjs';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent {
-
   private _onHide = new Subject();
   onHide = this._onHide.asObservable();
-
   options: NgDialog = {
     draggable: true,
     keepInViewport: true,

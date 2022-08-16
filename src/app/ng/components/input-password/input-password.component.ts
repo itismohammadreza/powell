@@ -1,26 +1,29 @@
 import {
-  AfterContentInit, AfterViewInit,
+  AfterContentInit,
+  AfterViewInit,
   ChangeDetectorRef,
-  Component, ContentChildren,
+  Component,
+  ContentChildren,
   EventEmitter,
   forwardRef,
   InjectFlags,
   Injector,
   Input,
   OnInit,
-  Output, QueryList, TemplateRef,
+  Output,
+  QueryList,
+  TemplateRef,
 } from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
   FormControlName,
-  UntypedFormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
+  UntypedFormGroup,
 } from '@angular/forms';
 import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
 import {NgPosition, NgSize} from '@ng/models/offset';
@@ -68,12 +71,14 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
   @Input() style: any;
   @Input() styleClass: string;
   @Input() placeholder: string;
+  @Input() showClear: boolean;
   @Output() onInput = new EventEmitter();
   @Output() onChange = new EventEmitter();
   @Output() onKeyDown = new EventEmitter();
   @Output() onKeyUp = new EventEmitter();
   @Output() onBlur = new EventEmitter();
   @Output() onFocus = new EventEmitter();
+  @Output() onClear = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
@@ -185,6 +190,11 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
     this.onModelChange(inputElement.value);
   }
 
+  _onClear() {
+    this.onClear.emit();
+    this.onModelChange(null);
+  }
+
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
   }
@@ -205,7 +215,6 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
   }
-
 
   isRequired(): boolean {
     if (this.ngControl) {
