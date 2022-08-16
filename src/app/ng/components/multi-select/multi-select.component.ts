@@ -49,7 +49,7 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgPosition = 'left';
   @Input() errors: NgError;
-  @Input() display: string;
+  @Input() display: string = 'comma';
   @Input() icon: string;
   @Input() inputSize: NgSize = 'md';
   @Input() addon: NgAddon

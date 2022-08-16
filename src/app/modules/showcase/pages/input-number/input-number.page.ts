@@ -4,6 +4,8 @@ import {
   NgAddon,
   NgCurrency,
   NgCurrencyDisplay,
+  NgInputTypes,
+  NgKeyFilter,
   NgLabelPosition,
   NgNumberButtonLayout,
   NgNumberMode
@@ -23,16 +25,35 @@ export class InputNumberPage implements OnInit {
   submit() {}
   ngOnInit(): void {}
 
-  label: string;
+
+
+  label: string = 'test';
   filled: boolean = false;
-  labelWidth: number;
-  hint: string;
+  labelWidth: number = 100;
+  hint: string = '';
   rtl: boolean = false;
   showRequiredStar: boolean = true;
-  labelPos: NgLabelPosition = 'fix-top';
+  labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
-  icon: string;
+  icon: string = 'pi pi-home';
   inputSize: NgSize = 'md';
+  readonly: boolean = false;
+  disabled: boolean = false;
+  maxlength: number = 2000;
+  placeholder: string = '';
+  type: NgInputTypes = 'text';
+  keyFilter: NgKeyFilter | RegExp = 'alphanum';
+  addon: NgAddon = {
+    before: {
+      type: 'icon',
+      icon: 'pi pi-home',
+    },
+    after: {
+      type: 'button',
+      icon: 'pi pi-home',
+      label: 'test'
+    }
+  };
   format: boolean = true;
   showButtons: boolean = true;
   buttonLayout: NgNumberButtonLayout = 'stacked';
@@ -49,10 +70,6 @@ export class InputNumberPage implements OnInit {
   min: number;
   max: number;
   step: number = 1;
-  placeholder: string;
   size: number;
-  maxlength: number;
-  disabled: boolean = false;
   title: string;
-  addon: NgAddon;
 }
