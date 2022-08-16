@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Observable} from 'rxjs';
 import {BreadcrumbService} from '@ng/services/breadcrumb.service';
 
@@ -7,13 +7,10 @@ import {BreadcrumbService} from '@ng/services/breadcrumb.service';
   templateUrl: './breadcrumb.component.html',
   styleUrls: ['./breadcrumb.component.scss'],
 })
-export class BreadcrumbComponent implements OnInit {
+export class BreadcrumbComponent {
   breadcrumbs$: Observable<any[]>;
 
   constructor(private breadcrumbService: BreadcrumbService) {
     this.breadcrumbs$ = breadcrumbService.breadcrumbs$;
-  }
-
-  ngOnInit() {
   }
 }

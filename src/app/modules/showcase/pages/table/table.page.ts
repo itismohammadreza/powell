@@ -31,7 +31,7 @@ export interface Customer {
   templateUrl: './table.page.html',
   styleUrls: ['./table.page.scss'],
 })
-export class TablePage implements OnInit {
+export class TablePage extends LanguageChecker implements OnInit {
   representatives: Representative[] = [
     {name: 'Amy Elsner', image: 'amyelsner.png'},
     {name: 'Anna Fali', image: 'annafali.png'},

@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 import {NgPipesModule} from '@ng/pipes/pipes.module';
@@ -22,7 +22,8 @@ import {NgxSuneditorModule} from "ngx-suneditor";
     NgDirectivesModule,
     NgPipesModule,
     NgxSuneditorModule
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class NgComponentsModule {
 }
