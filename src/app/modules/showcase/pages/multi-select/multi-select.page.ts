@@ -16,30 +16,55 @@ export class MultiSelectPage implements OnInit {
   submit() {}
   ngOnInit(): void {}
 
-  label: string;
-  filled: boolean = false;
-  labelWidth: number;
-  hint: string;
-  rtl: boolean = false;
-  showRequiredStar: boolean = true;
-  labelPos: NgLabelPosition = 'fix-top';
+
+
+
+  hint: string = '';
+  label: string = 'label';
+  labelPos: NgLabelPosition = 'fix-side';
+  labelWidth: number = 100;
+  icon: string = 'pi pi-home';
   iconPos: NgPosition = 'left';
-  display: string;
-  icon: string;
   inputSize: NgSize = 'md';
+  filled: boolean = false;
+  showRequiredStar: boolean = true;
+  rtl: boolean = true;
+  placeholder: string = '';
+  readonly: boolean = false;
+  disabled: boolean = false;
+  addon: NgAddon = {
+    before: {
+      type: 'icon',
+      icon: 'pi pi-home',
+    },
+    after: {
+      type: 'button',
+      label: 'home',
+    },
+  };
+  scrollHeight: string = '200px';
+  options: any[];
+  filter: boolean = false;
+  filterPlaceholder: string;
+  editable: boolean = false;
+  maxlength: number;
+  autofocusFilter: boolean = false;
+  resetFilterOnHide: boolean = false;
+  emptyFilterMessage: string = 'nothing found.';
+  autoDisplayFirst: boolean = false;
+  showClear: boolean = false;
+  tooltip: any;
+  tooltipPosition: NgPosition = 'top';
+  display: string = 'comma';
   appendTo: any;
   ariaFilterLabel: string;
   ariaLabelledBy: string;
-  autofocusFilter: boolean = false;
   autoZIndex: boolean = true;
   baseZIndex: number = 1000;
   defaultLabel: string = 'Choose';
   dataKey: string;
-  disabled: boolean = false;
   displaySelectedLabel: boolean = true;
   dropdownIcon: string = 'pi pi-chevron-down';
-  emptyFilterMessage: string = 'No results found';
-  filter: boolean = true;
   filterMatchMode: NgFilterMatchMode = 'contains';
   filterValue: string;
   filterLocale: string = undefined;
@@ -48,7 +73,6 @@ export class MultiSelectPage implements OnInit {
   hideTransitionOptions: string = '.1s linear';
   itemSize: number;
   maxSelectedLabels: number = 3;
-  options: any[];
   optionLabel: string = 'label';
   optionValue: string = 'value';
   optionDisabled: string = 'disabled';
@@ -57,11 +81,7 @@ export class MultiSelectPage implements OnInit {
   group: boolean = false;
   overlayVisible: boolean = false;
   panelStyle: object;
-  placeholder: string;
-  readonly: boolean = false;
   emptyMessage: string = 'No records found.';
-  resetFilterOnHide: boolean = false;
-  scrollHeight: string = '200px';
   selectedItemsLabel: string | 'ellipsis' = 'ellipsis';
   selectionLimit: number;
   showHeader: boolean = true;
@@ -70,10 +90,7 @@ export class MultiSelectPage implements OnInit {
   style: object;
   styleClass: string;
   tabindex: number;
-  tooltip: any;
   tooltipStyleClass: string;
-  tooltipPosition: NgPosition = 'top';
   tooltipPositionStyle: string = 'absolute';
   virtualScroll: boolean = false;
-  addon: NgAddon;
 }

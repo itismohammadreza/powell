@@ -1,152 +1,131 @@
-$root: "p-multiSelect";
-$wrapper: "p-multiSelect ::ng-deep .p-multiselect";
-$inputEl: "p-multiSelect ::ng-deep .p-inputtext";
+:host ::ng-deep {
+  .multi-select-wrapper {
+    display: flex;
+    position: relative;
+    direction: ltr;
 
-#{$root},
-#{$wrapper},
-#{$inputEl},
-small {
-  width: 100%;
-}
-
-.multi-select-wrapper {
-  display: flex;
-  position: relative;
-
-  .field {
-    flex-grow: 1;
-  }
-
-  #{$root} {
-    &.has-before ::ng-deep .p-multiselect {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+    p-multiSelect,
+    .p-multiselect,
+    small {
+      width: 100%;
     }
 
-    &.has-after ::ng-deep .p-multiselect {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-  }
+    .field {
+      flex-grow: 1;
 
-  .field{
+      &.p-input-icon-right {
+        .p-inputtext {
+          padding-right: 2rem;
+        }
+      }
+
+      &.p-input-icon-left {
+        .p-inputtext {
+          padding-left: 2rem;
+        }
+      }
+
+      p-multiSelect {
+        &.has-before {
+          .p-multiselect {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+        }
+
+        &.has-after {
+          .p-multiselect {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+      }
+    }
+
     i {
       z-index: 200;
     }
 
-    position: relative;
-
-    .error {
+    small {
       position: absolute;
-      top: 100%;
+      top: calc(100% + 0.25rem);
     }
-  }
 
-  &.ltr {
-    .field{
+    &.p-multiselect-clearable.p-multiselect-filled {
+      .field>i {
+        display: none;
+      }
+    }
 
-
-      .error {
+    &.ltr {
+      small {
         left: 0;
       }
 
-      &.p-input-icon-left #{$wrapper} {
-        padding-left: 2rem;
-      }
-
-      &.p-input-icon-right {
+      .field.p-input-icon-right {
         i {
-          right: 2.5rem;
+          right: calc(0.75rem + 3rem)
         }
+      }
+
+      .p-multiselect-clear-icon {
+        left: 0.75rem;
       }
     }
 
-    #{$inputEl},
-    label, small {
-      direction: ltr;
-    }
-  }
+    &.rtl {
+      text-align: right;
 
-  &.rtl {
-    text-align: right;
+      .p-inputtext,
+      label,
+      small {
+        direction: rtl;
+      }
 
-    .field{
-      &.p-float-label {
-        label {
-          right: 0.5rem;
-          left: auto;
+      .field {
+        &.p-float-label {
+          label {
+            right: 0.5rem;
+            left: auto;
+          }
+
+          &.p-input-icon-right {
+            label {
+              right: calc(0.5rem + 2rem);
+              left: auto;
+            }
+
+            i {
+              left: auto;
+              right: 0.75rem
+            }
+          }
         }
 
-        &.p-input-icon-right {
-          label {
-            right: 2rem;
+        &.p-input-icon-left {
+          i {
+            right: auto;
+            left: calc(0.75rem + 3rem)
           }
         }
       }
 
-      .error {
-        right: 0;
-      }
-
-      &.p-input-icon-right #{$wrapper} {
-        padding-right: 2rem;
-      }
-
-      &.p-input-icon-left {
-        i {
-          left: 2.5rem;
-        }
-      }
-    }
-
-    #{$wrapper} .p-multiselect-items .p-checkbox {
-      margin-right: 0;
-      margin-left: 0.5rem;
-    }
-
-    #{$inputEl},
-    #{$wrapper} .p-multiselect-items,
-    #{$wrapper} .p-placeholder,
-    #{$wrapper} .p-multiselect-label,
-    label, small {
-      direction: rtl;
-    }
-
-    #{$wrapper} {
-      flex-direction: row-reverse;
-
-      .p-multiselect-header {
+      .p-multiselect {
         flex-direction: row-reverse;
+      }
 
-        .p-checkbox {
-          margin-left: 0.5rem;
-          margin-right: 0;
-        }
+      .p-multiselect-clear-icon {
+        left: auto;
+        right: 0.75rem;
+      }
 
-        .p-multiselect-close {
+      .p-chips-token {
+        margin-left: 0.5rem;
+        margin-right: 0;
+
+        .p-chips-token-icon {
           margin-right: 0.5rem;
           margin-left: 0;
-        }
-
-        .p-multiselect-filter-icon {
-          left: 0.5rem;
-          right: auto;
-        }
-
-        .p-inputtext {
-          padding-left: 1.5rem;
-        }
-      }
-
-      &.p-multiselect-chip {
-        .p-multiselect-token {
-          margin-right: 0;
-          margin-left: 0.5rem;
-
-          .p-multiselect-token-icon {
-            margin-left: 0;
-            margin-right: 0.5rem;
-          }
         }
       }
     }

@@ -5,7 +5,7 @@
     direction: ltr;
 
     p-inputMask,
-    .p-inputMask,
+    .p-inputmask,
     .p-inputtext,
     small {
       width: 100%;
@@ -28,14 +28,14 @@
 
       p-inputMask {
         &.has-before {
-          .p-inputMask {
+          .p-inputmask {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
           }
         }
 
         &.has-after {
-          .p-inputMask {
+          .p-inputmask {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
           }
@@ -59,6 +59,7 @@
     }
 
     &.rtl {
+      .p-inputtext,
       label,
       small {
         direction: rtl;

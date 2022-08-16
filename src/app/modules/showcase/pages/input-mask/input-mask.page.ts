@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgAddon, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgInputTypes, NgKeyFilter, NgLabelPosition} from '@ng/models/forms';
 import {NgPosition, NgSize} from '@ng/models/offset';
 
 @Component({
@@ -16,28 +16,41 @@ export class InputMaskPage implements OnInit {
   submit() {}
   ngOnInit(): void {}
 
-  label: string;
+
+  label: string = 'test';
   filled: boolean = false;
-  labelWidth: number;
-  hint: string;
+  labelWidth: number = 100;
+  hint: string = '';
   rtl: boolean = false;
   showRequiredStar: boolean = true;
-  labelPos: NgLabelPosition = 'fix-top';
+  labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
-  icon: string;
+  icon: string = 'pi pi-home';
   inputSize: NgSize = 'md';
+  readonly: boolean = false;
+  disabled: boolean = false;
+  maxlength: number = 2000;
+  placeholder: string = '';
+  type: NgInputTypes = 'text';
+  keyFilter: NgKeyFilter | RegExp = 'alphanum';
+  addon: NgAddon = {
+    before: {
+      type: 'icon',
+      icon: 'pi pi-home',
+    },
+    after: {
+      type: 'button',
+      icon: 'pi pi-home',
+      label: 'test'
+    }
+  };
   mask: string = '99-999999';
   slotChar: string = '_';
   autoClear: boolean = true;
   unmask: boolean = false;
-  placeholder: string;
   size: number;
-  maxlength: number;
-  disabled: boolean = false;
-  readonly: boolean = false;
   characterPattern: string = '[A-Za-z]';
   autoFocus: boolean = false;
   autocomplete: string;
   title: string;
-  addon: NgAddon;
 }

@@ -1,83 +1,93 @@
-$inputEl: "textarea";
-
-#{$inputEl},
-small {
-  display: block;
-  width: 100%;
-}
-
-.input-textarea-wrapper {
-  direction: ltr;
-
-  #{$inputEl}.has-before {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-  }
-
-  #{$inputEl}.has-after {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-  }
-
-  #{$inputEl}.has-after.has-before {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .field {
+:host ::ng-deep {
+  .input-textarea-wrapper {
+    display: flex;
     position: relative;
+    direction: ltr;
 
-    .error {
-      position: absolute;
-      top: 100%;
+    textarea,
+    .p-inputtextarea,
+    .p-inputtext,
+    small {
+      width: 100%;
     }
-  }
 
-  &.ltr {
     .field {
+      flex-grow: 1;
 
-      .error {
+      &.p-input-icon-right {
+        .p-inputtext {
+          padding-right: 2rem;
+        }
+      }
+
+      &.p-input-icon-left {
+        .p-inputtext {
+          padding-left: 2rem;
+        }
+      }
+
+      textarea{
+        &.has-before {
+          .p-inputtextarea {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+        }
+
+        &.has-after {
+          .p-inputtextarea {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+      }
+    }
+
+    i {
+      z-index: 200;
+    }
+
+    small {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+    }
+
+    &.ltr {
+      small {
         left: 0;
       }
     }
 
-    #{$inputEl},
-    label, small {
-      direction: ltr;
-    }
-  }
+    &.rtl {
 
-  &.rtl {
-    text-align: right;
+      .p-inputtext,
+      label,
+      small {
+        direction: rtl;
+      }
 
-    .field {
-      &.p-float-label {
-        label {
-          right: 0.5rem;
-          left: auto;
-        }
-
-        &.p-input-icon-right {
+      .field {
+        &.p-float-label {
           label {
-            right: 2rem;
+            right: 0.5rem;
+            left: auto;
+          }
+
+          &.p-input-icon-right {
+            label {
+              right: 2rem;
+            }
           }
         }
       }
 
-      .error {
+      small {
         right: 0;
       }
-    }
 
-    #{$inputEl},
-    label, small {
-      direction: rtl;
+      .p-inputtextarea-panel div {
+        direction: rtl;
+      }
     }
   }
 }

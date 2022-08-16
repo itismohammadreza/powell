@@ -74,7 +74,7 @@ export class MainPage extends LanguageChecker implements OnInit {
       this.onMenuTypeChange('overlay');
       this.toggleOverlayDisplay(false);
     } else {
-      this.onMenuTypeChange('hover');
+      this.onMenuTypeChange('push');
     }
   }
 
