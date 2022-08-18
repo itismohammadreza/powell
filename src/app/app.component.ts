@@ -39,6 +39,7 @@ import {filter} from 'rxjs/operators';
 21- implement ng-status component just like AntDisign-NG-ZORRRO.
 22- check showClear functionality that may forget to add, and also check showClear when icon is provided.
 23- add specific class to hint and error and icon elements and edit .scss file.
+24- add ability to set default value for sidebarLock and sidebarVisible (now even you set default value, it changed in the window resizeEvent and override).
 */
 @Component({
   selector: 'app-root',
