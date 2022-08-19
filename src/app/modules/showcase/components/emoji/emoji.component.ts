@@ -11,9 +11,22 @@ export class EmojiComponent implements OnInit {
   }
 
   ngOnInit() {
-    const eyes = this.document.querySelectorAll('.eye-color');
+    const emoji: HTMLDivElement = this.document.querySelector('.wrapper');
+    const eyes = this.document.querySelectorAll<HTMLDivElement>('.eye-color');
     const windowObj = this.document.defaultView;
+    const threshold = 100;
     windowObj.addEventListener('mousemove', (event) => {
+      const closeFromLeft = Math.abs(event.clientX - emoji.getBoundingClientRect().left) < threshold;
+      const closeFromTop = Math.abs(event.clientY - emoji.getBoundingClientRect().top) < threshold;
+      const closeFromRight = Math.abs(event.clientX - (emoji.getBoundingClientRect().left + emoji.offsetWidth)) < threshold;
+      const closeFromBottom = Math.abs(event.clientY - (emoji.getBoundingClientRect().top + emoji.offsetHeight)) < threshold;
+      const isInVerticalBoundary = event.clientY > emoji.getBoundingClientRect().top - threshold && event.clientY < emoji.getBoundingClientRect().top + emoji.offsetHeight + threshold
+      const isInHorizontalBoundary = event.clientX > emoji.getBoundingClientRect().left - threshold && event.clientX < emoji.getBoundingClientRect().left + emoji.offsetWidth + threshold
+      if (((closeFromLeft || closeFromRight) && isInVerticalBoundary) || ((closeFromTop || closeFromBottom) && isInHorizontalBoundary)) {
+        emoji.classList.add('stressful');
+      } else {
+        emoji.classList.remove('stressful');
+      }
       const x = (event.clientX / (windowObj.innerWidth * 2)) * 100;
       const y = (event.clientY / (windowObj.innerHeight * 2)) * 100;
       eyes.forEach((e: any) => {
@@ -24,10 +37,11 @@ export class EmojiComponent implements OnInit {
   }
 
   onMouseOver(event) {
-    event.target.classList.add('hover');
+    event.currentTarget.classList.add('scary');
+    event.currentTarget.classList.remove('stressful');
   }
 
   onMouseLeave(event) {
-    event.target.classList.remove('hover');
+    event.currentTarget.classList.remove('scary');
   }
 }
