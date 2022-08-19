@@ -1,7 +1,7 @@
 export class ImageItem {
   preview: string;
-  thumbnail?: string;
   alt: string;
+  thumbnail?: string;
   caption?: {
     title?: string;
     subtitle?: string

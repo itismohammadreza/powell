@@ -67,8 +67,6 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() autoFocus: boolean;
   @Input() showClear: boolean;
   @Input() autocomplete: string;
-  @Input() ariaLabel: string;
-  @Input() ariaRequired: boolean;
   @Input() title: string;
   @Output() onFocus = new EventEmitter();
   @Output() onBlur = new EventEmitter();
@@ -81,15 +79,13 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
-
-  onModelChange: any = (_: any) => {
-  };
-
-  onModelTouched: any = () => {
-  };
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;

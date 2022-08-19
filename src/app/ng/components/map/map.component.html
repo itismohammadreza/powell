@@ -1,7 +1,62 @@
-<div
-  (leafletMapReady)="onMapReady($event)"
-  [leafletLayers]="layers"
-  [leafletOptions]="options"
-  [style.height]="height"
-  leaflet
-></div>
+<div [ngClass]="{
+      rtl: rtl,
+      ltr: !rtl,
+      'flex-column-reverse': labelPos == 'fix-top',
+      'align-items-center': labelPos == 'fix-side',
+      'align-items-end': labelPos == 'fix-top' && rtl,
+      'flex-row': labelPos == 'fix-side' && rtl,
+      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+    }" class="knob-wrapper">
+  <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field" [attr.id]="inputId">
+    <div
+      leaflet
+      [style.height]="height"
+      [leafletLayers]="layers"
+      [leafletCenter]="center"
+      [leafletZoom]="zoom"
+      [leafletMinZoom]="leafletMinZoom"
+      [leafletMaxZoom]="leafletMaxZoom"
+      [leafletOptions]="options"
+      [leafletPanOptions]="panOptions"
+      [leafletZoomOptions]="zoomOptions"
+      [leafletZoomPanOptions]="zoomPanOptions"
+      [leafletFitBoundsOptions]="fitBoundsOptions"
+      [leafletFitBounds]="leafletFitBounds"
+      [leafletMaxBounds]="leafletMaxBounds"
+      (leafletZoomChange)="onZoomChange($event)"
+      (leafletCenterChange)="onCenterChange($event)"
+      (leafletClick)="_onMapClick($event)"
+      (leafletMapReady)="onMapReady($event)"
+      (leafletDoubleClick)="emitter('onMapDoubleClick',$event)"
+      (leafletMouseDown)="emitter('onMapMouseDown',$event)"
+      (leafletMouseUp)="emitter('onMapMouseUp',$event)"
+      (leafletMouseMove)="emitter('onMapMouseMove',$event)"
+      (leafletMouseOver)="emitter('onMapMouseOver',$event)"
+      (leafletMouseOut)="emitter('onMapMouseOut',$event)"
+      (leafletMapMove)="emitter('onMapMove',$event)"
+      (leafletMapMoveStart)="emitter('onMapMoveStart',$event)"
+      (leafletMapMoveEnd)="emitter('onMapMoveEnd',$event)"
+      (leafletMapZoom)="emitter('onMapZoom',$event)"
+      (leafletMapZoomStart)="emitter('onMapZoomStart',$event)"
+      (leafletMapZoomEnd)="emitter('onMapZoomEnd',$event)"
+    ></div>
+  </div>
+  <label
+    *ngIf="label && labelPos != 'float'"
+    [attr.for]="inputId"
+    [ngClass]="{
+      'mb-0': labelPos == 'fix-side',
+      'ml-4': rtl,
+      'mr-4': !rtl,
+      'text-muted': disabled
+    }"
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label }}
+  </label>
+  <small *ngIf="hint">{{ hint }}</small>
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
+      {{ error.value }}
+    </small>
+  </ng-container>
+</div>

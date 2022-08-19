@@ -321,7 +321,7 @@ export interface NgDialogFormConfig {
   mediumLabel?: string;
   strongLabel?: string;
   feedback?: boolean;
-  showPassword?: boolean;
+  toggleMask?: boolean;
   rows?: number;
   cols?: number;
   autoResize?: boolean;

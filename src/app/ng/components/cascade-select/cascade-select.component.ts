@@ -83,15 +83,13 @@ export class CascadeSelectComponent implements OnInit, AfterViewInit, AfterConte
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
   optionTemplate: TemplateRef<any>;
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
-
-  onModelChange: any = (_: any) => {
-  };
-
-  onModelTouched: any = () => {
-  };
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;

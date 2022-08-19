@@ -83,15 +83,13 @@ export class ChipsComponent implements OnInit, AfterViewInit, AfterContentInit, 
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
   itemTemplate: TemplateRef<any>;
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
-
-  onModelChange: any = (_: any) => {
-  };
-
-  onModelTouched: any = () => {
-  };
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;

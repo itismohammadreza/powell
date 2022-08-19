@@ -41,6 +41,7 @@ import {filter} from 'rxjs/operators';
 23- add specific class to hint and error and icon elements and edit .scss file.
 24- add ability to set default value for sidebarLock and sidebarVisible
     (now even you set default value, it changed in the window resizeEvent and override). also body by default get a 'p-overflow-hidden' class. fix it!
+25- in map: implement removeLastMarker & removeAllMarkers buttons. also add an @Input() multi:boolean to allow choose multiple marker.
 */
 @Component({
   selector: 'app-root',

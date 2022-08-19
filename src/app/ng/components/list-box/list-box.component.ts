@@ -95,15 +95,13 @@ export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit
   emptyTemplate: TemplateRef<any>;
   emptyFilterTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
-
-  onModelChange: any = (_: any) => {
-  };
-
-  onModelTouched: any = () => {
-  };
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;

@@ -123,15 +123,13 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   emptyTemplate: TemplateRef<any>;
   emptyFilterTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
-
-  onModelChange: any = (_: any) => {
-  };
-
-  onModelTouched: any = () => {
-  };
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;

@@ -30,25 +30,25 @@ export class InputPasswordPage implements OnInit {
   inputSize: NgSize = 'md';
   readonly: boolean = false;
   disabled: boolean = false;
+  showClear: boolean = false;
   maxlength: number = 2000;
   placeholder: string = '';
   type: NgInputTypes = 'text';
-  keyFilter: NgKeyFilter | RegExp = 'alphanum';
-  addon: NgAddon = {
-    before: {
-      type: 'icon',
-      icon: 'pi pi-home',
-    },
-    after: {
-      type: 'button',
-      icon: 'pi pi-home',
-      label: 'test'
-    }
-  };
+  addon: NgAddon// = {
+  //   before: {
+  //     type: 'icon',
+  //     icon: 'pi pi-home',
+  //   },
+  //   after: {
+  //     type: 'button',
+  //     icon: 'pi pi-home',
+  //     label: 'test'
+  //   }
+  // };
   promptLabel: string = 'لطفا رمز عبور را وارد کنید';
   weakLabel: string = 'ضعیف';
   mediumLabel: string = 'متوسط';
   strongLabel: string = 'قوی';
   feedback: boolean = true;
-  showPassword: boolean = false;
+  toggleMask: boolean = false;
 }

@@ -68,15 +68,13 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
-
-  onModelChange: any = (_: any) => {
-  };
-
-  onModelTouched: any = () => {
-  };
 
   ngOnInit() {
     if (!this.keyFilter) {
