@@ -230,7 +230,6 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
 
   writeValue(value: any) {
     this.value = value;
-    console.log('set value', value)
     this.handleMarkerLayers(this.value);
     this.cd.markForCheck();
   }

@@ -1,20 +1,26 @@
 <p-splitButton
-  (onClick)="emitter('onClick',$event)"
-  (onDropdownClick)="emitter('onDropdownClick',$event)"
   [appendTo]="appendTo"
-  [badge]="badge"
   [class.rtl]="rtl"
-  [dir]="rtl ? 'rtl' : 'ltr'"
   [disabled]="disabled"
   [iconPos]="iconPos"
   [icon]="icon"
-  [items]="items"
   [label]="label"
   [model]="items"
-  badgeClass="p-badge-{{ badgeColor }}"
+  [style]="style"
+  [menuStyle]="menuStyle"
+  [menuStyleClass]="menuStyleClass"
+  [tabindex]="tabindex"
+  [showTransitionOptions]="showTransitionOptions"
+  [hideTransitionOptions]="hideTransitionOptions"
   styleClass="p-button-{{ appearance }} p-button-{{ color }} p-button-{{
     size
   }} p-button-{{ rounded ? 'rounded' : '' }} p-button-{{
     raised ? 'raised' : ''
   }}"
-></p-splitButton>
+  (onClick)="emitter('onClick',$event)"
+  (onDropdownClick)="emitter('onDropdownClick',$event)"
+>
+  <ng-template pTemplate="content" *ngIf="contentTemplate">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </ng-template>
+</p-splitButton>

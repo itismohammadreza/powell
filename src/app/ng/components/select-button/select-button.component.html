@@ -7,27 +7,20 @@
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
     }" class="select-button-wrapper">
-  <div
-    [ngClass]="{
-      'w-100': labelPos == 'fix-top'
-    }"
-    class="field">
+  <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field">
     <p-selectButton
-      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
-      (onChange)="_onChange($event)"
-      (onOptionClick)="_onOptionClick($event)"
       [(ngModel)]="value"
       [attr.id]="inputId"
       [dataKey]="dataKey"
       [disabled]="disabled"
       [multiple]="multiple"
-      [ngAddon]="addon"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [optionDisabled]="optionDisabled"
       [optionLabel]="optionLabel"
       [optionValue]="optionValue"
       [options]="options"
+      (onChange)="_onChange($event)"
+      (onOptionClick)="_onOptionClick($event)"
     >
       <ng-template *ngIf="itemTemplate">
         <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>

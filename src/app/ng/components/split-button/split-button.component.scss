@@ -1,7 +1,10 @@
 p-splitButton {
   direction: ltr;
-  &.rtl { text-align: right;
-    ::ng-deep .p-splitbutton-defaultbutton {
+
+  &.rtl ::ng-deep {
+    text-align: right;
+
+    .p-splitbutton-defaultbutton {
       border-bottom-right-radius: 3px;
       border-top-right-radius: 3px;
       border-bottom-left-radius: 0;
@@ -9,14 +12,15 @@ p-splitButton {
       border-right: 1px solid;
       border-left: 0;
     }
-    ::ng-deep .p-splitbutton-menubutton {
+
+    .p-splitbutton-menubutton {
       border-bottom-left-radius: 3px;
       border-top-left-radius: 3px;
       border-bottom-right-radius: 0;
       border-top-right-radius: 0;
     }
 
-    ::ng-deep .p-menuitem-icon {
+    .p-menuitem-icon {
       margin-right: 0;
       margin-left: 0.5rem;
     }
