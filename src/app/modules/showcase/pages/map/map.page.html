@@ -1,2 +1,53 @@
-<ng-map [(ngModel)]="value"></ng-map>
-{{value | json}}
+<ng-preview-options
+  [previewItems]="[
+  'hint',
+  'label',
+  'labelPos',
+  'labelWidth',
+  'filled',
+  'rtl',
+  'readonly',
+  'disabled',
+  'checkbox',
+  'filter',
+  'filterPlaceHolder',
+  'emptyFilterMessage',
+  'multiple',
+  'emptyMessage',
+  'showToggleAll',
+  ]"
+  [(label)]="label"
+  [(filled)]="filled"
+  [(labelWidth)]="labelWidth"
+  [(hint)]="hint"
+  [(rtl)]="rtl"
+  [(labelPos)]="labelPos"
+  [(checkbox)]="checkbox"
+  [(disabled)]="disabled"
+  [(filter)]="filter"
+  [(filterPlaceHolder)]="filterPlaceHolder"
+  [(emptyFilterMessage)]="emptyFilterMessage"
+  [(multiple)]="multiple"
+  [(readonly)]="readonly"
+  [(emptyMessage)]="emptyMessage"
+  [(showToggleAll)]="showToggleAll"
+></ng-preview-options>
+<div class="container">
+  <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
+    <h4>Preview</h4>
+    <ng-map
+      formControlName="c1"
+      [errors]="{ required: 'error' }"
+    >
+    </ng-map>
+    <ng-button type="submit" label="submit"></ng-button>
+  </form>
+  <h4>NG MODEL</h4>
+  VALUE :
+  <pre>{{binding | json}}</pre>
+  <ng-map
+    formControlName="c1"
+    [errors]="{ required: 'error' }"
+  >
+  </ng-map>
+</div>

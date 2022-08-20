@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'ng-split-button-page',
   templateUrl: './split-button.page.html',
   styleUrls: ['./split-button.page.scss'],
 })
-export class SplitButtonPage implements OnInit {
-  ngOnInit(): void {}
+export class SplitButtonPage {
 }

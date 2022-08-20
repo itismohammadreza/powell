@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgAddon, NgFilterMatchMode, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgLabelPosition} from '@ng/models/forms';
 import {NgPosition, NgSize} from '@ng/models/offset';
 
 @Component({
@@ -8,30 +8,21 @@ import {NgPosition, NgSize} from '@ng/models/offset';
   templateUrl: './multi-select.page.html',
   styleUrls: ['./multi-select.page.scss'],
 })
-export class MultiSelectPage implements OnInit {
+export class MultiSelectPage {
   form = new UntypedFormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;
-  submit() {}
-  ngOnInit(): void {}
 
-
-
-
-  hint: string = '';
   label: string = 'label';
-  labelPos: NgLabelPosition = 'fix-side';
+  filled: boolean = false;
   labelWidth: number = 100;
+  hint: string = '';
+  rtl: boolean = true;
   icon: string = 'pi pi-home';
+  labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
   inputSize: NgSize = 'md';
-  filled: boolean = false;
-  showRequiredStar: boolean = true;
-  rtl: boolean = true;
-  placeholder: string = '';
-  readonly: boolean = false;
-  disabled: boolean = false;
   addon: NgAddon = {
     before: {
       type: 'icon',
@@ -42,55 +33,30 @@ export class MultiSelectPage implements OnInit {
       label: 'home',
     },
   };
-  scrollHeight: string = '200px';
-  options: any[];
-  filter: boolean = false;
-  filterPlaceholder: string;
-  editable: boolean = false;
-  maxlength: number;
+  // native properties
   autofocusFilter: boolean = false;
-  resetFilterOnHide: boolean = false;
-  emptyFilterMessage: string = 'nothing found.';
-  autoDisplayFirst: boolean = false;
-  showClear: boolean = false;
-  tooltip: any;
-  tooltipPosition: NgPosition = 'top';
-  display: string = 'comma';
-  appendTo: any;
-  ariaFilterLabel: string;
-  ariaLabelledBy: string;
-  autoZIndex: boolean = true;
-  baseZIndex: number = 1000;
   defaultLabel: string = 'Choose';
-  dataKey: string;
+  disabled: boolean = false;
   displaySelectedLabel: boolean = true;
-  dropdownIcon: string = 'pi pi-chevron-down';
-  filterMatchMode: NgFilterMatchMode = 'contains';
-  filterValue: string;
-  filterLocale: string = undefined;
-  filterBy: string;
-  filterPlaceHolder: string;
-  hideTransitionOptions: string = '.1s linear';
-  itemSize: number;
+  emptyFilterMessage: string = 'No results found';
+  filter: boolean = true;
+  filterPlaceHolder: string = '';
   maxSelectedLabels: number = 3;
-  optionLabel: string = 'label';
-  optionValue: string = 'value';
-  optionDisabled: string = 'disabled';
-  optionGroupLabel: string = 'label';
-  optionGroupChildren: string = 'items';
-  group: boolean = false;
   overlayVisible: boolean = false;
-  panelStyle: any;
+  placeholder: string = '';
+  readonly: boolean = false;
   emptyMessage: string = 'No records found.';
+  resetFilterOnHide: boolean = false;
+  scrollHeight: string = '200px';
   selectedItemsLabel: string | 'ellipsis' = 'ellipsis';
-  selectionLimit: number;
+  selectionLimit: number = 100;
   showHeader: boolean = true;
-  showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   showToggleAll: boolean = true;
-  style: any;
-  styleClass: string;
-  tabindex: number;
-  tooltipStyleClass: string;
-  tooltipPositionStyle: string = 'absolute';
-  virtualScroll: boolean = false;
+  showClear: boolean = false;
+  display: string = 'comma';
+
+  options: any[];
+
+  submit() {
+  }
 }

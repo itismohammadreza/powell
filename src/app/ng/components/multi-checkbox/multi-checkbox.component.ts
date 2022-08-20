@@ -52,16 +52,10 @@ export class MultiCheckboxComponent implements OnInit, AfterViewInit, ControlVal
   @Input() orientation: NgOrientation = 'vertical';
   // native properties
   @Input() disabled: boolean;
-  @Input() tabindex: any;
-  @Input() ariaLabelledBy: string;
-  @Input() ariaLabel: string;
+  @Input() readonly: boolean;
   @Input() style: any;
   @Input() styleClass: string;
-  @Input() labelStyleClass: string;
   @Input() checkboxIcon: string = 'pi pi-check';
-  @Input() readonly: boolean;
-  @Input() trueValue: any;
-  @Input() falseValue: any;
   @Output() onChange = new EventEmitter();
 
   groupName: string;

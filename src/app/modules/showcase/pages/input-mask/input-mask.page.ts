@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgInputTypes, NgKeyFilter, NgLabelPosition} from '@ng/models/forms';
 import {NgPosition, NgSize} from '@ng/models/offset';
@@ -8,31 +8,21 @@ import {NgPosition, NgSize} from '@ng/models/offset';
   templateUrl: './input-mask.page.html',
   styleUrls: ['./input-mask.page.scss'],
 })
-export class InputMaskPage implements OnInit {
+export class InputMaskPage {
   form = new UntypedFormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;
-  submit() {}
-  ngOnInit(): void {}
 
-
-  label: string = 'test';
+  label: string = 'label';
   filled: boolean = false;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = false;
-  showRequiredStar: boolean = true;
+  rtl: boolean = true;
+  icon: string = 'pi pi-home';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
-  icon: string = 'pi pi-home';
   inputSize: NgSize = 'md';
-  readonly: boolean = false;
-  disabled: boolean = false;
-  maxlength: number = 2000;
-  placeholder: string = '';
-  type: NgInputTypes = 'text';
-  keyFilter: NgKeyFilter | RegExp = 'alphanum';
   addon: NgAddon = {
     before: {
       type: 'icon',
@@ -40,17 +30,22 @@ export class InputMaskPage implements OnInit {
     },
     after: {
       type: 'button',
-      icon: 'pi pi-home',
-      label: 'test'
-    }
+      label: 'home',
+    },
   };
+  // native properties
   mask: string = '99-999999';
   slotChar: string = '_';
   autoClear: boolean = true;
   unmask: boolean = false;
-  size: number;
+  placeholder: string = '';
+  size: number = 100;
+  maxlength: number = 100;
+  disabled: boolean = false;
+  readonly: boolean = false;
   characterPattern: string = '[A-Za-z]';
-  autoFocus: boolean = false;
-  autocomplete: string;
-  title: string;
+  showClear: boolean = false;
+
+  submit() {
+  }
 }

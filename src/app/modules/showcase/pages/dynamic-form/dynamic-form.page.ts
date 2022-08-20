@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'ng-dynamic-form-page',
   templateUrl: './dynamic-form.page.html',
   styleUrls: ['./dynamic-form.page.scss']
 })
-export class DynamicFormPage implements OnInit {
+export class DynamicFormPage {
   config = [
     {
       type: 'text',
@@ -15,7 +15,4 @@ export class DynamicFormPage implements OnInit {
       formControlName: 'text2'
     }
   ];
-
-  ngOnInit(): void {
-  }
 }

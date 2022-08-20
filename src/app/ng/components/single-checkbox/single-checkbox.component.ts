@@ -46,8 +46,6 @@ export class SingleCheckboxComponent implements OnInit, AfterViewInit, ControlVa
   // native properties
   @Input() disabled: boolean;
   @Input() tabindex: any;
-  @Input() ariaLabelledBy: string;
-  @Input() ariaLabel: string;
   @Input() style: any;
   @Input() styleClass: string;
   @Input() labelStyleClass: string;

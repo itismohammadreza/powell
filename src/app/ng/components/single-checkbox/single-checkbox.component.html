@@ -9,10 +9,18 @@
     <div class="d-flex align-items-center">
       <p-checkbox
         [(ngModel)]="value"
-        [binary]="true"
-        [disabled]="disabled"
         [inputId]="inputId"
         [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
+        [disabled]="disabled"
+        [tabindex]="tabindex"
+        [style]="style"
+        [styleClass]="styleClass"
+        [labelStyleClass]="labelStyleClass"
+        [checkboxIcon]="checkboxIcon"
+        [readonly]="readonly"
+        [trueValue]="trueValue"
+        [falseValue]="falseValue"
+        [binary]="true"
         (onChange)="_onChange($event)"
       ></p-checkbox>
       <label

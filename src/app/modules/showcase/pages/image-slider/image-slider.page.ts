@@ -1,14 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {ImageItem} from '@ng/models/image-slider';
+import {Component} from '@angular/core';
+import {BreakPointItem, ImageItem} from '@ng/models/image-slider';
 
 @Component({
   selector: 'ng-image-slider-page',
   templateUrl: './image-slider.page.html',
   styleUrls: ['./image-slider.page.scss']
 })
-export class ImageSliderPage implements OnInit {
-  visible: boolean = false;
-  activeIndex: number = 0;
+export class ImageSliderPage {
   images: ImageItem[] = [
     {
       preview: 'https://via.placeholder.com/640x380?text=test1',
@@ -67,9 +65,23 @@ export class ImageSliderPage implements OnInit {
       }
     }
   ];
+  numVisible: number = 3;
+  showItemNavigators: boolean = false;
+  showThumbnailNavigators: boolean = true;
+  showItemNavigatorsOnHover: boolean = false;
+  changeItemOnIndicatorHover: boolean = false;
+  circular: boolean = false;
+  autoPlay: boolean = true;
+  transitionInterval: number = 4000;
+  showThumbnails: boolean = true;
+  thumbnailsPosition: string = 'bottom';
+  verticalThumbnailViewPortHeight: string = '300px';
+  showIndicators: boolean = false;
+  showIndicatorsOnItem: boolean = false;
+  indicatorsPosition: string = 'bottom';
 
-  ngOnInit(): void {
-  }
+  visible: boolean = false;
+  activeIndex: number = 0;
 
   onOpenSlider() {
     this.visible = true;
@@ -79,6 +91,4 @@ export class ImageSliderPage implements OnInit {
     this.activeIndex = index;
     this.visible = true;
   }
-
-
 }

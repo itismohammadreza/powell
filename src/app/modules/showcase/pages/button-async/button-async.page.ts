@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UserService} from '@core/http';
 import {NgButtonAppearance, NgButtonType} from "@ng/models/button";
 import {NgPosition, NgSize} from "@ng/models/offset";
@@ -9,8 +9,7 @@ import {NgColor} from "@ng/models/color";
   templateUrl: './button-async.page.html',
   styleUrls: ['./button-async.page.scss']
 })
-export class ButtonAsyncPage implements OnInit {
-
+export class ButtonAsyncPage {
   constructor(private userService: UserService) {
   }
 
@@ -23,15 +22,11 @@ export class ButtonAsyncPage implements OnInit {
   appearance: NgButtonAppearance = 'basic';
   disabled: boolean = false;
   iconPos: NgPosition = 'left';
-  type: NgButtonType = 'button';
   color: NgColor = 'primary';
   badgeColor: NgColor = 'secondary';
   size: NgSize = 'md';
   newLabel: string = 'New Label';
   newColor: NgColor = 'secondary';
-
-  ngOnInit(): void {
-  }
 
   async onClick(callback: any) {
     await this.userService.get().toPromise();

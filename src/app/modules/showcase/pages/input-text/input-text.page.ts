@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgInputTypes, NgKeyFilter, NgLabelPosition} from '@ng/models/forms';
 import {NgPosition, NgSize} from '@ng/models/offset';
@@ -8,34 +8,21 @@ import {NgPosition, NgSize} from '@ng/models/offset';
   templateUrl: './input-text.page.html',
   styleUrls: ['./input-text.page.scss'],
 })
-export class InputTextPage implements OnInit {
+export class InputTextPage {
   form = new UntypedFormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;
 
-  submit() {
-  }
-
-  ngOnInit(): void {
-  }
-
-  label: string = 'test';
+  label: string = 'label';
   filled: boolean = false;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = false;
-  showRequiredStar: boolean = true;
+  rtl: boolean = true;
+  icon: string = 'pi pi-home';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
-  icon: string = 'pi pi-home';
   inputSize: NgSize = 'md';
-  readonly: boolean = false;
-  disabled: boolean = false;
-  maxlength: number = 2000;
-  placeholder: string = '';
-  type: NgInputTypes = 'text';
-  keyFilter: NgKeyFilter | RegExp = 'alphanum';
   addon: NgAddon = {
     before: {
       type: 'icon',
@@ -43,8 +30,17 @@ export class InputTextPage implements OnInit {
     },
     after: {
       type: 'button',
-      icon: 'pi pi-home',
-      label: 'test'
-    }
+      label: 'home',
+    },
   };
+  // native properties
+  readonly: boolean = false;
+  disabled: boolean = false;
+  maxlength: number = 2000;
+  placeholder: string = '';
+  type: NgInputTypes = 'text';
+  keyFilter: NgKeyFilter | RegExp = 'alphanum';
+
+  submit() {
+  }
 }

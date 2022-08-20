@@ -161,7 +161,6 @@ export interface NgDialog {
   breakpoints?: any;
   transitionOptions?: string;
   closeIcon?: string;
-  closeAriaLabel?: string;
   closeTabindex?: string;
   minimizeIcon?: string;
   maximizeIcon?: string;

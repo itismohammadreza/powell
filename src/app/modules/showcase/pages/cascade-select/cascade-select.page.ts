@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgLabelPosition} from '@ng/models/forms';
 import {NgPosition, NgSize} from '@ng/models/offset';
@@ -8,21 +8,21 @@ import {NgPosition, NgSize} from '@ng/models/offset';
   templateUrl: './cascade-select.page.html',
   styleUrls: ['./cascade-select.page.scss']
 })
-export class CascadeSelectPage implements OnInit {
+export class CascadeSelectPage {
   form = new UntypedFormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
-    c2: new UntypedFormControl(null, [Validators.required, Validators.minLength(2)])
   });
-  binding = '';
+  binding: any;
 
   label: string = 'label';
   filled: boolean = false;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = false;
-  showRequiredStar: boolean = true;
+  rtl: boolean = true;
+  icon: string = 'pi pi-home';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
+  inputSize: NgSize = 'md';
   addon: NgAddon = {
     before: {
       type: 'icon',
@@ -30,15 +30,14 @@ export class CascadeSelectPage implements OnInit {
     },
     after: {
       type: 'button',
-      icon: 'pi pi-home',
-      label: 'test'
-    }
+      label: 'home',
+    },
   };
+  // native properties
   disabled: boolean = false;
   readonly: boolean = false;
   placeholder: string = '';
-  icon: string = 'pi pi-home';
-  inputSize: NgSize = 'md';
+  showClear: boolean = false
 
   options = [
     {
@@ -116,8 +115,5 @@ export class CascadeSelectPage implements OnInit {
   ];
 
   submit() {
-  }
-
-  ngOnInit(): void {
   }
 }

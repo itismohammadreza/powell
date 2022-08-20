@@ -59,7 +59,7 @@
       <ng-container *ngTemplateOutlet="captionTemplate;context:{$implicit:item}"></ng-container>
     </ng-container>
     <ng-template #captionAlternative>
-      <div class="galleria-caption text-{{rtl ? 'right' : 'left'}}" *ngIf="item.caption">
+      <div class="galleria-caption" *ngIf="item.caption">
         <h4>{{item.caption.title}}</h4>
         <p class="mb-0">{{item.caption.subtitle}}</p>
       </div>

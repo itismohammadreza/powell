@@ -64,9 +64,6 @@ export class TreeComponent implements OnInit, AfterViewInit, ControlValueAccesso
   @Input() loading: boolean;
   @Input() loadingIcon: string = 'pi pi-spinner';
   @Input() emptyMessage: string = 'No records found';
-  @Input() ariaLabel: string;
-  @Input() ariaLabelledBy: string;
-  @Input() togglerAriaLabel: string;
   @Input() validateDrop: boolean;
   @Input() filter: boolean;
   @Input() filterBy: string = 'label';

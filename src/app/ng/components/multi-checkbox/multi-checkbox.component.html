@@ -25,13 +25,16 @@
       class="d-flex align-items-center"
     >
       <p-checkbox
-        (onChange)="_onChange()"
         [(ngModel)]="value"
-        [disabled]="item[optionDisabled]"
         [inputId]="item.id"
-        [name]="groupName"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [disabled]="item[optionDisabled]"
+        [name]="groupName"
         [value]="item[optionValue]"
+        [style]="style"
+        [styleClass]="styleClass"
+        [checkboxIcon]="checkboxIcon"
+        (onChange)="_onChange()"
       ></p-checkbox>
       <label
         [attr.for]="item.id"

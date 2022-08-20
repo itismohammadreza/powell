@@ -11,12 +11,11 @@
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
-    <ng-chips
+    <ng-select-button
       formControlName="c1"
-      field="name"
       [errors]="{ required: 'error' }"
     >
-    </ng-chips>
+    </ng-select-button>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
   <h4>NG MODEL</h4>

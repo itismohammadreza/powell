@@ -1,11 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {
   NgAddon,
   NgCurrency,
   NgCurrencyDisplay,
-  NgInputTypes,
-  NgKeyFilter,
   NgLabelPosition,
   NgNumberButtonLayout,
   NgNumberMode
@@ -17,32 +15,21 @@ import {NgPosition, NgSize} from '@ng/models/offset';
   templateUrl: './input-number.page.html',
   styleUrls: ['./input-number.page.scss'],
 })
-export class InputNumberPage implements OnInit {
+export class InputNumberPage {
   form = new UntypedFormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;
-  submit() {}
-  ngOnInit(): void {}
 
-
-
-  label: string = 'test';
+  label: string = 'label';
   filled: boolean = false;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = false;
-  showRequiredStar: boolean = true;
+  rtl: boolean = true;
+  icon: string = 'pi pi-home';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
-  icon: string = 'pi pi-home';
   inputSize: NgSize = 'md';
-  readonly: boolean = false;
-  disabled: boolean = false;
-  maxlength: number = 2000;
-  placeholder: string = '';
-  type: NgInputTypes = 'text';
-  keyFilter: NgKeyFilter | RegExp = 'alphanum';
   addon: NgAddon = {
     before: {
       type: 'icon',
@@ -50,26 +37,30 @@ export class InputNumberPage implements OnInit {
     },
     after: {
       type: 'button',
-      icon: 'pi pi-home',
-      label: 'test'
-    }
+      label: 'home',
+    },
   };
+  // native properties
   format: boolean = true;
-  showButtons: boolean = true;
+  showButtons: boolean = false;
   buttonLayout: NgNumberButtonLayout = 'stacked';
-  incrementButtonIcon: string = 'pi pi-chevron-up';
-  decrementButtonIcon: string = 'pi pi-chevron-down';
   mode: NgNumberMode = 'decimal';
-  prefix: string;
-  suffix: string;
+  prefix: string = '';
+  suffix: string = '';
   currency: NgCurrency;
   currencyDisplay: NgCurrencyDisplay = 'symbol';
   useGrouping: boolean = true;
-  minFractionDigits: number;
-  maxFractionDigits: number;
-  min: number;
-  max: number;
+  min: number = 5;
+  max: number = 100;
   step: number = 1;
-  size: number;
-  title: string;
+  allowEmpty: boolean = true;
+  placeholder: string = '';
+  size: number = 100;
+  maxlength: number;
+  disabled: boolean = false;
+  readonly: boolean = false;
+  showClear: boolean = false;
+
+  submit() {
+  }
 }

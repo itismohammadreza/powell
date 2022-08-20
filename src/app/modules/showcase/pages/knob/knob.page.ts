@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {NgLabelPosition} from '@ng/models/forms';
 
@@ -7,24 +7,18 @@ import {NgLabelPosition} from '@ng/models/forms';
   templateUrl: './knob.page.html',
   styleUrls: ['./knob.page.scss'],
 })
-export class KnobPage implements OnInit {
+export class KnobPage {
   form = new UntypedFormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;
 
-  submit() {
-  }
-
-  ngOnInit(): void {
-  }
-
   label: string = 'label';
-  labelWidth: number;
-  hint: string;
-  rtl: boolean = false;
-  showRequiredStar: boolean = true;
-  labelPos: NgLabelPosition = 'fix-top';
+  labelWidth: number = 100;
+  hint: string = '';
+  rtl: boolean = true;
+  labelPos: NgLabelPosition = 'fix-side';
+  // native properties
   size: number = 100;
   disabled: boolean = false;
   readonly: boolean = false;
@@ -37,6 +31,7 @@ export class KnobPage implements OnInit {
   strokeWidth: number = 14;
   showValue: boolean = true;
   valueTemplate: string = '{value}';
-  style: any;
-  styleClass: string;
+
+  submit() {
+  }
 }

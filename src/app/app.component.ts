@@ -41,6 +41,7 @@ import {filter} from 'rxjs/operators';
     (now even you set default value, it changed in the window resizeEvent and override). also body by default get a 'p-overflow-hidden' class. fix it!
 25- in map: implement removeLastMarker & removeAllMarkers buttons. also add an @Input() multi:boolean to allow choose multiple marker.
 26- see where wee need  this piece of code (&.rtl { text-align: rtl }) and where is extra. remove extras.
+27- multi checkbox: set disabled and readonly property for whole component. if set true, all options will disabled or readonly
 */
 @Component({
   selector: 'app-root',

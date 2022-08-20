@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgFilterMatchMode, NgLabelPosition} from '@ng/models/forms';
 
@@ -7,41 +7,38 @@ import {NgAddon, NgFilterMatchMode, NgLabelPosition} from '@ng/models/forms';
   templateUrl: './list-box.page.html',
   styleUrls: ['./list-box.page.scss'],
 })
-export class ListBoxPage implements OnInit {
+export class ListBoxPage {
   form = new UntypedFormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;
 
-  submit() {
-  }
-
-  ngOnInit(): void {
-  }
-
-  label: string;
-  filled: boolean = false;
-  labelWidth: number;
-  hint: string;
-  rtl: boolean = false;
-  showRequiredStar: boolean = true;
-  labelPos: NgLabelPosition = 'fix-top';
-  ariaFilterLabel: string;
-  checkbox: boolean = true;
-  dataKey: string;
+  label: string = 'label';
+  labelWidth: number = 100;
+  hint: string = '';
+  rtl: boolean = true;
+  labelPos: NgLabelPosition = 'fix-side';
+  addon: NgAddon = {
+    before: {
+      type: 'icon',
+      icon: 'pi pi-home',
+    },
+    after: {
+      type: 'button',
+      label: 'home',
+    },
+  };
+  // native properties
+  checkbox: boolean = false;
   disabled: boolean = false;
-  filter: boolean = true;
-  filterMatchMode: NgFilterMatchMode = 'contains';
-  filterValue: string;
-  filterLocale: string = undefined;
-  filterPlaceHolder: string;
+  filter: boolean = false;
+  filterPlaceHolder: string = '';
   emptyFilterMessage: string = 'No results found';
-  listStyle: string;
-  listStyleClass: string;
-  metaKeySelection: boolean = true;
-  multiple: boolean = true;
+  multiple: boolean = false;
   readonly: boolean = false;
   emptyMessage: string = 'No records found';
+  showToggleAll: boolean = true;
+
   options: any[] = [
     {name: 'New York', code: 'NY', inactive: false},
     {name: 'Rome', code: 'RM', inactive: true},
@@ -49,14 +46,7 @@ export class ListBoxPage implements OnInit {
     {name: 'Istanbul', code: 'IST', inactive: true},
     {name: 'Paris', code: 'PRS', inactive: false}
   ];
-  optionLabel: string = 'name';
-  optionValue: string = 'code';
-  optionDisabled: string = 'disabled';
-  optionGroupLabel: string = 'label';
-  optionGroupChildren: string = 'items';
-  group: boolean = false;
-  showToggleAll: boolean = true;
-  style: string;
-  styleClass: string;
-  addon: NgAddon;
+
+  submit() {
+  }
 }

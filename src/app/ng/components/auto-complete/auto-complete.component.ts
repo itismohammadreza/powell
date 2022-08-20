@@ -91,9 +91,6 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() autoZIndex: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
-  @Input() ariaLabel: string;
-  @Input() ariaLabelledBy: string;
-  @Input() dropdownAriaLabel: string;
   @Input() unique: boolean = true;
   @Input() autocomplete: string;
   @Input() showClear: boolean;

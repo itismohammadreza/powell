@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {LanguageChecker} from '@core/utils';
 import {AuthService} from '@core/http';
@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
-export class RegisterPage extends LanguageChecker implements OnInit {
+export class RegisterPage extends LanguageChecker {
   constructor(private authService: AuthService, private router: Router) {
     super();
   }
@@ -19,9 +19,6 @@ export class RegisterPage extends LanguageChecker implements OnInit {
     password: new UntypedFormControl(null, [Validators.required]),
     confirmPassword: new UntypedFormControl(null, [Validators.required]),
   }, {validators: this.checkPasswords});
-
-  ngOnInit(): void {
-  }
 
   onSubmit() {
     const formValue = this.form.value;

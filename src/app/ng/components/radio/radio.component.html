@@ -25,15 +25,17 @@
       class="d-flex align-items-center"
     >
       <p-radioButton
-        (onBlur)="_onBlur()"
-        (onClick)="_onClick($event)"
-        (onFocus)="emitter('onFocus',$event)"
         [(ngModel)]="value"
-        [disabled]="item[optionDisabled]"
         [inputId]="'id'+item[optionValue]"
-        [name]="groupName"
         [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
+        [disabled]="item[optionDisabled]"
+        [name]="groupName"
         [value]="item[optionValue]"
+        [style]="style"
+        [styleClass]="styleClass"
+        (onBlur)="_onBlur()"
+        (onClick)="_onChange($event)"
+        (onFocus)="emitter('onFocus',$event)"
       ></p-radioButton>
       <label
         [attr.for]="'id'+item[optionValue]"

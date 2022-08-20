@@ -22,8 +22,6 @@ export class ButtonPage {
   ) {
   }
 
-  customDialogResult: any;
-
   label: string = 'Sample';
   icon: string = 'pi pi-user';
   full: boolean = false;
@@ -33,10 +31,11 @@ export class ButtonPage {
   appearance: NgButtonAppearance = 'basic';
   disabled: boolean = false;
   iconPos: NgPosition = 'left';
-  type: NgButtonType = 'button';
   color: NgColor = 'primary';
   badgeColor: NgColor = 'secondary';
   size: NgSize = 'md';
+
+  customDialogResult: any;
 
   showConfirm() {
     this.utilsService.showConfirm({header: 'header', message: 'salam'}).then((result) => {

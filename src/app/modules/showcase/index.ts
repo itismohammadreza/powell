@@ -40,7 +40,9 @@ import {PreviewOptionsComponent} from '@modules/showcase/components/preview-opti
 import {KnobPage} from '@modules/showcase/pages/knob/knob.page';
 import {TreeSelectPage} from '@modules/showcase/pages/tree-select/tree-select.page';
 import {DatePicker2Page} from '@modules/showcase/pages/date-picker2/date-picker2.page';
-import {DynamicDialogSampleComponent} from '@modules/showcase/components/dynamic-dialog-sample/dynamic-dialog-sample.component';
+import {
+  DynamicDialogSampleComponent
+} from '@modules/showcase/components/dynamic-dialog-sample/dynamic-dialog-sample.component';
 import {ButtonAsyncPage} from '@modules/showcase/pages/button-async/button-async.page';
 
 export const COMPONENTS: Type<any>[] = [

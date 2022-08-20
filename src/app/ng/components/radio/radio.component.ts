@@ -18,7 +18,6 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  NgModel,
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgError, NgLabelPosition} from '@ng/models/forms';
@@ -53,13 +52,9 @@ export class RadioComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Input() optionDisabled: string = 'disabled';
   // native properties
   @Input() disabled: boolean;
-  @Input() tabindex: any;
-  @Input() ariaLabelledBy: string;
-  @Input() ariaLabel: string;
   @Input() style: any;
   @Input() styleClass: string;
-  @Input() labelStyleClass: string;
-  @Output() onClick = new EventEmitter();
+  @Output() onChange = new EventEmitter();
   @Output() onFocus = new EventEmitter();
   @Output() onBlur = new EventEmitter();
 
@@ -117,8 +112,8 @@ export class RadioComponent implements OnInit, AfterViewInit, ControlValueAccess
     }
   }
 
-  _onClick(event) {
-    this.onClick.emit(event);
+  _onChange(event) {
+    this.onChange.emit(event);
     this.onModelChange(this.value);
   }
 

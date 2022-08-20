@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {NgLabelPosition} from '@ng/models/forms';
 
@@ -7,25 +7,21 @@ import {NgLabelPosition} from '@ng/models/forms';
   templateUrl: './editor.page.html',
   styleUrls: ['./editor.page.scss'],
 })
-export class EditorPage implements OnInit {
+export class EditorPage {
   form = new UntypedFormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;
 
-
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = false;
-  showRequiredStar: boolean = true;
-  labelPos: NgLabelPosition = 'fix-top';
-  readonly: boolean = false;
+  rtl: boolean = true;
+  labelPos: NgLabelPosition = 'fix-side';
+  // native properties
   disabled: boolean = false;
+  readonly: boolean = false;
 
   submit() {
-  }
-
-  ngOnInit(): void {
   }
 }

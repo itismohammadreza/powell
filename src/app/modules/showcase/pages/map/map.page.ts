@@ -1,14 +1,27 @@
-import {Component, OnInit} from '@angular/core';
-import {LatLngLiteral} from "leaflet";
+import {Component} from '@angular/core';
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {NgAddon, NgLabelPosition} from "@ng/models/forms";
 
 @Component({
   selector: 'ng-map-page',
   templateUrl: './map.page.html',
   styleUrls: ['./map.page.scss'],
 })
-export class MapPage implements OnInit {
-  value: LatLngLiteral[] = [{lat: 51.505, lng: -0.09}, {lat: 35.68419775656676, lng: 51.38983726501465}];
+export class MapPage {
+  form = new UntypedFormGroup({
+    c1: new UntypedFormControl(null, [Validators.required]),
+  });
+  binding;
 
-  ngOnInit(): void {
+  label: string = 'label';
+  labelWidth: number = 100;
+  hint: string = '';
+  rtl: boolean = true;
+  labelPos: NgLabelPosition = 'fix-side';
+  // native properties
+  disabled: boolean = false;
+  readonly: boolean = false;
+
+  submit() {
   }
 }

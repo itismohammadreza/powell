@@ -25,7 +25,6 @@ export class TreeSelectComponent implements OnInit, AfterContentInit {
   @Input() placeholder: string;
   @Input() disabled: boolean;
   @Input() tabindex: string;
-  @Input() ariaLabelledBy: string;
   @Input() selectionMode: NgSelectionMode;
   @Input() panelClass: string;
   @Input() appendTo: any;

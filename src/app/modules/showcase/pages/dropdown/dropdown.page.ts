@@ -1,33 +1,28 @@
-import {Component, OnInit} from '@angular/core';
-import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
-import {NgLabelPosition, NgFilterMatchMode, NgAddon} from '@ng/models/forms';
+import {Component} from '@angular/core';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {NgAddon, NgFilterMatchMode, NgLabelPosition} from '@ng/models/forms';
 import {NgPosition, NgSize} from '@ng/models/offset';
-import {LanguageChecker} from '@core/utils';
 
 @Component({
   selector: 'ng-dropdown-page',
   templateUrl: './dropdown.page.html',
   styleUrls: ['./dropdown.page.scss'],
 })
-export class DropdownPage implements OnInit {
+export class DropdownPage {
   form = new UntypedFormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;
 
-  hint: string = '';
   label: string = 'label';
-  labelPos: NgLabelPosition = 'fix-side';
+  filled: boolean = false;
   labelWidth: number = 100;
+  hint: string = '';
+  rtl: boolean = true;
   icon: string = 'pi pi-home';
+  labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
   inputSize: NgSize = 'md';
-  filled: boolean = false;
-  showRequiredStar: boolean = true;
-  rtl: boolean = true;
-  placeholder: string = '';
-  readonly: boolean = false;
-  disabled: boolean = false;
   addon: NgAddon = {
     before: {
       type: 'icon',
@@ -38,24 +33,22 @@ export class DropdownPage implements OnInit {
       label: 'home',
     },
   };
-
-  scrollHeight: string = '200px';
-  options: any[];
+  // native properties
   filter: boolean = false;
-  filterPlaceholder: string;
+  disabled: boolean = false;
+  readonly: boolean = false;
+  emptyMessage: string = 'No records found.';
+  emptyFilterMessage: string = 'No result found.';
   editable: boolean = false;
-  maxlength: number;
+  maxlength: number = 100;
+  placeholder: string = '';
   autofocusFilter: boolean = false;
   resetFilterOnHide: boolean = false;
-  emptyFilterMessage: string = 'nothing found.';
-  autoDisplayFirst: boolean = false;
+  autoDisplayFirst: boolean = true;
   showClear: boolean = false;
-  tooltip: any;
-  tooltipPosition: NgPosition = 'top';
+
+  options: any[];
 
   submit() {
-  }
-
-  ngOnInit(): void {
   }
 }

@@ -31,7 +31,7 @@ export interface Customer {
   templateUrl: './table.page.html',
   styleUrls: ['./table.page.scss'],
 })
-export class TablePage extends LanguageChecker implements OnInit {
+export class TablePage {
   representatives: Representative[] = [
     {name: 'Amy Elsner', image: 'amyelsner.png'},
     {name: 'Anna Fali', image: 'annafali.png'},
@@ -734,8 +734,5 @@ export class TablePage extends LanguageChecker implements OnInit {
   contextMenuSelection: Customer;
 
   onEditComplete(event) {
-  }
-
-  ngOnInit() {
   }
 }
