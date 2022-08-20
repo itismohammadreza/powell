@@ -38,7 +38,15 @@
 <!--&gt;</ng-preview-options>-->
 <!--<div class="container">-->
 <!--  <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">-->
-<!--    <h4>Preview</h4>-->
+<!--      <p-card dir="ltr"
+          header=""
+          subheader=""></p-card>
+<p-panel dir="ltr" header="Options">
+  <ng-preview-options
+    [previewItems]="[]"
+  ></ng-preview-options>
+</p-panel>
+<h4>Preview</h4>-->
 <!--    <ng-date-picker-->
 <!--      formControlName="c1"-->
 <!--      field="name"-->

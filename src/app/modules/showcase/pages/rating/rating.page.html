@@ -1,8 +1,12 @@
-<ng-preview-options
-  [previewItems]="[]"
-></ng-preview-options>
-
 <div class="container">
+  <p-card dir="ltr"
+          header="Rating"
+          subheader="Rating component is a star based selection input."></p-card>
+  <p-panel dir="ltr" header="Options">
+    <ng-preview-options
+      [previewItems]="[]"
+    ></ng-preview-options>
+  </p-panel>
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-rating

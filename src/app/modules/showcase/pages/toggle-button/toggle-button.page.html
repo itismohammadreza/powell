@@ -1,8 +1,12 @@
-<ng-preview-options
-  [previewItems]="[]"
-></ng-preview-options>
-
 <div class="container">
+  <p-card dir="ltr"
+          header="ToggleButton"
+          subheader="ToggleButton is used to select a boolean value using a button."></p-card>
+  <p-panel dir="ltr" header="Options">
+    <ng-preview-options
+      [previewItems]="[]"
+    ></ng-preview-options>
+  </p-panel>
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-toggle-button

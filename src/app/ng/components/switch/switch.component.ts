@@ -49,8 +49,8 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   @Input() tabindex: any;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
-  @Input() trueValue: any;
-  @Input() falseValue: any;
+  @Input() trueValue: any = true;
+  @Input() falseValue: any = false;
   @Output() onChange = new EventEmitter();
 
   inputId: string;
@@ -106,15 +106,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   }
 
   _onChange(event) {
-    let parentForm: UntypedFormGroup;
-    let currentControl: AbstractControl;
     if (this.controlContainer && this.ngControl) {
-      parentForm = this.controlContainer.control;
-      if (this.ngControl instanceof NgModel) {
-        currentControl = this.ngControl.control;
-      } else if (this.ngControl instanceof FormControlName) {
-        currentControl = parentForm.get(this.ngControl.name.toString());
-      }
       if (this.isRequired()) {
         this.onModelChange(event.checked ? true : null);
       } else {
@@ -122,7 +114,6 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
       }
     }
     this.onChange.emit(event);
-    this.value = event.checked;
   }
 
   getId() {

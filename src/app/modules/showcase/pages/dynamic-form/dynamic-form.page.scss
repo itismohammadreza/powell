@@ -3,6 +3,15 @@
   padding: 30px;
 }
 
+p-card {
+  margin-bottom: 1rem;
+  display: block;
+
+  ::ng-deep .p-card-content {
+    padding: 0;
+  }
+}
+
 h4 {
   background-color: var(--surface-d);
   margin-top: 60px;

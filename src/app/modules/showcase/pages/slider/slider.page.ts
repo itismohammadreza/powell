@@ -20,7 +20,7 @@ export class SliderPage {
   rtl: boolean = true;
   labelPos: NgLabelPosition = 'fix-side';
   // native properties
-  animate: boolean = false;
+  animate: boolean = true;
   disabled: boolean = false;
   min: number = 0;
   max: number = 100;

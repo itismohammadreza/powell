@@ -467,11 +467,13 @@ export class PreviewOptionsComponent implements OnInit {
     cmpRef.instance.value = this[previewItem];
     switch (cmp) {
       case DropdownComponent:
+        cmpRef.location.nativeElement.classList.add('mb-3');
         cmpRef.instance.onChange.subscribe(val => {
           this[`${previewItem}Change`].next(val.value);
         });
         break;
       case InputTextComponent:
+        cmpRef.location.nativeElement.classList.add('mb-3');
         cmpRef.instance.onInput.subscribe(val => {
           this[`${previewItem}Change`].next(val.target.value);
         });

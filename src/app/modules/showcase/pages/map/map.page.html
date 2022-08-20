@@ -1,22 +1,26 @@
-<ng-preview-options
-  [previewItems]="[]"
-></ng-preview-options>
-
 <div class="container">
-  <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
-    <h4>Preview</h4>
+  <p-card dir="ltr"
+          header="Map"
+          subheader="Map component provides integration with Leaflet Maps API. This sample demontrates various uses cases like binding, overlays and events. Click the map to add a new item."></p-card>
+<p-panel dir="ltr" header="Options">
+  <ng-preview-options
+    [previewItems]="[]"
+  ></ng-preview-options>
+</p-panel>
+    <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
+      <h4>Preview</h4>
+      <ng-map
+        formControlName="c1"
+        [errors]="{ required: 'error' }"
+      ></ng-map>
+      <ng-button type="submit" label="submit"></ng-button>
+    </form>
+
+    <h4>NG MODEL</h4>
+    VALUE :
+    <pre>{{binding | json}}</pre>
     <ng-map
       formControlName="c1"
       [errors]="{ required: 'error' }"
     ></ng-map>
-    <ng-button type="submit" label="submit"></ng-button>
-  </form>
-
-  <h4>NG MODEL</h4>
-  VALUE :
-  <pre>{{binding | json}}</pre>
-  <ng-map
-    formControlName="c1"
-    [errors]="{ required: 'error' }"
-  ></ng-map>
 </div>

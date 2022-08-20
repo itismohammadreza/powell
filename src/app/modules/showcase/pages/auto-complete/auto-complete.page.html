@@ -1,8 +1,57 @@
-<ng-preview-options
-  [previewItems]="[]"
-></ng-preview-options>
-
 <div class="container">
+  <p-card dir="ltr"
+          header="AutoComplete"
+          subheader="AutoComplete is an input component that provides real-time suggestions when being typed."></p-card>
+  <p-panel dir="ltr" header="Options">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'filled',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'icon',
+      'labelPos',
+      'iconPos',
+      'inputSize',
+      'scrollHeight',
+      'dropdown',
+      'multiple',
+      'minlength',
+      'placeholder',
+      'readonly',
+      'disabled',
+      'maxlength',
+      'showEmptyMessage',
+      'emptyMessage',
+      'forceSelection',
+      'unique',
+      'showClear',
+      ]"
+      [(label)]="label"
+      [(filled)]="filled"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(icon)]="icon"
+      [(labelPos)]="labelPos"
+      [(iconPos)]="iconPos"
+      [(inputSize)]="inputSize"
+      [(scrollHeight)]="scrollHeight"
+      [(dropdown)]="dropdown"
+      [(multiple)]="multiple"
+      [(minlength)]="minlength"
+      [(placeholder)]="placeholder"
+      [(readonly)]="readonly"
+      [(disabled)]="disabled"
+      [(maxlength)]="maxlength"
+      [(showEmptyMessage)]="showEmptyMessage"
+      [(emptyMessage)]="emptyMessage"
+      [(forceSelection)]="forceSelection"
+      [(unique)]="unique"
+      [(showClear)]="showClear"
+    ></ng-preview-options>
+  </p-panel>
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-auto-complete
@@ -28,4 +77,5 @@
     [suggestions]="filteredSuggestions"
     (completeMethod)="filter($event)">
   </ng-auto-complete>
+  <!--  </p-card>-->
 </div>

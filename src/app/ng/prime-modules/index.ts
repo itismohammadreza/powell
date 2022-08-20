@@ -79,6 +79,8 @@ import {TagModule} from 'primeng/tag';
 import {TreeSelectModule} from 'primeng/treeselect';
 import {AccordionModule} from 'primeng/accordion';
 import {Type} from '@angular/core';
+import {CardModule} from "primeng/card";
+import {PanelModule} from "primeng/panel";
 
 export const MODULES: Type<any>[] = [
   AutoCompleteModule,
@@ -87,6 +89,7 @@ export const MODULES: Type<any>[] = [
   BlockUIModule,
   ButtonModule,
   CaptchaModule,
+  CardModule,
   ChipsModule,
   CarouselModule,
   ColorPickerModule,
@@ -121,6 +124,7 @@ export const MODULES: Type<any>[] = [
   OrganizationChartModule,
   OverlayPanelModule,
   PaginatorModule,
+  PanelModule,
   PanelMenuModule,
   ProgressSpinnerModule,
   ProgressBarModule,

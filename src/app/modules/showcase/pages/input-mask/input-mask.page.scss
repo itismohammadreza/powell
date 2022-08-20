@@ -3,6 +3,15 @@
   padding: 30px;
 }
 
+p-card {
+  margin-bottom: 1rem;
+  display: block;
+
+  ::ng-deep .p-card-content {
+    padding: 0;
+  }
+}
+
 h4 {
   background-color: var(--surface-d);
   font-size: 20px;
@@ -11,8 +20,7 @@ h4 {
   padding: 0.5rem;
   text-transform: uppercase;
   border-radius: 0.5rem;
-
-margin-top: 60px;
+  margin-top: 60px;
 }
 
 [formControlName*="c"] {

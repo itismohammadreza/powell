@@ -51,8 +51,8 @@ export class SingleCheckboxComponent implements OnInit, AfterViewInit, ControlVa
   @Input() labelStyleClass: string;
   @Input() checkboxIcon: string = 'pi pi-check';
   @Input() readonly: boolean;
-  @Input() trueValue: any;
-  @Input() falseValue: any;
+  @Input() trueValue: any = true;
+  @Input() falseValue: any = false;
   @Output() onChange = new EventEmitter();
 
   inputId: string;
@@ -118,7 +118,6 @@ export class SingleCheckboxComponent implements OnInit, AfterViewInit, ControlVa
       this.onModelChange(event.checked);
     }
     this.onChange.emit(event);
-    this.value = event.checked;
   }
 
   getId() {

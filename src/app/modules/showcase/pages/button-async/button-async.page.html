@@ -1,19 +1,27 @@
-<ng-preview-options
-  [previewItems]="[]"
-></ng-preview-options>
-<ng-button-async [newLabel]="newLabel"
-                 [newColor]="newColor"
-                 [appearance]="appearance"
-                 [iconPos]="iconPos"
-                 [color]="color"
-                 [badgeColor]="badgeColor"
-                 [label]="label"
-                 [icon]="icon"
-                 [disabled]="disabled"
-                 [rounded]="rounded"
-                 [raised]="raised"
-                 [full]="full"
-                 [badge]="badge"
-                 [size]="size"
-                 (clickAsync)="onClick($event)">
-</ng-button-async>
+<div class="container">
+  <p-card dir="ltr"
+          header="ButtonAsync"
+          subheader="ButtonAsync is an extension to standard button element with icons and theming."></p-card>
+<p-panel dir="ltr" header="Options">
+  <ng-preview-options
+    [previewItems]="[]"
+  ></ng-preview-options>
+</p-panel>
+    <h4>Preview</h4>
+    <ng-button-async [newLabel]="newLabel"
+                     [newColor]="newColor"
+                     [appearance]="appearance"
+                     [iconPos]="iconPos"
+                     [color]="color"
+                     [badgeColor]="badgeColor"
+                     [label]="label"
+                     [icon]="icon"
+                     [disabled]="disabled"
+                     [rounded]="rounded"
+                     [raised]="raised"
+                     [full]="full"
+                     [badge]="badge"
+                     [size]="size"
+                     (clickAsync)="onClick($event)">
+    </ng-button-async>
+</div>

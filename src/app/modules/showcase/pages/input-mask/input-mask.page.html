@@ -1,8 +1,12 @@
-<ng-preview-options
-  [previewItems]="[]"
-></ng-preview-options>
-
 <div class="container">
+  <p-card dir="ltr"
+          header="InputMask"
+          subheader="InputMask component is used to enter input in a certain format such as numeric, date, currency and phone."></p-card>
+  <p-panel dir="ltr" header="Options">
+    <ng-preview-options
+      [previewItems]="[]"
+    ></ng-preview-options>
+  </p-panel>
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-input-mask
