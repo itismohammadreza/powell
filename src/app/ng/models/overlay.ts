@@ -87,7 +87,7 @@ export interface NgToastOptions {
   hideTransitionOptions?: string;
   showTransformOptions?: string;
   hideTransformOptions?: string;
-  breakpoints?: object;
+  breakpoints?: any;
 }
 
 export type NgMessageSeverities = 'success' | 'info' | 'warn' | 'error';
@@ -146,7 +146,7 @@ export interface NgDialog {
   rtl?: boolean;
   closable?: boolean;
   appendTo?: any;
-  style?: object;
+  style?: any;
   styleClass?: string;
   maskStyleClass?: string;
   contentStyleClass?: string;

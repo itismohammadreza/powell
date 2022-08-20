@@ -29,7 +29,6 @@ import {SwitchPage} from './pages/switch/switch.page';
 import {TablePage} from './pages/table/table.page';
 import {ToggleButtonPage} from './pages/toggle-button/toggle-button.page';
 import {TreePage} from './pages/tree/tree.page';
-import {UtilsPage} from './pages/utils/utils.page';
 import {DynamicFormPage} from '@modules/showcase/pages/dynamic-form/dynamic-form.page';
 import {ImageSliderPage} from '@modules/showcase/pages/image-slider/image-slider.page';
 import {DashboardPage} from '@modules/showcase/pages/dashboard/dashboard.page';
@@ -212,11 +211,6 @@ const routes: Routes = [
     path: 'tree-select',
     component: TreeSelectPage,
     data: {title: 'tree-select'}
-  },
-  {
-    path: 'utils',
-    component: UtilsPage,
-    data: {title: 'utils'}
   },
   {
     path: '',

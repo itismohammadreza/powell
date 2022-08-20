@@ -7,31 +7,21 @@
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
     }" class="toggle-button-wrapper">
-  <div
-    [ngClass]="{
-      'w-100': labelPos == 'fix-top'
-    }"
-    class="field">
+  <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field">
     <p-toggleButton
-      (onChange)="_onChange($event)"
       [(ngModel)]="value"
-      [disabled]="disabled"
-      [iconPos]="iconPos"
-      [ngClass]="{
-        'ng-invalid ng-dirty': isInvalid(),
-        'justify-content-end': rtl
-      }"
-      [offIcon]="offIcon"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid()}"
+      [onLabel]="onLabel"
       [offLabel]="offLabel"
       [onIcon]="onIcon"
-      [onLabel]="onLabel"
+      [offIcon]="offIcon"
+      [iconPos]="iconPos"
+      [style]="style"
+      [styleClass]="styleClass"
+      [disabled]="disabled"
+      [tabindex]="tabindex"
+      (onChange)="_onChange($event)"
     ></p-toggleButton>
-    <ng-container *ngFor="let error of errors | keyvalue">
-      <small *ngIf="showError(error.key)" [class.mt-4]="hint"
-             class="p-error">
-        {{ error.value }}
-      </small>
-    </ng-container>
   </div>
   <label
     *ngIf="label && labelPos != 'float'"
@@ -45,6 +35,10 @@
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>
+  <small *ngIf="hint">{{ hint }}</small>
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
+      {{ error.value }}
+    </small>
+  </ng-container>
 </div>
-
-<small *ngIf="hint">{{ hint }}</small>

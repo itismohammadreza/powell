@@ -19,6 +19,9 @@
     <i *ngIf="icon && !addon" [ngClass]="icon"></i>
     <p-inputNumber
       [(ngModel)]="value"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+      [inputId]="inputId"
+      [ngAddon]="addon"
       [format]="format"
       [showButtons]="showButtons"
       [buttonLayout]="buttonLayout"
@@ -53,9 +56,6 @@
       [title]="title"
       [autocomplete]="autocomplete"
       [showClear]="showClear"
-      [inputId]="inputId"
-      [ngAddon]="addon"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
       (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
       (onBlur)="_onBlur()"

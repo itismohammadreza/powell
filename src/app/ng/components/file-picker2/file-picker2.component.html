@@ -35,19 +35,19 @@
 
     <div [class.flex-row-reverse]="rtl" class="file-picker-multiple-wrapper" *ngIf="multiple">
       <input
+        #multipleUploader
+        type="file"
         class="sr-only"
         onclick="this.value = null"
         [accept]="accept"
         [disabled]="disabled"
-        type="file"
-        #multipleUploader
         (change)="onMultipleSelect($event)"
       />
       <div
-        (click)="multipleUploader.click()"
         *ngIf="!readonly"
         [class.forbidden]="filesToEmit?.length == fileLimit"
-        class="image-uploader d-flex align-items-center justify-content-center">
+        class="image-uploader d-flex align-items-center justify-content-center"
+        (click)="multipleUploader.click()">
         <i class="pi pi-paperclip h2 mb-0"></i>
       </div>
       <div *ngFor="let item of filesToShow; let i = index" class="image-item mr-3 mb-2">

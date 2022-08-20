@@ -43,9 +43,9 @@
       [title]="title"
       (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
       (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
+      (onFocus)="emitter('onFocus', $event)"
       (onBlur)="_onBlur()"
       (onComplete)="emitter('onComplete', $event)"
-      (onFocus)="emitter('onFocus', $event)"
       (onInput)="_onInput($event)"
       (onClear)="_onClear()"
     ></p-inputMask>

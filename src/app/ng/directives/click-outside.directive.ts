@@ -28,7 +28,7 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
   _events: Array<string> = ['click'];
 
   constructor(private _el: ElementRef,
-              @Inject(PLATFORM_ID) protected platformId: object,
+              @Inject(PLATFORM_ID) protected platformId: any,
               @Inject(DOCUMENT) private document: Document) {
 
     this._initOnClickBody = this._initOnClickBody.bind(this);

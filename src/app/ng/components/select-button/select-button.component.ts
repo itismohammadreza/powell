@@ -23,8 +23,7 @@ import {
   NgModel,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
-import {NgPosition} from '@ng/models/offset';
+import {NgError, NgLabelPosition} from '@ng/models/forms';
 
 @Component({
   selector: 'ng-select-button',
@@ -56,7 +55,6 @@ export class SelectButtonComponent implements OnInit, AfterViewInit, ControlValu
   @Input() tabindex: number = 0;
   @Input() style: any;
   @Input() styleClass: string;
-  @Input() ariaLabelledBy: string;
   @Input() disabled: boolean;
   @Input() dataKey: string;
   @Output() onChange = new EventEmitter();
@@ -89,20 +87,22 @@ export class SelectButtonComponent implements OnInit, AfterViewInit, ControlValu
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-    }
-    if (this.controlContainer && this.ngControl) {
-      parentForm = this.controlContainer.control;
-      rootForm = this.controlContainer.formDirective as FormGroupDirective;
-      if (this.ngControl instanceof NgModel) {
-        currentControl = this.ngControl.control;
-      } else if (this.ngControl instanceof FormControlName) {
-        currentControl = parentForm.get(this.ngControl.name.toString());
-      }
-      rootForm.ngSubmit.subscribe(() => {
-        if (!this.disabled) {
-          currentControl.markAsTouched();
+      // by default we suppose the ngControl is and instance of NgModel.
+      currentControl = this.ngControl.control;
+      if (this.controlContainer) {
+        parentForm = this.controlContainer.control;
+        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+        // only when we have a formGroup (here is : controlContainer), we also may have formControlName instance.
+        // so we check this condition when we have a controlContainer and overwrite currentControl value.
+        if (this.ngControl instanceof FormControlName) {
+          currentControl = parentForm.get(this.ngControl.name.toString());
         }
-      });
+        rootForm.ngSubmit.subscribe(() => {
+          if (!this.disabled) {
+            currentControl.markAsTouched();
+          }
+        });
+      }
     }
   }
 

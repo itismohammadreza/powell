@@ -15,7 +15,6 @@ import {EditorComponent} from './editor/editor.component';
 import {EmptyComponent} from './empty/empty.component';
 import {FilePickerComponent} from './file-picker/file-picker.component';
 import {FilePicker2Component} from './file-picker2/file-picker2.component';
-import {FilterListComponent} from './filter-list/filter-list.component';
 import {InputMaskComponent} from './input-mask/input-mask.component';
 import {InputNumberComponent} from './input-number/input-number.component';
 import {InputPasswordComponent} from './input-password/input-password.component';
@@ -71,7 +70,6 @@ export const COMPONENTS: Type<any>[] = [
   EmptyComponent,
   FilePickerComponent,
   FilePicker2Component,
-  FilterListComponent,
   ImageSliderComponent,
   InputMaskComponent,
   InputNumberComponent,

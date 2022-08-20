@@ -61,6 +61,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() multiple: boolean;
   @Input() dropdownIcon: string = 'pi pi-chevron-down';
   @Input() minlength: number = 1;
+  @Input() delay: number = 300;
   @Input() completeOnFocus: boolean;
   @Input() style: any;
   @Input() inputStyle: any;
@@ -95,11 +96,8 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() dropdownAriaLabel: string;
   @Input() unique: boolean = true;
   @Input() autocomplete: string;
-  @Input() virtualScroll: boolean;
-  @Input() itemSize: number;
-  @Input() delay: number = 300;
-  @Input() immutable: boolean = true;
   @Input() showClear: boolean;
+  @Input() virtualScroll: boolean;
   @Input() virtualScrollItemSize: number;
   @Input() lazy: boolean;
   @Output() completeMethod = new EventEmitter();
@@ -112,6 +110,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Output() onClear = new EventEmitter();
   @Output() onShow = new EventEmitter();
   @Output() onHide = new EventEmitter();
+  @Output() onLazyLoad = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;

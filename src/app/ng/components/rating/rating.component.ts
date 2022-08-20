@@ -18,7 +18,6 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  NgModel,
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgError, NgLabelPosition} from '@ng/models/forms';
@@ -49,8 +48,8 @@ export class RatingComponent implements OnInit, AfterViewInit, ControlValueAcces
   @Input() cancel: boolean = true;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
-  @Input() iconOnClass: string = 'pi pi-star';
-  @Input() iconOffClass: string = 'pi pi-star-o';
+  @Input() iconOnClass: string = 'pi pi-star-fill';
+  @Input() iconOffClass: string = 'pi pi-star';
   @Input() iconCancelClass: string = 'pi pi-ban';
   @Input() iconOnStyle: any;
   @Input() iconOffStyle: any;
@@ -82,20 +81,22 @@ export class RatingComponent implements OnInit, AfterViewInit, ControlValueAcces
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-    }
-    if (this.controlContainer && this.ngControl) {
-      parentForm = this.controlContainer.control;
-      rootForm = this.controlContainer.formDirective as FormGroupDirective;
-      if (this.ngControl instanceof NgModel) {
-        currentControl = this.ngControl.control;
-      } else if (this.ngControl instanceof FormControlName) {
-        currentControl = parentForm.get(this.ngControl.name.toString());
-      }
-      rootForm.ngSubmit.subscribe(() => {
-        if (!this.disabled) {
-          currentControl.markAsTouched();
+      // by default we suppose the ngControl is and instance of NgModel.
+      currentControl = this.ngControl.control;
+      if (this.controlContainer) {
+        parentForm = this.controlContainer.control;
+        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+        // only when we have a formGroup (here is : controlContainer), we also may have formControlName instance.
+        // so we check this condition when we have a controlContainer and overwrite currentControl value.
+        if (this.ngControl instanceof FormControlName) {
+          currentControl = parentForm.get(this.ngControl.name.toString());
         }
-      });
+        rootForm.ngSubmit.subscribe(() => {
+          if (!this.disabled) {
+            currentControl.markAsTouched();
+          }
+        });
+      }
     }
   }
 

@@ -30,7 +30,7 @@ export class MultiCheckboxPage implements OnInit {
   tabindex: number;
   ariaLabelledBy: string;
   ariaLabel: string;
-  style: object;
+  style: any;
   styleClass: string;
   labelStyleClass: string;
   checkboxIcon: string = 'pi pi-check';

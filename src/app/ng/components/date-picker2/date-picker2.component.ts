@@ -70,7 +70,7 @@ export class DatePicker2Component implements OnInit, OnDestroy {
   @Input() uiTodayBtnEnable = true;
 
   id: string;
-  containerInlineStyle: object = {};
+  containerInlineStyle: any = {};
   weekDays: Array<string>;
   preventClose: boolean;
   uiYearViewModel = true;

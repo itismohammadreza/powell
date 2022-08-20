@@ -1,5 +1,4 @@
 <p-galleria
-  dir="ltr"
   [value]="images"
   [activeIndex]="activeIndex"
   [fullScreen]="fullScreen"
@@ -23,8 +22,7 @@
   [maskClass]="maskClass"
   [containerStyle]="containerStyle"
   [showTransitionOptions]="showTransitionOptions"
-  [galleriaClass]="galleriaClass"
-  [hideTransitionOption]="hideTransitionOptions"
+  [hideTransitionOptions]="hideTransitionOptions"
   (visibleChange)="onVisibleChange($event)"
   (activeIndexChange)="onActiveIndexChange($event)"
 >
@@ -37,7 +35,7 @@
     </ng-container>
     <ng-template #thumbnailAlternative>
       <div class="row no-gutters justify-content-center" *ngIf="item.thumbnail">
-        <img [src]="item.thumbnail"/>
+        <img [alt]="item.alt" [src]="item.thumbnail"/>
       </div>
     </ng-template>
   </ng-template>

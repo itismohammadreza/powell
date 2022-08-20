@@ -47,10 +47,11 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;
-  @Input() disabled: boolean;
-  @Input() readonly: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() errors: NgError;
+  @Input() disabled: boolean;
+  @Input() readonly: boolean;
   @Input() options: SunEditorOptions = {
     plugins: plugins,
     minWidth: '100%',
@@ -69,7 +70,6 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
       ["save", "template"],
     ],
   };
-  @Input() errors: NgError;
   @Input() content: string
   @Input() onDrop_param: boolean = true;
   @Input() onCopy_param: boolean = true;
@@ -80,7 +80,7 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
   @Input() onVideoUploadBefore_param: boolean | undefined = true;
   @Input() onVideoUploadError_param: boolean | undefined = true;
   @Input() onAudioUploadBefore_param: boolean | undefined = true;
-  @Input() onResizeEditor_param: Object | undefined = {};
+  @Input() onResizeEditor_param: any | undefined = {};
   @Input() imageUploadHandler: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
   @Input() videoUploadHandler: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
   @Input() audioUploadHandler: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
@@ -139,18 +139,22 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-    }
-    if (this.controlContainer && this.ngControl) {
-      parentForm = this.controlContainer.control;
-      rootForm = this.controlContainer.formDirective as FormGroupDirective;
-      if (this.ngControl instanceof NgModel) {
-        currentControl = this.ngControl.control;
-      } else if (this.ngControl instanceof FormControlName) {
-        currentControl = parentForm.get(this.ngControl.name.toString());
+      // by default we suppose the ngControl is and instance of NgModel.
+      currentControl = this.ngControl.control;
+      if (this.controlContainer) {
+        parentForm = this.controlContainer.control;
+        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+        // only when we have a formGroup (here is : controlContainer), we also may have formControlName instance.
+        // so we check this condition when we have a controlContainer and overwrite currentControl value.
+        if (this.ngControl instanceof FormControlName) {
+          currentControl = parentForm.get(this.ngControl.name.toString());
+        }
+        rootForm.ngSubmit.subscribe(() => {
+          if (!this.disabled) {
+            currentControl.markAsTouched();
+          }
+        });
       }
-      rootForm.ngSubmit.subscribe(() => {
-        currentControl.markAsTouched();
-      });
     }
   }
 

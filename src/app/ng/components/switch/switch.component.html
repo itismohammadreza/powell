@@ -9,18 +9,18 @@
     }" class="switch-wrapper">
   <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field">
     <p-inputSwitch
-      (onChange)="_onChange($event)"
       [(ngModel)]="value"
-      [disabled]="disabled"
       [inputId]="inputId"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+      [style]="style"
+      [styleClass]="styleClass"
+      [tabindex]="tabindex"
+      [disabled]="disabled"
       [readonly]="readonly"
+      [trueValue]="trueValue"
+      [falseValue]="falseValue"
+      (onChange)="_onChange($event)"
     ></p-inputSwitch>
-    <ng-container *ngFor="let error of errors | keyvalue">
-      <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
-        {{ error.value }}
-      </small>
-    </ng-container>
   </div>
   <label
     *ngIf="label && labelPos != 'float'"
@@ -34,6 +34,10 @@
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>
+  <small *ngIf="hint">{{ hint }}</small>
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
+      {{ error.value }}
+    </small>
+  </ng-container>
 </div>
-
-<small *ngIf="hint">{{ hint }}</small>

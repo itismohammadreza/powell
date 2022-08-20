@@ -20,6 +20,10 @@
     }" class="field">
     <i *ngIf="icon && !addon" [ngClass]="icon"></i>
     <p-cascadeSelect
+      [(ngModel)]="value"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+      [ngAddon]="addon"
+      [inputId]="inputId"
       [options]="options"
       [optionLabel]="optionLabel"
       [optionValue]="optionValue"
@@ -33,18 +37,15 @@
       [style]="style"
       [styleClass]="styleClass"
       [showClear]="showClear"
-      [inputId]="inputId"
-      [ngAddon]="addon"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [(ngModel)]="value"
       (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
       (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
-      (onBeforeHide)="emitter('onBeforeHide', $event)"
-      (onBeforeShow)="emitter('onBeforeShow', $event)"
       (onChange)="_onChange($event)"
       (onGroupChange)="_onGroupChange($event)"
-      (onHide)="_onHide()"
+      (onBeforeShow)="emitter('onBeforeShow', $event)"
+      (onBeforeHide)="emitter('onBeforeHide', $event)"
       (onShow)="_onShow()"
+      (onHide)="_onHide()"
+      (onClear)="_onClear()"
     >
       <ng-template pTemplate="option" let-option *ngIf="optionTemplate">
         <ng-container *ngTemplateOutlet="optionTemplate;context:{$implicit:option}"></ng-container>

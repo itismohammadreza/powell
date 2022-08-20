@@ -37,6 +37,6 @@ export class KnobPage implements OnInit {
   strokeWidth: number = 14;
   showValue: boolean = true;
   valueTemplate: string = '{value}';
-  style: object;
+  style: any;
   styleClass: string;
 }

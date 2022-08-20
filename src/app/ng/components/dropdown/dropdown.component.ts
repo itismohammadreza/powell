@@ -50,13 +50,14 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
+  @Input() icon: string;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgPosition = 'left';
-  @Input() icon: string;
-  @Input() inputSize: NgSize = 'md';
-  @Input() errors: NgError;
   @Input() addon: NgAddon
+  @Input() errors: NgError;
+  @Input() inputSize: NgSize = 'md';
   // native properties
+
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';
@@ -78,7 +79,6 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   @Input() readonly: boolean;
   @Input() emptyMessage: string = 'No records found.';
   @Input() emptyFilterMessage: string = 'No result found.';
-  @Input() ariaLabelledBy: string;
   @Input() editable: boolean;
   @Input() maxlength: number;
   @Input() appendTo: any;
@@ -96,11 +96,13 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   @Input() autoZIndex: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
-  @Input() ariaFilterLabel: string;
   @Input() tooltip: string;
   @Input() tooltipStyleClass: string;
   @Input() tooltipPosition: NgPosition = 'top';
   @Input() tooltipPositionStyle: string = 'absolute';
+  @Input() virtualScroll: boolean;
+  @Input() virtualScrollItemSize: number;
+  @Input() lazy: boolean;
   @Output() onClick = new EventEmitter();
   @Output() onChange = new EventEmitter();
   @Output() onFilter = new EventEmitter();
@@ -109,6 +111,7 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   @Output() onShow = new EventEmitter();
   @Output() onHide = new EventEmitter();
   @Output() onClear = new EventEmitter();
+  @Output() onLazyLoad = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
@@ -144,23 +147,22 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-    }
-    if (this.controlContainer && this.ngControl) {
-      parentForm = this.controlContainer.control;
-      rootForm = this.controlContainer.formDirective as FormGroupDirective;
-      if (this.ngControl instanceof NgModel) {
-        currentControl = this.ngControl.control;
-      } else if (this.ngControl instanceof FormControlName) {
-        currentControl = parentForm.get(this.ngControl.name.toString());
-      }
-      if (this.autoDisplayFirst) {
-        currentControl.setValue(this.options[0][this.optionValue]);
-      }
-      rootForm.ngSubmit.subscribe(() => {
-        if (!this.disabled) {
-          currentControl.markAsTouched();
+      // by default we suppose the ngControl is and instance of NgModel.
+      currentControl = this.ngControl.control;
+      if (this.controlContainer) {
+        parentForm = this.controlContainer.control;
+        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+        // only when we have a formGroup (here is : controlContainer), we also may have formControlName instance.
+        // so we check this condition when we have a controlContainer and overwrite currentControl value.
+        if (this.ngControl instanceof FormControlName) {
+          currentControl = parentForm.get(this.ngControl.name.toString());
         }
-      });
+        rootForm.ngSubmit.subscribe(() => {
+          if (!this.disabled) {
+            currentControl.markAsTouched();
+          }
+        });
+      }
     }
   }
 
@@ -218,6 +220,11 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   _onBlur() {
     this.onBlur.emit();
     this.onModelTouched();
+  }
+
+  _onClear() {
+    this.onClear.emit();
+    this.onModelChange(null);
   }
 
   emitter(name: string, event: any) {

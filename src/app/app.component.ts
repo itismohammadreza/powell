@@ -29,8 +29,6 @@ import {filter} from 'rxjs/operators';
 12- add ng-template support for table.
 13- add preventDuplicate support for toast.
 14- place hint in top of component instead of bottom.
-15- move .error to .field div.
-16- make components ngOnInit logic like inputtext.
 17- use typescript utility-types (e.u Partial<..>) in components as need. for example in knob we can't have labelPos = 'float', but it can accept now!
     fix this by using utility-types and exclude 'float' in labelPos input property.
 18- implement moment utility service.

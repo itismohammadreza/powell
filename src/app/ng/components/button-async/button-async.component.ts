@@ -9,19 +9,23 @@ import {NgColor} from '@ng/models/color';
   styleUrls: ['./button-async.component.scss']
 })
 export class ButtonAsyncComponent implements OnInit, OnChanges {
-  @Input() disabled: boolean;
-  @Input() iconPos: NgPosition = 'left';
-  @Input() type: NgButtonType = 'button';
+  @Input() appearance: NgButtonAppearance;
   @Input() rounded: boolean;
   @Input() raised: boolean;
+  @Input() color: NgColor = 'primary';
   @Input() full: boolean;
-  @Input() badge: string;
   @Input() badgeColor: NgColor = 'primary';
   @Input() size: NgSize = 'md';
+  @Input() type: NgButtonType = 'button';
   @Input() label: string;
   @Input() icon: string;
-  @Input() appearance: NgButtonAppearance;
-  @Input() color: NgColor = 'primary';
+  @Input() iconPos: NgPosition = 'left';
+  @Input() badge: string;
+  @Input() badgeClass: string;
+  @Input() loadingIcon: string = 'pi pi-spinner pi-spin';
+  @Input() disabled: boolean;
+  @Input() style: any;
+  @Input() styleClass: any;
   @Input() newLabel: string;
   @Input() newIcon: string;
   @Input() newAppearance: NgButtonAppearance;

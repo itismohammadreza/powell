@@ -22,7 +22,6 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  NgModel,
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgAddon, NgError, NgFilterMatchMode, NgLabelPosition} from '@ng/models/forms';
@@ -49,17 +48,14 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
+  @Input() icon: string;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgPosition = 'left';
-  @Input() errors: NgError;
-  @Input() display: string = 'comma';
-  @Input() icon: string;
-  @Input() inputSize: NgSize = 'md';
   @Input() addon: NgAddon
+  @Input() errors: NgError;
+  @Input() inputSize: NgSize = 'md';
   // native properties
   @Input() appendTo: any;
-  @Input() ariaFilterLabel: string;
-  @Input() ariaLabelledBy: string;
   @Input() autofocusFilter: boolean;
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: number = 1000;
@@ -86,7 +82,7 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
   @Input() optionGroupChildren: string = 'items';
   @Input() group: boolean;
   @Input() overlayVisible: boolean;
-  @Input() panelStyle: object;
+  @Input() panelStyle: any;
   @Input() placeholder: string;
   @Input() readonly: boolean;
   @Input() emptyMessage: string = 'No records found.';
@@ -104,14 +100,20 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
   @Input() tooltipStyleClass: string;
   @Input() tooltipPosition: NgPosition = 'top';
   @Input() tooltipPositionStyle: string = 'absolute';
+  @Input() showClear: boolean
   @Input() virtualScroll: boolean;
+  @Input() virtualScrollItemSize: number
+  @Input() lazy: boolean
+  @Input() display: string = 'comma';
   @Output() onClick = new EventEmitter();
   @Output() onChange = new EventEmitter();
-  @Output() onFocus = new EventEmitter();
   @Output() onFilter = new EventEmitter();
+  @Output() onFocus = new EventEmitter();
   @Output() onBlur = new EventEmitter();
   @Output() onPanelShow = new EventEmitter();
   @Output() onPanelHide = new EventEmitter();
+  @Output() onClear = new EventEmitter();
+  @Output() onLazyLoad = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
@@ -147,20 +149,22 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-    }
-    if (this.controlContainer && this.ngControl) {
-      parentForm = this.controlContainer.control;
-      rootForm = this.controlContainer.formDirective as FormGroupDirective;
-      if (this.ngControl instanceof NgModel) {
-        currentControl = this.ngControl.control;
-      } else if (this.ngControl instanceof FormControlName) {
-        currentControl = parentForm.get(this.ngControl.name.toString());
-      }
-      rootForm.ngSubmit.subscribe(() => {
-        if (!this.disabled) {
-          currentControl.markAsTouched();
+      // by default we suppose the ngControl is and instance of NgModel.
+      currentControl = this.ngControl.control;
+      if (this.controlContainer) {
+        parentForm = this.controlContainer.control;
+        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+        // only when we have a formGroup (here is : controlContainer), we also may have formControlName instance.
+        // so we check this condition when we have a controlContainer and overwrite currentControl value.
+        if (this.ngControl instanceof FormControlName) {
+          currentControl = parentForm.get(this.ngControl.name.toString());
         }
-      });
+        rootForm.ngSubmit.subscribe(() => {
+          if (!this.disabled) {
+            currentControl.markAsTouched();
+          }
+        });
+      }
     }
   }
 
@@ -218,6 +222,11 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
   _onBlur() {
     this.onBlur.emit();
     this.onModelTouched();
+  }
+
+  _onClear() {
+    this.onClear.emit();
+    this.onModelChange(null);
   }
 
   emitter(name: string, event: any) {

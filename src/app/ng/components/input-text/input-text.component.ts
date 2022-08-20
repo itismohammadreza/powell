@@ -43,10 +43,11 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
+  @Input() icon: string;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgPosition = 'left';
+  @Input() addon: NgAddon
   @Input() errors: NgError;
-  @Input() icon: string;
   @Input() inputSize: NgSize = 'md';
   @Input() readonly: boolean;
   @Input() disabled: boolean;
@@ -54,7 +55,6 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Input() placeholder: string;
   @Input() type: NgInputTypes = 'text';
   @Input() keyFilter: NgKeyFilter | RegExp;
-  @Input() addon: NgAddon
   @Output() onInput = new EventEmitter();
   @Output() onClick = new EventEmitter();
   @Output() onChange = new EventEmitter();

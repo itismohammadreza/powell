@@ -112,7 +112,6 @@ type PreviewItem =
   'disabled' |
   'readonly' |
   'rtl' |
-  'showRequiredStar' |
   'propagateSelectionUp' |
   'propagateSelectionDown' |
   'filter' |

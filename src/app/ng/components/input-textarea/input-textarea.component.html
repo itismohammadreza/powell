@@ -18,27 +18,27 @@
     class="field">
     <i *ngIf="icon && !addon" [ngClass]="icon"></i>
     <textarea
+      pInputTextarea
+      [(ngModel)]="value"
+      [attr.id]="inputId"
+      [ngAddon]="addon"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+      [attr.maxlength]="maxlength"
+      [attr.placeholder]="placeholder"
+      [autoResize]="autoResize"
+      [cols]="cols"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [rows]="rows"
+      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
+      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
       (blur)="_onBlur()"
       (change)="_onChange($event)"
       (focus)="emitter('onFocus', $event)"
       (input)="_onInput($event)"
       (keydown)="_onKeyDown($event)"
       (keyup)="_onKeyUp($event)"
-      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
       (onResize)="_onResize($event)"
-      [(ngModel)]="value"
-      [attr.id]="inputId"
-      [attr.maxlength]="maxlength"
-      [attr.placeholder]="placeholder"
-      [autoResize]="autoResize"
-      [cols]="cols"
-      [disabled]="disabled"
-      [ngAddon]="addon"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [readonly]="readonly"
-      [rows]="rows"
-      pInputTextarea
     ></textarea>
     <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
       {{ label }}

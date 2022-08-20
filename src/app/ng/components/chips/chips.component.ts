@@ -49,11 +49,11 @@ export class ChipsComponent implements OnInit, AfterViewInit, AfterContentInit, 
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
+  @Input() icon: string;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgPosition = 'left';
-  @Input() errors: NgError;
   @Input() addon: NgAddon
-  @Input() icon: string;
+  @Input() errors: NgError;
   @Input() inputSize: NgSize = 'md';
   // native properties
   @Input() field: string;
@@ -63,18 +63,19 @@ export class ChipsComponent implements OnInit, AfterViewInit, AfterContentInit, 
   @Input() styleClass: string;
   @Input() placeholder: string;
   @Input() tabindex: any;
-  @Input() ariaLabelledBy: string;
   @Input() allowDuplicate: boolean = true;
   @Input() inputStyle: string;
   @Input() inputStyleClass: string;
   @Input() addOnTab: boolean;
   @Input() addOnBlur: boolean;
   @Input() separator: string;
+  @Input() showClear: boolean;
   @Output() onAdd = new EventEmitter();
   @Output() onRemove = new EventEmitter();
   @Output() onChipClick = new EventEmitter();
   @Output() onFocus = new EventEmitter();
   @Output() onBlur = new EventEmitter();
+  @Output() onClear = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
@@ -104,20 +105,22 @@ export class ChipsComponent implements OnInit, AfterViewInit, AfterContentInit, 
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-    }
-    if (this.controlContainer && this.ngControl) {
-      parentForm = this.controlContainer.control;
-      rootForm = this.controlContainer.formDirective as FormGroupDirective;
-      if (this.ngControl instanceof NgModel) {
-        currentControl = this.ngControl.control;
-      } else if (this.ngControl instanceof FormControlName) {
-        currentControl = parentForm.get(this.ngControl.name.toString());
-      }
-      rootForm.ngSubmit.subscribe(() => {
-        if (!this.disabled) {
-          currentControl.markAsTouched();
+      // by default we suppose the ngControl is and instance of NgModel.
+      currentControl = this.ngControl.control;
+      if (this.controlContainer) {
+        parentForm = this.controlContainer.control;
+        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+        // only when we have a formGroup (here is : controlContainer), we also may have formControlName instance.
+        // so we check this condition when we have a controlContainer and overwrite currentControl value.
+        if (this.ngControl instanceof FormControlName) {
+          currentControl = parentForm.get(this.ngControl.name.toString());
         }
-      });
+        rootForm.ngSubmit.subscribe(() => {
+          if (!this.disabled) {
+            currentControl.markAsTouched();
+          }
+        });
+      }
     }
   }
 
@@ -156,6 +159,11 @@ export class ChipsComponent implements OnInit, AfterViewInit, AfterContentInit, 
   _onBlur() {
     this.onBlur.emit();
     this.onModelTouched();
+  }
+
+  _onClear() {
+    this.onClear.emit();
+    this.onModelChange(null);
   }
 
   emitter(name: string, event: any) {

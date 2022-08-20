@@ -60,7 +60,6 @@ export class MainPage extends LanguageChecker implements OnInit {
       'toggle-button',
       'tree',
       'tree-select',
-      'utils',
     ];
     this.sidebarItems = sidebarItems.map(item => ({
       label: item,

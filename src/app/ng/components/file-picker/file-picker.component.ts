@@ -25,7 +25,6 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  NgModel,
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgError, NgInputFileMode, NgLabelPosition} from '@ng/models/forms';
@@ -46,7 +45,6 @@ import {TemplateDirective} from "@ng/directives/template.directive";
 })
 export class FilePickerComponent
   implements OnInit, OnChanges, AfterViewInit, AfterContentInit, ControlValueAccessor {
-  @ViewChild(FileUpload) fileUploadComponent: FileUpload;
   @Input() value: any = [];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -55,32 +53,38 @@ export class FilePickerComponent
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() errors: NgError;
-  @Input() disabled: boolean;
+  @Input() resultType: 'base64' | 'file' = 'file';
+  // native properties
   @Input() name: string;
   @Input() url: string;
-  @Input() multiple: boolean = true;
-  @Input() withCredentials: boolean;
-  @Input() customUpload: boolean = true;
-  @Input() auto: boolean;
-  @Input() accept: string = 'image/*';
   @Input() method: string = 'post';
+  @Input() multiple: boolean = true;
+  @Input() accept: string = 'image/*';
+  @Input() disabled: boolean;
+  @Input() auto: boolean;
   @Input() maxFileSize: number;
-  @Input() previewWidth: number = 50;
   @Input() fileLimit: number;
-  @Input() resultType: 'base64' | 'file' = 'file';
-  @Input() mode: NgInputFileMode = 'advanced';
-  @Input() chooseLabel: string = 'انتخاب';
-  @Input() uploadLabel: string = 'آپلود';
-  @Input() cancelLabel: string = 'انصراف';
-  @Input() headers: HttpHeaders;
-  @Input() showUploadButton: boolean = true;
-  @Input() showCancelButton: boolean = true;
   @Input() invalidFileSizeMessageSummary: string = '{0} - سایز فایل نامعتبر است.';
   @Input() invalidFileSizeMessageDetail: string = 'حداکثر سایز فایل {0} است.';
   @Input() invalidFileTypeMessageSummary: string = '{0} - نوع فایل نامعتبر است.';
   @Input() invalidFileLimitMessageDetail: string = 'حداکثر مجاز به انتخاب {0} فایل هستید.';
   @Input() invalidFileLimitMessageSummary: string = 'مجاز به انتخاب فایل بیشتری نیستید.';
   @Input() invalidFileTypeMessageDetail: string = 'فرمت مجاز : {0}';
+  @Input() style: string;
+  @Input() styleClass: string;
+  @Input() previewWidth: number = 50;
+  @Input() chooseLabel: string = 'انتخاب';
+  @Input() uploadLabel: string = 'آپلود';
+  @Input() cancelLabel: string = 'انصراف';
+  @Input() chooseIcon: string = 'pi pi-plus';
+  @Input() uploadIcon: string = 'pi pi-upload';
+  @Input() cancelIcon: string = 'pi pi-times';
+  @Input() withCredentials: boolean;
+  @Input() mode: NgInputFileMode = 'advanced';
+  @Input() customUpload: boolean = true;
+  @Input() showUploadButton: boolean = true;
+  @Input() showCancelButton: boolean = true;
+  @Input() headers: HttpHeaders;
   @Output() onProgress = new EventEmitter();
   @Output() onSelect = new EventEmitter();
   @Output() onRemove = new EventEmitter();
@@ -90,6 +94,7 @@ export class FilePickerComponent
   @Output() onUpload = new EventEmitter();
   @Output() onSend = new EventEmitter();
   @Output() uploadHandler = new EventEmitter();
+  @ViewChild(FileUpload) fileUploadComponent: FileUpload;
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
@@ -121,20 +126,22 @@ export class FilePickerComponent
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-    }
-    if (this.controlContainer && this.ngControl) {
-      parentForm = this.controlContainer.control;
-      rootForm = this.controlContainer.formDirective as FormGroupDirective;
-      if (this.ngControl instanceof NgModel) {
-        currentControl = this.ngControl.control;
-      } else if (this.ngControl instanceof FormControlName) {
-        currentControl = parentForm.get(this.ngControl.name.toString());
-      }
-      rootForm.ngSubmit.subscribe(() => {
-        if (!this.disabled) {
-          currentControl.markAsTouched();
+      // by default we suppose the ngControl is and instance of NgModel.
+      currentControl = this.ngControl.control;
+      if (this.controlContainer) {
+        parentForm = this.controlContainer.control;
+        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+        // only when we have a formGroup (here is : controlContainer), we also may have formControlName instance.
+        // so we check this condition when we have a controlContainer and overwrite currentControl value.
+        if (this.ngControl instanceof FormControlName) {
+          currentControl = parentForm.get(this.ngControl.name.toString());
         }
-      });
+        rootForm.ngSubmit.subscribe(() => {
+          if (!this.disabled) {
+            currentControl.markAsTouched();
+          }
+        });
+      }
     }
   }
 
@@ -303,28 +310,8 @@ export class FilePickerComponent
     this.onClear.emit();
   }
 
-  _onBeforeUpload(event) {
-    this.onBeforeUpload.emit(event);
-  }
-
-  _onSend(event) {
-    this.onSend.emit(event);
-  }
-
-  _onUpload(event) {
-    this.onUpload.emit(event);
-  }
-
-  _onProgress(event) {
-    this.onProgress.emit(event);
-  }
-
-  _onError(event) {
-    this.onError.emit(event);
-  }
-
-  _uploadHandler($event) {
-    this.uploadHandler.emit($event);
+  emitter(name: string, event: any) {
+    (this[name] as EventEmitter<any>).emit(event);
   }
 
   getId() {

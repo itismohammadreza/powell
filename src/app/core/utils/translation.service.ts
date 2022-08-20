@@ -58,7 +58,7 @@ export class TranslationService {
    */
   setTranslation(
     lang: string,
-    translations: object,
+    translations: any,
     shouldMerge: boolean = false
   ): void {
     return this.translate.setTranslation(lang, translations, shouldMerge);
@@ -83,7 +83,7 @@ export class TranslationService {
    */
   get(
     key: string | Array<string>,
-    interpolateParams?: object
+    interpolateParams?: any
   ): Observable<string | object> {
     return this.translate.get(key, interpolateParams);
   }
@@ -94,7 +94,7 @@ export class TranslationService {
    */
   getStreamOnTranslationChange(
     key: string | Array<string>,
-    interpolateParams?: object
+    interpolateParams?: any
   ): Observable<string | object> {
     return this.translate.getStreamOnTranslationChange(key, interpolateParams);
   }
@@ -104,7 +104,7 @@ export class TranslationService {
    */
   stream(
     key: string | Array<string>,
-    interpolateParams?: object
+    interpolateParams?: any
   ): Observable<string | object> {
     return this.translate.stream(key, interpolateParams);
   }
@@ -115,7 +115,7 @@ export class TranslationService {
    */
   instant(
     key: string | Array<string>,
-    interpolateParams?: object
+    interpolateParams?: any
   ): string | object {
     return this.translate.instant(key, interpolateParams);
   }

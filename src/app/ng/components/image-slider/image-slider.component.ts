@@ -19,7 +19,6 @@ import {TemplateDirective} from "@ng/directives/template.directive";
 })
 export class ImageSliderComponent implements OnInit, AfterContentInit {
   @Input() images: ImageItem[] = [];
-  @Input() rtl: boolean;
   @Input() activeIndex: number = 0;
   @Input() fullScreen: boolean;
   @Input() visible: boolean;
@@ -47,7 +46,6 @@ export class ImageSliderComponent implements OnInit, AfterContentInit {
   @Input() baseZIndex: number = 0;
   @Input() maskClass: string;
   @Input() containerStyle: string;
-  @Input() galleriaClass: string;
   @Input() showTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
   @Output() visibleChange = new EventEmitter();

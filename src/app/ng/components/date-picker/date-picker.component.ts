@@ -49,13 +49,14 @@ export class DatePickerComponent implements OnInit, OnChanges, AfterViewInit, Co
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
+  @Input() icon: string;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgPosition = 'left';
-  @Input() locale: string = 'fa';
+  @Input() addon: NgAddon
   @Input() errors: NgError;
-  @Input() appendTo: any = 'body';
-  @Input() icon: string;
   @Input() inputSize: NgSize = 'md';
+  @Input() locale: string = 'fa';
+  @Input() appendTo: any = 'body';
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() maxlength: number;
@@ -63,7 +64,6 @@ export class DatePickerComponent implements OnInit, OnChanges, AfterViewInit, Co
   @Input() datePickerMode: NgDatePickerMode = 'day';
   @Input() inline: boolean;
   @Input() clearable: boolean;
-  @Input() addon: NgAddon
   @Output() onChange = new EventEmitter();
   @Output() onBlur = new EventEmitter();
   @Output() onFocus = new EventEmitter();
@@ -149,10 +149,6 @@ export class DatePickerComponent implements OnInit, OnChanges, AfterViewInit, Co
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     this.inputId = this.getId();
-    if (this.clearable && !this.addon) {
-      this.icon = 'pi pi-times';
-      this.iconPos = this.rtl ? 'left' : 'right';
-    }
     this.controlContainer = this.injector.get(
       ControlContainer,
       null,
@@ -161,20 +157,22 @@ export class DatePickerComponent implements OnInit, OnChanges, AfterViewInit, Co
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-    }
-    if (this.controlContainer && this.ngControl) {
-      parentForm = this.controlContainer.control;
-      rootForm = this.controlContainer.formDirective as FormGroupDirective;
-      if (this.ngControl instanceof NgModel) {
-        currentControl = this.ngControl.control;
-      } else if (this.ngControl instanceof FormControlName) {
-        currentControl = parentForm.get(this.ngControl.name.toString());
-      }
-      rootForm.ngSubmit.subscribe(() => {
-        if (!this.disabled) {
-          currentControl.markAsTouched();
+      // by default we suppose the ngControl is and instance of NgModel.
+      currentControl = this.ngControl.control;
+      if (this.controlContainer) {
+        parentForm = this.controlContainer.control;
+        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+        // only when we have a formGroup (here is : controlContainer), we also may have formControlName instance.
+        // so we check this condition when we have a controlContainer and overwrite currentControl value.
+        if (this.ngControl instanceof FormControlName) {
+          currentControl = parentForm.get(this.ngControl.name.toString());
         }
-      });
+        rootForm.ngSubmit.subscribe(() => {
+          if (!this.disabled) {
+            currentControl.markAsTouched();
+          }
+        });
+      }
     }
   }
 

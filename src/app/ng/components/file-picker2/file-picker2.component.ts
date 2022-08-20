@@ -19,7 +19,6 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  NgModel,
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgColor} from '@ng/models/color';
@@ -40,13 +39,13 @@ import {NgError, NgLabelPosition} from '@ng/models/forms';
 export class FilePicker2Component
   implements OnInit, OnChanges, AfterViewInit, ControlValueAccessor {
   @Input() value: any = [];
-  @Input() errors: NgError;
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() errors: NgError;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
   @Input() multiple: boolean = true;
@@ -75,12 +74,11 @@ export class FilePicker2Component
   ) {
   }
 
-
   ngOnInit() {
-    let parentForm: UntypedFormGroup;
-    let rootForm: FormGroupDirective;
     //store user defined label for single selection mode
     this._chooseLabel = this.chooseLabel;
+    let parentForm: UntypedFormGroup;
+    let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     this.inputId = this.getId();
     this.controlContainer = this.injector.get(
@@ -91,20 +89,22 @@ export class FilePicker2Component
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-    }
-    if (this.controlContainer && this.ngControl) {
-      parentForm = this.controlContainer.control;
-      rootForm = this.controlContainer.formDirective as FormGroupDirective;
-      if (this.ngControl instanceof NgModel) {
-        currentControl = this.ngControl.control;
-      } else if (this.ngControl instanceof FormControlName) {
-        currentControl = parentForm.get(this.ngControl.name.toString());
-      }
-      rootForm.ngSubmit.subscribe(() => {
-        if (!this.disabled) {
-          currentControl.markAsTouched();
+      // by default we suppose the ngControl is and instance of NgModel.
+      currentControl = this.ngControl.control;
+      if (this.controlContainer) {
+        parentForm = this.controlContainer.control;
+        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+        // only when we have a formGroup (here is : controlContainer), we also may have formControlName instance.
+        // so we check this condition when we have a controlContainer and overwrite currentControl value.
+        if (this.ngControl instanceof FormControlName) {
+          currentControl = parentForm.get(this.ngControl.name.toString());
         }
-      });
+        rootForm.ngSubmit.subscribe(() => {
+          if (!this.disabled) {
+            currentControl.markAsTouched();
+          }
+        });
+      }
     }
   }
 

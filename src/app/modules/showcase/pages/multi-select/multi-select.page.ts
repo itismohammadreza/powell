@@ -80,14 +80,14 @@ export class MultiSelectPage implements OnInit {
   optionGroupChildren: string = 'items';
   group: boolean = false;
   overlayVisible: boolean = false;
-  panelStyle: object;
+  panelStyle: any;
   emptyMessage: string = 'No records found.';
   selectedItemsLabel: string | 'ellipsis' = 'ellipsis';
   selectionLimit: number;
   showHeader: boolean = true;
   showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   showToggleAll: boolean = true;
-  style: object;
+  style: any;
   styleClass: string;
   tabindex: number;
   tooltipStyleClass: string;

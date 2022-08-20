@@ -22,7 +22,6 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  NgModel,
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
@@ -49,13 +48,12 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
-  @Input() disabled: boolean;
+  @Input() icon: string;
   @Input() labelPos: NgLabelPosition = 'float';
   @Input() iconPos: NgPosition = 'left';
-  @Input() errors: NgError;
-  @Input() icon: string;
-  @Input() inputSize: NgSize = 'md';
   @Input() addon: NgAddon
+  @Input() errors: NgError;
+  @Input() inputSize: NgSize = 'md';
   // native properties
   @Input() promptLabel: string = 'لطفا رمز عبور را وارد کنید';
   @Input() mediumRegex: string = '/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})./';
@@ -66,6 +64,7 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
   @Input() feedback: boolean = true;
   @Input() toggleMask: boolean;
   @Input() appendTo: any;
+  @Input() disabled: boolean;
   @Input() inputStyle: any;
   @Input() inputStyleClass: string;
   @Input() style: any;
@@ -82,22 +81,6 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   inputId: string;
   controlContainer: FormGroupDirective;
@@ -126,20 +109,22 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-    }
-    if (this.controlContainer && this.ngControl) {
-      parentForm = this.controlContainer.control;
-      rootForm = this.controlContainer.formDirective as FormGroupDirective;
-      if (this.ngControl instanceof NgModel) {
-        currentControl = this.ngControl.control;
-      } else if (this.ngControl instanceof FormControlName) {
-        currentControl = parentForm.get(this.ngControl.name.toString());
-      }
-      rootForm.ngSubmit.subscribe(() => {
-        if (!this.disabled) {
-          currentControl.markAsTouched();
+      // by default we suppose the ngControl is and instance of NgModel.
+      currentControl = this.ngControl.control;
+      if (this.controlContainer) {
+        parentForm = this.controlContainer.control;
+        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+        // only when we have a formGroup (here is : controlContainer), we also may have formControlName instance.
+        // so we check this condition when we have a controlContainer and overwrite currentControl value.
+        if (this.ngControl instanceof FormControlName) {
+          currentControl = parentForm.get(this.ngControl.name.toString());
         }
-      });
+        rootForm.ngSubmit.subscribe(() => {
+          if (!this.disabled) {
+            currentControl.markAsTouched();
+          }
+        });
+      }
     }
   }
 

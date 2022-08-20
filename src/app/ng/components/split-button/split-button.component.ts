@@ -4,9 +4,9 @@ import {
   ContentChildren,
   EventEmitter,
   Input,
-  OnInit,
   Output,
-  QueryList, TemplateRef
+  QueryList,
+  TemplateRef
 } from '@angular/core';
 import {NgButtonAppearance} from '@ng/models/button';
 import {NgColor} from '@ng/models/color';

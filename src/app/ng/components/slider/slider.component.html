@@ -13,17 +13,20 @@
     }"
     class="field">
     <p-slider
-      (onChange)="_onChange($event)"
-      (onSlideEnd)="_onSlideEnd($event)"
+      [id]="inputId"
       [(ngModel)]="value"
       [animate]="animate"
-      [attr.id]="inputId"
       [disabled]="disabled"
-      [max]="max"
       [min]="min"
+      [max]="max"
       [orientation]="orientation"
-      [range]="range"
       [step]="step"
+      [range]="range"
+      [style]="style"
+      [styleClass]="styleClass"
+      [tabindex]="tabindex"
+      (onChange)="_onChange($event)"
+      (onSlideEnd)="_onSlideEnd($event)"
     ></p-slider>
   </div>
   <label

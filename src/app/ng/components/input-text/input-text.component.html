@@ -19,16 +19,18 @@
     <i *ngIf="icon && !addon" [ngClass]="icon"></i>
     <input
       pInputText
+      [(ngModel)]="value"
+      [ngAddon]="addon"
       [attr.id]="inputId"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [attr.maxlength]="maxlength"
       [attr.placeholder]="placeholder"
       [attr.type]="type"
       [disabled]="disabled"
       [readonly]="readonly"
-      [(ngModel)]="value"
       [pKeyFilter]="keyFilter"
-      [ngAddon]="addon"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
+      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
       (blur)="_onBlur()"
       (change)="_onChange($event)"
       (click)="emitter('onClick', $event)"
@@ -36,8 +38,6 @@
       (input)="_onInput($event)"
       (keydown)="_onKeyDown($event)"
       (keyup)="_onKeyUp($event)"
-      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
     />
     <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
       {{ label }}

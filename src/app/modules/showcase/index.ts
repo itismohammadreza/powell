@@ -33,7 +33,6 @@ import {SwitchPage} from '@modules/showcase/pages/switch/switch.page';
 import {TablePage} from '@modules/showcase/pages/table/table.page';
 import {ToggleButtonPage} from '@modules/showcase/pages/toggle-button/toggle-button.page';
 import {TreePage} from '@modules/showcase/pages/tree/tree.page';
-import {UtilsPage} from '@modules/showcase/pages/utils/utils.page';
 import {DynamicFormPage} from '@modules/showcase/pages/dynamic-form/dynamic-form.page';
 import {ImageSliderPage} from '@modules/showcase/pages/image-slider/image-slider.page';
 import {DashboardPage} from '@modules/showcase/pages/dashboard/dashboard.page';
@@ -41,7 +40,6 @@ import {PreviewOptionsComponent} from '@modules/showcase/components/preview-opti
 import {KnobPage} from '@modules/showcase/pages/knob/knob.page';
 import {TreeSelectPage} from '@modules/showcase/pages/tree-select/tree-select.page';
 import {DatePicker2Page} from '@modules/showcase/pages/date-picker2/date-picker2.page';
-import {DatePicker3Page} from '@modules/showcase/pages/date-picker3/date-picker3.page';
 import {DynamicDialogSampleComponent} from '@modules/showcase/components/dynamic-dialog-sample/dynamic-dialog-sample.component';
 import {ButtonAsyncPage} from '@modules/showcase/pages/button-async/button-async.page';
 
@@ -63,7 +61,6 @@ export const COMPONENTS: Type<any>[] = [
   ColorPickerPage,
   DatePickerPage,
   DatePicker2Page,
-  DatePicker3Page,
   DynamicDialogSampleComponent,
   DynamicFormPage,
   DropdownPage,
@@ -92,5 +89,4 @@ export const COMPONENTS: Type<any>[] = [
   ToggleButtonPage,
   TreePage,
   TreeSelectPage,
-  UtilsPage,
 ];

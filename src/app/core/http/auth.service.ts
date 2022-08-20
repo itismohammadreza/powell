@@ -12,14 +12,14 @@ export class AuthService extends ApiService {
     super();
   }
 
-  login(data: object): any {
+  login(data: any): any {
     return this._post(
       `${this.endpoint}/login`,
       data
     );
   }
 
-  register(data: object): any {
+  register(data: any): any {
     return this._post(
       `${this.endpoint}/register`,
       data

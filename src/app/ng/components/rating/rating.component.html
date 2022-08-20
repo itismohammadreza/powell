@@ -13,17 +13,20 @@
     }"
     class="field">
     <p-rating
-      (onCancel)="_onCancel($event)"
-      (onRate)="_onRate($event)"
+      [id]="inputId"
       [(ngModel)]="value"
-      [attr.id]="inputId"
+      [stars]="stars"
       [cancel]="cancel"
       [disabled]="disabled"
-      [iconCancelClass]="iconCancelClass"
-      [iconOffClass]="iconOffClass"
-      [iconOnClass]="iconOnClass"
       [readonly]="readonly"
-      [stars]="stars"
+      [iconOnClass]="iconOnClass"
+      [iconOffClass]="iconOffClass"
+      [iconCancelClass]="iconCancelClass"
+      [iconOnStyle]="iconOnStyle"
+      [iconOffStyle]="iconOffStyle"
+      [iconCancelStyle]="iconCancelStyle"
+      (onCancel)="_onCancel($event)"
+      (onRate)="_onRate($event)"
     ></p-rating>
   </div>
   <label
