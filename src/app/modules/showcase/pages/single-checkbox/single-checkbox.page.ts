@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgLabelPosition} from "@ng/models/forms";
 
 @Component({
   selector: 'ng-single-checkbox-page',

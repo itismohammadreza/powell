@@ -1,80 +1,15 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'rtl',
-  'readonly',
-  'disabled',
-  'selectionMode',
-  'layout',
-  'propagateSelectionUp',
-  'propagateSelectionDown',
-  'emptyMessage',
-  'filterPlaceholder',
-  'scrollHeight',
-  'indentation'
-  ]"
-  [(label)]="label"
-  [(labelWidth)]="labelWidth"
-  [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(labelPos)]="labelPos"
-  [(selectionMode)]="selectionMode"
-  [(layout)]="layout"
-  [(propagateSelectionUp)]="propagateSelectionUp"
-  [(propagateSelectionDown)]="propagateSelectionDown"
-  [(emptyMessage)]="emptyMessage"
-  [(filterPlaceholder)]="filterPlaceholder"
-  [(scrollHeight)]="scrollHeight"
-  [(indentation)]="indentation"
+  [previewItems]="[]"
 ></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-tree
-      formControlName="c1"
-      [errors]="{ required: 'error' }"
-      [label]="label"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [items]="items"
-      [selectionMode]="selectionMode"
-      [selection]="selection"
-      [style]="style"
-      [styleClass]="styleClass"
-      [contextMenu]="contextMenu"
-      [layout]="layout"
-      [draggableScope]="draggableScope"
-      [droppableScope]="droppableScope"
-      [draggableNodes]="draggableNodes"
-      [droppableNodes]="droppableNodes"
-      [metaKeySelection]="metaKeySelection"
-      [propagateSelectionUp]="propagateSelectionUp"
-      [propagateSelectionDown]="propagateSelectionDown"
-      [loading]="loading"
-      [loadingIcon]="loadingIcon"
-      [emptyMessage]="emptyMessage"
-      [validateDrop]="validateDrop"
-      [filter]="filter"
-      [filterBy]="filterBy"
-      [filterMode]="filterMode"
-      [filterPlaceholder]="filterPlaceholder"
-      [filterLocale]="filterLocale"
-      [scrollHeight]="scrollHeight"
-      [virtualScroll]="virtualScroll"
-      [virtualNodeHeight]="virtualNodeHeight"
-      [minBufferPx]="minBufferPx"
-      [maxBufferPx]="maxBufferPx"
-      [trackBy]="trackBy"
-      [indentation]="indentation"
-    >
-    </ng-tree>
+    ></ng-tree>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
@@ -83,40 +18,5 @@
     required
     [(ngModel)]="binding"
     [errors]="{ required: 'error' }"
-    [label]="label"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [items]="items"
-    [selectionMode]="selectionMode"
-    [selection]="selection"
-    [style]="style"
-    [styleClass]="styleClass"
-    [contextMenu]="contextMenu"
-    [layout]="layout"
-    [draggableScope]="draggableScope"
-    [droppableScope]="droppableScope"
-    [draggableNodes]="draggableNodes"
-    [droppableNodes]="droppableNodes"
-    [metaKeySelection]="metaKeySelection"
-    [propagateSelectionUp]="propagateSelectionUp"
-    [propagateSelectionDown]="propagateSelectionDown"
-    [loading]="loading"
-    [loadingIcon]="loadingIcon"
-    [emptyMessage]="emptyMessage"
-    [validateDrop]="validateDrop"
-    [filter]="filter"
-    [filterBy]="filterBy"
-    [filterMode]="filterMode"
-    [filterPlaceholder]="filterPlaceholder"
-    [filterLocale]="filterLocale"
-    [scrollHeight]="scrollHeight"
-    [virtualScroll]="virtualScroll"
-    [virtualNodeHeight]="virtualNodeHeight"
-    [minBufferPx]="minBufferPx"
-    [maxBufferPx]="maxBufferPx"
-    [trackBy]="trackBy"
-    [indentation]="indentation">
-  </ng-tree>
+  ></ng-tree>
 </div>
