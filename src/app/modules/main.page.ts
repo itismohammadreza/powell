@@ -13,9 +13,9 @@ export class MainPage extends LanguageChecker implements OnInit {
     super();
   }
 
-  sidebarVisible = false;
-  sidebarLock = false;
-  menuType: MenuType = 'overlay';
+  sidebarVisible = true;
+  sidebarLock = true;
+  menuType: MenuType;
   sidebarItems: MenuItem[];
 
   @HostListener('window:resize', ['$event']) onResize(e) {
@@ -77,7 +77,6 @@ export class MainPage extends LanguageChecker implements OnInit {
       this.onMenuTypeChange('push');
     }
   }
-
 
   getClasses() {
     let classes = `menu-${this.menuType}`;

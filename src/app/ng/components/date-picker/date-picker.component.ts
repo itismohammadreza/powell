@@ -132,6 +132,10 @@ export class DatePickerComponent implements OnInit, OnChanges, AfterViewInit, Co
     'پنج شنبه',
     'جمعه',
   ];
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -139,11 +143,6 @@ export class DatePickerComponent implements OnInit, OnChanges, AfterViewInit, Co
   ) {
   }
 
-  onModelChange: any = (_: any) => {
-  };
-
-  onModelTouched: any = () => {
-  };
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;

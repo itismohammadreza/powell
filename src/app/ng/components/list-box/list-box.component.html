@@ -14,11 +14,6 @@
     }"
     class="field">
     <p-listbox
-      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
-      (onChange)="_onChange($event)"
-      (onClick)="_onClick($event)"
-      (onDblClick)="_onDblClick($event)"
       [(ngModel)]="value"
       [attr.id]="inputId"
       [checkbox]="checkbox"
@@ -37,6 +32,11 @@
       [options]="options"
       [readonly]="readonly"
       [showToggleAll]="showToggleAll"
+      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
+      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
+      (onChange)="_onChange($event)"
+      (onClick)="_onClick($event)"
+      (onDblClick)="_onDblClick($event)"
     >
       <ng-template pTemplate="header" *ngIf="headerTemplate">
         <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>

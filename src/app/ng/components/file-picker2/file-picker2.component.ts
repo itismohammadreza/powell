@@ -64,6 +64,10 @@ export class FilePicker2Component
   filesToShow: any[] = [];
   filesToEmit: any[] = [];
   _chooseLabel: string;
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -71,11 +75,6 @@ export class FilePicker2Component
   ) {
   }
 
-  onModelChange: any = (_: any) => {
-  };
-
-  onModelTouched: any = () => {
-  };
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;

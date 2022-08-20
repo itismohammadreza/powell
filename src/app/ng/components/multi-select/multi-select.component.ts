@@ -126,15 +126,13 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
   emptyFilterTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
-
-  onModelChange: any = (_: any) => {
-  };
-
-  onModelTouched: any = () => {
-  };
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;

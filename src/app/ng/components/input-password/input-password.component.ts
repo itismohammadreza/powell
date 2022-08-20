@@ -83,21 +83,35 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
   @Output() onAfterBtnClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
   contentTemplate: TemplateRef<any>;
   headerTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
-
-  onModelChange: any = (_: any) => {
-  };
-
-  onModelTouched: any = () => {
-  };
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;

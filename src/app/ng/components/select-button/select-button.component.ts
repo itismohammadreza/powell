@@ -46,9 +46,7 @@ export class SelectButtonComponent implements OnInit, AfterViewInit, ControlValu
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
-  @Input() iconPos: NgPosition = 'left';
   @Input() errors: NgError;
-  @Input() addon: NgAddon
   // native properties
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
@@ -70,15 +68,13 @@ export class SelectButtonComponent implements OnInit, AfterViewInit, ControlValu
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
-
-  onModelChange: any = (_: any) => {
-  };
-
-  onModelTouched: any = () => {
-  };
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;

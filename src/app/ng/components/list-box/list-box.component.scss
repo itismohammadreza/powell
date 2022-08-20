@@ -1,92 +1,85 @@
-$root: "p-listbox";
-$wrapper: "p-listbox ::ng-deep .p-listbox";
-$inputEl: "p-listbox ::ng-deep .p-inputtext";
-
-#{$root},
-#{$wrapper},
-#{$inputEl},
-small {
-  width: 100%;
-}
-
-.list-box-wrapper {
-  direction: ltr;
-
-  #{$root} {
-    &.has-before ::ng-deep .p-listbox {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-
-    &.has-after ::ng-deep .p-listbox {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-  }
-
-  .field {
+:host ::ng-deep {
+  .list-box-wrapper {
+    display: flex;
     position: relative;
+    direction: ltr;
 
-    .error {
-      position: absolute;
-      top: 100%;
+    p-listbox,
+    .p-listbox,
+    small {
+      width: 100%;
     }
-  }
 
-  &.ltr {
     .field {
-      .error {
+      flex-grow: 1;
+
+      p-listbox {
+        &.has-before {
+          .p-listbox {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+        }
+
+        &.has-after {
+          .p-listbox {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+      }
+    }
+
+    small {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+    }
+
+    &.ltr {
+      small {
         left: 0;
       }
     }
 
-    #{$inputEl},
-    label, small {
-      direction: ltr;
-    }
-  }
+    &.rtl {
+      text-align: right;
 
-  &.rtl {
-    text-align: right;
+      .p-listbox,
+      .p-inputtext
+      label,
+      small {
+        direction: rtl;
+      }
 
-    .field {
-      .error {
+      small {
         right: 0;
       }
-    }
 
-    #{$wrapper} {
-      .p-listbox-list .p-checkbox {
-        margin-right: 0;
-        margin-left: 0.5rem;
-      }
-
-      .p-listbox-header {
-        flex-direction: row-reverse;
-
-        .p-checkbox {
+      .p-listbox {
+        .p-listbox-list .p-checkbox {
           margin-right: 0;
           margin-left: 0.5rem;
         }
-      }
 
-      .p-listbox-filter-container {
-        .p-listbox-filter {
-          padding-right: 0.5rem;
-          padding-left: 1.5rem;
+        .p-listbox-header {
+          .p-checkbox {
+            margin-right: 0;
+            margin-left: 0.5rem;
+          }
         }
 
-        .p-listbox-filter-icon {
-          right: auto;
-          left: 0.5rem;
+        .p-listbox-filter-container {
+          .p-listbox-filter {
+            padding-right: 0.5rem;
+            padding-left: 1.5rem;
+          }
+
+          .p-listbox-filter-icon {
+            right: auto;
+            left: 0.5rem;
+          }
         }
       }
-    }
-
-    #{$inputEl},
-    #{$wrapper} .p-listbox-list,
-    label, small {
-      direction: rtl;
     }
   }
 }

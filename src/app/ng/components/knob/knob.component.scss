@@ -2,7 +2,7 @@
   .knob-wrapper {
     display: flex;
     position: relative;
-    direction: ltr; // set direction of component ltr by default and base of this, implement rtl direction
+    direction: ltr;
 
     .field {
       flex-grow: 1;

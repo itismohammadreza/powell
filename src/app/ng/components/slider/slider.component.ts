@@ -63,15 +63,13 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
-
-  onModelChange: any = (_: any) => {
-  };
-
-  onModelTouched: any = () => {
-  };
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;

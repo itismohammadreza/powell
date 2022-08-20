@@ -5,7 +5,9 @@
       'align-items-center': labelPos == 'fix-side',
       'align-items-end': labelPos == 'fix-top' && rtl,
       'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+      'flex-row-reverse': labelPos == 'fix-side' && !rtl,
+      'is-clearable': showClear,
+      'has-value': value
     }" class="input-mask-wrapper">
   <div [ngClass]="{
       'w-100': labelPos == 'fix-top',
@@ -19,22 +21,26 @@
     <i *ngIf="icon && !addon" [ngClass]="icon"></i>
     <p-inputMask
       [(ngModel)]="value"
-      [autoClear]="autoClear"
-      [autoFocus]="autoFocus"
-      [autocomplete]="autocomplete"
-      [characterPattern]="characterPattern"
-      [disabled]="disabled"
-      [inputId]="inputId"
-      [mask]="mask"
-      [maxlength]="maxlength"
       [ngAddon]="addon"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [placeholder]="placeholder"
-      [readonly]="readonly"
-      [size]="size"
+      [type]="type"
+      [mask]="mask"
       [slotChar]="slotChar"
-      [title]="title"
+      [autoClear]="autoClear"
       [unmask]="unmask"
+      [style]="style"
+      [styleClass]="styleClass"
+      [placeholder]="placeholder"
+      [size]="size"
+      [maxlength]="maxlength"
+      [tabindex]="tabindex"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [characterPattern]="characterPattern"
+      [autoFocus]="autoFocus"
+      [showClear]="showClear"
+      [autocomplete]="autocomplete"
+      [title]="title"
       (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
       (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
       (onBlur)="_onBlur()"

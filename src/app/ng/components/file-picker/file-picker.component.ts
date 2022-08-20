@@ -100,15 +100,13 @@ export class FilePickerComponent
   toolbarTemplate: TemplateRef<any>;
   fileTemplate: TemplateRef<any>;
   contentTemplate: TemplateRef<any>;
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
-
-  onModelChange: any = (_: any) => {
-  };
-
-  onModelTouched: any = () => {
-  };
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;

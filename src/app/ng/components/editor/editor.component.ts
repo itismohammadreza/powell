@@ -118,15 +118,13 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
   editorInstance: NgxSuneditorComponent
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
-
-  onModelChange: any = (_: any) => {
-  };
-
-  onModelTouched: any = () => {
-  };
 
   ngOnInit() {
     let parentForm: UntypedFormGroup;

@@ -12,8 +12,12 @@ export class ListBoxPage implements OnInit {
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;
-  submit() {}
-  ngOnInit(): void {}
+
+  submit() {
+  }
+
+  ngOnInit(): void {
+  }
 
   label: string;
   filled: boolean = false;
@@ -23,10 +27,10 @@ export class ListBoxPage implements OnInit {
   showRequiredStar: boolean = true;
   labelPos: NgLabelPosition = 'fix-top';
   ariaFilterLabel: string;
-  checkbox: boolean = false;
+  checkbox: boolean = true;
   dataKey: string;
   disabled: boolean = false;
-  filter: boolean = false;
+  filter: boolean = true;
   filterMatchMode: NgFilterMatchMode = 'contains';
   filterValue: string;
   filterLocale: string = undefined;
@@ -35,12 +39,18 @@ export class ListBoxPage implements OnInit {
   listStyle: string;
   listStyleClass: string;
   metaKeySelection: boolean = true;
-  multiple: boolean = false;
+  multiple: boolean = true;
   readonly: boolean = false;
   emptyMessage: string = 'No records found';
-  options: any[];
-  optionLabel: string = 'label';
-  optionValue: string = 'value';
+  options: any[] = [
+    {name: 'New York', code: 'NY', inactive: false},
+    {name: 'Rome', code: 'RM', inactive: true},
+    {name: 'London', code: 'LDN', inactive: false},
+    {name: 'Istanbul', code: 'IST', inactive: true},
+    {name: 'Paris', code: 'PRS', inactive: false}
+  ];
+  optionLabel: string = 'name';
+  optionValue: string = 'code';
   optionDisabled: string = 'disabled';
   optionGroupLabel: string = 'label';
   optionGroupChildren: string = 'items';

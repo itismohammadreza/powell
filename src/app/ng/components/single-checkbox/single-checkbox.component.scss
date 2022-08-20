@@ -1,45 +1,37 @@
-:host {
-  display: inline-block;
-}
-
-small {
-  display: block;
-  width: 100%;
-}
-
-.single-checkbox-wrapper {
-  display: flex;
-  position: relative;
-
-  .field {
-    flex-grow: 1;
-  }
-  .field{
+:host ::ng-deep {
+  .single-checkbox-wrapper {
+    display: flex;
     position: relative;
-    .error {
-      position: absolute;
-      top: 100%;
+    direction: ltr;
+
+    .field {
+      flex-grow: 1;
     }
-  }
-  &.ltr {
-    .field{
-      .error {
+
+    small {
+      display: block;
+      width: 100%;
+      position: absolute;
+      top: calc(100% + 0.25rem);
+    }
+
+    &.ltr {
+      small {
         left: 0;
       }
     }
-    label, small {
-      direction: ltr;
-    }
-  }
-  &.rtl { text-align: right;
-    .field{
-      .error {
+
+    &.rtl {
+      text-align: right;
+
+      label,
+      small {
+        direction: rtl;
+      }
+
+      small {
         right: 0;
       }
-      direction: rtl;
-    }
-    label, small {
-      direction: rtl;
     }
   }
 }

@@ -39,6 +39,10 @@ import {filter} from 'rxjs/operators';
 21- implement ng-status component just like AntDisign-NG-ZORRRO.
 22- check showClear functionality that may forget to add, and also check showClear when icon is provided.
 23- add specific class to hint and error and icon elements and edit .scss file.
+24- add ability to set default value for sidebarLock and sidebarVisible
+    (now even you set default value, it changed in the window resizeEvent and override). also body by default get a 'p-overflow-hidden' class. fix it!
+25- in map: implement removeLastMarker & removeAllMarkers buttons. also add an @Input() multi:boolean to allow choose multiple marker.
+26- see where wee need  this piece of code (&.rtl { text-align: rtl }) and where is extra. remove extras.
 */
 @Component({
   selector: 'app-root',

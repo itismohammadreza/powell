@@ -1,46 +1,28 @@
-$root: "p-rating";
-$wrapper: "p-rating ::ng-deep .p-rating";
-
-#{$root},
-#{$wrapper},
-small {
-  display: block;
-  width: 100%;
-}
-
-.rating-wrapper {
-  direction: ltr;
-
-  .field {
+:host ::ng-deep {
+  .rating-wrapper {
+    display: flex;
     position: relative;
+    direction: ltr;
 
-    .error {
-      position: absolute;
-      top: 100%;
-    }
-  }
-
-  &.ltr {
     .field {
-      .error {
+      flex-grow: 1;
+    }
+
+    small {
+      display: block;
+      width: 100%;
+      position: absolute;
+      top: calc(100% + 0.25rem);
+    }
+
+    &.ltr {
+      small {
         left: 0;
       }
     }
 
-    label, small {
-      direction: ltr;
-    }
-  }
-
-  &.rtl {
-    text-align: right;
-
-    .field {
-      .error {
-        right: 0;
-      }
-
-      #{$wrapper} {
+    &.rtl {
+      .p-rating {
         direction: rtl;
 
         .p-rating-icon {
@@ -52,10 +34,15 @@ small {
           }
         }
       }
-    }
 
-    label, small {
-      direction: rtl;
+      label,
+      small {
+        direction: rtl;
+      }
+
+      small {
+        right: 0;
+      }
     }
   }
 }

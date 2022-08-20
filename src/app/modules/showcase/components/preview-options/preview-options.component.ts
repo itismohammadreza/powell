@@ -97,7 +97,7 @@ type PreviewItem =
   'unmask' |
   'showButtons' |
   'feedback' |
-  'showPassword' |
+  'toggleMask' |
   'autoResize' |
   'checkbox' |
   'filled' |
@@ -311,8 +311,8 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() showButtonsChange = new EventEmitter();
   @Input() feedback: boolean;
   @Output() feedbackChange = new EventEmitter();
-  @Input() showPassword: boolean;
-  @Output() showPasswordChange = new EventEmitter();
+  @Input() toggleMask: boolean;
+  @Output() toggleMaskChange = new EventEmitter();
   @Input() autoResize: boolean;
   @Output() autoResizeChange = new EventEmitter();
   @Input() checkbox: boolean;
