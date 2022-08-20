@@ -1,64 +1,18 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'icon',
-  'iconPos',
-  'selectiveSize',
-  'filled',
-  'rtl',
-  'placeholder',
-  'readonly',
-  'disabled',
-  'rows',
-  'cols',
-  'autoResize',
-  'maxlength',
-  ]"
-  [(label)]="label"
-  [(icon)]="icon"
-  [(rows)]="rows"
-  [(cols)]="cols"
-  [(autoResize)]="autoResize"
-  [(readonly)]="readonly"
-  [(disabled)]="disabled"
-  [(filled)]="filled"
-  [(maxlength)]="maxlength"
-  [(labelWidth)]="labelWidth"
-  [(placeholder)]="placeholder"
-  [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(labelPos)]="labelPos"
-  [(iconPos)]="iconPos"
+  [previewItems]="[]"
 ></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-input-textarea
       formControlName="c1"
-      [errors]="{ required: 'error' }"
-      [label]="label"
-      [icon]="icon"
-      [rows]="rows"
-      [cols]="cols"
-      [autoResize]="autoResize"
-      [readonly]="readonly"
-      [disabled]="disabled"
-      [filled]="filled"
-      [maxlength]="maxlength"
-      [labelWidth]="labelWidth"
-      [placeholder]="placeholder"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [iconPos]="iconPos"
       [addon]="addon"
-    >
-    </ng-input-textarea>
+      [errors]="{ required: 'error' }"
+    ></ng-input-textarea>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
@@ -66,22 +20,7 @@
     name="myInput"
     required
     [(ngModel)]="binding"
+    [addon]="addon"
     [errors]="{ required: 'error' }"
-    [label]="label"
-    [icon]="icon"
-    [rows]="rows"
-    [cols]="cols"
-    [autoResize]="autoResize"
-    [readonly]="readonly"
-    [disabled]="disabled"
-    [filled]="filled"
-    [maxlength]="maxlength"
-    [labelWidth]="labelWidth"
-    [placeholder]="placeholder"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [iconPos]="iconPos"
-    [addon]="addon">
-  </ng-input-textarea>
+  ></ng-input-textarea>
 </div>

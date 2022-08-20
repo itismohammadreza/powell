@@ -1,96 +1,18 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'icon',
-  'iconPos',
-  'selectiveSize',
-  'filled',
-  'rtl',
-  'placeholder',
-  'readonly',
-  'disabled',
-  'format',
-  'showButtons',
-  'buttonLayout',
-  'incrementButtonIcon',
-  'decrementButtonIcon',
-  'prefix',
-  'suffix',
-  'currency',
-  'currencyDisplay',
-  'minFractionDigits',
-  'maxFractionDigits',
-  'min',
-  'max',
-  'step',
-  'size',
-  'maxlength',
-  ]"
-  [(label)]="label"
-  [(filled)]="filled"
-  [(labelWidth)]="labelWidth"
-  [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(labelPos)]="labelPos"
-  [(iconPos)]="iconPos"
-  [(icon)]="icon"
-  [(selectiveSize)]="inputSize"
-  [(format)]="format"
-  [(showButtons)]="showButtons"
-  [(buttonLayout)]="buttonLayout"
-  [(prefix)]="prefix"
-  [(suffix)]="suffix"
-  [(currency)]="currency"
-  [(currencyDisplay)]="currencyDisplay"
-  [(min)]="min"
-  [(max)]="max"
-  [(step)]="step"
-  [(placeholder)]="placeholder"
-  [(size)]="size"
-  [(maxlength)]="maxlength"
-  [(disabled)]="disabled"
->
-</ng-preview-options>
+  [previewItems]="[]"
+></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-input-number
       formControlName="c1"
-      [errors]="{ required: 'error' }"
-      [label]="label"
-      [filled]="filled"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [iconPos]="iconPos"
-      [icon]="icon"
-      [inputSize]="inputSize"
-      [format]="format"
-      [showButtons]="showButtons"
-      [buttonLayout]="buttonLayout"
-      [mode]="mode"
-      [prefix]="prefix"
-      [suffix]="suffix"
-      [currency]="currency"
-      [currencyDisplay]="currencyDisplay"
-      [useGrouping]="useGrouping"
-      [min]="min"
-      [max]="max"
-      [step]="step"
-      [placeholder]="placeholder"
-      [size]="size"
-      [maxlength]="maxlength"
-      [disabled]="disabled"
-      [title]="title"
       [addon]="addon"
-    >
-    </ng-input-number>
+      [errors]="{ required: 'error' }"
+    ></ng-input-number>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
@@ -98,33 +20,7 @@
     name="myInput"
     required
     [(ngModel)]="binding"
+    [addon]="addon"
     [errors]="{ required: 'error' }"
-    [label]="label"
-    [filled]="filled"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [iconPos]="iconPos"
-    [icon]="icon"
-    [inputSize]="inputSize"
-    [format]="format"
-    [showButtons]="showButtons"
-    [buttonLayout]="buttonLayout"
-    [mode]="mode"
-    [prefix]="prefix"
-    [suffix]="suffix"
-    [currency]="currency"
-    [currencyDisplay]="currencyDisplay"
-    [useGrouping]="useGrouping"
-    [min]="min"
-    [max]="max"
-    [step]="step"
-    [placeholder]="placeholder"
-    [size]="size"
-    [maxlength]="maxlength"
-    [disabled]="disabled"
-    [title]="title"
-    [addon]="addon">
-  </ng-input-number>
+  ></ng-input-number>
 </div>

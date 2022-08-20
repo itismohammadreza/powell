@@ -2,7 +2,7 @@ import {HttpClient, HttpContext, HttpHeaders, HttpParams} from '@angular/common/
 import {Global} from '@ng/global';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {environment} from 'src/environments/environment';
+import {EnvService} from "@core/utils";
 
 interface RequestOptions {
   headers?: HttpHeaders | { [p: string]: string | string[] };
@@ -14,10 +14,12 @@ interface RequestOptions {
 
 export class ApiService {
   private http: HttpClient;
-  private baseUrl: string = environment.apiUrl;
+  private baseUrl: string;
 
   constructor() {
     this.http = Global.Injector.get(HttpClient);
+    const envService = Global.Injector.get(EnvService);
+    this.baseUrl = envService.apiUrl;
   }
 
   protected _get<T>(

@@ -1,43 +1,17 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'icon',
-  'iconPos',
-  'selectiveSize',
-  'filled',
-  'rtl',
-  'placeholder',
-  'readonly',
-  'disabled',
-  ]"
-  [(label)]="label"
-  [(labelWidth)]="labelWidth"
-  [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(labelPos)]="labelPos"
-  [(disabled)]="disabled"
-  [(readonly)]="readonly"
+  [previewItems]="[]"
 ></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-editor
       formControlName="c1"
       [errors]="{ required: 'error' }"
-      [label]="label"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [readonly]="readonly"
-      [disabled]="disabled"
-    >
-    </ng-editor>
+    ></ng-editor>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
@@ -46,12 +20,5 @@
     required
     [(ngModel)]="binding"
     [errors]="{ required: 'error' }"
-    [label]="label"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [readonly]="readonly"
-    [disabled]="disabled">
-  </ng-editor>
+  ></ng-editor>
 </div>

@@ -1,62 +1,18 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'icon',
-  'iconPos',
-  'selectiveSize',
-  'filled',
-  'rtl',
-  'placeholder',
-  'readonly',
-  'disabled',
-  'inline',
-  'format',
-  ]"
-  [(label)]="label"
-  [(filled)]="filled"
-  [(labelWidth)]="labelWidth"
-  [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(icon)]="icon"
-  [(selectiveSize)]="inputSize"
-  [(readonly)]="readonly"
-  [(maxlength)]="maxlength"
-  [(placeholder)]="placeholder"
-  [(labelPos)]="labelPos"
-  [(iconPos)]="iconPos"
-  [(inline)]="inline"
-  [(format)]="format"
-  [(disabled)]="disabled"
+  [previewItems]="[]"
 ></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-color-picker
       formControlName="c1"
-      [errors]="{ required: 'error' }"
-      [label]="label"
-      [filled]="filled"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [icon]="icon"
-      [inputSize]="inputSize"
-      [readonly]="readonly"
-      [maxlength]="maxlength"
-      [placeholder]="placeholder"
-      [labelPos]="labelPos"
-      [iconPos]="iconPos"
-      [inline]="inline"
-      [format]="format"
-      [disabled]="disabled"
       [addon]="addon"
-    >
-    </ng-color-picker>
+      [errors]="{ required: 'error' }"
+    ></ng-color-picker>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
@@ -64,22 +20,7 @@
     name="myInput"
     required
     [(ngModel)]="binding"
+    [addon]="addon"
     [errors]="{ required: 'error' }"
-    [label]="label"
-    [filled]="filled"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [icon]="icon"
-    [inputSize]="inputSize"
-    [readonly]="readonly"
-    [maxlength]="maxlength"
-    [placeholder]="placeholder"
-    [labelPos]="labelPos"
-    [iconPos]="iconPos"
-    [inline]="inline"
-    [format]="format"
-    [disabled]="disabled"
-    [addon]="addon">
-  </ng-color-picker>
+  ></ng-color-picker>
 </div>

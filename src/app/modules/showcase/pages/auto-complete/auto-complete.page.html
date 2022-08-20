@@ -1,44 +1,5 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'icon',
-  'iconPos',
-  'selectiveSize',
-  'filled',
-  'rtl',
-  'placeholder',
-  'readonly',
-  'disabled',
-  'scrollHeight',
-  'dropdown',
-  'multiple',
-  'minlength',
-  'maxlength',
-  'emptyMessage',
-  'unique'
-  ]"
-  [(hint)]="hint"
-  [(label)]="label"
-  [(labelPos)]="labelPos"
-  [(labelWidth)]="labelWidth"
-  [(icon)]="icon"
-  [(iconPos)]="iconPos"
-  [(selectiveSize)]="inputSize"
-  [(filled)]="filled"
-  [(rtl)]="rtl"
-  [(placeholder)]="placeholder"
-  [(readonly)]="readonly"
-  [(disabled)]="disabled"
-  [(scrollHeight)]="scrollHeight"
-  [(dropdown)]="dropdown"
-  [(multiple)]="multiple"
-  [(minlength)]="minlength"
-  [(maxlength)]="maxlength"
-  [(emptyMessage)]="emptyMessage"
-  [(unique)]="unique"
+  [previewItems]="[]"
 ></ng-preview-options>
 
 <div class="container">
@@ -47,31 +8,11 @@
     <ng-auto-complete
       formControlName="c1"
       field="name"
-      [hint]="hint"
-      [label]="label"
-      [labelPos]="labelPos"
-      [labelWidth]="labelWidth"
-      [icon]="icon"
-      [iconPos]="iconPos"
-      [inputSize]="inputSize"
-      [filled]="filled"
-      [rtl]="rtl"
-      [placeholder]="placeholder"
-      [readonly]="readonly"
-      [disabled]="disabled"
-      [scrollHeight]="scrollHeight"
-      [dropdown]="dropdown"
-      [multiple]="multiple"
-      [minlength]="minlength"
-      [maxlength]="maxlength"
-      [emptyMessage]="emptyMessage"
-      [unique]="unique"
-      [suggestions]="filteredSuggestions"
       [addon]="addon"
       [errors]="{ required: 'error' }"
+      [suggestions]="filteredSuggestions"
       (completeMethod)="filter($event)"
-    >
-    </ng-auto-complete>
+    ></ng-auto-complete>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
 
@@ -80,30 +21,11 @@
   <pre>{{binding | json}}</pre>
   <ng-auto-complete
     name="myInput"
+    field="name"
     required
     [(ngModel)]="binding"
-    field="name"
-    [hint]="hint"
-    [label]="label"
-    [labelPos]="labelPos"
-    [labelWidth]="labelWidth"
-    [icon]="icon"
-    [iconPos]="iconPos"
-    [inputSize]="inputSize"
-    [filled]="filled"
-    [rtl]="rtl"
-    [placeholder]="placeholder"
-    [readonly]="readonly"
-    [disabled]="disabled"
-    [scrollHeight]="scrollHeight"
-    [dropdown]="dropdown"
-    [multiple]="multiple"
-    [minlength]="minlength"
-    [maxlength]="maxlength"
-    [emptyMessage]="emptyMessage"
-    [unique]="unique"
-    [suggestions]="filteredSuggestions"
     [errors]="{ required: 'error' }"
+    [suggestions]="filteredSuggestions"
     (completeMethod)="filter($event)">
   </ng-auto-complete>
 </div>

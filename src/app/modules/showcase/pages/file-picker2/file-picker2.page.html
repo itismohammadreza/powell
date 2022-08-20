@@ -1,56 +1,17 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'rtl',
-  'disabled',
-'showImagePreview',
-'multiple',
-'color',
-'fileLimit',
-'resultType',
-'chooseLabel'
-]"
-  [(label)]="label"
-  [(labelWidth)]="labelWidth"
-  [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(showImagePreview)]="showImagePreview"
-  [(labelPos)]="labelPos"
-  [(disabled)]="disabled"
-  [(readonly)]="readonly"
-  [(multiple)]="multiple"
-  [(color)]="color"
-  [(fileLimit)]="fileLimit"
-  [(resultType)]="resultType"
-  [(chooseLabel)]="chooseLabel"
+  [previewItems]="[]"
 ></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-file-picker2
       formControlName="c1"
       [errors]="{ required: 'error' }"
-      [label]="label"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [showImagePreview]="showImagePreview"
-      [labelPos]="labelPos"
-      [disabled]="disabled"
-      [readonly]="readonly"
-      [multiple]="multiple"
-      [accept]="accept"
-      [color]="color"
-      [fileLimit]="fileLimit"
-      [resultType]="resultType"
-      [chooseLabel]="chooseLabel"
-    >
-    </ng-file-picker2>
+    ></ng-file-picker2>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
@@ -59,19 +20,5 @@
     required
     [(ngModel)]="binding"
     [errors]="{ required: 'error' }"
-    [label]="label"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [showImagePreview]="showImagePreview"
-    [labelPos]="labelPos"
-    [disabled]="disabled"
-    [readonly]="readonly"
-    [multiple]="multiple"
-    [accept]="accept"
-    [color]="color"
-    [fileLimit]="fileLimit"
-    [resultType]="resultType"
-    [chooseLabel]="chooseLabel">
-  </ng-file-picker2>
+  ></ng-file-picker2>
 </div>

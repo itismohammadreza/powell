@@ -1,89 +1,18 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'icon',
-  'iconPos',
-  'selectiveSize',
-  'filled',
-  'rtl',
-  'placeholder',
-  'readonly',
-  'disabled',
-  'scrollHeight',
-  'filter',
-  'filterPlaceholder',
-  'editable',
-  'maxlength',
-  'resetFilterOnHide',
-  'emptyFilterMessage',
-  'autoDisplayFirst',
-  'showClear',
-  'tooltip',
-  'tooltipPosition',
-  ]"
-  [(hint)]="hint"
-  [(label)]="label"
-  [(labelPos)]="labelPos"
-  [(labelWidth)]="labelWidth"
-  [(icon)]="icon"
-  [(iconPos)]="iconPos"
-  [(selectiveSize)]="inputSize"
-  [(filled)]="filled"
-  [(rtl)]="rtl"
-  [(placeholder)]="placeholder"
-  [(readonly)]="readonly"
-  [(disabled)]="disabled"
-  [(scrollHeight)]="scrollHeight"
-  [(filter)]="filter"
-  [(filterPlaceholder)]="filterPlaceholder"
-  [(editable)]="editable"
-  [(maxlength)]="maxlength"
-  [(resetFilterOnHide)]="resetFilterOnHide"
-  [(emptyFilterMessage)]="emptyFilterMessage"
-  [(autoDisplayFirst)]="autoDisplayFirst"
-  [(showClear)]="showClear"
-  [(tooltip)]="tooltip"
-  [(tooltipPosition)]="tooltipPosition"
+  [previewItems]="[]"
 ></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-dropdown
       formControlName="c1"
-      [errors]="{ required: 'error' }"
       [addon]="addon"
-      [label]="label"
-      [filled]="filled"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [iconPos]="iconPos"
-      [scrollHeight]="scrollHeight"
-      [options]="options"
-      [disabled]="disabled"
-      [readonly]="readonly"
-      [placeholder]="placeholder"
-      [icon]="icon"
-      [inputSize]="inputSize"
-      [filter]="filter"
-      [filterPlaceholder]="filterPlaceholder"
-      [editable]="editable"
-      [maxlength]="maxlength"
-      [autofocusFilter]="autofocusFilter"
-      [resetFilterOnHide]="resetFilterOnHide"
-      [emptyFilterMessage]="emptyFilterMessage"
-      [autoDisplayFirst]="autoDisplayFirst"
-      [showClear]="showClear"
-      [tooltip]="tooltip"
-      [tooltipPosition]="tooltipPosition"
-    >
-    </ng-dropdown>
+      [errors]="{ required: 'error' }"
+    ></ng-dropdown>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
@@ -91,32 +20,7 @@
     name="myInput"
     required
     [(ngModel)]="binding"
+    [addon]="addon"
     [errors]="{ required: 'error' }"
-    [label]="label"
-    [filled]="filled"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [iconPos]="iconPos"
-    [scrollHeight]="scrollHeight"
-    [options]="options"
-    [filter]="filter"
-    [filterPlaceholder]="filterPlaceholder"
-    [disabled]="disabled"
-    [readonly]="readonly"
-    [editable]="editable"
-    [maxlength]="maxlength"
-    [placeholder]="placeholder"
-    [icon]="icon"
-    [inputSize]="inputSize"
-    [autofocusFilter]="autofocusFilter"
-    [resetFilterOnHide]="resetFilterOnHide"
-    [emptyFilterMessage]="emptyFilterMessage"
-    [autoDisplayFirst]="autoDisplayFirst"
-    [showClear]="showClear"
-    [tooltip]="tooltip"
-    [tooltipPosition]="tooltipPosition"
-    [addon]="addon">
-  </ng-dropdown>
+  ></ng-dropdown>
 </div>

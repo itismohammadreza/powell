@@ -1,54 +1,17 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'filled',
-  'rtl',
-  'readonly',
-  'disabled',
-  'orientation',
-  ]"
-  [(label)]="label"
-  [(labelWidth)]="labelWidth"
-  [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(labelPos)]="labelPos"
-  [(orientation)]="orientation"
-  [(disabled)]="disabled"
-  [(readonly)]="readonly"
+  [previewItems]="[]"
 ></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-multi-checkbox
       formControlName="c1"
       [errors]="{ required: 'error' }"
-      [options]="options"
-      [optionLabel]="optionLabel"
-      [optionValue]="optionValue"
-      [optionDisabled]="optionDisabled"
-      [label]="label"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [orientation]="orientation"
-      [disabled]="disabled"
-      [tabindex]="tabindex"
-      [style]="style"
-      [styleClass]="styleClass"
-      [labelStyleClass]="labelStyleClass"
-      [checkboxIcon]="checkboxIcon"
-      [readonly]="readonly"
-      [required]="required"
-      [trueValue]="trueValue"
-      [falseValue]="falseValue"
-    >
-    </ng-multi-checkbox>
+    ></ng-multi-checkbox>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
@@ -57,25 +20,5 @@
     required
     [(ngModel)]="binding"
     [errors]="{ required: 'error' }"
-    [options]="options"
-    [optionLabel]="optionLabel"
-    [optionValue]="optionValue"
-    [optionDisabled]="optionDisabled"
-    [label]="label"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [orientation]="orientation"
-    [disabled]="disabled"
-    [tabindex]="tabindex"
-    [style]="style"
-    [styleClass]="styleClass"
-    [labelStyleClass]="labelStyleClass"
-    [checkboxIcon]="checkboxIcon"
-    [readonly]="readonly"
-    [required]="required"
-    [trueValue]="trueValue"
-    [falseValue]="falseValue">
-  </ng-multi-checkbox>
+  ></ng-multi-checkbox>
 </div>

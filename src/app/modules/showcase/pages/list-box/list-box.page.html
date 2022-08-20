@@ -1,79 +1,18 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'filled',
-  'rtl',
-  'readonly',
-  'disabled',
-  'checkbox',
-  'filter',
-  'filterPlaceHolder',
-  'emptyFilterMessage',
-  'multiple',
-  'emptyMessage',
-  'showToggleAll',
-  ]"
-  [(label)]="label"
-  [(filled)]="filled"
-  [(labelWidth)]="labelWidth"
-  [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(labelPos)]="labelPos"
-  [(checkbox)]="checkbox"
-  [(disabled)]="disabled"
-  [(filter)]="filter"
-  [(filterPlaceHolder)]="filterPlaceHolder"
-  [(emptyFilterMessage)]="emptyFilterMessage"
-  [(multiple)]="multiple"
-  [(readonly)]="readonly"
-  [(emptyMessage)]="emptyMessage"
-  [(showToggleAll)]="showToggleAll"
+  [previewItems]="[]"
 ></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-list-box
       formControlName="c1"
-      [errors]="{ required: 'error' }"
-      [label]="label"
-      [filled]="filled"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [checkbox]="checkbox"
-      [dataKey]="dataKey"
-      [disabled]="disabled"
-      [filter]="filter"
-      [filterMatchMode]="filterMatchMode"
-      [filterValue]="filterValue"
-      [filterLocale]="filterLocale"
-      [filterPlaceHolder]="filterPlaceHolder"
-      [emptyFilterMessage]="emptyFilterMessage"
-      [listStyle]="listStyle"
-      [listStyleClass]="listStyleClass"
-      [metaKeySelection]="metaKeySelection"
-      [multiple]="multiple"
-      [readonly]="readonly"
-      [emptyMessage]="emptyMessage"
-      [options]="options"
-      [optionLabel]="optionLabel"
-      [optionValue]="optionValue"
-      [optionDisabled]="optionDisabled"
-      [optionGroupLabel]="optionGroupLabel"
-      [optionGroupChildren]="optionGroupChildren"
-      [group]="group"
-      [showToggleAll]="showToggleAll"
-      [style]="style"
-      [styleClass]="styleClass"
       [addon]="addon"
-    >
-    </ng-list-box>
+      [errors]="{ required: 'error' }"
+    ></ng-list-box>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
@@ -81,38 +20,7 @@
     name="myInput"
     required
     [(ngModel)]="binding"
+    [addon]="addon"
     [errors]="{ required: 'error' }"
-    [label]="label"
-    [filled]="filled"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [checkbox]="checkbox"
-    [dataKey]="dataKey"
-    [disabled]="disabled"
-    [filter]="filter"
-    [filterMatchMode]="filterMatchMode"
-    [filterValue]="filterValue"
-    [filterLocale]="filterLocale"
-    [filterPlaceHolder]="filterPlaceHolder"
-    [emptyFilterMessage]="emptyFilterMessage"
-    [listStyle]="listStyle"
-    [listStyleClass]="listStyleClass"
-    [metaKeySelection]="metaKeySelection"
-    [multiple]="multiple"
-    [readonly]="readonly"
-    [emptyMessage]="emptyMessage"
-    [options]="options"
-    [optionLabel]="optionLabel"
-    [optionValue]="optionValue"
-    [optionDisabled]="optionDisabled"
-    [optionGroupLabel]="optionGroupLabel"
-    [optionGroupChildren]="optionGroupChildren"
-    [group]="group"
-    [showToggleAll]="showToggleAll"
-    [style]="style"
-    [styleClass]="styleClass"
-    [addon]="addon">
-  </ng-list-box>
+  ></ng-list-box>
 </div>

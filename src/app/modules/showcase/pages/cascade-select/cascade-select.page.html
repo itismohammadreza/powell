@@ -1,52 +1,19 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'icon',
-  'iconPos',
-  'selectiveSize',
-  'filled',
-  'rtl',
-  'placeholder',
-  'disabled'
-  ]"
-  [(hint)]="hint"
-  [(label)]="label"
-  [(labelPos)]="labelPos"
-  [(labelWidth)]="labelWidth"
-  [(icon)]="icon"
-  [(iconPos)]="iconPos"
-  [(selectiveSize)]="inputSize"
-  [(filled)]="filled"
-  [(rtl)]="rtl"
-  [(placeholder)]="placeholder"
-  [(disabled)]="disabled"
+  [previewItems]="[]"
 ></ng-preview-options>
 
 <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
   <h4>PREVIEW</h4>
   <ng-cascade-select
+    formControlName="c1"
+    [addon]="addon"
+    [errors]="{ required: 'error' }"
     [options]="options"
+    [optionGroupChildren]="['states', 'cities']"
     optionLabel="cname"
     optionValue="code"
     optionGroupLabel="name"
-    formControlName="c1"
-    [optionGroupChildren]="['states', 'cities']"
-    [errors]="{ required: 'error' }"
-    [hint]="hint"
-    [label]="label"
-    [labelPos]="labelPos"
-    [labelWidth]="labelWidth"
-    [icon]="icon"
-    [iconPos]="iconPos"
-    [inputSize]="inputSize"
-    [filled]="filled"
-    [rtl]="rtl"
-    [placeholder]="placeholder"
-    [disabled]="disabled">
-  </ng-cascade-select>
+  ></ng-cascade-select>
   <ng-button type="submit" label="submit"></ng-button>
 </form>
 
@@ -58,21 +25,11 @@ VALUE :
   name="myInput"
   required
   [(ngModel)]="binding"
+  [addon]="addon"
+  [errors]="{ required: 'error' }"
   [options]="options"
+  [optionGroupChildren]="['states', 'cities']"
   optionLabel="cname"
   optionValue="code"
   optionGroupLabel="name"
-  [optionGroupChildren]="['states', 'cities']"
-  [errors]="{ required: 'error' }"
-  [hint]="hint"
-  [label]="label"
-  [labelPos]="labelPos"
-  [labelWidth]="labelWidth"
-  [icon]="icon"
-  [iconPos]="iconPos"
-  [inputSize]="inputSize"
-  [filled]="filled"
-  [rtl]="rtl"
-  [placeholder]="placeholder"
-  [disabled]="disabled"
 ></ng-cascade-select>

@@ -1,54 +1,17 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'rtl',
-  'disabled',
-  'min',
-  'max',
-  'orientation',
-  'step',
-  'range',
-  ]"
-  [(label)]="label"
-  [(labelWidth)]="labelWidth"
-  [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(labelPos)]="labelPos"
-  [(disabled)]="disabled"
-  [(min)]="min"
-  [(max)]="max"
-  [(orientation)]="orientation"
-  [(step)]="step"
-  [(range)]="range"
+  [previewItems]="[]"
 ></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-slider
       formControlName="c1"
       [errors]="{ required: 'error' }"
-      [label]="label"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [animate]="animate"
-      [disabled]="disabled"
-      [min]="min"
-      [max]="max"
-      [orientation]="orientation"
-      [step]="step"
-      [range]="range"
-      [style]="style"
-      [styleClass]="styleClass"
-      [tabindex]="tabindex"
-    >
-    </ng-slider>
+    ></ng-slider>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
@@ -57,20 +20,5 @@
     required
     [(ngModel)]="binding"
     [errors]="{ required: 'error' }"
-    [label]="label"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [animate]="animate"
-    [disabled]="disabled"
-    [min]="min"
-    [max]="max"
-    [orientation]="orientation"
-    [step]="step"
-    [range]="range"
-    [style]="style"
-    [styleClass]="styleClass"
-    [tabindex]="tabindex">
-  </ng-slider>
+  ></ng-slider>
 </div>

@@ -1,31 +1,24 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'selectiveSize',
-  'rtl',
-  'disabled',
-  ]"></ng-preview-options>
+  [previewItems]="[]"
+></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-select-button
       formControlName="c1"
       [errors]="{ required: 'error' }"
-    >
-    </ng-select-button>
+    ></ng-select-button>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
-  <ng-chips
+  <ng-select-button
     name="myInput"
     required
     [(ngModel)]="binding"
-    field="name"
     [errors]="{ required: 'error' }"
-  ></ng-chips>
+  ></ng-select-button>
 </div>

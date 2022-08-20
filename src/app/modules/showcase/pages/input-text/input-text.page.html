@@ -1,60 +1,18 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'icon',
-  'iconPos',
-  'selectiveSize',
-  'filled',
-  'rtl',
-  'placeholder',
-  'readonly',
-  'disabled',
-  'keyFilter',
-  ]"
-  [(label)]="label"
-  [(filled)]="filled"
-  [(labelWidth)]="labelWidth"
-  [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(labelPos)]="labelPos"
-  [(iconPos)]="iconPos"
-  [(icon)]="icon"
-  [(selectiveSize)]="inputSize"
-  [(readonly)]="readonly"
-  [(disabled)]="disabled"
-  [(maxlength)]="maxlength"
-  [(placeholder)]="placeholder"
-  [(keyFilter)]="keyFilter"
+  [previewItems]="[]"
 ></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-input-text
       formControlName="c1"
-      [errors]="{ required: 'error' }"
-      [label]="label"
-      [filled]="filled"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [iconPos]="iconPos"
-      [icon]="icon"
-      [inputSize]="inputSize"
-      [readonly]="readonly"
-      [disabled]="disabled"
-      [maxlength]="maxlength"
-      [placeholder]="placeholder"
-      [type]="type"
-      [keyFilter]="keyFilter"
       [addon]="addon"
-    >
-    </ng-input-text>
+      [errors]="{ required: 'error' }"
+    ></ng-input-text>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
@@ -62,22 +20,7 @@
     name="myInput"
     required
     [(ngModel)]="binding"
+    [addon]="addon"
     [errors]="{ required: 'error' }"
-    [label]="label"
-    [filled]="filled"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [iconPos]="iconPos"
-    [icon]="icon"
-    [inputSize]="inputSize"
-    [readonly]="readonly"
-    [disabled]="disabled"
-    [maxlength]="maxlength"
-    [placeholder]="placeholder"
-    [type]="type"
-    [keyFilter]="keyFilter"
-    [addon]="addon">
-  </ng-input-text>
+  ></ng-input-text>
 </div>

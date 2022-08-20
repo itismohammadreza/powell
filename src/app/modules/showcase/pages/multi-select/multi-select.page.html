@@ -1,130 +1,18 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'icon',
-  'iconPos',
-  'selectiveSize',
-  'filled',
-  'rtl',
-  'placeholder',
-  'readonly',
-  'disabled',
-  'defaultLabel',
-  'displaySelectedLabel',
-  'emptyFilterMessage',
-  'filter',
-  'filterPlaceHolder',
-  'maxSelectedLabels',
-  'overlayVisible',
-  'emptyMessage',
-  'resetFilterOnHide',
-  'scrollHeight',
-  'selectedItemsLabel',
-  'selectionLimit',
-  'showHeader',
-  'showToggleAll',
-  'tooltip',
-  'tooltipPosition',
-  ]"
-  [(label)]="label"
-  [(filled)]="filled"
-  [(labelWidth)]="labelWidth"
-  [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(labelPos)]="labelPos"
-  [(iconPos)]="iconPos"
-  [(icon)]="icon"
-  [(selectiveSize)]="inputSize"
-  [(defaultLabel)]="defaultLabel"
-  [(disabled)]="disabled"
-  [(displaySelectedLabel)]="displaySelectedLabel"
-  [(emptyFilterMessage)]="emptyFilterMessage"
-  [(filter)]="filter"
-  [(filterPlaceHolder)]="filterPlaceHolder"
-  [(maxSelectedLabels)]="maxSelectedLabels"
-  [(overlayVisible)]="overlayVisible"
-  [(placeholder)]="placeholder"
-  [(readonly)]="readonly"
-  [(emptyMessage)]="emptyMessage"
-  [(resetFilterOnHide)]="resetFilterOnHide"
-  [(scrollHeight)]="scrollHeight"
-  [(selectedItemsLabel)]="selectedItemsLabel"
-  [(selectionLimit)]="selectionLimit"
-  [(showHeader)]="showHeader"
-  [(showToggleAll)]="showToggleAll"
-  [(tooltip)]="tooltip"
-  [(tooltipPosition)]="tooltipPosition"
+  [previewItems]="[]"
 ></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-multi-select
       formControlName="c1"
-      [errors]="{ required: 'error' }"
-      [label]="label"
-      [filled]="filled"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [iconPos]="iconPos"
-      [display]="display"
-      [icon]="icon"
-      [inputSize]="inputSize"
-      [appendTo]="appendTo"
-      [autofocusFilter]="autofocusFilter"
-      [autoZIndex]="autoZIndex"
-      [baseZIndex]="baseZIndex"
-      [defaultLabel]="defaultLabel"
-      [dataKey]="dataKey"
-      [disabled]="disabled"
-      [displaySelectedLabel]="displaySelectedLabel"
-      [dropdownIcon]="dropdownIcon"
-      [emptyFilterMessage]="emptyFilterMessage"
-      [filter]="filter"
-      [filterMatchMode]="filterMatchMode"
-      [filterValue]="filterValue"
-      [filterLocale]="filterLocale"
-      [filterBy]="filterBy"
-      [filterPlaceHolder]="filterPlaceHolder"
-      [hideTransitionOptions]="hideTransitionOptions"
-      [itemSize]="itemSize"
-      [maxSelectedLabels]="maxSelectedLabels"
-      [options]="options"
-      [optionLabel]="optionLabel"
-      [optionValue]="optionValue"
-      [optionDisabled]="optionDisabled"
-      [optionGroupLabel]="optionGroupLabel"
-      [optionGroupChildren]="optionGroupChildren"
-      [group]="group"
-      [overlayVisible]="overlayVisible"
-      [panelStyle]="panelStyle"
-      [placeholder]="placeholder"
-      [readonly]="readonly"
-      [emptyMessage]="emptyMessage"
-      [resetFilterOnHide]="resetFilterOnHide"
-      [scrollHeight]="scrollHeight"
-      [selectedItemsLabel]="selectedItemsLabel"
-      [selectionLimit]="selectionLimit"
-      [showHeader]="showHeader"
-      [showTransitionOptions]="showTransitionOptions"
-      [showToggleAll]="showToggleAll"
-      [style]="style"
-      [styleClass]="styleClass"
-      [tabindex]="tabindex"
-      [tooltip]="tooltip"
-      [tooltipStyleClass]="tooltipStyleClass"
-      [tooltipPosition]="tooltipPosition"
-      [tooltipPositionStyle]="tooltipPositionStyle"
-      [virtualScroll]="virtualScroll"
       [addon]="addon"
-    >
-    </ng-multi-select>
+      [errors]="{ required: 'error' }"
+    ></ng-multi-select>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
@@ -132,63 +20,7 @@
     name="myInput"
     required
     [(ngModel)]="binding"
+    [addon]="addon"
     [errors]="{ required: 'error' }"
-    [label]="label"
-    [filled]="filled"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [iconPos]="iconPos"
-    [display]="display"
-    [icon]="icon"
-    [inputSize]="inputSize"
-    [appendTo]="appendTo"
-    [autofocusFilter]="autofocusFilter"
-    [autoZIndex]="autoZIndex"
-    [baseZIndex]="baseZIndex"
-    [defaultLabel]="defaultLabel"
-    [dataKey]="dataKey"
-    [disabled]="disabled"
-    [displaySelectedLabel]="displaySelectedLabel"
-    [dropdownIcon]="dropdownIcon"
-    [emptyFilterMessage]="emptyFilterMessage"
-    [filter]="filter"
-    [filterMatchMode]="filterMatchMode"
-    [filterValue]="filterValue"
-    [filterLocale]="filterLocale"
-    [filterBy]="filterBy"
-    [filterPlaceHolder]="filterPlaceHolder"
-    [hideTransitionOptions]="hideTransitionOptions"
-    [itemSize]="itemSize"
-    [maxSelectedLabels]="maxSelectedLabels"
-    [options]="options"
-    [optionLabel]="optionLabel"
-    [optionValue]="optionValue"
-    [optionDisabled]="optionDisabled"
-    [optionGroupLabel]="optionGroupLabel"
-    [optionGroupChildren]="optionGroupChildren"
-    [group]="group"
-    [overlayVisible]="overlayVisible"
-    [panelStyle]="panelStyle"
-    [placeholder]="placeholder"
-    [readonly]="readonly"
-    [emptyMessage]="emptyMessage"
-    [resetFilterOnHide]="resetFilterOnHide"
-    [scrollHeight]="scrollHeight"
-    [selectedItemsLabel]="selectedItemsLabel"
-    [selectionLimit]="selectionLimit"
-    [showHeader]="showHeader"
-    [showTransitionOptions]="showTransitionOptions"
-    [showToggleAll]="showToggleAll"
-    [style]="style"
-    [styleClass]="styleClass"
-    [tabindex]="tabindex"
-    [tooltip]="tooltip"
-    [tooltipStyleClass]="tooltipStyleClass"
-    [tooltipPosition]="tooltipPosition"
-    [tooltipPositionStyle]="tooltipPositionStyle"
-    [virtualScroll]="virtualScroll"
-    [addon]="addon">
-  </ng-multi-select>
+  ></ng-multi-select>
 </div>

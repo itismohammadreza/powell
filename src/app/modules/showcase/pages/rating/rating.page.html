@@ -1,53 +1,17 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'rtl',
-  'readonly',
-  'disabled',
-  'cancel',
-  'stars',
-  ]"
-  [(label)]="label"
-  [(labelWidth)]="labelWidth"
-  [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(labelPos)]="labelPos"
-  [(stars)]="stars"
-  [(cancel)]="cancel"
-  [(disabled)]="disabled"
-  [(readonly)]="readonly"
-  [(iconOnClass)]="iconOnClass"
-  [(iconOffClass)]="iconOffClass"
-  [(iconCancelClass)]="iconCancelClass"
+  [previewItems]="[]"
 ></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-rating
       formControlName="c1"
       [errors]="{ required: 'error' }"
-      [label]="label"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [stars]="stars"
-      [cancel]="cancel"
-      [disabled]="disabled"
-      [readonly]="readonly"
-      [iconOnClass]="iconOnClass"
-      [iconOffClass]="iconOffClass"
-      [iconCancelClass]="iconCancelClass"
-      [iconOnStyle]="iconOnStyle"
-      [iconOffStyle]="iconOffStyle"
-      [iconCancelStyle]="iconCancelStyle"
-    >
-    </ng-rating>
+    ></ng-rating>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
@@ -56,20 +20,5 @@
     required
     [(ngModel)]="binding"
     [errors]="{ required: 'error' }"
-    [label]="label"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [stars]="stars"
-    [cancel]="cancel"
-    [disabled]="disabled"
-    [readonly]="readonly"
-    [iconOnClass]="iconOnClass"
-    [iconOffClass]="iconOffClass"
-    [iconCancelClass]="iconCancelClass"
-    [iconOnStyle]="iconOnStyle"
-    [iconOffStyle]="iconOffStyle"
-    [iconCancelStyle]="iconCancelStyle">
-  </ng-rating>
+  ></ng-rating>
 </div>

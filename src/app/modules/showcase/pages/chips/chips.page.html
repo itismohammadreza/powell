@@ -1,37 +1,5 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'icon',
-  'iconPos',
-  'selectiveSize',
-  'filled',
-  'rtl',
-  'placeholder',
-  'readonly',
-  'disabled',
-  'max',
-  'allowDuplicate',
-  'addOnTab',
-  'addOnBlur'
-  ]"
-  [(label)]="label"
-  [(filled)]="filled"
-  [(labelWidth)]="labelWidth"
-  [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(labelPos)]="labelPos"
-  [(iconPos)]="iconPos"
-  [(icon)]="icon"
-  [(selectiveSize)]="inputSize"
-  [(max)]="max"
-  [(disabled)]="disabled"
-  [(placeholder)]="placeholder"
-  [(allowDuplicate)]="allowDuplicate"
-  [(addOnTab)]="addOnTab"
-  [(addOnBlur)]="addOnBlur"
+  [previewItems]="[]"
 ></ng-preview-options>
 
 <div class="container">
@@ -39,25 +7,9 @@
     <h4>Preview</h4>
     <ng-chips
       formControlName="c1"
-      [errors]="{ required: 'error' }"
-      [label]="label"
-      [filled]="filled"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [iconPos]="iconPos"
-      [icon]="icon"
-      [inputSize]="inputSize"
-      [max]="max"
-      [disabled]="disabled"
-      [placeholder]="placeholder"
-      [allowDuplicate]="allowDuplicate"
-      [addOnTab]="addOnTab"
-      [addOnBlur]="addOnBlur"
       [addon]="addon"
-    >
-    </ng-chips>
+      [errors]="{ required: 'error' }"
+    ></ng-chips>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
 
@@ -68,21 +20,7 @@
     name="myInput"
     required
     [(ngModel)]="binding"
+    [addon]="addon"
     [errors]="{ required: 'error' }"
-    [label]="label"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [iconPos]="iconPos"
-    [icon]="icon"
-    [inputSize]="inputSize"
-    [max]="max"
-    [disabled]="disabled"
-    [placeholder]="placeholder"
-    [allowDuplicate]="allowDuplicate"
-    [addOnTab]="addOnTab"
-    [addOnBlur]="addOnBlur"
-    [addon]="addon">
-  </ng-chips>
+  ></ng-chips>
 </div>

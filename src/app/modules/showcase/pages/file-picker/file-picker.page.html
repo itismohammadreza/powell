@@ -1,94 +1,17 @@
 <ng-preview-options
-  [previewItems]="[
-  'hint',
-  'label',
-  'labelPos',
-  'labelWidth',
-  'rtl',
-  'disabled',
-  'multiple',
-  'auto',
-  'maxFileSize',
-  'previewWidth',
-  'fileLimit',
-  'resultType',
-  'chooseLabel',
-  'uploadLabel',
-  'cancelLabel',
-  'showUploadButton',
-  'showCancelButton',
-  'invalidFileSizeMessageSummary',
-  'invalidFileSizeMessageDetail',
-  'invalidFileTypeMessageSummary',
-  'invalidFileLimitMessageDetail',
-  'invalidFileLimitMessageSummary',
-  'invalidFileTypeMessageDetail',
-  ]"
-  [(label)]="label"
-  [(labelWidth)]="labelWidth"
-  [(hint)]="hint"
-  [(rtl)]="rtl"
-  [(labelPos)]="labelPos"
-  [(disabled)]="disabled"
-  [(multiple)]="multiple"
-  [(auto)]="auto"
-  [(maxFileSize)]="maxFileSize"
-  [(previewWidth)]="previewWidth"
-  [(fileLimit)]="fileLimit"
-  [(resultType)]="resultType"
-  [(chooseLabel)]="chooseLabel"
-  [(uploadLabel)]="uploadLabel"
-  [(cancelLabel)]="cancelLabel"
-  [(showUploadButton)]="showUploadButton"
-  [(showCancelButton)]="showCancelButton"
-  [(invalidFileSizeMessageSummary)]="invalidFileSizeMessageSummary"
-  [(invalidFileSizeMessageDetail)]="invalidFileSizeMessageDetail"
-  [(invalidFileTypeMessageSummary)]="invalidFileTypeMessageSummary"
-  [(invalidFileLimitMessageDetail)]="invalidFileLimitMessageDetail"
-  [(invalidFileLimitMessageSummary)]="invalidFileLimitMessageSummary"
-  [(invalidFileTypeMessageDetail)]="invalidFileTypeMessageDetail"
+  [previewItems]="[]"
 ></ng-preview-options>
+
 <div class="container">
   <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
     <h4>Preview</h4>
     <ng-file-picker
       formControlName="c1"
       [errors]="{ required: 'error' }"
-      [label]="label"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [disabled]="disabled"
-      [name]="name"
-      [url]="url"
-      [multiple]="multiple"
-      [withCredentials]="withCredentials"
-      [customUpload]="customUpload"
-      [auto]="auto"
-      [accept]="accept"
-      [method]="method"
-      [maxFileSize]="maxFileSize"
-      [previewWidth]="previewWidth"
-      [fileLimit]="fileLimit"
-      [resultType]="resultType"
-      [mode]="mode"
-      [chooseLabel]="chooseLabel"
-      [uploadLabel]="uploadLabel"
-      [cancelLabel]="cancelLabel"
-      [headers]="headers"
-      [showUploadButton]="showUploadButton"
-      [showCancelButton]="showCancelButton"
-      [invalidFileSizeMessageSummary]="invalidFileSizeMessageSummary"
-      [invalidFileSizeMessageDetail]="invalidFileSizeMessageDetail"
-      [invalidFileTypeMessageSummary]="invalidFileTypeMessageSummary"
-      [invalidFileLimitMessageDetail]="invalidFileLimitMessageDetail"
-      [invalidFileLimitMessageSummary]="invalidFileLimitMessageSummary"
-      [invalidFileTypeMessageDetail]="invalidFileTypeMessageDetail"
-    >
-    </ng-file-picker>
+    ></ng-file-picker>
     <ng-button type="submit" label="submit"></ng-button>
   </form>
+
   <h4>NG MODEL</h4>
   VALUE :
   <pre>{{binding | json}}</pre>
@@ -97,36 +20,5 @@
     required
     [(ngModel)]="binding"
     [errors]="{ required: 'error' }"
-    [label]="label"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [disabled]="disabled"
-    [name]="name"
-    [url]="url"
-    [multiple]="multiple"
-    [withCredentials]="withCredentials"
-    [customUpload]="customUpload"
-    [auto]="auto"
-    [accept]="accept"
-    [method]="method"
-    [maxFileSize]="maxFileSize"
-    [previewWidth]="previewWidth"
-    [fileLimit]="fileLimit"
-    [resultType]="resultType"
-    [mode]="mode"
-    [chooseLabel]="chooseLabel"
-    [uploadLabel]="uploadLabel"
-    [cancelLabel]="cancelLabel"
-    [headers]="headers"
-    [showUploadButton]="showUploadButton"
-    [showCancelButton]="showCancelButton"
-    [invalidFileSizeMessageSummary]="invalidFileSizeMessageSummary"
-    [invalidFileSizeMessageDetail]="invalidFileSizeMessageDetail"
-    [invalidFileTypeMessageSummary]="invalidFileTypeMessageSummary"
-    [invalidFileLimitMessageDetail]="invalidFileLimitMessageDetail"
-    [invalidFileLimitMessageSummary]="invalidFileLimitMessageSummary"
-    [invalidFileTypeMessageDetail]="invalidFileTypeMessageDetail">
-  </ng-file-picker>
+  ></ng-file-picker>
 </div>
