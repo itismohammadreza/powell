@@ -27,7 +27,6 @@ type PreviewItem =
   | 'icon'
   | 'labelPos'
   | 'iconPos'
-  | 'inputSize'
   | 'scrollHeight'
   | 'dropdown'
   | 'multiple'
@@ -47,6 +46,8 @@ type PreviewItem =
   | 'raised'
   | 'appearance'
   | 'color'
+  | 'newLabel'
+  | 'newColor'
   | 'badgeColor'
   | 'max'
   | 'allowDuplicate'
@@ -72,7 +73,6 @@ type PreviewItem =
   | 'cancelIcon'
   | 'showUploadButton'
   | 'showCancelButton'
-  | 'showImagePreview'
   | 'numVisible'
   | 'showItemNavigators'
   | 'showThumbnailNavigators'
@@ -173,8 +173,6 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() labelPosChange = new EventEmitter()
   @Input() iconPos: NgPosition;
   @Output() iconPosChange = new EventEmitter()
-  @Input() inputSize: NgSize;
-  @Output() inputSizeChange = new EventEmitter()
   @Input() scrollHeight: string;
   @Output() scrollHeightChange = new EventEmitter()
   @Input() dropdown: boolean;
@@ -267,8 +265,6 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() showUploadButtonChange = new EventEmitter()
   @Input() showCancelButton: boolean;
   @Output() showCancelButtonChange = new EventEmitter()
-  @Input() showImagePreview: boolean;
-  @Output() showImagePreviewChange = new EventEmitter()
   @Input() numVisible: number;
   @Output() numVisibleChange = new EventEmitter()
   @Input() showItemNavigators: boolean;
@@ -407,16 +403,22 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() onIconChange = new EventEmitter()
   @Input() offIcon: string;
   @Output() offIconChange = new EventEmitter()
+  // instead of 'size' & 'inputSize'
   @Input() selectiveSize: NgSize;
   @Output() selectiveSizeChange = new EventEmitter()
+  // instead of 'size'
   @Input() numericSize: number;
   @Output() numericSizeChange = new EventEmitter()
+  // instead of 'format'
   @Input() colorFormat: NgColorFormat;
   @Output() colorFormatChange = new EventEmitter()
+  // instead of 'format'
   @Input() enableFormat: boolean;
   @Output() enableFormatChange = new EventEmitter()
+  // instead of 'mode'
   @Input() inputFileMode: NgInputFileMode;
   @Output() inputFileModeChange = new EventEmitter()
+  // instead of 'mode'
   @Input() numberMode: NgNumberMode;
   @Output() numberModeChange = new EventEmitter()
 

@@ -122,10 +122,4 @@ export class AutoCompletePage {
     }
     this.filteredSuggestions = filtered;
   }
-
-  submit() {
-  }
-
-  onAddonChange(event: any) {
-  }
 }

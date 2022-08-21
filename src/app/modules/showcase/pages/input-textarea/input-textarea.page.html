@@ -4,18 +4,63 @@
           subheader="Textarea is a multi-line text input element."></p-card>
   <p-panel dir="ltr" header="Options">
     <ng-preview-options
-      [previewItems]="[]"
+      [previewItems]="[
+      'label',
+      'filled',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'icon',
+      'labelPos',
+      'iconPos',
+      'readonly',
+      'disabled',
+      'maxlength',
+      'placeholder',
+      'rows',
+      'cols',
+      'autoResize',
+      ]"
+      [(label)]="label"
+      [(filled)]="filled"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(icon)]="icon"
+      [(labelPos)]="labelPos"
+      [(iconPos)]="iconPos"
+      [(readonly)]="readonly"
+      [(disabled)]="disabled"
+      [(maxlength)]="maxlength"
+      [(placeholder)]="placeholder"
+      [(rows)]="rows"
+      [(cols)]="cols"
+      [(autoResize)]="autoResize"
     ></ng-preview-options>
   </p-panel>
 
   <h4>Preview</h4>
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form">
     <ng-input-textarea
       formControlName="c1"
       [addon]="addon"
       [errors]="{ required: 'error' }"
+      [label]="label"
+      [filled]="filled"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [icon]="icon"
+      [labelPos]="labelPos"
+      [iconPos]="iconPos"
+      [readonly]="readonly"
+      [disabled]="disabled"
+      [maxlength]="maxlength"
+      [placeholder]="placeholder"
+      [rows]="rows"
+      [cols]="cols"
+      [autoResize]="autoResize"
     ></ng-input-textarea>
-    <ng-button type="submit" label="submit"></ng-button>
   </form>
 
   <h4>NG MODEL</h4>
@@ -26,5 +71,20 @@
     [(ngModel)]="binding"
     [addon]="addon"
     [errors]="{ required: 'error' }"
+    [label]="label"
+    [filled]="filled"
+    [labelWidth]="labelWidth"
+    [hint]="hint"
+    [rtl]="rtl"
+    [icon]="icon"
+    [labelPos]="labelPos"
+    [iconPos]="iconPos"
+    [readonly]="readonly"
+    [disabled]="disabled"
+    [maxlength]="maxlength"
+    [placeholder]="placeholder"
+    [rows]="rows"
+    [cols]="cols"
+    [autoResize]="autoResize"
   ></ng-input-textarea>
 </div>

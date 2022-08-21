@@ -33,7 +33,4 @@ export class DatePickerPage {
   inline: boolean = false;
   clearable: boolean = false;
   addon: NgAddon;
-
-  submit() {
-  }
 }

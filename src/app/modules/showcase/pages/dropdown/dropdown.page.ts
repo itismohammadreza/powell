@@ -48,7 +48,4 @@ export class DropdownPage {
   showClear: boolean = false;
 
   options: any[];
-
-  submit() {
-  }
 }

@@ -1,22 +1,23 @@
 <p-splitButton
-  [appendTo]="appendTo"
   [class.rtl]="rtl"
-  [disabled]="disabled"
-  [iconPos]="iconPos"
-  [icon]="icon"
   [label]="label"
-  [model]="items"
+  [icon]="icon"
+  [iconPos]="iconPos"
   [style]="style"
   [menuStyle]="menuStyle"
   [menuStyleClass]="menuStyleClass"
+  [appendTo]="appendTo"
+  [disabled]="disabled"
   [tabindex]="tabindex"
   [showTransitionOptions]="showTransitionOptions"
   [hideTransitionOptions]="hideTransitionOptions"
-  styleClass="p-button-{{ appearance }} p-button-{{ color }} p-button-{{
-    size
-  }} p-button-{{ rounded ? 'rounded' : '' }} p-button-{{
-    raised ? 'raised' : ''
-  }}"
+  styleClass="
+  {{styleClass}}
+  p-button-{{ appearance }}
+  p-button-{{ color }}
+  p-button-{{ size }}
+  p-button-{{ rounded ? 'rounded' : '' }}
+  p-button-{{ raised ? 'raised' : '' }}"
   (onClick)="emitter('onClick',$event)"
   (onDropdownClick)="emitter('onDropdownClick',$event)"
 >

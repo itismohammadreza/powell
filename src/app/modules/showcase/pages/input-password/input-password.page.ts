@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgAddon, NgInputTypes, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgLabelPosition} from '@ng/models/forms';
 import {NgPosition, NgSize} from '@ng/models/offset';
 
 @Component({
@@ -43,7 +43,4 @@ export class InputPasswordPage {
   disabled: boolean = false;
   placeholder: string = '';
   showClear: boolean = false;
-
-  submit() {
-  }
 }

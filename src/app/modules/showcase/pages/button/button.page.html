@@ -4,23 +4,48 @@
           subheader="Button is an extension to standard button element with icons and theming."></p-card>
   <p-panel dir="ltr" header="Options">
     <ng-preview-options
-      [previewItems]="[]"
+      [previewItems]="[
+      'label',
+      'icon',
+      'full',
+      'badge',
+      'rounded',
+      'raised',
+      'appearance',
+      'disabled',
+      'iconPos',
+      'color',
+      'badgeColor',
+      'selectiveSize',
+      ]"
+      [(label)]="label"
+      [(icon)]="icon"
+      [(full)]="full"
+      [(badge)]="badge"
+      [(rounded)]="rounded"
+      [(raised)]="raised"
+      [(appearance)]="appearance"
+      [(disabled)]="disabled"
+      [(iconPos)]="iconPos"
+      [(color)]="color"
+      [(badgeColor)]="badgeColor"
+      [(selectiveSize)]="size"
     ></ng-preview-options>
   </p-panel>
 
   <h4>Preview</h4>
   <ng-button
+    [label]="label"
+    [icon]="icon"
+    [full]="full"
+    [badge]="badge"
+    [rounded]="rounded"
+    [raised]="raised"
     [appearance]="appearance"
+    [disabled]="disabled"
     [iconPos]="iconPos"
     [color]="color"
     [badgeColor]="badgeColor"
-    [label]="label"
-    [icon]="icon"
-    [disabled]="disabled"
-    [rounded]="rounded"
-    [raised]="raised"
-    [badge]="badge"
-    [full]="full"
     [size]="size">
   </ng-button>
 

@@ -1,6 +1,6 @@
 :host {
   display: block;
-  padding: 30px;
+  padding: 3rem 0;
 }
 
 ng-cascade-select {
@@ -29,7 +29,4 @@ h4 {
   margin: 1rem 0;
 }
 
-[formControlName*="c"] {
-  margin-bottom: 20px;
-  display: block;
-}
+

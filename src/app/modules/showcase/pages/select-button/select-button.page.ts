@@ -23,7 +23,4 @@ export class SelectButtonPage {
   disabled: boolean = false;
 
   options: any[];
-
-  submit() {
-  }
 }

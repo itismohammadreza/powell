@@ -22,7 +22,6 @@ export class InputTextareaPage {
   icon: string = 'pi pi-home';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
-  inputSize: NgSize = 'md';
   addon: NgAddon = {
     before: {
       type: 'icon',
@@ -38,10 +37,7 @@ export class InputTextareaPage {
   disabled: boolean = false;
   maxlength: number = 2000;
   placeholder: string = '';
-  rows: number = 100;
+  rows: number = 7;
   cols: number = 100;
   autoResize: boolean = false;
-
-  submit() {
-  }
 }

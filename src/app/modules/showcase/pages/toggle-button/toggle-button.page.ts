@@ -26,7 +26,4 @@ export class ToggleButtonPage {
   offIcon: string = 'pi pi-times';
   iconPos: NgPosition = 'left';
   disabled: boolean = false;
-
-  submit() {
-  }
 }

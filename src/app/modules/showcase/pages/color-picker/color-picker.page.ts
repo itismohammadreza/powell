@@ -40,7 +40,4 @@ export class ColorPickerPage {
   maxlength: number = 7;
   inline: boolean = false;
   format: NgColorFormat = 'hex';
-
-  submit() {
-  }
 }

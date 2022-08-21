@@ -35,7 +35,4 @@ export class FilePickerPage {
   mode: NgInputFileMode = 'advanced';
   showUploadButton: boolean = true;
   showCancelButton: boolean = true;
-
-  submit() {
-  }
 }

@@ -411,7 +411,6 @@ export interface NgDialogFormConfig {
   keyFilter?: NgKeyFilter | RegExp;
   style?: any;
   template?: string;
-  showImagePreview?: boolean;
   color?: NgColor;
   rules?: NgDialogFormRule[];
 }

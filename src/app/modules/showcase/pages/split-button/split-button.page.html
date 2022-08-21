@@ -4,18 +4,46 @@
           subheader="SplitButton groups a set of commands in an overlay with a default command."></p-card>
   <p-panel dir="ltr" header="Options">
     <ng-preview-options
-      [previewItems]="[]"
+      [previewItems]="[
+      'appearance',
+      'rounded',
+      'raised',
+      'color',
+      'full',
+      'selectiveSize',
+      'rtl',
+      'label',
+      'icon',
+      'iconPos',
+      'disabled',
+      ]"
+      [(appearance)]="appearance"
+      [(rounded)]="rounded"
+      [(raised)]="raised"
+      [(color)]="color"
+      [(full)]="full"
+      [(selectiveSize)]="size"
+      [(rtl)]="rtl"
+      [(label)]="label"
+      [(icon)]="icon"
+      [(iconPos)]="iconPos"
+      [(disabled)]="disabled"
     ></ng-preview-options>
   </p-panel>
 
   <h4>Preview</h4>
   <ng-split-button
-    [items]="[
-            {label: 'Update', icon: 'pi pi-refresh'},
-            {label: 'Delete', icon: 'pi pi-times'},
-            {label: 'Angular.io', icon: 'pi pi-info', url: 'http://angular.io'},
-            {separator: true},
-            {label: 'Setup', icon: 'pi pi-cog', routerLink: ['/setup']}
-        ]"
+    [items]="items"
+    [appearance]="appearance"
+    [rounded]="rounded"
+    [raised]="raised"
+    [color]="color"
+    [full]="full"
+    [size]="size"
+    [rtl]="rtl"
+    [label]="label"
+    [icon]="icon"
+    [iconPos]="iconPos"
+    [disabled]="disabled"
   ></ng-split-button>
 </div>

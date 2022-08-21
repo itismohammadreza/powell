@@ -60,7 +60,4 @@ export class InputNumberPage {
   disabled: boolean = false;
   readonly: boolean = false;
   showClear: boolean = false;
-
-  submit() {
-  }
 }

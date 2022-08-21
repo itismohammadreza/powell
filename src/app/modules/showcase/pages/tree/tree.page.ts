@@ -51,7 +51,4 @@ export class TreePage {
   maxBufferPx: number;
   trackBy: any;
   indentation: number = 1.5;
-
-  submit() {
-  }
 }

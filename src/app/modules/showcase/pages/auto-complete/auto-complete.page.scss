@@ -1,6 +1,6 @@
 :host {
   display: block;
-  padding: 30px;
+  padding: 3rem 0;
 }
 
 p-card {
@@ -21,9 +21,4 @@ h4 {
   text-transform: uppercase;
   border-radius: 0.5rem;
   margin: 1rem 0;
-}
-
-[formControlName*="c"] {
-  margin-bottom: 20px;
-  display: block;
 }

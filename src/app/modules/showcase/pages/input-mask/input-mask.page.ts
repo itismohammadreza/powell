@@ -45,7 +45,4 @@ export class InputMaskPage {
   readonly: boolean = false;
   characterPattern: string = '[A-Za-z]';
   showClear: boolean = false;
-
-  submit() {
-  }
 }

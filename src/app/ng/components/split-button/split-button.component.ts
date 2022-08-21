@@ -20,22 +20,24 @@ import {TemplateDirective} from "@ng/directives/template.directive";
   styleUrls: ['./split-button.component.scss'],
 })
 export class SplitButtonComponent implements AfterContentInit {
-  @Input() label: string;
   @Input() items: MenuItem[];
-  @Input() icon: string;
-  @Input() iconPos: NgPosition = 'left';
-  @Input() appendTo: any;
   @Input() appearance: NgButtonAppearance = 'outlined';
-  @Input() disabled: boolean;
-  @Input() rtl: boolean;
   @Input() rounded: boolean;
   @Input() raised: boolean;
   @Input() color: NgColor = 'primary';
+  @Input() full: boolean;
   @Input() size: NgSize = 'md';
+  @Input() rtl: boolean;
+  // native properties
+  @Input() label: string;
+  @Input() icon: string;
+  @Input() iconPos: string;
   @Input() style: string;
   @Input() styleClass: string;
   @Input() menuStyle: string;
   @Input() menuStyleClass: string;
+  @Input() appendTo: any;
+  @Input() disabled: boolean;
   @Input() tabindex: number;
   @Input() showTransitionOptions: string = '225ms ease-out';
   @Input() hideTransitionOptions: string = '195ms ease-in';

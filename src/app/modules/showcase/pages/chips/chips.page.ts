@@ -41,7 +41,4 @@ export class ChipsPage {
   addOnTab: boolean = false;
   addOnBlur: boolean = false;
   showClear: boolean = false;
-
-  submit() {
-  }
 }

@@ -46,7 +46,4 @@ export class ListBoxPage {
     {name: 'Istanbul', code: 'IST', inactive: true},
     {name: 'Paris', code: 'PRS', inactive: false}
   ];
-
-  submit() {
-  }
 }

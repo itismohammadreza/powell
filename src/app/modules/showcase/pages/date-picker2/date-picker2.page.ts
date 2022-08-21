@@ -11,7 +11,4 @@ export class DatePicker2Page {
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;
-
-  submit() {
-  }
 }

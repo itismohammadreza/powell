@@ -4,18 +4,78 @@
           subheader="InputMask component is used to enter input in a certain format such as numeric, date, currency and phone."></p-card>
   <p-panel dir="ltr" header="Options">
     <ng-preview-options
-      [previewItems]="[]"
+      [previewItems]="[
+      'label',
+      'filled',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'icon',
+      'labelPos',
+      'iconPos',
+      'selectiveSize',
+      'mask',
+      'slotChar',
+      'autoClear',
+      'unmask',
+      'placeholder',
+      'numericSize',
+      'maxlength',
+      'disabled',
+      'readonly',
+      'characterPattern',
+      'showClear',
+      ]"
+      [(label)]="label"
+      [(filled)]="filled"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(icon)]="icon"
+      [(labelPos)]="labelPos"
+      [(iconPos)]="iconPos"
+      [(selectiveSize)]="inputSize"
+      [(mask)]="mask"
+      [(slotChar)]="slotChar"
+      [(autoClear)]="autoClear"
+      [(unmask)]="unmask"
+      [(placeholder)]="placeholder"
+      [(numericSize)]="size"
+      [(maxlength)]="maxlength"
+      [(disabled)]="disabled"
+      [(readonly)]="readonly"
+      [(characterPattern)]="characterPattern"
+      [(showClear)]="showClear"
     ></ng-preview-options>
   </p-panel>
 
   <h4>Preview</h4>
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form">
     <ng-input-mask
       formControlName="c1"
       [addon]="addon"
       [errors]="{ required: 'error' }"
+      [label]="label"
+      [filled]="filled"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [icon]="icon"
+      [labelPos]="labelPos"
+      [iconPos]="iconPos"
+      [inputSize]="inputSize"
+      [mask]="mask"
+      [slotChar]="slotChar"
+      [autoClear]="autoClear"
+      [unmask]="unmask"
+      [placeholder]="placeholder"
+      [size]="size"
+      [maxlength]="maxlength"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [characterPattern]="characterPattern"
+      [showClear]="showClear"
     ></ng-input-mask>
-    <ng-button type="submit" label="submit"></ng-button>
   </form>
 
   <h4>NG MODEL</h4>
@@ -24,7 +84,27 @@
     name="myInput"
     required
     [(ngModel)]="binding"
-    [errors]="{ required: 'error' }"
     [addon]="addon"
+    [errors]="{ required: 'error' }"
+    [label]="label"
+    [filled]="filled"
+    [labelWidth]="labelWidth"
+    [hint]="hint"
+    [rtl]="rtl"
+    [icon]="icon"
+    [labelPos]="labelPos"
+    [iconPos]="iconPos"
+    [inputSize]="inputSize"
+    [mask]="mask"
+    [slotChar]="slotChar"
+    [autoClear]="autoClear"
+    [unmask]="unmask"
+    [placeholder]="placeholder"
+    [size]="size"
+    [maxlength]="maxlength"
+    [disabled]="disabled"
+    [readonly]="readonly"
+    [characterPattern]="characterPattern"
+    [showClear]="showClear"
   ></ng-input-mask>
 </div>

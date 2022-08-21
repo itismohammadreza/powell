@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {NgColor} from '@ng/models/color';
-import {NgError, NgLabelPosition} from '@ng/models/forms';
+import {NgLabelPosition} from '@ng/models/forms';
 
 @Component({
   selector: 'ng-file-picker2-page',
@@ -20,7 +20,6 @@ export class FilePicker2Page {
   rtl: boolean = true;
   labelPos: NgLabelPosition = 'fix-side';
   // native properties
-  showImagePreview: boolean = true;
   disabled: boolean = false;
   readonly: boolean = false;
   multiple: boolean = true;
@@ -28,7 +27,4 @@ export class FilePicker2Page {
   color: NgColor = 'primary';
   fileLimit: number = 20000;
   chooseLabel: string = 'انتخاب';
-
-  submit() {
-  }
 }

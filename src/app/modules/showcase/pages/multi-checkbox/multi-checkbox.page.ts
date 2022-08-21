@@ -25,7 +25,4 @@ export class MultiCheckboxPage {
   readonly: boolean = false;
 
   options: any[];
-
-  submit() {
-  }
 }

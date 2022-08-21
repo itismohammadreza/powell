@@ -4,18 +4,102 @@
           subheader="InputNumber is an input component to provide numerical input."></p-card>
   <p-panel dir="ltr" header="Options">
     <ng-preview-options
-      [previewItems]="[]"
+      [previewItems]="[
+      'label',
+      'filled',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'icon',
+      'labelPos',
+      'iconPos',
+      'selectiveSize',
+      'enableFormat',
+      'showButtons',
+      'buttonLayout',
+      'numberMode',
+      'prefix',
+      'suffix',
+      'currency',
+      'currencyDisplay',
+      'useGrouping',
+      'min',
+      'max',
+      'step',
+      'allowEmpty',
+      'placeholder',
+      'numericSize',
+      'maxlength',
+      'disabled',
+      'readonly',
+      'showClear',
+      ]"
+      [(label)]="label"
+      [(filled)]="filled"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(icon)]="icon"
+      [(labelPos)]="labelPos"
+      [(iconPos)]="iconPos"
+      [(selectiveSize)]="inputSize"
+      [(enableFormat)]="format"
+      [(showButtons)]="showButtons"
+      [(buttonLayout)]="buttonLayout"
+      [(numberMode)]="mode"
+      [(prefix)]="prefix"
+      [(suffix)]="suffix"
+      [(currency)]="currency"
+      [(currencyDisplay)]="currencyDisplay"
+      [(useGrouping)]="useGrouping"
+      [(min)]="min"
+      [(max)]="max"
+      [(step)]="step"
+      [(allowEmpty)]="allowEmpty"
+      [(placeholder)]="placeholder"
+      [(numericSize)]="size"
+      [(maxlength)]="maxlength"
+      [(disabled)]="disabled"
+      [(readonly)]="readonly"
+      [(showClear)]="showClear"
     ></ng-preview-options>
   </p-panel>
 
   <h4>Preview</h4>
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form">
     <ng-input-number
       formControlName="c1"
       [addon]="addon"
       [errors]="{ required: 'error' }"
+      [label]="label"
+      [filled]="filled"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [icon]="icon"
+      [labelPos]="labelPos"
+      [iconPos]="iconPos"
+      [inputSize]="inputSize"
+      [format]="format"
+      [showButtons]="showButtons"
+      [buttonLayout]="buttonLayout"
+      [mode]="mode"
+      [prefix]="prefix"
+      [suffix]="suffix"
+      [currency]="currency"
+      [currencyDisplay]="currencyDisplay"
+      [useGrouping]="useGrouping"
+      [min]="min"
+      [max]="max"
+      [step]="step"
+      [allowEmpty]="allowEmpty"
+      [placeholder]="placeholder"
+      [size]="size"
+      [maxlength]="maxlength"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [showClear]="showClear"
     ></ng-input-number>
-    <ng-button type="submit" label="submit"></ng-button>
   </form>
 
   <h4>NG MODEL</h4>
@@ -26,5 +110,33 @@
     [(ngModel)]="binding"
     [addon]="addon"
     [errors]="{ required: 'error' }"
+    [label]="label"
+    [filled]="filled"
+    [labelWidth]="labelWidth"
+    [hint]="hint"
+    [rtl]="rtl"
+    [icon]="icon"
+    [labelPos]="labelPos"
+    [iconPos]="iconPos"
+    [inputSize]="inputSize"
+    [format]="format"
+    [showButtons]="showButtons"
+    [buttonLayout]="buttonLayout"
+    [mode]="mode"
+    [prefix]="prefix"
+    [suffix]="suffix"
+    [currency]="currency"
+    [currencyDisplay]="currencyDisplay"
+    [useGrouping]="useGrouping"
+    [min]="min"
+    [max]="max"
+    [step]="step"
+    [allowEmpty]="allowEmpty"
+    [placeholder]="placeholder"
+    [size]="size"
+    [maxlength]="maxlength"
+    [disabled]="disabled"
+    [readonly]="readonly"
+    [showClear]="showClear"
   ></ng-input-number>
 </div>

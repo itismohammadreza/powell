@@ -35,7 +35,6 @@ export class CascadeSelectPage {
   };
   // native properties
   disabled: boolean = false;
-  readonly: boolean = false;
   placeholder: string = '';
   showClear: boolean = false
 
@@ -113,7 +112,4 @@ export class CascadeSelectPage {
       ]
     }
   ];
-
-  submit() {
-  }
 }

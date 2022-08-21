@@ -4,17 +4,50 @@
           subheader="ToggleButton is used to select a boolean value using a button."></p-card>
   <p-panel dir="ltr" header="Options">
     <ng-preview-options
-      [previewItems]="[]"
+      [previewItems]="[
+      'label',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'labelPos',
+      'onLabel',
+      'offLabel',
+      'onIcon',
+      'offIcon',
+      'iconPos',
+      'disabled',
+      ]"
+      [(label)]="label"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(labelPos)]="labelPos"
+      [(onLabel)]="onLabel"
+      [(offLabel)]="offLabel"
+      [(onIcon)]="onIcon"
+      [(offIcon)]="offIcon"
+      [(iconPos)]="iconPos"
+      [(disabled)]="disabled"
     ></ng-preview-options>
   </p-panel>
 
   <h4>Preview</h4>
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form">
     <ng-toggle-button
       formControlName="c1"
       [errors]="{ required: 'error' }"
+      [label]="label"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [labelPos]="labelPos"
+      [onLabel]="onLabel"
+      [offLabel]="offLabel"
+      [onIcon]="onIcon"
+      [offIcon]="offIcon"
+      [iconPos]="iconPos"
+      [disabled]="disabled"
     ></ng-toggle-button>
-    <ng-button type="submit" label="submit"></ng-button>
   </form>
 
   <h4>NG MODEL</h4>
@@ -24,5 +57,16 @@
     required
     [(ngModel)]="binding"
     [errors]="{ required: 'error' }"
+    [label]="label"
+    [labelWidth]="labelWidth"
+    [hint]="hint"
+    [rtl]="rtl"
+    [labelPos]="labelPos"
+    [onLabel]="onLabel"
+    [offLabel]="offLabel"
+    [onIcon]="onIcon"
+    [offIcon]="offIcon"
+    [iconPos]="iconPos"
+    [disabled]="disabled"
   ></ng-toggle-button>
 </div>

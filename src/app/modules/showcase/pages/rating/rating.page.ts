@@ -26,7 +26,4 @@ export class RatingPage {
   iconOnClass: string = 'pi pi-star-fill';
   iconOffClass: string = 'pi pi-star';
   iconCancelClass: string = 'pi pi-ban';
-
-  submit() {
-  }
 }

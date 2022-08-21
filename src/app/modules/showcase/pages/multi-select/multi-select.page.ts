@@ -56,7 +56,4 @@ export class MultiSelectPage {
   display: string = 'comma';
 
   options: any[];
-
-  submit() {
-  }
 }

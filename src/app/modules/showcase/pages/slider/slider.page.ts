@@ -27,7 +27,4 @@ export class SliderPage {
   orientation: NgOrientation = 'horizontal';
   step: number = 1;
   range: boolean = false;
-
-  submit() {
-  }
 }

@@ -4,12 +4,37 @@
           subheader="CascadeSelect displays a nested structure of options."></p-card>
   <p-panel dir="ltr" header="Options">
     <ng-preview-options
-      [previewItems]="[]"
+      [previewItems]="[
+      'label',
+      'filled',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'icon',
+      'labelPos',
+      'iconPos',
+      'selectiveSize',
+      'disabled',
+      'placeholder',
+      'showClear',
+      ]"
+      [(label)]="label"
+      [(filled)]="filled"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(icon)]="icon"
+      [(labelPos)]="labelPos"
+      [(iconPos)]="iconPos"
+      [(selectiveSize)]="inputSize"
+      [(disabled)]="disabled"
+      [(placeholder)]="placeholder"
+      [(showClear)]="showClear"
     ></ng-preview-options>
   </p-panel>
 
   <h4>Preview</h4>
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form">
     <ng-cascade-select
       formControlName="c1"
       [addon]="addon"
@@ -19,8 +44,19 @@
       optionLabel="cname"
       optionValue="code"
       optionGroupLabel="name"
+      [label]="label"
+      [filled]="filled"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [icon]="icon"
+      [labelPos]="labelPos"
+      [iconPos]="iconPos"
+      [inputSize]="inputSize"
+      [disabled]="disabled"
+      [placeholder]="placeholder"
+      [showClear]="showClear"
     ></ng-cascade-select>
-    <ng-button type="submit" label="submit"></ng-button>
   </form>
 
   <h4>NG MODEL</h4>
@@ -38,5 +74,17 @@
     optionLabel="cname"
     optionValue="code"
     optionGroupLabel="name"
+    [label]="label"
+    [filled]="filled"
+    [labelWidth]="labelWidth"
+    [hint]="hint"
+    [rtl]="rtl"
+    [icon]="icon"
+    [labelPos]="labelPos"
+    [iconPos]="iconPos"
+    [inputSize]="inputSize"
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    [showClear]="showClear"
   ></ng-cascade-select>
 </div>

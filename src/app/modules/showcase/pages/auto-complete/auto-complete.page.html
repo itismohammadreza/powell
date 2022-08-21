@@ -13,7 +13,7 @@
       'icon',
       'labelPos',
       'iconPos',
-      'inputSize',
+      'selectiveSize',
       'scrollHeight',
       'dropdown',
       'multiple',
@@ -36,7 +36,7 @@
       [(icon)]="icon"
       [(labelPos)]="labelPos"
       [(iconPos)]="iconPos"
-      [(inputSize)]="inputSize"
+      [(selectiveSize)]="inputSize"
       [(scrollHeight)]="scrollHeight"
       [(dropdown)]="dropdown"
       [(multiple)]="multiple"
@@ -54,7 +54,7 @@
   </p-panel>
 
   <h4>Preview</h4>
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form">
     <ng-auto-complete
       formControlName="c1"
       field="name"
@@ -63,7 +63,6 @@
       [suggestions]="filteredSuggestions"
       (completeMethod)="filter($event)"
     ></ng-auto-complete>
-    <ng-button type="submit" label="submit"></ng-button>
   </form>
 
   <h4>NG MODEL</h4>

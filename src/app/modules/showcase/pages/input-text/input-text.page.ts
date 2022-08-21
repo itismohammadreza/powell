@@ -39,8 +39,5 @@ export class InputTextPage {
   maxlength: number = 2000;
   placeholder: string = '';
   type: NgInputTypes = 'text';
-  keyFilter: NgKeyFilter | RegExp = 'alphanum';
-
-  submit() {
-  }
+  keyFilter: NgKeyFilter = 'alphanum';
 }

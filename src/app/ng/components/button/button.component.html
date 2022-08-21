@@ -9,8 +9,13 @@
   [disabled]="disabled"
   [style]="style"
   badgeClass="{{badgeClass}} p-badge-{{ badgeColor }}"
-  styleClass="{{styleClass}} p-button-{{ appearance }} p-button-{{ color }} p-button-{{size}}
-   p-button-{{ rounded ? 'rounded' : '' }} p-button-{{raised ? 'raised' : ''}}"
+  styleClass="
+  {{styleClass}}
+  p-button-{{ appearance }}
+  p-button-{{ color }}
+  p-button-{{ size }}
+  p-button-{{ rounded ? 'rounded' : '' }}
+  p-button-{{raised ? 'raised' : ''}}"
   (onClick)="_onClick($event)">
   <ng-template pTemplate="content" *ngIf="contentTemplate">
     <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>

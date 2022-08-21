@@ -4,18 +4,81 @@
           subheader="Dropdown is used to select an item from a list of options."></p-card>
   <p-panel dir="ltr" header="Options">
     <ng-preview-options
-      [previewItems]="[]"
+      [previewItems]="[
+      'label',
+      'filled',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'icon',
+      'labelPos',
+      'iconPos',
+      'selectiveSize',
+      'filter',
+      'disabled',
+      'readonly',
+      'emptyMessage',
+      'emptyFilterMessage',
+      'editable',
+      'maxlength',
+      'placeholder',
+      'autofocusFilter',
+      'resetFilterOnHide',
+      'autoDisplayFirst',
+      'showClear',
+      ]"
+      [(label)]="label"
+      [(filled)]="filled"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(icon)]="icon"
+      [(labelPos)]="labelPos"
+      [(iconPos)]="iconPos"
+      [(selectiveSize)]="inputSize"
+      [(filter)]="filter"
+      [(disabled)]="disabled"
+      [(readonly)]="readonly"
+      [(emptyMessage)]="emptyMessage"
+      [(emptyFilterMessage)]="emptyFilterMessage"
+      [(editable)]="editable"
+      [(maxlength)]="maxlength"
+      [(placeholder)]="placeholder"
+      [(autofocusFilter)]="autofocusFilter"
+      [(resetFilterOnHide)]="resetFilterOnHide"
+      [(autoDisplayFirst)]="autoDisplayFirst"
+      [(showClear)]="showClear"
     ></ng-preview-options>
   </p-panel>
 
   <h4>Preview</h4>
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form">
     <ng-dropdown
       formControlName="c1"
       [addon]="addon"
       [errors]="{ required: 'error' }"
+      [label]="label"
+      [filled]="filled"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [icon]="icon"
+      [labelPos]="labelPos"
+      [iconPos]="iconPos"
+      [inputSize]="inputSize"
+      [filter]="filter"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [emptyMessage]="emptyMessage"
+      [emptyFilterMessage]="emptyFilterMessage"
+      [editable]="editable"
+      [maxlength]="maxlength"
+      [placeholder]="placeholder"
+      [autofocusFilter]="autofocusFilter"
+      [resetFilterOnHide]="resetFilterOnHide"
+      [autoDisplayFirst]="autoDisplayFirst"
+      [showClear]="showClear"
     ></ng-dropdown>
-    <ng-button type="submit" label="submit"></ng-button>
   </form>
 
   <h4>NG MODEL</h4>
@@ -26,5 +89,26 @@
     [(ngModel)]="binding"
     [addon]="addon"
     [errors]="{ required: 'error' }"
+    [label]="label"
+    [filled]="filled"
+    [labelWidth]="labelWidth"
+    [hint]="hint"
+    [rtl]="rtl"
+    [icon]="icon"
+    [labelPos]="labelPos"
+    [iconPos]="iconPos"
+    [inputSize]="inputSize"
+    [filter]="filter"
+    [disabled]="disabled"
+    [readonly]="readonly"
+    [emptyMessage]="emptyMessage"
+    [emptyFilterMessage]="emptyFilterMessage"
+    [editable]="editable"
+    [maxlength]="maxlength"
+    [placeholder]="placeholder"
+    [autofocusFilter]="autofocusFilter"
+    [resetFilterOnHide]="resetFilterOnHide"
+    [autoDisplayFirst]="autoDisplayFirst"
+    [showClear]="showClear"
   ></ng-dropdown>
 </div>

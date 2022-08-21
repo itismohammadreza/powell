@@ -4,17 +4,38 @@
           subheader="Map component provides integration with Leaflet Maps API. This sample demontrates various uses cases like binding, overlays and events. Click the map to add a new item."></p-card>
   <p-panel dir="ltr" header="Options">
     <ng-preview-options
-      [previewItems]="[]"
+      [previewItems]="[
+      'label',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'labelPos',
+      'disabled',
+      'readonly',
+      ]"
+      [(label)]="label"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(labelPos)]="labelPos"
+      [(disabled)]="disabled"
+      [(readonly)]="readonly"
     ></ng-preview-options>
   </p-panel>
 
   <h4>Preview</h4>
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form">
     <ng-map
       formControlName="c1"
       [errors]="{ required: 'error' }"
+      [label]="label"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [labelPos]="labelPos"
+      [disabled]="disabled"
+      [readonly]="readonly"
     ></ng-map>
-    <ng-button type="submit" label="submit"></ng-button>
   </form>
 
   <h4>NG MODEL</h4>
@@ -22,5 +43,12 @@
   <ng-map
     formControlName="c1"
     [errors]="{ required: 'error' }"
+    [label]="label"
+    [labelWidth]="labelWidth"
+    [hint]="hint"
+    [rtl]="rtl"
+    [labelPos]="labelPos"
+    [disabled]="disabled"
+    [readonly]="readonly"
   ></ng-map>
 </div>

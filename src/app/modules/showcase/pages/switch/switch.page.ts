@@ -21,7 +21,4 @@ export class SwitchPage {
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;
-
-  submit() {
-  }
 }

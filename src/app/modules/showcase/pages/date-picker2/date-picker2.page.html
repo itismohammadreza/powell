@@ -1,7 +1,7 @@
 <ng-preview-options
   [previewItems]="[]"></ng-preview-options>
 <div class="container">
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form">
     <h4>Preview</h4>
     <ng-chips
       formControlName="c1"
@@ -9,7 +9,6 @@
       [errors]="{ required: 'error' }"
     >
     </ng-chips>
-    <ng-button type="submit" label="submit"></ng-button>
   </form>
 
   <h4>NG MODEL</h4>

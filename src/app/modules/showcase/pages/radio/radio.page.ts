@@ -22,10 +22,6 @@ export class RadioPage {
   // native properties
   orientation: NgOrientation = 'vertical';
   disabled: boolean = false;
-  readonly: boolean = false;
 
   options: any[];
-
-  submit() {
-  }
 }
