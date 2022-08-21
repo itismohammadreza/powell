@@ -2,27 +2,27 @@
   <p-card dir="ltr"
           header="FilePicker"
           subheader="FilePicker is an advanced uploader with drag and drop support, multi file uploads, auto uploading, progress tracking and validations."></p-card>
-<p-panel dir="ltr" header="Options">
-  <ng-preview-options
-    [previewItems]="[]"
-  ></ng-preview-options>
-</p-panel>
-    <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
-      <h4>Preview</h4>
-      <ng-file-picker2
-        formControlName="c1"
-        [errors]="{ required: 'error' }"
-      ></ng-file-picker2>
-      <ng-button type="submit" label="submit"></ng-button>
-    </form>
+  <p-panel dir="ltr" header="Options">
+    <ng-preview-options
+      [previewItems]="[]"
+    ></ng-preview-options>
+  </p-panel>
 
-    <h4>NG MODEL</h4>
-    VALUE :
-    <pre>{{binding | json}}</pre>
+  <h4>Preview</h4>
+  <form [formGroup]="form" (ngSubmit)="submit()">
     <ng-file-picker2
-      name="myInput"
-      required
-      [(ngModel)]="binding"
+      formControlName="c1"
       [errors]="{ required: 'error' }"
     ></ng-file-picker2>
+    <ng-button type="submit" label="submit"></ng-button>
+  </form>
+
+  <h4>NG MODEL</h4>
+  <pre dir="ltr">Value : {{binding | json}}</pre>
+  <ng-file-picker2
+    name="myInput"
+    required
+    [(ngModel)]="binding"
+    [errors]="{ required: 'error' }"
+  ></ng-file-picker2>
 </div>

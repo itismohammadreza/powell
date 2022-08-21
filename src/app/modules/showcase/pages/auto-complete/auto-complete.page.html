@@ -52,8 +52,9 @@
       [(showClear)]="showClear"
     ></ng-preview-options>
   </p-panel>
-  <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
-    <h4>Preview</h4>
+
+  <h4>Preview</h4>
+  <form [formGroup]="form" (ngSubmit)="submit()">
     <ng-auto-complete
       formControlName="c1"
       field="name"
@@ -66,8 +67,7 @@
   </form>
 
   <h4>NG MODEL</h4>
-  VALUE :
-  <pre>{{binding | json}}</pre>
+  <pre dir="ltr">Value : {{binding | json}}</pre>
   <ng-auto-complete
     name="myInput"
     field="name"
@@ -77,5 +77,4 @@
     [suggestions]="filteredSuggestions"
     (completeMethod)="filter($event)">
   </ng-auto-complete>
-  <!--  </p-card>-->
 </div>

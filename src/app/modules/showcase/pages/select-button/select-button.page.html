@@ -7,8 +7,9 @@
       [previewItems]="[]"
     ></ng-preview-options>
   </p-panel>
-  <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
-    <h4>Preview</h4>
+
+  <h4>Preview</h4>
+  <form [formGroup]="form" (ngSubmit)="submit()">
     <ng-select-button
       formControlName="c1"
       [errors]="{ required: 'error' }"
@@ -17,8 +18,7 @@
   </form>
 
   <h4>NG MODEL</h4>
-  VALUE :
-  <pre>{{binding | json}}</pre>
+  <pre dir="ltr">Value : {{binding | json}}</pre>
   <ng-select-button
     name="myInput"
     required

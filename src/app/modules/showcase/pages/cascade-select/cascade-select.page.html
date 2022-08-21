@@ -7,8 +7,9 @@
       [previewItems]="[]"
     ></ng-preview-options>
   </p-panel>
-  <form class="mb-5" [formGroup]="form" (ngSubmit)="submit()">
-    <h4>Preview</h4>
+
+  <h4>Preview</h4>
+  <form [formGroup]="form" (ngSubmit)="submit()">
     <ng-cascade-select
       formControlName="c1"
       [addon]="addon"

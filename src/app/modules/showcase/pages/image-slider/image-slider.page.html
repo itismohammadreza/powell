@@ -1,6 +1,3 @@
-<ng-preview-options
-  [previewItems]="[]"
-></ng-preview-options>
 <div class="container">
   <p-card dir="ltr"
           header="ImageSlider"
@@ -10,25 +7,22 @@
       [previewItems]="[]"
     ></ng-preview-options>
   </p-panel>
+
   <h4>Preview</h4>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-7 mb-4">
-        <ng-image-slider>
-        </ng-image-slider>
-      </div>
+  <div class="row justify-content-center">
+    <div class="col-md-7 mb-4">
+      <ng-image-slider
+      ></ng-image-slider>
     </div>
   </div>
 
   <h4>CUSTOM CONTENT</h4>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-7">
-        <div class="row">
-          <div *ngFor="let image of images; let index = index;" class="col-3">
-            <img class="w-100" [src]="image.preview" [alt]="image.alt" style="cursor: pointer"
-                 (click)="imageClick(index)"/>
-          </div>
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <div class="row">
+        <div *ngFor="let image of images; let index = index;" class="col-3">
+          <img class="w-100" [src]="image.preview" [alt]="image.alt" style="cursor: pointer"
+               (click)="imageClick(index)"/>
         </div>
       </div>
     </div>
@@ -47,6 +41,6 @@
     [activeIndex]="activeIndex"
     [(visible)]="visible"
     [fullScreen]="true"
-    [images]="images">
-  </ng-image-slider>
+    [images]="images"
+  ></ng-image-slider>
 </div>
