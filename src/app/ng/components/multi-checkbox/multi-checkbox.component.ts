@@ -72,7 +72,7 @@ export class MultiCheckboxComponent implements OnInit, AfterViewInit, ControlVal
 
   ngOnInit() {
     this.groupName = this.getId();
-    this.options.forEach((item) => {
+    this.options?.forEach((item) => {
       Object.assign(item, {id: this.getId()});
     });
     let parentForm: UntypedFormGroup;

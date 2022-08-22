@@ -45,7 +45,7 @@ const routes: Routes = [
   {
     path: 'auto-complete',
     component: AutoCompletePage,
-    data: {title: 'auto'}
+    data: {title: 'auto-complete'}
   },
   {
     path: 'button',
@@ -60,7 +60,7 @@ const routes: Routes = [
   {
     path: 'cascade-select',
     component: CascadeSelectPage,
-    data: {title: 'cascade'}
+    data: {title: 'cascade-select'}
   },
   {
     path: 'chips',
@@ -70,7 +70,7 @@ const routes: Routes = [
   {
     path: 'date-picker',
     component: DatePickerPage,
-    data: {title: 'date'}
+    data: {title: 'date-picker'}
   },
   {
     path: 'dynamic-form',
@@ -80,7 +80,7 @@ const routes: Routes = [
   {
     path: 'color-picker',
     component: ColorPickerPage,
-    data: {title: 'color'}
+    data: {title: 'color-picker'}
   },
   {
     path: 'dropdown',
@@ -140,7 +140,7 @@ const routes: Routes = [
   {
     path: 'list-box',
     component: ListBoxPage,
-    data: {title: 'list'}
+    data: {title: 'list-box'}
   },
   {
     path: 'map',
@@ -150,12 +150,12 @@ const routes: Routes = [
   {
     path: 'multi-checkbox',
     component: MultiCheckboxPage,
-    data: {title: 'multi'}
+    data: {title: 'multi-checkbox'}
   },
   {
     path: 'multi-select',
     component: MultiSelectPage,
-    data: {title: 'multi'}
+    data: {title: 'multi-select'}
   },
   {
     path: 'radio',
@@ -170,12 +170,12 @@ const routes: Routes = [
   {
     path: 'select-button',
     component: SelectButtonPage,
-    data: {title: 'select'}
+    data: {title: 'select-button'}
   },
   {
     path: 'single-checkbox',
     component: SingleCheckboxPage,
-    data: {title: 'single'}
+    data: {title: 'single-checkbox'}
   },
   {
     path: 'slider',
@@ -185,7 +185,7 @@ const routes: Routes = [
   {
     path: 'split-button',
     component: SplitButtonPage,
-    data: {title: 'split'}
+    data: {title: 'split-button'}
   },
   {
     path: 'switch',
@@ -200,7 +200,7 @@ const routes: Routes = [
   {
     path: 'toggle-button',
     component: ToggleButtonPage,
-    data: {title: 'toggle'}
+    data: {title: 'toggle-button'}
   },
   {
     path: 'tree',

@@ -1,6 +1,7 @@
 :host {
   display: block;
   padding: 3rem 0;
+  direction: ltr;
 }
 
 p-card {
@@ -23,7 +24,7 @@ h4 {
   margin: 1rem 0;
 }
 
-ng-button {
+.others ~ ng-button {
   margin-right: 1rem;
   margin-bottom: 1rem;
 }

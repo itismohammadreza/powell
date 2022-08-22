@@ -23,7 +23,6 @@ import {
   FormGroupName,
   NG_VALUE_ACCESSOR,
   NgControl,
-  NgModel,
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgAddon, NgError, NgFilterMatchMode, NgLabelPosition} from '@ng/models/forms';

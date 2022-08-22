@@ -28,6 +28,7 @@
     <ng-select-button
       formControlName="c1"
       [errors]="{ required: 'error' }"
+      [options]="options"
       [label]="label"
       [labelWidth]="labelWidth"
       [hint]="hint"
@@ -45,6 +46,7 @@
     required
     [(ngModel)]="binding"
     [errors]="{ required: 'error' }"
+    [options]="options"
     [label]="label"
     [labelWidth]="labelWidth"
     [hint]="hint"
