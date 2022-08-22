@@ -76,8 +76,8 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   @Input() filterLocale: string;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
-  @Input() emptyMessage: string = 'No records found.';
-  @Input() emptyFilterMessage: string = 'No result found.';
+  @Input() emptyMessage: string = 'No records found';
+  @Input() emptyFilterMessage: string = 'No result found';
   @Input() editable: boolean;
   @Input() maxlength: number;
   @Input() appendTo: any;

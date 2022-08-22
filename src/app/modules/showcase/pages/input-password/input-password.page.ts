@@ -19,20 +19,20 @@ export class InputPasswordPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = true;
-  icon: string = 'pi pi-home';
+  icon: string = '';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
   inputSize: NgSize = 'md';
-  addon: NgAddon = {
-    before: {
-      type: 'icon',
-      icon: 'pi pi-home',
-    },
-    after: {
-      type: 'button',
-      label: 'home',
-    },
-  };
+  addon: NgAddon// = {
+  //   before: {
+  //     type: 'icon',
+  //     icon: 'pi pi-home',
+  //   },
+  //   after: {
+  //     type: 'button',
+  //     label: 'home',
+  //   },
+  // };
   // native properties
   promptLabel: string = 'لطفا رمز عبور را وارد کنید';
   weakLabel: string = 'ضعیف';

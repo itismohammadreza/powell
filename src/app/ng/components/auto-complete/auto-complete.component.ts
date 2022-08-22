@@ -83,7 +83,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() autoHighlight: boolean;
   @Input() type: string = 'text';
   @Input() showEmptyMessage: boolean;
-  @Input() emptyMessage: string = 'No records found.';
+  @Input() emptyMessage: string = 'No records found';
   @Input() autofocus: boolean;
   @Input() forceSelection: boolean = true;
   @Input() dropdownMode: 'blank' | 'current' = 'blank';

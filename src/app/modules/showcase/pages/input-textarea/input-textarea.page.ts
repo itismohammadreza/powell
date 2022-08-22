@@ -19,19 +19,19 @@ export class InputTextareaPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = true;
-  icon: string = 'pi pi-home';
+  icon: string = '';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
-  addon: NgAddon = {
-    before: {
-      type: 'icon',
-      icon: 'pi pi-home',
-    },
-    after: {
-      type: 'button',
-      label: 'home',
-    },
-  };
+  addon: NgAddon// = {
+  //   before: {
+  //     type: 'icon',
+  //     icon: 'pi pi-home',
+  //   },
+  //   after: {
+  //     type: 'button',
+  //     label: 'home',
+  //   },
+  // };
   // native properties
   readonly: boolean = false;
   disabled: boolean = false;

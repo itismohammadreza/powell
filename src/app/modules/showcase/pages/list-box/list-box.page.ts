@@ -18,16 +18,16 @@ export class ListBoxPage {
   hint: string = '';
   rtl: boolean = true;
   labelPos: NgLabelPosition = 'fix-side';
-  addon: NgAddon = {
-    before: {
-      type: 'icon',
-      icon: 'pi pi-home',
-    },
-    after: {
-      type: 'button',
-      label: 'home',
-    },
-  };
+  addon: NgAddon// = {
+  //   before: {
+  //     type: 'icon',
+  //     icon: 'pi pi-home',
+  //   },
+  //   after: {
+  //     type: 'button',
+  //     label: 'home',
+  //   },
+  // };
   // native properties
   checkbox: boolean = false;
   disabled: boolean = false;

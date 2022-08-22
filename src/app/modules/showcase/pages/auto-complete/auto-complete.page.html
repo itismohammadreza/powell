@@ -60,9 +60,9 @@
     <form [formGroup]="form">
       <ng-auto-complete
         formControlName="c1"
-        field="name"
         [addon]="addon"
         [errors]="{ required: 'error' }"
+        field="name"
         [suggestions]="filteredSuggestions"
         [label]="label"
         [filled]="filled"
@@ -95,10 +95,11 @@
     </p-divider>
     <ng-auto-complete
       name="myInput"
-      field="name"
       required
       [(ngModel)]="binding"
+      [addon]="addon"
       [errors]="{ required: 'error' }"
+      field="name"
       [suggestions]="filteredSuggestions"
       [label]="label"
       [filled]="filled"

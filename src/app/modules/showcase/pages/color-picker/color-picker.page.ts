@@ -19,23 +19,23 @@ export class ColorPickerPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = true;
-  icon: string = 'pi pi-home';
+  icon: string = '';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
   inputSize: NgSize = 'md';
   placeholder: string = '';
   readonly: boolean = false;
   disabled: boolean = false;
-  addon: NgAddon = {
-    before: {
-      type: 'icon',
-      icon: 'pi pi-home',
-    },
-    after: {
-      type: 'button',
-      label: 'home',
-    },
-  };
+  addon: NgAddon// = {
+  //   before: {
+  //     type: 'icon',
+  //     icon: 'pi pi-home',
+  //   },
+  //   after: {
+  //     type: 'button',
+  //     label: 'home',
+  //   },
+  // };
   // native properties
   maxlength: number = 7;
   inline: boolean = false;

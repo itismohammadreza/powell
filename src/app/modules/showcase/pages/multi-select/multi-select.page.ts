@@ -19,20 +19,20 @@ export class MultiSelectPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = true;
-  icon: string = 'pi pi-home';
+  icon: string = '';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
   inputSize: NgSize = 'md';
-  addon: NgAddon = {
-    before: {
-      type: 'icon',
-      icon: 'pi pi-home',
-    },
-    after: {
-      type: 'button',
-      label: 'home',
-    },
-  };
+  addon: NgAddon// = {
+  //   before: {
+  //     type: 'icon',
+  //     icon: 'pi pi-home',
+  //   },
+  //   after: {
+  //     type: 'button',
+  //     label: 'home',
+  //   },
+  // };
   // native properties
   autofocusFilter: boolean = false;
   defaultLabel: string = 'Choose';
@@ -45,7 +45,7 @@ export class MultiSelectPage {
   overlayVisible: boolean = false;
   placeholder: string = '';
   readonly: boolean = false;
-  emptyMessage: string = 'No records found.';
+  emptyMessage: string = 'No records found';
   resetFilterOnHide: boolean = false;
   scrollHeight: string = '200px';
   selectedItemsLabel: string | 'ellipsis' = 'ellipsis';

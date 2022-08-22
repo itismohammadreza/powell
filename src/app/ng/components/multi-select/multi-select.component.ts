@@ -85,7 +85,7 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
   @Input() panelStyle: any;
   @Input() placeholder: string;
   @Input() readonly: boolean;
-  @Input() emptyMessage: string = 'No records found.';
+  @Input() emptyMessage: string = 'No records found';
   @Input() resetFilterOnHide: boolean;
   @Input() scrollHeight: string = '200px';
   @Input() selectedItemsLabel: string | 'ellipsis' = 'ellipsis';
