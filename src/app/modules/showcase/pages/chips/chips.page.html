@@ -41,30 +41,31 @@
     ></ng-preview-options>
   </p-panel>
 
-  <h4>Preview</h4>
-  <form [formGroup]="form">
-    <ng-chips
-      formControlName="c1"
-      [addon]="addon"
-      [errors]="{ required: 'error' }"
-      [label]="label"
-      [filled]="filled"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [icon]="icon"
-      [labelPos]="labelPos"
-      [iconPos]="iconPos"
-      [inputSize]="inputSize"
-      [max]="max"
-      [disabled]="disabled"
-      [placeholder]="placeholder"
-      [allowDuplicate]="allowDuplicate"
-      [addOnTab]="addOnTab"
-      [addOnBlur]="addOnBlur"
-      [showClear]="showClear"
-    ></ng-chips>
-  </form>
+  <p-panel dir="ltr" header="Preview">
+    <form [formGroup]="form">
+      <ng-chips
+        formControlName="c1"
+        [addon]="addon"
+        [errors]="{ required: 'error' }"
+        [label]="label"
+        [filled]="filled"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [icon]="icon"
+        [labelPos]="labelPos"
+        [iconPos]="iconPos"
+        [inputSize]="inputSize"
+        [max]="max"
+        [disabled]="disabled"
+        [placeholder]="placeholder"
+        [allowDuplicate]="allowDuplicate"
+        [addOnTab]="addOnTab"
+        [addOnBlur]="addOnBlur"
+        [showClear]="showClear"
+      ></ng-chips>
+    </form>
+  </p-panel>
 
   <h4>NG MODEL</h4>
   <pre dir="ltr">Value : {{binding | json}}</pre>

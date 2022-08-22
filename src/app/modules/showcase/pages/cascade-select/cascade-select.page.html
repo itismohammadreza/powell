@@ -33,29 +33,30 @@
     ></ng-preview-options>
   </p-panel>
 
-  <h4>Preview</h4>
-  <form [formGroup]="form">
-    <ng-cascade-select
-      formControlName="c1"
-      [addon]="addon"
-      [errors]="{ required: 'error' }"
-      [options]="options"
-      [optionGroupChildren]="['states', 'cities']"
-      optionGroupLabel="name"
-      [label]="label"
-      [filled]="filled"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [icon]="icon"
-      [labelPos]="labelPos"
-      [iconPos]="iconPos"
-      [inputSize]="inputSize"
-      [disabled]="disabled"
-      [placeholder]="placeholder"
-      [showClear]="showClear"
-    ></ng-cascade-select>
-  </form>
+  <p-panel dir="ltr" header="Preview">
+    <form [formGroup]="form">
+      <ng-cascade-select
+        formControlName="c1"
+        [addon]="addon"
+        [errors]="{ required: 'error' }"
+        [options]="options"
+        [optionGroupChildren]="['states', 'cities']"
+        optionGroupLabel="name"
+        [label]="label"
+        [filled]="filled"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [icon]="icon"
+        [labelPos]="labelPos"
+        [iconPos]="iconPos"
+        [inputSize]="inputSize"
+        [disabled]="disabled"
+        [placeholder]="placeholder"
+        [showClear]="showClear"
+      ></ng-cascade-select>
+    </form>
+  </p-panel>
 
   <h4>NG MODEL</h4>
   VALUE :

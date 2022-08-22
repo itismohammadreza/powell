@@ -23,20 +23,21 @@
     ></ng-preview-options>
   </p-panel>
 
-  <h4>Preview</h4>
-  <form [formGroup]="form">
-    <ng-editor
-      formControlName="c1"
-      [errors]="{ required: 'error' }"
-      [label]="label"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [disabled]="disabled"
-      [readonly]="readonly"
-    ></ng-editor>
-  </form>
+  <p-panel dir="ltr" header="Preview">
+    <form [formGroup]="form">
+      <ng-editor
+        formControlName="c1"
+        [errors]="{ required: 'error' }"
+        [label]="label"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [labelPos]="labelPos"
+        [disabled]="disabled"
+        [readonly]="readonly"
+      ></ng-editor>
+    </form>
+  </p-panel>
 
   <h4>NG MODEL</h4>
   <pre dir="ltr">Value : {{binding | json}}</pre>

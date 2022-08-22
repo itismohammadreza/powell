@@ -65,42 +65,43 @@
     ></ng-preview-options>
   </p-panel>
 
-  <h4>Preview</h4>
-  <form [formGroup]="form">
-    <ng-input-number
-      formControlName="c1"
-      [addon]="addon"
-      [errors]="{ required: 'error' }"
-      [label]="label"
-      [filled]="filled"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [icon]="icon"
-      [labelPos]="labelPos"
-      [iconPos]="iconPos"
-      [inputSize]="inputSize"
-      [format]="format"
-      [showButtons]="showButtons"
-      [buttonLayout]="buttonLayout"
-      [mode]="mode"
-      [prefix]="prefix"
-      [suffix]="suffix"
-      [currency]="currency"
-      [currencyDisplay]="currencyDisplay"
-      [useGrouping]="useGrouping"
-      [min]="min"
-      [max]="max"
-      [step]="step"
-      [allowEmpty]="allowEmpty"
-      [placeholder]="placeholder"
-      [size]="size"
-      [maxlength]="maxlength"
-      [disabled]="disabled"
-      [readonly]="readonly"
-      [showClear]="showClear"
-    ></ng-input-number>
-  </form>
+  <p-panel dir="ltr" header="Preview">
+    <form [formGroup]="form">
+      <ng-input-number
+        formControlName="c1"
+        [addon]="addon"
+        [errors]="{ required: 'error' }"
+        [label]="label"
+        [filled]="filled"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [icon]="icon"
+        [labelPos]="labelPos"
+        [iconPos]="iconPos"
+        [inputSize]="inputSize"
+        [format]="format"
+        [showButtons]="showButtons"
+        [buttonLayout]="buttonLayout"
+        [mode]="mode"
+        [prefix]="prefix"
+        [suffix]="suffix"
+        [currency]="currency"
+        [currencyDisplay]="currencyDisplay"
+        [useGrouping]="useGrouping"
+        [min]="min"
+        [max]="max"
+        [step]="step"
+        [allowEmpty]="allowEmpty"
+        [placeholder]="placeholder"
+        [size]="size"
+        [maxlength]="maxlength"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [showClear]="showClear"
+      ></ng-input-number>
+    </form>
+  </p-panel>
 
   <h4>NG MODEL</h4>
   <pre dir="ltr">Value : {{binding | json}}</pre>

@@ -10,23 +10,16 @@ ng-cascade-select {
 }
 
 p-card {
-  margin-bottom: 1rem;
-  display: block;
+  &, ~ p-panel {
+    margin-bottom: 1rem;
+    display: block;
+  }
 
   ::ng-deep .p-card-content {
     padding: 0;
   }
 }
 
-h4 {
-  background-color: var(--surface-d);
-  font-size: 20px;
-  text-align: center;
-  font-weight: 300;
-  padding: 0.5rem;
-  text-transform: uppercase;
-  border-radius: 0.5rem;
-  margin: 1rem 0;
-}
+
 
 

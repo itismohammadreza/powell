@@ -53,19 +53,44 @@
     ></ng-preview-options>
   </p-panel>
 
-  <h4>Preview</h4>
-  <form [formGroup]="form">
-    <ng-auto-complete
-      formControlName="c1"
-      field="name"
-      [addon]="addon"
-      [errors]="{ required: 'error' }"
-      [suggestions]="filteredSuggestions"
-      (completeMethod)="filter($event)"
-    ></ng-auto-complete>
-  </form>
-
+  <p-panel dir="ltr" header="Preview">
+    <form [formGroup]="form">
+      <ng-auto-complete
+        formControlName="c1"
+        field="name"
+        [addon]="addon"
+        [errors]="{ required: 'error' }"
+        [suggestions]="filteredSuggestions"
+        [label]="label"
+        [filled]="filled"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [icon]="icon"
+        [labelPos]="labelPos"
+        [iconPos]="iconPos"
+        [inputSize]="inputSize"
+        [scrollHeight]="scrollHeight"
+        [dropdown]="dropdown"
+        [multiple]="multiple"
+        [minlength]="minlength"
+        [placeholder]="placeholder"
+        [readonly]="readonly"
+        [disabled]="disabled"
+        [maxlength]="maxlength"
+        [showEmptyMessage]="showEmptyMessage"
+        [emptyMessage]="emptyMessage"
+        [forceSelection]="forceSelection"
+        [unique]="unique"
+        [showClear]="showClear"
+        (completeMethod)="filter($event)"
+      ></ng-auto-complete>
+    </form>
+  </p-panel>
   <h4>NG MODEL</h4>
+  <p-fieldset legend="Header">
+    Content
+  </p-fieldset>
   <pre dir="ltr">Value : {{binding | json}}</pre>
   <ng-auto-complete
     name="myInput"
@@ -74,6 +99,28 @@
     [(ngModel)]="binding"
     [errors]="{ required: 'error' }"
     [suggestions]="filteredSuggestions"
+    [label]="label"
+    [filled]="filled"
+    [labelWidth]="labelWidth"
+    [hint]="hint"
+    [rtl]="rtl"
+    [icon]="icon"
+    [labelPos]="labelPos"
+    [iconPos]="iconPos"
+    [inputSize]="inputSize"
+    [scrollHeight]="scrollHeight"
+    [dropdown]="dropdown"
+    [multiple]="multiple"
+    [minlength]="minlength"
+    [placeholder]="placeholder"
+    [readonly]="readonly"
+    [disabled]="disabled"
+    [maxlength]="maxlength"
+    [showEmptyMessage]="showEmptyMessage"
+    [emptyMessage]="emptyMessage"
+    [forceSelection]="forceSelection"
+    [unique]="unique"
+    [showClear]="showClear"
     (completeMethod)="filter($event)">
   </ng-auto-complete>
 </div>

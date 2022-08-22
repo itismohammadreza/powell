@@ -51,34 +51,35 @@
     ></ng-preview-options>
   </p-panel>
 
-  <h4>Preview</h4>
-  <form [formGroup]="form">
-    <ng-file-picker
-      formControlName="c1"
-      [errors]="{ required: 'error' }"
-      [label]="label"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [multiple]="multiple"
-      [accept]="accept"
-      [disabled]="disabled"
-      [auto]="auto"
-      [maxFileSize]="maxFileSize"
-      [fileLimit]="fileLimit"
-      [previewWidth]="previewWidth"
-      [chooseLabel]="chooseLabel"
-      [uploadLabel]="uploadLabel"
-      [cancelLabel]="cancelLabel"
-      [chooseIcon]="chooseIcon"
-      [uploadIcon]="uploadIcon"
-      [cancelIcon]="cancelIcon"
-      [mode]="mode"
-      [showUploadButton]="showUploadButton"
-      [showCancelButton]="showCancelButton"
-    ></ng-file-picker>
-  </form>
+  <p-panel dir="ltr" header="Preview">
+    <form [formGroup]="form">
+      <ng-file-picker
+        formControlName="c1"
+        [errors]="{ required: 'error' }"
+        [label]="label"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [labelPos]="labelPos"
+        [multiple]="multiple"
+        [accept]="accept"
+        [disabled]="disabled"
+        [auto]="auto"
+        [maxFileSize]="maxFileSize"
+        [fileLimit]="fileLimit"
+        [previewWidth]="previewWidth"
+        [chooseLabel]="chooseLabel"
+        [uploadLabel]="uploadLabel"
+        [cancelLabel]="cancelLabel"
+        [chooseIcon]="chooseIcon"
+        [uploadIcon]="uploadIcon"
+        [cancelIcon]="cancelIcon"
+        [mode]="mode"
+        [showUploadButton]="showUploadButton"
+        [showCancelButton]="showCancelButton"
+      ></ng-file-picker>
+    </form>
+  </p-panel>
 
   <h4>NG MODEL</h4>
   <pre dir="ltr">Value : {{binding | json}}</pre>

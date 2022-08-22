@@ -33,21 +33,22 @@
     ></ng-preview-options>
   </p-panel>
 
-  <h4>Preview</h4>
-  <ng-button
-    [label]="label"
-    [icon]="icon"
-    [full]="full"
-    [badge]="badge"
-    [rounded]="rounded"
-    [raised]="raised"
-    [appearance]="appearance"
-    [disabled]="disabled"
-    [iconPos]="iconPos"
-    [color]="color"
-    [badgeColor]="badgeColor"
-    [size]="size">
-  </ng-button>
+  <p-panel dir="ltr" header="Preview">
+    <ng-button
+      [label]="label"
+      [icon]="icon"
+      [full]="full"
+      [badge]="badge"
+      [rounded]="rounded"
+      [raised]="raised"
+      [appearance]="appearance"
+      [disabled]="disabled"
+      [iconPos]="iconPos"
+      [color]="color"
+      [badgeColor]="badgeColor"
+      [size]="size">
+    </ng-button>
+  </p-panel>
 
   <h4 class="others">Other Actions</h4>
   <ng-button (click)="showDialog()" label="dialog"></ng-button>

@@ -4,8 +4,10 @@
 }
 
 p-card {
-  margin-bottom: 1rem;
-  display: block;
+  &, ~ p-panel {
+    margin-bottom: 1rem;
+    display: block;
+  }
 
   ::ng-deep .p-card-content {
     padding: 0;

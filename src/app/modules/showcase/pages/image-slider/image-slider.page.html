@@ -37,27 +37,24 @@
     ></ng-preview-options>
   </p-panel>
 
-  <h4>Preview</h4>
-  <div class="row justify-content-center">
-    <div class="col-md-7 mb-4">
-      <ng-image-slider
-        [numVisible]="numVisible"
-        [showItemNavigators]="showItemNavigators"
-        [showThumbnailNavigators]="showThumbnailNavigators"
-        [showItemNavigatorsOnHover]="showItemNavigatorsOnHover"
-        [changeItemOnIndicatorHover]="changeItemOnIndicatorHover"
-        [circular]="circular"
-        [autoPlay]="autoPlay"
-        [transitionInterval]="transitionInterval"
-        [showThumbnails]="showThumbnails"
-        [thumbnailsPosition]="thumbnailsPosition"
-        [verticalThumbnailViewPortHeight]="verticalThumbnailViewPortHeight"
-        [showIndicators]="showIndicators"
-        [showIndicatorsOnItem]="showIndicatorsOnItem"
-        [indicatorsPosition]="indicatorsPosition"
-      ></ng-image-slider>
-    </div>
-  </div>
+  <p-panel dir="ltr" header="Preview">
+    <ng-image-slider
+      [numVisible]="numVisible"
+      [showItemNavigators]="showItemNavigators"
+      [showThumbnailNavigators]="showThumbnailNavigators"
+      [showItemNavigatorsOnHover]="showItemNavigatorsOnHover"
+      [changeItemOnIndicatorHover]="changeItemOnIndicatorHover"
+      [circular]="circular"
+      [autoPlay]="autoPlay"
+      [transitionInterval]="transitionInterval"
+      [showThumbnails]="showThumbnails"
+      [thumbnailsPosition]="thumbnailsPosition"
+      [verticalThumbnailViewPortHeight]="verticalThumbnailViewPortHeight"
+      [showIndicators]="showIndicators"
+      [showIndicatorsOnItem]="showIndicatorsOnItem"
+      [indicatorsPosition]="indicatorsPosition"
+    ></ng-image-slider>
+  </p-panel>
 
   <h4>CUSTOM CONTENT</h4>
   <div class="row justify-content-center">

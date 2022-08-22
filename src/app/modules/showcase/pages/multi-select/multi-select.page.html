@@ -67,44 +67,45 @@
     ></ng-preview-options>
   </p-panel>
 
-  <h4>Preview</h4>
-  <form [formGroup]="form">
-    <ng-multi-select
-      formControlName="c1"
-      [addon]="addon"
-      [errors]="{ required: 'error' }"
-      [options]="options"
-      [label]="label"
-      [filled]="filled"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [icon]="icon"
-      [labelPos]="labelPos"
-      [iconPos]="iconPos"
-      [inputSize]="inputSize"
-      [autofocusFilter]="autofocusFilter"
-      [defaultLabel]="defaultLabel"
-      [disabled]="disabled"
-      [displaySelectedLabel]="displaySelectedLabel"
-      [emptyFilterMessage]="emptyFilterMessage"
-      [filter]="filter"
-      [filterPlaceHolder]="filterPlaceHolder"
-      [maxSelectedLabels]="maxSelectedLabels"
-      [overlayVisible]="overlayVisible"
-      [placeholder]="placeholder"
-      [readonly]="readonly"
-      [emptyMessage]="emptyMessage"
-      [resetFilterOnHide]="resetFilterOnHide"
-      [scrollHeight]="scrollHeight"
-      [selectedItemsLabel]="selectedItemsLabel"
-      [selectionLimit]="selectionLimit"
-      [showHeader]="showHeader"
-      [showToggleAll]="showToggleAll"
-      [showClear]="showClear"
-      [display]="display"
-    ></ng-multi-select>
-  </form>
+  <p-panel dir="ltr" header="Preview">
+    <form [formGroup]="form">
+      <ng-multi-select
+        formControlName="c1"
+        [addon]="addon"
+        [errors]="{ required: 'error' }"
+        [options]="options"
+        [label]="label"
+        [filled]="filled"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [icon]="icon"
+        [labelPos]="labelPos"
+        [iconPos]="iconPos"
+        [inputSize]="inputSize"
+        [autofocusFilter]="autofocusFilter"
+        [defaultLabel]="defaultLabel"
+        [disabled]="disabled"
+        [displaySelectedLabel]="displaySelectedLabel"
+        [emptyFilterMessage]="emptyFilterMessage"
+        [filter]="filter"
+        [filterPlaceHolder]="filterPlaceHolder"
+        [maxSelectedLabels]="maxSelectedLabels"
+        [overlayVisible]="overlayVisible"
+        [placeholder]="placeholder"
+        [readonly]="readonly"
+        [emptyMessage]="emptyMessage"
+        [resetFilterOnHide]="resetFilterOnHide"
+        [scrollHeight]="scrollHeight"
+        [selectedItemsLabel]="selectedItemsLabel"
+        [selectionLimit]="selectionLimit"
+        [showHeader]="showHeader"
+        [showToggleAll]="showToggleAll"
+        [showClear]="showClear"
+        [display]="display"
+      ></ng-multi-select>
+    </form>
+  </p-panel>
 
   <h4>NG MODEL</h4>
   <pre dir="ltr">Value : {{binding | json}}</pre>
