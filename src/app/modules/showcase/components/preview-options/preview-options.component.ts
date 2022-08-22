@@ -1,22 +1,21 @@
 import {Component, EventEmitter, Input, OnInit, Output, Type, ViewChild, ViewContainerRef} from '@angular/core';
 import {
-  NgAddon,
   NgColorFormat,
   NgCurrency,
   NgCurrencyDisplay,
-  NgDatePickerMode,
-  NgInputFileMode, NgInputTypes,
+  NgInputFileMode,
+  NgInputTypes,
   NgKeyFilter,
   NgLabelPosition,
   NgNumberButtonLayout,
   NgNumberMode
 } from '@ng/models/forms';
-import {NgOrientation, NgPosition, NgSelectionMode, NgSize} from '@ng/models/offset';
+import {NgOrientation, NgPosition, NgSize} from '@ng/models/offset';
 import {NgColor} from '@ng/models/color';
 import {DropdownComponent} from '@ng/components/dropdown/dropdown.component';
 import {InputTextComponent} from '@ng/components/input-text/input-text.component';
 import {SingleCheckboxComponent} from '@ng/components/single-checkbox/single-checkbox.component';
-import {NgButtonAppearance, NgButtonType} from '@ng/models/button';
+import {NgButtonAppearance} from '@ng/models/button';
 
 type PreviewItem =
   | 'label'
