@@ -24,6 +24,9 @@
   </p-panel>
 
   <p-panel dir="ltr" header="Preview">
+    <p-divider align="center">
+      <b>Using With Reactive Forms</b>
+    </p-divider>
     <form [formGroup]="form">
       <ng-radio
         formControlName="c1"
@@ -38,22 +41,24 @@
         [disabled]="disabled"
       ></ng-radio>
     </form>
-  </p-panel>
 
-  <h4>NG MODEL</h4>
-  <pre dir="ltr">Value : {{binding | json}}</pre>
-  <ng-radio
-    name="myInput"
-    required
-    [(ngModel)]="binding"
-    [errors]="{ required: 'error' }"
-    [options]="options"
-    [label]="label"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [orientation]="orientation"
-    [disabled]="disabled"
-  ></ng-radio>
+    <p-divider align="center">
+      <b>Using With NgModel</b>
+    </p-divider>
+    <ng-radio
+      name="myInput"
+      required
+      [(ngModel)]="binding"
+      [errors]="{ required: 'error' }"
+      [options]="options"
+      [label]="label"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [labelPos]="labelPos"
+      [orientation]="orientation"
+      [disabled]="disabled"
+    ></ng-radio>
+    <pre dir="ltr"><b>Value :</b> {{binding | json}}</pre>
+  </p-panel>
 </div>

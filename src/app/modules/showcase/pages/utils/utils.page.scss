@@ -14,3 +14,8 @@ p-card {
     padding: 0;
   }
 }
+
+p-panel ::ng-deep ng-button {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}

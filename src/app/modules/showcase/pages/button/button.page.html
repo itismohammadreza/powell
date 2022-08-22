@@ -49,22 +49,4 @@
       [size]="size">
     </ng-button>
   </p-panel>
-
-  <h4 class="others">Other Actions</h4>
-  <ng-button (click)="showDialog()" label="dialog"></ng-button>
-  <ng-button (click)="showConfirm()" label="confirm"></ng-button>
-  <ng-button (click)="showConfirmPopup($event)" label=" confirm popup"></ng-button>
-  <ng-button (click)="showToast()" label="toast"></ng-button>
-  <ng-button (click)="showMessage()" label="message"></ng-button>
-  <ng-button (click)="showDialogForm()" label="dialog form"></ng-button>
-  <ng-button (click)="request()" label="request"></ng-button>
-  <ng-button (click)="modal.open()" label="custom dialog"></ng-button>
-  <ng-button (click)="showCustomDynamicDialog()" label="custom dynamic dialog"></ng-button>
-  <p>
-    custom dialog result: {{customDialogResult}}
-  </p>
 </div>
-
-<ng-dialog2 #modal>
-  Custom Modal Content
-</ng-dialog2>

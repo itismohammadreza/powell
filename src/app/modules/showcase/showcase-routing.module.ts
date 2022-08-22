@@ -35,6 +35,7 @@ import {DashboardPage} from '@modules/showcase/pages/dashboard/dashboard.page';
 import {KnobPage} from '@modules/showcase/pages/knob/knob.page';
 import {TreeSelectPage} from '@modules/showcase/pages/tree-select/tree-select.page';
 import {ButtonAsyncPage} from '@modules/showcase/pages/button-async/button-async.page';
+import {UtilsPage} from "@modules/showcase/pages/utils/utils.page";
 
 const routes: Routes = [
   {
@@ -211,6 +212,11 @@ const routes: Routes = [
     path: 'tree-select',
     component: TreeSelectPage,
     data: {title: 'tree-select'}
+  },
+  {
+    path: 'utils',
+    component: UtilsPage,
+    data: {title: 'utils'}
   },
   {
     path: '',

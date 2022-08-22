@@ -44,6 +44,9 @@
   </p-panel>
 
   <p-panel dir="ltr" header="Preview">
+    <p-divider align="center">
+      <b>Using With Reactive Forms</b>
+    </p-divider>
     <form [formGroup]="form">
       <ng-knob
         formControlName="c1"
@@ -67,31 +70,33 @@
         [valueTemplate]="valueTemplate"
       ></ng-knob>
     </form>
-  </p-panel>
 
-  <h4>NG MODEL</h4>
-  <pre dir="ltr">Value : {{binding | json}}</pre>
-  <ng-knob
-    name="myInput"
-    required
-    [(ngModel)]="binding"
-    [errors]="{ required: 'error' }"
-    [label]="label"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [size]="size"
-    [disabled]="disabled"
-    [readonly]="readonly"
-    [step]="step"
-    [min]="min"
-    [max]="max"
-    [valueColor]="valueColor"
-    [rangeColor]="rangeColor"
-    [textColor]="textColor"
-    [strokeWidth]="strokeWidth"
-    [showValue]="showValue"
-    [valueTemplate]="valueTemplate"
-  ></ng-knob>
+    <p-divider align="center">
+      <b>Using With NgModel</b>
+    </p-divider>
+    <ng-knob
+      name="myInput"
+      required
+      [(ngModel)]="binding"
+      [errors]="{ required: 'error' }"
+      [label]="label"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [labelPos]="labelPos"
+      [size]="size"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [step]="step"
+      [min]="min"
+      [max]="max"
+      [valueColor]="valueColor"
+      [rangeColor]="rangeColor"
+      [textColor]="textColor"
+      [strokeWidth]="strokeWidth"
+      [showValue]="showValue"
+      [valueTemplate]="valueTemplate"
+    ></ng-knob>
+    <pre dir="ltr"><b>Value :</b> {{binding | json}}</pre>
+  </p-panel>
 </div>

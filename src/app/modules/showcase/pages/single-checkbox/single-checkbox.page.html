@@ -20,6 +20,9 @@
   </p-panel>
 
   <p-panel dir="ltr" header="Preview">
+    <p-divider align="center">
+      <b>Using With Reactive Forms</b>
+    </p-divider>
     <form [formGroup]="form">
       <ng-single-checkbox
         formControlName="c1"
@@ -31,19 +34,21 @@
         [readonly]="readonly"
       ></ng-single-checkbox>
     </form>
-  </p-panel>
 
-  <h4>NG MODEL</h4>
-  <pre dir="ltr">Value : {{binding | json}}</pre>
-  <ng-single-checkbox
-    name="myInput"
-    required
-    [(ngModel)]="binding"
-    [errors]="{ required: 'error' }"
-    [label]="label"
-    [hint]="hint"
-    [rtl]="rtl"
-    [disabled]="disabled"
-    [readonly]="readonly"
-  ></ng-single-checkbox>
+    <p-divider align="center">
+      <b>Using With NgModel</b>
+    </p-divider>
+    <ng-single-checkbox
+      name="myInput"
+      required
+      [(ngModel)]="binding"
+      [errors]="{ required: 'error' }"
+      [label]="label"
+      [hint]="hint"
+      [rtl]="rtl"
+      [disabled]="disabled"
+      [readonly]="readonly"
+    ></ng-single-checkbox>
+    <pre dir="ltr"><b>Value :</b> {{binding | json}}</pre>
+  </p-panel>
 </div>

@@ -44,6 +44,7 @@ import {
   DynamicDialogSampleComponent
 } from '@modules/showcase/components/dynamic-dialog-sample/dynamic-dialog-sample.component';
 import {ButtonAsyncPage} from '@modules/showcase/pages/button-async/button-async.page';
+import {UtilsPage} from "@modules/showcase/pages/utils/utils.page";
 
 export const COMPONENTS: Type<any>[] = [
   // components
@@ -91,4 +92,5 @@ export const COMPONENTS: Type<any>[] = [
   ToggleButtonPage,
   TreePage,
   TreeSelectPage,
+  UtilsPage
 ];

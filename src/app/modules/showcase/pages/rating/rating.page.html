@@ -34,6 +34,9 @@
   </p-panel>
 
   <p-panel dir="ltr" header="Preview">
+    <p-divider align="center">
+      <b>Using With Reactive Forms</b>
+    </p-divider>
     <form [formGroup]="form">
       <ng-rating
         formControlName="c1"
@@ -52,26 +55,28 @@
         [iconCancelClass]="iconCancelClass"
       ></ng-rating>
     </form>
-  </p-panel>
 
-  <h4>NG MODEL</h4>
-  <pre dir="ltr">Value : {{binding | json}}</pre>
-  <ng-rating
-    name="myInput"
-    required
-    [(ngModel)]="binding"
-    [errors]="{ required: 'error' }"
-    [label]="label"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [stars]="stars"
-    [cancel]="cancel"
-    [disabled]="disabled"
-    [readonly]="readonly"
-    [iconOnClass]="iconOnClass"
-    [iconOffClass]="iconOffClass"
-    [iconCancelClass]="iconCancelClass"
-  ></ng-rating>
+    <p-divider align="center">
+      <b>Using With NgModel</b>
+    </p-divider>
+    <ng-rating
+      name="myInput"
+      required
+      [(ngModel)]="binding"
+      [errors]="{ required: 'error' }"
+      [label]="label"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [labelPos]="labelPos"
+      [stars]="stars"
+      [cancel]="cancel"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [iconOnClass]="iconOnClass"
+      [iconOffClass]="iconOffClass"
+      [iconCancelClass]="iconCancelClass"
+    ></ng-rating>
+    <pre dir="ltr"><b>Value :</b> {{binding | json}}</pre>
+  </p-panel>
 </div>

@@ -34,6 +34,9 @@
   </p-panel>
 
   <p-panel dir="ltr" header="Preview">
+    <p-divider align="center">
+      <b>Using With Reactive Forms</b>
+    </p-divider>
     <form [formGroup]="form">
       <ng-file-picker2
         formControlName="c1"
@@ -52,26 +55,29 @@
         [chooseLabel]="chooseLabel"
       ></ng-file-picker2>
     </form>
+
+    <p-divider align="center">
+      <b>Using With NgModel</b>
+    </p-divider>
+    <ng-file-picker2
+      name="myInput"
+      required
+      [(ngModel)]="binding"
+      [errors]="{ required: 'error' }"
+      [label]="label"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [labelPos]="labelPos"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [multiple]="multiple"
+      [accept]="accept"
+      [color]="color"
+      [fileLimit]="fileLimit"
+      [chooseLabel]="chooseLabel"
+    ></ng-file-picker2>
+    <pre dir="ltr"><b>Value :</b> {{binding | json}}</pre>
   </p-panel>
 
-  <h4>NG MODEL</h4>
-  <pre dir="ltr">Value : {{binding | json}}</pre>
-  <ng-file-picker2
-    name="myInput"
-    required
-    [(ngModel)]="binding"
-    [errors]="{ required: 'error' }"
-    [label]="label"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [disabled]="disabled"
-    [readonly]="readonly"
-    [multiple]="multiple"
-    [accept]="accept"
-    [color]="color"
-    [fileLimit]="fileLimit"
-    [chooseLabel]="chooseLabel"
-  ></ng-file-picker2>
 </div>

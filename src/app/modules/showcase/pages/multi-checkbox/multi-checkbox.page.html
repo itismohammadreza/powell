@@ -26,6 +26,9 @@
   </p-panel>
 
   <p-panel dir="ltr" header="Preview">
+    <p-divider align="center">
+      <b>Using With Reactive Forms</b>
+    </p-divider>
     <form [formGroup]="form">
       <ng-multi-checkbox
         formControlName="c1"
@@ -41,23 +44,25 @@
         [readonly]="readonly"
       ></ng-multi-checkbox>
     </form>
-  </p-panel>
 
-  <h4>NG MODEL</h4>
-  <pre dir="ltr">Value : {{binding | json}}</pre>
-  <ng-multi-checkbox
-    name="myInput"
-    required
-    [(ngModel)]="binding"
-    [errors]="{ required: 'error' }"
-    [options]="options"
-    [label]="label"
-    [labelWidth]="labelWidth"
-    [hint]="hint"
-    [rtl]="rtl"
-    [labelPos]="labelPos"
-    [orientation]="orientation"
-    [disabled]="disabled"
-    [readonly]="readonly"
-  ></ng-multi-checkbox>
+    <p-divider align="center">
+      <b>Using With NgModel</b>
+    </p-divider>
+    <ng-multi-checkbox
+      name="myInput"
+      required
+      [(ngModel)]="binding"
+      [errors]="{ required: 'error' }"
+      [options]="options"
+      [label]="label"
+      [labelWidth]="labelWidth"
+      [hint]="hint"
+      [rtl]="rtl"
+      [labelPos]="labelPos"
+      [orientation]="orientation"
+      [disabled]="disabled"
+      [readonly]="readonly"
+    ></ng-multi-checkbox>
+    <pre dir="ltr"><b>Value :</b> {{binding | json}}</pre>
+  </p-panel>
 </div>
