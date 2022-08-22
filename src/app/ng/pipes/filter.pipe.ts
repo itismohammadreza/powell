@@ -1,20 +1,24 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
-	name: 'ngFilter'
+  name: 'ngFilter'
 })
 export class FilterPipe implements PipeTransform {
-	transform(value: any[], keys: string, term: string): any[] {
-		if (!term) {
-			return value;
-		}
-		return (value || []).filter((item: any) =>
-			keys
-				.split(',')
-				.some(
-					(key: string) =>
-						item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key])
-				)
-		);
-	}
+  transform(value: any[], term: string, keys?: string): any[] {
+    if (!term) {
+      return value;
+    }
+    return (value || []).filter((item: any) => {
+      if (keys) {
+        return keys
+          .split(',')
+          .some(
+            (key: string) =>
+              item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key])
+          )
+      } else {
+        return new RegExp(term, 'gi').test(item)
+      }
+    });
+  }
 }

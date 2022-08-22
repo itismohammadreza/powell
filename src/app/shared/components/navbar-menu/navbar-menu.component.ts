@@ -16,6 +16,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
   @Input() sidebarLock: boolean;
   @Input() menuType: MenuType;
   @Input() user: any;
+
   @Input('sidebarItems') set setSidebarItems(items: MenuItem[]) {
     this.sidebarItems = items;
     for (const item of this.sidebarItems) {
@@ -30,6 +31,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       }
     }
   };
+
   @Output() sidebarVisibleChange = new EventEmitter<boolean>();
   @Output() sidebarLockChange = new EventEmitter<boolean>();
   @Output() menuTypeChange = new EventEmitter<MenuType>();
@@ -59,6 +61,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
   sidebarItems: MenuItem[];
   themes: MenuItem[];
   menuTypes: MenuItem[];
+  searchValue: string;
 
   constructor(
     private router: Router,

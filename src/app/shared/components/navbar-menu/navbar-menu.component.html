@@ -75,12 +75,16 @@
   [visible]="sidebarVisible"
   (visibleChange)="toggleSidebar($event)"
 >
-  <div class="d-flex align-items-center justify-content-between py-3 mb-3 border-bottom sticky-top section-top">
-    <ng-logo width="50px"></ng-logo>
-    <i class="border rounded-circle p-2 bg-light pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
-       (click)="handleSidebarLockToggle()"></i>
+  <div class="sticky-top section-top pt-3">
+    <div class="d-flex align-items-center justify-content-between">
+      <ng-logo width="50px"></ng-logo>
+      <i class="border rounded-circle p-2 bg-light pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
+         (click)="handleSidebarLockToggle()"></i>
+    </div>
+    <ng-input-text inputSize="sm" class="d-block my-3" placeholder="Search Components..."
+                   [(ngModel)]="searchValue"></ng-input-text>
   </div>
-  <p-panelMenu [multiple]="false" [model]="sidebarItems"></p-panelMenu>
+  <p-panelMenu [multiple]="false" [model]="sidebarItems | ngFilter:searchValue:'label'"></p-panelMenu>
 </p-sidebar>
 <p-sidebar
   [class.lock]="sidebarLock"
