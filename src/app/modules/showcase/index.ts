@@ -45,6 +45,7 @@ import {
 } from '@modules/showcase/components/dynamic-dialog-sample/dynamic-dialog-sample.component';
 import {ButtonAsyncPage} from '@modules/showcase/pages/button-async/button-async.page';
 import {UtilsPage} from "@modules/showcase/pages/utils/utils.page";
+import {SmokeComponent} from "@modules/showcase/components/smoke/smoke.component";
 
 export const COMPONENTS: Type<any>[] = [
   // components
@@ -54,6 +55,7 @@ export const COMPONENTS: Type<any>[] = [
   SpaceComponent,
   BubblesComponent,
   PreviewOptionsComponent,
+  SmokeComponent,
   // pages
   DashboardPage,
   AutoCompletePage,
