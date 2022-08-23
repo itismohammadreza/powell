@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {LanguageChecker} from '@core/utils';
-import {MenuType} from '@core/models';
+import {SidebarType} from '@core/models';
 import {MenuItem} from 'primeng/api';
 
 @Component({
@@ -15,7 +15,7 @@ export class MainPage extends LanguageChecker implements OnInit {
 
   sidebarVisible = true;
   sidebarLock = true;
-  menuType: MenuType;
+  menuType: SidebarType;
   sidebarItems: MenuItem[];
 
   @HostListener('window:resize', ['$event']) onResize(e) {
@@ -92,7 +92,7 @@ export class MainPage extends LanguageChecker implements OnInit {
     return classes;
   }
 
-  onMenuTypeChange(event: MenuType) {
+  onMenuTypeChange(event: SidebarType) {
     this.menuType = event;
     if (event == 'hover') {
       this.onSidebarVisibleChange(true);

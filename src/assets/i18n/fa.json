@@ -1,5 +1,7 @@
 {
-  "Dashboard": "داشبورد",
-  "Showcase": "شوکیس",
-  "Login": "لاگین"
+  "Login": "ورود",
+  "Register": "ثبتنام",
+  "Dir": "Dir",
+  "Sidebar": "سایدبار",
+  "Theme": "پس زمینه"
 }

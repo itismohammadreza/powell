@@ -1,10 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {UtilsService} from '@ng/services';
 import {LanguageChecker} from '@core/utils';
 import {MenuItem} from 'primeng/api';
-import {MenuType} from '@core/models';
+import {SidebarType} from '@core/models';
 import {AuthService} from '@core/http';
+import {OverlayPanel} from "primeng/overlaypanel";
 
 @Component({
   selector: 'ng-navbar-menu',
@@ -14,7 +15,7 @@ import {AuthService} from '@core/http';
 export class NavbarMenuComponent extends LanguageChecker implements OnInit {
   @Input() sidebarVisible: boolean;
   @Input() sidebarLock: boolean;
-  @Input() menuType: MenuType;
+  @Input() sidebarType: SidebarType;
   @Input() user: any;
 
   @Input('sidebarItems') set setSidebarItems(items: MenuItem[]) {
@@ -23,7 +24,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       if (item.routerLink) {
         Object.assign(item, {
           command: () => {
-            if (!this.sidebarLock && this.menuType == 'overlay') {
+            if (!this.sidebarLock && this.sidebarType == 'overlay') {
               this.toggleSidebar(false);
             }
           }
@@ -32,9 +33,10 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
     }
   };
 
-  @Output() sidebarVisibleChange = new EventEmitter<boolean>();
-  @Output() sidebarLockChange = new EventEmitter<boolean>();
-  @Output() menuTypeChange = new EventEmitter<MenuType>();
+  @Output() sidebarVisibleChange = new EventEmitter();
+  @Output() sidebarLockChange = new EventEmitter();
+  @Output() menuTypeChange = new EventEmitter();
+  @ViewChild(OverlayPanel) overlayPanel: OverlayPanel;
 
   accountItems: MenuItem[] = [
     {
@@ -55,12 +57,11 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       }
     }
   ];
-  settingSidebarVisible: boolean;
-  selectedLanguage = this.translationService.getDefaultLang();
-  selectedTheme = 'lara-light-indigo';
-  sidebarItems: MenuItem[];
+  language = this.translationService.getDefaultLang();
+  theme = 'lara-light-indigo';
   themes: MenuItem[];
-  menuTypes: MenuItem[];
+  sidebarItems: MenuItem[];
+  sidebarTypes: MenuItem[];
   searchValue: string;
 
   constructor(
@@ -79,29 +80,32 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
     const themeElement = this.document.getElementById('theme-link');
     themeElement.setAttribute(
       'href',
-      themeElement.getAttribute('href').replace(this.selectedTheme, event.value)
+      themeElement.getAttribute('href').replace(this.theme, event.value)
     );
-    this.selectedTheme = event.value;
+    this.theme = event.value;
+    this.overlayPanel.hide();
   }
 
   async changeLang(event) {
     await this.translationService.use(event.value).toPromise();
-    this.selectedLanguage = event.value;
+    this.language = event.value;
+    this.overlayPanel.hide();
   }
 
-  handleSidebarToggle() {
+  changeSidebarType(event: any) {
+    this.menuTypeChange.emit(this.sidebarType);
+    this.sidebarType = event.value;
+    this.overlayPanel.hide();
+  }
+
+  toggleSidebarClick() {
     this.sidebarVisible = !this.sidebarVisible;
     this.toggleSidebar(this.sidebarVisible);
   }
 
-  handleSidebarLockToggle() {
+  toggleLockSidebarClick() {
     this.sidebarLock = !this.sidebarLock;
     this.toggleSidebarLock(this.sidebarLock);
-  }
-
-  onMenuTypeChange(event: any) {
-    this.menuType = event.value;
-    this.menuTypeChange.emit(this.menuType);
   }
 
   toggleSidebar(activate: boolean) {
@@ -162,12 +166,11 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       'viva-light',
     ];
     this.themes = themes.map((t, i) => ({label: `${i + 1}-${t}`, value: t}));
-
-    const menuTypes = ['overlay', 'overlay-mask', 'push', 'push-mask', 'hover', 'static', 'horizontal'];
-    this.menuTypes = menuTypes.map((t) => ({label: t, value: t}));
+    const sidebarTypes: SidebarType[] = ['overlay', 'overlay-mask', 'push', 'push-mask', 'hover', 'static', 'horizontal'];
+    this.sidebarTypes = sidebarTypes.map((t) => ({label: t, value: t}));
   }
 
   get isModalSidebar() {
-    return (this.menuType == 'overlay' || this.menuType == 'overlay-mask' || this.menuType == 'push' || this.menuType == 'push-mask');
+    return (this.sidebarType == 'overlay' || this.sidebarType == 'overlay-mask' || this.sidebarType == 'push' || this.sidebarType == 'push-mask');
   }
 }

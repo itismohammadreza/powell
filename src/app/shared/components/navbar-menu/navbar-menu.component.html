@@ -3,69 +3,36 @@
     icon="pi pi-bars"
     color="primary"
     appearance="text"
-    *ngIf="!sidebarLock && menuType != 'hover' && menuType != 'horizontal'"
-    (click)="handleSidebarToggle()">
+    *ngIf="!sidebarLock && sidebarType != 'hover' && sidebarType != 'horizontal'"
+    (click)="toggleSidebarClick()">
   </ng-button>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav p-0 m{{ fa ? 'r' : 'l' }}-auto">
+      <!--      <li class="nav-item">-->
+      <!--        <a class="nav-link"-->
+      <!--           routerLink="/auth"-->
+      <!--           routerLinkActive="active">-->
+      <!--          {{ "Login" | translate }}/{{'Register' | translate}}-->
+      <!--        </a>-->
+      <!--      </li>-->
       <li class="nav-item">
-        <a
-          class="nav-link"
-          routerLink="/auth"
-          routerLinkActive="active"
-        >{{ "Login" | translate }}</a
-        >
+        <ng-button (click)="configOverlay.toggle($event)" icon="pi pi-cog"></ng-button>
       </li>
-      <li class="nav-item">
-        <a class="nav-link py-0">
-          <ng-dropdown
-            [value]="selectedLanguage"
-            [options]="[
-              { label: 'LTR', value: 'en' },
-              { label: 'RTL', value: 'fa' }
-            ]"
-            [rtl]="fa"
-            (onChange)="changeLang($event)"
-          ></ng-dropdown>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link py-0">
-          <ng-dropdown
-            [value]="selectedTheme"
-            [options]="themes"
-            [rtl]="fa"
-            (onChange)="changeTheme($event)"
-          ></ng-dropdown>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link py-0">
-          <ng-dropdown
-            [value]="menuType"
-            [options]="menuTypes"
-            [rtl]="fa"
-            (onChange)="onMenuTypeChange($event)"
-          ></ng-dropdown>
-        </a>
-      </li>
-      <li
-        class="nav-item p{{ fa ? 'r' : 'l' }}-4 m{{
-          fa ? 'r' : 'l'
-        }}-4 border-{{ fa ? 'right' : 'left' }}"
-        (click)="accountMenu.toggle($event)"
-      >
+      <li class="nav-item p{{ fa ? 'r' : 'l' }}-4 m{{ fa ? 'r' : 'l' }}-4 border-{{ fa ? 'right' : 'left' }}"
+          (click)="accountMenu.toggle($event)">
         <span class="m{{ fa ? 'l' : 'r' }}-3">{{ "admin" }}</span>
         <p-avatar shape="circle" size="large" icon="pi pi-user"></p-avatar>
       </li>
     </ul>
   </div>
 </nav>
-<p-menubar [model]="sidebarItems" *ngIf="menuType == 'horizontal'">
+
+<p-menubar [model]="sidebarItems" *ngIf="sidebarType == 'horizontal'">
   <ng-template pTemplate="start">
     <ng-logo width="50px"></ng-logo>
   </ng-template>
 </p-menubar>
+
 <p-sidebar
   [blockScroll]="isModalSidebar"
   [modal]="isModalSidebar"
@@ -73,40 +40,57 @@
   [position]="fa ? 'right' : 'left'"
   [transitionOptions]="'200ms'"
   [visible]="sidebarVisible"
-  (visibleChange)="toggleSidebar($event)"
->
+  (visibleChange)="toggleSidebar($event)">
   <div class="sticky-top section-top pt-3">
     <div class="d-flex align-items-center justify-content-between">
       <ng-logo width="50px"></ng-logo>
       <i class="border rounded-circle p-2 bg-light pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
-         (click)="handleSidebarLockToggle()"></i>
+         (click)="toggleLockSidebarClick()"></i>
     </div>
     <ng-input-text inputSize="sm" class="d-block my-3" placeholder="Search Components..."
                    [(ngModel)]="searchValue"></ng-input-text>
   </div>
   <p-panelMenu [multiple]="false" [model]="sidebarItems | ngFilter:searchValue:'label'"></p-panelMenu>
 </p-sidebar>
-<p-sidebar
-  [class.lock]="sidebarLock"
-  [blockScroll]="true"
-  [modal]="false"
-  [closeOnEscape]="true"
-  [showCloseIcon]="false"
-  [position]="fa ? 'right' : 'left'"
-  [(visible)]="settingSidebarVisible"
->
-  <i
-    pRipple
-    class="pi pi-lock{{
-      !sidebarLock ? '-open' : ''
-    }} h3 mb-0 text-center d-block py-4 sticky-top shadow-sm"
-    (click)="handleSidebarLockToggle()">
-  </i>
-  <p-panelMenu [multiple]="false" [model]="sidebarItems"></p-panelMenu>
-</p-sidebar>
+
 <p-menu
   #accountMenu
   [baseZIndex]="1000"
   [popup]="true"
   [model]="accountItems"
 ></p-menu>
+
+<p-overlayPanel #configOverlay>
+  <ng-template pTemplate>
+    <ng-dropdown
+      [label]="'Dir' | translate"
+      labelPos="fix-side"
+      [labelWidth]="70"
+      class="d-block mb-3"
+      [value]="language"
+      [options]="[{ label: 'LTR', value: 'en' }, { label: 'RTL', value: 'fa' }]"
+      [rtl]="fa"
+      (onChange)="changeLang($event)"
+    ></ng-dropdown>
+    <ng-dropdown
+      [label]="'Theme' | translate"
+      labelPos="fix-side"
+      [labelWidth]="70"
+      class="d-block mb-3"
+      [value]="theme"
+      [options]="themes"
+      [rtl]="fa"
+      (onChange)="changeTheme($event)"
+    ></ng-dropdown>
+    <ng-dropdown
+      [label]="'Sidebar' | translate"
+      labelPos="fix-side"
+      [labelWidth]="70"
+      class="d-block mb-3"
+      [value]="sidebarType"
+      [options]="sidebarTypes"
+      [rtl]="fa"
+      (onChange)="changeSidebarType($event)"
+    ></ng-dropdown>
+  </ng-template>
+</p-overlayPanel>
