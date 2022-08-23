@@ -79,7 +79,7 @@ export class TableComponent implements OnChanges {
   @Input() pageLinks: number = 0;
   @Input() showFirstLastIcon: boolean = true;
   @Input() totalRecords: number = 0;
-  @Input() paginatorDropdownAppendTo: any = 'body';
+  @Input() paginatorDropdownAppendTo: any;
   @Input() currentPageReportTemplate: string = '{first}-{last} of {totalRecords}';
   @Input() rowsPerPageOptions: number[] = [10, 20, 50];
   @Output() onFileButtonClick = new EventEmitter();
