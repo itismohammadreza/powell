@@ -15,7 +15,7 @@ export class MainPage extends LanguageChecker implements OnInit {
 
   sidebarVisible = true;
   sidebarLock = true;
-  menuType: SidebarType;
+  sidebarType: SidebarType;
   sidebarItems: MenuItem[];
 
   @HostListener('window:resize', ['$event']) onResize(e) {
@@ -71,15 +71,15 @@ export class MainPage extends LanguageChecker implements OnInit {
 
   handleResize() {
     if (this.document.defaultView.innerWidth < 767) {
-      this.onMenuTypeChange('overlay');
+      this.onSidebarTypeChange('overlay');
       this.toggleOverlayDisplay(false);
     } else {
-      this.onMenuTypeChange('push');
+      this.onSidebarTypeChange('push');
     }
   }
 
   getClasses() {
-    let classes = `menu-${this.menuType}`;
+    let classes = `menu-${this.sidebarType}`;
     if (this.fa) {
       classes += ' rtl ';
     }
@@ -92,8 +92,8 @@ export class MainPage extends LanguageChecker implements OnInit {
     return classes;
   }
 
-  onMenuTypeChange(event: SidebarType) {
-    this.menuType = event;
+  onSidebarTypeChange(event: SidebarType) {
+    this.sidebarType = event;
     if (event == 'hover') {
       this.onSidebarVisibleChange(true);
     } else {
@@ -104,7 +104,7 @@ export class MainPage extends LanguageChecker implements OnInit {
 
   onSidebarVisibleChange(event: boolean) {
     this.sidebarVisible = event;
-    if (this.menuType == 'overlay' || this.menuType == 'push') {
+    if (this.sidebarType == 'overlay' || this.sidebarType == 'push') {
       setTimeout(() => {
         if (this.sidebarVisible) {
           this.toggleOverlayVisibility(false);
@@ -115,7 +115,7 @@ export class MainPage extends LanguageChecker implements OnInit {
 
   onSidebarLockChange(event: boolean) {
     this.sidebarLock = event;
-    if (this.menuType == 'overlay' || this.menuType == 'overlay-mask' || this.menuType == 'push' || this.menuType == 'push-mask') {
+    if (this.sidebarType == 'overlay' || this.sidebarType == 'overlay-mask' || this.sidebarType == 'push' || this.sidebarType == 'push-mask') {
       this.toggleOverlayDisplay(!event);
     }
   }

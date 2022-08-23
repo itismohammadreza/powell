@@ -35,7 +35,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
 
   @Output() sidebarVisibleChange = new EventEmitter();
   @Output() sidebarLockChange = new EventEmitter();
-  @Output() menuTypeChange = new EventEmitter();
+  @Output() sidebarTypeChange = new EventEmitter();
   @ViewChild(OverlayPanel) overlayPanel: OverlayPanel;
 
   accountItems: MenuItem[] = [
@@ -57,7 +57,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       }
     }
   ];
-  language = this.translationService.getDefaultLang();
+  language = { label: 'LTR', value: 'fa' };
   theme = 'lara-light-indigo';
   themes: MenuItem[];
   sidebarItems: MenuItem[];
@@ -93,7 +93,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
   }
 
   changeSidebarType(event: any) {
-    this.menuTypeChange.emit(this.sidebarType);
+    this.sidebarTypeChange.emit(event.value);
     this.sidebarType = event.value;
     this.overlayPanel.hide();
   }

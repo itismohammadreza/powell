@@ -127,10 +127,10 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
   }
 
   ngOnInit() {
+    this.inputId = this.getId();
     let parentForm: UntypedFormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    this.inputId = this.getId();
     this.controlContainer = this.injector.get(
       ControlContainer,
       null,

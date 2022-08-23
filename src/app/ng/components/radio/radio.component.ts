@@ -72,10 +72,10 @@ export class RadioComponent implements OnInit, AfterViewInit, ControlValueAccess
 
   ngOnInit() {
     this.groupName = this.getId();
+    this.inputId = this.getId();
     let parentForm: UntypedFormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    this.inputId = this.getId();
     this.controlContainer = this.injector.get(
       ControlContainer,
       null,
@@ -113,7 +113,7 @@ export class RadioComponent implements OnInit, AfterViewInit, ControlValueAccess
   }
 
   _onChange(event) {
-    this.onChange.emit(event);
+    this.onChange.emit({originalEvent: event, value: this.value});
     this.onModelChange(this.value);
   }
 

@@ -43,6 +43,7 @@ import {filter} from 'rxjs/operators';
 26- see where wee need this piece of code (&.rtl { text-align: rtl }) and where is extra. remove extras.
 27- multi checkbox: set disabled and readonly property for whole component. if set true, all options will disabled or readonly
 28- add category to components structure. create overlay & forms folders and add relative components to them.
+29- this.onModelChange(this.value) is NOT safe. replace this.value with value get from event.
 */
 @Component({
   selector: 'app-root',

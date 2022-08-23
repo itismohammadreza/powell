@@ -77,10 +77,10 @@ export class FilePicker2Component
   ngOnInit() {
     //store user defined label for single selection mode
     this._chooseLabel = this.chooseLabel;
+    this.inputId = this.getId();
     let parentForm: UntypedFormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    this.inputId = this.getId();
     this.controlContainer = this.injector.get(
       ControlContainer,
       null,
