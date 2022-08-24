@@ -24,7 +24,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       if (item.routerLink) {
         Object.assign(item, {
           command: () => {
-            if (!this.sidebarLock && this.sidebarType == 'overlay') {
+            if (!this.sidebarLock && this.isModalSidebar) {
               this.toggleSidebar(false);
             }
           }
@@ -43,21 +43,11 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       label: 'خروج',
       icon: 'pi pi-sign-out',
       command: async () => {
-        const dialogRes = await this.utilsService.showConfirm(
-          {
-            header: 'خروج از سایت',
-            message: 'آیا برای خروج اطمینان دارید؟',
-            acceptLabel: 'بلی',
-            rejectLabel: 'خیر'
-          }
-        );
-        if (dialogRes) {
-          this.authService.logout();
-        }
+        this.authService.logout();
       }
     }
   ];
-  language = { label: 'LTR', value: 'fa' };
+  language = this.translationService.getDefaultLang();
   theme = 'lara-light-indigo';
   themes: MenuItem[];
   sidebarItems: MenuItem[];
@@ -172,5 +162,9 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
 
   get isModalSidebar() {
     return (this.sidebarType == 'overlay' || this.sidebarType == 'overlay-mask' || this.sidebarType == 'push' || this.sidebarType == 'push-mask');
+  }
+
+  onClickOutside() {
+    console.log('is out')
   }
 }

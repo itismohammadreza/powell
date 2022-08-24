@@ -15,7 +15,7 @@ export class MainPage extends LanguageChecker implements OnInit {
 
   sidebarVisible = true;
   sidebarLock = true;
-  sidebarType: SidebarType;
+  sidebarType: SidebarType = 'push';
   sidebarItems: MenuItem[];
 
   @HostListener('window:resize', ['$event']) onResize(e) {
@@ -23,7 +23,7 @@ export class MainPage extends LanguageChecker implements OnInit {
   }
 
   ngOnInit(): void {
-    this.handleResize();
+    this.onSidebarTypeChange(this.sidebarType);
     const sidebarItems = [
       'dashboard',
       'auto-complete',

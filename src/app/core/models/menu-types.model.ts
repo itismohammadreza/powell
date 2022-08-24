@@ -1,1 +1,1 @@
-export type SidebarType = 'overlay' | 'overlay-mask' | 'push' | 'static' | 'push-mask' | 'hover' | 'horizontal';
+export type SidebarType = 'overlay' | 'push' | 'overlay-mask' | 'push-mask' | 'static' | 'hover' | 'horizontal';
