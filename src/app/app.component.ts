@@ -44,6 +44,7 @@ import {filter} from 'rxjs/operators';
 27- multi checkbox: set disabled and readonly property for whole component. if set true, all options will disabled or readonly
 28- add category to components structure. create overlay & forms folders and add relative components to them.
 29- this.onModelChange(this.value) is NOT safe. replace this.value with value get from event.
+30- move main.component content to navbar component and implement it like drawer in angular material.
 */
 @Component({
   selector: 'app-root',

@@ -1,7 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {LanguageChecker} from '@core/utils';
 import {SidebarType} from '@core/models';
-import {MenuItem} from 'primeng/api';
 
 @Component({
   selector: 'ng-main-page',
@@ -16,7 +15,6 @@ export class MainPage extends LanguageChecker implements OnInit {
   sidebarVisible = true;
   sidebarLock = true;
   sidebarType: SidebarType = 'push';
-  sidebarItems: MenuItem[];
 
   @HostListener('window:resize', ['$event']) onResize(e) {
     this.handleResize();
@@ -24,49 +22,6 @@ export class MainPage extends LanguageChecker implements OnInit {
 
   ngOnInit(): void {
     this.onSidebarTypeChange(this.sidebarType);
-    const sidebarItems = [
-      'dashboard',
-      'auto-complete',
-      'button',
-      'button-async',
-      'cascade-select',
-      'chips',
-      'color-picker',
-      'date-picker',
-      'dynamic-form',
-      'dropdown',
-      'editor',
-      'file-picker',
-      'file-picker2',
-      'image-slider',
-      'mask',
-      'number',
-      'password',
-      'text',
-      'textarea',
-      'knob',
-      'list-box',
-      'map',
-      'multi-checkbox',
-      'multi-select',
-      'radio',
-      'rating',
-      'select-button',
-      'single-checkbox',
-      'slider',
-      'split-button',
-      'switch',
-      'table',
-      'toggle-button',
-      'tree',
-      'tree-select',
-      'utils',
-    ];
-    this.sidebarItems = sidebarItems.map(item => ({
-      label: item,
-      routerLink: `showcase/${item}`,
-      icon: 'pi pi-minus'
-    }));
   }
 
   handleResize() {
@@ -74,22 +29,8 @@ export class MainPage extends LanguageChecker implements OnInit {
       this.onSidebarTypeChange('overlay');
       this.toggleOverlayDisplay(false);
     } else {
-      this.onSidebarTypeChange('push');
+      this.onSidebarTypeChange(this.sidebarType);
     }
-  }
-
-  getClasses() {
-    let classes = `menu-${this.sidebarType}`;
-    if (this.fa) {
-      classes += ' rtl ';
-    }
-    if (this.sidebarLock) {
-      classes += ' sidebar-lock ';
-    }
-    if (this.sidebarVisible) {
-      classes += ' sidebar-open ';
-    }
-    return classes;
   }
 
   onSidebarTypeChange(event: SidebarType) {
@@ -142,6 +83,15 @@ export class MainPage extends LanguageChecker implements OnInit {
         overlay.style.transitionDuration = '0ms';
         overlay.style.opacity = 0;
       }
+    }
+  }
+
+  getWrapperClasses() {
+    return {
+      [`menu-${this.sidebarType}`]: true,
+      rtl: this.fa,
+      'sidebar-lock': this.sidebarLock,
+      'sidebar-open': this.sidebarVisible
     }
   }
 }

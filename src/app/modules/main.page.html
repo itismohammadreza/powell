@@ -1,9 +1,8 @@
-<div class="main-content {{getClasses()}}">
+<div class="main-content" [ngClass]="getWrapperClasses()">
   <ng-navbar-menu
     [sidebarType]="sidebarType"
     [sidebarVisible]="sidebarVisible"
     [sidebarLock]="sidebarLock"
-    [sidebarItems]="sidebarItems"
     (sidebarTypeChange)="onSidebarTypeChange($event)"
     (sidebarVisibleChange)="onSidebarVisibleChange($event)"
     (sidebarLockChange)="onSidebarLockChange($event)">

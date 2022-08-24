@@ -17,22 +17,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
   @Input() sidebarLock: boolean;
   @Input() sidebarType: SidebarType;
   @Input() user: any;
-
-  @Input('sidebarItems') set setSidebarItems(items: MenuItem[]) {
-    this.sidebarItems = items;
-    for (const item of this.sidebarItems) {
-      if (item.routerLink) {
-        Object.assign(item, {
-          command: () => {
-            if (!this.sidebarLock && this.isModalSidebar) {
-              this.toggleSidebar(false);
-            }
-          }
-        });
-      }
-    }
-  };
-
   @Output() sidebarVisibleChange = new EventEmitter();
   @Output() sidebarLockChange = new EventEmitter();
   @Output() sidebarTypeChange = new EventEmitter();
@@ -50,8 +34,8 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
   language = this.translationService.getDefaultLang();
   theme = 'lara-light-indigo';
   themes: MenuItem[];
-  sidebarItems: MenuItem[];
   sidebarTypes: MenuItem[];
+  sidebarItems: MenuItem[];
   searchValue: string;
 
   constructor(
@@ -155,9 +139,58 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       'viva-dark',
       'viva-light',
     ];
-    this.themes = themes.map((t, i) => ({label: `${i + 1}-${t}`, value: t}));
     const sidebarTypes: SidebarType[] = ['overlay', 'overlay-mask', 'push', 'push-mask', 'hover', 'static', 'horizontal'];
+    const sidebarItems = [
+      'dashboard',
+      'auto-complete',
+      'button',
+      'button-async',
+      'cascade-select',
+      'chips',
+      'color-picker',
+      'date-picker',
+      'dynamic-form',
+      'dropdown',
+      'editor',
+      'file-picker',
+      'file-picker2',
+      'image-slider',
+      'mask',
+      'number',
+      'password',
+      'text',
+      'textarea',
+      'knob',
+      'list-box',
+      'map',
+      'multi-checkbox',
+      'multi-select',
+      'radio',
+      'rating',
+      'select-button',
+      'single-checkbox',
+      'slider',
+      'split-button',
+      'switch',
+      'table',
+      'toggle-button',
+      'tree',
+      'tree-select',
+      'utils',
+    ];
+
+    this.themes = themes.map((t, i) => ({label: `${i + 1}-${t}`, value: t}));
     this.sidebarTypes = sidebarTypes.map((t) => ({label: t, value: t}));
+    this.sidebarItems = sidebarItems.map(item => ({
+      label: item,
+      routerLink: `showcase/${item}`,
+      icon: 'pi pi-minus',
+      command: () => {
+        if (!this.sidebarLock && this.isModalSidebar) {
+          this.toggleSidebar(false);
+        }
+      }
+    }));
   }
 
   get isModalSidebar() {
