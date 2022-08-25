@@ -20,17 +20,15 @@ export class RegisterPage extends LanguageChecker {
     confirmPassword: new UntypedFormControl(null, [Validators.required]),
   }, {validators: this.checkPasswords});
 
-  onSubmit() {
-    const formValue = this.form.value;
+  async onSubmit(callback: any) {
     if (this.form.valid) {
-      this.authService
-        .register({
-          email: formValue.email,
-          password: formValue.password,
-        })
-        .subscribe((res: any) => {
-          this.router.navigate(['/dashboard']);
-        });
+      try {
+        await this.authService.register(this.form.value);
+        callback();
+        this.router.navigate(['/auth/login']);
+      } catch (e) {
+        callback()
+      }
     }
   }
 

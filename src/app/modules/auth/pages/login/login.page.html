@@ -1,11 +1,7 @@
 <div class="container-fluid h-100">
   <div class="row align-content-center justify-content-center h-100">
     <div class="col-12">
-      <form
-        class="form-row justify-content-center"
-        [formGroup]="form"
-        (ngSubmit)="onSubmit()"
-      >
+      <form class="form-row justify-content-center" [formGroup]="form">
         <div class="p-4 box rounded-lg shadow">
           <ng-logo class="text-center mb-2"></ng-logo>
           <h3 class="text-center">ورود</h3>
@@ -31,7 +27,7 @@
             [full]="true"
             type="submit"
             label="ورود"
-            (clickAsync)="onSubmit()"
+            (clickAsync)="onSubmit($event)"
           ></ng-button-async>
           <small class="text-muted mt-3 text-center">
             حساب کاربری ندارید؟

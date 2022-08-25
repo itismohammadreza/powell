@@ -16,14 +16,14 @@ export class AuthService extends ApiService {
     return this._post(
       `${this.endpoint}/login`,
       data
-    );
+    ).toPromise();
   }
 
   register(data: any): any {
     return this._post(
       `${this.endpoint}/register`,
       data
-    );
+    ).toPromise();
   }
 
   logout(): void {

@@ -20,23 +20,16 @@ export class LoginPage extends LanguageChecker {
     rememberMe: new UntypedFormControl(false),
   });
 
-  onSubmit() {
-    const formValue = this.form.value;
+  async onSubmit(callback: any) {
     if (this.form.valid) {
-      this.authService
-        .login({
-          email: formValue.email, password: formValue.password,
-        })
-        .subscribe((res: any) => {
-          if (res?.token) {
-            if (formValue.rememberMe) {
-              localStorage.setItem('token', res.token);
-            } else {
-              sessionStorage.setItem('token', res.token);
-            }
-            this.router.navigate(['/dashboard']);
-          }
-        });
+      try {
+        const res = await this.authService.login(this.form.value);
+        callback();
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/dashboard']);
+      } catch (e) {
+        callback();
+      }
     }
   }
 }
