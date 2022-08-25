@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgColDef} from '@ng/models/table';
-import {LanguageChecker} from '@core/utils';
 import {MenuItem} from 'primeng/api';
 
 export interface Country {

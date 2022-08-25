@@ -1,1 +1,1 @@
-export * from './menu-types.model';
+export * from './sidebar-type.model';

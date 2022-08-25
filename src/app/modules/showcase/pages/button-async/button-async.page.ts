@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {UserService} from '@core/http';
-import {NgButtonAppearance, NgButtonType} from "@ng/models/button";
+import {NgButtonAppearance} from "@ng/models/button";
 import {NgPosition, NgSize} from "@ng/models/offset";
 import {NgColor} from "@ng/models/color";
 

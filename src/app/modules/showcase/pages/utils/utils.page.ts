@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import {DynamicDialogService, UtilsService} from "@ng/services";
 import {UserService} from "@core/http";
 import {

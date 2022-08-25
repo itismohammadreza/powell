@@ -2,11 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
-import {
-  HttpHandlerInterceptor,
-  AuthInterceptor,
-} from '@core/interceptors';
-import {CacheInterceptor} from "@core/interceptors/cache.interceptor";
+import {AuthInterceptor, CacheInterceptor, HttpHandlerInterceptor} from '@core/interceptors';
 
 @NgModule({
   imports: [CommonModule],
