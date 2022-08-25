@@ -1,5 +1,5 @@
 import {HttpClient, HttpContext, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Global} from '@ng/global';
+import {GlobalInjector} from '@ng/global.injector';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {EnvService} from "@core/utils";
@@ -17,8 +17,8 @@ export class ApiService {
   private baseUrl: string;
 
   constructor() {
-    this.http = Global.Injector.get(HttpClient);
-    const envService = Global.Injector.get(EnvService);
+    this.http = GlobalInjector.Injector.get(HttpClient);
+    const envService = GlobalInjector.Injector.get(EnvService);
     this.baseUrl = envService.apiUrl;
   }
 

@@ -1,11 +1,11 @@
-import {Global} from '@ng/global';
+import {GlobalInjector} from '@ng/global.injector';
 import {TranslationService} from '@core/utils';
 import {DOCUMENT} from "@angular/common";
 
 export class LanguageChecker {
   constructor() {
-    this.translationService = Global.Injector.get(TranslationService);
-    this.document = Global.Injector.get(DOCUMENT);
+    this.translationService = GlobalInjector.Injector.get(TranslationService);
+    this.document = GlobalInjector.Injector.get(DOCUMENT);
     this.translationService.onLangChange().subscribe((res: any) => {
       this._currentLang = res.lang;
       const body = this.document.body;

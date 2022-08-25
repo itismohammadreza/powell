@@ -1,7 +1,7 @@
 import {Injector, ModuleWithProviders, NgModule} from '@angular/core';
 import {ConfirmationService, FilterService, MessageService, PrimeNGConfig,} from 'primeng/api';
 import {DialogService} from 'primeng/dynamicdialog';
-import {Global} from './global';
+import {GlobalInjector} from './global.injector';
 import {NgComponentsModule} from './components/components.module';
 
 @NgModule({
@@ -10,7 +10,7 @@ import {NgComponentsModule} from './components/components.module';
 })
 export class NgAllModule {
   constructor(private injector: Injector) {
-    Global.Injector = this.injector;
+    GlobalInjector.Injector = this.injector;
   }
 
   static forRoot(

@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {UtilsService} from '@ng/services';
 import {LanguageChecker} from '@core/utils';
 import {MenuItem} from 'primeng/api';
 import {SidebarType} from '@core/models';
@@ -40,7 +39,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
 
   constructor(
     private router: Router,
-    private utilsService: UtilsService,
     private authService: AuthService,
   ) {
     super();
