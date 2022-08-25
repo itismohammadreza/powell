@@ -29,7 +29,7 @@ import {filter} from 'rxjs/operators';
 12- add ng-template support for table.
 13- add preventDuplicate support for toast.
 14- place hint in top of component instead of bottom.
-17- use typescript utility-types (e.u Partial<..>) in components as need. for example in knob we can't have labelPos = 'float', but it can accept now!
+17- use typescript utility-types (e.u Partial<..>) in _components as need. for example in knob we can't have labelPos = 'float', but it can accept now!
     fix this by using utility-types and exclude 'float' in labelPos input property.
 18- implement moment utility service.
 19- implement ng-devider component just like AntDisign-NG-ZORRRO.
@@ -42,7 +42,7 @@ import {filter} from 'rxjs/operators';
 25- in map: implement removeLastMarker & removeAllMarkers buttons. also add an @Input() multi:boolean to allow choose multiple marker.
 26- see where wee need this piece of code (&.rtl { text-align: rtl }) and where is extra. remove extras.
 27- multi checkbox: set disabled and readonly property for whole component. if set true, all options will disabled or readonly
-28- add category to components structure. create overlay & forms folders and add relative components to them.
+28- add category to _components structure. create overlay & forms folders and add relative _components to them.
 29- this.onModelChange(this.value) is NOT safe. replace this.value with value get from event.
 30- move main.component content to navbar component and implement it like drawer in angular material.
 */

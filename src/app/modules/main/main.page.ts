@@ -3,7 +3,7 @@ import {LanguageChecker} from '@core/utils';
 import {SidebarType} from '@core/models';
 
 @Component({
-  selector: 'ng-main-page',
+  selector: 'ng-main',
   styleUrls: ['main.page.scss'],
   templateUrl: './main.page.html',
 })

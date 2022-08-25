@@ -5,10 +5,12 @@ import {map} from 'rxjs/operators';
 import {EnvService} from "@core/utils";
 
 interface RequestOptions {
-  headers?: HttpHeaders | { [p: string]: string | string[] };
+  headers?: HttpHeaders | { [header: string]: string | string[] };
   context?: HttpContext;
-  params?: HttpParams | { [p: string]: string | number | boolean | readonly (string | number | boolean)[] };
+  observe?: 'body';
+  params?: HttpParams | { [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>; };
   reportProgress?: boolean;
+  responseType?: 'json';
   withCredentials?: boolean;
 }
 

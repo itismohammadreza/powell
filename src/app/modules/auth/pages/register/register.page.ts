@@ -22,13 +22,15 @@ export class RegisterPage extends LanguageChecker {
 
   async onSubmit(callback: any) {
     if (this.form.valid) {
-      try {
-        await this.authService.register(this.form.value);
-        callback();
-        this.router.navigate(['/auth/login']);
-      } catch (e) {
-        callback()
-      }
+      callback()
+      return;
+    }
+    try {
+      await this.authService.register(this.form.value);
+      callback();
+      this.router.navigate(['/auth/login']);
+    } catch (e) {
+      callback()
     }
   }
 

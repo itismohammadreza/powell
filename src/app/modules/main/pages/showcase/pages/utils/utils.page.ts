@@ -3,7 +3,7 @@ import {DynamicDialogService, UtilsService} from "@ng/services";
 import {UserService} from "@core/http";
 import {
   DynamicDialogSampleComponent
-} from "@modules/showcase/components/dynamic-dialog-sample/dynamic-dialog-sample.component";
+} from "@modules/main/pages/showcase/components/dynamic-dialog-sample/dynamic-dialog-sample.component";
 
 @Component({
   selector: 'ng-utils',

@@ -11,7 +11,7 @@ const routes: Routes = [
         path: 'showcase',
         data: {title: 'پیشنمایش'},
         loadChildren: (): Promise<any> =>
-          import('./showcase/showcase.module').then((m) => m.ShowcaseModule),
+          import('./pages/showcase/showcase.module').then((m) => m.ShowcaseModule),
       },
       {
         path: '',
