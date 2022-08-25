@@ -22,14 +22,16 @@ export class LoginPage extends LanguageChecker {
 
   async onSubmit(callback: any) {
     if (this.form.valid) {
-      try {
-        const res = await this.authService.login(this.form.value);
-        callback();
-        localStorage.setItem('token', res.token);
-        this.router.navigate(['/dashboard']);
-      } catch (e) {
-        callback();
-      }
+      callback()
+      return;
+    }
+    try {
+      const res = await this.authService.login(this.form.value);
+      callback();
+      localStorage.setItem('token', res.token);
+      this.router.navigate(['/dashboard']);
+    } catch (e) {
+      callback();
     }
   }
 }

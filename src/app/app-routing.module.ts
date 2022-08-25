@@ -12,7 +12,7 @@ export const routes: Routes = [
   {
     path: '',
     loadChildren: (): Promise<Type<any>> =>
-      import('./modules/main.module').then((m) => m.MainModule),
+      import('@modules/main/main.module').then((m) => m.MainModule),
     // canLoad: [AuthGuard],
   },
   {
