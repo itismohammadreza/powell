@@ -10,6 +10,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {NgAddon, NgAddonConfig} from '@ng/models/forms';
+import {NgSize} from "@ng/models/offset";
 
 @Directive({
   selector: '[ngAddon]'
@@ -17,6 +18,7 @@ import {NgAddon, NgAddonConfig} from '@ng/models/forms';
 export class AddonDirective implements OnChanges {
   @Input() ngAddon: NgAddon;
   @Input() addonDisabled: boolean;
+  @Input() addonSize: NgSize = 'md';
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
 
@@ -55,6 +57,7 @@ export class AddonDirective implements OnChanges {
     this.renderer.addClass(BTN, 'p-button');
     this.renderer.addClass(BTN, 'p-component');
     this.renderer.addClass(BTN, `p-button-${_btnColor}`);
+    this.renderer.addClass(BTN, `p-button-${this.addonSize}`);
     this.renderer.addClass(BTN_TEXT_SPAN, 'p-button-label');
     this.renderer.appendChild(BTN_TEXT_SPAN, BTN_TEXT || 'p-btn');
     this.renderer.appendChild(BTN, BTN_ICON_SPAN);
