@@ -16,21 +16,20 @@ export class MainPage extends LanguageChecker implements OnInit {
   sidebarLock = true;
   sidebarType: SidebarType = 'push';
 
-  @HostListener('window:resize', ['$event']) onResize(e) {
-    this.handleResize();
-  }
-
-  ngOnInit(): void {
-    this.onSidebarTypeChange(this.sidebarType);
-  }
-
-  handleResize() {
+  @HostListener('window:resize', ['$event'])
+  onResize(event: UIEvent) {
     if (this.document.defaultView.innerWidth < 767) {
       this.onSidebarTypeChange('overlay');
       this.toggleOverlayDisplay(false);
     } else {
       this.onSidebarTypeChange(this.sidebarType);
     }
+  }
+
+  ngOnInit(): void {
+    this.onSidebarTypeChange(this.sidebarType);
+    this.onSidebarVisibleChange(this.sidebarVisible);
+    this.onSidebarLockChange(this.sidebarLock);
   }
 
   onSidebarTypeChange(event: SidebarType) {
@@ -45,7 +44,7 @@ export class MainPage extends LanguageChecker implements OnInit {
 
   onSidebarVisibleChange(event: boolean) {
     this.sidebarVisible = event;
-    if (this.sidebarType == 'overlay' || this.sidebarType == 'push') {
+    if (['overlay', 'push'].includes(this.sidebarType)) {
       setTimeout(() => {
         if (this.sidebarVisible) {
           this.toggleOverlayVisibility(false);
@@ -56,7 +55,7 @@ export class MainPage extends LanguageChecker implements OnInit {
 
   onSidebarLockChange(event: boolean) {
     this.sidebarLock = event;
-    if (this.sidebarType == 'overlay' || this.sidebarType == 'overlay-mask' || this.sidebarType == 'push' || this.sidebarType == 'push-mask') {
+    if (['overlay', 'push', 'overlay-mask', 'push-mask'].includes(this.sidebarType) && this.sidebarVisible) {
       this.toggleOverlayDisplay(!event);
     }
   }
@@ -74,7 +73,7 @@ export class MainPage extends LanguageChecker implements OnInit {
   }
 
   toggleOverlayVisibility(activate: boolean) {
-    const overlay = this.document.querySelector('.p-sidebar-mask') as any;
+    const overlay: any = this.document.querySelector('.p-sidebar-mask');
     if (overlay) {
       if (activate) {
         overlay.style.transitionDuration = '0.2ms';
