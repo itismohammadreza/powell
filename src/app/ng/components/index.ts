@@ -43,9 +43,9 @@ import {DialogComponent} from './dialog/dialog.component';
 import {ImageSliderComponent} from './image-slider/image-slider.component';
 import {DynamicDialogComponent} from './dynamic-dialog/dynamic-dialog.component';
 import {Dialog2Component} from './dialog2/dialog2.component';
-import {ButtonAsyncComponent} from '@ng/components/button-async/button-async.component';
-import {KnobComponent} from '@ng/components/knob/knob.component';
-import {TreeSelectComponent} from '@ng/components/tree-select/tree-select.component';
+import {ButtonAsyncComponent} from './button-async/button-async.component';
+import {KnobComponent} from './knob/knob.component';
+import {TreeSelectComponent} from './tree-select/tree-select.component';
 
 export const COMPONENTS: Type<any>[] = [
   AutoCompleteComponent,

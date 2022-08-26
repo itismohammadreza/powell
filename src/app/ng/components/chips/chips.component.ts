@@ -22,7 +22,6 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  NgModel,
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
