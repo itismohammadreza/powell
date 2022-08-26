@@ -22,16 +22,7 @@ export class InputTextareaPage {
   icon: string = '';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
-  addon: NgAddon// = {
-  //   before: {
-  //     type: 'icon',
-  //     icon: 'pi pi-home',
-  //   },
-  //   after: {
-  //     type: 'button',
-  //     label: 'home',
-  //   },
-  // };
+  addon: NgAddon;
   // native properties
   readonly: boolean = false;
   disabled: boolean = false;
