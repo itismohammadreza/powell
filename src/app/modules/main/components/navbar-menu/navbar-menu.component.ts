@@ -15,7 +15,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
   @Input() sidebarVisible: boolean;
   @Input() sidebarLock: boolean;
   @Input() sidebarType: SidebarType;
-  @Input() user: any;
   @Output() sidebarVisibleChange = new EventEmitter();
   @Output() sidebarLockChange = new EventEmitter();
   @Output() sidebarTypeChange = new EventEmitter();
