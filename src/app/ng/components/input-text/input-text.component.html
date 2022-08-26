@@ -21,6 +21,7 @@
       pInputText
       [(ngModel)]="value"
       [ngAddon]="addon"
+      [addonDisabled]="disabled"
       [attr.id]="inputId"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [attr.maxlength]="maxlength"

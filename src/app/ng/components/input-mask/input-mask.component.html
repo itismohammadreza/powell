@@ -22,6 +22,7 @@
     <p-inputMask
       [(ngModel)]="value"
       [ngAddon]="addon"
+      [addonDisabled]="disabled"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [type]="type"
       [mask]="mask"

@@ -16,6 +16,7 @@ import {NgAddon, NgAddonConfig} from '@ng/models/forms';
 })
 export class AddonDirective implements OnChanges {
   @Input() ngAddon: NgAddon;
+  @Input() addonDisabled: boolean;
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
 
@@ -133,6 +134,9 @@ export class AddonDirective implements OnChanges {
     this.renderer.addClass(target.parentNode, 'p-inputgroup');
     this.renderer.addClass(el, `addon-${pos}`);
     this.renderer.addClass(this.el.nativeElement, `has-${pos}`);
+    if (this.addonDisabled) {
+      this.renderer.addClass(el, `p-disabled`);
+    }
     if (pos === 'after') {
       this.renderer.appendChild(target.parentNode, el);
     } else if (pos === 'before') {

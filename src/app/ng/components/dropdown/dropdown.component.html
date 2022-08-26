@@ -23,8 +23,9 @@
     <p-dropdown
       [(ngModel)]="value"
       [ngAddon]="addon"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+      [addonDisabled]="disabled"
       [inputId]="inputId"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [options]="options"
       [optionLabel]="optionLabel"
       [optionValue]="optionValue"

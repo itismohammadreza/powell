@@ -19,9 +19,10 @@
     <i *ngIf="icon && !addon" [ngClass]="icon"></i>
     <p-chips
       [(ngModel)]="value"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [ngAddon]="addon"
+      [addonDisabled]="disabled"
       [inputId]="inputId"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [field]="field"
       [max]="max"
       [disabled]="disabled"

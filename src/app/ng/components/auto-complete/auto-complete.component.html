@@ -20,9 +20,10 @@
     <i *ngIf="icon && !addon" [ngClass]="icon"></i>
     <p-autoComplete
       [(ngModel)]="value"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [ngAddon]="addon"
+      [addonDisabled]="disabled"
       [inputId]="inputId"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [suggestions]="suggestions"
       [field]="field"
       [scrollHeight]="scrollHeight"

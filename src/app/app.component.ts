@@ -7,7 +7,6 @@ import {filter} from 'rxjs/operators';
   TODO:
 01- use custom sidebar instead of p-sidebar.
 02- add size support to addOnDirective (when change input size, addon size also should be changed).
-03- and add disable state support for addon button when the input is disabled.
 04- add show/hide password feature to password component.
 05- implement dual labeled switch component (label left and label right).
     take couple of objects like : [{label:'roshan',value:'on'},{label:'khamoosh',value:'off'}]

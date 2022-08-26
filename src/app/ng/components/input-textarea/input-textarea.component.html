@@ -20,8 +20,9 @@
     <textarea
       pInputTextarea
       [(ngModel)]="value"
-      [attr.id]="inputId"
       [ngAddon]="addon"
+      [addonDisabled]="disabled"
+      [attr.id]="inputId"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [attr.maxlength]="maxlength"
       [attr.placeholder]="placeholder"

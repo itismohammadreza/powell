@@ -10,7 +10,7 @@
   <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field">
     <p-selectButton
       [(ngModel)]="value"
-      [id]="inputId"
+      [attr.id]="inputId"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [options]="options"
       [optionLabel]="optionLabel"

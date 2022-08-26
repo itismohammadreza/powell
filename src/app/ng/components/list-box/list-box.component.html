@@ -15,8 +15,9 @@
     class="field">
     <p-listbox
       [(ngModel)]="value"
-      [id]="inputId"
       [ngAddon]="addon"
+      [addonDisabled]="disabled"
+      [attr.id]="inputId"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [checkbox]="checkbox"
       [dataKey]="dataKey"
