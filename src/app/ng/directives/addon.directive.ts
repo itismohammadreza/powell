@@ -1,10 +1,20 @@
-import {Directive, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2} from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  Renderer2,
+  SimpleChanges
+} from '@angular/core';
 import {NgAddon, NgAddonConfig} from '@ng/models/forms';
 
 @Directive({
   selector: '[ngAddon]'
 })
-export class AddonDirective implements OnInit {
+export class AddonDirective implements OnChanges {
   @Input() ngAddon: NgAddon;
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
@@ -13,21 +23,20 @@ export class AddonDirective implements OnInit {
               private el: ElementRef) {
   }
 
-  ngOnInit() {
-    if (this.ngAddon) {
-      for (const side in this.ngAddon) {
-        const config = this.ngAddon[side] as NgAddonConfig;
-        switch (config.type) {
-          case 'button':
-            this.applyButton(config, side);
-            break;
-          case 'icon':
-            this.applyIcon(config, side);
-            break;
-          case 'text':
-            this.applyText(config, side);
-            break;
-        }
+  ngOnChanges(changes: SimpleChanges) {
+    this.destroy();
+    for (const side in this.ngAddon) {
+      const config = this.ngAddon[side] as NgAddonConfig;
+      switch (config.type) {
+        case 'button':
+          this.applyButton(config, side);
+          break;
+        case 'icon':
+          this.applyIcon(config, side);
+          break;
+        case 'text':
+          this.applyText(config, side);
+          break;
       }
     }
   }
@@ -98,6 +107,22 @@ export class AddonDirective implements OnInit {
     iconClass.split(' ').forEach(className => {
       this.renderer.addClass(el, className);
     });
+  }
+
+  destroy() {
+    let target = this.el.nativeElement;
+    let targetClasses = target.classList;
+    if (!targetClasses.contains('has-before') && !targetClasses.contains('has-after')) {
+      return;
+    }
+    if (target.parentNode.classList.contains('p-float-label')) {
+      target = target.parentNode;
+    }
+    this.renderer.removeClass(target.parentNode, 'p-inputgroup');
+    this.renderer.removeClass(this.el.nativeElement, `has-before`);
+    this.renderer.removeClass(this.el.nativeElement, `has-after`);
+    target.parentNode.querySelector(`.addon-before`)?.remove();
+    target.parentNode.querySelector(`.addon-after`)?.remove();
   }
 
   addToDOM(el: any, pos: string) {

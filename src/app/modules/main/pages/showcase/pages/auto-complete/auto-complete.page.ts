@@ -23,16 +23,7 @@ export class AutoCompletePage {
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
   inputSize: NgSize = 'md';
-  addon: NgAddon// = {
-  //   before: {
-  //     type: 'icon',
-  //     icon: 'pi pi-home',
-  //   },
-  //   after: {
-  //     type: 'button',
-  //     label: 'home',
-  //   },
-  // };
+  addon: NgAddon;
   // native properties
   scrollHeight: string = '200px';
   dropdown: boolean = false;

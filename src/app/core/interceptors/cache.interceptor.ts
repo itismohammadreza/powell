@@ -6,7 +6,7 @@ import {GlobalConfig} from "@core/global.config";
 
 @Injectable()
 export class CacheInterceptor implements HttpInterceptor {
-  private cache = new Map<string, any>();
+  cache = new Map<string, any>();
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (!GlobalConfig.enableCaching || request.method !== 'GET') {

@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output, Type, ViewChild, ViewContainerRef} from '@angular/core';
 import {
+  NgAddon,
   NgColorFormat,
   NgCurrency,
   NgCurrencyDisplay,
@@ -147,7 +148,8 @@ type PreviewItem =
   | 'colorFormat'
   | 'enableFormat'
   | 'inputFileMode'
-  | 'numberMode';
+  | 'numberMode'
+  | 'addon';
 
 @Component({
   selector: 'ng-preview-options',
@@ -402,6 +404,8 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() onIconChange = new EventEmitter()
   @Input() offIcon: string;
   @Output() offIconChange = new EventEmitter()
+  @Input() addon: NgAddon;
+  @Output() addonChange = new EventEmitter()
   // instead of 'size' & 'inputSize'
   @Input() selectiveSize: NgSize;
   @Output() selectiveSizeChange = new EventEmitter()
@@ -448,6 +452,7 @@ export class PreviewOptionsComponent implements OnInit {
       selectiveSize: ['sm', 'md', 'lg'],
       colorFormat: ['hex', 'rgb', 'hsb'],
       numberMode: ['decimal', 'currency'],
+      addon: ['none', 'before', 'after', 'both'],
     };
     for (const item of this.previewItems) {
       if (Object.keys(dropdownData).includes(item)) {
@@ -469,6 +474,28 @@ export class PreviewOptionsComponent implements OnInit {
     switch (cmp) {
       case DropdownComponent:
         cmpRef.location.nativeElement.classList.add('mb-3');
+        if (previewItem == 'addon') {
+          cmpRef.instance.onChange.subscribe(val => {
+            switch (val.value) {
+              case 'none':
+                this.addonChange.emit(null)
+                break;
+              case 'before':
+                this.addonChange.emit({before: {type: 'icon', icon: 'pi pi-home'}})
+                break;
+              case 'after':
+                this.addonChange.emit({after: {type: 'button', label: 'home'}})
+                break;
+              case 'both':
+                this.addonChange.emit({
+                  before: {type: 'icon', icon: 'pi pi-home'},
+                  after: {type: 'button', label: 'home'}
+                })
+                break;
+            }
+          });
+          break;
+        }
         cmpRef.instance.onChange.subscribe(val => {
           this[`${previewItem}Change`].next(val.value);
         });

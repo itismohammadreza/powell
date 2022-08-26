@@ -23,16 +23,7 @@ export class InputMaskPage {
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgPosition = 'left';
   inputSize: NgSize = 'md';
-  addon: NgAddon// = {
-  //   before: {
-  //     type: 'icon',
-  //     icon: 'pi pi-home',
-  //   },
-  //   after: {
-  //     type: 'button',
-  //     label: 'home',
-  //   },
-  // };
+  addon: NgAddon;
   // native properties
   mask: string = '99-999999';
   slotChar: string = '_';
