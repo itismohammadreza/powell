@@ -27,7 +27,7 @@ export class CascadeSelectPage {
   // native properties
   disabled: boolean = false;
   placeholder: string = '';
-  showClear: boolean = false
+  showClear: boolean = true;
 
   options = [
     {

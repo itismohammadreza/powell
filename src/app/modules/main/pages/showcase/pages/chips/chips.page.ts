@@ -31,5 +31,5 @@ export class ChipsPage {
   allowDuplicate: boolean = true;
   addOnTab: boolean = false;
   addOnBlur: boolean = false;
-  showClear: boolean = false;
+  showClear: boolean = true;
 }

@@ -52,19 +52,9 @@
       top: calc(100% + 0.25rem);
     }
 
-    &.is-clearable.has-value {
-      .field > i {
-        display: none;
-      }
-    }
-
     &.ltr {
       small {
         left: 0;
-      }
-
-      .p-input-mask-clear-icon {
-        left: 0.75rem;
       }
     }
 
@@ -98,9 +88,16 @@
         right: 0;
       }
 
-      .p-input-mask-clear-icon {
-        left: auto;
-        right: 0.75rem;
+      .p-inputmask-clearable {
+        .p-inputtext {
+          padding-right: 0.75rem;
+          padding-left: 2.5rem;
+        }
+
+        .p-inputmask-clear-icon {
+          right: auto;
+          left: 0.75rem;
+        }
       }
     }
   }

@@ -5,12 +5,9 @@
       'align-items-center': labelPos == 'fix-side',
       'align-items-end': labelPos == 'fix-top' && rtl,
       'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl,
-      'is-clearable': showClear,
-      'has-value': value
+      'flex-row-reverse': labelPos == 'fix-side' && !rtl
     }" class="dropdown-wrapper">
-  <div
-    [ngClass]="{
+  <div [ngClass]="{
       'w-100': labelPos == 'fix-top',
       'p-float-label': labelPos == 'float',
       'p-input-icon-left': !addon && icon && iconPos == 'left',
@@ -19,7 +16,7 @@
       'p-inputtext-lg': inputSize == 'lg',
       'p-input-filled': filled
     }" class="field">
-    <i *ngIf="icon && !addon" [ngClass]="icon"></i>
+    <i *ngIf="icon && !addon && !showClear" [ngClass]="icon"></i>
     <p-dropdown
       [(ngModel)]="value"
       [ngAddon]="addon"

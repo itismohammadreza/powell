@@ -32,12 +32,12 @@ export class AutoCompletePage {
   placeholder: string = '';
   readonly: boolean = false;
   disabled: boolean = false;
-  maxlength: number = 0;
+  maxlength: number = 100;
   showEmptyMessage: boolean = false;
   emptyMessage: string = 'No records found';
   forceSelection: boolean = true;
   unique: boolean = true;
-  showClear: boolean = false;
+  showClear: boolean = true;
 
   suggestions = [
     {name: 'Afghanistan', code: 'AF'},

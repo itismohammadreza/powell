@@ -17,7 +17,7 @@
       'p-input-filled': filled,
       'has-dropdown': dropdown
     }" class="field">
-    <i *ngIf="icon && !addon" [ngClass]="icon"></i>
+    <i *ngIf="icon && !addon && !showClear" [ngClass]="icon"></i>
     <p-autoComplete
       [(ngModel)]="value"
       [ngAddon]="addon"

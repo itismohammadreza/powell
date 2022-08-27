@@ -138,6 +138,18 @@
         }
       }
 
+      .p-autocomplete-clearable {
+        .p-inputtext {
+          padding-right: 0.75rem;
+          padding-left: 2.5rem;
+        }
+
+        .p-autocomplete-clear-icon {
+          right: auto;
+          left: 0.75rem;
+        }
+      }
+
       .field {
         &.p-float-label {
           label {

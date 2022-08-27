@@ -31,7 +31,7 @@
           .p-inputnumber {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
-            
+
           }
         }
 
@@ -59,7 +59,7 @@
       }
       p-inputNumber {
         &.has-before {
-       
+
         }
 
         &.has-after {
@@ -87,6 +87,18 @@
               right: 2rem;
             }
           }
+        }
+      }
+
+      .p-inputnumber-clearable {
+        .p-inputtext {
+          padding-right: 0.75rem;
+          padding-left: 2.5rem;
+        }
+
+        .p-inputnumber-clear-icon {
+          right: auto;
+          left: 0.75rem;
         }
       }
 

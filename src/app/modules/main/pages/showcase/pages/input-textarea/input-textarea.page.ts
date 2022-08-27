@@ -26,7 +26,7 @@ export class InputTextareaPage {
   // native properties
   readonly: boolean = false;
   disabled: boolean = false;
-  maxlength: number = 2000;
+  maxlength: number = 100;
   placeholder: string = '';
   rows: number = 7;
   cols: number = 100;

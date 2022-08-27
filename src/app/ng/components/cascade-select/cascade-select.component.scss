@@ -52,12 +52,6 @@
       top: calc(100% + 0.25rem);
     }
 
-    &.is-clearable.has-value {
-      .field > i {
-        display: none;
-      }
-    }
-
     &.ltr {
       small {
         left: 0;
@@ -67,10 +61,6 @@
         i {
           right: calc(0.75rem + 3rem)
         }
-      }
-
-      .p-cascadeselect-clear-icon {
-        left: 0.75rem;
       }
     }
 
@@ -115,9 +105,16 @@
         flex-direction: row-reverse;
       }
 
-      .p-cascadeselect-clear-icon {
-        left: auto;
-        right: 0.75rem;
+      .p-cascadeselect-clearable {
+        .p-inputtext {
+          padding-right: 0.75rem;
+          padding-left: 1.75rem;
+        }
+
+        .p-cascadeselect-clear-icon {
+          right: auto;
+          left: 3rem;
+        }
       }
 
       .p-cascadeselect-group-icon {

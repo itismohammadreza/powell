@@ -52,7 +52,7 @@
     }
 
     &.p-multiselect-clearable.p-multiselect-filled {
-      .field>i {
+      .field > i {
         display: none;
       }
     }
@@ -66,10 +66,6 @@
         i {
           right: calc(0.75rem + 3rem)
         }
-      }
-
-      .p-multiselect-clear-icon {
-        left: 0.75rem;
       }
     }
 
@@ -114,9 +110,16 @@
         flex-direction: row-reverse;
       }
 
-      .p-multiselect-clear-icon {
-        left: auto;
-        right: 0.75rem;
+      .p-multiselect-clearable {
+        .p-multiselect-label-container {
+          padding-right: 0rem;
+          padding-left: 1.75rem;
+        }
+
+        .p-multiselect-clear-icon {
+          right: auto;
+          left: 3rem;
+        }
       }
 
       .p-chips-token {

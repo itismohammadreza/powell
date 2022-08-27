@@ -43,7 +43,7 @@ export class MultiSelectPage {
   selectionLimit: number = 100;
   showHeader: boolean = true;
   showToggleAll: boolean = true;
-  showClear: boolean = false;
+  showClear: boolean = true;
   display: string = 'comma';
 
   options: any[] = [

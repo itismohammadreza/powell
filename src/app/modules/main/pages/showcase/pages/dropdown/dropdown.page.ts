@@ -36,7 +36,7 @@ export class DropdownPage {
   autofocusFilter: boolean = false;
   resetFilterOnHide: boolean = false;
   autoDisplayFirst: boolean = true;
-  showClear: boolean = false;
+  showClear: boolean = true;
 
   options: any[] = [
     {label: 'Australia', value: 'AU'},

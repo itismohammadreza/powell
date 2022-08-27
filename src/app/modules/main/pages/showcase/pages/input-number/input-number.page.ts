@@ -50,5 +50,5 @@ export class InputNumberPage {
   maxlength: number;
   disabled: boolean = false;
   readonly: boolean = false;
-  showClear: boolean = false;
+  showClear: boolean = true;
 }

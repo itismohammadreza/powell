@@ -33,5 +33,5 @@ export class InputPasswordPage {
   toggleMask: boolean = false;
   disabled: boolean = false;
   placeholder: string = '';
-  showClear: boolean = false;
+  showClear: boolean = true;
 }

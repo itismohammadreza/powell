@@ -84,6 +84,18 @@
         right: 0;
       }
 
+      .p-chips-clearable {
+        .p-inputtext {
+          padding-right: 0.75rem;
+          padding-left: 2.5rem;
+        }
+
+        .p-chips-clear-icon {
+          right: auto;
+          left: 0.75rem;
+        }
+      }
+
       .p-chips-token {
         margin-left: 0.5rem;
         margin-right: 0;
