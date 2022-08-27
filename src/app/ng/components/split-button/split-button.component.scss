@@ -2,8 +2,6 @@ p-splitButton {
   direction: ltr;
 
   &.rtl ::ng-deep {
-    text-align: right;
-
     .p-splitbutton-defaultbutton {
       border-bottom-right-radius: 3px;
       border-top-right-radius: 3px;

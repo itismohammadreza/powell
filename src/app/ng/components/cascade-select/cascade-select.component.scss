@@ -65,11 +65,10 @@
     }
 
     &.rtl {
-      text-align: right;
-
       .p-cascadeselect-label,
       .p-cascadeselect .p-cascadeselect-items,
-      label, small {
+      label,
+      small {
         direction: rtl;
       }
 

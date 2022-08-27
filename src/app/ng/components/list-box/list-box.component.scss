@@ -42,10 +42,8 @@
     }
 
     &.rtl {
-      text-align: right;
-
       .p-listbox,
-      .p-inputtext
+      .p-inputtext,
       label,
       small {
         direction: rtl;

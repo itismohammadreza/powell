@@ -2,8 +2,6 @@ p-messages {
   direction: ltr;
 
   &.rtl ::ng-deep {
-    text-align: right;
-
     .p-message {
       border-width: 0 6px 0 0;
     }

@@ -22,18 +22,21 @@ dp-date-picker {
   .field {
     flex-grow: 1;
   }
+
   #{$inputEl}.has-before {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
   }
+
   #{$inputEl}.has-after {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
   }
+
   #{$inputEl}.has-after.has-before {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -41,11 +44,13 @@ dp-date-picker {
     border-bottom-right-radius: 0;
   }
 
-  .field{
+  .field {
     position: relative;
+
     ::ng-deep dp-date-picker {
       display: inline;
     }
+
     .error {
       position: absolute;
       top: 100%;
@@ -53,6 +58,7 @@ dp-date-picker {
 
     i.clearable {
       cursor: pointer;
+
       &:hover {
         color: #000000;
       }
@@ -77,8 +83,9 @@ dp-date-picker {
       }
     }
   }
+
   &.ltr {
-    .field{
+    .field {
 
       .error {
         left: 0;
@@ -90,26 +97,31 @@ dp-date-picker {
       direction: ltr;
     }
   }
-  &.rtl { text-align: right;
-    .field{
+
+  &.rtl {
+    .field {
       &.p-float-label {
         label {
           right: 0.5rem;
           left: auto;
         }
+
         &.p-input-icon-right {
           label {
             right: 2rem;
           }
         }
       }
+
       .error {
         right: 0;
       }
     }
+
     .inline-wrapper {
       direction: rtl;
     }
+
     #{$inputEl},
     label, small {
       direction: rtl;

@@ -2,8 +2,6 @@ p-toast {
   direction: ltr;
 
   &.rtl ::ng-deep {
-    text-align: right;
-
     .p-toast-message {
       border-width: 0 6px 0 0 !important;
     }
