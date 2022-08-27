@@ -10,6 +10,7 @@ export class ImageSliderPage {
   images: ImageItem[] = [
     {
       preview: 'https://via.placeholder.com/640x380?text=test1',
+      thumbnail: 'https://via.placeholder.com/240x130?text=test1',
       alt: 'test1',
       caption: {
         title: 'test1',
@@ -18,6 +19,7 @@ export class ImageSliderPage {
     },
     {
       preview: 'https://via.placeholder.com/640x380?text=test2',
+      thumbnail: 'https://via.placeholder.com/240x130?text=test2',
       alt: 'test2',
       caption: {
         title: 'test2',
@@ -26,6 +28,7 @@ export class ImageSliderPage {
     },
     {
       preview: 'https://via.placeholder.com/640x380?text=test3',
+      thumbnail: 'https://via.placeholder.com/240x130?text=test3',
       alt: 'test3',
       caption: {
         title: 'test3',
@@ -34,6 +37,7 @@ export class ImageSliderPage {
     },
     {
       preview: 'https://via.placeholder.com/640x380?text=test4',
+      thumbnail: 'https://via.placeholder.com/240x130?text=test4',
       alt: 'test4',
       caption: {
         title: 'test4',
@@ -42,6 +46,7 @@ export class ImageSliderPage {
     },
     {
       preview: 'https://via.placeholder.com/640x380?text=test5',
+      thumbnail: 'https://via.placeholder.com/240x130?text=test5',
       alt: 'test5',
       caption: {
         title: 'test5',
@@ -50,6 +55,7 @@ export class ImageSliderPage {
     },
     {
       preview: 'https://via.placeholder.com/640x380?text=test6',
+      thumbnail: 'https://via.placeholder.com/240x130?text=test6',
       alt: 'test6',
       caption: {
         title: 'test6',
@@ -58,6 +64,7 @@ export class ImageSliderPage {
     },
     {
       preview: 'https://via.placeholder.com/640x380?text=test7',
+      thumbnail: 'https://via.placeholder.com/240x130?text=test7',
       alt: 'test7',
       caption: {
         title: 'test7',
@@ -70,7 +77,7 @@ export class ImageSliderPage {
   showThumbnailNavigators: boolean = true;
   showItemNavigatorsOnHover: boolean = false;
   changeItemOnIndicatorHover: boolean = false;
-  circular: boolean = false;
+  circular: boolean = true;
   autoPlay: boolean = true;
   transitionInterval: number = 4000;
   showThumbnails: boolean = true;
