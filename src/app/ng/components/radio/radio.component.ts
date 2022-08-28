@@ -50,14 +50,22 @@ export class RadioComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';
   @Input() optionDisabled: string = 'disabled';
+
   // native properties
-  @Input() disabled: boolean;
+  @Input('disabled') set setDisabled(disabled: boolean) {
+    this.disabled = disabled;
+    this.options.forEach(option => {
+      option[this.optionDisabled] = disabled
+    })
+  };
+
   @Input() style: any;
   @Input() styleClass: string;
   @Output() onChange = new EventEmitter();
   @Output() onFocus = new EventEmitter();
   @Output() onBlur = new EventEmitter();
 
+  disabled: boolean = false;
   groupName: string;
   inputId: string;
   controlContainer: FormGroupDirective;

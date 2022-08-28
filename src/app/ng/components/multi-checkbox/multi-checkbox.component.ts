@@ -50,14 +50,26 @@ export class MultiCheckboxComponent implements OnInit, AfterViewInit, ControlVal
   @Input() optionValue: string = 'value';
   @Input() optionDisabled: string = 'disabled';
   @Input() orientation: NgOrientation = 'vertical';
+
   // native properties
-  @Input() disabled: boolean;
-  @Input() readonly: boolean;
+  @Input('disabled') set setDisabled(disabled: boolean) {
+    this.disabled = disabled;
+    this.options.forEach(option => {
+      option[this.optionDisabled] = disabled
+    })
+  };
+
+  @Input('readonly') set setReadonly(readonly: boolean) {
+    this.readonly = readonly;
+  }
+
   @Input() style: any;
   @Input() styleClass: string;
   @Input() checkboxIcon: string = 'pi pi-check';
   @Output() onChange = new EventEmitter();
 
+  readonly: boolean = false;
+  disabled: boolean = false;
   groupName: string;
   inputId: string;
   controlContainer: FormGroupDirective;

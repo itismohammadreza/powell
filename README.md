@@ -6,9 +6,9 @@
 - [ ] **navbar** - add ability to set default value for `sidebarLock` and `sidebarVisible`. also store in localStorage.
 - [ ] **switch** - add `onLabel` and `offLabel` inputs. by default both are equal.
 - [ ] **checkbox** - add `onLabel` and `offLabel` inputs. by default both are equal.
-- [ ] **multiCheckbox** - set disabled and readonly property for whole component. if set true, all options will be
+- [x] **multiCheckbox** - set disabled and readonly property for whole component. if set true, all options will be
   disabled or readonly.
-- [ ] **radio** - set disabled and readonly property for whole component. if set true, all options will be disabled or
+- [x] **radio** - set disabled and readonly property for whole component. if set true, all options will be disabled or
   readonly.
 - [ ] **dialogForm** - add hook support in config (just like angular formly to implement cascade mode).
 - [ ] **toast** - fix preventDuplicate feature.
@@ -17,7 +17,7 @@
 - [ ] **all** - handle rtl direction in dropdowns panel (or etc.) when is appendTo body.
 - [ ] **all** - place hint in top of component instead of bottom. also add question icon before it.
 - [ ] **all** - add specific class to hint and error and icon elements and edit `.scss` file.
-- [ ] **all** - see where we need this snippet `&.rtl { text-align: rtl }` and where is extra. remove extras.
+- [x] **all** - see where we need this snippet `&.rtl { text-align: rtl }` and where is extra. remove extras.
 - [ ] **all** - categorize components folder structure. create overlay & forms folders and add relative components to
   them.
 - [ ] **all** - use typescript utility-types (e.u `Partial<..>`) in components as need. for example in `knob.component`
@@ -53,3 +53,5 @@
 - [ ] **empty** - implement component just like `AntDisign-NG-ZORRRO`.
 - [ ] **status** - implement component just like `AntDisign-NG-ZORRRO`.
 - [ ] **whiteboard** implement component.
+- [ ] **tree** implement component.
+- [ ] **treeSelect** implement component.
