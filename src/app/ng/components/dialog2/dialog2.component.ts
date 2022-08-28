@@ -33,6 +33,6 @@ export class Dialog2Component implements OnInit, OnDestroy {
   close(): void {
     this.element.nativeElement.style.display = 'none';
     this.document.body.classList.remove('jw-modal-open');
-    this.document.body.style.overflow = 'auto';
+    this.document.body.style.overflow = null;
   }
 }

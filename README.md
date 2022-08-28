@@ -34,7 +34,7 @@
 - [ ] **asyncSwitch** - have loading just like `buttonAsync.component`.
 - [ ] **datepicker** - implement. also, this component has a `moment` variable in `onSelect` function that is in conflict
   with `moment` in import statement. check it!
-- [ ] **momentService**. implement moment utility service.
+- [x] **momentService**. implement moment utility service.
 - [ ] **table** - implement `shamsi` and `miladi` renderer, filter and editor.
 - [ ] **table** - add `templateString` and `templateHTML` support that accept a function returns a string or html template to
   render in cells. for example if we want display format like `item.date/item.month/item.year` in a cell, we use
