@@ -51,12 +51,6 @@
       top: calc(100% + 0.25rem);
     }
 
-    &.p-multiselect-clearable.p-multiselect-filled {
-      .field > i {
-        display: none;
-      }
-    }
-
     &.ltr {
       small {
         left: 0;
@@ -70,10 +64,15 @@
     }
 
     &.rtl {
+      .p-multiselect,
       .p-inputtext,
       label,
       small {
         direction: rtl;
+      }
+
+      small {
+        right: 0;
       }
 
       .field {
@@ -104,10 +103,6 @@
         }
       }
 
-      .p-multiselect {
-        flex-direction: row-reverse;
-      }
-
       .p-multiselect-clearable {
         .p-multiselect-label-container {
           padding-right: 0rem;
@@ -127,6 +122,37 @@
         .p-chips-token-icon {
           margin-right: 0.5rem;
           margin-left: 0;
+        }
+      }
+
+      .p-multiselect {
+        .p-multiselect-close {
+          margin-right: 0.5rem;
+          margin-left: 0;
+        }
+
+        .p-multiselect-items .p-checkbox {
+          margin-right: 0;
+          margin-left: 0.5rem;
+        }
+
+        .p-multiselect-header {
+          .p-checkbox {
+            margin-right: 0;
+            margin-left: 0.5rem;
+          }
+        }
+
+        .p-multiselect-filter-container {
+          .p-multiselect-filter {
+            padding-right: 0.5rem;
+            padding-left: 1.5rem;
+          }
+
+          .p-multiselect-filter-icon {
+            right: auto;
+            left: 0.5rem;
+          }
         }
       }
     }

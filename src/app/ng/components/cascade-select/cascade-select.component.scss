@@ -65,8 +65,9 @@
     }
 
     &.rtl {
+      .p-cascadeselect,
       .p-cascadeselect-label,
-      .p-cascadeselect .p-cascadeselect-items,
+      .p-cascadeselect-items,
       label,
       small {
         direction: rtl;
@@ -98,10 +99,6 @@
             left: calc(0.75rem + 3rem)
           }
         }
-      }
-
-      .p-cascadeselect {
-        flex-direction: row-reverse;
       }
 
       .p-cascadeselect-clearable {

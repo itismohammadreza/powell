@@ -7,11 +7,7 @@
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
     }" class="rating-wrapper">
-  <div
-    [ngClass]="{
-      'w-100': labelPos == 'fix-top'
-    }"
-    class="field">
+  <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field">
     <p-rating
       [id]="inputId"
       [(ngModel)]="value"

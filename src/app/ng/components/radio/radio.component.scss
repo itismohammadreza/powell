@@ -6,6 +6,7 @@
 
     .field {
       flex-grow: 1;
+      flex-wrap: wrap;
     }
 
     small {
@@ -22,6 +23,7 @@
     }
 
     &.rtl {
+      .field,
       label,
       small {
         direction: rtl;

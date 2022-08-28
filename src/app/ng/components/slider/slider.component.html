@@ -7,14 +7,11 @@
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
     }" class="slider-wrapper">
-  <div
-    [ngClass]="{
-      'w-100': labelPos == 'fix-top'
-    }"
-    class="field">
+  <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field">
     <p-slider
-      [id]="inputId"
       [(ngModel)]="value"
+      [attr.id]="inputId"
+      [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
       [animate]="animate"
       [disabled]="disabled"
       [min]="min"

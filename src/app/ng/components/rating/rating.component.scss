@@ -22,6 +22,15 @@
     }
 
     &.rtl {
+      label,
+      small {
+        direction: rtl;
+      }
+
+      small {
+        right: 0;
+      }
+
       .p-rating {
         direction: rtl;
 
@@ -33,15 +42,6 @@
             margin-right: 0;
           }
         }
-      }
-
-      label,
-      small {
-        direction: rtl;
-      }
-
-      small {
-        right: 0;
       }
     }
   }

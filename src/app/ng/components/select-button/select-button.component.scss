@@ -22,6 +22,7 @@
     }
 
     &.rtl {
+      .p-selectbutton,
       label,
       small {
         direction: rtl;
