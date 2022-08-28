@@ -22,6 +22,7 @@
     "@asymmetrik/ngx-leaflet": "^14.0.1",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
+    "jalali-moment": "^3.3.11",
     "leaflet": "^1.8.0",
     "ngx-suneditor": "^1.1.2",
     "primeicons": "^5.0.0",

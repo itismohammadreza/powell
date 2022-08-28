@@ -1,5 +1,5 @@
-import {Component, ViewContainerRef} from '@angular/core';
-import {DynamicDialogService, UtilsService} from "@ng/services";
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {DynamicDialogService, UtilsService, MomentService} from "@ng/services";
 import {UserService} from "@core/http";
 import {
   DynamicDialogSampleComponent
@@ -15,7 +15,7 @@ export class UtilsPage {
     private utilsService: UtilsService,
     private vcRef: ViewContainerRef,
     private userService: UserService,
-    private dialog: DynamicDialogService
+    private dialog: DynamicDialogService,
   ) {
   }
 
