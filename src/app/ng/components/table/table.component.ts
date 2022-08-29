@@ -1,36 +1,274 @@
 import {
-  Component,
+  AfterContentInit,
+  Component, ContentChildren,
   EventEmitter,
   Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
+  OnChanges, OnInit,
+  Output, QueryList,
+  SimpleChanges, TemplateRef,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import {NgPosition, NgSelectionMode, NgSize} from '@ng/models/offset';
 import {NgColDef} from '@ng/models/table';
-import {MenuItem, SortMeta} from 'primeng/api';
+import {FilterMetadata, MenuItem, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {NgTableAction} from '@ng/models/table';
+import {TemplateDirective} from "@ng/directives/template.directive";
+import {ScrollerOptions} from "primeng/scroller";
 
+
+// todo:
+// -implement cell renderer + templateString funcitons
+// -implement actions and functions to render + switch action
+// -implement checking for local and server pagination + filter + sort
+// -what is footerGroupedTemplate & groupFooterTemplate
+// -implement ng-templates let- variables properly. some is missed or some is wrong.
+// -implement empty message if user not provided
+// -implement default table header (include a title) if user not provided
+// -implement grid lines or other style classes configurations
+// -implement edit
 @Component({
   selector: 'ng-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
-export class TableComponent implements OnChanges {
+export class TableComponent implements OnInit, OnChanges, AfterContentInit {
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ViewChild('dataTable', {static: true}) dataTable: Table;
   @Input() items: any[];
   @Input() filterDisplay: 'row' | 'menu' = 'menu';
   @Input() colDef: NgColDef[];
   @Input() disableSelectionField: string = 'disableSelection';
-  @Input() reorderableColumns: boolean = true;
   @Input() reorderableRows: boolean = true;
   @Input() local: boolean = true;
+  // native properties
+  @Input() frozenColumns: any[];
+  @Input() frozenValue: any[];
+  @Input() responsiveLayout: 'stack' | 'scroll' = 'stack';
+  @Input() breakpoint: string = '960px';
+  @Input() style: any;
+  @Input() styleClass: string;
+  @Input() tableStyle: any;
+  @Input() tableStyleClass: string;
+  @Input() paginator: boolean;
+  @Input() totalRecords: number;
+  @Input() pageLinks: number = 5;
+  @Input() rowsPerPageOptions: any[];
+  @Input() alwaysShowPaginator: boolean = true;
+  @Input() showFirstLastIcon: boolean = true;
+  @Input() paginatorPosition: 'bottom' | 'top' | 'both' = 'bottom';
+  @Input() currentPageReportTemplate: string = '{currentPage} of {totalPages}';
+  @Input() showCurrentPageReport: boolean;
+  @Input() showJumpToPageDropdown: boolean;
+  @Input() showJumpToPageInput: boolean;
+  @Input() showPageLinks: boolean = true;
+  @Input() sortMode: 'single' | 'multiple' = 'single';
+  @Input() sortField: string;
+  @Input() sortOrder: number = 1;
+  @Input() multiSortMeta: SortMeta;
+  @Input() rowGroupMode: 'subheader' | 'rowspan';
+  @Input() groupRowsBy: string | string[];
+  @Input() groupRowsByOrder: number = 1;
+  @Input() defaultSortOrder: number = 1;
+  @Input() customSort: boolean;
+  @Input() showInitialSortBadge: boolean = true;
   @Input() selectionMode: NgSelectionMode = 'single';
+  @Input() selectionPageOnly: boolean;
+  @Input() contextMenuSelectionMode: 'separate' | 'joint' = 'separate';
+  @Input() dataKey: string;
+  @Input() metaKeySelection: boolean;
+  @Input() rowSelectable: Function;
+  @Input() rowTrackBy: Function = (index: number, item: any) => item;
+  @Input() lazy: boolean = false;
+  @Input() lazyLoadOnInit: boolean = true;
+  @Input() compareSelectionBy: 'equals' | 'deepEquals' = 'deepEquals';
+  @Input() csvSeparator: string = ',';
+  @Input() exportFilename: string = 'download';
+  @Input() filters: { [s: string]: FilterMetadata | FilterMetadata[] } = {};
+  @Input() filterDelay: number = 300;
+  @Input() globalFilterFields: string[];
+  @Input() filterLocale: string;
+  @Input() expandedRowKeys: { [s: string]: boolean; } = {};
+  @Input() rowExpandMode: string = 'multiple';
+  @Input() scrollable: boolean;
+  @Input() scrollDirection: string = "vertical";
+  @Input() scrollHeight: string;
+  @Input() virtualScroll: boolean;
+  @Input() virtualScrollDelay: number = 250;
+  @Input() virtualScrollItemSize: number;
+  @Input() virtualScrollOptions: ScrollerOptions;
+  @Input() contextMenu: any;
+  @Input() resizableColumns: boolean;
+  @Input() columnResizeMode: 'expand' | 'fit' = 'fit';
+  @Input() reorderableColumns: boolean;
+  @Input() loading: boolean;
+  @Input() loadingIcon: string = 'pi pi-spinner';
+  @Input() showLoader: boolean = true;
+  @Input() rowHover: boolean;
+  @Input() paginatorDropdownAppendTo: any;
+  @Input() paginatorDropdownScrollHeight: string = '200px';
+  @Input() autoLayout: boolean;
+  @Input() resetPageOnSort: boolean = true;
+  @Input() exportFunction: Function;
+  @Input() stateKey: string;
+  @Input() stateStorage: 'session' | 'local' = 'session';
+  @Input() editMode: 'cell' | 'row' = 'cell';
+  @Input() editingRowKeys: { [s: string]: boolean; } = {};
+  @Input() exportHeader: string;
+  @Output() onTableReady = new EventEmitter();
+  @Output() onRowSelect = new EventEmitter()
+  @Output() onRowUnselect = new EventEmitter()
+  @Output() onPage = new EventEmitter()
+  @Output() onSort = new EventEmitter()
+  @Output() onFilter = new EventEmitter()
+  @Output() onLazyLoad = new EventEmitter()
+  @Output() onRowExpand = new EventEmitter()
+  @Output() onRowCollapse = new EventEmitter()
+  @Output() onContextMenuSelect = new EventEmitter()
+  @Output() onColResize = new EventEmitter()
+  @Output() onColReorder = new EventEmitter()
+  @Output() onRowReorder = new EventEmitter()
+  @Output() onEditInit = new EventEmitter()
+  @Output() onEditComplete = new EventEmitter()
+  @Output() onEditCancel = new EventEmitter()
+  @Output() onHeaderCheckboxToggle = new EventEmitter()
+  @Output() onStateSave = new EventEmitter()
+  @Output() onStateRestore = new EventEmitter()
+  @Output() sortFunction: EventEmitter<any> = new EventEmitter();
+  // two-way bindings
+  @Input() rows: number;
+  @Input() first: number;
+  @Input() selectAll: boolean;
+  @Input() selection: any;
+  @Input() contextMenuSelection: any;
+  @Output() firstChange = new EventEmitter();
+  @Output() rowsChange = new EventEmitter();
+  @Output() selectAllChange = new EventEmitter();
+  @Output() selectionChange = new EventEmitter();
+  @Output() contextMenuSelectionChange = new EventEmitter();
+
+  captionTemplate: TemplateRef<any>
+  headerTemplate: TemplateRef<any>
+  headerGroupedTemplate: TemplateRef<any>
+  bodyTemplate: TemplateRef<any>
+  footerTemplate: TemplateRef<any>
+  footerGroupedTemplate: TemplateRef<any>
+  summaryTemplate: TemplateRef<any>
+  rowExpansionTemplate: TemplateRef<any>
+  frozenBodyTemplate: TemplateRef<any>
+  frozenRowExpansionTemplate: TemplateRef<any>
+  groupHeaderTemplate: TemplateRef<any>
+  groupFooterTemplate: TemplateRef<any>
+  emptyMessageTemplate: TemplateRef<any>
+  paginatorLeftTemplate: TemplateRef<any>
+  paginatorRightTemplate: TemplateRef<any>
+  loadingBodyTemplate: TemplateRef<any>
+
+  ngOnInit() {
+    this.onTableReady.emit(this.dataTable)
+  }
 
   ngOnChanges(changes: SimpleChanges) {
+  }
+
+  ngAfterContentInit() {
+    this.templates.forEach((item: TemplateDirective) => {
+      switch (item.getType()) {
+        case 'caption':
+          this.captionTemplate = item.templateRef;
+          break;
+
+        case 'header':
+          this.headerTemplate = item.templateRef;
+          break;
+
+        case 'headergrouped':
+          this.headerGroupedTemplate = item.templateRef;
+          break;
+
+        case 'body':
+          this.bodyTemplate = item.templateRef;
+          break;
+
+        case 'footer':
+          this.footerTemplate = item.templateRef;
+          break;
+
+        case 'footergrouped':
+          this.footerGroupedTemplate = item.templateRef;
+          break;
+
+        case 'summary':
+          this.summaryTemplate = item.templateRef;
+          break;
+
+        case 'rowexpansion':
+          this.rowExpansionTemplate = item.templateRef;
+          break;
+
+        case 'frozenbody':
+          this.frozenBodyTemplate = item.templateRef;
+          break;
+
+        case 'frozenrowexpansion':
+          this.frozenRowExpansionTemplate = item.templateRef;
+          break;
+
+        case 'groupheader':
+          this.groupHeaderTemplate = item.templateRef;
+          break;
+
+        case 'groupfooter':
+          this.groupFooterTemplate = item.templateRef;
+          break;
+
+        case 'emptymessage':
+          this.emptyMessageTemplate = item.templateRef;
+          break;
+
+        case 'paginatorleft':
+          this.paginatorLeftTemplate = item.templateRef;
+          break;
+
+        case 'paginatorright':
+          this.paginatorRightTemplate = item.templateRef;
+          break;
+
+        case 'loadingbody':
+          this.loadingBodyTemplate = item.templateRef;
+          break;
+      }
+    })
+  }
+
+  emitter(name: string, event: any) {
+    (this[name] as EventEmitter<any>).emit(event);
+  }
+
+  onFirstChange(event) {
+    this.first = event;
+    this.firstChange.emit(this.firstChange);
+  }
+
+  onRowsChange(event) {
+    this.rows = event;
+    this.rowsChange.emit(this.rows);
+  }
+
+  onSelectAllChange(event) {
+    this.selectAll = event;
+    this.selectAllChange.emit(this.selectAll);
+  }
+
+  onSelectionChange(event) {
+    this.selection = event;
+    this.selectionChange.emit(this.selection);
+  }
+
+  onContextMenuSelectionChange(event) {
+    this.contextMenuSelection = event;
+    this.contextMenuSelectionChange.emit(this.contextMenuSelection);
   }
 
   fromObj(data: any, field: string | string[], value?: any) {
@@ -69,7 +307,7 @@ export class TableComponent implements OnChanges {
   // @Input() striped: boolean = true;
   // @Input() gridlines: boolean = true;
   // @Input() size: NgSize = 'sm';
-  // // @Input() colDef: NgColDef[];
+  // @Input() colDef: NgColDef[];
   // @Input() rows: number = 5000;
   // @Input() dataKey: string;
   // @Input() globalFilterFields: string[];
@@ -77,10 +315,10 @@ export class TableComponent implements OnChanges {
   // @Input() rowHover: boolean;
   // @Input() autoLayout: boolean;
   // @Input() responsive: boolean = true;
-  // // @Input() reorderableRows: boolean;
+  // @Input() reorderableRows: boolean;
   // @Input() selectableRows: boolean;
   // @Input() selection: any;
-  // // @Input() selectionMode: NgSelectionMode;
+  // @Input() selectionMode: NgSelectionMode;
   // @Input() compareSelectionBy: 'equals' | 'deepEquals' = 'deepEquals';
   // @Input() contextMenuItems: MenuItem[];
   // @Input() contextMenuSelection: any;
@@ -156,17 +394,6 @@ export class TableComponent implements OnChanges {
   //
   // onCellEdit(rowData: any, field: string, newValue: any) {
   //   this.fromObj(rowData, field, newValue);
-  // }
-  //
-
-  //
-  // exportPdf() {
-  // }
-  //
-  // exportExcel() {
-  // }
-  //
-  // saveAsExcelFile(buffer: any, fileName: string): void {
   // }
   //
   // getClass(rowData: any, item: NgTableAction): string[] {

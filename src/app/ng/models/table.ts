@@ -27,28 +27,19 @@ export type NgTableFilterType =
 export interface NgTableFilter {
   type?: NgTableFilterType;
   header?: string;
-  matchMode?: NgFilterMatchMode;
-  showMatchModes?: boolean;
-  showOperator?: boolean;
-  showAddButton?: boolean;
+  min?: number;
+  max?: number;
   options?: any[];
   optionLabel?: string;
   optionValue?: string;
-  currency?: string;
   placeholder?: string;
   range?: boolean;
-  rangeValues?: [number, number];
+
+  matchMode?: NgFilterMatchMode;
+  showAddButton?: boolean;
   showMenu?: boolean;
-  operator?: 'and' | 'or';
   showClearButton?: boolean;
   showApplyButton?: boolean;
-  maxConstraints?: number;
-  minFractionDigits?: number;
-  maxFractionDigits?: number;
-  prefix?: string;
-  suffix?: string;
-  currencyDisplay?: string;
-  useGrouping?: boolean;
 }
 
 export class NgColDef {
@@ -57,7 +48,6 @@ export class NgColDef {
   width?: string;
   sort?: boolean;
   filter?: NgTableFilter;
-  nullPlaceholder?: string;
   renderer?: {
     type?: NgTableRendererType;
     locale?: 'fa-ir' | 'en-us';
@@ -82,9 +72,4 @@ export class NgTableAction {
   icon?: string;
   color?: NgColor;
   className?: string;
-  classConfigs?: {
-    class: string;
-    field: string;
-    tobe: any;
-  }[];
 }

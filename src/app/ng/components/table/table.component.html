@@ -1,4 +1,114 @@
-<p-table [value]="items" responsiveLayout="scroll" [reorderableColumns]="reorderableColumns" [columns]="colDef">
+<p-table #dataTable
+         [value]="items"
+         [columns]="colDef"
+         [frozenColumns]="frozenColumns"
+         [frozenValue]="frozenValue"
+         [responsiveLayout]="responsiveLayout"
+         [breakpoint]="breakpoint"
+         [style]="style"
+         [styleClass]="styleClass"
+         [tableStyle]="tableStyle"
+         [tableStyleClass]="tableStyleClass"
+         [paginator]="paginator"
+         [totalRecords]="totalRecords"
+         [pageLinks]="pageLinks"
+         [rowsPerPageOptions]="rowsPerPageOptions"
+         [alwaysShowPaginator]="alwaysShowPaginator"
+         [showFirstLastIcon]="showFirstLastIcon"
+         [paginatorPosition]="paginatorPosition"
+         [currentPageReportTemplate]="currentPageReportTemplate"
+         [showCurrentPageReport]="showCurrentPageReport"
+         [showJumpToPageDropdown]="showJumpToPageDropdown"
+         [showJumpToPageInput]="showJumpToPageInput"
+         [showPageLinks]="showPageLinks"
+         [sortMode]="sortMode"
+         [sortField]="sortField"
+         [sortOrder]="sortOrder"
+         [multiSortMeta]="multiSortMeta"
+         [rowGroupMode]="rowGroupMode"
+         [groupRowsBy]="groupRowsBy"
+         [groupRowsByOrder]="groupRowsByOrder"
+         [defaultSortOrder]="defaultSortOrder"
+         [customSort]="customSort"
+         [showInitialSortBadge]="showInitialSortBadge"
+         [selectionMode]="selectionMode"
+         [selectionPageOnly]="selectionPageOnly"
+         [contextMenuSelectionMode]="contextMenuSelectionMode"
+         [dataKey]="dataKey"
+         [metaKeySelection]="metaKeySelection"
+         [rowSelectable]="rowSelectable"
+         [rowTrackBy]="rowTrackBy"
+         [lazy]="lazy"
+         [lazyLoadOnInit]="lazyLoadOnInit"
+         [compareSelectionBy]="compareSelectionBy"
+         [csvSeparator]="csvSeparator"
+         [exportFilename]="exportFilename"
+         [filters]="filters"
+         [filterDelay]="filterDelay"
+         [globalFilterFields]="globalFilterFields"
+         [filterLocale]="filterLocale"
+         [expandedRowKeys]="expandedRowKeys"
+         [rowExpandMode]="rowExpandMode"
+         [scrollable]="scrollable"
+         [scrollDirection]="scrollDirection"
+         [scrollHeight]="scrollHeight"
+         [virtualScroll]="virtualScroll"
+         [virtualScrollDelay]="virtualScrollDelay"
+         [virtualScrollItemSize]="virtualScrollItemSize"
+         [virtualScrollOptions]="virtualScrollOptions"
+         [contextMenu]="contextMenu"
+         [resizableColumns]="resizableColumns"
+         [columnResizeMode]="columnResizeMode"
+         [reorderableColumns]="reorderableColumns"
+         [loading]="loading"
+         [loadingIcon]="loadingIcon"
+         [showLoader]="showLoader"
+         [rowHover]="rowHover"
+         [paginatorDropdownAppendTo]="paginatorDropdownAppendTo"
+         [paginatorDropdownScrollHeight]="paginatorDropdownScrollHeight"
+         [autoLayout]="autoLayout"
+         [resetPageOnSort]="resetPageOnSort"
+         [exportFunction]="exportFunction"
+         [stateKey]="stateKey"
+         [stateStorage]="stateStorage"
+         [editMode]="editMode"
+         [editingRowKeys]="editingRowKeys"
+         [exportHeader]="exportHeader"
+         (onRowSelect)="emitter('onRowSelect',$event)"
+         (onRowUnselect)="emitter('onRowUnselect',$event)"
+         (onPage)="emitter('onPage',$event)"
+         (onSort)="emitter('onSort',$event)"
+         (onFilter)="emitter('onFilter',$event)"
+         (onLazyLoad)="emitter('onLazyLoad',$event)"
+         (onRowExpand)="emitter('onRowExpand',$event)"
+         (onRowCollapse)="emitter('onRowCollapse',$event)"
+         (onContextMenuSelect)="emitter('onContextMenuSelect',$event)"
+         (onColResize)="emitter('onColResize',$event)"
+         (onColReorder)="emitter('onColReorder',$event)"
+         (onRowReorder)="emitter('onRowReorder',$event)"
+         (onEditInit)="emitter('onEditInit',$event)"
+         (onEditComplete)="emitter('onEditComplete',$event)"
+         (onEditCancel)="emitter('onEditCancel',$event)"
+         (onHeaderCheckboxToggle)="emitter('onHeaderCheckboxToggle',$event)"
+         (onStateSave)="emitter('onStateSave',$event)"
+         (onStateRestore)="emitter('onStateRestore',$event)"
+         (sortFunction)="emitter('sortFunction',$event)"
+         (firstChange)="onFirstChange($event)"
+         (rowsChange)="onRowsChange($event)"
+         (selectAllChange)="onSelectAllChange($event)"
+         (selectionChange)="onSelectionChange($event)"
+         (contextMenuSelectionChange)="onContextMenuSelectionChange($event)">
+
+  <ng-template pTemplate="caption" let-item *ngIf="captionTemplate">
+    <ng-container *ngTemplateOutlet="captionTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="headergrouped" let-item *ngIf="headerGroupedTemplate">
+    <ng-container *ngTemplateOutlet="headerGroupedTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="groupheader" let-item *ngIf="groupHeaderTemplate">
+    <ng-container *ngTemplateOutlet="groupHeaderTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
+
   <ng-template pTemplate="header" let-columns>
     <ng-container *ngIf="filterDisplay == 'menu'">
       <tr>
@@ -20,6 +130,18 @@
               <div class="px-3 pt-3 pb-0"><span class="font-bold">{{filter.header}}</span></div>
             </ng-template>
             <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback" [ngSwitch]="filter.type">
+              <ng-input-text
+                *ngSwitchCase="'text'"
+                [ngModel]="value"
+                (onChange)="_onFilter($event,filterCallback)">
+              </ng-input-text>
+
+              <ng-input-number
+                *ngSwitchCase="'number'"
+                [ngModel]="value"
+                (onInput)="_onFilter($event,filterCallback)">
+              </ng-input-number>
+
               <ng-multi-select
                 *ngSwitchCase="'multi-select'"
                 [ngModel]="value"
@@ -39,6 +161,21 @@
                 [placeholder]="filter.placeholder"
                 (onChange)="_onFilter($event,filterCallback)">
               </p-dropdown>
+
+              <ng-slider
+                *ngSwitchCase="'slider'"
+                [ngModel]="value"
+                [min]="filter.min"
+                [max]="filter.max"
+                [range]="filter.range"
+                (onSlideEnd)="_onFilter($event,filterCallback)">
+              </ng-slider>
+
+              <ng-tri-state-checkbox
+                *ngSwitchCase="'checkbox'"
+                [ngModel]="value"
+                (onChange)="_onFilter($event,filterCallback)">
+              </ng-tri-state-checkbox>
             </ng-template>
           </p-columnFilter>
         </th>
@@ -66,42 +203,61 @@
     </ng-container>
   </ng-template>
 
+  <ng-template pTemplate="rowexpansion" let-item *ngIf="rowExpansionTemplate">
+    <ng-container *ngTemplateOutlet="rowExpansionTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="frozenbody" let-item *ngIf="frozenBodyTemplate">
+    <ng-container *ngTemplateOutlet="frozenBodyTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="frozenrowexpansion" let-item *ngIf="frozenRowExpansionTemplate">
+    <ng-container *ngTemplateOutlet="frozenRowExpansionTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
 
   <ng-template pTemplate="body" let-item let-columns="columns" let-index="rowIndex">
-<!--    caption-->
-<!--    header-->
-<!--    headergrouped-->
-<!--    body-->
-<!--    footer-->
-<!--    footergrouped-->
-<!--    summary-->
-<!--    rowexpansion-->
-<!--    frozenbody-->
-<!--    frozenrowexpansion-->
-<!--    groupheader-->
-<!--    groupfooter-->
-<!--    emptymessage-->
-<!--    paginatorleft-->
-<!--    paginatorright-->
-<!--    loadingbody-->
+    <ng-container *ngIf="bodyTemplate; else defaultBodyTemplate">
+      <ng-container *ngTemplateOutlet="bodyTemplate;context:{$implicit:item}"></ng-container>
+    </ng-container>
+    <ng-template #defaultBodyTemplate>
+      <tr [pReorderableRow]="index">
+        <td *ngIf="reorderableRows">
+          <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
+        </td>
+        <td *ngIf="selectionMode == 'radio'">
+          <p-tableRadioButton [value]="item" [disabled]="item[disableSelectionField]"></p-tableRadioButton>
+        </td>
+        <td *ngIf="selectionMode == 'checkbox'">
+          <p-tableCheckbox [value]="item" [disabled]="item[disableSelectionField]"></p-tableCheckbox>
+        </td>
+        <td *ngFor="let col of colDef">
+          {{fromObj(item, col.field)}}
+        </td>
+      </tr>
+    </ng-template>
+  </ng-template>
 
-<!--    <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">-->
-<!--      <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>-->
-<!--    </ng-template>-->
-    <tr [pReorderableRow]="index">
-      <td *ngIf="reorderableRows">
-        <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
-      </td>
-      <td *ngIf="selectionMode == 'radio'">
-        <p-tableRadioButton [value]="item" [disabled]="item[disableSelectionField]"></p-tableRadioButton>
-      </td>
-      <td *ngIf="selectionMode == 'checkbox'">
-        <p-tableCheckbox [value]="item" [disabled]="item[disableSelectionField]"></p-tableCheckbox>
-      </td>
-      <td *ngFor="let col of colDef">
-        {{fromObj(item, col.field)}}
-      </td>
-    </tr>
+  <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
+    <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="footergrouped" let-item *ngIf="footerGroupedTemplate">
+    <ng-container *ngTemplateOutlet="footerGroupedTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="groupfooter" let-item *ngIf="groupFooterTemplate">
+    <ng-container *ngTemplateOutlet="groupFooterTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="summary" let-item *ngIf="summaryTemplate">
+    <ng-container *ngTemplateOutlet="summaryTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="emptymessage" let-item *ngIf="emptyMessageTemplate">
+    <ng-container *ngTemplateOutlet="emptyMessageTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="loadingbody" let-item *ngIf="loadingBodyTemplate">
+    <ng-container *ngTemplateOutlet="loadingBodyTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="paginatorleft" let-item *ngIf="paginatorLeftTemplate">
+    <ng-container *ngTemplateOutlet="paginatorLeftTemplate;context:{$implicit:item}"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="paginatorright" let-item *ngIf="paginatorRightTemplate">
+    <ng-container *ngTemplateOutlet="paginatorRightTemplate;context:{$implicit:item}"></ng-container>
   </ng-template>
 </p-table>
 
@@ -559,12 +715,12 @@
 <!--                [rtl]="rtl"-->
 <!--                size="md"-->
 <!--              ></ng-input-text>-->
-<!--              <ng-single-checkbox-->
+<!--              <ng-checkbox-->
 <!--                (onChange)="onCellEdit(rowData, col.field, $event.checked)"-->
 <!--                *ngSwitchCase="'boolean'"-->
 <!--                [ngModel]="fromObj(rowData, col.field)"-->
 <!--              >-->
-<!--              </ng-single-checkbox>-->
+<!--              </ng-checkbox>-->
 <!--              <ng-date-picker-->
 <!--                (onChange)="onCellEdit(rowData, col.field, $event.dateObj)"-->
 <!--                *ngSwitchCase="'date'"-->

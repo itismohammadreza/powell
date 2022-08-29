@@ -701,7 +701,8 @@ export class TablePage {
         showOperator: false,
         showAddButton: false,
         showApplyButton: false,
-        rangeValues: [0, 100],
+        min: 0,
+        max: 100,
       },
     },
     {
