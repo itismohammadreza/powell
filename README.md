@@ -15,7 +15,7 @@
 - [ ] **map** - implement `removeLastMarker` & `removeAllMarkers` buttons. also add an `@Input() multi: boolean` to allow
   choosing multiple marker.
 - [ ] **all** - handle rtl direction in dropdowns panel (or etc.) when is appendTo body.
-- [ ] **all** - place hint in top of component instead of bottom. also add question icon before it.
+- [ ] **all** - remove hint on showing error
 - [ ] **all** - add specific class to hint and error and icon elements and edit `.scss` file.
 - [x] **all** - see where we need this snippet `&.rtl { text-align: rtl }` and where is extra. remove extras.
 - [ ] **all** - categorize components folder structure. create overlay & forms folders and add relative components to
@@ -55,3 +55,4 @@
 - [ ] **whiteboard** implement component.
 - [ ] **tree** implement component.
 - [ ] **treeSelect** implement component.
+- [ ] **avatar** implement component.
