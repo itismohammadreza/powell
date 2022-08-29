@@ -29,7 +29,7 @@ import {MultiSelectComponent} from './multi-select/multi-select.component';
 import {RadioComponent} from './radio/radio.component';
 import {RatingComponent} from './rating/rating.component';
 import {SelectButtonComponent} from './select-button/select-button.component';
-import {SingleCheckboxComponent} from './single-checkbox/single-checkbox.component';
+import {CheckboxComponent} from './checkbox/checkbox.component';
 import {SliderComponent} from './slider/slider.component';
 import {SplitButtonComponent} from './split-button/split-button.component';
 import {SwitchComponent} from './switch/switch.component';
@@ -46,6 +46,9 @@ import {Dialog2Component} from './dialog2/dialog2.component';
 import {ButtonAsyncComponent} from './button-async/button-async.component';
 import {KnobComponent} from './knob/knob.component';
 import {TreeSelectComponent} from './tree-select/tree-select.component';
+import {GregorianDatepickerComponent} from "@ng/components/gregorian-datepicker/gregorian-datepicker.component";
+import {TriStateCheckboxComponent} from "@ng/components/tri-state-checkbox/tri-state-checkbox.component";
+import {ShamsiDatepickerComponent} from "@ng/components/shamsi-datepicker/shamsi-datepicker.component";
 
 export const COMPONENTS: Type<any>[] = [
   AutoCompleteComponent,
@@ -53,6 +56,7 @@ export const COMPONENTS: Type<any>[] = [
   ButtonComponent,
   ButtonAsyncComponent,
   CascadeSelectComponent,
+  CheckboxComponent,
   ChipsComponent,
   ColorPickerComponent,
   ConfirmComponent,
@@ -70,6 +74,7 @@ export const COMPONENTS: Type<any>[] = [
   EmptyComponent,
   FilePickerComponent,
   FilePicker2Component,
+  GregorianDatepickerComponent,
   ImageSliderComponent,
   InputMaskComponent,
   InputNumberComponent,
@@ -86,7 +91,7 @@ export const COMPONENTS: Type<any>[] = [
   RadioComponent,
   RatingComponent,
   SelectButtonComponent,
-  SingleCheckboxComponent,
+  ShamsiDatepickerComponent,
   SliderComponent,
   SplitButtonComponent,
   SwitchComponent,
@@ -95,4 +100,5 @@ export const COMPONENTS: Type<any>[] = [
   ToggleButtonComponent,
   TreeComponent,
   TreeSelectComponent,
+  TriStateCheckboxComponent,
 ];

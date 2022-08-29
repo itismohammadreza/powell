@@ -24,7 +24,7 @@
       <b>Using With Reactive Forms</b>
     </p-divider>
     <form [formGroup]="form">
-      <ng-single-checkbox
+      <ng-checkbox
         formControlName="c1"
         [errors]="{ required: 'error' }"
         [label]="label"
@@ -32,13 +32,13 @@
         [rtl]="rtl"
         [disabled]="disabled"
         [readonly]="readonly"
-      ></ng-single-checkbox>
+      ></ng-checkbox>
     </form>
 
     <p-divider align="center">
       <b>Using With NgModel</b>
     </p-divider>
-    <ng-single-checkbox
+    <ng-checkbox
       name="myInput"
       required
       [(ngModel)]="binding"
@@ -48,7 +48,7 @@
       [rtl]="rtl"
       [disabled]="disabled"
       [readonly]="readonly"
-    ></ng-single-checkbox>
+    ></ng-checkbox>
     <pre class="mt-3 mb-0" dir="ltr"><b>Value :</b> {{binding | json}}</pre>
   </p-panel>
 </div>

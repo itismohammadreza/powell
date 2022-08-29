@@ -2,11 +2,11 @@ import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'ng-single-checkbox-page',
-  templateUrl: './single-checkbox.page.html',
-  styleUrls: ['./single-checkbox.page.scss'],
+  selector: 'ng-checkbox-page',
+  templateUrl: './checkbox.page.html',
+  styleUrls: ['./checkbox.page.scss'],
 })
-export class SingleCheckboxPage {
+export class CheckboxPage {
   form = new UntypedFormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });

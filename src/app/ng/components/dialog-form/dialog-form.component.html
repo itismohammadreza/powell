@@ -579,8 +579,8 @@
           [showRequiredStar]="item.showRequiredStar || true"
           [value]="item.value"
         ></ng-select-button>
-        <ng-single-checkbox
-          *ngSwitchCase="'single-checkbox'"
+        <ng-checkbox
+          *ngSwitchCase="'checkbox'"
           [binary]="item.binary"
           [disabled]="item.disabled"
           [errors]="getValidatorErrors(item)"
@@ -592,7 +592,7 @@
           [rtl]="formOptions.rtl"
           [showRequiredStar]="item.showRequiredStar || true"
           [value]="item.value"
-        ></ng-single-checkbox>
+        ></ng-checkbox>
         <ng-slider
           *ngSwitchCase="'slider'"
           [animate]="item.animate"

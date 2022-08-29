@@ -6,8 +6,6 @@ import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {NgError} from "@ng/models/forms";
 
-// import * as moment from 'jalali-moment';
-
 @Component({
   selector: 'dialog-form',
   templateUrl: './dialog-form.component.html',
@@ -94,7 +92,7 @@ export class DialogFormComponent implements OnInit {
         case 'invisible':
           config.visible = false;
           switch (config.component) {
-            case 'single-checkbox':
+            case 'checkbox':
             case 'switch':
               control.setValue(false);
               break;

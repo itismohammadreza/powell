@@ -26,7 +26,7 @@ import {MultiSelectPage} from '@modules/main/pages/showcase/pages/multi-select/m
 import {RadioPage} from '@modules/main/pages/showcase/pages/radio/radio.page';
 import {RatingPage} from '@modules/main/pages/showcase/pages/rating/rating.page';
 import {SelectButtonPage} from '@modules/main/pages/showcase/pages/select-button/select-button.page';
-import {SingleCheckboxPage} from '@modules/main/pages/showcase/pages/single-checkbox/single-checkbox.page';
+import {CheckboxPage} from '@modules/main/pages/showcase/pages/checkbox/checkbox.page';
 import {SliderPage} from '@modules/main/pages/showcase/pages/slider/slider.page';
 import {SplitButtonPage} from '@modules/main/pages/showcase/pages/split-button/split-button.page';
 import {SwitchPage} from '@modules/main/pages/showcase/pages/switch/switch.page';
@@ -36,7 +36,9 @@ import {TreePage} from '@modules/main/pages/showcase/pages/tree/tree.page';
 import {DynamicFormPage} from '@modules/main/pages/showcase/pages/dynamic-form/dynamic-form.page';
 import {ImageSliderPage} from '@modules/main/pages/showcase/pages/image-slider/image-slider.page';
 import {DashboardPage} from '@modules/main/pages/showcase/pages/dashboard/dashboard.page';
-import {PreviewOptionsComponent} from '@modules/main/pages/showcase/components/preview-options/preview-options.component';
+import {
+  PreviewOptionsComponent
+} from '@modules/main/pages/showcase/components/preview-options/preview-options.component';
 import {KnobPage} from '@modules/main/pages/showcase/pages/knob/knob.page';
 import {TreeSelectPage} from '@modules/main/pages/showcase/pages/tree-select/tree-select.page';
 import {DatePicker2Page} from '@modules/main/pages/showcase/pages/date-picker2/date-picker2.page';
@@ -46,6 +48,11 @@ import {
 import {ButtonAsyncPage} from '@modules/main/pages/showcase/pages/button-async/button-async.page';
 import {UtilsPage} from "@modules/main/pages/showcase/pages/utils/utils.page";
 import {SmokeComponent} from "@modules/main/pages/showcase/components/smoke/smoke.component";
+import {TriStateCheckboxPage} from "@modules/main/pages/showcase/pages/tri-state-checkbox/tri-state-checkbox.page";
+import {ShamsiDatepickerPage} from "@modules/main/pages/showcase/pages/shamsi-datepicker/shamsi-datepicker.page";
+import {
+  GregorianDatepickerPage
+} from "@modules/main/pages/showcase/pages/gregorian-datepicker/gregorian-datepicker.page";
 
 export const COMPONENTS: Type<any>[] = [
   // components
@@ -62,10 +69,12 @@ export const COMPONENTS: Type<any>[] = [
   ButtonPage,
   ButtonAsyncPage,
   CascadeSelectPage,
+  CheckboxPage,
   ChipsPage,
   ColorPickerPage,
   DatePickerPage,
   DatePicker2Page,
+  GregorianDatepickerPage,
   DynamicDialogSampleComponent,
   DynamicFormPage,
   DropdownPage,
@@ -86,7 +95,7 @@ export const COMPONENTS: Type<any>[] = [
   RadioPage,
   RatingPage,
   SelectButtonPage,
-  SingleCheckboxPage,
+  ShamsiDatepickerPage,
   SliderPage,
   SplitButtonPage,
   SwitchPage,
@@ -94,5 +103,6 @@ export const COMPONENTS: Type<any>[] = [
   ToggleButtonPage,
   TreePage,
   TreeSelectPage,
+  TriStateCheckboxPage,
   UtilsPage
 ];

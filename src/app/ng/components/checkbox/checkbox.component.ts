@@ -18,24 +18,23 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  NgModel,
   UntypedFormGroup
 } from '@angular/forms';
 import {NgError} from '@ng/models/forms';
 
 @Component({
-  selector: 'ng-single-checkbox',
-  templateUrl: './single-checkbox.component.html',
-  styleUrls: ['./single-checkbox.component.scss'],
+  selector: 'ng-checkbox',
+  templateUrl: './checkbox.component.html',
+  styleUrls: ['./checkbox.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SingleCheckboxComponent),
+      useExisting: forwardRef(() => CheckboxComponent),
       multi: true
     }
   ]
 })
-export class SingleCheckboxComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;

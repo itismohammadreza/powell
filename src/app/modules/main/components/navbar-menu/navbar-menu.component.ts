@@ -143,6 +143,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       'button',
       'button-async',
       'cascade-select',
+      'checkbox',
       'chips',
       'color-picker',
       'date-picker',
@@ -151,6 +152,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       'editor',
       'file-picker',
       'file-picker2',
+      'gregorian-datepicker',
       'image-slider',
       'mask',
       'number',
@@ -165,7 +167,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       'radio',
       'rating',
       'select-button',
-      'single-checkbox',
+      'shamsi-datepicker',
       'slider',
       'split-button',
       'switch',
@@ -173,6 +175,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       'toggle-button',
       'tree',
       'tree-select',
+      'tri-state-checkbox',
       'utils',
     ];
 
