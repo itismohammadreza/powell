@@ -15,7 +15,7 @@ import {NgOrientation, NgPosition, NgSize} from '@ng/models/offset';
 import {NgColor} from '@ng/models/color';
 import {DropdownComponent} from '@ng/components/dropdown/dropdown.component';
 import {InputTextComponent} from '@ng/components/input-text/input-text.component';
-import {SingleCheckboxComponent} from '@ng/components/single-checkbox/single-checkbox.component';
+import {CheckboxComponent} from '@ng/components/checkbox/checkbox.component';
 import {NgButtonAppearance} from '@ng/models/button';
 
 type PreviewItem =
@@ -461,7 +461,7 @@ export class PreviewOptionsComponent implements OnInit {
       } else if (typeof this[item] === 'string' || typeof this[item] === 'number') {
         this.createComponent(InputTextComponent, item, 'firstRow');
       } else if (typeof this[item] === 'boolean') {
-        this.createComponent(SingleCheckboxComponent, item, 'secondRow');
+        this.createComponent(CheckboxComponent, item, 'secondRow');
       }
     }
   }
@@ -506,7 +506,7 @@ export class PreviewOptionsComponent implements OnInit {
           this[`${previewItem}Change`].next(val.target.value);
         });
         break;
-      case SingleCheckboxComponent:
+      case CheckboxComponent:
         cmpRef.instance.onChange.subscribe(val => {
           this[`${previewItem}Change`].next(val.checked);
         });

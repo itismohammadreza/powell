@@ -22,7 +22,7 @@ import {MultiSelectPage} from '@modules/main/pages/showcase/pages/multi-select/m
 import {RadioPage} from '@modules/main/pages/showcase/pages/radio/radio.page';
 import {RatingPage} from '@modules/main/pages/showcase/pages/rating/rating.page';
 import {SelectButtonPage} from '@modules/main/pages/showcase/pages/select-button/select-button.page';
-import {SingleCheckboxPage} from '@modules/main/pages/showcase/pages/single-checkbox/single-checkbox.page';
+import {CheckboxPage} from '@modules/main/pages/showcase/pages/checkbox/checkbox.page';
 import {SliderPage} from '@modules/main/pages/showcase/pages/slider/slider.page';
 import {SplitButtonPage} from '@modules/main/pages/showcase/pages/split-button/split-button.page';
 import {SwitchPage} from '@modules/main/pages/showcase/pages/switch/switch.page';
@@ -36,6 +36,11 @@ import {KnobPage} from '@modules/main/pages/showcase/pages/knob/knob.page';
 import {TreeSelectPage} from '@modules/main/pages/showcase/pages/tree-select/tree-select.page';
 import {ButtonAsyncPage} from '@modules/main/pages/showcase/pages/button-async/button-async.page';
 import {UtilsPage} from "@modules/main/pages/showcase/pages/utils/utils.page";
+import {
+  GregorianDatepickerPage
+} from "@modules/main/pages/showcase/pages/gregorian-datepicker/gregorian-datepicker.page";
+import {ShamsiDatepickerPage} from "@modules/main/pages/showcase/pages/shamsi-datepicker/shamsi-datepicker.page";
+import {TriStateCheckboxPage} from "@modules/main/pages/showcase/pages/tri-state-checkbox/tri-state-checkbox.page";
 
 const routes: Routes = [
   {
@@ -62,6 +67,11 @@ const routes: Routes = [
     path: 'cascade-select',
     component: CascadeSelectPage,
     data: {title: 'cascade-select'}
+  },
+  {
+    path: 'checkbox',
+    component: CheckboxPage,
+    data: {title: 'checkbox'}
   },
   {
     path: 'chips',
@@ -102,6 +112,11 @@ const routes: Routes = [
     path: 'file-picker2',
     component: FilePicker2Page,
     data: {title: 'file-picker2'}
+  },
+  {
+    path: 'gregorian-datepicker',
+    component: GregorianDatepickerPage,
+    data: {title: 'gregorian-datepicker'}
   },
   {
     path: 'image-slider',
@@ -174,9 +189,9 @@ const routes: Routes = [
     data: {title: 'select-button'}
   },
   {
-    path: 'single-checkbox',
-    component: SingleCheckboxPage,
-    data: {title: 'single-checkbox'}
+    path: 'shamsi-datepicker',
+    component: ShamsiDatepickerPage,
+    data: {title: 'shamsi-datepicker'}
   },
   {
     path: 'slider',
@@ -212,6 +227,11 @@ const routes: Routes = [
     path: 'tree-select',
     component: TreeSelectPage,
     data: {title: 'tree-select'}
+  },
+  {
+    path: 'tri-state-checkbox',
+    component: TriStateCheckboxPage,
+    data: {title: 'tri-state-checkbox'}
   },
   {
     path: 'utils',
