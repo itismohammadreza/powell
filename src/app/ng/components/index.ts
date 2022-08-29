@@ -8,7 +8,7 @@ import {ColorPickerComponent} from './color-picker/color-picker.component';
 import {ConfirmPopupComponent} from './confirm-popup/confirm-popup.component';
 import {ConfirmComponent} from './confirm/confirm.component';
 // import {DatePickerComponent} from './date-picker/date-picker.component';
-// import {DatePicker2Component} from './date-picker2/date-picker2.component';
+import {DatePicker2Component} from './date-picker2/date-picker2.component';
 import {DialogFormComponent} from './dialog-form/dialog-form.component';
 import {DropdownComponent} from './dropdown/dropdown.component';
 import {EditorComponent} from './editor/editor.component';
@@ -33,7 +33,7 @@ import {SingleCheckboxComponent} from './single-checkbox/single-checkbox.compone
 import {SliderComponent} from './slider/slider.component';
 import {SplitButtonComponent} from './split-button/split-button.component';
 import {SwitchComponent} from './switch/switch.component';
-// import {TableComponent} from './table/table.component';
+import {TableComponent} from './table/table.component';
 import {ToastComponent} from './toast/toast.component';
 import {ToggleButtonComponent} from './toggle-button/toggle-button.component';
 import {TreeComponent} from './tree/tree.component';
@@ -58,7 +58,7 @@ export const COMPONENTS: Type<any>[] = [
   ConfirmComponent,
   ConfirmPopupComponent,
   // DatePickerComponent,
-  // DatePicker2Component,
+  DatePicker2Component,
   DialogComponent,
   Dialog2Component,
   DynamicFormComponent,
@@ -90,7 +90,7 @@ export const COMPONENTS: Type<any>[] = [
   SliderComponent,
   SplitButtonComponent,
   SwitchComponent,
-  // TableComponent,
+  TableComponent,
   ToastComponent,
   ToggleButtonComponent,
   TreeComponent,

@@ -623,12 +623,11 @@ export class TablePage {
     {
       header: 'name',
       field: 'name',
-      sortable: true,
+      sort: true,
       renderer: {type: 'text'},
       edit: {type: 'text'},
       filter: {
         type: 'multi-select',
-        display: 'menu',
         showMenu: true,
       },
     },
@@ -636,7 +635,7 @@ export class TablePage {
       header: 'country',
       field: 'country.name',
       renderer: {type: 'text'},
-      sortable: true,
+      sort: true,
       edit: {type: 'dropdown', options: this.statuses},
       filter: {
         type: 'text',
@@ -646,7 +645,7 @@ export class TablePage {
       header: 'representative',
       field: 'representative.name',
       renderer: {type: 'text'},
-      sortable: true,
+      sort: true,
       edit: {type: 'dropdown'},
       filter: {
         type: 'multi-select',
@@ -663,7 +662,7 @@ export class TablePage {
       edit: {
         type: 'date',
       },
-      sortable: true,
+      sort: true,
       filter: {
         type: 'date',
       },
@@ -672,7 +671,7 @@ export class TablePage {
       header: 'company',
       field: 'company',
       renderer: {type: 'text'},
-      sortable: true,
+      sort: true,
       filter: {
         type: 'numeric',
         currency: 'USD',
@@ -682,7 +681,7 @@ export class TablePage {
       header: 'status',
       field: 'status',
       renderer: {type: 'text'},
-      sortable: true,
+      sort: true,
       filter: {
         type: 'dropdown',
         options: this.statuses,
@@ -693,11 +692,10 @@ export class TablePage {
       header: 'activity',
       field: 'activity',
       renderer: {type: 'text'},
-      sortable: true,
+      sort: true,
       filter: {
         type: 'slider',
         range: true,
-        display: 'menu',
         matchMode: 'between',
         showMatchModes: false,
         showOperator: false,
@@ -710,7 +708,7 @@ export class TablePage {
       header: 'image',
       field: 'image',
       renderer: {type: 'image'},
-      sortable: false,
+      sort: false,
       edit: {type: 'file'},
     },
     {
@@ -721,7 +719,7 @@ export class TablePage {
         trueIcon: 'pi pi-check',
         falseIcon: 'pi pi-times',
       },
-      sortable: true,
+      sort: true,
       edit: {
         type: 'boolean',
       },

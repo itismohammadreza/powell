@@ -24,8 +24,9 @@ export type NgTableFilterType =
   | 'date'
   | 'slider';
 
-export class NgTableFilter {
+export interface NgTableFilter {
   type?: NgTableFilterType;
+  header?: string;
   matchMode?: NgFilterMatchMode;
   showMatchModes?: boolean;
   showOperator?: boolean;
@@ -36,13 +37,12 @@ export class NgTableFilter {
   currency?: string;
   placeholder?: string;
   range?: boolean;
-  display?: 'row' | 'menu' = 'menu';
   rangeValues?: [number, number];
-  showMenu?: boolean = true;
+  showMenu?: boolean;
   operator?: 'and' | 'or';
-  showClearButton?: boolean = true;
-  showApplyButton?: boolean = true;
-  maxConstraints?: number = 2;
+  showClearButton?: boolean;
+  showApplyButton?: boolean;
+  maxConstraints?: number;
   minFractionDigits?: number;
   maxFractionDigits?: number;
   prefix?: string;
@@ -54,8 +54,9 @@ export class NgTableFilter {
 export class NgColDef {
   header?: string;
   field?: string;
-  width?: number;
-  sortable?: boolean;
+  width?: string;
+  sort?: boolean;
+  filter?: NgTableFilter;
   nullPlaceholder?: string;
   renderer?: {
     type?: NgTableRendererType;
@@ -73,7 +74,6 @@ export class NgColDef {
     resultType?: 'base64' | 'file';
     accept?: string;
   };
-  filter?: NgTableFilter;
 }
 
 export class NgTableAction {
