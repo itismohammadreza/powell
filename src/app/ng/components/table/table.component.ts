@@ -66,12 +66,11 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Input() sortMode: 'single' | 'multiple' = 'single';
   @Input() sortField: string;
   @Input() sortOrder: number = 1;
-  @Input() multiSortMeta: SortMeta;
+  @Input() multiSortMeta: SortMeta[];
   @Input() rowGroupMode: 'subheader' | 'rowspan';
   @Input() groupRowsBy: string | string[];
   @Input() groupRowsByOrder: number = 1;
   @Input() defaultSortOrder: number = 1;
-  @Input() customSort: boolean;
   @Input() showInitialSortBadge: boolean = true;
   @Input() selectionMode: NgSelectionMode = 'single';
   @Input() selectionPageOnly: boolean;
@@ -164,9 +163,18 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   paginatorLeftTemplate: TemplateRef<any>
   paginatorRightTemplate: TemplateRef<any>
   loadingBodyTemplate: TemplateRef<any>
-
+  sliderValues: [number, number]
+  tableReady
   ngOnInit() {
-    this.onTableReady.emit(this.dataTable)
+    this.onTableReady.emit(this.dataTable);
+    this.colDef.forEach(conf => {
+      if (conf.filter && conf.filter.type == 'slider' && conf.filter.range) {
+        console.log(conf)
+        Object.assign(conf, {sliderValue: [conf.filter.min, conf.filter.max]})
+      }
+    })
+    this.tableReady = true;
+    console.log(this.colDef)
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -287,8 +295,34 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     }
   }
 
-  _onFilter(event: any, filterCallback: any) {
-    console.log(event, filterCallback)
+
+  onChangeFilterValue(event: any, filterCallback: Function, col?: NgColDef) {
+    console.log(event);
+    if (this.local) {
+      let filterValue;
+      switch (col.filter.type) {
+        case 'text':
+        case 'numeric':
+        case 'boolean':
+        case 'date':
+        case 'multi-select':
+        case 'dropdown':
+        case 'slider':
+          filterValue = event.values;
+          break;
+      }
+      console.log(filterValue)
+      filterCallback(filterValue)
+    }
+  }
+
+  /**
+   * if user choose local mode, this function raise twice, one when the user changes the filter element value,
+   * after that, when the filter applied to table (so in local mode we should have filterCallback).
+   * otherwise, will raise once. just when user changes filter element value.
+   */
+  _onFilter(event: any) {
+    this.onFilter.emit(event)
   }
 
   //

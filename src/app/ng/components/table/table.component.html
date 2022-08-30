@@ -29,7 +29,7 @@
          [groupRowsBy]="groupRowsBy"
          [groupRowsByOrder]="groupRowsByOrder"
          [defaultSortOrder]="defaultSortOrder"
-         [customSort]="customSort"
+         [customSort]="local"
          [showInitialSortBadge]="showInitialSortBadge"
          [selectionMode]="selectionMode"
          [selectionPageOnly]="selectionPageOnly"
@@ -78,7 +78,7 @@
          (onRowUnselect)="emitter('onRowUnselect',$event)"
          (onPage)="emitter('onPage',$event)"
          (onSort)="emitter('onSort',$event)"
-         (onFilter)="emitter('onFilter',$event)"
+         (onFilter)="_onFilter($event)"
          (onLazyLoad)="emitter('onLazyLoad',$event)"
          (onRowExpand)="emitter('onRowExpand',$event)"
          (onRowCollapse)="emitter('onRowCollapse',$event)"
@@ -123,6 +123,7 @@
           <p-columnFilter *ngIf="col.filter as filter"
                           [field]="col.field"
                           display="menu"
+                          [matchMode]="filter.matchMode"
                           [showMatchModes]="false"
                           [showOperator]="false"
                           [showAddButton]="false">
@@ -133,13 +134,13 @@
               <ng-input-text
                 *ngSwitchCase="'text'"
                 [ngModel]="value"
-                (onChange)="_onFilter($event,filterCallback)">
+                (onChange)="onChangeFilterValue($event,filterCallback,col)">
               </ng-input-text>
 
               <ng-input-number
                 *ngSwitchCase="'number'"
                 [ngModel]="value"
-                (onInput)="_onFilter($event,filterCallback)">
+                (onInput)="onChangeFilterValue($event,filterCallback,col)">
               </ng-input-number>
 
               <ng-multi-select
@@ -149,7 +150,7 @@
                 [optionLabel]="filter.optionLabel"
                 [optionValue]="filter.optionValue"
                 [placeholder]="filter.placeholder"
-                (onChange)="_onFilter($event,filterCallback)">
+                (onChange)="onChangeFilterValue($event,filterCallback,col)">
               </ng-multi-select>
 
               <p-dropdown
@@ -159,22 +160,24 @@
                 [optionLabel]="filter.optionLabel"
                 [optionValue]="filter.optionValue"
                 [placeholder]="filter.placeholder"
-                (onChange)="_onFilter($event,filterCallback)">
+                (onChange)="onChangeFilterValue($event,filterCallback,col)">
               </p-dropdown>
 
-              <ng-slider
-                *ngSwitchCase="'slider'"
-                [ngModel]="value"
-                [min]="filter.min"
-                [max]="filter.max"
-                [range]="filter.range"
-                (onSlideEnd)="_onFilter($event,filterCallback)">
-              </ng-slider>
-
+              <ng-container *ngSwitchCase="'slider'">
+                <ng-slider
+                  [ngModel]="filter.sliderValue"
+                  [min]="filter.min"
+                  [max]="filter.max"
+                  [range]="filter.range"
+                  (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
+                </ng-slider>
+                <span>11111: {{filter.sliderValue}}</span>
+                <!--                <span>{{filter.sliderValue[1]}}</span>-->
+              </ng-container>
               <ng-tri-state-checkbox
                 *ngSwitchCase="'checkbox'"
                 [ngModel]="value"
-                (onChange)="_onFilter($event,filterCallback)">
+                (onChange)="onChangeFilterValue($event,filterCallback,col)">
               </ng-tri-state-checkbox>
             </ng-template>
           </p-columnFilter>

@@ -34,7 +34,7 @@ export interface NgTableFilter {
   optionValue?: string;
   placeholder?: string;
   range?: boolean;
-
+  sliderValue?: [number, number]; // filled in table component when range is enabled
   matchMode?: NgFilterMatchMode;
   showAddButton?: boolean;
   showMenu?: boolean;
@@ -53,8 +53,6 @@ export class NgColDef {
     locale?: 'fa-ir' | 'en-us';
     trueIcon?: string;
     falseIcon?: string;
-    showFileButton?: boolean;
-    fileButtonDefaultBehavior?: boolean
   };
   edit?: {
     type?: NgTableEditorType;
