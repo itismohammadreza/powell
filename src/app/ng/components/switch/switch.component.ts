@@ -19,7 +19,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgError, NgLabelPosition} from '@ng/models/forms';
+import { NgError, NgLabelPosition } from '@ng/models/forms';
 
 @Component({
   selector: 'ng-switch',
@@ -36,6 +36,8 @@ import {NgError, NgLabelPosition} from '@ng/models/forms';
 export class SwitchComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
+  @Input() onLabel: string ;
+  @Input() offLabel: string ;
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;
@@ -93,6 +95,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
         });
       }
     }
+    this.setLabel();
   }
 
   ngAfterViewInit() {
@@ -100,7 +103,24 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
       if (this.label) {
         this.label += ' *';
       }
+      if (this.onLabel) {
+        this.onLabel += ' *';
+      }
+      if (this.offLabel) {
+        this.offLabel += ' *';
+      }
       this.cd.detectChanges();
+    }
+  }
+
+  setLabel() {
+    if (this.onLabel && this.offLabel) {
+      if (this.value) {
+        this.label = this.onLabel;
+      }
+      else {
+        this.label = this.offLabel;
+      }
     }
   }
 
@@ -112,6 +132,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
         this.onModelChange(event.checked);
       }
     }
+    this.setLabel();
     this.onChange.emit(event);
   }
 
@@ -132,6 +153,16 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
     );
   }
 
+  showHint() {
+    let hasError = false;
+    for (const error in this.errors) {
+      if (this.showError(error)) {
+        hasError = true
+      };
+    }
+    return !hasError;
+  }
+
   isRequired(): boolean {
     if (this.ngControl) {
       const control = this.ngControl.control;
@@ -147,6 +178,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
 
   writeValue(value: any) {
     this.value = value;
+    this.setLabel();
     this.cd.markForCheck();
   }
 

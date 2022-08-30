@@ -66,7 +66,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Input() sortMode: 'single' | 'multiple' = 'single';
   @Input() sortField: string;
   @Input() sortOrder: number = 1;
-  @Input() multiSortMeta: SortMeta;
+  @Input() multiSortMeta: SortMeta[];
   @Input() rowGroupMode: 'subheader' | 'rowspan';
   @Input() groupRowsBy: string | string[];
   @Input() groupRowsByOrder: number = 1;

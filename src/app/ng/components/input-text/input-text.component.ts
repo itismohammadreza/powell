@@ -20,8 +20,8 @@ import {
   NgControl,
   UntypedFormGroup
 } from '@angular/forms';
-import {NgAddon, NgError, NgInputTypes, NgKeyFilter, NgLabelPosition} from '@ng/models/forms';
-import {NgPosition, NgSize} from '@ng/models/offset';
+import { NgAddon, NgError, NgInputTypes, NgKeyFilter, NgLabelPosition } from '@ng/models/forms';
+import { NgPosition, NgSize } from '@ng/models/offset';
 
 @Component({
   selector: 'ng-input-text',
@@ -197,6 +197,16 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
     return (
       this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
     );
+  }
+
+  showHint() {
+    let hasError = false;
+    for (const error in this.errors) {
+      if (this.showError(error)) {
+        hasError = true
+      };
+    }
+    return !hasError;
   }
 
   isRequired(): boolean {

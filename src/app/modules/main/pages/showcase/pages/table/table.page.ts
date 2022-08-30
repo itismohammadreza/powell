@@ -674,7 +674,7 @@ export class TablePage {
       sort: true,
       filter: {
         type: 'numeric',
-        currency: 'USD',
+        // currency: 'USD',
       },
     },
     {
@@ -697,8 +697,8 @@ export class TablePage {
         type: 'slider',
         range: true,
         matchMode: 'between',
-        showMatchModes: false,
-        showOperator: false,
+        // showMatchModes: false,
+        // showOperator: false,
         showAddButton: false,
         showApplyButton: false,
         min: 0,
