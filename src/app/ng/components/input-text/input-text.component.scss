@@ -5,7 +5,7 @@
     direction: ltr;
 
     .p-inputtext,
-    small {
+    .p-hint , .p-error {
       display: block;
       width: 100%;
     }
@@ -18,13 +18,13 @@
       z-index: 200;
     }
 
-    small {
+    .p-hint , .p-error {
       position: absolute;
       top: calc(100% + 0.25rem);
     }
 
     &.ltr {
-      small {
+      .p-hint , .p-error {
         left: 0;
       }
     }
@@ -32,7 +32,7 @@
     &.rtl {
       .p-inputtext,
       label,
-      small {
+      .p-hint , .p-error {
         direction: rtl;
       }
 
@@ -51,7 +51,7 @@
         }
       }
 
-      small {
+      .p-hint , .p-error {
         right: 0;
       }
     }

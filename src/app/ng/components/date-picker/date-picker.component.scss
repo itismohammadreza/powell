@@ -1,7 +1,7 @@
 $inputEl: "input";
 
 #{$inputEl},
-small {
+.p-hint , .p-error {
   display: block;
   width: 100%;
 }
@@ -93,7 +93,7 @@ dp-date-picker {
     }
 
     #{$inputEl},
-    label, small {
+    label, .p-hint , .p-error {
       direction: ltr;
     }
   }
@@ -123,7 +123,7 @@ dp-date-picker {
     }
 
     #{$inputEl},
-    label, small {
+    label, .p-hint , .p-error {
       direction: rtl;
     }
   }
