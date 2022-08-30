@@ -8,7 +8,7 @@
       flex-grow: 1;
     }
 
-    small {
+    .p-hint , .p-error {
       display: block;
       width: 100%;
       position: absolute;
@@ -16,18 +16,18 @@
     }
 
     &.ltr {
-      small {
+      .p-hint , .p-error {
         left: 0;
       }
     }
 
     &.rtl {
       label,
-      small {
+      .p-hint , .p-error {
         direction: rtl;
       }
 
-      small {
+      .p-hint , .p-error {
         right: 0;
       }
 

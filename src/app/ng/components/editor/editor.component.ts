@@ -237,6 +237,16 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
     );
   }
 
+  showHint() {
+    let hasError = false;
+    for (const error in this.errors) {
+      if (this.showError(error)) {
+        hasError = true
+      };
+    }
+    return !hasError;
+  }
+
   isRequired(): boolean {
     if (this.ngControl) {
       const control = this.ngControl.control;

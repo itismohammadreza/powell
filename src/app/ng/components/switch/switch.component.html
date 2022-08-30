@@ -7,6 +7,7 @@
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
     }" class="switch-wrapper">
+    
   <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field">
     <p-inputSwitch
       [(ngModel)]="value"
@@ -23,7 +24,7 @@
     ></p-inputSwitch>
   </div>
   <label
-    *ngIf="label && labelPos != 'float'"
+    *ngIf="(label|| onLabel) && labelPos != 'float'"
     [attr.for]="inputId"
     [ngClass]="{
       'mb-0': labelPos == 'fix-side',
@@ -32,9 +33,9 @@
       'text-muted': disabled
     }"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label }}
+    {{label}}
   </label>
-  <small *ngIf="hint">{{ hint }}</small>
+  <small *ngIf="hint && showHint()" class="p-hint">{{ hint }}</small>
   <ng-container *ngFor="let error of errors | keyvalue">
     <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
       {{ error.value }}

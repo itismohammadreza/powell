@@ -190,6 +190,16 @@ export class InputTextareaComponent implements OnInit, AfterViewInit, ControlVal
     );
   }
 
+  showHint() {
+    let hasError = false;
+    for (const error in this.errors) {
+      if (this.showError(error)) {
+        hasError = true
+      };
+    }
+    return !hasError;
+  }
+
 
   writeValue(value: any) {
     this.value = value;

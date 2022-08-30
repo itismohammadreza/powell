@@ -186,6 +186,16 @@ export class ChipsComponent implements OnInit, AfterViewInit, AfterContentInit, 
     );
   }
 
+  showHint() {
+    let hasError = false;
+    for (const error in this.errors) {
+      if (this.showError(error)) {
+        hasError = true
+      };
+    }
+    return !hasError;
+  }
+
   isRequired(): boolean {
     if (this.ngControl) {
       const control = this.ngControl.control;

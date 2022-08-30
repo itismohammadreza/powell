@@ -29,6 +29,7 @@
     "primeng": "^14.0.2",
     "rxjs": "~7.5.0",
     "suneditor": "^2.43.14",
+    "tablefilter": "^0.7.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

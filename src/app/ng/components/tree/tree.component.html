@@ -63,4 +63,4 @@
   </label>
 </div>
 
-<small *ngIf="hint">{{ hint }}</small>
+<small *ngIf="hint && showHint()" class="p-hint">{{ hint }}</small>

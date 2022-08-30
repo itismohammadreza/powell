@@ -4,8 +4,8 @@
 
 - [ ] **navbar** - move `main.component` content to `navbar.component` and implement it like drawer in angular material.
 - [ ] **navbar** - add ability to set default value for `sidebarLock` and `sidebarVisible`. also store in localStorage.
-- [ ] **switch** - add `onLabel` and `offLabel` inputs. by default both are equal.
-- [ ] **checkbox** - add `onLabel` and `offLabel` inputs. by default both are equal.
+- [x] **switch** - add `onLabel` and `offLabel` inputs. by default both are equal.
+- [x] **checkbox** - add `onLabel` and `offLabel` inputs. by default both are equal.
 - [x] **multiCheckbox** - set disabled and readonly property for whole component. if set true, all options will be
   disabled or readonly.
 - [x] **radio** - set disabled and readonly property for whole component. if set true, all options will be disabled or
@@ -15,11 +15,10 @@
 - [ ] **map** - implement `removeLastMarker` & `removeAllMarkers` buttons. also add an `@Input() multi: boolean` to allow
   choosing multiple marker.
 - [ ] **all** - handle rtl direction in dropdowns panel (or etc.) when is appendTo body.
-- [ ] **all** - remove hint on showing error
-- [ ] **all** - add specific class to hint and error and icon elements and edit `.scss` file.
+- [ ] **all** - fix error position absolute issue (overlap).
+- [x] **all** - remove hint on showing error
+- [x] **all** - add specific class to hint and error and icon elements and edit `.scss` file.
 - [x] **all** - see where we need this snippet `&.rtl { text-align: rtl }` and where is extra. remove extras.
-- [ ] **all** - categorize components folder structure. create overlay & forms folders and add relative components to
-  them.
 - [ ] **all** - use typescript utility-types (e.u `Partial<..>`) in components as need. for example in `knob.component`
   we can't have
   `labelPos = 'float'`, but it can accept now!

@@ -57,7 +57,7 @@
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>
-  <small *ngIf="hint">{{ hint }}</small>
+  <small *ngIf="hint && showHint()" class="p-hint">{{ hint }}</small>
   <ng-container *ngFor="let error of errors | keyvalue">
     <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
       {{ error.value }}

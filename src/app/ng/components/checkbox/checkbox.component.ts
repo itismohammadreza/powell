@@ -37,6 +37,8 @@ import {NgError} from '@ng/models/forms';
 export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
+  @Input() onLabel: string ;
+  @Input() offLabel: string ;
   @Input() filled: boolean;
   @Input() hint: string;
   @Input() rtl: boolean;
@@ -95,6 +97,7 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
         });
       }
     }
+    this.setLabel();
   }
 
   ngAfterViewInit() {
@@ -103,6 +106,17 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
         this.label += ' *';
       }
       this.cd.detectChanges();
+    }
+  }
+
+  setLabel() {
+    if (this.onLabel && this.offLabel) {
+      if (this.value) {
+        this.label = this.onLabel;
+      }
+      else {
+        this.label = this.offLabel;
+      }
     }
   }
 
@@ -116,6 +130,7 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
     } else {
       this.onModelChange(event.checked);
     }
+    this.setLabel();
     this.onChange.emit(event);
   }
 
@@ -136,6 +151,16 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
     );
   }
 
+  showHint() {
+    let hasError = false;
+    for (const error in this.errors) {
+      if (this.showError(error)) {
+        hasError = true
+      };
+    }
+    return !hasError;
+  }
+
   isRequired(): boolean {
     if (this.ngControl) {
       const control = this.ngControl.control;
@@ -151,6 +176,7 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
 
   writeValue(value: any) {
     this.value = value;
+    this.setLabel();
     this.cd.markForCheck();
   }
 

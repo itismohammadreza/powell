@@ -7,7 +7,7 @@
     p-autoComplete,
     .p-autocomplete,
     .p-inputtext,
-    small {
+    .p-hint , .p-error {
       width: 100%;
     }
 
@@ -31,13 +31,13 @@
       z-index: 200;
     }
 
-    small {
+    .p-hint , .p-error {
       position: absolute;
       top: calc(100% + 0.25rem);
     }
 
     &.ltr {
-      small {
+      .p-hint , .p-error {
         left: 0;
       }
 
@@ -80,11 +80,11 @@
       .p-inputtext,
       .p-autocomplete .p-autocomplete-items,
       label,
-      small {
+      .p-hint , .p-error {
         direction: rtl;
       }
 
-      small {
+      .p-hint , .p-error {
         right: 0;
       }
 
