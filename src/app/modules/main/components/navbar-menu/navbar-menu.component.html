@@ -1,31 +1,36 @@
-<nav class="navbar navbar-expand shadow-sm fixed-top">
-  <ng-button
-    *ngIf="!sidebarLock && sidebarType != 'hover' && sidebarType != 'horizontal'"
-    icon="pi pi-bars"
-    color="primary"
-    appearance="text"
-    (click)="toggleSidebarClick()">
-  </ng-button>
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav p-0 m{{ fa ? 'r' : 'l' }}-auto">
-      <!--      <li class="nav-item">-->
-      <!--        <a class="nav-link"-->
-      <!--           routerLink="/auth"-->
-      <!--           routerLinkActive="active">-->
-      <!--          {{ "Login" | translate }}/{{'Register' | translate}}-->
-      <!--        </a>-->
-      <!--      </li>-->
-      <li class="nav-item">
-        <ng-button color="secondary" (click)="configOverlay.toggle($event)" icon="pi pi-cog"></ng-button>
-      </li>
-      <li class="nav-item p{{ fa ? 'r' : 'l' }}-4 m{{ fa ? 'r' : 'l' }}-4 border-{{ fa ? 'right' : 'left' }}"
-          (click)="accountMenu.toggle($event)">
-        <span class="m{{ fa ? 'l' : 'r' }}-3">{{ "Admin" }}</span>
-        <p-avatar shape="circle" size="large" icon="pi pi-user"></p-avatar>
-      </li>
-    </ul>
-  </div>
-</nav>
+<div class="main-content" [ngClass]="getWrapperClasses()">
+  <nav class="navbar navbar-expand shadow-sm fixed-top">
+    <ng-button
+      *ngIf="!sidebarLock && sidebarType != 'hover' && sidebarType != 'horizontal'"
+      icon="pi pi-bars"
+      color="primary"
+      appearance="text"
+      (click)="toggleSidebarClick()">
+    </ng-button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav p-0 m{{ fa ? 'r' : 'l' }}-auto">
+        <!--      <li class="nav-item">-->
+        <!--        <a class="nav-link"-->
+        <!--           routerLink="/auth"-->
+        <!--           routerLinkActive="active">-->
+        <!--          {{ "Login" | translate }}/{{'Register' | translate}}-->
+        <!--        </a>-->
+        <!--      </li>-->
+        <li class="nav-item">
+          <ng-button color="secondary" (click)="configOverlay.toggle($event)" icon="pi pi-cog"></ng-button>
+        </li>
+        <li class="nav-item p{{ fa ? 'r' : 'l' }}-4 m{{ fa ? 'r' : 'l' }}-4 border-{{ fa ? 'right' : 'left' }}"
+            (click)="accountMenu.toggle($event)">
+          <span class="m{{ fa ? 'l' : 'r' }}-3">{{ "Admin" }}</span>
+          <p-avatar shape="circle" size="large" icon="pi pi-user"></p-avatar>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <main>
+    <ng-content></ng-content>
+  </main>
+</div>
 
 <p-menubar [model]="sidebarItems" *ngIf="sidebarType == 'horizontal'">
   <ng-template pTemplate="start">

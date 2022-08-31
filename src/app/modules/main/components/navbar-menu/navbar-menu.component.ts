@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {LanguageChecker} from '@core/utils';
 import {MenuItem} from 'primeng/api';
@@ -12,14 +12,27 @@ import {OverlayPanel} from "primeng/overlaypanel";
   styleUrls: ['./navbar-menu.component.scss']
 })
 export class NavbarMenuComponent extends LanguageChecker implements OnInit {
-  @Input() sidebarVisible: boolean;
-  @Input() sidebarLock: boolean;
-  @Input() sidebarType: SidebarType;
-  @Output() sidebarVisibleChange = new EventEmitter();
-  @Output() sidebarLockChange = new EventEmitter();
-  @Output() sidebarTypeChange = new EventEmitter();
   @ViewChild(OverlayPanel) overlayPanel: OverlayPanel;
 
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    if (this.document.defaultView.innerWidth < 767) {
+      this.onSidebarTypeChange('overlay');
+      this.toggleOverlayDisplay(false);
+    } else {
+      this.onSidebarTypeChange(this.sidebarType);
+    }
+  }
+
+  language = this.translationService.getDefaultLang();
+  sidebarVisible: boolean;
+  sidebarLock: boolean;
+  sidebarType: SidebarType = 'push';
+  theme = 'lara-light-indigo';
+  themes: MenuItem[];
+  sidebarTypes: MenuItem[];
+  sidebarItems: MenuItem[];
+  searchValue: string;
   accountItems: MenuItem[] = [
     {
       label: 'خروج',
@@ -29,17 +42,8 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       }
     }
   ];
-  language = this.translationService.getDefaultLang();
-  theme = 'lara-light-indigo';
-  themes: MenuItem[];
-  sidebarTypes: MenuItem[];
-  sidebarItems: MenuItem[];
-  searchValue: string;
 
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-  ) {
+  constructor(private router: Router, private authService: AuthService) {
     super();
   }
 
@@ -47,50 +51,8 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
     this.loadData();
   }
 
-  changeTheme(event) {
-    const themeElement = this.document.getElementById('theme-link');
-    themeElement.setAttribute(
-      'href',
-      themeElement.getAttribute('href').replace(this.theme, event.value)
-    );
-    this.theme = event.value;
-    this.overlayPanel.hide();
-  }
-
-  async changeLang(event) {
-    await this.translationService.use(event.value).toPromise();
-    this.language = event.value;
-    this.overlayPanel.hide();
-  }
-
-  changeSidebarType(event: any) {
-    this.sidebarTypeChange.emit(event.value);
-    this.sidebarType = event.value;
-    this.overlayPanel.hide();
-  }
-
-  toggleSidebarClick() {
-    this.sidebarVisible = !this.sidebarVisible;
-    this.toggleSidebar(this.sidebarVisible);
-  }
-
-  toggleLockSidebarClick() {
-    this.sidebarLock = !this.sidebarLock;
-    this.toggleSidebarLock(this.sidebarLock);
-  }
-
-  toggleSidebar(activate: boolean) {
-    this.sidebarVisible = activate;
-    this.sidebarVisibleChange.emit(this.sidebarVisible);
-  }
-
-  toggleSidebarLock(activate: boolean) {
-    this.sidebarLock = activate;
-    this.sidebarLockChange.emit(this.sidebarLock);
-  }
-
   loadData() {
-    const themes = [
+    const themes: string[] = [
       'arya-blue',
       'arya-green',
       'arya-orange',
@@ -137,7 +99,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       'viva-light',
     ];
     const sidebarTypes: SidebarType[] = ['overlay', 'overlay-mask', 'push', 'push-mask', 'hover', 'static', 'horizontal'];
-    const sidebarItems = [
+    const sidebarItems: string[] = [
       'dashboard',
       'auto-complete',
       'button',
@@ -193,11 +155,127 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
     }));
   }
 
-  get isModalSidebar() {
-    return (this.sidebarType == 'overlay' || this.sidebarType == 'overlay-mask' || this.sidebarType == 'push' || this.sidebarType == 'push-mask');
+  changeTheme(event) {
+    const themeElement = this.document.getElementById('theme-link');
+    themeElement.setAttribute(
+      'href',
+      themeElement.getAttribute('href').replace(this.theme, event.value)
+    );
+    this.theme = event.value;
+    this.overlayPanel.hide();
   }
 
-  onClickOutside() {
-    console.log('is out')
+  async changeLang(event) {
+    await this.translationService.use(event.value).toPromise();
+    this.language = event.value;
+    this.overlayPanel.hide();
+  }
+
+  changeSidebarType(event: any) {
+    this.sidebarType = event.value;
+    this.overlayPanel.hide();
+    // this.onSidebarTypeChange(event.value);
+    if (this.sidebarType == 'hover') {
+      this.onSidebarVisibleChange(true);
+    } else {
+      this.onSidebarVisibleChange(false);
+    }
+    this.onSidebarLockChange(false);
+  }
+
+  toggleSidebarClick() {
+    this.sidebarVisible = !this.sidebarVisible;
+    this.toggleSidebar(this.sidebarVisible);
+  }
+
+  toggleLockSidebarClick() {
+    this.sidebarLock = !this.sidebarLock;
+    this.toggleSidebarLock(this.sidebarLock);
+  }
+
+  toggleSidebar(activate: boolean) {
+    this.sidebarVisible = activate;
+    // this.onSidebarVisibleChange(this.sidebarVisible);
+    if (['overlay', 'push'].includes(this.sidebarType)) {
+      setTimeout(() => {
+        if (this.sidebarVisible) {
+          this.toggleOverlayVisibility(false);
+        }
+      }, 0);
+    }
+  }
+
+  toggleSidebarLock(activate: boolean) {
+    this.sidebarLock = activate;
+    // this.onSidebarLockChange(this.sidebarLock);
+    if (['overlay', 'push', 'overlay-mask', 'push-mask'].includes(this.sidebarType) && this.sidebarVisible) {
+      this.toggleOverlayDisplay(!this.sidebarLock);
+    }
+  }
+
+  onSidebarTypeChange(event: SidebarType) {
+    this.sidebarType = event;
+    if (event == 'hover') {
+      this.onSidebarVisibleChange(true);
+    } else {
+      this.onSidebarVisibleChange(false);
+    }
+    this.onSidebarLockChange(false);
+  }
+
+  onSidebarVisibleChange(event: boolean) {
+    this.sidebarVisible = event;
+    if (['overlay', 'push'].includes(this.sidebarType)) {
+      setTimeout(() => {
+        if (this.sidebarVisible) {
+          this.toggleOverlayVisibility(false);
+        }
+      }, 0);
+    }
+  }
+
+  onSidebarLockChange(event: boolean) {
+    this.sidebarLock = event;
+    if (['overlay', 'push', 'overlay-mask', 'push-mask'].includes(this.sidebarType) && this.sidebarVisible) {
+      this.toggleOverlayDisplay(!event);
+    }
+  }
+
+  toggleOverlayDisplay(activate: boolean) {
+    const overlay = this.document.querySelector('.p-sidebar-mask');
+    const body = this.document.body;
+    if (activate) {
+      overlay?.classList.remove('d-none');
+      body.classList.add('p-overflow-hidden');
+    } else {
+      overlay?.classList.add('d-none');
+      body.classList.remove('p-overflow-hidden');
+    }
+  }
+
+  toggleOverlayVisibility(activate: boolean) {
+    const overlay: any = this.document.querySelector('.p-sidebar-mask');
+    if (overlay) {
+      if (activate) {
+        overlay.style.transitionDuration = '0.2ms';
+        overlay.style.opacity = 1;
+      } else {
+        overlay.style.transitionDuration = '0ms';
+        overlay.style.opacity = 0;
+      }
+    }
+  }
+
+  getWrapperClasses() {
+    return {
+      [`menu-${this.sidebarType}`]: true,
+      rtl: this.fa,
+      'sidebar-lock': this.sidebarLock,
+      'sidebar-open': this.sidebarVisible
+    }
+  }
+
+  get isModalSidebar() {
+    return (this.sidebarType == 'overlay' || this.sidebarType == 'overlay-mask' || this.sidebarType == 'push' || this.sidebarType == 'push-mask');
   }
 }

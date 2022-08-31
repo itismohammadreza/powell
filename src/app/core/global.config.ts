@@ -1,3 +1,8 @@
 export const GlobalConfig = {
-  enableCaching: true
+  enableCaching: true,
+  defaultTheme: '',
+  defaultLang: '',
+  defaultSidebarType: '',
+  defaultSidebarLock: '',
+  defaultSidebarVisible: '',
 };

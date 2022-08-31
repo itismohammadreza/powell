@@ -1,15 +1,7 @@
-<div class="main-content" [ngClass]="getWrapperClasses()">
-  <ng-navbar-menu
-    [sidebarType]="sidebarType"
-    [sidebarVisible]="sidebarVisible"
-    [sidebarLock]="sidebarLock"
-    (sidebarTypeChange)="onSidebarTypeChange($event)"
-    (sidebarVisibleChange)="onSidebarVisibleChange($event)"
-    (sidebarLockChange)="onSidebarLockChange($event)">
-  </ng-navbar-menu>
-  <main>
-    <router-outlet></router-outlet>
-  </main>
-</div>
+<!--<div class="main-content" [ngClass]="getWrapperClasses()">-->
+<ng-navbar-menu>
+  <router-outlet></router-outlet>
+</ng-navbar-menu>
+<!--</div>-->
 <ng-loading></ng-loading>
 <p-scrollTop></p-scrollTop>
