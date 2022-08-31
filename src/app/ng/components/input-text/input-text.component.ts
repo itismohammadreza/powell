@@ -54,7 +54,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Input() maxlength: number;
   @Input() placeholder: string;
   @Input() type: NgInputTypes = 'text';
-  @Input() keyFilter: NgKeyFilter | RegExp;
+  @Input() keyFilter: NgKeyFilter | RegExp = /.*/g;
   @Output() onInput = new EventEmitter();
   @Output() onClick = new EventEmitter();
   @Output() onChange = new EventEmitter();
@@ -77,9 +77,6 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   }
 
   ngOnInit() {
-    if (!this.keyFilter) {
-      this.keyFilter = /.*/g;
-    }
     this.inputId = this.getId();
     let parentForm: UntypedFormGroup;
     let rootForm: FormGroupDirective;
