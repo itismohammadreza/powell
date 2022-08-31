@@ -19,7 +19,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import { NgError, NgLabelPosition } from '@ng/models/forms';
+import {NgError, NgLabelPosition} from '@ng/models/forms';
 
 @Component({
   selector: 'ng-switch',
@@ -36,14 +36,14 @@ import { NgError, NgLabelPosition } from '@ng/models/forms';
 export class SwitchComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
-  @Input() onLabel: string ;
-  @Input() offLabel: string ;
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() errors: NgError;
+  @Input() onLabel: string;
+  @Input() offLabel: string;
   // native properties
   @Input() style: any;
   @Input() styleClass: string;
@@ -117,8 +117,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
     if (this.onLabel && this.offLabel) {
       if (this.value) {
         this.label = this.onLabel;
-      }
-      else {
+      } else {
         this.label = this.offLabel;
       }
     }
@@ -158,7 +157,8 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
     for (const error in this.errors) {
       if (this.showError(error)) {
         hasError = true
-      };
+      }
+      ;
     }
     return !hasError;
   }

@@ -37,13 +37,13 @@ import {NgError} from '@ng/models/forms';
 export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
-  @Input() onLabel: string ;
-  @Input() offLabel: string ;
   @Input() filled: boolean;
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() errors: NgError;
+  @Input() onLabel: string;
+  @Input() offLabel: string;
   // native properties
   @Input() disabled: boolean;
   @Input() tabindex: any;

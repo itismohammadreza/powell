@@ -15,7 +15,7 @@
 - [ ] **map** - implement `removeLastMarker` & `removeAllMarkers` buttons. also add an `@Input() multi: boolean` to allow
   choosing multiple marker.
 - [ ] **all** - handle rtl direction in dropdowns panel (or etc.) when is appendTo body.
-- [ ] **all** - fix error position absolute issue (overlap).
+- [x] **all** - fix error position absolute issue (overlap).
 - [x] **all** - remove hint on showing error
 - [x] **all** - add specific class to hint and error and icon elements and edit `.scss` file.
 - [x] **all** - see where we need this snippet `&.rtl { text-align: rtl }` and where is extra. remove extras.
