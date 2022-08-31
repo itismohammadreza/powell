@@ -17,10 +17,10 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (this.document.defaultView.innerWidth < 767) {
-      this.onSidebarTypeChange('overlay');
+      this.changeSidebarType('overlay');
       this.toggleOverlayDisplay(false);
     } else {
-      this.onSidebarTypeChange(this.sidebarType);
+      this.changeSidebarType(this.sidebarType);
     }
   }
 
@@ -173,14 +173,13 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
 
   changeSidebarType(event: any) {
     this.sidebarType = event.value;
-    this.overlayPanel.hide();
-    // this.onSidebarTypeChange(event.value);
     if (this.sidebarType == 'hover') {
-      this.onSidebarVisibleChange(true);
+      this.toggleSidebar(true);
     } else {
-      this.onSidebarVisibleChange(false);
+      this.toggleSidebar(false);
     }
-    this.onSidebarLockChange(false);
+    this.toggleSidebarLock(false);
+    this.overlayPanel.hide();
   }
 
   toggleSidebarClick() {
@@ -195,7 +194,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
 
   toggleSidebar(activate: boolean) {
     this.sidebarVisible = activate;
-    // this.onSidebarVisibleChange(this.sidebarVisible);
     if (['overlay', 'push'].includes(this.sidebarType)) {
       setTimeout(() => {
         if (this.sidebarVisible) {
@@ -207,37 +205,8 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
 
   toggleSidebarLock(activate: boolean) {
     this.sidebarLock = activate;
-    // this.onSidebarLockChange(this.sidebarLock);
     if (['overlay', 'push', 'overlay-mask', 'push-mask'].includes(this.sidebarType) && this.sidebarVisible) {
       this.toggleOverlayDisplay(!this.sidebarLock);
-    }
-  }
-
-  onSidebarTypeChange(event: SidebarType) {
-    this.sidebarType = event;
-    if (event == 'hover') {
-      this.onSidebarVisibleChange(true);
-    } else {
-      this.onSidebarVisibleChange(false);
-    }
-    this.onSidebarLockChange(false);
-  }
-
-  onSidebarVisibleChange(event: boolean) {
-    this.sidebarVisible = event;
-    if (['overlay', 'push'].includes(this.sidebarType)) {
-      setTimeout(() => {
-        if (this.sidebarVisible) {
-          this.toggleOverlayVisibility(false);
-        }
-      }, 0);
-    }
-  }
-
-  onSidebarLockChange(event: boolean) {
-    this.sidebarLock = event;
-    if (['overlay', 'push', 'overlay-mask', 'push-mask'].includes(this.sidebarType) && this.sidebarVisible) {
-      this.toggleOverlayDisplay(!event);
     }
   }
 
