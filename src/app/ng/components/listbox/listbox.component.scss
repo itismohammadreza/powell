@@ -6,7 +6,7 @@
 
     p-listbox,
     .p-listbox,
-    .p-hint , .p-error {
+    .p-hint , .p-error, .error-wrapper  {
       width: 100%;
     }
 
@@ -30,13 +30,13 @@
       }
     }
 
-    .p-hint , .p-error {
+    .error-wrapper {
       position: absolute;
       top: calc(100% + 0.25rem);
     }
 
     &.ltr {
-      .p-hint , .p-error {
+      .error-wrapper {
         left: 0;
       }
     }
@@ -45,11 +45,11 @@
       .p-listbox,
       .p-inputtext,
       label,
-      .p-hint , .p-error {
+      .p-hint , .p-error, .error-wrapper  {
         direction: rtl;
       }
 
-      .p-hint , .p-error {
+      .error-wrapper {
         right: 0;
       }
 

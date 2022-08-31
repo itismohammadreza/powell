@@ -36,10 +36,12 @@
       </label>
     </div>
     <small *ngIf="hint && showHint()" class="p-hint">{{ hint }}</small>
+    <div class="position-absolute error-wrapper">
     <ng-container *ngFor="let error of errors | keyvalue">
       <small *ngIf="showError(error.key)" [class.mt-4]="hint" class="p-error">
         {{ error.value }}
       </small>
     </ng-container>
+   </div>
   </div>
 </div>

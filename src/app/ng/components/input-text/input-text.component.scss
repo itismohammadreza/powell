@@ -5,7 +5,7 @@
     direction: ltr;
 
     .p-inputtext,
-    .p-hint , .p-error {
+    .p-hint , .p-error, .error-wrapper  {
       display: block;
       width: 100%;
     }
@@ -18,13 +18,13 @@
       z-index: 200;
     }
 
-    .p-hint , .p-error {
+    .error-wrapper {
       position: absolute;
       top: calc(100% + 0.25rem);
     }
 
     &.ltr {
-      .p-hint , .p-error {
+      .error-wrapper {
         left: 0;
       }
     }
@@ -32,7 +32,7 @@
     &.rtl {
       .p-inputtext,
       label,
-      .p-hint , .p-error {
+      .p-hint , .p-error, .error-wrapper  {
         direction: rtl;
       }
 
@@ -51,7 +51,7 @@
         }
       }
 
-      .p-hint , .p-error {
+      .error-wrapper {
         right: 0;
       }
     }

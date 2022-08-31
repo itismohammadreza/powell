@@ -8,7 +8,7 @@
       flex-grow: 1;
     }
 
-    .p-hint , .p-error {
+    .error-wrapper {
       display: block;
       width: 100%;
       position: absolute;
@@ -16,7 +16,7 @@
     }
 
     &.ltr {
-      .p-hint , .p-error {
+      .error-wrapper {
         left: 0;
       }
     }
@@ -24,11 +24,11 @@
     &.rtl {
       .p-selectbutton,
       label,
-      .p-hint , .p-error {
+      .p-hint , .p-error, .error-wrapper  {
         direction: rtl;
       }
 
-      .p-hint , .p-error {
+      .error-wrapper {
         right: 0;
       }
     }

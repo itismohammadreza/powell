@@ -9,7 +9,7 @@
       flex-wrap: wrap;
     }
 
-    .p-hint , .p-error {
+    .error-wrapper {
       display: block;
       width: 100%;
       position: absolute;
@@ -17,7 +17,7 @@
     }
 
     &.ltr {
-      .p-hint , .p-error {
+      .error-wrapper {
         left: 0;
       }
     }
@@ -25,11 +25,11 @@
     &.rtl {
       .field,
       label,
-      .p-hint , .p-error {
+      .p-hint , .p-error, .error-wrapper  {
         direction: rtl;
       }
 
-      .p-hint , .p-error {
+      .error-wrapper {
         right: 0;
       }
     }
