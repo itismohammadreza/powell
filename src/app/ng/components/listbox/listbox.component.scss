@@ -5,8 +5,7 @@
     direction: ltr;
 
     p-listbox,
-    .p-listbox,
-    .p-hint , .p-error, .error-wrapper  {
+    .p-listbox {
       width: 100%;
     }
 
@@ -30,13 +29,13 @@
       }
     }
 
-    .error-wrapper {
+    .message {
       position: absolute;
       top: calc(100% + 0.25rem);
     }
 
     &.ltr {
-      .error-wrapper {
+      .message {
         left: 0;
       }
     }
@@ -45,11 +44,11 @@
       .p-listbox,
       .p-inputtext,
       label,
-      .p-hint , .p-error, .error-wrapper  {
+      .message {
         direction: rtl;
       }
 
-      .error-wrapper {
+      .message {
         right: 0;
       }
 

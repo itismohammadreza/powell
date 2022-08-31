@@ -698,7 +698,7 @@
   </ng-container>
   <ng-container *ngIf="formOptions.formValidator">
     <div class="col-12" *ngIf="form.hasError(formOptions.formValidator.error)">
-      <small class="p-error">{{formOptions.formValidator.message}}</small>
+      <div class="p-error">{{formOptions.formValidator.message}}</div>
     </div>
   </ng-container>
   <div class="col-12 footer d-flex align-content-center justify-content-start border-top pt-4 mt-4">

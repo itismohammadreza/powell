@@ -4,11 +4,6 @@
     position: relative;
     direction: ltr;
 
-    .p-hint , .p-error, .error-wrapper  {
-      display: block;
-      width: 100%;
-    }
-
     .field,
     ng-input-text {
       flex-grow: 1;
@@ -31,13 +26,13 @@
       }
     }
 
-    .error-wrapper {
+    .message {
       position: absolute;
       top: calc(100% + 0.25rem);
     }
 
     &.ltr {
-      .error-wrapper {
+      .message {
         left: 0;
       }
 
@@ -62,11 +57,11 @@
     &.rtl {
       .p-colorpicker-preview,
       label,
-      .p-hint , .p-error, .error-wrapper  {
+      .message {
         direction: rtl;
       }
 
-      .error-wrapper {
+      .message {
         right: 0;
       }
 

@@ -8,13 +8,12 @@
       flex-grow: 1;
     }
 
-    .p-fileUpload,
-    .p-hint , .p-error, .error-wrapper  {
+    .p-fileUpload {
       display: block;
       width: 100%;
     }
 
-    .error-wrapper {
+    .message {
       position: absolute;
       top: calc(100% + 0.25rem);
     }
@@ -29,7 +28,7 @@
     }
 
     &.ltr {
-      .error-wrapper {
+      .message {
         left: 0;
       }
     }
@@ -37,7 +36,7 @@
     &.rtl {
       direction: rtl;
 
-      .error-wrapper {
+      .message {
         right: 0;
       }
 

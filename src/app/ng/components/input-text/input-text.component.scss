@@ -5,7 +5,7 @@
     direction: ltr;
 
     .p-inputtext,
-    .p-hint , .p-error, .error-wrapper  {
+    .message {
       display: block;
       width: 100%;
     }
@@ -18,13 +18,13 @@
       z-index: 200;
     }
 
-    .error-wrapper {
+    .message {
       position: absolute;
       top: calc(100% + 0.25rem);
     }
 
     &.ltr {
-      .error-wrapper {
+      .message {
         left: 0;
       }
     }
@@ -32,7 +32,7 @@
     &.rtl {
       .p-inputtext,
       label,
-      .p-hint , .p-error, .error-wrapper  {
+      .message {
         direction: rtl;
       }
 
@@ -51,7 +51,7 @@
         }
       }
 
-      .error-wrapper {
+      .message {
         right: 0;
       }
     }

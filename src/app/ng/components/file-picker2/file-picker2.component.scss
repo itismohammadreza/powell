@@ -14,9 +14,7 @@
     }
   }
 
-  .p-hint , .p-error, .error-wrapper  {
-    display: block;
-    width: 100%;
+  .message {
     position: absolute;
     top: calc(100% + 0.25rem);
   }
@@ -121,13 +119,13 @@
   }
 
   &.ltr {
-    .p-hint , .p-error, .error-wrapper  {
+    .message {
       left: 0;
     }
   }
 
   &.rtl {
-    .p-hint , .p-error, .error-wrapper  {
+    .message {
       right: 0;
     }
   }

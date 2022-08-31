@@ -6,8 +6,7 @@
 
     p-autoComplete,
     .p-autocomplete,
-    .p-inputtext,
-    .p-hint , .p-error, .error-wrapper  {
+    .p-inputtext {
       width: 100%;
     }
 
@@ -31,13 +30,13 @@
       z-index: 200;
     }
 
-    .error-wrapper {
+    .message {
       position: absolute;
       top: calc(100% + 0.25rem);
     }
 
     &.ltr {
-      .error-wrapper {
+      .message {
         left: 0;
       }
 
@@ -80,11 +79,11 @@
       .p-inputtext,
       .p-autocomplete .p-autocomplete-items,
       label,
-      .p-hint , .p-error, .error-wrapper  {
+      .message {
         direction: rtl;
       }
 
-      .error-wrapper {
+      .message {
         right: 0;
       }
 

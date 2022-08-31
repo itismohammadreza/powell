@@ -6,8 +6,7 @@
 
     p-cascadeSelect,
     .p-cascadeselect,
-    .p-inputwrapper,
-    .p-hint , .p-error, .error-wrapper  {
+    .p-inputwrapper,  {
       width: 100%;
     }
 
@@ -47,13 +46,13 @@
       z-index: 200;
     }
 
-    .error-wrapper {
+    .message {
       position: absolute;
       top: calc(100% + 0.25rem);
     }
 
     &.ltr {
-      .error-wrapper {
+      .message {
         left: 0;
       }
 
@@ -69,7 +68,7 @@
       .p-cascadeselect-label,
       .p-cascadeselect-items,
       label,
-      .p-hint , .p-error, .error-wrapper  {
+      .message {
         direction: rtl;
       }
 

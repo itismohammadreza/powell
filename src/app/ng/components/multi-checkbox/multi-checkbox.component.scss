@@ -9,15 +9,13 @@
       flex-wrap: wrap;
     }
 
-    .error-wrapper {
-      display: block;
-      width: 100%;
+    .message {
       position: absolute;
       top: calc(100% + 0.25rem);
     }
 
     &.ltr {
-      .error-wrapper {
+      .message {
         left: 0;
       }
     }
@@ -25,11 +23,11 @@
     &.rtl {
       .field,
       label,
-      .p-hint , .p-error, .error-wrapper  {
+      .message {
         direction: rtl;
       }
 
-      .error-wrapper {
+      .message {
         right: 0;
       }
     }
