@@ -22,26 +22,24 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  NgModel,
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgAddon, NgError, NgFilterMatchMode, NgLabelPosition,} from '@ng/models/forms';
 import {TemplateDirective} from '@ng/directives/template.directive';
-import {NgPosition, NgSize} from "@ng/models/offset";
 
 @Component({
-  selector: 'ng-list-box',
-  templateUrl: './list-box.component.html',
-  styleUrls: ['./list-box.component.scss'],
+  selector: 'ng-listbox',
+  templateUrl: './listbox.component.html',
+  styleUrls: ['./listbox.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ListBoxComponent),
+      useExisting: forwardRef(() => ListboxComponent),
       multi: true,
     },
   ],
 })
-export class ListBoxComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
+export class ListboxComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;

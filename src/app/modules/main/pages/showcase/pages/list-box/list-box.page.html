@@ -44,7 +44,7 @@
       <b>Using With Reactive Forms</b>
     </p-divider>
     <form [formGroup]="form">
-      <ng-list-box
+      <ng-listbox
         formControlName="c1"
         [addon]="addon"
         [errors]="{ required: 'error' }"
@@ -63,13 +63,13 @@
         [readonly]="readonly"
         [emptyMessage]="emptyMessage"
         [showToggleAll]="showToggleAll"
-      ></ng-list-box>
+      ></ng-listbox>
     </form>
 
     <p-divider align="center">
       <b>Using With NgModel</b>
     </p-divider>
-    <ng-list-box
+    <ng-listbox
       name="myInput"
       required
       [(ngModel)]="binding"
@@ -90,7 +90,7 @@
       [readonly]="readonly"
       [emptyMessage]="emptyMessage"
       [showToggleAll]="showToggleAll"
-    ></ng-list-box>
+    ></ng-listbox>
     <pre class="mt-3 mb-0" dir="ltr"><b>Value :</b> {{binding | json}}</pre>
   </p-panel>
 </div>

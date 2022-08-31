@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgAddon, NgFilterMatchMode, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgLabelPosition} from '@ng/models/forms';
 
 @Component({
-  selector: 'ng-list-box-page',
+  selector: 'ng-listbox-page',
   templateUrl: './list-box.page.html',
   styleUrls: ['./list-box.page.scss'],
 })

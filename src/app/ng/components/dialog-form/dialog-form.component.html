@@ -423,7 +423,7 @@
           [showRequiredStar]="item.showRequiredStar || true"
           [value]="item.value"
         ></ng-input-textarea>
-        <ng-list-box
+        <ng-listbox
           *ngSwitchCase="'list-box'"
           [addon]="item.addon"
           [checkbox]="item.checkbox"
@@ -451,7 +451,7 @@
           [showRequiredStar]="item.showRequiredStar || true"
           [showToggleAll]="item.showToggleAll"
           [value]="item.value"
-        ></ng-list-box>
+        ></ng-listbox>
         <ng-multi-checkbox
           *ngSwitchCase="'multi-checkbox'"
           [disabled]="item.disabled"

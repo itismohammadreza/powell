@@ -1,170 +1,230 @@
-import {InputTextModule} from 'primeng/inputtext';
-import {InputTextareaModule} from 'primeng/inputtextarea';
-import {InputSwitchModule} from 'primeng/inputswitch';
-import {InputMaskModule} from 'primeng/inputmask';
-import {SliderModule} from 'primeng/slider';
-import {RadioButtonModule} from 'primeng/radiobutton';
+import {Type} from "@angular/core";
+/***************************** FORMS *****************************/
 import {AutoCompleteModule} from 'primeng/autocomplete';
-import {FileUploadModule} from 'primeng/fileupload';
-import {ChipsModule} from 'primeng/chips';
-import {DropdownModule} from 'primeng/dropdown';
-import {CheckboxModule} from 'primeng/checkbox';
-import {MenuModule} from 'primeng/menu';
-import {SlideMenuModule} from 'primeng/slidemenu';
-import {TieredMenuModule} from 'primeng/tieredmenu';
-import {ContextMenuModule} from 'primeng/contextmenu';
-import {SidebarModule} from 'primeng/sidebar';
-import {ButtonModule} from 'primeng/button';
-import {SplitButtonModule} from 'primeng/splitbutton';
-import {PanelMenuModule} from 'primeng/panelmenu';
-import {TableModule} from 'primeng/table';
-import {TreeTableModule} from 'primeng/treetable';
-import {TabViewModule} from 'primeng/tabview';
-import {MultiSelectModule} from 'primeng/multiselect';
-import {BreadcrumbModule} from 'primeng/breadcrumb';
-import {ToastModule} from 'primeng/toast';
-import {DialogModule} from 'primeng/dialog';
 import {CalendarModule} from 'primeng/calendar';
-import {SpinnerModule} from 'primeng/spinner';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import {ProgressBarModule} from 'primeng/progressbar';
-import {TooltipModule} from 'primeng/tooltip';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {DynamicDialogModule} from 'primeng/dynamicdialog';
-import {ToolbarModule} from 'primeng/toolbar';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
+import {CascadeSelectModule} from 'primeng/cascadeselect';
+import {CheckboxModule} from 'primeng/checkbox';
+import {ChipsModule} from 'primeng/chips';
 import {ColorPickerModule} from 'primeng/colorpicker';
-import {PasswordModule} from 'primeng/password';
-import {TreeModule} from 'primeng/tree';
-import {PickListModule} from 'primeng/picklist';
-import {SelectButtonModule} from 'primeng/selectbutton';
-import {InplaceModule} from 'primeng/inplace';
+import {DropdownModule} from 'primeng/dropdown';
+// import {EditorModule} from 'primeng/editor';
+import {InputMaskModule} from 'primeng/inputmask';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {InputTextModule} from 'primeng/inputtext';
+import {InputTextareaModule} from 'primeng/inputtextarea'
 import {InputNumberModule} from 'primeng/inputnumber';
+import {KnobModule} from 'primeng/knob';
 import {KeyFilterModule} from 'primeng/keyfilter';
 import {ListboxModule} from 'primeng/listbox';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {PasswordModule} from 'primeng/password';
+import {RadioButtonModule} from 'primeng/radiobutton';
 import {RatingModule} from 'primeng/rating';
+import {SliderModule} from 'primeng/slider';
+import {SelectButtonModule} from 'primeng/selectbutton';
 import {ToggleButtonModule} from 'primeng/togglebutton';
-import {TriStateCheckboxModule} from 'primeng/tristatecheckbox';
-import {DataViewModule} from 'primeng/dataview';
-import {GMapModule} from 'primeng/gmap';
-import {OrderListModule} from 'primeng/orderlist';
-import {OrganizationChartModule} from 'primeng/organizationchart';
-import {PaginatorModule} from 'primeng/paginator';
-import {TimelineModule} from 'primeng/timeline';
-import {VirtualScrollerModule} from 'primeng/virtualscroller';
-import {ConfirmPopupModule} from 'primeng/confirmpopup';
-import {OverlayPanelModule} from 'primeng/overlaypanel';
-import {MegaMenuModule} from 'primeng/megamenu';
-import {MenubarModule} from 'primeng/menubar';
-import {StepsModule} from 'primeng/steps';
-import {TabMenuModule} from 'primeng/tabmenu';
-import {CarouselModule} from 'primeng/carousel';
-import {GalleriaModule} from 'primeng/galleria';
-import {DragDropModule} from 'primeng/dragdrop';
-import {BlockUIModule} from 'primeng/blockui';
-import {CaptchaModule} from 'primeng/captcha';
-import {RippleModule} from 'primeng/ripple';
-import {CascadeSelectModule} from 'primeng/cascadeselect';
-import {KnobModule} from 'primeng/knob';
-import {DividerModule} from 'primeng/divider';
-import {SplitterModule} from 'primeng/splitter';
-import {AvatarModule} from 'primeng/avatar';
-import {AvatarGroupModule} from 'primeng/avatargroup';
-import {BadgeModule} from 'primeng/badge';
-import {ChipModule} from 'primeng/chip';
-import {ScrollTopModule} from 'primeng/scrolltop';
-import {SkeletonModule} from 'primeng/skeleton';
-import {TagModule} from 'primeng/tag';
 import {TreeSelectModule} from 'primeng/treeselect';
-import {AccordionModule} from 'primeng/accordion';
-import {Type} from '@angular/core';
-import {CardModule} from "primeng/card";
-import {PanelModule} from "primeng/panel";
-import {FieldsetModule} from "primeng/fieldset";
+import {TriStateCheckboxModule} from 'primeng/tristatecheckbox';
+
+/***************************** BUTTONS *****************************/
+import {ButtonModule} from 'primeng/button';
+import {SplitButtonModule} from 'primeng/splitbutton';
+// import {SpeedDialModule} from 'primeng/speeddial';
+
+/***************************** DATA *****************************/
+// import {DataViewModule} from 'primeng/dataview';
+// import {GMapModule} from 'primeng/gmap';
+// import {OrderListModule} from 'primeng/orderlist';
+// import {OrganizationChartModule} from 'primeng/organizationchart';
+// import {PaginatorModule} from 'primeng/paginator';
+// import {PickListModule} from 'primeng/picklist';
+import {TableModule} from 'primeng/table';
+// import {TimelineModule} from 'primeng/timeline';
+// import {TreeModule} from 'primeng/tree';
+// import {TreeTableModule} from 'primeng/treetable';
+// import {VirtualScrollerModule} from 'primeng/virtualscroller';
+// import {ScrollerModule} from 'primeng/scroller';
+
+/***************************** PANEL *****************************/
+// import {AccordionModule} from 'primeng/accordion';
+import {CardModule} from 'primeng/card';
+import {DividerModule} from 'primeng/divider';
+// import {FieldsetModule} from 'primeng/fieldset';
+import {PanelModule} from 'primeng/panel';
+// import {SplitterModule} from 'primeng/splitter';
+// import {ScrollPanelModule} from 'primeng/scrollpanel';
+// import {TabViewModule} from 'primeng/tabview';
+// import {ToolbarModule} from 'primeng/toolbar';
+
+/***************************** OVERLAY *****************************/
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import {DialogModule} from 'primeng/dialog';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {SidebarModule} from 'primeng/sidebar';
+// import {TooltipModule} from 'primeng/tooltip';
+
+/***************************** UPLOAD *****************************/
+import {FileUploadModule} from 'primeng/fileupload';
+
+/***************************** MENU *****************************/
+import {MenuModule} from 'primeng/menu';
+// import {BreadcrumbModule} from 'primeng/breadcrumb';
+// import {ContextMenuModule} from 'primeng/contextmenu';
+// import {DockModule} from 'primeng/dock';
+// import {MegaMenuModule} from 'primeng/megamenu';
+import {MenubarModule} from 'primeng/menubar';
+import {PanelMenuModule} from 'primeng/panelmenu';
+// import {SlideMenuModule} from 'primeng/slidemenu';
+// import {StepsModule} from 'primeng/steps';
+// import {TabMenuModule} from 'primeng/tabmenu';
+// import {TieredMenuModule} from 'primeng/tieredmenu';
+
+/***************************** CHART *****************************/
+// import {ChartModule} from 'primeng/chart';
+
+/***************************** MESSAGES *****************************/
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import {ToastModule} from 'primeng/toast';
+
+/***************************** MEDIA *****************************/
+// import {CarouselModule} from 'primeng/carousel';
+// import {GalleriaModule} from 'primeng/galleria';
+// import {ImageModule} from 'primeng/image';
+
+/***************************** DRAGDROP *****************************/
+// import {DragDropModule} from 'primeng/dragdrop';
+
+/***************************** MISC *****************************/
+import {AvatarModule} from 'primeng/avatar';
+// import {AvatarGroupModule} from 'primeng/avatargroup';
+// import {BadgeModule} from 'primeng/badge';
+// import {BlockUIModule} from 'primeng/blockui';
+// import {CaptchaModule} from 'primeng/captcha';
+// import {ChipModule} from 'primeng/chip';
+// import {InplaceModule} from 'primeng/inplace';
+// import {ProgressBarModule} from 'primeng/progressbar';
+// import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {ScrollTopModule} from 'primeng/scrolltop';
+// import {SkeletonModule} from 'primeng/skeleton';
+// import {TagModule} from 'primeng/tag';
+// import {TerminalModule} from 'primeng/terminal';
+
+/***************************** DIRECTIVES *****************************/
+// import {DeferModule} from 'primeng/defer';
+// import {FocusTrapModule} from 'primeng/focustrap';
+// import {StyleClassModule} from 'primeng/styleclass';
+// import {RippleModule} from 'primeng/ripple';
+// import {AutoFocusModule} from 'primeng/autofocus';
 
 export const MODULES: Type<any>[] = [
+  /***************************** FORMS *****************************/
   AutoCompleteModule,
-  AccordionModule,
-  BreadcrumbModule,
-  BlockUIModule,
-  ButtonModule,
-  CaptchaModule,
-  CardModule,
-  ChipsModule,
-  CarouselModule,
-  ColorPickerModule,
   CalendarModule,
+  CascadeSelectModule,
   CheckboxModule,
-  ContextMenuModule,
-  ConfirmDialogModule,
-  ConfirmPopupModule,
-  DragDropModule,
+  ChipsModule,
+  ColorPickerModule,
   DropdownModule,
-  DialogModule,
-  DataViewModule,
-  DynamicDialogModule,
-  FileUploadModule,
-  FieldsetModule,
-  GMapModule,
-  GalleriaModule,
+  // EditorModule, // has dependency
+  InputMaskModule,
+  InputSwitchModule,
   InputTextModule,
   InputTextareaModule,
-  InputSwitchModule,
-  InputMaskModule,
   InputNumberModule,
-  InplaceModule,
+  KnobModule,
   KeyFilterModule,
   ListboxModule,
-  MenuModule,
-  MenubarModule,
-  MegaMenuModule,
   MultiSelectModule,
-  MessagesModule,
-  MessageModule,
-  OrderListModule,
-  OrganizationChartModule,
-  OverlayPanelModule,
-  PaginatorModule,
-  PanelModule,
-  PanelMenuModule,
-  ProgressSpinnerModule,
-  ProgressBarModule,
   PasswordModule,
-  PickListModule,
   RadioButtonModule,
   RatingModule,
-  RippleModule,
-  SelectButtonModule,
-  SidebarModule,
   SliderModule,
-  SpinnerModule,
-  SplitButtonModule,
-  SlideMenuModule,
-  StepsModule,
-  TimelineModule,
-  TableModule,
-  ToastModule,
-  TabViewModule,
-  TabMenuModule,
-  TooltipModule,
-  TieredMenuModule,
-  TreeTableModule,
-  TreeModule,
-  ToolbarModule,
+  SelectButtonModule,
   ToggleButtonModule,
-  TriStateCheckboxModule,
-  VirtualScrollerModule,
-  CascadeSelectModule,
-  KnobModule,
-  DividerModule,
-  SplitterModule,
-  AvatarModule,
-  AvatarGroupModule,
-  BadgeModule,
-  ChipModule,
-  ScrollTopModule,
-  SkeletonModule,
-  TagModule,
   TreeSelectModule,
+  TriStateCheckboxModule,
+  /***************************** BUTTONS *****************************/
+  ButtonModule,
+  SplitButtonModule,
+  // SpeedDialModule,
+  /***************************** DATA *****************************/
+  // DataViewModule,
+  // GMapModule,
+  // OrderListModule, // has dependency
+  // OrganizationChartModule,
+  // PaginatorModule,
+  // PickListModule, // has dependency
+  TableModule,
+  // TimelineModule,
+  // TreeModule,
+  // TreeTableModule,
+  // VirtualScrollerModule,
+  // ScrollerModule,
+  /***************************** PANEL *****************************/
+  // AccordionModule,
+  CardModule,
+  DividerModule,
+  // FieldsetModule,
+  PanelModule,
+  // SplitterModule,
+  // ScrollPanelModule,
+  // TabViewModule,
+  // ToolbarModule,
+  // OVERLAY
+  ConfirmDialogModule,
+  ConfirmPopupModule,
+  DialogModule,
+  DynamicDialogModule,
+  OverlayPanelModule,
+  SidebarModule,
+  // TooltipModule,
+  /***************************** UPLOAD *****************************/
+  FileUploadModule,
+  /***************************** MENU *****************************/
+  MenuModule,
+  // BreadcrumbModule,
+  // ContextMenuModule,
+  // DockModule,
+  // MegaMenuModule,
+  MenubarModule,
+  PanelMenuModule,
+  // SlideMenuModule,
+  // StepsModule,
+  // TabMenuModule,
+  // TieredMenuModule,
+  /***************************** CHART *****************************/
+  // ChartModule, // has dependency
+  /***************************** MESSAGES *****************************/
+  MessagesModule,
+  MessageModule,
+  ToastModule,
+  /***************************** MEDIA *****************************/
+  // CarouselModule,
+  // GalleriaModule,
+  // ImageModule,
+  /***************************** DRAGDROP *****************************/
+  // DragDropModule,
+  /***************************** MISC *****************************/
+  AvatarModule,
+  // AvatarGroupModule,
+  // BadgeModule,
+  // BlockUIModule,
+  // CaptchaModule,
+  // ChipModule,
+  // InplaceModule,
+  // ProgressBarModule,
+  // ProgressSpinnerModule,
+  ScrollTopModule,
+  // SkeletonModule,
+  // TagModule,
+  // TerminalModule,
+  // DIRECTIVES
+  // DeferModule,
+  // FocusTrapModule,
+  // StyleClassModule,
+  // RippleModule,
+  // AutoFocusModule,
 ];
