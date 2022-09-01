@@ -2,7 +2,7 @@
 
 ### Feature
 
-- [ ] **navbar** - add ability to set default value for `sidebarLock` and `sidebarVisible`. also store in localStorage.
+- [x] **navbar** - add ability to set default value for `sidebarLock` and `sidebarVisible`. also store in localStorage.
 - [ ] **dialogForm** - add hook support in config (just like angular formly to implement cascade mode).
 - [ ] **toast** - fix preventDuplicate feature.
 - [ ] **map** - implement `removeLastMarker` & `removeAllMarkers` buttons. also add an `@Input() multi: boolean` to allow
@@ -21,7 +21,7 @@
 - [ ] **asyncSwitch** - have loading just like `buttonAsync.component`.
 - [ ] **datepicker** - implement. also, this component has a `moment` variable in `onSelect` function that is in conflict
   with `moment` in import statement. check it!
-- [ ] **table** - implement `shamsi` and `miladi` renderer, filter and editor.
+- [ ] **table** - implement `jalali` and `miladi` renderer, filter and editor.
 - [ ] **table** - add `templateString` and `templateHTML` support that accept a function returns a string or html template to
   render in cells. for example if we want display format like `item.date/item.month/item.year` in a cell, we use
   `templateString` and if want to show image url of item, we can use `templateHtml` like below:
@@ -40,3 +40,4 @@
 - [ ] **whiteboard** implement component.
 - [ ] **tree** implement component.
 - [ ] **treeSelect** implement component.
+- [ ] **enableCachingPerApi** implement interceptor & config.

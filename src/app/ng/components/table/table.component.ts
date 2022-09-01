@@ -169,12 +169,10 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     this.onTableReady.emit(this.dataTable);
     this.colDef.forEach(conf => {
       if (conf.filter && conf.filter.type == 'slider' && conf.filter.range) {
-        console.log(conf)
         Object.assign(conf, {sliderValue: [conf.filter.min, conf.filter.max]})
       }
     })
     this.tableReady = true;
-    console.log(this.colDef)
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -297,7 +295,6 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
 
 
   onChangeFilterValue(event: any, filterCallback: Function, col?: NgColDef) {
-    console.log(event);
     if (this.local) {
       let filterValue;
       switch (col.filter.type) {
@@ -311,7 +308,6 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
           filterValue = event.values;
           break;
       }
-      console.log(filterValue)
       filterCallback(filterValue)
     }
   }

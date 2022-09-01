@@ -9,7 +9,7 @@ export class CacheInterceptor implements HttpInterceptor {
   cache = new Map<string, any>();
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!GlobalConfig.enableCaching || request.method !== 'GET') {
+    if (!GlobalConfig.enableCachingApis || request.method !== 'GET') {
       return next.handle(request);
     }
 

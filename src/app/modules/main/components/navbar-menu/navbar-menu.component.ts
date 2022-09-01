@@ -1,34 +1,32 @@
-import {Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
+import {AfterViewChecked, Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {LanguageChecker} from '@core/utils';
 import {MenuItem} from 'primeng/api';
 import {SidebarType} from '@core/models';
-import {AuthService} from '@core/http';
 import {OverlayPanel} from "primeng/overlaypanel";
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-navbar-menu',
   templateUrl: './navbar-menu.component.html',
   styleUrls: ['./navbar-menu.component.scss']
 })
-export class NavbarMenuComponent extends LanguageChecker implements OnInit {
+export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterViewChecked {
   @ViewChild(OverlayPanel) overlayPanel: OverlayPanel;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (this.document.defaultView.innerWidth < 767) {
       this.changeSidebarType('overlay');
-      this.toggleOverlayDisplay(false);
     } else {
-      this.changeSidebarType(this.sidebarType);
+      this.changeSidebarType(GlobalConfig.defaultSidebarType);
     }
   }
 
-  language = this.translationService.getDefaultLang();
-  sidebarVisible: boolean;
-  sidebarLock: boolean;
-  sidebarType: SidebarType = 'push';
-  theme = 'lara-light-indigo';
+  theme: string = GlobalConfig.defaultTheme;
+  language: string = GlobalConfig.defaultLang;
+  sidebarVisible: boolean = GlobalConfig.defaultSidebarVisible;
+  sidebarLock: boolean = GlobalConfig.defaultSidebarLock;
+  sidebarType: SidebarType = GlobalConfig.defaultSidebarType;
   themes: MenuItem[];
   sidebarTypes: MenuItem[];
   sidebarItems: MenuItem[];
@@ -37,18 +35,25 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
     {
       label: 'خروج',
       icon: 'pi pi-sign-out',
-      command: async () => {
-        this.authService.logout();
+      command: () => {
       }
     }
   ];
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor() {
     super();
   }
 
   ngOnInit() {
     this.loadData();
+    if (this.sidebarLock && !this.sidebarVisible) {
+      this.sidebarVisible = true;
+    }
+  }
+
+  ngAfterViewChecked() {
+    this.toggleSidebar(this.sidebarVisible);
+    this.toggleSidebarLock(this.sidebarLock);
   }
 
   loadData() {
@@ -100,7 +105,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
     ];
     const sidebarTypes: SidebarType[] = ['overlay', 'overlay-mask', 'push', 'push-mask', 'hover', 'static', 'horizontal'];
     const sidebarItems: string[] = [
-      'dashboard',
       'auto-complete',
       'button',
       'button-async',
@@ -108,19 +112,22 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       'checkbox',
       'chips',
       'color-picker',
-      'date-picker',
-      'dynamic-form',
+      'dashboard',
       'dropdown',
+      'dual-label-switch',
+      'dynamic-form',
       'editor',
+      'empty',
       'file-picker',
       'file-picker2',
       'gregorian-datepicker',
       'image-slider',
       'mask',
-      'number',
-      'password',
-      'text',
-      'textarea',
+      'input-number',
+      'input-password',
+      'input-text',
+      'input-textarea',
+      'jalali-datepicker',
       'knob',
       'list-box',
       'map',
@@ -129,9 +136,9 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       'radio',
       'rating',
       'select-button',
-      'shamsi-datepicker',
       'slider',
       'split-button',
+      'status',
       'switch',
       'table',
       'toggle-button',
@@ -172,7 +179,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
   }
 
   changeSidebarType(event: any) {
-    this.sidebarType = event.value;
+    this.sidebarType = event.value || event;
     if (this.sidebarType == 'hover') {
       this.toggleSidebar(true);
     } else {
@@ -217,6 +224,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit {
       overlay?.classList.remove('d-none');
       body.classList.add('p-overflow-hidden');
     } else {
+      console.log(overlay)
       overlay?.classList.add('d-none');
       body.classList.remove('p-overflow-hidden');
     }

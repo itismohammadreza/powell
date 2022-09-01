@@ -33,10 +33,6 @@ export class LanguageChecker {
     return this._currentLang === 'fa';
   }
 
-  get currentLang() {
-    return this._currentLang;
-  }
-
   instant(key: string) {
     return this.translationService.instant(key) as any;
   }

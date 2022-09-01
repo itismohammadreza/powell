@@ -9,7 +9,6 @@ import {ButtonPage} from '@modules/main/pages/showcase/pages/button/button.page'
 import {CascadeSelectPage} from '@modules/main/pages/showcase/pages/cascade-select/cascade-select.page';
 import {ChipsPage} from '@modules/main/pages/showcase/pages/chips/chips.page';
 import {ColorPickerPage} from '@modules/main/pages/showcase/pages/color-picker/color-picker.page';
-import {DatePickerPage} from '@modules/main/pages/showcase/pages/date-picker/date-picker.page';
 import {DropdownPage} from '@modules/main/pages/showcase/pages/dropdown/dropdown.page';
 import {EditorPage} from '@modules/main/pages/showcase/pages/editor/editor.page';
 import {FilePickerPage} from '@modules/main/pages/showcase/pages/file-picker/file-picker.page';
@@ -41,7 +40,6 @@ import {
 } from '@modules/main/pages/showcase/components/preview-options/preview-options.component';
 import {KnobPage} from '@modules/main/pages/showcase/pages/knob/knob.page';
 import {TreeSelectPage} from '@modules/main/pages/showcase/pages/tree-select/tree-select.page';
-import {DatePicker2Page} from '@modules/main/pages/showcase/pages/date-picker2/date-picker2.page';
 import {
   DynamicDialogSampleComponent
 } from '@modules/main/pages/showcase/components/dynamic-dialog-sample/dynamic-dialog-sample.component';
@@ -49,10 +47,13 @@ import {ButtonAsyncPage} from '@modules/main/pages/showcase/pages/button-async/b
 import {UtilsPage} from "@modules/main/pages/showcase/pages/utils/utils.page";
 import {SmokeComponent} from "@modules/main/pages/showcase/components/smoke/smoke.component";
 import {TriStateCheckboxPage} from "@modules/main/pages/showcase/pages/tri-state-checkbox/tri-state-checkbox.page";
-import {ShamsiDatepickerPage} from "@modules/main/pages/showcase/pages/shamsi-datepicker/shamsi-datepicker.page";
+import {JalaliDatepickerPage} from "@modules/main/pages/showcase/pages/jalali-datepicker/jalali-datepicker.page";
 import {
   GregorianDatepickerPage
 } from "@modules/main/pages/showcase/pages/gregorian-datepicker/gregorian-datepicker.page";
+import {EmptyPage} from "@modules/main/pages/showcase/pages/empty/empty.page";
+import {StatusPage} from "@modules/main/pages/showcase/pages/status/status.page";
+import {DualLabelSwitchPage} from "@modules/main/pages/showcase/pages/dual-label-switch/dual-label-switch.page";
 
 export const COMPONENTS: Type<any>[] = [
   // components
@@ -64,7 +65,6 @@ export const COMPONENTS: Type<any>[] = [
   PreviewOptionsComponent,
   SmokeComponent,
   // pages
-  DashboardPage,
   AutoCompletePage,
   ButtonPage,
   ButtonAsyncPage,
@@ -72,21 +72,23 @@ export const COMPONENTS: Type<any>[] = [
   CheckboxPage,
   ChipsPage,
   ColorPickerPage,
-  DatePickerPage,
-  DatePicker2Page,
-  GregorianDatepickerPage,
+  DashboardPage,
+  DropdownPage,
+  DualLabelSwitchPage,
   DynamicDialogSampleComponent,
   DynamicFormPage,
-  DropdownPage,
   EditorPage,
+  EmptyPage,
   FilePickerPage,
   FilePicker2Page,
+  GregorianDatepickerPage,
   ImageSliderPage,
   InputMaskPage,
   InputNumberPage,
   InputPasswordPage,
   InputTextPage,
   InputTextareaPage,
+  JalaliDatepickerPage,
   KnobPage,
   ListBoxPage,
   MapPage,
@@ -95,9 +97,9 @@ export const COMPONENTS: Type<any>[] = [
   RadioPage,
   RatingPage,
   SelectButtonPage,
-  ShamsiDatepickerPage,
   SliderPage,
   SplitButtonPage,
+  StatusPage,
   SwitchPage,
   TablePage,
   ToggleButtonPage,

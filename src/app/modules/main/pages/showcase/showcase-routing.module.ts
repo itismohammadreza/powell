@@ -5,7 +5,6 @@ import {ButtonPage} from '@modules/main/pages/showcase/pages/button/button.page'
 import {CascadeSelectPage} from '@modules/main/pages/showcase/pages/cascade-select/cascade-select.page';
 import {ChipsPage} from '@modules/main/pages/showcase/pages/chips/chips.page';
 import {ColorPickerPage} from '@modules/main/pages/showcase/pages/color-picker/color-picker.page';
-import {DatePickerPage} from '@modules/main/pages/showcase/pages/date-picker/date-picker.page';
 import {DropdownPage} from '@modules/main/pages/showcase/pages/dropdown/dropdown.page';
 import {EditorPage} from '@modules/main/pages/showcase/pages/editor/editor.page';
 import {FilePickerPage} from '@modules/main/pages/showcase/pages/file-picker/file-picker.page';
@@ -39,15 +38,12 @@ import {UtilsPage} from "@modules/main/pages/showcase/pages/utils/utils.page";
 import {
   GregorianDatepickerPage
 } from "@modules/main/pages/showcase/pages/gregorian-datepicker/gregorian-datepicker.page";
-import {ShamsiDatepickerPage} from "@modules/main/pages/showcase/pages/shamsi-datepicker/shamsi-datepicker.page";
+import {JalaliDatepickerPage} from "@modules/main/pages/showcase/pages/jalali-datepicker/jalali-datepicker.page";
 import {TriStateCheckboxPage} from "@modules/main/pages/showcase/pages/tri-state-checkbox/tri-state-checkbox.page";
+import {EmptyPage} from "@modules/main/pages/showcase/pages/empty/empty.page";
+import {DualLabelSwitchPage} from "@modules/main/pages/showcase/pages/dual-label-switch/dual-label-switch.page";
 
 const routes: Routes = [
-  {
-    path: 'dashboard',
-    component: DashboardPage,
-    data: {title: 'dashboard'}
-  },
   {
     path: 'auto-complete',
     component: AutoCompletePage,
@@ -79,19 +75,14 @@ const routes: Routes = [
     data: {title: 'chips'}
   },
   {
-    path: 'date-picker',
-    component: DatePickerPage,
-    data: {title: 'date-picker'}
-  },
-  {
-    path: 'dynamic-form',
-    component: DynamicFormPage,
-    data: {title: 'dynamic-form'}
-  },
-  {
     path: 'color-picker',
     component: ColorPickerPage,
     data: {title: 'color-picker'}
+  },
+  {
+    path: 'dashboard',
+    component: DashboardPage,
+    data: {title: 'dashboard'}
   },
   {
     path: 'dropdown',
@@ -99,9 +90,24 @@ const routes: Routes = [
     data: {title: 'dropdown'}
   },
   {
+    path: 'dual-label-switch',
+    component: DualLabelSwitchPage,
+    data: {title: 'dual-label-switch'}
+  },
+  {
+    path: 'dynamic-form',
+    component: DynamicFormPage,
+    data: {title: 'dynamic-form'}
+  },
+  {
     path: 'editor',
     component: EditorPage,
     data: {title: 'editor'}
+  },
+  {
+    path: 'empty',
+    component: EmptyPage,
+    data: {title: 'empty'}
   },
   {
     path: 'file-picker',
@@ -124,29 +130,34 @@ const routes: Routes = [
     data: {title: 'image-slider'}
   },
   {
-    path: 'mask',
+    path: 'input-mask',
     component: InputMaskPage,
-    data: {title: 'mask'}
+    data: {title: 'input-mask'}
   },
   {
-    path: 'number',
+    path: 'input-number',
     component: InputNumberPage,
-    data: {title: 'number'}
+    data: {title: 'input-number'}
   },
   {
-    path: 'password',
+    path: 'input-password',
     component: InputPasswordPage,
-    data: {title: 'password'}
+    data: {title: 'input-password'}
   },
   {
-    path: 'text',
+    path: 'input-text',
     component: InputTextPage,
-    data: {title: 'text'}
+    data: {title: 'input-text'}
   },
   {
-    path: 'textarea',
+    path: 'input-textarea',
     component: InputTextareaPage,
-    data: {title: 'textarea'}
+    data: {title: 'input-textarea'}
+  },
+  {
+    path: 'jalali-datepicker',
+    component: JalaliDatepickerPage,
+    data: {title: 'jalali-datepicker'}
   },
   {
     path: 'knob',
@@ -187,11 +198,6 @@ const routes: Routes = [
     path: 'select-button',
     component: SelectButtonPage,
     data: {title: 'select-button'}
-  },
-  {
-    path: 'shamsi-datepicker',
-    component: ShamsiDatepickerPage,
-    data: {title: 'shamsi-datepicker'}
   },
   {
     path: 'slider',

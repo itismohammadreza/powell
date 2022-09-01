@@ -1,19 +1,19 @@
 import {Injectable} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Observable} from 'rxjs';
+import {GlobalConfig} from "@core/global.config";
 
 @Injectable({
   providedIn: 'root',
 })
 export class TranslationService {
   constructor(private translate: TranslateService) {
-    if (!localStorage.getItem('lang')) {
-      localStorage.setItem('lang', 'en');
-    }
+    const defaultLang = GlobalConfig.defaultLang;
+    localStorage.setItem('lang', defaultLang);
     if (!this.getDefaultLang()) {
-      this.setDefaultLang(localStorage.getItem('lang'));
+      this.setDefaultLang(defaultLang);
     }
-    this.use(this.getDefaultLang());
+    this.use(defaultLang);
   }
 
   /**

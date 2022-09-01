@@ -1,13 +1,13 @@
 import {Type} from '@angular/core';
 /***************************** FORM *****************************/
 import {AutoCompleteComponent} from "@ng/components/auto-complete/auto-complete.component";
-import {GregorianDatepickerComponent} from "@ng/components/gregorian-datepicker/gregorian-datepicker.component";
 import {CascadeSelectComponent} from "@ng/components/cascade-select/cascade-select.component";
 import {CheckboxComponent} from "@ng/components/checkbox/checkbox.component";
 import {ChipsComponent} from "@ng/components/chips/chips.component";
 import {ColorPickerComponent} from "@ng/components/color-picker/color-picker.component";
 import {DropdownComponent} from "@ng/components/dropdown/dropdown.component";
 import {EditorComponent} from "@ng/components/editor/editor.component";
+import {GregorianDatepickerComponent} from "@ng/components/gregorian-datepicker/gregorian-datepicker.component";
 import {InputMaskComponent} from "@ng/components/input-mask/input-mask.component";
 import {SwitchComponent} from "@ng/components/switch/switch.component";
 import {InputTextComponent} from "@ng/components/input-text/input-text.component";
@@ -15,17 +15,17 @@ import {InputTextareaComponent} from "@ng/components/input-textarea/input-textar
 import {InputNumberComponent} from "@ng/components/input-number/input-number.component";
 import {KnobComponent} from "@ng/components/knob/knob.component";
 import {ListboxComponent} from "@ng/components/listbox/listbox.component";
+import {MultiCheckboxComponent} from "@ng/components/multi-checkbox/multi-checkbox.component";
 import {MultiSelectComponent} from "@ng/components/multi-select/multi-select.component";
 import {InputPasswordComponent} from "@ng/components/input-password/input-password.component";
 import {RadioComponent} from "@ng/components/radio/radio.component";
 import {RatingComponent} from "@ng/components/rating/rating.component";
 import {SliderComponent} from "@ng/components/slider/slider.component";
 import {SelectButtonComponent} from "@ng/components/select-button/select-button.component";
+import {JalaliDatepickerComponent} from "@ng/components/jalali-datepicker/jalali-datepicker.component";
 import {ToggleButtonComponent} from "@ng/components/toggle-button/toggle-button.component";
 import {TreeSelectComponent} from "@ng/components/tree-select/tree-select.component";
 import {TriStateCheckboxComponent} from "@ng/components/tri-state-checkbox/tri-state-checkbox.component";
-import {ShamsiDatepickerComponent} from "@ng/components/shamsi-datepicker/shamsi-datepicker.component";
-import {MultiCheckboxComponent} from "@ng/components/multi-checkbox/multi-checkbox.component";
 
 /***************************** BUTTONS *****************************/
 import {ButtonComponent} from "@ng/components/button/button.component";
@@ -64,6 +64,8 @@ import {ImageSliderComponent} from "@ng/components/image-slider/image-slider.com
 /***************************** MISC *****************************/
 import {EmptyComponent} from "@ng/components/empty/empty.component";
 import {LoadingComponent} from "@ng/components/loading/loading.component";
+import {StatusComponent} from "@ng/components/status/status.component";
+import {DualLabelSwitchComponent} from "@ng/components/dual-label-switch/dual-label-switch.component";
 
 export const COMPONENTS: Type<any>[] = [
   /***************************** FORM *************************/
@@ -73,16 +75,20 @@ export const COMPONENTS: Type<any>[] = [
   ChipsComponent,
   ColorPickerComponent,
   DropdownComponent,
+  DualLabelSwitchComponent,
   EditorComponent,
+  GregorianDatepickerComponent,
   InputMaskComponent,
   SwitchComponent,
+  InputNumberComponent,
+  InputPasswordComponent,
   InputTextComponent,
   InputTextareaComponent,
-  InputNumberComponent,
+  JalaliDatepickerComponent,
   KnobComponent,
   ListboxComponent,
+  MultiCheckboxComponent,
   MultiSelectComponent,
-  InputPasswordComponent,
   RadioComponent,
   RatingComponent,
   SliderComponent,
@@ -90,9 +96,6 @@ export const COMPONENTS: Type<any>[] = [
   ToggleButtonComponent,
   TreeSelectComponent,
   TriStateCheckboxComponent,
-  ShamsiDatepickerComponent,
-  GregorianDatepickerComponent,
-  MultiCheckboxComponent,
   /***************************** BUTTONS *************************/
   ButtonComponent,
   SplitButtonComponent,
@@ -122,5 +125,6 @@ export const COMPONENTS: Type<any>[] = [
   ImageSliderComponent,
   /***************************** MISC *************************/
   EmptyComponent,
+  StatusComponent,
   LoadingComponent,
 ];

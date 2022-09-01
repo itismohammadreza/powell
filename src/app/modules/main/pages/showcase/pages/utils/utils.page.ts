@@ -102,7 +102,7 @@ export class UtilsPage {
           className: 'col-6'
         }
       ],
-    ).onClose.subscribe(console.log);
+    ).onClose.subscribe();
   }
 
   showConfirmPopup(event) {
