@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, HostListener, OnInit, ViewChild} from '@angular/core';
+import {AfterContentInit, AfterViewChecked, Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {LanguageChecker} from '@core/utils';
 import {MenuItem} from 'primeng/api';
 import {SidebarType} from '@core/models';
@@ -10,18 +10,20 @@ import {GlobalConfig} from "@core/global.config";
   templateUrl: './navbar-menu.component.html',
   styleUrls: ['./navbar-menu.component.scss']
 })
-export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterViewChecked {
+export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterViewChecked, AfterContentInit {
   @ViewChild(OverlayPanel) overlayPanel: OverlayPanel;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    if (this.document.defaultView.innerWidth < 767) {
+    if (this.document.defaultView.innerWidth < this.responsiveThreshold) {
       this.changeSidebarType('overlay');
+      this.toggleOverlayDisplay(true);
     } else {
       this.changeSidebarType(GlobalConfig.defaultSidebarType);
     }
   }
 
+  responsiveThreshold: number = 768;
   theme: string = GlobalConfig.defaultTheme;
   language: string = GlobalConfig.defaultLang;
   sidebarVisible: boolean = GlobalConfig.defaultSidebarVisible;
@@ -54,6 +56,12 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   ngAfterViewChecked() {
     this.toggleSidebar(this.sidebarVisible);
     this.toggleSidebarLock(this.sidebarLock);
+  }
+
+  ngAfterContentInit() {
+    if (this.document.defaultView.innerWidth < this.responsiveThreshold) {
+      this.changeSidebarType('overlay');
+    }
   }
 
   loadData() {
@@ -169,13 +177,13 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       themeElement.getAttribute('href').replace(this.theme, event.value)
     );
     this.theme = event.value;
-    this.overlayPanel.hide();
+    this.overlayPanel?.hide();
   }
 
   async changeLang(event) {
     await this.translationService.use(event.value).toPromise();
     this.language = event.value;
-    this.overlayPanel.hide();
+    this.overlayPanel?.hide();
   }
 
   changeSidebarType(event: any) {
@@ -186,7 +194,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       this.toggleSidebar(false);
     }
     this.toggleSidebarLock(false);
-    this.overlayPanel.hide();
+    this.overlayPanel?.hide();
   }
 
   toggleSidebarClick() {
@@ -224,7 +232,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       overlay?.classList.remove('d-none');
       body.classList.add('p-overflow-hidden');
     } else {
-      console.log(overlay)
       overlay?.classList.add('d-none');
       body.classList.remove('p-overflow-hidden');
     }
@@ -244,12 +251,13 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   getWrapperClasses() {
-    return {
-      [`menu-${this.sidebarType}`]: true,
-      rtl: this.fa,
-      'sidebar-lock': this.sidebarLock,
-      'sidebar-open': this.sidebarVisible
-    }
+    // return {
+    //   [`menu-${this.sidebarType}`]: true,
+    //   rtl: this.fa,
+    //   'sidebar-lock': this.sidebarLock,
+    //   'sidebar-open': this.sidebarVisible
+    // }
+    return `menu-${this.sidebarType} ${this.fa ? 'rtl' : ''} ${this.sidebarLock ? 'sidebar-lock' : ''}  ${this.sidebarVisible ? 'sidebar-open' : ''}`
   }
 
   get isModalSidebar() {
