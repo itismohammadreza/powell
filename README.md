@@ -2,20 +2,23 @@
 
 ### Feature
 
-- [x] **navbar** - add ability to set default value for `sidebarLock` and `sidebarVisible`. also store in localStorage.
-- [ ] **dialogForm** - add hook support in config (just like angular formly to implement cascade mode).
+- [ ] **dialogForm** - add hook support in config (just like angular formly to implement cascade mode). 
+  set a valid type for labelPos in models.
 - [ ] **toast** - fix preventDuplicate feature.
 - [ ] **map** - implement `removeLastMarker` & `removeAllMarkers` buttons. also add an `@Input() multi: boolean` to allow
   choosing multiple marker.
 - [ ] **all** - handle rtl direction in dropdowns panel (or etc.) when is appendTo body.
-- [ ] **all** - use typescript utility-types (e.u `Exclude<..>`) in components as need. for example in `knob.component`
-  we can't have `labelPos = 'float'`, but it can accept now!
-  fix this by using utility-types and exclude 'float' in `labelPos` input property.
 
 ### New
 
-- [x] **dualLabelSwitch** - implement `labelLeft` and `labelRight` for a switch component.
+- [ ] **empty** - implement component just like `AntDisign-NG-ZORRRO`.
+- [ ] **status** - implement component just like `AntDisign-NG-ZORRRO`.
+- [ ] **tree** - implement component.
+- [ ] **treeSelect** - implement component.
+- [ ] **enableCachingPerApi** - implement interceptor & config.
+- [ ] **whiteboard** - implement component.
 - [ ] **asyncSwitch** - have loading just like `buttonAsync.component`.
+- [ ] **async** - add an async @Input to button, switch, checkbox, dual-switch instead of implementing new component.
 - [ ] **datepicker** - implement component.
 - [ ] **table** - implement `jalali` and `miladi` renderer, filter and editor. 
   add `templateString` and `templateHTML` support that accept a function returns a string or html template to render in cells. 
@@ -31,9 +34,3 @@
   }
   ```
   
-- [ ] **empty** - implement component just like `AntDisign-NG-ZORRRO`.
-- [ ] **status** - implement component just like `AntDisign-NG-ZORRRO`.
-- [ ] **whiteboard** implement component.
-- [ ] **tree** implement component.
-- [ ] **treeSelect** implement component.
-- [ ] **enableCachingPerApi** implement interceptor & config.

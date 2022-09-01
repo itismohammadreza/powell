@@ -376,7 +376,7 @@ export interface NgDialogFormConfig {
   hint?: string;
   rtl?: boolean;
   showRequiredStar?: boolean;
-  labelPos?: any; // todo : set a valid type
+  labelPos?: any;
   errors?: NgDialogFormError[];
   items?: any[];
   selectionMode?: NgSelectionMode;
