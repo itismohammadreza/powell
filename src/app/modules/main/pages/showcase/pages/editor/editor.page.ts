@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgLabelPosition} from '@ng/models/forms';
+import {NgFixLabelPosition} from '@ng/models/forms';
 
 @Component({
   selector: 'ng-editor-page',
@@ -17,7 +17,7 @@ export class EditorPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = true;
-  labelPos: NgLabelPosition = 'fix-side';
+  labelPos: NgFixLabelPosition = 'fix-side';
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;

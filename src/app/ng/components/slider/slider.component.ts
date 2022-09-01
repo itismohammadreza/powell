@@ -20,7 +20,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgError, NgLabelPosition} from '@ng/models/forms';
+import {NgError, NgFixLabelPosition} from '@ng/models/forms';
 import {NgOrientation} from '@ng/models/offset';
 
 @Component({
@@ -42,7 +42,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = 'fix-top';
   @Input() errors: NgError;
   // native properties
   @Input() animate: boolean;

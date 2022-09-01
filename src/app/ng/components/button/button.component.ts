@@ -8,7 +8,7 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import {NgPosition, NgSize} from '@ng/models/offset';
+import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {NgColor} from '@ng/models/color';
 import {NgButtonAppearance, NgButtonType} from '@ng/models/button';
 import {TemplateDirective} from '@ng/directives/template.directive';
@@ -31,7 +31,7 @@ export class ButtonComponent implements AfterContentInit {
   @Input() type: NgButtonType = 'button';
   @Input() label: string;
   @Input() icon: string;
-  @Input() iconPos: NgPosition = 'left';
+  @Input() iconPos: NgIconPosition = 'left';
   @Input() badge: string;
   @Input() badgeClass: string;
   @Input() loading: boolean;

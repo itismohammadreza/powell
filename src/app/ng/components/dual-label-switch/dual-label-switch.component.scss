@@ -1,0 +1,54 @@
+:host ::ng-deep {
+  .dual-label-switch-wrapper {
+    display: flex;
+    position: relative;
+    direction: ltr;
+
+    .field-inner {
+      direction: ltr;
+      display: inline-flex;
+      align-items: center;
+
+      .label-left {
+        margin-right: 1rem;
+      }
+
+      .label-right {
+        margin-left: 1rem;
+      }
+    }
+
+    .p-inputswitch {
+      .p-inputswitch-slider {
+        background-color: var(--primary-color) !important;
+      }
+    }
+
+    .field {
+      flex-grow: 1;
+    }
+
+    .message {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+    }
+
+    &.ltr {
+      .message {
+        left: 0;
+      }
+    }
+
+    &.rtl {
+      .field,
+      label,
+      .message {
+        direction: rtl;
+      }
+
+      .message {
+        right: 0;
+      }
+    }
+  }
+}

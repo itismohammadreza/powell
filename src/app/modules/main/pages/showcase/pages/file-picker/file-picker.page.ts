@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgInputFileMode, NgLabelPosition} from '@ng/models/forms';
+import {NgFixLabelPosition, NgInputFileMode} from '@ng/models/forms';
 
 @Component({
   selector: 'ng-file-picker-page',
@@ -17,7 +17,7 @@ export class FilePickerPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = true;
-  labelPos: NgLabelPosition = 'fix-side';
+  labelPos: NgFixLabelPosition = 'fix-side';
   // native properties
   multiple: boolean = true;
   accept: string = 'image/*';

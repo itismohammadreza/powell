@@ -7,7 +7,6 @@
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
     }" class="switch-wrapper">
-
   <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field">
     <p-inputSwitch
       [(ngModel)]="value"
@@ -24,7 +23,7 @@
     ></p-inputSwitch>
   </div>
   <label
-    *ngIf="(label|| onLabel) && labelPos != 'float'"
+    *ngIf="label || onLabel"
     [attr.for]="inputId"
     [ngClass]="{
       'mb-0': labelPos == 'fix-side',

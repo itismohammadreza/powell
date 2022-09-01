@@ -1,25 +1,24 @@
 import {HttpHeaders} from '@angular/common/http';
+import {AbstractControl, ValidationErrors} from '@angular/forms';
 import {ContextMenu} from 'primeng/contextmenu';
 import {NgButtonAppearance} from './button';
 import {NgColor} from './color';
 import {
   NgAddon,
-  NgAddonConfig,
   NgColorFormat,
   NgCurrency,
   NgCurrencyDisplay,
-  NgDatePickerMode,
   NgErrorType,
-  NgFilterMatchMode,
-  NgInputFileMode, NgInputTypes,
+  NgFilterMatchMode, NgFixLabelPosition,
+  NgInputFileMode,
+  NgInputTypes,
   NgKeyFilter,
   NgLabelPosition,
   NgNumberButtonLayout,
   NgNumberMode,
 } from './forms';
-import {NgOrientation, NgPosition, NgSelectionMode, NgSize} from './offset';
+import {NgIconPosition, NgOrientation, NgPlace, NgSelectionMode, NgSize} from './offset';
 import {NgTreeFilterMode} from './tree';
-import {AbstractControl, ValidationErrors} from '@angular/forms';
 
 export interface NgConfirmOptions {
   // native service options
@@ -43,7 +42,7 @@ export interface NgConfirmOptions {
   rejectIcon?: string;
   rejectVisible?: boolean;
   rtl?: boolean;
-  position?: NgPosition;
+  position?: NgPlace;
   focusTrap?: boolean;
   appendTo?: any;
   baseZIndex?: number;
@@ -78,7 +77,7 @@ export interface NgToastOptions {
   contentStyleClass?: string;
   preventOpenDuplicates?: boolean;
   preventDuplicates?: boolean;
-  position?: NgPosition;
+  position?: NgPlace;
   rtl?: boolean;
   style?: string;
   baseZIndex?: number;
@@ -119,13 +118,12 @@ export interface NgMessageOptions {
   hideTransitionOptions?: string;
 }
 
-
 export interface NgDialog {
   message?: string;
   buttonLabel?: string;
   buttonIcon?: string;
   buttonAppearance?: NgButtonAppearance;
-  buttonIconPos?: NgPosition;
+  buttonIconPos?: NgIconPosition;
   buttonRounded?: boolean;
   buttonRaised?: boolean;
   buttonColor?: NgColor;
@@ -261,7 +259,6 @@ export interface NgDialogFormConfig {
   addOnTab?: boolean;
   addOnBlur?: boolean;
   locale?: string;
-  datePickerMode?: NgDatePickerMode;
   inline?: boolean;
   clearable?: boolean;
   optionGroupLabel?: string;
@@ -370,7 +367,7 @@ export interface NgDialogFormConfig {
   offLabel?: string;
   onIcon?: string;
   offIcon?: string;
-  iconPos?: NgPosition;
+  iconPos?: NgIconPosition;
   disabled?: boolean;
   readonly?: boolean;
   selection?: any;
@@ -379,7 +376,7 @@ export interface NgDialogFormConfig {
   hint?: string;
   rtl?: boolean;
   showRequiredStar?: boolean;
-  labelPos?: NgLabelPosition;
+  labelPos?: any; // todo : set a valid type
   errors?: NgDialogFormError[];
   items?: any[];
   selectionMode?: NgSelectionMode;

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {NgButtonAppearance} from "@ng/models/button";
 import {NgColor} from "@ng/models/color";
-import {NgPosition, NgSize} from "@ng/models/offset";
+import {NgIconPosition, NgSize} from "@ng/models/offset";
 
 @Component({
   selector: 'ng-split-button-page',
@@ -19,7 +19,7 @@ export class SplitButtonPage {
   rtl: boolean = false;
   label: string = 'Label';
   icon: string = '';
-  iconPos: NgPosition = 'left';
+  iconPos: NgIconPosition = 'left';
   disabled: boolean = false;
 
   items: MenuItem[] = [

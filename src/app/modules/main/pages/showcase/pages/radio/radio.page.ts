@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgLabelPosition} from '@ng/models/forms';
+import {NgFixLabelPosition} from '@ng/models/forms';
 import {NgOrientation} from '@ng/models/offset';
 
 @Component({
@@ -18,7 +18,7 @@ export class RadioPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = true;
-  labelPos: NgLabelPosition = 'fix-side';
+  labelPos: NgFixLabelPosition = 'fix-side';
   // native properties
   orientation: NgOrientation = 'vertical';
   disabled: boolean = false;

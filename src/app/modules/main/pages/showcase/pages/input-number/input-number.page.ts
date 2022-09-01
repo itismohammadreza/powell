@@ -8,7 +8,7 @@ import {
   NgNumberButtonLayout,
   NgNumberMode
 } from '@ng/models/forms';
-import {NgPosition, NgSize} from '@ng/models/offset';
+import {NgIconPosition, NgSize} from '@ng/models/offset';
 
 @Component({
   selector: 'ng-input-number-page',
@@ -28,7 +28,7 @@ export class InputNumberPage {
   rtl: boolean = true;
   icon: string = '';
   labelPos: NgLabelPosition = 'fix-side';
-  iconPos: NgPosition = 'left';
+  iconPos: NgIconPosition = 'left';
   inputSize: NgSize = 'md';
   addon: NgAddon;
   // native properties

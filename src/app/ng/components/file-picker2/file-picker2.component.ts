@@ -22,7 +22,7 @@ import {
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgColor} from '@ng/models/color';
-import {NgError, NgLabelPosition} from '@ng/models/forms';
+import {NgError, NgFixLabelPosition} from '@ng/models/forms';
 
 @Component({
   selector: 'ng-file-picker2',
@@ -44,7 +44,7 @@ export class FilePicker2Component
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = 'fix-top';
   @Input() errors: NgError;
   @Input() disabled: boolean;
   @Input() readonly: boolean;

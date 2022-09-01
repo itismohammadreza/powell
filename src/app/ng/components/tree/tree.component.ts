@@ -21,7 +21,7 @@ import {
   NgModel,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgError, NgLabelPosition} from '@ng/models/forms';
+import {NgError, NgFixLabelPosition} from '@ng/models/forms';
 import {NgOrientation, NgSelectionMode} from '@ng/models/offset';
 import {NgTree, NgTreeFilterMode} from '@ng/models/tree';
 import {ContextMenu} from 'primeng/contextmenu';
@@ -44,7 +44,7 @@ export class TreeComponent implements OnInit, AfterViewInit, ControlValueAccesso
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = 'fix-top';
   @Input() errors: NgError;
   // native properties
   @Input() items: NgTree[];

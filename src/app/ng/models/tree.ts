@@ -1,4 +1,5 @@
 export type NgTreeFilterMode = 'strict' | 'lenient';
+
 export class NgTree {
   label?: string;
   data?: any;

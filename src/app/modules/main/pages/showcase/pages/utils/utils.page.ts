@@ -6,7 +6,7 @@ import {
 } from "@modules/main/pages/showcase/components/dynamic-dialog-sample/dynamic-dialog-sample.component";
 
 @Component({
-  selector: 'ng-utils',
+  selector: 'ng-utils-page',
   templateUrl: './utils.page.html',
   styleUrls: ['./utils.page.scss']
 })

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgLabelPosition} from "@ng/models/forms";
-import {NgPosition} from "@ng/models/offset";
+import {NgFixLabelPosition} from "@ng/models/forms";
+import {NgIconPosition} from "@ng/models/offset";
 
 @Component({
   selector: 'ng-toggle-button-page',
@@ -18,12 +18,12 @@ export class ToggleButtonPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = true;
-  labelPos: NgLabelPosition = 'fix-side';
+  labelPos: NgFixLabelPosition = 'fix-side';
   // native properties
   onLabel: string = '';
   offLabel: string = '';
   onIcon: string = 'pi pi-check';
   offIcon: string = 'pi pi-times';
-  iconPos: NgPosition = 'left';
+  iconPos: NgIconPosition = 'left';
   disabled: boolean = false;
 }

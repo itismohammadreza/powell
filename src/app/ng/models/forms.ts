@@ -1,24 +1,14 @@
 import {NgColor} from './color';
-import {NgPosition} from './offset';
+import {NgIconPosition} from './offset';
 
-export type NgDatePickerMode = 'day' | 'month' | 'time' | 'daytime';
-
-export type NgAddonConfig =
-  | {
-  type: 'button';
+export interface NgAddonConfig {
+  type: 'button' | 'icon' | 'text';
   label?: string;
   color?: NgColor;
   icon?: string;
-  iconPos?: NgPosition;
-}
-  | {
-  type: 'icon';
-  icon?: string;
-}
-  | {
-  type: 'text';
+  iconPos?: NgIconPosition;
   text?: string;
-};
+}
 
 export interface NgAddon {
   before?: NgAddonConfig;
@@ -56,6 +46,7 @@ export type NgFilterMatchMode =
 export type NgInputFileMode = 'basic' | 'advanced';
 
 export type NgLabelPosition = 'fix-side' | 'fix-top' | 'float';
+export type NgFixLabelPosition = Exclude<NgLabelPosition, 'float'>;
 
 export type NgKeyFilter =
   | 'pint' // Positive integers
@@ -78,9 +69,8 @@ export type NgErrorType =
   | 'pattern'
   | 'nullValidator';
 
-export type NgError = {
-  [errorType in NgErrorType]?: string;
-};
+export type NgError = Partial<Record<NgErrorType, string>>;
+// equal to : [errorType in NgErrorType]?: string;
 
 export type NgInputTypes =
   | 'button'

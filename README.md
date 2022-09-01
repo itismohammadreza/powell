@@ -14,16 +14,12 @@
 
 ### New
 
-- [ ] **dualLabelSwitch** - implement (`labelLeft` and `labelRight`). take a couple of objects like:
-  ```
-  [{label:'roshan',value:'on'}, {label:'khamoosh',value:'off'}]
-  ```
+- [x] **dualLabelSwitch** - implement `labelLeft` and `labelRight` for a switch component.
 - [ ] **asyncSwitch** - have loading just like `buttonAsync.component`.
-- [ ] **datepicker** - implement. also, this component has a `moment` variable in `onSelect` function that is in conflict
-  with `moment` in import statement. check it!
-- [ ] **table** - implement `jalali` and `miladi` renderer, filter and editor.
-- [ ] **table** - add `templateString` and `templateHTML` support that accept a function returns a string or html template to
-  render in cells. for example if we want display format like `item.date/item.month/item.year` in a cell, we use
+- [ ] **datepicker** - implement component.
+- [ ] **table** - implement `jalali` and `miladi` renderer, filter and editor. 
+  add `templateString` and `templateHTML` support that accept a function returns a string or html template to render in cells. 
+  for example if we want display format like `item.date/item.month/item.year` in a cell, we use
   `templateString` and if want to show image url of item, we can use `templateHtml` like below:
 
   ```
@@ -34,7 +30,7 @@
     templateHtml: (item) => `<img src=${item.imageUrl} />`
   }
   ```
-
+  
 - [ ] **empty** - implement component just like `AntDisign-NG-ZORRRO`.
 - [ ] **status** - implement component just like `AntDisign-NG-ZORRRO`.
 - [ ] **whiteboard** implement component.

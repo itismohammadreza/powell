@@ -10,7 +10,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import {NgError, NgLabelPosition} from '@ng/models/forms';
+import {NgError, NgFixLabelPosition} from '@ng/models/forms';
 import {
   AbstractControl,
   ControlContainer,
@@ -41,7 +41,7 @@ export class KnobComponent implements OnInit, AfterViewInit, ControlValueAccesso
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = 'fix-top';
   @Input() errors: NgError;
   // native properties
   @Input() size: number = 100;

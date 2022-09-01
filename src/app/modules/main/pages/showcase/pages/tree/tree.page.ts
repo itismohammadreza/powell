@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgLabelPosition} from '@ng/models/forms';
+import {NgFixLabelPosition} from '@ng/models/forms';
 import {NgOrientation, NgSelectionMode} from '@ng/models/offset';
 import {NgTree, NgTreeFilterMode} from '@ng/models/tree';
 import {ContextMenu} from 'primeng/contextmenu';
@@ -20,7 +20,7 @@ export class TreePage {
   labelWidth: number;
   hint: string = '';
   rtl: boolean = false;
-  labelPos: NgLabelPosition = 'fix-top';
+  labelPos: NgFixLabelPosition = 'fix-top';
   items: NgTree[];
   selectionMode: NgSelectionMode = 'checkbox';
   selection: NgTree | NgTree[];

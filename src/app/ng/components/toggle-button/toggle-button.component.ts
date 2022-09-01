@@ -20,8 +20,8 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgError, NgLabelPosition} from '@ng/models/forms';
-import {NgPosition} from '@ng/models/offset';
+import {NgError, NgFixLabelPosition} from '@ng/models/forms';
+import {NgIconPosition} from '@ng/models/offset';
 
 @Component({
   selector: 'ng-toggle-button',
@@ -42,14 +42,14 @@ export class ToggleButtonComponent implements OnInit, AfterViewInit, ControlValu
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = 'fix-top';
   @Input() errors: NgError;
   // native properties
   @Input() onLabel: string;
   @Input() offLabel: string;
   @Input() onIcon: string = 'pi pi-check';
   @Input() offIcon: string = 'pi pi-times';
-  @Input() iconPos: NgPosition = 'left';
+  @Input() iconPos: NgIconPosition = 'left';
   @Input() style: any;
   @Input() styleClass: string;
   @Input() disabled: boolean;

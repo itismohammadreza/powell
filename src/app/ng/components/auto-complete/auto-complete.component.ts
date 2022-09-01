@@ -24,7 +24,7 @@ import {
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
-import {NgPosition, NgSize} from '@ng/models/offset';
+import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
 
 @Component({
@@ -49,8 +49,8 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() showRequiredStar: boolean = true;
   @Input() icon: string;
   @Input() labelPos: NgLabelPosition = 'fix-top';
-  @Input() iconPos: NgPosition = 'left';
-  @Input() addon: NgAddon
+  @Input() iconPos: NgIconPosition = 'left';
+  @Input() addon: NgAddon;
   @Input() errors: NgError;
   @Input() inputSize: NgSize = 'md';
   // native properties

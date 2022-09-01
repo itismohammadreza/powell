@@ -6,6 +6,12 @@ export type NgPosition =
   | 'left'
   | 'right'
   | 'top'
+  | 'bottom';
+export type NgIconPosition = Exclude<NgPosition, 'top' | 'bottom'>;
+export type NgPlace =
+  | 'left'
+  | 'right'
+  | 'top'
   | 'bottom'
   | 'top-right'
   | 'top-left'

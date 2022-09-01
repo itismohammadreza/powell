@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {NgButtonAppearance} from '@ng/models/button';
 import {NgColor} from '@ng/models/color';
-import {NgPosition, NgSize} from '@ng/models/offset';
+import {NgSize} from '@ng/models/offset';
 import {MenuItem} from 'primeng/api';
 import {TemplateDirective} from "@ng/directives/template.directive";
 

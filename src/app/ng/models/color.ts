@@ -6,8 +6,3 @@ export type NgColor =
   | 'danger'
   | 'help'
   | 'primary';
-
-export class NgColorItem {
-  text: string;
-  code: string;
-}

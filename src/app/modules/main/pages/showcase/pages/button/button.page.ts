@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NgButtonAppearance} from '@ng/models/button';
-import {NgPosition, NgSize} from '@ng/models/offset';
+import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {NgColor} from '@ng/models/color';
 
 @Component({
@@ -17,7 +17,7 @@ export class ButtonPage {
   raised: boolean = false;
   appearance: NgButtonAppearance = 'basic';
   disabled: boolean = false;
-  iconPos: NgPosition = 'left';
+  iconPos: NgIconPosition = 'left';
   color: NgColor = 'primary';
   badgeColor: NgColor = 'secondary';
   size: NgSize = 'md';

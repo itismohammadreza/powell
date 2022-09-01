@@ -20,7 +20,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgError, NgLabelPosition} from '@ng/models/forms';
+import {NgError, NgFixLabelPosition} from '@ng/models/forms';
 import {NgOrientation} from '@ng/models/offset';
 
 @Component({
@@ -43,7 +43,7 @@ export class RadioComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = 'fix-top';
   @Input() errors: NgError;
   @Input() orientation: NgOrientation = 'vertical';
   @Input() options: any[];

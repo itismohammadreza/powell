@@ -24,7 +24,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgAddon, NgError, NgFilterMatchMode, NgLabelPosition,} from '@ng/models/forms';
+import {NgAddon, NgError, NgFilterMatchMode, NgFixLabelPosition,} from '@ng/models/forms';
 import {TemplateDirective} from '@ng/directives/template.directive';
 
 @Component({
@@ -47,8 +47,8 @@ export class ListboxComponent implements OnInit, AfterViewInit, AfterContentInit
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgLabelPosition = 'fix-top';
-  @Input() addon: NgAddon
+  @Input() labelPos: NgFixLabelPosition = 'fix-top';
+  @Input() addon: NgAddon;
   @Input() errors: NgError;
   // native properties
   @Input() checkbox: boolean;

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgLabelPosition} from '@ng/models/forms';
-import {NgPosition, NgSize} from '@ng/models/offset';
+import {NgIconPosition, NgSize} from '@ng/models/offset';
 
 @Component({
   selector: 'ng-cascade-select-page',
@@ -21,7 +21,7 @@ export class CascadeSelectPage {
   rtl: boolean = true;
   icon: string = '';
   labelPos: NgLabelPosition = 'fix-side';
-  iconPos: NgPosition = 'left';
+  iconPos: NgIconPosition = 'left';
   inputSize: NgSize = 'md';
   addon: NgAddon;
   // native properties

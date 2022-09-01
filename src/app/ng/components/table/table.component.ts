@@ -1,19 +1,21 @@
 import {
   AfterContentInit,
-  Component, ContentChildren,
+  Component,
+  ContentChildren,
   EventEmitter,
   Input,
-  OnChanges, OnInit,
-  Output, QueryList,
-  SimpleChanges, TemplateRef,
+  OnChanges,
+  OnInit,
+  Output,
+  QueryList,
+  SimpleChanges,
+  TemplateRef,
   ViewChild,
-  ViewEncapsulation,
 } from '@angular/core';
-import {NgPosition, NgSelectionMode, NgSize} from '@ng/models/offset';
+import {NgSelectionMode} from '@ng/models/offset';
 import {NgColDef} from '@ng/models/table';
-import {FilterMetadata, MenuItem, SortMeta} from 'primeng/api';
+import {FilterMetadata, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
-import {NgTableAction} from '@ng/models/table';
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {ScrollerOptions} from "primeng/scroller";
 

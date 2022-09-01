@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgAddon, NgInputTypes, NgKeyFilter, NgLabelPosition} from '@ng/models/forms';
-import {NgPosition, NgSize} from '@ng/models/offset';
+import {NgAddon, NgLabelPosition} from '@ng/models/forms';
+import {NgIconPosition} from '@ng/models/offset';
 
 @Component({
   selector: 'ng-input-textarea-page',
@@ -21,7 +21,7 @@ export class InputTextareaPage {
   rtl: boolean = true;
   icon: string = '';
   labelPos: NgLabelPosition = 'fix-side';
-  iconPos: NgPosition = 'left';
+  iconPos: NgIconPosition = 'left';
   addon: NgAddon;
   // native properties
   readonly: boolean = false;

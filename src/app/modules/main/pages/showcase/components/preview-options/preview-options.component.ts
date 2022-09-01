@@ -3,7 +3,7 @@ import {
   NgAddon,
   NgColorFormat,
   NgCurrency,
-  NgCurrencyDisplay,
+  NgCurrencyDisplay, NgFixLabelPosition,
   NgInputFileMode,
   NgInputTypes,
   NgKeyFilter,
@@ -11,7 +11,7 @@ import {
   NgNumberButtonLayout,
   NgNumberMode
 } from '@ng/models/forms';
-import {NgOrientation, NgPosition, NgSize} from '@ng/models/offset';
+import {NgIconPosition, NgOrientation, NgSize} from '@ng/models/offset';
 import {NgColor} from '@ng/models/color';
 import {DropdownComponent} from '@ng/components/dropdown/dropdown.component';
 import {InputTextComponent} from '@ng/components/input-text/input-text.component';
@@ -143,13 +143,14 @@ type PreviewItem =
   | 'offLabel'
   | 'onIcon'
   | 'offIcon'
+  | 'addon'
   | 'selectiveSize'
   | 'numericSize'
   | 'colorFormat'
   | 'enableFormat'
   | 'inputFileMode'
   | 'numberMode'
-  | 'addon';
+  | 'fixLabelPos';
 
 @Component({
   selector: 'ng-preview-options',
@@ -172,7 +173,7 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() iconChange = new EventEmitter()
   @Input() labelPos: NgLabelPosition;
   @Output() labelPosChange = new EventEmitter()
-  @Input() iconPos: NgPosition;
+  @Input() iconPos: NgIconPosition;
   @Output() iconPosChange = new EventEmitter()
   @Input() scrollHeight: string;
   @Output() scrollHeightChange = new EventEmitter()
@@ -424,6 +425,9 @@ export class PreviewOptionsComponent implements OnInit {
   // instead of 'mode'
   @Input() numberMode: NgNumberMode;
   @Output() numberModeChange = new EventEmitter()
+  // instead of 'labelPos'
+  @Input() fixLabelPos: NgFixLabelPosition;
+  @Output() fixLabelPosChange = new EventEmitter()
 
   @ViewChild('firstRow', {static: true, read: ViewContainerRef}) firstRow: ViewContainerRef;
   @ViewChild('secondRow', {static: true, read: ViewContainerRef}) secondRow: ViewContainerRef;
@@ -432,10 +436,9 @@ export class PreviewOptionsComponent implements OnInit {
 
   ngOnInit(): void {
     const dropdownData = {
-      iconPos: ['left', 'right', 'top', 'bottom', 'top-right', 'top-left', 'bottom-right', 'bottom-left', 'top-center', 'bottom-center', 'center'],
+      iconPos: ['left', 'right'],
       appearance: ['basic', 'text', 'outlined', 'link'],
       resultType: ['base64', 'file'],
-      datePickerMode: ['day', 'month', 'time', 'daytime'],
       buttonLayout: ['stacked', 'horizontal', 'vertical'],
       keyFilter: ['pint', 'int', 'pnum', 'num', 'hex', 'email', 'alpha', 'alphanum'],
       currency: ['USD', 'EUR', 'IRR'],
@@ -443,6 +446,7 @@ export class PreviewOptionsComponent implements OnInit {
       tooltipPosition: ['left', 'right', 'top', 'bottom', 'top-right', 'top-left', 'bottom-right', 'bottom-left', 'top-center', 'bottom-center', 'center'],
       orientation: ['horizontal', 'vertical'],
       labelPos: ['fix-side', 'fix-top', 'float'],
+      fixLabelPos: ['fix-side', 'fix-top'],
       selectionMode: ['single', 'multiple', 'checkbox'],
       layout: ['horizontal', 'vertical'],
       dropdownMode: ['blank', 'current'],

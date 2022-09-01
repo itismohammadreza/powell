@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {NgColor} from '@ng/models/color';
-import {NgLabelPosition} from '@ng/models/forms';
+import {NgFixLabelPosition} from '@ng/models/forms';
 
 @Component({
   selector: 'ng-file-picker2-page',
@@ -18,7 +18,7 @@ export class FilePicker2Page {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = true;
-  labelPos: NgLabelPosition = 'fix-side';
+  labelPos: NgFixLabelPosition = 'fix-side';
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;

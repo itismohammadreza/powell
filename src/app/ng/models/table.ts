@@ -9,12 +9,14 @@ export type NgTableRendererType =
   | 'date'
   | 'boolean'
   | 'html';
+
 export type NgTableEditorType =
   | 'text'
   | 'file'
   | 'date'
   | 'boolean'
   | 'dropdown';
+
 export type NgTableFilterType =
   | 'text'
   | 'numeric'

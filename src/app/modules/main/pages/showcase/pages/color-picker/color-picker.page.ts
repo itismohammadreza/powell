@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgPosition, NgSize} from '@ng/models/offset';
+import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {NgAddon, NgColorFormat, NgLabelPosition} from '@ng/models/forms';
 
 @Component({
@@ -21,7 +21,7 @@ export class ColorPickerPage {
   rtl: boolean = true;
   icon: string = '';
   labelPos: NgLabelPosition = 'fix-side';
-  iconPos: NgPosition = 'left';
+  iconPos: NgIconPosition = 'left';
   inputSize: NgSize = 'md';
   placeholder: string = '';
   readonly: boolean = false;

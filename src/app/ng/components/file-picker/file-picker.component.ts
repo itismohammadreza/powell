@@ -27,7 +27,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgError, NgInputFileMode, NgLabelPosition} from '@ng/models/forms';
+import {NgError, NgFixLabelPosition, NgInputFileMode} from '@ng/models/forms';
 import {FileUpload} from 'primeng/fileupload';
 import {TemplateDirective} from "@ng/directives/template.directive";
 
@@ -51,7 +51,7 @@ export class FilePickerComponent
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = 'fix-top';
   @Input() errors: NgError;
   @Input() resultType: 'base64' | 'file' = 'file';
   // native properties
