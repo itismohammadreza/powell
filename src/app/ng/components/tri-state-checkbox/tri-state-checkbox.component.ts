@@ -94,15 +94,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterViewInit, Control
   }
 
   _onChange(event) {
-    if (this.controlContainer && this.ngControl) {
-      if (this.isRequired()) {
-        this.onModelChange(event.value ? true : null);
-      } else {
-        this.onModelChange(event.value);
-      }
-    } else {
-      this.onModelChange(event.value);
-    }
+    this.onModelChange(event.value);
     this.onChange.emit(event);
   }
 
@@ -128,7 +120,8 @@ export class TriStateCheckboxComponent implements OnInit, AfterViewInit, Control
     for (const error in this.errors) {
       if (this.showError(error)) {
         hasError = true
-      };
+      }
+      ;
     }
     return !hasError;
   }

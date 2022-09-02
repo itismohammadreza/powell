@@ -56,7 +56,6 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   @Input() errors: NgError;
   @Input() inputSize: NgSize = 'md';
   // native properties
-
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';
@@ -88,7 +87,7 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   @Input() autofocusFilter: boolean;
   @Input() resetFilterOnHide: boolean;
   @Input() dropdownIcon: string = 'pi pi-chevron-down';
-  @Input() autoDisplayFirst: boolean = true;
+  @Input() autoDisplayFirst: boolean = false;
   @Input() group: boolean;
   @Input() showClear: boolean;
   @Input() baseZIndex: number = 1000;
@@ -162,6 +161,9 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
           }
         });
       }
+    }
+    if (this.autoDisplayFirst) {
+      this.onModelChange(this.options[0][this.optionValue])
     }
   }
 
@@ -252,7 +254,8 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
     for (const error in this.errors) {
       if (this.showError(error)) {
         hasError = true
-      };
+      }
+      ;
     }
     return !hasError;
   }

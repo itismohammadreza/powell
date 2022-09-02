@@ -18,7 +18,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     if (this.document.defaultView.innerWidth < this.responsiveThreshold) {
       this.changeSidebarType('overlay');
       this.toggleOverlayDisplay(true);
-    } else {
+    } else if (this.document.defaultView.innerWidth > this.responsiveThreshold && this.sidebarType != GlobalConfig.defaultSidebarType) {
       this.changeSidebarType(GlobalConfig.defaultSidebarType);
     }
   }
@@ -113,6 +113,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     ];
     const sidebarTypes: SidebarType[] = ['overlay', 'overlay-mask', 'push', 'push-mask', 'hover', 'static', 'horizontal'];
     const sidebarItems: string[] = [
+      'dashboard',
       'auto-complete',
       'button',
       'button-async',
@@ -120,7 +121,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       'checkbox',
       'chips',
       'color-picker',
-      'dashboard',
       'dropdown',
       'dual-label-switch',
       'dynamic-form',

@@ -109,78 +109,95 @@
     <ng-container *ngTemplateOutlet="groupHeaderTemplate;context:{$implicit:item}"></ng-container>
   </ng-template>
 
-  <ng-template pTemplate="header" let-columns>
+  <ng-template pTemplate="header">
     <ng-container *ngIf="filterDisplay == 'menu'">
       <tr>
         <th style="width: 3rem" *ngIf="reorderableRows"></th>
         <th style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
           <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"></p-tableHeaderCheckbox>
         </th>
-        <th *ngFor="let col of colDef" [pSortableColumn]="col.field" pReorderableColumn>
+        <th *ngFor="let col of colDef"
+            [pSortableColumn]="col.field"
+            pReorderableColumn
+            [pReorderableColumnDisabled]="!reorderableColumns">
           {{ col.header }}
           <p-sortIcon *ngIf="col.sort" [field]="col.field"></p-sortIcon>
 
-          <p-columnFilter *ngIf="col.filter as filter"
-                          [field]="col.field"
-                          display="menu"
-                          [matchMode]="filter.matchMode"
-                          [showMatchModes]="false"
-                          [showOperator]="false"
-                          [showAddButton]="false">
-            <ng-template pTemplate="header">
-              <div class="px-3 pt-3 pb-0"><span class="font-bold">{{filter.header}}</span></div>
-            </ng-template>
-            <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback" [ngSwitch]="filter.type">
-              <ng-input-text
-                *ngSwitchCase="'text'"
-                [ngModel]="value"
-                (onChange)="onChangeFilterValue($event,filterCallback,col)">
-              </ng-input-text>
+          <ng-container *ngIf="col.filter as filter">
+            <!--            todo: maybe we need seperate 'text' & 'boolean' filter types. bu we should handle them in local mode.-->
+            <!--            <p-columnFilter *ngIf="filter.type == 'text' || filter.type == 'boolean'"-->
+            <!--                            [field]="col.field"-->
+            <!--                            display="menu"-->
+            <!--                            [type]="filter.type"-->
+            <!--                            [matchMode]="filter.matchMode"-->
+            <!--                            [showMatchModes]="false"-->
+            <!--                            [showOperator]="false"-->
+            <!--                            [showAddButton]="false">-->
+            <!--              <ng-template pTemplate="header">-->
+            <!--                <div class="px-3 pt-3 pb-0"><span class="font-bold">{{filter.header}}</span></div>-->
+            <!--              </ng-template>-->
+            <!--            </p-columnFilter>-->
 
-              <ng-input-number
-                *ngSwitchCase="'number'"
-                [ngModel]="value"
-                (onInput)="onChangeFilterValue($event,filterCallback,col)">
-              </ng-input-number>
+            <p-columnFilter [field]="col.field"
+                            display="menu"
+                            [matchMode]="filter.matchMode"
+                            [showApplyButton]="false"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false">
+              <ng-template pTemplate="header">
+                <div class="px-3 pt-3 pb-0"><span class="font-bold">{{filter.header}}</span></div>
+              </ng-template>
+              <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback" [ngSwitch]="filter.type">
+                <ng-input-text
+                  *ngSwitchCase="'text'"
+                  (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                </ng-input-text>
 
-              <ng-multi-select
-                *ngSwitchCase="'multi-select'"
-                [ngModel]="value"
-                [options]="filter.options"
-                [optionLabel]="filter.optionLabel"
-                [optionValue]="filter.optionValue"
-                [placeholder]="filter.placeholder"
-                (onChange)="onChangeFilterValue($event,filterCallback,col)">
-              </ng-multi-select>
+                <ng-input-number
+                  *ngSwitchCase="'numeric'"
+                  (onInput)="onChangeFilterValue($event,filterCallback,col)">
+                </ng-input-number>
 
-              <p-dropdown
-                *ngSwitchCase="'dropdown'"
-                [ngModel]="value"
-                [options]="filter.options"
-                [optionLabel]="filter.optionLabel"
-                [optionValue]="filter.optionValue"
-                [placeholder]="filter.placeholder"
-                (onChange)="onChangeFilterValue($event,filterCallback,col)">
-              </p-dropdown>
+                <ng-multi-select
+                  *ngSwitchCase="'multi-select'"
+                  [value]="value"
+                  [options]="filter.options"
+                  [optionLabel]="filter.optionLabel"
+                  [optionValue]="filter.optionValue"
+                  [placeholder]="filter.placeholder"
+                  (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                </ng-multi-select>
 
-              <ng-container *ngSwitchCase="'slider'">
-                <ng-slider
-                  [ngModel]="filter.sliderValue"
-                  [min]="filter.min"
-                  [max]="filter.max"
-                  [range]="filter.range"
-                  (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
-                </ng-slider>
-                <span>11111: {{filter.sliderValue}}</span>
-                <!--                <span>{{filter.sliderValue[1]}}</span>-->
-              </ng-container>
-              <ng-tri-state-checkbox
-                *ngSwitchCase="'checkbox'"
-                [ngModel]="value"
-                (onChange)="onChangeFilterValue($event,filterCallback,col)">
-              </ng-tri-state-checkbox>
-            </ng-template>
-          </p-columnFilter>
+                <ng-dropdown
+                  *ngSwitchCase="'dropdown'"
+                  [value]="value"
+                  [options]="filter.options"
+                  [optionLabel]="filter.optionLabel"
+                  [optionValue]="filter.optionValue"
+                  [placeholder]="filter.placeholder"
+                  (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                </ng-dropdown>
+
+                <ng-container *ngSwitchCase="'slider'">
+                  <ng-slider
+                    [ngModel]="filter.sliderValue"
+                    [min]="filter.min"
+                    [max]="filter.max"
+                    [range]="filter.range"
+                    (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
+                  </ng-slider>
+                  <span>{{filter.sliderValue[0]}}</span>
+                  <span>{{filter.sliderValue[1]}}</span>
+                </ng-container>
+
+                <ng-tri-state-checkbox
+                  *ngSwitchCase="'boolean'"
+                  (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                </ng-tri-state-checkbox>
+              </ng-template>
+            </p-columnFilter>
+          </ng-container>
         </th>
       </tr>
     </ng-container>
@@ -200,7 +217,11 @@
           <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"></p-tableHeaderCheckbox>
         </th>
         <th *ngFor="let col of colDef">
-          <p-columnFilter *ngIf="col.filter" [type]="col.filter.type" [field]="col.field"></p-columnFilter>
+          <p-columnFilter *ngIf="col.filter"
+                          [showMenu]="true"
+                          [type]="col.filter.type"
+                          [field]="col.field">
+          </p-columnFilter>
         </th>
       </tr>
     </ng-container>
@@ -216,20 +237,24 @@
     <ng-container *ngTemplateOutlet="frozenRowExpansionTemplate;context:{$implicit:item}"></ng-container>
   </ng-template>
 
-  <ng-template pTemplate="body" let-item let-columns="columns" let-index="rowIndex">
+  <ng-template pTemplate="body" let-item let-index="rowIndex">
     <ng-container *ngIf="bodyTemplate; else defaultBodyTemplate">
       <ng-container *ngTemplateOutlet="bodyTemplate;context:{$implicit:item}"></ng-container>
     </ng-container>
     <ng-template #defaultBodyTemplate>
-      <tr [pReorderableRow]="index">
+      <tr [pReorderableRow]="index"
+          [pReorderableRowDisabled]="!reorderableRows"
+          [pSelectableRow]="item"
+          [pSelectableRowDisabled]="!selectionMode"
+          [pSelectableRowIndex]="index">
         <td *ngIf="reorderableRows">
           <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
         </td>
         <td *ngIf="selectionMode == 'radio'">
-          <p-tableRadioButton [value]="item" [disabled]="item[disableSelectionField]"></p-tableRadioButton>
+          <p-tableRadioButton [value]="item"></p-tableRadioButton>
         </td>
         <td *ngIf="selectionMode == 'checkbox'">
-          <p-tableCheckbox [value]="item" [disabled]="item[disableSelectionField]"></p-tableCheckbox>
+          <p-tableCheckbox [value]="item"></p-tableCheckbox>
         </td>
         <td *ngFor="let col of colDef">
           {{fromObj(item, col.field)}}

@@ -45,6 +45,11 @@ import {DualLabelSwitchPage} from "@modules/main/pages/showcase/pages/dual-label
 
 const routes: Routes = [
   {
+    path: 'dashboard',
+    component: DashboardPage,
+    data: {title: 'dashboard'}
+  },
+  {
     path: 'auto-complete',
     component: AutoCompletePage,
     data: {title: 'auto-complete'}
@@ -78,11 +83,6 @@ const routes: Routes = [
     path: 'color-picker',
     component: ColorPickerPage,
     data: {title: 'color-picker'}
-  },
-  {
-    path: 'dashboard',
-    component: DashboardPage,
-    data: {title: 'dashboard'}
   },
   {
     path: 'dropdown',

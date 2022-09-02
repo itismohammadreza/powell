@@ -21,33 +21,34 @@ import {ScrollerOptions} from "primeng/scroller";
 
 
 // todo:
-// -implement cell renderer + templateString funcitons
+// -implement cell renderer + templateString functions
 // -implement actions and functions to render + switch action
-// -implement checking for local and server pagination + filter + sort
-// -what is footerGroupedTemplate & groupFooterTemplate
-// -implement ng-templates let- variables properly. some is missed or some is wrong.
+// -check that let- variables on ng-templates are setting properly. some is missed or some is wrong.
 // -implement empty message if user not provided
 // -implement default table header (include a title) if user not provided
 // -implement grid lines or other style classes configurations
 // -implement edit
+
+// implemented
+// -selection
+// -reorderableRows
+// -reorderableColumns
 @Component({
   selector: 'ng-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, OnChanges, AfterContentInit {
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
-  @ViewChild('dataTable', {static: true}) dataTable: Table;
   @Input() items: any[];
   @Input() filterDisplay: 'row' | 'menu' = 'menu';
   @Input() colDef: NgColDef[];
-  @Input() disableSelectionField: string = 'disableSelection';
-  @Input() reorderableRows: boolean = true;
-  @Input() local: boolean = true;
+  @Input() reorderableRows: boolean = false;
+  @Input() selectableRows: boolean = true;
+  @Input() local: boolean = false;
   // native properties
   @Input() frozenColumns: any[];
   @Input() frozenValue: any[];
-  @Input() responsiveLayout: 'stack' | 'scroll' = 'stack';
+  @Input() responsiveLayout: 'stack' | 'scroll' = 'scroll';
   @Input() breakpoint: string = '960px';
   @Input() style: any;
   @Input() styleClass: string;
@@ -74,7 +75,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Input() groupRowsByOrder: number = 1;
   @Input() defaultSortOrder: number = 1;
   @Input() showInitialSortBadge: boolean = true;
-  @Input() selectionMode: NgSelectionMode = 'single';
+  @Input() selectionMode: NgSelectionMode;
   @Input() selectionPageOnly: boolean;
   @Input() contextMenuSelectionMode: 'separate' | 'joint' = 'separate';
   @Input() dataKey: string;
@@ -149,6 +150,9 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Output() selectionChange = new EventEmitter();
   @Output() contextMenuSelectionChange = new EventEmitter();
 
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ViewChild('dataTable', {static: true}) dataTable: Table;
+
   captionTemplate: TemplateRef<any>
   headerTemplate: TemplateRef<any>
   headerGroupedTemplate: TemplateRef<any>
@@ -165,16 +169,17 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   paginatorLeftTemplate: TemplateRef<any>
   paginatorRightTemplate: TemplateRef<any>
   loadingBodyTemplate: TemplateRef<any>
-  sliderValues: [number, number]
-  tableReady
+
+  // todo: fix range slider on filter issue.
+  sliderValue = [0, 100]
+
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);
     this.colDef.forEach(conf => {
       if (conf.filter && conf.filter.type == 'slider' && conf.filter.range) {
-        Object.assign(conf, {sliderValue: [conf.filter.min, conf.filter.max]})
+        Object.assign(conf, {sliderValue: [conf.filter.min || 0, conf.filter.max || 100]})
       }
     })
-    this.tableReady = true;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -279,38 +284,36 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     this.contextMenuSelectionChange.emit(this.contextMenuSelection);
   }
 
-  fromObj(data: any, field: string | string[], value?: any) {
+  fromObj(data: any, field: string | string[]) {
     if (data && field) {
       if (typeof field == 'string') {
-        return this.fromObj(data, field.split('.'), value);
-      } else if (field.length == 1 && value !== undefined) {
-        return (data[field[0]] = value);
+        return this.fromObj(data, field.split('.'));
       } else if (field.length == 0) {
         return data;
       } else {
-        return this.fromObj(data[field[0]], field.slice(1), value);
+        return this.fromObj(data[field[0]], field.slice(1));
       }
     } else {
       return null;
     }
   }
 
-
   onChangeFilterValue(event: any, filterCallback: Function, col?: NgColDef) {
     if (this.local) {
+      console.log(event.value)
       let filterValue;
       switch (col.filter.type) {
-        case 'text':
-        case 'numeric':
-        case 'boolean':
-        case 'date':
         case 'multi-select':
         case 'dropdown':
+          filterValue = event.value;
+          break;
         case 'slider':
           filterValue = event.values;
           break;
+        case 'date':
+          break;
       }
-      filterCallback(filterValue)
+      filterCallback(filterValue.toString());
     }
   }
 
@@ -320,6 +323,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
    * otherwise, will raise once. just when user changes filter element value.
    */
   _onFilter(event: any) {
+    console.log('onfilter', event)
     this.onFilter.emit(event)
   }
 

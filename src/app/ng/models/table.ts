@@ -19,7 +19,6 @@ export type NgTableEditorType =
 
 export type NgTableFilterType =
   | 'text'
-  | 'numeric'
   | 'multi-select'
   | 'dropdown'
   | 'boolean'
@@ -37,7 +36,7 @@ export interface NgTableFilter {
   placeholder?: string;
   range?: boolean;
   sliderValue?: [number, number]; // filled in table component when range is enabled
-  matchMode?: NgFilterMatchMode;
+  matchMode?: NgFilterMatchMode; // only works in local mode
   showAddButton?: boolean;
   showMenu?: boolean;
   showClearButton?: boolean;

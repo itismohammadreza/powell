@@ -4,7 +4,6 @@ import {DotsPipe} from './dots.pipe';
 import {EnToPerNumPipe} from './en-to-per-num.pipe';
 import {FileNamePipe} from './file-name.pipe';
 import {FilterPipe} from './filter.pipe';
-import {IsPerNumPipe} from './is-per-num.pipe';
 import {NgNumToPerWordPipe} from './num-to-per-word.pipe';
 import {PerToEnNumPipe} from './per-to-en-num.pipe';
 import {SafePerWordPipe} from './safe-per-word.pipe';
@@ -20,7 +19,6 @@ export const PIPES: Type<any>[] = [
   FileNamePipe,
   ToBase64Pipe,
   EnToPerNumPipe,
-  IsPerNumPipe,
   NgNumToPerWordPipe,
   PerToEnNumPipe,
   SafePerWordPipe,
