@@ -1,5 +1,6 @@
-<ng-table
-  [items]="customers"
-  [colDef]="colDef"
-></ng-table>
-
+<ng-table [items]="customers" [colDef]="colDef">
+  <ng-template ngTempalte="actions"></ng-template>
+  <ng-template ngTempalte="activity">
+    template of activity column
+  </ng-template>
+</ng-table>

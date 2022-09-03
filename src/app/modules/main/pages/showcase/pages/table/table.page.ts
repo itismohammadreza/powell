@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {NgColDef} from '@ng/models/table';
-import {MenuItem} from 'primeng/api';
+import { Component } from '@angular/core';
+import { NgColDef } from '@ng/models/table';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'ng-table-page',
@@ -547,7 +547,7 @@ export class TablePage {
       },
       "balance": 21304,
       "image": 'https://via.placeholder.com/150x150',
-      "bool": false,
+      "bool": true,
     },
     {
       "id": 1027,
@@ -744,19 +744,20 @@ export class TablePage {
       header: 'name',
       field: 'name',
       sort: true,
-      renderer: {type: 'text'},
-      edit: {type: 'text'},
+      renderer: { type: 'text' },
+      edit: { type: 'text' },
       filter: {
-        type: 'text',
+        type: 'slider',
         showMenu: true,
+        range: true
       },
     },
     {
       header: 'country',
       field: 'country.name',
       sort: true,
-      renderer: {type: 'text'},
-      edit: {type: 'dropdown'},
+      renderer: { type: 'text' },
+      edit: { type: 'dropdown' },
       filter: {
         type: 'text',
       },
@@ -764,22 +765,22 @@ export class TablePage {
     {
       header: 'representative',
       field: 'representative.name',
-      renderer: {type: 'text'},
+      renderer: { type: 'text' },
       sort: true,
-      edit: {type: 'dropdown'},
+      edit: { type: 'dropdown' },
       filter: {
         type: 'multi-select',
         options: [
-          {name: 'Amy Elsner', image: 'amyelsner.png'},
-          {name: 'Anna Fali', image: 'annafali.png'},
-          {name: 'Asiya Javayant', image: 'asiyajavayant.png'},
-          {name: 'Bernardo Dominic', image: 'bernardodominic.png'},
-          {name: 'Elwin Sharvill', image: 'elwinsharvill.png'},
-          {name: 'Ioni Bowcher', image: 'ionibowcher.png'},
-          {name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png'},
-          {name: 'Onyama Limba', image: 'onyamalimba.png'},
-          {name: 'Stephen Shaw', image: 'stephenshaw.png'},
-          {name: 'XuXue Feng', image: 'xuxuefeng.png'},
+          { name: 'Amy Elsner', image: 'amyelsner.png' },
+          { name: 'Anna Fali', image: 'annafali.png' },
+          { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
+          { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
+          { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
+          { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
+          { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
+          { name: 'Onyama Limba', image: 'onyamalimba.png' },
+          { name: 'Stephen Shaw', image: 'stephenshaw.png' },
+          { name: 'XuXue Feng', image: 'xuxuefeng.png' },
         ],
         placeholder: 'any',
         optionLabel: 'name',
@@ -789,7 +790,7 @@ export class TablePage {
     {
       header: 'date',
       field: 'date',
-      renderer: {type: 'date', locale: 'en-us'},
+      renderer: { type: 'date', locale: 'en-us' },
       edit: {
         type: 'date',
       },
@@ -801,7 +802,7 @@ export class TablePage {
     {
       header: 'balance',
       field: 'balance',
-      renderer: {type: 'text'},
+      renderer: { type: 'text' },
       sort: true,
       filter: {
         type: 'text',
@@ -810,24 +811,25 @@ export class TablePage {
     {
       header: 'status',
       field: 'status',
-      renderer: {type: 'text'},
+      renderer: { type: 'text' },
       sort: true,
       filter: {
         type: 'dropdown',
         options: [
-          {label: 'Unqualified', value: 'unqualified'},
-          {label: 'Qualified', value: 'qualified'},
-          {label: 'New', value: 'new'},
-          {label: 'Negotiation', value: 'negotiation'},
-          {label: 'Renewal', value: 'renewal'},
-          {label: 'Proposal', value: 'proposal'},
+          { label: 'Unqualified', value: 'unqualified' },
+          { label: 'Qualified', value: 'qualified' },
+          { label: 'New', value: 'new' },
+          { label: 'Negotiation', value: 'negotiation' },
+          { label: 'Renewal', value: 'renewal' },
+          { label: 'Proposal', value: 'proposal' },
         ]
       },
     },
     {
       header: 'activity',
       field: 'activity',
-      renderer: {type: 'text'},
+      // todo: implement 'tempalte' renderer. look at html
+      renderer: { type: 'text' },
       sort: true,
       filter: {
         type: 'slider',
@@ -840,9 +842,9 @@ export class TablePage {
     {
       header: 'image',
       field: 'image',
-      renderer: {type: 'image'},
+      renderer: { type: 'image' },
       sort: false,
-      edit: {type: 'file'},
+      edit: { type: 'file' },
     },
     {
       header: 'bool',
@@ -856,7 +858,7 @@ export class TablePage {
       edit: {
         type: 'boolean',
       },
-      filter: {type: 'boolean'},
+      filter: { type: 'boolean' },
     },
   ];
 

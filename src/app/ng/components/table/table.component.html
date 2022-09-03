@@ -124,20 +124,6 @@
           <p-sortIcon *ngIf="col.sort" [field]="col.field"></p-sortIcon>
 
           <ng-container *ngIf="col.filter as filter">
-            <!--            todo: maybe we need seperate 'text' & 'boolean' filter types. bu we should handle them in local mode.-->
-            <!--            <p-columnFilter *ngIf="filter.type == 'text' || filter.type == 'boolean'"-->
-            <!--                            [field]="col.field"-->
-            <!--                            display="menu"-->
-            <!--                            [type]="filter.type"-->
-            <!--                            [matchMode]="filter.matchMode"-->
-            <!--                            [showMatchModes]="false"-->
-            <!--                            [showOperator]="false"-->
-            <!--                            [showAddButton]="false">-->
-            <!--              <ng-template pTemplate="header">-->
-            <!--                <div class="px-3 pt-3 pb-0"><span class="font-bold">{{filter.header}}</span></div>-->
-            <!--              </ng-template>-->
-            <!--            </p-columnFilter>-->
-
             <p-columnFilter [field]="col.field"
                             display="menu"
                             [matchMode]="filter.matchMode"
@@ -151,6 +137,7 @@
               <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback" [ngSwitch]="filter.type">
                 <ng-input-text
                   *ngSwitchCase="'text'"
+                  [value]="value"
                   (onChange)="onChangeFilterValue($event,filterCallback,col)">
                 </ng-input-text>
 
@@ -187,14 +174,13 @@
                     [range]="filter.range"
                     (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
                   </ng-slider>
-                  <span>{{filter.sliderValue[0]}}</span>
-                  <span>{{filter.sliderValue[1]}}</span>
+                  <div class="text-center" dir="ltr">{{filter.sliderValue[0]}} - {{filter.sliderValue[1]}}</div>
                 </ng-container>
 
-                <ng-tri-state-checkbox
+                <ng-checkbox
                   *ngSwitchCase="'boolean'"
                   (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                </ng-tri-state-checkbox>
+                </ng-checkbox>
               </ng-template>
             </p-columnFilter>
           </ng-container>

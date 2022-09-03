@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   EventEmitter,
@@ -12,12 +13,12 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import {NgSelectionMode} from '@ng/models/offset';
-import {NgColDef} from '@ng/models/table';
-import {FilterMetadata, SortMeta} from 'primeng/api';
-import {Table} from 'primeng/table';
-import {TemplateDirective} from "@ng/directives/template.directive";
-import {ScrollerOptions} from "primeng/scroller";
+import { NgSelectionMode } from '@ng/models/offset';
+import { NgColDef } from '@ng/models/table';
+import { FilterMetadata, SortMeta } from 'primeng/api';
+import { Table } from 'primeng/table';
+import { TemplateDirective } from "@ng/directives/template.directive";
+import { ScrollerOptions } from "primeng/scroller";
 
 
 // todo:
@@ -44,7 +45,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Input() colDef: NgColDef[];
   @Input() reorderableRows: boolean = false;
   @Input() selectableRows: boolean = true;
-  @Input() local: boolean = false;
+  @Input() local: boolean = true;
   // native properties
   @Input() frozenColumns: any[];
   @Input() frozenValue: any[];
@@ -151,7 +152,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Output() contextMenuSelectionChange = new EventEmitter();
 
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
-  @ViewChild('dataTable', {static: true}) dataTable: Table;
+  @ViewChild('dataTable', { static: true }) dataTable: Table;
 
   captionTemplate: TemplateRef<any>
   headerTemplate: TemplateRef<any>
@@ -170,14 +171,13 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   paginatorRightTemplate: TemplateRef<any>
   loadingBodyTemplate: TemplateRef<any>
 
-  // todo: fix range slider on filter issue.
-  sliderValue = [0, 100]
+  constructor() { }
 
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);
     this.colDef.forEach(conf => {
       if (conf.filter && conf.filter.type == 'slider' && conf.filter.range) {
-        Object.assign(conf, {sliderValue: [conf.filter.min || 0, conf.filter.max || 100]})
+        Object.assign(conf.filter, { sliderValue: [conf.filter.min || 0, conf.filter.max || 100] })
       }
     })
   }
@@ -300,12 +300,15 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
 
   onChangeFilterValue(event: any, filterCallback: Function, col?: NgColDef) {
     if (this.local) {
-      console.log(event.value)
       let filterValue;
       switch (col.filter.type) {
         case 'multi-select':
         case 'dropdown':
+        case 'text':
           filterValue = event.value;
+          break;
+        case 'boolean':
+          filterValue = event.checked;
           break;
         case 'slider':
           filterValue = event.values;
