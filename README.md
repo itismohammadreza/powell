@@ -28,7 +28,6 @@
 - [ ] **whiteboard** - implement component.
 - [ ] **enableCachingPerApi** - implement interceptor & config.
 - [ ] **animation** - add animation to routes.
-- [ ] **asyncSwitch** - have loading just like `buttonAsync.component`.
 - [ ] **table** 
 - implement `jalali` and `miladi` filter. 
 - add configurable caption elements (like title and global filter). plus, apply localMode in global filter also.
