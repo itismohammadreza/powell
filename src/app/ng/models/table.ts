@@ -1,32 +1,22 @@
-import {SelectItem} from 'primeng/api';
 import {NgColor} from './color';
 import {NgFilterMatchMode} from './forms';
 
 export type NgTableRendererType =
-  | 'file'
   | 'text'
   | 'image'
-  | 'date'
-  | 'boolean'
-  | 'html';
-
-export type NgTableEditorType =
-  | 'text'
-  | 'file'
-  | 'date'
-  | 'boolean'
-  | 'dropdown';
 
 export type NgTableFilterType =
   | 'text'
   | 'multi-select'
   | 'dropdown'
   | 'boolean'
-  | 'date'
+  | 'gregorian-datepicker'
+  | 'jalali-datepicker'
   | 'slider';
 
 export interface NgTableFilter {
   type?: NgTableFilterType;
+  dateFormat?: any;
   header?: string;
   min?: number;
   max?: number;
@@ -35,12 +25,8 @@ export interface NgTableFilter {
   optionValue?: string;
   placeholder?: string;
   range?: boolean;
-  sliderValue?: [number, number]; // filled in table component when range is enabled
+  sliderValue?: [number, number] | number; // filled in table component when type is slider
   matchMode?: NgFilterMatchMode; // only works in local mode
-  showAddButton?: boolean;
-  showMenu?: boolean;
-  showClearButton?: boolean;
-  showApplyButton?: boolean;
 }
 
 export class NgColDef {
@@ -51,17 +37,7 @@ export class NgColDef {
   filter?: NgTableFilter;
   renderer?: {
     type?: NgTableRendererType;
-    locale?: 'fa-ir' | 'en-us';
-    trueIcon?: string;
-    falseIcon?: string;
-  };
-  edit?: {
-    type?: NgTableEditorType;
-    options?: SelectItem[];
-    optionLabel?: string;
-    optionValue?: string;
-    resultType?: 'base64' | 'file';
-    accept?: string;
+    width?: string;
   };
 }
 

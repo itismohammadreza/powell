@@ -313,7 +313,9 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
       case 'slider':
         filterValue = event.values;
         break;
-      case 'date':
+      case 'gregorian-datepicker':
+        filterValue = new Date(event);
+        console.log(event.toString())
         break;
     }
     if (this.local) {
@@ -321,6 +323,12 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     } else {
       this.onFilter.emit({value: filterValue, col})
     }
+  }
+
+  onImageLoadError(event: any) {
+    event.target.onerror = null;
+    event.target.src = "assets/images/no-image-placeholder.jpg";
+    event.target.style.width = "100px"
   }
 
   // @Input() emptyMessage: string = 'No Records Found';

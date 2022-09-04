@@ -1,0 +1,199 @@
+:host ::ng-deep {
+  .gregorian-datepicker-wrapper {
+    display: flex;
+    position: relative;
+    direction: ltr;
+
+    .p-datepicker {
+      direction: ltr;
+      text-align: center;
+    }
+
+    p-calendar,
+    .p-calendar,
+    .p-inputtext {
+      width: 100%;
+    }
+
+    .field {
+      flex-grow: 1;
+
+      &.p-input-icon-right {
+        .p-inputtext {
+          padding-right: 2rem;
+        }
+      }
+
+      &.p-input-icon-left {
+        .p-inputtext {
+          padding-left: 2rem;
+        }
+      }
+
+      p-calendar {
+        &.has-before {
+          .p-calendar {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+        }
+
+        &.has-after {
+          .p-calendar {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+      }
+    }
+
+    i {
+      z-index: 200;
+    }
+
+    .message {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+    }
+
+    &.ltr {
+      .message {
+        left: 0;
+      }
+
+      p-calendar {
+        &.has-before {
+          .p-inputtext {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+
+          .p-calendar-w-btn .p-inputtext {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+
+        &.has-after {
+          .p-inputtext {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+
+          .p-calendar-w-btn .p-button {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+      }
+
+      .field.has-text-outline {
+        &.p-input-icon-right {
+          i {
+            right: calc(0.75rem + 3rem)
+          }
+        }
+      }
+    }
+
+    &.rtl {
+      .p-calendar,
+      label,
+      .message {
+        direction: rtl;
+      }
+
+      .p-inputtext {
+        text-align: right;
+      }
+
+      .field {
+        &.p-float-label {
+          label {
+            right: 0.5rem;
+            left: auto;
+          }
+
+          &.p-input-icon-right {
+            label {
+              right: 2rem;
+            }
+          }
+        }
+      }
+
+      .message {
+        right: 0;
+      }
+
+      .p-calendar-w-btn {
+        .p-inputtext {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          border-top-right-radius: var(--border-radius);
+          border-bottom-right-radius: var(--border-radius);
+        }
+
+        .p-button {
+          border-top-left-radius: var(--border-radius);
+          border-bottom-left-radius: var(--border-radius);
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      p-calendar {
+        &.has-after {
+          .p-inputtext {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+
+          .p-calendar-w-btn {
+            .p-inputtext {
+              border-radius: 0;
+            }
+          }
+        }
+
+        &.has-before {
+          .p-calendar-w-btn {
+            .p-button {
+              border-radius: 0;
+            }
+          }
+        }
+      }
+
+      .field {
+        &.p-float-label {
+          label {
+            right: 0.5rem;
+            left: auto;
+          }
+        }
+
+        &.has-toggle-button {
+          &.p-input-icon-left {
+            i {
+              left: calc(0.75rem + 3rem)
+            }
+          }
+        }
+      }
+
+
+      .p-calendar-clearable {
+        .p-inputtext {
+          padding-right: 0.75rem;
+          padding-left: 2.5rem;
+        }
+
+        .p-calendar-clear-icon {
+          right: auto;
+          left: 0.75rem;
+        }
+      }
+    }
+  }
+}
