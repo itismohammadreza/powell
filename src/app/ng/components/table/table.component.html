@@ -78,7 +78,7 @@
          (onRowUnselect)="emitter('onRowUnselect',$event)"
          (onPage)="emitter('onPage',$event)"
          (onSort)="emitter('onSort',$event)"
-         (onFilter)="_onFilter($event)"
+         (onFilter)="emitter('onFilter',$event)"
          (onLazyLoad)="emitter('onLazyLoad',$event)"
          (onRowExpand)="emitter('onRowExpand',$event)"
          (onRowCollapse)="emitter('onRowCollapse',$event)"
@@ -179,6 +179,7 @@
 
                 <ng-checkbox
                   *ngSwitchCase="'boolean'"
+                  [ngModel]="value == 'true' ? true : false"
                   (onChange)="onChangeFilterValue($event,filterCallback,col)">
                 </ng-checkbox>
               </ng-template>
