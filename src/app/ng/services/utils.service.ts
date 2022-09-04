@@ -14,20 +14,22 @@ import {
   NgMessageOptions,
   NgToastOptions
 } from '@ng/models/overlay';
-import {ConfirmationService, FilterService, MessageService} from 'primeng/api';
+import {ConfirmationService, FilterService, Message, MessageService} from 'primeng/api';
 import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {fromEvent, merge, Observable, Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {NumberToPersianWord} from './num-to-per-word';
 import {DialogComponent} from '@ng/components/dialog/dialog.component';
 import {DOCUMENT, LocationStrategy} from '@angular/common';
+import {Toast} from "primeng/toast";
+import {NgPlace} from "@ng/models/offset";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
   private messageCmpRef: ComponentRef<MessageComponent>;
-  private toastCmpRef: ComponentRef<ToastComponent>;
+  private toastCmpRef: ComponentRef<Toast>;
   private confirmPopupCmpRef: ComponentRef<ConfirmPopupComponent>;
   private confirmCmpRef: ComponentRef<ConfirmComponent>;
   private dialogCmpRef: ComponentRef<DialogComponent>;
@@ -62,11 +64,38 @@ export class UtilsService {
   //////////////////////////////////////////////////////////////////////////
   showToast(options: NgToastOptions): void {
     if (!this.document.body.contains(this.toastCmpRef?.location.nativeElement)) {
-      this.toastCmpRef = this.addComponentToBody(ToastComponent);
+      this.toastCmpRef = this.addComponentToBody(Toast);
     }
-    Object.assign(this.toastCmpRef.instance.options, options);
+    const {
+      key, detail, data, life, sticky, styleClass, summary, closable, severity, icon, id, contentStyleClass
+    } = options;
+    this.toastCmpRef.instance.preventOpenDuplicates = options.preventOpenDuplicates;
+    this.toastCmpRef.instance.preventDuplicates = options.preventDuplicates;
+    this.toastCmpRef.instance.position = options.position;
+    this.toastCmpRef.instance.style = options.style;
+    // this.toastCmpRef.instance.baseZIndex = options.baseZIndex;
+    // this.toastCmpRef.instance.autoZIndex = options.autoZIndex;
+    // this.toastCmpRef.instance.showTransitionOptions = options.showTransitionOptions;
+    // this.toastCmpRef.instance.hideTransitionOptions = options.hideTransitionOptions;
+    // this.toastCmpRef.instance.showTransformOptions = options.showTransformOptions;
+    // this.toastCmpRef.instance.hideTransformOptions = options.hideTransformOptions;
+    // this.toastCmpRef.instance.breakpoints = options.breakpoints;
+    // this.toastCmpRef.location.nativeElement.classList.add(options.rtl ? 'rtl' : '');
     setTimeout(() => {
-      this.messageService.add(options);
+      this.messageService.add({
+        key,
+        detail,
+        data,
+        life,
+        sticky,
+        styleClass,
+        summary,
+        closable,
+        severity,
+        icon,
+        id,
+        contentStyleClass
+      });
     }, 0);
   }
 

@@ -69,6 +69,7 @@ export interface NgToastOptions {
   detail?: string;
   id?: any;
   key?: string;
+  icon?: string;
   life?: number;
   sticky?: boolean;
   closable?: boolean;
@@ -78,7 +79,6 @@ export interface NgToastOptions {
   preventOpenDuplicates?: boolean;
   preventDuplicates?: boolean;
   position?: NgPlace;
-  rtl?: boolean;
   style?: string;
   baseZIndex?: number;
   autoZIndex?: boolean;
@@ -87,6 +87,7 @@ export interface NgToastOptions {
   showTransformOptions?: string;
   hideTransformOptions?: string;
   breakpoints?: any;
+  rtl?: boolean;
 }
 
 export type NgMessageSeverities = 'success' | 'info' | 'warn' | 'error';
