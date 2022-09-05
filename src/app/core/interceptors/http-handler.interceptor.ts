@@ -9,14 +9,14 @@ import {
 } from '@angular/common/http';
 import {finalize, Observable, tap, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {UtilsService} from '@ng/services';
+import {OverlayService} from '@ng/services';
 import {AuthService} from '@core/http';
 import {RequestsConfig} from "@core/requests.config";
 import {LoaderService} from "@core/utils";
 
 @Injectable()
 export class HttpHandlerInterceptor implements HttpInterceptor {
-  constructor(private utilsService: UtilsService,
+  constructor(private overlayService: OverlayService,
               private loaderService: LoaderService,
               private authService: AuthService) {
   }
@@ -65,7 +65,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
   }
 
   showSuccessToast(summary, detail) {
-    this.utilsService.showToast({
+    this.overlayService.showToast({
       severity: 'success',
       position: 'top-right',
       summary,
@@ -74,7 +74,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
   }
 
   showFailureToast(summary, detail) {
-    this.utilsService.showToast({
+    this.overlayService.showToast({
       severity: 'error',
       position: 'top-right',
       summary,

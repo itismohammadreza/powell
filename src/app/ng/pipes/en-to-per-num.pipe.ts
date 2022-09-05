@@ -1,14 +1,14 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {UtilsService} from '@ng/services';
+import {PersianService} from '@ng/services';
 
 @Pipe({
   name: 'ngEnToPerNum',
 })
 export class EnToPerNumPipe implements PipeTransform {
-  constructor(private utlisService: UtilsService) {}
+  constructor(private persianService: PersianService) {}
 
   transform(value: string): string {
-    if (value) return this.utlisService.toPersianNumber(value);
+    if (value) return this.persianService.toPersianNumber(value);
     else return null;
   }
 }

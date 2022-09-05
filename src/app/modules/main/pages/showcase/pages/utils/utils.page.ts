@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
-import {DynamicDialogService, UtilsService, MomentService} from "@ng/services";
+import {DynamicDialogService, OverlayService, MomentService} from "@ng/services";
 import {UserService} from "@core/http";
 import {
   DynamicDialogSampleComponent
@@ -12,7 +12,7 @@ import {
 })
 export class UtilsPage {
   constructor(
-    private utilsService: UtilsService,
+    private overlayService: OverlayService,
     private vcRef: ViewContainerRef,
     private userService: UserService,
     private dialog: DynamicDialogService,
@@ -22,7 +22,7 @@ export class UtilsPage {
   customDynamicDialogResult: any;
 
   showConfirm() {
-    this.utilsService.showConfirm({header: 'header', message: 'salam'}).then((result) => {
+    this.overlayService.showConfirm({header: 'header', message: 'salam'}).then((result) => {
       if (result) {
       } else {
       }
@@ -30,7 +30,7 @@ export class UtilsPage {
   }
 
   showToast() {
-    this.utilsService.showToast(
+    this.overlayService.showToast(
       {
         summary: 'summary',
         detail: 'details',
@@ -46,7 +46,7 @@ export class UtilsPage {
   }
 
   showMessage() {
-    this.utilsService.showMessage(
+    this.overlayService.showMessage(
       {
         severity: 'info',
         summary: 'Info Message',
@@ -56,7 +56,7 @@ export class UtilsPage {
   }
 
   showDialogForm() {
-    this.utilsService.showDialogForm(
+    this.overlayService.showDialogForm(
       'test',
       [
         {
@@ -106,7 +106,7 @@ export class UtilsPage {
   }
 
   showConfirmPopup(event) {
-    this.utilsService.showConfirmPopup(
+    this.overlayService.showConfirmPopup(
       {
         message: 'salam',
         target: event.target
@@ -130,7 +130,7 @@ export class UtilsPage {
   }
 
   showDialog() {
-    this.utilsService.showDialog({
+    this.overlayService.showDialog({
       message: 'some text',
     }).then(() => {
     });
