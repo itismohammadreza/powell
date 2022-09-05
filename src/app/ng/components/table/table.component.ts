@@ -13,12 +13,12 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { NgSelectionMode } from '@ng/models/offset';
-import { NgColDef } from '@ng/models/table';
-import { FilterMetadata, SortMeta } from 'primeng/api';
-import { Table } from 'primeng/table';
-import { TemplateDirective } from "@ng/directives/template.directive";
-import { ScrollerOptions } from "primeng/scroller";
+import {NgSelectionMode} from '@ng/models/offset';
+import {NgColDef} from '@ng/models/table';
+import {FilterMetadata, SortMeta} from 'primeng/api';
+import {Table} from 'primeng/table';
+import {TemplateDirective} from "@ng/directives/template.directive";
+import {ScrollerOptions} from "primeng/scroller";
 
 
 // todo:
@@ -152,7 +152,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Output() contextMenuSelectionChange = new EventEmitter();
 
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
-  @ViewChild('dataTable', { static: true }) dataTable: Table;
+  @ViewChild('dataTable', {static: true}) dataTable: Table;
 
   captionTemplate: TemplateRef<any>
   headerTemplate: TemplateRef<any>
@@ -171,13 +171,14 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   paginatorRightTemplate: TemplateRef<any>
   loadingBodyTemplate: TemplateRef<any>
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);
     this.colDef.forEach(conf => {
       if (conf.filter && conf.filter.type == 'slider' && conf.filter.range) {
-        Object.assign(conf.filter, { sliderValue: [conf.filter.min || 0, conf.filter.max || 100] })
+        Object.assign(conf.filter, {sliderValue: [conf.filter.min || 0, conf.filter.max || 100]})
       }
     })
   }
@@ -298,39 +299,38 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     }
   }
 
-  onChangeFilterValue(event: any, filterCallback: Function, col?: NgColDef) {
+  onChangeFilterValue(event: any, filterCallback: Function, col: NgColDef) {
+    let filterValue;
+    switch (col.filter.type) {
+      case 'multi-select':
+      case 'dropdown':
+      case 'text':
+        filterValue = event.value;
+        break;
+      case 'boolean':
+        filterValue = event.checked;
+        break;
+      case 'slider':
+        filterValue = event.values;
+        break;
+      case 'gregorian-datepicker':
+        filterValue = new Date(event);
+        console.log(event.toString())
+        break;
+    }
     if (this.local) {
-      let filterValue;
-      switch (col.filter.type) {
-        case 'multi-select':
-        case 'dropdown':
-        case 'text':
-          filterValue = event.value;
-          break;
-        case 'boolean':
-          filterValue = event.checked;
-          break;
-        case 'slider':
-          filterValue = event.values;
-          break;
-        case 'date':
-          break;
-      }
       filterCallback(filterValue.toString());
+    } else {
+      this.onFilter.emit({value: filterValue, col})
     }
   }
 
-  /**
-   * if user choose local mode, this function raise twice, one when the user changes the filter element value,
-   * after that, when the filter applied to table (so in local mode we should have filterCallback).
-   * otherwise, will raise once. just when user changes filter element value.
-   */
-  _onFilter(event: any) {
-    console.log('onfilter', event)
-    this.onFilter.emit(event)
+  onImageLoadError(event: any) {
+    event.target.onerror = null;
+    event.target.src = "assets/images/no-image-placeholder.jpg";
+    event.target.style.width = "100px"
   }
 
-  //
   // @Input() emptyMessage: string = 'No Records Found';
   // @Input() header: string;
   // @Input() stickyTopOffset: string;

@@ -20,8 +20,63 @@ import {
 import {NgIconPosition, NgOrientation, NgPlace, NgSelectionMode, NgSize} from './offset';
 import {NgTreeFilterMode} from './tree';
 
+export interface NgToastOptions {
+  severity?: NgMessageSeverities;
+  summary?: string;
+  detail?: string;
+  id?: any;
+  key?: string;
+  icon?: string;
+  life?: number;
+  sticky?: boolean;
+  closable?: boolean;
+  data?: any;
+  styleClass?: string;
+  contentStyleClass?: string;
+  preventOpenDuplicates?: boolean;
+  preventDuplicates?: boolean;
+  position?: NgPlace;
+  style?: any;
+  baseZIndex?: number;
+  autoZIndex?: boolean;
+  showTransitionOptions?: string;
+  hideTransitionOptions?: string;
+  showTransformOptions?: string;
+  hideTransformOptions?: string;
+  breakpoints?: any;
+  rtl?: boolean;
+}
+
+export interface NgConfirmPopupOptions {
+  key?: string;
+  message?: string;
+  icon?: string;
+  autoZIndex?: boolean;
+  baseZIndex?: number;
+  style?: any;
+  styleClass?: string;
+  target?: any;
+  acceptLabel?: string;
+  rejectLabel?: string;
+  acceptIcon?: string;
+  rejectIcon?: string;
+  acceptVisible?: boolean;
+  rejectVisible?: boolean;
+  acceptButtonStyleClass?: string;
+  rejectButtonStyleClass?: string;
+  defaultFocus?: 'accept' | 'reject';
+  showTransitionOptions?: string;
+  hideTransitionOptions?: string;
+
+  acceptColor?: NgColor;
+  acceptAppearance?: NgButtonAppearance;
+  rejectColor?: NgColor;
+  rejectAppearance?: NgButtonAppearance;
+  buttonSize?: NgSize;
+  rtl?: boolean;
+}
+
 export interface NgConfirmOptions {
-  // native service options
   key?: string;
   header?: string;
   message?: string;
@@ -29,19 +84,13 @@ export interface NgConfirmOptions {
   blockScroll?: boolean;
   dismissableMask?: boolean;
   closeOnEscape?: boolean;
-  // native component options
   closable?: boolean;
   acceptLabel?: string;
   acceptVisible?: boolean;
-  acceptColor?: NgColor;
-  acceptAppearance?: NgButtonAppearance;
   acceptIcon?: string;
   rejectLabel?: string;
-  rejectColor?: NgColor;
-  rejectAppearance?: NgButtonAppearance;
   rejectIcon?: string;
   rejectVisible?: boolean;
-  rtl?: boolean;
   position?: NgPlace;
   focusTrap?: boolean;
   appendTo?: any;
@@ -54,39 +103,16 @@ export interface NgConfirmOptions {
   style?: any;
   styleClass?: string;
   maskStyleClass?: string;
-}
+  acceptButtonStyleClass?: string;
+  rejectButtonStyleClass?: string;
+  defaultFocus?: 'accept' | 'reject'
 
-export interface NgConfirmPopupOptions extends NgConfirmOptions {
-  target?: any;
-  defaultFocus?: 'accept' | 'reject';
-  showTransitionOptions?: string;
-  hideTransitionOptions?: string;
-}
-
-export interface NgToastOptions {
-  severity?: NgMessageSeverities;
-  summary?: string;
-  detail?: string;
-  id?: any;
-  key?: string;
-  life?: number;
-  sticky?: boolean;
-  closable?: boolean;
-  data?: any;
-  styleClass?: string;
-  contentStyleClass?: string;
-  preventOpenDuplicates?: boolean;
-  preventDuplicates?: boolean;
-  position?: NgPlace;
+  acceptColor?: NgColor;
+  acceptAppearance?: NgButtonAppearance;
+  rejectColor?: NgColor;
+  rejectAppearance?: NgButtonAppearance;
+  buttonSize?: NgSize;
   rtl?: boolean;
-  style?: string;
-  baseZIndex?: number;
-  autoZIndex?: boolean;
-  showTransitionOptions?: string;
-  hideTransitionOptions?: string;
-  showTransformOptions?: string;
-  hideTransformOptions?: string;
-  breakpoints?: any;
 }
 
 export type NgMessageSeverities = 'success' | 'info' | 'warn' | 'error';
@@ -119,32 +145,20 @@ export interface NgMessageOptions {
 }
 
 export interface NgDialog {
-  message?: string;
-  buttonLabel?: string;
-  buttonIcon?: string;
-  buttonAppearance?: NgButtonAppearance;
-  buttonIconPos?: NgIconPosition;
-  buttonRounded?: boolean;
-  buttonRaised?: boolean;
-  buttonColor?: NgColor;
-  buttonFull?: boolean;
-  buttonSize?: NgSize;
-  // native properties
   header?: string;
   draggable?: boolean;
   keepInViewport?: boolean;
   resizable?: boolean;
-  contentStyle?: any;
+  contentStyle?: object;
   visible?: boolean;
   modal?: boolean;
   position?: string;
   blockScroll?: boolean;
   closeOnEscape?: boolean;
   dismissableMask?: boolean;
-  rtl?: boolean;
   closable?: boolean;
   appendTo?: any;
-  style?: any;
+  style?: object;
   styleClass?: string;
   maskStyleClass?: string;
   contentStyleClass?: string;
@@ -156,12 +170,14 @@ export interface NgDialog {
   focusOnShow?: boolean;
   focusTrap?: boolean;
   maximizable?: boolean;
-  breakpoints?: any;
+  breakpoints?: object;
   transitionOptions?: string;
   closeIcon?: string;
   closeTabindex?: string;
   minimizeIcon?: string;
   maximizeIcon?: string;
+  rtl?: boolean;
+  content?: string;
 }
 
 export type NgDialogFormError = {
@@ -217,7 +233,8 @@ export type NgDialogFormComponent =
   | 'checkbox'
   | 'chips'
   | 'color-picker'
-  | 'date-picker'
+  | 'gregorian-datepicker'
+  | 'jalali-datepicker'
   | 'dropdown'
   | 'editor'
   | 'file-picker'

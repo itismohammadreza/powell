@@ -143,6 +143,27 @@ type PreviewItem =
   | 'offLabel'
   | 'onIcon'
   | 'offIcon'
+  | 'showOtherMonths'
+  | 'selectOtherMonths'
+  | 'showIcon'
+  | 'showOnFocus'
+  | 'showWeek'
+  | 'datePickerIcon'
+  | 'readonlyInput'
+  | 'shortYearCutoff'
+  | 'showTime'
+  | 'hourFormat'
+  | 'timeOnly'
+  | 'tabindex'
+  | 'showSeconds'
+  | 'stepHour'
+  | 'stepMinute'
+  | 'stepSecond'
+  | 'showButtonBar'
+  | 'hideOnDateTimeSelect'
+  | 'numberOfMonths'
+  | 'view'
+  | 'touchUI'
   | 'addon'
   | 'selectiveSize'
   | 'numericSize'
@@ -150,6 +171,7 @@ type PreviewItem =
   | 'enableFormat'
   | 'inputFileMode'
   | 'numberMode'
+  | 'datepickerSelectionMode'
   | 'fixLabelPos';
 
 @Component({
@@ -405,6 +427,45 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() onIconChange = new EventEmitter()
   @Input() offIcon: string;
   @Output() offIconChange = new EventEmitter()
+  @Input() showOtherMonths: boolean;
+  @Output() showOtherMonthsChange = new EventEmitter()
+  @Input() selectOtherMonths: boolean;
+  @Output() selectOtherMonthsChange = new EventEmitter()
+  @Input() showIcon: boolean;
+  @Output() showIconChange = new EventEmitter()
+  @Input() showOnFocus: boolean;
+  @Output() showOnFocusChange = new EventEmitter()
+  @Input() showWeek: boolean;
+  @Output() showWeekChange = new EventEmitter()
+  @Input() datePickerIcon: string;
+  @Output() datePickerIconChange = new EventEmitter()
+  @Input() readonlyInput: boolean;
+  @Output() readonlyInputChange = new EventEmitter()
+  @Input() shortYearCutoff: string;
+  @Output() shortYearCutoffChange = new EventEmitter()
+  @Input() showTime: boolean;
+  @Output() showTimeChange = new EventEmitter()
+  @Input() timeOnly: boolean;
+  @Output() timeOnlyChange = new EventEmitter()
+  @Input() tabindex: number;
+  @Output() tabindexChange = new EventEmitter()
+  @Input() showSeconds: boolean;
+  @Output() showSecondsChange = new EventEmitter()
+  @Input() stepHour: number;
+  @Output() stepHourChange = new EventEmitter()
+  @Input() stepMinute: number;
+  @Output() stepMinuteChange = new EventEmitter()
+  @Input() stepSecond: number;
+  @Output() stepSecondChange = new EventEmitter()
+  @Input() showButtonBar: boolean;
+  @Output() showButtonBarChange = new EventEmitter()
+  @Input() hideOnDateTimeSelect: boolean;
+  @Output() hideOnDateTimeSelectChange = new EventEmitter()
+  @Input() numberOfMonths: number;
+  @Output() numberOfMonthsChange = new EventEmitter()
+  @Input() touchUI: boolean;
+  @Output() touchUIChange = new EventEmitter()
+
   @Input() addon: NgAddon;
   @Output() addonChange = new EventEmitter()
   // instead of 'size' & 'inputSize'
@@ -457,6 +518,9 @@ export class PreviewOptionsComponent implements OnInit {
       colorFormat: ['hex', 'rgb', 'hsb'],
       numberMode: ['decimal', 'currency'],
       addon: ['none', 'before', 'after', 'both'],
+      datepickerSelectionMode: ['single', 'multiple', 'range'],
+      hourFormat: ['12', '24'],
+      view: ['date', 'month', 'year'],
     };
     for (const item of this.previewItems) {
       if (Object.keys(dropdownData).includes(item)) {

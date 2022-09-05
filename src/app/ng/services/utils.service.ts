@@ -1,48 +1,20 @@
-import {ApplicationRef, ComponentRef, createComponent, Inject, Injectable, Injector, Type} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {UntypedFormGroup} from '@angular/forms';
-import {ConfirmPopupComponent} from '@ng/components/confirm-popup/confirm-popup.component';
-import {ConfirmComponent} from '@ng/components/confirm/confirm.component';
-import {DialogFormComponent} from '@ng/components/dialog-form/dialog-form.component';
-import {MessageComponent} from '@ng/components/message/message.component';
-import {ToastComponent} from '@ng/components/toast/toast.component';
-import {
-  NgConfirmOptions,
-  NgConfirmPopupOptions,
-  NgDialog,
-  NgDialogFormConfig,
-  NgDialogFormOptions,
-  NgMessageOptions,
-  NgToastOptions
-} from '@ng/models/overlay';
-import {ConfirmationService, FilterService, MessageService} from 'primeng/api';
-import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {fromEvent, merge, Observable, Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {NumberToPersianWord} from './num-to-per-word';
-import {DialogComponent} from '@ng/components/dialog/dialog.component';
 import {DOCUMENT, LocationStrategy} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
-  private messageCmpRef: ComponentRef<MessageComponent>;
-  private toastCmpRef: ComponentRef<ToastComponent>;
-  private confirmPopupCmpRef: ComponentRef<ConfirmPopupComponent>;
-  private confirmCmpRef: ComponentRef<ConfirmComponent>;
-  private dialogCmpRef: ComponentRef<DialogComponent>;
 
   constructor(
-    private confirmationService: ConfirmationService,
-    private messageService: MessageService,
-    private dialogService: DialogService,
-    private filterService: FilterService,
-    private injector: Injector,
-    private appRef: ApplicationRef,
     private location: LocationStrategy,
     @Inject(DOCUMENT) private document: Document
   ) {
   }
+
 
   //////////////////////////////////////////////////////////////////////////
   //                              GENERAL                                 //

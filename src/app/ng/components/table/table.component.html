@@ -78,7 +78,7 @@
          (onRowUnselect)="emitter('onRowUnselect',$event)"
          (onPage)="emitter('onPage',$event)"
          (onSort)="emitter('onSort',$event)"
-         (onFilter)="_onFilter($event)"
+         (onFilter)="emitter('onFilter',$event)"
          (onLazyLoad)="emitter('onLazyLoad',$event)"
          (onRowExpand)="emitter('onRowExpand',$event)"
          (onRowCollapse)="emitter('onRowCollapse',$event)"
@@ -179,8 +179,15 @@
 
                 <ng-checkbox
                   *ngSwitchCase="'boolean'"
+                  [ngModel]="value == 'true' ? true : false"
                   (onChange)="onChangeFilterValue($event,filterCallback,col)">
                 </ng-checkbox>
+
+                <ng-gregorian-datepicker
+                  *ngSwitchCase="'gregorian-datepicker'"
+                  [dateFormat]="filter.dateFormat"
+                  (onSelect)="onChangeFilterValue($event,filterCallback,col)">
+                </ng-gregorian-datepicker>
               </ng-template>
             </p-columnFilter>
           </ng-container>
@@ -243,7 +250,10 @@
           <p-tableCheckbox [value]="item"></p-tableCheckbox>
         </td>
         <td *ngFor="let col of colDef">
-          {{fromObj(item, col.field)}}
+          <ng-container [ngSwitch]="col.renderer.type">
+            <ng-container *ngSwitchCase="'text'">{{fromObj(item, col.field)}}</ng-container>
+            <ng-container *ngSwitchCase="'image'"><img [style.width]="col.renderer.width" class="image-cell" [src]="fromObj(item, col.field)" (error)="onImageLoadError($event)" /></ng-container>
+          </ng-container>
         </td>
       </tr>
     </ng-template>
