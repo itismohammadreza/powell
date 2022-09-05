@@ -1,10 +1,6 @@
 import {ApplicationRef, ComponentRef, createComponent, Inject, Injectable, Injector, Type} from '@angular/core';
-import {UntypedFormGroup} from '@angular/forms';
-import {ConfirmPopupComponent} from '@ng/components/confirm-popup/confirm-popup.component';
-import {ConfirmComponent} from '@ng/components/confirm/confirm.component';
 import {DialogFormComponent} from '@ng/components/dialog-form/dialog-form.component';
 import {MessageComponent} from '@ng/components/message/message.component';
-import {ToastComponent} from '@ng/components/toast/toast.component';
 import {
   NgConfirmOptions,
   NgConfirmPopupOptions,
@@ -14,16 +10,13 @@ import {
   NgMessageOptions,
   NgToastOptions
 } from '@ng/models/overlay';
-import {Confirmation, ConfirmationService, FilterService, MessageService,ConfirmEventType, Message} from 'primeng/api';
+import {Confirmation, ConfirmationService, ConfirmEventType, FilterService, Message, MessageService} from 'primeng/api';
 import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
-import {fromEvent, merge, Observable, Observer} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {NumberToPersianWord} from './num-to-per-word';
 import {DialogComponent} from '@ng/components/dialog/dialog.component';
-import {DOCUMENT, LocationStrategy} from '@angular/common';
-import { Toast } from 'primeng/toast';
-import { ConfirmPopup } from 'primeng/confirmpopup';
-import { ConfirmDialog } from 'primeng/confirmdialog';
+import {DOCUMENT} from '@angular/common';
+import {Toast} from 'primeng/toast';
+import {ConfirmPopup} from 'primeng/confirmpopup';
+import {ConfirmDialog} from 'primeng/confirmdialog';
 
 @Injectable({
   providedIn: 'root'
@@ -39,17 +32,12 @@ export class OverlayService {
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private dialogService: DialogService,
-    private filterService: FilterService,
     private injector: Injector,
     private appRef: ApplicationRef,
-    private location: LocationStrategy,
     @Inject(DOCUMENT) private document: Document
   ) {
   }
 
-  //////////////////////////////////////////////////////////////////////////
-  //                              MESSAGE                                 //
-  //////////////////////////////////////////////////////////////////////////
   showMessage(options: NgMessageOptions): void {
     if (!this.document.body.contains(this.messageCmpRef?.location.nativeElement)) {
       this.messageCmpRef = this.addComponentToBody(MessageComponent, 'prepend');
@@ -60,9 +48,6 @@ export class OverlayService {
     }, 0);
   }
 
-  //////////////////////////////////////////////////////////////////////////
-  //                                TOAST                                 //
-  //////////////////////////////////////////////////////////////////////////
   showToast(options: NgToastOptions): void {
     if (!this.document.body.contains(this.toastCmpRef?.location.nativeElement)) {
       this.toastCmpRef = this.addComponentToBody(Toast);
@@ -98,9 +83,6 @@ export class OverlayService {
     }, 0);
   }
 
-  //////////////////////////////////////////////////////////////////////////
-  //                           CONFIRM POPUP                              //
-  //////////////////////////////////////////////////////////////////////////
   showConfirmPopup(options: NgConfirmPopupOptions): Promise<boolean> {
     if (!this.document.body.contains(this.confirmPopupCmpRef?.location.nativeElement)) {
       this.confirmPopupCmpRef = this.addComponentToBody(ConfirmPopup);
@@ -193,9 +175,6 @@ export class OverlayService {
     })
   }
 
-  //////////////////////////////////////////////////////////////////////////
-  //                              DIALOG                                  //
-  //////////////////////////////////////////////////////////////////////////
   showDialog(options: NgDialog): Promise<void> {
     if (!this.document.body.contains(this.dialogCmpRef?.location.nativeElement)) {
       this.dialogCmpRef = this.addComponentToBody(DialogComponent);
@@ -231,11 +210,7 @@ export class OverlayService {
     });
   }
 
-  //////////////////////////////////////////////////////////////////////////
-  //                              GENERAL                                 //
-  //////////////////////////////////////////////////////////////////////////
-
-  addComponentToBody<T>(component: Type<T>, pos: 'appendChild' | 'prepend' = 'appendChild'): ComponentRef<T> {
+  private addComponentToBody<T>(component: Type<T>, pos: 'appendChild' | 'prepend' = 'appendChild'): ComponentRef<T> {
     const componentRef = createComponent(component, {
       environmentInjector: this.appRef.injector,
       elementInjector: this.injector
@@ -249,5 +224,4 @@ export class OverlayService {
     this.appRef.detachView(componentRef.hostView);
     componentRef.destroy();
   }
-
 }
