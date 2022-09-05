@@ -1,10 +1,7 @@
 import {ApplicationRef, ComponentRef, createComponent, Inject, Injectable, Injector, Type} from '@angular/core';
 import {UntypedFormGroup} from '@angular/forms';
-import {ConfirmPopupComponent} from '@ng/components/confirm-popup/confirm-popup.component';
-import {ConfirmComponent} from '@ng/components/confirm/confirm.component';
 import {DialogFormComponent} from '@ng/components/dialog-form/dialog-form.component';
 import {MessageComponent} from '@ng/components/message/message.component';
-import {ToastComponent} from '@ng/components/toast/toast.component';
 import {
   NgConfirmOptions,
   NgConfirmPopupOptions,
@@ -14,7 +11,7 @@ import {
   NgMessageOptions,
   NgToastOptions
 } from '@ng/models/overlay';
-import {ConfirmationService, FilterService, Message, MessageService} from 'primeng/api';
+import {Confirmation, ConfirmationService, ConfirmEventType, FilterService, Message, MessageService} from 'primeng/api';
 import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {fromEvent, merge, Observable, Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -22,7 +19,8 @@ import {NumberToPersianWord} from './num-to-per-word';
 import {DialogComponent} from '@ng/components/dialog/dialog.component';
 import {DOCUMENT, LocationStrategy} from '@angular/common';
 import {Toast} from "primeng/toast";
-import {NgPlace} from "@ng/models/offset";
+import {ConfirmDialog} from "primeng/confirmdialog";
+import {ConfirmPopup} from "primeng/confirmpopup";
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +28,8 @@ import {NgPlace} from "@ng/models/offset";
 export class UtilsService {
   private messageCmpRef: ComponentRef<MessageComponent>;
   private toastCmpRef: ComponentRef<Toast>;
-  private confirmPopupCmpRef: ComponentRef<ConfirmPopupComponent>;
-  private confirmCmpRef: ComponentRef<ConfirmComponent>;
+  private confirmPopupCmpRef: ComponentRef<ConfirmPopup>;
+  private confirmCmpRef: ComponentRef<ConfirmDialog>;
   private dialogCmpRef: ComponentRef<DialogComponent>;
 
   constructor(
@@ -66,36 +64,34 @@ export class UtilsService {
     if (!this.document.body.contains(this.toastCmpRef?.location.nativeElement)) {
       this.toastCmpRef = this.addComponentToBody(Toast);
     }
-    const {
-      key, detail, data, life, sticky, styleClass, summary, closable, severity, icon, id, contentStyleClass
-    } = options;
+    const toast: Message = {
+      key: options.key,
+      data: options.data,
+      life: options.life || 60000,
+      id: options.id,
+      sticky: options.sticky,
+      styleClass: `${options.styleClass} ${options.rtl ? 'rtl' : ''}`,
+      summary: options.summary,
+      closable: options.closable,
+      severity: options.severity || 'info',
+      icon: options.icon,
+      contentStyleClass: options.contentStyleClass,
+      detail: options.detail,
+    }
     this.toastCmpRef.instance.preventOpenDuplicates = options.preventOpenDuplicates;
     this.toastCmpRef.instance.preventDuplicates = options.preventDuplicates;
-    this.toastCmpRef.instance.position = options.position;
-    this.toastCmpRef.instance.style = options.style;
-    // this.toastCmpRef.instance.baseZIndex = options.baseZIndex;
-    // this.toastCmpRef.instance.autoZIndex = options.autoZIndex;
-    // this.toastCmpRef.instance.showTransitionOptions = options.showTransitionOptions;
-    // this.toastCmpRef.instance.hideTransitionOptions = options.hideTransitionOptions;
-    // this.toastCmpRef.instance.showTransformOptions = options.showTransformOptions;
-    // this.toastCmpRef.instance.hideTransformOptions = options.hideTransformOptions;
-    // this.toastCmpRef.instance.breakpoints = options.breakpoints;
-    // this.toastCmpRef.location.nativeElement.classList.add(options.rtl ? 'rtl' : '');
+    this.toastCmpRef.instance.position = options.position || 'top-right';
+    this.toastCmpRef.instance.style = {...options.style, direction: 'ltr'};
+    this.toastCmpRef.instance.baseZIndex = options.baseZIndex || 0;
+    this.toastCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
+    this.toastCmpRef.instance.showTransitionOptions = options.showTransitionOptions || '300ms ease-out';
+    this.toastCmpRef.instance.hideTransitionOptions = options.hideTransitionOptions || '250ms ease-in';
+    this.toastCmpRef.instance.showTransformOptions = options.showTransformOptions || 'translateY(100%)';
+    this.toastCmpRef.instance.hideTransformOptions = options.hideTransformOptions || 'translateY(-100%)';
+    this.toastCmpRef.instance.breakpoints = options.breakpoints;
+
     setTimeout(() => {
-      this.messageService.add({
-        key,
-        detail,
-        data,
-        life,
-        sticky,
-        styleClass,
-        summary,
-        closable,
-        severity,
-        icon,
-        id,
-        contentStyleClass
-      });
+      this.messageService.add(toast);
     }, 0);
   }
 
@@ -104,64 +100,94 @@ export class UtilsService {
   //////////////////////////////////////////////////////////////////////////
   showConfirmPopup(options: NgConfirmPopupOptions): Promise<boolean> {
     if (!this.document.body.contains(this.confirmPopupCmpRef?.location.nativeElement)) {
-      this.confirmPopupCmpRef = this.addComponentToBody(ConfirmPopupComponent);
+      this.confirmPopupCmpRef = this.addComponentToBody(ConfirmPopup);
     }
-    Object.assign(this.confirmPopupCmpRef.instance.options, options);
-    return new Promise((accept, reject) => {
+    this.confirmPopupCmpRef.instance.showTransitionOptions = options.showTransitionOptions || '.12s cubic-bezier(0, 0, 0.2, 1)';
+    this.confirmPopupCmpRef.instance.hideTransitionOptions = options.hideTransitionOptions || '.1s linear';
+    this.confirmPopupCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
+    this.confirmPopupCmpRef.instance.baseZIndex = options.baseZIndex || 0;
+    this.confirmPopupCmpRef.instance.style = {...options.style, direction: 'ltr'};
+    this.confirmPopupCmpRef.instance.styleClass = `${options.styleClass} ${options.rtl ? 'rtl' : ''}`;
+
+    const confirmation: Confirmation = {
+      target: options.target,
+      message: options.message,
+      key: options.key,
+      icon: options.icon || 'pi pi-exclamation-triangle',
+      acceptLabel: options.acceptLabel,
+      rejectLabel: options.rejectLabel,
+      acceptIcon: options.acceptIcon,
+      rejectIcon: options.rejectIcon,
+      acceptVisible: options.acceptVisible,
+      rejectVisible: options.rejectVisible,
+      acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
+      rejectButtonStyleClass: `${options.rejectButtonStyleClass} p-button-${options.rejectColor} p-button-${options.rejectAppearance} p-button-${options.buttonSize}`,
+      defaultFocus: options.defaultFocus || 'accept',
+    }
+    return new Promise((accept) => {
       this.confirmationService.confirm({
-        target: options.target,
-        message: options.message,
-        icon: options.icon,
+        ...confirmation,
         accept: () => {
-          this.removeComponentFromBody(this.confirmPopupCmpRef);
           accept(true);
         },
         reject: () => {
-          this.removeComponentFromBody(this.confirmPopupCmpRef);
           accept(false);
         },
-        key: options.key,
-        acceptLabel: options.acceptLabel,
-        rejectLabel: options.rejectLabel,
-        acceptIcon: options.acceptIcon,
-        rejectIcon: options.rejectIcon,
-        acceptVisible: options.acceptVisible,
-        rejectVisible: options.rejectVisible,
-        acceptButtonStyleClass: options.acceptStyleClass,
-        rejectButtonStyleClass: options.rejectStyleClass,
-        defaultFocus: options.defaultFocus,
       });
     });
   }
 
   showConfirm(options: NgConfirmOptions): Promise<boolean> {
     if (!this.document.body.contains(this.confirmCmpRef?.location.nativeElement)) {
-      this.confirmCmpRef = this.addComponentToBody(ConfirmComponent);
+      this.confirmCmpRef = this.addComponentToBody(ConfirmDialog);
     }
-    Object.assign(this.confirmCmpRef.instance.options, options);
-    return new Promise((accept, reject) => {
+    this.confirmCmpRef.instance.style = {...options.style, direction: 'ltr'};
+    this.confirmCmpRef.instance.styleClass = `${options.styleClass} ${options.rtl ? 'rtl' : ''}`;
+    this.confirmCmpRef.instance.maskStyleClass = options.maskStyleClass;
+    this.confirmCmpRef.instance.closable = options.closable;
+    this.confirmCmpRef.instance.focusTrap = options.focusTrap;
+    this.confirmCmpRef.instance.appendTo = options.appendTo;
+    this.confirmCmpRef.instance.baseZIndex = options.baseZIndex;
+    this.confirmCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
+    this.confirmCmpRef.instance.breakpoints = options.breakpoints;
+    this.confirmCmpRef.instance.transitionOptions = options.transitionOptions;
+
+    const confirmation: Confirmation = {
+      message: options.message,
+      key: options.key,
+      icon: options.icon,
+      header: options.header,
+      acceptLabel: options.acceptLabel,
+      rejectLabel: options.rejectLabel,
+      acceptIcon: options.acceptIcon,
+      rejectIcon: options.rejectIcon,
+      acceptVisible: options.acceptVisible,
+      rejectVisible: options.rejectVisible,
+      acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
+      rejectButtonStyleClass: `${options.rejectButtonStyleClass} p-button-${options.rejectColor} p-button-${options.rejectAppearance} p-button-${options.buttonSize}`,
+      closeOnEscape: options.closeOnEscape,
+      dismissableMask: options.dismissableMask,
+      defaultFocus: options.defaultFocus,
+      blockScroll: options.blockScroll
+    }
+    return new Promise((accept) => {
       this.confirmationService.confirm({
-        key: options.key,
-        header: options.header,
-        message: options.message,
-        icon: options.icon,
-        blockScroll: options.blockScroll,
+        ...confirmation,
         accept: () => {
-          this.removeComponentFromBody(this.confirmCmpRef);
           accept(true);
         },
-        reject: (data) => {
-          this.removeComponentFromBody(this.confirmCmpRef);
-          if (data == 2) {
-            accept(null);
-          } else if (data == 1) {
-            accept(false);
+        reject: (type) => {
+          switch (type) {
+            case ConfirmEventType.REJECT:
+              accept(false);
+              break;
+            case ConfirmEventType.CANCEL:
+              accept(null);
+              break;
           }
-        },
-        dismissableMask: options.dismissableMask,
-        closeOnEscape: options.closeOnEscape,
+        }
       });
-    });
+    })
   }
 
   //////////////////////////////////////////////////////////////////////////
@@ -171,12 +197,13 @@ export class UtilsService {
     if (!this.document.body.contains(this.dialogCmpRef?.location.nativeElement)) {
       this.dialogCmpRef = this.addComponentToBody(DialogComponent);
     }
-    Object.assign(this.dialogCmpRef.instance.options, options);
     this.dialogCmpRef.instance.visible = true;
-    return new Promise((accept, reject) => {
-      this.dialogCmpRef.instance.onHide.subscribe(res => {
-        this.removeComponentFromBody(this.dialogCmpRef);
+    this.dialogCmpRef.instance.options = options;
+    return new Promise((accept) => {
+      const subscription = this.dialogCmpRef.instance.onHide.subscribe(res => {
+        this.dialogCmpRef.instance.visible = false;
         accept();
+        subscription.unsubscribe();
       });
     });
   }

@@ -11,6 +11,15 @@ export class DialogComponent {
   private _onHide = new Subject();
   onHide = this._onHide.asObservable();
   options: NgDialog = {
+    appendTo: null,
+    closeTabindex: null,
+    content: null,
+    contentStyle: null,
+    contentStyleClass: null,
+    maskStyleClass: null,
+    styleClass: null,
+    style: null,
+    header: null,
     draggable: true,
     keepInViewport: true,
     resizable: true,

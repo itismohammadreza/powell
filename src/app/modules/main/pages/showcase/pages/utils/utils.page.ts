@@ -34,13 +34,7 @@ export class UtilsPage {
       {
         summary: 'summary',
         detail: 'details',
-        closable: true,
-        life: 3000,
-        severity: 'error',
-        sticky: false,
-        position: 'top-right',
-        preventDuplicates: true,
-        preventOpenDuplicates: true
+        rtl: true
       }
     );
   }
@@ -108,13 +102,10 @@ export class UtilsPage {
   showConfirmPopup(event) {
     this.utilsService.showConfirmPopup(
       {
-        message: 'salam',
+        message: 'Are you sure that you want to proceed?',
         target: event.target
       }
     ).then((result) => {
-      if (result) {
-      } else {
-      }
     });
   }
 
@@ -131,7 +122,7 @@ export class UtilsPage {
 
   showDialog() {
     this.utilsService.showDialog({
-      message: 'some text',
+      content: 'some text',
     }).then(() => {
     });
   }

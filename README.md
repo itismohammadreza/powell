@@ -9,7 +9,7 @@
 
 - [ ] **dialogForm** - add hook support in config (just like angular formly to implement cascade mode). set a valid type
   for labelPos in models.
-- [ ] **toast** - fix preventDuplicate feature.
+- [ ] **dialog** - complete utils service.
 - [ ] **map** - implement `removeLastMarker` & `removeAllMarkers` buttons. also add an `@Input() multi: boolean` to
   allow choosing multiple marker.
 - [ ] **all** - handle rtl direction in dropdowns panel (or etc.) when is appendTo body.
