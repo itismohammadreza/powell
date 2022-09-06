@@ -29,6 +29,8 @@ import {TemplateDirective} from '@ng/directives/template.directive';
 import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
 import {ContextMenu} from 'primeng/contextmenu';
 import {ScrollerOptions} from 'primeng/scroller';
+import {NgSelectionMode} from "@ng/models/offset";
+
 // todo: compare component with others (like slider) and fix bugs. complete css file. implement demo page.
 @Component({
   selector: 'ng-tree',
@@ -54,7 +56,7 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   @Input() errors: NgError;
   // native properties
   @Input() items: any[];
-  @Input() selectionMode: SelectionMode;
+  @Input() selectionMode: NgSelectionMode;
   @Input() selection: any;
   @Input() style: string;
   @Input() styleClass: string;
