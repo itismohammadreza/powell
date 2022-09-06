@@ -28,7 +28,6 @@ import {ScrollerOptions} from "primeng/scroller";
 // -implement empty message if user not provided
 // -implement default table header (include a title) if user not provided
 // -implement grid lines or other style classes configurations
-// -implement edit
 
 // implemented
 // -selection

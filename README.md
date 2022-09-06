@@ -15,7 +15,7 @@
 - [ ] **all** - handle rtl direction in dropdowns panel (or etc.) when is appendTo body.
 - [ ] **inputNumber** - complete component.
 - [ ] **async** - add an async @Input to button, switch, checkbox, dual-switch instead of implementing new component.
-- [ ] **utilsService** - break service to sub services. remove extras.
+- [x] **utilsService** - break service to sub services. remove extras.
 
 ### New
 
