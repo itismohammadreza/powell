@@ -7,115 +7,89 @@
   'flex-row': labelPos == 'fix-side' && rtl,
   'flex-row-reverse': labelPos == 'fix-side' && !rtl
 }" class="tree-wrapper">
-<div [ngClass]="{
-  'w-100': labelPos == 'fix-top',
-  'p-float-label': labelPos == 'float',
-  'p-input-icon-left': !addon && icon && iconPos == 'left',
-  'p-input-icon-right': !addon && icon && iconPos == 'right',
-  'p-inputtext-sm': inputSize == 'sm',
-  'p-inputtext-lg': inputSize == 'lg',
-  'p-input-filled': filled
-}" class="field">
-<i *ngIf="icon && !addon && !showClear" [ngClass]="icon"></i>
-<p-tree 
-  [(ngModel)]="value"
-  [ngAddon]="addon"
-  [addonDisabled]="disabled"
-  [addonSize]="inputSize"
-  [inputId]="inputId"
-  [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-
-  [label]="label"
-  [filled]="filled"
-  [labelWidth]="labelWidth"
-  [hint]="hint"
-  [rtl]="rtl"
-  [showRequiredStar]="showRequiredStar"
-  [icon]="icon"
-  [labelPos]="labelPos"
-  [iconPos]="iconPos"
-  [addon]="addon"
-  [errors]="errors"
-  [inputSize]="inputSize"
-
-  [selectionMode]="selectionMode"
-  [selection]="selection"
-  [style]="style"
-  [styleClass]="styleClass"
-  [contextMenu]="contextMenu"
-  [layout]="layout"
-  [draggableScope]="draggableScope"
-  [droppableScope]="droppableScope"
-  [draggableNodes]="draggableNodes"
-  [droppableNodes]="droppableNodes"
-  [metaKeySelection]="metaKeySelection"
-  [propagateSelectionUp]="propagateSelectionUp"
-  [propagateSelectionDown]="propagateSelectionDown"
-  [loading]="loading"
-  [loadingIcon]="loadingIcon"
-  [emptyMessage]="emptyMessage"
-  [ariaLabel]="ariaLabel"
-  [ariaLabelledBy]="ariaLabelledBy"
-  [togglerAriaLabel]="togglerAriaLabel"
-  [validateDrop]="validateDrop"
-  [filter]="filter"
-  [filterBy]="filterBy"
-  [filterMode]="filterMode"
-  [filterPlaceholder]="filterPlaceholder"
-  [filterLocale]="filterLocale"
-  [scrollHeight]="scrollHeight"
-  [virtualScroll]="virtualScroll"
-  [virtualScrollItemSize]="virtualScrollItemSize"
-  [virtualScrollOptions]="virtualScrollOptions"
-  [lazy]="lazy"
-  [trackBy]="trackBy"
-  [indentation]="indentation"
-  (onNodeSelect)="_onNodeSelect()"
-  (onNodeUnselect)="_onNodeUnselect()"
-  (onNodeExpand)="emitter('onNodeExpand', $event)"
-  (onNodeCollapse)="emitter('onNodeCollapse', $event)"
-  (onNodeContextMenuSelect)="emitter('onNodeContextMenuSelect', $event)"
-  (onNodeDrop)="emitter('onNodeDrop', $event)"
-  (onFilter)="emitter('onFilter', $event)"
-  (onLazyLoad)="emitter('onLazyLoad', $event)"
-  (onScroll)="emitter('onScroll', $event)"
-  (onScrollIndexChange)="emitter('onScrollIndexChange', $event)"
->
-  <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
-    <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
-  </ng-template>
-  <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
-    <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
-  </ng-template>
-  <ng-template pTemplate="empty" let-item *ngIf="emptyTemplate">
-    <ng-container *ngTemplateOutlet="emptyTemplate;context:{$implicit:item}"></ng-container>
-  </ng-template>
-  <ng-template pTemplate="loader" let-item *ngIf="loaderTemplate">
-    <ng-container *ngTemplateOutlet="loaderTemplate;context:{$implicit:item}"></ng-container>
-  </ng-template>
-</p-tree>
-<label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
-  {{ label }}
-</label>
-</div>
-<label
-*ngIf="label && labelPos != 'float'"
-[attr.for]="inputId"
-[ngClass]="{
-  'mb-0': labelPos == 'fix-side',
-  'ml-4': rtl,
-  'mr-4': !rtl,
-  'text-muted': disabled
-}"
-[style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
-{{ label }}
-</label>
-<div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
-<div class="message small">
-<ng-container *ngFor="let error of errors | keyvalue">
-  <div *ngIf="showError(error.key)" class="p-error">
-    {{ error.value }}
+  <div [ngClass]="{ 'w-100': labelPos == 'fix-top'}" class="field">
+    <p-tree
+      [ngAddon]="addon"
+      [id]="inputId"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+      [selectionMode]="selectionMode"
+      [value]="items"
+      [selection]="value"
+      [style]="style"
+      [styleClass]="styleClass"
+      [contextMenu]="contextMenu"
+      [layout]="layout"
+      [draggableScope]="draggableScope"
+      [droppableScope]="droppableScope"
+      [draggableNodes]="draggableNodes"
+      [droppableNodes]="droppableNodes"
+      [metaKeySelection]="metaKeySelection"
+      [propagateSelectionUp]="propagateSelectionUp"
+      [propagateSelectionDown]="propagateSelectionDown"
+      [loading]="loading"
+      [loadingIcon]="loadingIcon"
+      [emptyMessage]="emptyMessage"
+      [validateDrop]="validateDrop"
+      [filter]="filter"
+      [filterBy]="filterBy"
+      [filterMode]="filterMode"
+      [filterPlaceholder]="filterPlaceholder"
+      [filterLocale]="filterLocale"
+      [scrollHeight]="scrollHeight"
+      [virtualScroll]="virtualScroll"
+      [virtualScrollItemSize]="virtualScrollItemSize"
+      [virtualScrollOptions]="virtualScrollOptions"
+      [lazy]="lazy"
+      [trackBy]="trackBy"
+      [indentation]="indentation"
+      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
+      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
+      (selectionChange)="_onSelectionChange($event)"
+      (onNodeSelect)="_onNodeSelect($event)"
+      (onNodeUnselect)="_onNodeUnselect($event)"
+      (onNodeExpand)="emitter('onNodeExpand', $event)"
+      (onNodeCollapse)="emitter('onNodeCollapse', $event)"
+      (onNodeContextMenuSelect)="emitter('onNodeContextMenuSelect', $event)"
+      (onNodeDrop)="emitter('onNodeDrop', $event)"
+      (onFilter)="emitter('onFilter', $event)"
+      (onLazyLoad)="emitter('onLazyLoad', $event)"
+      (onScroll)="emitter('onScroll', $event)"
+      (onScrollIndexChange)="emitter('onScrollIndexChange', $event)">
+      <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
+        <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
+      </ng-template>
+      <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
+        <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
+      </ng-template>
+      <ng-template pTemplate="empty" let-item *ngIf="emptyTemplate">
+        <ng-container *ngTemplateOutlet="emptyTemplate;context:{$implicit:item}"></ng-container>
+      </ng-template>
+      <ng-template pTemplate="loader" let-item *ngIf="loaderTemplate">
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{$implicit:item}"></ng-container>
+      </ng-template>
+    </p-tree>
+    <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
+      {{ label }}
+    </label>
   </div>
-</ng-container>
-</div>
+  <label
+    *ngIf="label && labelPos != 'float'"
+    [attr.for]="inputId"
+    [ngClass]="{
+    'mb-0': labelPos == 'fix-side',
+    'ml-4': rtl,
+    'mr-4': !rtl,
+    'text-muted': disabled
+  }"
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label }}
+  </label>
+  <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
+  <div class="message small">
+    <ng-container *ngFor="let error of errors | keyvalue">
+      <div *ngIf="showError(error.key)" class="p-error">
+        {{ error.value }}
+      </div>
+    </ng-container>
+  </div>
 </div>

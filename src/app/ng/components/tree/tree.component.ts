@@ -20,19 +20,16 @@ import {
   ControlValueAccessor,
   FormControlName,
   FormGroupDirective,
+  FormGroupName,
   NG_VALUE_ACCESSOR,
   NgControl,
-  NgModel,
   UntypedFormGroup,
-  FormGroupName,
 } from '@angular/forms';
-import { TemplateDirective } from '@ng/directives/template.directive';
-import { NgAddon, NgError, NgFixLabelPosition, NgLabelPosition } from '@ng/models/forms';
-import { NgIconPosition, NgOrientation, NgSelectionMode, NgSize } from '@ng/models/offset';
-import { NgTree, NgTreeFilterMode } from '@ng/models/tree';
-import { ContextMenu } from 'primeng/contextmenu';
-import { ScrollerOptions } from 'primeng/scroller';
-
+import {TemplateDirective} from '@ng/directives/template.directive';
+import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
+import {ContextMenu} from 'primeng/contextmenu';
+import {ScrollerOptions} from 'primeng/scroller';
+// todo: compare component with others (like slider) and fix bugs. complete css file. implement demo page.
 @Component({
   selector: 'ng-tree',
   templateUrl: './tree.component.html',
@@ -48,60 +45,55 @@ import { ScrollerOptions } from 'primeng/scroller';
 export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
-  @Input() icon: string;
   @Input() labelPos: NgLabelPosition = 'fix-top';
-  @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() errors: NgError;
-  @Input() inputSize: NgSize = 'md';
   // native properties
-  @Input() selectionMode: string;
+  @Input() items: any[];
+  @Input() selectionMode: SelectionMode;
   @Input() selection: any;
   @Input() style: string;
   @Input() styleClass: string;
   @Input() contextMenu: ContextMenu;
-  @Input() layout: string = 'vertical';
+  @Input() layout: 'vertical' | 'horizontal' = 'vertical';
   @Input() draggableScope: string | string[];
   @Input() droppableScope: string | string[];
-  @Input() draggableNodes: boolean = false;
-  @Input() droppableNodes: boolean = false;
+  @Input() draggableNodes: boolean;
+  @Input() droppableNodes: boolean;
   @Input() metaKeySelection: boolean = true;
   @Input() propagateSelectionUp: boolean = true;
   @Input() propagateSelectionDown: boolean = true;
-  @Input() loading: boolean = false;
+  @Input() loading: boolean;
   @Input() loadingIcon: string = 'pi pi-spinner';
   @Input() emptyMessage: string = 'No records found';
-  @Input() ariaLabel: string;
-  @Input() ariaLabelledBy: string = 'pi pi-spinner';
-  @Input() togglerAriaLabel: string;
-  @Input() validateDrop: boolean = false;;
-  @Input() filter: boolean = false;;
+  @Input() validateDrop: boolean;
+  @Input() filter: boolean;
   @Input() filterBy: string = "label";
-  @Input() filterMode: string = 'lenient';
+  @Input() filterMode: 'lenient' | 'strict' = 'lenient';
   @Input() filterPlaceholder: string;
   @Input() filterLocale: string;
   @Input() scrollHeight: string;
-  @Input() virtualScroll: boolean = false;
+  @Input() virtualScroll: boolean;
   @Input() virtualScrollItemSize: number;
   @Input() virtualScrollOptions: ScrollerOptions;
-  @Input() lazy: boolean= false;
+  @Input() lazy: boolean;
   @Input() trackBy: Function;
   @Input() indentation: number = 1.5;
-  @Output() onNodeSelect= new EventEmitter();
-  @Output() onNodeUnselect= new EventEmitter();
-  @Output() onNodeExpand= new EventEmitter();
-  @Output() onNodeCollapse= new EventEmitter();
-  @Output() onNodeContextMenuSelect= new EventEmitter();
-  @Output() onNodeDrop= new EventEmitter();
-  @Output() onFilter= new EventEmitter();
-  @Output() onLazyLoad= new EventEmitter();
-  @Output() onScroll= new EventEmitter();
-  @Output() onScrollIndexChange= new EventEmitter();
+  @Output() onNodeSelect = new EventEmitter();
+  @Output() onNodeUnselect = new EventEmitter();
+  @Output() onNodeExpand = new EventEmitter();
+  @Output() onNodeCollapse = new EventEmitter();
+  @Output() onNodeContextMenuSelect = new EventEmitter();
+  @Output() onNodeDrop = new EventEmitter();
+  @Output() onFilter = new EventEmitter();
+  @Output() onLazyLoad = new EventEmitter();
+  @Output() onScroll = new EventEmitter();
+  @Output() onScrollIndexChange = new EventEmitter();
+  @Output() selectionChange = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
@@ -143,15 +135,10 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
         rootForm.ngSubmit.subscribe(() => {
-          // if (!this.disabled) {
-          //   currentControl.markAsTouched();
-          // }
+          currentControl.markAsTouched();
         });
       }
     }
-    // if (this.autoDisplayFirst) {
-    //   this.onModelChange(this.options[0][this.optionValue])
-    // }
   }
 
   ngAfterViewInit() {
@@ -159,9 +146,6 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
       if (this.label) {
         this.label += ' *';
       }
-      // if (this.placeholder) {
-      //   this.placeholder += ' *';
-      // }
       this.cd.detectChanges();
     }
   }
@@ -169,7 +153,6 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {
       switch (item.getType()) {
-
         case 'header':
           this.headerTemplate = item.templateRef;
           break;
@@ -189,17 +172,20 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
     });
   }
 
- 
-  _onNodeSelect(event){
+  _onNodeSelect(event) {
     this.onNodeSelect.emit(event);
     this.onModelChange(event.value);
   }
 
-  _onNodeUnselect(event){
+  _onNodeUnselect(event) {
     this.onNodeUnselect.emit(event);
     this.onModelChange(event.value);
   }
-  
+
+  _onSelectionChange(event) {
+    this.selection = event;
+    this.selectionChange.emit(this.selection);
+  }
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
@@ -228,7 +214,6 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
       if (this.showError(error)) {
         hasError = true
       }
-      ;
     }
     return !hasError;
   }
@@ -258,12 +243,6 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   registerOnTouched(fn) {
     this.onModelTouched = fn;
   }
-
-  // setDisabledState(val: boolean) {
-  //   this.disabled = val;
-  //   this.cd.markForCheck();
-  // }
-
 }
 
 

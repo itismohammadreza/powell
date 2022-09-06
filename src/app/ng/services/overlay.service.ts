@@ -10,7 +10,7 @@ import {
   NgMessageOptions,
   NgToastOptions
 } from '@ng/models/overlay';
-import {Confirmation, ConfirmationService, ConfirmEventType, FilterService, Message, MessageService} from 'primeng/api';
+import {Confirmation, ConfirmationService, ConfirmEventType, Message, MessageService} from 'primeng/api';
 import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {DialogComponent} from '@ng/components/dialog/dialog.component';
 import {DOCUMENT} from '@angular/common';
