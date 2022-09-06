@@ -314,7 +314,6 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
         break;
       case 'gregorian-datepicker':
         filterValue = new Date(event);
-        console.log(event.toString())
         break;
     }
     if (this.local) {

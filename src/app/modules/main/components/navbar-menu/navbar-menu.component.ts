@@ -115,6 +115,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     const sidebarItems: string[] = [
       'dashboard',
       'auto-complete',
+      'bottom-sheet',
       'button',
       'button-async',
       'cascade-select',

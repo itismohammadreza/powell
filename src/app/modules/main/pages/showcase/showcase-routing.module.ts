@@ -42,6 +42,7 @@ import {JalaliDatepickerPage} from "@modules/main/pages/showcase/pages/jalali-da
 import {TriStateCheckboxPage} from "@modules/main/pages/showcase/pages/tri-state-checkbox/tri-state-checkbox.page";
 import {EmptyPage} from "@modules/main/pages/showcase/pages/empty/empty.page";
 import {DualLabelSwitchPage} from "@modules/main/pages/showcase/pages/dual-label-switch/dual-label-switch.page";
+import {BottomSheetPage} from "@modules/main/pages/showcase/pages/bottom-sheet/bottom-sheet.page";
 
 const routes: Routes = [
   {
@@ -53,6 +54,11 @@ const routes: Routes = [
     path: 'auto-complete',
     component: AutoCompletePage,
     data: {title: 'auto-complete'}
+  },
+  {
+    path: 'bottom-sheet',
+    component: BottomSheetPage,
+    data: {title: 'bottom-sheet'}
   },
   {
     path: 'button',

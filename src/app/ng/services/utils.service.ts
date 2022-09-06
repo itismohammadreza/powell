@@ -8,18 +8,11 @@ import {DOCUMENT, LocationStrategy} from '@angular/common';
   providedIn: 'root'
 })
 export class UtilsService {
-
   constructor(
     private location: LocationStrategy,
     @Inject(DOCUMENT) private document: Document
   ) {
   }
-
-
-  //////////////////////////////////////////////////////////////////////////
-  //                              GENERAL                                 //
-  //////////////////////////////////////////////////////////////////////////
-
 
   checkConnection(): Observable<boolean> {
     return merge(

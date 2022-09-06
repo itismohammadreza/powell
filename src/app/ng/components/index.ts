@@ -38,6 +38,7 @@ import {TableComponent} from "@ng/components/table/table.component";
 import {TreeComponent} from "@ng/components/tree/tree.component";
 
 /***************************** OVERLAY *****************************/
+import {BottomSheetComponent} from "@ng/components/bottom-sheet/bottom-sheet.component";
 import {ConfirmComponent} from "@ng/components/confirm/confirm.component";
 import {ConfirmPopupComponent} from "@ng/components/confirm-popup/confirm-popup.component";
 import {DialogComponent} from "@ng/components/dialog/dialog.component";
@@ -105,6 +106,7 @@ export const COMPONENTS: Type<any>[] = [
   TableComponent,
   TreeComponent,
   /***************************** OVERLAY *************************/
+  BottomSheetComponent,
   ConfirmComponent,
   ConfirmPopupComponent,
   DialogComponent,

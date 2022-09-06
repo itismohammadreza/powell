@@ -1,7 +1,6 @@
 # TODO
 
 ### TIPS
-- we just have two type of table renderer. text and image. other renderers will available in templateString and ng-template options.
 - is it necessary to remove styles relative to having both (icon and dropdown) in autocomplete OR (icon and showIcon) in datepicker?
 - table filter on datepicker mode, value clears after select and close popup. also, what should be the cells actual value if we want to datepicker filter works properly? 
 
