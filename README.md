@@ -24,16 +24,8 @@
 - [ ] **table** 
 - implement `jalali` and `miladi` filter. 
 - add configurable caption elements (like title and global filter). plus, apply localMode in global filter also.
-- add `templateString` and `templateHTML` support that accept a function returns a string or html template to render in cells.
-  for example if we want display format like `item.date/item.month/item.year` in a cell, we use
-  `templateString` and if want to show image url of item, we can use `templateHtml` like below:
-
-  ```
-  {
-    templateString: (item) => `${item.startDate}/${item.startMonth}/${item.startYear}`
-  },
-  { 
-    templateHtml: (item) => `<img src=${item.imageUrl} />`
-  }
-  ```
-  
+- implement actions and functions to render + switch action
+- check that let- variables on ng-templates are setting properly. some is missed or some is wrong.
+- implement empty message if user not provided
+- implement default table header (include a title) if user not provided
+- implement grid lines or other style classes configurations

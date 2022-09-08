@@ -30,19 +30,6 @@ import {Table} from 'primeng/table';
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {ScrollerOptions} from "primeng/scroller";
 
-// todo:
-// -implement actions and functions to render + switch action
-// -check that let- variables on ng-templates are setting properly. some is missed or some is wrong.
-// -implement empty message if user not provided
-// -implement default table header (include a title) if user not provided
-// -implement grid lines or other style classes configurations
-
-// implemented
-// -selection
-// -reorderableRows
-// -reorderableColumns
-// -cell renderer
-// -templateString function
 @Component({
   selector: 'ng-table',
   templateUrl: './table.component.html',
