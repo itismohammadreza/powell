@@ -60,6 +60,7 @@ import {MessageComponent} from "@ng/components/message/message.component";
 import {ToastComponent} from "@ng/components/toast/toast.component";
 
 /***************************** MEDIA *****************************/
+import {ImageComponent} from "@ng/components/image/image.component";
 import {ImageSliderComponent} from "@ng/components/image-slider/image-slider.component";
 
 /***************************** MISC *****************************/
@@ -124,6 +125,7 @@ export const COMPONENTS: Type<any>[] = [
   MessageComponent,
   ToastComponent,
   /***************************** MEDIA *************************/
+  ImageComponent,
   ImageSliderComponent,
   /***************************** MISC *************************/
   EmptyComponent,

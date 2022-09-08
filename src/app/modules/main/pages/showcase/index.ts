@@ -55,6 +55,7 @@ import {EmptyPage} from "@modules/main/pages/showcase/pages/empty/empty.page";
 import {StatusPage} from "@modules/main/pages/showcase/pages/status/status.page";
 import {DualLabelSwitchPage} from "@modules/main/pages/showcase/pages/dual-label-switch/dual-label-switch.page";
 import {BottomSheetPage} from "@modules/main/pages/showcase/pages/bottom-sheet/bottom-sheet.page";
+import {ImagePage} from "@modules/main/pages/showcase/pages/image/image.page";
 
 export const COMPONENTS: Type<any>[] = [
   // components
@@ -84,6 +85,7 @@ export const COMPONENTS: Type<any>[] = [
   FilePickerPage,
   FilePicker2Page,
   GregorianDatepickerPage,
+  ImagePage,
   ImageSliderPage,
   InputMaskPage,
   InputNumberPage,

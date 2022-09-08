@@ -171,6 +171,7 @@ type PreviewItem =
   | 'title'
   | 'subtitle'
   | 'imageType'
+  | 'preview'
 
   | 'addon'
   | 'selectiveSize'
@@ -491,6 +492,8 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() subtitleChange = new EventEmitter()
   @Input() imageType: string;
   @Output() imageTypeChange = new EventEmitter()
+  @Input() preview: boolean;
+  @Output() previewChange = new EventEmitter()
 
   @Input() addon: NgAddon;
   @Output() addonChange = new EventEmitter()

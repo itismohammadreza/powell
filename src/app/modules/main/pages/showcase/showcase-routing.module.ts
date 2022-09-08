@@ -44,6 +44,7 @@ import {EmptyPage} from "@modules/main/pages/showcase/pages/empty/empty.page";
 import {DualLabelSwitchPage} from "@modules/main/pages/showcase/pages/dual-label-switch/dual-label-switch.page";
 import {BottomSheetPage} from "@modules/main/pages/showcase/pages/bottom-sheet/bottom-sheet.page";
 import {StatusPage} from "@modules/main/pages/showcase/pages/status/status.page";
+import {ImagePage} from "@modules/main/pages/showcase/pages/image/image.page";
 
 const routes: Routes = [
   {
@@ -130,6 +131,11 @@ const routes: Routes = [
     path: 'gregorian-datepicker',
     component: GregorianDatepickerPage,
     data: {title: 'gregorian-datepicker'}
+  },
+  {
+    path: 'image',
+    component: ImagePage,
+    data: {title: 'image'}
   },
   {
     path: 'image-slider',

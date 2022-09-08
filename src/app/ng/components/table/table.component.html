@@ -71,8 +71,6 @@
          [exportFunction]="exportFunction"
          [stateKey]="stateKey"
          [stateStorage]="stateStorage"
-         [editMode]="editMode"
-         [editingRowKeys]="editingRowKeys"
          [exportHeader]="exportHeader"
          (onRowSelect)="emitter('onRowSelect',$event)"
          (onRowUnselect)="emitter('onRowUnselect',$event)"
@@ -86,9 +84,6 @@
          (onColResize)="emitter('onColResize',$event)"
          (onColReorder)="emitter('onColReorder',$event)"
          (onRowReorder)="emitter('onRowReorder',$event)"
-         (onEditInit)="emitter('onEditInit',$event)"
-         (onEditComplete)="emitter('onEditComplete',$event)"
-         (onEditCancel)="emitter('onEditCancel',$event)"
          (onHeaderCheckboxToggle)="emitter('onHeaderCheckboxToggle',$event)"
          (onStateSave)="emitter('onStateSave',$event)"
          (onStateRestore)="emitter('onStateRestore',$event)"
@@ -192,6 +187,13 @@
             </p-columnFilter>
           </ng-container>
         </th>
+        <!--        todo        -->
+        <ng-container *ngIf="actionsInSameColumn">
+          <td></td>
+        </ng-container>
+        <ng-container *ngIf="!actionsInSameColumn">
+
+        </ng-container>
       </tr>
     </ng-container>
     <ng-container *ngIf="filterDisplay == 'row'">
@@ -200,22 +202,101 @@
         <th style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
           <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"></p-tableHeaderCheckbox>
         </th>
-        <th *ngFor="let col of colDef" [pSortableColumn]="col.field">
+        <th *ngFor="let col of colDef"
+            [pSortableColumn]="col.field"
+            pReorderableColumn
+            [pReorderableColumnDisabled]="!reorderableColumns">
           {{ col.header }}
           <p-sortIcon *ngIf="col.sort" [field]="col.field"></p-sortIcon>
         </th>
+        <!--        todo        -->
+        <ng-container *ngIf="actionsInSameColumn">
+          <td></td>
+        </ng-container>
+        <ng-container *ngIf="!actionsInSameColumn">
+
+        </ng-container>
       </tr>
       <tr>
         <th style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
-          <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"></p-tableHeaderCheckbox>
         </th>
         <th *ngFor="let col of colDef">
-          <p-columnFilter *ngIf="col.filter"
-                          [showMenu]="true"
-                          [type]="col.filter.type"
-                          [field]="col.field">
-          </p-columnFilter>
+          <ng-container *ngIf="col.filter as filter">
+            <p-columnFilter [field]="col.field"
+                            display="menu"
+                            [matchMode]="filter.matchMode"
+                            [showApplyButton]="false"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false">
+              <ng-template pTemplate="header">
+                <div class="px-3 pt-3 pb-0"><span class="font-bold">{{filter.header}}</span></div>
+              </ng-template>
+              <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback" [ngSwitch]="filter.type">
+                <ng-input-text
+                  *ngSwitchCase="'text'"
+                  [value]="value"
+                  (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                </ng-input-text>
+
+                <ng-input-number
+                  *ngSwitchCase="'numeric'"
+                  (onInput)="onChangeFilterValue($event,filterCallback,col)">
+                </ng-input-number>
+
+                <ng-multi-select
+                  *ngSwitchCase="'multi-select'"
+                  [value]="value"
+                  [options]="filter.options"
+                  [optionLabel]="filter.optionLabel"
+                  [optionValue]="filter.optionValue"
+                  [placeholder]="filter.placeholder"
+                  (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                </ng-multi-select>
+
+                <ng-dropdown
+                  *ngSwitchCase="'dropdown'"
+                  [value]="value"
+                  [options]="filter.options"
+                  [optionLabel]="filter.optionLabel"
+                  [optionValue]="filter.optionValue"
+                  [placeholder]="filter.placeholder"
+                  (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                </ng-dropdown>
+
+                <ng-container *ngSwitchCase="'slider'">
+                  <ng-slider
+                    [ngModel]="filter.sliderValue"
+                    [min]="filter.min"
+                    [max]="filter.max"
+                    [range]="filter.range"
+                    (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
+                  </ng-slider>
+                  <div class="text-center" dir="ltr">{{filter.sliderValue[0]}} - {{filter.sliderValue[1]}}</div>
+                </ng-container>
+
+                <ng-checkbox
+                  *ngSwitchCase="'boolean'"
+                  [ngModel]="value == 'true' ? true : false"
+                  (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                </ng-checkbox>
+
+                <ng-gregorian-datepicker
+                  *ngSwitchCase="'gregorian-datepicker'"
+                  [dateFormat]="filter.dateFormat"
+                  (onSelect)="onChangeFilterValue($event,filterCallback,col)">
+                </ng-gregorian-datepicker>
+              </ng-template>
+            </p-columnFilter>
+          </ng-container>
         </th>
+        <!--        todo        -->
+        <ng-container *ngIf="actionsInSameColumn">
+          <td></td>
+        </ng-container>
+        <ng-container *ngIf="!actionsInSameColumn">
+
+        </ng-container>
       </tr>
     </ng-container>
   </ng-template>
@@ -249,12 +330,31 @@
         <td *ngIf="selectionMode == 'checkbox'">
           <p-tableCheckbox [value]="item"></p-tableCheckbox>
         </td>
-        <td *ngFor="let col of colDef">
-          <ng-container [ngSwitch]="col.renderer.type">
-            <ng-container *ngSwitchCase="'text'">{{fromObj(item, col.field)}}</ng-container>
-            <ng-container *ngSwitchCase="'image'"><img [style.width]="col.renderer.width" class="image-cell" [src]="fromObj(item, col.field)" (error)="onImageLoadError($event)" /></ng-container>
+        <td *ngFor="let col of colDef" [ngClass]="handleCellStyleClass(col,item)">
+          <ng-container [ngSwitch]="col.render?.as">
+            <ng-image
+              *ngSwitchCase="'image'"
+              imageClass="image-cell"
+              [preview]="col.render.preview"
+              [width]="col.render.width || '150px'"
+              [height]="col.render.height"
+              [src]="fromObj(item, col.field)">
+            </ng-image>
+            <ng-container *ngSwitchCase="'ng-template'">
+              <ng-container *ngTemplateOutlet="cellTemplates[col.field];context:{$implicit:item}"></ng-container>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              <span [innerHTML]="handleCellTemplate(col,item)"></span>
+            </ng-container>
           </ng-container>
         </td>
+        <!--        todo        -->
+        <ng-container *ngIf="actionsInSameColumn">
+          <td></td>
+        </ng-container>
+        <ng-container *ngIf="!actionsInSameColumn">
+
+        </ng-container>
       </tr>
     </ng-template>
   </ng-template>
@@ -445,181 +545,6 @@
 <!--              col.filter?.display == 'menu' || !col.filter?.display-->
 <!--          }"-->
 <!--          class="d-flex filter-wrapper"-->
-<!--        >-->
-<!--          <div>-->
-<!--            {{ col.header }}-->
-<!--            <p-sortIcon-->
-<!--              *ngIf="col.sortable && col.filter?.display != 'row'"-->
-<!--              [field]="col.field"-->
-<!--            ></p-sortIcon>-->
-<!--          </div>-->
-<!--          <ng-container [ngSwitch]="col.filter?.type">-->
-<!--            <p-columnFilter-->
-<!--              *ngSwitchCase="'text'"-->
-<!--              [display]="col.filter.display || 'menu'"-->
-<!--              [field]="col.field"-->
-<!--              [matchMode]="col.filter.matchMode"-->
-<!--              [operator]="col.filter.operator"-->
-<!--              [placeholder]="col.filter.placeholder || ''"-->
-<!--              [showAddButton]="col.filter.showAddButton"-->
-<!--              [showApplyButton]="col.filter.showApplyButton"-->
-<!--              [showClearButton]="col.filter.showClearButton"-->
-<!--              [showMatchModes]="col.filter.showMatchModes"-->
-<!--              [showMenu]="col.filter.showMenu || true"-->
-<!--              [showOperator]="col.filter.showOperator"-->
-<!--              type="text"-->
-<!--            ></p-columnFilter>-->
-<!--            <p-columnFilter-->
-<!--              *ngSwitchCase="'boolean'"-->
-<!--              [display]="col.filter.display || 'menu'"-->
-<!--              [field]="col.field"-->
-<!--              [matchMode]="col.filter.matchMode"-->
-<!--              [operator]="col.filter.operator"-->
-<!--              [showAddButton]="col.filter.showAddButton"-->
-<!--              [showApplyButton]="col.filter.showApplyButton"-->
-<!--              [showClearButton]="col.filter.showClearButton"-->
-<!--              [showMatchModes]="col.filter.showMatchModes"-->
-<!--              [showMenu]="col.filter.showMenu || true"-->
-<!--              [showOperator]="col.filter.showOperator"-->
-<!--              type="boolean"-->
-<!--            ></p-columnFilter>-->
-<!--            <p-columnFilter-->
-<!--              *ngSwitchCase="'numeric'"-->
-<!--              [currencyDisplay]="col.filter.currencyDisplay"-->
-<!--              [currency]="col.filter.currency"-->
-<!--              [display]="col.filter.display || 'menu'"-->
-<!--              [field]="col.field"-->
-<!--              [matchMode]="col.filter.matchMode"-->
-<!--              [maxConstraints]="col.filter.maxConstraints"-->
-<!--              [maxFractionDigits]="col.filter.maxFractionDigits"-->
-<!--              [minFractionDigits]="col.filter.minFractionDigits"-->
-<!--              [operator]="col.filter.operator"-->
-<!--              [prefix]="col.filter.prefix"-->
-<!--              [showAddButton]="col.filter.showAddButton"-->
-<!--              [showApplyButton]="col.filter.showApplyButton"-->
-<!--              [showClearButton]="col.filter.showClearButton"-->
-<!--              [showMatchModes]="col.filter.showMatchModes"-->
-<!--              [showMenu]="col.filter.showMenu || true"-->
-<!--              [showOperator]="col.filter.showOperator"-->
-<!--              [suffix]="col.filter.suffix"-->
-<!--              [useGrouping]="col.filter.useGrouping"-->
-<!--              type="numeric"-->
-<!--            ></p-columnFilter>-->
-<!--            <p-columnFilter-->
-<!--              *ngSwitchCase="'multi-select'"-->
-<!--              [display]="col.filter.display || 'menu'"-->
-<!--              [field]="col.field"-->
-<!--              [matchMode]="col.filter.matchMode"-->
-<!--              [operator]="col.filter.operator"-->
-<!--              [showAddButton]="col.filter.showAddButton"-->
-<!--              [showApplyButton]="col.filter.showApplyButton"-->
-<!--              [showClearButton]="col.filter.showClearButton"-->
-<!--              [showMatchModes]="col.filter.showMatchModes"-->
-<!--              [showMenu]="col.filter.showMenu || true"-->
-<!--              [showOperator]="col.filter.showOperator"-->
-<!--            >-->
-<!--              <ng-template-->
-<!--                let-filter="filterCallback"-->
-<!--                let-value-->
-<!--                pTemplate="filter"-->
-<!--              >-->
-<!--                <ng-multi-select-->
-<!--                  (onChange)="filter($event.value)"-->
-<!--                  [ngModel]="value"-->
-<!--                  [optionLabel]="col.filter.optionLabel || 'label'"-->
-<!--                  [optionValue]="col.filter.optionValue || 'value'"-->
-<!--                  [options]="col.filter.options"-->
-<!--                  [placeholder]="col.filter.placeholder"-->
-<!--                  [rtl]="rtl"-->
-<!--                ></ng-multi-select>-->
-<!--              </ng-template>-->
-<!--            </p-columnFilter>-->
-<!--            <p-columnFilter-->
-<!--              *ngSwitchCase="'dropdown'"-->
-<!--              [display]="col.filter.display || 'menu'"-->
-<!--              [field]="col.field"-->
-<!--              [matchMode]="col.filter.matchMode"-->
-<!--              [operator]="col.filter.operator"-->
-<!--              [showAddButton]="col.filter.showAddButton"-->
-<!--              [showApplyButton]="col.filter.showApplyButton"-->
-<!--              [showClearButton]="col.filter.showClearButton"-->
-<!--              [showMatchModes]="col.filter.showMatchModes"-->
-<!--              [showMenu]="col.filter.showMenu || true"-->
-<!--              [showOperator]="col.filter.showOperator"-->
-<!--            >-->
-<!--              <ng-template-->
-<!--                let-filter="filterCallback"-->
-<!--                let-value-->
-<!--                pTemplate="filter"-->
-<!--              >-->
-<!--                <ng-dropdown-->
-<!--                  (onChange)="filter($event.value)"-->
-<!--                  [ngModel]="value"-->
-<!--                  [optionLabel]="col.filter.optionLabel || 'label'"-->
-<!--                  [optionValue]="col.filter.optionValue || 'value'"-->
-<!--                  [options]="col.filter.options"-->
-<!--                  [placeholder]="col.filter.placeholder"-->
-<!--                  [rtl]="rtl"-->
-<!--                ></ng-dropdown>-->
-<!--              </ng-template>-->
-<!--            </p-columnFilter>-->
-<!--            <p-columnFilter-->
-<!--              *ngSwitchCase="'date'"-->
-<!--              [display]="col.filter.display || 'menu'"-->
-<!--              [field]="col.field"-->
-<!--              [matchMode]="col.filter.matchMode"-->
-<!--              [operator]="col.filter.operator"-->
-<!--              [showAddButton]="col.filter.showAddButton"-->
-<!--              [showApplyButton]="col.filter.showApplyButton"-->
-<!--              [showClearButton]="col.filter.showClearButton"-->
-<!--              [showMatchModes]="col.filter.showMatchModes"-->
-<!--              [showMenu]="col.filter.showMenu || true"-->
-<!--              [showOperator]="col.filter.showOperator"-->
-<!--              type="date"-->
-<!--            >-->
-<!--              <ng-template-->
-<!--                let-filter="filterCallback"-->
-<!--                let-value-->
-<!--                pTemplate="filter"-->
-<!--              >-->
-<!--                &lt;!&ndash;                <ng-date-picker&ndash;&gt;-->
-<!--                &lt;!&ndash;                  (onChange)="filter($event.dateObj)"&ndash;&gt;-->
-<!--                &lt;!&ndash;                  [inline]="true"&ndash;&gt;-->
-<!--                &lt;!&ndash;                  [locale]="col.renderer.locale"&ndash;&gt;-->
-<!--                &lt;!&ndash;                ></ng-date-picker>&ndash;&gt;-->
-<!--              </ng-template>-->
-<!--            </p-columnFilter>-->
-<!--            <p-columnFilter-->
-<!--              *ngSwitchCase="'slider'"-->
-<!--              [display]="col.filter.display || 'menu'"-->
-<!--              [field]="col.field"-->
-<!--              [matchMode]="col.filter.matchMode"-->
-<!--              [operator]="col.filter.operator"-->
-<!--              [showAddButton]="col.filter.showAddButton"-->
-<!--              [showApplyButton]="col.filter.showApplyButton"-->
-<!--              [showClearButton]="col.filter.showClearButton"-->
-<!--              [showMatchModes]="col.filter.showMatchModes"-->
-<!--              [showMenu]="col.filter.showMenu || true"-->
-<!--              [showOperator]="col.filter.showOperator"-->
-<!--            >-->
-<!--              <ng-template let-filter="filterCallback" pTemplate="filter">-->
-<!--                <ng-slider-->
-<!--                  (onSlideEnd)="filter($event.values)"-->
-<!--                  [ngModel]="col.filter.rangeValues"-->
-<!--                  [range]="col.filter.range"-->
-<!--                  styleClass="m-3"-->
-<!--                ></ng-slider>-->
-<!--                <div-->
-<!--                  class="d-flex align-items-center justify-content-between px-2"-->
-<!--                >-->
-<!--                  <span>{{ col.filter.rangeValues[0] }}</span>-->
-<!--                  <span>{{ col.filter.rangeValues[1] }}</span>-->
-<!--                </div>-->
-<!--              </ng-template>-->
-<!--            </p-columnFilter>-->
-<!--          </ng-container>-->
-<!--        </div>-->
-<!--      </th>-->
 <!--      <th-->
 <!--        *ngIf="actions"-->
 <!--        [style.top]="stickyTopOffset"-->

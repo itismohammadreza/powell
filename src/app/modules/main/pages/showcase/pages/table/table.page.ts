@@ -744,7 +744,7 @@ export class TablePage {
       header: 'name',
       field: 'name',
       sort: true,
-      renderer: {type: 'image'},
+      render: {as: 'image'},
       filter: {
         type: 'slider',
         range: true
@@ -754,7 +754,11 @@ export class TablePage {
       header: 'country',
       field: 'country.name',
       sort: true,
-      renderer: {type: 'text'},
+      render: {
+        as: (item) => {
+          return 'Render By Function :' + item.country.name
+        }
+      },
       filter: {
         type: 'text',
       },
@@ -762,7 +766,6 @@ export class TablePage {
     {
       header: 'representative',
       field: 'representative.name',
-      renderer: {type: 'text'},
       sort: true,
       filter: {
         type: 'multi-select',
@@ -786,7 +789,6 @@ export class TablePage {
     {
       header: 'date',
       field: 'date',
-      renderer: {type: 'text'},
       sort: true,
       filter: {
         type: 'gregorian-datepicker',
@@ -795,7 +797,6 @@ export class TablePage {
     {
       header: 'balance',
       field: 'balance',
-      renderer: {type: 'text'},
       sort: true,
       filter: {
         type: 'text',
@@ -804,7 +805,6 @@ export class TablePage {
     {
       header: 'status',
       field: 'status',
-      renderer: {type: 'text'},
       sort: true,
       filter: {
         type: 'dropdown',
@@ -817,12 +817,14 @@ export class TablePage {
           {label: 'Proposal', value: 'proposal'},
         ]
       },
+      cellStyleClass: (item) => {
+        return item.status == 'proposal' ? 'bg-danger' : 'bg-warning'
+      }
     },
     {
       header: 'activity',
       field: 'activity',
-      // todo: implement 'tempalte' renderer. look at html
-      renderer: {type: 'text'},
+      render: {as: 'ng-template'},
       sort: true,
       filter: {
         type: 'slider',
@@ -835,14 +837,14 @@ export class TablePage {
     {
       header: 'image',
       field: 'image',
-      renderer: {type: 'image'},
+      render: {as: 'image'},
       sort: false,
     },
     {
       header: 'bool',
       field: 'bool',
-      renderer: {
-        type: 'text'
+      render: {
+        as: 'text'
       },
       sort: true,
       filter: {type: 'boolean'},

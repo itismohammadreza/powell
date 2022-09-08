@@ -1,7 +1,16 @@
 import {NgColor} from './color';
 import {NgFilterMatchMode} from './forms';
 
-export type NgTableRendererType = 'text' | 'image';
+export type NgTableRendererType = 'text' | 'image' | 'ng-template';
+export type NgTableFilterDisplay = 'row' | 'menu';
+export type NgTableResponsiveLayout = 'stack' | 'scroll';
+export type NgTablePaginationPosition = 'bottom' | 'top' | 'both';
+export type NgTableSortMode = 'single' | 'multiple';
+export type NgTableRowGroupMode = 'subheader' | 'rowspan';
+export type NgTableContextMenuSelectionMode = 'separate' | 'joint';
+export type NgTableCompareSelectionBy = 'equals' | 'deepEquals';
+export type NgTableColumnResizeMode = 'expand' | 'fit';
+export type NgTableStateStorage = 'session' | 'local';
 export type NgTableFilterType =
   | 'text'
   | 'multi-select'
@@ -26,22 +35,29 @@ export interface NgTableFilter {
   matchMode?: NgFilterMatchMode; // only works in local mode
 }
 
+export interface NgTableRender {
+  as?: NgTableRendererType | ((item: any) => string)
+  width?: string;
+  preview?: boolean;// use in image renderer type
+  height?: string;// use in image renderer type
+}
+
 export class NgColDef {
   header?: string;
   field?: string;
   width?: string;
   sort?: boolean;
   filter?: NgTableFilter;
-  renderer?: {
-    type?: NgTableRendererType;
-    width?: string;
-  };
+  render?: NgTableRender;
+  cellStyleClass?: string | ((item: any) => string);
 }
 
 export class NgTableAction {
-  action: string;
+  actionKey: string;
   tooltip?: string;
   icon?: string;
+  label?: string;
   color?: NgColor;
-  className?: string;
+  styleClass?: string;
+  visible?: boolean | ((item: any) => boolean);
 }

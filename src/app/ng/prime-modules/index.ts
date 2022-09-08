@@ -92,7 +92,7 @@ import {ToastModule} from 'primeng/toast';
 /***************************** MEDIA *****************************/
 // import {CarouselModule} from 'primeng/carousel';
 // import {GalleriaModule} from 'primeng/galleria';
-// import {ImageModule} from 'primeng/image';
+import {ImageModule} from 'primeng/image';
 
 /***************************** DRAGDROP *****************************/
 // import {DragDropModule} from 'primeng/dragdrop';
@@ -204,7 +204,7 @@ export const MODULES: Type<any>[] = [
   /***************************** MEDIA *****************************/
   // CarouselModule,
   // GalleriaModule,
-  // ImageModule,
+  ImageModule,
   /***************************** DRAGDROP *****************************/
   // DragDropModule,
   /***************************** MISC *****************************/

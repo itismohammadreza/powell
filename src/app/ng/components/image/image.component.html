@@ -1,0 +1,16 @@
+<p-image
+  [imageClass]="imageClass"
+  [imageStyle]="imageStyle"
+  [styleClass]="styleClass"
+  [style]="style"
+  [src]="src"
+  [alt]="alt"
+  [width]="width"
+  [height]="height"
+  [appendTo]="appendTo"
+  [preview]="preview"
+  [showTransitionOptions]="showTransitionOptions"
+  [hideTransitionOptions]="hideTransitionOptions"
+  (onShow)="emitter('onShow',$event)"
+  (onHide)="emitter('onHide',$event)"
+></p-image>

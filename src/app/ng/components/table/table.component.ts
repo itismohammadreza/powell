@@ -14,7 +14,13 @@ import {
   ViewChild,
 } from '@angular/core';
 import {NgSelectionMode} from '@ng/models/offset';
-import {NgColDef} from '@ng/models/table';
+import {
+  NgColDef, NgTableAction, NgTableColumnResizeMode, NgTableCompareSelectionBy, NgTableContextMenuSelectionMode,
+  NgTableFilterDisplay,
+  NgTablePaginationPosition,
+  NgTableResponsiveLayout, NgTableRowGroupMode,
+  NgTableSortMode
+} from '@ng/models/table';
 import {FilterMetadata, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {TemplateDirective} from "@ng/directives/template.directive";
@@ -22,7 +28,6 @@ import {ScrollerOptions} from "primeng/scroller";
 
 
 // todo:
-// -implement cell renderer + templateString functions
 // -implement actions and functions to render + switch action
 // -check that let- variables on ng-templates are setting properly. some is missed or some is wrong.
 // -implement empty message if user not provided
@@ -33,6 +38,8 @@ import {ScrollerOptions} from "primeng/scroller";
 // -selection
 // -reorderableRows
 // -reorderableColumns
+// -cell renderer
+// -templateString function
 @Component({
   selector: 'ng-table',
   templateUrl: './table.component.html',
@@ -40,15 +47,18 @@ import {ScrollerOptions} from "primeng/scroller";
 })
 export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Input() items: any[];
-  @Input() filterDisplay: 'row' | 'menu' = 'menu';
+  @Input() filterDisplay: NgTableFilterDisplay = 'menu';
   @Input() colDef: NgColDef[];
   @Input() reorderableRows: boolean = false;
   @Input() selectableRows: boolean = true;
   @Input() local: boolean = true;
+  @Input() actionsInSameColumn: boolean = true;
+  @Input() actionsHeader: string;
+  @Input() actions: NgTableAction[];
   // native properties
   @Input() frozenColumns: any[];
   @Input() frozenValue: any[];
-  @Input() responsiveLayout: 'stack' | 'scroll' = 'scroll';
+  @Input() responsiveLayout: NgTableResponsiveLayout = 'scroll';
   @Input() breakpoint: string = '960px';
   @Input() style: any;
   @Input() styleClass: string;
@@ -60,31 +70,31 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Input() rowsPerPageOptions: any[];
   @Input() alwaysShowPaginator: boolean = true;
   @Input() showFirstLastIcon: boolean = true;
-  @Input() paginatorPosition: 'bottom' | 'top' | 'both' = 'bottom';
+  @Input() paginatorPosition: NgTablePaginationPosition = 'bottom';
   @Input() currentPageReportTemplate: string = '{currentPage} of {totalPages}';
   @Input() showCurrentPageReport: boolean;
   @Input() showJumpToPageDropdown: boolean;
   @Input() showJumpToPageInput: boolean;
   @Input() showPageLinks: boolean = true;
-  @Input() sortMode: 'single' | 'multiple' = 'single';
+  @Input() sortMode: NgTableSortMode = 'single';
   @Input() sortField: string;
   @Input() sortOrder: number = 1;
   @Input() multiSortMeta: SortMeta[];
-  @Input() rowGroupMode: 'subheader' | 'rowspan';
+  @Input() rowGroupMode: NgTableRowGroupMode;
   @Input() groupRowsBy: string | string[];
   @Input() groupRowsByOrder: number = 1;
   @Input() defaultSortOrder: number = 1;
   @Input() showInitialSortBadge: boolean = true;
   @Input() selectionMode: NgSelectionMode;
   @Input() selectionPageOnly: boolean;
-  @Input() contextMenuSelectionMode: 'separate' | 'joint' = 'separate';
+  @Input() contextMenuSelectionMode: NgTableContextMenuSelectionMode = 'separate';
   @Input() dataKey: string;
   @Input() metaKeySelection: boolean;
   @Input() rowSelectable: Function;
   @Input() rowTrackBy: Function = (index: number, item: any) => item;
   @Input() lazy: boolean = false;
   @Input() lazyLoadOnInit: boolean = true;
-  @Input() compareSelectionBy: 'equals' | 'deepEquals' = 'deepEquals';
+  @Input() compareSelectionBy: NgTableCompareSelectionBy = 'deepEquals';
   @Input() csvSeparator: string = ',';
   @Input() exportFilename: string = 'download';
   @Input() filters: { [s: string]: FilterMetadata | FilterMetadata[] } = {};
@@ -102,7 +112,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Input() virtualScrollOptions: ScrollerOptions;
   @Input() contextMenu: any;
   @Input() resizableColumns: boolean;
-  @Input() columnResizeMode: 'expand' | 'fit' = 'fit';
+  @Input() columnResizeMode: NgTableColumnResizeMode = 'fit';
   @Input() reorderableColumns: boolean;
   @Input() loading: boolean;
   @Input() loadingIcon: string = 'pi pi-spinner';
@@ -115,8 +125,6 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Input() exportFunction: Function;
   @Input() stateKey: string;
   @Input() stateStorage: 'session' | 'local' = 'session';
-  @Input() editMode: 'cell' | 'row' = 'cell';
-  @Input() editingRowKeys: { [s: string]: boolean; } = {};
   @Input() exportHeader: string;
   @Output() onTableReady = new EventEmitter();
   @Output() onRowSelect = new EventEmitter()
@@ -131,9 +139,6 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Output() onColResize = new EventEmitter()
   @Output() onColReorder = new EventEmitter()
   @Output() onRowReorder = new EventEmitter()
-  @Output() onEditInit = new EventEmitter()
-  @Output() onEditComplete = new EventEmitter()
-  @Output() onEditCancel = new EventEmitter()
   @Output() onHeaderCheckboxToggle = new EventEmitter()
   @Output() onStateSave = new EventEmitter()
   @Output() onStateRestore = new EventEmitter()
@@ -169,6 +174,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   paginatorLeftTemplate: TemplateRef<any>
   paginatorRightTemplate: TemplateRef<any>
   loadingBodyTemplate: TemplateRef<any>
+  cellTemplates: { [key: string]: TemplateRef<any> } = {}
 
   constructor() {
   }
@@ -176,8 +182,8 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);
     this.colDef.forEach(conf => {
-      if (conf.filter && conf.filter.type == 'slider' && conf.filter.range) {
-        Object.assign(conf.filter, {sliderValue: [conf.filter.min || 0, conf.filter.max || 100]})
+      if (conf.filter?.type == 'slider') {
+        Object.assign(conf.filter, {sliderValue: conf.filter.range ? [conf.filter.min || 0, conf.filter.max || 100] : conf.filter.max})
       }
     })
   }
@@ -251,6 +257,10 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
         case 'loadingbody':
           this.loadingBodyTemplate = item.templateRef;
           break;
+
+        default:
+          this.cellTemplates[item.getType()] = item.templateRef
+          break;
       }
     })
   }
@@ -323,10 +333,20 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     }
   }
 
-  onImageLoadError(event: any) {
-    event.target.onerror = null;
-    event.target.src = "assets/images/no-image-placeholder.jpg";
-    event.target.style.width = "100px"
+  handleCellStyleClass(col: NgColDef, item: any) {
+    if (typeof col.cellStyleClass == 'function')
+      return col.cellStyleClass(item);
+    else {
+      return col.cellStyleClass
+    }
+  }
+
+  handleCellTemplate(col: NgColDef, item: any) {
+    if (col.render && typeof col.render.as == 'function')
+      return col.render.as(item);
+    else {
+      return this.fromObj(item, col.field)
+    }
   }
 
   // @Input() emptyMessage: string = 'No Records Found';

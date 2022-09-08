@@ -3,7 +3,6 @@ import {AnimationTriggerMetadata} from "@angular/animations";
 import {RouteAnimation} from "@core/animations";
 
 interface IAppGlobalConfig {
-  readonly enableCachingApis: boolean;
   readonly defaultTheme: string;
   readonly defaultLang: string;
   readonly defaultSidebarType: SidebarType;
@@ -13,7 +12,6 @@ interface IAppGlobalConfig {
 }
 
 export const GlobalConfig: IAppGlobalConfig = {
-  enableCachingApis: true,
   defaultTheme: 'lara-light-indigo',
   defaultLang: 'fa',
   defaultSidebarType: 'push-mask',
