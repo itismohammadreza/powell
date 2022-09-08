@@ -1,52 +1,150 @@
 import {
   AfterContentInit,
+  AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   EventEmitter,
+  forwardRef,
+  InjectFlags,
+  Injector,
   Input,
   OnInit,
   Output,
   QueryList,
   TemplateRef
 } from '@angular/core';
-import {NgSelectionMode} from '@ng/models/offset';
+import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
+import {
+  AbstractControl,
+  ControlContainer,
+  ControlValueAccessor,
+  FormControlName,
+  FormGroupDirective,
+  FormGroupName,
+  NG_VALUE_ACCESSOR,
+  NgControl,
+  UntypedFormGroup
+} from "@angular/forms";
+import {NgAddon, NgChipDisplayMode, NgError, NgLabelPosition, NgTreeFilterMode} from "@ng/models/forms";
 
 @Component({
   selector: 'ng-tree-select',
   templateUrl: './tree-select.component.html',
-  styleUrls: ['./tree-select.component.scss']
+  styleUrls: ['./tree-select.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TreeSelectComponent),
+      multi: true,
+    },
+  ],
 })
-export class TreeSelectComponent implements OnInit, AfterContentInit {
+export class TreeSelectComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
+  @Input() value: any;
+  @Input() label: string;
+  @Input() filled: boolean;
+  @Input() labelWidth: number;
+  @Input() hint: string;
+  @Input() rtl: boolean;
+  @Input() showRequiredStar: boolean = true;
+  @Input() icon: string;
+  @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() iconPos: NgIconPosition = 'left';
+  @Input() addon: NgAddon;
+  @Input() errors: NgError;
+  @Input() inputSize: NgSize = 'md';
   // native properties
-  @Input() selection: any;
   @Input() options: any[];
   @Input() scrollHeight: string = '400px';
   @Input() placeholder: string;
   @Input() disabled: boolean;
   @Input() tabindex: string;
-  @Input() selectionMode: NgSelectionMode;
+  @Input() selectionMode: string;
   @Input() panelClass: string;
-  @Input() appendTo: any;
-  @Input() emptyMessage: string = 'No records found';
-  @Input() display: 'comma' | 'chip' = 'comma';
+  @Input() appendTo: string;
+  @Input() emptyMessage: string = 'No results found';
+  @Input() display: NgChipDisplayMode = 'comma';
   @Input() propagateSelectionUp: boolean = true;
   @Input() propagateSelectionDown: boolean = true;
   @Input() metaKeySelection: boolean = true;
+  @Input() filter: boolean;
+  @Input() filterBy: string = 'label';
+  @Input() filterMode: NgTreeFilterMode = 'lenient';
+  @Input() filterPlaceHolder: string;
+  @Input() filterLocale: string;
+  @Input() resetFilterOnHide: boolean = true;
+  @Input() showClear: boolean;
+  @Output() onBeforeBtnClick = new EventEmitter();
+  @Output() onAfterBtnClick = new EventEmitter();
   @Output() onShow = new EventEmitter();
   @Output() onHide = new EventEmitter();
+  @Output() onFilter = new EventEmitter();
   @Output() onNodeSelect = new EventEmitter();
   @Output() onNodeUnselect = new EventEmitter();
   @Output() onNodeExpand = new EventEmitter();
   @Output() onNodeCollapse = new EventEmitter();
+  @Output() onClear = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
+  inputId: string;
+  controlContainer: FormGroupName | FormGroupDirective;
+  ngControl: NgControl;
   valueTemplate: TemplateRef<any>;
   headerTemplate: TemplateRef<any>;
-  emptyTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
+  emptyTemplate: TemplateRef<any>;
+  onModelChange: any = (_: any) => {
+  };
+  onModelTouched: any = () => {
+  };
 
-  ngOnInit(): void {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  }
+
+  ngOnInit() {
+    this.inputId = this.getId();
+    let parentForm: UntypedFormGroup;
+    let rootForm: FormGroupDirective;
+    let currentControl: AbstractControl;
+    this.controlContainer = this.injector.get(
+      ControlContainer,
+      null,
+      InjectFlags.Optional || InjectFlags.Host || InjectFlags.SkipSelf
+    ) as FormGroupDirective;
+    this.ngControl = this.injector.get(NgControl, null);
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+      // by default we suppose the ngControl is and instance of NgModel.
+      currentControl = this.ngControl.control;
+      if (this.controlContainer) {
+        parentForm = this.controlContainer.control;
+        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+        // only when we have a formGroup (here is : controlContainer), we also may have formControlName instance.
+        // so we check this condition when we have a controlContainer and overwrite currentControl value.
+        if (this.ngControl instanceof FormControlName) {
+          currentControl = parentForm.get(this.ngControl.name.toString());
+        }
+        rootForm.ngSubmit.subscribe(() => {
+          if (!this.disabled) {
+            currentControl.markAsTouched();
+          }
+        });
+      }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.showRequiredStar && this.isRequired()) {
+      if (this.label) {
+        this.label += ' *';
+      }
+      if (this.placeholder) {
+        this.placeholder += ' *';
+      }
+      this.cd.detectChanges();
+    }
   }
 
   ngAfterContentInit() {
@@ -60,15 +158,92 @@ export class TreeSelectComponent implements OnInit, AfterContentInit {
           this.headerTemplate = item.templateRef;
           break;
 
-        case 'empty':
-          this.emptyTemplate = item.templateRef;
-          break;
-
         case 'footer':
           this.footerTemplate = item.templateRef;
+          break;
+
+        case 'empty':
+          this.emptyTemplate = item.templateRef;
           break;
       }
     });
   }
 
+  _onNodeSelect(event) {
+    this.onNodeSelect.emit(event);
+    this.onModelChange(this.value);
+  }
+
+  _onNodeUnselect(event) {
+    this.onNodeUnselect.emit(event);
+    this.onModelChange(this.value);
+  }
+
+  _onClear() {
+    this.onClear.emit();
+    this.onModelChange(null);
+  }
+
+  emitter(name: string, event: any) {
+    (this[name] as EventEmitter<any>).emit(event);
+  }
+
+  getId() {
+    return "id" + Math.random().toString(16).slice(2)
+  }
+
+  isInvalid() {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      return (control.touched || control.dirty) && control.invalid;
+    }
+  }
+
+  showError(errorType: string): boolean {
+    return (
+      this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
+    );
+  }
+
+  showHint() {
+    let hasError = false;
+    for (const error in this.errors) {
+      if (this.showError(error)) {
+        hasError = true
+      }
+      ;
+    }
+    return !hasError;
+  }
+
+  isRequired(): boolean {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  writeValue(value: any) {
+    this.value = value;
+    this.cd.markForCheck();
+  }
+
+  registerOnChange(fn) {
+    this.onModelChange = fn;
+  }
+
+  registerOnTouched(fn) {
+    this.onModelTouched = fn;
+  }
+
+  setDisabledState(val: boolean) {
+    this.disabled = val;
+    this.cd.markForCheck();
+  }
 }

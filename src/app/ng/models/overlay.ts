@@ -15,10 +15,9 @@ import {
   NgKeyFilter,
   NgLabelPosition,
   NgNumberButtonLayout,
-  NgNumberMode,
+  NgNumberMode, NgTreeFilterMode,
 } from './forms';
 import {NgIconPosition, NgOrientation, NgPlace, NgSelectionMode, NgSize} from './offset';
-import {NgTreeFilterMode} from './tree';
 
 export interface NgToastOptions {
   severity?: NgMessageSeverities;
@@ -244,7 +243,7 @@ export type NgDialogFormComponent =
   | 'number'
   | 'password'
   | 'textarea'
-  | 'list-box'
+  | 'listbox'
   | 'multi-checkbox'
   | 'multi-select'
   | 'radio'

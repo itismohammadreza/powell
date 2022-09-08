@@ -3,7 +3,7 @@ import {
   NgAddon,
   NgColorFormat,
   NgCurrency,
-  NgCurrencyDisplay, NgFixLabelPosition,
+  NgCurrencyDisplay, NgDatepickerViewMode, NgFixLabelPosition,
   NgInputFileMode,
   NgInputTypes,
   NgKeyFilter,
@@ -11,7 +11,7 @@ import {
   NgNumberButtonLayout,
   NgNumberMode
 } from '@ng/models/forms';
-import {NgIconPosition, NgOrientation, NgSize} from '@ng/models/offset';
+import {NgIconPosition, NgOrientation, NgSelectionMode, NgSize} from '@ng/models/offset';
 import {NgColor} from '@ng/models/color';
 import {DropdownComponent} from '@ng/components/dropdown/dropdown.component';
 import {InputTextComponent} from '@ng/components/input-text/input-text.component';
@@ -126,7 +126,6 @@ type PreviewItem =
   | 'defaultLabel'
   | 'displaySelectedLabel'
   | 'maxSelectedLabels'
-  | 'options'
   | 'overlayVisible'
   | 'selectedItemsLabel'
   | 'selectionLimit'
@@ -154,7 +153,6 @@ type PreviewItem =
   | 'showTime'
   | 'hourFormat'
   | 'timeOnly'
-  | 'tabindex'
   | 'showSeconds'
   | 'stepHour'
   | 'stepMinute'
@@ -164,14 +162,20 @@ type PreviewItem =
   | 'numberOfMonths'
   | 'view'
   | 'touchUI'
+  | 'selectionMode'
+  | 'propagateSelectionUp'
+  | 'propagateSelectionDown'
+  | 'indentation'
+  | 'layout'
+
   | 'addon'
   | 'selectiveSize'
   | 'numericSize'
   | 'colorFormat'
   | 'enableFormat'
   | 'inputFileMode'
-  | 'numberMode'
   | 'datepickerSelectionMode'
+  | 'numberMode'
   | 'fixLabelPos';
 
 @Component({
@@ -447,8 +451,6 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() showTimeChange = new EventEmitter()
   @Input() timeOnly: boolean;
   @Output() timeOnlyChange = new EventEmitter()
-  @Input() tabindex: number;
-  @Output() tabindexChange = new EventEmitter()
   @Input() showSeconds: boolean;
   @Output() showSecondsChange = new EventEmitter()
   @Input() stepHour: number;
@@ -463,8 +465,20 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() hideOnDateTimeSelectChange = new EventEmitter()
   @Input() numberOfMonths: number;
   @Output() numberOfMonthsChange = new EventEmitter()
+  @Input() view: NgDatepickerViewMode;
+  @Output() viewChange = new EventEmitter()
   @Input() touchUI: boolean;
   @Output() touchUIChange = new EventEmitter()
+  @Input() selectionMode: NgSelectionMode;
+  @Output() selectionModeChange = new EventEmitter();
+  @Input() propagateSelectionUp: boolean;
+  @Output() propagateSelectionUpChange = new EventEmitter();
+  @Input() propagateSelectionDown: boolean;
+  @Output() propagateSelectionDownChange = new EventEmitter();
+  @Input() indentation: number;
+  @Output() indentationChange = new EventEmitter();
+  @Input() layout: NgOrientation;
+  @Output() layoutChange = new EventEmitter();
 
   @Input() addon: NgAddon;
   @Output() addonChange = new EventEmitter()
@@ -484,6 +498,9 @@ export class PreviewOptionsComponent implements OnInit {
   @Input() inputFileMode: NgInputFileMode;
   @Output() inputFileModeChange = new EventEmitter()
   // instead of 'mode'
+  @Input() datepickerSelectionMode: NgDatepickerViewMode;
+  @Output() datepickerSelectionModeChange = new EventEmitter()
+  // instead of 'mode'
   @Input() numberMode: NgNumberMode;
   @Output() numberModeChange = new EventEmitter()
   // instead of 'labelPos'
@@ -498,29 +515,28 @@ export class PreviewOptionsComponent implements OnInit {
   ngOnInit(): void {
     const dropdownData = {
       iconPos: ['left', 'right'],
+      display: ['comma', 'chip'],
       appearance: ['basic', 'text', 'outlined', 'link'],
-      resultType: ['base64', 'file'],
       buttonLayout: ['stacked', 'horizontal', 'vertical'],
-      keyFilter: ['pint', 'int', 'pnum', 'num', 'hex', 'email', 'alpha', 'alphanum'],
+      keyFilter: [/[^>]+/g, 'pint', 'int', 'pnum', 'num', 'hex', 'email', 'alpha', 'alphanum'],
       currency: ['USD', 'EUR', 'IRR'],
       currencyDisplay: ['symbol', 'code', 'name'],
-      tooltipPosition: ['left', 'right', 'top', 'bottom', 'top-right', 'top-left', 'bottom-right', 'bottom-left', 'top-center', 'bottom-center', 'center'],
-      orientation: ['horizontal', 'vertical'],
       labelPos: ['fix-side', 'fix-top', 'float'],
-      fixLabelPos: ['fix-side', 'fix-top'],
-      selectionMode: ['single', 'multiple', 'checkbox'],
+      selectionMode: ['none', 'single', 'multiple', 'checkbox'],
+      orientation: ['horizontal', 'vertical'],
       layout: ['horizontal', 'vertical'],
       dropdownMode: ['blank', 'current'],
       color: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
       badgeColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
-      inputFileMode: ['basic', 'advanced'],
-      selectiveSize: ['sm', 'md', 'lg'],
-      colorFormat: ['hex', 'rgb', 'hsb'],
-      numberMode: ['decimal', 'currency'],
-      addon: ['none', 'before', 'after', 'both'],
-      datepickerSelectionMode: ['single', 'multiple', 'range'],
       hourFormat: ['12', '24'],
       view: ['date', 'month', 'year'],
+      addon: ['none', 'before', 'after', 'both'],
+      selectiveSize: ['sm', 'md', 'lg'],
+      colorFormat: ['hex', 'rgb', 'hsb'],
+      inputFileMode: ['basic', 'advanced'],
+      datepickerSelectionMode: ['single', 'multiple', 'range'],
+      numberMode: ['decimal', 'currency'],
+      fixLabelPos: ['fix-side', 'fix-top'],
     };
     for (const item of this.previewItems) {
       if (Object.keys(dropdownData).includes(item)) {
@@ -534,7 +550,7 @@ export class PreviewOptionsComponent implements OnInit {
     }
   }
 
-  private createComponent(cmp: Type<any>, previewItem: string, row: 'firstRow' | 'secondRow') {
+  private createComponent(cmp: Type<any>, previewItem: PreviewItem, row: 'firstRow' | 'secondRow') {
     const cmpRef = this[row].createComponent(cmp);
     cmpRef.location.nativeElement.classList.add('col-md-3');
     cmpRef.instance.label = previewItem;
@@ -543,8 +559,8 @@ export class PreviewOptionsComponent implements OnInit {
       case DropdownComponent:
         cmpRef.location.nativeElement.classList.add('mb-3');
         if (previewItem == 'addon') {
-          cmpRef.instance.onChange.subscribe(val => {
-            switch (val.value) {
+          cmpRef.instance.onChange.subscribe(event => {
+            switch (event.value) {
               case 'none':
                 this.addonChange.emit(null)
                 break;
@@ -564,19 +580,19 @@ export class PreviewOptionsComponent implements OnInit {
           });
           break;
         }
-        cmpRef.instance.onChange.subscribe(val => {
-          this[`${previewItem}Change`].next(val.value);
+        cmpRef.instance.onChange.subscribe(event => {
+          this[`${previewItem}Change`].emit(event.value == 'none' ? null : event.value);
         });
         break;
       case InputTextComponent:
         cmpRef.location.nativeElement.classList.add('mb-3');
-        cmpRef.instance.onInput.subscribe(val => {
-          this[`${previewItem}Change`].next(val.target.value);
+        cmpRef.instance.onInput.subscribe(event => {
+          this[`${previewItem}Change`].emit(event.target.value);
         });
         break;
       case CheckboxComponent:
-        cmpRef.instance.onChange.subscribe(val => {
-          this[`${previewItem}Change`].next(val.checked);
+        cmpRef.instance.onChange.subscribe(event => {
+          this[`${previewItem}Change`].emit(event.checked);
         });
         break;
     }

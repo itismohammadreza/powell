@@ -138,7 +138,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       'input-textarea',
       'jalali-datepicker',
       'knob',
-      'list-box',
+      'listbox',
       'map',
       'multi-checkbox',
       'multi-select',
@@ -252,12 +252,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   getWrapperClasses() {
-    // return {
-    //   [`menu-${this.sidebarType}`]: true,
-    //   rtl: this.fa,
-    //   'sidebar-lock': this.sidebarLock,
-    //   'sidebar-open': this.sidebarVisible
-    // }
     return `menu-${this.sidebarType} ${this.fa ? 'rtl' : ''} ${this.sidebarLock ? 'sidebar-lock' : ''}  ${this.sidebarVisible ? 'sidebar-open' : ''}`
   }
 

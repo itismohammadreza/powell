@@ -14,7 +14,7 @@
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [selectionMode]="selectionMode"
       [value]="items"
-      [selection]="value"
+      [selection]="selection"
       [style]="style"
       [styleClass]="styleClass"
       [contextMenu]="contextMenu"
@@ -33,7 +33,7 @@
       [filter]="filter"
       [filterBy]="filterBy"
       [filterMode]="filterMode"
-      [filterPlaceholder]="filterPlaceholder"
+      [filterPlaceholder]="filterPlaceHolder"
       [filterLocale]="filterLocale"
       [scrollHeight]="scrollHeight"
       [virtualScroll]="virtualScroll"
@@ -45,8 +45,8 @@
       (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
       (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
       (selectionChange)="_onSelectionChange($event)"
-      (onNodeSelect)="_onNodeSelect($event)"
-      (onNodeUnselect)="_onNodeUnselect($event)"
+      (onNodeSelect)="emitter('onNodeSelect',$event)"
+      (onNodeUnselect)="emitter('onNodeUnselect',$event)"
       (onNodeExpand)="emitter('onNodeExpand', $event)"
       (onNodeCollapse)="emitter('onNodeCollapse', $event)"
       (onNodeContextMenuSelect)="emitter('onNodeContextMenuSelect', $event)"
@@ -68,12 +68,9 @@
         <ng-container *ngTemplateOutlet="loaderTemplate;context:{$implicit:item}"></ng-container>
       </ng-template>
     </p-tree>
-    <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
-      {{ label }}
-    </label>
   </div>
   <label
-    *ngIf="label && labelPos != 'float'"
+    *ngIf="label"
     [attr.for]="inputId"
     [ngClass]="{
     'mb-0': labelPos == 'fix-side',

@@ -11,7 +11,7 @@ import {finalize, Observable, tap, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {OverlayService} from '@ng/services';
 import {AuthService} from '@core/http';
-import {RequestsConfig} from "@core/requests.config";
+import {RequestConfig, RequestsConfig} from "@core/requests.config";
 import {LoaderService} from "@core/utils";
 
 @Injectable()
@@ -29,9 +29,9 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const clonedReq = request.clone();
     const {pathname} = this.getUrlParts(request.url);
-    const shouldShowSuccess = this.hasSuccessMessageApis.findIndex(x => x.pathname == pathname) >= 0;
-    const shouldShowFailure = this.hasFailureMessageApis.findIndex(x => x.pathname == pathname) >= 0;
-    const shouldShowLoading = this.hasLoadingApis.findIndex(x => x.pathname == pathname) >= 0;
+    const shouldShowSuccess = this.findRequestByPath(this.hasSuccessMessageApis, pathname);
+    const shouldShowFailure = this.findRequestByPath(this.hasFailureMessageApis, pathname);
+    const shouldShowLoading = this.findRequestByPath(this.hasLoadingApis, pathname)
     if (shouldShowLoading) {
       this.requestsQueue.push(clonedReq);
       this.loaderService.isLoading.next(true);
@@ -80,6 +80,17 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
       summary,
       detail,
     });
+  }
+
+  findRequestByPath(targetArray: RequestConfig[], requestPathTemplate) {
+    const foundedIndex = targetArray.findIndex(x => {
+      if (x.pathTemplate instanceof RegExp) {
+        return x.pathTemplate.test(requestPathTemplate)
+      } else {
+        return x.pathTemplate == requestPathTemplate
+      }
+    });
+    return foundedIndex >= 0
   }
 
   getUrlParts(url: string) {

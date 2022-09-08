@@ -15,18 +15,14 @@
 - [ ] **all** - handle rtl direction in dropdowns panel (or etc.) when is appendTo body.
 - [ ] **inputNumber** - complete component.
 - [ ] **async** - add an async @Input to button, switch, checkbox, dual-switch instead of implementing new component.
-- [x] **utilsService** - break service to sub services. remove extras.
 
 ### New
 
 - [ ] **empty** - implement component just like `AntDisign-NG-ZORRRO`.
 - [ ] **status** - implement component just like `AntDisign-NG-ZORRRO`.
 - [ ] **bottomSheet** - implement component.
-- [ ] **tree** - implement component.
-- [ ] **treeSelect** - implement component.
 - [ ] **jalaliDatepicker** - implement component.
 - [ ] **whiteboard** - implement component.
-- [ ] **enableCachingPerApi** - implement interceptor & config.
 - [ ] **animation** - add animation to routes.
 - [ ] **table** 
 - implement `jalali` and `miladi` filter. 

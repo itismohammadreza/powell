@@ -40,7 +40,6 @@ export class GregorianDatepickerPage {
   showTime: boolean = false;
   hourFormat: '12' | '24' = '24';
   timeOnly: boolean = false;
-  tabindex: number;
   showSeconds: boolean = false;
   stepHour: number = 1;
   stepMinute: number = 1;

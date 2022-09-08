@@ -26,10 +26,10 @@ import {
   UntypedFormGroup,
 } from '@angular/forms';
 import {TemplateDirective} from '@ng/directives/template.directive';
-import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgError, NgFixLabelPosition, NgTreeFilterMode} from '@ng/models/forms';
 import {ContextMenu} from 'primeng/contextmenu';
 import {ScrollerOptions} from 'primeng/scroller';
-import {NgSelectionMode} from "@ng/models/offset";
+import {NgOrientation, NgSelectionMode} from "@ng/models/offset";
 
 // todo: compare component with others (like slider) and fix bugs. complete css file. implement demo page.
 @Component({
@@ -45,13 +45,12 @@ import {NgSelectionMode} from "@ng/models/offset";
   ],
 })
 export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
-  @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = 'fix-top';
   @Input() addon: NgAddon;
   @Input() errors: NgError;
   // native properties
@@ -61,7 +60,7 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   @Input() style: string;
   @Input() styleClass: string;
   @Input() contextMenu: ContextMenu;
-  @Input() layout: 'vertical' | 'horizontal' = 'vertical';
+  @Input() layout: NgOrientation = 'vertical';
   @Input() draggableScope: string | string[];
   @Input() droppableScope: string | string[];
   @Input() draggableNodes: boolean;
@@ -75,8 +74,8 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   @Input() validateDrop: boolean;
   @Input() filter: boolean;
   @Input() filterBy: string = "label";
-  @Input() filterMode: 'lenient' | 'strict' = 'lenient';
-  @Input() filterPlaceholder: string;
+  @Input() filterMode: NgTreeFilterMode = 'lenient';
+  @Input() filterPlaceHolder: string;
   @Input() filterLocale: string;
   @Input() scrollHeight: string;
   @Input() virtualScroll: boolean;
@@ -85,6 +84,8 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   @Input() lazy: boolean;
   @Input() trackBy: Function;
   @Input() indentation: number = 1.5;
+  @Output() onAfterBtnClick = new EventEmitter();
+  @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onNodeSelect = new EventEmitter();
   @Output() onNodeUnselect = new EventEmitter();
   @Output() onNodeExpand = new EventEmitter();
@@ -174,19 +175,10 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
     });
   }
 
-  _onNodeSelect(event) {
-    this.onNodeSelect.emit(event);
-    this.onModelChange(event.value);
-  }
-
-  _onNodeUnselect(event) {
-    this.onNodeUnselect.emit(event);
-    this.onModelChange(event.value);
-  }
-
   _onSelectionChange(event) {
     this.selection = event;
     this.selectionChange.emit(this.selection);
+    this.onModelChange(this.selection);
   }
 
   emitter(name: string, event: any) {
@@ -234,7 +226,7 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   }
 
   writeValue(value: any) {
-    this.value = value;
+    this.selection = value;
     this.cd.markForCheck();
   }
 

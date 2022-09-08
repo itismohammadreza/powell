@@ -1,6 +1,21 @@
 import {NgColor} from './color';
 import {NgIconPosition} from './offset';
 
+export type NgInputFileMode = 'basic' | 'advanced';
+export type NgLabelPosition = 'fix-side' | 'fix-top' | 'float';
+export type NgFixLabelPosition = Exclude<NgLabelPosition, 'float'>;
+export type NgChipDisplayMode = 'comma' | 'chip';
+export type NgDatepickerViewMode = 'date' | 'month' | 'year';
+export type NgDatepickerSelectionMode = 'single' | 'multiple' | 'range';
+export type NgDatepickerHourFormat = '12' | '24';
+export type NgDatepickerDateType = 'date' | 'string';
+export type NgColorFormat = 'hex' | 'rgb' | 'hsb';
+export type NgNumberMode = 'decimal' | 'currency';
+export type NgNumberButtonLayout = 'stacked' | 'horizontal' | 'vertical';
+export type NgCurrencyDisplay = 'symbol' | 'code' | 'name';
+export type NgError = Partial<Record<NgErrorType, string>>; // equal to : [errorType in NgErrorType]?: string;
+export type NgTreeFilterMode = 'strict' | 'lenient';
+
 export interface NgAddonConfig {
   type: 'button' | 'icon' | 'text';
   label?: string;
@@ -43,11 +58,6 @@ export type NgFilterMatchMode =
   | 'gte'
   | 'between';
 
-export type NgInputFileMode = 'basic' | 'advanced';
-
-export type NgLabelPosition = 'fix-side' | 'fix-top' | 'float';
-export type NgFixLabelPosition = Exclude<NgLabelPosition, 'float'>;
-
 export type NgKeyFilter =
   | 'pint' // Positive integers
   | 'int' // Integers
@@ -68,9 +78,6 @@ export type NgErrorType =
   | 'requiredTrue'
   | 'pattern'
   | 'nullValidator';
-
-export type NgError = Partial<Record<NgErrorType, string>>;
-// equal to : [errorType in NgErrorType]?: string;
 
 export type NgInputTypes =
   | 'button'
@@ -96,10 +103,6 @@ export type NgInputTypes =
   | 'url'
   | 'week';
 
-export type NgColorFormat = 'hex' | 'rgb' | 'hsb';
-export type NgNumberMode = 'decimal' | 'currency';
-export type NgNumberButtonLayout = 'stacked' | 'horizontal' | 'vertical';
-export type NgCurrencyDisplay = 'symbol' | 'code' | 'name';
 export type NgCurrency =
   | 'AFN'
   | 'ALL'

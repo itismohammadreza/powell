@@ -4,8 +4,29 @@
     position: relative;
     direction: ltr;
 
+    p-tree,
+    .p-tree {
+      width: 100%;
+    }
+
     .field {
       flex-grow: 1;
+
+      p-tree {
+        &.has-before {
+          .p-tree {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+        }
+
+        &.has-after {
+          .p-tree {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+      }
     }
 
     .message {
@@ -20,32 +41,40 @@
     }
 
     &.rtl {
+      .p-tree,
+      .p-inputtext,
       label,
       .message {
         direction: rtl;
       }
 
+      .message {
+        right: 0;
+      }
+
       .p-tree {
         .p-tree-toggler,
-        .p-checkbox,
-        .p-treenode-icon {
+        .p-treenode-icon,
+        .p-checkbox {
           margin-right: 0;
           margin-left: 0.5rem;
         }
 
-        .p-treenode-children {
+        &:not(.p-tree-horizontal) .p-treenode-children {
           padding: 0 1rem 0 0;
+        }
+
+        &.p-tree-horizontal {
+          .p-treenode-collapsed {
+            padding-left: 0;
+            padding-right: 2.5rem;
+          }
         }
 
         .pi-chevron-right:before {
           content: "\e900";
         }
       }
-
-      .message {
-        right: 0;
-      }
     }
   }
 }
-

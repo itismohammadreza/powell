@@ -18,7 +18,7 @@ import {InputNumberPage} from '@modules/main/pages/showcase/pages/input-number/i
 import {InputPasswordPage} from '@modules/main/pages/showcase/pages/input-password/input-password.page';
 import {InputTextPage} from '@modules/main/pages/showcase/pages/input-text/input-text.page';
 import {InputTextareaPage} from '@modules/main/pages/showcase/pages/input-textarea/input-textarea.page';
-import {ListBoxPage} from '@modules/main/pages/showcase/pages/list-box/list-box.page';
+import {ListboxPage} from '@modules/main/pages/showcase/pages/listbox/listbox.page';
 import {MapPage} from '@modules/main/pages/showcase/pages/map/map.page';
 import {MultiCheckboxPage} from '@modules/main/pages/showcase/pages/multi-checkbox/multi-checkbox.page';
 import {MultiSelectPage} from '@modules/main/pages/showcase/pages/multi-select/multi-select.page';
@@ -92,7 +92,7 @@ export const COMPONENTS: Type<any>[] = [
   InputTextareaPage,
   JalaliDatepickerPage,
   KnobPage,
-  ListBoxPage,
+  ListboxPage,
   MapPage,
   MultiCheckboxPage,
   MultiSelectPage,

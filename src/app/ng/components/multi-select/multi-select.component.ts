@@ -24,7 +24,14 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgAddon, NgError, NgFilterMatchMode, NgFixLabelPosition, NgLabelPosition} from '@ng/models/forms';
+import {
+  NgAddon,
+  NgChipDisplayMode,
+  NgError,
+  NgFilterMatchMode,
+  NgFixLabelPosition,
+  NgLabelPosition
+} from '@ng/models/forms';
 import {NgIconPosition, NgPosition, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
 
@@ -104,7 +111,7 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
   @Input() virtualScroll: boolean;
   @Input() virtualScrollItemSize: number
   @Input() lazy: boolean
-  @Input() display: string = 'comma';
+  @Input() display: NgChipDisplayMode = 'comma';
   @Output() onClick = new EventEmitter();
   @Output() onChange = new EventEmitter();
   @Output() onFilter = new EventEmitter();

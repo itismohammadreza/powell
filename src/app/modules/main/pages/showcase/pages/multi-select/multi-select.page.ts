@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgAddon, NgFixLabelPosition, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgChipDisplayMode, NgFixLabelPosition, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 
 @Component({
@@ -44,7 +44,7 @@ export class MultiSelectPage {
   showHeader: boolean = true;
   showToggleAll: boolean = true;
   showClear: boolean = true;
-  display: string = 'comma';
+  display: NgChipDisplayMode = 'comma';
 
   options: any[] = [
     {label: 'Australia', value: 'AU'},

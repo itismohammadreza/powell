@@ -290,6 +290,4 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
     this.disabled = val;
     this.cd.markForCheck();
   }
-
 }
-

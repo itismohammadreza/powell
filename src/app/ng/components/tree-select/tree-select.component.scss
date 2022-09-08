@@ -1,0 +1,131 @@
+:host ::ng-deep {
+  .tree-select-wrapper {
+    display: flex;
+    position: relative;
+    direction: ltr;
+
+    p-TreeSelect,
+    .p-treeselect {
+      width: 100%;
+    }
+
+    .field {
+      flex-grow: 1;
+
+      &.p-input-icon-right {
+        .p-treeselect-label {
+          padding-right: 2rem;
+        }
+      }
+
+      &.p-input-icon-left {
+        .p-treeselect-label {
+          padding-left: 2rem;
+        }
+      }
+
+      p-treeSelect {
+        &.has-before {
+          .p-treeselect {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+        }
+
+        &.has-after {
+          .p-treeselect {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+      }
+    }
+
+    i {
+      z-index: 200;
+    }
+
+    .message {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+    }
+
+    &.ltr {
+      .message {
+        left: 0;
+      }
+
+      .field.p-input-icon-right {
+        i {
+          right: calc(0.75rem + 3rem)
+        }
+      }
+    }
+
+    &.rtl {
+      .p-treeselect,
+      .p-inputtext,
+      label,
+      .message {
+        direction: rtl;
+      }
+
+      .field {
+        &.p-float-label {
+          label {
+            right: 0.5rem;
+            left: auto;
+          }
+
+          &.p-input-icon-right {
+            label {
+              right: calc(0.5rem + 2rem);
+              left: auto;
+            }
+
+            i {
+              left: auto;
+              right: 0.75rem
+            }
+          }
+        }
+
+        &.p-input-icon-left {
+          i {
+            right: auto;
+            left: calc(0.75rem + 3rem)
+          }
+        }
+      }
+
+      .p-treeselect-clearable {
+        .p-treeselect-label-container {
+          padding-right: 0;
+          padding-left: 1.75rem;
+        }
+
+        .p-treeselect-clear-icon {
+          right: auto;
+          left: 3rem;
+        }
+      }
+
+      .p-tree {
+        .p-tree-toggler,
+        .p-treenode-icon,
+        .p-checkbox {
+          margin-right: 0;
+          margin-left: 0.5rem;
+        }
+
+        .p-treenode-children {
+          padding: 0 1rem 0 0;
+        }
+
+        .pi-chevron-right:before {
+          content: "\e900";
+        }
+      }
+    }
+  }
+}

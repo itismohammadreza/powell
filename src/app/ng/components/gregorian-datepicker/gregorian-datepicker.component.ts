@@ -17,7 +17,14 @@ import {
   NgControl,
   UntypedFormGroup
 } from "@angular/forms";
-import {NgAddon, NgError, NgLabelPosition} from "@ng/models/forms";
+import {
+  NgAddon, NgDatepickerDateType,
+  NgDatepickerHourFormat,
+  NgDatepickerSelectionMode,
+  NgDatepickerViewMode,
+  NgError,
+  NgLabelPosition
+} from "@ng/models/forms";
 import {NgIconPosition, NgSize} from "@ng/models/offset";
 
 @Component({
@@ -48,7 +55,7 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Input() inputSize: NgSize = 'md';
   // native properties
   @Input() defaultDate: Date;
-  @Input() selectionMode: "single" | "multiple" | "range" = 'single';
+  @Input() selectionMode: NgDatepickerSelectionMode = 'single';
   @Input() style: string;
   @Input() styleClass: string;
   @Input() inputStyle: string;
@@ -71,10 +78,10 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Input() disabledDates: any[];
   @Input() disabledDays: any[];
   @Input() showTime: boolean;
-  @Input() hourFormat: '12' | '24' = '24';
+  @Input() hourFormat: NgDatepickerHourFormat = '24';
   @Input() timeOnly: boolean;
   @Input() timeSeparator: string = ':';
-  @Input() dataType: 'date' | 'string' = 'date';
+  @Input() dataType: NgDatepickerDateType = 'date';
   @Input() tabindex: number;
   @Input() showSeconds: boolean;
   @Input() stepHour: number = 1;
@@ -91,7 +98,7 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Input() keepInvalid: boolean;
   @Input() hideOnDateTimeSelect: boolean = true;
   @Input() numberOfMonths: number = 1;
-  @Input() view: 'date' | 'month' | 'year' = 'date';
+  @Input() view: NgDatepickerViewMode = 'date';
   @Input() multipleSeparator: string = ',';
   @Input() rangeSeparator: string = '-';
   @Input() touchUI: boolean;

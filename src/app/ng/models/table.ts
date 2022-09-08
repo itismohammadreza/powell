@@ -1,10 +1,7 @@
 import {NgColor} from './color';
 import {NgFilterMatchMode} from './forms';
 
-export type NgTableRendererType =
-  | 'text'
-  | 'image'
-
+export type NgTableRendererType = 'text' | 'image';
 export type NgTableFilterType =
   | 'text'
   | 'multi-select'

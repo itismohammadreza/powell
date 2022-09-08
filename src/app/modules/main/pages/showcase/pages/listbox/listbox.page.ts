@@ -4,10 +4,10 @@ import {NgAddon, NgFixLabelPosition} from '@ng/models/forms';
 
 @Component({
   selector: 'ng-listbox-page',
-  templateUrl: './list-box.page.html',
-  styleUrls: ['./list-box.page.scss'],
+  templateUrl: './listbox.page.html',
+  styleUrls: ['./listbox.page.scss'],
 })
-export class ListBoxPage {
+export class ListboxPage {
   form = new UntypedFormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
