@@ -24,6 +24,10 @@
   </p-panel>
 
   <p-panel dir="ltr" header="Preview">
+<!--    <p-gmap [options]="{-->
+<!--            center: {lat: 36.890257, lng: 30.707417},-->
+<!--            zoom: 12-->
+<!--        }" [style]="{'width':'100%','height':'320px'}" ></p-gmap>-->
     <p-divider align="center">
       <b>Using With Reactive Forms</b>
     </p-divider>
@@ -45,7 +49,9 @@
       <b>Using With NgModel</b>
     </p-divider>
     <ng-map
-      formControlName="c1"
+      name="myInput"
+      required
+      [(ngModel)]="binding"
       [errors]="{ required: 'error' }"
       [label]="label"
       [labelWidth]="labelWidth"

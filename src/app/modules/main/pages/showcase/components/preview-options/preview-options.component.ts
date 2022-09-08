@@ -11,7 +11,7 @@ import {
   NgNumberButtonLayout,
   NgNumberMode
 } from '@ng/models/forms';
-import {NgIconPosition, NgOrientation, NgSelectionMode, NgSize} from '@ng/models/offset';
+import {NgIconPosition, NgOrientation, NgSelectionMode, NgSize, NgStatus} from '@ng/models/offset';
 import {NgColor} from '@ng/models/color';
 import {DropdownComponent} from '@ng/components/dropdown/dropdown.component';
 import {InputTextComponent} from '@ng/components/input-text/input-text.component';
@@ -167,6 +167,10 @@ type PreviewItem =
   | 'propagateSelectionDown'
   | 'indentation'
   | 'layout'
+  | 'status'
+  | 'title'
+  | 'subtitle'
+  | 'imageType'
 
   | 'addon'
   | 'selectiveSize'
@@ -479,6 +483,14 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() indentationChange = new EventEmitter();
   @Input() layout: NgOrientation;
   @Output() layoutChange = new EventEmitter();
+  @Input() status: NgStatus;
+  @Output() statusChange = new EventEmitter()
+  @Input() title: string;
+  @Output() titleChange = new EventEmitter()
+  @Input() subtitle: string;
+  @Output() subtitleChange = new EventEmitter()
+  @Input() imageType: string;
+  @Output() imageTypeChange = new EventEmitter()
 
   @Input() addon: NgAddon;
   @Output() addonChange = new EventEmitter()
@@ -530,6 +542,8 @@ export class PreviewOptionsComponent implements OnInit {
       badgeColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
       hourFormat: ['12', '24'],
       view: ['date', 'month', 'year'],
+      status: ['none', 'success', 'info', 'warning', 'error', '403', '404', '500'],
+      imageType: ['none', 'box1', 'box2', 'magnifier'],
       addon: ['none', 'before', 'after', 'both'],
       selectiveSize: ['sm', 'md', 'lg'],
       colorFormat: ['hex', 'rgb', 'hsb'],

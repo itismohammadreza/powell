@@ -1,12 +1,16 @@
-:host {
-  display: block;
-  width: 100%;
-}
+.empty-wrapper {
+  text-align: center;
 
-img {
-  max-width: 150px;
-}
 
-p {
-  margin-top: 15px;
+  .empty-icon {
+    margin-bottom: 1.5rem;
+
+    i {
+      font-size: 3.5rem;
+    }
+
+    img {
+      max-width: 120px;
+    }
+  }
 }

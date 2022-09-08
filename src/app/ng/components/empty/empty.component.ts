@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {NgEmptyIcon} from "@ng/models/offset";
 
 @Component({
   selector: 'ng-empty',
@@ -6,5 +7,8 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./empty.component.scss'],
 })
 export class EmptyComponent {
-  @Input() message: string = 'موردی وجود ندارد.';
+  @Input() imageType: NgEmptyIcon = 'box2';
+  @Input() icon: string;
+  @Input() imageSrc: string;
+  @Input() title: string;
 }

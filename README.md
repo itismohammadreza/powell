@@ -14,12 +14,10 @@
   allow choosing multiple marker.
 - [ ] **all** - handle rtl direction in dropdowns panel (or etc.) when is appendTo body.
 - [ ] **inputNumber** - complete component.
-- [ ] **async** - add an async @Input to button, switch, checkbox, dual-switch instead of implementing new component.
+- [ ] **async** - add an async @Input to button, switch, checkbox, dual-switch instead of creating new component.
 
 ### New
 
-- [ ] **empty** - implement component just like `AntDisign-NG-ZORRRO`.
-- [ ] **status** - implement component just like `AntDisign-NG-ZORRRO`.
 - [ ] **bottomSheet** - implement component.
 - [ ] **jalaliDatepicker** - implement component.
 - [ ] **whiteboard** - implement component.

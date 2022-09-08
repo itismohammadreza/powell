@@ -1,0 +1,42 @@
+.status-wrapper {
+  text-align: center;
+
+  .status-icon {
+    margin-bottom: 1.5rem;
+
+    i {
+      font-size: 5rem;
+
+      &.pi-check-circle {
+        color: #52c41a;
+      }
+
+      &.pi-info-circle {
+        color: #1890ff;
+      }
+
+      &.pi-exclamation-triangle {
+        color: #faad14;
+      }
+
+      &.pi-times-circle {
+        color: #ff4d4f;
+      }
+    }
+
+    img {
+      max-width: 250px;
+    }
+  }
+
+  .status-title {
+    font-size: 1.5rem;
+    line-height: 1.8;
+  }
+
+  .status-subtitle {
+    color: #00000073;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}

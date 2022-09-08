@@ -33,7 +33,7 @@ import {SplitButtonModule} from 'primeng/splitbutton';
 
 /***************************** DATA *****************************/
 // import {DataViewModule} from 'primeng/dataview';
-// import {GMapModule} from 'primeng/gmap';
+import {GMapModule} from 'primeng/gmap';
 // import {OrderListModule} from 'primeng/orderlist';
 // import {OrganizationChartModule} from 'primeng/organizationchart';
 // import {PaginatorModule} from 'primeng/paginator';
@@ -152,7 +152,7 @@ export const MODULES: Type<any>[] = [
   // SpeedDialModule,
   /***************************** DATA *****************************/
   // DataViewModule,
-  // GMapModule,
+  GMapModule,
   // OrderListModule, // has dependency
   // OrganizationChartModule,
   // PaginatorModule,

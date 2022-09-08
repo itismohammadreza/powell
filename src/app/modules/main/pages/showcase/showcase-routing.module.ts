@@ -43,6 +43,7 @@ import {TriStateCheckboxPage} from "@modules/main/pages/showcase/pages/tri-state
 import {EmptyPage} from "@modules/main/pages/showcase/pages/empty/empty.page";
 import {DualLabelSwitchPage} from "@modules/main/pages/showcase/pages/dual-label-switch/dual-label-switch.page";
 import {BottomSheetPage} from "@modules/main/pages/showcase/pages/bottom-sheet/bottom-sheet.page";
+import {StatusPage} from "@modules/main/pages/showcase/pages/status/status.page";
 
 const routes: Routes = [
   {
@@ -214,6 +215,11 @@ const routes: Routes = [
     path: 'split-button',
     component: SplitButtonPage,
     data: {title: 'split-button'}
+  },
+  {
+    path: 'status',
+    component: StatusPage,
+    data: {title: 'status'}
   },
   {
     path: 'switch',

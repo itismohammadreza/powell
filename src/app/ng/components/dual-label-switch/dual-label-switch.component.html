@@ -10,7 +10,7 @@
 
   <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field">
     <div class="field-inner">
-      <span class="label-left">{{labelLeft}}</span>
+      <span class="label-left" [class.text-muted]="disabled">{{labelLeft}}</span>
       <p-inputSwitch
         [(ngModel)]="value"
         [inputId]="inputId"
@@ -24,7 +24,7 @@
         [falseValue]="labelLeftValue"
         (onChange)="_onChange($event)"
       ></p-inputSwitch>
-      <span class="label-right">{{labelRight}}</span>
+      <span class="label-right" [class.text-muted]="disabled">{{labelRight}}</span>
     </div>
   </div>
   <label
