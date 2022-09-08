@@ -7,7 +7,6 @@
     <ng-button (click)="showConfirm()" label="Confirm"></ng-button>
     <ng-button (click)="showConfirmPopup($event)" label="Confirm Popup"></ng-button>
     <ng-button (click)="showToast()" label="Toast"></ng-button>
-    <ng-button (click)="showMessage()" label="Message"></ng-button>
     <ng-button (click)="showDialogForm()" label="Dialog Form"></ng-button>
     <ng-button (click)="request()" label="HTTP Request"></ng-button>
     <ng-button (click)="modal.open()" label="Custom Dialog"></ng-button>
@@ -15,7 +14,6 @@
     <p class="mb-0"><b> Custom Dynamic Dialog Result: </b> {{customDynamicDialogResult}} </p>
   </p-panel>
 </div>
-
 <ng-dialog2 #modal>
   Custom Modal Content
 </ng-dialog2>

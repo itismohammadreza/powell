@@ -1,13 +1,11 @@
 import {ApplicationRef, ComponentRef, createComponent, Inject, Injectable, Injector, Type} from '@angular/core';
 import {DialogFormComponent} from '@ng/components/dialog-form/dialog-form.component';
-import {MessageComponent} from '@ng/components/message/message.component';
 import {
   NgConfirmOptions,
   NgConfirmPopupOptions,
-  NgDialog,
+  NgDialogOptions,
   NgDialogFormConfig,
   NgDialogFormOptions,
-  NgMessageOptions,
   NgToastOptions
 } from '@ng/models/overlay';
 import {Confirmation, ConfirmationService, ConfirmEventType, Message, MessageService} from 'primeng/api';
@@ -22,7 +20,7 @@ import {ConfirmDialog} from 'primeng/confirmdialog';
   providedIn: 'root'
 })
 export class OverlayService {
-  private messageCmpRef: ComponentRef<MessageComponent>;
+  private messageCmpRef: ComponentRef<Message>;
   private toastCmpRef: ComponentRef<Toast>;
   private confirmPopupCmpRef: ComponentRef<ConfirmPopup>;
   private confirmCmpRef: ComponentRef<ConfirmDialog>;
@@ -36,16 +34,6 @@ export class OverlayService {
     private appRef: ApplicationRef,
     @Inject(DOCUMENT) private document: Document
   ) {
-  }
-
-  showMessage(options: NgMessageOptions): void {
-    if (!this.document.body.contains(this.messageCmpRef?.location.nativeElement)) {
-      this.messageCmpRef = this.addComponentToBody(MessageComponent, 'prepend');
-    }
-    Object.assign(this.messageCmpRef.instance.options, options);
-    setTimeout(() => {
-      this.messageService.add(options);
-    }, 0);
   }
 
   showToast(options: NgToastOptions): void {
@@ -175,7 +163,7 @@ export class OverlayService {
     })
   }
 
-  showDialog(options: NgDialog): Promise<void> {
+  showDialog(options: NgDialogOptions): Promise<void> {
     if (!this.document.body.contains(this.dialogCmpRef?.location.nativeElement)) {
       this.dialogCmpRef = this.addComponentToBody(DialogComponent);
     }

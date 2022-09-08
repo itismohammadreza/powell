@@ -9,18 +9,20 @@ import {
   NgCurrency,
   NgCurrencyDisplay,
   NgErrorType,
-  NgFilterMatchMode, NgFixLabelPosition,
+  NgFilterMatchMode,
   NgInputFileMode,
   NgInputTypes,
   NgKeyFilter,
-  NgLabelPosition,
   NgNumberButtonLayout,
-  NgNumberMode, NgTreeFilterMode,
+  NgNumberMode,
+  NgTreeFilterMode,
 } from './forms';
 import {NgIconPosition, NgOrientation, NgPlace, NgSelectionMode, NgSize} from './offset';
 
+export type NgSeverity = 'success' | 'info' | 'warn' | 'error';
+
 export interface NgToastOptions {
-  severity?: NgMessageSeverities;
+  severity?: NgSeverity;
   summary?: string;
   detail?: string;
   id?: any;
@@ -43,6 +45,7 @@ export interface NgToastOptions {
   showTransformOptions?: string;
   hideTransformOptions?: string;
   breakpoints?: any;
+
   rtl?: boolean;
 }
 
@@ -114,36 +117,13 @@ export interface NgConfirmOptions {
   rtl?: boolean;
 }
 
-export type NgMessageSeverities = 'success' | 'info' | 'warn' | 'error';
-
-export interface NgMessage {
-  severity?: NgMessageSeverities;
-  summary?: string;
-  detail?: string;
-  id?: any;
-  key?: string;
-  life?: number;
-  sticky?: boolean;
-  closable?: boolean;
-  data?: any;
-}
-
 export interface NgMessageOptions {
-  rtl?: boolean;
-  // native properties
-  severity?: NgMessageSeverities;
   summary?: string;
   detail?: string;
-  closable?: boolean;
-  style?: any;
-  styleClass?: string;
-  escape?: boolean;
-  key?: string;
-  showTransitionOptions?: string;
-  hideTransitionOptions?: string;
+  icon?: string;
 }
 
-export interface NgDialog {
+export interface NgDialogOptions {
   header?: string;
   draggable?: boolean;
   keepInViewport?: boolean;

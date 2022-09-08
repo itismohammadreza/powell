@@ -39,8 +39,6 @@ import {TreeComponent} from "@ng/components/tree/tree.component";
 
 /***************************** OVERLAY *****************************/
 import {BottomSheetComponent} from "@ng/components/bottom-sheet/bottom-sheet.component";
-import {ConfirmComponent} from "@ng/components/confirm/confirm.component";
-import {ConfirmPopupComponent} from "@ng/components/confirm-popup/confirm-popup.component";
 import {DialogComponent} from "@ng/components/dialog/dialog.component";
 import {DynamicDialogComponent} from "@ng/components/dynamic-dialog/dynamic-dialog.component";
 import {DynamicFormComponent} from "@ng/components/dynamic-form/dynamic-form.component";
@@ -55,9 +53,8 @@ import {FilePicker2Component} from "@ng/components/file-picker2/file-picker2.com
 /***************************** MENU *****************************/
 import {BreadcrumbComponent} from "@ng/components/breadcrumb/breadcrumb.component";
 
-/***************************** MESSAGES *****************************/
+/***************************** MENU *****************************/
 import {MessageComponent} from "@ng/components/message/message.component";
-import {ToastComponent} from "@ng/components/toast/toast.component";
 
 /***************************** MEDIA *****************************/
 import {ImageComponent} from "@ng/components/image/image.component";
@@ -108,8 +105,6 @@ export const COMPONENTS: Type<any>[] = [
   TreeComponent,
   /***************************** OVERLAY *************************/
   BottomSheetComponent,
-  ConfirmComponent,
-  ConfirmPopupComponent,
   DialogComponent,
   DynamicDialogComponent,
   DynamicFormComponent,
@@ -123,7 +118,6 @@ export const COMPONENTS: Type<any>[] = [
   BreadcrumbComponent,
   /***************************** MESSAGES *************************/
   MessageComponent,
-  ToastComponent,
   /***************************** MEDIA *************************/
   ImageComponent,
   ImageSliderComponent,

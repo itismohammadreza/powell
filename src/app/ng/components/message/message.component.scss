@@ -1,13 +1,16 @@
-p-messages {
-  direction: ltr;
+:host ::ng-deep {
+  .p-messages,
+  .p-inline-message {
+    direction: ltr;
+  }
 
-  &.rtl ::ng-deep {
-    .p-message {
-      border-width: 0 6px 0 0;
-    }
+  p-messages.rtl {
+    .p-messages {
+      direction: rtl;
 
-    .p-message-wrapper {
-      flex-direction: row-reverse;
+      .p-message {
+        border-width: 0 6px 0 0;
+      }
 
       .p-message-icon {
         margin-right: 0;
@@ -19,9 +22,20 @@ p-messages {
         margin-right: 0.5rem;
       }
 
-      .p-message-close.p-link {
-        margin-right: auto;
+      .p-message-close {
         margin-left: 0;
+        margin-right: auto;
+      }
+    }
+  }
+
+  p-message.rtl {
+    .p-inline-message {
+      direction: rtl;
+
+      .p-inline-message-icon {
+        margin-right: 0;
+        margin-left: 0.5rem;
       }
     }
   }

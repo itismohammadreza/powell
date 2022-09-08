@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NgDialog} from '@ng/models/overlay';
+import {NgDialogOptions} from '@ng/models/overlay';
 import {Subject} from 'rxjs';
 
 @Component({
@@ -10,7 +10,7 @@ import {Subject} from 'rxjs';
 export class DialogComponent {
   private _onHide = new Subject();
   onHide = this._onHide.asObservable();
-  options: NgDialog = {
+  options: NgDialogOptions = {
     appendTo: null,
     closeTabindex: null,
     content: null,

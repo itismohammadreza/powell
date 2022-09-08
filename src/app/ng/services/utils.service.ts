@@ -14,19 +14,15 @@ export class UtilsService {
   ) {
   }
 
-  checkConnection(): Observable<boolean> {
+  checkOnlineState(): Observable<boolean> {
     return merge(
       fromEvent(this.document.defaultView, 'offline').pipe(map(() => false)),
       fromEvent(this.document.defaultView, 'online').pipe(map(() => true)),
-    ).pipe(map(() => navigator.onLine));
-  }
-
-  deepClone(obj) {
-    return JSON.parse(JSON.stringify(obj));
-  }
-
-  shallowClone(obj) {
-    return Object.assign({}, obj);
+      new Observable((observer: Observer<boolean>) => {
+        observer.next(navigator.onLine);
+        observer.complete();
+      })
+    );
   }
 
   getDirtyControls(
@@ -77,17 +73,6 @@ export class UtilsService {
     startTime = (new Date()).getTime();
     const cacheBuster = '?nnn=' + startTime;
     download.src = imageUrl + cacheBuster;
-  }
-
-  checkOnlineState(): Observable<boolean> {
-    return merge(
-      fromEvent(this.document.defaultView, 'offline').pipe(map(() => false)),
-      fromEvent(this.document.defaultView, 'online').pipe(map(() => true)),
-      new Observable((observer: Observer<boolean>) => {
-        observer.next(navigator.onLine);
-        observer.complete();
-      })
-    );
   }
 
   disableBrowserBackButton() {

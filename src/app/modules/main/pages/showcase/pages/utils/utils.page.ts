@@ -39,16 +39,6 @@ export class UtilsPage {
     );
   }
 
-  showMessage() {
-    this.overlayService.showMessage(
-      {
-        severity: 'info',
-        summary: 'Info Message',
-        detail: 'PrimeNG rocks'
-      }
-    );
-  }
-
   showDialogForm() {
     this.overlayService.showDialogForm(
       'test',
