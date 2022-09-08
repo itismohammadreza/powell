@@ -31,7 +31,6 @@ import {ContextMenu} from 'primeng/contextmenu';
 import {ScrollerOptions} from 'primeng/scroller';
 import {NgOrientation, NgSelectionMode} from "@ng/models/offset";
 
-// todo: compare component with others (like slider) and fix bugs. complete css file. implement demo page.
 @Component({
   selector: 'ng-tree',
   templateUrl: './tree.component.html',

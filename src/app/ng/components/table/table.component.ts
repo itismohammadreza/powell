@@ -1,6 +1,5 @@
 import {
   AfterContentInit,
-  ChangeDetectorRef,
   Component,
   ContentChildren,
   EventEmitter,
@@ -15,17 +14,21 @@ import {
 } from '@angular/core';
 import {NgSelectionMode} from '@ng/models/offset';
 import {
-  NgColDef, NgTableAction, NgTableColumnResizeMode, NgTableCompareSelectionBy, NgTableContextMenuSelectionMode,
+  NgColDef,
+  NgTableAction,
+  NgTableColumnResizeMode,
+  NgTableCompareSelectionBy,
+  NgTableContextMenuSelectionMode,
   NgTableFilterDisplay,
   NgTablePaginationPosition,
-  NgTableResponsiveLayout, NgTableRowGroupMode,
+  NgTableResponsiveLayout,
+  NgTableRowGroupMode,
   NgTableSortMode
 } from '@ng/models/table';
 import {FilterMetadata, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {ScrollerOptions} from "primeng/scroller";
-
 
 // todo:
 // -implement actions and functions to render + switch action
