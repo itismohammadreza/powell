@@ -1,5 +1,6 @@
 @import "./fonts/fonts.scss";
 @import "./vendor/bootstrap.scss";
+@import "./overlays";
 
 body {
   overflow-x: hidden;
@@ -19,20 +20,6 @@ body {
     [class|="p-"]:not([class*="pi"]):not([class*="fa"]):not([class*="ql"]) {
       font-family: inherit;
     }
-  }
-
-  &.ng-rtl {
-    .p-contextmenu, .p-menu {
-      .p-menuitem-icon {
-        margin-right: 0;
-        margin-left: 0.5rem;
-      }
-    }
-  }
-
-  .p-scrolltop {
-    right: auto;
-    left: 20px;
   }
 
   ::-webkit-scrollbar-track {

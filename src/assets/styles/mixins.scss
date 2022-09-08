@@ -18,25 +18,6 @@
   }
 }
 
-@mixin text-style(
-  $color: #414141,
-  $size: null,
-  $line-height: normal,
-  $font-weight: normal
-) {
-  color: $color;
-  line-height: $line-height;
-  font-weight: $font-weight;
-  @if ($size) {
-    font-size: $size;
-  } @else {
-    //font-size: $font-size-sm;
-    @include medium() {
-      //font-size: $font-size-md;
-    }
-  }
-}
-
 // positions: top-right / top-left / top-center / bottom-right / bottom-left / bottom-center /
 //            left-top / left-center / left-bottom / right-top / right-center / right-bottom /
 //            both-y-left / both-y-left / both-y-left / both-x-top / both-x-top / both-x-top

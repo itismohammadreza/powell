@@ -23,7 +23,6 @@
 - [ ] **bottomSheet** - implement component.
 - [ ] **jalaliDatepicker** - implement component.
 - [ ] **whiteboard** - implement component.
-- [ ] **animation** - add animation to routes.
 - [ ] **table** 
 - implement `jalali` and `miladi` filter. 
 - add configurable caption elements (like title and global filter). plus, apply localMode in global filter also.
