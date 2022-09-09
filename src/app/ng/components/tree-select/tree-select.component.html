@@ -53,8 +53,7 @@
       (onNodeUnselect)="_onNodeUnselect($event)"
       (onNodeExpand)="emitter('onNodeExpand',$event)"
       (onNodeCollapse)="emitter('onNodeCollapse',$event)"
-      (onClear)="_onClear()"
-    >
+      (onClear)="_onClear()">
       <ng-template pTemplate="value" let-item *ngIf="valueTemplate">
         <ng-container *ngTemplateOutlet="valueTemplate;context:{$implicit:item}"></ng-container>
       </ng-template>

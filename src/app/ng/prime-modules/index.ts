@@ -70,7 +70,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 
 /***************************** MENU *****************************/
 import {MenuModule} from 'primeng/menu';
-// import {BreadcrumbModule} from 'primeng/breadcrumb';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
 // import {ContextMenuModule} from 'primeng/contextmenu';
 // import {DockModule} from 'primeng/dock';
 // import {MegaMenuModule} from 'primeng/megamenu';
@@ -185,7 +185,7 @@ export const MODULES: Type<any>[] = [
   FileUploadModule,
   /***************************** MENU *****************************/
   MenuModule,
-  // BreadcrumbModule,
+  BreadcrumbModule,
   // ContextMenuModule,
   // DockModule,
   // MegaMenuModule,

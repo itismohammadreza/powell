@@ -39,8 +39,7 @@
       (focus)="emitter('onFocus', $event)"
       (input)="_onInput($event)"
       (keydown)="_onKeyDown($event)"
-      (keyup)="_onKeyUp($event)"
-    />
+      (keyup)="_onKeyUp($event)"/>
     <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
       {{ label }}
     </label>

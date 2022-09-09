@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
-import {DynamicDialogService, OverlayService, MomentService} from "@ng/services";
+import {Component, ViewContainerRef} from '@angular/core';
+import {DynamicDialogService, OverlayService} from "@ng/services";
 import {UserService} from "@core/http";
 import {
   DynamicDialogSampleComponent
@@ -21,27 +21,47 @@ export class UtilsPage {
 
   customDynamicDialogResult: any;
 
-  showConfirm() {
-    this.overlayService.showConfirm({header: 'header', message: 'salam'}).then((result) => {
-      if (result) {
-      } else {
-      }
+  showToast() {
+    this.overlayService.showToast({
+      summary: 'summary',
+      detail: 'details',
+      rtl: true
     });
   }
 
-  showToast() {
-    this.overlayService.showToast(
-      {
-        summary: 'summary',
-        detail: 'details',
-        rtl: true
-      }
-    );
+  showConfirm() {
+    this.overlayService.showConfirm({header: 'header', message: 'salam'}).then()
+  }
+
+  showConfirmPopup(event) {
+    this.overlayService.showConfirmPopup({
+      message: 'Are you sure that you want to proceed?',
+      target: event.target,
+      acceptIcon: 'pi pi-times',
+      buttonIconPos: 'right'
+    }).then();
+  }
+
+  showDialog() {
+    this.overlayService.showDialog({
+      content: 'some text',
+    }).then();
+  }
+
+  showCustomDynamicDialog() {
+    this.dialog.open(DynamicDialogSampleComponent, {
+      data: {message: 'I am a dynamic component inside of a dialog!'}
+    }).afterClosed.subscribe(result => {
+      this.customDynamicDialogResult = result;
+    });
+  }
+
+  request() {
+    this.userService.get().subscribe();
   }
 
   showDialogForm() {
-    this.overlayService.showDialogForm(
-      'test',
+    this.overlayService.showDialogForm('test',
       [
         {
           component: 'dropdown',
@@ -87,33 +107,5 @@ export class UtilsPage {
         }
       ],
     ).onClose.subscribe();
-  }
-
-  showConfirmPopup(event) {
-    this.overlayService.showConfirmPopup(
-      {
-        message: 'Are you sure that you want to proceed?',
-        target: event.target
-      }
-    ).then((result) => {
-    });
-  }
-
-  showCustomDynamicDialog() {
-    const ref = this.dialog.open(DynamicDialogSampleComponent, {data: {message: 'I am a dynamic component inside of a dialog!'}});
-    ref.afterClosed.subscribe(result => {
-      this.customDynamicDialogResult = result;
-    });
-  }
-
-  request() {
-    this.userService.get().subscribe(console.log);
-  }
-
-  showDialog() {
-    this.overlayService.showDialog({
-      content: 'some text',
-    }).then(() => {
-    });
   }
 }

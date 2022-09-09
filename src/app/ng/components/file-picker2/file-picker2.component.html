@@ -21,8 +21,7 @@
         [disabled]="disabled"
         type="file"
         #singleUploader
-        (change)="onSingleSelect($event)"
-      />
+        (change)="onSingleSelect($event)"/>
       <div class="preview rounded-top p-3" [ngSwitch]="getFileType(filesToShow[0]?.base64)">
         <img *ngSwitchCase="'image'" [src]="filesToShow[0]?.base64" class="rounded-top mw-100"/>
         <i *ngSwitchCase="'file'" class="pi pi-file h2 mb-0"></i>
@@ -41,8 +40,7 @@
         onclick="this.value = null"
         [accept]="accept"
         [disabled]="disabled"
-        (change)="onMultipleSelect($event)"
-      />
+        (change)="onMultipleSelect($event)"/>
       <div
         *ngIf="!readonly"
         [class.forbidden]="filesToEmit?.length == fileLimit"

@@ -24,8 +24,7 @@
   [showTransitionOptions]="showTransitionOptions"
   [hideTransitionOptions]="hideTransitionOptions"
   (visibleChange)="onVisibleChange($event)"
-  (activeIndexChange)="onActiveIndexChange($event)"
->
+  (activeIndexChange)="onActiveIndexChange($event)">
   <ng-template pTemplate="header" *ngIf="headerTemplate">
     <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
   </ng-template>

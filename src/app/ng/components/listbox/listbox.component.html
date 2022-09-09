@@ -49,8 +49,7 @@
       (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
       (onChange)="_onChange($event)"
       (onDblClick)="_onDblClick($event)"
-      (onClick)="_onClick($event)"
-    >
+      (onClick)="_onClick($event)">
       <ng-template pTemplate="header" *ngIf="headerTemplate">
         <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
       </ng-template>

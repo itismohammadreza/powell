@@ -49,8 +49,7 @@
       (onRemove)="_onRemove($event)"
       (onSelect)="_onSelect($event)"
       (onProgress)="emitter('onProgress',$event)"
-      (uploadHandler)="emitter('uploadHandler',$event)"
-    >
+      (uploadHandler)="emitter('uploadHandler',$event)">
       <ng-template pTemplate="toolbar" *ngIf="toolbarTemplate">
         <ng-container *ngTemplateOutlet="toolbarTemplate"></ng-container>
       </ng-template>

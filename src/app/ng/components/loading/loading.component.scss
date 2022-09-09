@@ -14,10 +14,12 @@
   transition: all 0.5s;
   visibility: hidden;
   z-index: 900000000000000;
+
   &.on {
     visibility: visible;
     opacity: 1;
   }
+
   &.off {
     visibility: hidden;
     opacity: 0;

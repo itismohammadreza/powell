@@ -75,15 +75,16 @@ export interface NgConfirmPopupOptions {
   rejectColor?: NgColor;
   rejectAppearance?: NgButtonAppearance;
   buttonSize?: NgSize;
+  buttonIconPos?: NgIconPosition;
   rtl?: boolean;
 }
 
 export interface NgConfirmOptions {
-  key?: string;
   header?: string;
+  key?: string;
+  blockScroll?: boolean;
   message?: string;
   icon?: string;
-  blockScroll?: boolean;
   dismissableMask?: boolean;
   closeOnEscape?: boolean;
   closable?: boolean;
@@ -114,6 +115,7 @@ export interface NgConfirmOptions {
   rejectColor?: NgColor;
   rejectAppearance?: NgButtonAppearance;
   buttonSize?: NgSize;
+  buttonIconPos?: NgIconPosition;
   rtl?: boolean;
 }
 
@@ -129,9 +131,8 @@ export interface NgDialogOptions {
   keepInViewport?: boolean;
   resizable?: boolean;
   contentStyle?: object;
-  visible?: boolean;
   modal?: boolean;
-  position?: string;
+  position?: NgPlace;
   blockScroll?: boolean;
   closeOnEscape?: boolean;
   dismissableMask?: boolean;
@@ -155,6 +156,14 @@ export interface NgDialogOptions {
   closeTabindex?: string;
   minimizeIcon?: string;
   maximizeIcon?: string;
+
+  buttonIcon?: string;
+  buttonIconPos?: NgIconPosition;
+  buttonFull?: boolean;
+  buttonLabel?: string;
+  buttonColor?: NgColor;
+  buttonAppearance?: NgButtonAppearance;
+  buttonSize?: NgSize;
   rtl?: boolean;
   content?: string;
 }

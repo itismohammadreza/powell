@@ -45,8 +45,7 @@
       (onBeforeHide)="emitter('onBeforeHide', $event)"
       (onShow)="_onShow()"
       (onHide)="_onHide()"
-      (onClear)="_onClear()"
-    >
+      (onClear)="_onClear()">
       <ng-template pTemplate="option" let-option *ngIf="optionTemplate">
         <ng-container *ngTemplateOutlet="optionTemplate;context:{$implicit:option}"></ng-container>
       </ng-template>

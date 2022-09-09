@@ -80,8 +80,7 @@
       (onClear)="_onClear()"
       (onHide)="emitter('onHide', $event)"
       (onShow)="emitter('onShow', $event)"
-      (onLazyLoad)="emitter('onLazyLoad', $event)"
-    >
+      (onLazyLoad)="emitter('onLazyLoad', $event)">
       <ng-template pTemplate="item" let-item let-index="index" *ngIf="itemTemplate">
         <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item,index:index}"></ng-container>
       </ng-template>
