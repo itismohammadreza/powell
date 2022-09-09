@@ -106,7 +106,7 @@ import {AvatarModule} from 'primeng/avatar';
 // import {ChipModule} from 'primeng/chip';
 // import {InplaceModule} from 'primeng/inplace';
 // import {ProgressBarModule} from 'primeng/progressbar';
-// import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ScrollTopModule} from 'primeng/scrolltop';
 // import {SkeletonModule} from 'primeng/skeleton';
 // import {TagModule} from 'primeng/tag';
@@ -216,7 +216,7 @@ export const MODULES: Type<any>[] = [
   // ChipModule,
   // InplaceModule,
   // ProgressBarModule,
-  // ProgressSpinnerModule,
+  ProgressSpinnerModule,
   ScrollTopModule,
   // SkeletonModule,
   // TagModule,

@@ -5,14 +5,16 @@
 - search for TODO comments in project.
 - is it necessary to remove styles relative to having both (icon and dropdown) in autocomplete OR (icon and showIcon) in datepicker?
 - table filter on datepicker mode, value clears after select and close popup. also, what should be the cells actual value if we want to datepicker filter works properly? 
+- remove style about having addon in `inputNumber` and `autocomplete` components when want to have addon and buttons together.
 
 ### Feature
 
 - [ ] **map** - implement `removeLastMarker` & `removeAllMarkers` buttons. also add an `@Input() multi: boolean` to
   allow choosing multiple marker.
 - [ ] **all** - handle rtl direction in panels when append them to body.
-- [ ] **inputNumber** - complete component.
-- [ ] **async** - add an async @Input to button, switch, checkbox, dual-switch instead of creating new component.
+- [x] **inputNumber** - complete component.
+- [ ] **async** - add an async @Input to button, switch, checkbox, dual-switch instead of creating new component. 
+`<p-progressSpinner [style]="{width: '30px', height: '30px'}"></p-progressSpinner>`
 - [ ] **dialogForm**
 - add hook support in config (just like angular formly to implement cascade mode).
 - set a valid type for labelPos in models.
@@ -37,4 +39,4 @@
 ### PRIMENG ISSUES
 
 - paneStyleClass does not exist in all components that have panel. such cascadeSelect.
-- worst documentation I have been seen. 
+- worst documentation I have ever seen. 

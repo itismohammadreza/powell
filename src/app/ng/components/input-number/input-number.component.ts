@@ -195,7 +195,8 @@ export class InputNumberComponent implements OnInit, AfterViewInit, ControlValue
     for (const error in this.errors) {
       if (this.showError(error)) {
         hasError = true
-      };
+      }
+      ;
     }
     return !hasError;
   }

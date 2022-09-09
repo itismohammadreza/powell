@@ -33,7 +33,7 @@ export class InputNumberPage {
   addon: NgAddon;
   // native properties
   format: boolean = true;
-  showButtons: boolean = false;
+  showButtons: boolean = true;
   buttonLayout: NgNumberButtonLayout = 'stacked';
   mode: NgNumberMode = 'decimal';
   prefix: string = '';

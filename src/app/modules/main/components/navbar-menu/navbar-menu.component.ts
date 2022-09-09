@@ -132,7 +132,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       'gregorian-datepicker',
       'image',
       'image-slider',
-      'mask',
+      'input-mask',
       'input-number',
       'input-password',
       'input-text',

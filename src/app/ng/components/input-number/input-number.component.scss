@@ -30,7 +30,6 @@
           .p-inputnumber {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
-
           }
         }
 
@@ -59,17 +58,24 @@
 
       p-inputNumber {
         &.has-before {
-
+          .p-inputnumber-input {
+            border-radius: 0
+          }
         }
 
         &.has-after {
-
+          .p-inputnumber-buttons-stacked {
+            .p-inputnumber-button-up,
+            .p-inputnumber-button-down {
+              border-radius: 0;
+            }
+          }
         }
       }
     }
 
     &.rtl {
-      .p-inputtext,
+      .p-inputnumber,
       label,
       .message {
         direction: rtl;
@@ -90,6 +96,46 @@
         }
       }
 
+      p-inputNumber {
+        &.has-before {
+          .p-inputnumber-input {
+            border-radius: 0
+          }
+        }
+
+        &.has-after {
+          .p-inputnumber-buttons-stacked {
+            .p-inputnumber-button-up,
+            .p-inputnumber-button-down {
+              border-radius: 0;
+            }
+          }
+        }
+      }
+
+      .p-inputnumber-buttons-stacked {
+        .p-inputnumber-input {
+          border-top-right-radius: var(--border-radius);
+          border-bottom-right-radius: var(--border-radius);
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        .p-inputnumber-button-up {
+          border-top-left-radius: var(--border-radius);
+          border-top-right-radius: 0;
+        }
+
+        .p-inputnumber-button-down {
+          border-bottom-left-radius: var(--border-radius);
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      .p-inputnumber-buttons-horizontal {
+        direction: ltr;
+      }
+
       .p-inputnumber-clearable {
         .p-inputtext {
           padding-right: 0.75rem;
@@ -99,6 +145,13 @@
         .p-inputnumber-clear-icon {
           right: auto;
           left: 0.75rem;
+        }
+
+        .p-inputnumber-buttons-stacked,
+        .p-inputnumber-buttons-horizontal {
+          .p-inputnumber-clear-icon {
+            left: calc(0.75rem + 3rem);
+          }
         }
       }
 

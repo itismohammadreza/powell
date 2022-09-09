@@ -16,10 +16,10 @@
       'p-inputtext-lg': inputSize == 'lg',
       'p-input-filled': filled
     }" class="field">
-    <i *ngIf="icon && !addon && !showClear" [ngClass]="icon"></i>
+    <i *ngIf="icon && !addon && !showClear && !showButtons" [ngClass]="icon"></i>
     <p-inputNumber
       [(ngModel)]="value"
-      [ngAddon]="addon"
+      [ngAddon]="!showButtons && addon"
       [addonDisabled]="disabled"
       [addonSize]="inputSize"
       [inputId]="inputId"
