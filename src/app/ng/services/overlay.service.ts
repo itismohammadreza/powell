@@ -3,9 +3,9 @@ import {DialogFormComponent} from '@ng/components/dialog-form/dialog-form.compon
 import {
   NgConfirmOptions,
   NgConfirmPopupOptions,
-  NgDialogOptions,
   NgDialogFormConfig,
   NgDialogFormOptions,
+  NgDialogOptions,
   NgToastOptions
 } from '@ng/models/overlay';
 import {Confirmation, ConfirmationService, ConfirmEventType, Message, MessageService} from 'primeng/api';
@@ -20,7 +20,6 @@ import {ConfirmDialog} from 'primeng/confirmdialog';
   providedIn: 'root'
 })
 export class OverlayService {
-  private messageCmpRef: ComponentRef<Message>;
   private toastCmpRef: ComponentRef<Toast>;
   private confirmPopupCmpRef: ComponentRef<ConfirmPopup>;
   private confirmCmpRef: ComponentRef<ConfirmDialog>;

@@ -3,11 +3,12 @@ export interface RequestConfig {
   loading: boolean,
   success: boolean,
   failure: boolean,
-  catch: boolean
+  catch: boolean,
+  method: string
 }
 
 export const RequestsConfig: RequestConfig[] = [
-  {pathTemplate: `/api/v1/account/register`, loading: true, success: true, failure: true, catch: false},
-  {pathTemplate: /photos/g, loading: false, success: false, failure: false, catch: false},
-  {pathTemplate: '/photos', loading: true, success: false, failure: false, catch: false},
+  {pathTemplate: `/api/v1/account/register`, method: 'get', loading: true, success: true, failure: true, catch: false},
+  // {pathTemplate: /photos/g, method: 'get', loading: false, success: false, failure: false, catch: true},
+  {pathTemplate: '/photos', method: 'get', loading: true, success: false, failure: false, catch: true},
 ];

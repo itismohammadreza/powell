@@ -57,7 +57,7 @@ export class UtilsPage {
   }
 
   request() {
-    this.userService.get().subscribe();
+    this.userService.get().subscribe(console.log);
   }
 
   showDialogForm() {

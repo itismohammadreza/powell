@@ -7,7 +7,7 @@ import {
   HttpRequest,
   HttpResponse,
 } from '@angular/common/http';
-import {finalize, Observable, tap, throwError} from 'rxjs';
+import {finalize, Observable, of, tap, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {OverlayService} from '@ng/services';
 import {AuthService} from '@core/http';
@@ -25,13 +25,23 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
   hasSuccessMessageApis = RequestsConfig.filter(r => r.success);
   hasFailureMessageApis = RequestsConfig.filter(r => r.failure);
   hasLoadingApis = RequestsConfig.filter(r => r.loading);
+  catchEnabledApis = RequestsConfig.filter(r => r.catch);
+  cachedRequests = new Map<string, any>();
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const clonedReq = request.clone();
-    const {pathname} = this.getUrlParts(request.url);
-    const shouldShowSuccess = this.findRequestByPath(this.hasSuccessMessageApis, pathname);
-    const shouldShowFailure = this.findRequestByPath(this.hasFailureMessageApis, pathname);
-    const shouldShowLoading = this.findRequestByPath(this.hasLoadingApis, pathname)
+    const shouldShowSuccess = this.findRequestByPath(this.hasSuccessMessageApis, request);
+    const shouldShowFailure = this.findRequestByPath(this.hasFailureMessageApis, request);
+    const shouldShowLoading = this.findRequestByPath(this.hasLoadingApis, request)
+    const shouldCatch = this.findRequestByPath(this.catchEnabledApis, request);
+
+    if (shouldCatch) {
+      const cachedResponse = this.cachedRequests.get(request.url);
+      if (cachedResponse) {
+        return of(cachedResponse);
+      }
+    }
+
     if (shouldShowLoading) {
       this.requestsQueue.push(clonedReq);
       this.loaderService.isLoading.next(true);
@@ -44,6 +54,9 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
         }
         if (shouldShowSuccess) {
           this.showSuccessToast('', event.body.message)
+        }
+        if (shouldCatch) {
+          this.cachedRequests.set(request.url, event);
         }
         this.removeRequestFromQueue(clonedReq);
       }),
@@ -82,12 +95,13 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     });
   }
 
-  findRequestByPath(targetArray: RequestConfig[], requestPathTemplate) {
+  findRequestByPath(targetArray: RequestConfig[], request: HttpRequest<any>) {
+    const {pathname} = this.getUrlParts(request.url);
     const foundedIndex = targetArray.findIndex(x => {
       if (x.pathTemplate instanceof RegExp) {
-        return x.pathTemplate.test(requestPathTemplate)
+        return x.pathTemplate.test(pathname) && x.method.toLowerCase() == request.method.toLowerCase()
       } else {
-        return x.pathTemplate == requestPathTemplate
+        return x.pathTemplate == pathname && x.method.toLowerCase() == request.method.toLowerCase()
       }
     });
     return foundedIndex >= 0
