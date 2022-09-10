@@ -36,7 +36,7 @@ export class OverlayService {
   }
 
   showToast(options: NgToastOptions): void {
-    if (!this.document.body.contains(this.toastCmpRef?.location.nativeElement)) {
+    if (!this.bodyContains(this.toastCmpRef)) {
       this.toastCmpRef = this.addToBody(Toast);
     }
     const toast: Message = {
