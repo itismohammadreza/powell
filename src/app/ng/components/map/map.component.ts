@@ -63,12 +63,14 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
   @Input() labelPos: NgFixLabelPosition = 'fix-top';
   @Input() errors: NgError;
   @Input() disabled: boolean;
+  @Input() multiple: boolean = true;
+  @Input() clearMapBtnTooltip: string;
+  @Input() clearMapBtnIcon: string = 'pi pi-trash';
   // native properties
   @Input() zoom: number = 10;
   @Input() center: LatLng = latLng(35.68419775656676, 51.38983726501465);
   @Input() height: string = '50vh';
   @Input() readonly: boolean;
-  @Input() layers: Layer[] = [];
   @Input() leafletMinZoom: number = 3;
   @Input() leafletMaxZoom: number = 18;
   @Input() leafletFitBounds: LatLngBounds;
@@ -149,6 +151,7 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
   map: Map;
+  layers: Layer[] = [];
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -220,7 +223,8 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
     for (const error in this.errors) {
       if (this.showError(error)) {
         hasError = true
-      };
+      }
+      ;
     }
     return !hasError;
   }
@@ -240,7 +244,15 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
 
   writeValue(value: any) {
     this.value = value;
-    this.handleMarkerLayers(this.value);
+    if (value) {
+      if (Array.isArray(value)) {
+        value.forEach(latlng => {
+          this.layers.push(this.getMarkerLayer(latlng));
+        })
+      } else {
+        this.layers = [this.getMarkerLayer(value)];
+      }
+    }
     this.cd.markForCheck();
   }
 
@@ -299,25 +311,15 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
   _onMapClick(event: LeafletMouseEvent): void {
     if (!this.readonly) {
       const {lat, lng} = event.latlng;
-      this.handleMarkerLayers({lat, lng});
       this.onModelChange({lat, lng});
+      if (this.multiple) {
+        this.layers.push(this.getMarkerLayer({lat, lng}));
+      } else {
+        this.layers = [this.getMarkerLayer({lat, lng})];
+      }
       this.cd.detectChanges();
     }
     this.onMapClick.emit(event);
-  }
-
-  handleMarkerLayers(value: LatLngLiteral | LatLngLiteral[]) {
-    if (!this.value) {
-      return
-    }
-    if (Array.isArray(value)) {
-      this.layers = []
-      value.forEach(latlng => {
-        this.layers.push(this.getMarkerLayer(latlng));
-      })
-    } else {
-      this.layers = [this.getMarkerLayer(value)];
-    }
   }
 
   getMarkerLayer(latLng: LatLngLiteral): Marker<any> {
@@ -331,5 +333,9 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
     }).on('click', (event: LeafletMouseEvent) => {
       this.onMapMarkerClick.emit(event);
     });
+  }
+
+  clearMap() {
+    this.layers = [];
   }
 }

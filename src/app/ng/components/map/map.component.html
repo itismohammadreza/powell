@@ -8,6 +8,8 @@
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
     }" class="map-wrapper">
   <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field" [attr.id]="inputId">
+    <ng-button *ngIf="!readonly" class="clear-map-btn" [pTooltip]="clearMapBtnTooltip" [icon]="clearMapBtnIcon"
+               size="sm" (click)="clearMap()"></ng-button>
     <div
       leaflet
       [style.height]="height"

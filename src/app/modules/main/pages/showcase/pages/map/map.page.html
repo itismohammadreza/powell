@@ -12,6 +12,7 @@
       'fixLabelPos',
       'disabled',
       'readonly',
+      'multiple',
       ]"
       [(label)]="label"
       [(labelWidth)]="labelWidth"
@@ -20,14 +21,11 @@
       [(fixLabelPos)]="labelPos"
       [(disabled)]="disabled"
       [(readonly)]="readonly"
+      [(multiple)]="multiple"
     ></ng-preview-options>
   </p-panel>
 
   <p-panel dir="ltr" header="Preview">
-<!--    <p-gmap [options]="{-->
-<!--            center: {lat: 36.890257, lng: 30.707417},-->
-<!--            zoom: 12-->
-<!--        }" [style]="{'width':'100%','height':'320px'}" ></p-gmap>-->
     <p-divider align="center">
       <b>Using With Reactive Forms</b>
     </p-divider>
@@ -42,6 +40,7 @@
         [labelPos]="labelPos"
         [disabled]="disabled"
         [readonly]="readonly"
+        [multiple]="multiple"
       ></ng-map>
     </form>
 
@@ -60,6 +59,7 @@
       [labelPos]="labelPos"
       [disabled]="disabled"
       [readonly]="readonly"
+      [multiple]="multiple"
     ></ng-map>
     <pre class="mt-3 mb-0" dir="ltr"><b>Value :</b> {{binding | json}}</pre>
   </p-panel>

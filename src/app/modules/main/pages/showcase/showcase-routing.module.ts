@@ -28,7 +28,6 @@ import {SwitchPage} from '@modules/main/pages/showcase/pages/switch/switch.page'
 import {TablePage} from '@modules/main/pages/showcase/pages/table/table.page';
 import {ToggleButtonPage} from '@modules/main/pages/showcase/pages/toggle-button/toggle-button.page';
 import {TreePage} from '@modules/main/pages/showcase/pages/tree/tree.page';
-import {DynamicFormPage} from '@modules/main/pages/showcase/pages/dynamic-form/dynamic-form.page';
 import {ImageSliderPage} from '@modules/main/pages/showcase/pages/image-slider/image-slider.page';
 import {DashboardPage} from '@modules/main/pages/showcase/pages/dashboard/dashboard.page';
 import {KnobPage} from '@modules/main/pages/showcase/pages/knob/knob.page';
@@ -45,6 +44,11 @@ import {DualLabelSwitchPage} from "@modules/main/pages/showcase/pages/dual-label
 import {BottomSheetPage} from "@modules/main/pages/showcase/pages/bottom-sheet/bottom-sheet.page";
 import {StatusPage} from "@modules/main/pages/showcase/pages/status/status.page";
 import {ImagePage} from "@modules/main/pages/showcase/pages/image/image.page";
+import {ConfirmDialogPage} from "@modules/main/pages/showcase/pages/confirm-dialog/confirm-dialog.page";
+import {ConfirmPopupPage} from "@modules/main/pages/showcase/pages/confirm-popup/confirm-popup.page";
+import {DialogFormPage} from "@modules/main/pages/showcase/pages/dialog-form/dialog-form.page";
+import {MessagePage} from "@modules/main/pages/showcase/pages/message/message.page";
+import {ToastPage} from "@modules/main/pages/showcase/pages/toast/toast.page";
 
 const routes: Routes = [
   {
@@ -93,6 +97,21 @@ const routes: Routes = [
     data: {title: 'color-picker'}
   },
   {
+    path: 'confirm-dialog',
+    component: ConfirmDialogPage,
+    data: {title: 'confirm-dialog'}
+  },
+  {
+    path: 'confirm-popup',
+    component: ConfirmPopupPage,
+    data: {title: 'confirm-popup'}
+  },
+  {
+    path: 'dialog-form',
+    component: DialogFormPage,
+    data: {title: 'dialog-form'}
+  },
+  {
     path: 'dropdown',
     component: DropdownPage,
     data: {title: 'dropdown'}
@@ -101,11 +120,6 @@ const routes: Routes = [
     path: 'dual-label-switch',
     component: DualLabelSwitchPage,
     data: {title: 'dual-label-switch'}
-  },
-  {
-    path: 'dynamic-form',
-    component: DynamicFormPage,
-    data: {title: 'dynamic-form'}
   },
   {
     path: 'editor',
@@ -188,6 +202,11 @@ const routes: Routes = [
     data: {title: 'map'}
   },
   {
+    path: 'message',
+    component: MessagePage,
+    data: {title: 'message'}
+  },
+  {
     path: 'multi-checkbox',
     component: MultiCheckboxPage,
     data: {title: 'multi-checkbox'}
@@ -236,6 +255,11 @@ const routes: Routes = [
     path: 'table',
     component: TablePage,
     data: {title: 'table'}
+  },
+  {
+    path: 'toast',
+    component: ToastPage,
+    data: {title: 'toast'}
   },
   {
     path: 'toggle-button',

@@ -122,7 +122,7 @@ export class OverlayService {
     this.confirmCmpRef.instance.baseZIndex = options.baseZIndex;
     this.confirmCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
     this.confirmCmpRef.instance.breakpoints = options.breakpoints;
-    this.confirmCmpRef.instance.transitionOptions = options.transitionOptions || '400ms cubic-bezier(0.25, 0.8, 0.25, 1)';
+    this.confirmCmpRef.instance.transitionOptions = options.transitionOptions || '200ms cubic-bezier(0.25, 0.8, 0.25, 1)';
 
     const confirmation: Confirmation = {
       message: options.message,

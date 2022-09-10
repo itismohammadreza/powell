@@ -49,7 +49,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
 
     return next.handle(clonedReq).pipe(
       tap((event: any) => {
-        if (!(event instanceof HttpResponse) || event.status !== 200) {
+        if (!(event instanceof HttpResponse) || /2\d+/.test(event.status.toString()) == false) {
           return;
         }
         if (shouldShowSuccess) {

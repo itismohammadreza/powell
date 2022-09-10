@@ -6,6 +6,14 @@
 
     .field {
       flex-grow: 1;
+      position: relative;
+
+      .clear-map-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        z-index: 20000;
+      }
     }
 
     .message {

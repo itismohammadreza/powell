@@ -32,7 +32,6 @@ import {SwitchPage} from '@modules/main/pages/showcase/pages/switch/switch.page'
 import {TablePage} from '@modules/main/pages/showcase/pages/table/table.page';
 import {ToggleButtonPage} from '@modules/main/pages/showcase/pages/toggle-button/toggle-button.page';
 import {TreePage} from '@modules/main/pages/showcase/pages/tree/tree.page';
-import {DynamicFormPage} from '@modules/main/pages/showcase/pages/dynamic-form/dynamic-form.page';
 import {ImageSliderPage} from '@modules/main/pages/showcase/pages/image-slider/image-slider.page';
 import {DashboardPage} from '@modules/main/pages/showcase/pages/dashboard/dashboard.page';
 import {
@@ -56,6 +55,10 @@ import {StatusPage} from "@modules/main/pages/showcase/pages/status/status.page"
 import {DualLabelSwitchPage} from "@modules/main/pages/showcase/pages/dual-label-switch/dual-label-switch.page";
 import {BottomSheetPage} from "@modules/main/pages/showcase/pages/bottom-sheet/bottom-sheet.page";
 import {ImagePage} from "@modules/main/pages/showcase/pages/image/image.page";
+import {ConfirmDialogPage} from "@modules/main/pages/showcase/pages/confirm-dialog/confirm-dialog.page";
+import {DialogFormPage} from "@modules/main/pages/showcase/pages/dialog-form/dialog-form.page";
+import {MessagePage} from "@modules/main/pages/showcase/pages/message/message.page";
+import {ToastPage} from "@modules/main/pages/showcase/pages/toast/toast.page";
 
 export const COMPONENTS: Type<any>[] = [
   // components
@@ -75,11 +78,12 @@ export const COMPONENTS: Type<any>[] = [
   CheckboxPage,
   ChipsPage,
   ColorPickerPage,
+  ConfirmDialogPage,
   DashboardPage,
+  DialogFormPage,
   DropdownPage,
   DualLabelSwitchPage,
   DynamicDialogSampleComponent,
-  DynamicFormPage,
   EditorPage,
   EmptyPage,
   FilePickerPage,
@@ -96,6 +100,7 @@ export const COMPONENTS: Type<any>[] = [
   KnobPage,
   ListboxPage,
   MapPage,
+  MessagePage,
   MultiCheckboxPage,
   MultiSelectPage,
   RadioPage,
@@ -106,6 +111,7 @@ export const COMPONENTS: Type<any>[] = [
   StatusPage,
   SwitchPage,
   TablePage,
+  ToastPage,
   ToggleButtonPage,
   TreePage,
   TreeSelectPage,
