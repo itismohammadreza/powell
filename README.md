@@ -15,7 +15,7 @@
 - [ ] **all** - handle rtl direction in panels when append them to body.
 - [x] **inputNumber** - complete component.
 - [ ] **async** - add an async @Input to button, switch, checkbox, dual-switch instead of creating new component.
-  `<p-progressSpinner [style]="{width: '30px', height: '30px'}"></p-progressSpinner>`
+  `<p-progressSpinner [style]="{width: '30px', height: '30px'}"></p-pr`1ogressSpinner>`
 - [ ] **dialogForm**
 - add hook support in config (just like angular formly to implement cascade mode).
 - set a valid type for labelPos in models.
