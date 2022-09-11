@@ -3,22 +3,17 @@
 ### TIPS
 
 - search for TODO comments in project.
-- is it necessary to remove styles relative to having both (icon and dropdown) in autocomplete OR (icon and showIcon) in
-  datepicker?
 - table filter on datepicker mode, value clears after select and close popup. also, what should be the cells actual
   value if we want to datepicker filter works properly?
-- remove style about having addon in `inputNumber` and `autocomplete` components when want to have addon and buttons
-  together.
 
 ### Feature
 
-- [ ] **all** - handle rtl direction in panels when append them to body.
-- [x] **inputNumber** - complete component.
+- [ ] **all** - handle rtl direction in panels when append them to body. from component take a querySelector to panel and add a class to it.
+- [ ] **all** - manage addon.
 - [ ] **async** - add an async @Input to button, switch, checkbox, dual-switch instead of creating new component.
-  `<p-progressSpinner [style]="{width: '30px', height: '30px'}"></p-pr`1ogressSpinner>`
+  `<p-progressSpinner [style]="{width: '30px', height: '30px'}"></p-progressSpinner>`
 - [ ] **dialogForm**
 - add hook support in config (just like angular formly to implement cascade mode).
-- set a valid type for labelPos in models.
 
 ### New
 

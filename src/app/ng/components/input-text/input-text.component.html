@@ -7,42 +7,44 @@
       'flex-row': labelPos == 'fix-side' && rtl,
       'flex-row-reverse': labelPos == 'fix-side' && !rtl
     }" class="input-text-wrapper">
-  <div [ngClass]="{
+  <div [ngAddon]="addon"
+       [addonDisabled]="disabled"
+       [addonSize]="inputSize">
+    <div [ngClass]="{
       'w-100': labelPos == 'fix-top',
       'p-float-label': labelPos == 'float',
-      'p-input-icon-left': !addon && icon && iconPos == 'left',
-      'p-input-icon-right': !addon && icon && iconPos == 'right',
+      'p-input-icon-left': icon && iconPos == 'left',
+      'p-input-icon-right': icon && iconPos == 'right',
       'p-inputtext-sm': inputSize == 'sm',
       'p-inputtext-lg': inputSize == 'lg',
       'p-input-filled': filled
     }" class="field">
-    <i *ngIf="icon && !addon" [ngClass]="icon"></i>
-    <input
-      pInputText
-      [(ngModel)]="value"
-      [ngAddon]="addon"
-      [addonDisabled]="disabled"
-      [addonSize]="inputSize"
-      [attr.id]="inputId"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [attr.maxlength]="maxlength"
-      [attr.placeholder]="placeholder"
-      [attr.type]="type"
-      [disabled]="disabled"
-      [readonly]="readonly"
-      [pKeyFilter]="keyFilter"
-      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
-      (blur)="_onBlur()"
-      (change)="_onChange($event)"
-      (click)="emitter('onClick', $event)"
-      (focus)="emitter('onFocus', $event)"
-      (input)="_onInput($event)"
-      (keydown)="_onKeyDown($event)"
-      (keyup)="_onKeyUp($event)"/>
-    <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
-      {{ label }}
-    </label>
+      <i *ngIf="icon" [ngClass]="icon"></i>
+      <input
+        pInputText
+        [(ngModel)]="value"
+
+        [attr.id]="inputId"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [attr.maxlength]="maxlength"
+        [attr.placeholder]="placeholder"
+        [attr.type]="type"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [pKeyFilter]="keyFilter"
+        (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
+        (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
+        (blur)="_onBlur()"
+        (change)="_onChange($event)"
+        (click)="emitter('onClick', $event)"
+        (focus)="emitter('onFocus', $event)"
+        (input)="_onInput($event)"
+        (keydown)="_onKeyDown($event)"
+        (keyup)="_onKeyUp($event)"/>
+      <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
+        {{ label }}
+      </label>
+    </div>
   </div>
   <label
     *ngIf="label && labelPos != 'float'"
