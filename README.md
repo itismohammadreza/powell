@@ -8,7 +8,8 @@
 
 ### Feature
 
-- [ ] **all** - handle rtl direction in panels when append them to body. from component take a querySelector to panel and add a class to it.
+- [ ] **all** - handle rtl direction in panels when append them to body. from component take a querySelector to panel
+  and add a class to it.
 - [ ] **all** - manage addon.
 - [ ] **dialogs** - handle routing when dialog is open.
 - [ ] **async** - add an async @Input to button, switch, checkbox, dual-switch instead of creating new component.
@@ -17,10 +18,9 @@
 
 ### New
 
-- [ ] **bottomSheet** - implement component.
+- [ ] **loading** - loadingWrapper component witch is wrap a component and show loading until a condition we said.
 - [ ] **jalaliDatepicker** - implement component.
 - [ ] **whiteboard** - implement component.
-- [ ] **loading** - loadingWrapper component witch is wrap a component and show loading until a condition we said.
 - [ ] **table**
 - add configurable caption elements (like title and global filter). plus, apply localMode in global filter also.
 - implement actions
