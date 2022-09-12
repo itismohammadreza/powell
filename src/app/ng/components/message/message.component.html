@@ -3,7 +3,12 @@
             [enableService]="false"
             [severity]="severity"
             [closable]="closable"
-            [value]="[_message]">
+            [value]="[{
+              summary:summary,
+              detail:detail,
+              icon:icon,
+              severity:severity
+            }]">
   <ng-template pTemplate="content" *ngIf="contentTemplate">
     <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
   </ng-template>

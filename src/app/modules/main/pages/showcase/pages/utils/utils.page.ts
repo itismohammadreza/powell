@@ -21,31 +21,8 @@ export class UtilsPage {
 
   customDynamicDialogResult: any;
 
-  showToast() {
-    this.overlayService.showToast({
-      summary: 'summary',
-      detail: 'details',
-      rtl: true
-    });
-  }
-
   showConfirm() {
-    this.overlayService.showConfirm({header: 'header', message: 'salam'}).then()
-  }
-
-  showConfirmPopup(event) {
-    this.overlayService.showConfirmPopup({
-      message: 'Are you sure that you want to proceed?',
-      target: event.target,
-      acceptIcon: 'pi pi-times',
-      buttonIconPos: 'right'
-    }).then();
-  }
-
-  showDialog() {
-    this.overlayService.showDialog({
-      content: 'some text',
-    }).then();
+    this.overlayService.showConfirmDialog({header: 'header', message: 'salam'}).then()
   }
 
   showCustomDynamicDialog() {
@@ -58,54 +35,5 @@ export class UtilsPage {
 
   request() {
     this.userService.get().subscribe(console.log);
-  }
-
-  showDialogForm() {
-    this.overlayService.showDialogForm('test',
-      [
-        {
-          component: 'dropdown',
-          formControlName: 'test',
-          options: [
-            {label: 'l1', value: 'v1'},
-            {label: 'l2', value: 'v2'},
-            {label: 'l3', value: 'v3'},
-            {label: 'l4', value: 'v4'},
-            {label: 'l5', value: 'v5'},
-            {label: 'l6', value: 'v6'},
-            {label: 'l7', value: 'v7'}
-          ],
-          label: 'label',
-          className: 'col-6',
-          rules: [
-            {
-              tobe: ['v1', 'v2', 'v3'],
-              control: 't0',
-              action: 'visible'
-            }
-          ]
-        },
-        {
-          component: 'text',
-          formControlName: 't0',
-          label: 't0',
-          className: 'col-12',
-          visible: false
-        },
-        {
-          component: 'text',
-          formControlName: 't1',
-          label: 't1',
-          className: 'col-12',
-          visible: false
-        },
-        {
-          component: 'text',
-          formControlName: 't2',
-          label: 't2',
-          className: 'col-6'
-        }
-      ],
-    ).onClose.subscribe();
   }
 }

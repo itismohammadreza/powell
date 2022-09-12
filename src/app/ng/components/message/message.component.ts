@@ -1,16 +1,6 @@
-import {
-  AfterContentInit,
-  Component,
-  ContentChild,
-  ContentChildren,
-  Input,
-  OnInit,
-  QueryList,
-  TemplateRef
-} from '@angular/core';
+import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
 import {TemplateDirective} from "@ng/directives/template.directive";
-import {NgMessageOptions, NgSeverity} from "@ng/models/overlay";
-import {Message} from "primeng/api";
+import {NgSeverity} from "@ng/models/overlay";
 
 @Component({
   selector: 'ng-message',
@@ -18,17 +8,15 @@ import {Message} from "primeng/api";
   styleUrls: ['./message.component.scss']
 })
 export class MessageComponent implements AfterContentInit {
-  @Input('message') set setMessage(m: NgMessageOptions) {
-    this._message = {...m, severity: this.severity}
-  };
-
-  @Input() severity: NgSeverity;
   @Input() inlineMessage: string;
+  @Input() summary: string;
+  @Input() detail: string;
+  @Input() icon: string;
+  @Input() severity: NgSeverity;
   @Input() closable: boolean;
   @Input() rtl: boolean;
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  _message: Message
   contentTemplate: TemplateRef<any>;
 
   ngAfterContentInit() {

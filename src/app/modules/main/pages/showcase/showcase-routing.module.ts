@@ -49,6 +49,7 @@ import {ConfirmPopupPage} from "@modules/main/pages/showcase/pages/confirm-popup
 import {DialogFormPage} from "@modules/main/pages/showcase/pages/dialog-form/dialog-form.page";
 import {MessagePage} from "@modules/main/pages/showcase/pages/message/message.page";
 import {ToastPage} from "@modules/main/pages/showcase/pages/toast/toast.page";
+import {DialogPage} from "@modules/main/pages/showcase/pages/dialog/dialog.page";
 
 const routes: Routes = [
   {
@@ -105,6 +106,11 @@ const routes: Routes = [
     path: 'confirm-popup',
     component: ConfirmPopupPage,
     data: {title: 'confirm-popup'}
+  },
+  {
+    path: 'dialog',
+    component: DialogPage,
+    data: {title: 'dialog'}
   },
   {
     path: 'dialog-form',

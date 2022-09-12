@@ -59,6 +59,8 @@ import {ConfirmDialogPage} from "@modules/main/pages/showcase/pages/confirm-dial
 import {DialogFormPage} from "@modules/main/pages/showcase/pages/dialog-form/dialog-form.page";
 import {MessagePage} from "@modules/main/pages/showcase/pages/message/message.page";
 import {ToastPage} from "@modules/main/pages/showcase/pages/toast/toast.page";
+import {ConfirmPopupPage} from "@modules/main/pages/showcase/pages/confirm-popup/confirm-popup.page";
+import {DialogPage} from "@modules/main/pages/showcase/pages/dialog/dialog.page";
 
 export const COMPONENTS: Type<any>[] = [
   // components
@@ -79,7 +81,9 @@ export const COMPONENTS: Type<any>[] = [
   ChipsPage,
   ColorPickerPage,
   ConfirmDialogPage,
+  ConfirmPopupPage,
   DashboardPage,
+  DialogPage,
   DialogFormPage,
   DropdownPage,
   DualLabelSwitchPage,

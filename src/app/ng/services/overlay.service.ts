@@ -1,7 +1,7 @@
 import {ApplicationRef, ComponentRef, createComponent, Inject, Injectable, Injector, Type} from '@angular/core';
 import {DialogFormComponent} from '@ng/components/dialog-form/dialog-form.component';
 import {
-  NgConfirmOptions,
+  NgConfirmDialogOptions,
   NgConfirmPopupOptions,
   NgDialogFormConfig,
   NgDialogFormOptions,
@@ -56,7 +56,7 @@ export class OverlayService {
     this.toastCmpRef.instance.preventOpenDuplicates = options.preventOpenDuplicates;
     this.toastCmpRef.instance.preventDuplicates = options.preventDuplicates;
     this.toastCmpRef.instance.position = options.position || 'top-right';
-    this.toastCmpRef.instance.style = {...options.style, direction: 'ltr'};
+    this.toastCmpRef.instance.style = options.style;
     this.toastCmpRef.instance.baseZIndex = options.baseZIndex || 0;
     this.toastCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
     this.toastCmpRef.instance.showTransitionOptions = options.showTransitionOptions || '300ms ease-out';
@@ -78,7 +78,7 @@ export class OverlayService {
     this.confirmPopupCmpRef.instance.hideTransitionOptions = options.hideTransitionOptions || '.1s linear';
     this.confirmPopupCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
     this.confirmPopupCmpRef.instance.baseZIndex = options.baseZIndex || 0;
-    this.confirmPopupCmpRef.instance.style = {...options.style, direction: 'ltr'};
+    this.confirmPopupCmpRef.instance.style = options.style;
     this.confirmPopupCmpRef.instance.styleClass = `${options.styleClass} ${options.rtl ? 'rtl' : ''} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
 
     const confirmation: Confirmation = {
@@ -109,16 +109,15 @@ export class OverlayService {
     });
   }
 
-  showConfirm(options: NgConfirmOptions): Promise<boolean> {
+  showConfirmDialog(options: NgConfirmDialogOptions): Promise<boolean> {
     if (!this.bodyContains(this.confirmCmpRef)) {
       this.confirmCmpRef = this.addToBody(ConfirmDialog);
     }
-    this.confirmCmpRef.instance.style = {...options.style, direction: 'ltr'};
+    this.confirmCmpRef.instance.style = options.style;
     this.confirmCmpRef.instance.styleClass = `${options.styleClass} ${options.rtl ? 'rtl' : ''} p-confirm-button-icon-${options.buttonIconPos || 'left'}`;
     this.confirmCmpRef.instance.maskStyleClass = options.maskStyleClass;
     this.confirmCmpRef.instance.closable = options.closable != undefined ? options.closable : true;
     this.confirmCmpRef.instance.focusTrap = options.focusTrap;
-    this.confirmCmpRef.instance.appendTo = options.appendTo;
     this.confirmCmpRef.instance.baseZIndex = options.baseZIndex;
     this.confirmCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
     this.confirmCmpRef.instance.breakpoints = options.breakpoints;
@@ -178,7 +177,6 @@ export class OverlayService {
       closeOnEscape: options.closeOnEscape != undefined ? options.closeOnEscape : true,
       dismissableMask: options.dismissableMask,
       closable: options.closable != undefined ? options.closable : true,
-      appendTo: options.appendTo,
       style: options.style,
       styleClass: options.styleClass,
       maskStyleClass: options.maskStyleClass,
@@ -218,11 +216,8 @@ export class OverlayService {
     });
   }
 
-  showDialogForm(
-    header: string,
-    config: NgDialogFormConfig[],
-    options?: NgDialogFormOptions
-  ): DynamicDialogRef {
+  //todo: change parameters to options: NgDialogFormOptions
+  showDialogForm(header: string, config: NgDialogFormConfig[], options?: NgDialogFormOptions): DynamicDialogRef {
     return this.dialogService.open(DialogFormComponent, {
       header,
       data: {config, options},
@@ -238,13 +233,13 @@ export class OverlayService {
     });
   }
 
-  private addToBody<T>(component: Type<T>, pos: 'appendChild' | 'prepend' = 'appendChild'): ComponentRef<T> {
+  private addToBody<T>(component: Type<T>): ComponentRef<T> {
     const componentRef = createComponent(component, {
       environmentInjector: this.appRef.injector,
       elementInjector: this.injector
     })
     this.appRef.attachView(componentRef.hostView);
-    this.document.body[pos](componentRef.location.nativeElement);
+    this.document.body.appendChild(componentRef.location.nativeElement);
     return componentRef;
   }
 

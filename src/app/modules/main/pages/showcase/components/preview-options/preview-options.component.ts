@@ -11,12 +11,13 @@ import {
   NgNumberButtonLayout,
   NgNumberMode
 } from '@ng/models/forms';
-import {NgIconPosition, NgOrientation, NgSelectionMode, NgSize, NgStatus} from '@ng/models/offset';
+import {NgIconPosition, NgOrientation, NgPlace, NgSelectionMode, NgSize, NgStatus} from '@ng/models/offset';
 import {NgColor} from '@ng/models/color';
 import {DropdownComponent} from '@ng/components/dropdown/dropdown.component';
 import {InputTextComponent} from '@ng/components/input-text/input-text.component';
 import {CheckboxComponent} from '@ng/components/checkbox/checkbox.component';
 import {NgButtonAppearance} from '@ng/models/button';
+import {DefaultFocus, NgSeverity} from "@ng/models/overlay";
 
 type PreviewItem =
   | 'label'
@@ -172,6 +173,43 @@ type PreviewItem =
   | 'subtitle'
   | 'imageType'
   | 'preview'
+  | 'closable'
+  | 'header'
+  | 'acceptLabel'
+  | 'rejectLabel'
+  | 'acceptIcon'
+  | 'rejectIcon'
+  | 'acceptVisible'
+  | 'rejectVisible'
+  | 'acceptColor'
+  | 'acceptAppearance'
+  | 'buttonSize'
+  | 'rejectColor'
+  | 'rejectAppearance'
+  | 'closeOnEscape'
+  | 'dismissableMask'
+  | 'defaultFocus'
+  | 'blockScroll'
+  | 'draggable'
+  | 'resizable'
+  | 'modal'
+  | 'position'
+  | 'maximizable'
+  | 'buttonIcon'
+  | 'buttonIconPos'
+  | 'buttonFull'
+  | 'buttonLabel'
+  | 'buttonColor'
+  | 'buttonAppearance'
+  | 'content'
+  | 'inlineMessage'
+  | 'severity'
+  | 'life'
+  | 'sticky'
+  | 'summary'
+  | 'detail'
+  | 'preventOpenDuplicates'
+  | 'preventDuplicates'
 
   | 'addon'
   | 'selectiveSize'
@@ -494,6 +532,81 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() imageTypeChange = new EventEmitter()
   @Input() preview: boolean;
   @Output() previewChange = new EventEmitter()
+  @Input() closable: boolean;
+  @Output() closableChange = new EventEmitter()
+  @Input() header: string;
+  @Output() headerChange = new EventEmitter()
+  @Input() acceptLabel: string;
+  @Output() acceptLabelChange = new EventEmitter()
+  @Input() rejectLabel: string;
+  @Output() rejectLabelChange = new EventEmitter()
+  @Input() acceptIcon: string;
+  @Output() acceptIconChange = new EventEmitter()
+  @Input() rejectIcon: string;
+  @Output() rejectIconChange = new EventEmitter()
+  @Input() acceptVisible: boolean;
+  @Output() acceptVisibleChange = new EventEmitter()
+  @Input() rejectVisible: boolean;
+  @Output() rejectVisibleChange = new EventEmitter()
+  @Input() acceptColor: NgColor;
+  @Output() acceptColorChange = new EventEmitter()
+  @Input() acceptAppearance: NgButtonAppearance;
+  @Output() acceptAppearanceChange = new EventEmitter()
+  @Input() buttonSize: NgSize;
+  @Output() buttonSizeChange = new EventEmitter()
+  @Input() rejectColor: NgColor;
+  @Output() rejectColorChange = new EventEmitter()
+  @Input() rejectAppearance: NgButtonAppearance;
+  @Output() rejectAppearanceChange = new EventEmitter()
+  @Input() closeOnEscape: boolean;
+  @Output() closeOnEscapeChange = new EventEmitter()
+  @Input() dismissableMask: boolean;
+  @Output() dismissableMaskChange = new EventEmitter()
+  @Input() defaultFocus: DefaultFocus;
+  @Output() defaultFocusChange = new EventEmitter()
+  @Input() blockScroll: boolean;
+  @Output() blockScrollChange = new EventEmitter()
+  @Input() draggable: boolean;
+  @Output() draggableChange = new EventEmitter()
+  @Input() resizable: boolean;
+  @Output() resizableChange = new EventEmitter()
+  @Input() modal: boolean;
+  @Output() modalChange = new EventEmitter()
+  @Input() position: NgPlace;
+  @Output() positionChange = new EventEmitter()
+  @Input() maximizable: boolean;
+  @Output() maximizableChange = new EventEmitter()
+  @Input() buttonIcon: string;
+  @Output() buttonIconChange = new EventEmitter()
+  @Input() buttonIconPos: NgIconPosition;
+  @Output() buttonIconPosChange = new EventEmitter()
+  @Input() buttonFull: boolean;
+  @Output() buttonFullChange = new EventEmitter()
+  @Input() buttonLabel: string;
+  @Output() buttonLabelChange = new EventEmitter()
+  @Input() buttonColor: NgColor;
+  @Output() buttonColorChange = new EventEmitter()
+  @Input() buttonAppearance: NgButtonAppearance;
+  @Output() buttonAppearanceChange = new EventEmitter()
+  @Input() content: string;
+  @Output() contentChange = new EventEmitter()
+  @Input() inlineMessage: string;
+  @Output() inlineMessageChange = new EventEmitter()
+  @Input() severity: NgSeverity;
+  @Output() severityChange = new EventEmitter()
+  @Input() life: number;
+  @Output() lifeChange = new EventEmitter()
+  @Input() sticky: boolean;
+  @Output() stickyChange = new EventEmitter()
+  @Input() summary: string;
+  @Output() summaryChange = new EventEmitter()
+  @Input() detail: string;
+  @Output() detailChange = new EventEmitter()
+  @Input() preventOpenDuplicates: boolean;
+  @Output() preventOpenDuplicatesChange = new EventEmitter()
+  @Input() preventDuplicates: boolean;
+  @Output() preventDuplicatesChange = new EventEmitter()
+
 
   @Input() addon: NgAddon;
   @Output() addonChange = new EventEmitter()
@@ -554,6 +667,17 @@ export class PreviewOptionsComponent implements OnInit {
       datepickerSelectionMode: ['single', 'multiple', 'range'],
       numberMode: ['decimal', 'currency'],
       fixLabelPos: ['fix-side', 'fix-top'],
+      acceptColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
+      acceptAppearance: ['basic', 'text', 'outlined', 'link'],
+      buttonSize: ['sm', 'md', 'lg'],
+      rejectColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
+      rejectAppearance: ['basic', 'text', 'outlined', 'link'],
+      defaultFocus: ['accept', 'reject'],
+      position: ['top', 'bottom', 'left', 'right', 'top-right', 'top-left', 'bottom-right', 'botto-left', 'center'],
+      buttonIconPos: ['left', 'right'],
+      buttonColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
+      buttonAppearance: ['basic', 'text', 'outlined', 'link'],
+      severity: ['success', 'error', 'info', 'warn']
     };
     for (const item of this.previewItems) {
       if (Object.keys(dropdownData).includes(item)) {

@@ -20,6 +20,7 @@ import {
 import {NgIconPosition, NgOrientation, NgPlace, NgSelectionMode, NgSize} from './offset';
 
 export type NgSeverity = 'success' | 'info' | 'warn' | 'error';
+export type DefaultFocus = 'accept' | 'reject';
 
 export interface NgToastOptions {
   severity?: NgSeverity;
@@ -66,7 +67,7 @@ export interface NgConfirmPopupOptions {
   rejectVisible?: boolean;
   acceptButtonStyleClass?: string;
   rejectButtonStyleClass?: string;
-  defaultFocus?: 'accept' | 'reject';
+  defaultFocus?: DefaultFocus;
   showTransitionOptions?: string;
   hideTransitionOptions?: string;
 
@@ -79,7 +80,7 @@ export interface NgConfirmPopupOptions {
   rtl?: boolean;
 }
 
-export interface NgConfirmOptions {
+export interface NgConfirmDialogOptions {
   header?: string;
   key?: string;
   blockScroll?: boolean;
@@ -96,7 +97,6 @@ export interface NgConfirmOptions {
   rejectVisible?: boolean;
   position?: NgPlace;
   focusTrap?: boolean;
-  appendTo?: any;
   baseZIndex?: number;
   autoZIndex?: boolean;
   breakpoints?: any;
@@ -108,7 +108,7 @@ export interface NgConfirmOptions {
   maskStyleClass?: string;
   acceptButtonStyleClass?: string;
   rejectButtonStyleClass?: string;
-  defaultFocus?: 'accept' | 'reject'
+  defaultFocus?: DefaultFocus
 
   acceptColor?: NgColor;
   acceptAppearance?: NgButtonAppearance;
@@ -137,7 +137,6 @@ export interface NgDialogOptions {
   closeOnEscape?: boolean;
   dismissableMask?: boolean;
   closable?: boolean;
-  appendTo?: any;
   style?: object;
   styleClass?: string;
   maskStyleClass?: string;

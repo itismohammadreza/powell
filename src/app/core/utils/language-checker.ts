@@ -8,6 +8,7 @@ export class LanguageChecker {
     this.document = GlobalInjector.Injector.get(DOCUMENT);
     this.translationService.onLangChange().subscribe((res: any) => {
       this._currentLang = res.lang;
+      this.document.documentElement.setAttribute('lang', this._currentLang);
       const body = this.document.body;
       if (this.fa) {
         body.style.direction = 'rtl';
