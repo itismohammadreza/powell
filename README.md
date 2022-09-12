@@ -13,8 +13,7 @@
 - [ ] **dialogs** - handle routing when dialog is open.
 - [ ] **async** - add an async @Input to button, switch, checkbox, dual-switch instead of creating new component.
   `<p-progressSpinner [style]="{width: '30px', height: '30px'}"></p-progressSpinner>`
-- [ ] **dialogForm**
-- add hook support in config (just like angular formly to implement cascade mode).
+- [ ] **dialogForm** - add hook support in config (just like angular formly to implement cascade mode).
 
 ### New
 
@@ -23,15 +22,8 @@
 - [ ] **whiteboard** - implement component.
 - [ ] **loading** - loadingWrapper component witch is wrap a component and show loading until a condition we said.
 - [ ] **table**
-- implement `jalali` and `miladi` filter.
 - add configurable caption elements (like title and global filter). plus, apply localMode in global filter also.
-- implement actions and functions to render + switch action
+- implement actions
 - check that let- variables on ng-templates are setting properly. some is missed or some is wrong.
-- implement empty message if user not provided
-- implement default table header (include a title) if user not provided
-- implement grid lines or other style classes configurations
-
-### PRIMENG ISSUES
-
-- paneStyleClass does not exist in all components that have panel. such cascadeSelect.
-- worst documentation I have ever seen. 
+- implement empty message if user not provided.
+- implement grid lines or other style classes configurations.

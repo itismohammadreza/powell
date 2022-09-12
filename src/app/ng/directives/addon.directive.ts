@@ -1,14 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  Renderer2,
-  SimpleChanges
-} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, Input, OnChanges, Output, Renderer2, SimpleChanges} from '@angular/core';
 import {NgAddon, NgAddonConfig} from '@ng/models/forms';
 import {NgSize} from "@ng/models/offset";
 
@@ -44,7 +34,7 @@ export class AddonDirective implements OnChanges {
     }
   }
 
-  applyButton(config: any, side: string) {
+  applyButton(config: NgAddonConfig, side: string) {
     const BTN = this.renderer.createElement('button') as HTMLButtonElement;
     const BTN_ICON_SPAN = this.renderer.createElement('span') as HTMLSpanElement;
     const BTN_TEXT_SPAN = this.renderer.createElement('span') as HTMLSpanElement;
@@ -89,7 +79,7 @@ export class AddonDirective implements OnChanges {
     });
   }
 
-  applyIcon(config: any, side: string) {
+  applyIcon(config: NgAddonConfig, side: string) {
     const ICON = this.renderer.createElement('i') as HTMLElement;
     const ICON_SPAN = this.renderer.createElement('span');
     const _icon = config.icon;
@@ -99,7 +89,7 @@ export class AddonDirective implements OnChanges {
     this.addToDOM(ICON_SPAN, side);
   }
 
-  applyText(config: any, side: string) {
+  applyText(config: NgAddonConfig, side: string) {
     const TEXT = this.renderer.createText(config.text || null);
     const TEXT_SPAN = this.renderer.createElement('span');
     this.renderer.addClass(TEXT_SPAN, 'p-inputgroup-addon');
@@ -130,18 +120,37 @@ export class AddonDirective implements OnChanges {
   }
 
   addToDOM(el: any, pos: string) {
+    // ##### old
+    // let target = this.el.nativeElement;
+    // if (target.parentNode.classList.contains('p-float-label')) {
+    //   target = target.parentNode;
+    // }
+    // this.renderer.addClass(target.parentNode, 'p-inputgroup');
+    // this.renderer.addClass(el, `addon-${pos}`);
+    // this.renderer.addClass(this.el.nativeElement, `has-${pos}`);
+    // if (this.addonDisabled) {
+    //   this.renderer.addClass(el, `p-disabled`);
+    // }
+    // if (pos === 'after') {
+    //   this.renderer.appendChild(target.parentNode, el);
+    // } else if (pos === 'before') {
+    //   this.renderer.insertBefore(target.parentNode, el, target);
+    // }
+    // ##### old end
     let target = this.el.nativeElement;
-    if (target.parentNode.classList.contains('p-float-label')) {
-      target = target.parentNode;
-    }
     this.renderer.addClass(target.parentNode, 'p-inputgroup');
     this.renderer.addClass(el, `addon-${pos}`);
     this.renderer.addClass(this.el.nativeElement, `has-${pos}`);
     if (this.addonDisabled) {
       this.renderer.addClass(el, `p-disabled`);
     }
+    const isFloatLabel = target.querySelector('.p-float-label') != undefined;
     if (pos === 'after') {
-      this.renderer.appendChild(target.parentNode, el);
+      if (isFloatLabel) {
+        this.renderer.appendChild(target, el);
+      } else {
+        this.renderer.insertBefore(target.parentNode, el, target.parentNode.querySelector('label'));
+      }
     } else if (pos === 'before') {
       this.renderer.insertBefore(target.parentNode, el, target);
     }
