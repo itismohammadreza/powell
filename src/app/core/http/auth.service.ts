@@ -1,29 +1,26 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from '@core/http';
 import {Router} from '@angular/router';
+import {lastValueFrom} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService extends ApiService {
-  private endpoint: string = 'auth';
+  private readonly endpoint: string = 'auth';
 
   constructor(private router: Router) {
     super();
   }
 
-  login(data: any): any {
-    return this.post(
-      `${this.endpoint}/login`,
-      data
-    ).toPromise();
+  login(data: any): Promise<any> {
+    const res = this._post<any>(`${this.endpoint}/login`, data);
+    return lastValueFrom(res);
   }
 
-  register(data: any): any {
-    return this.post(
-      `${this.endpoint}/register`,
-      data
-    ).toPromise();
+  register(data: any): Promise<any> {
+    const res = this._post(`${this.endpoint}/register`, data);
+    return lastValueFrom(res);
   }
 
   logout(): void {

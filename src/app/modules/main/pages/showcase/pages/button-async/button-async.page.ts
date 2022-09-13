@@ -29,7 +29,7 @@ export class ButtonAsyncPage {
   newColor: NgColor = 'secondary';
 
   async onClick(callback: any) {
-    await this.userService.get().toPromise();
+    await this.userService._get().toPromise();
     callback();
   }
 }

@@ -23,7 +23,7 @@ export class ApiService {
     this.baseUrl = envService.apiUrl;
   }
 
-  protected get<T>(
+  protected _get<T>(
     endpoint: string,
     options: RequestOptions = null,
     mappingKey: string = null
@@ -34,7 +34,7 @@ export class ApiService {
     })
   }
 
-  protected post<T>(
+  protected _post<T>(
     endpoint: string,
     body: any,
     options: RequestOptions = null
@@ -45,7 +45,7 @@ export class ApiService {
     })
   }
 
-  protected put<T>(
+  protected _put<T>(
     endpoint: string,
     body: any,
     options: RequestOptions = null
@@ -56,7 +56,7 @@ export class ApiService {
     })
   }
 
-  protected patch<T>(
+  protected _patch<T>(
     endpoint: string,
     body: any,
     options: RequestOptions = null
@@ -67,7 +67,7 @@ export class ApiService {
     })
   }
 
-  protected delete<T>(
+  protected _delete<T>(
     endpoint: string,
     options: RequestOptions = null
   ): Observable<T> {
@@ -77,7 +77,7 @@ export class ApiService {
     })
   }
 
-  protected customRequest<T>(url: string, method: string, body: any = null, options: RequestOptions = null): Observable<T> {
+  protected _customRequest<T>(url: string, method: string, body: any = null, options: RequestOptions = null): Observable<T> {
     switch (method.toLowerCase()) {
       case 'get':
       case 'delete':
@@ -95,7 +95,7 @@ export class ApiService {
     }
   }
 
-  protected getFormData(obj: any, excludes: string[] = []): FormData {
+  protected _getFormData(obj: any, excludes: string[] = []): FormData {
     const formData = new FormData();
     for (const key in obj) {
       const value = obj[key];

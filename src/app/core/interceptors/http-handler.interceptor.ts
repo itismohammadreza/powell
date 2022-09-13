@@ -44,7 +44,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
 
     if (shouldShowLoading) {
       this.requestsQueue.push(clonedReq);
-      this.loaderService.isLoading.next(true);
+      this.loaderService.setLoadingState(true);
     }
 
     return next.handle(clonedReq).pipe(
@@ -64,12 +64,12 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
         if (shouldShowFailure) {
           const {error, error_description} = event.error;
           this.showFailureToast(error, error_description);
-          if (error.status === 401) {
+          if (error.status === 403) {
             this.authService.logout();
           }
-          return throwError(error);
         }
         this.removeRequestFromQueue(clonedReq);
+        return throwError(event.error);
       }),
       finalize(() => {
         this.removeRequestFromQueue(clonedReq);
@@ -77,19 +77,17 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     );
   }
 
-  showSuccessToast(summary, detail) {
+  showSuccessToast(summary: string, detail: string) {
     this.overlayService.showToast({
       severity: 'success',
-      position: 'top-right',
       summary,
       detail,
     });
   }
 
-  showFailureToast(summary, detail) {
+  showFailureToast(summary: string, detail: string) {
     this.overlayService.showToast({
       severity: 'error',
-      position: 'top-right',
       summary,
       detail,
     });
@@ -123,6 +121,6 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     if (i >= 0) {
       this.requestsQueue.splice(i, 1);
     }
-    this.loaderService.isLoading.next(this.requestsQueue.length > 0);
+    this.loaderService.setLoadingState(this.requestsQueue.length > 0);
   }
 }
