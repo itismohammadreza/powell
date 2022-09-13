@@ -34,6 +34,6 @@ export class UtilsPage {
   }
 
   request() {
-    this.userService._get().subscribe(console.log);
+    this.userService.get().then(console.log);
   }
 }
