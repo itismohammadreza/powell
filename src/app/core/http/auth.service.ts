@@ -13,14 +13,14 @@ export class AuthService extends ApiService {
   }
 
   login(data: any): any {
-    return this._post(
+    return this.post(
       `${this.endpoint}/login`,
       data
     ).toPromise();
   }
 
   register(data: any): any {
-    return this._post(
+    return this.post(
       `${this.endpoint}/register`,
       data
     ).toPromise();

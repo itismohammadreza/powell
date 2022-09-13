@@ -12,6 +12,6 @@ export class UserService extends ApiService {
   }
 
   get() {
-    return this._get(this.endpoint, null);
+    return this.get(this.endpoint, null);
   }
 }
