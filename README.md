@@ -22,8 +22,8 @@
 - [ ] **jalaliDatepicker** - implement component.
 - [ ] **whiteboard** - implement component.
 - [ ] **table**
-- add configurable caption elements (like title and global filter). plus, apply localMode in global filter also.
-- implement actions
-- check that let- variables on ng-templates are setting properly. some is missed or some is wrong.
-- implement empty message if user not provided.
-- implement grid lines or other style classes configurations.
+  - add configurable caption elements (like title and global filter). plus, apply localMode in global filter also.
+  - implement actions
+  - check that let- variables on ng-templates are setting properly. some is missed or some is wrong.
+  - implement empty message if user not provided.
+  - implement grid lines or other style classes configurations.

@@ -119,7 +119,7 @@ export class AddonDirective implements OnChanges {
     target.parentNode.querySelector(`.addon-after`)?.remove();
   }
 
-  addToDOM(el: any, pos: string) {
+  addToDOM(addonEl: any, pos: string) {
     // ##### old
     // let target = this.el.nativeElement;
     // if (target.parentNode.classList.contains('p-float-label')) {
@@ -137,22 +137,17 @@ export class AddonDirective implements OnChanges {
     //   this.renderer.insertBefore(target.parentNode, el, target);
     // }
     // ##### old end
-    let target = this.el.nativeElement;
-    this.renderer.addClass(target.parentNode, 'p-inputgroup');
-    this.renderer.addClass(el, `addon-${pos}`);
+    let targetEl = this.el.nativeElement;
+    this.renderer.addClass(targetEl, 'p-inputgroup');
+    this.renderer.addClass(addonEl, `addon-${pos}`);
     this.renderer.addClass(this.el.nativeElement, `has-${pos}`);
     if (this.addonDisabled) {
-      this.renderer.addClass(el, `p-disabled`);
+      this.renderer.addClass(addonEl, `p-disabled`);
     }
-    const isFloatLabel = target.querySelector('.p-float-label') != undefined;
     if (pos === 'after') {
-      if (isFloatLabel) {
-        this.renderer.appendChild(target, el);
-      } else {
-        this.renderer.insertBefore(target.parentNode, el, target.parentNode.querySelector('label'));
-      }
+      this.renderer.appendChild(targetEl, addonEl);
     } else if (pos === 'before') {
-      this.renderer.insertBefore(target.parentNode, el, target);
+      this.renderer.insertBefore(targetEl, addonEl, targetEl.querySelector('.field'))
     }
   }
 }
