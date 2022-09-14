@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
-import {NgFixLabelPosition} from "@ng/models/forms";
+import {NgAddon, NgFixLabelPosition} from "@ng/models/forms";
 
 @Component({
   selector: 'ng-map-page',
@@ -18,6 +18,7 @@ export class MapPage {
   hint: string = '';
   rtl: boolean = true;
   labelPos: NgFixLabelPosition = 'fix-side';
+  addon: NgAddon;
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;

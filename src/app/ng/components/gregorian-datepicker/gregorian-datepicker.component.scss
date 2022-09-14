@@ -2,49 +2,11 @@
   .gregorian-datepicker-wrapper {
     display: flex;
     position: relative;
-    direction: ltr;
-
-    .p-datepicker {
-      direction: ltr;
-      text-align: center;
-    }
 
     p-calendar,
     .p-calendar,
     .p-inputtext {
       width: 100%;
-    }
-
-    .field {
-      flex-grow: 1;
-
-      &.p-input-icon-right {
-        .p-inputtext {
-          padding-right: 2rem;
-        }
-      }
-
-      &.p-input-icon-left {
-        .p-inputtext {
-          padding-left: 2rem;
-        }
-      }
-
-      p-calendar {
-        &.has-before {
-          .p-calendar {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-          }
-        }
-
-        &.has-after {
-          .p-calendar {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-          }
-        }
-      }
     }
 
     i {
@@ -56,142 +18,198 @@
       top: calc(100% + 0.25rem);
     }
 
+    &.label-fix-top {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+
+    &.label-fix-side {
+      flex-direction: row-reverse;
+      align-items: center;
+
+      .fix-label {
+        margin-bottom: 0;
+      }
+    }
+
+    .field {
+      width: auto;
+      flex-grow: 1;
+      align-self: stretch;
+      display: inline-flex;
+
+      > div {
+        display: block;
+        flex-grow: 1;
+
+        &.p-input-icon-right .p-calendar .p-inputtext {
+          padding-right: 2.25rem;
+        }
+
+        &.p-input-icon-left .p-calendar .p-inputtext {
+          padding-left: 2.25rem;
+        }
+      }
+
+      &.has-before {
+        .p-calendar .p-inputtext,
+        .p-datepicker-inline {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+
+      &.has-after {
+        .p-calendar .p-inputtext,
+        .p-datepicker-inline {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+    }
+
+    .p-datepicker-group {
+      direction: ltr;
+      text-align: center;
+    }
+
     &.ltr {
+      direction: ltr;
+
       .message {
         left: 0;
       }
 
-      p-calendar {
-        &.has-before {
-          .p-inputtext {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-          }
+      .fix-label {
+        margin-right: 1rem;
+      }
 
-          .p-calendar-w-btn .p-inputtext {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-          }
-        }
-
-        &.has-after {
-          .p-inputtext {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-          }
-
-          .p-calendar-w-btn .p-button {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+      .p-float-label {
+        &.p-input-icon-left {
+          label {
+            left: 2.25rem;
           }
         }
       }
 
-      .field.has-text-outline {
-        &.p-input-icon-right {
-          i {
-            right: calc(0.75rem + 3rem)
+      &.clearable {
+        .p-input-icon-right {
+          .p-calendar-clear-icon {
+            right: 2.25rem;
+            left: auto;
+          }
+
+          .p-calendar .p-inputtext {
+            padding-right: 3.75rem;
+          }
+        }
+      }
+
+      &.has-icon {
+        .has-after {
+          .p-calendar .p-datepicker-trigger {
+            border-radius: 0;
+          }
+        }
+
+        .p-input-icon-right > i {
+          right: 3.75rem;
+        }
+
+        &.clearable {
+          .p-calendar-clear-icon {
+            right: 3.25rem;
+          }
+
+          .p-input-icon-right {
+            .p-calendar-clear-icon {
+              right: 5.25rem;
+            }
           }
         }
       }
     }
 
     &.rtl {
-      .p-calendar,
-      label,
-      .message {
-        direction: rtl;
-      }
-
-      .p-inputtext {
-        text-align: right;
-      }
-
-      .field {
-        &.p-float-label {
-          label {
-            right: 0.5rem;
-            left: auto;
-          }
-
-          &.p-input-icon-right {
-            label {
-              right: 2rem;
-            }
-          }
-        }
-      }
+      direction: rtl;
 
       .message {
         right: 0;
       }
 
-      .p-calendar-w-btn {
-        .p-inputtext {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-          border-top-right-radius: var(--border-radius);
-          border-bottom-right-radius: var(--border-radius);
-        }
-
-        .p-button {
-          border-top-left-radius: var(--border-radius);
-          border-bottom-left-radius: var(--border-radius);
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-        }
-      }
-
-      p-calendar {
-        &.has-after {
-          .p-inputtext {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-          }
-
-          .p-calendar-w-btn {
-            .p-inputtext {
-              border-radius: 0;
-            }
-          }
-        }
-
-        &.has-before {
-          .p-calendar-w-btn {
-            .p-button {
-              border-radius: 0;
-            }
-          }
-        }
-      }
-
       .field {
-        &.p-float-label {
-          label {
-            right: 0.5rem;
-            left: auto;
-          }
+        flex-direction: row-reverse;
+      }
+
+      .fix-label {
+        margin-left: 1rem;
+      }
+
+      .p-float-label {
+        label {
+          right: 0.75rem;
+          left: auto;
         }
 
-        &.has-toggle-button {
-          &.p-input-icon-left {
-            i {
-              left: calc(0.75rem + 3rem)
-            }
+        &.p-input-icon-right {
+          label {
+            right: 2.25rem;
           }
         }
       }
 
-
-      .p-calendar-clearable {
-        .p-inputtext {
+      &.clearable {
+        .p-calendar .p-inputtext {
           padding-right: 0.75rem;
-          padding-left: 2.5rem;
+          padding-left: 2.25rem;
         }
 
         .p-calendar-clear-icon {
           right: auto;
           left: 0.75rem;
+        }
+
+        .p-input-icon-left {
+          .p-calendar-clear-icon {
+            left: 2.25rem;
+            right: auto;
+          }
+
+          .p-calendar .p-inputtext {
+            padding-left: 3.75rem;
+          }
+        }
+      }
+
+      &.has-icon {
+        .has-before {
+          .p-calendar .p-datepicker-trigger {
+            border-radius: 0;
+          }
+        }
+
+        .p-inputtext {
+          border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .p-datepicker-trigger {
+          border-radius: var(--border-radius) 0 0 var(--border-radius);
+        }
+
+        .p-input-icon-left > i {
+          left: 3.75rem;
+        }
+
+        &.clearable {
+          .p-calendar-clear-icon {
+            left: 3.25rem;
+          }
+
+          .p-input-icon-left {
+            .p-calendar-clear-icon {
+              left: 5.25rem;
+            }
+          }
         }
       }
     }

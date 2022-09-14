@@ -2,31 +2,53 @@
   .rating-wrapper {
     display: flex;
     position: relative;
-    direction: ltr;
-
-    .field {
-      flex-grow: 1;
-    }
 
     .message {
       position: absolute;
       top: calc(100% + 0.25rem);
     }
 
+    &.label-fix-top {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+
+    &.label-fix-side {
+      flex-direction: row-reverse;
+      align-items: center;
+
+      .fix-label {
+        margin-bottom: 0;
+      }
+    }
+
+    .field {
+      width: auto;
+      flex-grow: 1;
+      align-self: stretch;
+    }
+
     &.ltr {
+      direction: ltr;
+
       .message {
         left: 0;
+      }
+
+      .fix-label {
+        margin-right: 1rem;
       }
     }
 
     &.rtl {
-      label,
-      .message {
-        direction: rtl;
-      }
+      direction: rtl;
 
       .message {
         right: 0;
+      }
+
+      .fix-label {
+        margin-left: 1rem;
       }
 
       .p-rating {

@@ -1,59 +1,48 @@
 <div [ngClass]="{
-      rtl: rtl,
-      ltr: !rtl,
-      'flex-column-reverse': labelPos == 'fix-top',
-      'align-items-center': labelPos == 'fix-side',
-      'align-items-end': labelPos == 'fix-top' && rtl,
-      'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side',
+      'label-float': labelPos == 'float'
     }" class="input-textarea-wrapper">
-  <div
-    [ngClass]="{
-      'w-100': labelPos == 'fix-top',
+  <div [ngAddon]="addon" [addonDisabled]="disabled" class="field">
+    <div [ngClass]="{
       'p-float-label': labelPos == 'float',
-      'p-input-icon-left': !addon && icon && iconPos == 'left',
-      'p-input-icon-right': !addon && icon && iconPos == 'right',
+      'p-input-icon-left': icon && iconPos == 'left',
+      'p-input-icon-right': icon && iconPos == 'right',
       'p-input-filled': filled
-    }"
-    class="field">
-    <i *ngIf="icon && !addon" [ngClass]="icon"></i>
-    <textarea
-      pInputTextarea
-      [(ngModel)]="value"
-      [ngAddon]="addon"
-      [addonDisabled]="disabled"
-      [attr.id]="inputId"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [attr.maxlength]="maxlength"
-      [attr.placeholder]="placeholder"
-      [autoResize]="autoResize"
-      [cols]="cols"
-      [disabled]="disabled"
-      [readonly]="readonly"
-      [rows]="rows"
-      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
-      (blur)="_onBlur()"
-      (change)="_onChange($event)"
-      (focus)="emitter('onFocus', $event)"
-      (input)="_onInput($event)"
-      (keydown)="_onKeyDown($event)"
-      (keyup)="_onKeyUp($event)"
-      (onResize)="_onResize($event)"
-    ></textarea>
-    <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
-      {{ label }}
-    </label>
+    }">
+      <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
+      <textarea
+        pInputTextarea
+        [(ngModel)]="value"
+        [attr.id]="inputId"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [attr.maxlength]="maxlength"
+        [attr.placeholder]="placeholder"
+        [autoResize]="autoResize"
+        [cols]="cols"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [rows]="rows"
+        (blur)="_onBlur()"
+        (change)="_onChange($event)"
+        (focus)="emitter('onFocus', $event)"
+        (input)="_onInput($event)"
+        (keydown)="_onKeyDown($event)"
+        (keyup)="_onKeyUp($event)"
+        (onResize)="_onResize($event)"
+      ></textarea>
+      <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
+        {{ label }}
+      </label>
+    </div>
   </div>
   <label
+    class="fix-label"
     *ngIf="label && labelPos != 'float'"
     [attr.for]="inputId"
-    [ngClass]="{
-      'mb-0': labelPos == 'fix-side',
-      'ml-4': rtl,
-      'mr-4': !rtl,
-      'text-muted': disabled
-    }"
+    [class.p-disabled]="disabled"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>

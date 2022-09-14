@@ -23,8 +23,8 @@ export class FilePickerPage {
   accept: string = 'image/*';
   disabled: boolean = false;
   auto: boolean = false;
-  maxFileSize: number = 5000;
-  fileLimit: number = 100;
+  maxFileSize: number = 1000000;
+  fileLimit: number = 0;
   previewWidth: number = 50;
   chooseLabel: string = 'انتخاب';
   uploadLabel: string = 'آپلود';

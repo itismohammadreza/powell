@@ -26,7 +26,6 @@ export class ColorPickerPage {
   placeholder: string = '';
   readonly: boolean = false;
   disabled: boolean = false;
-  addon: NgAddon;
   // native properties
   maxlength: number = 7;
   inline: boolean = false;

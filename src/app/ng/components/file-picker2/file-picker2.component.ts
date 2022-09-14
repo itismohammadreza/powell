@@ -125,10 +125,11 @@ export class FilePicker2Component
 
   async onSingleSelect(event) {
     const file: File = event.target.files[0];
-    this.filesToShow.push({name: file.name, base64: await this.fileToBase64(file)});
+    const base64 = await this.fileToBase64(file);
+    this.filesToShow.push({name: file.name, base64});
     this.chooseLabel = file.name;
     if (this.resultType == 'base64') {
-      this.filesToEmit.push(await this.fileToBase64(file));
+      this.filesToEmit.push(base64);
     } else if (this.resultType == 'file') {
       this.filesToEmit.push(file);
     }
@@ -145,17 +146,22 @@ export class FilePicker2Component
   }
 
   async onMultipleSelect(event) {
-    if (this.filesToEmit.length < this.fileLimit) {
-      const file: File = event.target.files[0];
-      this.filesToShow.push({name: file.name, base64: await this.fileToBase64(file)});
-      if (this.resultType == 'base64') {
-        this.filesToEmit.push(await this.fileToBase64(file));
-      } else if (this.resultType == 'file') {
-        this.filesToEmit.push(file);
-      }
-      this.onSelect.emit(this.filesToEmit);
-      this.onModelChange(this.filesToEmit);
+    if (this.filesToEmit.length > this.fileLimit) {
+      return
     }
+    const file: File = event.target.files[0];
+    const base64 = await this.fileToBase64(file);
+    if (this.filesToShow.findIndex(f => f.base64 == base64) > -1) {
+      return
+    }
+    this.filesToShow.push({name: file.name, base64});
+    if (this.resultType == 'base64') {
+      this.filesToEmit.push(base64);
+    } else if (this.resultType == 'file') {
+      this.filesToEmit.push(file);
+    }
+    this.onSelect.emit(this.filesToEmit);
+    this.onModelChange(this.filesToEmit);
   }
 
   onMultipleDelete(event, index: number) {
@@ -288,7 +294,8 @@ export class FilePicker2Component
     for (const error in this.errors) {
       if (this.showError(error)) {
         hasError = true
-      };
+      }
+      ;
     }
     return !hasError;
   }

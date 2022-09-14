@@ -1,82 +1,74 @@
 <div [ngClass]="{
-  rtl: rtl,
-  ltr: !rtl,
-  'flex-column-reverse': labelPos == 'fix-top',
-  'align-items-center': labelPos == 'fix-side',
-  'align-items-end': labelPos == 'fix-top' && rtl,
-  'flex-row': labelPos == 'fix-side' && rtl,
-  'flex-row-reverse': labelPos == 'fix-side' && !rtl
-}" class="tree-wrapper">
-  <div [ngClass]="{ 'w-100': labelPos == 'fix-top'}" class="field">
-    <p-tree
-      [ngAddon]="addon"
-      [id]="inputId"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [selectionMode]="selectionMode"
-      [value]="items"
-      [selection]="selection"
-      [style]="style"
-      [styleClass]="styleClass"
-      [contextMenu]="contextMenu"
-      [layout]="layout"
-      [draggableScope]="draggableScope"
-      [droppableScope]="droppableScope"
-      [draggableNodes]="draggableNodes"
-      [droppableNodes]="droppableNodes"
-      [metaKeySelection]="metaKeySelection"
-      [propagateSelectionUp]="propagateSelectionUp"
-      [propagateSelectionDown]="propagateSelectionDown"
-      [loading]="loading"
-      [loadingIcon]="loadingIcon"
-      [emptyMessage]="emptyMessage"
-      [validateDrop]="validateDrop"
-      [filter]="filter"
-      [filterBy]="filterBy"
-      [filterMode]="filterMode"
-      [filterPlaceholder]="filterPlaceHolder"
-      [filterLocale]="filterLocale"
-      [scrollHeight]="scrollHeight"
-      [virtualScroll]="virtualScroll"
-      [virtualScrollItemSize]="virtualScrollItemSize"
-      [virtualScrollOptions]="virtualScrollOptions"
-      [lazy]="lazy"
-      [trackBy]="trackBy"
-      [indentation]="indentation"
-      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
-      (selectionChange)="_onSelectionChange($event)"
-      (onNodeSelect)="emitter('onNodeSelect',$event)"
-      (onNodeUnselect)="emitter('onNodeUnselect',$event)"
-      (onNodeExpand)="emitter('onNodeExpand', $event)"
-      (onNodeCollapse)="emitter('onNodeCollapse', $event)"
-      (onNodeContextMenuSelect)="emitter('onNodeContextMenuSelect', $event)"
-      (onNodeDrop)="emitter('onNodeDrop', $event)"
-      (onFilter)="emitter('onFilter', $event)"
-      (onLazyLoad)="emitter('onLazyLoad', $event)"
-      (onScroll)="emitter('onScroll', $event)"
-      (onScrollIndexChange)="emitter('onScrollIndexChange', $event)">
-      <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
-        <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
-        <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="empty" let-item *ngIf="emptyTemplate">
-        <ng-container *ngTemplateOutlet="emptyTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="loader" let-item *ngIf="loaderTemplate">
-        <ng-container *ngTemplateOutlet="loaderTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-    </p-tree>
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side'
+    }" class="tree-wrapper">
+  <div [ngAddon]="addon" class="field">
+    <div>
+      <p-tree
+        [id]="inputId"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [selectionMode]="selectionMode"
+        [value]="items"
+        [selection]="selection"
+        [style]="style"
+        [styleClass]="styleClass"
+        [contextMenu]="contextMenu"
+        [layout]="layout"
+        [draggableScope]="draggableScope"
+        [droppableScope]="droppableScope"
+        [draggableNodes]="draggableNodes"
+        [droppableNodes]="droppableNodes"
+        [metaKeySelection]="metaKeySelection"
+        [propagateSelectionUp]="propagateSelectionUp"
+        [propagateSelectionDown]="propagateSelectionDown"
+        [loading]="loading"
+        [loadingIcon]="loadingIcon"
+        [emptyMessage]="emptyMessage"
+        [validateDrop]="validateDrop"
+        [filter]="filter"
+        [filterBy]="filterBy"
+        [filterMode]="filterMode"
+        [filterPlaceholder]="filterPlaceHolder"
+        [filterLocale]="filterLocale"
+        [scrollHeight]="scrollHeight"
+        [virtualScroll]="virtualScroll"
+        [virtualScrollItemSize]="virtualScrollItemSize"
+        [virtualScrollOptions]="virtualScrollOptions"
+        [lazy]="lazy"
+        [trackBy]="trackBy"
+        [indentation]="indentation"
+        (selectionChange)="_onSelectionChange($event)"
+        (onNodeSelect)="emitter('onNodeSelect',$event)"
+        (onNodeUnselect)="emitter('onNodeUnselect',$event)"
+        (onNodeExpand)="emitter('onNodeExpand', $event)"
+        (onNodeCollapse)="emitter('onNodeCollapse', $event)"
+        (onNodeContextMenuSelect)="emitter('onNodeContextMenuSelect', $event)"
+        (onNodeDrop)="emitter('onNodeDrop', $event)"
+        (onFilter)="emitter('onFilter', $event)"
+        (onLazyLoad)="emitter('onLazyLoad', $event)"
+        (onScroll)="emitter('onScroll', $event)"
+        (onScrollIndexChange)="emitter('onScrollIndexChange', $event)">
+        <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
+          <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
+          <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="empty" let-item *ngIf="emptyTemplate">
+          <ng-container *ngTemplateOutlet="emptyTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="loader" let-item *ngIf="loaderTemplate">
+          <ng-container *ngTemplateOutlet="loaderTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+      </p-tree>
+    </div>
   </div>
   <label
+    class="fix-label"
     *ngIf="label"
     [attr.for]="inputId"
-    [ngClass]="{
-    'mb-0': labelPos == 'fix-side',
-    'ml-4': rtl,
-    'mr-4': !rtl
-  }"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>

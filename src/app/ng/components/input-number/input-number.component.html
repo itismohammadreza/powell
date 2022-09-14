@@ -1,83 +1,77 @@
 <div [ngClass]="{
-      rtl: rtl,
-      ltr: !rtl,
-      'flex-column-reverse': labelPos == 'fix-top',
-      'align-items-center': labelPos == 'fix-side',
-      'align-items-end': labelPos == 'fix-top' && rtl,
-      'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side',
+      'label-float': labelPos == 'float',
+      'clearable': showClear,
+      'buttons-stacked': showButtons && buttonLayout == 'stacked',
+      'buttons-horizontal': showButtons && buttonLayout == 'horizontal',
+      'buttons-vertical': showButtons && buttonLayout == 'vertical'
     }" class="input-number-wrapper">
-  <div [ngClass]="{
-      'w-100': labelPos == 'fix-top',
+  <div [ngAddon]="addon" [addonDisabled]="disabled" [addonSize]="inputSize" class="field">
+    <div [ngClass]="{
       'p-float-label': labelPos == 'float',
-      'p-input-icon-left': !addon && icon && iconPos == 'left',
-      'p-input-icon-right': !addon && icon && iconPos == 'right',
+      'p-input-icon-left': icon && iconPos == 'left',
+      'p-input-icon-right': icon && iconPos == 'right',
       'p-inputtext-sm': inputSize == 'sm',
       'p-inputtext-lg': inputSize == 'lg',
       'p-input-filled': filled
-    }" class="field">
-    <i *ngIf="icon && !addon && !showClear && !showButtons" [ngClass]="icon"></i>
-    <p-inputNumber
-      [(ngModel)]="value"
-      [ngAddon]="!showButtons && addon"
-      [addonDisabled]="disabled"
-      [addonSize]="inputSize"
-      [inputId]="inputId"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [format]="format"
-      [showButtons]="showButtons"
-      [buttonLayout]="buttonLayout"
-      [incrementButtonClass]="incrementButtonClass"
-      [decrementButtonClass]="decrementButtonClass"
-      [incrementButtonIcon]="incrementButtonIcon"
-      [decrementButtonIcon]="decrementButtonIcon"
-      [locale]="locale"
-      [localeMatcher]="localeMatcher"
-      [mode]="mode"
-      [prefix]="prefix"
-      [suffix]="suffix"
-      [currency]="currency"
-      [currencyDisplay]="currencyDisplay"
-      [useGrouping]="useGrouping"
-      [minFractionDigits]="minFractionDigits"
-      [maxFractionDigits]="maxFractionDigits"
-      [min]="min"
-      [max]="max"
-      [step]="step"
-      [allowEmpty]="allowEmpty"
-      [style]="style"
-      [styleClass]="styleClass"
-      [inputStyle]="inputStyle"
-      [inputStyleClass]="inputStyleClass"
-      [placeholder]="placeholder"
-      [size]="size"
-      [maxlength]="maxlength"
-      [tabindex]="tabindex"
-      [disabled]="disabled"
-      [readonly]="readonly"
-      [title]="title"
-      [autocomplete]="autocomplete"
-      [showClear]="showClear"
-      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
-      (onBlur)="_onBlur()"
-      (onFocus)="emitter('onFocus',$event)"
-      (onInput)="_onInput($event)"
-      (onClear)="_onClear()"
-    ></p-inputNumber>
-    <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
-      {{ label }}
-    </label>
+    }">
+      <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
+      <p-inputNumber
+        [(ngModel)]="value"
+        [inputId]="inputId"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [format]="format"
+        [showButtons]="showButtons"
+        [buttonLayout]="buttonLayout"
+        [incrementButtonClass]="incrementButtonClass"
+        [decrementButtonClass]="decrementButtonClass"
+        [incrementButtonIcon]="incrementButtonIcon"
+        [decrementButtonIcon]="decrementButtonIcon"
+        [locale]="locale"
+        [localeMatcher]="localeMatcher"
+        [mode]="mode"
+        [prefix]="prefix"
+        [suffix]="suffix"
+        [currency]="currency"
+        [currencyDisplay]="currencyDisplay"
+        [useGrouping]="useGrouping"
+        [minFractionDigits]="minFractionDigits"
+        [maxFractionDigits]="maxFractionDigits"
+        [min]="min"
+        [max]="max"
+        [step]="step"
+        [allowEmpty]="allowEmpty"
+        [style]="style"
+        [styleClass]="styleClass"
+        [inputStyle]="inputStyle"
+        [inputStyleClass]="inputStyleClass"
+        [placeholder]="placeholder"
+        [size]="size"
+        [maxlength]="maxlength"
+        [tabindex]="tabindex"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [title]="title"
+        [autocomplete]="autocomplete"
+        [showClear]="showClear"
+        (onBlur)="_onBlur()"
+        (onFocus)="emitter('onFocus',$event)"
+        (onInput)="_onInput($event)"
+        (onClear)="_onClear()"
+      ></p-inputNumber>
+      <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
+        {{ label }}
+      </label>
+    </div>
   </div>
   <label
+    class="fix-label"
     *ngIf="label && labelPos != 'float'"
     [attr.for]="inputId"
-    [ngClass]="{
-      'mb-0': labelPos == 'fix-side',
-      'ml-4': rtl,
-      'mr-4': !rtl,
-      'text-muted': disabled
-    }"
+    [class.p-disabled]="disabled"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>

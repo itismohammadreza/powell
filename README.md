@@ -8,6 +8,8 @@
 
 ### Feature
 
+change label width to minWidth
+add addon outputs to components
 - [ ] **all** - handle rtl direction in panels when append them to body. from component take a querySelector to panel
   and add a class to it.
 - [ ] **all** - manage addon.

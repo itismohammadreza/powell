@@ -1,18 +1,10 @@
 <div [ngClass]="{
-      rtl: rtl,
-      ltr: !rtl,
-      'flex-column-reverse': labelPos == 'fix-top',
-      'align-items-center': labelPos == 'fix-side',
-      'align-items-end': labelPos == 'fix-top' && rtl,
-      'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side'
     }" class="file-picker-wrapper">
-  <div
-    [ngClass]="{
-      'w-100': labelPos == 'fix-top',
-      'ng-invalid ng-dirty': isInvalid()
-    }"
-    class="field">
+  <div [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }" class="field">
     <div class="file-picker-single-wrapper" *ngIf="!multiple">
       <input
         class="sr-only"
@@ -66,13 +58,10 @@
     </div>
   </div>
   <label
+    class="fix-label"
     *ngIf="label"
-    [ngClass]="{
-      'mb-0': labelPos == 'fix-side',
-      'ml-4': rtl,
-      'mr-4': !rtl,
-      'text-muted': disabled
-    }"
+    [attr.for]="inputId"
+    [class.p-disabled]="disabled"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>

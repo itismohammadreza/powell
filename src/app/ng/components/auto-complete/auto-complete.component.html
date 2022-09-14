@@ -4,12 +4,10 @@
       'label-fix-top': labelPos == 'fix-top',
       'label-fix-side': labelPos == 'fix-side',
       'label-float': labelPos == 'float',
+      'clearable': showClear,
       'has-dropdown': dropdown
     }" class="auto-complete-wrapper">
-  <div [ngAddon]="addon"
-       [addonDisabled]="disabled"
-       [addonSize]="inputSize" class="field">
-
+  <div [ngAddon]="addon" [addonDisabled]="disabled" [addonSize]="inputSize" class="field">
     <div [ngClass]="{
       'p-float-label': labelPos == 'float',
       'p-input-icon-left': icon && iconPos == 'left',
@@ -18,7 +16,7 @@
       'p-inputtext-lg': inputSize == 'lg',
       'p-input-filled': filled
     }">
-      <i *ngIf="icon" [ngClass]="icon"></i>
+      <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
       <p-autoComplete
         [(ngModel)]="value"
         [inputId]="inputId"
@@ -66,8 +64,6 @@
         [virtualScroll]="virtualScroll"
         [virtualScrollItemSize]="virtualScrollItemSize"
         [lazy]="lazy"
-        (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-        (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
         (completeMethod)="_completeMethod($event)"
         (onFocus)="emitter('onFocus', $event)"
         (onBlur)="_onBlur()"
@@ -98,22 +94,16 @@
           <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
         </ng-template>
       </p-autoComplete>
-      <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
+      <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
         {{ label }}
       </label>
     </div>
-
   </div>
-
   <label
+    class="fix-label"
     *ngIf="label && labelPos != 'float'"
     [attr.for]="inputId"
-    [ngClass]="{
-      'mb-0': labelPos == 'fix-side',
-      'ml-4': rtl,
-      'mr-4': !rtl,
-      'text-muted': disabled
-    }"
+    [class.p-disabled]="disabled"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>

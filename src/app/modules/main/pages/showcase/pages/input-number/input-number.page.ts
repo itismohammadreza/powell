@@ -41,7 +41,7 @@ export class InputNumberPage {
   currency: NgCurrency;
   currencyDisplay: NgCurrencyDisplay = 'symbol';
   useGrouping: boolean = true;
-  min: number = 5;
+  min: number = 0;
   max: number = 100;
   step: number = 1;
   allowEmpty: boolean = true;

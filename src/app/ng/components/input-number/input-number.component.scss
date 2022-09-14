@@ -2,44 +2,11 @@
   .input-number-wrapper {
     display: flex;
     position: relative;
-    direction: ltr;
 
     p-inputNumber,
     .p-inputnumber,
     .p-inputtext {
       width: 100%;
-    }
-
-    .field {
-      flex-grow: 1;
-
-      &.p-input-icon-right {
-        .p-inputtext {
-          padding-right: 2rem;
-        }
-      }
-
-      &.p-input-icon-left {
-        .p-inputtext {
-          padding-left: 2rem;
-        }
-      }
-
-      p-inputNumber {
-        &.has-before {
-          .p-inputnumber {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-          }
-        }
-
-        &.has-after {
-          .p-inputnumber {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-          }
-        }
-      }
     }
 
     i {
@@ -51,23 +18,172 @@
       top: calc(100% + 0.25rem);
     }
 
+    &.label-fix-top {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+
+    &.label-fix-side {
+      flex-direction: row-reverse;
+      align-items: center;
+
+      .fix-label {
+        margin-bottom: 0;
+      }
+    }
+
+    .field {
+      width: auto;
+      flex-grow: 1;
+      align-self: stretch;
+      display: inline-flex;
+
+      > div {
+        display: block;
+        flex-grow: 1;
+
+        &.p-input-icon-right .p-inputnumber .p-inputtext {
+          padding-right: 2.25rem;
+        }
+
+        &.p-input-icon-left .p-inputnumber .p-inputtext {
+          padding-left: 2.25rem;
+        }
+      }
+
+
+      &.has-before .p-inputnumber .p-inputtext {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      &.has-after .p-inputnumber .p-inputtext {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+
+    &.buttons-vertical {
+      &.clearable .p-inputnumber .p-inputtext,
+      .p-input-icon-right .p-inputnumber .p-inputtext,
+      .p-input-icon-left .p-inputnumber .p-inputtext {
+        padding-right: 0.75rem !important;
+        padding-left: 0.75rem !important;
+      }
+
+      .has-after {
+        .p-inputnumber-button-up {
+          border-top-right-radius: 0;
+        }
+
+        .p-inputnumber-button-down {
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      .has-before {
+        .p-inputnumber-button-up {
+          border-top-left-radius: 0;
+        }
+
+        .p-inputnumber-button-down {
+          border-bottom-left-radius: 0;
+        }
+      }
+    }
+
+    &.buttons-horizontal {
+      .has-after {
+        .p-inputnumber-button-up {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      .has-before {
+        .p-inputnumber-button-down {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+    }
+
     &.ltr {
+      direction: ltr;
+
       .message {
         left: 0;
       }
 
-      p-inputNumber {
-        &.has-before {
-          .p-inputnumber-input {
-            border-radius: 0
+      .fix-label {
+        margin-right: 1rem;
+      }
+
+      .p-float-label {
+        &.p-input-icon-left {
+          label {
+            left: 2.25rem;
           }
         }
+      }
 
-        &.has-after {
-          .p-inputnumber-buttons-stacked {
-            .p-inputnumber-button-up,
-            .p-inputnumber-button-down {
-              border-radius: 0;
+      &.clearable {
+        .p-input-icon-right {
+          .p-inputnumber-clear-icon {
+            right: 2.25rem;
+            left: auto;
+          }
+
+          .p-inputnumber .p-inputtext {
+            padding-right: 3.75rem;
+          }
+        }
+      }
+
+      &.buttons-stacked {
+        .has-after {
+          .p-inputnumber-button-up {
+            border-top-right-radius: 0;
+          }
+
+          .p-inputnumber-button-down {
+            border-bottom-right-radius: 0;
+          }
+        }
+      }
+
+      &.buttons-stacked,
+      &.buttons-horizontal {
+        .p-input-icon-right > i {
+          right: 3.75rem;
+        }
+
+        &.clearable {
+          .p-inputnumber-clear-icon {
+            right: 3.75rem;
+          }
+
+          .p-input-icon-right {
+            .p-inputnumber-clear-icon {
+              right: 5.25rem;
+            }
+          }
+        }
+      }
+
+      &.buttons-horizontal {
+        .p-input-icon-left > i {
+          left: 3.75rem;
+        }
+
+        .p-float-label {
+          label {
+            left: 3.75rem;
+          }
+
+          &.p-input-icon-left {
+            label {
+              left: 5.25rem;
             }
           }
         }
@@ -75,50 +191,69 @@
     }
 
     &.rtl {
-      .p-inputnumber,
-      label,
+      direction: rtl;
+
       .message {
-        direction: rtl;
+        right: 0;
       }
 
       .field {
-        &.p-float-label {
+        flex-direction: row-reverse;
+      }
+
+      .fix-label {
+        margin-left: 1rem;
+      }
+
+      .p-float-label {
+        label {
+          right: 0.75rem;
+          left: auto;
+        }
+
+        &.p-input-icon-right {
           label {
-            right: 0.5rem;
-            left: auto;
-          }
-
-          &.p-input-icon-right {
-            label {
-              right: 2rem;
-            }
+            right: 2.25rem;
           }
         }
       }
 
-      p-inputNumber {
-        &.has-before {
-          .p-inputnumber-input {
-            border-radius: 0
-          }
+      &.clearable {
+        .p-inputnumber .p-inputtext {
+          padding-right: 0.75rem;
+          padding-left: 2.25rem;
         }
 
-        &.has-after {
-          .p-inputnumber-buttons-stacked {
-            .p-inputnumber-button-up,
-            .p-inputnumber-button-down {
-              border-radius: 0;
-            }
+        .p-inputnumber-clear-icon {
+          right: auto;
+          left: 0.75rem;
+        }
+
+        .p-input-icon-left {
+          .p-inputnumber-clear-icon {
+            left: 2.25rem;
+            right: auto;
+          }
+
+          .p-inputnumber .p-inputtext {
+            padding-left: 3.75rem;
           }
         }
       }
 
-      .p-inputnumber-buttons-stacked {
+      &.buttons-stacked {
+        .has-before {
+          .p-inputnumber-button-up {
+            border-top-left-radius: 0;
+          }
+
+          .p-inputnumber-button-down {
+            border-bottom-left-radius: 0;
+          }
+        }
+
         .p-inputnumber-input {
-          border-top-right-radius: var(--border-radius);
-          border-bottom-right-radius: var(--border-radius);
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
+          border-radius: 0 var(--border-radius) var(--border-radius) 0;
         }
 
         .p-inputnumber-button-up {
@@ -132,31 +267,49 @@
         }
       }
 
-      .p-inputnumber-buttons-horizontal {
-        direction: ltr;
-      }
-
-      .p-inputnumber-clearable {
-        .p-inputtext {
-          padding-right: 0.75rem;
-          padding-left: 2.5rem;
+      &.buttons-stacked,
+      &.buttons-horizontal {
+        .p-input-icon-left > i {
+          left: 3.75rem;
         }
 
-        .p-inputnumber-clear-icon {
-          right: auto;
-          left: 0.75rem;
-        }
-
-        .p-inputnumber-buttons-stacked,
-        .p-inputnumber-buttons-horizontal {
+        &.clearable {
           .p-inputnumber-clear-icon {
-            left: calc(0.75rem + 3rem);
+            left: 3.75rem;
+          }
+
+          .p-input-icon-left {
+            .p-inputnumber-clear-icon {
+              left: 5.25rem;
+            }
           }
         }
       }
 
-      .message {
-        right: 0;
+      &.buttons-horizontal {
+        .p-inputnumber-button-up {
+          order: 1;
+        }
+
+        .p-inputnumber-button-down {
+          order: 3;
+        }
+
+        .p-input-icon-right > i {
+          right: 3.75rem;
+        }
+
+        .p-float-label {
+          label {
+            right: 3.75rem;
+          }
+
+          &.p-input-icon-right {
+            label {
+              right: 5.25rem;
+            }
+          }
+        }
       }
     }
   }

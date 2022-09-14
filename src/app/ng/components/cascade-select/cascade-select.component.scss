@@ -2,44 +2,11 @@
   .cascade-select-wrapper {
     display: flex;
     position: relative;
-    direction: ltr;
 
     p-cascadeSelect,
     .p-cascadeselect,
-    .p-inputwrapper,  {
+    .p-inputtext {
       width: 100%;
-    }
-
-    .field {
-      flex-grow: 1;
-
-      &.p-input-icon-right {
-        .p-cascadeselect-label {
-          padding-right: 2rem;
-        }
-      }
-
-      &.p-input-icon-left {
-        .p-cascadeselect-label {
-          padding-left: 2rem;
-        }
-      }
-
-      p-cascadeSelect {
-        &.has-before {
-          .p-cascadeselect {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-          }
-        }
-
-        &.has-after {
-          .p-cascadeselect {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-          }
-        }
-      }
     }
 
     i {
@@ -51,77 +18,152 @@
       top: calc(100% + 0.25rem);
     }
 
+    &.label-fix-top {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+
+    &.label-fix-side {
+      flex-direction: row-reverse;
+      align-items: center;
+
+      .fix-label {
+        margin-bottom: 0;
+      }
+    }
+
+    .field {
+      width: auto;
+      flex-grow: 1;
+      align-self: stretch;
+      display: inline-flex;
+
+      > div {
+        display: block;
+        flex-grow: 1;
+
+        &.p-input-icon-right .p-cascadeselect .p-inputtext {
+          padding-right: 2.25rem;
+        }
+
+        &.p-input-icon-left .p-cascadeselect .p-inputtext {
+          padding-left: 2.25rem;
+        }
+      }
+
+      &.has-before .p-cascadeselect {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      &.has-after .p-cascadeselect {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+
     &.ltr {
+      direction: ltr;
+
       .message {
         left: 0;
       }
 
-      .field.p-input-icon-right {
-        i {
-          right: calc(0.75rem + 3rem)
+      .fix-label {
+        margin-right: 1rem;
+      }
+
+      .p-float-label {
+        &.p-input-icon-left {
+          label {
+            left: 2.25rem;
+          }
+        }
+      }
+
+      .p-input-icon-right > i {
+        right: 3rem;
+      }
+
+      &.clearable {
+        .p-input-icon-right {
+          .p-cascadeselect-clear-icon {
+            right: 4.5rem;
+            left: auto;
+          }
+
+          .p-cascadeselect .p-inputtext {
+            padding-right: 3.75rem;
+          }
         }
       }
     }
 
     &.rtl {
-      .p-cascadeselect,
-      .p-cascadeselect-label,
-      .p-cascadeselect-items,
-      label,
+      direction: rtl;
+
       .message {
-        direction: rtl;
+        right: 0;
       }
 
       .field {
-        &.p-float-label {
-          label {
-            right: 0.5rem;
-            left: auto;
-          }
+        flex-direction: row-reverse;
+      }
 
-          &.p-input-icon-right {
-            label {
-              right: calc(0.5rem + 2rem);
-              left: auto;
-            }
+      .fix-label {
+        margin-left: 1rem;
+      }
 
-            i {
-              left: auto;
-              right: 0.75rem
-            }
-          }
+      .p-float-label {
+        label {
+          right: 0.75rem;
+          left: auto;
         }
 
-        &.p-input-icon-left {
-          i {
-            right: auto;
-            left: calc(0.75rem + 3rem)
+        &.p-input-icon-right {
+          label {
+            right: 2.25rem;
           }
         }
       }
 
-      .p-cascadeselect-clearable {
-        .p-inputtext {
+      .p-input-icon-left > i {
+        left: 3rem;
+      }
+
+      &.clearable {
+        .p-cascadeselect .p-inputtext {
           padding-right: 0.75rem;
-          padding-left: 1.75rem;
+          padding-left: 2.25rem;
         }
 
         .p-cascadeselect-clear-icon {
           right: auto;
           left: 3rem;
         }
-      }
 
-      .p-cascadeselect-group-icon {
-        margin-left: 0;
-        margin-right: auto;
+        .p-input-icon-left {
+          .p-cascadeselect-clear-icon {
+            left: 4.5rem;
+            right: auto;
+          }
 
-        &:before {
-          content: "\e931";
+          .p-cascadeselect .p-inputtext {
+            padding-left: 3.75rem;
+          }
         }
       }
 
-      @media(min-width: 575px) {
+      .p-cascadeselect-panel {
+        .p-cascadeselect-group-icon {
+          margin-left: 0;
+          margin-right: auto;
+
+          &:before {
+            content: "\e931";
+          }
+        }
+
         .p-cascadeselect-item-active > .p-cascadeselect-sublist {
           left: auto;
           right: 100%;

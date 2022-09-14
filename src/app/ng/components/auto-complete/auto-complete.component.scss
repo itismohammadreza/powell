@@ -20,27 +20,45 @@
 
     &.label-fix-top {
       flex-direction: column-reverse;
-      align-items: flex-end
+      align-items: flex-start;
     }
 
     &.label-fix-side {
       flex-direction: row-reverse;
       align-items: center;
+
+      .fix-label {
+        margin-bottom: 0;
+      }
     }
 
     .field {
+      width: auto;
       flex-grow: 1;
+      align-self: stretch;
+      display: inline-flex;
 
-      .p-input-icon-right {
-        .p-inputtext {
-          padding-right: 2rem;
+      > div {
+        display: block;
+        flex-grow: 1;
+
+        &.p-input-icon-right .p-autocomplete .p-inputtext {
+          padding-right: 2.25rem;
+        }
+
+        &.p-input-icon-left .p-autocomplete .p-inputtext {
+          padding-left: 2.25rem;
         }
       }
 
-      .p-input-icon-left {
-        .p-inputtext {
-          padding-left: 2rem;
-        }
+      &.has-before .p-autocomplete .p-inputtext {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      &.has-after .p-autocomplete .p-inputtext {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
       }
     }
 
@@ -51,28 +69,51 @@
         left: 0;
       }
 
-      p-autoComplete {
-        &.has-before {
-          .p-inputtext {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
+      .fix-label {
+        margin-right: 1rem;
+      }
+
+      .p-float-label {
+        &.p-input-icon-left {
+          label {
+            left: 2.25rem;
+          }
+        }
+      }
+
+      &.clearable {
+        .p-input-icon-right {
+          .p-autocomplete-clear-icon {
+            right: 2.25rem;
+            left: auto;
           }
 
-          .p-autocomplete-dd .p-inputtext {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+          .p-autocomplete .p-inputtext {
+            padding-right: 3.75rem;
+          }
+        }
+      }
+
+      &.has-dropdown {
+        .has-after {
+          .p-autocomplete .p-autocomplete-dropdown {
+            border-radius: 0;
           }
         }
 
-        &.has-after {
-          .p-inputtext {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+        .p-input-icon-right > i {
+          right: 3.75rem;
+        }
+
+        &.clearable {
+          .p-autocomplete-clear-icon {
+            right: 3.25rem;
           }
 
-          .p-autocomplete-dd .p-button {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+          .p-input-icon-right {
+            .p-autocomplete-clear-icon {
+              right: 5.25rem;
+            }
           }
         }
       }
@@ -85,80 +126,83 @@
         right: 0;
       }
 
-      .p-autocomplete {
-        .p-autocomplete-loader {
-          right: auto;
-          left: 0.5rem;
-        }
+      .field {
+        flex-direction: row-reverse;
       }
 
-      .p-autocomplete-dd {
-        .p-inputtext {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-          border-top-right-radius: var(--border-radius);
-          border-bottom-right-radius: var(--border-radius);
-        }
-
-        .p-button {
-          border-top-left-radius: var(--border-radius);
-          border-bottom-left-radius: var(--border-radius);
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-        }
+      .fix-label {
+        margin-left: 1rem;
       }
 
-      p-autoComplete {
-        &.has-after {
-          .p-inputtext {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-          }
-
-          .p-autocomplete-dd {
-            .p-inputtext {
-              border-radius: 0;
-            }
-          }
+      .p-float-label {
+        label {
+          right: 0.75rem;
+          left: auto;
         }
 
-        &.has-before {
-          .p-autocomplete-dd {
-            .p-button {
-              border-radius: 0;
-            }
+        &.p-input-icon-right {
+          label {
+            right: 2.25rem;
           }
         }
       }
 
-      .p-autocomplete-clearable {
-        .p-inputtext {
+      &.clearable {
+        .p-autocomplete .p-inputtext {
           padding-right: 0.75rem;
-          padding-left: 2.5rem;
+          padding-left: 2.25rem;
         }
 
         .p-autocomplete-clear-icon {
           right: auto;
           left: 0.75rem;
         }
+
+        .p-input-icon-left {
+          .p-autocomplete-clear-icon {
+            left: 2.25rem;
+            right: auto;
+          }
+
+          .p-autocomplete .p-inputtext {
+            padding-left: 3.75rem;
+          }
+        }
       }
 
-      .field {
-        &.p-float-label {
-          label {
-            right: 0.5rem;
-            left: auto;
+      &.has-dropdown {
+        .has-before {
+          .p-autocomplete .p-autocomplete-dropdown {
+            border-radius: 0;
           }
         }
 
-        &.has-dropdown {
-          &.p-input-icon-left {
-            i {
-              left: calc(0.75rem + 3rem)
+        .p-inputtext {
+          border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .p-autocomplete-dropdown {
+          border-radius: var(--border-radius) 0 0 var(--border-radius);
+        }
+
+        .p-input-icon-left > i {
+          left: 3.75rem;
+        }
+
+        &.clearable {
+          .p-autocomplete-clear-icon {
+            left: 3.25rem;
+          }
+
+          .p-input-icon-left {
+            .p-autocomplete-clear-icon {
+              left: 5.25rem;
             }
           }
         }
+      }
 
+      .p-autocomplete {
         .p-autocomplete-token {
           margin-left: 0.5rem;
           margin-right: 0;

@@ -39,7 +39,7 @@ import {
   NgControl,
   UntypedFormGroup
 } from "@angular/forms";
-import {NgError, NgFixLabelPosition} from "@ng/models/forms";
+import {NgAddon, NgError, NgFixLabelPosition} from "@ng/models/forms";
 
 @Component({
   selector: 'ng-map',
@@ -61,6 +61,7 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgFixLabelPosition = 'fix-top';
+  @Input() addon: NgAddon;
   @Input() errors: NgError;
   @Input() disabled: boolean;
   @Input() multiple: boolean = true;

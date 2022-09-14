@@ -1,85 +1,76 @@
 <div [ngClass]="{
-      rtl: rtl,
-      ltr: !rtl,
-      'flex-column-reverse': labelPos == 'fix-top',
-      'align-items-center': labelPos == 'fix-side',
-      'align-items-end': labelPos == 'fix-top' && rtl,
-      'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side',
+      'label-float': labelPos == 'float',
+      'clearable': showClear
     }" class="tree-select-wrapper">
-  <div [ngClass]="{
-      'w-100': labelPos == 'fix-top',
+  <div [ngAddon]="addon" [addonDisabled]="disabled" [addonSize]="inputSize" class="field">
+    <div [ngClass]="{
       'p-float-label': labelPos == 'float',
-      'p-input-icon-left': !addon && icon && iconPos == 'left',
-      'p-input-icon-right': !addon && icon && iconPos == 'right',
+      'p-input-icon-left': icon && iconPos == 'left',
+      'p-input-icon-right': icon && iconPos == 'right',
       'p-inputtext-sm': inputSize == 'sm',
       'p-inputtext-lg': inputSize == 'lg',
       'p-input-filled': filled
-    }" class="field">
-    <i *ngIf="icon && !addon && !showClear" [ngClass]="icon"></i>
-    <p-treeSelect
-      [(ngModel)]="value"
-      [ngAddon]="addon"
-      [addonDisabled]="disabled"
-      [addonSize]="inputSize"
-      [inputId]="inputId"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [options]="options"
-      [scrollHeight]="scrollHeight"
-      [placeholder]="placeholder"
-      [disabled]="disabled"
-      [tabindex]="tabindex"
-      [selectionMode]="selectionMode"
-      [panelClass]="panelClass"
-      [appendTo]="appendTo"
-      [emptyMessage]="emptyMessage"
-      [display]="display"
-      [propagateSelectionUp]="propagateSelectionUp"
-      [propagateSelectionDown]="propagateSelectionDown"
-      [metaKeySelection]="metaKeySelection"
-      [filter]="filter"
-      [filterBy]="filterBy"
-      [filterMode]="filterMode"
-      [filterPlaceholder]="filterPlaceHolder"
-      [filterLocale]="filterLocale"
-      [resetFilterOnHide]="resetFilterOnHide"
-      [showClear]="showClear"
-      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
-      (onShow)="emitter('onShow',$event)"
-      (onHide)="emitter('onHide',$event)"
-      (onFilter)="emitter('onFilter',$event)"
-      (onNodeSelect)="_onNodeSelect($event)"
-      (onNodeUnselect)="_onNodeUnselect($event)"
-      (onNodeExpand)="emitter('onNodeExpand',$event)"
-      (onNodeCollapse)="emitter('onNodeCollapse',$event)"
-      (onClear)="_onClear()">
-      <ng-template pTemplate="value" let-item *ngIf="valueTemplate">
-        <ng-container *ngTemplateOutlet="valueTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
-        <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
-        <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="empty" let-item *ngIf="emptyTemplate">
-        <ng-container *ngTemplateOutlet="emptyTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-    </p-treeSelect>
-    <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
-      {{ label }}
-    </label>
+    }">
+      <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
+      <p-treeSelect
+        [(ngModel)]="value"
+        [inputId]="inputId"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [options]="options"
+        [scrollHeight]="scrollHeight"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        [tabindex]="tabindex"
+        [selectionMode]="selectionMode"
+        [panelClass]="panelClass"
+        [appendTo]="appendTo"
+        [emptyMessage]="emptyMessage"
+        [display]="display"
+        [propagateSelectionUp]="propagateSelectionUp"
+        [propagateSelectionDown]="propagateSelectionDown"
+        [metaKeySelection]="metaKeySelection"
+        [filter]="filter"
+        [filterBy]="filterBy"
+        [filterMode]="filterMode"
+        [filterPlaceholder]="filterPlaceHolder"
+        [filterLocale]="filterLocale"
+        [resetFilterOnHide]="resetFilterOnHide"
+        [showClear]="showClear"
+        (onShow)="emitter('onShow',$event)"
+        (onHide)="emitter('onHide',$event)"
+        (onFilter)="emitter('onFilter',$event)"
+        (onNodeSelect)="_onNodeSelect($event)"
+        (onNodeUnselect)="_onNodeUnselect($event)"
+        (onNodeExpand)="emitter('onNodeExpand',$event)"
+        (onNodeCollapse)="emitter('onNodeCollapse',$event)"
+        (onClear)="_onClear()">
+        <ng-template pTemplate="value" let-item *ngIf="valueTemplate">
+          <ng-container *ngTemplateOutlet="valueTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
+          <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
+          <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="empty" let-item *ngIf="emptyTemplate">
+          <ng-container *ngTemplateOutlet="emptyTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+      </p-treeSelect>
+      <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
+        {{ label }}
+      </label>
+    </div>
   </div>
   <label
+    class="fix-label"
     *ngIf="label && labelPos != 'float'"
     [attr.for]="inputId"
-    [ngClass]="{
-      'mb-0': labelPos == 'fix-side',
-      'ml-4': rtl,
-      'mr-4': !rtl,
-      'text-muted': disabled
-    }"
+    [class.p-disabled]="disabled"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>

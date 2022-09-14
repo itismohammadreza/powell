@@ -137,8 +137,9 @@ export class AddonDirective implements OnChanges {
     //   this.renderer.insertBefore(target.parentNode, el, target);
     // }
     // ##### old end
-    let targetEl = this.el.nativeElement;
+    const targetEl = this.el.nativeElement;
     this.renderer.addClass(targetEl, 'p-inputgroup');
+    const fieldEl = targetEl.parentNode.querySelector('.p-inputgroup > div');
     this.renderer.addClass(addonEl, `addon-${pos}`);
     this.renderer.addClass(this.el.nativeElement, `has-${pos}`);
     if (this.addonDisabled) {
@@ -147,7 +148,7 @@ export class AddonDirective implements OnChanges {
     if (pos === 'after') {
       this.renderer.appendChild(targetEl, addonEl);
     } else if (pos === 'before') {
-      this.renderer.insertBefore(targetEl, addonEl, targetEl.querySelector('.field'))
+      this.renderer.insertBefore(targetEl, addonEl, fieldEl)
     }
   }
 }

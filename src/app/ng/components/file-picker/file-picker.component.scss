@@ -2,20 +2,30 @@
   .file-picker-wrapper {
     display: flex;
     position: relative;
-    direction: ltr;
-
-    .field {
-      flex-grow: 1;
-    }
-
-    .p-fileUpload {
-      display: block;
-      width: 100%;
-    }
 
     .message {
       position: absolute;
       top: calc(100% + 0.25rem);
+    }
+
+    &.label-fix-top {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+
+    &.label-fix-side {
+      flex-direction: row-reverse;
+      align-items: center;
+
+      .fix-label {
+        margin-bottom: 0;
+      }
+    }
+
+    .field {
+      width: auto;
+      flex-grow: 1;
+      align-self: stretch;
     }
 
     p-fileUpload {
@@ -28,8 +38,14 @@
     }
 
     &.ltr {
+      direction: ltr;
+
       .message {
         left: 0;
+      }
+
+      .fix-label {
+        margin-right: 1rem;
       }
     }
 
@@ -40,36 +56,42 @@
         right: 0;
       }
 
-      .p-message {
-        border-width: 0 6px 0 0;
+      .fix-label {
+        margin-left: 1rem;
       }
 
-      .p-message-wrapper {
-        .p-message-icon {
-          margin-right: 0;
-          margin-left: 0.5rem;
+      .p-fileupload {
+        .p-message {
+          border-width: 0 6px 0 0;
         }
 
-        .p-message-detail {
-          margin-left: 0;
-          margin-right: 0.5rem;
+        .p-message-wrapper {
+          .p-message-icon {
+            margin-right: 0;
+            margin-left: 0.5rem;
+          }
+
+          .p-message-detail {
+            margin-left: 0;
+            margin-right: 0.5rem;
+          }
+
+          .p-message-close.p-link {
+            margin-right: auto;
+            margin-left: 0;
+          }
         }
 
-        .p-message-close.p-link {
-          margin-right: auto;
-          margin-left: 0;
-        }
-      }
+        .p-fileupload-buttonbar {
+          .p-button {
+            margin-left: 0.5rem;
+            margin-right: 0;
+          }
 
-      .p-fileupload-buttonbar {
-        .p-button {
-          margin-left: 0.5rem;
-          margin-right: 0;
-        }
-
-        .p-button-icon {
-          margin-left: 0.5rem;
-          margin-right: 0;
+          .p-button-icon {
+            margin-left: 0.5rem;
+            margin-right: 0;
+          }
         }
       }
     }

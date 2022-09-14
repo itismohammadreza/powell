@@ -1,87 +1,73 @@
 <div [ngClass]="{
-      rtl: rtl,
-      ltr: !rtl,
-      'flex-column-reverse': labelPos == 'fix-top',
-      'align-items-center': labelPos == 'fix-side',
-      'align-items-end': labelPos == 'fix-top' && rtl,
-      'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side'
     }" class="listbox-wrapper">
-  <div
-    [ngClass]="{
-      'w-100': labelPos == 'fix-top',
-      'p-input-filled': filled
-    }"
-    class="field">
-    <p-listbox
-      [(ngModel)]="value"
-      [ngAddon]="addon"
-      [addonDisabled]="disabled"
-      [attr.id]="inputId"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [checkbox]="checkbox"
-      [dataKey]="dataKey"
-      [disabled]="disabled"
-      [filter]="filter"
-      [filterMatchMode]="filterMatchMode"
-      [filterValue]="filterValue"
-      [filterLocale]="filterLocale"
-      [filterBy]="filterBy"
-      [filterPlaceHolder]="filterPlaceHolder"
-      [emptyFilterMessage]="emptyFilterMessage"
-      [listStyle]="listStyle"
-      [listStyleClass]="listStyleClass"
-      [metaKeySelection]="metaKeySelection"
-      [multiple]="multiple"
-      [readonly]="readonly"
-      [emptyMessage]="emptyMessage"
-      [options]="options"
-      [optionLabel]="optionLabel"
-      [optionValue]="optionValue"
-      [optionDisabled]="optionDisabled"
-      [optionGroupLabel]="optionGroupLabel"
-      [optionGroupChildren]="optionGroupChildren"
-      [group]="group"
-      [showToggleAll]="showToggleAll"
-      [style]="style"
-      [styleClass]="styleClass"
-      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
-      (onChange)="_onChange($event)"
-      (onDblClick)="_onDblClick($event)"
-      (onClick)="_onClick($event)">
-      <ng-template pTemplate="header" *ngIf="headerTemplate">
-        <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="item" let-item *ngIf="itemTemplate">
-        <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="group" let-group *ngIf="groupTemplate">
-        <ng-container *ngTemplateOutlet="groupTemplate;context:{$implicit:group}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="filter" let-options="options" *ngIf="filterTemplate">
-        <ng-container *ngTemplateOutlet="filterTemplate;context:{options:options}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="empty" *ngIf="emptyTemplate">
-        <ng-container *ngTemplateOutlet="emptyTemplate;context"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="emptyfilter" *ngIf="emptyFilterTemplate">
-        <ng-container *ngTemplateOutlet="emptyFilterTemplate"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="footer" *ngIf="footerTemplate">
-        <ng-container *ngTemplateOutlet="footerTemplate;context"></ng-container>
-      </ng-template>
-    </p-listbox>
+  <div [ngAddon]="addon" [addonDisabled]="disabled" class="field">
+    <div>
+      <p-listbox
+        [(ngModel)]="value"
+        [attr.id]="inputId"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [checkbox]="checkbox"
+        [dataKey]="dataKey"
+        [disabled]="disabled"
+        [filter]="filter"
+        [filterMatchMode]="filterMatchMode"
+        [filterValue]="filterValue"
+        [filterLocale]="filterLocale"
+        [filterBy]="filterBy"
+        [filterPlaceHolder]="filterPlaceHolder"
+        [emptyFilterMessage]="emptyFilterMessage"
+        [listStyle]="listStyle"
+        [listStyleClass]="listStyleClass"
+        [metaKeySelection]="metaKeySelection"
+        [multiple]="multiple"
+        [readonly]="readonly"
+        [emptyMessage]="emptyMessage"
+        [options]="options"
+        [optionLabel]="optionLabel"
+        [optionValue]="optionValue"
+        [optionDisabled]="optionDisabled"
+        [optionGroupLabel]="optionGroupLabel"
+        [optionGroupChildren]="optionGroupChildren"
+        [group]="group"
+        [showToggleAll]="showToggleAll"
+        [style]="style"
+        [styleClass]="styleClass"
+        (onChange)="_onChange($event)"
+        (onDblClick)="_onDblClick($event)"
+        (onClick)="_onClick($event)">
+        <ng-template pTemplate="header" *ngIf="headerTemplate">
+          <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="item" let-item *ngIf="itemTemplate">
+          <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="group" let-group *ngIf="groupTemplate">
+          <ng-container *ngTemplateOutlet="groupTemplate;context:{$implicit:group}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="filter" let-options="options" *ngIf="filterTemplate">
+          <ng-container *ngTemplateOutlet="filterTemplate;context:{options:options}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="empty" *ngIf="emptyTemplate">
+          <ng-container *ngTemplateOutlet="emptyTemplate;context"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="emptyfilter" *ngIf="emptyFilterTemplate">
+          <ng-container *ngTemplateOutlet="emptyFilterTemplate"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="footer" *ngIf="footerTemplate">
+          <ng-container *ngTemplateOutlet="footerTemplate;context"></ng-container>
+        </ng-template>
+      </p-listbox>
+    </div>
   </div>
   <label
+    class="fix-label"
     *ngIf="label"
     [attr.for]="inputId"
-    [ngClass]="{
-      'mb-0': labelPos == 'fix-side',
-      'ml-4': rtl,
-      'mr-4': !rtl,
-      'text-muted': disabled
-    }"
+    [class.p-disabled]="disabled"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>

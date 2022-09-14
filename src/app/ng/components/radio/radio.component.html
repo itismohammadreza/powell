@@ -1,28 +1,13 @@
 <div [ngClass]="{
-      rtl: rtl,
-      ltr: !rtl,
-      'flex-column-reverse': labelPos == 'fix-top',
-      'align-items-center': labelPos == 'fix-side',
-      'align-items-end': labelPos == 'fix-top' && rtl,
-      'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side',
+      'layout-horizontal':orientation == 'horizontal',
+      'layout-vertical':orientation == 'vertical'
     }" class="radio-wrapper">
-  <div
-    [attr.id]="inputId"
-    [ngClass]="{
-      'w-100': labelPos == 'fix-top',
-      'flex-row': orientation == 'horizontal',
-      'flex-column': orientation == 'vertical'
-    }"
-    class="field d-flex">
-    <div
-      *ngFor="let item of options"
-      [ngClass]="{
-        'mr-4': orientation == 'horizontal' && !rtl,
-        'ml-4': orientation == 'horizontal' && rtl,
-        'mb-2': orientation == 'vertical'
-      }"
-      class="d-flex align-items-center">
+  <div [attr.id]="inputId" class="field">
+    <div *ngFor="let item of options" class="option-item">
       <p-radioButton
         [(ngModel)]="value"
         [inputId]="'id'+item[optionValue]"
@@ -36,26 +21,16 @@
         (onClick)="_onChange($event)"
         (onFocus)="emitter('onFocus',$event)"
       ></p-radioButton>
-      <label
-        [attr.for]="'id'+item[optionValue]"
-        [ngClass]="{
-          'ml-2': !rtl,
-          'mr-2': rtl
-        }"
-        class="mb-0">
+      <label [attr.for]="'id'+item[optionValue]">
         {{ item[optionLabel] }}
       </label>
     </div>
   </div>
   <label
+    class="fix-label"
     *ngIf="label"
     [attr.for]="inputId"
-    [ngClass]="{
-      'mb-0': labelPos == 'fix-side',
-      'ml-4': rtl,
-      'mr-4': !rtl,
-      'text-muted': disabled
-    }"
+    [class.p-disabled]="disabled"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>

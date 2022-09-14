@@ -1,42 +1,30 @@
-<div
-  [ngClass]="{
-    rtl: rtl,
-    ltr: !rtl
-  }"
-  class="tri-state-checkbox-wrapper">
+<div [ngClass]="{ 'rtl': rtl, 'ltr': !rtl }" class="tri-state-checkbox-wrapper">
   <div class="field">
-    <div class="d-flex align-items-center">
-      <p-triStateCheckbox
-        [(ngModel)]="value"
-        [inputId]="inputId"
-        [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
-        [disabled]="disabled"
-        [tabindex]="tabindex"
-        [style]="style"
-        [styleClass]="styleClass"
-        [readonly]="readonly"
-        [checkboxTrueIcon]="checkboxTrueIcon"
-        [checkboxFalseIcon]="checkboxFalseIcon"
-        (onChange)="_onChange($event)"
-      ></p-triStateCheckbox>
-      <label
-        [attr.for]="inputId"
-        [ngClass]="{
-          'ml-2': !rtl,
-          'mr-2': rtl,
-          'text-muted': disabled
-        }"
-        class="mb-0">
-        {{ label }}
-      </label>
-    </div>
-    <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
-    <div class="message small">
-      <ng-container *ngFor="let error of errors | keyvalue">
-        <div *ngIf="showError(error.key)" class="p-error">
-          {{ error.value }}
-        </div>
-      </ng-container>
-    </div>
+    <p-triStateCheckbox
+      [(ngModel)]="value"
+      [inputId]="inputId"
+      [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
+      [disabled]="disabled"
+      [tabindex]="tabindex"
+      [style]="style"
+      [styleClass]="styleClass"
+      [readonly]="readonly"
+      [checkboxTrueIcon]="checkboxTrueIcon"
+      [checkboxFalseIcon]="checkboxFalseIcon"
+      (onChange)="_onChange($event)"
+    ></p-triStateCheckbox>
+    <label
+      [attr.for]="inputId"
+      [class.p-disabled]="disabled">
+      {{ label }}
+    </label>
+  </div>
+  <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
+  <div class="message small">
+    <ng-container *ngFor="let error of errors | keyvalue">
+      <div *ngIf="showError(error.key)" class="p-error">
+        {{ error.value }}
+      </div>
+    </ng-container>
   </div>
 </div>

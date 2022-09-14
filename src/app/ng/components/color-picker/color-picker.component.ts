@@ -47,7 +47,6 @@ export class ColorPickerComponent implements OnInit, AfterViewInit, ControlValue
   @Input() icon: string;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgIconPosition = 'left';
-  @Input() addon: NgAddon;
   @Input() errors: NgError;
   @Input() inputSize: NgSize;
   @Input() readonly: boolean;

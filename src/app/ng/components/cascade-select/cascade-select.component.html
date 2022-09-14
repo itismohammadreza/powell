@@ -1,68 +1,59 @@
 <div [ngClass]="{
-      rtl: rtl,
-      ltr: !rtl,
-      'flex-column-reverse': labelPos == 'fix-top',
-      'align-items-center': labelPos == 'fix-side',
-      'align-items-end': labelPos == 'fix-top' && rtl,
-      'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side',
+      'label-float': labelPos == 'float',
+      'clearable': showClear
     }" class="cascade-select-wrapper">
-  <div [ngClass]="{
-      'w-100': labelPos == 'fix-top',
+  <div [ngAddon]="addon" [addonDisabled]="disabled" [addonSize]="inputSize" class="field">
+    <div [ngClass]="{
       'p-float-label': labelPos == 'float',
-      'p-input-icon-left': !addon && icon && iconPos == 'left',
-      'p-input-icon-right': !addon && icon && iconPos == 'right',
+      'p-input-icon-left': icon && iconPos == 'left',
+      'p-input-icon-right': icon && iconPos == 'right',
       'p-inputtext-sm': inputSize == 'sm',
       'p-inputtext-lg': inputSize == 'lg',
       'p-input-filled': filled
-    }" class="field">
-    <i *ngIf="icon && !addon && !showClear" [ngClass]="icon"></i>
-    <p-cascadeSelect
-      [(ngModel)]="value"
-      [ngAddon]="addon"
-      [addonDisabled]="disabled"
-      [addonSize]="inputSize"
-      [inputId]="inputId"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [options]="options"
-      [optionLabel]="optionLabel"
-      [optionValue]="optionValue"
-      [optionGroupLabel]="optionGroupLabel"
-      [optionGroupChildren]="optionGroupChildren"
-      [placeholder]="placeholder"
-      [disabled]="disabled"
-      [dataKey]="dataKey"
-      [tabindex]="tabindex"
-      [appendTo]="appendTo"
-      [style]="style"
-      [styleClass]="styleClass"
-      [showClear]="showClear"
-      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
-      (onChange)="_onChange($event)"
-      (onGroupChange)="_onGroupChange($event)"
-      (onBeforeShow)="emitter('onBeforeShow', $event)"
-      (onBeforeHide)="emitter('onBeforeHide', $event)"
-      (onShow)="_onShow()"
-      (onHide)="_onHide()"
-      (onClear)="_onClear()">
-      <ng-template pTemplate="option" let-option *ngIf="optionTemplate">
-        <ng-container *ngTemplateOutlet="optionTemplate;context:{$implicit:option}"></ng-container>
-      </ng-template>
-    </p-cascadeSelect>
-    <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
-      {{ label }}
-    </label>
+    }">
+      <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
+      <p-cascadeSelect
+        [(ngModel)]="value"
+        [inputId]="inputId"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [options]="options"
+        [optionLabel]="optionLabel"
+        [optionValue]="optionValue"
+        [optionGroupLabel]="optionGroupLabel"
+        [optionGroupChildren]="optionGroupChildren"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        [dataKey]="dataKey"
+        [tabindex]="tabindex"
+        [appendTo]="appendTo"
+        [style]="style"
+        [styleClass]="styleClass"
+        [showClear]="showClear"
+        (onChange)="_onChange($event)"
+        (onGroupChange)="_onGroupChange($event)"
+        (onBeforeShow)="emitter('onBeforeShow', $event)"
+        (onBeforeHide)="emitter('onBeforeHide', $event)"
+        (onShow)="_onShow()"
+        (onHide)="_onHide()"
+        (onClear)="_onClear()">
+        <ng-template pTemplate="option" let-option *ngIf="optionTemplate">
+          <ng-container *ngTemplateOutlet="optionTemplate;context:{$implicit:option}"></ng-container>
+        </ng-template>
+      </p-cascadeSelect>
+      <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
+        {{ label }}
+      </label>
+    </div>
   </div>
   <label
+    class="fix-label"
     *ngIf="label && labelPos != 'float'"
     [attr.for]="inputId"
-    [ngClass]="{
-      'mb-0': labelPos == 'fix-side',
-      'ml-4': rtl,
-      'mr-4': !rtl,
-      'text-muted': disabled
-    }"
+    [class.p-disabled]="disabled"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>

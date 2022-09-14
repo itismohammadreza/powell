@@ -1,11 +1,8 @@
 <div [ngClass]="{
-      rtl: rtl,
-      ltr: !rtl,
-      'flex-column-reverse': labelPos == 'fix-top',
-      'align-items-center': labelPos == 'fix-side',
-      'align-items-end': labelPos == 'fix-top' && rtl,
-      'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side'
     }" class="switch-wrapper">
   <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field">
     <p-inputSwitch
@@ -23,16 +20,12 @@
     ></p-inputSwitch>
   </div>
   <label
-    *ngIf="label || onLabel"
+    class="fix-label"
+    *ngIf="label"
     [attr.for]="inputId"
-    [ngClass]="{
-      'mb-0': labelPos == 'fix-side',
-      'ml-4': rtl,
-      'mr-4': !rtl,
-      'text-muted': disabled
-    }"
+    [class.p-disabled]="disabled"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{label}}
+    {{ label }}
   </label>
   <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
   <div class="message small">

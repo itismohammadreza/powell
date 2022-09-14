@@ -1,29 +1,23 @@
 <div [ngClass]="{
-      rtl: rtl,
-      ltr: !rtl,
-      'flex-column-reverse': labelPos == 'fix-top',
-      'align-items-center': labelPos == 'fix-side',
-      'align-items-end': labelPos == 'fix-top' && rtl,
-      'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side',
+      'label-float': labelPos == 'float'
     }" class="input-text-wrapper">
-  <div [ngAddon]="addon"
-       [addonDisabled]="disabled"
-       [addonSize]="inputSize">
+  <div [ngAddon]="addon" [addonDisabled]="disabled" [addonSize]="inputSize" class="field">
     <div [ngClass]="{
-      'w-100': labelPos == 'fix-top',
       'p-float-label': labelPos == 'float',
       'p-input-icon-left': icon && iconPos == 'left',
       'p-input-icon-right': icon && iconPos == 'right',
       'p-inputtext-sm': inputSize == 'sm',
       'p-inputtext-lg': inputSize == 'lg',
       'p-input-filled': filled
-    }" class="field">
-      <i *ngIf="icon" [ngClass]="icon"></i>
+    }">
+      <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
       <input
         pInputText
         [(ngModel)]="value"
-
         [attr.id]="inputId"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
         [attr.maxlength]="maxlength"
@@ -32,8 +26,6 @@
         [disabled]="disabled"
         [readonly]="readonly"
         [pKeyFilter]="keyFilter"
-        (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-        (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
         (blur)="_onBlur()"
         (change)="_onChange($event)"
         (click)="emitter('onClick', $event)"
@@ -47,14 +39,10 @@
     </div>
   </div>
   <label
+    class="fix-label"
     *ngIf="label && labelPos != 'float'"
     [attr.for]="inputId"
-    [ngClass]="{
-      'mb-0': labelPos == 'fix-side',
-      'ml-4': rtl,
-      'mr-4': !rtl,
-      'text-muted': disabled
-    }"
+    [class.p-disabled]="disabled"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>

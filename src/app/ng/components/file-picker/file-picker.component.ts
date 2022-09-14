@@ -85,6 +85,10 @@ export class FilePickerComponent
   @Input() showUploadButton: boolean = true;
   @Input() showCancelButton: boolean = true;
   @Input() headers: HttpHeaders;
+  @Input() uploadStyleClass: string;
+  @Input() cancelStyleClass: string;
+  @Input() removeStyleClass: string;
+  @Input() chooseStyleClass: string;
   @Output() onProgress = new EventEmitter();
   @Output() onSelect = new EventEmitter();
   @Output() onRemove = new EventEmitter();
@@ -101,7 +105,7 @@ export class FilePickerComponent
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
   selectedFiles: any[] = [];
-  filesToEmit: (string | ArrayBuffer | File)[] | any;
+  filesToEmit: (string | ArrayBuffer | File)[] | any = [];
   toolbarTemplate: TemplateRef<any>;
   fileTemplate: TemplateRef<any>;
   contentTemplate: TemplateRef<any>;
@@ -186,7 +190,6 @@ export class FilePickerComponent
 
   async _onSelect(event) {
     this.selectedFiles = event.currentFiles;
-    this.filesToEmit = [];
     for (let file of event.currentFiles) {
       if (this.resultType == 'base64') {
         this.filesToEmit.push(await this.fileToBase64(file));
@@ -336,7 +339,8 @@ export class FilePickerComponent
     for (const error in this.errors) {
       if (this.showError(error)) {
         hasError = true
-      };
+      }
+      ;
     }
     return !hasError;
   }

@@ -2,54 +2,73 @@
   .tree-wrapper {
     display: flex;
     position: relative;
-    direction: ltr;
-
-    p-tree,
-    .p-tree {
-      width: 100%;
-    }
-
-    .field {
-      flex-grow: 1;
-
-      p-tree {
-        &.has-before {
-          .p-tree {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-          }
-        }
-
-        &.has-after {
-          .p-tree {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-          }
-        }
-      }
-    }
 
     .message {
       position: absolute;
       top: calc(100% + 0.25rem);
     }
 
+    &.label-fix-top {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+
+    &.label-fix-side {
+      flex-direction: row-reverse;
+      align-items: center;
+
+      .fix-label {
+        margin-bottom: 0;
+      }
+    }
+
+    .field {
+      width: auto;
+      flex-grow: 1;
+      align-self: stretch;
+      display: inline-flex;
+
+      > div {
+        display: block;
+        flex-grow: 1;
+      }
+
+      &.has-before .p-tree {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      &.has-after .p-tree {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+
     &.ltr {
+      direction: ltr;
+
       .message {
         left: 0;
+      }
+
+      .fix-label {
+        margin-right: 1rem;
       }
     }
 
     &.rtl {
-      .p-tree,
-      .p-inputtext,
-      label,
-      .message {
-        direction: rtl;
-      }
+      direction: rtl;
 
       .message {
         right: 0;
+      }
+
+      .field {
+        flex-direction: row-reverse;
+      }
+
+      .fix-label {
+        margin-left: 1rem;
       }
 
       .p-tree {

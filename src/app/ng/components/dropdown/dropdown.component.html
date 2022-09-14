@@ -1,120 +1,111 @@
 <div [ngClass]="{
-      rtl: rtl,
-      ltr: !rtl,
-      'flex-column-reverse': labelPos == 'fix-top',
-      'align-items-center': labelPos == 'fix-side',
-      'align-items-end': labelPos == 'fix-top' && rtl,
-      'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side',
+      'label-float': labelPos == 'float',
+      'clearable': showClear
     }" class="dropdown-wrapper">
-  <div [ngClass]="{
-      'w-100': labelPos == 'fix-top',
+  <div [ngAddon]="addon" [addonDisabled]="disabled" [addonSize]="inputSize" class="field">
+    <div [ngClass]="{
       'p-float-label': labelPos == 'float',
-      'p-input-icon-left': !addon && icon && iconPos == 'left',
-      'p-input-icon-right': !addon && icon && iconPos == 'right',
+      'p-input-icon-left': icon && iconPos == 'left',
+      'p-input-icon-right': icon && iconPos == 'right',
       'p-inputtext-sm': inputSize == 'sm',
       'p-inputtext-lg': inputSize == 'lg',
       'p-input-filled': filled
-    }" class="field">
-    <i *ngIf="icon && !addon && !showClear" [ngClass]="icon"></i>
-    <p-dropdown
-      [(ngModel)]="value"
-      [ngAddon]="addon"
-      [addonDisabled]="disabled"
-      [addonSize]="inputSize"
-      [inputId]="inputId"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [options]="options"
-      [optionLabel]="optionLabel"
-      [optionValue]="optionValue"
-      [optionDisabled]="optionDisabled"
-      [optionGroupLabel]="optionGroupLabel"
-      [optionGroupChildren]="optionGroupChildren"
-      [scrollHeight]="scrollHeight"
-      [style]="style"
-      [panelStyle]="panelStyle"
-      [styleClass]="styleClass"
-      [panelStyleClass]="panelStyleClass"
-      [filter]="filter"
-      [filterValue]="filterValue"
-      [filterBy]="filterBy"
-      [filterMatchMode]="filterMatchMode"
-      [filterPlaceholder]="filterPlaceholder"
-      [filterLocale]="filterLocale"
-      [disabled]="disabled"
-      [readonly]="readonly"
-      [emptyMessage]="emptyMessage"
-      [emptyFilterMessage]="emptyFilterMessage"
-      [editable]="editable"
-      [maxlength]="maxlength"
-      [appendTo]="appendTo"
-      [tabindex]="tabindex"
-      [placeholder]="placeholder"
-      [dataKey]="dataKey"
-      [autofocus]="autofocus"
-      [autofocusFilter]="autofocusFilter"
-      [resetFilterOnHide]="resetFilterOnHide"
-      [dropdownIcon]="dropdownIcon"
-      [autoDisplayFirst]="autoDisplayFirst"
-      [group]="group"
-      [showClear]="showClear"
-      [baseZIndex]="baseZIndex"
-      [autoZIndex]="autoZIndex"
-      [showTransitionOptions]="showTransitionOptions"
-      [hideTransitionOptions]="hideTransitionOptions"
-      [tooltip]="tooltip"
-      [tooltipStyleClass]="tooltipStyleClass"
-      [tooltipPosition]="tooltipPosition"
-      [tooltipPositionStyle]="tooltipPositionStyle"
-      [virtualScroll]="virtualScroll"
-      [virtualScrollItemSize]="virtualScrollItemSize"
-      [lazy]="lazy"
-      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
-      (onClick)="emitter('onClick',$event)"
-      (onChange)="_onChange($event)"
-      (onFilter)="emitter('onFilter',$event)"
-      (onFocus)="emitter('onFocus',$event)"
-      (onBlur)="_onBlur()"
-      (onShow)="emitter('onShow',$event)"
-      (onHide)="emitter('onHide',$event)"
-      (onClear)="_onClear()"
-      (onLazyLoad)="emitter('onLazyLoad',$event)">
-      <ng-template pTemplate="item" let-item *ngIf="itemTemplate">
-        <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="selectedItem" let-item *ngIf="selectedItemTemplate">
-        <ng-container *ngTemplateOutlet="selectedItemTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
-        <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
-        <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="emptyfilter" let-item *ngIf="emptyFilterTemplate">
-        <ng-container *ngTemplateOutlet="emptyFilterTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="empty" let-item *ngIf="emptyTemplate">
-        <ng-container *ngTemplateOutlet="emptyTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="group" let-item *ngIf="groupTemplate">
-        <ng-container *ngTemplateOutlet="groupTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-    </p-dropdown>
-    <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
-      {{ label }}
-    </label>
+    }">
+      <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
+      <p-dropdown
+        [(ngModel)]="value"
+        [inputId]="inputId"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [options]="options"
+        [optionLabel]="optionLabel"
+        [optionValue]="optionValue"
+        [optionDisabled]="optionDisabled"
+        [optionGroupLabel]="optionGroupLabel"
+        [optionGroupChildren]="optionGroupChildren"
+        [scrollHeight]="scrollHeight"
+        [style]="style"
+        [panelStyle]="panelStyle"
+        [styleClass]="styleClass"
+        [panelStyleClass]="panelStyleClass"
+        [filter]="filter"
+        [filterValue]="filterValue"
+        [filterBy]="filterBy"
+        [filterMatchMode]="filterMatchMode"
+        [filterPlaceholder]="filterPlaceholder"
+        [filterLocale]="filterLocale"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [emptyMessage]="emptyMessage"
+        [emptyFilterMessage]="emptyFilterMessage"
+        [editable]="editable"
+        [maxlength]="maxlength"
+        [appendTo]="appendTo"
+        [tabindex]="tabindex"
+        [placeholder]="placeholder"
+        [dataKey]="dataKey"
+        [autofocus]="autofocus"
+        [autofocusFilter]="autofocusFilter"
+        [resetFilterOnHide]="resetFilterOnHide"
+        [dropdownIcon]="dropdownIcon"
+        [autoDisplayFirst]="autoDisplayFirst"
+        [group]="group"
+        [showClear]="showClear"
+        [baseZIndex]="baseZIndex"
+        [autoZIndex]="autoZIndex"
+        [showTransitionOptions]="showTransitionOptions"
+        [hideTransitionOptions]="hideTransitionOptions"
+        [tooltip]="tooltip"
+        [tooltipStyleClass]="tooltipStyleClass"
+        [tooltipPosition]="tooltipPosition"
+        [tooltipPositionStyle]="tooltipPositionStyle"
+        [virtualScroll]="virtualScroll"
+        [virtualScrollItemSize]="virtualScrollItemSize"
+        [lazy]="lazy"
+        (onClick)="emitter('onClick',$event)"
+        (onChange)="_onChange($event)"
+        (onFilter)="emitter('onFilter',$event)"
+        (onFocus)="emitter('onFocus',$event)"
+        (onBlur)="_onBlur()"
+        (onShow)="emitter('onShow',$event)"
+        (onHide)="emitter('onHide',$event)"
+        (onClear)="_onClear()"
+        (onLazyLoad)="emitter('onLazyLoad',$event)">
+        <ng-template pTemplate="item" let-item *ngIf="itemTemplate">
+          <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="selectedItem" let-item *ngIf="selectedItemTemplate">
+          <ng-container *ngTemplateOutlet="selectedItemTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
+          <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
+          <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="emptyfilter" let-item *ngIf="emptyFilterTemplate">
+          <ng-container *ngTemplateOutlet="emptyFilterTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="empty" let-item *ngIf="emptyTemplate">
+          <ng-container *ngTemplateOutlet="emptyTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="group" let-item *ngIf="groupTemplate">
+          <ng-container *ngTemplateOutlet="groupTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+      </p-dropdown>
+      <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
+        {{ label }}
+      </label>
+    </div>
   </div>
   <label
+    class="fix-label"
     *ngIf="label && labelPos != 'float'"
     [attr.for]="inputId"
-    [ngClass]="{
-      'mb-0': labelPos == 'fix-side',
-      'ml-4': rtl,
-      'mr-4': !rtl,
-      'text-muted': disabled
-    }"
+    [class.p-disabled]="disabled"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>

@@ -1,58 +1,53 @@
 <div [ngClass]="{
-      rtl: rtl,
-      ltr: !rtl,
-      'flex-column-reverse': labelPos == 'fix-top',
-      'align-items-center': labelPos == 'fix-side',
-      'align-items-end': labelPos == 'fix-top' && rtl,
-      'flex-row': labelPos == 'fix-side' && rtl,
-      'flex-row-reverse': labelPos == 'fix-side' && !rtl
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side',
+      'label-float': labelPos == 'float',
+      'clearable': showClear
     }" class="chips-wrapper">
-  <div [ngClass]="{
-      'w-100': labelPos == 'fix-top',
+  <div [ngAddon]="addon" [addonDisabled]="disabled" [addonSize]="inputSize" class="field">
+    <div [ngClass]="{
       'p-float-label': labelPos == 'float',
-      'p-input-icon-left': !addon && icon && iconPos == 'left',
-      'p-input-icon-right': !addon && icon && iconPos == 'right',
+      'p-input-icon-left': icon && iconPos == 'left',
+      'p-input-icon-right': icon && iconPos == 'right',
       'p-inputtext-sm': inputSize == 'sm',
       'p-inputtext-lg': inputSize == 'lg',
       'p-input-filled': filled
-    }" class="field">
-    <i *ngIf="icon && !addon && !showClear" [ngClass]="icon"></i>
-    <p-chips
-      [(ngModel)]="value"
-      [ngAddon]="addon"
-      [addonDisabled]="disabled"
-      [addonSize]="inputSize"
-      [inputId]="inputId"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [field]="field"
-      [max]="max"
-      [disabled]="disabled"
-      [style]="style"
-      [styleClass]="styleClass"
-      [placeholder]="placeholder"
-      [tabindex]="tabindex"
-      [allowDuplicate]="allowDuplicate"
-      [inputStyle]="inputStyle"
-      [inputStyleClass]="inputStyleClass"
-      [addOnTab]="addOnTab"
-      [addOnBlur]="addOnBlur"
-      [separator]="separator"
-      [showClear]="showClear"
-      (onAfterBtnClick)="emitter('onAfterBtnClick', $event)"
-      (onBeforeBtnClick)="emitter('onBeforeBtnClick', $event)"
-      (onAdd)="_onAdd($event)"
-      (onRemove)="_onRemove($event)"
-      (onChipClick)="emitter('onChipClick', $event)"
-      (onFocus)="emitter('onFocus', $event)"
-      (onBlur)="_onBlur()"
-      (onClear)="_onClear()">
-      <ng-template pTemplate="item" let-item *ngIf="itemTemplate">
-        <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item}"></ng-container>
-      </ng-template>
-    </p-chips>
-    <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
-      {{ label }}
-    </label>
+    }">
+      <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
+      <p-chips
+        [(ngModel)]="value"
+        [inputId]="inputId"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [field]="field"
+        [max]="max"
+        [disabled]="disabled"
+        [style]="style"
+        [styleClass]="styleClass"
+        [placeholder]="placeholder"
+        [tabindex]="tabindex"
+        [allowDuplicate]="allowDuplicate"
+        [inputStyle]="inputStyle"
+        [inputStyleClass]="inputStyleClass"
+        [addOnTab]="addOnTab"
+        [addOnBlur]="addOnBlur"
+        [separator]="separator"
+        [showClear]="showClear"
+        (onAdd)="_onAdd($event)"
+        (onRemove)="_onRemove($event)"
+        (onChipClick)="emitter('onChipClick', $event)"
+        (onFocus)="emitter('onFocus', $event)"
+        (onBlur)="_onBlur()"
+        (onClear)="_onClear()">
+        <ng-template pTemplate="item" let-item *ngIf="itemTemplate">
+          <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item}"></ng-container>
+        </ng-template>
+      </p-chips>
+      <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
+        {{ label }}
+      </label>
+    </div>
   </div>
   <label
     *ngIf="label && labelPos != 'float'"

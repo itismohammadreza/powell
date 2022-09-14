@@ -199,7 +199,6 @@ export class InputTextareaComponent implements OnInit, AfterViewInit, ControlVal
     return !hasError;
   }
 
-
   writeValue(value: any) {
     this.value = value;
     this.cd.markForCheck();

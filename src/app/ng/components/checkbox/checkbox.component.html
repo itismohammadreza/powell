@@ -1,45 +1,33 @@
-<div
-  [ngClass]="{
-    rtl: rtl,
-    ltr: !rtl
-  }"
-  class="checkbox-wrapper">
+<div [ngClass]="{ 'rtl': rtl, 'ltr': !rtl }" class="checkbox-wrapper">
   <div class="field">
-    <div class="d-flex align-items-center field-inner">
-      <p-checkbox
-        [(ngModel)]="value"
-        [inputId]="inputId"
-        [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
-        [disabled]="disabled"
-        [tabindex]="tabindex"
-        [style]="style"
-        [styleClass]="styleClass"
-        [labelStyleClass]="labelStyleClass"
-        [checkboxIcon]="checkboxIcon"
-        [readonly]="readonly"
-        [trueValue]="trueValue"
-        [falseValue]="falseValue"
-        [binary]="true"
-        (onChange)="_onChange($event)"
-      ></p-checkbox>
-      <label
-        [attr.for]="inputId"
-        [ngClass]="{
-          'ml-2': !rtl,
-          'mr-2': rtl,
-          'text-muted': disabled
-        }"
-        class="mb-0">
-        {{ label }}
-      </label>
-    </div>
-    <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
-    <div class="message small">
-      <ng-container *ngFor="let error of errors | keyvalue">
-        <div *ngIf="showError(error.key)" class="p-error">
-          {{ error.value }}
-        </div>
-      </ng-container>
-    </div>
+    <p-checkbox
+      [(ngModel)]="value"
+      [inputId]="inputId"
+      [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
+      [disabled]="disabled"
+      [tabindex]="tabindex"
+      [style]="style"
+      [styleClass]="styleClass"
+      [labelStyleClass]="labelStyleClass"
+      [checkboxIcon]="checkboxIcon"
+      [readonly]="readonly"
+      [trueValue]="trueValue"
+      [falseValue]="falseValue"
+      [binary]="true"
+      (onChange)="_onChange($event)"
+    ></p-checkbox>
+    <label
+      [attr.for]="inputId"
+      [class.p-disabled]="disabled">
+      {{ label }}
+    </label>
+  </div>
+  <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
+  <div class="message small">
+    <ng-container *ngFor="let error of errors | keyvalue">
+      <div *ngIf="showError(error.key)" class="p-error">
+        {{ error.value }}
+      </div>
+    </ng-container>
   </div>
 </div>
