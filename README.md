@@ -5,12 +5,11 @@
 - search for TODO comments in project.
 - table filter on datepicker mode, value clears after select and close popup. also, what should be the cells actual
   value if we want to datepicker filter works properly?
-- check components label that WON't be 100px due to css flex issues (maybe goof to change labelWidth to minWidth).
+- check components label that WON't be 100px due to css flex issues (maybe good to change labelWidth to minWidth).
 
 ### Feature
 
-add addon outputs to components
-- [ ] **all** - handle rtl direction in panels when append them to body. from component take a querySelector to panel
+- [ ] **all** - handle rtl direction in panels and dialogs when append them to body. from component take a querySelector to panel
   and add a class to it.
 - [ ] **dialogs** - handle routing when dialog is open.
 - [ ] **async** - add an async @Input to button, switch, checkbox, dual-switch instead of creating new component.
@@ -20,11 +19,11 @@ add addon outputs to components
 ### New
 
 - [ ] **loading** - loadingWrapper component witch is wrap a component and show loading until a condition we said.
-- [ ] **jalaliDatepicker** - implement component.
-- [ ] **whiteboard** - implement component.
 - [ ] **table**
   - add configurable caption elements (like title and global filter). plus, apply localMode in global filter also.
   - implement actions
   - check that let- variables on ng-templates are setting properly. some is missed or some is wrong.
   - implement empty message if user not provided.
   - implement grid lines or other style classes configurations.
+- [ ] **jalaliDatepicker** - implement component.
+- [ ] **whiteboard** - implement component.
