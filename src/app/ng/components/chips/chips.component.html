@@ -6,7 +6,12 @@
       'label-float': labelPos == 'float',
       'clearable': showClear
     }" class="chips-wrapper">
-  <div [ngAddon]="addon" [addonDisabled]="disabled" [addonSize]="inputSize" class="field">
+  <div class="field"
+       [ngAddon]="addon"
+       [addonDisabled]="disabled"
+       [addonSize]="inputSize"
+       (onAfterBtnClick)="emitter('onAfterBtnClick',$event)"
+       (onBeforeBtnClick)="emitter('onBeforeBtnClick',$event)">
     <div [ngClass]="{
       'p-float-label': labelPos == 'float',
       'p-input-icon-left': icon && iconPos == 'left',

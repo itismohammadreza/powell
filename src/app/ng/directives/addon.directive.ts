@@ -120,23 +120,6 @@ export class AddonDirective implements OnChanges {
   }
 
   addToDOM(addonEl: any, pos: string) {
-    // ##### old
-    // let target = this.el.nativeElement;
-    // if (target.parentNode.classList.contains('p-float-label')) {
-    //   target = target.parentNode;
-    // }
-    // this.renderer.addClass(target.parentNode, 'p-inputgroup');
-    // this.renderer.addClass(el, `addon-${pos}`);
-    // this.renderer.addClass(this.el.nativeElement, `has-${pos}`);
-    // if (this.addonDisabled) {
-    //   this.renderer.addClass(el, `p-disabled`);
-    // }
-    // if (pos === 'after') {
-    //   this.renderer.appendChild(target.parentNode, el);
-    // } else if (pos === 'before') {
-    //   this.renderer.insertBefore(target.parentNode, el, target);
-    // }
-    // ##### old end
     const targetEl = this.el.nativeElement;
     this.renderer.addClass(targetEl, 'p-inputgroup');
     const fieldEl = targetEl.parentNode.querySelector('.p-inputgroup > div');

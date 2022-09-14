@@ -4,7 +4,11 @@
       'label-fix-top': labelPos == 'fix-top',
       'label-fix-side': labelPos == 'fix-side'
     }" class="listbox-wrapper">
-  <div [ngAddon]="addon" [addonDisabled]="disabled" class="field">
+  <div class="field"
+       [ngAddon]="addon"
+       [addonDisabled]="disabled"
+       (onAfterBtnClick)="emitter('onAfterBtnClick',$event)"
+       (onBeforeBtnClick)="emitter('onBeforeBtnClick',$event)">
     <div>
       <p-listbox
         [(ngModel)]="value"
