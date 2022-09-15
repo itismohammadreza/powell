@@ -50,6 +50,7 @@ import {MessagePage} from "@modules/main/pages/showcase/pages/message/message.pa
 import {ToastPage} from "@modules/main/pages/showcase/pages/toast/toast.page";
 import {DialogPage} from "@modules/main/pages/showcase/pages/dialog/dialog.page";
 import {LoadingContainerPage} from "@modules/main/pages/showcase/pages/loading-container/loading-container.page";
+import {InfiniteScrollPage} from "@modules/main/pages/showcase/pages/infinite-scroll/infinite-scroll.page";
 
 const routes: Routes = [
   {
@@ -156,6 +157,11 @@ const routes: Routes = [
     path: 'image-slider',
     component: ImageSliderPage,
     data: {title: 'image-slider'}
+  },
+  {
+    path: 'infinite-scroll',
+    component: InfiniteScrollPage,
+    data: {title: 'infinite-scroll'}
   },
   {
     path: 'input-mask',

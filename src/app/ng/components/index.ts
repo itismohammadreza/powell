@@ -32,6 +32,7 @@ import {ButtonComponent} from "@ng/components/button/button.component";
 import {SplitButtonComponent} from "@ng/components/split-button/split-button.component";
 
 /***************************** DATA *****************************/
+import {InfiniteScrollComponent} from "@ng/components/infinite-scroll/infinite-scroll.component";
 import {MapComponent} from "@ng/components/map/map.component";
 import {TableComponent} from "@ng/components/table/table.component";
 import {TreeComponent} from "@ng/components/tree/tree.component";
@@ -97,6 +98,7 @@ export const COMPONENTS: Type<any>[] = [
   ButtonComponent,
   SplitButtonComponent,
   /***************************** DATA *************************/
+  InfiniteScrollComponent,
   MapComponent,
   TableComponent,
   TreeComponent,

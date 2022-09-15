@@ -61,6 +61,7 @@ import {ToastPage} from "@modules/main/pages/showcase/pages/toast/toast.page";
 import {ConfirmPopupPage} from "@modules/main/pages/showcase/pages/confirm-popup/confirm-popup.page";
 import {DialogPage} from "@modules/main/pages/showcase/pages/dialog/dialog.page";
 import {LoadingContainerPage} from "@modules/main/pages/showcase/pages/loading-container/loading-container.page";
+import {InfiniteScrollPage} from "@modules/main/pages/showcase/pages/infinite-scroll/infinite-scroll.page";
 
 export const COMPONENTS: Type<any>[] = [
   // components
@@ -94,6 +95,7 @@ export const COMPONENTS: Type<any>[] = [
   GregorianDatepickerPage,
   ImagePage,
   ImageSliderPage,
+  InfiniteScrollPage,
   InputMaskPage,
   InputNumberPage,
   InputPasswordPage,
