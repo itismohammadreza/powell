@@ -117,7 +117,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       'auto-complete',
       'bottom-sheet',
       'button',
-      'button-async',
       'cascade-select',
       'checkbox',
       'chips',

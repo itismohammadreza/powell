@@ -30,7 +30,6 @@ import {TriStateCheckboxComponent} from "@ng/components/tri-state-checkbox/tri-s
 /***************************** BUTTONS *****************************/
 import {ButtonComponent} from "@ng/components/button/button.component";
 import {SplitButtonComponent} from "@ng/components/split-button/split-button.component";
-import {ButtonAsyncComponent} from "@ng/components/button-async/button-async.component";
 
 /***************************** DATA *****************************/
 import {MapComponent} from "@ng/components/map/map.component";
@@ -96,7 +95,6 @@ export const COMPONENTS: Type<any>[] = [
   /***************************** BUTTONS *************************/
   ButtonComponent,
   SplitButtonComponent,
-  ButtonAsyncComponent,
   /***************************** DATA *************************/
   MapComponent,
   TableComponent,

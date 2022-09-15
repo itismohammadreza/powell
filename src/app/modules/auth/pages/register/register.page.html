@@ -32,12 +32,13 @@
            *ngIf="form.hasError('notSame') && !form.get('confirmPassword').hasError('required')">
       رمزعبور و تکرار مطابقت ندارند
     </small>
-    <ng-button-async
+    <ng-button
       [full]="true"
+      [async]="true"
       type="submit"
       label="ورود"
-      (clickAsync)="onSubmit($event)"
-    ></ng-button-async>
+      (onClickAsync)="onSubmit($event)"
+    ></ng-button>
     <small class="text-muted mt-3 text-center">
       حساب کاربری دارید؟
       <a class="text-decoration-none" routerLink="/auth/login"> وارد شوید</a>

@@ -42,7 +42,6 @@ import {TreeSelectPage} from '@modules/main/pages/showcase/pages/tree-select/tre
 import {
   DynamicDialogSampleComponent
 } from '@modules/main/pages/showcase/components/dynamic-dialog-sample/dynamic-dialog-sample.component';
-import {ButtonAsyncPage} from '@modules/main/pages/showcase/pages/button-async/button-async.page';
 import {UtilsPage} from "@modules/main/pages/showcase/pages/utils/utils.page";
 import {SmokeComponent} from "@modules/main/pages/showcase/components/smoke/smoke.component";
 import {TriStateCheckboxPage} from "@modules/main/pages/showcase/pages/tri-state-checkbox/tri-state-checkbox.page";
@@ -75,7 +74,6 @@ export const COMPONENTS: Type<any>[] = [
   AutoCompletePage,
   BottomSheetPage,
   ButtonPage,
-  ButtonAsyncPage,
   CascadeSelectPage,
   CheckboxPage,
   ChipsPage,

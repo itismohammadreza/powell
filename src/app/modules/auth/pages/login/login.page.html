@@ -20,12 +20,13 @@
       [rtl]="fa"
     ></ng-input-text>
     <ng-checkbox formControlName="rememberMe" [rtl]="fa" label="مرا بخاطر بسپار"></ng-checkbox>
-    <ng-button-async
+    <ng-button
+      [async]="true"
       [full]="true"
       type="submit"
       label="ورود"
-      (clickAsync)="onSubmit($event)"
-    ></ng-button-async>
+      (onClickAsync)="onSubmit($event)"
+    ></ng-button>
     <small class="text-muted mt-3 text-center">
       حساب کاربری ندارید؟
       <a class="text-decoration-none" routerLink="/auth/register"> ثبت نام کنید</a>

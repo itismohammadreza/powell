@@ -284,7 +284,7 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() colorChange = new EventEmitter()
   @Input() newLabel: string;
   @Output() newLabelChange = new EventEmitter()
-  @Input() newColor: string;
+  @Input() newColor: NgColor;
   @Output() newColorChange = new EventEmitter()
   @Input() badgeColor: NgColor;
   @Output() badgeColorChange = new EventEmitter()
@@ -655,6 +655,7 @@ export class PreviewOptionsComponent implements OnInit {
       layout: ['horizontal', 'vertical'],
       dropdownMode: ['blank', 'current'],
       color: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
+      newColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
       badgeColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
       hourFormat: ['12', '24'],
       view: ['date', 'month', 'year'],

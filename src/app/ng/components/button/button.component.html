@@ -1,7 +1,7 @@
 <p-button
   [type]="type"
-  [label]="label"
-  [icon]="icon"
+  [label]="async ? _tmpLabel : label"
+  [icon]="async ? _tmpIcon : icon"
   [iconPos]="iconPos"
   [badge]="badge"
   [loading]="loading"
@@ -11,8 +11,9 @@
   badgeClass="{{badgeClass}} p-badge-{{ badgeColor }}"
   styleClass="
   {{styleClass}}
-  p-button-{{ appearance }}
-  p-button-{{ color }}
+  {{defaultState == 1 ? 'default-state' : 'new-state'}}
+  p-button-{{ async ? _tmpAppearance : appearance }}
+  p-button-{{ async ? _tmpColor : color }}
   p-button-{{ size }}
   p-button-{{ rounded ? 'rounded' : '' }}
   p-button-{{ raised ? 'raised' : '' }}"

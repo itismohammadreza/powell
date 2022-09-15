@@ -17,6 +17,9 @@
       'color',
       'badgeColor',
       'selectiveSize',
+      'async',
+      'newLabel',
+      'newColor',
       ]"
       [(label)]="label"
       [(icon)]="icon"
@@ -30,6 +33,9 @@
       [(color)]="color"
       [(badgeColor)]="badgeColor"
       [(selectiveSize)]="size"
+      [(async)]="async"
+      [(newLabel)]="newLabel"
+      [(newColor)]="newColor"
     ></ng-preview-options>
   </p-panel>
 
@@ -46,7 +52,11 @@
       [iconPos]="iconPos"
       [color]="color"
       [badgeColor]="badgeColor"
-      [size]="size">
+      [size]="size"
+      [async]="async"
+      [newLabel]="newLabel"
+      [newColor]="newColor"
+      (onClickAsync)="onClickAsync($event)">
     </ng-button>
   </p-panel>
 </div>

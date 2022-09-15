@@ -32,7 +32,6 @@ import {ImageSliderPage} from '@modules/main/pages/showcase/pages/image-slider/i
 import {DashboardPage} from '@modules/main/pages/showcase/pages/dashboard/dashboard.page';
 import {KnobPage} from '@modules/main/pages/showcase/pages/knob/knob.page';
 import {TreeSelectPage} from '@modules/main/pages/showcase/pages/tree-select/tree-select.page';
-import {ButtonAsyncPage} from '@modules/main/pages/showcase/pages/button-async/button-async.page';
 import {UtilsPage} from "@modules/main/pages/showcase/pages/utils/utils.page";
 import {
   GregorianDatepickerPage
@@ -71,11 +70,6 @@ const routes: Routes = [
     path: 'button',
     component: ButtonPage,
     data: {title: 'button'}
-  },
-  {
-    path: 'button-async',
-    component: ButtonAsyncPage,
-    data: {title: 'button-async'}
   },
   {
     path: 'cascade-select',
