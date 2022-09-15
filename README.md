@@ -9,8 +9,7 @@
 
 ### Feature
 
-- [ ] **all** - handle rtl direction in panels and dialogs when append them to body. from component take a querySelector
-  to panel and add a class to it.
+- [ ] **all** - handle rtl direction in panels and dialogs when append them to body.
 - [ ] **dialogForm** - add hook support in config (just like angular formly to implement cascade mode).
 
 ### New

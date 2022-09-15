@@ -62,6 +62,7 @@ import {EmptyComponent} from "@ng/components/empty/empty.component";
 import {LoadingComponent} from "@ng/components/loading/loading.component";
 import {StatusComponent} from "@ng/components/status/status.component";
 import {DualLabelSwitchComponent} from "@ng/components/dual-label-switch/dual-label-switch.component";
+import {LoadingContainerComponent} from "@ng/components/loading-container/loading-container.component";
 
 export const COMPONENTS: Type<any>[] = [
   /***************************** FORM *************************/
@@ -119,4 +120,5 @@ export const COMPONENTS: Type<any>[] = [
   EmptyComponent,
   StatusComponent,
   LoadingComponent,
+  LoadingContainerComponent
 ];

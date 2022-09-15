@@ -49,6 +49,7 @@ import {DialogFormPage} from "@modules/main/pages/showcase/pages/dialog-form/dia
 import {MessagePage} from "@modules/main/pages/showcase/pages/message/message.page";
 import {ToastPage} from "@modules/main/pages/showcase/pages/toast/toast.page";
 import {DialogPage} from "@modules/main/pages/showcase/pages/dialog/dialog.page";
+import {LoadingContainerPage} from "@modules/main/pages/showcase/pages/loading-container/loading-container.page";
 
 const routes: Routes = [
   {
@@ -195,6 +196,11 @@ const routes: Routes = [
     path: 'listbox',
     component: ListboxPage,
     data: {title: 'listbox'}
+  },
+  {
+    path: 'loading-container',
+    component: LoadingContainerPage,
+    data: {title: 'loading-container'}
   },
   {
     path: 'map',

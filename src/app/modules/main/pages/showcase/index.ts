@@ -60,6 +60,7 @@ import {MessagePage} from "@modules/main/pages/showcase/pages/message/message.pa
 import {ToastPage} from "@modules/main/pages/showcase/pages/toast/toast.page";
 import {ConfirmPopupPage} from "@modules/main/pages/showcase/pages/confirm-popup/confirm-popup.page";
 import {DialogPage} from "@modules/main/pages/showcase/pages/dialog/dialog.page";
+import {LoadingContainerPage} from "@modules/main/pages/showcase/pages/loading-container/loading-container.page";
 
 export const COMPONENTS: Type<any>[] = [
   // components
@@ -101,6 +102,7 @@ export const COMPONENTS: Type<any>[] = [
   JalaliDatepickerPage,
   KnobPage,
   ListboxPage,
+  LoadingContainerPage,
   MapPage,
   MessagePage,
   MultiCheckboxPage,

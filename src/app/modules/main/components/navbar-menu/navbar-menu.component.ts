@@ -143,6 +143,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       'jalali-datepicker',
       'knob',
       'listbox',
+      'loading-container',
       'map',
       'message',
       'multi-checkbox',

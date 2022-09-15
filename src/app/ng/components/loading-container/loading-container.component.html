@@ -1,0 +1,19 @@
+<div class="loading-container">
+  <ng-container *ngIf="dataFilled();else emptyDataPlaceholder">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </ng-container>
+
+  <ng-template #emptyDataPlaceholder>
+    <ng-container *ngIf="loadingTemplate; else defaultLoadingTemplate">
+      <ng-container *ngTemplateOutlet="loadingTemplate"></ng-container>
+    </ng-container>
+    <ng-template #defaultLoadingTemplate>
+      <div class="loading">
+        <p-progressSpinner [strokeWidth]="spinnerStrokeWidth.toString()"
+                           [fill]="spinnerFill"
+                           [style]="{width:spinnerWidth,height:spinnerHeight}">
+        </p-progressSpinner>
+      </div>
+    </ng-template>
+  </ng-template>
+</div>
