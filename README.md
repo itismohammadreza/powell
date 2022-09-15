@@ -14,7 +14,6 @@
 
 ### New
 
-- [ ] **loading** - loadingWrapper component witch is wrap a component and show loading until a condition we said.
 - [ ] **table**
   - add configurable caption elements (like title and global filter). plus, apply localMode in global filter also.
   - implement actions

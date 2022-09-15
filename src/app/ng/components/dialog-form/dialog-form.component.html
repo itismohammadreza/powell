@@ -68,14 +68,12 @@
           [labelWidth]="item.labelWidth || 110"
           [label]="item.label"
           [ngClass]="item.className || 'col-12'"
-          [optionDisabled]="item.optionDisabled"
           [optionGroupChildren]="item.optionGroupChildren"
           [optionGroupLabel]="item.optionGroupLabel"
           [optionLabel]="item.optionLabel || 'label'"
           [optionValue]="item.optionValue || 'value'"
           [options]="item.options"
           [placeholder]="item.placeholder"
-          [readonly]="item.readonly"
           [rtl]="formOptions.rtl"
           [showRequiredStar]="item.showRequiredStar || true"
           [value]="item.value"
@@ -107,7 +105,6 @@
         ></ng-chips>
         <ng-color-picker
           *ngSwitchCase="'color-picker'"
-          [addon]="item.addon"
           [appendTo]="item.appendTo"
           [disabled]="item.disabled"
           [errors]="getValidatorErrors(item)"
@@ -364,7 +361,6 @@
           [ngClass]="item.className || 'col-12'"
           [placeholder]="item.placeholder"
           [promptLabel]="item.promptLabel"
-          [readonly]="item.readonly"
           [rtl]="formOptions.rtl"
           [toggleMask]="item.toggleMask"
           [showRequiredStar]="item.showRequiredStar || true"
@@ -532,13 +528,11 @@
         ></ng-rating>
         <ng-select-button
           *ngSwitchCase="'select-button'"
-          [addon]="item.addon"
           [dataKey]="item.dataKey"
           [disabled]="item.disabled"
           [errors]="getValidatorErrors(item)"
           [formControlName]="item.formControlName"
           [hint]="item.hint"
-          [iconPos]="item.iconPos || 'left'"
           [labelPos]="item.labelPos || 'fix-top'"
           [labelWidth]="item.labelWidth || 110"
           [label]="item.label"
@@ -554,7 +548,6 @@
         ></ng-select-button>
         <ng-checkbox
           *ngSwitchCase="'checkbox'"
-          [binary]="item.binary"
           [disabled]="item.disabled"
           [errors]="getValidatorErrors(item)"
           [formControlName]="item.formControlName"
@@ -616,7 +609,6 @@
           [offLabel]="item.offLabel"
           [onIcon]="item.onIcon"
           [onLabel]="item.onLabel"
-          [readonly]="item.readonly"
           [rtl]="formOptions.rtl"
           [showRequiredStar]="item.showRequiredStar || true"
           [value]="item.value"
@@ -633,7 +625,7 @@
           [filterBy]="item.filterBy"
           [filterLocale]="item.filterLocale"
           [filterMode]="item.filterMode"
-          [filterPlaceholder]="item.filterPlaceholder"
+          [filterPlaceHolder]="item.filterPlaceholder"
           [filter]="item.filter"
           [formControlName]="item.formControlName"
           [hint]="item.hint"
@@ -644,9 +636,7 @@
           [label]="item.label"
           [layout]="item.layout"
           [loading]="item.loading"
-          [maxBufferPx]="item.maxBufferPx"
           [metaKeySelection]="item.metaKeySelection"
-          [minBufferPx]="item.minBufferPx"
           [ngClass]="item.className || 'col-12'"
           [propagateSelectionDown]="item.propagateSelectionDown"
           [propagateSelectionUp]="item.propagateSelectionUp"
@@ -657,7 +647,6 @@
           [showRequiredStar]="item.showRequiredStar || true"
           [trackBy]="item.trackBy"
           [validateDrop]="item.validateDrop"
-          [virtualNodeHeight]="item.virtualNodeHeight"
           [virtualScroll]="item.virtualScroll"
         ></ng-tree>
         <div
