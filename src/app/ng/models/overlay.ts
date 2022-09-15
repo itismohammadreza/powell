@@ -35,7 +35,6 @@ export interface NgToastOptions {
   data?: any;
   styleClass?: string;
   contentStyleClass?: string;
-  preventOpenDuplicates?: boolean;
   preventDuplicates?: boolean;
   position?: NgPlace;
   style?: any;

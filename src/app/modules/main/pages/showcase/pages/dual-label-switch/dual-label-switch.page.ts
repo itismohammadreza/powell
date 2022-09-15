@@ -21,4 +21,14 @@ export class DualLabelSwitchPage {
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;
+  async: boolean = false;
+
+  asyncFlag = false;
+
+  onChangeAsync({loadingCallback, value}) {
+    this.asyncFlag = !this.asyncFlag;
+    setTimeout(() => {
+      loadingCallback(this.asyncFlag)
+    }, 3000)
+  }
 }

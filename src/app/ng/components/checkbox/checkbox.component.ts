@@ -44,6 +44,7 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() errors: NgError;
   @Input() onLabel: string;
   @Input() offLabel: string;
+  @Input() async: boolean;
   // native properties
   @Input() disabled: boolean;
   @Input() tabindex: any;
@@ -55,7 +56,9 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() trueValue: any = true;
   @Input() falseValue: any = false;
   @Output() onChange = new EventEmitter();
+  @Output() onChangeAsync = new EventEmitter();
 
+  loading: boolean;
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
@@ -113,26 +116,51 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
     if (this.onLabel && this.offLabel) {
       if (this.value) {
         this.label = this.onLabel;
-      }
-      else {
+      } else {
         this.label = this.offLabel;
       }
     }
   }
 
   _onChange(event) {
-    if (this.controlContainer && this.ngControl) {
-      if (this.isRequired()) {
-        this.onModelChange(event.checked ? true : null);
+    if (this.async) {
+      this.loading = true;
+      this.disabled = true;
+      this.cd.detectChanges();
+      this.onChangeAsync.emit({loadingCallback: this.removeLoading, value: event.checked});
+    } else {
+      if (this.controlContainer && this.ngControl) {
+        if (this.isRequired()) {
+          this.onModelChange(event.checked ? true : null);
+        } else {
+          this.onModelChange(event.checked);
+        }
       } else {
         this.onModelChange(event.checked);
       }
+      this.onChange.emit(event);
+      this.setLabel();
+    }
+  }
+
+  removeLoading = (ok: boolean = true) => {
+    this.loading = false;
+    this.disabled = false;
+    if (!ok) {
+      this.value = !this.value;
+    }
+    if (this.controlContainer && this.ngControl) {
+      if (this.isRequired()) {
+        this.onModelChange(this.value ? true : null);
+      } else {
+        this.onModelChange(this.value);
+      }
     } else {
-      this.onModelChange(event.checked);
+      this.onModelChange(this.value);
     }
     this.setLabel();
-    this.onChange.emit(event);
-  }
+  };
+
 
   getId() {
     return "id" + Math.random().toString(16).slice(2)
@@ -156,7 +184,8 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
     for (const error in this.errors) {
       if (this.showError(error)) {
         hasError = true
-      };
+      }
+      ;
     }
     return !hasError;
   }

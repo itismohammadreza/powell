@@ -10,12 +10,14 @@
       'rtl',
       'disabled',
       'readonly',
+      'async',
       ]"
       [(label)]="label"
       [(hint)]="hint"
       [(rtl)]="rtl"
       [(disabled)]="disabled"
       [(readonly)]="readonly"
+      [(async)]="async"
     ></ng-preview-options>
   </p-panel>
 
@@ -32,6 +34,8 @@
         [rtl]="rtl"
         [disabled]="disabled"
         [readonly]="readonly"
+        [async]="async"
+        (onChangeAsync)="onChangeAsync($event)"
       ></ng-checkbox>
     </form>
 
@@ -48,6 +52,8 @@
       [rtl]="rtl"
       [disabled]="disabled"
       [readonly]="readonly"
+      [async]="async"
+      (onChangeAsync)="onChangeAsync($event)"
     ></ng-checkbox>
     <pre class="mt-3 mb-0" dir="ltr"><b>Value :</b> {{binding | json}}</pre>
   </p-panel>

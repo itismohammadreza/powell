@@ -18,6 +18,16 @@
       margin-bottom: 0;
     }
 
+    p-progressSpinner {
+      display: inline-flex;
+      margin: 0 0.5rem;
+
+      .p-progress-spinner {
+        width: 25px;
+        height: 25px;
+      }
+    }
+
     &.ltr {
       direction: ltr;
 

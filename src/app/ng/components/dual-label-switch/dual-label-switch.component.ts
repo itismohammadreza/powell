@@ -46,6 +46,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgFixLabelPosition = 'fix-top';
   @Input() errors: NgError;
+  @Input() async: boolean;
   // native properties
   @Input() style: any;
   @Input() styleClass: string;
@@ -53,7 +54,9 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() disabled: boolean;
   @Input() readonly: boolean;
   @Output() onChange = new EventEmitter();
+  @Output() onChangeAsync = new EventEmitter();
 
+  loading: boolean;
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
@@ -115,9 +118,24 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   }
 
   _onChange(event) {
-    this.onModelChange(event.checked);
-    this.onChange.emit(event);
+    if (this.async) {
+      this.loading = true;
+      this.disabled = true;
+      this.cd.detectChanges();
+      this.onChangeAsync.emit({loadingCallback: this.removeLoading, value: event.checked});
+    } else {
+      this.onModelChange(event.checked);
+      this.onChange.emit(event);
+    }
   }
+
+  removeLoading = (ok: boolean = true) => {
+    this.loading = false;
+    this.disabled = false;
+    if (!ok) {
+      this.value = !this.value;
+    }
+  };
 
   getId() {
     return "id" + Math.random().toString(16).slice(2)

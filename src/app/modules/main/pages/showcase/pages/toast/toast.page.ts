@@ -20,7 +20,6 @@ export class ToastPage {
     severity: 'info',
     icon: 'pi pi-info',
     detail: 'Some Detail',
-    preventOpenDuplicates: false,
     preventDuplicates: false,
     position: 'top-right'
   }

@@ -5,21 +5,24 @@
       'label-fix-side': labelPos == 'fix-side'
     }" class="dual-label-switch-wrapper">
   <div class="field">
-    <span class="label-left" [class.text-muted]="disabled">{{labelLeft}}</span>
-    <p-inputSwitch
-      [(ngModel)]="value"
-      [inputId]="inputId"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [style]="style"
-      [styleClass]="styleClass"
-      [tabindex]="tabindex"
-      [disabled]="disabled"
-      [readonly]="readonly"
-      [trueValue]="labelRightValue"
-      [falseValue]="labelLeftValue"
-      (onChange)="_onChange($event)"
-    ></p-inputSwitch>
-    <span class="label-right" [class.text-muted]="disabled">{{labelRight}}</span>
+    <div class="field-inner">
+      <span class="label-left" [class.text-muted]="disabled">{{labelLeft}}</span>
+      <p-inputSwitch
+        [(ngModel)]="value"
+        [inputId]="inputId"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [style]="style"
+        [styleClass]="styleClass"
+        [tabindex]="tabindex"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [trueValue]="labelRightValue"
+        [falseValue]="labelLeftValue"
+        (onChange)="_onChange($event)"
+      ></p-inputSwitch>
+      <span class="label-right" [class.text-muted]="disabled">{{labelRight}}</span>
+    </div>
+    <p-progressSpinner *ngIf="loading" strokeWidth="4" fill="var(--surface-ground)"></p-progressSpinner>
   </div>
   <label
     class="fix-label"

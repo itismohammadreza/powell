@@ -9,11 +9,8 @@
 
 ### Feature
 
-- [ ] **all** - handle rtl direction in panels and dialogs when append them to body. from component take a querySelector to panel
-  and add a class to it.
-- [ ] **dialogs** - handle routing when dialog is open.
-- [ ] **async** - add an async @Input to button, switch, checkbox, dual-switch instead of creating new component.
-  `<p-progressSpinner [style]="{width: '30px', height: '30px'}"></p-progressSpinner>`
+- [ ] **all** - handle rtl direction in panels and dialogs when append them to body. from component take a querySelector
+  to panel and add a class to it.
 - [ ] **dialogForm** - add hook support in config (just like angular formly to implement cascade mode).
 
 ### New

@@ -42,8 +42,9 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgFixLabelPosition = 'fix-top';
   @Input() errors: NgError;
-  @Input() onLabel: string;
-  @Input() offLabel: string;
+  @Input() onLabel: string = 'salam';
+  @Input() offLabel: string = 'bye';
+  @Input() async: boolean;
   // native properties
   @Input() style: any;
   @Input() styleClass: string;
@@ -53,7 +54,9 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   @Input() trueValue: any = true;
   @Input() falseValue: any = false;
   @Output() onChange = new EventEmitter();
+  @Output() onChangeAsync = new EventEmitter();
 
+  loading: boolean;
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
@@ -124,16 +127,41 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   }
 
   _onChange(event) {
+    if (this.async) {
+      this.loading = true;
+      this.disabled = true;
+      this.cd.detectChanges();
+      this.onChangeAsync.emit({loadingCallback: this.removeLoading, value: event.checked});
+    } else {
+      if (this.controlContainer && this.ngControl) {
+        if (this.isRequired()) {
+          this.onModelChange(event.checked ? true : null);
+        } else {
+          this.onModelChange(event.checked);
+        }
+      }
+      this.onChange.emit(event);
+      this.setLabel();
+    }
+  }
+
+  removeLoading = (ok: boolean = true) => {
+    this.loading = false;
+    this.disabled = false;
+    if (!ok) {
+      this.value = !this.value;
+    }
     if (this.controlContainer && this.ngControl) {
       if (this.isRequired()) {
-        this.onModelChange(event.checked ? true : null);
+        this.onModelChange(this.value ? true : null);
       } else {
-        this.onModelChange(event.checked);
+        this.onModelChange(this.value);
       }
+    } else {
+      this.onModelChange(this.value);
     }
     this.setLabel();
-    this.onChange.emit(event);
-  }
+  };
 
   getId() {
     return "id" + Math.random().toString(16).slice(2)

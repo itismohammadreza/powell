@@ -11,10 +11,11 @@ import {
 import {Confirmation, ConfirmationService, ConfirmEventType, Message, MessageService} from 'primeng/api';
 import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {DialogComponent} from '@ng/components/dialog/dialog.component';
-import {DOCUMENT} from '@angular/common';
+import {DOCUMENT, LocationStrategy} from '@angular/common';
 import {Toast} from 'primeng/toast';
 import {ConfirmPopup} from 'primeng/confirmpopup';
 import {ConfirmDialog} from 'primeng/confirmdialog';
+import {NavigationStart, Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -31,14 +32,27 @@ export class OverlayService {
     private dialogService: DialogService,
     private injector: Injector,
     private appRef: ApplicationRef,
-    @Inject(DOCUMENT) private document: Document
+    private locationStrategy: LocationStrategy,
+    @Inject(DOCUMENT) private document: Document,
+    private router: Router
   ) {
+    router.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        [this.toastCmpRef,
+          this.confirmPopupCmpRef,
+          this.confirmCmpRef,
+          this.dialogCmpRef].forEach(cmpRef => {
+          this.removeFromBody(cmpRef);
+        })
+      }
+    });
   }
 
   showToast(options: NgToastOptions): void {
     if (!this.bodyContains(this.toastCmpRef)) {
       this.toastCmpRef = this.addToBody(Toast);
     }
+
     const toast: Message = {
       key: options.key,
       data: options.data,
@@ -53,7 +67,6 @@ export class OverlayService {
       contentStyleClass: options.contentStyleClass,
       detail: options.detail,
     }
-    this.toastCmpRef.instance.preventOpenDuplicates = options.preventOpenDuplicates;
     this.toastCmpRef.instance.preventDuplicates = options.preventDuplicates;
     this.toastCmpRef.instance.position = options.position || 'top-right';
     this.toastCmpRef.instance.style = options.style;
@@ -241,6 +254,15 @@ export class OverlayService {
     this.appRef.attachView(componentRef.hostView);
     this.document.body.appendChild(componentRef.location.nativeElement);
     return componentRef;
+  }
+
+  private removeFromBody(component: ComponentRef<any>) {
+    if (!component) {
+      return;
+    }
+
+    this.appRef.detachView(component.hostView);
+    component.destroy();
   }
 
   private bodyContains(componentRef: ComponentRef<any>) {

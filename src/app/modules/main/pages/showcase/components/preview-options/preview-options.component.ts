@@ -208,8 +208,8 @@ type PreviewItem =
   | 'sticky'
   | 'summary'
   | 'detail'
-  | 'preventOpenDuplicates'
   | 'preventDuplicates'
+  | 'async'
 
   | 'addon'
   | 'selectiveSize'
@@ -602,10 +602,10 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() summaryChange = new EventEmitter()
   @Input() detail: string;
   @Output() detailChange = new EventEmitter()
-  @Input() preventOpenDuplicates: boolean;
-  @Output() preventOpenDuplicatesChange = new EventEmitter()
   @Input() preventDuplicates: boolean;
   @Output() preventDuplicatesChange = new EventEmitter()
+  @Input() async: boolean;
+  @Output() asyncChange = new EventEmitter()
 
 
   @Input() addon: NgAddon;

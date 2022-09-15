@@ -12,6 +12,7 @@
       'fixLabelPos',
       'disabled',
       'readonly',
+      'async',
       ]"
       [(label)]="label"
       [(labelWidth)]="labelWidth"
@@ -20,6 +21,7 @@
       [(fixLabelPos)]="labelPos"
       [(disabled)]="disabled"
       [(readonly)]="readonly"
+      [(async)]="async"
     ></ng-preview-options>
   </p-panel>
 
@@ -38,6 +40,8 @@
         [labelPos]="labelPos"
         [disabled]="disabled"
         [readonly]="readonly"
+        [async]="async"
+        (onChangeAsync)="onChangeAsync($event)"
       ></ng-switch>
     </form>
 
@@ -56,6 +60,8 @@
       [labelPos]="labelPos"
       [disabled]="disabled"
       [readonly]="readonly"
+      [async]="async"
+      (onChangeAsync)="onChangeAsync($event)"
     ></ng-switch>
     <pre class="mt-3 mb-0" dir="ltr"><b>Value :</b> {{binding | json}}</pre>
   </p-panel>
