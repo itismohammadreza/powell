@@ -1,11 +1,4 @@
-export interface RequestConfig {
-  pathTemplate: string | RegExp,
-  loading: boolean,
-  success: boolean,
-  failure: boolean,
-  catch: boolean,
-  method: string
-}
+import {RequestConfig} from "@core/models";
 
 export const RequestsConfig: RequestConfig[] = [
   {pathTemplate: `/api/v1/account/register`, method: 'get', loading: true, success: true, failure: true, catch: false},

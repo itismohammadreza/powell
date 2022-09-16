@@ -1,1 +1,1 @@
-export * from './sidebar-type.model';
+export * from './configs.model';

@@ -1,4 +1,14 @@
-import {animate, AnimationTransitionMetadata, group, query, style, transition, trigger} from '@angular/animations';
+import {
+  animate,
+  AnimationTransitionMetadata,
+  AnimationTriggerMetadata,
+  group,
+  query,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
+import {AnimationDefinition} from "@core/models";
 
 const SlideAnimation = [
   transition('* <=> *', [
@@ -32,12 +42,12 @@ const FadeAnimation = [
   ])
 ]
 
-const animationMetaData: { [key: string]: AnimationTransitionMetadata[] } = {
+const animations: AnimationDefinition = {
   none: [],
   fade: FadeAnimation,
   slide: SlideAnimation
 }
 
-export function RouteAnimation(name: 'fade' | 'slide' | 'none') {
-  return trigger('routeAnimation', animationMetaData[name]);
+export function RouteAnimation(name: string | 'none'): AnimationTriggerMetadata {
+  return trigger('routeAnimation', animations[name] || animations['none']);
 }

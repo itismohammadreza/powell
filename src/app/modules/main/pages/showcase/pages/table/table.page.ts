@@ -1,13 +1,32 @@
-import {Component} from '@angular/core';
-import {NgColDef} from '@ng/models/table';
+import {Component, OnInit} from '@angular/core';
+import {NgTableColDef, NgTableActionsConfig} from '@ng/models/table';
 import {MenuItem} from 'primeng/api';
+import {NgSize} from "@ng/models/offset";
+
+interface Customer {
+  id: any,
+  name: string,
+  country: any,
+  company: string,
+  date: string,
+  status: string,
+  verified: boolean,
+  activity: number,
+  representative: any,
+  balance: number,
+  image: string,
+  bool: boolean,
+}
 
 @Component({
   selector: 'ng-table-page',
   templateUrl: './table.page.html',
   styleUrls: ['./table.page.scss'],
 })
-export class TablePage {
+export class TablePage implements OnInit {
+  rtl: boolean = false;
+  size: NgSize = 'md';
+
   customers = [
     {
       "id": 1000,
@@ -729,7 +748,6 @@ export class TablePage {
       "image": 'https://via.placeholder.com/150x150',
       "bool": false,
     }];
-
   contextMenu: MenuItem[] = [
     {
       label: 'View',
@@ -738,8 +756,7 @@ export class TablePage {
       },
     },
   ];
-
-  colDef: NgColDef[] = [
+  colDef: NgTableColDef<Customer>[] = [
     {
       header: 'name',
       field: 'name',
@@ -747,7 +764,8 @@ export class TablePage {
       render: {as: 'image'},
       filter: {
         type: 'slider',
-        range: true
+        range: true,
+        rowFilterShowMenu: true
       },
     },
     {
@@ -843,28 +861,43 @@ export class TablePage {
     {
       header: 'bool',
       field: 'bool',
-      render: {
-        as: 'text'
-      },
       sort: true,
       filter: {type: 'boolean'},
     },
   ];
-
+  actionsConfig: NgTableActionsConfig<Customer> = {
+    inSameColumn: false,
+    header: 'actions',
+    actions: [
+      {
+        header: 'edit',
+        icon: 'pi pi-pencil',
+        onClick: (item) => {
+          alert(`Edit : ${item.name}`)
+        }
+      },
+      {
+        header: 'info',
+        icon: 'pi pi-info',
+        color: 'info',
+        onClick: (item) => {
+          alert(`Info : ${item.name}`)
+        }
+      }
+    ]
+  }
   globalFilterFields: string[] = ['status'];
-
   selectedCustomers: any[];
-
   contextMenuSelection: any;
 
-  onEditComplete(event) {
+  ngOnInit() {
   }
 
   onRowSelect(event: any) {
   }
 
-  // rowSelectable(data, index) {
-  //   console.log(data.index == 0)
-  //   return data.index == 0 || data.index == 1;
-  // }
+  rowSelectable(data, index) {
+    console.log(data.index == 0)
+    return data.index == 0 || data.index == 1;
+  }
 }

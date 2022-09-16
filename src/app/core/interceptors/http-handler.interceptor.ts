@@ -11,8 +11,9 @@ import {finalize, Observable, of, tap, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {OverlayService} from '@ng/services';
 import {AuthService} from '@core/http';
-import {RequestConfig, RequestsConfig} from "@core/requests.config";
+import {RequestsConfig} from "@core/requests.config";
 import {LoaderService} from "@core/utils";
+import {RequestConfig} from "@core/models";
 
 @Injectable()
 export class HttpHandlerInterceptor implements HttpInterceptor {
@@ -30,10 +31,10 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const clonedReq = request.clone();
-    const shouldShowSuccess = this.findRequestByPath(this.hasSuccessMessageApis, request);
-    const shouldShowFailure = this.findRequestByPath(this.hasFailureMessageApis, request);
-    const shouldShowLoading = this.findRequestByPath(this.hasLoadingApis, request)
-    const shouldCatch = this.findRequestByPath(this.catchEnabledApis, request);
+    const shouldShowSuccess = this.isRequestFounded(this.hasSuccessMessageApis, request);
+    const shouldShowFailure = this.isRequestFounded(this.hasFailureMessageApis, request);
+    const shouldShowLoading = this.isRequestFounded(this.hasLoadingApis, request)
+    const shouldCatch = this.isRequestFounded(this.catchEnabledApis, request);
 
     if (shouldCatch) {
       const cachedResponse = this.cachedRequests.get(request.url);
@@ -93,21 +94,19 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     });
   }
 
-  findRequestByPath(targetArray: RequestConfig[], request: HttpRequest<any>) {
+  isRequestFounded(targetArray: RequestConfig[], request: HttpRequest<any>) {
     const {pathname} = this.getUrlParts(request.url);
     const foundedIndex = targetArray.findIndex(x => {
-      if (x.pathTemplate instanceof RegExp) {
-        return x.pathTemplate.test(pathname) && x.method.toLowerCase() == request.method.toLowerCase()
-      } else {
-        return x.pathTemplate == pathname && x.method.toLowerCase() == request.method.toLowerCase()
-      }
+      const requestMethodMatch = x.method.toLowerCase() === request.method.toLowerCase();
+      const requestPathMatch = x.pathTemplate instanceof RegExp ? x.pathTemplate.test(pathname) : x.pathTemplate === pathname;
+      return requestMethodMatch && requestPathMatch
     });
-    return foundedIndex >= 0
+    return foundedIndex >= 0;
   }
 
   getUrlParts(url: string) {
     const linkElement = document.createElement('a');
-    const res: { [key: string]: string } = {};
+    const res: any = {};
     linkElement.href = url;
     ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'].forEach((k) => {
       res[k] = linkElement[k];
@@ -116,8 +115,8 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     return res;
   }
 
-  removeRequestFromQueue(req: HttpRequest<any>) {
-    const i = this.requestsQueue.indexOf(req);
+  removeRequestFromQueue(request: HttpRequest<any>) {
+    const i = this.requestsQueue.indexOf(request);
     if (i >= 0) {
       this.requestsQueue.splice(i, 1);
     }

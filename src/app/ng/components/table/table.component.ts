@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   Component,
   ContentChildren,
   EventEmitter,
@@ -12,10 +13,11 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import {NgSelectionMode} from '@ng/models/offset';
+import {NgEmptyIcon, NgSelectionMode, NgSize} from '@ng/models/offset';
 import {
-  NgColDef,
   NgTableAction,
+  NgTableActionsConfig,
+  NgTableColDef,
   NgTableColumnResizeMode,
   NgTableCompareSelectionBy,
   NgTableContextMenuSelectionMode,
@@ -34,17 +36,27 @@ import {ScrollerOptions} from "primeng/scroller";
   selector: 'ng-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TableComponent implements OnInit, OnChanges, AfterContentInit {
+export class TableComponent implements OnInit, AfterContentInit {
   @Input() items: any[];
   @Input() filterDisplay: NgTableFilterDisplay = 'menu';
-  @Input() colDef: NgColDef[];
+  @Input() colDef: NgTableColDef[];
   @Input() reorderableRows: boolean = false;
   @Input() selectableRows: boolean = true;
   @Input() local: boolean = true;
-  @Input() actionsInSameColumn: boolean = true;
-  @Input() actionsHeader: string;
-  @Input() actions: NgTableAction[];
+  @Input() actionsConfig: NgTableActionsConfig;
+  @Input() rtl: boolean = true;
+  @Input() emptyMessage: string = 'موردی یافت نشد.';
+  @Input() emptyIcon: string;
+  @Input() emptyImageSrc: string;
+  @Input() emptyImageType: NgEmptyIcon = 'box1';
+  @Input() captionTitle: string;
+  @Input() globalFilter: boolean = true;
+  @Input() globalFilterPlaceholder: string;
+  @Input() size: NgSize = 'sm';
+  @Input() gridlines: boolean = true;
+  @Input() striped: boolean = false;
   // native properties
   @Input() frozenColumns: any[];
   @Input() frozenValue: any[];
@@ -101,7 +113,7 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Input() virtualScrollItemSize: number;
   @Input() virtualScrollOptions: ScrollerOptions;
   @Input() contextMenu: any;
-  @Input() resizableColumns: boolean;
+  @Input() resizableColumns: boolean = true;
   @Input() columnResizeMode: NgTableColumnResizeMode = 'fit';
   @Input() reorderableColumns: boolean;
   @Input() loading: boolean;
@@ -132,7 +144,8 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
   @Output() onHeaderCheckboxToggle = new EventEmitter()
   @Output() onStateSave = new EventEmitter()
   @Output() onStateRestore = new EventEmitter()
-  @Output() sortFunction: EventEmitter<any> = new EventEmitter();
+  @Output() sortFunction = new EventEmitter();
+  @Output() globalFilterChange = new EventEmitter();
   // two-way bindings
   @Input() rows: number;
   @Input() first: number;
@@ -171,14 +184,12 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
 
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);
+    this.colDef = this.colDef.filter(col => col.visible != undefined ? col.visible : true);
     this.colDef.forEach(conf => {
       if (conf.filter?.type == 'slider') {
         Object.assign(conf.filter, {sliderValue: conf.filter.range ? [conf.filter.min || 0, conf.filter.max || 100] : conf.filter.max})
       }
     })
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
   }
 
   ngAfterContentInit() {
@@ -284,21 +295,18 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     this.contextMenuSelectionChange.emit(this.contextMenuSelection);
   }
 
-  fromObj(data: any, field: string | string[]) {
-    if (data && field) {
-      if (typeof field == 'string') {
-        return this.fromObj(data, field.split('.'));
-      } else if (field.length == 0) {
-        return data;
-      } else {
-        return this.fromObj(data[field[0]], field.slice(1));
-      }
-    } else {
-      return null;
-    }
+  fromObject(obj: any, field: string | string[], value?: any) {
+    if (typeof field == 'string')
+      return this.fromObject(obj, field.split('.'), value);
+    else if (field.length == 1 && value !== undefined)
+      return obj[field[0]] = value;
+    else if (field.length == 0)
+      return obj;
+    else
+      return this.fromObject(obj[field[0]], field.slice(1), value);
   }
 
-  onChangeFilterValue(event: any, filterCallback: Function, col: NgColDef) {
+  onChangeFilterValue(event: any, filterCallback: Function, col: NgTableColDef) {
     let filterValue;
     switch (col.filter.type) {
       case 'multi-select':
@@ -323,156 +331,35 @@ export class TableComponent implements OnInit, OnChanges, AfterContentInit {
     }
   }
 
-  handleCellStyleClass(col: NgColDef, item: any) {
-    if (typeof col.cellStyleClass == 'function')
-      return col.cellStyleClass(item);
+  handleCellStyleClass(cellStyleClass: Function | string, item: any) {
+    if (typeof cellStyleClass == 'function')
+      return cellStyleClass(item);
     else {
-      return col.cellStyleClass
+      return cellStyleClass
     }
   }
 
-  handleCellTemplate(col: NgColDef, item: any) {
+  handleCellRenderer(col: NgTableColDef, item: any) {
     if (col.render && typeof col.render.as == 'function')
       return col.render.as(item);
     else {
-      return this.fromObj(item, col.field)
+      return this.fromObject(item, col.field)
     }
   }
 
-  // @Input() emptyMessage: string = 'No Records Found';
-  // @Input() header: string;
-  // @Input() stickyTopOffset: string;
-  // @Input() actions: NgTableAction[];
-  // @Input() exportCsvBtn: boolean;
-  // @Input() exportExcelBtn: boolean;
-  // @Input() exportPdfBtn: boolean;
-  // @Input() exportSelectionBtn: boolean;
-  // @Input() resetBtn: boolean;
-  // @Input() globalFilterPlaceholder: string = 'Search';
-  // @Input() actionsColumnHeader: string = 'عملیات';
-  // @Input() rtl: boolean;
-  // @Input() striped: boolean = true;
-  // @Input() gridlines: boolean = true;
-  // @Input() size: NgSize = 'sm';
-  // @Input() colDef: NgColDef[];
-  // @Input() rows: number = 5000;
-  // @Input() dataKey: string;
-  // @Input() globalFilterFields: string[];
-  // @Input() loading: boolean;
-  // @Input() rowHover: boolean;
-  // @Input() autoLayout: boolean;
-  // @Input() responsive: boolean = true;
-  // @Input() reorderableRows: boolean;
-  // @Input() selectableRows: boolean;
-  // @Input() selection: any;
-  // @Input() selectionMode: NgSelectionMode;
-  // @Input() compareSelectionBy: 'equals' | 'deepEquals' = 'deepEquals';
-  // @Input() contextMenuItems: MenuItem[];
-  // @Input() contextMenuSelection: any;
-  // @Input() contextMenuSelectionMode: 'separate' | 'joint' = 'separate';
-  // @Input() resizableColumns: boolean;
-  // @Input() columnResizeMode: 'fit' | 'expand' = 'expand';
-  // @Input() scrollable: boolean;
-  // @Input() scrollHeight: string;
-  // @Input() stateStorage: 'session' | 'local';
-  // @Input() stateKey: string;
-  // @Input() filterDelay: number = 0;
-  // @Input() rowTrackBy: any;
-  // @Input() sortMode: NgSelectionMode = 'single';
-  // @Input() defaultSortOrder: number = 1;
-  // @Input() resetPageOnSort: boolean = true;
-  // @Input() multiSortMeta: SortMeta[];
-  // @Input() sortOrder: number = 1;
-  // @Input() sortField: string;
-  // @Input() exportFilename: string = 'download';
-  // @Input() csvSeparator: string = ',';
-  // @Input() paginator: boolean = true;
-  // @Input() first: number = 0;
-  // @Input() alwaysShowPaginator: boolean;
-  // @Input() paginatorPosition: NgPosition = 'bottom';
-  // @Input() showPageLinks: boolean = true;
-  // @Input() showJumpToPageDropdown: boolean = true;
-  // @Input() pageLinks: number = 0;
-  // @Input() showFirstLastIcon: boolean = true;
-  // @Input() totalRecords: number = 0;
-  // @Input() paginatorDropdownAppendTo: any;
-  // @Input() currentPageReportTemplate: string = '{first}-{last} of {totalRecords}';
-  // @Input() rowsPerPageOptions: number[] = [10, 20, 50];
-  // @Output() onFileButtonClick = new EventEmitter();
-  // @Output() contextMenuSelectionChange = new EventEmitter();
-  // @Output() onContextMenuSelect = new EventEmitter();
-  // @Output() selectionChange = new EventEmitter();
-  // @Output() onRowSelect = new EventEmitter();
-  // @Output() onRowUnselect = new EventEmitter();
-  // @Output() onPage = new EventEmitter();
-  // @Output() onSort = new EventEmitter();
-  // @Output() onFilter = new EventEmitter();
-  // @Output() onColResize = new EventEmitter();
-  // @Output() onColReorder = new EventEmitter();
-  // @Output() onRowReorder = new EventEmitter();
-  // @Output() onEditInit = new EventEmitter();
-  // @Output() onEditComplete = new EventEmitter();
-  // @Output() onEditCancel = new EventEmitter();
-  // @Output() onHeaderCheckboxToggle = new EventEmitter();
-  // @Output() onStateSave = new EventEmitter();
-  // @Output() onStateRestore = new EventEmitter();
-  // @Output() onActionClick = new EventEmitter();
-  // @ViewChild('dt') table: Table;
-  //
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (changes.items) {
-  //     this.items = changes.items.currentValue;
-  //   }
-  // }
-  //
-  // emitter(name: string, event: any) {
-  //   (this[name] as EventEmitter<any>).emit(event);
-  // }
-  //
-  // onSelectionChange(event) {
-  //   this.selection = event;
-  //   this.selectionChange.emit(this.selection);
-  // }
-  //
-  // onContextMenuSelectionChange(event) {
-  //   this.contextMenuSelection = event;
-  //   this.contextMenuSelectionChange.emit(this.contextMenuSelection);
-  // }
-  //
-  // onCellEdit(rowData: any, field: string, newValue: any) {
-  //   this.fromObj(rowData, field, newValue);
-  // }
-  //
-  // getClass(rowData: any, item: NgTableAction): string[] {
-  //   const result = [item.className || ''];
-  //   for (const config of item.classConfigs) {
-  //     result.push(config.tobe.some(
-  //         (t) => t === this.fromObj(rowData, config.field || [])
-  //       )
-  //         ? config.class
-  //         : ''
-  //     );
-  //   }
-  //   return result;
-  // }
-  //
-  // fileButtonClick(rowData: any, col: NgColDef) {
-  //   if (col.renderer.fileButtonDefaultBehavior) {
-  //     window.open(this.fromObj(rowData, col.field));
-  //   } else {
-  //     this.onFileButtonClick.emit(rowData);
-  //   }
-  // }
-  //
-  // get hasCaption() {
-  //   return (
-  //     this.header ||
-  //     this.globalFilterFields ||
-  //     this.exportCsvBtn ||
-  //     this.exportExcelBtn ||
-  //     this.exportPdfBtn ||
-  //     this.exportSelectionBtn ||
-  //     this.resetBtn
-  //   );
-  // }
+  handleActionVisibility(action: NgTableAction, item: any) {
+    if (typeof action.visible == 'function')
+      return action.visible(item);
+    else {
+      return action.visible != undefined ? action.visible : true;
+    }
+  }
+
+  onGlobalFilterChange(event: any) {
+    if (this.local) {
+      this.dataTable.filterGlobal(event.target.value, 'contains')
+    } else {
+      this.globalFilterChange.emit(event.target.value)
+    }
+  }
 }
