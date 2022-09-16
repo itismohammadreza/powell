@@ -175,9 +175,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   }
 
   showError(errorType: string): boolean {
-    return (
-      this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
-    );
+    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
   }
 
   showHint() {
@@ -186,7 +184,6 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
       if (this.showError(error)) {
         hasError = true
       }
-      ;
     }
     return !hasError;
   }

@@ -159,14 +159,12 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
   }
 
   _onChange(event: Event) {
-    /* onchange occurs when the selection, the checked state or the contents of an element have changed. In some cases, it only occurs when the element loses the focus. The onchange attribute can be used with <input>, <select>, and <textarea> */
     const inputElement = event.target as HTMLInputElement;
     this.onChange.emit(event);
     this.onModelChange(inputElement.value);
   }
 
   _onInput(event: Event) {
-    /* oninput event occurs when the text content of an element is changed through the user interface */
     const inputElement = event.target as HTMLInputElement;
     this.onInput.emit(event);
     this.onModelChange(inputElement.value);
@@ -210,9 +208,7 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
   }
 
   showError(errorType: string): boolean {
-    return (
-      this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
-    );
+    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
   }
 
   showHint() {

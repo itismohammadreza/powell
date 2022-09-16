@@ -131,9 +131,7 @@ export class RatingComponent implements OnInit, AfterViewInit, ControlValueAcces
   }
 
   showError(errorType: string): boolean {
-    return (
-      this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
-    );
+    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
   }
 
   showHint() {

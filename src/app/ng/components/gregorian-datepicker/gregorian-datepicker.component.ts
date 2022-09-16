@@ -213,9 +213,7 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   }
 
   showError(errorType: string): boolean {
-    return (
-      this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
-    );
+    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
   }
 
   showHint() {
@@ -224,7 +222,6 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
       if (this.showError(error)) {
         hasError = true
       }
-      ;
     }
     return !hasError;
   }

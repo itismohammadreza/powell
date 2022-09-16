@@ -174,9 +174,7 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   showError(errorType: string): boolean {
-    return (
-      this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
-    );
+    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
   }
 
   showHint() {
@@ -185,7 +183,6 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
       if (this.showError(error)) {
         hasError = true
       }
-      ;
     }
     return !hasError;
   }

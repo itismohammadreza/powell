@@ -110,9 +110,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterViewInit, Control
   }
 
   showError(errorType: string): boolean {
-    return (
-      this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
-    );
+    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
   }
 
   showHint() {
@@ -121,7 +119,6 @@ export class TriStateCheckboxComponent implements OnInit, AfterViewInit, Control
       if (this.showError(error)) {
         hasError = true
       }
-      ;
     }
     return !hasError;
   }

@@ -106,30 +106,6 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
         });
       }
     }
-    // if (this.controlContainer && this.ngControl) {
-    //   parentForm = this.controlContainer.control;
-    //   rootForm = this.controlContainer.formDirective as FormGroupDirective;
-    //   if (this.ngControl instanceof NgModel) {
-    //     currentControl = this.ngControl.control;
-    //   } else if (this.ngControl instanceof FormControlName) {
-    //     currentControl = parentForm.get(this.ngControl.name.toString());
-    //   }
-    //   rootForm.ngSubmit.subscribe(() => {
-    //     if (!this.disabled) {
-    //       currentControl.markAsTouched();
-    //     }
-    //   });
-    //   if (this.showRequiredStar && this.isRequired()) {
-    //     if (this.isRequired()) {
-    //       if (this.label) {
-    //         this.label += ' *';
-    //       }
-    //       if (this.placeholder) {
-    //         this.placeholder += ' *';
-    //       }
-    //     }
-    //   }
-    // }
   }
 
   ngAfterViewInit() {
@@ -145,14 +121,12 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   }
 
   _onChange(event: Event) {
-    /* onchange occurs when the selection, the checked state or the contents of an element have changed. In some cases, it only occurs when the element loses the focus. The onchange attribute can be used with <input>, <select>, and <textarea> */
     const inputElement = event.target as HTMLInputElement;
     this.onChange.emit(event);
     this.onModelChange(inputElement.value);
   }
 
   _onInput(event: Event) {
-    /* oninput event occurs when the text content of an element is changed through the user interface */
     const inputElement = event.target as HTMLInputElement;
     this.onInput.emit(event);
     this.onModelChange(inputElement.value);
@@ -191,9 +165,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   }
 
   showError(errorType: string): boolean {
-    return (
-      this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
-    );
+    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
   }
 
   showHint() {
@@ -202,7 +174,6 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
       if (this.showError(error)) {
         hasError = true
       }
-      ;
     }
     return !hasError;
   }

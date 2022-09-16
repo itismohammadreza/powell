@@ -214,9 +214,7 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
   }
 
   showError(errorType: string): boolean {
-    return (
-      this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
-    );
+    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
   }
 
   showHint() {
@@ -225,7 +223,6 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
       if (this.showError(error)) {
         hasError = true
       }
-      ;
     }
     return !hasError;
   }

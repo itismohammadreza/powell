@@ -244,9 +244,7 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   }
 
   showError(errorType: string): boolean {
-    return (
-      this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
-    );
+    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
   }
 
   showHint() {
@@ -255,7 +253,6 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
       if (this.showError(error)) {
         hasError = true
       }
-      ;
     }
     return !hasError;
   }

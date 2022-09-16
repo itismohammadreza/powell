@@ -329,9 +329,7 @@ export class FilePickerComponent
   }
 
   showError(errorType: string): boolean {
-    return (
-      this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase())
-    );
+    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
   }
 
   showHint() {
@@ -340,7 +338,6 @@ export class FilePickerComponent
       if (this.showError(error)) {
         hasError = true
       }
-      ;
     }
     return !hasError;
   }
