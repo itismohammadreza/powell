@@ -124,6 +124,11 @@ export interface NgMessageOptions {
   icon?: string;
 }
 
+export interface NgDialogFormResult {
+  formValue: any;
+  changeDialogVisibilityTo: (visibility?: boolean) => void
+}
+
 export interface NgDialogOptions {
   header?: string;
   draggable?: boolean;

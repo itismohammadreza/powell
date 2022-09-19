@@ -4,7 +4,7 @@ import {
   NgConfirmDialogOptions,
   NgConfirmPopupOptions,
   NgDialogFormConfig,
-  NgDialogFormOptions,
+  NgDialogFormOptions, NgDialogFormResult,
   NgDialogOptions,
   NgToastOptions
 } from '@ng/models/overlay';
@@ -16,6 +16,8 @@ import {Toast} from 'primeng/toast';
 import {ConfirmPopup} from 'primeng/confirmpopup';
 import {ConfirmDialog} from 'primeng/confirmdialog';
 import {NavigationStart, Router} from "@angular/router";
+import {Observable} from "rxjs";
+import {DialogForm2Component} from "@ng/components/dialog-form2/dialog-form2.component";
 
 @Injectable({
   providedIn: 'root'
@@ -230,6 +232,16 @@ export class OverlayService {
   }
 
   //todo: change parameters to options: NgDialogFormOptions
+  showDialogForm2(): Observable<NgDialogFormResult> {
+    const dialogFormRef = this.addToBody(DialogForm2Component);
+    dialogFormRef.instance.visible = true
+    return new Observable<NgDialogFormResult>((resolve) => {
+      dialogFormRef.instance.onSubmit.subscribe(res => {
+        resolve.next(res);
+      })
+    })
+  }
+
   showDialogForm(header: string, config: NgDialogFormConfig[], options?: NgDialogFormOptions): DynamicDialogRef {
     return this.dialogService.open(DialogFormComponent, {
       header,

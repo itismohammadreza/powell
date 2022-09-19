@@ -1,10 +1,10 @@
 import {ChangeDetectorRef, Component, OnInit, Optional, ViewEncapsulation,} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators,} from '@angular/forms';
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormRule, NgDialogFormRuleAction,} from '@ng/models/overlay';
-import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {NgError} from "@ng/models/forms";
+import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 
 @Component({
   selector: 'dialog-form',

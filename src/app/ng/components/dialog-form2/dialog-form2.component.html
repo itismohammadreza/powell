@@ -1,0 +1,7 @@
+<p-dialog [(visible)]="visible">
+  <form [formGroup]="form">
+    <ng-input-text formControlName="c1"></ng-input-text>
+
+    <ng-button label="Submit" type="submit" [async]="true" (onClickAsync)="onClick($event)"></ng-button>
+  </form>
+</p-dialog>
