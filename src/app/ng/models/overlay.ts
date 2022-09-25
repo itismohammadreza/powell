@@ -1,5 +1,5 @@
 import {HttpHeaders} from '@angular/common/http';
-import {AbstractControl, ValidationErrors} from '@angular/forms';
+import {AbstractControl, FormGroup, ValidationErrors} from '@angular/forms';
 import {ContextMenu} from 'primeng/contextmenu';
 import {NgButtonAppearance, NgButtonType} from './button';
 import {NgColor} from './color';
@@ -232,24 +232,22 @@ export interface NgDialogFormOptions {
   rejectLabel?: string;
   rejectAppearance?: NgButtonAppearance;
   buttonFull?: boolean;
+  submitDisabled?: boolean | ((dialogFormEvent?: NgDialogFormEventRes) => boolean);
   formValidator?: {
     validatorFn: (group: AbstractControl) => ValidationErrors | null,
     error: string,
     message: string,
+    style?: any
   };
 }
 
-// export type NgDialogFormRuleAction =
-//   | 'visible'
-//   | 'invisible'
-//   | 'disable'
-//   | 'enable';
-//
-// export interface NgDialogFormRule {
-//   tobe: any[];
-//   control: string;
-//   action: NgDialogFormRuleAction;
-// }
+
+export interface NgDialogFormEventRes {
+  event?: any,
+  form?: FormGroup;
+  currentConfig?: NgDialogFormConfig;
+  allConfig?: NgDialogFormConfig[];
+}
 
 export type NgDialogFormComponent =
   | 'hidden'
@@ -302,9 +300,9 @@ export interface NgDialogFormConfig {
   dropdownMode?: 'blank' | 'current';
   unique?: boolean;
   autocomplete?: string;
-  completeMethod?: () => void;
-  onUnselect?: () => void;
-  onDropdownClick?: () => void;
+  completeMethod?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onUnselect?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onDropdownClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// button /////////////////////////////////////////
   appearance?: NgButtonAppearance;
   rounded?: boolean;
@@ -319,12 +317,12 @@ export interface NgDialogFormConfig {
   defaultState?: 1 | 2;
   badge?: string;
   badgeClass?: string;
-  defaultStateChange?: () => void;
-  onClickAsync?: () => void;
+  defaultStateChange?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onClickAsync?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// cascade-select /////////////////////////////////////////
-  onGroupChange?: () => void;
-  onBeforeShow?: () => void;
-  onBeforeHide?: () => void;
+  onGroupChange?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onBeforeShow?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onBeforeHide?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// checkbox /////////////////////////////////////////
   labelStyleClass?: string;
   ///////////////////////////////////////// chips /////////////////////////////////////////
@@ -333,8 +331,8 @@ export interface NgDialogFormConfig {
   addOnTab?: boolean;
   addOnBlur?: boolean;
   separator?: string;
-  onAdd?: () => void;
-  onChipClick?: () => void;
+  onAdd?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onChipClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// color-picker /////////////////////////////////////////
   ///////////////////////////////////////// dropdown /////////////////////////////////////////
   editable?: boolean;
@@ -360,26 +358,26 @@ export interface NgDialogFormConfig {
   videoUploadHandler?: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
   audioUploadHandler?: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
   localStorageConfig?;
-  created?: () => void;
-  onload?: () => void;
-  onMouseDown?: () => void;
-  onResizeEditor?: () => void;
-  onAudioUploadBefore?: () => void;
-  onVideoUploadError?: () => void;
-  onVideoUploadBefore?: () => void;
-  onImageUploadError?: () => void;
-  onImageUploadBefore?: () => void;
-  onAudioUploadError?: () => void;
-  onDrop?: () => void;
-  showController?: () => void;
-  toggleFullScreen?: () => void;
-  toggleCodeView?: () => void;
-  showInline?: () => void;
-  onAudioUpload?: () => void;
-  onVideoUpload?: () => void;
-  onImageUpload?: () => void;
-  onCut?: () => void;
-  onCopy?: () => void;
+  created?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onload?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMouseDown?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onResizeEditor?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onAudioUploadBefore?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onVideoUploadError?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onVideoUploadBefore?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onImageUploadError?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onImageUploadBefore?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onAudioUploadError?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onDrop?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  showController?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  toggleFullScreen?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  toggleCodeView?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  showInline?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onAudioUpload?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onVideoUpload?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onImageUpload?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onCut?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onCopy?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// file-picker /////////////////////////////////////////
   name?: string;
   url?: string;
@@ -407,17 +405,17 @@ export interface NgDialogFormConfig {
   cancelStyleClass?: string;
   removeStyleClass?: string;
   chooseStyleClass?: string;
-  onProgress?: () => void;
-  onBeforeUpload?: () => void;
-  onUpload?: () => void;
-  onSend?: () => void;
-  uploadHandler?: () => void;
+  onProgress?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onBeforeUpload?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onUpload?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onSend?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  uploadHandler?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// file-picker2 /////////////////////////////////////////
   accept?: string;
   fileLimit?: number;
   resultType?: 'base64' | 'file';
   chooseLabel?: string;
-  onRemove?: () => void;
+  onRemove?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// gregorian-datepicker /////////////////////////////////////////
   defaultDate?: Date;
   dateFormat?: string;
@@ -457,13 +455,13 @@ export interface NgDialogFormConfig {
   touchUI?: boolean;
   focusTrap?: boolean;
   firstDayOfWeek?: number;
-  onSelect?: () => void;
-  onClose?: () => void;
-  onClickOutside?: () => void;
-  onTodayClick?: () => void;
-  onClearClick?: () => void;
-  onMonthChange?: () => void;
-  onYearChange?: () => void;
+  onSelect?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onClose?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onClickOutside?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onTodayClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onClearClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMonthChange?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onYearChange?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// image /////////////////////////////////////////
   onErrorImagePlaceholder?: string;
   imageClass?: string;
@@ -472,7 +470,7 @@ export interface NgDialogFormConfig {
   alt?: string;
   width?: string;
   preview?: boolean;
-  onError?: () => void;
+  onError?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// input-mask /////////////////////////////////////////
   mask?: string;
   slotChar?: string;
@@ -480,7 +478,7 @@ export interface NgDialogFormConfig {
   unmask?: boolean;
   characterPattern?: string;
   autoFocus?: boolean;
-  onComplete?: () => void;
+  onComplete?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// input-number /////////////////////////////////////////
   showButtons?: boolean;
   buttonLayout?: NgNumberButtonLayout;
@@ -517,10 +515,10 @@ export interface NgDialogFormConfig {
   cols?: number;
   autoResize?: boolean;
   maxlength?: number;
-  onResize?: () => void;
-  onInput?: () => void;
-  onKeyDown?: () => void;
-  onKeyUp?: () => void;
+  onResize?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onInput?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onKeyDown?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onKeyUp?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// knob /////////////////////////////////////////
   valueColor?: string;
   rangeColor?: string;
@@ -532,7 +530,7 @@ export interface NgDialogFormConfig {
   checkbox?: boolean;
   listStyle?: string;
   listStyleClass?: string;
-  onDblClick?: () => void;
+  onDblClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// map /////////////////////////////////////////
   clearMapBtnTooltip?: string;
   clearMapBtnIcon?: string;
@@ -543,22 +541,22 @@ export interface NgDialogFormConfig {
   leafletMaxZoom?: number;
   leafletFitBounds?: LatLngBounds;
   leafletMaxBounds?: LatLngBounds;
-  zoomChange?: () => void;
-  centerChange?: () => void;
-  onMapMarkerClick?: () => void;
-  onMapClick?: () => void;
-  onMapDoubleClick?: () => void;
-  onMapMouseDown?: () => void;
-  onMapMouseUp?: () => void;
-  onMapMouseMove?: () => void;
-  onMapMouseOver?: () => void;
-  onMapMouseOut?: () => void;
-  onMapMove?: () => void;
-  onMapMoveStart?: () => void;
-  onMapMoveEnd?: () => void;
-  onMapZoom?: () => void;
-  onMapZoomStart?: () => void;
-  onMapZoomEnd?: () => void;
+  zoomChange?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  centerChange?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMapMarkerClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMapClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMapDoubleClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMapMouseDown?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMapMouseUp?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMapMouseMove?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMapMouseOver?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMapMouseOut?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMapMove?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMapMoveStart?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMapMoveEnd?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMapZoom?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMapZoomStart?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onMapZoomEnd?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// message /////////////////////////////////////////
   inlineMessage?: string;
   summary?: string;
@@ -594,12 +592,12 @@ export interface NgDialogFormConfig {
   tooltipStyleClass?: string;
   tooltipPosition?: NgPosition;
   tooltipPositionStyle?: string;
-  onClick?: () => void;
-  onPanelShow?: () => void;
-  onPanelHide?: () => void;
+  onClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onPanelShow?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onPanelHide?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// radio /////////////////////////////////////////
-  onFocus?: () => void;
-  onBlur?: () => void;
+  onFocus?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onBlur?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// rating /////////////////////////////////////////
   stars?: number;
   cancel?: boolean;
@@ -609,15 +607,15 @@ export interface NgDialogFormConfig {
   iconOnStyle?: any;
   iconOffStyle?: any;
   iconCancelStyle?: any;
-  onRate?: () => void;
-  onCancel?: () => void;
+  onRate?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onCancel?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// select-botton /////////////////////////////////////////
   optionLabel?: string;
   optionValue?: string;
   optionDisabled?: string;
   multiple?: boolean;
   dataKey?: string;
-  onOptionClick?: () => void;
+  onOptionClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// slider /////////////////////////////////////////
   animate?: boolean;
   min?: number;
@@ -625,18 +623,18 @@ export interface NgDialogFormConfig {
   orientation?: NgOrientation;
   step?: number;
   range?: boolean;
-  onSlideEnd?: () => void;
+  onSlideEnd?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// switch /////////////////////////////////////////
   async?: boolean;
   trueValue?: any;
   falseValue?: any;
-  onChangeAsync?: () => void;
+  onChangeAsync?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// toggle-button /////////////////////////////////////////
   onLabel?: string;
   offLabel?: string;
   onIcon?: string;
   offIcon?: string;
-  onChange?: () => void;
+  onChange?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// tree /////////////////////////////////////////
   items?: any[];
   selection?: any;
@@ -655,12 +653,12 @@ export interface NgDialogFormConfig {
   lazy?: boolean;
   trackBy?: Function;
   indentation?: number;
-  onNodeContextMenuSelect?: () => void;
-  onNodeDrop?: () => void;
-  onLazyLoad?: () => void;
-  onScroll?: () => void;
-  onScrollIndexChange?: () => void;
-  selectionChange?: () => void;
+  onNodeContextMenuSelect?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onNodeDrop?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onLazyLoad?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onScroll?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onScrollIndexChange?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  selectionChange?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// tree-select /////////////////////////////////////////
   labelWidth?: number;
   icon?: string;
@@ -685,16 +683,16 @@ export interface NgDialogFormConfig {
   filterLocale?: string;
   resetFilterOnHide?: boolean;
   showClear?: boolean;
-  onBeforeBtnClick?: () => void;
-  onAfterBtnClick?: () => void;
-  onShow?: () => void;
-  onHide?: () => void;
-  onFilter?: () => void;
-  onNodeSelect?: () => void;
-  onNodeUnselect?: () => void;
-  onNodeExpand?: () => void;
-  onNodeCollapse?: () => void;
-  onClear?: () => void;
+  onBeforeBtnClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onAfterBtnClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onShow?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onHide?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onFilter?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onNodeSelect?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onNodeUnselect?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onNodeExpand?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onNodeCollapse?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  onClear?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// tri-state-checkbox /////////////////////////////////////////
   value?: any;
   label?: string;
@@ -702,7 +700,7 @@ export interface NgDialogFormConfig {
   hint?: string;
   rtl?: boolean;
   showRequiredStar?: boolean;
-  disabled?: boolean;
+  disabled?: boolean | ((dialogFormEvent?: NgDialogFormEventRes) => boolean);
   tabindex?: any;
   style?: any;
   styleClass?: string;
@@ -735,6 +733,5 @@ export interface NgDialogFormConfig {
   component: NgDialogFormComponent;
   key?: string;
   className?: string | string[];
-  visible?: boolean;
-
+  hidden?: boolean | ((dialogFormEvent?: NgDialogFormEventRes) => boolean);
 }

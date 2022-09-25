@@ -1,179 +1,167 @@
-import {ChangeDetectorRef, Component, OnInit, Optional, ViewEncapsulation,} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators,} from '@angular/forms';
-import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormRule, NgDialogFormRuleAction,} from '@ng/models/overlay';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import {Component, EventEmitter} from '@angular/core';
+import {FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
+import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult, NgDialogFormValidation} from "@ng/models/overlay";
+import {Subject} from "rxjs";
 import {NgValidation} from "@ng/models/forms";
-import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 
 @Component({
-  selector: 'dialog-form',
+  selector: 'ng-dialog-form',
   templateUrl: './dialog-form.component.html',
-  styleUrls: ['./dialog-form.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./dialog-form.component.scss']
 })
-export class DialogFormComponent implements OnInit {
-  form = new UntypedFormGroup({});
-  formConfig: NgDialogFormConfig[];
-  formOptions: NgDialogFormOptions;
-  destroy$: Subject<void> = new Subject();
+export class DialogFormComponent {
 
-  constructor(
-    @Optional() private dialogConfig: DynamicDialogConfig,
-    @Optional() private dialogRef: DynamicDialogRef,
-    private cd: ChangeDetectorRef
-  ) {
+  form = new FormGroup({})
+  visible: boolean;
+  destroy$: Subject<void> = new Subject();
+  closeCallback: () => void;
+  onSubmit = new EventEmitter<NgDialogFormResult>();
+  onClose = new EventEmitter();
+  _config: NgDialogFormConfig[];
+  _options: NgDialogFormOptions;
+
+  set options(v) {
+    this._options = v;
+    if (this._options.formValidator) {
+      this.form.setValidators(this.options.formValidator.validatorFn);
+    }
   }
 
-  ngOnInit() {
-    this.formConfig = JSON.parse(JSON.stringify(this.dialogConfig.data.config));
-    this.formOptions = {
-      rtl: true,
-      acceptVisible: true,
-      acceptIcon: 'pi pi-check',
-      acceptColor: 'primary',
-      acceptLabel: 'ذخیره',
-      acceptAppearance: 'basic',
-      rejectVisible: true,
-      rejectIcon: 'pi pi-times',
-      rejectColor: 'danger',
-      rejectLabel: 'لغو',
-      rejectAppearance: 'outlined',
-      // for overwrite previous values
-      ...this.dialogConfig.data.options
-    };
-    for (const config of this.formConfig) {
+  get options() {
+    return this._options
+  }
+
+  set config(value) {
+    this._config = value;
+    for (const config of this._config) {
       if (config.key) {
-        this.form.addControl(config.key, new UntypedFormControl(null));
-      }
-      if (config.rules) {
-        this.form
-          .get(config.key)
-          .valueChanges.pipe(takeUntil(this.destroy$))
-          .subscribe((res) => {
-            this.handleRules(config, res);
-          });
+        this.form.addControl(config.key, new FormControl(null));
+        this.handleConfigValue(config);
+        this.handleConfigValidations(config);
       }
     }
-    for (const config of this.formConfig) {
-      if (config.value != null) {
-        this.form.get(config.key).setValue(config.value);
-        if (config.rules) {
-          this.handleRules(config, config.value);
+  }
+
+  get config() {
+    return this._config;
+  }
+
+  handleConfigValue(config: NgDialogFormConfig) {
+    const control = this.form.get(config.key);
+    if (config.value != null) {
+      control.setValue(config.value);
+    }
+  }
+
+  handleConfigValidations(config: NgDialogFormConfig) {
+    const control = this.form.get(config.key);
+    if (config.validations) {
+      const validators: ValidatorFn[] = [];
+      for (const e of config.validations) {
+        switch (e.type) {
+          case 'required':
+          case 'requiredTrue':
+          case 'email':
+          case 'nullValidator':
+            validators.push(Validators[e.type]);
+            break;
+          default:
+            validators.push(Validators[e.type](e.value));
+            break;
         }
       }
-    }
-    if (this.formOptions.formValidator) {
-      this.form.setValidators(this.formOptions.formValidator.validatorFn);
-    }
-  }
-
-  handleRules(config: NgDialogFormConfig, value: any) {
-    for (const rule of config.rules) {
-      if (rule.tobe.some((v) => value == v)) {
-        this.applyAction(rule, false);
-      } else {
-        this.applyAction(rule, true);
-      }
-    }
-    this.cd.detectChanges();
-  }
-
-  changeVisibility(config: NgDialogFormConfig, action: NgDialogFormRuleAction) {
-    if (config) {
-      let control = this.form.get(config.key);
-      switch (action) {
-        case 'visible':
-          config.visible = true;
-          if (control.disabled) {
-            control.enable();
-          }
-          break;
-        case 'invisible':
-          config.visible = false;
-          switch (config.component) {
-            case 'checkbox':
-            case 'switch':
-              control.setValue(false);
-              break;
-            default:
-              control.setValue(null);
-          }
-          if (control.enabled) {
-            control.disable();
-          }
-          break;
-      }
+      control.setValidators([...validators]);
+      control.updateValueAndValidity()
     }
   }
 
-  applyAction(rule: NgDialogFormRule, reverse: boolean) {
-    let target = this.formConfig.find((c) => c.key == rule.control);
-    if (!reverse) {
-      switch (rule.action) {
-        case 'enable':
-          this.form.get(target.key).enable();
-          break;
-        case 'disable':
-          this.form.get(target.key).disable();
-          break;
-        case 'invisible':
-          this.changeVisibility(target, 'invisible');
-          break;
-        case 'visible':
-          this.changeVisibility(target, 'visible');
-          break;
-      }
-    } else {
-      switch (rule.action) {
-        case 'enable':
-          this.form.get(target.key).disable();
-          break;
-        case 'disable':
-          this.form.get(target.key).enable();
-          break;
-        case 'invisible':
-          this.changeVisibility(target, 'visible');
-          break;
-        case 'visible':
-          this.changeVisibility(target, 'invisible');
-          break;
-      }
-    }
-  }
-
-  getValidatorErrors(config: NgDialogFormConfig) {
+  convertToComponentValidation(configValidation: NgDialogFormValidation[]): NgValidation {
     const errObj = {};
-    const validators: ValidatorFn[] = [];
-    for (const e of config.validations) {
-      switch (e.type) {
-        case 'required':
-        case 'requiredTrue':
-        case 'email':
-        case 'nullValidator':
-          validators.push(Validators[e.type]);
-          break;
-        default:
-          validators.push(Validators[e.type](e.value));
-          break;
-      }
+    for (const e of configValidation) {
       errObj[e.type] = e.message;
     }
-    this.form.controls[config.key].setValidators([...validators]);
     return errObj as NgValidation;
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      this.dialogRef.close(this.form.value);
-      this.destroy$.next();
-      this.destroy$.unsubscribe();
+  changeDialogVisibilityTo = (visibility: boolean) => {
+    this.closeCallback();
+    this.visible = visibility;
+    if (!visibility) {
+      this.onClose.emit();
     }
   }
 
-  onCancel() {
-    this.dialogRef.close(null);
-    this.destroy$.next();
-    this.destroy$.unsubscribe();
+  handleConfigEvent(config: NgDialogFormConfig, eventKey: string, eventObj: any) {
+    if (config[eventKey]) {
+      config[eventKey]({event: eventObj, form: this.form, currentConfig: config, allConfig: this.config})
+    }
+  }
+
+  handleConfigVisibility(config: NgDialogFormConfig) {
+    let hidden = false;
+    if (config.hidden == undefined) {
+      return hidden;
+    }
+    if (typeof config.hidden == 'function') {
+      hidden = config.hidden({form: this.form, currentConfig: config, allConfig: this.config});
+    } else {
+      hidden = config.hidden;
+    }
+    if (hidden) {
+      const control = this.form.get(config.key)
+      control.setValue(null);
+      control.clearValidators();
+      control.updateValueAndValidity()
+    } else {
+      this.handleConfigValidations(config)
+    }
+    return hidden;
+  }
+
+  handleConfigDisable(config: NgDialogFormConfig) {
+    let disabled = false;
+    if (config.disabled == undefined) {
+      return disabled;
+    }
+    if (typeof config.disabled == 'function') {
+      disabled = config.disabled({form: this.form, currentConfig: config, allConfig: this.config});
+    } else {
+      disabled = config.disabled;
+    }
+    if (disabled) {
+      const control = this.form.get(config.key)
+      control.clearValidators();
+      control.updateValueAndValidity();
+    } else {
+      this.handleConfigValidations(config)
+    }
+    return disabled;
+  }
+
+  handleSubmitDisable() {
+    let disabled = false;
+    if (this.options.submitDisabled == undefined) {
+      return disabled;
+    }
+    if (typeof this.options.submitDisabled == 'function') {
+      disabled = this.options.submitDisabled({form: this.form, allConfig: this.config});
+    } else {
+      disabled = this.options.submitDisabled;
+    }
+    return disabled;
+  }
+
+  onCancelClick() {
+    this.visible = false;
+    this.onClose.emit();
+  }
+
+  onSubmitClick(closeCallback: any) {
+    if (this.form.invalid) {
+      closeCallback();
+      return;
+    }
+    this.closeCallback = closeCallback;
+    this.onSubmit.emit({formValue: this.form.value, changeDialogVisibilityTo: this.changeDialogVisibilityTo})
   }
 }

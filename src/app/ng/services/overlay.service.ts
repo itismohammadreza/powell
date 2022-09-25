@@ -16,7 +16,7 @@ import {ConfirmPopup} from 'primeng/confirmpopup';
 import {ConfirmDialog} from 'primeng/confirmdialog';
 import {NavigationStart, Router} from "@angular/router";
 import {Observable, Subject} from "rxjs";
-import {DialogForm2Component} from "@ng/components/dialog-form2/dialog-form2.component";
+import {DialogFormComponent} from "@ng/components/dialog-form2/dialog-form.component";
 import {takeUntil} from "rxjs/operators";
 
 @Injectable({
@@ -27,7 +27,7 @@ export class OverlayService {
   private confirmPopupCmpRef: ComponentRef<ConfirmPopup>;
   private confirmCmpRef: ComponentRef<ConfirmDialog>;
   private dialogCmpRef: ComponentRef<DialogComponent>;
-  private dialogFormCmpRef: ComponentRef<DialogForm2Component>;
+  private dialogFormCmpRef: ComponentRef<DialogFormComponent>;
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -236,9 +236,9 @@ export class OverlayService {
     });
   }
 
-  showDialogForm2(config: NgDialogFormConfig[], options?: NgDialogFormOptions): Observable<NgDialogFormResult> {
+  showDialogForm(config: NgDialogFormConfig[], options?: NgDialogFormOptions): Observable<NgDialogFormResult> {
     if (!this.bodyContains(this.dialogFormCmpRef)) {
-      this.dialogFormCmpRef = this.addToBody(DialogForm2Component);
+      this.dialogFormCmpRef = this.addToBody(DialogFormComponent);
     }
     const dialogForm: NgDialogFormOptions = {
       keepInViewport: true,
