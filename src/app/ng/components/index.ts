@@ -64,7 +64,7 @@ import {LoadingComponent} from "@ng/components/loading/loading.component";
 import {StatusComponent} from "@ng/components/status/status.component";
 import {DualLabelSwitchComponent} from "@ng/components/dual-label-switch/dual-label-switch.component";
 import {LoadingContainerComponent} from "@ng/components/loading-container/loading-container.component";
-import {DialogFormComponent} from "@ng/components/dialog-form2/dialog-form.component";
+import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
 
 export const COMPONENTS: Type<any>[] = [
   /***************************** FORM *************************/
@@ -108,7 +108,6 @@ export const COMPONENTS: Type<any>[] = [
   DialogComponent,
   DynamicDialogComponent,
   Dialog2Component,
-  // DialogFormComponent,
   DialogFormComponent,
   /***************************** UPLOAD *************************/
   FilePickerComponent,

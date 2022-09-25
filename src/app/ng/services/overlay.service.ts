@@ -16,8 +16,7 @@ import {ConfirmPopup} from 'primeng/confirmpopup';
 import {ConfirmDialog} from 'primeng/confirmdialog';
 import {NavigationStart, Router} from "@angular/router";
 import {Observable, Subject} from "rxjs";
-import {DialogFormComponent} from "@ng/components/dialog-form2/dialog-form.component";
-import {takeUntil} from "rxjs/operators";
+import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
 
 @Injectable({
   providedIn: 'root'
