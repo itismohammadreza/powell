@@ -47,7 +47,7 @@
       <ng-tree
         formControlName="c1"
         [addon]="addon"
-        [errors]="{ required: 'error' }"
+        [validation]="{ required: 'error' }"
         [items]="items"
         [label]="label"
         [labelWidth]="labelWidth"
@@ -74,7 +74,7 @@
       required
       [(ngModel)]="binding"
       [addon]="addon"
-      [errors]="{ required: 'error' }"
+      [validation]="{ required: 'error' }"
       [items]="items"
       [label]="label"
       [labelWidth]="labelWidth"

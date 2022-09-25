@@ -20,7 +20,7 @@ import {
   NgControl,
   UntypedFormGroup
 } from '@angular/forms';
-import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgColorFormat, NgValidation, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 
 @Component({
@@ -47,7 +47,7 @@ export class ColorPickerComponent implements OnInit, AfterViewInit, ControlValue
   @Input() icon: string;
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgIconPosition = 'left';
-  @Input() errors: NgError;
+  @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
   @Input() readonly: boolean;
   @Input() maxlength: number = 7;
@@ -56,7 +56,7 @@ export class ColorPickerComponent implements OnInit, AfterViewInit, ControlValue
   @Input() style: any;
   @Input() styleClass: string;
   @Input() inline: boolean;
-  @Input() format: string = 'hex';
+  @Input() format: NgColorFormat = 'hex';
   @Input() appendTo: any;
   @Input() tabindex: any;
   @Input() disabled: boolean;
@@ -177,16 +177,16 @@ export class ColorPickerComponent implements OnInit, AfterViewInit, ControlValue
     }
   }
 
-  showError(errorType: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
+  hasError(type: string): boolean {
+    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
   }
 
   showHint() {
     let hasError = false;
-    for (const error in this.errors) {
-      if (this.showError(error)) {
-        hasError = true
-      };
+    for (const errorKey in this.validation) {
+      if (this.hasError(errorKey)) {
+        hasError = true;
+      }
     }
     return !hasError;
   }

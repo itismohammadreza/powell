@@ -25,9 +25,10 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgAddon, NgError, NgFilterMatchMode, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgValidation, NgFilterMatchMode, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgPosition, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
+import {ScrollerOptions} from "primeng/scroller";
 
 @Component({
   selector: 'ng-dropdown',
@@ -53,7 +54,7 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
-  @Input() errors: NgError;
+  @Input() validation: NgValidation;
   @Input() inputSize: NgSize = 'md';
   // native properties
   @Input() options: any[];
@@ -71,12 +72,12 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   @Input() filterValue: string;
   @Input() filterBy: string;
   @Input() filterMatchMode: NgFilterMatchMode = 'contains';
-  @Input() filterPlaceholder: string;
+  @Input() filterPlaceHolder: string;
   @Input() filterLocale: string;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
-  @Input() emptyMessage: string = 'No records found';
-  @Input() emptyFilterMessage: string = 'No result found';
+  @Input() emptyMessage: string = 'موردی وجود ندارد';
+  @Input() emptyFilterMessage: string = 'موردی وجود ندارد';
   @Input() editable: boolean;
   @Input() maxlength: number;
   @Input() appendTo: any;
@@ -100,6 +101,7 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   @Input() tooltipPositionStyle: string = 'absolute';
   @Input() virtualScroll: boolean;
   @Input() virtualScrollItemSize: number;
+  @Input() virtualScrollOptions: ScrollerOptions;
   @Input() lazy: boolean;
   @Output() onClick = new EventEmitter();
   @Output() onChange = new EventEmitter();
@@ -243,15 +245,15 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
     }
   }
 
-  showError(errorType: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
+  hasError(type: string): boolean {
+    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
   }
 
   showHint() {
     let hasError = false;
-    for (const error in this.errors) {
-      if (this.showError(error)) {
-        hasError = true
+    for (const errorKey in this.validation) {
+      if (this.hasError(errorKey)) {
+        hasError = true;
       }
     }
     return !hasError;

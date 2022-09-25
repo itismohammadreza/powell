@@ -73,6 +73,7 @@
         [showClear]="showClear"
         [virtualScroll]="virtualScroll"
         [virtualScrollItemSize]="virtualScrollItemSize"
+        [virtualScrollOptions]="virtualScrollOptions"
         [lazy]="lazy"
         [display]="display"
         (onClick)="emitter('onClick', $event)"
@@ -121,9 +122,9 @@
   </label>
   <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
   <div class="message small">
-    <ng-container *ngFor="let error of errors | keyvalue">
-      <div *ngIf="showError(error.key)" class="p-error">
-        {{ error.value }}
+    <ng-container *ngFor="let v of validation | keyvalue">
+      <div *ngIf="hasError(v.key)" class="p-error">
+        {{ v.value }}
       </div>
     </ng-container>
   </div>

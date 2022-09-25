@@ -19,7 +19,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgValidation, NgInputTypes, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 
 @Component({
@@ -46,10 +46,10 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
-  @Input() errors: NgError;
+  @Input() validation: NgValidation;
   @Input() inputSize: NgSize = 'md';
   // native properties
-  @Input() type: string = 'text';
+  @Input() type: NgInputTypes = 'text';
   @Input() mask: string = '99-999999';
   @Input() slotChar: string = '_';
   @Input() autoClear: boolean = true;
@@ -161,16 +161,16 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  showError(errorType: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
+  hasError(type: string): boolean {
+    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
   }
 
   showHint() {
     let hasError = false;
-    for (const error in this.errors) {
-      if (this.showError(error)) {
-        hasError = true
-      };
+    for (const errorKey in this.validation) {
+      if (this.hasError(errorKey)) {
+        hasError = true;
+      }
     }
     return !hasError;
   }

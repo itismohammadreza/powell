@@ -3,8 +3,10 @@ import {
   NgAddon,
   NgColorFormat,
   NgCurrency,
-  NgCurrencyDisplay, NgDatepickerViewMode, NgFixLabelPosition,
-  NgInputFileMode,
+  NgCurrencyDisplay, NgDatepickerSelectionMode,
+  NgDatepickerViewMode,
+  NgFixLabelPosition,
+  NgFilePickerMode,
   NgInputTypes,
   NgKeyFilter,
   NgLabelPosition,
@@ -216,7 +218,7 @@ type PreviewItem =
   | 'numericSize'
   | 'colorFormat'
   | 'enableFormat'
-  | 'inputFileMode'
+  | 'filePickerMode'
   | 'datepickerSelectionMode'
   | 'numberMode'
   | 'fixLabelPos';
@@ -606,31 +608,27 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() preventDuplicatesChange = new EventEmitter()
   @Input() async: boolean;
   @Output() asyncChange = new EventEmitter()
-
-
   @Input() addon: NgAddon;
   @Output() addonChange = new EventEmitter()
+
   // instead of 'size' & 'inputSize'
   @Input() selectiveSize: NgSize;
   @Output() selectiveSizeChange = new EventEmitter()
-  // instead of 'size'
   @Input() numericSize: number;
   @Output() numericSizeChange = new EventEmitter()
   // instead of 'format'
   @Input() colorFormat: NgColorFormat;
   @Output() colorFormatChange = new EventEmitter()
-  // instead of 'format'
   @Input() enableFormat: boolean;
   @Output() enableFormatChange = new EventEmitter()
   // instead of 'mode'
-  @Input() inputFileMode: NgInputFileMode;
-  @Output() inputFileModeChange = new EventEmitter()
-  // instead of 'mode'
-  @Input() datepickerSelectionMode: NgDatepickerViewMode;
-  @Output() datepickerSelectionModeChange = new EventEmitter()
-  // instead of 'mode'
+  @Input() filePickerMode: NgFilePickerMode;
+  @Output() filePickerModeChange = new EventEmitter()
   @Input() numberMode: NgNumberMode;
   @Output() numberModeChange = new EventEmitter()
+  // instead of 'selectionMode'
+  @Input() datepickerSelectionMode: NgDatepickerSelectionMode;
+  @Output() datepickerSelectionModeChange = new EventEmitter()
   // instead of 'labelPos'
   @Input() fixLabelPos: NgFixLabelPosition;
   @Output() fixLabelPosChange = new EventEmitter()
@@ -664,7 +662,7 @@ export class PreviewOptionsComponent implements OnInit {
       addon: ['none', 'before', 'after', 'both'],
       selectiveSize: ['sm', 'md', 'lg'],
       colorFormat: ['hex', 'rgb', 'hsb'],
-      inputFileMode: ['basic', 'advanced'],
+      filePickerMode: ['basic', 'advanced'],
       datepickerSelectionMode: ['single', 'multiple', 'range'],
       numberMode: ['decimal', 'currency'],
       fixLabelPos: ['fix-side', 'fix-top'],

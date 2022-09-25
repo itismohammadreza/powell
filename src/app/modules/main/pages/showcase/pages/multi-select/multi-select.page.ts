@@ -36,7 +36,7 @@ export class MultiSelectPage {
   overlayVisible: boolean = false;
   placeholder: string = '';
   readonly: boolean = false;
-  emptyMessage: string = 'No records found';
+  emptyMessage: string = 'موردی وجود ندارد';
   resetFilterOnHide: boolean = false;
   scrollHeight: string = '200px';
   selectedItemsLabel: string | 'ellipsis' = 'ellipsis';

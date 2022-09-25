@@ -25,7 +25,7 @@ export class TreePage {
   layout: NgOrientation = 'vertical';
   propagateSelectionUp: boolean = true;
   propagateSelectionDown: boolean = true;
-  emptyMessage: string = 'No records found';
+  emptyMessage: string = 'موردی وجود ندارد';
   filter: boolean = false;
   filterPlaceHolder: string;
   scrollHeight: string;

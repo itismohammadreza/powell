@@ -30,7 +30,7 @@
     <form [formGroup]="form">
       <ng-select-button
         formControlName="c1"
-        [errors]="{ required: 'error' }"
+        [validation]="{ required: 'error' }"
         [options]="options"
         [label]="label"
         [labelWidth]="labelWidth"
@@ -49,7 +49,7 @@
       name="myInput"
       required
       [(ngModel)]="binding"
-      [errors]="{ required: 'error' }"
+      [validation]="{ required: 'error' }"
       [options]="options"
       [label]="label"
       [labelWidth]="labelWidth"

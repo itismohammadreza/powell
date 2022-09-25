@@ -28,8 +28,8 @@ export class DropdownPage {
   filter: boolean = false;
   disabled: boolean = false;
   readonly: boolean = false;
-  emptyMessage: string = 'No records found';
-  emptyFilterMessage: string = 'No result found';
+  emptyMessage: string = 'موردی وجود ندارد';
+  emptyFilterMessage: string = 'موردی وجود ندارد';
   editable: boolean = false;
   maxlength: number = 100;
   placeholder: string = '';

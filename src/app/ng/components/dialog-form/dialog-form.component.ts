@@ -3,7 +3,7 @@ import {UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators,} from '@a
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormRule, NgDialogFormRuleAction,} from '@ng/models/overlay';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {NgError} from "@ng/models/forms";
+import {NgValidation} from "@ng/models/forms";
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 
 @Component({
@@ -43,12 +43,12 @@ export class DialogFormComponent implements OnInit {
       ...this.dialogConfig.data.options
     };
     for (const config of this.formConfig) {
-      if (config.formControlName) {
-        this.form.addControl(config.formControlName, new UntypedFormControl(null));
+      if (config.key) {
+        this.form.addControl(config.key, new UntypedFormControl(null));
       }
       if (config.rules) {
         this.form
-          .get(config.formControlName)
+          .get(config.key)
           .valueChanges.pipe(takeUntil(this.destroy$))
           .subscribe((res) => {
             this.handleRules(config, res);
@@ -57,7 +57,7 @@ export class DialogFormComponent implements OnInit {
     }
     for (const config of this.formConfig) {
       if (config.value != null) {
-        this.form.get(config.formControlName).setValue(config.value);
+        this.form.get(config.key).setValue(config.value);
         if (config.rules) {
           this.handleRules(config, config.value);
         }
@@ -81,7 +81,7 @@ export class DialogFormComponent implements OnInit {
 
   changeVisibility(config: NgDialogFormConfig, action: NgDialogFormRuleAction) {
     if (config) {
-      let control = this.form.get(config.formControlName);
+      let control = this.form.get(config.key);
       switch (action) {
         case 'visible':
           config.visible = true;
@@ -108,14 +108,14 @@ export class DialogFormComponent implements OnInit {
   }
 
   applyAction(rule: NgDialogFormRule, reverse: boolean) {
-    let target = this.formConfig.find((c) => c.formControlName == rule.control);
+    let target = this.formConfig.find((c) => c.key == rule.control);
     if (!reverse) {
       switch (rule.action) {
         case 'enable':
-          this.form.get(target.formControlName).enable();
+          this.form.get(target.key).enable();
           break;
         case 'disable':
-          this.form.get(target.formControlName).disable();
+          this.form.get(target.key).disable();
           break;
         case 'invisible':
           this.changeVisibility(target, 'invisible');
@@ -127,10 +127,10 @@ export class DialogFormComponent implements OnInit {
     } else {
       switch (rule.action) {
         case 'enable':
-          this.form.get(target.formControlName).disable();
+          this.form.get(target.key).disable();
           break;
         case 'disable':
-          this.form.get(target.formControlName).enable();
+          this.form.get(target.key).enable();
           break;
         case 'invisible':
           this.changeVisibility(target, 'visible');
@@ -145,7 +145,7 @@ export class DialogFormComponent implements OnInit {
   getValidatorErrors(config: NgDialogFormConfig) {
     const errObj = {};
     const validators: ValidatorFn[] = [];
-    for (const e of config.errors) {
+    for (const e of config.validations) {
       switch (e.type) {
         case 'required':
         case 'requiredTrue':
@@ -159,8 +159,8 @@ export class DialogFormComponent implements OnInit {
       }
       errObj[e.type] = e.message;
     }
-    this.form.controls[config.formControlName].setValidators([...validators]);
-    return errObj as NgError;
+    this.form.controls[config.key].setValidators([...validators]);
+    return errObj as NgValidation;
   }
 
   onSubmit() {

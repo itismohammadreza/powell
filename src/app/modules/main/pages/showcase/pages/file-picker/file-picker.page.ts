@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgFixLabelPosition, NgInputFileMode} from '@ng/models/forms';
+import {NgFixLabelPosition, NgFilePickerMode} from '@ng/models/forms';
 
 @Component({
   selector: 'ng-file-picker-page',
@@ -32,7 +32,7 @@ export class FilePickerPage {
   chooseIcon: string = 'pi pi-plus';
   uploadIcon: string = 'pi pi-upload';
   cancelIcon: string = 'pi pi-times';
-  mode: NgInputFileMode = 'advanced';
+  mode: NgFilePickerMode = 'advanced';
   showUploadButton: boolean = true;
   showCancelButton: boolean = true;
 }

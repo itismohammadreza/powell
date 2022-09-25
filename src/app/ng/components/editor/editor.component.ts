@@ -22,7 +22,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgError, NgFixLabelPosition} from '@ng/models/forms';
+import {NgValidation, NgFixLabelPosition} from '@ng/models/forms';
 import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
@@ -48,38 +48,20 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgFixLabelPosition = 'fix-top';
-  @Input() errors: NgError;
+  @Input() validation: NgValidation;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
-  @Input() options: SunEditorOptions = {
-    plugins: plugins,
-    minWidth: '100%',
-    buttonList: [
-      ["undo", "redo"],
-      ["font", "fontSize", "formatBlock"],
-      ["paragraphStyle", "blockquote"],
-      ["bold", "underline", "italic", "strike", "subscript", "superscript"],
-      ["fontColor", "hiliteColor", "textStyle"],
-      ["removeFormat"],
-      ["outdent", "indent"],
-      ["align", "horizontalRule", "list", "lineHeight"],
-      ["table", "link", "image", "video", "audio"],
-      ["fullScreen", "showBlocks", "codeView"],
-      ["preview", "print"],
-      ["save", "template"],
-    ],
-  };
-  @Input() content: string
+  @Input() options: SunEditorOptions;
   @Input() onDrop_param: boolean = true;
   @Input() onCopy_param: boolean = true;
   @Input() onCut_param: boolean = true;
-  @Input() onAudioUploadError_param: boolean | undefined = true;
-  @Input() onImageUploadBefore_param: boolean | undefined = true;
-  @Input() onImageUploadError_param: boolean | undefined = true;
-  @Input() onVideoUploadBefore_param: boolean | undefined = true;
-  @Input() onVideoUploadError_param: boolean | undefined = true;
-  @Input() onAudioUploadBefore_param: boolean | undefined = true;
-  @Input() onResizeEditor_param: any | undefined = {};
+  @Input() onAudioUploadError_param: boolean = true;
+  @Input() onImageUploadBefore_param: boolean = true;
+  @Input() onImageUploadError_param: boolean = true;
+  @Input() onVideoUploadBefore_param: boolean = true;
+  @Input() onVideoUploadError_param: boolean = true;
+  @Input() onAudioUploadBefore_param: boolean = true;
+  @Input() onResizeEditor_param: any = {};
   @Input() imageUploadHandler: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
   @Input() videoUploadHandler: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
   @Input() audioUploadHandler: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
@@ -126,6 +108,26 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
   }
 
   ngOnInit() {
+    if (!this.options) {
+      this.options = {
+        plugins: plugins,
+        minWidth: '100%',
+        buttonList: [
+          ["undo", "redo"],
+          ["font", "fontSize", "formatBlock"],
+          ["paragraphStyle", "blockquote"],
+          ["bold", "underline", "italic", "strike", "subscript", "superscript"],
+          ["fontColor", "hiliteColor", "textStyle"],
+          ["removeFormat"],
+          ["outdent", "indent"],
+          ["align", "horizontalRule", "list", "lineHeight"],
+          ["table", "link", "image", "video", "audio"],
+          ["fullScreen", "showBlocks", "codeView"],
+          ["preview", "print"],
+          ["save", "template"],
+        ],
+      }
+    }
     this.inputId = this.getId();
     let parentForm: UntypedFormGroup;
     let rootForm: FormGroupDirective;
@@ -230,16 +232,16 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
     }
   }
 
-  showError(errorType: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
+  hasError(type: string): boolean {
+    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
   }
 
   showHint() {
     let hasError = false;
-    for (const error in this.errors) {
-      if (this.showError(error)) {
+    for (const errorKey in this.validation) {
+      if (this.hasError(errorKey)) {
         hasError = true
-      };
+      }
     }
     return !hasError;
   }

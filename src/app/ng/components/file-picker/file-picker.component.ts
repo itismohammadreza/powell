@@ -27,7 +27,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgError, NgFixLabelPosition, NgInputFileMode} from '@ng/models/forms';
+import {NgValidation, NgFixLabelPosition, NgFilePickerMode} from '@ng/models/forms';
 import {FileUpload} from 'primeng/fileupload';
 import {TemplateDirective} from "@ng/directives/template.directive";
 
@@ -52,7 +52,7 @@ export class FilePickerComponent
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgFixLabelPosition = 'fix-top';
-  @Input() errors: NgError;
+  @Input() validation: NgValidation;
   @Input() resultType: 'base64' | 'file' = 'file';
   // native properties
   @Input() name: string;
@@ -80,7 +80,7 @@ export class FilePickerComponent
   @Input() uploadIcon: string = 'pi pi-upload';
   @Input() cancelIcon: string = 'pi pi-times';
   @Input() withCredentials: boolean;
-  @Input() mode: NgInputFileMode = 'advanced';
+  @Input() mode: NgFilePickerMode = 'advanced';
   @Input() customUpload: boolean = true;
   @Input() showUploadButton: boolean = true;
   @Input() showCancelButton: boolean = true;
@@ -328,15 +328,15 @@ export class FilePickerComponent
     }
   }
 
-  showError(errorType: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
+  hasError(type: string): boolean {
+    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
   }
 
   showHint() {
     let hasError = false;
-    for (const error in this.errors) {
-      if (this.showError(error)) {
-        hasError = true
+    for (const errorKey in this.validation) {
+      if (this.hasError(errorKey)) {
+        hasError = true;
       }
     }
     return !hasError;

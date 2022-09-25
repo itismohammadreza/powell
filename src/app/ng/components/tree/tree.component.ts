@@ -26,7 +26,7 @@ import {
   UntypedFormGroup,
 } from '@angular/forms';
 import {TemplateDirective} from '@ng/directives/template.directive';
-import {NgAddon, NgError, NgFixLabelPosition, NgTreeFilterMode} from '@ng/models/forms';
+import {NgAddon, NgValidation, NgFixLabelPosition, NgTreeFilterMode} from '@ng/models/forms';
 import {ContextMenu} from 'primeng/contextmenu';
 import {ScrollerOptions} from 'primeng/scroller';
 import {NgOrientation, NgSelectionMode} from "@ng/models/offset";
@@ -51,7 +51,7 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgFixLabelPosition = 'fix-top';
   @Input() addon: NgAddon;
-  @Input() errors: NgError;
+  @Input() validation: NgValidation;
   // native properties
   @Input() items: any[];
   @Input() selectionMode: NgSelectionMode;
@@ -69,7 +69,7 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   @Input() propagateSelectionDown: boolean = true;
   @Input() loading: boolean;
   @Input() loadingIcon: string = 'pi pi-spinner';
-  @Input() emptyMessage: string = 'No records found';
+  @Input() emptyMessage: string = 'موردی وجود ندارد';
   @Input() validateDrop: boolean;
   @Input() filter: boolean;
   @Input() filterBy: string = "label";
@@ -195,15 +195,15 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
     }
   }
 
-  showError(errorType: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
+  hasError(type: string): boolean {
+    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
   }
 
   showHint() {
     let hasError = false;
-    for (const error in this.errors) {
-      if (this.showError(error)) {
-        hasError = true
+    for (const errorKey in this.validation) {
+      if (this.hasError(errorKey)) {
+        hasError = true;
       }
     }
     return !hasError;

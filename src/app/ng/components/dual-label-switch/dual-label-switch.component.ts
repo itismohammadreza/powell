@@ -19,7 +19,7 @@ import {
   NgControl,
   UntypedFormGroup
 } from "@angular/forms";
-import {NgError, NgFixLabelPosition} from "@ng/models/forms";
+import {NgValidation, NgFixLabelPosition} from "@ng/models/forms";
 
 @Component({
   selector: 'ng-dual-label-switch',
@@ -45,7 +45,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgFixLabelPosition = 'fix-top';
-  @Input() errors: NgError;
+  @Input() validation: NgValidation;
   @Input() async: boolean;
   // native properties
   @Input() style: any;
@@ -148,15 +148,15 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  showError(errorType: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
+  hasError(type: string): boolean {
+    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
   }
 
   showHint() {
     let hasError = false;
-    for (const error in this.errors) {
-      if (this.showError(error)) {
-        hasError = true
+    for (const errorKey in this.validation) {
+      if (this.hasError(errorKey)) {
+        hasError = true;
       }
     }
     return !hasError;

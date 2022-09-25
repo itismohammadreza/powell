@@ -1,5 +1,4 @@
 import {ApplicationRef, ComponentRef, createComponent, Inject, Injectable, Injector, Type} from '@angular/core';
-import {DialogFormComponent} from '@ng/components/dialog-form/dialog-form.component';
 import {
   NgConfirmDialogOptions,
   NgConfirmPopupOptions,
@@ -16,8 +15,9 @@ import {Toast} from 'primeng/toast';
 import {ConfirmPopup} from 'primeng/confirmpopup';
 import {ConfirmDialog} from 'primeng/confirmdialog';
 import {NavigationStart, Router} from "@angular/router";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {DialogForm2Component} from "@ng/components/dialog-form2/dialog-form2.component";
+import {takeUntil} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,7 @@ export class OverlayService {
   private confirmPopupCmpRef: ComponentRef<ConfirmPopup>;
   private confirmCmpRef: ComponentRef<ConfirmDialog>;
   private dialogCmpRef: ComponentRef<DialogComponent>;
+  private dialogFormCmpRef: ComponentRef<DialogForm2Component>;
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -38,6 +39,8 @@ export class OverlayService {
     @Inject(DOCUMENT) private document: Document,
     private router: Router
   ) {
+    //todo: create a destroyAll method and call this method in app.component router.event
+    // also if there is any dialog open, prevent routing.
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
         [this.toastCmpRef,
@@ -96,20 +99,22 @@ export class OverlayService {
     this.confirmPopupCmpRef.instance.style = options.style;
     this.confirmPopupCmpRef.instance.styleClass = `${options.styleClass} ${options.rtl ? 'rtl' : ''} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
 
+    // todo: check if this way is good and apply it into other methods
     const confirmation: Confirmation = {
-      target: options.target,
-      message: options.message,
-      key: options.key,
+      // target: options.target,
+      // message: options.message,
+      // key: options.key,
       icon: options.icon || 'pi pi-exclamation-triangle',
-      acceptLabel: options.acceptLabel,
-      rejectLabel: options.rejectLabel,
-      acceptIcon: options.acceptIcon,
-      rejectIcon: options.rejectIcon,
-      acceptVisible: options.acceptVisible,
-      rejectVisible: options.rejectVisible,
+      // acceptLabel: options.acceptLabel,
+      // rejectLabel: options.rejectLabel,
+      // acceptIcon: options.acceptIcon,
+      // rejectIcon: options.rejectIcon,
+      // acceptVisible: options.acceptVisible,
+      // rejectVisible: options.rejectVisible,
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
       defaultFocus: options.defaultFocus || 'accept',
+      ...options
     }
     return new Promise((accept) => {
       this.confirmationService.confirm({
@@ -231,32 +236,68 @@ export class OverlayService {
     });
   }
 
-  //todo: change parameters to options: NgDialogFormOptions
-  showDialogForm2(): Observable<NgDialogFormResult> {
-    const dialogFormRef = this.addToBody(DialogForm2Component);
-    dialogFormRef.instance.visible = true
+  showDialogForm2(config: NgDialogFormConfig[], options?: NgDialogFormOptions): Observable<NgDialogFormResult> {
+    if (!this.bodyContains(this.dialogFormCmpRef)) {
+      this.dialogFormCmpRef = this.addToBody(DialogForm2Component);
+    }
+    const dialogForm: NgDialogFormOptions = {
+      keepInViewport: true,
+      resizable: true,
+      modal: true,
+      position: 'center',
+      closeOnEscape: true,
+      closable: true,
+      showHeader: true,
+      baseZIndex: 0,
+      autoZIndex: true,
+      minX: 0,
+      minY: 0,
+      focusOnShow: true,
+      focusTrap: true,
+      transitionOptions: '150ms cubic-bezier(0, 0, 0.2, 1)',
+      closeIcon: 'pi pi-times',
+      minimizeIcon: 'pi pi-window-minimize',
+      maximizeIcon: 'pi pi-window-maximize',
+      style: {width: '400px'},
+      acceptVisible: true,
+      rejectVisible: true,
+      acceptLabel: 'تایید',
+      rejectLabel: 'بستن',
+      rejectAppearance: 'outlined',
+      ...options
+    }
+    this.dialogFormCmpRef.instance.config = config;
+    this.dialogFormCmpRef.instance.options = dialogForm;
+    this.dialogFormCmpRef.instance.visible = true;
     return new Observable<NgDialogFormResult>((resolve) => {
-      dialogFormRef.instance.onSubmit.subscribe(res => {
+      const submitSubscription = this.dialogFormCmpRef.instance.onSubmit.subscribe(res => {
         resolve.next(res);
+      })
+      const closeSubscription = this.dialogFormCmpRef.instance.onClose.subscribe(res => {
+        setTimeout(() => {
+          this.removeFromBody(this.dialogFormCmpRef);
+        }, 200)
+        submitSubscription.unsubscribe();
+        closeSubscription.unsubscribe();
       })
     })
   }
 
-  showDialogForm(header: string, config: NgDialogFormConfig[], options?: NgDialogFormOptions): DynamicDialogRef {
-    return this.dialogService.open(DialogFormComponent, {
-      header,
-      data: {config, options},
-      width: options?.width || '550px',
-      styleClass: options?.rtl ? 'rtl' : 'ltr',
-      footer: options?.footer,
-      height: options?.height,
-      closeOnEscape: options?.closeOnEscape,
-      dismissableMask: options?.dismissableMask,
-      closable: options?.closable || true,
-      showHeader: options?.showHeader || true,
-      baseZIndex: 1000
-    });
-  }
+  // showDialogForm(header: string, config: NgDialogFormConfig[], options?: NgDialogFormOptions): DynamicDialogRef {
+  //   return this.dialogService.open(DialogFormComponent, {
+  //     header,
+  //     data: {config, options},
+  //     width: options?.width || '550px',
+  //     styleClass: options?.rtl ? 'rtl' : 'ltr',
+  //     footer: options?.footer,
+  //     height: options?.height,
+  //     closeOnEscape: options?.closeOnEscape,
+  //     dismissableMask: options?.dismissableMask,
+  //     closable: options?.closable || true,
+  //     showHeader: options?.showHeader || true,
+  //     baseZIndex: 1000
+  //   });
+  // }
 
   private addToBody<T>(component: Type<T>): ComponentRef<T> {
     const componentRef = createComponent(component, {

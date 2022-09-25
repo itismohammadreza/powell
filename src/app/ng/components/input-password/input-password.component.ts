@@ -24,7 +24,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgValidation, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
 
@@ -52,7 +52,7 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
   @Input() labelPos: NgLabelPosition = 'float';
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
-  @Input() errors: NgError;
+  @Input() validation: NgValidation;
   @Input() inputSize: NgSize = 'md';
   // native properties
   @Input() promptLabel: string = 'لطفا رمز عبور را وارد کنید';
@@ -207,16 +207,16 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
     }
   }
 
-  showError(errorType: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
+  hasError(type: string): boolean {
+    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
   }
 
   showHint() {
     let hasError = false;
-    for (const error in this.errors) {
-      if (this.showError(error)) {
-        hasError = true
-      };
+    for (const errorKey in this.validation) {
+      if (this.hasError(errorKey)) {
+        hasError = true;
+      }
     }
     return !hasError;
   }

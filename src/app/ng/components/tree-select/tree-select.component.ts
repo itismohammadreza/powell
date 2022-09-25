@@ -14,7 +14,7 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import {NgIconPosition, NgSize} from '@ng/models/offset';
+import {NgIconPosition, NgSelectionMode, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {
   AbstractControl,
@@ -27,7 +27,7 @@ import {
   NgControl,
   UntypedFormGroup
 } from "@angular/forms";
-import {NgAddon, NgChipDisplayMode, NgError, NgLabelPosition, NgTreeFilterMode} from "@ng/models/forms";
+import {NgAddon, NgChipDisplayMode, NgValidation, NgLabelPosition, NgTreeFilterMode} from "@ng/models/forms";
 
 @Component({
   selector: 'ng-tree-select',
@@ -53,7 +53,7 @@ export class TreeSelectComponent implements OnInit, AfterViewInit, AfterContentI
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
-  @Input() errors: NgError;
+  @Input() validation: NgValidation;
   @Input() inputSize: NgSize = 'md';
   // native properties
   @Input() options: any[];
@@ -61,7 +61,7 @@ export class TreeSelectComponent implements OnInit, AfterViewInit, AfterContentI
   @Input() placeholder: string;
   @Input() disabled: boolean;
   @Input() tabindex: string;
-  @Input() selectionMode: string;
+  @Input() selectionMode: NgSelectionMode;
   @Input() panelClass: string;
   @Input() appendTo: string;
   @Input() emptyMessage: string = 'No results found';
@@ -199,15 +199,15 @@ export class TreeSelectComponent implements OnInit, AfterViewInit, AfterContentI
     }
   }
 
-  showError(errorType: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
+  hasError(type: string): boolean {
+    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
   }
 
   showHint() {
     let hasError = false;
-    for (const error in this.errors) {
-      if (this.showError(error)) {
-        hasError = true
+    for (const errorKey in this.validation) {
+      if (this.hasError(errorKey)) {
+        hasError = true;
       }
     }
     return !hasError;

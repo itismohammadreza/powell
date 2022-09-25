@@ -1,7 +1,7 @@
 import {NgColor} from './color';
 import {NgIconPosition} from './offset';
 
-export type NgInputFileMode = 'basic' | 'advanced';
+export type NgFilePickerMode = 'basic' | 'advanced';
 export type NgLabelPosition = 'fix-side' | 'fix-top' | 'float';
 export type NgFixLabelPosition = Exclude<NgLabelPosition, 'float'>;
 export type NgChipDisplayMode = 'comma' | 'chip';
@@ -13,7 +13,7 @@ export type NgColorFormat = 'hex' | 'rgb' | 'hsb';
 export type NgNumberMode = 'decimal' | 'currency';
 export type NgNumberButtonLayout = 'stacked' | 'horizontal' | 'vertical';
 export type NgCurrencyDisplay = 'symbol' | 'code' | 'name';
-export type NgError = Partial<Record<NgErrorType, string>>; // equal to : [errorType in NgErrorType]?: string;
+export type NgValidation = Partial<Record<NgValidationType, string>>; // equal to : [validationType in NgValidationType]?: string;
 export type NgTreeFilterMode = 'strict' | 'lenient';
 
 export interface NgAddonConfig {
@@ -68,7 +68,7 @@ export type NgKeyFilter =
   | 'alpha' // Alphabetic
   | 'alphanum'; // Alphanumeric
 
-export type NgErrorType =
+export type NgValidationType =
   | 'min'
   | 'max'
   | 'required'

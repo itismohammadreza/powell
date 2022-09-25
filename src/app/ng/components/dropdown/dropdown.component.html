@@ -40,7 +40,7 @@
         [filterValue]="filterValue"
         [filterBy]="filterBy"
         [filterMatchMode]="filterMatchMode"
-        [filterPlaceholder]="filterPlaceholder"
+        [filterPlaceholder]="filterPlaceHolder"
         [filterLocale]="filterLocale"
         [disabled]="disabled"
         [readonly]="readonly"
@@ -69,6 +69,7 @@
         [tooltipPositionStyle]="tooltipPositionStyle"
         [virtualScroll]="virtualScroll"
         [virtualScrollItemSize]="virtualScrollItemSize"
+        [virtualScrollOptions]="virtualScrollOptions"
         [lazy]="lazy"
         (onClick)="emitter('onClick',$event)"
         (onChange)="_onChange($event)"
@@ -116,9 +117,9 @@
   </label>
   <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
   <div class="message small">
-    <ng-container *ngFor="let error of errors | keyvalue">
-      <div *ngIf="showError(error.key)" class="p-error">
-        {{ error.value }}
+    <ng-container *ngFor="let v of validation | keyvalue">
+      <div *ngIf="hasError(v.key)" class="p-error">
+        {{ v.value }}
       </div>
     </ng-container>
   </div>

@@ -23,7 +23,7 @@
       'chooseIcon',
       'uploadIcon',
       'cancelIcon',
-      'inputFileMode',
+      'filePickerMode',
       'showUploadButton',
       'showCancelButton',
       ]"
@@ -45,7 +45,7 @@
       [(chooseIcon)]="chooseIcon"
       [(uploadIcon)]="uploadIcon"
       [(cancelIcon)]="cancelIcon"
-      [(inputFileMode)]="mode"
+      [(filePickerMode)]="mode"
       [(showUploadButton)]="showUploadButton"
       [(showCancelButton)]="showCancelButton"
     ></ng-preview-options>
@@ -58,7 +58,7 @@
     <form [formGroup]="form">
       <ng-file-picker
         formControlName="c1"
-        [errors]="{ required: 'error' }"
+        [validation]="{ required: 'error' }"
         [label]="label"
         [labelWidth]="labelWidth"
         [hint]="hint"
@@ -90,7 +90,7 @@
       name="myInput"
       required
       [(ngModel)]="binding"
-      [errors]="{ required: 'error' }"
+      [validation]="{ required: 'error' }"
       [label]="label"
       [labelWidth]="labelWidth"
       [hint]="hint"

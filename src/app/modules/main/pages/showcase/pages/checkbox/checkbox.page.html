@@ -28,7 +28,7 @@
     <form [formGroup]="form">
       <ng-checkbox
         formControlName="c1"
-        [errors]="{ required: 'error' }"
+        [validation]="{ required: 'error' }"
         [label]="label"
         [hint]="hint"
         [rtl]="rtl"
@@ -46,7 +46,7 @@
       name="myInput"
       required
       [(ngModel)]="binding"
-      [errors]="{ required: 'error' }"
+      [validation]="{ required: 'error' }"
       [label]="label"
       [hint]="hint"
       [rtl]="rtl"

@@ -32,7 +32,7 @@
     <form [formGroup]="form">
       <ng-switch
         formControlName="c1"
-        [errors]="{ required: 'error' }"
+        [validation]="{ required: 'error' }"
         [label]="label"
         [labelWidth]="labelWidth"
         [hint]="hint"
@@ -52,7 +52,7 @@
       name="myInput"
       required
       [(ngModel)]="binding"
-      [errors]="{ required: 'error' }"
+      [validation]="{ required: 'error' }"
       [label]="label"
       [labelWidth]="labelWidth"
       [hint]="hint"

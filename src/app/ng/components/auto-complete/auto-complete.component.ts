@@ -23,9 +23,10 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgAddon, NgError, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgValidation, NgInputTypes, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
+import {ScrollerOptions} from "primeng/scroller";
 
 @Component({
   selector: 'ng-auto-complete',
@@ -51,7 +52,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
-  @Input() errors: NgError;
+  @Input() validation: NgValidation;
   @Input() inputSize: NgSize = 'md';
   // native properties
   @Input() suggestions: any[];
@@ -71,7 +72,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() panelStyleClass: string;
   @Input() optionGroupLabel: string = 'label';
   @Input() group: boolean;
-  @Input() optionGroupChildren: string;
+  @Input() optionGroupChildren: string = 'items';
   @Input() placeholder: string;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
@@ -81,9 +82,9 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() tabindex: any;
   @Input() dataKey: string;
   @Input() autoHighlight: boolean;
-  @Input() type: string = 'text';
+  @Input() type: NgInputTypes = 'text';
   @Input() showEmptyMessage: boolean;
-  @Input() emptyMessage: string = 'No records found';
+  @Input() emptyMessage: string = 'موردی وجود ندارد';
   @Input() autofocus: boolean;
   @Input() forceSelection: boolean = true;
   @Input() dropdownMode: 'blank' | 'current' = 'blank';
@@ -96,6 +97,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() showClear: boolean;
   @Input() virtualScroll: boolean;
   @Input() virtualScrollItemSize: number;
+  @Input() virtualScrollOptions: ScrollerOptions;
   @Input() lazy: boolean;
   @Output() completeMethod = new EventEmitter();
   @Output() onFocus = new EventEmitter();
@@ -254,16 +256,16 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
     }
   }
 
-  showError(errorType: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
+  hasError(type: string): boolean {
+    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
   }
 
   showHint() {
     let hasError = false;
-    for (const error in this.errors) {
-      if (this.showError(error)) {
-        hasError = true
-      };
+    for (const errorKey in this.validation) {
+      if (this.hasError(errorKey)) {
+        hasError = true;
+      }
     }
     return !hasError;
   }

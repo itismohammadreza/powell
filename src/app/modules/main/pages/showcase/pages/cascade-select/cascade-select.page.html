@@ -43,7 +43,7 @@
       <ng-cascade-select
         formControlName="c1"
         [addon]="addon"
-        [errors]="{ required: 'error' }"
+        [validation]="{ required: 'error' }"
         [options]="options"
         [optionGroupChildren]="['states', 'cities']"
         optionGroupLabel="name"
@@ -70,7 +70,7 @@
       required
       [(ngModel)]="binding"
       [addon]="addon"
-      [errors]="{ required: 'error' }"
+      [validation]="{ required: 'error' }"
       [options]="options"
       [optionGroupChildren]="['states', 'cities']"
       optionGroupLabel="name"

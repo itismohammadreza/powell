@@ -7,7 +7,7 @@
       [showRequiredStar]="false"
       icon="pi pi-user"
       placeholder="نام کاربری"
-      [errors]="{'required':'این فیلد الزامیست.','email':'ایمیل نامعتبر است.'}"
+      [validation]="{'required':'این فیلد الزامیست.','email':'ایمیل نامعتبر است.'}"
       [rtl]="fa"
     ></ng-input-text>
     <ng-input-text
@@ -16,7 +16,7 @@
       [showRequiredStar]="false"
       formControlName="password"
       placeholder="رمز عبور"
-      [errors]="{'required':'این فیلد الزامیست.'}"
+      [validation]="{'required':'این فیلد الزامیست.'}"
       [rtl]="fa"
     ></ng-input-text>
     <ng-checkbox formControlName="rememberMe" [rtl]="fa" label="مرا بخاطر بسپار"></ng-checkbox>

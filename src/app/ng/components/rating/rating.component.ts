@@ -20,7 +20,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgError, NgFixLabelPosition} from '@ng/models/forms';
+import {NgValidation, NgFixLabelPosition} from '@ng/models/forms';
 
 @Component({
   selector: 'ng-rating',
@@ -42,7 +42,7 @@ export class RatingComponent implements OnInit, AfterViewInit, ControlValueAcces
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgFixLabelPosition = 'fix-top';
-  @Input() errors: NgError;
+  @Input() validation: NgValidation;
   // native properties
   @Input() stars: number = 5;
   @Input() cancel: boolean = true;
@@ -130,16 +130,16 @@ export class RatingComponent implements OnInit, AfterViewInit, ControlValueAcces
     }
   }
 
-  showError(errorType: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
+  hasError(type: string): boolean {
+    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
   }
 
   showHint() {
     let hasError = false;
-    for (const error in this.errors) {
-      if (this.showError(error)) {
-        hasError = true
-      };
+    for (const errorKey in this.validation) {
+      if (this.hasError(errorKey)) {
+        hasError = true;
+      }
     }
     return !hasError;
   }

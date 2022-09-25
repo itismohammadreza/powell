@@ -27,7 +27,7 @@ export class ListboxPage {
   emptyFilterMessage: string = 'No results found';
   multiple: boolean = false;
   readonly: boolean = false;
-  emptyMessage: string = 'No records found';
+  emptyMessage: string = 'موردی وجود ندارد';
   showToggleAll: boolean = true;
 
   options: any[] = [

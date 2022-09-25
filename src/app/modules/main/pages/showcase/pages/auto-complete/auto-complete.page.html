@@ -63,7 +63,7 @@
       <ng-auto-complete
         formControlName="c1"
         [addon]="addon"
-        [errors]="{ required: 'error' }"
+        [validation]="{ required: 'error' }"
         field="name"
         [suggestions]="filteredSuggestions"
         [label]="label"
@@ -100,7 +100,7 @@
       required
       [(ngModel)]="binding"
       [addon]="addon"
-      [errors]="{ required: 'error' }"
+      [validation]="{ required: 'error' }"
       field="name"
       [suggestions]="filteredSuggestions"
       [label]="label"

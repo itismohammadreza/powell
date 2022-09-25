@@ -51,7 +51,7 @@
       <ng-chips
         formControlName="c1"
         [addon]="addon"
-        [errors]="{ required: 'error' }"
+        [validation]="{ required: 'error' }"
         [label]="label"
         [filled]="filled"
         [labelWidth]="labelWidth"
@@ -79,7 +79,7 @@
       required
       [(ngModel)]="binding"
       [addon]="addon"
-      [errors]="{ required: 'error' }"
+      [validation]="{ required: 'error' }"
       [label]="label"
       [filled]="filled"
       [labelWidth]="labelWidth"

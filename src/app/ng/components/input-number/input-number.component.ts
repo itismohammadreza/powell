@@ -24,7 +24,7 @@ import {
   NgAddon,
   NgCurrency,
   NgCurrencyDisplay,
-  NgError,
+  NgValidation,
   NgLabelPosition,
   NgNumberButtonLayout,
   NgNumberMode,
@@ -55,7 +55,7 @@ export class InputNumberComponent implements OnInit, AfterViewInit, ControlValue
   @Input() labelPos: NgLabelPosition = 'fix-top';
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
-  @Input() errors: NgError;
+  @Input() validation: NgValidation;
   @Input() inputSize: NgSize = 'md';
   // native properties
   @Input() format: boolean = true;
@@ -184,15 +184,15 @@ export class InputNumberComponent implements OnInit, AfterViewInit, ControlValue
     }
   }
 
-  showError(errorType: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(errorType.toLowerCase()));
+  hasError(type: string): boolean {
+    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
   }
 
   showHint() {
     let hasError = false;
-    for (const error in this.errors) {
-      if (this.showError(error)) {
-        hasError = true
+    for (const errorKey in this.validation) {
+      if (this.hasError(errorKey)) {
+        hasError = true;
       }
     }
     return !hasError;

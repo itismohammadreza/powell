@@ -42,7 +42,7 @@ import {BottomSheetComponent} from "@ng/components/bottom-sheet/bottom-sheet.com
 import {DialogComponent} from "@ng/components/dialog/dialog.component";
 import {DynamicDialogComponent} from "@ng/components/dynamic-dialog/dynamic-dialog.component";
 import {Dialog2Component} from "@ng/components/dialog2/dialog2.component";
-import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
+// import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
 
 /***************************** UPLOAD *****************************/
 import {FilePickerComponent} from "@ng/components/file-picker/file-picker.component";
@@ -108,7 +108,7 @@ export const COMPONENTS: Type<any>[] = [
   DialogComponent,
   DynamicDialogComponent,
   Dialog2Component,
-  DialogFormComponent,
+  // DialogFormComponent,
   DialogForm2Component,
   /***************************** UPLOAD *************************/
   FilePickerComponent,
