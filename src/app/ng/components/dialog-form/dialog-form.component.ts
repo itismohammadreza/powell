@@ -53,6 +53,28 @@ export class DialogFormComponent {
     }
   }
 
+  convertToComponentValidation(configValidation: NgDialogFormValidation[]): NgValidation {
+    const errObj = {};
+    for (const e of configValidation) {
+      errObj[e.type] = e.message;
+    }
+    return errObj as NgValidation;
+  }
+
+  changeDialogVisibilityTo = (visible: boolean) => {
+    this.closeCallback();
+    this.visible = visible;
+    if (!visible) {
+      this.onClose.emit();
+    }
+  }
+
+  handleConfigEvent(config: NgDialogFormConfig, eventKey: string, eventObj: any) {
+    if (config[eventKey]) {
+      config[eventKey]({event: eventObj, form: this.form, currentConfig: config, allConfig: this.config});
+    }
+  }
+
   handleConfigValidations(config: NgDialogFormConfig) {
     const control = this.form.get(config.key);
     if (config.validations) {
@@ -71,29 +93,7 @@ export class DialogFormComponent {
         }
       }
       control.setValidators([...validators]);
-      control.updateValueAndValidity()
-    }
-  }
-
-  convertToComponentValidation(configValidation: NgDialogFormValidation[]): NgValidation {
-    const errObj = {};
-    for (const e of configValidation) {
-      errObj[e.type] = e.message;
-    }
-    return errObj as NgValidation;
-  }
-
-  changeDialogVisibilityTo = (visibility: boolean) => {
-    this.closeCallback();
-    this.visible = visibility;
-    if (!visibility) {
-      this.onClose.emit();
-    }
-  }
-
-  handleConfigEvent(config: NgDialogFormConfig, eventKey: string, eventObj: any) {
-    if (config[eventKey]) {
-      config[eventKey]({event: eventObj, form: this.form, currentConfig: config, allConfig: this.config})
+      control.updateValueAndValidity();
     }
   }
 
@@ -108,12 +108,12 @@ export class DialogFormComponent {
       hidden = config.hidden;
     }
     if (hidden) {
-      const control = this.form.get(config.key)
-      control.setValue(null);
-      control.clearValidators();
-      control.updateValueAndValidity()
+      const control = this.form.get(config.key);
+      control?.setValue(null);
+      control?.clearValidators();
+      control?.updateValueAndValidity();
     } else {
-      this.handleConfigValidations(config)
+      this.handleConfigValidations(config);
     }
     return hidden;
   }
@@ -129,11 +129,11 @@ export class DialogFormComponent {
       disabled = config.disabled;
     }
     if (disabled) {
-      const control = this.form.get(config.key)
-      control.clearValidators();
-      control.updateValueAndValidity();
+      const control = this.form.get(config.key);
+      control?.clearValidators();
+      control?.updateValueAndValidity();
     } else {
-      this.handleConfigValidations(config)
+      this.handleConfigValidations(config);
     }
     return disabled;
   }
