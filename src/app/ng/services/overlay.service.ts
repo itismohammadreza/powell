@@ -259,7 +259,7 @@ export class OverlayService {
   }
 
   isAnyDialogOpen() {
-    return ['.p-toast', '.p-confirm-popup', '.p-confirm-dialog', '.p-dialog', '.p-dialog-form'].some(selector => {
+    return ['p-toastitem', '.p-confirm-popup', '.p-confirm-dialog', '.p-dialog', '.p-dialog-form'].some(selector => {
       return !!this.document.querySelector(selector)
     })
   }
