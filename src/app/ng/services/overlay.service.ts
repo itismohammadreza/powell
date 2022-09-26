@@ -306,11 +306,11 @@ export class OverlayService {
     return this.document.body.contains(componentRef?.location.nativeElement);
   }
 
-  anyDialogVisible() {
+  anyDialogIsOpen() {
     return !!(this.toastCmpRef || this.confirmPopupCmpRef || this.confirmCmpRef || this.dialogCmpRef || this.dialogFormCmpRef);
   }
 
-  closeAnyOpenedDialog() {
+  closeAnyOpenDialog() {
     if (this.toastCmpRef) {
       this.messageService.clear();
       this.toastCmpRef = null;
