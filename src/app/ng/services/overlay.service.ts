@@ -3,19 +3,19 @@ import {
   NgConfirmDialogOptions,
   NgConfirmPopupOptions,
   NgDialogFormConfig,
-  NgDialogFormOptions, NgDialogFormResult,
+  NgDialogFormOptions,
+  NgDialogFormResult,
   NgDialogOptions,
   NgToastOptions
 } from '@ng/models/overlay';
 import {Confirmation, ConfirmationService, ConfirmEventType, Message, MessageService} from 'primeng/api';
-import {DialogService, DynamicDialogRef} from 'primeng/dynamicdialog';
 import {DialogComponent} from '@ng/components/dialog/dialog.component';
 import {DOCUMENT, LocationStrategy} from '@angular/common';
 import {Toast} from 'primeng/toast';
 import {ConfirmPopup} from 'primeng/confirmpopup';
 import {ConfirmDialog} from 'primeng/confirmdialog';
-import {NavigationStart, Router} from "@angular/router";
-import {Observable, Subject} from "rxjs";
+import {Router} from "@angular/router";
+import {Observable} from "rxjs";
 import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
 
 @Injectable({
@@ -31,7 +31,6 @@ export class OverlayService {
   constructor(
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private dialogService: DialogService,
     private injector: Injector,
     private appRef: ApplicationRef,
     private locationStrategy: LocationStrategy,
@@ -40,19 +39,9 @@ export class OverlayService {
   ) {
     //todo: create a destroyAll method and call this method in app.component router.event
     // also if there is any dialog open, prevent routing.
-    router.events.forEach((event) => {
-      if (event instanceof NavigationStart) {
-        [this.toastCmpRef,
-          this.confirmPopupCmpRef,
-          this.confirmCmpRef,
-          this.dialogCmpRef].forEach(cmpRef => {
-          this.removeFromBody(cmpRef);
-        })
-      }
-    });
   }
 
-  showToast(options: NgToastOptions): void {
+  showToast(options: NgToastOptions): Promise<boolean> {
     if (!this.bodyContains(this.toastCmpRef)) {
       this.toastCmpRef = this.addToBody(Toast);
     }
@@ -81,10 +70,16 @@ export class OverlayService {
     this.toastCmpRef.instance.showTransformOptions = options.showTransformOptions || 'translateY(100%)';
     this.toastCmpRef.instance.hideTransformOptions = options.hideTransformOptions || 'translateY(-100%)';
     this.toastCmpRef.instance.breakpoints = options.breakpoints;
-
     setTimeout(() => {
       this.messageService.add(toast);
     }, 0);
+    return new Promise((accept) => {
+      const subscription = this.toastCmpRef.instance.onClose.subscribe(() => {
+        this.toastCmpRef = null;
+        subscription.unsubscribe();
+        accept(true);
+      });
+    });
   }
 
   showConfirmPopup(options: NgConfirmPopupOptions): Promise<boolean> {
@@ -119,9 +114,11 @@ export class OverlayService {
       this.confirmationService.confirm({
         ...confirmation,
         accept: () => {
+          this.confirmPopupCmpRef = null;
           accept(true);
         },
         reject: () => {
+          this.confirmPopupCmpRef = null;
           accept(false);
         },
       });
@@ -164,9 +161,11 @@ export class OverlayService {
       this.confirmationService.confirm({
         ...confirmation,
         accept: () => {
+          this.confirmCmpRef = null;
           accept(true);
         },
         reject: (type) => {
+          this.confirmCmpRef = null;
           switch (type) {
             case ConfirmEventType.REJECT:
               accept(false);
@@ -226,11 +225,12 @@ export class OverlayService {
       content: options.content || ''
     }
     this.dialogCmpRef.instance.options = dialog;
-    this.dialogCmpRef.instance.visible = true;
+    this.dialogCmpRef.instance.show();
     return new Promise((accept) => {
-      const subscription = this.dialogCmpRef.instance.onHide.subscribe(() => {
-        accept();
+      const subscription = this.dialogCmpRef.instance.onClose.subscribe(() => {
+        this.dialogCmpRef = null;
         subscription.unsubscribe();
+        accept();
       });
     });
   }
@@ -267,7 +267,7 @@ export class OverlayService {
     }
     this.dialogFormCmpRef.instance.config = config;
     this.dialogFormCmpRef.instance.options = dialogForm;
-    this.dialogFormCmpRef.instance.visible = true;
+    this.dialogFormCmpRef.instance.show();
     return new Observable<NgDialogFormResult>((resolve) => {
       const submitSubscription = this.dialogFormCmpRef.instance.onSubmit.subscribe(res => {
         resolve.next(res);
@@ -275,28 +275,13 @@ export class OverlayService {
       const closeSubscription = this.dialogFormCmpRef.instance.onClose.subscribe(res => {
         setTimeout(() => {
           this.removeFromBody(this.dialogFormCmpRef);
+          this.dialogFormCmpRef = null;
         }, 200)
         submitSubscription.unsubscribe();
         closeSubscription.unsubscribe();
       })
     })
   }
-
-  // showDialogForm(header: string, config: NgDialogFormConfig[], options?: NgDialogFormOptions): DynamicDialogRef {
-  //   return this.dialogService.open(DialogFormComponent, {
-  //     header,
-  //     data: {config, options},
-  //     width: options?.width || '550px',
-  //     styleClass: options?.rtl ? 'rtl' : 'ltr',
-  //     footer: options?.footer,
-  //     height: options?.height,
-  //     closeOnEscape: options?.closeOnEscape,
-  //     dismissableMask: options?.dismissableMask,
-  //     closable: options?.closable || true,
-  //     showHeader: options?.showHeader || true,
-  //     baseZIndex: 1000
-  //   });
-  // }
 
   private addToBody<T>(component: Type<T>): ComponentRef<T> {
     const componentRef = createComponent(component, {
@@ -319,5 +304,32 @@ export class OverlayService {
 
   private bodyContains(componentRef: ComponentRef<any>) {
     return this.document.body.contains(componentRef?.location.nativeElement);
+  }
+
+  anyDialogVisible() {
+    return !!(this.toastCmpRef || this.confirmPopupCmpRef || this.confirmCmpRef || this.dialogCmpRef || this.dialogFormCmpRef);
+  }
+
+  closeAnyOpenedDialog() {
+    if (this.toastCmpRef) {
+      this.messageService.clear();
+      this.toastCmpRef = null;
+    }
+    if (this.confirmPopupCmpRef) {
+      this.confirmationService.close();
+      this.confirmPopupCmpRef = null;
+    }
+    if (this.confirmCmpRef) {
+      this.confirmationService.close();
+      this.confirmCmpRef = null;
+    }
+    if (this.dialogCmpRef) {
+      this.dialogCmpRef.instance.close();
+      this.dialogCmpRef = null;
+    }
+    if (this.dialogFormCmpRef) {
+      this.dialogFormCmpRef.instance.close();
+      this.dialogFormCmpRef = null;
+    }
   }
 }

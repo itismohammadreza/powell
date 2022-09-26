@@ -51,6 +51,7 @@ import {ToastPage} from "@modules/main/pages/showcase/pages/toast/toast.page";
 import {DialogPage} from "@modules/main/pages/showcase/pages/dialog/dialog.page";
 import {LoadingContainerPage} from "@modules/main/pages/showcase/pages/loading-container/loading-container.page";
 import {InfiniteScrollPage} from "@modules/main/pages/showcase/pages/infinite-scroll/infinite-scroll.page";
+import {OpenDialogGuard} from "@core/guard/open-dialog.guard";
 
 const routes: Routes = [
   {
@@ -106,11 +107,13 @@ const routes: Routes = [
   {
     path: 'dialog',
     component: DialogPage,
+    canDeactivate: [OpenDialogGuard],
     data: {title: 'dialog'}
   },
   {
     path: 'dialog-form',
     component: DialogFormPage,
+    canDeactivate: [OpenDialogGuard],
     data: {title: 'dialog-form'}
   },
   {

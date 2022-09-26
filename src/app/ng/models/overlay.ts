@@ -23,7 +23,7 @@ import {
   NgLabelPosition,
   NgNumberButtonLayout,
   NgNumberMode,
-  NgTreeFilterMode,
+  NgTreeFilterMode, NgInputModes,
 } from './forms';
 import {NgIconPosition, NgOrientation, NgPlace, NgPosition, NgSelectionMode, NgSize} from './offset';
 import {SunEditorOptions} from "suneditor/src/options";
@@ -510,6 +510,7 @@ export interface NgDialogFormConfig {
   inputStyleClass?: string;
   ///////////////////////////////////////// input-text /////////////////////////////////////////
   keyFilter?: NgKeyFilter | RegExp;
+  inputMode?: NgInputModes;
   ///////////////////////////////////////// input-textarea /////////////////////////////////////////
   rows?: number;
   cols?: number;

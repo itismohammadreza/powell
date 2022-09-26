@@ -79,6 +79,8 @@ export type NgValidationType =
   | 'pattern'
   | 'nullValidator';
 
+export type NgInputModes = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
+
 export type NgInputTypes =
   | 'button'
   | 'checkbox'

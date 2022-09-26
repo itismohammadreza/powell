@@ -13,7 +13,6 @@ export class DialogFormComponent {
 
   form = new FormGroup({})
   visible: boolean;
-  destroy$: Subject<void> = new Subject();
   closeCallback: () => void;
   onSubmit = new EventEmitter<NgDialogFormResult>();
   onClose = new EventEmitter();
@@ -44,6 +43,15 @@ export class DialogFormComponent {
 
   get config() {
     return this._config;
+  }
+
+  show() {
+    this.visible = true;
+  }
+
+  close() {
+    this.visible = false;
+    this.onClose.emit();
   }
 
   handleConfigValue(config: NgDialogFormConfig) {
