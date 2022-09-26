@@ -14,7 +14,6 @@ import {DOCUMENT, LocationStrategy} from '@angular/common';
 import {Toast} from 'primeng/toast';
 import {ConfirmPopup} from 'primeng/confirmpopup';
 import {ConfirmDialog} from 'primeng/confirmdialog';
-import {Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
 
@@ -35,10 +34,7 @@ export class OverlayService {
     private appRef: ApplicationRef,
     private locationStrategy: LocationStrategy,
     @Inject(DOCUMENT) private document: Document,
-    private router: Router
   ) {
-    //todo: create a destroyAll method and call this method in app.component router.event
-    // also if there is any dialog open, prevent routing.
   }
 
   showToast(options: NgToastOptions): Promise<boolean> {
@@ -47,18 +43,11 @@ export class OverlayService {
     }
 
     const toast: Message = {
-      key: options.key,
-      data: options.data,
-      life: options.life || 3000,
-      id: options.id,
-      sticky: options.sticky,
+      life: 3000,
       styleClass: `${options.styleClass} ${options.rtl ? 'rtl' : ''}`,
-      summary: options.summary,
-      closable: options.closable,
-      severity: options.severity || 'info',
-      icon: options.icon,
-      contentStyleClass: options.contentStyleClass,
-      detail: options.detail,
+      closable: true,
+      severity: 'info',
+      ...options
     }
     this.toastCmpRef.instance.preventDuplicates = options.preventDuplicates;
     this.toastCmpRef.instance.position = options.position || 'top-right';
@@ -75,7 +64,6 @@ export class OverlayService {
     }, 0);
     return new Promise((accept) => {
       const subscription = this.toastCmpRef.instance.onClose.subscribe(() => {
-        this.toastCmpRef = null;
         subscription.unsubscribe();
         accept(true);
       });
@@ -93,32 +81,24 @@ export class OverlayService {
     this.confirmPopupCmpRef.instance.style = options.style;
     this.confirmPopupCmpRef.instance.styleClass = `${options.styleClass} ${options.rtl ? 'rtl' : ''} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
 
-    // todo: check if this way is good and apply it into other methods
     const confirmation: Confirmation = {
-      // target: options.target,
-      // message: options.message,
-      // key: options.key,
-      icon: options.icon || 'pi pi-exclamation-triangle',
-      // acceptLabel: options.acceptLabel,
-      // rejectLabel: options.rejectLabel,
-      // acceptIcon: options.acceptIcon,
-      // rejectIcon: options.rejectIcon,
-      // acceptVisible: options.acceptVisible,
-      // rejectVisible: options.rejectVisible,
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'تایید',
+      rejectLabel: 'لغو',
+      acceptVisible: true,
+      rejectVisible: true,
+      defaultFocus: 'accept',
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
-      defaultFocus: options.defaultFocus || 'accept',
       ...options
     }
     return new Promise((accept) => {
       this.confirmationService.confirm({
         ...confirmation,
         accept: () => {
-          this.confirmPopupCmpRef = null;
           accept(true);
         },
         reject: () => {
-          this.confirmPopupCmpRef = null;
           accept(false);
         },
       });
@@ -140,32 +120,22 @@ export class OverlayService {
     this.confirmCmpRef.instance.transitionOptions = options.transitionOptions || '200ms cubic-bezier(0.25, 0.8, 0.25, 1)';
 
     const confirmation: Confirmation = {
-      message: options.message,
-      key: options.key,
-      icon: options.icon,
-      header: options.header,
-      acceptLabel: options.acceptLabel,
-      rejectLabel: options.rejectLabel,
-      acceptIcon: options.acceptIcon,
-      rejectIcon: options.rejectIcon,
-      acceptVisible: options.acceptVisible,
-      rejectVisible: options.rejectVisible,
+      acceptVisible: true,
+      rejectVisible: true,
+      dismissableMask: false,
+      defaultFocus: 'accept',
+      blockScroll: true,
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
-      closeOnEscape: options.closeOnEscape,
-      dismissableMask: options.dismissableMask,
-      defaultFocus: options.defaultFocus,
-      blockScroll: options.blockScroll
+      ...options
     }
     return new Promise((accept) => {
       this.confirmationService.confirm({
         ...confirmation,
         accept: () => {
-          this.confirmCmpRef = null;
           accept(true);
         },
         reject: (type) => {
-          this.confirmCmpRef = null;
           switch (type) {
             case ConfirmEventType.REJECT:
               accept(false);
@@ -184,51 +154,34 @@ export class OverlayService {
       this.dialogCmpRef = this.addToBody(DialogComponent);
     }
     const dialog: NgDialogOptions = {
-      header: options.header,
-      draggable: options.draggable,
-      keepInViewport: options.keepInViewport != undefined ? options.keepInViewport : true,
-      resizable: options.resizable != undefined ? options.resizable : true,
-      contentStyle: options.contentStyle,
-      modal: options.modal != undefined ? options.modal : true,
-      position: options.position || 'center',
-      blockScroll: options.blockScroll,
-      closeOnEscape: options.closeOnEscape != undefined ? options.closeOnEscape : true,
-      dismissableMask: options.dismissableMask,
-      closable: options.closable != undefined ? options.closable : true,
-      style: options.style,
-      styleClass: options.styleClass,
-      maskStyleClass: options.maskStyleClass,
-      contentStyleClass: options.contentStyleClass,
-      showHeader: options.showHeader != undefined ? options.showHeader : true,
-      baseZIndex: options.baseZIndex || 0,
-      autoZIndex: options.autoZIndex != undefined ? options.autoZIndex : true,
-      minX: options.minX || 0,
-      minY: options.minY || 0,
-      focusOnShow: options.focusOnShow != undefined ? options.focusOnShow : true,
-      focusTrap: options.focusTrap != undefined ? options.focusTrap : true,
-      maximizable: options.maximizable,
-      breakpoints: options.breakpoints,
-      transitionOptions: options.transitionOptions || '150ms cubic-bezier(0, 0, 0.2, 1)',
-      closeIcon: options.closeIcon || 'pi pi-times',
-      closeTabindex: options.closeTabindex,
-      minimizeIcon: options.minimizeIcon || 'pi pi-window-minimize',
-      maximizeIcon: options.maximizeIcon || 'pi pi-window-maximize',
-
-      buttonIcon: options.buttonIcon,
-      buttonIconPos: options.buttonIconPos,
-      buttonFull: options.buttonFull,
-      buttonLabel: options.buttonLabel,
-      buttonColor: options.buttonColor,
-      buttonAppearance: options.buttonAppearance,
-      buttonSize: options.buttonSize,
-      rtl: options.rtl,
-      content: options.content || ''
+      draggable: false,
+      keepInViewport: true,
+      resizable: true,
+      modal: true,
+      position: 'center',
+      blockScroll: true,
+      closeOnEscape: true,
+      dismissableMask: false,
+      closable: true,
+      showHeader: true,
+      baseZIndex: 0,
+      autoZIndex: true,
+      minX: 0,
+      minY: 0,
+      focusOnShow: true,
+      focusTrap: true,
+      transitionOptions: '150ms cubic-bezier(0, 0, 0.2, 1)',
+      closeIcon: 'pi pi-times',
+      minimizeIcon: 'pi pi-window-minimize',
+      maximizeIcon: 'pi pi-window-maximize',
+      content: '',
+      styleClass: `${options.styleClass} ${options.rtl ? 'rtl' : ''}`,
+      ...options
     }
     this.dialogCmpRef.instance.options = dialog;
     this.dialogCmpRef.instance.show();
     return new Promise((accept) => {
       const subscription = this.dialogCmpRef.instance.onClose.subscribe(() => {
-        this.dialogCmpRef = null;
         subscription.unsubscribe();
         accept();
       });
@@ -263,6 +216,7 @@ export class OverlayService {
       acceptLabel: 'تایید',
       rejectLabel: 'بستن',
       rejectAppearance: 'outlined',
+      styleClass: `${options.styleClass} p-dialog-form`,
       ...options
     }
     this.dialogFormCmpRef.instance.config = config;
@@ -275,7 +229,6 @@ export class OverlayService {
       const closeSubscription = this.dialogFormCmpRef.instance.onClose.subscribe(res => {
         setTimeout(() => {
           this.removeFromBody(this.dialogFormCmpRef);
-          this.dialogFormCmpRef = null;
         }, 200)
         submitSubscription.unsubscribe();
         closeSubscription.unsubscribe();
@@ -297,7 +250,6 @@ export class OverlayService {
     if (!component) {
       return;
     }
-
     this.appRef.detachView(component.hostView);
     component.destroy();
   }
@@ -306,30 +258,16 @@ export class OverlayService {
     return this.document.body.contains(componentRef?.location.nativeElement);
   }
 
-  anyDialogIsOpen() {
-    return !!(this.toastCmpRef || this.confirmPopupCmpRef || this.confirmCmpRef || this.dialogCmpRef || this.dialogFormCmpRef);
+  isAnyDialogOpen() {
+    return ['.p-toast', '.p-confirm-popup', '.p-confirm-dialog', '.p-dialog', '.p-dialog-form'].some(selector => {
+      return !!this.document.querySelector(selector)
+    })
   }
 
   closeAnyOpenDialog() {
-    if (this.toastCmpRef) {
-      this.messageService.clear();
-      this.toastCmpRef = null;
-    }
-    if (this.confirmPopupCmpRef) {
-      this.confirmationService.close();
-      this.confirmPopupCmpRef = null;
-    }
-    if (this.confirmCmpRef) {
-      this.confirmationService.close();
-      this.confirmCmpRef = null;
-    }
-    if (this.dialogCmpRef) {
-      this.dialogCmpRef.instance.close();
-      this.dialogCmpRef = null;
-    }
-    if (this.dialogFormCmpRef) {
-      this.dialogFormCmpRef.instance.close();
-      this.dialogFormCmpRef = null;
-    }
+    this.messageService?.clear();
+    this.confirmationService?.close();
+    this.dialogCmpRef?.instance.close();
+    this.dialogFormCmpRef?.instance.close();
   }
 }

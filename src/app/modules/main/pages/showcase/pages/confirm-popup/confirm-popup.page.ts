@@ -13,7 +13,7 @@ export class ConfirmPopupPage {
 
   confirmPopup: NgConfirmPopupOptions = {
     message: 'Are you sure?',
-    icon: '',
+    icon: 'pi pi-exclamation-triangle',
     acceptLabel: 'Yes',
     rejectLabel: 'No',
     acceptIcon: '',
@@ -25,7 +25,8 @@ export class ConfirmPopupPage {
     buttonSize: 'md',
     rejectColor: 'primary',
     rejectAppearance: 'outlined',
-    defaultFocus: 'accept'
+    defaultFocus: 'accept',
+    rtl: false
   }
 
   showConfirmPopup(event) {

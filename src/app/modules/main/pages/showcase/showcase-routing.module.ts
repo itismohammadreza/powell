@@ -97,11 +97,13 @@ const routes: Routes = [
   {
     path: 'confirm-dialog',
     component: ConfirmDialogPage,
+    canDeactivate: [OpenDialogGuard],
     data: {title: 'confirm-dialog'}
   },
   {
     path: 'confirm-popup',
     component: ConfirmPopupPage,
+    canDeactivate: [OpenDialogGuard],
     data: {title: 'confirm-popup'}
   },
   {
@@ -274,6 +276,7 @@ const routes: Routes = [
   {
     path: 'toast',
     component: ToastPage,
+    canDeactivate: [OpenDialogGuard],
     data: {title: 'toast'}
   },
   {
