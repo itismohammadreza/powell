@@ -131,7 +131,7 @@ export class DialogFormPage implements OnInit {
       }).subscribe(res => {
       const {formValue, changeDialogVisibilityTo} = res;
       this.flag = !this.flag;
-      console.log('fo what ever with form value: ', formValue)
+      console.log('Do what ever with form value: ', formValue)
       setTimeout(() => {
         changeDialogVisibilityTo(this.flag)
       }, 2000)
