@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {FormControl, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgInputTypes, NgKeyFilter, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 
@@ -10,7 +10,7 @@ import {NgIconPosition, NgSize} from '@ng/models/offset';
 })
 export class InputTextPage {
   form = new UntypedFormGroup({
-    c1: new UntypedFormControl(null, [Validators.required, Validators.minLength(2), Validators.email]),
+    c1: new UntypedFormControl(null, [Validators.required, Validators.minLength(5), Validators.email, this.akbarValidator]),
   });
   binding;
 
@@ -30,5 +30,13 @@ export class InputTextPage {
   maxlength: number = 100;
   placeholder: string = '';
   type: NgInputTypes = 'text';
-  keyFilter: NgKeyFilter = 'alphanum';
+  keyFilter: NgKeyFilter | RegExp = /.*/g;
+
+  akbarValidator(control: FormControl) {
+    return control.value == 'akbar' ? {akbarDenied: true} : null
+  }
+
+  getLengthMessage() {
+    return `${this.form.get('c1').value} is not valid length`;
+  }
 }

@@ -13,7 +13,7 @@ export type NgColorFormat = 'hex' | 'rgb' | 'hsb';
 export type NgNumberMode = 'decimal' | 'currency';
 export type NgNumberButtonLayout = 'stacked' | 'horizontal' | 'vertical';
 export type NgCurrencyDisplay = 'symbol' | 'code' | 'name';
-export type NgValidation = Partial<Record<NgValidationType, string>>; // equal to : [validationType in NgValidationType]?: string;
+export type NgValidation = Partial<Record<NgValidationType | any, string>>; // equal to : [validationType in NgValidationType]?: string;
 export type NgTreeFilterMode = 'strict' | 'lenient';
 
 export interface NgAddonConfig {
@@ -73,11 +73,9 @@ export type NgValidationType =
   | 'max'
   | 'required'
   | 'email'
-  | 'minLength'
-  | 'maxLength'
-  | 'requiredTrue'
-  | 'pattern'
-  | 'nullValidator';
+  | 'minlength'
+  | 'maxlength'
+  | 'pattern';
 
 export type NgInputModes = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 

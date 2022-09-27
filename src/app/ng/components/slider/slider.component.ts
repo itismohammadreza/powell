@@ -132,7 +132,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
   }
 
   hasError(type: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
+    return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 
   showHint() {

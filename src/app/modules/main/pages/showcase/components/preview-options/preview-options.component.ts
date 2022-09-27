@@ -411,7 +411,7 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() toggleMaskChange = new EventEmitter()
   @Input() type: NgInputTypes;
   @Output() typeChange = new EventEmitter()
-  @Input() keyFilter: NgKeyFilter;
+  @Input() keyFilter: NgKeyFilter | RegExp;
   @Output() keyFilterChange = new EventEmitter()
   @Input() rows: number;
   @Output() rowsChange = new EventEmitter()
@@ -645,7 +645,7 @@ export class PreviewOptionsComponent implements OnInit {
       display: ['comma', 'chip'],
       appearance: ['basic', 'text', 'outlined', 'link'],
       buttonLayout: ['stacked', 'horizontal', 'vertical'],
-      keyFilter: [/[^>]+/g, 'pint', 'int', 'pnum', 'num', 'hex', 'email', 'alpha', 'alphanum'],
+      keyFilter: [/.*/g, 'pint', 'int', 'pnum', 'num', 'hex', 'email', 'alpha', 'alphanum'],
       currency: ['USD', 'EUR', 'IRR'],
       currencyDisplay: ['symbol', 'code', 'name'],
       labelPos: ['fix-side', 'fix-top', 'float'],

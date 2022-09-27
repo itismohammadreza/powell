@@ -208,7 +208,7 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
   }
 
   hasError(type: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
+    return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 
   showHint() {

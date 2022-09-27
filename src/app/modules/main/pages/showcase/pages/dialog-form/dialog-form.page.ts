@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OverlayService} from "@ng/services";
 import {NgDialogFormOptions, NgDialogOptions} from "@ng/models/overlay";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'ng-dialog-form-page',
@@ -51,8 +52,15 @@ export class DialogFormPage implements OnInit {
           key: 'name',
           label: 'first name',
           validations: [
-            {type: 'required', message: 'is required'},
-            {type: 'minLength', message: 'at least enter 2 characters', value: 2}
+            {type: 'required', validator: Validators.required, message: 'is required'},
+            {
+              type: 'minlength',
+              validator: Validators.minLength(2),
+              message: (control) => {
+                return `${control.value} is not a valid length`
+              }
+            },
+            {type: 'akbarDenied', validator: this.akbarValidator, message: 'akbar denied'}
           ],
           value: '33333',
           onInput: (eventObj) => {
@@ -75,7 +83,7 @@ export class DialogFormPage implements OnInit {
           key: 'book',
           label: 'book',
           validations: [
-            {type: 'required', message: 'is required'},
+            {type: 'required', validator: Validators.required, message: 'is required'},
           ],
           options: [
             {label: 'book1', value: 'book1'},
@@ -127,5 +135,9 @@ export class DialogFormPage implements OnInit {
         changeDialogVisibilityTo(this.flag)
       }, 2000)
     })
+  }
+
+  akbarValidator(control: FormControl) {
+    return control.value == 'akbar' ? {akbarDenied: true} : null
   }
 }

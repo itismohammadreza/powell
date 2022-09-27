@@ -162,7 +162,7 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   }
 
   hasError(type: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
+    return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 
   showHint() {

@@ -20,7 +20,7 @@ import {
   NgControl,
   UntypedFormGroup
 } from '@angular/forms';
-import {NgAddon, NgValidation, NgInputTypes, NgKeyFilter, NgLabelPosition, NgInputModes} from '@ng/models/forms';
+import {NgAddon, NgInputModes, NgInputTypes, NgKeyFilter, NgLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 
 @Component({
@@ -169,7 +169,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   }
 
   hasError(type: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
+    return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 
   showHint() {

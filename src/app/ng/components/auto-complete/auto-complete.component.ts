@@ -257,7 +257,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   }
 
   hasError(type: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
+    return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 
   showHint() {

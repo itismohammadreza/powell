@@ -200,7 +200,7 @@ export class TreeSelectComponent implements OnInit, AfterViewInit, AfterContentI
   }
 
   hasError(type: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
+    return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 
   showHint() {

@@ -1,5 +1,5 @@
 import {HttpHeaders} from '@angular/common/http';
-import {AbstractControl, FormGroup, ValidationErrors} from '@angular/forms';
+import {AbstractControl, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
 import {ContextMenu} from 'primeng/contextmenu';
 import {NgButtonAppearance, NgButtonType} from './button';
 import {NgColor} from './color';
@@ -184,9 +184,9 @@ export interface NgDialogFormResult {
 }
 
 export interface NgDialogFormValidation {
-  type: NgValidationType;
-  message: string;
-  value?: any;
+  type: NgValidationType | string;
+  validator: ValidatorFn;
+  message: string | ((control: AbstractControl) => string);
 }
 
 export interface NgDialogFormOptions {

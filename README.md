@@ -8,12 +8,7 @@
 
 ### Feature
 
-- [ ] **all** 
-  - add ability to set custom message for validation (using functions) 
-- [ ] **dialogForm**
-  - add hook support in config (just like angular formly to implement cascade mode).
-  - support custom validation for controls
-  - support custom validation message for controls
+Hoooooray!! All Done.
 
 ### New
 

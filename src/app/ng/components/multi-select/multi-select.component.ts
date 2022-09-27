@@ -254,7 +254,7 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
   }
 
   hasError(type: string): boolean {
-    return (this.isInvalid() && this.ngControl.control.hasError(type.toLowerCase()));
+    return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 
   showHint() {

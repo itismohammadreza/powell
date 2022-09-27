@@ -61,10 +61,15 @@ export class DialogFormComponent {
     }
   }
 
-  convertToComponentValidation(configValidation: NgDialogFormValidation[]): NgValidation {
+  convertToComponentValidation(config: NgDialogFormConfig): NgValidation {
     const errObj = {};
-    for (const e of configValidation) {
-      errObj[e.type] = e.message;
+    for (const e of config.validations) {
+      if (typeof e.message == 'function') {
+        const control = this.form.get(config.key);
+        errObj[e.type] = e.message(control);
+      } else {
+        errObj[e.type] = e.message;
+      }
     }
     return errObj as NgValidation;
   }
@@ -88,17 +93,7 @@ export class DialogFormComponent {
     if (config.validations) {
       const validators: ValidatorFn[] = [];
       for (const e of config.validations) {
-        switch (e.type) {
-          case 'required':
-          case 'requiredTrue':
-          case 'email':
-          case 'nullValidator':
-            validators.push(Validators[e.type]);
-            break;
-          default:
-            validators.push(Validators[e.type](e.value));
-            break;
-        }
+        validators.push(e.validator);
       }
       control.setValidators([...validators]);
       control.updateValueAndValidity();
