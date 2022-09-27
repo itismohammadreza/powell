@@ -8,10 +8,12 @@
 
 ### Feature
 
-- [ ] **all** - handle rtl direction in panels and dialogs when append them to body.
+- [ ] **all** 
+  - add ability to set custom message for validation (using functions) 
 - [ ] **dialogForm**
   - add hook support in config (just like angular formly to implement cascade mode).
-  - dialog form appendTo #dialog and style to panels
+  - support custom validation for controls
+  - support custom validation message for controls
 
 ### New
 
