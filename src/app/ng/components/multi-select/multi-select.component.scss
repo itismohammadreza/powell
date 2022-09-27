@@ -165,32 +165,34 @@
           }
         }
 
-        .p-multiselect-close {
-          margin-right: 0.5rem;
-          margin-left: 0;
-        }
+        .p-multiselect-panel {
+          .p-multiselect-close {
+            margin-right: 0.5rem;
+            margin-left: 0;
+          }
 
-        .p-multiselect-items .p-checkbox {
-          margin-right: 0;
-          margin-left: 0.5rem;
-        }
-
-        .p-multiselect-header {
-          .p-checkbox {
+          .p-multiselect-items .p-checkbox {
             margin-right: 0;
             margin-left: 0.5rem;
           }
-        }
 
-        .p-multiselect-filter-container {
-          .p-multiselect-filter {
-            padding-right: 0.5rem;
-            padding-left: 1.5rem;
+          .p-multiselect-header {
+            .p-checkbox {
+              margin-right: 0;
+              margin-left: 0.5rem;
+            }
           }
 
-          .p-multiselect-filter-icon {
-            right: auto;
-            left: 0.5rem;
+          .p-multiselect-filter-container {
+            .p-multiselect-filter {
+              padding-right: 0.5rem;
+              padding-left: 1.5rem;
+            }
+
+            .p-multiselect-filter-icon {
+              right: auto;
+              left: 0.5rem;
+            }
           }
         }
       }

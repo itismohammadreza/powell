@@ -60,7 +60,7 @@ export class ListboxComponent implements OnInit, AfterViewInit, AfterContentInit
   @Input() filterLocale: string;
   @Input() filterBy:	string;
   @Input() filterPlaceHolder: string;
-  @Input() emptyFilterMessage: string = 'No results found';
+  @Input() emptyFilterMessage: string = 'موردی وجود ندارد';
   @Input() listStyle: string;
   @Input() listStyleClass: string;
   @Input() metaKeySelection: boolean = true;

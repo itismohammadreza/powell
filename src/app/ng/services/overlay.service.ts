@@ -44,7 +44,7 @@ export class OverlayService {
 
     const toast: Message = {
       life: 3000,
-      styleClass: `${options.styleClass} ${options.rtl ? 'rtl' : ''}`,
+      styleClass: `${options.styleClass} ${options.rtl ? 'rtl' : 'ltr'}`,
       closable: true,
       severity: 'info',
       ...options
@@ -79,7 +79,7 @@ export class OverlayService {
     this.confirmPopupCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
     this.confirmPopupCmpRef.instance.baseZIndex = options.baseZIndex || 0;
     this.confirmPopupCmpRef.instance.style = options.style;
-    this.confirmPopupCmpRef.instance.styleClass = `${options.styleClass} ${options.rtl ? 'rtl' : ''} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
+    this.confirmPopupCmpRef.instance.styleClass = `${options.styleClass} ${options.rtl ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
 
     const confirmation: Confirmation = {
       icon: 'pi pi-exclamation-triangle',
@@ -110,7 +110,7 @@ export class OverlayService {
       this.confirmCmpRef = this.addToBody(ConfirmDialog);
     }
     this.confirmCmpRef.instance.style = options.style;
-    this.confirmCmpRef.instance.styleClass = `${options.styleClass} ${options.rtl ? 'rtl' : ''} p-confirm-button-icon-${options.buttonIconPos || 'left'}`;
+    this.confirmCmpRef.instance.styleClass = `${options.styleClass} ${options.rtl ? 'rtl' : 'ltr'} p-confirm-button-icon-${options.buttonIconPos || 'left'}`;
     this.confirmCmpRef.instance.maskStyleClass = options.maskStyleClass;
     this.confirmCmpRef.instance.closable = options.closable != undefined ? options.closable : true;
     this.confirmCmpRef.instance.focusTrap = options.focusTrap;
@@ -175,7 +175,7 @@ export class OverlayService {
       minimizeIcon: 'pi pi-window-minimize',
       maximizeIcon: 'pi pi-window-maximize',
       content: '',
-      styleClass: `${options.styleClass} ${options.rtl ? 'rtl' : ''}`,
+      styleClass: `${options.styleClass} ${options.rtl ? 'rtl' : 'ltr'}`,
       ...options
     }
     this.dialogCmpRef.instance.options = dialog;
@@ -216,7 +216,7 @@ export class OverlayService {
       acceptLabel: 'تایید',
       rejectLabel: 'بستن',
       rejectAppearance: 'outlined',
-      styleClass: `${options.styleClass} p-dialog-form`,
+      styleClass: `${options.styleClass} p-dialog-form ${options.rtl ? 'rtl' : 'ltr'}`,
       ...options
     }
     this.dialogFormCmpRef.instance.config = config;

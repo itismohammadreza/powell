@@ -63,8 +63,8 @@ export class TreeSelectComponent implements OnInit, AfterViewInit, AfterContentI
   @Input() tabindex: string;
   @Input() selectionMode: NgSelectionMode;
   @Input() panelClass: string;
-  @Input() appendTo: string;
-  @Input() emptyMessage: string = 'No results found';
+  @Input() appendTo: any;
+  @Input() emptyMessage: string = 'موردی وجود ندارد';
   @Input() display: NgChipDisplayMode = 'comma';
   @Input() propagateSelectionUp: boolean = true;
   @Input() propagateSelectionDown: boolean = true;

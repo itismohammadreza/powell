@@ -29,7 +29,7 @@ export class MultiSelectPage {
   defaultLabel: string = 'Choose';
   disabled: boolean = false;
   displaySelectedLabel: boolean = true;
-  emptyFilterMessage: string = 'No results found';
+  emptyFilterMessage: string = 'موردی وجود ندارد';
   filter: boolean = true;
   filterPlaceHolder: string = '';
   maxSelectedLabels: number = 3;

@@ -45,7 +45,7 @@ export class DialogFormPage implements OnInit {
           hidden: false
         },
         {
-          component: 'dropdown',
+          component: 'multi-select',
           key: 'book',
           label: 'book',
           validations: [

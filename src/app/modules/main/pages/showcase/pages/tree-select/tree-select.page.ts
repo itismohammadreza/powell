@@ -29,7 +29,7 @@ export class TreeSelectPage {
   placeholder: string;
   disabled: boolean;
   selectionMode: NgSelectionMode;
-  emptyMessage: string = 'No results found';
+  emptyMessage: string = 'موردی وجود ندارد';
   display: NgChipDisplayMode = 'comma';
   propagateSelectionUp: boolean = true;
   propagateSelectionDown: boolean = true;

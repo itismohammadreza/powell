@@ -24,7 +24,7 @@ export class ListboxPage {
   disabled: boolean = false;
   filter: boolean = false;
   filterPlaceHolder: string = '';
-  emptyFilterMessage: string = 'No results found';
+  emptyFilterMessage: string = 'موردی وجود ندارد';
   multiple: boolean = false;
   readonly: boolean = false;
   emptyMessage: string = 'موردی وجود ندارد';

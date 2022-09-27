@@ -11,6 +11,7 @@
 - [ ] **all** - handle rtl direction in panels and dialogs when append them to body.
 - [ ] **dialogForm**
   - add hook support in config (just like angular formly to implement cascade mode).
+  - dialog form appendTo #dialog and style to panels
 
 ### New
 

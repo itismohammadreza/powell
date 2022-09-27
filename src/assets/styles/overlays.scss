@@ -4,14 +4,16 @@
 }
 
 .p-confirm-popup {
-  direction: ltr;
-
   .p-confirm-popup-message {
     margin-left: 0;
   }
 
-  .p-confirm-popup-icon ~ .p-confirm-popup-message {
-    margin-left: 1rem;
+  &.ltr {
+    direction: ltr;
+
+    .p-confirm-popup-icon ~ .p-confirm-popup-message {
+      margin-left: 1rem;
+    }
   }
 
   &.rtl {
@@ -34,14 +36,16 @@
 }
 
 .p-confirm-dialog {
-  direction: ltr;
-
   .p-dialog-content .p-confirm-dialog-message {
     margin-left: 0;
   }
 
-  .p-confirm-dialog-icon ~ .p-confirm-dialog-message {
-    margin-left: 1rem;
+  &.ltr {
+    direction: ltr;
+
+    .p-confirm-dialog-icon ~ .p-confirm-dialog-message {
+      margin-left: 1rem;
+    }
   }
 
   &.rtl {
@@ -63,20 +67,10 @@
   }
 }
 
-.p-dialog {
-  direction: ltr;
-
-  &.rtl {
-    direction: rtl;
-
-    .p-dialog-footer {
-      text-align: left;
-    }
-  }
-}
-
 .p-toast-message {
-  direction: ltr;
+  &.ltr {
+    direction: ltr;
+  }
 
   &.rtl {
     direction: rtl;
