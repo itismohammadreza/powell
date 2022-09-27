@@ -126,6 +126,7 @@ export class DialogFormPage implements OnInit {
           },
           type: 'invalidGr',
           message: 'فرم نامعتبر است',
+          style: {textAlign: 'center'}
         }
       }).subscribe(res => {
       const {formValue, changeDialogVisibilityTo} = res;
