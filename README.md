@@ -7,8 +7,9 @@
 - check components label that WON't be 100px due to css flex issues (maybe good to change labelWidth to minWidth).
 
 ### Feature
+[ ] **all** : set label align-self to top in some components.
 
-Hoooooray!! All Done.
+// (Hoooooray!! All Done.)
 
 ### New
 
