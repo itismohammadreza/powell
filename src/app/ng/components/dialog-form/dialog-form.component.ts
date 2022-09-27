@@ -1,7 +1,6 @@
 import {Component, EventEmitter} from '@angular/core';
-import {FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
-import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult, NgDialogFormValidation} from "@ng/models/overlay";
-import {Subject} from "rxjs";
+import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
+import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult} from "@ng/models/overlay";
 import {NgValidation} from "@ng/models/forms";
 
 @Component({
@@ -22,7 +21,7 @@ export class DialogFormComponent {
   set options(v) {
     this._options = v;
     if (this._options.formValidator) {
-      this.form.setValidators(this.options.formValidator.validatorFn);
+      this.form.setValidators(this.options.formValidator.validator);
     }
   }
 

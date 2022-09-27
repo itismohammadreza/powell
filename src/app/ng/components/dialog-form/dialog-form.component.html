@@ -1399,7 +1399,7 @@
         ></div>
       </ng-container>
     </ng-container>
-    <div class="col-12" *ngIf="options.formValidator && form.hasError(options.formValidator.error)">
+    <div class="col-12" *ngIf="options.formValidator && form.hasError(options.formValidator.type)">
       <div class="p-error" [ngStyle]="options.formValidator.style" [innerHTML]="options.formValidator.message"></div>
     </div>
     <div class="col-12 footer d-flex align-content-center justify-content-end border-top">

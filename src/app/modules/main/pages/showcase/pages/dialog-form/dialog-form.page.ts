@@ -119,13 +119,13 @@ export class DialogFormPage implements OnInit {
         rejectIcon: this.dialogForm.rejectIcon,
         rtl: this.dialogForm.rtl,
         style: {width: '800px'},
-        submitDisabled: (({form}) => form.invalid),
+        submitDisabled: ({form}) => form.invalid,
         formValidator: {
-          validatorFn: (group) => {
+          validator: (group) => {
             return group.get('name').invalid ? {invalidGr: true} : null
           },
+          type: 'invalidGr',
           message: 'فرم نامعتبر است',
-          error: 'invalidGr',
         }
       }).subscribe(res => {
       const {formValue, changeDialogVisibilityTo} = res;

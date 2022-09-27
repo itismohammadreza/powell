@@ -13,22 +13,22 @@ import {
   NgDatepickerHourFormat,
   NgDatepickerSelectionMode,
   NgDatepickerViewMode,
-  NgValidation,
-  NgValidationType,
+  NgFilePickerMode,
   NgFilterMatchMode,
   NgFixLabelPosition,
-  NgFilePickerMode,
+  NgInputModes,
   NgInputTypes,
   NgKeyFilter,
   NgLabelPosition,
   NgNumberButtonLayout,
   NgNumberMode,
-  NgTreeFilterMode, NgInputModes,
+  NgTreeFilterMode,
+  NgValidationType,
 } from './forms';
 import {NgIconPosition, NgOrientation, NgPlace, NgPosition, NgSelectionMode, NgSize} from './offset';
 import {SunEditorOptions} from "suneditor/src/options";
 import {Core} from "suneditor/src/lib/core";
-import {LatLng, LatLngBounds, LatLngLiteral} from "leaflet";
+import {LatLng, LatLngBounds} from "leaflet";
 import {ScrollerOptions} from "primeng/scroller";
 
 export type NgSeverity = 'success' | 'info' | 'warn' | 'error';
@@ -235,8 +235,8 @@ export interface NgDialogFormOptions {
   buttonSize?: NgSize;
   submitDisabled?: boolean | ((dialogFormEvent?: NgDialogFormEventRes) => boolean);
   formValidator?: {
-    validatorFn: (group: AbstractControl) => ValidationErrors | null,
-    error: string,
+    type: string,
+    validator: ValidatorFn,
     message: string,
     style?: any
   };
