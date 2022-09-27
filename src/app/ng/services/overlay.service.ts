@@ -194,7 +194,6 @@ export class OverlayService {
     }
     const dialogForm: NgDialogFormOptions = {
       keepInViewport: true,
-      resizable: true,
       modal: true,
       position: 'center',
       closeOnEscape: true,

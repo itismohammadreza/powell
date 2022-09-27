@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {OverlayService} from "@ng/services";
+import {NgDialogFormOptions, NgDialogOptions} from "@ng/models/overlay";
 
 @Component({
   selector: 'ng-dialog-form-page',
@@ -14,8 +15,33 @@ export class DialogFormPage implements OnInit {
   ngOnInit(): void {
   }
 
+  dialogForm: NgDialogFormOptions = {
+    header: 'Dialog',
+    draggable: false,
+    resizable: false,
+    modal: true,
+    position: 'center',
+    blockScroll: false,
+    closeOnEscape: false,
+    dismissableMask: false,
+    closable: true,
+    showHeader: true,
+    maximizable: true,
+    buttonFull: false,
+    buttonSize: 'md',
+    acceptAppearance: 'basic',
+    acceptColor: 'primary',
+    acceptVisible: true,
+    acceptLabel: 'تایید',
+    acceptIcon: '',
+    rejectAppearance: 'outlined',
+    rejectColor: 'danger',
+    rejectVisible: true,
+    rejectLabel: 'لغو',
+    rejectIcon: '',
+    rtl: false,
+  }
   flag = false;
-  rtl: boolean = false;
 
   showDialogForm() {
     this.overlayService.showDialogForm(
@@ -60,9 +86,30 @@ export class DialogFormPage implements OnInit {
         }
       ],
       {
-        header: 'dialog form',
-        rtl: this.rtl,
-        buttonFull: true,
+        header: this.dialogForm.header,
+        draggable: this.dialogForm.draggable,
+        resizable: this.dialogForm.resizable,
+        modal: this.dialogForm.modal,
+        position: this.dialogForm.position,
+        blockScroll: this.dialogForm.blockScroll,
+        closeOnEscape: this.dialogForm.closeOnEscape,
+        dismissableMask: this.dialogForm.dismissableMask,
+        closable: this.dialogForm.closable,
+        showHeader: this.dialogForm.showHeader,
+        maximizable: this.dialogForm.maximizable,
+        buttonFull: this.dialogForm.buttonFull,
+        buttonSize: this.dialogForm.buttonSize,
+        acceptAppearance: this.dialogForm.acceptAppearance,
+        acceptColor: this.dialogForm.acceptColor,
+        acceptVisible: this.dialogForm.acceptVisible,
+        acceptLabel: this.dialogForm.acceptLabel,
+        acceptIcon: this.dialogForm.acceptIcon,
+        rejectAppearance: this.dialogForm.rejectAppearance,
+        rejectColor: this.dialogForm.rejectColor,
+        rejectVisible: this.dialogForm.rejectVisible,
+        rejectLabel: this.dialogForm.rejectLabel,
+        rejectIcon: this.dialogForm.rejectIcon,
+        rtl: this.dialogForm.rtl,
         style: {width: '800px'},
         submitDisabled: (({form}) => form.invalid),
         formValidator: {

@@ -232,6 +232,7 @@ export interface NgDialogFormOptions {
   rejectLabel?: string;
   rejectAppearance?: NgButtonAppearance;
   buttonFull?: boolean;
+  buttonSize?: NgSize;
   submitDisabled?: boolean | ((dialogFormEvent?: NgDialogFormEventRes) => boolean);
   formValidator?: {
     validatorFn: (group: AbstractControl) => ValidationErrors | null,

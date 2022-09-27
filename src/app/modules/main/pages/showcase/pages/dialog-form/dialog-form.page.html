@@ -5,9 +5,55 @@
   <p-panel dir="ltr" header="Options">
     <ng-preview-options
       [previewItems]="[
+      'header',
+      'draggable',
+      'resizable',
+      'modal',
+      'position',
+      'blockScroll',
+      'closeOnEscape',
+      'dismissableMask',
+      'closable',
+      'showHeader',
+      'maximizable',
+      'buttonFull',
+      'buttonSize',
+      'acceptAppearance',
+      'acceptColor',
+      'acceptVisible',
+      'acceptLabel',
+      'acceptIcon',
+      'rejectAppearance',
+      'rejectColor',
+      'rejectVisible',
+      'rejectLabel',
+      'rejectIcon',
       'rtl',
       ]"
-      [(rtl)]="rtl"
+      [(header)]="dialogForm.header"
+      [(draggable)]="dialogForm.draggable"
+      [(resizable)]="dialogForm.resizable"
+      [(modal)]="dialogForm.modal"
+      [(position)]="dialogForm.position"
+      [(blockScroll)]="dialogForm.blockScroll"
+      [(closeOnEscape)]="dialogForm.closeOnEscape"
+      [(dismissableMask)]="dialogForm.dismissableMask"
+      [(closable)]="dialogForm.closable"
+      [(showHeader)]="dialogForm.showHeader"
+      [(maximizable)]="dialogForm.maximizable"
+      [(buttonFull)]="dialogForm.buttonFull"
+      [(buttonSize)]="dialogForm.buttonSize"
+      [(acceptAppearance)]="dialogForm.acceptAppearance"
+      [(acceptColor)]="dialogForm.acceptColor"
+      [(acceptVisible)]="dialogForm.acceptVisible"
+      [(acceptLabel)]="dialogForm.acceptLabel"
+      [(acceptIcon)]="dialogForm.acceptIcon"
+      [(rejectAppearance)]="dialogForm.rejectAppearance"
+      [(rejectColor)]="dialogForm.rejectColor"
+      [(rejectVisible)]="dialogForm.rejectVisible"
+      [(rejectLabel)]="dialogForm.rejectLabel"
+      [(rejectIcon)]="dialogForm.rejectIcon"
+      [(rtl)]="dialogForm.rtl"
     ></ng-preview-options>
   </p-panel>
 
