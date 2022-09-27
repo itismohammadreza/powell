@@ -413,17 +413,17 @@
     <ng-template pTemplate="groupfooter" let-item *ngIf="groupFooterTemplate">
       <ng-container *ngTemplateOutlet="groupFooterTemplate;context:{$implicit:item}"></ng-container>
     </ng-template>
-    <ng-template pTemplate="summary" let-item *ngIf="summaryTemplate">
-      <ng-container *ngTemplateOutlet="summaryTemplate;context:{$implicit:item}"></ng-container>
+    <ng-template pTemplate="summary" *ngIf="summaryTemplate">
+      <ng-container *ngTemplateOutlet="summaryTemplate"></ng-container>
     </ng-template>
-    <ng-template pTemplate="loadingbody" let-item *ngIf="loadingBodyTemplate">
-      <ng-container *ngTemplateOutlet="loadingBodyTemplate;context:{$implicit:item}"></ng-container>
+    <ng-template pTemplate="loadingbody" *ngIf="loadingBodyTemplate">
+      <ng-container *ngTemplateOutlet="loadingBodyTemplate"></ng-container>
     </ng-template>
-    <ng-template pTemplate="paginatorleft" let-item *ngIf="paginatorLeftTemplate">
-      <ng-container *ngTemplateOutlet="paginatorLeftTemplate;context:{$implicit:item}"></ng-container>
+    <ng-template pTemplate="paginatorleft" *ngIf="paginatorLeftTemplate">
+      <ng-container *ngTemplateOutlet="paginatorLeftTemplate"></ng-container>
     </ng-template>
-    <ng-template pTemplate="paginatorright" let-item *ngIf="paginatorRightTemplate">
-      <ng-container *ngTemplateOutlet="paginatorRightTemplate;context:{$implicit:item}"></ng-container>
+    <ng-template pTemplate="paginatorright" *ngIf="paginatorRightTemplate">
+      <ng-container *ngTemplateOutlet="paginatorRightTemplate"></ng-container>
     </ng-template>
     <ng-template let-columns pTemplate="emptymessage">
       <ng-container *ngIf="emptyMessageTemplate;else defaultEmptyMessage">
