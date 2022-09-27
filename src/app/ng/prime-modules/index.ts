@@ -36,7 +36,7 @@ import {SplitButtonModule} from 'primeng/splitbutton';
 import {GMapModule} from 'primeng/gmap';
 // import {OrderListModule} from 'primeng/orderlist';
 // import {OrganizationChartModule} from 'primeng/organizationchart';
-// import {PaginatorModule} from 'primeng/paginator';
+import {PaginatorModule} from 'primeng/paginator';
 // import {PickListModule} from 'primeng/picklist';
 import {TableModule} from 'primeng/table';
 // import {TimelineModule} from 'primeng/timeline';
@@ -155,7 +155,7 @@ export const MODULES: Type<any>[] = [
   GMapModule,
   // OrderListModule, // has dependency
   // OrganizationChartModule,
-  // PaginatorModule,
+  PaginatorModule,
   // PickListModule, // has dependency
   TableModule,
   // TimelineModule,

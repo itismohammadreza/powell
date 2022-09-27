@@ -21,7 +21,11 @@
       [size]="size"
       filterDisplay="row"
       captionTitle="Customers"
-      [actionsConfig]="actionsConfig">
+      [local]="true"
+      [rows]="10"
+      [totalRecords]="36"
+      [actionsConfig]="actionsConfig"
+      [paginator]="true">
       <ng-template ngTemplate="activity" let-item>
         <div>
           Rendered by template: {{item.activity}}

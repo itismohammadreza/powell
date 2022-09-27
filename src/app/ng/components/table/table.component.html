@@ -14,7 +14,7 @@
            p-datatable-{{striped ? 'striped' : null}}"
            [tableStyle]="tableStyle"
            [tableStyleClass]="tableStyleClass"
-           [paginator]="paginator"
+           [paginator]="paginator && local"
            [totalRecords]="totalRecords"
            [pageLinks]="pageLinks"
            [rowsPerPageOptions]="rowsPerPageOptions"
@@ -34,7 +34,7 @@
            [groupRowsBy]="groupRowsBy"
            [groupRowsByOrder]="groupRowsByOrder"
            [defaultSortOrder]="defaultSortOrder"
-           [customSort]="local"
+           [customSort]="!local"
            [showInitialSortBadge]="showInitialSortBadge"
            [selectionMode]="selectionMode"
            [selectionPageOnly]="selectionPageOnly"
@@ -385,7 +385,8 @@
           <ng-input-text *ngIf="globalFilter"
                          [placeholder]="globalFilterPlaceholder"
                          icon="pi pi-search"
-                         (onChange)="onGlobalFilterChange($event)"></ng-input-text>
+                         (onChange)="onGlobalFilterChange($event)">
+          </ng-input-text>
         </div>
       </ng-template>
     </ng-template>
@@ -404,17 +405,11 @@
     <ng-template pTemplate="frozenrowexpansion" let-item *ngIf="frozenRowExpansionTemplate">
       <ng-container *ngTemplateOutlet="frozenRowExpansionTemplate;context:{$implicit:item}"></ng-container>
     </ng-template>
-    <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
-      <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
-    </ng-template>
     <ng-template pTemplate="footergrouped" let-item *ngIf="footerGroupedTemplate">
       <ng-container *ngTemplateOutlet="footerGroupedTemplate;context:{$implicit:item}"></ng-container>
     </ng-template>
     <ng-template pTemplate="groupfooter" let-item *ngIf="groupFooterTemplate">
       <ng-container *ngTemplateOutlet="groupFooterTemplate;context:{$implicit:item}"></ng-container>
-    </ng-template>
-    <ng-template pTemplate="summary" *ngIf="summaryTemplate">
-      <ng-container *ngTemplateOutlet="summaryTemplate"></ng-container>
     </ng-template>
     <ng-template pTemplate="loadingbody" *ngIf="loadingBodyTemplate">
       <ng-container *ngTemplateOutlet="loadingBodyTemplate"></ng-container>
@@ -424,6 +419,29 @@
     </ng-template>
     <ng-template pTemplate="paginatorright" *ngIf="paginatorRightTemplate">
       <ng-container *ngTemplateOutlet="paginatorRightTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="summary" *ngIf="!local && paginator">
+      <ng-container *ngTemplateOutlet="summaryTemplate"></ng-container>
+      <p>non local paginator</p>
+      <p-paginator
+        [totalRecords]="totalRecords"
+        [rows]="rows"
+        [first]="first || 1"
+        [rowsPerPageOptions]="rowsPerPageOptions"
+        [alwaysShow]="alwaysShowPaginator"
+        [showFirstLastIcon]="showFirstLastIcon"
+        [templateLeft]="paginatorLeftTemplate"
+        [templateRight]="paginatorRightTemplate"
+        [currentPageReportTemplate]="currentPageReportTemplate"
+        [showCurrentPageReport]="showCurrentPageReport"
+        [showJumpToPageDropdown]="showJumpToPageDropdown"
+        [showJumpToPageInput]="showJumpToPageInput"
+        [showPageLinks]="showPageLinks"
+        (onPageChange)="onPageChange($event)">
+      </p-paginator>
+    </ng-template>
+    <ng-template pTemplate="footer" *ngIf="footerTemplate">
+      <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
     </ng-template>
     <ng-template let-columns pTemplate="emptymessage">
       <ng-container *ngIf="emptyMessageTemplate;else defaultEmptyMessage">

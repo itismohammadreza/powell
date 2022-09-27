@@ -165,8 +165,8 @@ export class TableComponent implements OnInit, AfterContentInit {
   headerTemplate: TemplateRef<any>
   headerGroupedTemplate: TemplateRef<any>
   bodyTemplate: TemplateRef<any>
-  footerTemplate: TemplateRef<any>
   footerGroupedTemplate: TemplateRef<any>
+  footerTemplate: TemplateRef<any>
   summaryTemplate: TemplateRef<any>
   rowExpansionTemplate: TemplateRef<any>
   frozenBodyTemplate: TemplateRef<any>
@@ -211,12 +211,12 @@ export class TableComponent implements OnInit, AfterContentInit {
           this.bodyTemplate = item.templateRef;
           break;
 
-        case 'footer':
-          this.footerTemplate = item.templateRef;
-          break;
-
         case 'footergrouped':
           this.footerGroupedTemplate = item.templateRef;
+          break;
+
+        case 'footer':
+          this.footerTemplate = item.templateRef;
           break;
 
         case 'summary':
@@ -268,6 +268,10 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
+  }
+
+  onPageChange($event) {
+    this.onPage.emit($event)
   }
 
   onFirstChange(event) {
