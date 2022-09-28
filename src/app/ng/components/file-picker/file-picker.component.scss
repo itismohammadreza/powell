@@ -61,6 +61,14 @@
       }
 
       .p-fileupload {
+
+        &.p-fileupload-basic {
+          .p-button-icon {
+            margin-right: 0;
+            margin-left: 0.5rem;
+          }
+        }
+
         .p-message {
           border-width: 0 6px 0 0;
         }

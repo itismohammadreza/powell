@@ -12,7 +12,9 @@
     <i *ngIf="icon" [ngClass]="icon"></i>
     <img *ngIf="imageSrc" [src]="imageSrc" alt="Status" />
   </div>
-  <div class="status-title">{{title}}</div>
-  <div class="status-subtitle">{{subtitle}}</div>
+  <div class="status-content">
+    <div class="status-title">{{title}}</div>
+    <div class="status-subtitle">{{subtitle}}</div>
+  </div>
   <ng-content></ng-content>
 </div>

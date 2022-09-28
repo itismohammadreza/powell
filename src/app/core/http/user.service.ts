@@ -17,7 +17,7 @@ export class UserService extends ApiService {
     return lastValueFrom(res);
   }
 
-  getCustomers(filters) {
+  getCustomers(filters?: any) {
     const res = this._customRequest<any>('https://www.primefaces.org/data/customers', 'get', null, {params: filters});
     return lastValueFrom(res);
   }

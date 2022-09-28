@@ -213,6 +213,8 @@ type PreviewItem =
   | 'detail'
   | 'preventDuplicates'
   | 'async'
+  | 'dismissible'
+  | 'showCloseIcon'
 
   | 'addon'
   | 'selectiveSize'
@@ -608,7 +610,11 @@ export class PreviewOptionsComponent implements OnInit {
   @Input() preventDuplicates: boolean;
   @Output() preventDuplicatesChange = new EventEmitter()
   @Input() async: boolean;
-  @Output() asyncChange = new EventEmitter()
+  @Output() asyncChange = new EventEmitter();
+  @Input() dismissible: boolean;
+  @Output() dismissibleChange = new EventEmitter()
+  @Input() showCloseIcon: boolean;
+  @Output() showCloseIconChange = new EventEmitter()
   @Input() addon: NgAddon;
   @Output() addonChange = new EventEmitter()
 

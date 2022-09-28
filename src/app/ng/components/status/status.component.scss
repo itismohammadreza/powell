@@ -2,8 +2,6 @@
   text-align: center;
 
   .status-icon {
-    margin-bottom: 1.5rem;
-
     i {
       font-size: 5rem;
 
@@ -27,6 +25,10 @@
     img {
       max-width: 250px;
     }
+  }
+
+  .status-content {
+    margin-top: 1.5rem;
   }
 
   .status-title {

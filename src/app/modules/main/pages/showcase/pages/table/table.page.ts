@@ -896,6 +896,7 @@ export class TablePage implements OnInit {
   contextMenuSelection: any;
   loading: boolean;
   totalRecords: number;
+  selectAll: boolean = false;
 
   ngOnInit() {
   }
@@ -918,5 +919,37 @@ export class TablePage implements OnInit {
         this.loading = false;
       })
     }, 1000);
+  }
+
+  representatives = [
+    {name: "Amy Elsner", image: 'amyelsner.png'},
+    {name: "Anna Fali", image: 'annafali.png'},
+    {name: "Asiya Javayant", image: 'asiyajavayant.png'},
+    {name: "Bernardo Dominic", image: 'bernardodominic.png'},
+    {name: "Elwin Sharvill", image: 'elwinsharvill.png'},
+    {name: "Ioni Bowcher", image: 'ionibowcher.png'},
+    {name: "Ivan Magalhaes", image: 'ivanmagalhaes.png'},
+    {name: "Onyama Limba", image: 'onyamalimba.png'},
+    {name: "Stephen Shaw", image: 'stephenshaw.png'},
+    {name: "Xuxue Feng", image: 'xuxuefeng.png'}
+  ];
+
+  onSelectionChange(value = []) {
+    this.selectAll = value.length === this.totalRecords;
+    this.selectedCustomers = value;
+  }
+
+  onSelectAllChange(event) {
+    const checked = event.checked;
+
+    if (checked) {
+      this.userService.getCustomers().then(res => {
+        this.selectedCustomers = res.customers;
+        this.selectAll = true;
+      });
+    } else {
+      this.selectedCustomers = [];
+      this.selectAll = false;
+    }
   }
 }

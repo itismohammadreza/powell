@@ -17,10 +17,16 @@ export class BottomSheetComponent {
   @Input() showCloseIcon: boolean = true;
   @Input() transitionOptions: string = '500ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() closeOnEscape: boolean = true;
-  @Output() visibleChange = new EventEmitter<boolean>();
+  @Output() onShow = new EventEmitter();
+  @Output() onHide = new EventEmitter();
+  @Output() visibleChange = new EventEmitter();
 
   onVisibleChange(event: any) {
     this.visible = event;
     this.visibleChange.emit(this.visible);
+  }
+
+  emitter(name: string, event: any) {
+    (this[name] as EventEmitter<any>).emit(event);
   }
 }

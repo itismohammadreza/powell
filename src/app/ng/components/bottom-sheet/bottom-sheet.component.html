@@ -11,6 +11,8 @@
            [showCloseIcon]="showCloseIcon"
            [transitionOptions]="transitionOptions"
            [closeOnEscape]="closeOnEscape"
-           (visibleChange)="onVisibleChange($event)">
+           (visibleChange)="onVisibleChange($event)"
+           (onShow)="emitter('onShow',$event)"
+           (onHide)="emitter('onHide',$event)">
   <ng-content></ng-content>
 </p-sidebar>
