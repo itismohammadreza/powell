@@ -1,4 +1,4 @@
-:host ::ng-deep{
+:host ::ng-deep {
   .p-dialog {
     direction: ltr;
 
@@ -9,5 +9,9 @@
         text-align: left;
       }
     }
+  }
+
+  .p-dialog-mask {
+    direction: ltr;
   }
 }

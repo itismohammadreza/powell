@@ -13,7 +13,7 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import {NgEmptyIcon, NgSelectionMode, NgSize} from '@ng/models/offset';
+import {NgEmptyIcon, NgOrientation, NgSelectionMode, NgSize} from '@ng/models/offset';
 import {
   NgTableAction,
   NgTableActionsConfig,
@@ -93,7 +93,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() dataKey: string;
   @Input() metaKeySelection: boolean;
   @Input() rowSelectable: Function;
-  @Input() rowTrackBy: Function = (index: number, item: any) => item;
+  @Input() rowTrackBy: Function = (index: number, item: any) => index;
   @Input() lazy: boolean = false;
   @Input() lazyLoadOnInit: boolean = true;
   @Input() compareSelectionBy: NgTableCompareSelectionBy = 'deepEquals';
@@ -106,7 +106,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() expandedRowKeys: { [s: string]: boolean; } = {};
   @Input() rowExpandMode: string = 'multiple';
   @Input() scrollable: boolean;
-  @Input() scrollDirection: string = "vertical";
+  @Input() scrollDirection: NgOrientation = "vertical";
   @Input() scrollHeight: string;
   @Input() virtualScroll: boolean;
   @Input() virtualScrollDelay: number = 250;
@@ -129,8 +129,8 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() stateStorage: 'session' | 'local' = 'session';
   @Input() exportHeader: string;
   @Output() onTableReady = new EventEmitter();
-  @Output() onRowSelect = new EventEmitter()
-  @Output() onRowUnselect = new EventEmitter()
+  @Output() onRowSelect = new EventEmitter();
+  @Output() onRowUnselect = new EventEmitter();
   @Output() onPage = new EventEmitter()
   @Output() onSort = new EventEmitter()
   @Output() onFilter = new EventEmitter()

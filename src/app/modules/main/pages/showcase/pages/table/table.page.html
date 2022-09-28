@@ -5,11 +5,13 @@
   <p-panel dir="ltr" header="Options">
     <ng-preview-options
       [previewItems]="[
+      'selectiveSize',
+      'header',
       'rtl',
-      'selectiveSize'
       ]"
       [(rtl)]="rtl"
       [(selectiveSize)]="size"
+      [(header)]="header"
     ></ng-preview-options>
   </p-panel>
 
@@ -20,12 +22,19 @@
       [rtl]="rtl"
       [size]="size"
       filterDisplay="row"
-      captionTitle="Customers"
+      [captionTitle]="header"
       [local]="true"
+      [paginator]="true"
+      [lazy]="true"
+      dataKey="id"
       [rows]="10"
-      [totalRecords]="36"
-      [actionsConfig]="actionsConfig"
-      [paginator]="true">
+      [loading]="loading"
+      [showJumpToPageInput]="true"
+      [showJumpToPageDropdown]="false"
+      [totalRecords]="totalRecords"
+      [showCurrentPageReport]="false"
+      (onLazyLoad)="loadCustomers($event)"
+      [actionsConfig]="actionsConfig">
       <ng-template ngTemplate="activity" let-item>
         <div>
           Rendered by template: {{item.activity}}

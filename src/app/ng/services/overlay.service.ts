@@ -135,7 +135,7 @@ export class OverlayService {
         accept: () => {
           accept(true);
         },
-        reject: (type) => {
+        reject: (type: ConfirmEventType) => {
           switch (type) {
             case ConfirmEventType.REJECT:
               accept(false);

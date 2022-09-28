@@ -14,7 +14,7 @@
            p-datatable-{{striped ? 'striped' : null}}"
            [tableStyle]="tableStyle"
            [tableStyleClass]="tableStyleClass"
-           [paginator]="paginator && local"
+           [paginator]="paginator"
            [totalRecords]="totalRecords"
            [pageLinks]="pageLinks"
            [rowsPerPageOptions]="rowsPerPageOptions"
@@ -420,25 +420,25 @@
     <ng-template pTemplate="paginatorright" *ngIf="paginatorRightTemplate">
       <ng-container *ngTemplateOutlet="paginatorRightTemplate"></ng-container>
     </ng-template>
-    <ng-template pTemplate="summary" *ngIf="!local && paginator">
+    <ng-template pTemplate="summary" *ngIf="summaryTemplate">
       <ng-container *ngTemplateOutlet="summaryTemplate"></ng-container>
-      <p>non local paginator</p>
-      <p-paginator
-        [totalRecords]="totalRecords"
-        [rows]="rows"
-        [first]="first || 1"
-        [rowsPerPageOptions]="rowsPerPageOptions"
-        [alwaysShow]="alwaysShowPaginator"
-        [showFirstLastIcon]="showFirstLastIcon"
-        [templateLeft]="paginatorLeftTemplate"
-        [templateRight]="paginatorRightTemplate"
-        [currentPageReportTemplate]="currentPageReportTemplate"
-        [showCurrentPageReport]="showCurrentPageReport"
-        [showJumpToPageDropdown]="showJumpToPageDropdown"
-        [showJumpToPageInput]="showJumpToPageInput"
-        [showPageLinks]="showPageLinks"
-        (onPageChange)="onPageChange($event)">
-      </p-paginator>
+<!--      <p>non local paginator {{totalRecords}}</p>-->
+<!--      <p-paginator-->
+<!--        [totalRecords]="totalRecords"-->
+<!--        [rows]="rows"-->
+<!--        [first]="first || 1"-->
+<!--        [rowsPerPageOptions]="rowsPerPageOptions"-->
+<!--        [alwaysShow]="alwaysShowPaginator"-->
+<!--        [showFirstLastIcon]="showFirstLastIcon"-->
+<!--        [templateLeft]="paginatorLeftTemplate"-->
+<!--        [templateRight]="paginatorRightTemplate"-->
+<!--        [currentPageReportTemplate]="currentPageReportTemplate"-->
+<!--        [showCurrentPageReport]="showCurrentPageReport"-->
+<!--        [showJumpToPageDropdown]="showJumpToPageDropdown"-->
+<!--        [showJumpToPageInput]="showJumpToPageInput"-->
+<!--        [showPageLinks]="showPageLinks"-->
+<!--        (onPageChange)="onPageChange($event)">-->
+<!--      </p-paginator>-->
     </ng-template>
     <ng-template pTemplate="footer" *ngIf="footerTemplate">
       <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>

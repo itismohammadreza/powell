@@ -21,7 +21,7 @@
         [checkboxIcon]="checkboxIcon"
         (onChange)="_onChange()"
       ></p-checkbox>
-      <label [attr.for]="item.id">
+      <label [attr.for]="item.id" [class.p-disabled]="disabled || item[optionDisabled]">
         {{ item[optionLabel] }}
       </label>
     </div>

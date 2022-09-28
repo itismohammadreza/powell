@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NgTableColDef, NgTableActionsConfig} from '@ng/models/table';
-import {MenuItem} from 'primeng/api';
+import {LazyLoadEvent, MenuItem} from 'primeng/api';
 import {NgSize} from "@ng/models/offset";
+import {UserService} from "@core/http";
 
 interface Customer {
   id: any,
@@ -24,8 +25,12 @@ interface Customer {
   styleUrls: ['./table.page.scss'],
 })
 export class TablePage implements OnInit {
+  constructor(private userService: UserService) {
+  }
+
   rtl: boolean = false;
   size: NgSize = 'md';
+  header: string = 'Customers';
 
   customers = [
     {
@@ -889,6 +894,8 @@ export class TablePage implements OnInit {
   globalFilterFields: string[] = ['status'];
   selectedCustomers: any[];
   contextMenuSelection: any;
+  loading: boolean;
+  totalRecords: number;
 
   ngOnInit() {
   }
@@ -899,5 +906,17 @@ export class TablePage implements OnInit {
   rowSelectable(data, index) {
     console.log(data.index == 0)
     return data.index == 0 || data.index == 1;
+  }
+
+  loadCustomers(event: LazyLoadEvent) {
+    this.loading = true;
+
+    setTimeout(() => {
+      this.userService.getCustomers({lazyEvent: JSON.stringify(event)}).then(res => {
+        this.customers = res.customers;
+        this.totalRecords = res.totalRecords;
+        this.loading = false;
+      })
+    }, 1000);
   }
 }

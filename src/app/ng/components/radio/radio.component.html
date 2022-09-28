@@ -21,7 +21,7 @@
         (onClick)="_onChange($event)"
         (onFocus)="emitter('onFocus',$event)"
       ></p-radioButton>
-      <label [attr.for]="'id'+item[optionValue]">
+      <label [attr.for]="'id'+item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
         {{ item[optionLabel] }}
       </label>
     </div>
