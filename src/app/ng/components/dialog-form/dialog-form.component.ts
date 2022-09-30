@@ -16,12 +16,12 @@ export class DialogFormComponent {
   form: FormGroup;
   visible: boolean;
   closeCallback: () => void;
-  onSubmit = new EventEmitter<NgDialogFormResult>();
-  onClose = new EventEmitter();
   _config: NgDialogFormConfig[];
   _options: NgDialogFormOptions;
+  onSubmit = new EventEmitter<NgDialogFormResult>();
+  onClose = new EventEmitter<void>();
 
-  set config(value) {
+  set config(value: NgDialogFormConfig[]) {
     this._config = value;
     this.form = new FormGroup({});
     for (const config of this._config) {
@@ -33,7 +33,7 @@ export class DialogFormComponent {
     }
   }
 
-  set options(v) {
+  set options(v: NgDialogFormOptions) {
     this._options = v;
     if (this._options.formValidator) {
       this.form.setValidators(this.options.formValidator.validator);
@@ -157,20 +157,6 @@ export class DialogFormComponent {
     return disabled;
   }
 
-  onCancelClick() {
-    this.visible = false;
-    this.onClose.emit();
-  }
-
-  onSubmitClick(closeCallback: any) {
-    if (this.form.invalid) {
-      closeCallback();
-      return;
-    }
-    this.closeCallback = closeCallback;
-    this.onSubmit.emit({formValue: this.form.value, changeDialogVisibilityTo: this.changeDialogVisibilityTo})
-  }
-
   getElementToFocus() {
     switch (this.options.defaultFocus) {
       case 'reject':
@@ -189,5 +175,19 @@ export class DialogFormComponent {
     if (element) {
       element.focus();
     }
+  }
+
+  onCancelClick() {
+    this.visible = false;
+    this.onClose.emit();
+  }
+
+  onSubmitClick(closeCallback: any) {
+    if (this.form.invalid) {
+      closeCallback();
+      return;
+    }
+    this.closeCallback = closeCallback;
+    this.onSubmit.emit({formValue: this.form.value, changeDialogVisibilityTo: this.changeDialogVisibilityTo})
   }
 }
