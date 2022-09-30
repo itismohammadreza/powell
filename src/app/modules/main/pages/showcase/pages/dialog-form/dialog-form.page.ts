@@ -40,6 +40,7 @@ export class DialogFormPage implements OnInit {
     rejectVisible: true,
     rejectLabel: 'لغو',
     rejectIcon: '',
+    defaultFocus: 'accept',
     rtl: false,
   }
   flag = false;
@@ -119,7 +120,7 @@ export class DialogFormPage implements OnInit {
         rejectIcon: this.dialogForm.rejectIcon,
         rtl: this.dialogForm.rtl,
         style: {width: '800px'},
-        defaultFocus: 'accept',
+        defaultFocus: this.dialogForm.defaultFocus,
         submitDisabled: ({form}) => form.invalid,
         formValidator: {
           validator: (group) => {

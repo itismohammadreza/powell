@@ -678,7 +678,7 @@ export class PreviewOptionsComponent implements OnInit {
       buttonSize: ['sm', 'md', 'lg'],
       rejectColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
       rejectAppearance: ['basic', 'text', 'outlined', 'link'],
-      defaultFocus: ['accept', 'reject'],
+      defaultFocus: ['none', 'accept', 'reject'],
       position: ['top', 'bottom', 'left', 'right', 'top-right', 'top-left', 'bottom-right', 'bottom-left', 'center'],
       buttonIconPos: ['left', 'right'],
       buttonColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],

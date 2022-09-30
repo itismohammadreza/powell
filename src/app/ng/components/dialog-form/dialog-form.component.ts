@@ -157,21 +157,21 @@ export class DialogFormComponent {
     return disabled;
   }
 
-  getElementToFocus() {
+  setDefaultFocus() {
+    let element: HTMLButtonElement;
     switch (this.options.defaultFocus) {
       case 'reject':
-        return DomHandler.findSingle(this.el.nativeElement, '.p-dialog-form-reject');
+        element = DomHandler.findSingle(this.el.nativeElement, '.p-dialog-form-reject');
+        break;
 
       case 'accept':
-        return DomHandler.findSingle(this.el.nativeElement, '.p-dialog-form-accept');
+        element = DomHandler.findSingle(this.el.nativeElement, '.p-dialog-form-accept');
+        break;
 
       case undefined:
-        return null;
+        element = null;
+        break;
     }
-  }
-
-  onDialogShow() {
-    const element = this.getElementToFocus();
     if (element) {
       element.focus();
     }
