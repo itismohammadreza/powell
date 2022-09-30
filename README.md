@@ -10,7 +10,20 @@
 
 ### Feature
 
-- [ ] **all** : set label align-self to top in some components.
+- [ ] **all** : set label align-self to top in the following components:
+  - color-picker (inline)
+  - empty
+  - file-picker (advanced)
+  - file-picker2
+  - calendar (inline)
+  - textarea
+  - knob?
+  - listbox
+  - map
+  - multi-checkbox (vertical)
+  - radio (vertical)
+  - slider (vertical)
+  - tree
 - [ ] **table** : complete paginator and rowIndex
 - [ ] **map** : fix blinking on map pan.
   - https://stackblitz.com/edit/angular-leaflet-example?file=src%2Fapp%2Fapp.component.ts
