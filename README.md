@@ -12,6 +12,8 @@
 
 - [ ] **all** : set label align-self to top in some components.
 - [ ] **table** : complete paginator and rowIndex
+- [ ] **map** : fix blinking on map pan.
+  - https://stackblitz.com/edit/angular-leaflet-example?file=src%2Fapp%2Fapp.component.ts
 
 ### New
 
