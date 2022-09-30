@@ -20,7 +20,7 @@ import {DropdownComponent} from '@ng/components/dropdown/dropdown.component';
 import {InputTextComponent} from '@ng/components/input-text/input-text.component';
 import {CheckboxComponent} from '@ng/components/checkbox/checkbox.component';
 import {NgButtonAppearance} from '@ng/models/button';
-import {DefaultFocus, NgSeverity} from "@ng/models/overlay";
+import {NgDefaultFocus, NgSeverity} from "@ng/models/overlay";
 
 type PreviewItem =
   | 'label'
@@ -567,7 +567,7 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() closeOnEscapeChange = new EventEmitter()
   @Input() dismissableMask: boolean;
   @Output() dismissableMaskChange = new EventEmitter()
-  @Input() defaultFocus: DefaultFocus;
+  @Input() defaultFocus: NgDefaultFocus;
   @Output() defaultFocusChange = new EventEmitter()
   @Input() blockScroll: boolean;
   @Output() blockScrollChange = new EventEmitter()

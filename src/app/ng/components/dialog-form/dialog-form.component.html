@@ -31,6 +31,7 @@
   [closeTabindex]="options.closeTabindex"
   [minimizeIcon]="options.minimizeIcon"
   [maximizeIcon]="options.maximizeIcon"
+  (onShow)="onDialogShow()"
   #dialogWrapper>
   <form [formGroup]="form" class="form-row">
     <ng-container *ngFor="let config of config">
@@ -1405,6 +1406,7 @@
     <div class="col-12 footer d-flex align-content-center justify-content-end border-top">
       <ng-button
         *ngIf="options.rejectVisible"
+        [styleClass]="options.rejectButtonStyleClass"
         [appearance]="options.rejectAppearance"
         [color]="options.rejectColor"
         [iconPos]="options.rtl ? 'right' : 'left'"
@@ -1416,6 +1418,7 @@
       ></ng-button>
       <ng-button
         *ngIf="options.acceptVisible"
+        [styleClass]="options.acceptButtonStyleClass"
         [appearance]="options.acceptAppearance"
         [color]="options.acceptColor"
         [iconPos]="options.rtl ? 'right' : 'left'"

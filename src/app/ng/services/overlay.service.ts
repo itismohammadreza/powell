@@ -105,7 +105,7 @@ export class OverlayService {
     });
   }
 
-  showConfirmDialog(options: NgConfirmDialogOptions): Promise<boolean> {
+  showConfirmDialog(options: NgConfirmDialogOptions): Promise<boolean | null> {
     if (!this.bodyContains(this.confirmCmpRef)) {
       this.confirmCmpRef = this.addToBody(ConfirmDialog);
     }
@@ -153,6 +153,7 @@ export class OverlayService {
     if (!this.bodyContains(this.dialogCmpRef)) {
       this.dialogCmpRef = this.addToBody(DialogComponent);
     }
+
     const dialog: NgDialogOptions = {
       draggable: false,
       keepInViewport: true,
@@ -192,6 +193,7 @@ export class OverlayService {
     if (!this.bodyContains(this.dialogFormCmpRef)) {
       this.dialogFormCmpRef = this.addToBody(DialogFormComponent);
     }
+
     const dialogForm: NgDialogFormOptions = {
       keepInViewport: true,
       modal: true,
@@ -215,6 +217,9 @@ export class OverlayService {
       acceptLabel: 'تایید',
       rejectLabel: 'بستن',
       rejectAppearance: 'outlined',
+      defaultFocus: 'accept',
+      acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-dialog-form-accept`,
+      rejectButtonStyleClass: `${options.rejectButtonStyleClass} p-dialog-form-reject`,
       styleClass: `${options.styleClass} p-dialog-form ${options.rtl ? 'rtl' : 'ltr'}`,
       ...options
     }
@@ -224,11 +229,8 @@ export class OverlayService {
     return new Observable<NgDialogFormResult>((resolve) => {
       const submitSubscription = this.dialogFormCmpRef.instance.onSubmit.subscribe(res => {
         resolve.next(res);
-      })
-      const closeSubscription = this.dialogFormCmpRef.instance.onClose.subscribe(res => {
-        setTimeout(() => {
-          this.removeFromBody(this.dialogFormCmpRef);
-        }, 200)
+      });
+      const closeSubscription = this.dialogFormCmpRef.instance.onClose.subscribe(() => {
         submitSubscription.unsubscribe();
         closeSubscription.unsubscribe();
       })
@@ -259,7 +261,7 @@ export class OverlayService {
 
   isAnyDialogOpen() {
     return ['p-toastitem', '.p-confirm-popup', '.p-confirm-dialog', '.p-dialog', '.p-dialog-form'].some(selector => {
-      return !!this.document.querySelector(selector)
+      return !!this.document.querySelector(selector);
     })
   }
 

@@ -32,7 +32,7 @@ import {LatLng, LatLngBounds} from "leaflet";
 import {ScrollerOptions} from "primeng/scroller";
 
 export type NgSeverity = 'success' | 'info' | 'warn' | 'error';
-export type DefaultFocus = 'accept' | 'reject';
+export type NgDefaultFocus = 'accept' | 'reject';
 
 export interface NgToastOptions {
   severity?: NgSeverity;
@@ -78,7 +78,7 @@ export interface NgConfirmPopupOptions {
   rejectVisible?: boolean;
   acceptButtonStyleClass?: string;
   rejectButtonStyleClass?: string;
-  defaultFocus?: DefaultFocus;
+  defaultFocus?: NgDefaultFocus;
   showTransitionOptions?: string;
   hideTransitionOptions?: string;
 
@@ -119,7 +119,7 @@ export interface NgConfirmDialogOptions {
   maskStyleClass?: string;
   acceptButtonStyleClass?: string;
   rejectButtonStyleClass?: string;
-  defaultFocus?: DefaultFocus
+  defaultFocus?: NgDefaultFocus
 
   acceptColor?: NgColor;
   acceptAppearance?: NgButtonAppearance;
@@ -167,6 +167,7 @@ export interface NgDialogOptions {
   minimizeIcon?: string;
   maximizeIcon?: string;
 
+  buttonStyleClass?: string;
   buttonIcon?: string;
   buttonIconPos?: NgIconPosition;
   buttonFull?: boolean;
@@ -220,7 +221,9 @@ export interface NgDialogFormOptions {
   minimizeIcon?: string;
   maximizeIcon?: string;
 
-  rtl?: boolean;
+  defaultFocus?: NgDefaultFocus;
+  acceptButtonStyleClass?: string;
+  rejectButtonStyleClass?: string;
   acceptVisible?: boolean;
   acceptIcon?: string;
   acceptColor?: NgColor;
@@ -240,6 +243,7 @@ export interface NgDialogFormOptions {
     message: string,
     style?: any
   };
+  rtl?: boolean;
 }
 
 

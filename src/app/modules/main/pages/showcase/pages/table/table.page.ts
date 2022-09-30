@@ -905,7 +905,6 @@ export class TablePage implements OnInit {
   }
 
   rowSelectable(data, index) {
-    console.log(data.index == 0)
     return data.index == 0 || data.index == 1;
   }
 

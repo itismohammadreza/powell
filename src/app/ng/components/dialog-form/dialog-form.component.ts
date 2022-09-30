@@ -1,7 +1,8 @@
-import {Component, EventEmitter} from '@angular/core';
+import {Component, ElementRef, EventEmitter} from '@angular/core';
 import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult} from "@ng/models/overlay";
 import {NgValidation} from "@ng/models/forms";
+import {DomHandler} from "@ng/services";
 
 @Component({
   selector: 'ng-dialog-form',
@@ -9,14 +10,28 @@ import {NgValidation} from "@ng/models/forms";
   styleUrls: ['./dialog-form.component.scss']
 })
 export class DialogFormComponent {
+  constructor(private el: ElementRef) {
+  }
 
-  form = new FormGroup({})
+  form: FormGroup;
   visible: boolean;
   closeCallback: () => void;
   onSubmit = new EventEmitter<NgDialogFormResult>();
   onClose = new EventEmitter();
   _config: NgDialogFormConfig[];
   _options: NgDialogFormOptions;
+
+  set config(value) {
+    this._config = value;
+    this.form = new FormGroup({});
+    for (const config of this._config) {
+      if (config.key) {
+        this.form.addControl(config.key, new FormControl(null));
+        this.handleConfigValue(config);
+        this.handleConfigValidations(config);
+      }
+    }
+  }
 
   set options(v) {
     this._options = v;
@@ -27,17 +42,6 @@ export class DialogFormComponent {
 
   get options() {
     return this._options
-  }
-
-  set config(value) {
-    this._config = value;
-    for (const config of this._config) {
-      if (config.key) {
-        this.form.addControl(config.key, new FormControl(null));
-        this.handleConfigValue(config);
-        this.handleConfigValidations(config);
-      }
-    }
   }
 
   get config() {
@@ -165,5 +169,25 @@ export class DialogFormComponent {
     }
     this.closeCallback = closeCallback;
     this.onSubmit.emit({formValue: this.form.value, changeDialogVisibilityTo: this.changeDialogVisibilityTo})
+  }
+
+  getElementToFocus() {
+    switch (this.options.defaultFocus) {
+      case 'reject':
+        return DomHandler.findSingle(this.el.nativeElement, '.p-dialog-form-reject');
+
+      case 'accept':
+        return DomHandler.findSingle(this.el.nativeElement, '.p-dialog-form-accept');
+
+      case undefined:
+        return null;
+    }
+  }
+
+  onDialogShow() {
+    const element = this.getElementToFocus();
+    if (element) {
+      element.focus();
+    }
   }
 }

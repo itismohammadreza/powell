@@ -119,6 +119,7 @@ export class DialogFormPage implements OnInit {
         rejectIcon: this.dialogForm.rejectIcon,
         rtl: this.dialogForm.rtl,
         style: {width: '800px'},
+        defaultFocus: 'accept',
         submitDisabled: ({form}) => form.invalid,
         formValidator: {
           validator: (group) => {
