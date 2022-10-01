@@ -51,7 +51,7 @@ import {ToastPage} from "@modules/main/pages/showcase/pages/toast/toast.page";
 import {DialogPage} from "@modules/main/pages/showcase/pages/dialog/dialog.page";
 import {LoadingContainerPage} from "@modules/main/pages/showcase/pages/loading-container/loading-container.page";
 import {InfiniteScrollPage} from "@modules/main/pages/showcase/pages/infinite-scroll/infinite-scroll.page";
-import {OpenDialogGuard} from "@core/guard/open-dialog.guard";
+import {OpenDialogGuard} from "@core/guard";
 
 const routes: Routes = [
   {
