@@ -66,7 +66,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
         if (shouldShowFailure) {
           this.showFailureToast(error, error_description);
         }
-        if (error.status === 403) {
+        if (event.status === 403) {
           this.authService.logout();
         }
         this.removeRequestFromQueue(clonedReq);
