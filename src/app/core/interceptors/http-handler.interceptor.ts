@@ -62,8 +62,8 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
         this.removeRequestFromQueue(clonedReq);
       }),
       catchError((event: HttpErrorResponse) => {
-        const {error, error_description} = event.error;
         if (shouldShowFailure) {
+          const {error, error_description} = event.error;
           this.showFailureToast(error, error_description);
         }
         if (event.status === 403) {
