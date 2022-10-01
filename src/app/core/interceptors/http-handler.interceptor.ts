@@ -62,12 +62,12 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
         this.removeRequestFromQueue(clonedReq);
       }),
       catchError((event: HttpErrorResponse) => {
+        const {error, error_description} = event.error;
         if (shouldShowFailure) {
-          const {error, error_description} = event.error;
           this.showFailureToast(error, error_description);
-          if (error.status === 403) {
-            this.authService.logout();
-          }
+        }
+        if (error.status === 403) {
+          this.authService.logout();
         }
         this.removeRequestFromQueue(clonedReq);
         return throwError(event.error);
