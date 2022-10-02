@@ -115,6 +115,8 @@ export class OverlayService {
     this.confirmCmpRef.instance.closable = options.closable != undefined ? options.closable : true;
     this.confirmCmpRef.instance.focusTrap = options.focusTrap;
     this.confirmCmpRef.instance.baseZIndex = options.baseZIndex;
+    this.confirmCmpRef.instance.acceptIcon = options.acceptIcon;
+    this.confirmCmpRef.instance.rejectIcon = options.rejectIcon;
     this.confirmCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
     this.confirmCmpRef.instance.breakpoints = options.breakpoints;
     this.confirmCmpRef.instance.transitionOptions = options.transitionOptions || '200ms cubic-bezier(0.25, 0.8, 0.25, 1)';
