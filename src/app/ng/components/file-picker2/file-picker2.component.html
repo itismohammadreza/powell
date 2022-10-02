@@ -52,7 +52,7 @@
           </div>
           <div class="small px-1 bg-dark text-white p-1 text-truncate">{{item.name}}</div>
         </ng-container>
-        <button class="btn image-item-trash" (click)="onMultipleDelete($event, i)"
+        <button type="button" class="btn image-item-trash" (click)="onMultipleDelete($event, i)"
                 *ngIf="!readonly"><i class="pi pi-trash"></i>
         </button>
       </div>
