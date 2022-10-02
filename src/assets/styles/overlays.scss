@@ -56,8 +56,12 @@
       margin-left: 0;
     }
 
-    .p-dialog-footer button:first-child {
-      margin: 0 0 0 0.5rem;
+    .p-dialog-footer {
+      text-align: left;
+
+      button:first-child {
+        margin: 0 0 0 0.5rem;
+      }
     }
 
     .p-button-icon-left {

@@ -31,7 +31,8 @@ export class ConfirmDialogPage {
     dismissableMask: false,
     defaultFocus: 'accept',
     blockScroll: false,
-    rtl: false
+    rtl: false,
+    style: {width: '400px'}
   }
 
   showConfirmDialog() {
