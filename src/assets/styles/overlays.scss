@@ -40,6 +40,12 @@
     margin-left: 0;
   }
 
+  .p-dialog-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
   &.ltr {
     direction: ltr;
 
@@ -57,8 +63,6 @@
     }
 
     .p-dialog-footer {
-      text-align: left;
-
       button:first-child {
         margin: 0 0 0 0.5rem;
       }

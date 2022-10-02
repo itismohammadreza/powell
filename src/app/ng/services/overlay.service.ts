@@ -44,10 +44,10 @@ export class OverlayService {
 
     const toast: Message = {
       life: 3000,
-      styleClass: `${options.styleClass} ${options.rtl ? 'rtl' : 'ltr'}`,
       closable: true,
       severity: 'info',
-      ...options
+      ...options,
+      styleClass: `${options.styleClass} ${options.rtl ? 'rtl' : 'ltr'}`,
     }
     this.toastCmpRef.instance.preventDuplicates = options.preventDuplicates;
     this.toastCmpRef.instance.position = options.position || 'top-right';
@@ -88,9 +88,9 @@ export class OverlayService {
       acceptVisible: true,
       rejectVisible: true,
       defaultFocus: 'accept',
+      ...options,
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
-      ...options
     }
     return new Promise((accept) => {
       this.confirmationService.confirm({
@@ -127,9 +127,9 @@ export class OverlayService {
       dismissableMask: false,
       defaultFocus: 'accept',
       blockScroll: true,
+      ...options,
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
-      ...options
     }
     return new Promise((accept) => {
       this.confirmationService.confirm({
@@ -178,8 +178,8 @@ export class OverlayService {
       minimizeIcon: 'pi pi-window-minimize',
       maximizeIcon: 'pi pi-window-maximize',
       content: '',
+      ...options,
       styleClass: `${options.styleClass} ${options.rtl ? 'rtl' : 'ltr'}`,
-      ...options
     }
     this.dialogCmpRef.instance.options = dialog;
     this.dialogCmpRef.instance.show();
@@ -220,10 +220,10 @@ export class OverlayService {
       rejectLabel: 'بستن',
       rejectAppearance: 'outlined',
       defaultFocus: 'accept',
+      ...options,
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-dialog-form-accept`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} p-dialog-form-reject`,
       styleClass: `${options.styleClass} p-dialog-form ${options.rtl ? 'rtl' : 'ltr'}`,
-      ...options
     }
     this.dialogFormCmpRef.instance.config = config;
     this.dialogFormCmpRef.instance.options = dialogForm;
