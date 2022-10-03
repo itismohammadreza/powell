@@ -54,6 +54,9 @@ export class DialogFormComponent {
 
   close() {
     this.visible = false;
+    if (this.closeCallback) {
+      this.closeCallback()
+    }
     this.onClose.emit();
   }
 
@@ -81,7 +84,7 @@ export class DialogFormComponent {
     this.closeCallback();
     this.visible = visible;
     if (!visible) {
-      this.onClose.emit();
+      this.close()
     }
   }
 
@@ -175,11 +178,6 @@ export class DialogFormComponent {
     if (element) {
       element.focus();
     }
-  }
-
-  onCancelClick() {
-    this.visible = false;
-    this.onClose.emit();
   }
 
   onSubmitClick(closeCallback: any) {

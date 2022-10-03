@@ -1414,7 +1414,7 @@
         [icon]="options.rejectIcon"
         [size]="options.buttonSize"
         [label]="options.rejectLabel"
-        (onClick)="onCancelClick()"
+        (onClick)="close()"
       ></ng-button>
       <ng-button
         *ngIf="options.acceptVisible"
