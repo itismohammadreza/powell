@@ -20,6 +20,7 @@ export class DialogFormComponent {
   _options: NgDialogFormOptions;
   onSubmit = new EventEmitter<NgDialogFormResult>();
   onClose = new EventEmitter<void>();
+  disableReject: boolean;
 
   set config(value: NgDialogFormConfig[]) {
     this._config = value;
@@ -83,6 +84,7 @@ export class DialogFormComponent {
   changeDialogVisibilityTo = (visible: boolean) => {
     this.closeCallback();
     this.visible = visible;
+    this.disableReject = false;
     if (!visible) {
       this.close()
     }
@@ -185,6 +187,7 @@ export class DialogFormComponent {
       closeCallback();
       return;
     }
+    this.disableReject = true;
     this.closeCallback = closeCallback;
     this.onSubmit.emit({formValue: this.form.value, changeDialogVisibilityTo: this.changeDialogVisibilityTo})
   }
