@@ -4,6 +4,7 @@ import {UserService} from "@core/http";
 import {
   DynamicDialogSampleComponent
 } from "@modules/main/pages/showcase/components/dynamic-dialog-sample/dynamic-dialog-sample.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ng-utils-page',
@@ -16,6 +17,7 @@ export class UtilsPage {
     private vcRef: ViewContainerRef,
     private userService: UserService,
     private dialog: DynamicDialogService,
+    private router: Router,
   ) {
   }
 
@@ -33,7 +35,11 @@ export class UtilsPage {
     });
   }
 
-  request() {
-    this.userService.get().then(console.log);
+  async request() {
+    await this.userService.get().then(console.log);
+    await this.overlayService.showConfirmDialog({
+      header: 'asdasd'
+    })
+    this.router.navigateByUrl('/showcase')
   }
 }
