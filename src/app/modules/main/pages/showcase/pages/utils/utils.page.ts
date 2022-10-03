@@ -36,10 +36,6 @@ export class UtilsPage {
   }
 
   async request() {
-    await this.userService.get().then(console.log);
-    await this.overlayService.showConfirmDialog({
-      header: 'asdasd'
-    })
     this.router.navigateByUrl('/showcase')
   }
 }
