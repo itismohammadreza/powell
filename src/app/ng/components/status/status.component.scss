@@ -1,44 +1,48 @@
-.status-wrapper {
-  text-align: center;
+:host {
+  display: block;
 
-  .status-icon {
-    i {
-      font-size: 5rem;
+  .status-wrapper {
+    text-align: center;
 
-      &.pi-check-circle {
-        color: #52c41a;
+    .status-icon {
+      i {
+        font-size: 5rem;
+
+        &.pi-check-circle {
+          color: #52c41a;
+        }
+
+        &.pi-info-circle {
+          color: #1890ff;
+        }
+
+        &.pi-exclamation-triangle {
+          color: #faad14;
+        }
+
+        &.pi-times-circle {
+          color: #ff4d4f;
+        }
       }
 
-      &.pi-info-circle {
-        color: #1890ff;
-      }
-
-      &.pi-exclamation-triangle {
-        color: #faad14;
-      }
-
-      &.pi-times-circle {
-        color: #ff4d4f;
+      img {
+        max-width: 250px;
       }
     }
 
-    img {
-      max-width: 250px;
+    .status-content {
+      margin-top: 1.5rem;
     }
-  }
 
-  .status-content {
-    margin-top: 1.5rem;
-  }
+    .status-title {
+      font-size: 1.5rem;
+      line-height: 1.8;
+    }
 
-  .status-title {
-    font-size: 1.5rem;
-    line-height: 1.8;
-  }
-
-  .status-subtitle {
-    color: #00000073;
-    font-size: 14px;
-    line-height: 1.6;
+    .status-subtitle {
+      color: #00000073;
+      font-size: 14px;
+      line-height: 1.6;
+    }
   }
 }

@@ -1,0 +1,29 @@
+:host ::ng-deep {
+  .p-sidebar-header {
+    display: none;
+  }
+
+  .bottom-sheet-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .header,
+    .footer {
+      width: 100%;
+    }
+
+    .header {
+      padding: 1.25rem;
+
+      h5 {
+        margin-bottom: 0;
+      }
+    }
+
+    .content {
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+  }
+}

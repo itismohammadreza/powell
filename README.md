@@ -10,7 +10,9 @@
 
 ### Feature
 
+- [ ] **all** : set defualt rtl from globalConfig for all components and modals.
 - [ ] **translation** : load translations before app start.
+- [ ] **bottomSheet** : handle open bottomSheet on back button click (or navigate occur).
 - [ ] **dialogs** : fix openDialogGuard issue.
 - [ ] **async** : add loadingPos to components that have async feature.
 - [ ] **table** : complete paginator and rowIndex

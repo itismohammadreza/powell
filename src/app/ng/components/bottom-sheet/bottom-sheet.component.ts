@@ -1,11 +1,21 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  QueryList, TemplateRef
+} from '@angular/core';
+import {TemplateDirective} from "@ng/directives/template.directive";
 
 @Component({
   selector: 'ng-bottom-sheet',
   templateUrl: './bottom-sheet.component.html',
   styleUrls: ['./bottom-sheet.component.scss'],
 })
-export class BottomSheetComponent implements OnInit {
+export class BottomSheetComponent implements OnInit, AfterContentInit {
   @Input() title: string;
   @Input() visible: boolean;
   @Input() style: any;
@@ -22,10 +32,28 @@ export class BottomSheetComponent implements OnInit {
   @Output() onShow = new EventEmitter();
   @Output() onHide = new EventEmitter();
   @Output() visibleChange = new EventEmitter();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+
+  titleTemplate: TemplateRef<any>;
+  footerTemplate: TemplateRef<any>;
 
   ngOnInit() {
     this.style = {height: '50vh', ...this.style};
     this.styleClass = `p-bottom-sheet ${this.styleClass}`;
+  }
+
+  ngAfterContentInit() {
+    this.templates.forEach((item: TemplateDirective) => {
+      switch (item.getType()) {
+        case 'title':
+          this.titleTemplate = item.templateRef;
+          break;
+
+        case 'footer':
+          this.footerTemplate = item.templateRef;
+          break;
+      }
+    });
   }
 
   onVisibleChange(event: any) {

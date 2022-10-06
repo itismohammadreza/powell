@@ -1,17 +1,21 @@
-.empty-wrapper {
-  text-align: center;
+:host {
+  display: block;
 
-  .empty-icon {
-    i {
-      font-size: 3.5rem;
+  .empty-wrapper {
+    text-align: center;
+
+    .empty-icon {
+      i {
+        font-size: 3.5rem;
+      }
+
+      img {
+        max-width: 120px;
+      }
     }
 
-    img {
-      max-width: 120px;
+    .empty-title {
+      margin-top: 1.5rem;
     }
-  }
-
-  .empty-title {
-    margin-top: 1.5rem;
   }
 }
