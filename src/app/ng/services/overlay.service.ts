@@ -52,7 +52,7 @@ export class OverlayService {
     this.toastCmpRef.instance.preventDuplicates = options.preventDuplicates;
     this.toastCmpRef.instance.position = options.position || 'top-right';
     this.toastCmpRef.instance.style = options.style;
-    this.toastCmpRef.instance.baseZIndex = options.baseZIndex || 0;
+    this.toastCmpRef.instance.baseZIndex = options.baseZIndex || 1000;
     this.toastCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
     this.toastCmpRef.instance.showTransitionOptions = options.showTransitionOptions || '300ms ease-out';
     this.toastCmpRef.instance.hideTransitionOptions = options.hideTransitionOptions || '250ms ease-in';
@@ -77,7 +77,7 @@ export class OverlayService {
     this.confirmPopupCmpRef.instance.showTransitionOptions = options.showTransitionOptions || '.12s cubic-bezier(0, 0, 0.2, 1)';
     this.confirmPopupCmpRef.instance.hideTransitionOptions = options.hideTransitionOptions || '.1s linear';
     this.confirmPopupCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
-    this.confirmPopupCmpRef.instance.baseZIndex = options.baseZIndex || 0;
+    this.confirmPopupCmpRef.instance.baseZIndex = options.baseZIndex || 1000;
     this.confirmPopupCmpRef.instance.style = options.style;
     this.confirmPopupCmpRef.instance.styleClass = `${options.styleClass} ${options.rtl ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
 
@@ -114,7 +114,7 @@ export class OverlayService {
     this.confirmCmpRef.instance.maskStyleClass = options.maskStyleClass;
     this.confirmCmpRef.instance.closable = options.closable != undefined ? options.closable : true;
     this.confirmCmpRef.instance.focusTrap = options.focusTrap;
-    this.confirmCmpRef.instance.baseZIndex = options.baseZIndex;
+    this.confirmCmpRef.instance.baseZIndex = options.baseZIndex || 1000;
     this.confirmCmpRef.instance.acceptIcon = options.acceptIcon;
     this.confirmCmpRef.instance.rejectIcon = options.rejectIcon;
     this.confirmCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
@@ -167,7 +167,7 @@ export class OverlayService {
       dismissableMask: false,
       closable: true,
       showHeader: true,
-      baseZIndex: 0,
+      baseZIndex: 1000,
       autoZIndex: true,
       minX: 0,
       minY: 0,
@@ -203,7 +203,7 @@ export class OverlayService {
       closeOnEscape: true,
       closable: true,
       showHeader: true,
-      baseZIndex: 0,
+      baseZIndex: 1000,
       autoZIndex: true,
       minX: 0,
       minY: 0,

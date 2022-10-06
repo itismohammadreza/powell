@@ -89,3 +89,11 @@
     }
   }
 }
+
+.p-sidebar {
+  z-index: 200;
+
+  .p-sidebar-content {
+    flex-grow: 1;
+  }
+}

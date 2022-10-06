@@ -70,7 +70,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
           this.authService.logout();
         }
         this.removeRequestFromQueue(clonedReq);
-        return throwError(event.error);
+        return throwError(() => event);
       }),
       finalize(() => {
         this.removeRequestFromQueue(clonedReq);
