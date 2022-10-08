@@ -70,7 +70,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
           this.authService.logout();
         }
         this.removeRequestFromQueue(clonedReq);
-        return throwError(event.error);
+        return throwError(() => event);
       }),
       finalize(() => {
         this.removeRequestFromQueue(clonedReq);
@@ -97,9 +97,20 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
   isRequestFounded(targetArray: RequestConfig[], request: HttpRequest<any>) {
     const {pathname} = this.getUrlParts(request.url);
     const foundedIndex = targetArray.findIndex(x => {
-      const requestMethodMatch = x.method.toLowerCase() === request.method.toLowerCase();
-      const requestPathMatch = x.pathTemplate instanceof RegExp ? x.pathTemplate.test(pathname) : x.pathTemplate === pathname;
-      return requestMethodMatch && requestPathMatch
+      const requestMethodMatch = x.method === request.method;
+      const requestPathMatch = () => {
+        if (x.pathTemplate instanceof RegExp) {
+          return x.pathTemplate.test(pathname);
+        } else if (x.pathTemplate.includes('*')) {
+          const rep1 = x.pathTemplate.replace(/\*/g, '.*')
+          const rep2 = rep1.replace(/\//g, "\\\/");
+          const regex = new RegExp(rep2, 'g');
+          return regex.test(pathname);
+        } else {
+          return x.pathTemplate == pathname
+        }
+      }
+      return requestMethodMatch && requestPathMatch();
     });
     return foundedIndex >= 0;
   }

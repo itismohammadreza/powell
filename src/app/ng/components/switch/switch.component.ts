@@ -42,8 +42,8 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgFixLabelPosition = 'fix-top';
   @Input() validation: NgValidation;
-  @Input() onLabel: string = 'salam';
-  @Input() offLabel: string = 'bye';
+  @Input() onLabel: string;
+  @Input() offLabel: string;
   @Input() async: boolean;
   // native properties
   @Input() style: any;

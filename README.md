@@ -10,6 +10,15 @@
 
 ### Feature
 
+- [ ] **all** : set defualt rtl from globalConfig for all components and modals.
+- [ ] **translation** : load translations before app start.
+- [ ] **bottomSheet** : handle open bottomSheet on back button click (or navigate occur).
+- [ ] **dialogs** : fix openDialogGuard issue.
+- [ ] **async** : add loadingPos to components that have async feature.
+- [ ] **table** : complete paginator and rowIndex
+- [ ] **map** : fix blinking on map pan.
+  - https://stackblitz.com/edit/angular-leaflet-example?file=src%2Fapp%2Fapp.component.ts
+- [ ] **all** : add fieldJustify property to set space between label and control.
 - [ ] **all** : set label align-self to top in the following components:
   - color-picker (inline)
   - empty
@@ -24,9 +33,6 @@
   - radio (vertical)
   - slider (vertical)
   - tree
-- [ ] **table** : complete paginator and rowIndex
-- [ ] **map** : fix blinking on map pan.
-  - https://stackblitz.com/edit/angular-leaflet-example?file=src%2Fapp%2Fapp.component.ts
 
 ### New
 

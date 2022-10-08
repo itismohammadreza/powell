@@ -57,252 +57,252 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardPage,
-    data: {title: 'dashboard'}
+    title: 'dashboard'
   },
   {
     path: 'auto-complete',
     component: AutoCompletePage,
-    data: {title: 'auto-complete'}
+    title: 'auto-complete'
   },
   {
     path: 'bottom-sheet',
     component: BottomSheetPage,
-    data: {title: 'bottom-sheet'}
+    title: 'bottom-sheet'
   },
   {
     path: 'button',
     component: ButtonPage,
-    data: {title: 'button'}
+    title: 'button'
   },
   {
     path: 'cascade-select',
     component: CascadeSelectPage,
-    data: {title: 'cascade-select'}
+    title: 'cascade-select'
   },
   {
     path: 'checkbox',
     component: CheckboxPage,
-    data: {title: 'checkbox'}
+    title: 'checkbox'
   },
   {
     path: 'chips',
     component: ChipsPage,
-    data: {title: 'chips'}
+    title: 'chips'
   },
   {
     path: 'color-picker',
     component: ColorPickerPage,
-    data: {title: 'color-picker'}
+    title: 'color-picker'
   },
   {
     path: 'confirm-dialog',
     component: ConfirmDialogPage,
     canDeactivate: [OpenDialogGuard],
-    data: {title: 'confirm-dialog'}
+    title: 'confirm-dialog'
   },
   {
     path: 'confirm-popup',
     component: ConfirmPopupPage,
     canDeactivate: [OpenDialogGuard],
-    data: {title: 'confirm-popup'}
+    title: 'confirm-popup'
   },
   {
     path: 'dialog',
     component: DialogPage,
     canDeactivate: [OpenDialogGuard],
-    data: {title: 'dialog'}
+    title: 'dialog'
   },
   {
     path: 'dialog-form',
     component: DialogFormPage,
     canDeactivate: [OpenDialogGuard],
-    data: {title: 'dialog-form'}
+    title: 'dialog-form'
   },
   {
     path: 'dropdown',
     component: DropdownPage,
-    data: {title: 'dropdown'}
+    title: 'dropdown'
   },
   {
     path: 'dual-label-switch',
     component: DualLabelSwitchPage,
-    data: {title: 'dual-label-switch'}
+    title: 'dual-label-switch'
   },
   {
     path: 'editor',
     component: EditorPage,
-    data: {title: 'editor'}
+    title: 'editor'
   },
   {
     path: 'empty',
     component: EmptyPage,
-    data: {title: 'empty'}
+    title: 'empty'
   },
   {
     path: 'file-picker',
     component: FilePickerPage,
-    data: {title: 'file-picker'}
+    title: 'file-picker'
   },
   {
     path: 'file-picker2',
     component: FilePicker2Page,
-    data: {title: 'file-picker2'}
+    title: 'file-picker2'
   },
   {
     path: 'gregorian-datepicker',
     component: GregorianDatepickerPage,
-    data: {title: 'gregorian-datepicker'}
+    title: 'gregorian-datepicker'
   },
   {
     path: 'image',
     component: ImagePage,
-    data: {title: 'image'}
+    title: 'image'
   },
   {
     path: 'image-slider',
     component: ImageSliderPage,
-    data: {title: 'image-slider'}
+    title: 'image-slider'
   },
   {
     path: 'infinite-scroll',
     component: InfiniteScrollPage,
-    data: {title: 'infinite-scroll'}
+    title: 'infinite-scroll'
   },
   {
     path: 'input-mask',
     component: InputMaskPage,
-    data: {title: 'input-mask'}
+    title: 'input-mask'
   },
   {
     path: 'input-number',
     component: InputNumberPage,
-    data: {title: 'input-number'}
+    title: 'input-number'
   },
   {
     path: 'input-password',
     component: InputPasswordPage,
-    data: {title: 'input-password'}
+    title: 'input-password'
   },
   {
     path: 'input-text',
     component: InputTextPage,
-    data: {title: 'input-text'}
+    title: 'input-text'
   },
   {
     path: 'input-textarea',
     component: InputTextareaPage,
-    data: {title: 'input-textarea'}
+    title: 'input-textarea'
   },
   {
     path: 'jalali-datepicker',
     component: JalaliDatepickerPage,
-    data: {title: 'jalali-datepicker'}
+    title: 'jalali-datepicker'
   },
   {
     path: 'knob',
     component: KnobPage,
-    data: {title: 'knob'}
+    title: 'knob'
   },
   {
     path: 'listbox',
     component: ListboxPage,
-    data: {title: 'listbox'}
+    title: 'listbox'
   },
   {
     path: 'loading-container',
     component: LoadingContainerPage,
-    data: {title: 'loading-container'}
+    title: 'loading-container'
   },
   {
     path: 'map',
     component: MapPage,
-    data: {title: 'map'}
+    title: 'map'
   },
   {
     path: 'message',
     component: MessagePage,
-    data: {title: 'message'}
+    title: 'message'
   },
   {
     path: 'multi-checkbox',
     component: MultiCheckboxPage,
-    data: {title: 'multi-checkbox'}
+    title: 'multi-checkbox'
   },
   {
     path: 'multi-select',
     component: MultiSelectPage,
-    data: {title: 'multi-select'}
+    title: 'multi-select'
   },
   {
     path: 'radio',
     component: RadioPage,
-    data: {title: 'radio'}
+    title: 'radio'
   },
   {
     path: 'rating',
     component: RatingPage,
-    data: {title: 'rating'}
+    title: 'rating'
   },
   {
     path: 'select-button',
     component: SelectButtonPage,
-    data: {title: 'select-button'}
+    title: 'select-button'
   },
   {
     path: 'slider',
     component: SliderPage,
-    data: {title: 'slider'}
+    title: 'slider'
   },
   {
     path: 'split-button',
     component: SplitButtonPage,
-    data: {title: 'split-button'}
+    title: 'split-button'
   },
   {
     path: 'status',
     component: StatusPage,
-    data: {title: 'status'}
+    title: 'status'
   },
   {
     path: 'switch',
     component: SwitchPage,
-    data: {title: 'switch'}
+    title: 'switch'
   },
   {
     path: 'table',
     component: TablePage,
-    data: {title: 'table'}
+    title: 'table'
   },
   {
     path: 'toast',
     component: ToastPage,
     canDeactivate: [OpenDialogGuard],
-    data: {title: 'toast'}
+    title: 'toast'
   },
   {
     path: 'toggle-button',
     component: ToggleButtonPage,
-    data: {title: 'toggle-button'}
+    title: 'toggle-button'
   },
   {
     path: 'tree',
     component: TreePage,
-    data: {title: 'tree'}
+    title: 'tree'
   },
   {
     path: 'tree-select',
     component: TreeSelectPage,
-    data: {title: 'tree-select'}
+    title: 'tree-select'
   },
   {
     path: 'tri-state-checkbox',
     component: TriStateCheckboxPage,
-    data: {title: 'tri-state-checkbox'}
+    title: 'tri-state-checkbox'
   },
   {
     path: 'utils',
     component: UtilsPage,
-    data: {title: 'utils'}
+    title: 'utils'
   },
   {
     path: '',

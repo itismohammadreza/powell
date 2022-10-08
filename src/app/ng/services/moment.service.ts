@@ -93,6 +93,12 @@ export class MomentService {
   convertToJalali(input: MomentInput, format?: MomentFormatSpecification) {
     return jalaliMoment(input, format).locale('fa');
   }
+
+  getIsoDateWithoutTimeZone(date: Date) {
+    const timestamp = date.getTime() - date.getTimezoneOffset() * 60000;
+    const correctDate = new Date(timestamp);
+    return correctDate.toISOString();
+  }
 }
 
 

@@ -92,12 +92,6 @@ export class UtilsService {
     }
   }
 
-  getIsoDateWithoutTimeZone(date: Date) {
-    const timestamp = date.getTime() - date.getTimezoneOffset() * 60000;
-    const correctDate = new Date(timestamp);
-    return correctDate.toISOString();
-  }
-
   // downloadLink(url: string) {
   //   const a: HTMLAnchorElement = document.createElement("a");
   //   const fileName = ''
