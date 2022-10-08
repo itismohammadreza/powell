@@ -1,6 +1,5 @@
 import {GlobalInjector} from '@ng/global.injector';
 import {TranslationService} from '@core/utils';
-import {DOCUMENT} from "@angular/common";
 
 export class LanguageChecker {
   protected translationService: TranslationService;
