@@ -820,6 +820,7 @@
           [placeholder]="config.placeholder"
           [type]="config.inputType || 'text'"
           [keyFilter]="config.keyFilter"
+          [inputMode]="config.inputMode"
           (onInput)="handleConfigEvent(config,'onInput',$event)"
           (onClick)="handleConfigEvent(config,'onClick',$event)"
           (onChange)="handleConfigEvent(config,'onChange',$event)"
