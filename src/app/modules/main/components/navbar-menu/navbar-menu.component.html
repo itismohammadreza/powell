@@ -37,7 +37,6 @@
     <ng-logo width="50px"></ng-logo>
   </ng-template>
 </p-menubar>
-
 <p-sidebar
   [visible]="sidebarVisible"
   [blockScroll]="isModalSidebar"
@@ -52,8 +51,12 @@
       <i class="d-none d-md-block border rounded-circle pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
          (click)="toggleLockSidebarClick()"></i>
     </div>
-    <ng-input-text inputSize="sm" class="d-block my-3" placeholder="Search Components..."
-                   [(ngModel)]="searchValue"></ng-input-text>
+    <ng-input-text [rtl]="false"
+                   inputSize="sm"
+                   class="d-block my-3"
+                   placeholder="Search Components..."
+                   [(ngModel)]="searchValue">
+    </ng-input-text>
   </div>
   <p-panelMenu [multiple]="false" [model]="sidebarItems | ngFilter:searchValue:'label'"></p-panelMenu>
 </p-sidebar>

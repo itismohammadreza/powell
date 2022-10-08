@@ -20,6 +20,7 @@ import {
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgValidation, NgFixLabelPosition} from '@ng/models/forms';
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-switch',
@@ -38,9 +39,9 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
   @Input() onLabel: string;
   @Input() offLabel: string;

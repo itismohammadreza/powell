@@ -25,6 +25,9 @@
     .field {
       flex-grow: 1;
       align-self: stretch;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
 
       > .field-inner {
         direction: ltr;
@@ -70,10 +73,6 @@
       .fix-label {
         margin-right: 1rem;
       }
-
-      .field {
-        justify-content: flex-start;
-      }
     }
 
     &.rtl {
@@ -81,10 +80,6 @@
 
       .message {
         right: 0;
-      }
-
-      .field {
-        justify-content: flex-end;
       }
 
       .fix-label {

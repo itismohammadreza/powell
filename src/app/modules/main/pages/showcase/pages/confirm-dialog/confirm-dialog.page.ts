@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {OverlayService} from "@ng/services";
 import {NgConfirmDialogOptions} from "@ng/models/overlay";
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-confirm-dialog-page',
@@ -31,7 +32,7 @@ export class ConfirmDialogPage {
     dismissableMask: false,
     defaultFocus: 'accept',
     blockScroll: false,
-    rtl: false,
+    rtl: GlobalConfig.rtl,
     style: {width: '400px'}
   }
 

@@ -6,7 +6,8 @@ import {
   Input,
   OnInit,
   Output,
-  QueryList, TemplateRef
+  QueryList,
+  TemplateRef
 } from '@angular/core';
 import {TemplateDirective} from "@ng/directives/template.directive";
 
@@ -20,14 +21,14 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   @Input() visible: boolean;
   @Input() style: any;
   @Input() styleClass: string;
-  @Input() appendTo: any;
+  @Input() appendTo: any = 'body';
   @Input() blockScroll: boolean = true;
   @Input() baseZIndex: number = 0;
   @Input() autoZIndex: boolean = true;
   @Input() modal: boolean = true;
   @Input() dismissible: boolean = true;
   @Input() showCloseIcon: boolean = true;
-  @Input() transitionOptions: string = '500ms cubic-bezier(0, 0, 0.2, 1)';
+  @Input() transitionOptions: string = '270ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() closeOnEscape: boolean = true;
   @Output() onShow = new EventEmitter();
   @Output() onHide = new EventEmitter();

@@ -22,6 +22,7 @@ import {
 } from '@angular/forms';
 import {NgAddon, NgInputModes, NgInputTypes, NgKeyFilter, NgLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-input-text',
@@ -41,10 +42,10 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() labelPos: NgLabelPosition = GlobalConfig.defaultLabelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;

@@ -30,6 +30,7 @@ import {
 import {NgValidation, NgFixLabelPosition, NgFilePickerMode} from '@ng/models/forms';
 import {FileUpload} from 'primeng/fileupload';
 import {TemplateDirective} from "@ng/directives/template.directive";
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-file-picker',
@@ -49,9 +50,9 @@ export class FilePickerComponent
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
   @Input() resultType: 'base64' | 'file' = 'file';
   // native properties

@@ -28,6 +28,7 @@ import {
   UntypedFormGroup
 } from "@angular/forms";
 import {NgAddon, NgChipDisplayMode, NgValidation, NgLabelPosition, NgTreeFilterMode} from "@ng/models/forms";
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-tree-select',
@@ -47,10 +48,10 @@ export class TreeSelectComponent implements OnInit, AfterViewInit, AfterContentI
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() labelPos: NgLabelPosition = GlobalConfig.defaultLabelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;

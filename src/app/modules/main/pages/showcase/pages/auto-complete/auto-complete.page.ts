@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-auto-complete-page',
@@ -18,7 +19,7 @@ export class AutoCompletePage {
   filled: boolean = false;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = true;
+  rtl: boolean = GlobalConfig.rtl;
   icon: string = '';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgIconPosition = 'left';

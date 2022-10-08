@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -9,10 +9,16 @@ import {CoreModule} from "@core/core.module";
 import {SharedModule} from "@shared/shared.module";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
-import {EnvServiceProvider} from "@core/utils";
+import {EnvServiceProvider, TranslationService} from "@core/utils";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
+}
+
+export function initializeLanguage(translationService: TranslationService) {
+  return (): Promise<any> => {
+    return translationService.init();
+  }
 }
 
 @NgModule({
@@ -35,7 +41,10 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [EnvServiceProvider],
+  providers: [
+    EnvServiceProvider,
+    {provide: APP_INITIALIZER, useFactory: initializeLanguage, deps: [TranslationService], multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

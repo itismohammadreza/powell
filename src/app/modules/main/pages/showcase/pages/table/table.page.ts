@@ -3,6 +3,7 @@ import {NgTableColDef, NgTableActionsConfig} from '@ng/models/table';
 import {LazyLoadEvent, MenuItem} from 'primeng/api';
 import {NgSize} from "@ng/models/offset";
 import {UserService} from "@core/http";
+import {GlobalConfig} from "@core/global.config";
 
 interface Customer {
   id: any,
@@ -28,7 +29,7 @@ export class TablePage implements OnInit {
   constructor(private userService: UserService) {
   }
 
-  rtl: boolean = false;
+  rtl: boolean = GlobalConfig.rtl;
   size: NgSize = 'md';
   header: string = 'Customers';
 

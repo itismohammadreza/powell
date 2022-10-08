@@ -703,9 +703,11 @@ export class PreviewOptionsComponent implements OnInit {
     cmpRef.location.nativeElement.classList.add('col-lg-3');
     cmpRef.instance.label = previewItem;
     cmpRef.instance.value = this[previewItem];
+    cmpRef.instance.rtl = false;
     switch (cmp) {
       case DropdownComponent:
         cmpRef.location.nativeElement.classList.add('mb-3');
+        cmpRef.instance.labelPos = 'fix-top';
         if (previewItem == 'addon') {
           cmpRef.instance.onChange.subscribe(event => {
             switch (event.value) {
@@ -734,6 +736,7 @@ export class PreviewOptionsComponent implements OnInit {
         break;
       case InputTextComponent:
         cmpRef.location.nativeElement.classList.add('mb-3');
+        cmpRef.instance.labelPos = 'fix-top';
         cmpRef.instance.onInput.subscribe(event => {
           this[`${previewItem}Change`].emit(event.target.value);
         });

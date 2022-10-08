@@ -1,9 +1,10 @@
-import {AfterContentInit, AfterViewChecked, Component, HostListener, OnInit, ViewChild} from '@angular/core';
+import {AfterContentInit, AfterViewChecked, Component, HostListener, Inject, OnInit, ViewChild} from '@angular/core';
 import {LanguageChecker} from '@core/utils';
 import {MenuItem} from 'primeng/api';
 import {SidebarType} from '@core/models';
 import {OverlayPanel} from "primeng/overlaypanel";
 import {GlobalConfig} from "@core/global.config";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'ng-navbar-menu',
@@ -42,7 +43,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     }
   ];
 
-  constructor() {
+  constructor(@Inject(DOCUMENT) private document: Document) {
     super();
   }
 

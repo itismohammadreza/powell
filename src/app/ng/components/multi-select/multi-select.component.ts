@@ -35,6 +35,7 @@ import {
 import {NgIconPosition, NgPosition, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {ScrollerOptions} from "primeng/scroller";
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-multi-select',
@@ -54,10 +55,10 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() labelPos: NgLabelPosition = GlobalConfig.defaultLabelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;

@@ -27,6 +27,7 @@ import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
 import {NgxSuneditorComponent} from "ngx-suneditor";
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-editor',
@@ -45,9 +46,9 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
   @Input() disabled: boolean;
   @Input() readonly: boolean;

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-checkbox-page',
@@ -14,7 +15,7 @@ export class CheckboxPage {
 
   label: string = 'label';
   hint: string = '';
-  rtl: boolean = true;
+  rtl: boolean = GlobalConfig.rtl;
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;

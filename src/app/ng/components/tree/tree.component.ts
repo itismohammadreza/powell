@@ -30,6 +30,7 @@ import {NgAddon, NgValidation, NgFixLabelPosition, NgTreeFilterMode} from '@ng/m
 import {ContextMenu} from 'primeng/contextmenu';
 import {ScrollerOptions} from 'primeng/scroller';
 import {NgOrientation, NgSelectionMode} from "@ng/models/offset";
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-tree',
@@ -47,9 +48,9 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   // native properties

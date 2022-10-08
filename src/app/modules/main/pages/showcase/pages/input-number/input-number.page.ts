@@ -9,6 +9,7 @@ import {
   NgNumberMode
 } from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-input-number-page',
@@ -25,7 +26,7 @@ export class InputNumberPage {
   filled: boolean = false;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = true;
+  rtl: boolean = GlobalConfig.rtl;
   icon: string = '';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgIconPosition = 'left';

@@ -22,6 +22,7 @@ import {
 } from '@angular/forms';
 import {NgValidation, NgFixLabelPosition} from '@ng/models/forms';
 import {NgIconPosition} from '@ng/models/offset';
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-toggle-button',
@@ -40,9 +41,9 @@ export class ToggleButtonComponent implements OnInit, AfterViewInit, ControlValu
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
   // native properties
   @Input() onLabel: string;

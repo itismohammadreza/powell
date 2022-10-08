@@ -27,6 +27,7 @@ import {NgAddon, NgValidation, NgInputTypes, NgLabelPosition} from '@ng/models/f
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {ScrollerOptions} from "primeng/scroller";
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-auto-complete',
@@ -46,10 +47,10 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = 'fix-top';
+  @Input() labelPos: NgLabelPosition = GlobalConfig.defaultLabelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
@@ -299,18 +300,6 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  getWrapperClass() {
-    return {
-      rtl: this.rtl,
-      ltr: !this.rtl,
-      'flex-column-reverse': this.labelPos == 'fix-top',
-      'align-items-center': this.labelPos == 'fix-side',
-      'align-items-end': this.labelPos == 'fix-top' && this.rtl,
-      'flex-row': this.labelPos == 'fix-side' && this.rtl,
-      'flex-row-reverse': this.labelPos == 'fix-side' && !this.rtl,
-    };
   }
 }
 

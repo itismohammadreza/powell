@@ -11,7 +11,7 @@
        (onAfterBtnClick)="emitter('onAfterBtnClick',$event)"
        (onBeforeBtnClick)="emitter('onBeforeBtnClick',$event)">
     <div [ngClass]="{
-      'p-float-label': labelPos == 'float',
+      'p-float-label': label && labelPos == 'float',
       'p-input-icon-left': icon && iconPos == 'left',
       'p-input-icon-right': icon && iconPos == 'right',
       'p-input-filled': filled
@@ -43,7 +43,7 @@
     </div>
   </div>
   <label
-    class="fix-label"
+    class="fix-label align-self-start"
     *ngIf="label && labelPos != 'float'"
     [attr.for]="inputId"
     [class.p-disabled]="disabled"

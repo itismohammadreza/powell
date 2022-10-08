@@ -16,13 +16,13 @@
   (onShow)="emitter('onShow',$event)"
   (onHide)="emitter('onHide',$event)">
   <div class="bottom-sheet-wrapper">
-    <div class="header" *ngIf="title || showCloseIcon">
+    <div class="header p-3" *ngIf="title || showCloseIcon">
       <div class="d-flex align-items-center justify-content-between w-100">
         <ng-container *ngIf="titleTemplate;else alternativeTitle">
           <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
         </ng-container>
         <ng-template #alternativeTitle>
-          <h5 *ngIf="title">{{title}}</h5>
+          <h5>{{title}}</h5>
         </ng-template>
         <ng-button *ngIf="showCloseIcon"
                    [rounded]="true"
@@ -35,7 +35,7 @@
     <div class="content p-3">
       <ng-content></ng-content>
     </div>
-    <div class="footer py-2" *ngIf="footerTemplate">
+    <div class="footer p-3" *ngIf="footerTemplate">
       <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
     </div>
   </div>

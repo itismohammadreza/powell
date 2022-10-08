@@ -7,5 +7,8 @@ export const GlobalConfig: AppGlobalConfig = {
   defaultSidebarType: 'push-mask',
   defaultSidebarLock: true, // overrides the defaultSidebarVisible.
   defaultSidebarVisible: false,
+  rtl: true,
+  defaultLabelPos: 'float',
+  defaultFixLabelPos: 'fix-top',
   routeAnimation: RouteAnimation('slide')
 };

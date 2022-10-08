@@ -23,6 +23,7 @@ import {
 } from '@angular/forms';
 import {NgColor} from '@ng/models/color';
 import {NgValidation, NgFixLabelPosition} from '@ng/models/forms';
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-file-picker2',
@@ -42,9 +43,9 @@ export class FilePicker2Component
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
@@ -126,6 +127,8 @@ export class FilePicker2Component
   async onSingleSelect(event) {
     const file: File = event.target.files[0];
     const base64 = await this.fileToBase64(file);
+    this.filesToShow = [];
+    this.filesToEmit = [];
     this.filesToShow.push({name: file.name, base64});
     this.chooseLabel = file.name;
     if (this.resultType == 'base64') {

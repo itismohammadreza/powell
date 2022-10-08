@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {NgFixLabelPosition} from '@ng/models/forms';
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-knob-page',
@@ -16,7 +17,7 @@ export class KnobPage {
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = true;
+  rtl: boolean = GlobalConfig.rtl;
   labelPos: NgFixLabelPosition = 'fix-side';
   // native properties
   size: number = 100;

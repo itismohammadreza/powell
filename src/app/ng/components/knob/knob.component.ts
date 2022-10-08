@@ -21,6 +21,7 @@ import {
   NgControl,
   UntypedFormGroup
 } from "@angular/forms";
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-knob',
@@ -39,9 +40,9 @@ export class KnobComponent implements OnInit, AfterViewInit, ControlValueAccesso
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
   // native properties
   @Input() size: number = 100;

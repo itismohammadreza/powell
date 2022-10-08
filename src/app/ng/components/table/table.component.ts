@@ -31,6 +31,7 @@ import {FilterMetadata, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {ScrollerOptions} from "primeng/scroller";
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-table',
@@ -46,7 +47,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() selectableRows: boolean = true;
   @Input() local: boolean = true;
   @Input() actionsConfig: NgTableActionsConfig;
-  @Input() rtl: boolean = true;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() emptyMessage: string = 'موردی وجود ندارد';
   @Input() emptyIcon: string;
   @Input() emptyImageSrc: string;
@@ -299,15 +300,15 @@ export class TableComponent implements OnInit, AfterContentInit {
     this.contextMenuSelectionChange.emit(this.contextMenuSelection);
   }
 
-  fromObject(obj: any, field: string | string[], value?: any) {
+  resolveFieldData(obj: any, field: string | string[], value?: any) {
     if (typeof field == 'string')
-      return this.fromObject(obj, field.split('.'), value);
+      return this.resolveFieldData(obj, field.split('.'), value);
     else if (field.length == 1 && value !== undefined)
       return obj[field[0]] = value;
     else if (field.length == 0)
       return obj;
     else
-      return this.fromObject(obj[field[0]], field.slice(1), value);
+      return this.resolveFieldData(obj[field[0]], field.slice(1), value);
   }
 
   onChangeFilterValue(event: any, filterCallback: Function, col: NgTableColDef) {
@@ -347,7 +348,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     if (col.render && typeof col.render.as == 'function')
       return col.render.as(item);
     else {
-      return this.fromObject(item, col.field)
+      return this.resolveFieldData(item, col.field)
     }
   }
 

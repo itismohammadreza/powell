@@ -40,6 +40,7 @@ import {
   UntypedFormGroup
 } from "@angular/forms";
 import {NgAddon, NgValidation, NgFixLabelPosition} from "@ng/models/forms";
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-map',
@@ -58,9 +59,9 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() disabled: boolean;

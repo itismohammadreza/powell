@@ -21,6 +21,7 @@ import {
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgValidation, NgFixLabelPosition} from '@ng/models/forms';
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-rating',
@@ -39,9 +40,9 @@ export class RatingComponent implements OnInit, AfterViewInit, ControlValueAcces
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
   // native properties
   @Input() stars: number = 5;

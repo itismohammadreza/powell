@@ -1,19 +1,54 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Observable} from 'rxjs';
 import {GlobalConfig} from "@core/global.config";
+import {GlobalInjector} from "@ng/global.injector";
+import {DOCUMENT} from "@angular/common";
 
 @Injectable({
   providedIn: 'root',
 })
 export class TranslationService {
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService,
+              @Inject(DOCUMENT) private document: Document) {
+  }
+
+  private _currentLang: string = localStorage.getItem('lang');
+
+  get en(): boolean {
+    return this._currentLang === 'en';
+  }
+
+  get fa(): boolean {
+    return this._currentLang === 'fa';
+  }
+
+  async init() {
+    this.onLangChange().subscribe((res: any) => {
+      this._currentLang = res.lang;
+      this.handleBodyClass();
+    });
     const defaultLang = GlobalConfig.defaultLang;
     localStorage.setItem('lang', defaultLang);
     if (!this.getDefaultLang()) {
       this.setDefaultLang(defaultLang);
     }
-    this.use(defaultLang);
+    this.handleBodyClass();
+    await this.use(defaultLang).toPromise();
+  }
+
+  handleBodyClass() {
+    this.document.documentElement.setAttribute('lang', this._currentLang);
+    const body = this.document.body;
+    if (this.fa) {
+      body.style.direction = 'rtl';
+      body.classList.add('ng-rtl');
+      body.classList.remove('ng-ltr');
+    } else if (this.en) {
+      body.style.direction = 'ltr';
+      body.classList.add('ng-ltr');
+      body.classList.remove('ng-rtl');
+    }
   }
 
   /**

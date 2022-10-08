@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {OverlayService} from "@ng/services";
 import {NgDialogFormOptions, NgDialogOptions} from "@ng/models/overlay";
 import {FormControl, Validators} from "@angular/forms";
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-dialog-form-page',
@@ -41,7 +42,7 @@ export class DialogFormPage implements OnInit {
     rejectLabel: 'لغو',
     rejectIcon: '',
     defaultFocus: 'accept',
-    rtl: false,
+    rtl: GlobalConfig.rtl,
   }
   flag = false;
 

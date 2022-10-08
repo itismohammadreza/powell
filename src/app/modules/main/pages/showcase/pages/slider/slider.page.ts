@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {NgFixLabelPosition} from '@ng/models/forms';
 import {NgOrientation} from '@ng/models/offset';
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-slider-page',
@@ -17,7 +18,7 @@ export class SliderPage {
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = true;
+  rtl: boolean = GlobalConfig.rtl;
   labelPos: NgFixLabelPosition = 'fix-side';
   // native properties
   animate: boolean = true;

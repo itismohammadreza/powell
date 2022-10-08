@@ -26,6 +26,7 @@ import {
 } from '@angular/forms';
 import {NgAddon, NgValidation, NgFilterMatchMode, NgFixLabelPosition,} from '@ng/models/forms';
 import {TemplateDirective} from '@ng/directives/template.directive';
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-listbox',
@@ -45,9 +46,9 @@ export class ListboxComponent implements OnInit, AfterViewInit, AfterContentInit
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   // native properties

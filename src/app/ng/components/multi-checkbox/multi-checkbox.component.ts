@@ -22,6 +22,7 @@ import {
 } from '@angular/forms';
 import {NgValidation, NgFixLabelPosition} from '@ng/models/forms';
 import {NgOrientation} from '@ng/models/offset';
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-multi-checkbox',
@@ -41,9 +42,9 @@ export class MultiCheckboxComponent implements OnInit, AfterViewInit, ControlVal
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = 'fix-top';
+  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
