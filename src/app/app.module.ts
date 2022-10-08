@@ -15,7 +15,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-export function initializeLanguage(translationService: TranslationService) {
+export function InitializeLanguage(translationService: TranslationService) {
   return (): Promise<any> => {
     return translationService.init();
   }
@@ -43,7 +43,7 @@ export function initializeLanguage(translationService: TranslationService) {
   ],
   providers: [
     EnvServiceProvider,
-    {provide: APP_INITIALIZER, useFactory: initializeLanguage, deps: [TranslationService], multi: true}
+    {provide: APP_INITIALIZER, useFactory: InitializeLanguage, deps: [TranslationService], multi: true}
   ],
   bootstrap: [AppComponent]
 })
