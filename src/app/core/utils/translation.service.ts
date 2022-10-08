@@ -9,7 +9,7 @@ import {DOCUMENT} from "@angular/common";
   providedIn: 'root',
 })
 export class TranslationService {
-  private _currentLang: string;
+  private currentLang: string;
 
   constructor(private translate: TranslateService,
               @Inject(DOCUMENT) private document: Document) {
@@ -18,7 +18,7 @@ export class TranslationService {
 
   async init() {
     this.onLangChange().subscribe((res: any) => {
-      this._currentLang = res.lang;
+      this.currentLang = res.lang;
       this.handleBodyClass();
     });
     const defaultLang = GlobalConfig.defaultLang;
@@ -30,16 +30,8 @@ export class TranslationService {
     await this.use(defaultLang).toPromise();
   }
 
-  get en(): boolean {
-    return this._currentLang === 'en';
-  }
-
-  get fa(): boolean {
-    return this._currentLang === 'fa';
-  }
-
   private handleBodyClass() {
-    this.document.documentElement.setAttribute('lang', this._currentLang);
+    this.document.documentElement.setAttribute('lang', this.currentLang);
     const body = this.document.body;
     if (this.fa) {
       body.style.direction = 'rtl';
@@ -50,6 +42,14 @@ export class TranslationService {
       body.classList.add('ng-ltr');
       body.classList.remove('ng-rtl');
     }
+  }
+
+  get en(): boolean {
+    return this.currentLang === 'en';
+  }
+
+  get fa(): boolean {
+    return this.currentLang === 'fa';
   }
 
   /**
