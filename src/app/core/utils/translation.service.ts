@@ -9,19 +9,12 @@ import {DOCUMENT} from "@angular/common";
   providedIn: 'root',
 })
 export class TranslationService {
+  private _currentLang: string;
+
   constructor(private translate: TranslateService,
               @Inject(DOCUMENT) private document: Document) {
   }
 
-  private _currentLang: string = localStorage.getItem('lang');
-
-  get en(): boolean {
-    return this._currentLang === 'en';
-  }
-
-  get fa(): boolean {
-    return this._currentLang === 'fa';
-  }
 
   async init() {
     this.onLangChange().subscribe((res: any) => {
@@ -37,7 +30,15 @@ export class TranslationService {
     await this.use(defaultLang).toPromise();
   }
 
-  handleBodyClass() {
+  get en(): boolean {
+    return this._currentLang === 'en';
+  }
+
+  get fa(): boolean {
+    return this._currentLang === 'fa';
+  }
+
+  private handleBodyClass() {
     this.document.documentElement.setAttribute('lang', this._currentLang);
     const body = this.document.body;
     if (this.fa) {
