@@ -13,6 +13,7 @@
 - [ ] **table** : complete paginator and rowIndex
 - [ ] **map** : fix blinking on map pan.
   - https://stackblitz.com/edit/angular-leaflet-example?file=src%2Fapp%2Fapp.component.ts
+- [ ] fix back button in bottomSheet and image-preview.
 
 ### New
 
