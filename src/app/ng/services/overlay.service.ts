@@ -232,6 +232,7 @@ export class OverlayService {
       rejectLabel: 'بستن',
       rejectAppearance: 'outlined',
       defaultFocus: 'accept',
+      rtl: GlobalConfig.rtl,
       ...options,
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-dialog-form-accept`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} p-dialog-form-reject`,
