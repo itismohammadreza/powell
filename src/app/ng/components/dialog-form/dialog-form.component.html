@@ -33,7 +33,7 @@
   [maximizeIcon]="options.maximizeIcon"
   (onShow)="setDefaultFocus()"
   #dialogWrapper>
-  <form [formGroup]="form" class="form-row">
+  <form [formGroup]="form" class="form-row pt-3">
     <ng-container *ngFor="let config of config">
       <ng-container [ngSwitch]="config.component">
         <input
