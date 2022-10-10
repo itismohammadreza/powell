@@ -40,6 +40,7 @@ export class AddonDirective implements OnChanges {
     const BTN_TEXT_SPAN = this.renderer.createElement('span') as HTMLSpanElement;
     const BTN_TEXT = this.renderer.createText(config.label) as HTMLElement;
     const _btnColor = config.color;
+    const _btnAppearance = config.appearance;
     const _btnIcon = config.icon || null;
     const _btnLabel = config.label || null;
     const _btnIconPos = config.iconPos || 'left';
@@ -47,6 +48,7 @@ export class AddonDirective implements OnChanges {
     this.renderer.addClass(BTN, 'p-button');
     this.renderer.addClass(BTN, 'p-component');
     this.renderer.addClass(BTN, `p-button-${_btnColor}`);
+    this.renderer.addClass(BTN, `p-button-${_btnAppearance}`);
     this.renderer.addClass(BTN, `p-button-${this.addonSize}`);
     this.renderer.addClass(BTN_TEXT_SPAN, 'p-button-label');
     this.renderer.appendChild(BTN_TEXT_SPAN, BTN_TEXT || 'p-btn');

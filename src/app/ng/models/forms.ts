@@ -1,5 +1,6 @@
 import {NgColor} from './color';
 import {NgIconPosition} from './offset';
+import {NgButtonAppearance} from "@ng/models/button";
 
 export type NgFilePickerMode = 'basic' | 'advanced';
 export type NgLabelPosition = 'fix-side' | 'fix-top' | 'float';
@@ -20,6 +21,7 @@ export interface NgAddonConfig {
   type: 'button' | 'icon' | 'text';
   label?: string;
   color?: NgColor;
+  appearance?: NgButtonAppearance;
   icon?: string;
   iconPos?: NgIconPosition;
   text?: string;
