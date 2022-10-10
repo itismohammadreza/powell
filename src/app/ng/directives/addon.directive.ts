@@ -51,6 +51,7 @@ export class AddonDirective implements OnChanges {
     this.renderer.addClass(BTN, `p-button-${_btnAppearance}`);
     this.renderer.addClass(BTN, `p-button-${this.addonSize}`);
     this.renderer.addClass(BTN_TEXT_SPAN, 'p-button-label');
+    this.renderer.setStyle(BTN, 'white-space', 'nowrap');
     this.renderer.appendChild(BTN_TEXT_SPAN, BTN_TEXT || 'p-btn');
     this.renderer.appendChild(BTN, BTN_ICON_SPAN);
     this.renderer.appendChild(BTN, BTN_TEXT_SPAN);
