@@ -118,7 +118,6 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
     zoomAnimationThreshold: 4,
     fadeAnimation: true,
     markerZoomAnimation: true,
-    transform3DLimit: 2 ^ 23,
     inertia: true,
     inertiaDeceleration: 3000,
     easeLinearity: 0.2,
