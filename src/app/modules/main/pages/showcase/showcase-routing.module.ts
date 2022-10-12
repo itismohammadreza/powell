@@ -67,6 +67,7 @@ const routes: Routes = [
   {
     path: 'bottom-sheet',
     component: BottomSheetPage,
+    canDeactivate: [OpenDialogGuard],
     title: 'bottom-sheet'
   },
   {

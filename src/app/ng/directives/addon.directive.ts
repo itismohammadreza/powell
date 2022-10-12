@@ -136,5 +136,11 @@ export class AddonDirective implements OnChanges {
     } else if (pos === 'before') {
       this.renderer.insertBefore(targetEl, addonEl, fieldEl)
     }
+    setTimeout(() => {
+      const floatLabelWrapper = targetEl.querySelector('.p-float-label');
+      if (floatLabelWrapper) {
+        floatLabelWrapper.style.width = 'auto';
+      }
+    })
   }
 }

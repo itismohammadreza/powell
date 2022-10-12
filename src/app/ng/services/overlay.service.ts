@@ -27,7 +27,7 @@ export class OverlayService {
   private confirmCmpRef: ComponentRef<ConfirmDialog>;
   private dialogCmpRef: ComponentRef<DialogComponent>;
   private dialogFormCmpRef: ComponentRef<DialogFormComponent>;
-  private visibleDialogsSubject = new BehaviorSubject<boolean>(false);
+  private anyDialogVisibleSubject = new BehaviorSubject<boolean>(false);
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -266,19 +266,23 @@ export class OverlayService {
 
 
   closeAnyOpenDialog() {
-    this.messageService?.clear();
-    this.confirmationService?.close();
+    this.messageService.clear();
+    this.confirmationService.close();
     this.dialogCmpRef?.instance.close();
     this.dialogFormCmpRef?.instance.close();
     this.setAnyDialogVisible(false)
   }
 
   isAnyDialogOpen() {
-    return this.visibleDialogsSubject.getValue();
+    return this.anyDialogVisibleSubject.getValue();
+  }
+
+  isAnyDialogOpenObs() {
+    return this.anyDialogVisibleSubject.asObservable();
   }
 
   setAnyDialogVisible(value: boolean) {
-    this.visibleDialogsSubject.next(value)
+    this.anyDialogVisibleSubject.next(value);
   }
 
   private removeFromBody(component: ComponentRef<any>) {

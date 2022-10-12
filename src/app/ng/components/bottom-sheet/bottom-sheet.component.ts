@@ -10,6 +10,8 @@ import {
   TemplateRef
 } from '@angular/core';
 import {TemplateDirective} from "@ng/directives/template.directive";
+import {OverlayService} from "@ng/services";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'ng-bottom-sheet',
@@ -38,6 +40,9 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   titleTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
 
+  constructor(private overlayService: OverlayService) {
+  }
+
   ngOnInit() {
     this.style = {height: '50vh', ...this.style};
     this.styleClass = `p-bottom-sheet ${this.styleClass}`;
@@ -58,8 +63,20 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   }
 
   onVisibleChange(event: any) {
+    console.log(event)
     this.visible = event;
     this.visibleChange.emit(this.visible);
+    let subscription: Subscription;
+    // if (this.visible) {
+    this.overlayService.setAnyDialogVisible(this.visible);
+    subscription = this.overlayService.isAnyDialogOpenObs().subscribe(res => {
+      console.log(res)
+      if (!res) {
+        this.visible = false;
+        subscription?.unsubscribe();
+      }
+    })
+    // }
   }
 
   emitter(name: string, event: any) {
