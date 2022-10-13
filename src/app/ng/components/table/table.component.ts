@@ -5,11 +5,9 @@ import {
   ContentChildren,
   EventEmitter,
   Input,
-  OnChanges,
   OnInit,
   Output,
   QueryList,
-  SimpleChanges,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
@@ -43,21 +41,20 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() items: any[];
   @Input() filterDisplay: NgTableFilterDisplay = 'menu';
   @Input() colDef: NgTableColDef[];
-  @Input() reorderableRows: boolean = false;
-  @Input() selectableRows: boolean = true;
-  // @Input() local: boolean = true;
+  @Input() reorderableRows: boolean;
+  @Input() selectableRows: boolean;
   @Input() actionsConfig: NgTableActionsConfig;
   @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() emptyMessage: string = 'موردی وجود ندارد';
   @Input() emptyIcon: string;
   @Input() emptyImageSrc: string;
   @Input() emptyImageType: NgEmptyIcon = 'box1';
-  @Input() captionTitle: string;
-  @Input() globalFilter: boolean = true;
+  @Input() header: string;
+  @Input() globalFilter: boolean;
   @Input() globalFilterPlaceholder: string;
   @Input() size: NgSize = 'sm';
   @Input() gridlines: boolean = true;
-  @Input() striped: boolean = false;
+  @Input() striped: boolean;
   // native properties
   @Input() frozenColumns: any[];
   @Input() frozenValue: any[];
@@ -96,7 +93,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() metaKeySelection: boolean;
   @Input() rowSelectable: Function;
   @Input() rowTrackBy: Function = (index: number, item: any) => index;
-  @Input() lazy: boolean = false;
+  @Input() lazy: boolean;
   @Input() lazyLoadOnInit: boolean = true;
   @Input() compareSelectionBy: NgTableCompareSelectionBy = 'deepEquals';
   @Input() csvSeparator: string = ',';
@@ -147,10 +144,9 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Output() onStateSave = new EventEmitter()
   @Output() onStateRestore = new EventEmitter()
   @Output() sortFunction = new EventEmitter();
-  @Output() globalFilterChange = new EventEmitter();
   // two-way bindings
   @Input() rows: number;
-  @Input() first: number;
+  @Input() first: number = 0;
   @Input() selectAll: boolean;
   @Input() selection: any;
   @Input() contextMenuSelection: any;
@@ -327,7 +323,7 @@ export class TableComponent implements OnInit, AfterContentInit {
         filterValue = new Date(event);
         break;
     }
-    if (this.lazy) {
+    if (!this.lazy) {
       filterCallback(filterValue.toString());
     } else {
       this.onFilter.emit({value: filterValue, col})
@@ -359,10 +355,6 @@ export class TableComponent implements OnInit, AfterContentInit {
   }
 
   onGlobalFilterChange(event: any) {
-    if (this.lazy) {
-      this.dataTable.filterGlobal(event.target.value, 'contains')
-    } else {
-      this.globalFilterChange.emit(event.target.value)
-    }
+    this.dataTable.filterGlobal(event.target.value, 'contains')
   }
 }

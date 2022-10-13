@@ -77,6 +77,11 @@
            [stateKey]="stateKey"
            [stateStorage]="stateStorage"
            [exportHeader]="exportHeader"
+           [rows]="rows"
+           [first]="first"
+           [selectAll]="selectAll"
+           [selection]="selection"
+           [contextMenuSelection]="contextMenuSelection"
            (onRowSelect)="emitter('onRowSelect',$event)"
            (onRowUnselect)="emitter('onRowUnselect',$event)"
            (onPage)="emitter('onPage',$event)"
@@ -93,8 +98,8 @@
            (onStateSave)="emitter('onStateSave',$event)"
            (onStateRestore)="emitter('onStateRestore',$event)"
            (sortFunction)="emitter('sortFunction',$event)"
-           (firstChange)="onFirstChange($event)"
            (rowsChange)="onRowsChange($event)"
+           (firstChange)="onFirstChange($event)"
            (selectAllChange)="onSelectAllChange($event)"
            (selectionChange)="onSelectionChange($event)"
            (contextMenuSelectionChange)="onContextMenuSelectionChange($event)">
@@ -318,7 +323,7 @@
                 *ngSwitchCase="'image'"
                 imageClass="image-cell"
                 [preview]="col.render.preview"
-                [width]="col.render.width || '150px'"
+                [width]="col.render.width || '100px'"
                 [height]="col.render.height"
                 [src]="resolveFieldData(item, col.field)">
               </ng-image>
@@ -374,17 +379,17 @@
       </ng-template>
     </ng-template>
 
-    <ng-template pTemplate="caption" *ngIf="captionTemplate || captionTitle">
+    <ng-template pTemplate="caption" *ngIf="captionTemplate || header">
       <ng-container *ngIf="captionTemplate;else defaultCaption">
         <ng-container *ngTemplateOutlet="captionTemplate"></ng-container>
       </ng-container>
       <ng-template #defaultCaption>
         <div class="caption">
-          <h5>{{captionTitle}}</h5>
+          <h5>{{header}}</h5>
           <ng-input-text *ngIf="globalFilter"
                          [placeholder]="globalFilterPlaceholder"
                          icon="pi pi-search"
-                         (onChange)="onGlobalFilterChange($event)">
+                         (onKeyDown)="onGlobalFilterChange($event)">
           </ng-input-text>
         </div>
       </ng-template>
@@ -421,6 +426,23 @@
     </ng-template>
     <ng-template pTemplate="summary" *ngIf="summaryTemplate">
       <ng-container *ngTemplateOutlet="summaryTemplate"></ng-container>
+      <!--      <p>non local paginator {{totalRecords}}</p>-->
+      <!--      <p-paginator-->
+      <!--        [totalRecords]="totalRecords"-->
+      <!--        [rows]="rows"-->
+      <!--        [first]="first || 1"-->
+      <!--        [rowsPerPageOptions]="rowsPerPageOptions"-->
+      <!--        [alwaysShow]="alwaysShowPaginator"-->
+      <!--        [showFirstLastIcon]="showFirstLastIcon"-->
+      <!--        [templateLeft]="paginatorLeftTemplate"-->
+      <!--        [templateRight]="paginatorRightTemplate"-->
+      <!--        [currentPageReportTemplate]="currentPageReportTemplate"-->
+      <!--        [showCurrentPageReport]="showCurrentPageReport"-->
+      <!--        [showJumpToPageDropdown]="showJumpToPageDropdown"-->
+      <!--        [showJumpToPageInput]="showJumpToPageInput"-->
+      <!--        [showPageLinks]="showPageLinks"-->
+      <!--        (onPageChange)="onPageChange($event)">-->
+      <!--      </p-paginator>-->
     </ng-template>
     <ng-template pTemplate="footer" *ngIf="footerTemplate">
       <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>

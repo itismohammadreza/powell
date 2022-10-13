@@ -10,8 +10,6 @@
 
 ### Feature
 
-- [ ] **table** : complete paginator and rowIndex
-
 ### New
 
 - [ ] **jalaliDatepicker** - implement component.

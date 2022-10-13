@@ -32,8 +32,149 @@ export class TablePage implements OnInit {
   rtl: boolean = GlobalConfig.rtl;
   size: NgSize = 'md';
   header: string = 'Customers';
-
-  customers = [
+  simpleCustomers = [
+    {
+      "id": 1000,
+      "name": "James Butt",
+      "country": {
+        "name": "Algeria",
+        "code": "dz"
+      },
+      "company": "Benton, John B Jr",
+      "date": "2015-09-13",
+      "status": "unqualified",
+      "verified": true,
+      "activity": 17,
+      "representative": {
+        "name": "Ioni Bowcher",
+        "image": "ionibowcher.png"
+      },
+      "balance": 70663,
+      "image": 'https://via.placeholder.com/150x150',
+      "bool": false,
+    },
+    {
+      "id": 1001,
+      "name": "Josephine Darakjy",
+      "country": {
+        "name": "Egypt",
+        "code": "eg"
+      },
+      "company": "Chanay, Jeffrey A Esq",
+      "date": "2019-02-09",
+      "status": "proposal",
+      "verified": true,
+      "activity": 0,
+      "representative": {
+        "name": "Amy Elsner",
+        "image": "amyelsner.png"
+      },
+      "balance": 82429,
+      "image": 'https://via.placeholder.com/150x150',
+      "bool": false,
+    },
+    {
+      "id": 1002,
+      "name": "Art Venere",
+      "country": {
+        "name": "Panama",
+        "code": "pa"
+      },
+      "company": "Chemel, James L Cpa",
+      "date": "2017-05-13",
+      "status": "qualified",
+      "verified": false,
+      "activity": 63,
+      "representative": {
+        "name": "Asiya Javayant",
+        "image": "asiyajavayant.png"
+      },
+      "balance": 28334,
+      "image": 'https://via.placeholder.com/150x150',
+      "bool": false,
+    },
+    {
+      "id": 1003,
+      "name": "Lenna Paprocki",
+      "country": {
+        "name": "Slovenia",
+        "code": "si"
+      },
+      "company": "Feltz Printing Service",
+      "date": "2020-09-15",
+      "status": "new",
+      "verified": false,
+      "activity": 37,
+      "representative": {
+        "name": "Xuxue Feng",
+        "image": "xuxuefeng.png"
+      },
+      "balance": 88521,
+      "image": 'https://via.placeholder.com/150x150',
+      "bool": false,
+    },
+    {
+      "id": 1004,
+      "name": "Donette Foller",
+      "country": {
+        "name": "South Africa",
+        "code": "za"
+      },
+      "company": "Printing Dimensions",
+      "date": "2016-05-20",
+      "status": "proposal",
+      "verified": true,
+      "activity": 33,
+      "representative": {
+        "name": "Asiya Javayant",
+        "image": "asiyajavayant.png"
+      },
+      "balance": 93905,
+      "image": 'https://via.placeholder.com/150x150',
+      "bool": false,
+    },
+    {
+      "id": 1005,
+      "name": "Simona Morasca",
+      "country": {
+        "name": "Egypt",
+        "code": "eg"
+      },
+      "company": "Chapman, Ross E Esq",
+      "date": "2018-02-16",
+      "status": "qualified",
+      "verified": false,
+      "activity": 68,
+      "representative": {
+        "name": "Ivan Magalhaes",
+        "image": "ivanmagalhaes.png"
+      },
+      "balance": 50041,
+      "image": 'https://via.placeholder.com/150x150',
+      "bool": false,
+    },
+    {
+      "id": 1006,
+      "name": "Mitsue Tollner",
+      "country": {
+        "name": "Paraguay",
+        "code": "py"
+      },
+      "company": "Morlong Associates",
+      "date": "2018-02-19",
+      "status": "renewal",
+      "verified": true,
+      "activity": 54,
+      "representative": {
+        "name": "Ivan Magalhaes",
+        "image": "ivanmagalhaes.png"
+      },
+      "balance": 58706,
+      "image": 'https://via.placeholder.com/150x150',
+      "bool": false,
+    },
+  ]
+  lazyCustomers = [
     {
       "id": 1000,
       "name": "James Butt",
@@ -755,7 +896,6 @@ export class TablePage implements OnInit {
       "bool": false,
     }
   ];
-
   contextMenu: MenuItem[] = [
     {
       label: 'View',
@@ -764,7 +904,83 @@ export class TablePage implements OnInit {
       },
     },
   ];
-  colDef: NgTableColDef<Customer>[] = [
+  lazyColDef: NgTableColDef<Customer>[] = [
+    {
+      header: 'name',
+      field: 'name',
+      sort: true,
+      filter: {
+        type: 'slider',
+        range: true,
+        rowFilterShowMenu: true
+      },
+    },
+    {
+      header: 'country',
+      field: 'country.name',
+      sort: true,
+      render: {
+        as: (item) => {
+          return 'Render By Function :' + item.country.name
+        }
+      },
+      filter: {
+        type: 'text',
+      },
+    },
+    {
+      header: 'company',
+      field: 'company',
+      sort: true,
+      filter: {
+        type: 'slider',
+        range: true,
+        rowFilterShowMenu: true
+      },
+    },
+    {
+      header: 'representative',
+      field: 'representative.name',
+      sort: true,
+      filter: {
+        type: 'multi-select',
+        options: [
+          {name: 'Amy Elsner', image: 'amyelsner.png'},
+          {name: 'Anna Fali', image: 'annafali.png'},
+          {name: 'Asiya Javayant', image: 'asiyajavayant.png'},
+          {name: 'Bernardo Dominic', image: 'bernardodominic.png'},
+          {name: 'Elwin Sharvill', image: 'elwinsharvill.png'},
+          {name: 'Ioni Bowcher', image: 'ionibowcher.png'},
+          {name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png'},
+          {name: 'Onyama Limba', image: 'onyamalimba.png'},
+          {name: 'Stephen Shaw', image: 'stephenshaw.png'},
+          {name: 'XuXue Feng', image: 'xuxuefeng.png'},
+        ],
+        placeholder: 'any',
+        optionLabel: 'name',
+        optionValue: 'name',
+      },
+    },
+  ]
+  paginatorColDef: NgTableColDef<Customer>[] = [
+    {
+      header: 'name',
+      field: 'name',
+    },
+    {
+      header: 'country',
+      field: 'country.name',
+    },
+    {
+      header: 'company',
+      field: 'company',
+    },
+    {
+      header: 'representative',
+      field: 'representative.name',
+    },
+  ]
+  simpleColDef: NgTableColDef<Customer>[] = [
     {
       header: 'name',
       field: 'name',
@@ -912,28 +1128,26 @@ export class TablePage implements OnInit {
 
   loadCustomers(event: LazyLoadEvent) {
     this.loading = true;
-
+    const filters = {
+      first: event.first,
+      rows: event.rows,
+      sortOrder: event.sortOrder,
+      filters: {
+        name: {value: event.filters.name?.value || null, matchMode: 'startsWith'},
+        country: {value: event.filters.country?.value || null, matchMode: 'startsWith'},
+        company: {value: event.filters.company?.value || null, matchMode: 'startsWith'},
+        representative: {value: event.filters.representative?.value || null, matchMode: 'in'}
+      },
+      globalFilter: event.globalFilter
+    }
     setTimeout(() => {
-      this.userService.getCustomers({lazyEvent: JSON.stringify(event)}).then(res => {
-        this.customers = res.customers;
+      this.userService.getCustomers({lazyEvent: JSON.stringify(filters)}).then(res => {
+        this.lazyCustomers = res.customers;
         this.totalRecords = res.totalRecords;
         this.loading = false;
       })
     }, 1000);
   }
-
-  representatives = [
-    {name: "Amy Elsner", image: 'amyelsner.png'},
-    {name: "Anna Fali", image: 'annafali.png'},
-    {name: "Asiya Javayant", image: 'asiyajavayant.png'},
-    {name: "Bernardo Dominic", image: 'bernardodominic.png'},
-    {name: "Elwin Sharvill", image: 'elwinsharvill.png'},
-    {name: "Ioni Bowcher", image: 'ionibowcher.png'},
-    {name: "Ivan Magalhaes", image: 'ivanmagalhaes.png'},
-    {name: "Onyama Limba", image: 'onyamalimba.png'},
-    {name: "Stephen Shaw", image: 'stephenshaw.png'},
-    {name: "Xuxue Feng", image: 'xuxuefeng.png'}
-  ];
 
   onSelectionChange(value = []) {
     this.selectAll = value.length === this.totalRecords;
