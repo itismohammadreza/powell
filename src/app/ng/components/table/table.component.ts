@@ -45,7 +45,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() colDef: NgTableColDef[];
   @Input() reorderableRows: boolean = false;
   @Input() selectableRows: boolean = true;
-  @Input() local: boolean = true;
+  // @Input() local: boolean = true;
   @Input() actionsConfig: NgTableActionsConfig;
   @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() emptyMessage: string = 'موردی وجود ندارد';
@@ -87,6 +87,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() groupRowsBy: string | string[];
   @Input() groupRowsByOrder: number = 1;
   @Input() defaultSortOrder: number = 1;
+  @Input() customSort: boolean;
   @Input() showInitialSortBadge: boolean = true;
   @Input() selectionMode: NgSelectionMode;
   @Input() selectionPageOnly: boolean;
@@ -180,9 +181,6 @@ export class TableComponent implements OnInit, AfterContentInit {
   loadingBodyTemplate: TemplateRef<any>
   cellTemplates: { [key: string]: TemplateRef<any> } = {}
 
-  constructor() {
-  }
-
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);
     this.colDef = this.colDef.filter(col => col.visible != undefined ? col.visible : true);
@@ -271,8 +269,8 @@ export class TableComponent implements OnInit, AfterContentInit {
     (this[name] as EventEmitter<any>).emit(event);
   }
 
-  onPageChange($event) {
-    this.onPage.emit($event)
+  onPageChange(event) {
+    this.onPage.emit(event)
   }
 
   onFirstChange(event) {
@@ -329,7 +327,7 @@ export class TableComponent implements OnInit, AfterContentInit {
         filterValue = new Date(event);
         break;
     }
-    if (this.local) {
+    if (this.lazy) {
       filterCallback(filterValue.toString());
     } else {
       this.onFilter.emit({value: filterValue, col})
@@ -361,7 +359,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   }
 
   onGlobalFilterChange(event: any) {
-    if (this.local) {
+    if (this.lazy) {
       this.dataTable.filterGlobal(event.target.value, 'contains')
     } else {
       this.globalFilterChange.emit(event.target.value)

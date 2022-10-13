@@ -753,7 +753,9 @@ export class TablePage implements OnInit {
       "balance": 34072,
       "image": 'https://via.placeholder.com/150x150',
       "bool": false,
-    }];
+    }
+  ];
+
   contextMenu: MenuItem[] = [
     {
       label: 'View',
@@ -767,7 +769,6 @@ export class TablePage implements OnInit {
       header: 'name',
       field: 'name',
       sort: true,
-      render: {as: 'image'},
       filter: {
         type: 'slider',
         range: true,
