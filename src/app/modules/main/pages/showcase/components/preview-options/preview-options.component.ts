@@ -517,6 +517,8 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() viewChange = new EventEmitter()
   @Input() touchUI: boolean;
   @Output() touchUIChange = new EventEmitter()
+  @Input() hourFormat: string;
+  @Output() hourFormatChange = new EventEmitter()
   @Input() selectionMode: NgSelectionMode;
   @Output() selectionModeChange = new EventEmitter();
   @Input() propagateSelectionUp: boolean;

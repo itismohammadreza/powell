@@ -22,6 +22,9 @@ import {RadioComponent} from "@ng/components/radio/radio.component";
 import {RatingComponent} from "@ng/components/rating/rating.component";
 import {SliderComponent} from "@ng/components/slider/slider.component";
 import {SelectButtonComponent} from "@ng/components/select-button/select-button.component";
+import {
+  JalaliPickerBaseComponent
+} from "@ng/components/jalali-datepicker/jalali-picker-base/jalali-picker-base.component";
 import {JalaliDatepickerComponent} from "@ng/components/jalali-datepicker/jalali-datepicker.component";
 import {ToggleButtonComponent} from "@ng/components/toggle-button/toggle-button.component";
 import {TreeSelectComponent} from "@ng/components/tree-select/tree-select.component";
@@ -83,6 +86,7 @@ export const COMPONENTS: Type<any>[] = [
   InputPasswordComponent,
   InputTextComponent,
   InputTextareaComponent,
+  JalaliPickerBaseComponent,
   JalaliDatepickerComponent,
   KnobComponent,
   ListboxComponent,
@@ -123,5 +127,5 @@ export const COMPONENTS: Type<any>[] = [
   EmptyComponent,
   StatusComponent,
   LoadingComponent,
-  LoadingContainerComponent
+  LoadingContainerComponent,
 ];
