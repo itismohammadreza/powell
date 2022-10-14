@@ -29,7 +29,7 @@ export class TreeSelectPage {
   scrollHeight: string = '400px';
   placeholder: string;
   disabled: boolean;
-  selectionMode: NgSelectionMode;
+  selectionMode: NgSelectionMode = 'single';
   emptyMessage: string = 'موردی وجود ندارد';
   display: NgChipDisplayMode = 'comma';
   propagateSelectionUp: boolean = true;
