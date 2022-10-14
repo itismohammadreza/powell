@@ -35,9 +35,6 @@ import {GlobalConfig} from "@core/global.config";
       multi: true
     }
   ],
-  host: {
-    '[class.p-calendar-clearable]': 'showClear && !disabled'
-  }
 })
 export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any;

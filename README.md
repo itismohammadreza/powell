@@ -10,9 +10,6 @@
 
 ### Feature
 
-[ ] add model to event functions in components.
-[ ] add showClear to inputText.
-
 ### New
 
 - [ ] **whiteboard** - implement component.
