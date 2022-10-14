@@ -9,5 +9,5 @@ import {NgEmptyIcon, NgStatus} from "@ng/models/offset";
 export class EmptyPage {
   imageType: NgEmptyIcon = 'box1';
   icon: string = '';
-  title: string = '';
+  text: string = '';
 }

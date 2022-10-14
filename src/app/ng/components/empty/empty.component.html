@@ -8,6 +8,6 @@
     <i *ngIf="icon" [ngClass]="icon"></i>
     <img *ngIf="imageSrc" [src]="imageSrc" alt="Empty" />
   </div>
-  <div class="empty-title small" *ngIf="title">{{title}}</div>
+  <div class="empty-title small" *ngIf="text">{{text}}</div>
   <ng-content></ng-content>
 </div>

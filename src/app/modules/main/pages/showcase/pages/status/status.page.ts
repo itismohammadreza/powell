@@ -9,6 +9,6 @@ import {NgStatus} from "@ng/models/offset";
 export class StatusPage {
   status: NgStatus = 'info';
   icon: string = '';
-  title: string = '';
-  subtitle: string = '';
+  text: string = '';
+  subText: string = '';
 }

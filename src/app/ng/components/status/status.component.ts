@@ -10,6 +10,6 @@ export class StatusComponent {
   @Input() status: NgStatus = "success";
   @Input() icon: string;
   @Input() imageSrc: string;
-  @Input() title: string;
-  @Input() subtitle: string;
+  @Input() text: string;
+  @Input() subText: string;
 }

@@ -16,21 +16,21 @@
   (onShow)="emitter('onShow',$event)"
   (onHide)="emitter('onHide',$event)">
   <div class="bottom-sheet-wrapper">
-    <div class="header px-3 py-2" *ngIf="title || showCloseIcon || titleTemplate">
-      <div class="d-flex align-items-center justify-content-between w-100">
-        <ng-container *ngIf="titleTemplate;else alternativeTitle">
-          <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
-        </ng-container>
-        <ng-template #alternativeTitle>
-          <h5>{{title}}</h5>
-        </ng-template>
-        <ng-button *ngIf="showCloseIcon"
-                   [rounded]="true"
-                   appearance="text"
-                   icon="pi pi-times"
-                   (onClick)="onVisibleChange(false)">
-        </ng-button>
-      </div>
+    <div class="header px-3 py-2 d-flex align-items-center justify-content-between w-100"
+         *ngIf="header || showCloseIcon || headerTemplate">
+      <ng-container *ngIf="headerTemplate;else alternativeTitle">
+        <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+      </ng-container>
+      <ng-template #alternativeTitle>
+        <h5>{{header}}</h5>
+      </ng-template>
+      <ng-button
+        *ngIf="showCloseIcon"
+        [rounded]="true"
+        appearance="text"
+        icon="pi pi-times"
+        (onClick)="onVisibleChange(false)">
+      </ng-button>
     </div>
     <div class="content px-3">
       <ng-content></ng-content>

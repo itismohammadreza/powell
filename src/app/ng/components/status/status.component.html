@@ -13,8 +13,8 @@
     <img *ngIf="imageSrc" [src]="imageSrc" alt="Status" />
   </div>
   <div class="status-content">
-    <div class="status-title" *ngIf="title">{{title}}</div>
-    <div class="status-subtitle" *ngIf="subtitle">{{subtitle}}</div>
+    <div class="status-title" *ngIf="text">{{text}}</div>
+    <div class="status-subtitle" *ngIf="subText">{{subText}}</div>
   </div>
   <ng-content></ng-content>
 </div>

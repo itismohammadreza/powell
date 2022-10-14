@@ -10,5 +10,5 @@ export class EmptyComponent {
   @Input() imageType: NgEmptyIcon = 'box2';
   @Input() icon: string;
   @Input() imageSrc: string;
-  @Input() title: string;
+  @Input() text: string;
 }

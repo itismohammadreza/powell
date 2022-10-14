@@ -172,8 +172,8 @@ type PreviewItem =
   | 'indentation'
   | 'layout'
   | 'status'
-  | 'title'
-  | 'subtitle'
+  | 'text'
+  | 'subText'
   | 'imageType'
   | 'preview'
   | 'closable'
@@ -531,10 +531,10 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() layoutChange = new EventEmitter();
   @Input() status: NgStatus;
   @Output() statusChange = new EventEmitter()
-  @Input() title: string;
-  @Output() titleChange = new EventEmitter()
-  @Input() subtitle: string;
-  @Output() subtitleChange = new EventEmitter()
+  @Input() text: string;
+  @Output() textChange = new EventEmitter()
+  @Input() subText: string;
+  @Output() subTextChange = new EventEmitter()
   @Input() imageType: string;
   @Output() imageTypeChange = new EventEmitter()
   @Input() preview: boolean;

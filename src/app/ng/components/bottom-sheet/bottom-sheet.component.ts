@@ -18,7 +18,7 @@ import {OverlayService} from "@ng/services";
   styleUrls: ['./bottom-sheet.component.scss'],
 })
 export class BottomSheetComponent implements OnInit, AfterContentInit {
-  @Input() title: string;
+  @Input() header: string;
   @Input() visible: boolean;
   @Input() style: any;
   @Input() styleClass: string;
@@ -36,7 +36,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   @Output() visibleChange = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  titleTemplate: TemplateRef<any>;
+  headerTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
   _visible: boolean;
 
@@ -52,7 +52,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
     this.templates.forEach((item: TemplateDirective) => {
       switch (item.getType()) {
         case 'title':
-          this.titleTemplate = item.templateRef;
+          this.headerTemplate = item.templateRef;
           break;
 
         case 'footer':

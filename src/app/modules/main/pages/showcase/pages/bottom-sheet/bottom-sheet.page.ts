@@ -11,6 +11,7 @@ export class BottomSheetPage {
   dismissible: boolean = true;
   showCloseIcon: boolean = true;
   closeOnEscape: boolean = true;
+  header: string = 'BottomSheet Header';
 
   visible = false;
 
