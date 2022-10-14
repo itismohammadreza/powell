@@ -8,10 +8,6 @@ import {MomentFormatSpecification, MomentInput} from "jalali-moment";
   providedIn: 'root'
 })
 export class MomentService {
-
-  constructor() {
-  }
-
   setGlobalLocale(language: string) {
     moment.locale(language);
     jalaliMoment.locale(language);
@@ -42,24 +38,7 @@ export class MomentService {
   }
 
   getMoment(...input: any[]) {
-    if (!this.isValid(...input)) {
-      throw 'Invalid Date';
-    }
     return moment(...input);
-  }
-
-  getUTC(...str: any[]) {
-    if (!this.isValid(...str)) {
-      throw 'Invalid Date';
-    }
-    return moment.utc(...str);
-  }
-
-  isValid(...str: any[]) {
-    if (moment.isMoment(str)) {
-      return str.isValid();
-    }
-    return moment(...str).isValid();
   }
 
   getMin(str: Moment[]) {

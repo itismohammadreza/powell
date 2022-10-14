@@ -2,14 +2,13 @@ import {Inject, Injectable} from '@angular/core';
 import {UntypedFormGroup} from '@angular/forms';
 import {fromEvent, merge, Observable, Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {DOCUMENT, LocationStrategy} from '@angular/common';
+import {DOCUMENT} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
   constructor(
-    private location: LocationStrategy,
     @Inject(DOCUMENT) private document: Document
   ) {
   }
@@ -42,10 +41,10 @@ export class UtilsService {
     return Object.assign(result, {id: form.get('id').value});
   }
 
-  convertToTimeFormat(duration: number) {
-    const hrs = Math.floor((duration / 3600));
-    const mins = Math.floor(((duration % 3600) / 60));
-    const secs = Math.floor(duration % 60);
+  convertToTimeFormat(seconds: number) {
+    const hrs = Math.floor((seconds / 3600));
+    const mins = Math.floor(((seconds % 3600) / 60));
+    const secs = Math.floor(seconds % 60);
     let result = '';
     if (hrs > 0) {
       result += '' + hrs + ':' + (mins < 10 ? '0' : '');
@@ -73,13 +72,6 @@ export class UtilsService {
     startTime = (new Date()).getTime();
     const cacheBuster = '?nnn=' + startTime;
     download.src = imageUrl + cacheBuster;
-  }
-
-  disableBrowserBackButton() {
-    history.pushState(null, null, location.href);
-    this.location.onPopState(() => {
-      history.pushState(null, null, location.href);
-    });
   }
 
   toggleFullScreen(elem: any) {
