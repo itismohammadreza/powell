@@ -38,14 +38,14 @@ export interface NgTableFilter {
   rowFilterShowMenu?: boolean;
 }
 
-export interface NgTableRender<T = unknown> {
+export interface NgTableRender<T = any> {
   as?: NgTableRendererType | ((item: T) => string)
   width?: string;
   preview?: boolean;// use in image renderer type
   height?: string;// use in image renderer type
 }
 
-export interface NgTableColDef<T = unknown> {
+export interface NgTableColDef<T = any> {
   header?: string;
   field?: string;
   width?: string;
@@ -56,13 +56,13 @@ export interface NgTableColDef<T = unknown> {
   visible?: boolean;
 }
 
-export interface NgTableActionsConfig<T = unknown> {
+export interface NgTableActionsConfig<T = any> {
   header: string;
   inSameColumn: boolean;
   actions: NgTableAction<T>[]
 }
 
-export interface NgTableAction<T = unknown> {
+export interface NgTableAction<T = any> {
   header?: string;
   tooltip?: string;
   icon?: string;
