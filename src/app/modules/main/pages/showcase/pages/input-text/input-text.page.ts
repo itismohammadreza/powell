@@ -32,6 +32,7 @@ export class InputTextPage {
   placeholder: string = '';
   type: NgInputTypes = 'text';
   keyFilter: NgKeyFilter | RegExp = /.*/g;
+  showClear: boolean = true;
 
   akbarValidator(control: FormControl) {
     return control.value == 'akbar' ? {akbarDenied: true} : null

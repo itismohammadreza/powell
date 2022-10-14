@@ -34,7 +34,10 @@ import {GlobalConfig} from "@core/global.config";
       useExisting: forwardRef(() => InputTextComponent),
       multi: true
     }
-  ]
+  ],
+  host: {
+    '[class.p-calendar-clearable]': 'showClear && !disabled'
+  }
 })
 export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any;
@@ -57,6 +60,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Input() type: NgInputTypes = 'text';
   @Input() inputMode: NgInputModes = 'text';
   @Input() keyFilter: NgKeyFilter | RegExp;
+  @Input() showClear: boolean;
   @Output() onInput = new EventEmitter();
   @Output() onClick = new EventEmitter();
   @Output() onChange = new EventEmitter();
@@ -64,6 +68,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Output() onKeyUp = new EventEmitter();
   @Output() onBlur = new EventEmitter();
   @Output() onFocus = new EventEmitter();
+  @Output() onClear = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
 
@@ -140,6 +145,12 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   _onBlur() {
     this.onBlur.emit();
     this.onModelTouched();
+  }
+
+  clear() {
+    this.value = null;
+    this.onModelChange(this.value);
+    this.onClear.emit();
   }
 
   emitter(name: string, event: any) {

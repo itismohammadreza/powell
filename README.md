@@ -15,5 +15,4 @@
 
 ### New
 
-- [ ] **jalaliDatepicker** - implement component.
 - [ ] **whiteboard** - implement component.

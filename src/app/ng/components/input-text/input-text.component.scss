@@ -60,6 +60,13 @@
       }
     }
 
+    .p-inputtext-clear-icon {
+      position: absolute;
+      top: 50%;
+      margin-top: -.5rem;
+      cursor: pointer;
+    }
+
     &.ltr {
       direction: ltr;
 
@@ -71,10 +78,34 @@
         margin-right: 1rem;
       }
 
-      .p-float-label {
-        &.p-input-icon-left {
+      .p-input-icon-left {
+        .p-float-label {
           label {
             left: 2.25rem;
+          }
+        }
+      }
+
+
+      &.clearable {
+        .p-inputtext-clear-icon {
+          left: auto;
+          right: 0.75rem;
+        }
+
+        .p-inputtext {
+          padding-left: 0.75rem;
+          padding-right: 2.25rem;
+        }
+
+        .p-input-icon-right {
+          .p-inputtext-clear-icon {
+            right: 2.25rem;
+            left: auto;
+          }
+
+          .p-inputtext {
+            padding-right: 3.75rem;
           }
         }
       }
@@ -100,10 +131,35 @@
           right: 0.75rem;
           left: auto;
         }
+      }
 
-        &.p-input-icon-right {
+      .p-input-icon-right {
+        .p-float-label {
           label {
             right: 2.25rem;
+          }
+        }
+      }
+
+      &.clearable {
+        .p-inputtext {
+          padding-right: 0.75rem;
+          padding-left: 2.25rem;
+        }
+
+        .p-inputtext-clear-icon {
+          right: auto;
+          left: 0.75rem;
+        }
+
+        .p-input-icon-left {
+          .p-inputtext-clear-icon {
+            left: 2.25rem;
+            right: auto;
+          }
+
+          .p-inputtext {
+            padding-left: 3.75rem;
           }
         }
       }

@@ -3,7 +3,8 @@
       'ltr': !rtl,
       'label-fix-top': labelPos == 'fix-top',
       'label-fix-side': labelPos == 'fix-side',
-      'label-float': labelPos == 'float'
+      'label-float': labelPos == 'float',
+      'clearable': showClear
     }" class="input-text-wrapper">
   <div class="field"
        [ngAddon]="addon"
@@ -12,7 +13,6 @@
        (onAfterBtnClick)="emitter('onAfterBtnClick',$event)"
        (onBeforeBtnClick)="emitter('onBeforeBtnClick',$event)">
     <div [ngClass]="{
-      'p-float-label': label && labelPos == 'float',
       'p-input-icon-left': icon && iconPos == 'left',
       'p-input-icon-right': icon && iconPos == 'right',
       'p-inputtext-sm': inputSize == 'sm',
@@ -20,28 +20,34 @@
       'p-input-filled': filled
     }">
       <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
-      <input
-        pInputText
-        [(ngModel)]="value"
-        [attr.id]="inputId"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-        [attr.maxlength]="maxlength"
-        [attr.placeholder]="placeholder"
-        [attr.type]="type"
-        [attr.inputmode]="inputMode"
-        [disabled]="disabled"
-        [readonly]="readonly"
-        [pKeyFilter]="keyFilter"
-        (blur)="_onBlur()"
-        (change)="_onChange($event)"
-        (click)="emitter('onClick', $event)"
-        (focus)="emitter('onFocus', $event)"
-        (input)="_onInput($event)"
-        (keydown)="_onKeyDown($event)"
-        (keyup)="_onKeyUp($event)"/>
-      <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
-        {{ label }}
-      </label>
+      <div [class.p-float-label]="label && labelPos == 'float'">
+        <input
+          pInputText
+          [(ngModel)]="value"
+          [attr.id]="inputId"
+          [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+          [attr.maxlength]="maxlength"
+          [attr.placeholder]="placeholder"
+          [attr.type]="type"
+          [attr.inputmode]="inputMode"
+          [disabled]="disabled"
+          [readonly]="readonly"
+          [pKeyFilter]="keyFilter"
+          (blur)="_onBlur()"
+          (change)="_onChange($event)"
+          (click)="emitter('onClick', $event)"
+          (focus)="emitter('onFocus', $event)"
+          (input)="_onInput($event)"
+          (keydown)="_onKeyDown($event)"
+          (keyup)="_onKeyUp($event)"/>
+        <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
+          {{ label }}
+        </label>
+        <i *ngIf="showClear && !disabled && value != null"
+           class="p-inputtext-clear-icon pi pi-times"
+           (click)="clear()">
+        </i>
+      </div>
     </div>
   </div>
   <label
