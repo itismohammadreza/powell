@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {GlobalConfig} from "@core/global.config";
 import {NgAddon, NgLabelPosition} from "@ng/models/forms";
 import {NgIconPosition, NgSize} from "@ng/models/offset";
+import {MomentService} from "@ng/services";
 
 @Component({
   selector: 'ng-jalali-datepicker-page',
@@ -10,8 +11,11 @@ import {NgIconPosition, NgSize} from "@ng/models/offset";
   styleUrls: ['./jalali-datepicker.page.scss']
 })
 export class JalaliDatepickerPage {
+  constructor(private momentService: MomentService) {
+  }
+
   form = new UntypedFormGroup({
-    c1: new UntypedFormControl(null, [Validators.required]),
+    c1: new UntypedFormControl(this.momentService.getJalaliMoment('1396/08/25 21:00','jYYYY/jMM/jDD hh:mm'), [Validators.required]),
   });
   binding;
 
@@ -51,4 +55,8 @@ export class JalaliDatepickerPage {
   view: 'date' | 'month' | 'year' = 'date';
   touchUI: boolean = false;
   showClear: boolean = false;
+
+  submit() {
+    console.log(this.form.value)
+  }
 }

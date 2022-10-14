@@ -1,7 +1,7 @@
 <div class="container">
   <p-card dir="ltr"
-          header="Calendar"
-          subheader="Calendar is an input component to select a date."></p-card>
+          header="JalaliDatepicker"
+          subheader="JalaliDatepicker is an input component to select a jalali date."></p-card>
   <p-panel dir="ltr" header="Options">
     <ng-preview-options
       [previewItems]="[
@@ -51,6 +51,7 @@
       [(iconPos)]="iconPos"
       [(selectiveSize)]="inputSize"
       [(addon)]="addon"
+      [(datepickerSelectionMode)]="selectionMode"
       [(placeholder)]="placeholder"
       [(disabled)]="disabled"
       [(inline)]="inline"
@@ -63,6 +64,7 @@
       [(readonlyInput)]="readonlyInput"
       [(shortYearCutoff)]="shortYearCutoff"
       [(showTime)]="showTime"
+      [(hourFormat)]="hourFormat"
       [(timeOnly)]="timeOnly"
       [(showSeconds)]="showSeconds"
       [(stepHour)]="stepHour"
@@ -71,6 +73,7 @@
       [(showButtonBar)]="showButtonBar"
       [(hideOnDateTimeSelect)]="hideOnDateTimeSelect"
       [(numberOfMonths)]="numberOfMonths"
+      [(view)]="view"
       [(touchUI)]="touchUI"
       [(showClear)]="showClear"
     ></ng-preview-options>
