@@ -250,6 +250,7 @@ export class OverlayService {
         this.setAnyDialogVisible(false)
         submitSubscription.unsubscribe();
         closeSubscription.unsubscribe();
+        resolve.next(null);
       })
     })
   }
