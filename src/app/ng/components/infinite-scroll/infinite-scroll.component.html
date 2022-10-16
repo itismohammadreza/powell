@@ -1,5 +1,14 @@
-<ng-content></ng-content>
+<ng-container *ngFor="let item of data">
+  <ng-container *ngTemplateOutlet="contentTemplate;context:{$implicit:item}"></ng-container>
+</ng-container>
 <div class="loading">
-  <p-progressSpinner [style]="{width:spinnerWidth}" *ngIf="loading"></p-progressSpinner>
+  <ng-container *ngIf="loadingTemplate;else alternativeLoading">
+    <ng-container *ngIf="loading || !data.length">
+      <ng-container *ngTemplateOutlet="loadingTemplate"></ng-container>
+    </ng-container>
+  </ng-container>
+  <ng-template #alternativeLoading>
+    <p-progressSpinner [style]="{width:spinnerWidth}" *ngIf="loading || data.length"></p-progressSpinner>
+  </ng-template>
 </div>
 <div #anchor></div>

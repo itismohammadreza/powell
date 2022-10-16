@@ -1,25 +1,32 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'ng-infinite-scroll-page',
   templateUrl: './infinite-scroll.page.html',
   styleUrls: ['./infinite-scroll.page.scss']
 })
-export class InfiniteScrollPage {
+export class InfiniteScrollPage implements OnInit {
+  list: any[] = []
 
-  list: any[] = this.generateList();
-  loading = false;
+  ngOnInit() {
+    this.initListLazy()
+  }
 
-  onScroll() {
-    this.loading = true;
+  initListLazy() {
     setTimeout(() => {
       this.list.push(...this.generateList())
-      this.loading = false;
+    }, 2000)
+  }
+
+  onScroll(callback: Function) {
+    setTimeout(() => {
+      this.list.push(...this.generateList())
+      callback()
     }, 2000)
   }
 
   generateList() {
     const lastIndex = this.list?.length || 0;
-    return Array.from(Array(50).keys(), (item, i) => `item-${lastIndex + i}`)
+    return Array.from(Array(20).keys(), (item, i) => `item-${lastIndex + i}`)
   }
 }

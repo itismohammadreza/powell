@@ -3,11 +3,13 @@
           header="InfiniteScroll"
           subheader="InfiniteScroll is a container to implement infinitely loading data."></p-card>
   <p-panel dir="ltr" header="Preview">
-    <ng-infinite-scroll (scrolled)="onScroll()">
-      <p *ngFor="let item of list">{{item}}</p>
-      <b *ngIf="loading">
-        Fetching Items...
-      </b>
+    <ng-infinite-scroll [data]="list" (scrolled)="onScroll($event)">
+      <ng-template ngTemplate="content" let-item>
+        <p>{{item}}</p>
+      </ng-template>
+      <ng-template ngTemplate="loading">
+        <i class="pi pi-spinner pi-spin h3"></i>
+      </ng-template>
     </ng-infinite-scroll>
   </p-panel>
 </div>

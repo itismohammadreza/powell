@@ -1,14 +1,17 @@
 import {
   AfterContentInit,
   Component,
+  ContentChildren,
   ElementRef,
   EventEmitter,
   Input,
   OnDestroy,
-  OnInit,
   Output,
+  QueryList,
+  TemplateRef,
   ViewChild
 } from '@angular/core';
+import {TemplateDirective} from "@ng/directives/template.directive";
 
 @Component({
   selector: 'ng-infinite-scroll',
@@ -17,10 +20,14 @@ import {
 })
 export class InfiniteScrollComponent implements AfterContentInit, OnDestroy {
 
+  @Input() data: any[];
   @Input() spinnerWidth: string = '40px';
   @Output() scrolled = new EventEmitter();
   @ViewChild('anchor', {static: true}) anchor: ElementRef<HTMLElement>;
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
+  contentTemplate: TemplateRef<any>;
+  loadingTemplate: TemplateRef<any>;
   observer: IntersectionObserver;
   loading: boolean;
 
@@ -28,13 +35,27 @@ export class InfiniteScrollComponent implements AfterContentInit, OnDestroy {
   }
 
   ngAfterContentInit() {
+    this.templates.forEach((item: TemplateDirective) => {
+      switch (item.getType()) {
+        case 'content':
+          this.contentTemplate = item.templateRef;
+          break;
+
+        case 'loading':
+          this.loadingTemplate = item.templateRef;
+          break;
+      }
+    });
     this.observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
+      if (this.loading) {
+        return;
+      }
+      if (entry.isIntersecting && this.data.length) {
         this.showLoading()
         this.scrolled.emit(this.hideLoading);
       }
     }, {
-      root: this.isHostScrollable() ? this.el.nativeElement : null
+      root: this.isHostScrollable() ? this.el.nativeElement : null,
     });
     this.observer.observe(this.anchor.nativeElement);
   }
