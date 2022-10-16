@@ -44,5 +44,17 @@
       font-size: 14px;
       line-height: 1.6;
     }
+
+    &.rtl {
+      .status-content {
+        direction: rtl;
+      }
+    }
+
+    &.ltr {
+      .status-content {
+        direction: ltr;
+      }
+    }
   }
 }

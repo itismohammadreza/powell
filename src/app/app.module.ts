@@ -10,6 +10,7 @@ import {SharedModule} from "@shared/shared.module";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {EnvServiceProvider, TranslationService} from "@core/utils";
+import {NotFoundPage} from '@modules/layout/not-found/not-found.page';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -23,7 +24,8 @@ export function InitializeLanguage(translationService: TranslationService) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundPage
   ],
   imports: [
     CommonModule,

@@ -25,8 +25,7 @@ export class ApiService {
 
   protected _get<T>(
     endpoint: string,
-    options: RequestOptions = null,
-    mappingKey: string = null
+    options: RequestOptions = null
   ): Observable<T> {
     return this.http.get<T>(`${this.baseUrl}/${endpoint}`, {
       ...options,
@@ -121,7 +120,6 @@ export class ApiService {
     }
     return formData;
   }
-
 
   private getHttpParams(params: any): HttpParams {
     let httpParams: HttpParams = new HttpParams();

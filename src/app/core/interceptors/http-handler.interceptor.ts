@@ -33,7 +33,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     const clonedReq = request.clone();
     const shouldShowSuccess = this.isRequestFounded(this.hasSuccessMessageApis, request);
     const shouldShowFailure = this.isRequestFounded(this.hasFailureMessageApis, request);
-    const shouldShowLoading = this.isRequestFounded(this.hasLoadingApis, request)
+    const shouldShowLoading = this.isRequestFounded(this.hasLoadingApis, request);
     const shouldCatch = this.isRequestFounded(this.catchEnabledApis, request);
 
     if (shouldCatch) {

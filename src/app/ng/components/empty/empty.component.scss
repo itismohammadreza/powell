@@ -17,5 +17,17 @@
     .empty-title {
       margin-top: 1.5rem;
     }
+
+    &.rtl {
+      .empty-title {
+        direction: rtl;
+      }
+    }
+
+    &.ltr {
+      .empty-title {
+        direction: ltr;
+      }
+    }
   }
 }
