@@ -38,7 +38,6 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
 
   headerTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
-  _visible: boolean;
 
   constructor(private overlayService: OverlayService) {
   }

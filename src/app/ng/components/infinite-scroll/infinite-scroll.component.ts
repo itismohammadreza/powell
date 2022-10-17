@@ -50,7 +50,7 @@ export class InfiniteScrollComponent implements AfterContentInit, OnDestroy {
       if (this.loading) {
         return;
       }
-      if (entry.isIntersecting && this.data.length) {
+      if (entry.isIntersecting) {
         this.showLoading()
         this.scrolled.emit(this.hideLoading);
       }

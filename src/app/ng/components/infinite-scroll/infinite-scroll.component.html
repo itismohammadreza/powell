@@ -4,12 +4,12 @@
 </ng-container>
 <div class="loading">
   <ng-container *ngIf="loadingTemplate;else alternativeLoading">
-    <ng-container *ngIf="loading || !data.length">
+    <ng-container *ngIf="loading">
       <ng-container *ngTemplateOutlet="loadingTemplate"></ng-container>
     </ng-container>
   </ng-container>
   <ng-template #alternativeLoading>
-    <p-progressSpinner [style]="{width:spinnerWidth}" *ngIf="loading || data.length"></p-progressSpinner>
+    <p-progressSpinner [style]="{width:spinnerWidth}" *ngIf="loading"></p-progressSpinner>
   </ng-template>
 </div>
 <div #anchor></div>

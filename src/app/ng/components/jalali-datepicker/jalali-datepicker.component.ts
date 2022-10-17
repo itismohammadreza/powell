@@ -20,7 +20,8 @@ import {
   UntypedFormGroup
 } from "@angular/forms";
 import {
-  NgAddon, NgDatepickerDateType,
+  NgAddon,
+  NgDatepickerDateType,
   NgDatepickerHourFormat,
   NgDatepickerSelectionMode,
   NgDatepickerViewMode,

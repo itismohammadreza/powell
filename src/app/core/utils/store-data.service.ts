@@ -19,4 +19,9 @@ export class StoreDataService {
   get() {
     return this.storeDataSubject.getValue();
   }
+
+  clear() {
+    this.data = null;
+    this.storeDataSubject.next(this.data);
+  }
 }
