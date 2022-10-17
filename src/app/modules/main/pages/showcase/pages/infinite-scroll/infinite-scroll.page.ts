@@ -26,7 +26,6 @@ export class InfiniteScrollPage implements OnInit {
   }
 
   generateList() {
-    const lastIndex = this.list?.length || 0;
-    return Array.from(Array(20).keys(), (item, i) => `item-${lastIndex + i}`)
+    return Array.from(Array(20).keys(), () => 'item')
   }
 }

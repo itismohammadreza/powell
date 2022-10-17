@@ -1,5 +1,6 @@
-<ng-container *ngFor="let item of data">
-  <ng-container *ngTemplateOutlet="contentTemplate;context:{$implicit:item}"></ng-container>
+<ng-container *ngFor="let item of data;let i=index;let first=first;let last=last">
+  <ng-container
+    *ngTemplateOutlet="contentTemplate;context:{$implicit:item,index:i,first:first,last:last}"></ng-container>
 </ng-container>
 <div class="loading">
   <ng-container *ngIf="loadingTemplate;else alternativeLoading">
