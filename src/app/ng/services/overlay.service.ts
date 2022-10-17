@@ -10,7 +10,7 @@ import {
 } from '@ng/models/overlay';
 import {Confirmation, ConfirmationService, ConfirmEventType, Message, MessageService} from 'primeng/api';
 import {DialogComponent} from '@ng/components/dialog/dialog.component';
-import {DOCUMENT, LocationStrategy} from '@angular/common';
+import {DOCUMENT} from '@angular/common';
 import {Toast} from 'primeng/toast';
 import {ConfirmPopup} from 'primeng/confirmpopup';
 import {ConfirmDialog} from 'primeng/confirmdialog';
@@ -34,7 +34,6 @@ export class OverlayService {
     private messageService: MessageService,
     private injector: Injector,
     private appRef: ApplicationRef,
-    private locationStrategy: LocationStrategy,
     @Inject(DOCUMENT) private document: Document,
   ) {
   }
