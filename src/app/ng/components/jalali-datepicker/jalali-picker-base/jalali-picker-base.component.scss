@@ -1,3 +1,21 @@
+.p-datepicker-group-container {
+  direction: rtl;
+
+  .pi-chevron-right:before {
+    content: "\e900";
+  }
+
+  .pi-chevron-left:before {
+    content: "\e901";
+  }
+}
+
+.p-monthpicker,
+.p-yearpicker {
+  direction: rtl;
+}
+
+
 button.p-link {
   font-family: inherit;
 }
