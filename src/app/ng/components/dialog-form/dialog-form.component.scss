@@ -1,11 +1,6 @@
 :host ::ng-deep {
   .p-dialog-form {
-    .footer {
-      padding-top: 2rem;
-      margin-top: 2rem;
-    }
-
-    form > *:nth-last-child(n+3) {
+    form > *:not(:last-child) {
       margin-bottom: 1.75rem;
     }
 

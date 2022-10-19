@@ -193,6 +193,7 @@ export class DialogFormComponent {
   }
 
   onSubmitClick(closeCallback: any) {
+    this.form.markAllAsTouched();
     if (this.form.invalid) {
       closeCallback();
       return;

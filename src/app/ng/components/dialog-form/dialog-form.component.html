@@ -1404,7 +1404,9 @@
     <div class="col-12" *ngIf="options.formValidator && form.hasError(options.formValidator.type)">
       <div class="p-error" [ngStyle]="options.formValidator.style" [innerHTML]="options.formValidator.message"></div>
     </div>
-    <div class="col-12 footer d-flex align-content-center justify-content-end border-top">
+  </form>
+  <ng-template pTemplate="footer">
+    <div class="footer d-flex align-content-center">
       <ng-button
         *ngIf="options.rejectVisible"
         [styleClass]="options.rejectButtonStyleClass"
@@ -1434,5 +1436,5 @@
         (onClickAsync)="onSubmitClick($event)"
       ></ng-button>
     </div>
-  </form>
+  </ng-template>
 </p-dialog>
