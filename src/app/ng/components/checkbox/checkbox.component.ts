@@ -172,6 +172,7 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
       const control = this.ngControl.control;
       return (control.touched || control.dirty) && control.invalid;
     }
+    return false
   }
 
   hasError(type: string): boolean {

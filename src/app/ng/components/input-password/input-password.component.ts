@@ -206,6 +206,7 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
       const control = this.ngControl.control;
       return (control.touched || control.dirty) && control.invalid;
     }
+    return false
   }
 
   hasError(type: string): boolean {

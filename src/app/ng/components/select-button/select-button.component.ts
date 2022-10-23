@@ -138,6 +138,7 @@ export class SelectButtonComponent implements OnInit, AfterViewInit, ControlValu
       const control = this.ngControl.control;
       return (control.touched || control.dirty) && control.invalid;
     }
+    return false
   }
 
   hasError(type: string): boolean {
