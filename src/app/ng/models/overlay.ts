@@ -61,6 +61,12 @@ export interface NgToastOptions {
   rtl?: boolean;
 }
 
+export interface NgMessageOptions {
+  summary?: string;
+  detail?: string;
+  icon?: string;
+}
+
 export interface NgConfirmPopupOptions {
   key?: string;
   message?: string;
@@ -82,6 +88,7 @@ export interface NgConfirmPopupOptions {
   showTransitionOptions?: string;
   hideTransitionOptions?: string;
 
+  buttonFull?: boolean;
   acceptColor?: NgColor;
   acceptAppearance?: NgButtonAppearance;
   rejectColor?: NgColor;
@@ -121,6 +128,7 @@ export interface NgConfirmDialogOptions {
   rejectButtonStyleClass?: string;
   defaultFocus?: NgDefaultFocus
 
+  buttonFull?: boolean;
   acceptColor?: NgColor;
   acceptAppearance?: NgButtonAppearance;
   rejectColor?: NgColor;
@@ -128,12 +136,6 @@ export interface NgConfirmDialogOptions {
   buttonSize?: NgSize;
   buttonIconPos?: NgIconPosition;
   rtl?: boolean;
-}
-
-export interface NgMessageOptions {
-  summary?: string;
-  detail?: string;
-  icon?: string;
 }
 
 export interface NgDialogOptions {
@@ -167,6 +169,7 @@ export interface NgDialogOptions {
   minimizeIcon?: string;
   maximizeIcon?: string;
 
+  //add this to other
   buttonStyleClass?: string;
   buttonIcon?: string;
   buttonIconPos?: NgIconPosition;
@@ -177,17 +180,6 @@ export interface NgDialogOptions {
   buttonSize?: NgSize;
   rtl?: boolean;
   content?: string;
-}
-
-export interface NgDialogFormResult {
-  formValue: any;
-  changeDialogVisibilityTo: (visibility?: boolean) => void
-}
-
-export interface NgDialogFormValidation {
-  type: NgValidationType | string;
-  validator: ValidatorFn;
-  message: string | ((control: AbstractControl) => string);
 }
 
 export interface NgDialogFormOptions {
@@ -246,6 +238,16 @@ export interface NgDialogFormOptions {
   rtl?: boolean;
 }
 
+export interface NgDialogFormResult {
+  formValue: any;
+  changeDialogVisibilityTo: (visibility?: boolean) => void
+}
+
+export interface NgDialogFormValidation {
+  type: NgValidationType | string;
+  validator: ValidatorFn;
+  message: string | ((control: AbstractControl) => string);
+}
 
 export interface NgDialogFormEventRes {
   event?: any,

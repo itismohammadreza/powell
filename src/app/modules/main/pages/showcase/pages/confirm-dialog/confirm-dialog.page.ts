@@ -32,6 +32,7 @@ export class ConfirmDialogPage {
     dismissableMask: false,
     defaultFocus: 'accept',
     blockScroll: false,
+    buttonFull: false,
     rtl: GlobalConfig.rtl,
     style: {width: '400px'}
   }

@@ -26,6 +26,7 @@ export class ConfirmPopupPage {
     buttonSize: 'md',
     rejectColor: 'primary',
     rejectAppearance: 'outlined',
+    buttonFull: false,
     defaultFocus: 'accept',
     rtl: GlobalConfig.rtl
   }
