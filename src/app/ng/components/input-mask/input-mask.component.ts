@@ -160,6 +160,7 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
       const control = this.ngControl.control;
       return (control.touched || control.dirty) && control.invalid;
     }
+    return false
   }
 
   hasError(type: string): boolean {

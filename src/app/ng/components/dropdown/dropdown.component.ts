@@ -244,6 +244,7 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
       const control = this.ngControl.control;
       return (control.touched || control.dirty) && control.invalid;
     }
+    return false
   }
 
   hasError(type: string): boolean {
