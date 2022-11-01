@@ -32,7 +32,7 @@
         (onClick)="onVisibleChange(false)">
       </ng-button>
     </div>
-    <div class="content px-3">
+    <div class="content" [class.px-3]="gutter">
       <ng-content></ng-content>
     </div>
     <div class="footer px-3 py-2" *ngIf="footerTemplate">
