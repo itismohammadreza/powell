@@ -39,7 +39,6 @@ export interface NgToastOptions {
   summary?: string;
   detail?: string;
   id?: any;
-  key?: string;
   icon?: string;
   life?: number;
   sticky?: boolean;
@@ -68,7 +67,6 @@ export interface NgMessageOptions {
 }
 
 export interface NgConfirmPopupOptions {
-  key?: string;
   message?: string;
   icon?: string;
   autoZIndex?: boolean;
@@ -100,7 +98,6 @@ export interface NgConfirmPopupOptions {
 
 export interface NgConfirmDialogOptions {
   header?: string;
-  key?: string;
   blockScroll?: boolean;
   message?: string;
   icon?: string;

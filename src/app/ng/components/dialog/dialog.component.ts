@@ -17,11 +17,14 @@ export class DialogComponent {
 
   close() {
     this.visible = false;
-    this.onClose.emit();
   }
 
   onButtonClick() {
     this.visible = false;
-    this.onClose.emit(null);
+    this.onClose.emit();
+  }
+
+  onHide() {
+    this.onClose.emit();
   }
 }

@@ -10,13 +10,14 @@ import {
 } from '@ng/models/overlay';
 import {Confirmation, ConfirmationService, ConfirmEventType, Message, MessageService} from 'primeng/api';
 import {DialogComponent} from '@ng/components/dialog/dialog.component';
-import {DOCUMENT} from '@angular/common';
+import {DOCUMENT, LocationStrategy} from '@angular/common';
 import {Toast} from 'primeng/toast';
 import {ConfirmPopup} from 'primeng/confirmpopup';
 import {ConfirmDialog} from 'primeng/confirmdialog';
 import {BehaviorSubject, Observable} from "rxjs";
 import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
 import {GlobalConfig} from "@core/global.config";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -28,14 +29,34 @@ export class OverlayService {
   private dialogCmpRef: ComponentRef<DialogComponent>;
   private dialogFormCmpRef: ComponentRef<DialogFormComponent>;
   private anyDialogVisibleSubject = new BehaviorSubject<boolean>(false);
+  private states: string[] = [];
 
   constructor(
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private injector: Injector,
     private appRef: ApplicationRef,
+    private router: Router,
+    private location: LocationStrategy,
     @Inject(DOCUMENT) private document: Document,
   ) {
+    this.location.onPopState((e) => {
+      const currentState = this.states.pop();
+      switch (currentState) {
+        case 'dialog':
+          this.dialogCmpRef?.instance.close();
+          break;
+        case 'dialogForm':
+          this.dialogFormCmpRef?.instance.close();
+          break;
+        case 'confirm':
+          this.confirmationService.close()
+          break;
+        case 'message':
+          this.messageService.clear();
+          break;
+      }
+    })
   }
 
   showToast(options: NgToastOptions): Promise<boolean> {
@@ -83,7 +104,6 @@ export class OverlayService {
     this.confirmPopupCmpRef.instance.baseZIndex = options.baseZIndex || 1000;
     this.confirmPopupCmpRef.instance.style = options.style;
     this.confirmPopupCmpRef.instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
-
     const confirmation: Confirmation = {
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: 'تایید',
@@ -96,15 +116,18 @@ export class OverlayService {
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
     }
     return new Promise((accept) => {
-      this.setAnyDialogVisible(true);
+      // this.setAnyDialogVisible(true);
+      this.pushState('confirm')
       this.confirmationService.confirm({
         ...confirmation,
         accept: () => {
-          this.setAnyDialogVisible(false);
+          // this.setAnyDialogVisible(false);
+          this.popState()
           accept(true);
         },
         reject: () => {
-          this.setAnyDialogVisible(false);
+          // this.setAnyDialogVisible(false);
+          this.popState()
           accept(false);
         },
       });
@@ -138,15 +161,18 @@ export class OverlayService {
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
     }
     return new Promise((accept) => {
-      this.setAnyDialogVisible(true);
+      // this.setAnyDialogVisible(true);
+      this.pushState('confirm')
       this.confirmationService.confirm({
         ...confirmation,
         accept: () => {
-          this.setAnyDialogVisible(false);
+          this.popState();
+          // this.setAnyDialogVisible(false);
           accept(true);
         },
         reject: (type: ConfirmEventType) => {
-          this.setAnyDialogVisible(false);
+          this.popState();
+          // this.setAnyDialogVisible(false);
           switch (type) {
             case ConfirmEventType.REJECT:
               accept(false);
@@ -192,10 +218,13 @@ export class OverlayService {
     }
     this.dialogCmpRef.instance.options = dialog;
     this.dialogCmpRef.instance.show();
-    this.setAnyDialogVisible(true);
+    this.pushState('dialog')
+    // this.setAnyDialogVisible(true);
     return new Promise((accept) => {
       const subscription = this.dialogCmpRef.instance.onClose.subscribe(() => {
-        this.setAnyDialogVisible(false);
+        console.log('button click')
+        // this.setAnyDialogVisible(false);
+        this.popState()
         subscription.unsubscribe();
         accept();
       });
@@ -264,13 +293,12 @@ export class OverlayService {
     return componentRef;
   }
 
-
   closeAnyOpenDialog() {
     this.messageService.clear();
     this.confirmationService.close();
     this.dialogCmpRef?.instance.close();
     this.dialogFormCmpRef?.instance.close();
-    this.setAnyDialogVisible(false)
+    // this.setAnyDialogVisible(false)
   }
 
   isAnyDialogOpen() {
@@ -295,5 +323,18 @@ export class OverlayService {
 
   private bodyContains(componentRef: ComponentRef<any>) {
     return this.document.body.contains(componentRef?.location.nativeElement);
+  }
+
+  private getId() {
+    return "id" + Math.random().toString(16).slice(2);
+  }
+
+  private pushState(state: 'message' | 'confirm' | 'dialog' | 'dialogForm') {
+    this.location.pushState({state}, '', this.router.url, '');
+    this.states.push(state)
+  }
+
+  private popState() {
+    this.location.back()
   }
 }

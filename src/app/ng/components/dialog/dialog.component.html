@@ -28,7 +28,8 @@
   [closeIcon]="options.closeIcon"
   [closeTabindex]="options.closeTabindex"
   [minimizeIcon]="options.minimizeIcon"
-  [maximizeIcon]="options.maximizeIcon">
+  [maximizeIcon]="options.maximizeIcon"
+  (onHide)="onHide()">
 
   <ng-template pTemplate="content">
     <div [innerHTML]="options.content | ngSafe:'html'"></div>
@@ -45,7 +46,7 @@
       [label]="options.buttonLabel"
       [size]="options.buttonSize"
       [styleClass]="options.buttonStyleClass"
-      (click)="onButtonClick()"
+      (onClick)="onButtonClick()"
     ></ng-button>
   </ng-template>
 </p-dialog>
