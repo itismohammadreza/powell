@@ -52,12 +52,18 @@ import {DialogPage} from "@modules/main/pages/showcase/pages/dialog/dialog.page"
 import {LoadingContainerPage} from "@modules/main/pages/showcase/pages/loading-container/loading-container.page";
 import {InfiniteScrollPage} from "@modules/main/pages/showcase/pages/infinite-scroll/infinite-scroll.page";
 import {OpenDialogGuard} from "@core/guard";
+import {AnimateOnScrollPage} from "@modules/main/pages/showcase/pages/animate-on-scroll/animate-on-scroll.page";
 
 const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardPage,
     title: 'dashboard'
+  },
+  {
+    path: 'animate-on-scroll',
+    component: AnimateOnScrollPage,
+    title: 'animate-on-scroll'
   },
   {
     path: 'auto-complete',

@@ -1,0 +1,97 @@
+<div class="container">
+  <p-card dir="ltr"
+          header="AnimateOnScroll"
+          subheader="AnimateOnScroll is a directive to animate content while scrolling."></p-card>
+
+  <div class="row py-5">
+    <div class="col-12 col-md-6 col-lg-4" [ngAnimateOnScroll]="'fadeInDown'" [threshold]="0.5">
+      <div class="card">
+        <img src="assets/images/sunset.jpg" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4" [ngAnimateOnScroll]="'fadeInDown'" delay="100ms">
+      <div class="card">
+        <img src="assets/images/mountains.jpg" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4" [ngAnimateOnScroll]="'fadeInDown'" delay="200ms">
+      <div class="card">
+        <img src="assets/images/tiger.jpg" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row py-5" [ngAnimateOnScroll]="'fadeInLeft'">
+    <div class="col">
+      <h4>Divs containing other elements like buttons or forms</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet
+        elit feugiat, venenatis turpis id, pharetra felis. Cras mollis vitae
+        orci eget volutpat. Proin dapibus massa vitae lacus maximus, vitae
+        cursus diam sodales. Curabitur laoreet nunc sit amet est sagittis
+        rutrum. Nulla at ante sed elit scelerisque vestibulum. Vivamus commodo
+        mauris ante, quis varius ante dictum vel. Mauris in est volutpat, auctor
+        diam ut, pretium est. Suspendisse ...
+      </p>
+
+      <div class="btn-group">
+        <button type="button" class="mr-2 btn-lg btn btn-secondary">Left</button>
+        <button type="button" class="mr-2 btn-lg btn btn-secondary">Middle</button>
+        <button type="button" class="mr-2 btn-lg btn btn-secondary">Right</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row py-5" [ngAnimateOnScroll]="'fadeInRight'">
+    <div class="col">
+      <h4>Sections of text</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet
+        elit feugiat, venenatis turpis id, pharetra felis. Cras mollis vitae
+        orci eget volutpat. Proin dapibus massa vitae lacus maximus, vitae
+        cursus diam sodales. Curabitur laoreet nunc sit amet est sagittis
+        rutrum. Nulla at ante sed elit scelerisque vestibulum. Vivamus commodo
+        mauris ante, quis varius ante dictum vel. Mauris in est volutpat, auctor
+        diam ut, pretium est. Suspendisse ...
+      </p>
+    </div>
+  </div>
+
+  <div class="row py-5">
+    <div class="col">
+      <h4>Images</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-lg-6 p-3" [ngAnimateOnScroll]="'zoomInDown'">
+      <img src="assets/images/sunset.jpg" class="img-fluid rounded float-left"/>
+    </div>
+    <div class="col-md-12 col-lg-6 p-3" [ngAnimateOnScroll]="'zoomInDown'">
+      <img src="assets/images/tiger.jpg" class="img-fluid rounded float-left"/>
+    </div>
+    <div class="col-md-12 col-lg-6 p-3" [ngAnimateOnScroll]="'zoomInDown'">
+      <img src="assets/images/mountains.jpg" class="img-fluid rounded float-left"/>
+    </div>
+  </div>
+</div>

@@ -62,6 +62,7 @@ import {ConfirmPopupPage} from "@modules/main/pages/showcase/pages/confirm-popup
 import {DialogPage} from "@modules/main/pages/showcase/pages/dialog/dialog.page";
 import {LoadingContainerPage} from "@modules/main/pages/showcase/pages/loading-container/loading-container.page";
 import {InfiniteScrollPage} from "@modules/main/pages/showcase/pages/infinite-scroll/infinite-scroll.page";
+import {AnimateOnScrollPage} from "@modules/main/pages/showcase/pages/animate-on-scroll/animate-on-scroll.page";
 
 export const COMPONENTS: Type<any>[] = [
   // components
@@ -73,6 +74,7 @@ export const COMPONENTS: Type<any>[] = [
   PreviewOptionsComponent,
   SmokeComponent,
   // pages
+  AnimateOnScrollPage,
   AutoCompletePage,
   BottomSheetPage,
   ButtonPage,

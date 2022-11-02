@@ -115,6 +115,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     const sidebarTypes: SidebarType[] = ['overlay', 'overlay-mask', 'push', 'push-mask', 'hover', 'static', 'horizontal'];
     const sidebarItems: string[] = [
       'dashboard',
+      'animate-on-scroll',
       'auto-complete',
       'bottom-sheet',
       'button',
