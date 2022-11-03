@@ -32,6 +32,7 @@
   [minimizeIcon]="options.minimizeIcon"
   [maximizeIcon]="options.maximizeIcon"
   (onShow)="setDefaultFocus()"
+  (onHide)="close()"
   #dialogWrapper>
   <form [formGroup]="form" class="form-row pt-3">
     <ng-container *ngFor="let config of config">

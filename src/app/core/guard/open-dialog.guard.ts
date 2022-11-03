@@ -12,18 +12,18 @@ export class OpenDialogGuard implements CanDeactivate<any> {
               private location: Location) {
   }
 
-  canDeactivate(component: any,
-                currentRoute: ActivatedRouteSnapshot,
-                currentState: RouterStateSnapshot,
-                nextState?: RouterStateSnapshot): Promise<boolean> | boolean {
-    if (this.overlayService.isAnyDialogOpen()) {
-      this.overlayService.closeAnyOpenDialog();
-      const currentUrlTree = this.router.createUrlTree([], currentRoute);
-      const currentUrl = currentUrlTree.toString();
-      this.location.go(currentUrl);
-      return false;
-    } else {
-      return true;
-    }
+  async canDeactivate(component: any,
+                      currentRoute: ActivatedRouteSnapshot,
+                      currentState: RouterStateSnapshot,
+                      nextState?: RouterStateSnapshot): Promise<boolean> {
+    // if (this.overlayService.isAnyDialogOpen()) {
+    await this.overlayService.closeAnyOpenDialog();
+    // const currentUrlTree = this.router.createUrlTree([], currentRoute);
+    // const currentUrl = currentUrlTree.toString();
+    // this.location.go(currentUrl);
+    // return false;
+    // } else {
+    return true;
+    // }
   }
 }

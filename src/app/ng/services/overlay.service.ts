@@ -1,4 +1,13 @@
-import {ApplicationRef, ComponentRef, createComponent, Inject, Injectable, Injector, Type} from '@angular/core';
+import {
+  ApplicationRef,
+  ComponentRef,
+  createComponent,
+  Inject,
+  Injectable,
+  Injector,
+  TemplateRef,
+  Type
+} from '@angular/core';
 import {
   NgConfirmDialogOptions,
   NgConfirmPopupOptions,
@@ -14,10 +23,13 @@ import {DOCUMENT, LocationStrategy} from '@angular/common';
 import {Toast} from 'primeng/toast';
 import {ConfirmPopup} from 'primeng/confirmpopup';
 import {ConfirmDialog} from 'primeng/confirmdialog';
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, last, Observable} from "rxjs";
 import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
 import {GlobalConfig} from "@core/global.config";
 import {Router} from "@angular/router";
+import {Sidebar} from "primeng/sidebar";
+
+type HistoryState = 'message' | 'confirm' | 'dialog' | 'dialogForm' | 'toast';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +40,8 @@ export class OverlayService {
   private confirmCmpRef: ComponentRef<ConfirmDialog>;
   private dialogCmpRef: ComponentRef<DialogComponent>;
   private dialogFormCmpRef: ComponentRef<DialogFormComponent>;
-  private anyDialogVisibleSubject = new BehaviorSubject<boolean>(false);
+  private bottomSheetCmpRef: ComponentRef<Sidebar>;
+  // private anyDialogVisibleSubject = new BehaviorSubject<boolean>(false);
   private states: string[] = [];
 
   constructor(
@@ -44,13 +57,13 @@ export class OverlayService {
       const currentState = this.states.pop();
       switch (currentState) {
         case 'dialog':
-          this.dialogCmpRef?.instance.close();
+          this.dialogCmpRef.instance.close();
           break;
         case 'dialogForm':
-          this.dialogFormCmpRef?.instance.close();
+          this.dialogFormCmpRef.instance.close();
           break;
         case 'confirm':
-          this.confirmationService.close()
+          this.confirmationService.close();
           break;
         case 'message':
           this.messageService.clear();
@@ -82,12 +95,14 @@ export class OverlayService {
     this.toastCmpRef.instance.hideTransformOptions = options.hideTransformOptions || 'translateY(-100%)';
     this.toastCmpRef.instance.breakpoints = options.breakpoints;
     setTimeout(() => {
-      this.setAnyDialogVisible(true)
+      this.pushState('toast')
+      // this.setAnyDialogVisible(true)
       this.messageService.add(toast);
     }, 0);
     return new Promise((accept) => {
       const subscription = this.toastCmpRef.instance.onClose.subscribe(() => {
-        this.setAnyDialogVisible(false)
+        this.popState()
+        // this.setAnyDialogVisible(false)
         subscription.unsubscribe();
         accept(true);
       });
@@ -222,11 +237,12 @@ export class OverlayService {
     // this.setAnyDialogVisible(true);
     return new Promise((accept) => {
       const subscription = this.dialogCmpRef.instance.onClose.subscribe(() => {
-        console.log('button click')
-        // this.setAnyDialogVisible(false);
-        this.popState()
+        if (this.lastState == 'dialog') {
+          this.popState()
+        }
         subscription.unsubscribe();
         accept();
+        // this.setAnyDialogVisible(false);
       });
     });
   }
@@ -269,18 +285,51 @@ export class OverlayService {
     this.dialogFormCmpRef.instance.config = config;
     this.dialogFormCmpRef.instance.options = dialogForm;
     this.dialogFormCmpRef.instance.show();
-    this.setAnyDialogVisible(true);
+    // this.setAnyDialogVisible(true);
+    this.pushState('dialogForm');
     return new Observable<NgDialogFormResult>((resolve) => {
       const submitSubscription = this.dialogFormCmpRef.instance.onSubmit.subscribe(res => {
+        if (this.lastState == 'dialogForm') {
+          this.popState()
+        }
         resolve.next(res);
       });
       const closeSubscription = this.dialogFormCmpRef.instance.onClose.subscribe(() => {
-        this.setAnyDialogVisible(false)
+        // this.setAnyDialogVisible(false)
+
+        if (this.lastState == 'dialogForm') {
+          this.popState()
+        }
         submitSubscription.unsubscribe();
         closeSubscription.unsubscribe();
         resolve.next(null);
       })
     })
+  }
+
+  showBottomSheet(contentTemplate: TemplateRef<any>) {
+    if (!this.bodyContains(this.bottomSheetCmpRef)) {
+      this.bottomSheetCmpRef = this.addToBody(Sidebar);
+    }
+    return new Promise((accept) => {
+      const subscription = this.bottomSheetCmpRef.instance.onHide.subscribe(() => {
+        console.log('hided')
+        this.bottomSheetCmpRef.instance._visible = false;
+        subscription.unsubscribe();
+        accept(true)
+      })
+      console.log('showed')
+      this.bottomSheetCmpRef.instance.contentTemplate = contentTemplate;
+      this.bottomSheetCmpRef.instance.position = 'bottom';
+      this.bottomSheetCmpRef.instance._visible = true;
+    })
+  }
+
+  hideBottomSheet() {
+    if (!this.bottomSheetCmpRef) {
+      return
+    }
+    this.bottomSheetCmpRef.instance.visible = false;
   }
 
   private addToBody<T>(component: Type<T>): ComponentRef<T> {
@@ -294,24 +343,32 @@ export class OverlayService {
   }
 
   closeAnyOpenDialog() {
-    this.messageService.clear();
-    this.confirmationService.close();
-    this.dialogCmpRef?.instance.close();
-    this.dialogFormCmpRef?.instance.close();
+    return new Promise((accept) => {
+      this.messageService.clear();
+      this.confirmationService.close();
+      this.dialogCmpRef?.instance.close();
+      this.dialogFormCmpRef?.instance.close();
+      this.toastCmpRef?.destroy()
+      this.states.forEach(x => {
+        this.popState()
+        this.states.pop()
+      })
+      accept(true)
+    })
     // this.setAnyDialogVisible(false)
   }
 
-  isAnyDialogOpen() {
-    return this.anyDialogVisibleSubject.getValue();
-  }
+  // isAnyDialogOpen() {
+  //   return this.anyDialogVisibleSubject.getValue();
+  // }
 
-  isAnyDialogOpenObs() {
-    return this.anyDialogVisibleSubject.asObservable();
-  }
+  // isAnyDialogOpenObs() {
+  //   return this.anyDialogVisibleSubject.asObservable();
+  // }
 
-  setAnyDialogVisible(value: boolean) {
-    this.anyDialogVisibleSubject.next(value);
-  }
+  // setAnyDialogVisible(value: boolean) {
+  // this.anyDialogVisibleSubject.next(value);
+  // }
 
   private removeFromBody(component: ComponentRef<any>) {
     if (!component) {
@@ -329,12 +386,17 @@ export class OverlayService {
     return "id" + Math.random().toString(16).slice(2);
   }
 
-  private pushState(state: 'message' | 'confirm' | 'dialog' | 'dialogForm') {
+  private pushState(state: HistoryState) {
     this.location.pushState({state}, '', this.router.url, '');
     this.states.push(state)
   }
 
   private popState() {
     this.location.back()
+  }
+
+  private get lastState(): HistoryState {
+    const lastState = this.location.getState() as any;
+    return lastState.state;
   }
 }

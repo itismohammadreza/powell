@@ -132,6 +132,9 @@ export class DialogFormPage implements OnInit {
           style: {textAlign: 'center'}
         }
       }).subscribe(res => {
+      if (!res) {
+        return
+      }
       const {formValue, changeDialogVisibilityTo} = res;
       this.flag = !this.flag;
       console.log('Do what ever with form value: ', formValue)
