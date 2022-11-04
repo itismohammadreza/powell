@@ -133,3 +133,129 @@
     }
   }
 }
+
+.p-dialog-form {
+  .p-dialog-form-wrapper {
+    form > *:not(:last-child) {
+      margin-bottom: 1.75rem;
+    }
+
+    &.ltr {
+      direction: ltr;
+
+      .footer {
+        ng-button:last-child button {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+
+    &.rtl {
+      direction: rtl;
+
+      .footer {
+        ng-button:last-child button {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+
+  &.ltr {
+    direction: ltr;
+  }
+
+  &.rtl {
+    direction: rtl;
+
+    .p-cascadeselect-panel {
+      .p-cascadeselect-group-icon {
+        margin-left: 0;
+        margin-right: auto;
+
+        &:before {
+          content: "\e931";
+        }
+      }
+
+      .p-cascadeselect-item-active > .p-cascadeselect-sublist {
+        left: auto;
+        right: 100%;
+      }
+    }
+
+    .p-datepicker-group {
+      direction: ltr;
+      text-align: center;
+    }
+
+    .p-multiselect-panel {
+      .p-multiselect-close {
+        margin-right: 0.5rem;
+        margin-left: 0;
+      }
+
+      .p-multiselect-items .p-checkbox {
+        margin-right: 0;
+        margin-left: 0.5rem;
+      }
+
+      .p-multiselect-header {
+        .p-checkbox {
+          margin-right: 0;
+          margin-left: 0.5rem;
+        }
+      }
+
+      .p-multiselect-filter-container {
+        .p-multiselect-filter {
+          padding-right: 0.5rem;
+          padding-left: 1.5rem;
+        }
+
+        .p-multiselect-filter-icon {
+          right: auto;
+          left: 0.5rem;
+        }
+      }
+    }
+
+    .p-treeselect-panel {
+      .p-tree-toggler,
+      .p-treenode-icon,
+      .p-checkbox {
+        margin-right: 0;
+        margin-left: 0.5rem;
+      }
+
+      .p-treenode-children {
+        padding: 0 1rem 0 0;
+      }
+
+      .pi-chevron-right:before {
+        content: "\e900";
+      }
+    }
+  }
+}
+
+.p-dialog {
+  .p-dialog-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .p-dialog-header {
+    padding: 1.5rem 1.5rem 0;
+  }
+}
+
+.header-less {
+  .p-dialog-header {
+    display: none;
+  }
+
+  .p-dialog-content {
+    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: var(--border-radius);
+  }
+}

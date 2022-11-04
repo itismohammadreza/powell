@@ -1,4 +1,5 @@
 <p-dialog
+  class="p-dialog-form"
   [(visible)]="visible"
   [class.rtl]="options.rtl"
   [class.ltr]="!options.rtl"
@@ -1407,7 +1408,7 @@
     </div>
   </form>
   <ng-template pTemplate="footer">
-    <div class="footer d-flex align-content-center">
+    <div class="footer d-flex align-content-center justify-content-end">
       <ng-button
         *ngIf="options.rejectVisible"
         [styleClass]="options.rejectButtonStyleClass"

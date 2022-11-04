@@ -16,7 +16,7 @@ export class DialogPage {
     header: 'Dialog',
     draggable: false,
     resizable: false,
-    modal: false,
+    modal: true,
     position: 'center',
     blockScroll: false,
     closeOnEscape: false,

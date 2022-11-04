@@ -3,10 +3,10 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
-  Input,
+  Input, OnChanges,
   OnInit,
   Output,
-  QueryList,
+  QueryList, SimpleChanges,
   TemplateRef
 } from '@angular/core';
 import {TemplateDirective} from "@ng/directives/template.directive";
@@ -17,8 +17,10 @@ import {OverlayService} from "@ng/services";
   templateUrl: './bottom-sheet.component.html',
   styleUrls: ['./bottom-sheet.component.scss'],
 })
-export class BottomSheetComponent implements OnInit, AfterContentInit {
+export class BottomSheetComponent implements OnInit, OnChanges, AfterContentInit {
   @Input() header: string;
+  @Input() gutter: boolean = true;
+  // native properties
   @Input() visible: boolean;
   @Input() style: any;
   @Input() styleClass: string;
@@ -29,7 +31,6 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   @Input() modal: boolean = true;
   @Input() dismissible: boolean = true;
   @Input() showCloseIcon: boolean = true;
-  @Input() gutter: boolean = true;
   @Input() transitionOptions: string = '270ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() closeOnEscape: boolean = true;
   @Output() onShow = new EventEmitter();
@@ -48,6 +49,10 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
     this.styleClass = `p-bottom-sheet ${this.styleClass}`;
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+
+  }
+
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {
       switch (item.getType()) {
@@ -63,21 +68,31 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   }
 
   onVisibleChange(event: any) {
-    this.visible = event;
-    this.visibleChange.emit(this.visible);
-    this.overlayService.setAnyDialogVisible(this.visible);
-    if (this.visible) {
-      const subscription = this.overlayService.isAnyDialogOpenObs().subscribe(res => {
-        if (!res) {
-          this.visible = false;
-          this.visibleChange.emit(this.visible);
-          subscription.unsubscribe();
-        }
-      })
-    }
+    // this.visible = event;
+    // this.visibleChange.emit(this.visible);
+    // this.overlayService.setAnyDialogVisible(this.visible);
+    // if (this.visible) {
+    //   const subscription = this.overlayService.isAnyDialogOpenObs().subscribe(res => {
+    //     if (!res) {
+    //       this.visible = false;
+    //       this.visibleChange.emit(this.visible);
+    //       subscription.unsubscribe();
+    //     }
+    //   })
+    // }
   }
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
+  }
+
+  _onShow() {
+    this.visible = true;
+    this.visibleChange.emit(this.visible);
+  }
+
+  _onHide() {
+    this.visible = false;
+    this.visibleChange.emit(this.visible);
   }
 }

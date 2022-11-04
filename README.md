@@ -10,6 +10,8 @@
 
 ### Feature
 
+- add open multiple dialog support + handle backbutton click
+
 ### New
 
 - [ ] **whiteboard** - implement component.
