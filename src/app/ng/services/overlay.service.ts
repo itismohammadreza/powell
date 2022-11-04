@@ -140,41 +140,34 @@ export class OverlayService {
     if (!this.bodyContains(this.confirmCmpRef)) {
       this.confirmCmpRef = this.addToBody(ConfirmDialog);
     }
-    this.confirmCmpRef.instance.style = options.style;
-    this.confirmCmpRef.instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-button-icon-${options.buttonIconPos || 'left'}`;
-    this.confirmCmpRef.instance.maskStyleClass = options.maskStyleClass;
-    this.confirmCmpRef.instance.closable = options.closable != undefined ? options.closable : true;
-    this.confirmCmpRef.instance.focusTrap = options.focusTrap;
-    this.confirmCmpRef.instance.baseZIndex = options.baseZIndex || 1000;
-    this.confirmCmpRef.instance.acceptIcon = options.acceptIcon;
-    this.confirmCmpRef.instance.rejectIcon = options.rejectIcon;
-    this.confirmCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
-    this.confirmCmpRef.instance.breakpoints = options.breakpoints;
-    this.confirmCmpRef.instance.transitionOptions = options.transitionOptions || '200ms cubic-bezier(0.25, 0.8, 0.25, 1)';
+    const {instance} = this.confirmCmpRef;
+    instance.style = options.style;
+    instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-button-icon-${options.buttonIconPos || 'left'} ${!options.header && !options.closable ? 'header-less' : ''}`;
+    instance.maskStyleClass = options.maskStyleClass;
+    instance.closable = options.closable != undefined ? options.closable : true;
+    instance.focusTrap = options.focusTrap;
+    instance.baseZIndex = options.baseZIndex || 1000;
+    instance.acceptIcon = options.acceptIcon;
+    instance.rejectIcon = options.rejectIcon;
+    instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
+    instance.breakpoints = options.breakpoints;
+    instance.transitionOptions = options.transitionOptions || '200ms cubic-bezier(0.25, 0.8, 0.25, 1)';
 
     const confirmation: Confirmation = {
-      acceptVisible: true,
-      rejectVisible: true,
-      dismissableMask: false,
-      defaultFocus: 'accept',
-      blockScroll: true,
       ...options,
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
     }
     return new Promise((accept) => {
-      // this.setAnyDialogVisible(true);
-      this.pushState('confirm')
+      // this.pushState('confirm')
       this.confirmationService.confirm({
         ...confirmation,
         accept: () => {
-          this.popState();
-          // this.setAnyDialogVisible(false);
+          // this.popState();
           accept(true);
         },
         reject: (type: ConfirmEventType) => {
-          this.popState();
-          // this.setAnyDialogVisible(false);
+          // this.popState();
           switch (type) {
             case ConfirmEventType.REJECT:
               accept(false);
