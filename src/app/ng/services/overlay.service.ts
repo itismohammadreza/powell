@@ -28,8 +28,7 @@ import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.compon
 import {GlobalConfig} from "@core/global.config";
 import {Router} from "@angular/router";
 import {Sidebar} from "primeng/sidebar";
-
-type HistoryState = 'message' | 'confirm' | 'dialog' | 'dialogForm' | 'toast';
+import {NgHistoryState} from "@ng/models/offset";
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +39,6 @@ export class OverlayService {
   private confirmCmpRef: ComponentRef<ConfirmDialog>;
   private dialogCmpRef: ComponentRef<DialogComponent>;
   private dialogFormCmpRef: ComponentRef<DialogFormComponent>;
-  private bottomSheetCmpRef: ComponentRef<Sidebar>;
   // private anyDialogVisibleSubject = new BehaviorSubject<boolean>(false);
   private states: string[] = [];
 
@@ -307,48 +305,13 @@ export class OverlayService {
     })
   }
 
-  showBottomSheet(contentTemplate: TemplateRef<any>) {
-    if (!this.bodyContains(this.bottomSheetCmpRef)) {
-      this.bottomSheetCmpRef = this.addToBody(Sidebar);
-    }
-    return new Promise((accept) => {
-      const subscription = this.bottomSheetCmpRef.instance.onHide.subscribe(() => {
-        console.log('hided')
-        this.bottomSheetCmpRef.instance._visible = false;
-        subscription.unsubscribe();
-        accept(true)
-      })
-      console.log('showed')
-      this.bottomSheetCmpRef.instance.contentTemplate = contentTemplate;
-      this.bottomSheetCmpRef.instance.position = 'bottom';
-      this.bottomSheetCmpRef.instance._visible = true;
-    })
-  }
-
-  hideBottomSheet() {
-    if (!this.bottomSheetCmpRef) {
-      return
-    }
-    this.bottomSheetCmpRef.instance.visible = false;
-  }
-
-  private addToBody<T>(component: Type<T>): ComponentRef<T> {
-    const componentRef = createComponent(component, {
-      environmentInjector: this.appRef.injector,
-      elementInjector: this.injector
-    })
-    this.appRef.attachView(componentRef.hostView);
-    this.document.body.appendChild(componentRef.location.nativeElement);
-    return componentRef;
-  }
-
   closeAnyOpenDialog() {
     return new Promise((accept) => {
       this.messageService.clear();
       this.confirmationService.close();
       this.dialogCmpRef?.instance.close();
       this.dialogFormCmpRef?.instance.close();
-      this.toastCmpRef?.destroy()
+      this.toastCmpRef?.destroy();
       this.states.forEach(x => {
         this.popState()
         this.states.pop()
@@ -370,6 +333,16 @@ export class OverlayService {
   // this.anyDialogVisibleSubject.next(value);
   // }
 
+  private addToBody<T>(component: Type<T>): ComponentRef<T> {
+    const componentRef = createComponent(component, {
+      environmentInjector: this.appRef.injector,
+      elementInjector: this.injector
+    })
+    this.appRef.attachView(componentRef.hostView);
+    this.document.body.appendChild(componentRef.location.nativeElement);
+    return componentRef;
+  }
+
   private removeFromBody(component: ComponentRef<any>) {
     if (!component) {
       return;
@@ -382,20 +355,16 @@ export class OverlayService {
     return this.document.body.contains(componentRef?.location.nativeElement);
   }
 
-  private getId() {
-    return "id" + Math.random().toString(16).slice(2);
-  }
-
-  private pushState(state: HistoryState) {
-    this.location.pushState({state}, '', this.router.url, '');
+  pushState(state: NgHistoryState) {
+    this.location.pushState({state}, 'test title', this.router.url, '');
     this.states.push(state)
   }
 
-  private popState() {
+  popState() {
     this.location.back()
   }
 
-  private get lastState(): HistoryState {
+  get lastState(): NgHistoryState {
     const lastState = this.location.getState() as any;
     return lastState.state;
   }
