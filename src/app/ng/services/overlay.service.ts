@@ -74,33 +74,27 @@ export class OverlayService {
     if (!this.bodyContains(this.toastCmpRef)) {
       this.toastCmpRef = this.addToBody(Toast);
     }
-
+    const {instance} = this.toastCmpRef;
     const toast: Message = {
-      life: 3000,
-      closable: true,
       severity: 'info',
       ...options,
       styleClass: `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'}`,
     }
-    this.toastCmpRef.instance.preventDuplicates = options.preventDuplicates;
-    this.toastCmpRef.instance.position = options.position || 'top-right';
-    this.toastCmpRef.instance.style = options.style;
-    this.toastCmpRef.instance.baseZIndex = options.baseZIndex || 1000;
-    this.toastCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
-    this.toastCmpRef.instance.showTransitionOptions = options.showTransitionOptions || '300ms ease-out';
-    this.toastCmpRef.instance.hideTransitionOptions = options.hideTransitionOptions || '250ms ease-in';
-    this.toastCmpRef.instance.showTransformOptions = options.showTransformOptions || 'translateY(100%)';
-    this.toastCmpRef.instance.hideTransformOptions = options.hideTransformOptions || 'translateY(-100%)';
-    this.toastCmpRef.instance.breakpoints = options.breakpoints;
+    instance.preventDuplicates = options.preventDuplicates;
+    instance.position = options.position || 'top-right';
+    instance.style = options.style;
+    instance.baseZIndex = options.baseZIndex || 1000;
+    instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
+    instance.showTransitionOptions = options.showTransitionOptions || '300ms ease-out';
+    instance.hideTransitionOptions = options.hideTransitionOptions || '250ms ease-in';
+    instance.showTransformOptions = options.showTransformOptions || 'translateY(100%)';
+    instance.hideTransformOptions = options.hideTransformOptions || 'translateY(-100%)';
+    instance.breakpoints = options.breakpoints;
     setTimeout(() => {
-      this.pushState('toast')
-      // this.setAnyDialogVisible(true)
       this.messageService.add(toast);
     }, 0);
     return new Promise((accept) => {
-      const subscription = this.toastCmpRef.instance.onClose.subscribe(() => {
-        this.popState()
-        // this.setAnyDialogVisible(false)
+      const subscription = instance.onClose.subscribe(() => {
         subscription.unsubscribe();
         accept(true);
       });
