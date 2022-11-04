@@ -185,44 +185,30 @@ export class OverlayService {
     if (!this.bodyContains(this.dialogCmpRef)) {
       this.dialogCmpRef = this.addToBody(DialogComponent);
     }
-
-    const dialog: NgDialogOptions = {
-      draggable: false,
-      keepInViewport: true,
-      resizable: true,
+    const {instance} = this.dialogCmpRef;
+    instance.options = {
+      content: '',
       modal: true,
-      position: 'center',
-      blockScroll: true,
-      closeOnEscape: true,
-      dismissableMask: false,
-      closable: true,
-      showHeader: true,
-      baseZIndex: 1000,
       autoZIndex: true,
-      minX: 0,
-      minY: 0,
-      focusOnShow: true,
-      focusTrap: true,
+      baseZIndex: 1000,
+      showHeader: true,
+      buttonLabel: 'بستن',
       transitionOptions: '150ms cubic-bezier(0, 0, 0.2, 1)',
       closeIcon: 'pi pi-times',
       minimizeIcon: 'pi pi-window-minimize',
       maximizeIcon: 'pi pi-window-maximize',
-      content: '',
       ...options,
-      styleClass: `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'}`,
-    }
-    this.dialogCmpRef.instance.options = dialog;
-    this.dialogCmpRef.instance.show();
-    this.pushState('dialog')
-    // this.setAnyDialogVisible(true);
+      styleClass: `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'header-less' : ''}`,
+    };
+    instance.show();
+    // this.pushState('dialog');
     return new Promise((accept) => {
       const subscription = this.dialogCmpRef.instance.onClose.subscribe(() => {
-        if (this.lastState == 'dialog') {
-          this.popState()
-        }
+        // if (this.lastState == 'dialog') {
+        //   this.popState()
+        // }
         subscription.unsubscribe();
         accept();
-        // this.setAnyDialogVisible(false);
       });
     });
   }
