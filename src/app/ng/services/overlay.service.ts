@@ -213,24 +213,18 @@ export class OverlayService {
     });
   }
 
-  showDialogForm(config: NgDialogFormConfig[], options?: NgDialogFormOptions): Observable<NgDialogFormResult> {
+  showDialogForm(config: NgDialogFormConfig[], options: NgDialogFormOptions = {}): Observable<NgDialogFormResult> {
     if (!this.bodyContains(this.dialogFormCmpRef)) {
       this.dialogFormCmpRef = this.addToBody(DialogFormComponent);
     }
-
-    const dialogForm: NgDialogFormOptions = {
-      keepInViewport: true,
+    const {instance} = this.dialogFormCmpRef;
+    instance.config = config;
+    instance.options = {
       modal: true,
-      position: 'center',
-      closeOnEscape: true,
       closable: true,
       showHeader: true,
       baseZIndex: 1000,
       autoZIndex: true,
-      minX: 0,
-      minY: 0,
-      focusOnShow: true,
-      focusTrap: true,
       transitionOptions: '150ms cubic-bezier(0, 0, 0.2, 1)',
       closeIcon: 'pi pi-times',
       minimizeIcon: 'pi pi-window-minimize',
@@ -241,31 +235,27 @@ export class OverlayService {
       acceptLabel: 'تایید',
       rejectLabel: 'بستن',
       rejectAppearance: 'outlined',
+      rejectColor: 'danger',
       defaultFocus: 'accept',
       rtl: GlobalConfig.rtl,
       ...options,
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-dialog-form-accept`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} p-dialog-form-reject`,
-      styleClass: `${options.styleClass} p-dialog-form ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'}`,
-    }
-    this.dialogFormCmpRef.instance.config = config;
-    this.dialogFormCmpRef.instance.options = dialogForm;
-    this.dialogFormCmpRef.instance.show();
-    // this.setAnyDialogVisible(true);
-    this.pushState('dialogForm');
+      styleClass: `${options.styleClass} p-dialog-form-wrapper ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'header-less' : ''}`,
+    };
+    instance.show();
+    // this.pushState('dialogForm');
     return new Observable<NgDialogFormResult>((resolve) => {
-      const submitSubscription = this.dialogFormCmpRef.instance.onSubmit.subscribe(res => {
-        if (this.lastState == 'dialogForm') {
-          this.popState()
-        }
+      const submitSubscription = instance.onSubmit.subscribe(res => {
+        // if (this.lastState == 'dialogForm') {
+        //   this.popState()
+        // }
         resolve.next(res);
       });
-      const closeSubscription = this.dialogFormCmpRef.instance.onClose.subscribe(() => {
-        // this.setAnyDialogVisible(false)
-
-        if (this.lastState == 'dialogForm') {
-          this.popState()
-        }
+      const closeSubscription = instance.onClose.subscribe(() => {
+        // if (this.lastState == 'dialogForm') {
+        //   this.popState()
+        // }
         submitSubscription.unsubscribe();
         closeSubscription.unsubscribe();
         resolve.next(null);
