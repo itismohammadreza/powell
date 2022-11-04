@@ -105,36 +105,31 @@ export class OverlayService {
     if (!this.bodyContains(this.confirmPopupCmpRef)) {
       this.confirmPopupCmpRef = this.addToBody(ConfirmPopup);
     }
-    this.confirmPopupCmpRef.instance.showTransitionOptions = options.showTransitionOptions || '.12s cubic-bezier(0, 0, 0.2, 1)';
-    this.confirmPopupCmpRef.instance.hideTransitionOptions = options.hideTransitionOptions || '.1s linear';
-    this.confirmPopupCmpRef.instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
-    this.confirmPopupCmpRef.instance.baseZIndex = options.baseZIndex || 1000;
-    this.confirmPopupCmpRef.instance.style = options.style;
-    this.confirmPopupCmpRef.instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
+    const {instance} = this.confirmPopupCmpRef;
+    instance.showTransitionOptions = options.showTransitionOptions || '.12s cubic-bezier(0, 0, 0.2, 1)';
+    instance.hideTransitionOptions = options.hideTransitionOptions || '.1s linear';
+    instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
+    instance.baseZIndex = options.baseZIndex || 1000;
+    instance.style = options.style;
+    instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
     const confirmation: Confirmation = {
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: 'تایید',
       rejectLabel: 'لغو',
-      acceptVisible: true,
-      rejectVisible: true,
-      defaultFocus: 'accept',
       ...options,
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
     }
     return new Promise((accept) => {
-      // this.setAnyDialogVisible(true);
-      this.pushState('confirm')
+      // this.pushState('confirm')
       this.confirmationService.confirm({
         ...confirmation,
         accept: () => {
-          // this.setAnyDialogVisible(false);
-          this.popState()
+          // this.popState();
           accept(true);
         },
         reject: () => {
-          // this.setAnyDialogVisible(false);
-          this.popState()
+          // this.popState();
           accept(false);
         },
       });
