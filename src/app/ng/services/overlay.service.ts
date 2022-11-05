@@ -300,7 +300,7 @@ export class OverlayService {
   }
 
   pushState(state: NgHistoryState) {
-    this.location.pushState({state}, 'test title', this.router.url, '');
+    this.location.pushState({state}, '', this.router.url, '');
     this.states.push(state)
   }
 
