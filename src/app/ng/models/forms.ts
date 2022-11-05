@@ -16,37 +16,6 @@ export type NgNumberButtonLayout = 'stacked' | 'horizontal' | 'vertical';
 export type NgCurrencyDisplay = 'symbol' | 'code' | 'name';
 export type NgValidation = Partial<Record<NgValidationType | any, string>>; // equal to : [validationType in NgValidationType]?: string;
 export type NgTreeFilterMode = 'strict' | 'lenient';
-
-export interface NgAddonConfig {
-  type: 'button' | 'icon' | 'text';
-  label?: string;
-  color?: NgColor;
-  appearance?: NgButtonAppearance;
-  icon?: string;
-  iconPos?: NgIconPosition;
-  text?: string;
-}
-
-export interface NgAddon {
-  before?: NgAddonConfig;
-  after?: NgAddonConfig;
-}
-
-export class NgDropdownItem {
-  label?: string;
-  value: any;
-  styleClass?: string;
-  icon?: string;
-  title?: string;
-  disabled?: boolean;
-}
-
-export class NgDropdownGroup {
-  label: string;
-  value?: any;
-  items: NgDropdownItem[];
-}
-
 export type NgFilterMatchMode =
   | 'contains'
   | 'startsWith'
@@ -284,3 +253,33 @@ export type NgCurrency =
   | 'XPD'
   | 'XPT'
   | 'XAG';
+
+export interface NgAddonConfig {
+  type: 'button' | 'icon' | 'text';
+  label?: string;
+  color?: NgColor;
+  appearance?: NgButtonAppearance;
+  icon?: string;
+  iconPos?: NgIconPosition;
+  text?: string;
+}
+
+export interface NgAddon {
+  before?: NgAddonConfig;
+  after?: NgAddonConfig;
+}
+
+export interface NgDropdownItem {
+  label?: string;
+  value: any;
+  styleClass?: string;
+  icon?: string;
+  title?: string;
+  disabled?: boolean;
+}
+
+export interface NgDropdownGroup {
+  label: string;
+  value?: any;
+  items: NgDropdownItem[];
+}

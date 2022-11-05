@@ -16,7 +16,7 @@ export class NgAllModule {
   static forRoot(
     config: {
       ripple: boolean;
-    } = { ripple: true }
+    } = {ripple: true}
   ): ModuleWithProviders<NgAllModule> {
     return {
       ngModule: NgAllModule,

@@ -1,13 +1,4 @@
-import {
-  ApplicationRef,
-  ComponentRef,
-  createComponent,
-  Inject,
-  Injectable,
-  Injector,
-  TemplateRef,
-  Type
-} from '@angular/core';
+import {ApplicationRef, ComponentRef, createComponent, Inject, Injectable, Injector, Type} from '@angular/core';
 import {
   NgConfirmDialogOptions,
   NgConfirmPopupOptions,
@@ -23,11 +14,10 @@ import {DOCUMENT, LocationStrategy} from '@angular/common';
 import {Toast} from 'primeng/toast';
 import {ConfirmPopup} from 'primeng/confirmpopup';
 import {ConfirmDialog} from 'primeng/confirmdialog';
-import {BehaviorSubject, last, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
 import {GlobalConfig} from "@core/global.config";
 import {Router} from "@angular/router";
-import {Sidebar} from "primeng/sidebar";
 import {NgHistoryState} from "@ng/models/offset";
 
 @Injectable({
@@ -62,9 +52,6 @@ export class OverlayService {
           break;
         case 'confirm':
           this.confirmationService.close();
-          break;
-        case 'message':
-          this.messageService.clear();
           break;
       }
     })

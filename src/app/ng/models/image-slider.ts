@@ -1,4 +1,4 @@
-export class ImageItem {
+export interface ImageItem {
   preview: string;
   alt: string;
   thumbnail?: string;
@@ -8,7 +8,7 @@ export class ImageItem {
   };
 }
 
-export class BreakPointItem {
+export interface BreakPointItem {
   breakpoint: string;
   numVisible: number;
 }
