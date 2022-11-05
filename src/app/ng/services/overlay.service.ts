@@ -93,12 +93,6 @@ export class OverlayService {
       this.confirmPopupCmpRef = this.addToBody(ConfirmPopup);
     }
     const {instance} = this.confirmPopupCmpRef;
-    instance.showTransitionOptions = options.showTransitionOptions || '.12s cubic-bezier(0, 0, 0.2, 1)';
-    instance.hideTransitionOptions = options.hideTransitionOptions || '.1s linear';
-    instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
-    instance.baseZIndex = options.baseZIndex || 1000;
-    instance.style = options.style;
-    instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
     const confirmation: Confirmation = {
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: 'تایید',
@@ -107,6 +101,12 @@ export class OverlayService {
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
     }
+    instance.showTransitionOptions = options.showTransitionOptions || '.12s cubic-bezier(0, 0, 0.2, 1)';
+    instance.hideTransitionOptions = options.hideTransitionOptions || '.1s linear';
+    instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
+    instance.baseZIndex = options.baseZIndex || 1000;
+    instance.style = options.style;
+    instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
     return new Promise((accept) => {
       // this.pushState('confirm')
       this.confirmationService.confirm({
@@ -128,6 +128,11 @@ export class OverlayService {
       this.confirmCmpRef = this.addToBody(ConfirmDialog);
     }
     const {instance} = this.confirmCmpRef;
+    const confirmation: Confirmation = {
+      ...options,
+      acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
+      rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
+    }
     instance.style = options.style;
     instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-button-icon-${options.buttonIconPos || 'left'} ${!options.header && !options.closable ? 'header-less' : ''}`;
     instance.maskStyleClass = options.maskStyleClass;
@@ -139,12 +144,6 @@ export class OverlayService {
     instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
     instance.breakpoints = options.breakpoints;
     instance.transitionOptions = options.transitionOptions || '200ms cubic-bezier(0.25, 0.8, 0.25, 1)';
-
-    const confirmation: Confirmation = {
-      ...options,
-      acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
-      rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
-    }
     return new Promise((accept) => {
       // this.pushState('confirm')
       this.confirmationService.confirm({
