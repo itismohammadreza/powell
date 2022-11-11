@@ -12,13 +12,15 @@ import {
 } from '@angular/core';
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {OverlayService} from "@ng/services";
+import {NgHistoryState} from "@ng/models/overlay";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'ng-bottom-sheet',
   templateUrl: './bottom-sheet.component.html',
   styleUrls: ['./bottom-sheet.component.scss'],
 })
-export class BottomSheetComponent implements OnInit, OnChanges, AfterContentInit {
+export class BottomSheetComponent implements OnInit, AfterContentInit {
   @Input() header: string;
   @Input() gutter: boolean = true;
   // native properties
@@ -41,6 +43,11 @@ export class BottomSheetComponent implements OnInit, OnChanges, AfterContentInit
 
   headerTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
+  stateSubscription: Subscription;
+  state: NgHistoryState = {
+    component: 'bottomSheet',
+    key: this.overlayService.getId()
+  }
 
   constructor(private overlayService: OverlayService) {
   }
@@ -48,10 +55,6 @@ export class BottomSheetComponent implements OnInit, OnChanges, AfterContentInit
   ngOnInit() {
     this.style = {height: '50vh', ...this.style};
     this.styleClass = `p-bottom-sheet ${this.styleClass}`;
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-
   }
 
   ngAfterContentInit() {
@@ -68,21 +71,6 @@ export class BottomSheetComponent implements OnInit, OnChanges, AfterContentInit
     });
   }
 
-  onVisibleChange(event: any) {
-    // this.visible = event;
-    // this.visibleChange.emit(this.visible);
-    // this.overlayService.setAnyDialogVisible(this.visible);
-    // if (this.visible) {
-    //   const subscription = this.overlayService.isAnyDialogOpenObs().subscribe(res => {
-    //     if (!res) {
-    //       this.visible = false;
-    //       this.visibleChange.emit(this.visible);
-    //       subscription.unsubscribe();
-    //     }
-    //   })
-    // }
-  }
-
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
   }
@@ -90,10 +78,20 @@ export class BottomSheetComponent implements OnInit, OnChanges, AfterContentInit
   _onShow() {
     this.visible = true;
     this.visibleChange.emit(this.visible);
+    this.stateSubscription = this.overlayService.stateChange().subscribe(res => {
+      if (this.state.key === res.key) {
+        this._onHide()
+      }
+    })
+    this.overlayService.pushState(this.state);
   }
 
   _onHide() {
     this.visible = false;
     this.visibleChange.emit(this.visible);
+    this.stateSubscription?.unsubscribe();
+    if (!this.overlayService.isPopped(this.state)) {
+      this.overlayService.popState()
+    }
   }
 }

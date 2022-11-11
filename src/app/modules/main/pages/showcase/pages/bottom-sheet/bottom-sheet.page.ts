@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {OverlayService} from "@ng/services";
 
 @Component({
   selector: 'ng-bottom-sheet-page',
@@ -6,6 +7,9 @@ import {Component} from '@angular/core';
   styleUrls: ['./bottom-sheet.page.scss']
 })
 export class BottomSheetPage {
+  constructor(private overlayService: OverlayService) {
+  }
+
   blockScroll: boolean = false;
   modal: boolean = true;
   dismissible: boolean = true;
@@ -14,8 +18,13 @@ export class BottomSheetPage {
   header: string = 'BottomSheet Header';
 
   visible = false;
+  visible2 = false;
+  visible3 = false;
+  visible4 = false;
 
-  showBottomSheet() {
-    this.visible = true;
+  async openDialog() {
+    // await this.overlayService.showDialog({content: 'asdsad'})
+    await this.overlayService.showConfirmDialog({message: 'asdsad'})
+    this.visible4 = true
   }
 }

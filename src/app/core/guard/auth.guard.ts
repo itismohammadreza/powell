@@ -15,7 +15,7 @@ import {AuthService} from '@core/http';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
-constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService) {
   }
 
   canActivate(

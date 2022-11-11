@@ -6,6 +6,7 @@ import {
   NgDialogFormOptions,
   NgDialogFormResult,
   NgDialogOptions,
+  NgHistoryState,
   NgToastOptions
 } from '@ng/models/overlay';
 import {Confirmation, ConfirmationService, ConfirmEventType, Message, MessageService} from 'primeng/api';
@@ -14,11 +15,10 @@ import {DOCUMENT, LocationStrategy} from '@angular/common';
 import {Toast} from 'primeng/toast';
 import {ConfirmPopup} from 'primeng/confirmpopup';
 import {ConfirmDialog} from 'primeng/confirmdialog';
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
 import {GlobalConfig} from "@core/global.config";
 import {Router} from "@angular/router";
-import {NgHistoryState} from "@ng/models/offset";
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +29,8 @@ export class OverlayService {
   private confirmCmpRef: ComponentRef<ConfirmDialog>;
   private dialogCmpRef: ComponentRef<DialogComponent>;
   private dialogFormCmpRef: ComponentRef<DialogFormComponent>;
-  // private anyDialogVisibleSubject = new BehaviorSubject<boolean>(false);
-  private states: string[] = [];
+  private states: NgHistoryState[] = [];
+  private stateChangeSubject = new Subject<NgHistoryState>();
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -43,7 +43,11 @@ export class OverlayService {
   ) {
     this.location.onPopState((e) => {
       const currentState = this.states.pop();
-      switch (currentState) {
+      console.log('onPopState', currentState)
+      if (!currentState) {
+        return
+      }
+      switch (currentState.component) {
         case 'dialog':
           this.dialogCmpRef.instance.close();
           break;
@@ -54,6 +58,7 @@ export class OverlayService {
           this.confirmationService.close();
           break;
       }
+      this.stateChangeSubject.next(currentState);
     })
   }
 
@@ -83,7 +88,9 @@ export class OverlayService {
     return new Promise((accept) => {
       const subscription = instance.onClose.subscribe(() => {
         subscription.unsubscribe();
-        accept(true);
+        setTimeout(() => {
+          accept(true);
+        }, 1)
       });
     });
   }
@@ -108,16 +115,21 @@ export class OverlayService {
     instance.style = options.style;
     instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
     return new Promise((accept) => {
-      // this.pushState('confirm')
+      const state: NgHistoryState = {component: 'confirm'};
+      this.pushState(state)
       this.confirmationService.confirm({
         ...confirmation,
         accept: () => {
-          // this.popState();
-          accept(true);
+          this.popState();
+          setTimeout(() => {
+            accept(true);
+          }, 1)
         },
         reject: () => {
-          // this.popState();
-          accept(false);
+          this.popState();
+          setTimeout(() => {
+            accept(false);
+          }, 1)
         },
       });
     });
@@ -145,21 +157,28 @@ export class OverlayService {
     instance.breakpoints = options.breakpoints;
     instance.transitionOptions = options.transitionOptions || '200ms cubic-bezier(0.25, 0.8, 0.25, 1)';
     return new Promise((accept) => {
-      // this.pushState('confirm')
+      const state: NgHistoryState = {component: 'confirm'};
+      this.pushState(state)
       this.confirmationService.confirm({
         ...confirmation,
         accept: () => {
-          // this.popState();
-          accept(true);
+          this.popState();
+          setTimeout(() => {
+            accept(true);
+          }, 1)
         },
         reject: (type: ConfirmEventType) => {
-          // this.popState();
+          this.popState();
           switch (type) {
             case ConfirmEventType.REJECT:
-              accept(false);
+              setTimeout(() => {
+                accept(false);
+              }, 1)
               break;
             case ConfirmEventType.CANCEL:
-              accept(null);
+              setTimeout(() => {
+                accept(null);
+              }, 1)
               break;
           }
         }
@@ -187,14 +206,17 @@ export class OverlayService {
       styleClass: `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'header-less' : ''}`,
     };
     instance.show();
-    // this.pushState('dialog');
+    const state: NgHistoryState = {component: 'dialog'};
+    this.pushState(state);
     return new Promise((accept) => {
       const subscription = this.dialogCmpRef.instance.onClose.subscribe(() => {
-        // if (this.lastState == 'dialog') {
-        //   this.popState()
-        // }
+        if (!this.isPopped(state)) {
+          this.popState()
+        }
         subscription.unsubscribe();
-        accept();
+        setTimeout(() => {
+          accept();
+        }, 1)
       });
     });
   }
@@ -230,18 +252,19 @@ export class OverlayService {
       styleClass: `${options.styleClass} p-dialog-form-wrapper ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'header-less' : ''}`,
     };
     instance.show();
-    // this.pushState('dialogForm');
+    const state: NgHistoryState = {component: 'dialogForm'}
+    this.pushState(state);
     return new Observable<NgDialogFormResult>((resolve) => {
       const submitSubscription = instance.onSubmit.subscribe(res => {
-        // if (this.lastState == 'dialogForm') {
-        //   this.popState()
-        // }
+        if (!this.isPopped(state)) {
+          this.popState()
+        }
         resolve.next(res);
       });
       const closeSubscription = instance.onClose.subscribe(() => {
-        // if (this.lastState == 'dialogForm') {
-        //   this.popState()
-        // }
+        if (!this.isPopped(state)) {
+          this.popState()
+        }
         submitSubscription.unsubscribe();
         closeSubscription.unsubscribe();
         resolve.next(null);
@@ -262,20 +285,7 @@ export class OverlayService {
       })
       accept(true)
     })
-    // this.setAnyDialogVisible(false)
   }
-
-  // isAnyDialogOpen() {
-  //   return this.anyDialogVisibleSubject.getValue();
-  // }
-
-  // isAnyDialogOpenObs() {
-  //   return this.anyDialogVisibleSubject.asObservable();
-  // }
-
-  // setAnyDialogVisible(value: boolean) {
-  // this.anyDialogVisibleSubject.next(value);
-  // }
 
   private addToBody<T>(component: Type<T>): ComponentRef<T> {
     const componentRef = createComponent(component, {
@@ -300,16 +310,28 @@ export class OverlayService {
   }
 
   pushState(state: NgHistoryState) {
-    this.location.pushState({state}, '', this.router.url, '');
-    this.states.push(state)
+    if (!state.key) {
+      state.key = this.getId()
+    }
+    this.location.pushState(state, '', this.router.url, '');
+    this.states.push(state);
+    console.log('pushState', state);
   }
 
   popState() {
-    this.location.back()
+    this.location.back();
+    console.log('popState')
   }
 
-  get lastState(): NgHistoryState {
-    const lastState = this.location.getState() as any;
-    return lastState.state;
+  stateChange() {
+    return this.stateChangeSubject.asObservable()
+  }
+
+  getId() {
+    return 'id' + Math.random().toString(16).slice(2);
+  }
+
+  isPopped(state: NgHistoryState) {
+    return this.states.findIndex(s => s.key === state.key && s.component === state.component) === -1;
   }
 }

@@ -22,10 +22,9 @@
   </p-panel>
 
   <p-panel dir="ltr" header="Preview">
-    <ng-button (click)="showBottomSheet()" label="Open Bottom Sheet"></ng-button>
+    <ng-button (click)="visible = true" label="Open Bottom Sheet"></ng-button>
   </p-panel>
 </div>
-
 
 <ng-bottom-sheet
   [(visible)]="visible"
@@ -49,7 +48,71 @@
     fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
     fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
+  <ng-template ngTemplate="footer">
+    <ng-button (onClick)="visible2=true" appearance="outlined" color="secondary" label="Open Second Bottom Sheet"
+               [full]="true"></ng-button>
+  </ng-template>
+</ng-bottom-sheet>
+
+
+<ng-bottom-sheet
+  [(visible)]="visible2"
+  [blockScroll]="blockScroll"
+  [modal]="modal"
+  [header]="header"
+  [style]="{height:'40%'}"
+  [dismissible]="dismissible"
+  [showCloseIcon]="showCloseIcon"
+  [closeOnEscape]="closeOnEscape">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
+    fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
+    fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
+    fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
+    fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
+  <ng-template ngTemplate="footer">
+    <ng-button (onClick)="visible3=true" appearance="outlined" color="success" label="Open Third Bottom Sheet"
+               [full]="true"></ng-button>
+  </ng-template>
+</ng-bottom-sheet>
+
+<ng-bottom-sheet
+  [(visible)]="visible3"
+  [blockScroll]="blockScroll"
+  [modal]="modal"
+  [header]="header"
+  [style]="{height:'30%'}"
+  [dismissible]="dismissible"
+  [showCloseIcon]="showCloseIcon"
+  [closeOnEscape]="closeOnEscape">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
+    fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
+    fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
+    fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
+  <ng-template ngTemplate="footer">
+    <ng-button (onClick)="openDialog()" appearance="outlined" color="success" label="Open Dialog"
+               [full]="true"></ng-button>
+  </ng-template>
+</ng-bottom-sheet>
+
+
+<ng-bottom-sheet
+  [(visible)]="visible4"
+  [blockScroll]="blockScroll"
+  [modal]="modal"
+  [header]="header"
+  [style]="{height:'10%'}"
+  [dismissible]="dismissible"
+  [showCloseIcon]="showCloseIcon"
+  [closeOnEscape]="closeOnEscape">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
+    fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
+    fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
     fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
 </ng-bottom-sheet>
-

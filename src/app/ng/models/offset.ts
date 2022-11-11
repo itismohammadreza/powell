@@ -6,7 +6,6 @@ export type NgPosition = 'left' | 'right' | 'top' | 'bottom';
 export type NgIconPosition = Exclude<NgPosition, 'top' | 'bottom'>;
 export type NgStatus = 'success' | 'info' | 'warning' | 'error' | '403' | '404' | '500';
 export type NgEmptyIcon = 'box1' | 'box2' | 'magnifier';
-export type NgHistoryState = 'confirm' | 'dialog' | 'dialogForm' | 'bottomSheet';
 export type NgPlace =
   | 'left'
   | 'right'

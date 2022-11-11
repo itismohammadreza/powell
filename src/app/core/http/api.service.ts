@@ -18,8 +18,8 @@ export class ApiService {
   private readonly baseUrl: string;
 
   constructor() {
-    this.http = GlobalInjector.Injector.get(HttpClient);
     const envService = GlobalInjector.Injector.get(EnvService);
+    this.http = GlobalInjector.Injector.get(HttpClient);
     this.baseUrl = envService.apiUrl;
   }
 
