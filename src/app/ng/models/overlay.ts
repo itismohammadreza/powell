@@ -33,7 +33,7 @@ import {ScrollerOptions} from "primeng/scroller";
 
 export type NgSeverity = 'success' | 'info' | 'warn' | 'error';
 export type NgDefaultFocus = 'accept' | 'reject';
-export type NgHistoricComponent = 'confirm' | 'dialog' | 'dialogForm' | 'bottomSheet';
+export type NgHistoricComponent = 'confirmDialog' | 'confirmPopup' | 'dialog' | 'dialogForm' | 'bottomSheet';
 
 export interface NgHistoryState {
   key?: string;

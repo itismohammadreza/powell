@@ -54,7 +54,8 @@ export class OverlayService {
         case 'dialogForm':
           this.dialogFormCmpRef.instance.close();
           break;
-        case 'confirm':
+        case 'confirmDialog':
+        case 'confirmPopup':
           this.confirmationService.close();
           break;
       }
@@ -115,7 +116,7 @@ export class OverlayService {
     instance.style = options.style;
     instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
     return new Promise((accept) => {
-      const state: NgHistoryState = {component: 'confirm'};
+      const state: NgHistoryState = {component: 'confirmPopup'};
       this.pushState(state)
       this.confirmationService.confirm({
         ...confirmation,
@@ -157,7 +158,7 @@ export class OverlayService {
     instance.breakpoints = options.breakpoints;
     instance.transitionOptions = options.transitionOptions || '200ms cubic-bezier(0.25, 0.8, 0.25, 1)';
     return new Promise((accept) => {
-      const state: NgHistoryState = {component: 'confirm'};
+      const state: NgHistoryState = {component: 'confirmDialog'};
       this.pushState(state)
       this.confirmationService.confirm({
         ...confirmation,
@@ -274,15 +275,12 @@ export class OverlayService {
 
   closeAnyOpenDialog() {
     return new Promise((accept) => {
-      this.messageService.clear();
-      this.confirmationService.close();
-      this.dialogCmpRef?.instance.close();
-      this.dialogFormCmpRef?.instance.close();
       this.toastCmpRef?.destroy();
-      this.states.forEach(x => {
-        this.popState()
-        this.states.pop()
-      })
+      this.confirmPopupCmpRef?.destroy();
+      this.dialogCmpRef?.destroy();
+      this.dialogFormCmpRef?.destroy();
+      this.confirmCmpRef?.destroy();
+      this.states.length = 0
       accept(true)
     })
   }
