@@ -9,9 +9,6 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./confirm-dialog.page.scss']
 })
 export class ConfirmDialogPage {
-  constructor(private overlayService: OverlayService) {
-  }
-
   confirmDialog: NgConfirmDialogOptions = {
     closable: true,
     message: 'Are you sure?',
@@ -35,6 +32,9 @@ export class ConfirmDialogPage {
     buttonFull: false,
     rtl: GlobalConfig.rtl,
     style: {width: '400px'}
+  }
+
+  constructor(private overlayService: OverlayService) {
   }
 
   showConfirmDialog() {

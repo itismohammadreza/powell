@@ -15,7 +15,6 @@ export class TranslationService {
               @Inject(DOCUMENT) private document: Document) {
   }
 
-
   async init() {
     this.onLangChange().subscribe((res: any) => {
       this.currentLang = res.lang;

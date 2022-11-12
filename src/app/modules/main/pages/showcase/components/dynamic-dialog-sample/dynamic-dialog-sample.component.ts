@@ -8,7 +8,6 @@ import {DynamicDialogRef} from '@ng/components/dynamic-dialog/dynamic-dialog-ref
   styleUrls: ['./dynamic-dialog-sample.component.scss']
 })
 export class DynamicDialogSampleComponent implements OnInit {
-
   constructor(public config: DynamicDialogConfig, public dialog: DynamicDialogRef) {
   }
 

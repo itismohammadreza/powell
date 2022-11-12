@@ -11,9 +11,6 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./dialog-form.component.scss']
 })
 export class DialogFormComponent {
-  constructor(private el: ElementRef) {
-  }
-
   form: FormGroup;
   visible: boolean;
   closeCallback: () => void;
@@ -22,6 +19,9 @@ export class DialogFormComponent {
   onSubmit = new EventEmitter<NgDialogFormResult>();
   onClose = new EventEmitter<void>();
   disableReject: boolean;
+
+  constructor(private el: ElementRef) {
+  }
 
   set config(value: NgDialogFormConfig[]) {
     this._config = value;

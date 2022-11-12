@@ -9,9 +9,6 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./dialog.page.scss']
 })
 export class DialogPage {
-  constructor(private overlayService: OverlayService) {
-  }
-
   dialog: NgDialogOptions = {
     header: 'Dialog',
     draggable: false,
@@ -33,6 +30,9 @@ export class DialogPage {
     buttonSize: 'md',
     rtl: GlobalConfig.rtl,
     content: 'Some content inside dialog.',
+  }
+
+  constructor(private overlayService: OverlayService) {
   }
 
   showDialog() {

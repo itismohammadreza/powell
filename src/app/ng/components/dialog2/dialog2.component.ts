@@ -7,7 +7,6 @@ import {DOCUMENT} from "@angular/common";
   styleUrls: ['./dialog2.component.scss']
 })
 export class Dialog2Component implements OnInit, OnDestroy {
-
   constructor(private element: ElementRef, @Inject(DOCUMENT) private document: Document) {
   }
 

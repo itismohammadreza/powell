@@ -11,11 +11,8 @@ import {MomentService} from "@ng/services";
   styleUrls: ['./jalali-datepicker.page.scss']
 })
 export class JalaliDatepickerPage {
-  constructor(private momentService: MomentService) {
-  }
-
   form = new UntypedFormGroup({
-    c1: new UntypedFormControl(this.momentService.getJalaliMoment('1396/08/25 21:00','jYYYY/jMM/jDD hh:mm'), [Validators.required]),
+    c1: new UntypedFormControl(this.momentService.getJalaliMoment('1396/08/25 21:00', 'jYYYY/jMM/jDD hh:mm'), [Validators.required]),
   });
   binding;
 
@@ -55,6 +52,9 @@ export class JalaliDatepickerPage {
   view: 'date' | 'month' | 'year' = 'date';
   touchUI: boolean = false;
   showClear: boolean = false;
+
+  constructor(private momentService: MomentService) {
+  }
 
   submit() {
     console.log(this.form.value)

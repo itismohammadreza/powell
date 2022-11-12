@@ -122,10 +122,6 @@ class App {
   styleUrls: ['./smoke.component.scss']
 })
 export class SmokeComponent implements OnInit {
-
-  constructor() {
-  }
-
   ngOnInit(): void {
     const myApp = new App();
   }

@@ -11,10 +11,10 @@ import {
   styleUrls: ['./utils.page.scss']
 })
 export class UtilsPage {
+  customDynamicDialogResult: any;
+
   constructor(private userService: UserService, private dialog: DynamicDialogService) {
   }
-
-  customDynamicDialogResult: any;
 
   showCustomDynamicDialog() {
     this.dialog.open(DynamicDialogSampleComponent, {

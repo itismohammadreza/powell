@@ -9,9 +9,6 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./toast.page.scss']
 })
 export class ToastPage {
-  constructor(private overlayService: OverlayService) {
-  }
-
   toast: NgToastOptions = {
     life: 3000,
     sticky: false,
@@ -23,6 +20,9 @@ export class ToastPage {
     detail: 'Some Detail',
     preventDuplicates: false,
     position: 'top-right'
+  }
+
+  constructor(private overlayService: OverlayService) {
   }
 
   showToast() {

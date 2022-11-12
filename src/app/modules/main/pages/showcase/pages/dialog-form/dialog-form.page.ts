@@ -9,14 +9,7 @@ import {GlobalConfig} from "@core/global.config";
   templateUrl: './dialog-form.page.html',
   styleUrls: ['./dialog-form.page.scss']
 })
-export class DialogFormPage implements OnInit {
-
-  constructor(private overlayService: OverlayService) {
-  }
-
-  ngOnInit(): void {
-  }
-
+export class DialogFormPage {
   dialogForm: NgDialogFormOptions = {
     header: 'Dialog',
     draggable: false,
@@ -44,7 +37,11 @@ export class DialogFormPage implements OnInit {
     defaultFocus: 'accept',
     rtl: GlobalConfig.rtl,
   }
+
   flag = false;
+
+  constructor(private overlayService: OverlayService) {
+  }
 
   showDialogForm() {
     this.overlayService.showDialogForm(

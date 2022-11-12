@@ -12,18 +12,6 @@ import {DOCUMENT} from "@angular/common";
   styleUrls: ['./navbar-menu.component.scss']
 })
 export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterViewChecked, AfterContentInit {
-  @ViewChild(OverlayPanel) overlayPanel: OverlayPanel;
-
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    if (this.document.defaultView.innerWidth < this.responsiveThreshold) {
-      this.changeSidebarType('overlay');
-      this.toggleOverlayDisplay(true);
-    } else if (this.document.defaultView.innerWidth > this.responsiveThreshold && this.sidebarType != GlobalConfig.defaultSidebarType) {
-      this.changeSidebarType(GlobalConfig.defaultSidebarType);
-    }
-  }
-
   responsiveThreshold: number = 768;
   theme: string = GlobalConfig.defaultTheme;
   language: string = GlobalConfig.defaultLang;
@@ -42,6 +30,17 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       }
     }
   ];
+  @ViewChild(OverlayPanel) overlayPanel: OverlayPanel;
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    if (this.document.defaultView.innerWidth < this.responsiveThreshold) {
+      this.changeSidebarType('overlay');
+      this.toggleOverlayDisplay(true);
+    } else if (this.document.defaultView.innerWidth > this.responsiveThreshold && this.sidebarType != GlobalConfig.defaultSidebarType) {
+      this.changeSidebarType(GlobalConfig.defaultSidebarType);
+    }
+  }
 
   constructor(@Inject(DOCUMENT) private document: Document) {
     super();

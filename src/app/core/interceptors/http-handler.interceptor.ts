@@ -17,17 +17,17 @@ import {RequestConfig} from "@core/models";
 
 @Injectable()
 export class HttpHandlerInterceptor implements HttpInterceptor {
-  constructor(private overlayService: OverlayService,
-              private loaderService: LoaderService,
-              private authService: AuthService) {
-  }
-
   requestsQueue: HttpRequest<any>[] = [];
   hasSuccessMessageApis = RequestsConfig.filter(r => r.success);
   hasFailureMessageApis = RequestsConfig.filter(r => r.failure);
   hasLoadingApis = RequestsConfig.filter(r => r.loading);
   catchEnabledApis = RequestsConfig.filter(r => r.catch);
   cachedRequests = new Map<string, any>();
+
+  constructor(private overlayService: OverlayService,
+              private loaderService: LoaderService,
+              private authService: AuthService) {
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const clonedReq = request.clone();

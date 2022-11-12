@@ -26,9 +26,6 @@ interface Customer {
   styleUrls: ['./table.page.scss'],
 })
 export class TablePage implements OnInit {
-  constructor(private userService: UserService) {
-  }
-
   rtl: boolean = GlobalConfig.rtl;
   size: NgSize = 'md';
   header: string = 'Customers';
@@ -1115,6 +1112,9 @@ export class TablePage implements OnInit {
   loading: boolean;
   totalRecords: number;
   selectAll: boolean = false;
+
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit() {
   }

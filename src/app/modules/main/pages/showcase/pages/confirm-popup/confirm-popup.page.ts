@@ -9,9 +9,6 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./confirm-popup.page.scss']
 })
 export class ConfirmPopupPage {
-  constructor(private overlayService: OverlayService) {
-  }
-
   confirmPopup: NgConfirmPopupOptions = {
     message: 'Are you sure?',
     icon: 'pi pi-exclamation-triangle',
@@ -29,6 +26,9 @@ export class ConfirmPopupPage {
     buttonFull: false,
     defaultFocus: 'accept',
     rtl: GlobalConfig.rtl
+  }
+
+  constructor(private overlayService: OverlayService) {
   }
 
   showConfirmPopup(event) {

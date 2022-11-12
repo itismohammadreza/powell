@@ -10,15 +10,15 @@ import {Router} from '@angular/router';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage extends LanguageChecker {
-  constructor(private authService: AuthService, private router: Router) {
-    super();
-  }
-
   form = new UntypedFormGroup({
     email: new UntypedFormControl(null, [Validators.required, Validators.email]),
     password: new UntypedFormControl(null, [Validators.required]),
     confirmPassword: new UntypedFormControl(null, [Validators.required]),
   }, {validators: this.checkPasswords});
+
+  constructor(private authService: AuthService, private router: Router) {
+    super();
+  }
 
   async onSubmit(callback: any) {
     if (this.form.valid) {

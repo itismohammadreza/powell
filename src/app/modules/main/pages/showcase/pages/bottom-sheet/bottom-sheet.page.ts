@@ -7,9 +7,6 @@ import {OverlayService} from "@ng/services";
   styleUrls: ['./bottom-sheet.page.scss']
 })
 export class BottomSheetPage {
-  constructor(private overlayService: OverlayService) {
-  }
-
   blockScroll: boolean = false;
   modal: boolean = true;
   dismissible: boolean = true;
@@ -21,6 +18,9 @@ export class BottomSheetPage {
   visible2 = false;
   visible3 = false;
   visible4 = false;
+
+  constructor(private overlayService: OverlayService) {
+  }
 
   async openDialog() {
     // await this.overlayService.showDialog({content: 'asdsad'})

@@ -7,9 +7,6 @@ import {TemplateDirective} from "@ng/directives/template.directive";
   styleUrls: ['./loading-container.component.scss']
 })
 export class LoadingContainerComponent implements AfterContentInit {
-  constructor() {
-  }
-
   @Input() data: any;
   @Input() spinnerStrokeWidth: number = 4;
   @Input() spinnerFill: string = 'var(--surface-ground)';

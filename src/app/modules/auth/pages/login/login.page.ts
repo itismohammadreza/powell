@@ -10,15 +10,15 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage extends LanguageChecker {
-  constructor(private authService: AuthService, private router: Router) {
-    super();
-  }
-
   form = new UntypedFormGroup({
     email: new UntypedFormControl(null, [Validators.required, Validators.email]),
     password: new UntypedFormControl(null, [Validators.required]),
     rememberMe: new UntypedFormControl(false),
   });
+
+  constructor(private authService: AuthService, private router: Router) {
+    super();
+  }
 
   async onSubmit(callback: any) {
     if (this.form.valid) {
