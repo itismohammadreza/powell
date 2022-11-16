@@ -4,7 +4,7 @@
           subheader="AnimateOnScroll is a directive to animate content while scrolling."></p-card>
 
   <div class="row py-5">
-    <div class="col-12 col-md-6 col-lg-4" [ngAnimateOnScroll]="'fadeInDown'" [threshold]="0.5">
+    <div class="col-12 col-md-6 col-lg-4">
       <div class="card">
         <img src="assets/images/sunset.jpg" class="card-img-top">
         <div class="card-body">
@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-4" [ngAnimateOnScroll]="'fadeInDown'" delay="100ms">
+    <div class="col-12 col-md-6 col-lg-4">
       <div class="card">
         <img src="assets/images/mountains.jpg" class="card-img-top">
         <div class="card-body">
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-4" [ngAnimateOnScroll]="'fadeInDown'" delay="200ms">
+    <div class="col-12 col-md-6 col-lg-4">
       <div class="card">
         <img src="assets/images/tiger.jpg" class="card-img-top">
         <div class="card-body">
@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <div class="row py-5" [ngAnimateOnScroll]="'fadeInLeft'">
+  <div class="row py-5">
     <div class="col">
       <h4>Divs containing other elements like buttons or forms</h4>
       <p>
@@ -62,7 +62,7 @@
     </div>
   </div>
 
-  <div class="row py-5" [ngAnimateOnScroll]="'fadeInRight'">
+  <div class="row py-5">
     <div class="col">
       <h4>Sections of text</h4>
       <p>
@@ -84,14 +84,60 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12 col-lg-6 p-3" [ngAnimateOnScroll]="'zoomInDown'">
+    <div class="col-md-12 col-lg-6 p-3">
       <img src="assets/images/sunset.jpg" class="img-fluid rounded float-left"/>
     </div>
-    <div class="col-md-12 col-lg-6 p-3" [ngAnimateOnScroll]="'zoomInDown'">
+    <div class="col-md-12 col-lg-6 p-3">
       <img src="assets/images/tiger.jpg" class="img-fluid rounded float-left"/>
     </div>
-    <div class="col-md-12 col-lg-6 p-3" [ngAnimateOnScroll]="'zoomInDown'">
+    <div class="col-md-12 col-lg-6 p-3">
       <img src="assets/images/mountains.jpg" class="img-fluid rounded float-left"/>
     </div>
   </div>
+
+  <div class="row aos-all">
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-up"><h2>1</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-down"><h2>2</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="zoom-out-down"><h2>3</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="flip-down"><h2>4</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="flip-up"><h2>5</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-down"><h2>6</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>7</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-down"><h2>8</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>9</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-down"><h2>10</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-up"><h2>11</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-down"><h2>12</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-down"><h2>13</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>14</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-down"><h2>15</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-up"><h2>16</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-down"><h2>17</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-up"><h2>18</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="zoom-out"><h2>19</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-up"><h2>20</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="zoom-out"><h2>21</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>22</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="zoom-out-up"><h2>23</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="zoom-out-down"><h2>24</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>25</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>26</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>27</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>28</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>29</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>30</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>31</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>32</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>33</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>34</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>35</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>36</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>37</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>38</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>39</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>40</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>41</h2></div>
+    <div class="aos-item col-sm-6 col-md-4" data-aos="fade-in"><h2>42</h2></div>
+  </div>
 </div>
+
