@@ -10,7 +10,8 @@
 
 ### Feature
 
-- add open multiple dialog support + handle backbutton click
+- create loading skeleton directive
+- create OTP input box
 
 ### New
 
