@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: 'showcase',
-        data: {title: 'پیشنمایش'},
+        title: 'پیشنمایش',
         loadChildren: (): Promise<any> =>
           import('./pages/showcase/showcase.module').then((m) => m.ShowcaseModule),
       },
