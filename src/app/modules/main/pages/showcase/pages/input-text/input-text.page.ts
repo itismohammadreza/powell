@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {NgAddon, NgInputTypes, NgKeyFilter, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgInputType, NgKeyFilter, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {GlobalConfig} from "@core/global.config";
 
@@ -30,7 +30,7 @@ export class InputTextPage {
   disabled: boolean = false;
   maxlength: number = 100;
   placeholder: string = '';
-  type: NgInputTypes = 'text';
+  type: NgInputType = 'text';
   keyFilter: NgKeyFilter | RegExp = /.*/g;
   showClear: boolean = true;
 

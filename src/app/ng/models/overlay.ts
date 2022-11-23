@@ -16,8 +16,8 @@ import {
   NgFilePickerMode,
   NgFilterMatchMode,
   NgFixLabelPosition,
-  NgInputModes,
-  NgInputTypes,
+  NgInputMode,
+  NgInputType,
   NgKeyFilter,
   NgLabelPosition,
   NgNumberButtonLayout,
@@ -520,7 +520,7 @@ export interface NgDialogFormConfig {
   inputStyleClass?: string;
   ///////////////////////////////////////// input-text /////////////////////////////////////////
   keyFilter?: NgKeyFilter | RegExp;
-  inputMode?: NgInputModes;
+  inputMode?: NgInputMode;
   ///////////////////////////////////////// input-textarea /////////////////////////////////////////
   rows?: number;
   cols?: number;
@@ -724,7 +724,7 @@ export interface NgDialogFormConfig {
   numericSize?: number;
   // instead of 'size'
   buttonType?: NgButtonType;
-  inputType?: NgInputTypes;
+  inputType?: NgInputType;
   // instead of 'format'
   colorFormat?: NgColorFormat;
   enableFormat?: boolean;

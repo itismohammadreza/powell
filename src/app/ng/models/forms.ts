@@ -48,9 +48,9 @@ export type NgValidationType =
   | 'maxlength'
   | 'pattern';
 
-export type NgInputModes = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
+export type NgInputMode = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 
-export type NgInputTypes =
+export type NgInputType =
   | 'button'
   | 'checkbox'
   | 'color'

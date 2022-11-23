@@ -8,7 +8,7 @@ import {
   NgDatepickerViewMode,
   NgFilePickerMode,
   NgFixLabelPosition,
-  NgInputTypes,
+  NgInputType,
   NgKeyFilter,
   NgLabelPosition,
   NgNumberButtonLayout,
@@ -411,7 +411,7 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() feedbackChange = new EventEmitter()
   @Input() toggleMask: boolean;
   @Output() toggleMaskChange = new EventEmitter()
-  @Input() type: NgInputTypes;
+  @Input() type: NgInputType;
   @Output() typeChange = new EventEmitter()
   @Input() keyFilter: NgKeyFilter | RegExp;
   @Output() keyFilterChange = new EventEmitter()

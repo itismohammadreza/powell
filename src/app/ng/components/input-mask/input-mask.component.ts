@@ -19,7 +19,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgAddon, NgValidation, NgInputTypes, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgValidation, NgInputType, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {GlobalConfig} from "@core/global.config";
 
@@ -50,7 +50,7 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize = 'md';
   // native properties
-  @Input() type: NgInputTypes = 'text';
+  @Input() type: NgInputType = 'text';
   @Input() mask: string = '99-999999';
   @Input() slotChar: string = '_';
   @Input() autoClear: boolean = true;

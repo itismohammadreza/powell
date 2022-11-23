@@ -20,7 +20,7 @@ import {
   NgControl,
   UntypedFormGroup
 } from '@angular/forms';
-import {NgAddon, NgInputModes, NgInputTypes, NgKeyFilter, NgLabelPosition, NgValidation} from '@ng/models/forms';
+import {NgAddon, NgInputMode, NgInputType, NgKeyFilter, NgLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {GlobalConfig} from "@core/global.config";
 
@@ -54,8 +54,8 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Input() disabled: boolean;
   @Input() maxlength: number;
   @Input() placeholder: string;
-  @Input() type: NgInputTypes = 'text';
-  @Input() inputMode: NgInputModes = 'text';
+  @Input() type: NgInputType = 'text';
+  @Input() inputMode: NgInputMode = 'text';
   @Input() keyFilter: NgKeyFilter | RegExp;
   @Input() showClear: boolean;
   @Output() onInput = new EventEmitter();

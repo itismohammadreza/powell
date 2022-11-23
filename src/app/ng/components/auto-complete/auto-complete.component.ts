@@ -23,7 +23,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgAddon, NgValidation, NgInputTypes, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgValidation, NgInputType, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {ScrollerOptions} from "primeng/scroller";
@@ -83,7 +83,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() tabindex: any;
   @Input() dataKey: string;
   @Input() autoHighlight: boolean;
-  @Input() type: NgInputTypes = 'text';
+  @Input() type: NgInputType = 'text';
   @Input() showEmptyMessage: boolean;
   @Input() emptyMessage: string = 'موردی وجود ندارد';
   @Input() autofocus: boolean;
