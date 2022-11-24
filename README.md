@@ -11,7 +11,6 @@
 ### Feature
 
 - create loading skeleton directive
-- create OTP input box
 
 ### New
 
