@@ -22,9 +22,9 @@
         [pattern]="numbersOnly ? '\\d*' : ''"
         [attr.inputmode]="numbersOnly ? 'decimal' : 'text'"
         [pKeyFilter]="getKeyFilter()"
-        (paste)="onPaste($event)"
-        (keyup)="onKeyUp($event,i)"
-        (keydown)="onKeyDown($event)"
+        (paste)="_onPaste($event)"
+        (keyup)="_onKeyUp($event,i)"
+        (keydown)="_onKeyDown($event)"
         (blur)="_onBlur()">
     </div>
   </div>

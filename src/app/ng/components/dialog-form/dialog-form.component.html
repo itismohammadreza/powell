@@ -780,6 +780,11 @@
           [numbersOnly]="config.numbersOnly"
           [autoFocusFirst]="config.autoFocusFirst"
           (onChange)="handleConfigEvent(config,'onChange',$event)"
+          (onKeyDown)="handleConfigEvent(config,'onKeyDown',$event)"
+          (onKeyUp)="handleConfigEvent(config,'onKeyUp',$event)"
+          (onBlur)="handleConfigEvent(config,'onBlur',$event)"
+          (onFocus)="handleConfigEvent(config,'onFocus',$event)"
+          (onPaste)="handleConfigEvent(config,'onPaste',$event)"
         ></ng-input-otp>
         <ng-input-password
           *ngSwitchCase="'input-password'"

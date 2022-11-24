@@ -15,8 +15,7 @@
       'disabled',
       'placeholder',
       'inputCount',
-      'numbersOnly',
-      'autoFocusFirst'
+      'numbersOnly'
       ]"
       [(label)]="label"
       [(filled)]="filled"
@@ -29,7 +28,6 @@
       [(placeholder)]="placeholder"
       [(inputCount)]="inputCount"
       [(numbersOnly)]="numbersOnly"
-      [(autoFocusFirst)]="autoFocusFirst"
     ></ng-preview-options>
   </p-panel>
 
@@ -52,7 +50,6 @@
         [placeholder]="placeholder"
         [inputCount]="inputCount"
         [numbersOnly]="numbersOnly"
-        [autoFocusFirst]="autoFocusFirst"
       ></ng-input-otp>
     </form>
 
@@ -74,8 +71,7 @@
       [disabled]="disabled"
       [placeholder]="placeholder"
       [inputCount]="inputCount"
-      [numbersOnly]="numbersOnly"
-      [autoFocusFirst]="autoFocusFirst">
+      [numbersOnly]="numbersOnly">
     </ng-input-otp>
     <pre class="mt-3 mb-0" dir="ltr"><b>Value :</b> {{binding | json}}</pre>
   </p-panel>

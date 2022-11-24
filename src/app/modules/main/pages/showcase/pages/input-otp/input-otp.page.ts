@@ -26,5 +26,4 @@ export class InputOtpPage {
   placeholder: string = '';
   inputCount: number = 4;
   numbersOnly: boolean = true;
-  autoFocusFirst: boolean = false;
 }

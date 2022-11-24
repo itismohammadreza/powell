@@ -62,7 +62,12 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() allowedKeyCodes: string[];
   @Input() numbersOnly: boolean = true;
   @Input() autoFocusFirst: boolean;
-  @Output() onChange = new EventEmitter<string>();
+  @Output() onChange = new EventEmitter();
+  @Output() onKeyDown = new EventEmitter();
+  @Output() onKeyUp = new EventEmitter();
+  @Output() onBlur = new EventEmitter();
+  @Output() onFocus = new EventEmitter();
+  @Output() onPaste = new EventEmitter();
 
   form: FormGroup;
   controlContainer: FormGroupDirective;
@@ -76,22 +81,6 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   ngOnInit() {
-    this.form = new FormGroup({});
-    for (let index = 0; index < this.inputCount; index++) {
-      this.form.addControl(this.getControlName(index), new FormControl());
-    }
-    this.form.valueChanges.subscribe(() => {
-      this.transformKeys(this.form.controls).forEach((k) => {
-        const val = this.form.controls[k].value;
-        if (val && val.length > 1) {
-          if (val.length >= this.inputCount) {
-            this.setValue(val);
-          } else {
-            this.rebuildValue();
-          }
-        }
-      });
-    });
     let parentForm: UntypedFormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -120,6 +109,22 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
         });
       }
     }
+    this.form = new FormGroup({});
+    for (let index = 0; index < this.inputCount; index++) {
+      this.form.addControl(this.getControlName(index), new FormControl());
+    }
+    this.form.valueChanges.subscribe(() => {
+      this.transformKeys(this.form.controls).forEach((k) => {
+        const val = this.form.controls[k].value;
+        if (val && val.length > 1) {
+          if (val.length >= this.inputCount) {
+            this.setValue(val);
+          } else {
+            this.rebuildValue();
+          }
+        }
+      });
+    });
   }
 
   ngAfterViewInit(): void {
@@ -136,6 +141,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   _onBlur() {
+    this.onBlur.emit()
     this.onModelTouched();
   }
 
@@ -177,16 +183,18 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
     return `ctrl_${idx}`;
   }
 
-  onKeyDown(event: KeyboardEvent) {
+  _onKeyDown(event: KeyboardEvent) {
+    this.onKeyDown.emit(event)
     if (this.isSpacebar(event)) {
       event.preventDefault();
       return false;
     }
   }
 
-  onKeyUp(event: any, index: number) {
+  _onKeyUp(event: any, index: number) {
     const nextInputEl = this.getNthInput(index + 1);
     const prevInputEl = this.getNthInput(index - 1);
+    this.onKeyDown.emit(event);
 
     if (this.isRightArrow(event)) {
       event.preventDefault();
@@ -279,7 +287,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
     this.onModelChange(value);
   }
 
-  onPaste(event: any) {
+  _onPaste(event: any) {
     let clipboardData = event.clipboardData || window['clipboardData'];
     let pastedData: string;
     if (clipboardData) {
@@ -291,6 +299,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
       return;
     }
     this.setValue(pastedData);
+    this.onPaste.emit(event)
   }
 
   transformKeys(value: any): string[] {
