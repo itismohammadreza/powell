@@ -40,7 +40,7 @@
     <form [formGroup]="form">
       <ng-input-otp
         formControlName="c1"
-        [validation]="{ required: 'error required'}"
+        [validation]="{ required: 'error'}"
         [label]="label"
         [filled]="filled"
         [labelWidth]="labelWidth"
@@ -54,8 +54,6 @@
         [numbersOnly]="numbersOnly"
         [autoFocusFirst]="autoFocusFirst"
       ></ng-input-otp>
-      <ng-button type="submit" label="submit"></ng-button>
-
     </form>
 
     <p-divider align="center">

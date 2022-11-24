@@ -42,11 +42,12 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input('value') set value(v: any) {
     this.setValue(v)
   };
+
   @Input() label: string;
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = false;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
@@ -341,5 +342,11 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   registerOnTouched(fn) {
+    this.onModelTouched = fn;
+  }
+
+  setDisabledState(val: boolean) {
+    this.disabled = val;
+    this.cd.markForCheck();
   }
 }

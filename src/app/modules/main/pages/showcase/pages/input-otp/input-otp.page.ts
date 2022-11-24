@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {GlobalConfig} from "@core/global.config";
-import {NgFixLabelPosition} from "@ng/models/forms";
+import {NgAddon, NgFixLabelPosition, NgInputType, NgKeyFilter, NgLabelPosition} from "@ng/models/forms";
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {NgIconPosition, NgSize} from "@ng/models/offset";
 
 @Component({
   selector: 'ng-input-otp-page',
