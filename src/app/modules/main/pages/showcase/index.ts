@@ -63,6 +63,7 @@ import {DialogPage} from "@modules/main/pages/showcase/pages/dialog/dialog.page"
 import {LoadingContainerPage} from "@modules/main/pages/showcase/pages/loading-container/loading-container.page";
 import {InfiniteScrollPage} from "@modules/main/pages/showcase/pages/infinite-scroll/infinite-scroll.page";
 import {AnimateOnScrollPage} from "@modules/main/pages/showcase/pages/animate-on-scroll/animate-on-scroll.page";
+import {InputOtpPage} from "@modules/main/pages/showcase/pages/input-otp/input-otp.page";
 
 export const COMPONENTS: Type<any>[] = [
   // components
@@ -100,6 +101,7 @@ export const COMPONENTS: Type<any>[] = [
   InfiniteScrollPage,
   InputMaskPage,
   InputNumberPage,
+  InputOtpPage,
   InputPasswordPage,
   InputTextPage,
   InputTextareaPage,

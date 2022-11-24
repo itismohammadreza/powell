@@ -1,0 +1,46 @@
+<div [ngClass]="{
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side'
+    }" class="input-otp-wrapper"
+     [ngStyle]="style"
+     [class]="styleClass">
+  <div class="field">
+    <div [ngClass]="{ 'p-input-filled': filled }" *ngIf="form?.controls">
+      <input
+        *ngFor="let item of transformKeys(form.controls);let i=index"
+        [formControl]="$any(form.controls[item])"
+        [readonly]="readonly"
+        [attr.disabled]="disabled ? true : null"
+        [placeholder]="placeholder || ''"
+        [ngStyle]="inputStyle"
+        [class]="inputStyleClass"
+        pInputText
+        autocomplete="one-time-code"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [pattern]="numbersOnly ? '\\d*' : ''"
+        [attr.inputmode]="numbersOnly ? 'decimal' : 'text'"
+        [pKeyFilter]="getKeyFilter()"
+        (paste)="onPaste($event)"
+        (keyup)="onKeyUp($event,i)"
+        (keydown)="onKeyDown($event)"
+        (blur)="_onBlur()">
+    </div>
+  </div>
+  <label
+    class="fix-label"
+    *ngIf="label"
+    [class.p-disabled]="disabled"
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label }}
+  </label>
+  <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
+  <div class="message small">
+    <ng-container *ngFor="let v of validation | keyvalue">
+      <div *ngIf="hasError(v.key)" class="p-error">
+        {{ v.value }}
+      </div>
+    </ng-container>
+  </div>
+</div>

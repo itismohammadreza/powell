@@ -139,6 +139,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       'infinite-scroll',
       'input-mask',
       'input-number',
+      'input-otp',
       'input-password',
       'input-text',
       'input-textarea',

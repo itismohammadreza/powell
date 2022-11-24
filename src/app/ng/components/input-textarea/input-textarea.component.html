@@ -4,7 +4,9 @@
       'label-fix-top': labelPos == 'fix-top',
       'label-fix-side': labelPos == 'fix-side',
       'label-float': labelPos == 'float'
-    }" class="input-textarea-wrapper">
+    }" class="input-textarea-wrapper"
+     [ngStyle]="style"
+     [class]="styleClass">
   <div class="field"
        [ngAddon]="addon"
        [addonDisabled]="disabled"
@@ -29,6 +31,8 @@
         [disabled]="disabled"
         [readonly]="readonly"
         [rows]="rows"
+        [ngStyle]="inputStyle"
+        [class]="inputStyleClass"
         (blur)="_onBlur()"
         (change)="_onChange($event)"
         (focus)="emitter('onFocus', $event)"

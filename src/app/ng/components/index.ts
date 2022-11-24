@@ -13,6 +13,7 @@ import {SwitchComponent} from "@ng/components/switch/switch.component";
 import {InputTextComponent} from "@ng/components/input-text/input-text.component";
 import {InputTextareaComponent} from "@ng/components/input-textarea/input-textarea.component";
 import {InputNumberComponent} from "@ng/components/input-number/input-number.component";
+import {InputOtpComponent} from "@ng/components/input-otp/input-otp.component";
 import {KnobComponent} from "@ng/components/knob/knob.component";
 import {ListboxComponent} from "@ng/components/listbox/listbox.component";
 import {MultiCheckboxComponent} from "@ng/components/multi-checkbox/multi-checkbox.component";
@@ -83,6 +84,7 @@ export const COMPONENTS: Type<any>[] = [
   InputMaskComponent,
   SwitchComponent,
   InputNumberComponent,
+  InputOtpComponent,
   InputPasswordComponent,
   InputTextComponent,
   InputTextareaComponent,

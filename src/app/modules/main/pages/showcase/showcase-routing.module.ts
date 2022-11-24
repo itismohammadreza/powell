@@ -53,6 +53,7 @@ import {LoadingContainerPage} from "@modules/main/pages/showcase/pages/loading-c
 import {InfiniteScrollPage} from "@modules/main/pages/showcase/pages/infinite-scroll/infinite-scroll.page";
 import {OpenDialogGuard} from "@core/guard";
 import {AnimateOnScrollPage} from "@modules/main/pages/showcase/pages/animate-on-scroll/animate-on-scroll.page";
+import {InputOtpPage} from "@modules/main/pages/showcase/pages/input-otp/input-otp.page";
 
 const routes: Routes = [
   {
@@ -184,6 +185,11 @@ const routes: Routes = [
     path: 'input-number',
     component: InputNumberPage,
     title: 'input-number'
+  },
+  {
+    path: 'input-otp',
+    component: InputOtpPage,
+    title: 'input-otp'
   },
   {
     path: 'input-password',

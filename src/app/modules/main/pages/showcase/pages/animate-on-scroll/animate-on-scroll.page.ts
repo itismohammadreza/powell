@@ -10,7 +10,8 @@ export class AnimateOnScrollPage {
   constructor(private scrollService: ScrollService) {
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    console.log('init')
     this.scrollService.init({easing: 'ease-in-out-sine'})
   }
 }

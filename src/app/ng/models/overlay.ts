@@ -30,6 +30,7 @@ import {SunEditorOptions} from "suneditor/src/options";
 import {Core} from "suneditor/src/lib/core";
 import {LatLng, LatLngBounds} from "leaflet";
 import {ScrollerOptions} from "primeng/scroller";
+import {Moment} from "jalali-moment";
 
 export type NgSeverity = 'success' | 'info' | 'warn' | 'error';
 export type NgDefaultFocus = 'accept' | 'reject';
@@ -427,7 +428,8 @@ export interface NgDialogFormConfig {
   chooseLabel?: string;
   onRemove?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// gregorian-datepicker /////////////////////////////////////////
-  defaultDate?: Date;
+  ///////////////////////////////////////// jalali-datepicker /////////////////////////////////////////
+  defaultDate?: any; // Date | Moment
   dateFormat?: string;
   inline?: boolean;
   showOtherMonths?: boolean;
@@ -438,8 +440,8 @@ export interface NgDialogFormConfig {
   datePickerIcon?: string;
   readonlyInput?: boolean;
   shortYearCutoff?: string;
-  minDate?: Date;
-  maxDate?: Date;
+  minDate?: any; // Date | Moment
+  maxDate?: any; // Date | Moment
   disabledDates?: any[];
   disabledDays?: any[];
   showTime?: boolean;
@@ -507,6 +509,10 @@ export interface NgDialogFormConfig {
   maxFractionDigits?: number;
   allowEmpty?: boolean;
   title?: string;
+  ///////////////////////////////////////// input-otp /////////////////////////////////////////
+  inputCount?: number;
+  numbersOnly?: boolean;
+  autoFocusFirst?: boolean;
   ///////////////////////////////////////// input-password /////////////////////////////////////////
   promptLabel?: string;
   mediumRegex?: string;
@@ -521,6 +527,7 @@ export interface NgDialogFormConfig {
   ///////////////////////////////////////// input-text /////////////////////////////////////////
   keyFilter?: NgKeyFilter | RegExp;
   inputMode?: NgInputMode;
+  onPaste?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// input-textarea /////////////////////////////////////////
   rows?: number;
   cols?: number;

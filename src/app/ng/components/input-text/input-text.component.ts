@@ -58,6 +58,11 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Input() inputMode: NgInputMode = 'text';
   @Input() keyFilter: NgKeyFilter | RegExp;
   @Input() showClear: boolean;
+  @Input() style: any;
+  @Input() styleClass: string;
+  @Input() inputStyle: any;
+  @Input() inputStyleClass: string;
+  @Input() autocomplete: any;
   @Output() onInput = new EventEmitter();
   @Output() onClick = new EventEmitter();
   @Output() onChange = new EventEmitter();
@@ -66,6 +71,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Output() onBlur = new EventEmitter();
   @Output() onFocus = new EventEmitter();
   @Output() onClear = new EventEmitter();
+  @Output() onPaste = new EventEmitter();
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
 

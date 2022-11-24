@@ -56,6 +56,10 @@ export class InputTextareaComponent implements OnInit, AfterViewInit, ControlVal
   @Input() disabled: boolean;
   @Input() maxlength: number;
   @Input() placeholder: string;
+  @Input() style: any;
+  @Input() styleClass: string;
+  @Input() inputStyle: any;
+  @Input() inputStyleClass: string;
   @Output() onResize = new EventEmitter();
   @Output() onInput = new EventEmitter();
   @Output() onChange = new EventEmitter();

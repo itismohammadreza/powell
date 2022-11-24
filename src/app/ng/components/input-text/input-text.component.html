@@ -5,7 +5,9 @@
       'label-fix-side': labelPos == 'fix-side',
       'label-float': labelPos == 'float',
       'clearable': showClear
-    }" class="input-text-wrapper">
+    }" class="input-text-wrapper"
+     [ngStyle]="style"
+     [class]="styleClass">
   <div class="field"
        [ngAddon]="addon"
        [addonDisabled]="disabled"
@@ -33,13 +35,17 @@
           [disabled]="disabled"
           [readonly]="readonly"
           [pKeyFilter]="keyFilter"
+          [ngStyle]="inputStyle"
+          [class]="inputStyleClass"
+          [autocomplete]="autocomplete"
           (blur)="_onBlur()"
           (change)="_onChange($event)"
           (click)="emitter('onClick', $event)"
           (focus)="emitter('onFocus', $event)"
           (input)="_onInput($event)"
           (keydown)="_onKeyDown($event)"
-          (keyup)="_onKeyUp($event)"/>
+          (keyup)="_onKeyUp($event)"
+          (paste)="emitter('onPaste', $event)"/>
         <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
           {{ label }}
         </label>

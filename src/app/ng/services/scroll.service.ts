@@ -112,14 +112,14 @@ export class ScrollService {
     return elementOffsetTop + additionalOffset;
   }
 
-  createArrayWithElements(elements = null) {
-    elements = elements || document.querySelectorAll('[data-aos]');
+  createArrayWithElements() {
+    const elements = document.querySelectorAll('[data-aos]');
     return Array.prototype.map.call(elements, node => ({node}));
   }
 
   setState(el, top, once) {
     const attrOnce = el.node.getAttribute('data-aos-once');
-
+    console.log(top, el.position)
     if (top > el.position) {
       el.node.classList.add('aos-animate');
     } else if (typeof attrOnce !== 'undefined') {

@@ -215,6 +215,9 @@ type PreviewItem =
   | 'async'
   | 'dismissible'
   | 'showCloseIcon'
+  | 'inputCount'
+  | 'numbersOnly'
+  | 'autoFocusFirst'
 
   | 'addon'
   | 'selectiveSize'
@@ -619,6 +622,12 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() showCloseIconChange = new EventEmitter()
   @Input() addon: NgAddon;
   @Output() addonChange = new EventEmitter()
+  @Input() inputCount: number;
+  @Output() inputCountChange = new EventEmitter();
+  @Input() numbersOnly: boolean;
+  @Output() numbersOnlyChange = new EventEmitter();
+  @Input() autoFocusFirst: boolean;
+  @Output() autoFocusFirstChange = new EventEmitter();
 
   // instead of 'size' & 'inputSize'
   @Input() selectiveSize: NgSize;
