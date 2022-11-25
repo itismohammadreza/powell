@@ -11,6 +11,7 @@
 ### Feature
 
 - create loading skeleton directive
+- fix AOS bug
 
 ### New
 
