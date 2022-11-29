@@ -15,7 +15,7 @@
         #singleUploader
         (change)="onSingleSelect($event)"/>
       <div class="preview rounded-top p-3" [ngSwitch]="getFileType(filesToShow[0]?.base64)">
-        <img *ngSwitchCase="'image'" [src]="filesToShow[0]?.base64" class="rounded-top mw-100"/>
+        <div *ngSwitchCase="'image'" [style.backgroundImage]="'url('+filesToShow[0]?.base64+')'"></div>
         <i *ngSwitchCase="'file'" class="pi pi-file h2 mb-0"></i>
       </div>
       <button type="button" (click)="singleUploader.click()"
