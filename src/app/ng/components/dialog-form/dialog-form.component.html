@@ -541,6 +541,7 @@
           [fileLimit]="config.fileLimit || 20000"
           [resultType]="config.resultType || 'base64'"
           [chooseLabel]="config.chooseLabel || 'انتخاب'"
+          [isUnknownImageUrl]="config.isUnknownImageUrl"
           (onSelect)="handleConfigEvent(config,'onSelect',$event)"
           (onRemove)="handleConfigEvent(config,'onRemove',$event)"
         ></ng-file-picker2>

@@ -424,9 +424,10 @@ export interface NgDialogFormConfig {
   ///////////////////////////////////////// file-picker2 /////////////////////////////////////////
   accept?: string;
   fileLimit?: number;
-  resultType?: 'base64' | 'file';
+  resultType?: 'base64' | 'file' | 'none';
   chooseLabel?: string;
   onRemove?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  isUnknownImageUrl?: boolean;
   ///////////////////////////////////////// gregorian-datepicker /////////////////////////////////////////
   ///////////////////////////////////////// jalali-datepicker /////////////////////////////////////////
   defaultDate?: any; // Date | Moment

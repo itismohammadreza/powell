@@ -43,7 +43,6 @@ export class OverlayService {
   ) {
     this.location.onPopState((e) => {
       const currentState = this.states.pop();
-      console.log('onPopState', currentState)
       if (!currentState) {
         return
       }
@@ -313,12 +312,10 @@ export class OverlayService {
     }
     this.location.pushState(state, '', this.router.url, '');
     this.states.push(state);
-    console.log('pushState', state);
   }
 
   popState() {
     this.location.back();
-    console.log('popState')
   }
 
   stateChange() {

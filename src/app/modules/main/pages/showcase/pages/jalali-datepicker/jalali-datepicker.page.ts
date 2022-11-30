@@ -57,6 +57,5 @@ export class JalaliDatepickerPage {
   }
 
   submit() {
-    console.log(this.form.value)
   }
 }

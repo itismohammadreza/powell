@@ -14,15 +14,14 @@
         type="file"
         #singleUploader
         (change)="onSingleSelect($event)"/>
-      <div class="preview rounded-top p-3" [ngSwitch]="getFileType(filesToShow[0]?.base64)">
-        <div *ngSwitchCase="'image'" [style.backgroundImage]="'url('+filesToShow[0]?.base64+')'"></div>
+      <div class="preview rounded-top p-3" [ngSwitch]="getFileType(filesToShow[0]?.display)">
+        <div *ngSwitchCase="'image'" [style.backgroundImage]="'url('+(filesToShow[0]?.display)+')'"></div>
         <i *ngSwitchCase="'file'" class="pi pi-file h2 mb-0"></i>
       </div>
       <button type="button" (click)="singleUploader.click()"
               class="w-100 btn btn-{{ color }}">{{ chooseLabel }}</button>
-      <button type="button" class="btn btn-danger" (click)="onSingleDelete()"
-              *ngIf="filesToShow.length != 0"><i class="pi pi-trash"></i>
-      </button>
+      <ng-button color="danger" size="sm" (click)="onSingleDelete()"
+                 *ngIf="filesToShow.length != 0" icon="pi pi-trash"></ng-button>
     </div>
 
     <div [class.flex-row-reverse]="rtl" class="file-picker-multiple-wrapper" *ngIf="multiple">
@@ -35,16 +34,15 @@
         [disabled]="disabled"
         (change)="onMultipleSelect($event)"/>
       <div
-        *ngIf="!readonly"
-        [class.forbidden]="filesToEmit?.length == fileLimit"
+        *ngIf="!readonly && filesToEmit.length < fileLimit"
         class="image-uploader d-flex align-items-center justify-content-center"
         (click)="multipleUploader.click()">
         <i class="pi pi-paperclip h2 mb-0"></i>
       </div>
       <div *ngFor="let item of filesToShow; let i = index" class="image-item mr-3 mb-2">
-        <ng-container [ngSwitch]="getFileType(item.base64)">
+        <ng-container [ngSwitch]="getFileType(item.display)">
           <div *ngSwitchCase="'image'"
-               [style.backgroundImage]="'url(' + item.base64 + ')'"
+               [style.backgroundImage]="'url(' + item.display + ')'"
                class="image-item-image"
           ></div>
           <div *ngSwitchCase="'file'" class="image-item-preview">
@@ -52,9 +50,8 @@
           </div>
           <div class="small px-1 bg-dark text-white p-1 text-truncate">{{item.name}}</div>
         </ng-container>
-        <button type="button" class="btn image-item-trash" (click)="onMultipleDelete($event, i)"
-                *ngIf="!readonly"><i class="pi pi-trash"></i>
-        </button>
+        <ng-button color="danger" class="image-item-trash" size="sm" (click)="onMultipleDelete($event, i)"
+                   *ngIf="!readonly" icon="pi pi-trash"></ng-button>
       </div>
     </div>
   </div>

@@ -217,7 +217,6 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
   }
 
   _onBlur(event: any) {
-    console.log('blur');
     this.onBlur.emit(event);
     this.onModelTouched();
   }

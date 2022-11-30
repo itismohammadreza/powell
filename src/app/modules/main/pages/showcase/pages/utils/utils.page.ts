@@ -25,6 +25,6 @@ export class UtilsPage {
   }
 
   async request() {
-    await this.userService.get().then(console.log);
+    await this.userService.get();
   }
 }

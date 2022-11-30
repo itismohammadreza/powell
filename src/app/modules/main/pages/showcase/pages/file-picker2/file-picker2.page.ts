@@ -10,6 +10,7 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./file-picker2.page.scss'],
 })
 export class FilePicker2Page {
+
   form = new UntypedFormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
@@ -28,4 +29,5 @@ export class FilePicker2Page {
   color: NgColor = 'primary';
   fileLimit: number = 20000;
   chooseLabel: string = 'انتخاب';
+
 }
