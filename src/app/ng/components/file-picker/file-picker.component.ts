@@ -55,7 +55,7 @@ export class FilePickerComponent
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
-  @Input() resultType: 'base64' | 'file' = 'file';
+  @Input() resultType: 'base64' | 'file' | 'none' = 'file';
   // native properties
   @Input() name: string;
   @Input() url: string;
@@ -199,6 +199,8 @@ export class FilePickerComponent
         this.filesToEmit.push(await this.fileToBase64(file));
       } else if (this.resultType == 'file') {
         this.filesToEmit.push(file);
+      } else {
+        this.filesToEmit.push(file);
       }
     }
     if (this.multiple) {
@@ -225,6 +227,8 @@ export class FilePickerComponent
             result.push(await this.fileToBase64(item));
           } else if (wantFile) {
             result.push(item);
+          } else {
+            result.push(item);
           }
         }
         if (typeof item == 'string') {
@@ -235,6 +239,8 @@ export class FilePickerComponent
               result.push(item);
             } else if (wantFile) {
               result.push(this.base64toFile(item, item.split('/').pop()));
+            } else {
+              result.push(item);
             }
           }
           //Array of url
@@ -245,6 +251,8 @@ export class FilePickerComponent
               result.push(base64);
             } else if (wantFile) {
               result.push(this.base64toFile(base64, item.split('/').pop()));
+            } else {
+              result.push(item);
             }
           }
         }

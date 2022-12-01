@@ -6,7 +6,6 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./loading-container.page.scss']
 })
 export class LoadingContainerPage implements OnInit {
-
   list: any[];
 
   ngOnInit() {
@@ -14,5 +13,4 @@ export class LoadingContainerPage implements OnInit {
       this.list = [1, 2, 3, 4, 5]
     }, 3000)
   }
-
 }

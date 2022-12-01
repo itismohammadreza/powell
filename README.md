@@ -10,8 +10,6 @@
 
 ### Feature
 
-- create loading skeleton directive
-- update filePicker like filePicker2
 - fix AOS bug
 
 ### New

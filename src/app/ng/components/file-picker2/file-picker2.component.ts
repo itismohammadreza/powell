@@ -116,9 +116,7 @@ export class FilePicker2Component
   }
 
   ngOnChanges() {
-    if (this.utilsService.isImage(this.value)) {
-      this.init(this.value);
-    }
+    this.init(this.value);
   }
 
   ngAfterViewInit() {
