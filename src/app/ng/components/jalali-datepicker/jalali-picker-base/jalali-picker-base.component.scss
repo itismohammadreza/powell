@@ -15,7 +15,6 @@
   direction: rtl;
 }
 
-
 button.p-link {
   font-family: inherit;
 }
@@ -136,6 +135,11 @@ button.p-link {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row-reverse;
+
+  > div {
+    direction: ltr;
+  }
 }
 
 .p-timepicker button {
