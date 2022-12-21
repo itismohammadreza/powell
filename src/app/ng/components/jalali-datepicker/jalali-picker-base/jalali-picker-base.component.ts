@@ -2230,7 +2230,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
   }
 
   getDateFormat() {
-    return this.dateFormat || 'dd/mm/yy';
+    return this.dateFormat || 'yy/mm/dd';
   }
 
   getFirstDateOfWeek() {

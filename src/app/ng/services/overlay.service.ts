@@ -146,7 +146,7 @@ export class OverlayService {
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
     }
     instance.style = options.style;
-    instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-button-icon-${options.buttonIconPos || 'left'} ${!options.header && !options.closable ? 'header-less' : ''}`;
+    instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-button-icon-${options.buttonIconPos || 'left'} ${!options.header && !options.closable ? 'dialog-header-less' : ''}`;
     instance.maskStyleClass = options.maskStyleClass;
     instance.closable = options.closable != undefined ? options.closable : true;
     instance.focusTrap = options.focusTrap;
@@ -203,7 +203,7 @@ export class OverlayService {
       minimizeIcon: 'pi pi-window-minimize',
       maximizeIcon: 'pi pi-window-maximize',
       ...options,
-      styleClass: `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'header-less' : ''}`,
+      styleClass: `${options.styleClass} ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`,
     };
     instance.show();
     const state: NgHistoryState = {component: 'dialog'};
@@ -249,7 +249,7 @@ export class OverlayService {
       ...options,
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-dialog-form-accept`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} p-dialog-form-reject`,
-      styleClass: `${options.styleClass} p-dialog-form-wrapper ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'header-less' : ''}`,
+      styleClass: `${options.styleClass} p-dialog-form-wrapper ${(options.rtl == undefined ? GlobalConfig.rtl : options.rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`,
     };
     instance.show();
     const state: NgHistoryState = {component: 'dialogForm'}
