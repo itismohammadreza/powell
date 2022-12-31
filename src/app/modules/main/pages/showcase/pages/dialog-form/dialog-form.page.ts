@@ -47,6 +47,12 @@ export class DialogFormPage {
     this.overlayService.showDialogForm(
       [
         {
+          component: 'jalali-datepicker',
+          key: 'birthdate',
+          label: 'birthdate',
+          touchUI: true
+        },
+        {
           component: 'input-text',
           key: 'name',
           label: 'first name',
