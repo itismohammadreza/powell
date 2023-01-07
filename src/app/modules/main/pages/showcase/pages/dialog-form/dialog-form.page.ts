@@ -50,7 +50,8 @@ export class DialogFormPage {
           component: 'jalali-datepicker',
           key: 'birthdate',
           label: 'birthdate',
-          touchUI: true
+          touchUI: true,
+          showTime: true
         },
         {
           component: 'input-text',
