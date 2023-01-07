@@ -188,8 +188,8 @@ export class FilePicker2Component
         this.filesToEmit.push(item);
       }
     } else {
-      const base64 = await this.utilsService.urlToBase64(item);
       this.filesToShow.push({display: item, name: '--'});
+      const base64 = await this.utilsService.urlToBase64(item);
       if (this.resultType == 'base64') {
         this.filesToEmit.push(base64);
       } else if (this.resultType == 'file') {
