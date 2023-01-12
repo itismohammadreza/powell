@@ -13,7 +13,7 @@ import {GlobalConfig} from "@core/global.config";
 export class DialogFormComponent {
   form: FormGroup;
   visible: boolean;
-  closeCallback: () => void;
+  loadingCallback: () => void;
   _config: NgDialogFormConfig[];
   _options: NgDialogFormOptions;
   onSubmit = new EventEmitter<NgDialogFormResult>();
@@ -62,8 +62,8 @@ export class DialogFormComponent {
 
   close() {
     this.visible = false;
-    if (this.closeCallback) {
-      this.closeCallback()
+    if (this.loadingCallback) {
+      this.loadingCallback()
     }
     this.onClose.emit();
   }
@@ -92,7 +92,7 @@ export class DialogFormComponent {
   }
 
   changeDialogVisibilityTo = (visible: boolean) => {
-    this.closeCallback();
+    this.loadingCallback();
     this.visible = visible;
     this.disableReject = false;
     if (!visible) {
@@ -192,14 +192,14 @@ export class DialogFormComponent {
     }
   }
 
-  onSubmitClick(closeCallback: any) {
+  onSubmitClick(loadingCallback: any) {
     this.form.markAllAsTouched();
     if (this.form.invalid) {
-      closeCallback();
+      loadingCallback();
       return;
     }
     this.disableReject = true;
-    this.closeCallback = closeCallback;
+    this.loadingCallback = loadingCallback;
     this.onSubmit.emit({formValue: this.form.value, changeDialogVisibilityTo: this.changeDialogVisibilityTo})
   }
 }

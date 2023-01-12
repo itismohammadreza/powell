@@ -30,6 +30,30 @@
   <main>
     <ng-content></ng-content>
   </main>
+
+  <p-sidebar
+    [visible]="sidebarVisible"
+    [blockScroll]="isModalSidebar"
+    [modal]="isModalSidebar"
+    [position]="fa ? 'right' : 'left'"
+    [showCloseIcon]="false"
+    [closeOnEscape]="false"
+    (visibleChange)="toggleSidebar($event)">
+    <div class="sticky-top section-top pt-3">
+      <div class="d-flex align-items-center justify-content-between">
+        <ng-logo width="50px"></ng-logo>
+        <i class="d-none d-md-block border rounded-circle pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
+           (click)="toggleLockSidebarClick()"></i>
+      </div>
+      <ng-input-text [rtl]="false"
+                     inputSize="sm"
+                     class="d-block my-3"
+                     placeholder="Search Components..."
+                     [(ngModel)]="searchValue">
+      </ng-input-text>
+    </div>
+    <p-panelMenu [multiple]="false" [model]="sidebarItems | ngFilter:searchValue:'label'"></p-panelMenu>
+  </p-sidebar>
 </div>
 
 <p-menubar [model]="sidebarItems" *ngIf="sidebarType == 'horizontal'">
@@ -37,29 +61,6 @@
     <ng-logo width="50px"></ng-logo>
   </ng-template>
 </p-menubar>
-<p-sidebar
-  [visible]="sidebarVisible"
-  [blockScroll]="isModalSidebar"
-  [modal]="isModalSidebar"
-  [position]="fa ? 'right' : 'left'"
-  [showCloseIcon]="false"
-  [closeOnEscape]="false"
-  (visibleChange)="toggleSidebar($event)">
-  <div class="sticky-top section-top pt-3">
-    <div class="d-flex align-items-center justify-content-between">
-      <ng-logo width="50px"></ng-logo>
-      <i class="d-none d-md-block border rounded-circle pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
-         (click)="toggleLockSidebarClick()"></i>
-    </div>
-    <ng-input-text [rtl]="false"
-                   inputSize="sm"
-                   class="d-block my-3"
-                   placeholder="Search Components..."
-                   [(ngModel)]="searchValue">
-    </ng-input-text>
-  </div>
-  <p-panelMenu [multiple]="false" [model]="sidebarItems | ngFilter:searchValue:'label'"></p-panelMenu>
-</p-sidebar>
 
 <p-menu
   #accountMenu

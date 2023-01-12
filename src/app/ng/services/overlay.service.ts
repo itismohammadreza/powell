@@ -256,9 +256,6 @@ export class OverlayService {
     this.pushState(state);
     return new Observable<NgDialogFormResult>((resolve) => {
       const submitSubscription = instance.onSubmit.subscribe(res => {
-        if (!this.isPopped(state)) {
-          this.popState()
-        }
         resolve.next(res);
       });
       const closeSubscription = instance.onClose.subscribe(() => {

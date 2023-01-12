@@ -36,7 +36,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   onResize() {
     if (this.document.defaultView.innerWidth < this.responsiveThreshold) {
       this.changeSidebarType('overlay');
-      this.toggleOverlayDisplay(true);
+      this.maskEl?.classList.remove('d-none');
     } else if (this.document.defaultView.innerWidth > this.responsiveThreshold && this.sidebarType != GlobalConfig.defaultSidebarType) {
       this.changeSidebarType(GlobalConfig.defaultSidebarType);
     }
@@ -223,7 +223,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     if (['overlay', 'push'].includes(this.sidebarType)) {
       setTimeout(() => {
         if (this.sidebarVisible) {
-          this.toggleOverlayVisibility(false);
+          this.toggleMaskVisibility(false);
         }
       }, 0);
     }
@@ -231,38 +231,40 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
 
   toggleSidebarLock(activate: boolean) {
     this.sidebarLock = activate;
-    if (['overlay', 'push', 'overlay-mask', 'push-mask'].includes(this.sidebarType) && this.sidebarVisible) {
-      this.toggleOverlayDisplay(!this.sidebarLock);
+    if (this.isModalSidebar && this.sidebarVisible) {
+      this.toggleMaskDisplay(!this.sidebarLock);
     }
   }
 
-  toggleOverlayDisplay(activate: boolean) {
-    const overlay = this.document.querySelector('.p-sidebar-mask');
+  toggleMaskDisplay(activate: boolean) {
     const body = this.document.body;
     if (activate) {
-      overlay?.classList.remove('d-none');
+      this.maskEl?.classList.remove('d-none');
       body.classList.add('p-overflow-hidden');
     } else {
-      overlay?.classList.add('d-none');
+      this.maskEl?.classList.add('d-none');
       body.classList.remove('p-overflow-hidden');
     }
   }
 
-  toggleOverlayVisibility(activate: boolean) {
-    const overlay: any = this.document.querySelector('.p-sidebar-mask');
-    if (overlay) {
+  toggleMaskVisibility(activate: boolean) {
+    if (this.maskEl) {
       if (activate) {
-        overlay.style.transitionDuration = '0.2ms';
-        overlay.style.opacity = 1;
+        this.maskEl.style.transitionDuration = '0.2ms';
+        this.maskEl.style.opacity = '1';
       } else {
-        overlay.style.transitionDuration = '0ms';
-        overlay.style.opacity = 0;
+        this.maskEl.style.transitionDuration = '0ms';
+        this.maskEl.style.opacity = '0';
       }
     }
   }
 
   getWrapperClasses() {
     return `menu-${this.sidebarType} ${this.fa ? 'rtl' : ''} ${this.sidebarLock ? 'sidebar-lock' : ''}  ${this.sidebarVisible ? 'sidebar-open' : ''}`
+  }
+
+  get maskEl() {
+    return this.document.querySelector('.p-sidebar-mask') as HTMLDivElement;
   }
 
   get isModalSidebar() {
