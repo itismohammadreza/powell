@@ -1,5 +1,5 @@
 import {HttpHeaders} from '@angular/common/http';
-import {AbstractControl, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
+import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {ContextMenu} from 'primeng/contextmenu';
 import {NgButtonAppearance, NgButtonType} from './button';
 import {NgColor} from './color';
@@ -30,7 +30,6 @@ import {SunEditorOptions} from "suneditor/src/options";
 import {Core} from "suneditor/src/lib/core";
 import {LatLng, LatLngBounds} from "leaflet";
 import {ScrollerOptions} from "primeng/scroller";
-import {Moment} from "jalali-moment";
 
 export type NgSeverity = 'success' | 'info' | 'warn' | 'error';
 export type NgDefaultFocus = 'accept' | 'reject';
