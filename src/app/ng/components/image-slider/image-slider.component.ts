@@ -93,6 +93,7 @@ export class ImageSliderComponent implements OnInit, AfterContentInit {
   }
 
   onVisibleChange(event) {
+    console.log(event)
     this.visible = event;
     this.visibleChange.emit(this.visible);
   }

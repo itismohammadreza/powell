@@ -39,6 +39,7 @@
 
   <p-panel dir="ltr" header="Preview">
     <ng-image-slider
+      [(visible)]="visible"
       [images]="images"
       [numVisible]="numVisible"
       [showItemNavigators]="showItemNavigators"

@@ -40,7 +40,7 @@ import {PaginatorModule} from 'primeng/paginator';
 // import {PickListModule} from 'primeng/picklist';
 import {TableModule} from 'primeng/table';
 // import {TimelineModule} from 'primeng/timeline';
-// import {TreeModule} from 'primeng/tree';
+import {TreeModule} from 'primeng/tree';
 // import {TreeTableModule} from 'primeng/treetable';
 // import {VirtualScrollerModule} from 'primeng/virtualscroller';
 // import {ScrollerModule} from 'primeng/scroller';
@@ -53,7 +53,7 @@ import {DividerModule} from 'primeng/divider';
 import {PanelModule} from 'primeng/panel';
 // import {SplitterModule} from 'primeng/splitter';
 // import {ScrollPanelModule} from 'primeng/scrollpanel';
-// import {TabViewModule} from 'primeng/tabview';
+import {TabViewModule} from 'primeng/tabview';
 // import {ToolbarModule} from 'primeng/toolbar';
 
 /***************************** OVERLAY *****************************/
@@ -63,7 +63,7 @@ import {DialogModule} from 'primeng/dialog';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {SidebarModule} from 'primeng/sidebar';
-// import {TooltipModule} from 'primeng/tooltip';
+import {TooltipModule} from 'primeng/tooltip';
 
 /***************************** UPLOAD *****************************/
 import {FileUploadModule} from 'primeng/fileupload';
@@ -91,7 +91,7 @@ import {ToastModule} from 'primeng/toast';
 
 /***************************** MEDIA *****************************/
 // import {CarouselModule} from 'primeng/carousel';
-// import {GalleriaModule} from 'primeng/galleria';
+import {GalleriaModule} from 'primeng/galleria';
 import {ImageModule} from 'primeng/image';
 
 /***************************** DRAGDROP *****************************/
@@ -100,7 +100,7 @@ import {ImageModule} from 'primeng/image';
 /***************************** MISC *****************************/
 import {AvatarModule} from 'primeng/avatar';
 // import {AvatarGroupModule} from 'primeng/avatargroup';
-// import {BadgeModule} from 'primeng/badge';
+import {BadgeModule} from 'primeng/badge';
 // import {BlockUIModule} from 'primeng/blockui';
 // import {CaptchaModule} from 'primeng/captcha';
 // import {ChipModule} from 'primeng/chip';
@@ -159,7 +159,7 @@ export const MODULES: Type<any>[] = [
   // PickListModule, // has dependency
   TableModule,
   // TimelineModule,
-  // TreeModule,
+  TreeModule,
   // TreeTableModule,
   // VirtualScrollerModule,
   // ScrollerModule,
@@ -171,7 +171,7 @@ export const MODULES: Type<any>[] = [
   PanelModule,
   // SplitterModule,
   // ScrollPanelModule,
-  // TabViewModule,
+  TabViewModule,
   // ToolbarModule,
   // OVERLAY
   ConfirmDialogModule,
@@ -203,14 +203,14 @@ export const MODULES: Type<any>[] = [
   ToastModule,
   /***************************** MEDIA *****************************/
   // CarouselModule,
-  // GalleriaModule,
+  GalleriaModule,
   ImageModule,
   /***************************** DRAGDROP *****************************/
   // DragDropModule,
   /***************************** MISC *****************************/
   AvatarModule,
   // AvatarGroupModule,
-  // BadgeModule,
+  BadgeModule,
   // BlockUIModule,
   // CaptchaModule,
   // ChipModule,
