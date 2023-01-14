@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {NgButtonAppearance} from '@ng/models/button';
 import {NgColor} from '@ng/models/color';
-import {NgSize} from '@ng/models/offset';
+import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {MenuItem} from 'primeng/api';
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {GlobalConfig} from "@core/global.config";
@@ -32,7 +32,7 @@ export class SplitButtonComponent implements AfterContentInit {
   // native properties
   @Input() label: string;
   @Input() icon: string;
-  @Input() iconPos: string;
+  @Input() iconPos: NgIconPosition;
   @Input() style: string;
   @Input() styleClass: string;
   @Input() menuStyle: string;

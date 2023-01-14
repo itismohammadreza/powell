@@ -3,7 +3,7 @@ import {AnimationDefinition} from "@core/models";
 
 const SlideAnimation = [
   transition('* <=> *', [
-    query(':enter, :leave', style({position: 'fixed', width: '100%'})),
+    query(':enter, :leave', style({position: 'fixed', width: '100%'}), {optional: true}),
     group([
       query(':enter', [
         style({transform: 'translateX(100%)'}),
