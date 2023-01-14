@@ -11,6 +11,7 @@
 ### Feature
 
 - fix AOS bug
+- add bootstrap 5
 
 ### New
 
