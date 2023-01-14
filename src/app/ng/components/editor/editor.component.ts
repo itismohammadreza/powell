@@ -22,12 +22,12 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgValidation, NgFixLabelPosition} from '@ng/models/forms';
 import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
-import {NgxSuneditorComponent} from "ngx-suneditor";
+import {NgValidation, NgFixLabelPosition} from '@ng/models/forms';
 import {GlobalConfig} from "@core/global.config";
+import {EditorBaseComponent} from "@ng/components/editor/editor-base/editor-base.component";
 
 @Component({
   selector: 'ng-editor',
@@ -99,7 +99,8 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  editorInstance: NgxSuneditorComponent
+  editorInstance: EditorBaseComponent;
+
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -185,7 +186,7 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
     }
   }
 
-  _created(event: NgxSuneditorComponent) {
+  _created(event: EditorBaseComponent) {
     this.editorInstance = event;
     this.created.emit(event)
   }
@@ -201,9 +202,8 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
 
   _onInput(event: any) {
     this.onInput.emit(event);
-    // todo: when type only one letter, the required error is appear! check result.
     const result = this.editorInstance.getText() ? event.core.getContents() : null;
-    this.onModelChange(this.editorInstance.getText() ? event.core.getContents() : null);
+    this.onModelChange(result);
   }
 
   _onKeyDown(event: any) {
@@ -274,6 +274,9 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
   }
 
   setDisabledState(isDisabled: boolean) {
+    if (!this.editorInstance) {
+      return
+    }
     if (isDisabled) {
       this.editorInstance.disabled()
     } else {

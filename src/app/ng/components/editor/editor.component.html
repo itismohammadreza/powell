@@ -5,7 +5,7 @@
       'label-fix-side': labelPos == 'fix-side'
     }" class="editor-wrapper">
   <div class="field">
-    <ngx-suneditor
+    <ng-editor-base
       [options]="options"
       [editorID]="inputId"
       [content]="value"
@@ -51,7 +51,7 @@
       (onImageUpload)="emitter('onImageUpload',$event)"
       (onCut)="emitter('onCut',$event)"
       (onCopy)="emitter('onCopy',$event)"
-    ></ngx-suneditor>
+    ></ng-editor-base>
   </div>
   <label
     class="fix-label align-self-start"

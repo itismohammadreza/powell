@@ -7,6 +7,7 @@ import {ChipsComponent} from "@ng/components/chips/chips.component";
 import {ColorPickerComponent} from "@ng/components/color-picker/color-picker.component";
 import {DropdownComponent} from "@ng/components/dropdown/dropdown.component";
 import {EditorComponent} from "@ng/components/editor/editor.component";
+import {EditorBaseComponent} from "@ng/components/editor/editor-base/editor-base.component";
 import {GregorianDatepickerComponent} from "@ng/components/gregorian-datepicker/gregorian-datepicker.component";
 import {InputMaskComponent} from "@ng/components/input-mask/input-mask.component";
 import {SwitchComponent} from "@ng/components/switch/switch.component";
@@ -80,6 +81,7 @@ export const COMPONENTS: Type<any>[] = [
   DropdownComponent,
   DualLabelSwitchComponent,
   EditorComponent,
+  EditorBaseComponent,
   GregorianDatepickerComponent,
   InputMaskComponent,
   SwitchComponent,
