@@ -129,7 +129,7 @@ export class FilePickerComponent
     this.controlContainer = this.injector.get(
       ControlContainer,
       null,
-      InjectFlags.Optional || InjectFlags.Host || InjectFlags.SkipSelf
+      {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
