@@ -6,7 +6,6 @@ import {
   ContentChildren,
   EventEmitter,
   forwardRef,
-  InjectFlags,
   Injector,
   Input,
   OnInit,
@@ -27,7 +26,7 @@ import {
   NgControl,
   UntypedFormGroup
 } from "@angular/forms";
-import {NgAddon, NgChipDisplayMode, NgValidation, NgLabelPosition, NgTreeFilterMode} from "@ng/models/forms";
+import {NgAddon, NgChipDisplayMode, NgLabelPosition, NgTreeFilterMode, NgValidation} from "@ng/models/forms";
 import {GlobalConfig} from "@core/global.config";
 
 @Component({

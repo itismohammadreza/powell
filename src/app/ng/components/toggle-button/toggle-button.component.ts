@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   forwardRef,
-  InjectFlags,
   Injector,
   Input,
   OnInit,
@@ -20,7 +19,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgValidation, NgFixLabelPosition} from '@ng/models/forms';
+import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition} from '@ng/models/offset';
 import {GlobalConfig} from "@core/global.config";
 

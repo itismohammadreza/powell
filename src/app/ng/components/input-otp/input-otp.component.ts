@@ -5,7 +5,6 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
-  InjectFlags,
   Injector,
   Input,
   OnInit,

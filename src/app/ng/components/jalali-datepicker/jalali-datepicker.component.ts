@@ -1,14 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  InjectFlags,
-  Injector,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -25,8 +15,8 @@ import {
   NgDatepickerHourFormat,
   NgDatepickerSelectionMode,
   NgDatepickerViewMode,
-  NgValidation,
-  NgLabelPosition
+  NgLabelPosition,
+  NgValidation
 } from "@ng/models/forms";
 import {NgIconPosition, NgSize} from "@ng/models/offset";
 import {GlobalConfig} from "@core/global.config";

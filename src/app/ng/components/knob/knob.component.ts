@@ -4,13 +4,12 @@ import {
   Component,
   EventEmitter,
   forwardRef,
-  InjectFlags,
   Injector,
   Input,
   OnInit,
   Output
 } from '@angular/core';
-import {NgValidation, NgFixLabelPosition} from '@ng/models/forms';
+import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {
   AbstractControl,
   ControlContainer,

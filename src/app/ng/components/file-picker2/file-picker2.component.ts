@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   forwardRef,
-  InjectFlags,
   Injector,
   Input,
   OnChanges,
@@ -22,7 +21,7 @@ import {
   UntypedFormGroup,
 } from '@angular/forms';
 import {NgColor} from '@ng/models/color';
-import {NgValidation, NgFixLabelPosition} from '@ng/models/forms';
+import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {GlobalConfig} from "@core/global.config";
 import {UtilsService} from "@ng/services";
 

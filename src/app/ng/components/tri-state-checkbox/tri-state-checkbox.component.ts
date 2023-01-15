@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  EventEmitter, InjectFlags,
+  EventEmitter,
   Injector,
   Input,
   OnInit,
@@ -11,7 +11,8 @@ import {
 import {
   AbstractControl,
   ControlContainer,
-  ControlValueAccessor, FormControlName,
+  ControlValueAccessor,
+  FormControlName,
   FormGroupDirective,
   NgControl,
   UntypedFormGroup

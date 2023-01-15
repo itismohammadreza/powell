@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   forwardRef,
-  InjectFlags,
   Injector,
   Input,
   OnInit,

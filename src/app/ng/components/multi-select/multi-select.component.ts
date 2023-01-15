@@ -6,7 +6,6 @@ import {
   ContentChildren,
   EventEmitter,
   forwardRef,
-  InjectFlags,
   Injector,
   Input,
   OnInit,
@@ -24,14 +23,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {
-  NgAddon,
-  NgChipDisplayMode,
-  NgValidation,
-  NgFilterMatchMode,
-  NgFixLabelPosition,
-  NgLabelPosition
-} from '@ng/models/forms';
+import {NgAddon, NgChipDisplayMode, NgFilterMatchMode, NgLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition, NgPosition, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {ScrollerOptions} from "primeng/scroller";

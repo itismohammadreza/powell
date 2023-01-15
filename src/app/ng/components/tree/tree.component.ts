@@ -6,7 +6,6 @@ import {
   ContentChildren,
   EventEmitter,
   forwardRef,
-  InjectFlags,
   Injector,
   Input,
   OnInit,
@@ -26,7 +25,7 @@ import {
   UntypedFormGroup,
 } from '@angular/forms';
 import {TemplateDirective} from '@ng/directives/template.directive';
-import {NgAddon, NgValidation, NgFixLabelPosition, NgTreeFilterMode} from '@ng/models/forms';
+import {NgAddon, NgFixLabelPosition, NgTreeFilterMode, NgValidation} from '@ng/models/forms';
 import {ContextMenu} from 'primeng/contextmenu';
 import {ScrollerOptions} from 'primeng/scroller';
 import {NgOrientation, NgSelectionMode} from "@ng/models/offset";

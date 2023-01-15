@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   forwardRef,
-  InjectFlags,
   Injector,
   Input,
   OnChanges,
@@ -25,7 +24,7 @@ import {
 import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
-import {NgValidation, NgFixLabelPosition} from '@ng/models/forms';
+import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {GlobalConfig} from "@core/global.config";
 import {EditorBaseComponent} from "@ng/components/editor/editor-base/editor-base.component";
 

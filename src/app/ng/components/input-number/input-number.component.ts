@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   forwardRef,
-  InjectFlags,
   Injector,
   Input,
   OnInit,
@@ -24,10 +23,10 @@ import {
   NgAddon,
   NgCurrency,
   NgCurrencyDisplay,
-  NgValidation,
   NgLabelPosition,
   NgNumberButtonLayout,
   NgNumberMode,
+  NgValidation,
 } from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {GlobalConfig} from "@core/global.config";

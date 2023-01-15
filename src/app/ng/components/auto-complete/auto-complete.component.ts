@@ -5,7 +5,6 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
-  InjectFlags,
   Injector,
   Input,
   OnInit,
@@ -23,7 +22,7 @@ import {
   NgControl,
   UntypedFormGroup,
 } from '@angular/forms';
-import {NgAddon, NgValidation, NgInputType, NgLabelPosition} from '@ng/models/forms';
+import {NgAddon, NgInputType, NgLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {ScrollerOptions} from "primeng/scroller";
