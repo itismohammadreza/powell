@@ -210,6 +210,7 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
       const control = this.ngControl.control;
       return (!this.disabled && (control.touched || control.dirty) && control.invalid);
     }
+    return false
   }
 
   hasError(type: string): boolean {

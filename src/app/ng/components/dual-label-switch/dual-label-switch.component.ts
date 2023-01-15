@@ -135,7 +135,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   isInvalid() {
     if (this.ngControl) {
       const control = this.ngControl.control;
-      return (control.touched || control.dirty) && control.invalid;
+      return (!this.disabled && (control.touched || control.dirty) && control.invalid);
     }
     return false
   }

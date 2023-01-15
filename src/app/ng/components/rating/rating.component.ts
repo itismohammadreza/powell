@@ -126,7 +126,7 @@ export class RatingComponent implements OnInit, AfterViewInit, ControlValueAcces
   isInvalid() {
     if (this.ngControl) {
       const control = this.ngControl.control;
-      return (control.touched || control.dirty) && control.invalid;
+      return (!this.disabled && (control.touched || control.dirty) && control.invalid);
     }
     return false
   }
