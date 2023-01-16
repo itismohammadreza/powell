@@ -24,7 +24,7 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  UntypedFormGroup,
+  FormGroup,
 } from '@angular/forms';
 import {NgFilePickerMode, NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {FileUpload} from 'primeng/fileupload';
@@ -122,7 +122,7 @@ export class FilePickerComponent
 
   ngOnInit() {
     this.inputId = this.getId();
-    let parentForm: UntypedFormGroup;
+    let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     this.controlContainer = this.injector.get(

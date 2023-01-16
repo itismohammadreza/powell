@@ -36,7 +36,7 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  UntypedFormGroup
+  FormGroup
 } from "@angular/forms";
 import {NgAddon, NgFixLabelPosition, NgValidation} from "@ng/models/forms";
 import {GlobalConfig} from "@core/global.config";
@@ -162,7 +162,7 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
 
   ngOnInit(): void {
     this.inputId = this.getId();
-    let parentForm: UntypedFormGroup;
+    let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     this.controlContainer = this.injector.get(

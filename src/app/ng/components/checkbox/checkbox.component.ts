@@ -17,7 +17,7 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  UntypedFormGroup
+  FormGroup
 } from '@angular/forms';
 import {NgValidation} from '@ng/models/forms';
 import {GlobalConfig} from "@core/global.config";
@@ -72,7 +72,7 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
 
   ngOnInit() {
     this.inputId = this.getId();
-    let parentForm: UntypedFormGroup;
+    let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     this.controlContainer = this.injector.get(

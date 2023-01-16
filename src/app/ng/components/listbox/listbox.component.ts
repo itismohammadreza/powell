@@ -21,7 +21,7 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  UntypedFormGroup,
+  FormGroup,
 } from '@angular/forms';
 import {NgAddon, NgFilterMatchMode, NgFixLabelPosition, NgValidation,} from '@ng/models/forms';
 import {TemplateDirective} from '@ng/directives/template.directive';
@@ -104,7 +104,7 @@ export class ListboxComponent implements OnInit, AfterViewInit, AfterContentInit
 
   ngOnInit() {
     this.inputId = this.getId();
-    let parentForm: UntypedFormGroup;
+    let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     this.controlContainer = this.injector.get(

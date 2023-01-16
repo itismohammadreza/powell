@@ -17,7 +17,7 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  UntypedFormGroup,
+  FormGroup,
 } from '@angular/forms';
 import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgOrientation} from '@ng/models/offset';
@@ -88,7 +88,7 @@ export class MultiCheckboxComponent implements OnInit, AfterViewInit, ControlVal
     });
     this.groupName = this.getId();
     this.inputId = this.getId();
-    let parentForm: UntypedFormGroup;
+    let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     this.controlContainer = this.injector.get(
