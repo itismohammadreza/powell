@@ -135,24 +135,16 @@
       margin-bottom: 1.75rem;
     }
 
+    .footer {
+      gap: 1rem;
+    }
+
     &.ltr {
       direction: ltr;
-
-      .footer {
-        ng-button:last-child button {
-          margin-left: 0.5rem;
-        }
-      }
     }
 
     &.rtl {
       direction: rtl;
-
-      .footer {
-        ng-button:last-child button {
-          margin-right: 0.5rem;
-        }
-      }
     }
   }
 
