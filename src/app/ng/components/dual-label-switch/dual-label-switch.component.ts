@@ -7,7 +7,7 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  UntypedFormGroup
+  FormGroup
 } from "@angular/forms";
 import {NgFixLabelPosition, NgValidation} from "@ng/models/forms";
 import {GlobalConfig} from "@core/global.config";
@@ -61,7 +61,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.inputId = this.getId();
-    let parentForm: UntypedFormGroup;
+    let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     this.controlContainer = this.injector.get(

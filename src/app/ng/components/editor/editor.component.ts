@@ -19,7 +19,7 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  UntypedFormGroup,
+  FormGroup,
 } from '@angular/forms';
 import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
@@ -130,7 +130,7 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
       }
     }
     this.inputId = this.getId();
-    let parentForm: UntypedFormGroup;
+    let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     this.controlContainer = this.injector.get(

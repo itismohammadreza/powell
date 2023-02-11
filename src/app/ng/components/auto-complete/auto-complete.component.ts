@@ -20,7 +20,7 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  UntypedFormGroup,
+  FormGroup,
 } from '@angular/forms';
 import {NgAddon, NgInputType, NgLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
@@ -133,7 +133,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
 
   ngOnInit() {
     this.inputId = this.getId();
-    let parentForm: UntypedFormGroup;
+    let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     this.controlContainer = this.injector.get(

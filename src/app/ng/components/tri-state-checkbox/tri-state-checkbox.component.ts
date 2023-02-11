@@ -15,7 +15,7 @@ import {
   FormControlName,
   FormGroupDirective,
   NgControl,
-  UntypedFormGroup
+  FormGroup
 } from "@angular/forms";
 import {NgValidation} from "@ng/models/forms";
 import {GlobalConfig} from "@core/global.config";
@@ -56,7 +56,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterViewInit, Control
 
   ngOnInit() {
     this.inputId = this.getId();
-    let parentForm: UntypedFormGroup;
+    let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     this.controlContainer = this.injector.get(

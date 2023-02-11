@@ -22,7 +22,7 @@ import {
   FormGroupName,
   NG_VALUE_ACCESSOR,
   NgControl,
-  UntypedFormGroup,
+  FormGroup,
 } from '@angular/forms';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {NgAddon, NgFixLabelPosition, NgTreeFilterMode, NgValidation} from '@ng/models/forms';
@@ -115,7 +115,7 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
 
   ngOnInit() {
     this.inputId = this.getId();
-    let parentForm: UntypedFormGroup;
+    let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     this.controlContainer = this.injector.get(

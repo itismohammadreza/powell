@@ -4,10 +4,9 @@ import {
   ContentChildren,
   EventEmitter,
   Input,
-  OnChanges,
   OnInit,
   Output,
-  QueryList, SimpleChanges,
+  QueryList,
   TemplateRef
 } from '@angular/core';
 import {TemplateDirective} from "@ng/directives/template.directive";

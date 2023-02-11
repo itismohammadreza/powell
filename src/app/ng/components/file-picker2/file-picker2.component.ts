@@ -18,7 +18,7 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  UntypedFormGroup,
+  FormGroup,
 } from '@angular/forms';
 import {NgColor} from '@ng/models/color';
 import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
@@ -84,7 +84,7 @@ export class FilePicker2Component
     //store user defined label for single selection mode
     this._chooseLabel = this.chooseLabel;
     this.inputId = this.getId();
-    let parentForm: UntypedFormGroup;
+    let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     this.controlContainer = this.injector.get(
