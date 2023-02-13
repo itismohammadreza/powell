@@ -165,31 +165,18 @@ export class UtilsService {
     return (res !== null)
   };
 
-  // downloadLink(url: string) {
-  //   const a: HTMLAnchorElement = document.createElement("a");
-  //   const fileName = ''
-  //   document.body.appendChild(a);
-  //   a.style.display = "none";
-  //   a.href = url;
-  //   a.download = fileName;
-  //   a.click();
-  //   window.URL.revokeObjectURL(url);
-  // }
-
-  // getStreamFile(id: string) {
-  //   return this._post<any>('exam/download', {id}, {
-  //     responseType: 'arrayBuffer',
-  //     observe: 'response'
+  // async downloadLink(url: string) {
+  //   const res = await this._customRequest<any>(url, 'get', null, {
+  //     observe: 'response',
+  //     responseType: 'blob'
   //   }).toPromise();
-  // }
-
-  // getObjectUrlFromStreamedFile(response: HttpResponse<any>) {
-  //   response.headers.set('Access-Control-Expose-Headers', '*');
-  //   const blob = new Blob([response.body], {type: 'application/x-gzip'});
-  //   const safeUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
-  //   const contentDisposition = response.headers.get('content-disposition');
-  //   const fileName = contentDisposition.split('filename=')[1].split(';')[0];
-  //   const fileUrl = safeUrl['changingThisBreaksApplicationSecurity'];
-  //   return {fileName, fileUrl};
+  //   const disposition = atob(res.headers.get('content-disposition'));
+  //   const fileName = disposition.split('filename=')[1].split(';')[0];
+  //   let downloadLink = document.createElement('a');
+  //   downloadLink.href = window.URL.createObjectURL(new Blob([res.body], {type: res.body.type}));
+  //   downloadLink.setAttribute('download', fileName);
+  //   document.body.appendChild(downloadLink);
+  //   downloadLink.click();
+  //   downloadLink.remove()
   // }
 }
