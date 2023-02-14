@@ -72,13 +72,12 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      // by default we suppose the ngControl is and instance of NgModel.
+
       currentControl = this.ngControl.control;
       if (this.controlContainer) {
         parentForm = this.controlContainer.control;
         rootForm = this.controlContainer.formDirective as FormGroupDirective;
-        // only when we have a formGroup (here is : controlContainer), we also may have formControlName instance.
-        // so we check this condition when we have a controlContainer and overwrite currentControl value.
+
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
