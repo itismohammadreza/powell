@@ -10,9 +10,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./input-text.page.scss'],
 })
 export class InputTextPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.email, this.akbarValidator]),
   });

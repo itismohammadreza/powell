@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
-  EventEmitter, Inject,
+  EventEmitter,
   Input,
   OnInit,
   Output,
@@ -177,8 +177,6 @@ export class TableComponent implements OnInit, AfterContentInit {
   loadingBodyTemplate: TemplateRef<any>
   cellTemplates: { [key: string]: TemplateRef<any> } = {}
 
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
 
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);

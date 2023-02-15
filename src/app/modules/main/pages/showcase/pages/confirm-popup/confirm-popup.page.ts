@@ -28,7 +28,7 @@ export class ConfirmPopupPage {
     rtl: this.ngConfig.rtl
   }
 
-  constructor(private overlayService: OverlayService, @Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  constructor(private overlayService: OverlayService) {
   }
 
   showConfirmPopup(event) {

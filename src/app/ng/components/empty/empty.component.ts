@@ -1,4 +1,4 @@
-import {Component, Inject, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {NgEmptyIcon} from "@ng/models/offset";
 import {NgConfig} from "@ng/models/config";
 
@@ -8,9 +8,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./empty.component.scss'],
 })
 export class EmptyComponent {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   @Input() imageType: NgEmptyIcon = 'box2';
   @Input() icon: string;
   @Input() imageSrc: string;

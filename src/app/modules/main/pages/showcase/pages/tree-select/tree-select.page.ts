@@ -10,9 +10,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./tree-select.page.scss']
 })
 export class TreeSelectPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });

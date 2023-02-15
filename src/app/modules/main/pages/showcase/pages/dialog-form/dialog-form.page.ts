@@ -40,7 +40,7 @@ export class DialogFormPage {
 
   flag = false;
 
-  constructor(private overlayService: OverlayService, @Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  constructor(private overlayService: OverlayService) {
   }
 
   showDialogForm() {

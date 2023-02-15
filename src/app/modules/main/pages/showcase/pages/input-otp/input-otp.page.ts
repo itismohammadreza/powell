@@ -9,9 +9,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./input-otp.page.scss']
 })
 export class InputOtpPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });

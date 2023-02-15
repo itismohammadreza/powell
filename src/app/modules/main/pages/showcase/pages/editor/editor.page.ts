@@ -9,9 +9,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./editor.page.scss'],
 })
 export class EditorPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });

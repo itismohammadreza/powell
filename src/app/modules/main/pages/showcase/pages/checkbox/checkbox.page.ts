@@ -8,9 +8,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./checkbox.page.scss'],
 })
 export class CheckboxPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });

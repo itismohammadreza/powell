@@ -10,9 +10,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./input-mask.page.scss'],
 })
 export class InputMaskPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });

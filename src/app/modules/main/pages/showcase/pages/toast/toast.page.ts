@@ -22,7 +22,7 @@ export class ToastPage {
     position: 'top-right'
   }
 
-  constructor(private overlayService: OverlayService, @Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  constructor(private overlayService: OverlayService) {
   }
 
   showToast() {

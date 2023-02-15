@@ -8,9 +8,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./message.page.scss']
 })
 export class MessagePage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   summary: string = 'Some summary';
   detail: string = 'a complete detail';
   icon: string = 'pi pi-info';

@@ -8,9 +8,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./tri-state-checkbox.page.scss']
 })
 export class TriStateCheckboxPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });

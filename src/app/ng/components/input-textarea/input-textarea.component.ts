@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   forwardRef,
-  Inject,
   Injector,
   Input,
   OnInit,
@@ -78,7 +77,7 @@ export class InputTextareaComponent implements OnInit, AfterViewInit, ControlVal
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

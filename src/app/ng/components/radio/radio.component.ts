@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   forwardRef,
-  Inject,
   Injector,
   Input,
   OnInit,
@@ -76,7 +75,7 @@ export class RadioComponent implements OnInit, AfterViewInit, ControlValueAccess
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

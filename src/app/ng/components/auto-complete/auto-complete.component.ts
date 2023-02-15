@@ -5,7 +5,6 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
-  Inject,
   Injector,
   Input,
   OnInit,
@@ -129,7 +128,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

@@ -9,9 +9,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./switch.page.scss'],
 })
 export class SwitchPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });

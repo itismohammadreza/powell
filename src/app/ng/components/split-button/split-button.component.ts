@@ -2,7 +2,7 @@ import {
   AfterContentInit,
   Component,
   ContentChildren,
-  EventEmitter, Inject,
+  EventEmitter,
   Input,
   Output,
   QueryList,
@@ -47,8 +47,6 @@ export class SplitButtonComponent implements AfterContentInit {
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
   contentTemplate: TemplateRef<any>;
 
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
 
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {

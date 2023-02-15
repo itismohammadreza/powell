@@ -10,9 +10,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./color-picker.page.scss']
 })
 export class ColorPickerPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });

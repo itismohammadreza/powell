@@ -53,7 +53,7 @@ export class JalaliDatepickerPage {
   touchUI: boolean = false;
   showClear: boolean = false;
 
-  constructor(private momentService: MomentService, @Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  constructor(private momentService: MomentService) {
   }
 
   submit() {

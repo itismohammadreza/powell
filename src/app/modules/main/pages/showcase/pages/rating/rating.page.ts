@@ -9,9 +9,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./rating.page.scss'],
 })
 export class RatingPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });

@@ -17,9 +17,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./input-number.page.scss'],
 })
 export class InputNumberPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });

@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, ContentChildren, Inject, Input, QueryList, TemplateRef} from '@angular/core';
+import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {NgSeverity} from "@ng/models/overlay";
 import {NgConfig} from "@ng/models/config";
@@ -19,9 +19,6 @@ export class MessageComponent implements AfterContentInit {
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   contentTemplate: TemplateRef<any>;
-
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
 
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {

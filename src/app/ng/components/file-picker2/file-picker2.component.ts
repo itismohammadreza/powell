@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   forwardRef,
-  Inject,
   Injector,
   Input,
   OnChanges,
@@ -76,7 +75,7 @@ export class FilePicker2Component
 
   constructor(
     private cd: ChangeDetectorRef,
-    @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector,
+    private injector: Injector,
     private utilsService: UtilsService
   ) {
   }

@@ -10,9 +10,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./multi-checkbox.page.scss'],
 })
 export class MultiCheckboxPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });

@@ -9,9 +9,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./file-picker.page.scss'],
 })
 export class FilePickerPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });

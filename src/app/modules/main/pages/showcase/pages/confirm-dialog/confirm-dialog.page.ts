@@ -34,7 +34,7 @@ export class ConfirmDialogPage {
     style: {width: '400px'}
   }
 
-  constructor(private overlayService: OverlayService, @Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  constructor(private overlayService: OverlayService) {
   }
 
   showConfirmDialog() {

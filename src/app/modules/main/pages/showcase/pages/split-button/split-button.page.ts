@@ -11,9 +11,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./split-button.page.scss'],
 })
 export class SplitButtonPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
-
   appearance: NgButtonAppearance = 'outlined';
   rounded: boolean = false;
   raised: boolean = false;

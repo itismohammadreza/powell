@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Inject} from '@angular/core';
+import {Component, ElementRef, EventEmitter} from '@angular/core';
 import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult} from "@ng/models/overlay";
 import {NgValidation} from "@ng/models/forms";
@@ -20,7 +20,7 @@ export class DialogFormComponent {
   onClose = new EventEmitter<void>();
   disableReject: boolean;
 
-  constructor(private el: ElementRef, @Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  constructor(private el: ElementRef) {
   }
 
   set config(value: NgDialogFormConfig[]) {

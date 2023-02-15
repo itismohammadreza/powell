@@ -5,7 +5,6 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
-  Inject,
   Injector,
   Input,
   OnInit,
@@ -76,7 +75,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   onModelTouched: any = () => {
   };
 
-  constructor(private el: ElementRef, private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
+  constructor(private el: ElementRef, private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

@@ -5,7 +5,7 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
-  forwardRef, Inject,
+  forwardRef,
   Injector,
   Input,
   OnInit,
@@ -20,11 +20,11 @@ import {
   ControlContainer,
   ControlValueAccessor,
   FormControlName,
+  FormGroup,
   FormGroupDirective,
   FormGroupName,
   NG_VALUE_ACCESSOR,
-  NgControl,
-  FormGroup
+  NgControl
 } from "@angular/forms";
 import {NgAddon, NgChipDisplayMode, NgLabelPosition, NgTreeFilterMode, NgValidation} from "@ng/models/forms";
 import {NgConfig} from "@ng/models/config";
@@ -100,7 +100,7 @@ export class TreeSelectComponent implements OnInit, AfterViewInit, AfterContentI
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

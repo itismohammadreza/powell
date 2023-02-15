@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   forwardRef,
-  Inject,
   Injector,
   Input,
   OnInit,
@@ -67,7 +66,7 @@ export class SliderComponent implements OnInit, AfterViewInit, ControlValueAcces
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

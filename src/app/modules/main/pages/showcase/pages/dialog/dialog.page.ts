@@ -32,7 +32,7 @@ export class DialogPage {
     content: 'Some content inside dialog.',
   }
 
-  constructor(private overlayService: OverlayService, @Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  constructor(private overlayService: OverlayService) {
   }
 
   showDialog() {

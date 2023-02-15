@@ -6,7 +6,6 @@ import {
   ContentChildren,
   EventEmitter,
   forwardRef,
-  Inject,
   Injector,
   Input,
   OnInit,
@@ -111,7 +110,7 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

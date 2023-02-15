@@ -6,7 +6,7 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
-  forwardRef, Inject,
+  forwardRef,
   Injector,
   Input,
   OnChanges,
@@ -30,7 +30,6 @@ import {NgFilePickerMode, NgFixLabelPosition, NgValidation} from '@ng/models/for
 import {FileUpload} from 'primeng/fileupload';
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {NgConfig} from "@ng/models/config";
-import {UtilsService} from "@ng/services";
 
 @Component({
   selector: 'ng-file-picker',
@@ -115,9 +114,7 @@ export class FilePickerComponent
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef,
-              @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector,
-              private utilsService: UtilsService) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

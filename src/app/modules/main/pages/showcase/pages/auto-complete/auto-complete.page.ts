@@ -10,8 +10,6 @@ import {NgConfig} from "@ng/models/config";
   styleUrls: ['./auto-complete.page.scss']
 })
 export class AutoCompletePage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
 
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),

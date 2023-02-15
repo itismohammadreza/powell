@@ -3,7 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  forwardRef, Inject,
+  forwardRef,
   Injector,
   Input,
   OnChanges,
@@ -16,10 +16,10 @@ import {
   ControlContainer,
   ControlValueAccessor,
   FormControlName,
+  FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  FormGroup,
 } from '@angular/forms';
 import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
@@ -105,7 +105,7 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

@@ -1113,7 +1113,7 @@ export class TablePage {
   totalRecords: number;
   selectAll: boolean = false;
 
-  constructor(private userService: UserService, @Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  constructor(private userService: UserService) {
   }
 
   onRowSelect(event: any) {
