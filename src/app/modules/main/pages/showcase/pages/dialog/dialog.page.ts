@@ -1,7 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {OverlayService} from "@ng/services";
 import {NgDialogOptions} from "@ng/models/overlay";
-import {GlobalConfig} from "@core/global.config";
 import {NgConfig} from "@ng/models/config";
 
 @Component({

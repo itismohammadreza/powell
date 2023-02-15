@@ -1,8 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {OverlayService} from "@ng/services";
-import {NgDialogFormOptions, NgDialogOptions} from "@ng/models/overlay";
+import {NgDialogFormOptions} from "@ng/models/overlay";
 import {FormControl, Validators} from "@angular/forms";
-import {GlobalConfig} from "@core/global.config";
 import {NgConfig} from "@ng/models/config";
 
 @Component({
