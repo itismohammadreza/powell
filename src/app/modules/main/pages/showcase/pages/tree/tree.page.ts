@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {FormGroup, UntypedFormControl, Validators} from '@angular/forms';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {NgAddon, NgFixLabelPosition} from '@ng/models/forms';
 import {NgOrientation, NgSelectionMode} from '@ng/models/offset';
 import {NgConfig} from "@ng/models/config";
@@ -14,7 +14,7 @@ export class TreePage {
   }
 
   form = new FormGroup({
-    c1: new UntypedFormControl(null, [Validators.required]),
+    c1: new FormControl(null, [Validators.required]),
   });
   binding;
 

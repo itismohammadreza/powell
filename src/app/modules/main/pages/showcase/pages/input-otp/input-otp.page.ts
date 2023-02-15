@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {NgFixLabelPosition} from "@ng/models/forms";
-import {FormGroup, UntypedFormControl, Validators} from "@angular/forms";
+import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {NgConfig} from "@ng/models/config";
 
 @Component({
@@ -13,7 +13,7 @@ export class InputOtpPage {
   }
 
   form = new FormGroup({
-    c1: new UntypedFormControl(null, [Validators.required]),
+    c1: new FormControl(null, [Validators.required]),
   });
   binding;
 

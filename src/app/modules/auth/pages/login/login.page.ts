@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {UntypedFormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LanguageChecker} from '@core/utils';
 import {AuthService} from '@core/http';
 import {Router} from '@angular/router';
@@ -11,9 +11,9 @@ import {Router} from '@angular/router';
 })
 export class LoginPage extends LanguageChecker {
   form = new FormGroup({
-    email: new UntypedFormControl(null, [Validators.required, Validators.email]),
-    password: new UntypedFormControl(null, [Validators.required]),
-    rememberMe: new UntypedFormControl(false),
+    email: new FormControl(null, [Validators.required, Validators.email]),
+    password: new FormControl(null, [Validators.required]),
+    rememberMe: new FormControl(false),
   });
 
   constructor(private authService: AuthService, private router: Router) {

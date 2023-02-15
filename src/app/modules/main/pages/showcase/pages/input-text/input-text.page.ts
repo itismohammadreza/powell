@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {FormControl, FormGroup, UntypedFormControl, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormControl, Validators} from '@angular/forms';
 import {NgAddon, NgInputType, NgKeyFilter, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {NgConfig} from "@ng/models/config";
@@ -14,7 +14,7 @@ export class InputTextPage {
   }
 
   form = new FormGroup({
-    c1: new UntypedFormControl(null, [Validators.required, Validators.minLength(5), Validators.email, this.akbarValidator]),
+    c1: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.email, this.akbarValidator]),
   });
   binding;
 

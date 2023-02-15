@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {FormGroup, UntypedFormControl, Validators} from "@angular/forms";
+import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {NgAddon, NgLabelPosition} from "@ng/models/forms";
 import {NgIconPosition, NgSize} from "@ng/models/offset";
 import {MomentService} from "@ng/services";
@@ -12,7 +12,7 @@ import {NgConfig} from "@ng/models/config";
 })
 export class JalaliDatepickerPage {
   form = new FormGroup({
-    c1: new UntypedFormControl(this.momentService.getJalaliMoment('1396/08/25 21:00', 'jYYYY/jMM/jDD hh:mm'), [Validators.required]),
+    c1: new FormControl(this.momentService.getJalaliMoment('1396/08/25 21:00', 'jYYYY/jMM/jDD hh:mm'), [Validators.required]),
   });
   binding;
 

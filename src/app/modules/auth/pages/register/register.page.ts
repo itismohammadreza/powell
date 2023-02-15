@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AbstractControl, UntypedFormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {LanguageChecker} from '@core/utils';
 import {AuthService} from '@core/http';
 import {Router} from '@angular/router';
@@ -11,9 +11,9 @@ import {Router} from '@angular/router';
 })
 export class RegisterPage extends LanguageChecker {
   form = new FormGroup({
-    email: new UntypedFormControl(null, [Validators.required, Validators.email]),
-    password: new UntypedFormControl(null, [Validators.required]),
-    confirmPassword: new UntypedFormControl(null, [Validators.required]),
+    email: new FormControl(null, [Validators.required, Validators.email]),
+    password: new FormControl(null, [Validators.required]),
+    confirmPassword: new FormControl(null, [Validators.required]),
   }, {validators: this.checkPasswords});
 
   constructor(private authService: AuthService, private router: Router) {

@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {FormGroup, UntypedFormControl, Validators} from '@angular/forms';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {
   NgAddon,
   NgCurrency,
@@ -21,7 +21,7 @@ export class InputNumberPage {
   }
 
   form = new FormGroup({
-    c1: new UntypedFormControl(null, [Validators.required]),
+    c1: new FormControl(null, [Validators.required]),
   });
   binding;
 
