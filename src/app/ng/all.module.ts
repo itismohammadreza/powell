@@ -13,11 +13,7 @@ export class NgAllModule {
     GlobalInjector.Injector = this.injector;
   }
 
-  static forRoot(
-    config: {
-      ripple: boolean;
-    } = {ripple: true}
-  ): ModuleWithProviders<NgAllModule> {
+  static forRoot(ngConfig: NgConfig): ModuleWithProviders<NgAllModule> {
     return {
       ngModule: NgAllModule,
       providers: [
@@ -25,7 +21,7 @@ export class NgAllModule {
           provide: PrimeNGConfig,
           useFactory: () => {
             const primeNgConfig = new PrimeNGConfig();
-            primeNgConfig.ripple = config.ripple;
+            primeNgConfig.ripple = ngConfig.ripple;
             return primeNgConfig;
           },
         },
