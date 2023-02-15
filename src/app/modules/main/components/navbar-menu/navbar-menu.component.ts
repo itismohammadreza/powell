@@ -34,7 +34,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   sidebarTypes: MenuItem[];
   sidebarItems: MenuItem[];
   searchValue: string;
-  language: string = GlobalConfig.defaultLang;
+  language: string = GlobalConfig.lang;
   accountItems: MenuItem[] = [
     {
       label: 'خروج',

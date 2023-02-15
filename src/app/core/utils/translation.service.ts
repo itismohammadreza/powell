@@ -19,13 +19,13 @@ export class TranslationService {
       this.currentLang = res.lang;
       this.handleBodyClass();
     });
-    const defaultLang = GlobalConfig.defaultLang;
-    localStorage.setItem('lang', defaultLang);
+    const lang = GlobalConfig.lang;
+    localStorage.setItem('lang', lang);
     if (!this.getDefaultLang()) {
-      this.setDefaultLang(defaultLang);
+      this.setDefaultLang(lang);
     }
     this.handleBodyClass();
-    await this.use(defaultLang).toPromise();
+    await this.use(lang).toPromise();
   }
 
   private handleBodyClass() {

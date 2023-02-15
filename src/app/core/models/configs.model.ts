@@ -8,7 +8,7 @@ export interface AnimationDefinition {
 }
 
 export interface AppGlobalConfig {
-  readonly defaultLang?: string;
+  readonly lang?: string;
   readonly routeAnimation: AnimationTriggerMetadata | null;
 }
 
