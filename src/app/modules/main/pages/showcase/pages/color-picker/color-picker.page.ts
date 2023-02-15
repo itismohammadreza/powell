@@ -24,7 +24,7 @@ export class ColorPickerPage {
   hint: string = '';
   rtl: boolean = this.ngConfig.rtl;
   icon: string = '';
-  labelPos: NgLabelPosition = this.ngConfig.defaultLabelPos;
+  labelPos: NgLabelPosition = this.ngConfig.labelPos;
   iconPos: NgIconPosition = 'left';
   inputSize: NgSize = 'md';
   placeholder: string = '';

@@ -28,10 +28,10 @@ export class DialogFormComponent {
     this.form = new FormGroup({});
     for (const config of this._config) {
       if (!config.labelPos) {
-        config.labelPos = this.ngConfig.defaultLabelPos;
+        config.labelPos = this.ngConfig.labelPos;
       }
       if (!config.fixLabelPos) {
-        config.fixLabelPos = this.ngConfig.defaultFixLabelPos;
+        config.fixLabelPos = this.ngConfig.fixLabelPos;
       }
       if (config.key) {
         this.form.addControl(config.key, new FormControl(null));

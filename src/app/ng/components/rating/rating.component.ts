@@ -42,7 +42,7 @@ export class RatingComponent implements OnInit, AfterViewInit, ControlValueAcces
   @Input() hint: string;
   @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
+  @Input() labelPos: NgFixLabelPosition = this.ngConfig.fixLabelPos;
   @Input() validation: NgValidation;
   // native properties
   @Input() stars: number = 5;

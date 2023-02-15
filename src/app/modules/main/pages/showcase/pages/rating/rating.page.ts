@@ -21,7 +21,7 @@ export class RatingPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.ngConfig.rtl;
-  labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
+  labelPos: NgFixLabelPosition = this.ngConfig.fixLabelPos;
   // native properties
   stars: number = 5;
   cancel: boolean = true;

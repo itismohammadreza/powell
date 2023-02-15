@@ -17,8 +17,8 @@ import {COMPONENTS} from '.';
     NgAllModule.forRoot({
       ripple: true,
       rtl: true,
-      defaultFixLabelPos: 'fix-side',
-      defaultLabelPos: 'fix-side',
+      fixLabelPos: 'fix-side',
+      labelPos: 'fix-side',
       theme: 'lara-light-indigo'
     })
   ],

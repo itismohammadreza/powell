@@ -44,7 +44,7 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = this.ngConfig.defaultLabelPos;
+  @Input() labelPos: NgLabelPosition = this.ngConfig.labelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;

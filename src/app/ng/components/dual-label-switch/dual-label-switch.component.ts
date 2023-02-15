@@ -45,7 +45,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() hint: string;
   @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
+  @Input() labelPos: NgFixLabelPosition = this.ngConfig.fixLabelPos;
   @Input() validation: NgValidation;
   @Input() async: boolean;
   // native properties

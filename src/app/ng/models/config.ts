@@ -4,8 +4,8 @@ export interface NgConfig {
   ripple?: boolean;
   rtl?: boolean;
   theme?: NgTheme;
-  defaultLabelPos?: NgLabelPosition,
-  defaultFixLabelPos?: NgFixLabelPosition,
+  labelPos?: NgLabelPosition,
+  fixLabelPos?: NgFixLabelPosition,
 }
 
 export type NgTheme =

@@ -46,7 +46,7 @@ export class ColorPickerComponent implements OnInit, AfterViewInit, ControlValue
   @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = this.ngConfig.defaultLabelPos;
+  @Input() labelPos: NgLabelPosition = this.ngConfig.labelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;

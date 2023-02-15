@@ -21,7 +21,7 @@ export class ListboxPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.ngConfig.rtl;
-  labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
+  labelPos: NgFixLabelPosition = this.ngConfig.fixLabelPos;
   addon: NgAddon;
   // native properties
   checkbox: boolean = false;

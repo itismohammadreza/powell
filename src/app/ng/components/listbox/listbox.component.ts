@@ -48,7 +48,7 @@ export class ListboxComponent implements OnInit, AfterViewInit, AfterContentInit
   @Input() hint: string;
   @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
+  @Input() labelPos: NgFixLabelPosition = this.ngConfig.fixLabelPos;
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   // native properties

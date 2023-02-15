@@ -22,7 +22,7 @@ export class InputOtpPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.ngConfig.rtl;
-  labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
+  labelPos: NgFixLabelPosition = this.ngConfig.fixLabelPos;
   readonly: boolean = false;
   disabled: boolean = false;
   placeholder: string = '';
