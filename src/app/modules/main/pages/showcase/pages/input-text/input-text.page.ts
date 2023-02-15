@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {FormControl, FormGroup, FormControl, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgInputType, NgKeyFilter, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {NgConfig} from "@ng/models/config";

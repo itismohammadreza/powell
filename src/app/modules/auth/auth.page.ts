@@ -6,6 +6,4 @@ import {Component} from '@angular/core';
   templateUrl: './auth.page.html',
 })
 export class AuthPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
 }

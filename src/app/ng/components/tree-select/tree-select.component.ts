@@ -5,7 +5,7 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
-  forwardRef,
+  forwardRef, Inject,
   Injector,
   Input,
   OnInit,

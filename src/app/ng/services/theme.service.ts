@@ -5,7 +5,7 @@ import {NgConfig, NgTheme} from "@ng/models/config";
 @Injectable({providedIn: 'root'})
 export class ThemeService {
   constructor(@Inject(DOCUMENT) private document: Document,
-              @Inject('CONFIG') private config: NgConfig) {
+              @Inject('NG_CONFIG') private config: NgConfig) {
   }
 
   private currentTheme: NgTheme;

@@ -40,7 +40,7 @@ export class OverlayService {
     private router: Router,
     private location: LocationStrategy,
     @Inject(DOCUMENT) private document: Document,
-    @Inject('CONFIG') private config: NgConfig,
+    @Inject('NG_CONFIG') private config: NgConfig,
   ) {
     this.location.onPopState((e) => {
       const currentState = this.states.pop();

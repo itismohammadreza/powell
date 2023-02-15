@@ -8,6 +8,4 @@ import {GlobalConfig} from "@core/global.config";
   animations: [GlobalConfig.routeAnimation]
 })
 export class MainPage {
-  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
-  }
 }
