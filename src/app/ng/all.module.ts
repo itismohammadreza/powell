@@ -4,7 +4,7 @@ import {DialogService} from 'primeng/dynamicdialog';
 import {GlobalInjector} from './global.injector';
 import {NgComponentsModule} from './components/components.module';
 import {NgConfig} from "@ng/models/config";
-import {ThemeService} from "@ng/services/theme.service";
+import {ThemeService} from "@ng/services";
 
 @NgModule({
   imports: [NgComponentsModule],

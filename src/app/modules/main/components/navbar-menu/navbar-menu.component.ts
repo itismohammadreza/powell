@@ -5,7 +5,7 @@ import {SidebarType} from '@core/models';
 import {OverlayPanel} from "primeng/overlaypanel";
 import {GlobalConfig} from "@core/global.config";
 import {DOCUMENT} from "@angular/common";
-import {ThemeService} from "@ng/services/theme.service";
+import {ThemeService} from "@ng/services";
 import {NgTheme} from "@ng/models/config";
 
 @Component({
