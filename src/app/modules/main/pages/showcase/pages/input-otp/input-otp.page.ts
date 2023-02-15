@@ -1,8 +1,7 @@
-import {Component} from '@angular/core';
-import {GlobalConfig} from "@core/global.config";
-import {NgAddon, NgFixLabelPosition, NgInputType, NgKeyFilter, NgLabelPosition} from "@ng/models/forms";
-import {UntypedFormControl, FormGroup, Validators} from "@angular/forms";
-import {NgIconPosition, NgSize} from "@ng/models/offset";
+import {Component, Inject} from '@angular/core';
+import {NgFixLabelPosition} from "@ng/models/forms";
+import {FormGroup, UntypedFormControl, Validators} from "@angular/forms";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-input-otp-page',
@@ -10,6 +9,9 @@ import {NgIconPosition, NgSize} from "@ng/models/offset";
   styleUrls: ['./input-otp.page.scss']
 })
 export class InputOtpPage {
+  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  }
+
   form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
@@ -19,7 +21,7 @@ export class InputOtpPage {
   filled: boolean = false;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = GlobalConfig.rtl;
+  rtl: boolean = this.ngConfig.rtl;
   fixLabelPos: NgFixLabelPosition = 'fix-side';
   readonly: boolean = false;
   disabled: boolean = false;

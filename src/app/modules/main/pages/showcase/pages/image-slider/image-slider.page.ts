@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {BreakPointItem, ImageItem} from '@ng/models/image-slider';
+import {ImageItem} from '@ng/models/image-slider';
 
 @Component({
   selector: 'ng-image-slider-page',

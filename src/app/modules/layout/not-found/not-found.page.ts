@@ -6,4 +6,6 @@ import {Component} from '@angular/core';
   styleUrls: ['./not-found.page.scss']
 })
 export class NotFoundPage {
+  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  }
 }

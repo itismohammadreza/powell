@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {NgButtonAppearance} from "@ng/models/button";
 import {NgColor} from "@ng/models/color";
 import {NgIconPosition, NgSize} from "@ng/models/offset";
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-split-button-page',
@@ -11,13 +11,16 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./split-button.page.scss'],
 })
 export class SplitButtonPage {
+  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  }
+
   appearance: NgButtonAppearance = 'outlined';
   rounded: boolean = false;
   raised: boolean = false;
   color: NgColor = 'primary';
   full: boolean = false;
   size: NgSize = 'md';
-  rtl: boolean = GlobalConfig.rtl;
+  rtl: boolean = this.ngConfig.rtl;
   label: string = 'Label';
   icon: string = '';
   iconPos: NgIconPosition = 'left';

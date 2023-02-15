@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {NgSeverity} from "@ng/models/overlay";
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-message-page',
@@ -8,11 +8,14 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./message.page.scss']
 })
 export class MessagePage {
+  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  }
+
   summary: string = 'Some summary';
   detail: string = 'a complete detail';
   icon: string = 'pi pi-info';
   severity: NgSeverity = 'info';
   inlineMessage: string = '';
   closable: boolean = false;
-  rtl: boolean = GlobalConfig.rtl;
+  rtl: boolean = this.ngConfig.rtl;
 }

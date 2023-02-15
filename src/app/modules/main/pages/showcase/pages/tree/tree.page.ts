@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {UntypedFormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, Inject} from '@angular/core';
+import {FormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import {NgAddon, NgFixLabelPosition} from '@ng/models/forms';
 import {NgOrientation, NgSelectionMode} from '@ng/models/offset';
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-tree-page',
@@ -10,6 +10,9 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./tree.page.scss'],
 })
 export class TreePage {
+  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  }
+
   form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
@@ -18,7 +21,7 @@ export class TreePage {
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = GlobalConfig.rtl;
+  rtl: boolean = this.ngConfig.rtl;
   labelPos: NgFixLabelPosition = 'fix-side';
   addon: NgAddon;
   // native properties

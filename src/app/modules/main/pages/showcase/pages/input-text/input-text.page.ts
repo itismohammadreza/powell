@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {FormControl, UntypedFormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, Inject} from '@angular/core';
+import {FormControl, FormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import {NgAddon, NgInputType, NgKeyFilter, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-input-text-page',
@@ -10,6 +10,9 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./input-text.page.scss'],
 })
 export class InputTextPage {
+  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  }
+
   form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required, Validators.minLength(5), Validators.email, this.akbarValidator]),
   });
@@ -19,7 +22,7 @@ export class InputTextPage {
   filled: boolean = false;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = GlobalConfig.rtl;
+  rtl: boolean = this.ngConfig.rtl;
   icon: string = '';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgIconPosition = 'left';

@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {NgTableColDef, NgTableActionsConfig} from '@ng/models/table';
+import {Component, Inject} from '@angular/core';
+import {NgTableActionsConfig, NgTableColDef} from '@ng/models/table';
 import {LazyLoadEvent, MenuItem} from 'primeng/api';
 import {NgSize} from "@ng/models/offset";
 import {UserService} from "@core/http";
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 interface Customer {
   id: any,
@@ -25,8 +25,8 @@ interface Customer {
   templateUrl: './table.page.html',
   styleUrls: ['./table.page.scss'],
 })
-export class TablePage implements OnInit {
-  rtl: boolean = GlobalConfig.rtl;
+export class TablePage {
+  rtl: boolean = this.ngConfig.rtl;
   size: NgSize = 'md';
   header: string = 'Customers';
   simpleCustomers = [
@@ -1113,10 +1113,7 @@ export class TablePage implements OnInit {
   totalRecords: number;
   selectAll: boolean = false;
 
-  constructor(private userService: UserService) {
-  }
-
-  ngOnInit() {
+  constructor(private userService: UserService, @Inject('NG_CONFIG') private ngConfig: NgConfig) {
   }
 
   onRowSelect(event: any) {

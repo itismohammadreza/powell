@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {OverlayService} from "@ng/services";
-import {FormArray} from "@angular/forms";
 
 @Component({
   selector: 'ng-bottom-sheet-page',

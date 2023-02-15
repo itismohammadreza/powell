@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {UntypedFormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, Inject} from '@angular/core';
+import {FormGroup, UntypedFormControl, Validators} from "@angular/forms";
 import {NgAddon, NgChipDisplayMode, NgLabelPosition} from "@ng/models/forms";
 import {NgIconPosition, NgSelectionMode, NgSize} from "@ng/models/offset";
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-tree-select-page',
@@ -10,6 +10,9 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./tree-select.page.scss']
 })
 export class TreeSelectPage {
+  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  }
+
   form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
@@ -19,7 +22,7 @@ export class TreeSelectPage {
   filled: boolean = false;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = GlobalConfig.rtl;
+  rtl: boolean = this.ngConfig.rtl;
   icon: string = '';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgIconPosition = 'left';

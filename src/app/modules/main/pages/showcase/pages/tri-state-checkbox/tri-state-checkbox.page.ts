@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {UntypedFormControl, FormGroup, Validators} from "@angular/forms";
-import {GlobalConfig} from "@core/global.config";
+import {Component, Inject} from '@angular/core';
+import {FormGroup, UntypedFormControl, Validators} from "@angular/forms";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-tri-state-checkbox-page',
@@ -8,6 +8,9 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./tri-state-checkbox.page.scss']
 })
 export class TriStateCheckboxPage {
+  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  }
+
   form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
@@ -15,7 +18,7 @@ export class TriStateCheckboxPage {
 
   label: string = 'label';
   hint: string = '';
-  rtl: boolean = GlobalConfig.rtl;
+  rtl: boolean = this.ngConfig.rtl;
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;

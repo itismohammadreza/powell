@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {UntypedFormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, Inject} from '@angular/core';
+import {FormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import {NgFixLabelPosition} from '@ng/models/forms';
 import {NgOrientation} from '@ng/models/offset';
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-radio-page',
@@ -10,6 +10,9 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./radio.page.scss'],
 })
 export class RadioPage {
+  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  }
+
   form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
@@ -18,7 +21,7 @@ export class RadioPage {
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = GlobalConfig.rtl;
+  rtl: boolean = this.ngConfig.rtl;
   labelPos: NgFixLabelPosition = 'fix-side';
   // native properties
   orientation: NgOrientation = 'vertical';

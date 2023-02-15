@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {UntypedFormControl, FormGroup, Validators} from '@angular/forms';
-import {NgFixLabelPosition, NgFilePickerMode} from '@ng/models/forms';
-import {GlobalConfig} from "@core/global.config";
+import {Component, Inject} from '@angular/core';
+import {FormGroup, UntypedFormControl, Validators} from '@angular/forms';
+import {NgFilePickerMode, NgFixLabelPosition} from '@ng/models/forms';
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-file-picker-page',
@@ -9,6 +9,9 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./file-picker.page.scss'],
 })
 export class FilePickerPage {
+  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  }
+
   form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
@@ -17,7 +20,7 @@ export class FilePickerPage {
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = GlobalConfig.rtl;
+  rtl: boolean = this.ngConfig.rtl;
   labelPos: NgFixLabelPosition = 'fix-side';
   // native properties
   multiple: boolean = true;

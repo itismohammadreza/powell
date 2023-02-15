@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {UntypedFormControl, FormGroup, Validators} from "@angular/forms";
-import {GlobalConfig} from "@core/global.config";
+import {Component, Inject} from '@angular/core';
+import {FormGroup, UntypedFormControl, Validators} from "@angular/forms";
 import {NgAddon, NgLabelPosition} from "@ng/models/forms";
 import {NgIconPosition, NgSize} from "@ng/models/offset";
 import {MomentService} from "@ng/services";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-jalali-datepicker-page',
@@ -20,7 +20,7 @@ export class JalaliDatepickerPage {
   filled: boolean = false;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = GlobalConfig.rtl;
+  rtl: boolean = this.ngConfig.rtl;
   icon: string = '';
   labelPos: NgLabelPosition = 'fix-side';
   iconPos: NgIconPosition = 'left';
@@ -53,7 +53,7 @@ export class JalaliDatepickerPage {
   touchUI: boolean = false;
   showClear: boolean = false;
 
-  constructor(private momentService: MomentService) {
+  constructor(private momentService: MomentService, @Inject('NG_CONFIG') private ngConfig: NgConfig) {
   }
 
   submit() {

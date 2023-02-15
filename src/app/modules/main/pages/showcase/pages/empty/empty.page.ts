@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {NgEmptyIcon, NgStatus} from "@ng/models/offset";
+import {Component} from '@angular/core';
+import {NgEmptyIcon} from "@ng/models/offset";
 
 @Component({
   selector: 'ng-empty-page',
