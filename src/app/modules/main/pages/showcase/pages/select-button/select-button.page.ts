@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {NgFixLabelPosition} from "@ng/models/forms";
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-select-button-page',
@@ -17,8 +17,8 @@ export class SelectButtonPage {
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = this.ngConfig.rtl;
-  labelPos: NgFixLabelPosition = this.ngConfig.fixLabelPos;
+  rtl: boolean = NgGlobal.config.rtl;
+  labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
   // native properties
   multiple: boolean = false;
   disabled: boolean = false;

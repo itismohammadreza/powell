@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {NgFixLabelPosition} from "@ng/models/forms";
 import {NgIconPosition} from "@ng/models/offset";
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-toggle-button-page',
@@ -18,8 +18,8 @@ export class ToggleButtonPage {
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = this.ngConfig.rtl;
-  labelPos: NgFixLabelPosition = this.ngConfig.fixLabelPos;
+  rtl: boolean = NgGlobal.config.rtl;
+  labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
   // native properties
   onLabel: string = '';
   offLabel: string = '';

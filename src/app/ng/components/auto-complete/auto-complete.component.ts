@@ -26,7 +26,7 @@ import {NgAddon, NgInputType, NgLabelPosition, NgValidation} from '@ng/models/fo
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {ScrollerOptions} from "primeng/scroller";
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-auto-complete',
@@ -46,10 +46,10 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.ngConfig.rtl;
+  @Input() rtl: boolean = NgGlobal.config.rtl;
   @Input() showRequiredStar: boolean = true;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = this.ngConfig.labelPos;
+  @Input() labelPos: NgLabelPosition = NgGlobal.config.labelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;

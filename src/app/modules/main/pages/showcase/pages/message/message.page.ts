@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {NgSeverity} from "@ng/models/overlay";
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-message-page',
@@ -14,5 +14,5 @@ export class MessagePage {
   severity: NgSeverity = 'info';
   inlineMessage: string = '';
   closable: boolean = false;
-  rtl: boolean = this.ngConfig.rtl;
+  rtl: boolean = NgGlobal.config.rtl;
 }

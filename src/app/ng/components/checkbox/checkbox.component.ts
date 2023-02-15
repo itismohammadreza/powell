@@ -20,7 +20,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {NgValidation} from '@ng/models/forms';
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-checkbox',
@@ -39,7 +39,7 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() label: string;
   @Input() filled: boolean;
   @Input() hint: string;
-  @Input() rtl: boolean = this.ngConfig.rtl;
+  @Input() rtl: boolean = NgGlobal.config.rtl;
   @Input() showRequiredStar: boolean = true;
   @Input() validation: NgValidation;
   @Input() onLabel: string;

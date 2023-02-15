@@ -21,7 +21,7 @@ import {
 } from '@angular/forms';
 import {NgColorFormat, NgLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-color-picker',
@@ -42,10 +42,10 @@ export class ColorPickerComponent implements OnInit, AfterViewInit, ControlValue
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.ngConfig.rtl;
+  @Input() rtl: boolean = NgGlobal.config.rtl;
   @Input() showRequiredStar: boolean = true;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = this.ngConfig.labelPos;
+  @Input() labelPos: NgLabelPosition = NgGlobal.config.labelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;

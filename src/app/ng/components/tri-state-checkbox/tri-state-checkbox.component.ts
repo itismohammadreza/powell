@@ -18,7 +18,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {NgValidation} from "@ng/models/forms";
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-tri-state-checkbox',
@@ -30,7 +30,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterViewInit, Control
   @Input() label: string;
   @Input() filled: boolean;
   @Input() hint: string;
-  @Input() rtl: boolean = this.ngConfig.rtl;
+  @Input() rtl: boolean = NgGlobal.config.rtl;
   @Input() showRequiredStar: boolean = true;
   @Input() validation: NgValidation;
   // native properties

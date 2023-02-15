@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {NgColorFormat, NgLabelPosition} from '@ng/models/forms';
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-color-picker-page',
@@ -19,9 +19,9 @@ export class ColorPickerPage {
   filled: boolean = false;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = this.ngConfig.rtl;
+  rtl: boolean = NgGlobal.config.rtl;
   icon: string = '';
-  labelPos: NgLabelPosition = this.ngConfig.labelPos;
+  labelPos: NgLabelPosition = NgGlobal.config.labelPos;
   iconPos: NgIconPosition = 'left';
   inputSize: NgSize = 'md';
   placeholder: string = '';

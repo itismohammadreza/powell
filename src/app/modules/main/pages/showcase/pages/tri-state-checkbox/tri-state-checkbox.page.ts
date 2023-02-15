@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-tri-state-checkbox-page',
@@ -15,7 +15,7 @@ export class TriStateCheckboxPage {
 
   label: string = 'label';
   hint: string = '';
-  rtl: boolean = this.ngConfig.rtl;
+  rtl: boolean = NgGlobal.config.rtl;
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;

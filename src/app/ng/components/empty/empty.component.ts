@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {NgEmptyIcon} from "@ng/models/offset";
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-empty',
@@ -12,5 +12,5 @@ export class EmptyComponent {
   @Input() icon: string;
   @Input() imageSrc: string;
   @Input() text: string;
-  @Input() rtl: boolean = this.ngConfig.rtl;
+  @Input() rtl: boolean = NgGlobal.config.rtl;
 }

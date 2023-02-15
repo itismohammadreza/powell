@@ -10,7 +10,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {NgFixLabelPosition, NgValidation} from "@ng/models/forms";
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-dual-label-switch',
@@ -33,9 +33,9 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() labelRightValue: string = 'right';
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.ngConfig.rtl;
+  @Input() rtl: boolean = NgGlobal.config.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = this.ngConfig.fixLabelPos;
+  @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
   @Input() validation: NgValidation;
   @Input() async: boolean;
   // native properties

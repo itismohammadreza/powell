@@ -3,7 +3,7 @@ import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult} from "@ng/models/overlay";
 import {NgValidation} from "@ng/models/forms";
 import {DomHandler} from "@ng/services";
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-dialog-form',
@@ -28,10 +28,10 @@ export class DialogFormComponent {
     this.form = new FormGroup({});
     for (const config of this._config) {
       if (!config.labelPos) {
-        config.labelPos = this.ngConfig.labelPos;
+        config.labelPos = NgGlobal.config.labelPos;
       }
       if (!config.fixLabelPos) {
-        config.fixLabelPos = this.ngConfig.fixLabelPos;
+        config.fixLabelPos = NgGlobal.config.fixLabelPos;
       }
       if (config.key) {
         this.form.addControl(config.key, new FormControl(null));

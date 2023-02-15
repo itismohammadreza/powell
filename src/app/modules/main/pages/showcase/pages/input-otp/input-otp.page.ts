@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {NgFixLabelPosition} from "@ng/models/forms";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-input-otp-page',
@@ -18,8 +18,8 @@ export class InputOtpPage {
   filled: boolean = false;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = this.ngConfig.rtl;
-  labelPos: NgFixLabelPosition = this.ngConfig.fixLabelPos;
+  rtl: boolean = NgGlobal.config.rtl;
+  labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
   readonly: boolean = false;
   disabled: boolean = false;
   placeholder: string = '';

@@ -3,7 +3,7 @@ import {NgTableActionsConfig, NgTableColDef} from '@ng/models/table';
 import {LazyLoadEvent, MenuItem} from 'primeng/api';
 import {NgSize} from "@ng/models/offset";
 import {UserService} from "@core/http";
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 interface Customer {
   id: any,
@@ -26,7 +26,7 @@ interface Customer {
   styleUrls: ['./table.page.scss'],
 })
 export class TablePage {
-  rtl: boolean = this.ngConfig.rtl;
+  rtl: boolean = NgGlobal.config.rtl;
   size: NgSize = 'md';
   header: string = 'Customers';
   simpleCustomers = [

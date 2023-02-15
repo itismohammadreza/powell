@@ -22,7 +22,7 @@ import {
 } from '@angular/forms';
 import {NgColor} from '@ng/models/color';
 import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 import {UtilsService} from "@ng/services";
 
 @Component({
@@ -46,9 +46,9 @@ export class FilePicker2Component
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.ngConfig.rtl;
+  @Input() rtl: boolean = NgGlobal.config.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = this.ngConfig.fixLabelPos;
+  @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
   @Input() validation: NgValidation;
   @Input() disabled: boolean;
   @Input() readonly: boolean;

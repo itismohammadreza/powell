@@ -1,11 +1,11 @@
 import {Inject, Injectable} from "@angular/core";
 import {DOCUMENT} from "@angular/common";
-import {NgConfig, NgTheme} from "@ng/models/config";
+import {NgTheme} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Injectable({providedIn: 'root'})
 export class ThemeService {
-  constructor(@Inject(DOCUMENT) private document: Document,
-              @Inject('NG_CONFIG') private config: NgConfig) {
+  constructor(@Inject(DOCUMENT) private document: Document) {
   }
 
   private _currentTheme: NgTheme;
@@ -72,8 +72,8 @@ export class ThemeService {
     link.id = "prime-theme-link"
     link.rel = "stylesheet";
     link.type = "text/css";
-    link.href = `assets/themes/${this.config.theme}/theme.css`;
-    this._currentTheme = this.config.theme;
+    link.href = `assets/themes/${NgGlobal.config.theme}/theme.css`;
+    this._currentTheme = NgGlobal.config.theme;
     head.appendChild(link)
   }
 

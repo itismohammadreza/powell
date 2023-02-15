@@ -3,7 +3,7 @@ import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {NgAddon, NgLabelPosition} from "@ng/models/forms";
 import {NgIconPosition, NgSize} from "@ng/models/offset";
 import {MomentService} from "@ng/services";
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-jalali-datepicker-page',
@@ -20,9 +20,9 @@ export class JalaliDatepickerPage {
   filled: boolean = false;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = this.ngConfig.rtl;
+  rtl: boolean = NgGlobal.config.rtl;
   icon: string = '';
-  labelPos: NgLabelPosition = this.ngConfig.labelPos;
+  labelPos: NgLabelPosition = NgGlobal.config.labelPos;
   iconPos: NgIconPosition = 'left';
   inputSize: NgSize = 'md';
   addon: NgAddon;

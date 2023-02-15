@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {NgToastOptions} from "@ng/models/overlay";
 import {OverlayService} from "@ng/services";
-import {NgConfig} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
 
 @Component({
   selector: 'ng-toast-page',
@@ -12,7 +12,7 @@ export class ToastPage {
   toast: NgToastOptions = {
     life: 3000,
     sticky: false,
-    rtl: this.ngConfig.rtl,
+    rtl: NgGlobal.config.rtl,
     summary: 'Some Summary',
     closable: false,
     severity: 'info',
