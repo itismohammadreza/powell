@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, FormGroup, Validators} from '@angular/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {NgAddon, NgColorFormat, NgLabelPosition} from '@ng/models/forms';
 import {GlobalConfig} from "@core/global.config";
@@ -10,7 +10,7 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./color-picker.page.scss']
 })
 export class ColorPickerPage {
-  form = new UntypedFormGroup({
+  form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {GlobalConfig} from "@core/global.config";
 import {NgAddon, NgFixLabelPosition, NgInputType, NgKeyFilter, NgLabelPosition} from "@ng/models/forms";
-import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, FormGroup, Validators} from "@angular/forms";
 import {NgIconPosition, NgSize} from "@ng/models/offset";
 
 @Component({
@@ -10,7 +10,7 @@ import {NgIconPosition, NgSize} from "@ng/models/offset";
   styleUrls: ['./input-otp.page.scss']
 })
 export class InputOtpPage {
-  form = new UntypedFormGroup({
+  form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;

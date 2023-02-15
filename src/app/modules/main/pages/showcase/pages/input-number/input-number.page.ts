@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, FormGroup, Validators} from '@angular/forms';
 import {
   NgAddon,
   NgCurrency,
@@ -17,7 +17,7 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./input-number.page.scss'],
 })
 export class InputNumberPage {
-  form = new UntypedFormGroup({
+  form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;

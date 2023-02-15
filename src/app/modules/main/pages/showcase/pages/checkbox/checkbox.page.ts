@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, FormGroup, Validators} from '@angular/forms';
 import {GlobalConfig} from "@core/global.config";
 
 @Component({
@@ -8,7 +8,7 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./checkbox.page.scss'],
 })
 export class CheckboxPage {
-  form = new UntypedFormGroup({
+  form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;

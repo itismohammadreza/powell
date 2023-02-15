@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, FormGroup, Validators} from "@angular/forms";
 import {NgAddon, NgChipDisplayMode, NgLabelPosition} from "@ng/models/forms";
 import {NgIconPosition, NgSelectionMode, NgSize} from "@ng/models/offset";
 import {GlobalConfig} from "@core/global.config";
@@ -10,7 +10,7 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./tree-select.page.scss']
 })
 export class TreeSelectPage {
-  form = new UntypedFormGroup({
+  form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;

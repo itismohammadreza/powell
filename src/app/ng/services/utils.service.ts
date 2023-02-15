@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {UntypedFormGroup} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {fromEvent, merge, Observable, Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {DOCUMENT} from '@angular/common';
@@ -23,7 +23,7 @@ export class UtilsService {
   }
 
   getDirtyControls(
-    form: UntypedFormGroup,
+    form: FormGroup,
     type: 'object' | 'array' | 'names' = 'object'
   ): {} {
     const kv = Object.entries(form.controls).filter((val) => val[1].dirty);

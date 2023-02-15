@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, FormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgChipDisplayMode, NgFixLabelPosition, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {GlobalConfig} from "@core/global.config";
@@ -10,7 +10,7 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./multi-select.page.scss'],
 })
 export class MultiSelectPage {
-  form = new UntypedFormGroup({
+  form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;

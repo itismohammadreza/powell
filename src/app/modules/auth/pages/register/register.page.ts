@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {AbstractControl, UntypedFormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {LanguageChecker} from '@core/utils';
 import {AuthService} from '@core/http';
 import {Router} from '@angular/router';
@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage extends LanguageChecker {
-  form = new UntypedFormGroup({
+  form = new FormGroup({
     email: new UntypedFormControl(null, [Validators.required, Validators.email]),
     password: new UntypedFormControl(null, [Validators.required]),
     confirmPassword: new UntypedFormControl(null, [Validators.required]),

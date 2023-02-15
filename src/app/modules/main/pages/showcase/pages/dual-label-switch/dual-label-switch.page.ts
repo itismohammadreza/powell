@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, FormGroup, Validators} from "@angular/forms";
 import {NgFixLabelPosition} from "@ng/models/forms";
 import {GlobalConfig} from "@core/global.config";
 
@@ -9,7 +9,7 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./dual-label-switch.page.scss']
 })
 export class DualLabelSwitchPage {
-  form = new UntypedFormGroup({
+  form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;

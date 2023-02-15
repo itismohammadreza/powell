@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, FormGroup, Validators} from '@angular/forms';
 import {NgColor} from '@ng/models/color';
 import {NgFixLabelPosition} from '@ng/models/forms';
 import {GlobalConfig} from "@core/global.config";
@@ -10,7 +10,7 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./file-picker2.page.scss'],
 })
 export class FilePicker2Page {
-  form = new UntypedFormGroup({
+  form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required]),
   });
   binding;

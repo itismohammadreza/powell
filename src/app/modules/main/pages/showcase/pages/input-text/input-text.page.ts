@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormControl, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {FormControl, UntypedFormControl, FormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgInputType, NgKeyFilter, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {GlobalConfig} from "@core/global.config";
@@ -10,7 +10,7 @@ import {GlobalConfig} from "@core/global.config";
   styleUrls: ['./input-text.page.scss'],
 })
 export class InputTextPage {
-  form = new UntypedFormGroup({
+  form = new FormGroup({
     c1: new UntypedFormControl(null, [Validators.required, Validators.minLength(5), Validators.email, this.akbarValidator]),
   });
   binding;
