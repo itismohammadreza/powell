@@ -6,6 +6,7 @@ import {
   ContentChildren,
   EventEmitter,
   forwardRef,
+  Inject,
   Injector,
   Input,
   OnInit,
@@ -18,18 +19,18 @@ import {
   ControlContainer,
   ControlValueAccessor,
   FormControlName,
+  FormGroup,
   FormGroupDirective,
   FormGroupName,
   NG_VALUE_ACCESSOR,
   NgControl,
-  FormGroup,
 } from '@angular/forms';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {NgAddon, NgFixLabelPosition, NgTreeFilterMode, NgValidation} from '@ng/models/forms';
 import {ContextMenu} from 'primeng/contextmenu';
 import {ScrollerOptions} from 'primeng/scroller';
 import {NgOrientation, NgSelectionMode} from "@ng/models/offset";
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-tree',
@@ -47,9 +48,9 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = GlobalConfig.rtl;
+  @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
+  @Input() labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   // native properties
@@ -110,7 +111,7 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
   }
 
   ngOnInit() {

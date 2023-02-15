@@ -6,7 +6,7 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
-  forwardRef,
+  forwardRef, Inject,
   Injector,
   Input,
   OnChanges,
@@ -21,15 +21,15 @@ import {
   ControlContainer,
   ControlValueAccessor,
   FormControlName,
+  FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  FormGroup,
 } from '@angular/forms';
 import {NgFilePickerMode, NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {FileUpload} from 'primeng/fileupload';
 import {TemplateDirective} from "@ng/directives/template.directive";
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 import {UtilsService} from "@ng/services";
 
 @Component({
@@ -50,9 +50,9 @@ export class FilePickerComponent
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = GlobalConfig.rtl;
+  @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
+  @Input() labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
   @Input() resultType: 'base64' | 'file' | 'none' = 'file';
   // native properties
@@ -116,7 +116,7 @@ export class FilePickerComponent
   };
 
   constructor(private cd: ChangeDetectorRef,
-              private injector: Injector,
+              @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector,
               private utilsService: UtilsService) {
   }
 

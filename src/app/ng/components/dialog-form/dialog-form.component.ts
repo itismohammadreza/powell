@@ -1,9 +1,9 @@
-import {Component, ElementRef, EventEmitter} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Inject} from '@angular/core';
 import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult} from "@ng/models/overlay";
 import {NgValidation} from "@ng/models/forms";
 import {DomHandler} from "@ng/services";
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-dialog-form',
@@ -20,7 +20,7 @@ export class DialogFormComponent {
   onClose = new EventEmitter<void>();
   disableReject: boolean;
 
-  constructor(private el: ElementRef) {
+  constructor(private el: ElementRef, @Inject('NG_CONFIG') private ngConfig: NgConfig) {
   }
 
   set config(value: NgDialogFormConfig[]) {
@@ -28,10 +28,10 @@ export class DialogFormComponent {
     this.form = new FormGroup({});
     for (const config of this._config) {
       if (!config.labelPos) {
-        config.labelPos = GlobalConfig.defaultLabelPos;
+        config.labelPos = this.ngConfig.defaultLabelPos;
       }
       if (!config.fixLabelPos) {
-        config.fixLabelPos = GlobalConfig.defaultFixLabelPos;
+        config.fixLabelPos = this.ngConfig.defaultFixLabelPos;
       }
       if (config.key) {
         this.form.addControl(config.key, new FormControl(null));

@@ -23,7 +23,7 @@ export class DynamicDialogComponent implements AfterViewInit, OnDestroy {
   onClose = this._onClose.asObservable();
   @ViewChild('insertion', {read: ViewContainerRef})
   insertionPoint: ViewContainerRef;
-  
+
   constructor(private cd: ChangeDetectorRef, private dialogRef: DynamicDialogRef) {
   }
 

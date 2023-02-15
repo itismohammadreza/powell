@@ -4,6 +4,7 @@ import {
   Component,
   EventEmitter,
   forwardRef,
+  Inject,
   Injector,
   Input,
   OnInit,
@@ -15,12 +16,12 @@ import {
   ControlContainer,
   ControlValueAccessor,
   FormControlName,
+  FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl,
-  FormGroup
+  NgControl
 } from "@angular/forms";
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-knob',
@@ -39,9 +40,9 @@ export class KnobComponent implements OnInit, AfterViewInit, ControlValueAccesso
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = GlobalConfig.rtl;
+  @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
+  @Input() labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
   // native properties
   @Input() size: number = 100;
@@ -68,7 +69,7 @@ export class KnobComponent implements OnInit, AfterViewInit, ControlValueAccesso
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
   }
 
   ngOnInit() {

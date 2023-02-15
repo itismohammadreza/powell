@@ -2,7 +2,7 @@ import {
   AfterContentInit,
   Component,
   ContentChildren,
-  EventEmitter,
+  EventEmitter, Inject,
   Input,
   Output,
   QueryList,
@@ -13,7 +13,7 @@ import {NgColor} from '@ng/models/color';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {MenuItem} from 'primeng/api';
 import {TemplateDirective} from "@ng/directives/template.directive";
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-split-button',
@@ -28,7 +28,7 @@ export class SplitButtonComponent implements AfterContentInit {
   @Input() color: NgColor = 'primary';
   @Input() full: boolean;
   @Input() size: NgSize = 'md';
-  @Input() rtl: boolean = GlobalConfig.rtl;
+  @Input() rtl: boolean = this.ngConfig.rtl;
   // native properties
   @Input() label: string;
   @Input() icon: string;
@@ -46,6 +46,9 @@ export class SplitButtonComponent implements AfterContentInit {
   @Output() onDropdownClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
   contentTemplate: TemplateRef<any>;
+
+  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  }
 
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {

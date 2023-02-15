@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, Inject, Input} from '@angular/core';
 import {NgStatus} from "@ng/models/offset";
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-status',
@@ -13,5 +13,8 @@ export class StatusComponent {
   @Input() imageSrc: string;
   @Input() text: string;
   @Input() subText: string;
-  @Input() rtl: boolean = GlobalConfig.rtl;
+  @Input() rtl: boolean = this.ngConfig.rtl;
+
+  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  }
 }

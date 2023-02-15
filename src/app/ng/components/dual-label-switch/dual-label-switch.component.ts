@@ -1,16 +1,26 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  forwardRef,
+  Inject,
+  Injector,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
   FormControlName,
+  FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl,
-  FormGroup
+  NgControl
 } from "@angular/forms";
 import {NgFixLabelPosition, NgValidation} from "@ng/models/forms";
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-dual-label-switch',
@@ -33,9 +43,9 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() labelRightValue: string = 'right';
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = GlobalConfig.rtl;
+  @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
+  @Input() labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
   @Input() async: boolean;
   // native properties
@@ -56,7 +66,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
   }
 
   ngOnInit() {

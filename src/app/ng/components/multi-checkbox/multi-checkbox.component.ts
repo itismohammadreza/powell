@@ -4,6 +4,7 @@ import {
   Component,
   EventEmitter,
   forwardRef,
+  Inject,
   Injector,
   Input,
   OnInit,
@@ -14,14 +15,14 @@ import {
   ControlContainer,
   ControlValueAccessor,
   FormControlName,
+  FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  FormGroup,
 } from '@angular/forms';
 import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgOrientation} from '@ng/models/offset';
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-multi-checkbox',
@@ -41,9 +42,9 @@ export class MultiCheckboxComponent implements OnInit, AfterViewInit, ControlVal
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = GlobalConfig.rtl;
+  @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
+  @Input() labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
@@ -79,7 +80,7 @@ export class MultiCheckboxComponent implements OnInit, AfterViewInit, ControlVal
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
   }
 
   ngOnInit() {

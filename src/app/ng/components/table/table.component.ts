@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
-  EventEmitter,
+  EventEmitter, Inject,
   Input,
   OnInit,
   Output,
@@ -29,7 +29,7 @@ import {FilterMetadata, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {ScrollerOptions} from "primeng/scroller";
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-table',
@@ -44,7 +44,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() reorderableRows: boolean;
   @Input() selectableRows: boolean;
   @Input() actionsConfig: NgTableActionsConfig;
-  @Input() rtl: boolean = GlobalConfig.rtl;
+  @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() emptyMessage: string = 'موردی وجود ندارد';
   @Input() emptyIcon: string;
   @Input() emptyImageSrc: string;
@@ -176,6 +176,9 @@ export class TableComponent implements OnInit, AfterContentInit {
   paginatorRightTemplate: TemplateRef<any>
   loadingBodyTemplate: TemplateRef<any>
   cellTemplates: { [key: string]: TemplateRef<any> } = {}
+
+  constructor(@Inject('NG_CONFIG') private ngConfig: NgConfig) {
+  }
 
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);

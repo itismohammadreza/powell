@@ -14,7 +14,7 @@ import {COMPONENTS} from '.';
     FormsModule,
     TranslateModule.forChild(),
     RouterModule,
-    NgAllModule.forRoot({ripple: true})
+    NgAllModule.forRoot({ripple: true, rtl: false, theme: 'lara-light-indigo'})
   ],
   exports: [
     ...COMPONENTS,

@@ -5,6 +5,8 @@ import {SidebarType} from '@core/models';
 import {OverlayPanel} from "primeng/overlaypanel";
 import {GlobalConfig} from "@core/global.config";
 import {DOCUMENT} from "@angular/common";
+import {ThemeService} from "@ng/services/theme.service";
+import {NgTheme} from "@ng/models/config";
 
 @Component({
   selector: 'ng-navbar-menu',
@@ -13,7 +15,7 @@ import {DOCUMENT} from "@angular/common";
 })
 export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterViewChecked, AfterContentInit {
   responsiveThreshold: number = 768;
-  theme: string = GlobalConfig.defaultTheme;
+  theme: NgTheme;
   language: string = GlobalConfig.defaultLang;
   sidebarVisible: boolean = GlobalConfig.defaultSidebarVisible;
   sidebarLock: boolean = GlobalConfig.defaultSidebarLock;
@@ -42,7 +44,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     }
   }
 
-  constructor(@Inject(DOCUMENT) private document: Document) {
+  constructor(@Inject(DOCUMENT) private document: Document, private themeService: ThemeService) {
     super();
   }
 
@@ -182,12 +184,8 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   changeTheme(event) {
-    const themeElement = this.document.getElementById('theme-link');
-    themeElement.setAttribute(
-      'href',
-      themeElement.getAttribute('href').replace(this.theme, event.value)
-    );
     this.theme = event.value;
+    this.themeService.changeTheme(this.theme);
     this.overlayPanel?.hide();
   }
 

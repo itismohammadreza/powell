@@ -1,17 +1,27 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  forwardRef,
+  Inject,
+  Injector,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
   FormControlName,
+  FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  FormGroup,
 } from '@angular/forms';
 import {NgAddon, NgInputType, NgLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-input-mask',
@@ -31,10 +41,10 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = GlobalConfig.rtl;
+  @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = GlobalConfig.defaultLabelPos;
+  @Input() labelPos: NgLabelPosition = this.ngConfig.defaultLabelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
@@ -74,7 +84,7 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
   }
 
   ngOnInit() {

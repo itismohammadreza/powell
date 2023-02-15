@@ -4,6 +4,7 @@ import {
   Component,
   EventEmitter,
   forwardRef,
+  Inject,
   Injector,
   Input,
   OnInit,
@@ -14,14 +15,14 @@ import {
   ControlContainer,
   ControlValueAccessor,
   FormControlName,
+  FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl,
-  FormGroup
+  NgControl
 } from '@angular/forms';
 import {NgAddon, NgInputMode, NgInputType, NgKeyFilter, NgLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-input-text',
@@ -41,10 +42,10 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = GlobalConfig.rtl;
+  @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = GlobalConfig.defaultLabelPos;
+  @Input() labelPos: NgLabelPosition = this.ngConfig.defaultLabelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
@@ -82,7 +83,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
   }
 
   ngOnInit() {
@@ -101,7 +102,6 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-
       currentControl = this.ngControl.control;
       if (this.controlContainer) {
         parentForm = this.controlContainer.control;

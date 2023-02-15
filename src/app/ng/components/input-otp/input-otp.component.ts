@@ -5,6 +5,7 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
+  Inject,
   Injector,
   Input,
   OnInit,
@@ -16,13 +17,13 @@ import {
   ControlValueAccessor,
   FormControl,
   FormControlName,
+  FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl,
-  FormGroup
+  NgControl
 } from "@angular/forms";
 import {NgFixLabelPosition, NgValidation} from "@ng/models/forms";
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-input-otp',
@@ -45,9 +46,9 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = GlobalConfig.rtl;
+  @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
+  @Input() labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
@@ -75,7 +76,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   onModelTouched: any = () => {
   };
 
-  constructor(private el: ElementRef, private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private el: ElementRef, private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
   }
 
   ngOnInit() {

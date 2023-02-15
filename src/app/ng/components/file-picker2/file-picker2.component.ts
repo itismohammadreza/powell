@@ -4,6 +4,7 @@ import {
   Component,
   EventEmitter,
   forwardRef,
+  Inject,
   Injector,
   Input,
   OnChanges,
@@ -15,14 +16,14 @@ import {
   ControlContainer,
   ControlValueAccessor,
   FormControlName,
+  FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  FormGroup,
 } from '@angular/forms';
 import {NgColor} from '@ng/models/color';
 import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 import {UtilsService} from "@ng/services";
 
 @Component({
@@ -46,9 +47,9 @@ export class FilePicker2Component
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = GlobalConfig.rtl;
+  @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() labelPos: NgFixLabelPosition = GlobalConfig.defaultFixLabelPos;
+  @Input() labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
   @Input() validation: NgValidation;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
@@ -75,7 +76,7 @@ export class FilePicker2Component
 
   constructor(
     private cd: ChangeDetectorRef,
-    private injector: Injector,
+    @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector,
     private utilsService: UtilsService
   ) {
   }

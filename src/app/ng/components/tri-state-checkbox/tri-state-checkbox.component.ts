@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
+  Inject,
   Injector,
   Input,
   OnInit,
@@ -13,12 +14,12 @@ import {
   ControlContainer,
   ControlValueAccessor,
   FormControlName,
+  FormGroup,
   FormGroupDirective,
-  NgControl,
-  FormGroup
+  NgControl
 } from "@angular/forms";
 import {NgValidation} from "@ng/models/forms";
-import {GlobalConfig} from "@core/global.config";
+import {NgConfig} from "@ng/models/config";
 
 @Component({
   selector: 'ng-tri-state-checkbox',
@@ -30,7 +31,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterViewInit, Control
   @Input() label: string;
   @Input() filled: boolean;
   @Input() hint: string;
-  @Input() rtl: boolean = GlobalConfig.rtl;
+  @Input() rtl: boolean = this.ngConfig.rtl;
   @Input() showRequiredStar: boolean = true;
   @Input() validation: NgValidation;
   // native properties
@@ -51,7 +52,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterViewInit, Control
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, @Inject('NG_CONFIG') private ngConfig: NgConfig, private injector: Injector) {
   }
 
   ngOnInit() {
