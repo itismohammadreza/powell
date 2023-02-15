@@ -1,4 +1,13 @@
-import {AfterContentInit, AfterViewChecked, Component, HostListener, Inject, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewChecked,
+  Component,
+  HostListener,
+  Inject,
+  Input,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {LanguageChecker} from '@core/utils';
 import {MenuItem} from 'primeng/api';
 import {SidebarType} from '@core/models';
@@ -14,16 +23,18 @@ import {NgTheme} from "@ng/models/config";
   styleUrls: ['./navbar-menu.component.scss']
 })
 export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterViewChecked, AfterContentInit {
-  responsiveThreshold: number = 768;
-  language: string = GlobalConfig.defaultLang;
-  sidebarVisible: boolean = GlobalConfig.defaultSidebarVisible;
-  sidebarLock: boolean = GlobalConfig.defaultSidebarLock;
-  sidebarType: SidebarType = GlobalConfig.defaultSidebarType;
+  @Input() sidebarType: SidebarType = 'push-mask';
+  @Input() sidebarVisible: boolean = false;
+  @Input() sidebarLock: boolean = false; // overrides the sidebarVisible.
+  @Input() responsiveThreshold: number = 768;
+
+  tempSidebarType: SidebarType;
   theme: NgTheme = this.themeService.currentTheme;
   themes: MenuItem[];
   sidebarTypes: MenuItem[];
   sidebarItems: MenuItem[];
   searchValue: string;
+  language: string = GlobalConfig.defaultLang;
   accountItems: MenuItem[] = [
     {
       label: 'خروج',
@@ -37,10 +48,12 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (this.document.defaultView.innerWidth < this.responsiveThreshold) {
+      console.log('is responsive')
       this.changeSidebarType('overlay');
       this.maskEl?.classList.remove('d-none');
-    } else if (this.document.defaultView.innerWidth > this.responsiveThreshold && this.sidebarType != GlobalConfig.defaultSidebarType) {
-      this.changeSidebarType(GlobalConfig.defaultSidebarType);
+    } else if (this.document.defaultView.innerWidth >= this.responsiveThreshold) {
+      console.log('is NOT responsive')
+      this.changeSidebarType(this.sidebarType);
     }
   }
 
@@ -50,6 +63,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
 
   ngOnInit() {
     this.loadData();
+    this.tempSidebarType = this.sidebarType;
     if (this.sidebarLock && !this.sidebarVisible) {
       this.sidebarVisible = true;
     }
@@ -151,8 +165,9 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   changeSidebarType(event: any) {
-    this.sidebarType = event.value || event;
-    if (this.sidebarType == 'hover') {
+    console.log(event)
+    this.tempSidebarType = event.value || event;
+    if (this.tempSidebarType == 'hover') {
       this.toggleSidebar(true);
     } else {
       this.toggleSidebar(false);
@@ -173,7 +188,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
 
   toggleSidebar(activate: boolean) {
     this.sidebarVisible = activate;
-    if (['overlay', 'push'].includes(this.sidebarType)) {
+    if (['overlay', 'push'].includes(this.tempSidebarType)) {
       setTimeout(() => {
         if (this.sidebarVisible) {
           this.toggleMaskVisibility(false);
@@ -213,7 +228,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   getWrapperClasses() {
-    return `menu-${this.sidebarType} ${this.fa ? 'rtl' : ''} ${this.sidebarLock ? 'sidebar-lock' : ''}  ${this.sidebarVisible ? 'sidebar-open' : ''}`
+    return `menu-${this.tempSidebarType} ${this.fa ? 'rtl' : ''} ${this.sidebarLock ? 'sidebar-lock' : ''}  ${this.sidebarVisible ? 'sidebar-open' : ''}`
   }
 
   get maskEl() {
@@ -221,6 +236,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   get isModalSidebar() {
-    return (this.sidebarType == 'overlay' || this.sidebarType == 'overlay-mask' || this.sidebarType == 'push' || this.sidebarType == 'push-mask');
+    return (this.tempSidebarType == 'overlay' || this.tempSidebarType == 'overlay-mask' || this.tempSidebarType == 'push' || this.tempSidebarType == 'push-mask');
   }
 }

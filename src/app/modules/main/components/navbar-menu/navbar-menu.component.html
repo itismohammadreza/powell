@@ -1,7 +1,7 @@
 <div class="main-content" [ngClass]="getWrapperClasses()">
   <nav class="navbar navbar-expand shadow-sm fixed-top">
     <ng-button
-      *ngIf="!sidebarLock && sidebarType != 'hover' && sidebarType != 'horizontal'"
+      *ngIf="!sidebarLock && tempSidebarType != 'hover' && tempSidebarType != 'horizontal'"
       icon="pi pi-bars"
       color="primary"
       appearance="text"
@@ -56,7 +56,7 @@
   </p-sidebar>
 </div>
 
-<p-menubar [model]="sidebarItems" *ngIf="sidebarType == 'horizontal'">
+<p-menubar [model]="sidebarItems" *ngIf="tempSidebarType == 'horizontal'">
   <ng-template pTemplate="start">
     <ng-logo width="50px"></ng-logo>
   </ng-template>
