@@ -3,14 +3,17 @@ import {ConfirmationService, FilterService, MessageService, PrimeNGConfig,} from
 import {DialogService} from 'primeng/dynamicdialog';
 import {GlobalInjector} from './global.injector';
 import {NgComponentsModule} from './components/components.module';
+import {NgConfig} from "@ng/models/config";
+import {ThemeService} from "@ng/services/theme.service";
 
 @NgModule({
   imports: [NgComponentsModule],
   exports: [NgComponentsModule],
 })
 export class NgAllModule {
-  constructor(private injector: Injector) {
+  constructor(private injector: Injector, private themeService: ThemeService) {
     GlobalInjector.Injector = this.injector;
+    this.themeService.initTheme();
   }
 
   static forRoot(ngConfig: NgConfig): ModuleWithProviders<NgAllModule> {
