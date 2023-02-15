@@ -15,11 +15,11 @@ import {NgTheme} from "@ng/models/config";
 })
 export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterViewChecked, AfterContentInit {
   responsiveThreshold: number = 768;
-  theme: NgTheme;
   language: string = GlobalConfig.defaultLang;
   sidebarVisible: boolean = GlobalConfig.defaultSidebarVisible;
   sidebarLock: boolean = GlobalConfig.defaultSidebarLock;
   sidebarType: SidebarType = GlobalConfig.defaultSidebarType;
+  theme: NgTheme = this.themeService.currentTheme;
   themes: MenuItem[];
   sidebarTypes: MenuItem[];
   sidebarItems: MenuItem[];
@@ -67,52 +67,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   loadData() {
-    const themes: string[] = [
-      'arya-blue',
-      'arya-green',
-      'arya-orange',
-      'arya-purple',
-      'bootstrap4-dark-blue',
-      'bootstrap4-dark-purple',
-      'bootstrap4-light-blue',
-      'bootstrap4-light-purple',
-      'fluent-light',
-      'lara-dark-indigo',
-      'lara-dark-purple',
-      'lara-light-indigo',
-      'lara-light-purple',
-      'luna-amber',
-      'luna-blue',
-      'luna-green',
-      'luna-pink',
-      'md-dark-deeppurple',
-      'md-dark-indigo',
-      'md-light-deeppurple',
-      'md-light-indigo',
-      'mdc-dark-deeppurple',
-      'mdc-dark-indigo',
-      'mdc-light-deeppurple',
-      'mdc-light-indigo',
-      'mira',
-      'nano',
-      'nova',
-      'nova-accent',
-      'nova-alt',
-      'rhea',
-      'saga-blue',
-      'saga-green',
-      'saga-orange',
-      'saga-purple',
-      'soho-dark',
-      'soho-light',
-      'tailwind-light',
-      'vela-blue',
-      'vela-green',
-      'vela-orange',
-      'vela-purple',
-      'viva-dark',
-      'viva-light',
-    ];
+    const themes: string[] = this.themeService.getAllThemes();
     const sidebarTypes: SidebarType[] = ['overlay', 'overlay-mask', 'push', 'push-mask', 'hover', 'static', 'horizontal'];
     const sidebarItems: string[] = [
       'dashboard',
