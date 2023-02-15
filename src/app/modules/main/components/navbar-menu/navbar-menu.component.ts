@@ -48,11 +48,9 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (this.document.defaultView.innerWidth < this.responsiveThreshold) {
-      console.log('is responsive')
       this.changeSidebarType('overlay');
       this.maskEl?.classList.remove('d-none');
     } else if (this.document.defaultView.innerWidth >= this.responsiveThreshold) {
-      console.log('is NOT responsive')
       this.changeSidebarType(this.sidebarType);
     }
   }
@@ -165,7 +163,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   changeSidebarType(event: any) {
-    console.log(event)
     this.tempSidebarType = event.value || event;
     if (this.tempSidebarType == 'hover') {
       this.toggleSidebar(true);
