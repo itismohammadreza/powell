@@ -28,6 +28,10 @@ export class NgAllModule {
             return primeNgConfig;
           },
         },
+        {
+          provide: 'NG_CONFIG',
+          useValue: ngConfig,
+        },
         MessageService,
         DialogService,
         ConfirmationService,
