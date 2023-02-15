@@ -21,7 +21,7 @@ export class MapPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.ngConfig.rtl;
-  labelPos: NgFixLabelPosition = 'fix-side';
+  labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
   addon: NgAddon;
   // native properties
   disabled: boolean = false;

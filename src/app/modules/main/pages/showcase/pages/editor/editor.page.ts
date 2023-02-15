@@ -21,7 +21,7 @@ export class EditorPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.ngConfig.rtl;
-  labelPos: NgFixLabelPosition = 'fix-side';
+  labelPos: NgFixLabelPosition = this.ngConfig.defaultFixLabelPos;
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;

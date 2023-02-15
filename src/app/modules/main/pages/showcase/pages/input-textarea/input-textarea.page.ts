@@ -24,7 +24,7 @@ export class InputTextareaPage {
   hint: string = '';
   rtl: boolean = this.ngConfig.rtl;
   icon: string = '';
-  labelPos: NgLabelPosition = 'fix-side';
+  labelPos: NgLabelPosition = this.ngConfig.defaultLabelPos;
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
   // native properties
