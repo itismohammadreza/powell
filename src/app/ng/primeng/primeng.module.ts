@@ -4,4 +4,4 @@ import {MODULES} from '.';
 @NgModule({
   exports: [MODULES],
 })
-export class PrimeNgModule {}
+export class PrimengModule {}

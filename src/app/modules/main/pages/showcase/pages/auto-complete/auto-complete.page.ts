@@ -10,7 +10,6 @@ import {NgGlobal} from "@ng/ng-global";
   styleUrls: ['./auto-complete.page.scss']
 })
 export class AutoCompletePage {
-
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });

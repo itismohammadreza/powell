@@ -6,16 +6,16 @@ import {NgPipesModule} from '@ng/pipes/pipes.module';
 
 import {COMPONENTS} from '.';
 import {NgDirectivesModule} from '../directives/directives.module';
-import {PrimeNgModule} from '../prime-modules/prime-ng.module';
+import {PrimengModule} from '../primeng/primeng.module';
 
 @NgModule({
   declarations: [...COMPONENTS],
-  exports: [...COMPONENTS, PrimeNgModule, NgDirectivesModule, NgPipesModule],
+  exports: [...COMPONENTS, PrimengModule, NgDirectivesModule, NgPipesModule],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    PrimeNgModule,
+    PrimengModule,
     LeafletModule,
     NgDirectivesModule,
     NgPipesModule,
