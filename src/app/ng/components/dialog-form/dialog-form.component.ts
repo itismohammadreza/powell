@@ -27,12 +27,8 @@ export class DialogFormComponent {
     this._config = value;
     this.form = new FormGroup({});
     for (const config of this._config) {
-      if (!config.labelPos) {
-        config.labelPos = NgGlobal.config.labelPos;
-      }
-      if (!config.fixLabelPos) {
-        config.fixLabelPos = NgGlobal.config.fixLabelPos;
-      }
+      config.labelPos = config.labelPos ?? NgGlobal.config.labelPos;
+      config.fixLabelPos = config.fixLabelPos ?? NgGlobal.config.fixLabelPos;
       if (config.key) {
         this.form.addControl(config.key, new FormControl(null));
         this.handleConfigValue(config);
