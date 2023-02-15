@@ -11,7 +11,6 @@
 ### Feature
 
 - fix AOS bug
-- move configs of components into allModule.ts forRoot method
 - add bootstrap 5
 - use gap instead of margin left and right
 
