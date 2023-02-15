@@ -229,16 +229,17 @@
   .p-dialog-header {
     padding: 1.5rem 1.5rem 0;
   }
-}
 
-.dialog-header-less {
-  .p-dialog-header {
-    display: none;
-  }
+  &.dialog-header-less {
+    .p-dialog-header {
+      display: none;
+    }
 
-  .p-dialog-content {
-    border-top-right-radius: var(--border-radius);
-    border-top-left-radius: var(--border-radius);
+    .p-dialog-content {
+      border-top-right-radius: var(--border-radius);
+      border-top-left-radius: var(--border-radius);
+      padding: 2rem 1.5rem 2rem 1.5rem;
+    }
   }
 }
 
