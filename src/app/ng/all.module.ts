@@ -28,6 +28,7 @@ export class NgAllModule {
           useFactory: () => {
             const primeNgConfig = new PrimeNGConfig();
             primeNgConfig.ripple = NgGlobal.config.ripple;
+            primeNgConfig.overlayOptions = NgGlobal.config.overlayOptions;
             return primeNgConfig;
           },
         },
