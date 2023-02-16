@@ -10,11 +10,16 @@
 
 ### Feature
 
+- fix below issue: 
+  1- change sidebarType
+  2- responsive until mobile view
+  3- change size to desktop view
+  4- the sidebarType is reset to its default value 
+- replace css colors with variables and make theme colors configurable
+- create a configService to dynamically configure theme,rtl,ripple,labelPos,... (should itself use themeService).
 - fix AOS bug
 - add bootstrap 5
 - use gap instead of margin left and right
-- replace css colors with variables and make theme colors configurable
-- create a configService to dynamically configure theme,rtl,ripple,labelPos,... (should itself use themeService).
 
 ### New
 
