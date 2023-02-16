@@ -4,7 +4,8 @@
       'label-fix-top': labelPos == 'fix-top',
       'label-fix-side': labelPos == 'fix-side',
       'layout-horizontal':orientation == 'horizontal',
-      'layout-vertical':orientation == 'vertical'
+      'layout-vertical':orientation == 'vertical',
+      'p-input-filled': filled
     }" class="multi-checkbox-wrapper">
   <div [attr.id]="inputId" class="field">
     <div *ngFor="let item of options" class="option-item">
