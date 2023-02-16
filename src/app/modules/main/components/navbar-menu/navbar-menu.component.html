@@ -52,7 +52,8 @@
     <p-panelMenu [multiple]="false" [model]="sidebarItems | ngFilter:searchValue:'label'"></p-panelMenu>
   </p-sidebar>
 
-  <ng-button class="config-btn" color="secondary" (click)="configSidebarVisible = true" icon="pi pi-cog"></ng-button>
+  <ng-button class="config-btn" color="secondary" [class.active]="configSidebarVisible"
+             (click)="configSidebarVisible = !configSidebarVisible" icon="pi pi-cog"></ng-button>
 </div>
 
 <p-menu
