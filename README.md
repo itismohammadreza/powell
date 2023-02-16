@@ -13,6 +13,7 @@
 - fix AOS bug
 - add bootstrap 5
 - use gap instead of margin left and right
+- replace css colors with variables and make theme colors configurable
 
 ### New
 
