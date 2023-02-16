@@ -23,6 +23,7 @@ import {
 } from "@angular/forms";
 import {NgFixLabelPosition, NgValidation} from "@ng/models/forms";
 import {NgGlobal} from "@ng/ng-global";
+import {NgSize} from "@ng/models/offset";
 
 @Component({
   selector: 'ng-input-otp',
@@ -49,6 +50,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() showRequiredStar: boolean = true;
   @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
   @Input() validation: NgValidation;
+  @Input() inputSize: NgSize = NgGlobal.config.inputSize;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() placeholder: string;
