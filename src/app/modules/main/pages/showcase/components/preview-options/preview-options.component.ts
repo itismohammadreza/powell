@@ -711,6 +711,7 @@ export class PreviewOptionsComponent implements OnInit {
     cmpRef.instance.label = previewItem;
     cmpRef.instance.value = this[previewItem];
     cmpRef.instance.rtl = false;
+    cmpRef.instance.inputSize = 'sm';
     switch (cmp) {
       case DropdownComponent:
         cmpRef.location.nativeElement.classList.add('mb-3');
