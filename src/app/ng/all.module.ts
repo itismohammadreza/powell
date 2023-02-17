@@ -16,8 +16,10 @@ export class NgAllModule {
     this.themeService.initTheme();
   }
 
-  static forRoot(ngConfig: NgConfig): ModuleWithProviders<NgAllModule> {
-    NgGlobal.config = ngConfig;
+  static forRoot(ngConfig?: NgConfig): ModuleWithProviders<NgAllModule> {
+    if (ngConfig) {
+      NgGlobal.config = ngConfig;
+    }
     return {
       ngModule: NgAllModule,
       providers: [
@@ -25,7 +27,7 @@ export class NgAllModule {
           provide: PrimeNGConfig,
           useFactory: () => {
             const primeNgConfig = new PrimeNGConfig();
-            primeNgConfig.ripple = ngConfig.ripple;
+            primeNgConfig.ripple = NgGlobal.config.ripple;
             return primeNgConfig;
           },
         },

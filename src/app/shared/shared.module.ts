@@ -14,16 +14,7 @@ import {COMPONENTS} from '.';
     FormsModule,
     TranslateModule.forChild(),
     RouterModule,
-    NgAllModule.forRoot({
-      ripple: true,
-      rtl: true,
-      fixLabelPos: 'fix-side',
-      labelPos: 'fix-side',
-      theme: 'lara-light-indigo',
-      filled: false,
-      inputSize: 'lg',
-      showRequiredStar: false
-    })
+    NgAllModule.forRoot()
   ],
   exports: [
     ...COMPONENTS,
