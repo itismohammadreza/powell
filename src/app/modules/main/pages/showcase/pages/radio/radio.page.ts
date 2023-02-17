@@ -16,6 +16,7 @@ export class RadioPage {
   binding;
 
   label: string = 'label';
+  filled: boolean = NgGlobal.config.filled;
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = NgGlobal.config.rtl;

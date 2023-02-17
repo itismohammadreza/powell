@@ -23,7 +23,7 @@ export class InputNumberPage {
   binding;
 
   label: string = 'label';
-  filled: boolean = false;
+  filled: boolean = NgGlobal.config.filled;
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = NgGlobal.config.rtl;

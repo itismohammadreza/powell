@@ -14,6 +14,7 @@ export class CheckboxPage {
   binding;
 
   label: string = 'label';
+  filled: boolean = NgGlobal.config.filled;
   hint: string = '';
   rtl: boolean = NgGlobal.config.rtl;
   // native properties

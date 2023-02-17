@@ -6,6 +6,7 @@
     <ng-preview-options
       [previewItems]="[
       'label',
+      'filled',
       'labelWidth',
       'hint',
       'rtl',
@@ -14,6 +15,7 @@
       'disabled',
       ]"
       [(label)]="label"
+      [(filled)]="filled"
       [(labelWidth)]="labelWidth"
       [(hint)]="hint"
       [(rtl)]="rtl"
@@ -33,6 +35,7 @@
         [validation]="{ required: 'error' }"
         [options]="options"
         [label]="label"
+        [filled]="filled"
         [labelWidth]="labelWidth"
         [hint]="hint"
         [rtl]="rtl"
@@ -52,6 +55,7 @@
       [validation]="{ required: 'error' }"
       [options]="options"
       [label]="label"
+      [filled]="filled"
       [labelWidth]="labelWidth"
       [hint]="hint"
       [rtl]="rtl"

@@ -6,6 +6,7 @@
     <ng-preview-options
       [previewItems]="[
       'label',
+      'filled',
       'hint',
       'rtl',
       'disabled',
@@ -13,6 +14,7 @@
       'async',
       ]"
       [(label)]="label"
+      [(filled)]="filled"
       [(hint)]="hint"
       [(rtl)]="rtl"
       [(disabled)]="disabled"
@@ -30,6 +32,7 @@
         formControlName="c1"
         [validation]="{ required: 'error' }"
         [label]="label"
+        [filled]="filled"
         [hint]="hint"
         [rtl]="rtl"
         [disabled]="disabled"
@@ -48,6 +51,7 @@
       [(ngModel)]="binding"
       [validation]="{ required: 'error' }"
       [label]="label"
+      [filled]="filled"
       [hint]="hint"
       [rtl]="rtl"
       [disabled]="disabled"
