@@ -14,6 +14,7 @@
 - add bootstrap 5
 - use gap instead of margin left and right
 - replace css colors with variables and make theme colors configurable
+- create a configService to dynamically configure theme,rtl,ripple,labelPos,... (should itself use themeService).
 
 ### New
 
