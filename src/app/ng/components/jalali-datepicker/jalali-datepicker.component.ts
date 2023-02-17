@@ -37,7 +37,7 @@ import {Moment} from "jalali-moment";
 export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean;
+  @Input() filled: boolean = NgGlobal.config.filled;
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean = NgGlobal.config.rtl;

@@ -28,7 +28,7 @@ import {NgGlobal} from "@ng/ng-global";
 export class TriStateCheckboxComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean;
+  @Input() filled: boolean = NgGlobal.config.filled;
   @Input() hint: string;
   @Input() rtl: boolean = NgGlobal.config.rtl;
   @Input() showRequiredStar: boolean = true;

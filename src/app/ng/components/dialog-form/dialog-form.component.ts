@@ -29,6 +29,9 @@ export class DialogFormComponent {
     for (const config of this._config) {
       config.labelPos = config.labelPos ?? NgGlobal.config.labelPos;
       config.fixLabelPos = config.fixLabelPos ?? NgGlobal.config.fixLabelPos;
+      config.selectiveSize = config.selectiveSize ?? NgGlobal.config.inputSize;
+      config.showRequiredStar = config.showRequiredStar ?? NgGlobal.config.showRequiredStar;
+      config.filled = config.filled ?? NgGlobal.config.filled;
       if (config.key) {
         this.form.addControl(config.key, new FormControl(null));
         this.handleConfigValue(config);

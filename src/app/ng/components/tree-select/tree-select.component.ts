@@ -44,7 +44,7 @@ import {NgGlobal} from "@ng/ng-global";
 export class TreeSelectComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean;
+  @Input() filled: boolean = NgGlobal.config.filled;
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean = NgGlobal.config.rtl;
