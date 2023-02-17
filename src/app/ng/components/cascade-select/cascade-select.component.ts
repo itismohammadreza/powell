@@ -47,13 +47,13 @@ export class CascadeSelectComponent implements OnInit, AfterViewInit, AfterConte
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean = NgGlobal.config.rtl;
-  @Input() showRequiredStar: boolean = true;
+  @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
   @Input() icon: string;
   @Input() labelPos: NgLabelPosition = NgGlobal.config.labelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = 'md';
+  @Input() inputSize: NgSize = NgGlobal.config.inputSize;
   // native properties
   @Input() options: any[];
   @Input() optionLabel: string = 'label';

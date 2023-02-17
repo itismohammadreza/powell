@@ -48,7 +48,7 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean = NgGlobal.config.rtl;
-  @Input() showRequiredStar: boolean = true;
+  @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
   @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;

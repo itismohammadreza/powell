@@ -42,7 +42,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean = NgGlobal.config.rtl;
-  @Input() showRequiredStar: boolean = true;
+  @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
   @Input() icon: string;
   @Input() labelPos: NgLabelPosition = NgGlobal.config.labelPos;
   @Input() iconPos: NgIconPosition = 'left';

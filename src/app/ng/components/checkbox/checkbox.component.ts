@@ -40,7 +40,7 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() filled: boolean = NgGlobal.config.filled;
   @Input() hint: string;
   @Input() rtl: boolean = NgGlobal.config.rtl;
-  @Input() showRequiredStar: boolean = true;
+  @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
   @Input() validation: NgValidation;
   @Input() onLabel: string;
   @Input() offLabel: string;
