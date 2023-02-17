@@ -23,7 +23,7 @@ export class ChipsPage {
   icon: string = '';
   labelPos: NgLabelPosition = NgGlobal.config.labelPos;
   iconPos: NgIconPosition = 'left';
-  inputSize: NgSize = 'md';
+  inputSize: NgSize  = NgGlobal.config.inputSize;
   addon: NgAddon;
   // native properties
   max: number = 0;

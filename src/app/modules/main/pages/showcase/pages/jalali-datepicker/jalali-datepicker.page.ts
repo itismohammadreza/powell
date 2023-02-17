@@ -24,7 +24,7 @@ export class JalaliDatepickerPage {
   icon: string = '';
   labelPos: NgLabelPosition = NgGlobal.config.labelPos;
   iconPos: NgIconPosition = 'left';
-  inputSize: NgSize = 'md';
+  inputSize: NgSize  = NgGlobal.config.inputSize;
   addon: NgAddon;
   // native properties
   selectionMode: "single" | "multiple" | "range" = 'single';

@@ -23,7 +23,7 @@ export class InputPasswordPage {
   icon: string = '';
   labelPos: NgLabelPosition = NgGlobal.config.labelPos;
   iconPos: NgIconPosition = 'left';
-  inputSize: NgSize = 'md';
+  inputSize: NgSize  = NgGlobal.config.inputSize;
   addon: NgAddon;
   // native properties
   promptLabel: string = 'لطفا رمز عبور را وارد کنید';

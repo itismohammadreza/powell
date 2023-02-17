@@ -23,7 +23,7 @@ export class ColorPickerPage {
   icon: string = '';
   labelPos: NgLabelPosition = NgGlobal.config.labelPos;
   iconPos: NgIconPosition = 'left';
-  inputSize: NgSize = 'md';
+  inputSize: NgSize  = NgGlobal.config.inputSize;
   placeholder: string = '';
   readonly: boolean = false;
   disabled: boolean = false;

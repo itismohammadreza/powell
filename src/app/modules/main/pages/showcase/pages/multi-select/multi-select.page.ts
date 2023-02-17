@@ -23,7 +23,7 @@ export class MultiSelectPage {
   icon: string = '';
   labelPos: NgLabelPosition = NgGlobal.config.labelPos;
   iconPos: NgIconPosition = 'left';
-  inputSize: NgSize = 'md';
+  inputSize: NgSize  = NgGlobal.config.inputSize;
   addon: NgAddon;
   // native properties
   autofocusFilter: boolean = false;
