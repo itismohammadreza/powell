@@ -1,11 +1,15 @@
 import {NgFixLabelPosition, NgLabelPosition} from "@ng/models/forms";
+import {NgSize} from "@ng/models/offset";
 
 export interface NgConfig {
   ripple?: boolean;
   rtl?: boolean;
   theme?: NgTheme;
-  labelPos?: NgLabelPosition,
-  fixLabelPos?: NgFixLabelPosition,
+  labelPos?: NgLabelPosition;
+  fixLabelPos?: NgFixLabelPosition;
+  filled?: boolean;
+  showRequiredStar?: boolean;
+  inputSize?: NgSize;
 }
 
 export type NgTheme =

@@ -19,7 +19,10 @@ import {COMPONENTS} from '.';
       rtl: true,
       fixLabelPos: 'fix-side',
       labelPos: 'fix-side',
-      theme: 'lara-light-indigo'
+      theme: 'lara-light-indigo',
+      filled: false,
+      inputSize: 'lg',
+      showRequiredStar: false
     })
   ],
   exports: [

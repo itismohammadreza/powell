@@ -20,7 +20,6 @@ import {
   FormControlName,
   FormGroup,
   FormGroupDirective,
-  FormGroupName,
   NG_VALUE_ACCESSOR,
   NgControl,
 } from '@angular/forms';
@@ -117,7 +116,7 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
-  controlContainer: FormGroupName | FormGroupDirective;
+  controlContainer: FormGroupDirective;
   ngControl: NgControl;
   itemTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;

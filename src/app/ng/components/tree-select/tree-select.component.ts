@@ -22,7 +22,6 @@ import {
   FormControlName,
   FormGroup,
   FormGroupDirective,
-  FormGroupName,
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
@@ -89,7 +88,7 @@ export class TreeSelectComponent implements OnInit, AfterViewInit, AfterContentI
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
-  controlContainer: FormGroupName | FormGroupDirective;
+  controlContainer: FormGroupDirective;
   ngControl: NgControl;
   valueTemplate: TemplateRef<any>;
   headerTemplate: TemplateRef<any>;
