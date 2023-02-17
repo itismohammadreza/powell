@@ -56,7 +56,7 @@ export class InputNumberComponent implements OnInit, AfterViewInit, ControlValue
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = 'md';
+  @Input() inputSize: NgSize = NgGlobal.config.inputSize;
   // native properties
   @Input() format: boolean = true;
   @Input() showButtons: boolean;

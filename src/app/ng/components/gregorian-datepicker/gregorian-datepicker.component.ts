@@ -46,7 +46,7 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = 'md';
+  @Input() inputSize: NgSize = NgGlobal.config.inputSize;
   // native properties
   @Input() defaultDate: Date;
   @Input() selectionMode: NgDatepickerSelectionMode = 'single';

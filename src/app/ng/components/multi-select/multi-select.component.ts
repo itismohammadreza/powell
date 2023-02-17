@@ -54,7 +54,7 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = 'md';
+  @Input() inputSize: NgSize = NgGlobal.config.inputSize;
   // native properties
   @Input() appendTo: any;
   @Input() autofocusFilter: boolean;

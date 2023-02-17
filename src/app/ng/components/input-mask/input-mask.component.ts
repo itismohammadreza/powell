@@ -38,7 +38,7 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = 'md';
+  @Input() inputSize: NgSize = NgGlobal.config.inputSize;
   // native properties
   @Input() type: NgInputType = 'text';
   @Input() mask: string = '99-999999';

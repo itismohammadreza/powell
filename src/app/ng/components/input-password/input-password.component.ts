@@ -53,7 +53,7 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = 'md';
+  @Input() inputSize: NgSize = NgGlobal.config.inputSize;
   // native properties
   @Input() promptLabel: string = 'لطفا رمز عبور را وارد کنید';
   @Input() mediumRegex: string = '/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})./';

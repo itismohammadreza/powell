@@ -53,7 +53,7 @@ export class ChipsComponent implements OnInit, AfterViewInit, AfterContentInit, 
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = 'md';
+  @Input() inputSize: NgSize = NgGlobal.config.inputSize;
   // native properties
   @Input() field: string;
   @Input() max: number;
