@@ -69,6 +69,7 @@
   <div class="h-100 py-3">
     <ng-dropdown
       [label]="'Dir' | translate"
+      inputSize="sm"
       labelPos="fix-side"
       [labelWidth]="70"
       class="d-block mb-3"
@@ -79,6 +80,7 @@
     ></ng-dropdown>
     <ng-dropdown
       [label]="'Theme' | translate"
+      inputSize="sm"
       labelPos="fix-side"
       [labelWidth]="70"
       class="d-block mb-3"
@@ -89,10 +91,11 @@
     ></ng-dropdown>
     <ng-dropdown
       [label]="'Sidebar' | translate"
+      inputSize="sm"
       labelPos="fix-side"
       [labelWidth]="70"
       class="d-block mb-3"
-      [value]="sidebarType"
+      [value]="tempSidebarType"
       [options]="sidebarTypes"
       [rtl]="fa"
       (onChange)="changeSidebarType($event)"

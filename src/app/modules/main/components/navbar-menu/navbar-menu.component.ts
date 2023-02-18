@@ -44,7 +44,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       }
     }
   ];
-  @ViewChild(OverlayPanel) overlayPanel: OverlayPanel;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -153,13 +152,11 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   changeTheme(event) {
     this.theme = event.value;
     this.themeService.changeTheme(this.theme);
-    this.overlayPanel?.hide();
   }
 
   async changeLang(event) {
     await this.translationService.use(event.value).toPromise();
     this.language = event.value;
-    this.overlayPanel?.hide();
   }
 
   changeSidebarType(event: any) {
@@ -170,7 +167,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       this.toggleSidebar(false);
     }
     this.toggleSidebarLock(false);
-    this.overlayPanel?.hide();
   }
 
   toggleSidebarClick() {
