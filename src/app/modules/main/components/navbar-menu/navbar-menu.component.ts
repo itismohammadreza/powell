@@ -170,7 +170,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       this.toggleSidebar(false);
     }
     this.toggleSidebarLock(false);
-    this.overlayPanel?.hide();
   }
 
   toggleSidebarClick() {
