@@ -28,6 +28,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   @Input() sidebarLock: boolean = false; // overrides the sidebarVisible.
   @Input() responsiveThreshold: number = 768;
 
+  configSidebarVisible: boolean = false;
   tempSidebarType: SidebarType;
   theme: NgTheme = this.themeService.currentTheme;
   themes: MenuItem[];

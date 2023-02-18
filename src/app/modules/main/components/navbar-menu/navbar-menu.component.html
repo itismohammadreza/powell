@@ -9,16 +9,6 @@
     </ng-button>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav p-0 m{{ fa ? 'r' : 'l' }}-auto">
-        <!--      <li class="nav-item">-->
-        <!--        <a class="nav-link"-->
-        <!--           routerLink="/auth"-->
-        <!--           routerLinkActive="active">-->
-        <!--          {{ "Login" | translate }}/{{'Register' | translate}}-->
-        <!--        </a>-->
-        <!--      </li>-->
-        <li class="nav-item">
-          <ng-button color="secondary" (click)="configOverlay.toggle($event)" icon="pi pi-cog"></ng-button>
-        </li>
         <li class="nav-item p{{ fa ? 'r' : 'l' }}-4 m{{ fa ? 'r' : 'l' }}-4 border-{{ fa ? 'right' : 'left' }}"
             (click)="accountMenu.toggle($event)">
           <span class="m{{ fa ? 'l' : 'r' }}-3">{{ "Admin" }}</span>
@@ -54,6 +44,8 @@
     </div>
     <p-panelMenu [multiple]="false" [model]="sidebarItems | ngFilter:searchValue:'label'"></p-panelMenu>
   </p-sidebar>
+
+  <ng-button class="config-btn" color="secondary" (click)="configSidebarVisible = true" icon="pi pi-cog"></ng-button>
 </div>
 
 <p-menubar [model]="sidebarItems" *ngIf="tempSidebarType == 'horizontal'">
@@ -70,8 +62,10 @@
   [model]="accountItems"
 ></p-menu>
 
-<p-overlayPanel #configOverlay>
-  <ng-template pTemplate="content">
+<p-sidebar
+  position="left"
+  [(visible)]="configSidebarVisible">
+  <div class="h-100 py-3">
     <ng-dropdown
       [label]="'Dir' | translate"
       labelPos="fix-side"
@@ -102,5 +96,5 @@
       [rtl]="fa"
       (onChange)="changeSidebarType($event)"
     ></ng-dropdown>
-  </ng-template>
-</p-overlayPanel>
+  </div>
+</p-sidebar>
