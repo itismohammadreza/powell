@@ -17,7 +17,14 @@
       </ul>
     </div>
   </nav>
+
   <main>
+    <p-menubar [model]="sidebarItems" *ngIf="tempSidebarType == 'horizontal'">
+      <ng-template pTemplate="start">
+        <ng-logo width="50px"></ng-logo>
+      </ng-template>
+    </p-menubar>
+
     <ng-content></ng-content>
   </main>
 
@@ -47,12 +54,6 @@
 
   <ng-button class="config-btn" color="secondary" (click)="configSidebarVisible = true" icon="pi pi-cog"></ng-button>
 </div>
-
-<p-menubar [model]="sidebarItems" *ngIf="tempSidebarType == 'horizontal'">
-  <ng-template pTemplate="start">
-    <ng-logo width="50px"></ng-logo>
-  </ng-template>
-</p-menubar>
 
 <p-menu
   #accountMenu
