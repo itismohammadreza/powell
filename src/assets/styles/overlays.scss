@@ -76,17 +76,19 @@
   }
 }
 
-.p-toast-message {
-  &.ltr {
-    direction: ltr;
-  }
+.p-toast {
+  .p-toast-message {
+    &.ltr {
+      direction: ltr;
+    }
 
-  &.rtl {
-    direction: rtl;
-    border-width: 0 6px 0 0 !important;
+    &.rtl {
+      direction: rtl;
+      border-width: 0 6px 0 0 !important;
 
-    .p-toast-message-content .p-toast-message-text {
-      margin: 0 1rem 0 0;
+      .p-toast-message-content .p-toast-message-text {
+        margin: 0 1rem 0 0;
+      }
     }
   }
 }
