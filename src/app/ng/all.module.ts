@@ -5,6 +5,8 @@ import {NgComponentsModule} from './components/components.module';
 import {ThemeService} from "@ng/services";
 import {NgGlobal} from '@ng/ng-global';
 import {NgConfig} from "@ng/models/config";
+import {ConfigService} from "@ng/services/config.service";
+import {DOCUMENT} from "@angular/common";
 
 @NgModule({
   imports: [NgComponentsModule],
@@ -31,6 +33,15 @@ export class NgAllModule {
             primeNgConfig.overlayOptions = NgGlobal.config.overlayOptions;
             return primeNgConfig;
           },
+        },
+        {
+          provide: ConfigService,
+          useFactory: (primengConfig: PrimeNGConfig, themeService: ThemeService, document: Document) => {
+            const configService = new ConfigService(primengConfig, themeService, document);
+            configService.setConfig(ngConfig);
+            return configService;
+          },
+          deps: [PrimeNGConfig, ThemeService, DOCUMENT]
         },
         MessageService,
         DialogService,
