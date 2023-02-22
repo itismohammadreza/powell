@@ -22,6 +22,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
 
   configSidebarVisible: boolean = false;
   ripple: boolean = NgGlobal.config.ripple;
+  rtl: boolean = NgGlobal.config.rtl;
   tempSidebarType: SidebarType;
   theme: NgTheme = this.themeService.currentTheme;
   themes: MenuItem[];
@@ -142,6 +143,11 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
         }
       }
     }));
+  }
+
+  changeDirection(event) {
+    this.rtl = event.checked;
+    this.configService.setConfig({rtl: this.rtl});
   }
 
   changeRipple(event) {

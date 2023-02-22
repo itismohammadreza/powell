@@ -110,5 +110,14 @@
       [rtl]="fa"
       (onChange)="changeRipple($event)">
     </ng-switch>
+    <ng-switch
+      [label]="'RTL' | translate"
+      labelPos="fix-side"
+      [labelWidth]="90"
+      class="d-block mb-3"
+      [value]="rtl"
+      [rtl]="fa"
+      (onChange)="changeDirection($event)">
+    </ng-switch>
   </div>
 </p-sidebar>
