@@ -9,7 +9,7 @@ export class NgGlobal {
     labelPos: 'fix-side',
     theme: 'lara-light-indigo',
     filled: false,
-    inputSize: 'lg',
+    inputSize: 'sm',
     showRequiredStar: false
   };
 

@@ -27,10 +27,14 @@ export class ConfigService {
   setConfig(config: NgConfig) {
     this._config = {...this._config, ...config};
     this.primengConfig.ripple = this._config.ripple;
-    if (!this._config.ripple) {
+    this.primengConfig.overlayOptions = this._config.overlayOptions;
+    if (this._config.ripple === false) {
       this.document.body.classList.add('p-ripple-disabled');
     } else {
       this.document.body.classList.remove('p-ripple-disabled');
+    }
+    if (config?.theme) {
+      this.themeService.changeTheme(config.theme)
     }
   }
 
