@@ -737,6 +737,7 @@ export class PreviewOptionsComponent implements OnInit {
                 break;
             }
           });
+          cmpRef.instance.value = 'none';
           break;
         }
         cmpRef.instance.onChange.subscribe(event => {
