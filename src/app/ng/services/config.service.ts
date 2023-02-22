@@ -3,6 +3,7 @@ import {NgConfig} from "@ng/models/config";
 import {PrimeNGConfig} from "primeng/api";
 import {ThemeService} from "@ng/services/theme.service";
 import {DOCUMENT} from "@angular/common";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,9 @@ export class ConfigService {
               private themeService: ThemeService,
               @Inject(DOCUMENT) private document: Document) {
   }
+
+  private configChangeSubject = new Subject<NgConfig>();
+  configChange$ = this.configChangeSubject.asObservable();
 
   private _config: NgConfig = {
     ripple: true,
@@ -36,6 +40,7 @@ export class ConfigService {
     if (config?.theme) {
       this.themeService.changeTheme(config.theme)
     }
+    this.configChangeSubject.next(this._config);
   }
 
   getConfig() {
