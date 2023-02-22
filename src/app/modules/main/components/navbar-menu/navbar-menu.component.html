@@ -69,13 +69,13 @@
   [(visible)]="configSidebarVisible">
   <div class="h-100 py-3">
     <ng-dropdown
-      [label]="'Dir' | translate"
+      [label]="'Lang' | translate"
       inputSize="sm"
       labelPos="fix-side"
-      [labelWidth]="70"
+      [labelWidth]="90"
       class="d-block mb-3"
       [value]="language"
-      [options]="[{ label: 'LTR', value: 'en' }, { label: 'RTL', value: 'fa' }]"
+      [options]="[{ label: 'EN', value: 'en' }, { label: 'FA', value: 'fa' }]"
       [rtl]="fa"
       (onChange)="changeLang($event)"
     ></ng-dropdown>
@@ -83,7 +83,7 @@
       [label]="'Theme' | translate"
       inputSize="sm"
       labelPos="fix-side"
-      [labelWidth]="70"
+      [labelWidth]="90"
       class="d-block mb-3"
       [value]="theme"
       [options]="themes"
@@ -94,12 +94,21 @@
       [label]="'Sidebar' | translate"
       inputSize="sm"
       labelPos="fix-side"
-      [labelWidth]="70"
+      [labelWidth]="90"
       class="d-block mb-3"
       [value]="tempSidebarType"
       [options]="sidebarTypes"
       [rtl]="fa"
       (onChange)="changeSidebarType($event)"
     ></ng-dropdown>
+    <ng-switch
+      [label]="'Ripple' | translate"
+      labelPos="fix-side"
+      [labelWidth]="90"
+      class="d-block mb-3"
+      [value]="ripple"
+      [rtl]="fa"
+      (onChange)="changeRipple($event)">
+    </ng-switch>
   </div>
 </p-sidebar>

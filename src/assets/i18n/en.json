@@ -1,7 +1,8 @@
 {
   "Login": "Login",
   "Register": "Register",
-  "Dir": "Dir",
+  "Lang": "Lang",
+  "Ripple": "Ripple",
   "Sidebar": "Sidebar",
   "Theme": "Theme"
 }

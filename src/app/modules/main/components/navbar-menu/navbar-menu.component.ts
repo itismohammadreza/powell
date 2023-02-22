@@ -1,21 +1,13 @@
-import {
-  AfterContentInit,
-  AfterViewChecked,
-  Component,
-  HostListener,
-  Inject,
-  Input,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+import {AfterContentInit, AfterViewChecked, Component, HostListener, Inject, Input, OnInit} from '@angular/core';
 import {LanguageChecker} from '@core/utils';
 import {MenuItem} from 'primeng/api';
 import {SidebarType} from '@core/models';
-import {OverlayPanel} from "primeng/overlaypanel";
 import {GlobalConfig} from "@core/global.config";
 import {DOCUMENT} from "@angular/common";
 import {ThemeService} from "@ng/services";
 import {NgTheme} from "@ng/models/config";
+import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services/config.service";
 
 @Component({
   selector: 'ng-navbar-menu',
@@ -29,6 +21,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   @Input() responsiveThreshold: number = 768;
 
   configSidebarVisible: boolean = false;
+  ripple: boolean = NgGlobal.config.ripple;
   tempSidebarType: SidebarType;
   theme: NgTheme = this.themeService.currentTheme;
   themes: MenuItem[];
@@ -55,7 +48,9 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     }
   }
 
-  constructor(@Inject(DOCUMENT) private document: Document, private themeService: ThemeService) {
+  constructor(@Inject(DOCUMENT) private document: Document,
+              private themeService: ThemeService,
+              private configService: ConfigService) {
     super();
   }
 
@@ -147,6 +142,11 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
         }
       }
     }));
+  }
+
+  changeRipple(event) {
+    this.ripple = event.checked;
+    this.configService.setConfig({ripple: this.ripple});
   }
 
   changeTheme(event) {
