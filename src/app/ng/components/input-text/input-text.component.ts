@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   forwardRef,
   Injector,
@@ -82,7 +83,10 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private el: ElementRef,
+              private configService: ConfigService) {
   }
 
   ngOnInit() {
@@ -161,6 +165,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
     const inputElement = event.target as HTMLInputElement;
     this.onKeyDown.emit(event);
     this.onModelChange(inputElement.value);
+    this.setInputDirection();
   }
 
   _onKeyUp(event: KeyboardEvent) {
@@ -225,4 +230,18 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
     this.disabled = val;
     this.cd.markForCheck();
   }
+
+  setInputDirection() {
+    const inputEl = this.el.nativeElement.querySelector('input');
+    const rgx = /^[-!$%^&*()_+|~=`{}\[\]:\";'<>?,.\/]*[A-Za-z]/;
+    const isAscii = rgx.test(this.value);
+
+    if (isAscii) {
+      inputEl.style.direction = 'ltr';
+      inputEl.style.textAlign = 'left';
+    } else {
+      inputEl.style.direction = 'rtl';
+      inputEl.style.textAlign = 'right';
+    }
+  };
 }
