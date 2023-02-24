@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   forwardRef,
   Injector,
@@ -77,7 +78,7 @@ export class InputTextareaComponent implements OnInit, AfterViewInit, ControlVal
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector, private el: ElementRef) {
   }
 
   ngOnInit() {
@@ -152,6 +153,7 @@ export class InputTextareaComponent implements OnInit, AfterViewInit, ControlVal
     const inputElement = event.target as HTMLTextAreaElement;
     this.onKeyDown.emit(event);
     this.onModelChange(inputElement.value);
+    this.setTextareaDirection();
   }
 
   _onKeyUp(event: KeyboardEvent) {
@@ -216,4 +218,18 @@ export class InputTextareaComponent implements OnInit, AfterViewInit, ControlVal
     this.disabled = val;
     this.cd.markForCheck();
   }
+
+  setTextareaDirection() {
+    const textareaEl = this.el.nativeElement.querySelector('textarea');
+    const rgx = /^[-!$%^&*()_+|~=`{}\[\]:\";'<>?,.\/]*[A-Za-z]/;
+    const isAscii = rgx.test(this.value);
+
+    if (isAscii) {
+      textareaEl.style.direction = 'ltr';
+      textareaEl.style.textAlign = 'left';
+    } else {
+      textareaEl.style.direction = 'rtl';
+      textareaEl.style.textAlign = 'right';
+    }
+  };
 }
