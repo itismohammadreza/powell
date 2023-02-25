@@ -712,6 +712,7 @@ export class PreviewOptionsComponent implements OnInit {
     cmpRef.instance.value = this[previewItem];
     cmpRef.instance.rtl = false;
     cmpRef.instance.filled = false;
+    cmpRef.instance.disableConfigChangeEffect = true;
     cmpRef.instance.inputSize = 'sm';
     switch (cmp) {
       case DropdownComponent:

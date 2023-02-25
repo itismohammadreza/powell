@@ -8,7 +8,6 @@ export interface NgConfigChangeEvent {
 }
 
 export interface NgConfig {
-  ripple?: boolean;
   rtl?: boolean;
   theme?: NgTheme;
   labelPos?: NgLabelPosition;
@@ -16,7 +15,8 @@ export interface NgConfig {
   filled?: boolean;
   showRequiredStar?: boolean;
   inputSize?: NgSize;
-  overlayOptions?: OverlayOptions
+  ripple?: boolean;
+  overlayOptions?: OverlayOptions;
 }
 
 export type NgTheme =

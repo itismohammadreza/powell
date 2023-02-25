@@ -66,13 +66,14 @@
 
 <p-sidebar
   position="left"
-  [(visible)]="configSidebarVisible">
+  [(visible)]="configSidebarVisible"
+  [style]="{width:'30rem'}">
   <div class="h-100 py-3">
     <ng-dropdown
       [label]="'Lang' | translate"
       inputSize="sm"
       labelPos="fix-side"
-      [labelWidth]="90"
+      [labelWidth]="150"
       class="d-block mb-3"
       [value]="language"
       [options]="[{ label: 'EN', value: 'en' }, { label: 'FA', value: 'fa' }]"
@@ -80,35 +81,46 @@
       (onChange)="changeLang($event)"
     ></ng-dropdown>
     <ng-dropdown
-      [label]="'Theme' | translate"
-      inputSize="sm"
-      labelPos="fix-side"
-      [labelWidth]="90"
-      class="d-block mb-3"
-      [value]="theme"
-      [options]="themes"
-      [rtl]="fa"
-      (onChange)="changeTheme($event)"
-    ></ng-dropdown>
-    <ng-dropdown
       [label]="'Sidebar' | translate"
       inputSize="sm"
       labelPos="fix-side"
-      [labelWidth]="90"
+      [labelWidth]="150"
       class="d-block mb-3"
       [value]="tempSidebarType"
       [options]="sidebarTypes"
       [rtl]="fa"
       (onChange)="changeSidebarType($event)"
     ></ng-dropdown>
+    <ng-dropdown
+      [label]="'Theme' | translate"
+      inputSize="sm"
+      labelPos="fix-side"
+      [labelWidth]="150"
+      class="d-block mb-3"
+      [value]="theme"
+      [options]="themes"
+      [rtl]="fa"
+      (onChange)="changeGlobalConfig('theme',$event.value)"
+    ></ng-dropdown>
+    <ng-dropdown
+      [label]="'LabelPos' | translate"
+      inputSize="sm"
+      labelPos="fix-side"
+      [labelWidth]="150"
+      class="d-block mb-3"
+      [value]="labelPos"
+      [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'},{label:'float',value:'float'}]"
+      [rtl]="fa"
+      (onChange)="changeGlobalConfig('labelPos',$event.value)"
+    ></ng-dropdown>
     <ng-switch
       [label]="'Ripple' | translate"
       labelPos="fix-side"
-      [labelWidth]="90"
+      [labelWidth]="150"
       class="d-block mb-3"
       [value]="ripple"
       [rtl]="fa"
-      (onChange)="changeRipple($event)">
+      (onChange)="changeGlobalConfig('ripple',$event.checked)">
     </ng-switch>
     <ng-switch
       [label]="'RTL' | translate"

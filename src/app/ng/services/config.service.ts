@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {NgConfig} from "@ng/models/config";
+import {NgConfig, NgConfigChangeEvent} from "@ng/models/config";
 import {PrimeNGConfig} from "primeng/api";
 import {ThemeService} from "@ng/services/theme.service";
 import {DOCUMENT} from "@angular/common";
@@ -23,7 +23,8 @@ export class ConfigService {
     theme: 'lara-light-indigo',
     filled: false,
     inputSize: 'lg',
-    showRequiredStar: false
+    showRequiredStar: false,
+    overlayOptions: {}
   };
 
   setConfig(config: NgConfig) {
