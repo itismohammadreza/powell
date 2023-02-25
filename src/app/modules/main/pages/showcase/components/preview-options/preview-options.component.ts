@@ -1,4 +1,14 @@
-import {Component, EventEmitter, Input, OnInit, Output, Type, ViewChild, ViewContainerRef} from '@angular/core';
+import {
+  Component,
+  ComponentRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Type,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 import {
   NgAddon,
   NgColorFormat,
@@ -21,6 +31,8 @@ import {InputTextComponent} from '@ng/components/input-text/input-text.component
 import {CheckboxComponent} from '@ng/components/checkbox/checkbox.component';
 import {NgButtonAppearance} from '@ng/models/button';
 import {NgDefaultFocus, NgSeverity} from "@ng/models/overlay";
+import {NgConfigChangeEvent, NgTheme} from "@ng/models/config";
+import {OverlayOptions} from "primeng/api";
 
 type PreviewItem =
   | 'label'
@@ -653,6 +665,8 @@ export class PreviewOptionsComponent implements OnInit {
 
   @Input() previewItems: PreviewItem[]
 
+  cmpRefs: ComponentRef<any>[] = [];
+
   ngOnInit(): void {
     const dropdownData = {
       iconPos: ['left', 'right'],
@@ -703,6 +717,28 @@ export class PreviewOptionsComponent implements OnInit {
         this.createComponent(CheckboxComponent, item, 'secondRow');
       }
     }
+  }
+
+  onConfigChange({modifiedConfig, currentConfig}: NgConfigChangeEvent) {
+    const equalization = {
+      rtl: 'rtl',
+      theme: 'theme',
+      labelPos: 'labelPos',
+      fixLabelPos: 'fixLabelPos',
+      filled: 'filled',
+      showRequiredStar: 'showRequiredStar',
+      inputSize: 'selectiveSize',
+      ripple: 'ripple',
+      overlayOptions: 'overlayOptions',
+    }
+    Object.entries(modifiedConfig).forEach(item => {
+      const key = item[0];
+      const value = item[1];
+      const ref = this.cmpRefs.find(({instance}) => instance.label == equalization[key]);
+      if (ref) {
+        ref.instance.value = value;
+      }
+    })
   }
 
   private createComponent(cmp: Type<any>, previewItem: PreviewItem, row: 'firstRow' | 'secondRow') {
@@ -758,6 +794,7 @@ export class PreviewOptionsComponent implements OnInit {
         });
         break;
     }
+    this.cmpRefs.push(cmpRef);
     return cmpRef;
   }
 }
