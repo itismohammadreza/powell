@@ -5,16 +5,14 @@ import {ThemeService} from "@ng/services/theme.service";
 import {DOCUMENT} from "@angular/common";
 import {Subject} from "rxjs";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ConfigService {
   constructor(private primengConfig: PrimeNGConfig,
               private themeService: ThemeService,
               @Inject(DOCUMENT) private document: Document) {
   }
 
-  private configChangeSubject = new Subject<NgConfig>();
+  private configChangeSubject = new Subject<NgConfigChangeEvent>();
   configChange$ = this.configChangeSubject.asObservable();
 
   private _config: NgConfig = {
@@ -40,7 +38,7 @@ export class ConfigService {
     if (config?.theme) {
       this.themeService.changeTheme(config.theme)
     }
-    this.configChangeSubject.next(this._config);
+    this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
   }
 
   getConfig() {

@@ -2,6 +2,11 @@ import {NgFixLabelPosition, NgLabelPosition} from "@ng/models/forms";
 import {NgSize} from "@ng/models/offset";
 import {OverlayOptions} from "primeng/api";
 
+export interface NgConfigChangeEvent {
+  currentConfig: NgConfig;
+  modifiedConfig: NgConfig;
+}
+
 export interface NgConfig {
   ripple?: boolean;
   rtl?: boolean;
