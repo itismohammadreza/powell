@@ -19,21 +19,9 @@ export class NgAllModule {
   }
 
   static forRoot(ngConfig?: NgConfig): ModuleWithProviders<NgAllModule> {
-    if (ngConfig) {
-      NgGlobal.config = ngConfig;
-    }
     return {
       ngModule: NgAllModule,
       providers: [
-        {
-          provide: PrimeNGConfig,
-          useFactory: () => {
-            const primeNgConfig = new PrimeNGConfig();
-            primeNgConfig.ripple = NgGlobal.config.ripple;
-            primeNgConfig.overlayOptions = NgGlobal.config.overlayOptions;
-            return primeNgConfig;
-          },
-        },
         {
           provide: ConfigService,
           useFactory: (primengConfig: PrimeNGConfig, themeService: ThemeService, document: Document) => {
