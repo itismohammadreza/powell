@@ -1,6 +1,6 @@
 import {AfterContentInit, AfterViewChecked, Component, HostListener, Inject, Input, OnInit} from '@angular/core';
 import {LanguageChecker} from '@core/utils';
-import {MenuItem} from 'primeng/api';
+import {MenuItem, OverlayOptions} from 'primeng/api';
 import {SidebarType} from '@core/models';
 import {GlobalConfig} from "@core/global.config";
 import {DOCUMENT} from "@angular/common";
@@ -8,6 +8,8 @@ import {ThemeService} from "@ng/services";
 import {NgTheme} from "@ng/models/config";
 import {NgGlobal} from "@ng/ng-global";
 import {ConfigService} from "@ng/services/config.service";
+import {NgFixLabelPosition, NgLabelPosition} from "@ng/models/forms";
+import {NgSize} from "@ng/models/offset";
 
 @Component({
   selector: 'ng-navbar-menu',
@@ -21,10 +23,17 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   @Input() responsiveThreshold: number = 768;
 
   configSidebarVisible: boolean = false;
-  ripple: boolean = NgGlobal.config.ripple;
-  rtl: boolean = NgGlobal.config.rtl;
+  rtl: boolean = this.configService.getConfig().rtl;
+  theme: NgTheme = this.configService.getConfig().theme;
+  labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
+  fixLabelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
+  filled: boolean = this.configService.getConfig().filled;
+  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  inputSize: NgSize = this.configService.getConfig().inputSize;
+  ripple: boolean = this.configService.getConfig().ripple;
+  overlayOptions: OverlayOptions = this.configService.getConfig().overlayOptions;
+
   tempSidebarType: SidebarType;
-  theme: NgTheme = this.themeService.currentTheme;
   themes: MenuItem[];
   sidebarTypes: MenuItem[];
   sidebarItems: MenuItem[];
@@ -145,19 +154,9 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     }));
   }
 
-  changeDirection(event) {
-    this.rtl = event.checked;
-    this.configService.setConfig({rtl: this.rtl});
-  }
-
-  changeRipple(event) {
-    this.ripple = event.checked;
-    this.configService.setConfig({ripple: this.ripple});
-  }
-
-  changeTheme(event) {
-    this.theme = event.value;
-    this.themeService.changeTheme(this.theme);
+  changeGlobalConfig(config: string, value: any) {
+    this[config] = value;
+    this.configService.setConfig({[config]: value});
   }
 
   async changeLang(event) {
