@@ -11,6 +11,7 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {EnvServiceProvider, TranslationService} from "@core/utils";
 import {NotFoundPage} from '@modules/layout/not-found/not-found.page';
+import {NgAllModule} from "@ng/all.module";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -35,6 +36,7 @@ export function InitializeLanguage(translationService: TranslationService) {
     AppRoutingModule,
     CoreModule,
     SharedModule,
+    NgAllModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

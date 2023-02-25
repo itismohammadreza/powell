@@ -14,7 +14,7 @@ import {COMPONENTS} from '.';
     FormsModule,
     TranslateModule.forChild(),
     RouterModule,
-    NgAllModule.forRoot()
+    NgAllModule
   ],
   exports: [
     ...COMPONENTS,
