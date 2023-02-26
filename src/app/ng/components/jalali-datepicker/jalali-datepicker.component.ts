@@ -48,6 +48,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize = NgGlobal.config.inputSize;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() defaultDate: Moment;
   @Input() selectionMode: NgDatepickerSelectionMode = 'single';
