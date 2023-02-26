@@ -54,6 +54,7 @@ export class TreeSelectComponent implements OnInit, AfterViewInit, AfterContentI
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize = NgGlobal.config.inputSize;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() options: any[];
   @Input() scrollHeight: string = '400px';
