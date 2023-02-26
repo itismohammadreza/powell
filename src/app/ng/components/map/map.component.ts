@@ -67,6 +67,7 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
   @Input() multiple: boolean = true;
   @Input() clearMapBtnTooltip: string;
   @Input() clearMapBtnIcon: string = 'pi pi-trash';
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() zoom: number = 10;
   @Input() center: LatLng = latLng(35.68419775656676, 51.38983726501465);
