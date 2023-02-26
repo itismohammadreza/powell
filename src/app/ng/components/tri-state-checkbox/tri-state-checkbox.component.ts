@@ -33,6 +33,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterViewInit, Control
   @Input() rtl: boolean = NgGlobal.config.rtl;
   @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
   @Input() validation: NgValidation;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() disabled: boolean;
   @Input() tabindex: any;
