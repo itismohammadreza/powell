@@ -50,6 +50,7 @@ export class ListboxComponent implements OnInit, AfterViewInit, AfterContentInit
   @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() checkbox: boolean;
   @Input() dataKey: string;
