@@ -43,6 +43,7 @@ export class KnobComponent implements OnInit, AfterViewInit, ControlValueAccesso
   @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
   @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
   @Input() validation: NgValidation;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() size: number = 100;
   @Input() disabled: boolean;
