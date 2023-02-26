@@ -51,6 +51,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize = this.configService.getConfig().inputSize;
+  @Input() disableConfigChangeEffect: boolean;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() maxlength: number;
