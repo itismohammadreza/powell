@@ -1120,7 +1120,6 @@
           *ngSwitchCase="'message'"
           [hidden]="handleConfigVisibility(config)"
           [ngClass]="config.className ?? 'col-12'"
-          [formControlName]="config.key"
           [inlineMessage]="config.inlineMessage"
           [summary]="config.summary"
           [detail]="config.detail"

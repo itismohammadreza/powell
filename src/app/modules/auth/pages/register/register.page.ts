@@ -21,7 +21,7 @@ export class RegisterPage extends LanguageChecker {
   }
 
   async onSubmit(callback: any) {
-    if (this.form.valid) {
+    if (this.form.invalid) {
       callback()
       return;
     }
