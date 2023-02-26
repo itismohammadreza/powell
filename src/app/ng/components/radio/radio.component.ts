@@ -45,6 +45,7 @@ export class RadioComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
   @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
   @Input() validation: NgValidation;
+  @Input() disableConfigChangeEffect: boolean;
   @Input() orientation: NgOrientation = 'vertical';
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
