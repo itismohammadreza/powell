@@ -9,12 +9,12 @@ export interface NgConfigChangeEvent {
 
 export interface NgConfig {
   rtl?: boolean;
-  theme?: NgTheme;
   labelPos?: NgLabelPosition;
   fixLabelPos?: NgFixLabelPosition;
   filled?: boolean;
-  showRequiredStar?: boolean;
   inputSize?: NgSize;
+  showRequiredStar?: boolean;
+  theme?: NgTheme;
   ripple?: boolean;
   overlayOptions?: OverlayOptions;
 }

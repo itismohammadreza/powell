@@ -722,12 +722,12 @@ export class PreviewOptionsComponent implements OnInit {
   onConfigChange({modifiedConfig, currentConfig}: NgConfigChangeEvent) {
     const equalization = {
       rtl: 'rtl',
-      theme: 'theme',
-      labelPos: 'labelPos',
       fixLabelPos: 'fixLabelPos',
+      labelPos: 'labelPos',
       filled: 'filled',
-      showRequiredStar: 'showRequiredStar',
       inputSize: 'selectiveSize',
+      showRequiredStar: 'showRequiredStar',
+      theme: 'theme',
       ripple: 'ripple',
       overlayOptions: 'overlayOptions',
     }

@@ -16,14 +16,14 @@ export class ConfigHandlerDirective implements OnInit, OnDestroy {
   @Output() fixLabelPosChange = new EventEmitter();
   @Input() labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
   @Output() labelPosChange = new EventEmitter();
-  @Input() theme: NgTheme = this.configService.getConfig().theme;
-  @Output() themeChange = new EventEmitter();
   @Input() filled: boolean = this.configService.getConfig().filled;
   @Output() filledChange = new EventEmitter();
   @Input() inputSize: NgSize = this.configService.getConfig().inputSize;
   @Output() inputSizeChange = new EventEmitter();
   @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   @Output() showRequiredStarChange = new EventEmitter();
+  @Input() theme: NgTheme = this.configService.getConfig().theme;
+  @Output() themeChange = new EventEmitter();
   @Input() ripple: boolean = this.configService.getConfig().ripple;
   @Output() rippleChange = new EventEmitter();
   @Input() overlayOptions: OverlayOptions = this.configService.getConfig().overlayOptions;
@@ -46,10 +46,10 @@ export class ConfigHandlerDirective implements OnInit, OnDestroy {
         'rtl',
         'fixLabelPos',
         'labelPos',
-        'theme',
         'filled',
         'inputSize',
         'showRequiredStar',
+        'theme',
         'ripple',
         'overlayOptions',
       ]

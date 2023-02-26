@@ -4,6 +4,8 @@ import {PrimeNGConfig} from "primeng/api";
 import {ThemeService} from "@ng/services/theme.service";
 import {DOCUMENT} from "@angular/common";
 import {Subject} from "rxjs";
+import {NgFixLabelPosition, NgLabelPosition} from "@ng/models/forms";
+import {NgSize} from "@ng/models/offset";
 
 @Injectable()
 export class ConfigService {
@@ -16,14 +18,14 @@ export class ConfigService {
   configChange$ = this.configChangeSubject.asObservable();
 
   private _config: NgConfig = {
-    ripple: true,
     rtl: true,
     fixLabelPos: 'fix-side',
     labelPos: 'fix-side',
-    theme: 'lara-light-indigo',
     filled: false,
     inputSize: 'lg',
     showRequiredStar: false,
+    theme: 'lara-light-indigo',
+    ripple: true,
     overlayOptions: {}
   };
 
