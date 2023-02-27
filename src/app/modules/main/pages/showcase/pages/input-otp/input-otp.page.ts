@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {NgFixLabelPosition} from "@ng/models/forms";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 import {NgSize} from "@ng/models/offset";
 
 @Component({
@@ -16,15 +16,18 @@ export class InputOtpPage {
   binding;
 
   label: string = 'label';
-  filled: boolean = NgGlobal.config.filled;
+  filled: boolean = this.configService.getConfig().filled;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = NgGlobal.config.rtl;
-  inputSize: NgSize = NgGlobal.config.inputSize;
-  labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
+  rtl: boolean = this.configService.getConfig().rtl;
+  inputSize: NgSize = this.configService.getConfig().inputSize;
+  labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   readonly: boolean = false;
   disabled: boolean = false;
   placeholder: string = '';
   inputCount: number = 4;
   numbersOnly: boolean = true;
+
+  constructor(private configService: ConfigService) {
+  }
 }

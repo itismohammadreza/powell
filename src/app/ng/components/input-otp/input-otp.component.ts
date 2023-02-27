@@ -22,7 +22,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {NgFixLabelPosition, NgValidation} from "@ng/models/forms";
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 import {NgSize} from "@ng/models/offset";
 
 @Component({
@@ -43,14 +43,14 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   };
 
   @Input() label: string;
-  @Input() filled: boolean = NgGlobal.config.filled;
+  @Input() filled: boolean = this.configService.getConfig().filled;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = NgGlobal.config.rtl;
-  @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
-  @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
+  @Input() rtl: boolean = this.configService.getConfig().rtl;
+  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = NgGlobal.config.inputSize;
+  @Input() inputSize: NgSize = this.configService.getConfig().inputSize;
   @Input() disableConfigChangeEffect: boolean;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
@@ -78,7 +78,10 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   onModelTouched: any = () => {
   };
 
-  constructor(private el: ElementRef, private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private el: ElementRef,
+              private configService: ConfigService) {
   }
 
   ngOnInit() {
