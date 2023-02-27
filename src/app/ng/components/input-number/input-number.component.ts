@@ -29,7 +29,7 @@ import {
   NgValidation,
 } from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-input-number',
@@ -46,17 +46,17 @@ import {NgGlobal} from "@ng/ng-global";
 export class InputNumberComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: number;
   @Input() label: string;
-  @Input() filled: boolean = NgGlobal.config.filled;
+  @Input() filled: boolean = this.configService.getConfig().filled;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = NgGlobal.config.rtl;
-  @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
+  @Input() rtl: boolean = this.configService.getConfig().rtl;
+  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = NgGlobal.config.labelPos;
+  @Input() labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = NgGlobal.config.inputSize;
+  @Input() inputSize: NgSize = this.configService.getConfig().inputSize;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() format: boolean = true;
@@ -108,7 +108,7 @@ export class InputNumberComponent implements OnInit, AfterViewInit, ControlValue
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
   }
 
   ngOnInit() {
