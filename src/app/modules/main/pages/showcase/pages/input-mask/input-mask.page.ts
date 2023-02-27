@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {NgAddon, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-input-mask-page',
@@ -16,14 +16,14 @@ export class InputMaskPage {
   binding;
 
   label: string = 'label';
-  filled: boolean = NgGlobal.config.filled;
+  filled: boolean = this.configService.getConfig().filled;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = NgGlobal.config.rtl;
+  rtl: boolean = this.configService.getConfig().rtl;
   icon: string = '';
-  labelPos: NgLabelPosition = NgGlobal.config.labelPos;
+  labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
   iconPos: NgIconPosition = 'left';
-  inputSize: NgSize  = NgGlobal.config.inputSize;
+  inputSize: NgSize = this.configService.getConfig().inputSize;
   addon: NgAddon;
   // native properties
   mask: string = '99-999999';
@@ -37,4 +37,7 @@ export class InputMaskPage {
   readonly: boolean = false;
   characterPattern: string = '[A-Za-z]';
   showClear: boolean = true;
+
+  constructor(private configService: ConfigService) {
+  }
 }
