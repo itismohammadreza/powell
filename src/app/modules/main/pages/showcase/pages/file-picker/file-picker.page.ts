@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {NgFilePickerMode, NgFixLabelPosition} from '@ng/models/forms';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-file-picker-page',
@@ -17,8 +17,8 @@ export class FilePickerPage {
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = NgGlobal.config.rtl;
-  labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
+  rtl: boolean = this.configService.getConfig().rtl;
+  labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   // native properties
   multiple: boolean = true;
   accept: string = 'image/*';
@@ -36,4 +36,7 @@ export class FilePickerPage {
   mode: NgFilePickerMode = 'advanced';
   showUploadButton: boolean = true;
   showCancelButton: boolean = true;
+
+  constructor(private configService: ConfigService) {
+  }
 }
