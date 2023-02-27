@@ -14,6 +14,7 @@ export interface NgConfig {
   filled?: boolean;
   inputSize?: NgSize;
   showRequiredStar?: boolean;
+  disableConfigChangeEffect?: boolean;
   theme?: NgTheme;
   ripple?: boolean;
   overlayOptions?: OverlayOptions;

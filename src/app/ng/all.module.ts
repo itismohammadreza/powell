@@ -3,7 +3,7 @@ import {ConfirmationService, FilterService, MessageService, PrimeNGConfig,} from
 import {DialogService} from 'primeng/dynamicdialog';
 import {NgComponentsModule} from './components/components.module';
 import {ThemeService} from "@ng/services";
-import {NgGlobal} from '@ng/ng-global';
+import {NgGlobal} from '@ng/global';
 import {NgConfig} from "@ng/models/config";
 import {ConfigService} from "@ng/services/config.service";
 import {DOCUMENT} from "@angular/common";
@@ -28,7 +28,6 @@ export class NgAllModule {
             configService.setConfig(ngConfig);
             themeService.initTheme();
             themeService.changeTheme(configService.getConfig().theme);
-            console.log(1)
             return configService;
           },
           deps: [PrimeNGConfig, ThemeService, DOCUMENT]

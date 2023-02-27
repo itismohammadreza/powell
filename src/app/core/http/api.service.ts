@@ -1,5 +1,5 @@
 import {HttpClient, HttpContext, HttpHeaders, HttpParams} from '@angular/common/http';
-import {NgGlobal} from '@ng/ng-global';
+import {NgGlobal} from '@ng/global';
 import {Observable} from 'rxjs';
 import {EnvService} from "@core/utils";
 
