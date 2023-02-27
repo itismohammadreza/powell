@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {NgFixLabelPosition} from "@ng/models/forms";
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-dual-label-switch-page',
@@ -17,14 +17,17 @@ export class DualLabelSwitchPage {
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = NgGlobal.config.rtl;
-  labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
+  rtl: boolean = this.configService.getConfig().rtl;
+  labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;
   async: boolean = false;
 
   asyncFlag = false;
+
+  constructor(private configService: ConfigService) {
+  }
 
   onChangeAsync({loadingCallback, value}) {
     this.asyncFlag = !this.asyncFlag;
