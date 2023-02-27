@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {NgAddon, NgFixLabelPosition} from '@ng/models/forms';
 import {NgOrientation, NgSelectionMode} from '@ng/models/offset';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-tree-page',
@@ -18,8 +18,8 @@ export class TreePage {
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = NgGlobal.config.rtl;
-  labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
+  rtl: boolean = this.configService.getConfig().rtl;
+  labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   addon: NgAddon;
   // native properties
   selectionMode: NgSelectionMode;
@@ -100,4 +100,7 @@ export class TreePage {
       ]
     }
   ]
+
+  constructor(private configService: ConfigService) {
+  }
 }
