@@ -18,7 +18,7 @@ import {ConfirmDialog} from 'primeng/confirmdialog';
 import {Observable, Subject} from "rxjs";
 import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
 import {Router} from "@angular/router";
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +40,7 @@ export class OverlayService {
     private router: Router,
     private location: LocationStrategy,
     @Inject(DOCUMENT) private document: Document,
+    private configService: ConfigService
   ) {
     this.location.onPopState((e) => {
       const currentState = this.states.pop();
@@ -70,7 +71,7 @@ export class OverlayService {
     const toast: Message = {
       severity: 'info',
       ...options,
-      styleClass: `${options.styleClass} ${(options.rtl == undefined ? NgGlobal.config.rtl : options.rtl) ? 'rtl' : 'ltr'}`,
+      styleClass: `${options.styleClass} ${(options.rtl == undefined ? this.configService.getConfig().rtl : options.rtl) ? 'rtl' : 'ltr'}`,
     }
     instance.preventDuplicates = options.preventDuplicates;
     instance.position = options.position || 'top-right';
@@ -113,7 +114,7 @@ export class OverlayService {
     instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
     instance.baseZIndex = options.baseZIndex || 1000;
     instance.style = options.style;
-    instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? NgGlobal.config.rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
+    instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? this.configService.getConfig().rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
     return new Promise((accept) => {
       const state: NgHistoryState = {component: 'confirmPopup'};
       this.pushState(state)
@@ -146,7 +147,7 @@ export class OverlayService {
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
     }
     instance.style = options.style;
-    instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? NgGlobal.config.rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-button-icon-${options.buttonIconPos || 'left'} ${!options.header && !options.closable ? 'dialog-header-less' : ''}`;
+    instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? this.configService.getConfig().rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-button-icon-${options.buttonIconPos || 'left'} ${!options.header && !options.closable ? 'dialog-header-less' : ''}`;
     instance.maskStyleClass = options.maskStyleClass;
     instance.closable = options.closable != undefined ? options.closable : true;
     instance.focusTrap = options.focusTrap;
@@ -203,7 +204,7 @@ export class OverlayService {
       minimizeIcon: 'pi pi-window-minimize',
       maximizeIcon: 'pi pi-window-maximize',
       ...options,
-      styleClass: `${options.styleClass} ${(options.rtl == undefined ? NgGlobal.config.rtl : options.rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`,
+      styleClass: `${options.styleClass} ${(options.rtl == undefined ? this.configService.getConfig().rtl : options.rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`,
     };
     instance.show();
     const state: NgHistoryState = {component: 'dialog'};
@@ -245,11 +246,11 @@ export class OverlayService {
       rejectAppearance: 'outlined',
       rejectColor: 'danger',
       defaultFocus: 'accept',
-      rtl: NgGlobal.config.rtl,
+      rtl: this.configService.getConfig().rtl,
       ...options,
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-dialog-form-accept`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} p-dialog-form-reject`,
-      styleClass: `${options.styleClass} p-dialog-form-wrapper ${(options.rtl == undefined ? NgGlobal.config.rtl : options.rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`,
+      styleClass: `${options.styleClass} p-dialog-form-wrapper ${(options.rtl == undefined ? this.configService.getConfig().rtl : options.rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`,
     };
     instance.show();
     const state: NgHistoryState = {component: 'dialogForm'}
