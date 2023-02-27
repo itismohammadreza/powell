@@ -1,4 +1,4 @@
-import {Directive, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Directive, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ConfigService} from "@ng/services";
 import {Subject, takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgLabelPosition} from "@ng/models/forms";
@@ -9,24 +9,24 @@ import {OverlayOptions} from "primeng/api";
 @Directive({
   selector: '[ngConfigHandler]'
 })
-export class ConfigHandlerDirective implements OnInit, OnDestroy {
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
+export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
+  @Input() rtl: boolean;
   @Output() rtlChange = new EventEmitter();
-  @Input() fixLabelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
+  @Input() fixLabelPos: NgFixLabelPosition;
   @Output() fixLabelPosChange = new EventEmitter();
-  @Input() labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
+  @Input() labelPos: NgLabelPosition;
   @Output() labelPosChange = new EventEmitter();
-  @Input() filled: boolean = this.configService.getConfig().filled;
+  @Input() filled: boolean;
   @Output() filledChange = new EventEmitter();
-  @Input() inputSize: NgSize = this.configService.getConfig().inputSize;
+  @Input() inputSize: NgSize;
   @Output() inputSizeChange = new EventEmitter();
-  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  @Input() showRequiredStar: boolean;
   @Output() showRequiredStarChange = new EventEmitter();
-  @Input() theme: NgTheme = this.configService.getConfig().theme;
+  @Input() theme: NgTheme;
   @Output() themeChange = new EventEmitter();
-  @Input() ripple: boolean = this.configService.getConfig().ripple;
+  @Input() ripple: boolean;
   @Output() rippleChange = new EventEmitter();
-  @Input() overlayOptions: OverlayOptions = this.configService.getConfig().overlayOptions;
+  @Input() overlayOptions: OverlayOptions;
   @Output() overlayOptionsChange = new EventEmitter();
   @Input() disableConfigChangeEffect: boolean;
   @Output() disableConfigChangeEffectChange = new EventEmitter();
@@ -44,6 +44,7 @@ export class ConfigHandlerDirective implements OnInit, OnDestroy {
     }
     this.configService.configChange$.pipe(takeUntil(this.destroy$)).subscribe(({modifiedConfig, currentConfig}) => {
       const configs: string[] = [
+        'disableConfigChangeEffect',
         'rtl',
         'fixLabelPos',
         'labelPos',
@@ -61,15 +62,24 @@ export class ConfigHandlerDirective implements OnInit, OnDestroy {
         }
       })
       this.configChange.emit({modifiedConfig, currentConfig})
-      if (modifiedConfig.disableConfigChangeEffect) {
-        this.destroy$.next(true)
-        this.destroy$.complete();
+      if (currentConfig.disableConfigChangeEffect) {
+        this.stopSubscription();
       }
     })
   }
 
-  ngOnDestroy() {
-    this.destroy$.next(true);
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes?.disableConfigChangeEffect?.currentValue) {
+      this.stopSubscription()
+    }
+  }
+
+  stopSubscription() {
+    this.destroy$.next(true)
     this.destroy$.complete();
+  }
+
+  ngOnDestroy() {
+    this.stopSubscription()
   }
 }

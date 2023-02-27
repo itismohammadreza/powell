@@ -229,6 +229,7 @@ type PreviewItem =
   | 'showCloseIcon'
   | 'inputCount'
   | 'numbersOnly'
+  | 'disableConfigChangeEffect'
 
   | 'addon'
   | 'selectiveSize'
@@ -637,6 +638,8 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() inputCountChange = new EventEmitter();
   @Input() numbersOnly: boolean;
   @Output() numbersOnlyChange = new EventEmitter();
+  @Input() disableConfigChangeEffect: boolean;
+  @Output() disableConfigChangeEffectChange = new EventEmitter();
 
   // instead of 'size' & 'inputSize'
   @Input() selectiveSize: NgSize;
