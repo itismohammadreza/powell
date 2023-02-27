@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {NgConfirmPopupOptions} from "@ng/models/overlay";
 import {OverlayService} from "@ng/services";
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-confirm-popup-page',
@@ -25,10 +25,10 @@ export class ConfirmPopupPage {
     rejectAppearance: 'outlined',
     buttonFull: false,
     defaultFocus: 'accept',
-    rtl: NgGlobal.config.rtl
+    rtl: this.configService.getConfig().rtl
   }
 
-  constructor(private overlayService: OverlayService) {
+  constructor(private overlayService: OverlayService, private configService: ConfigService) {
   }
 
   showConfirmPopup(event) {
