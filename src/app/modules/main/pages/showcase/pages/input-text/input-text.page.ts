@@ -24,6 +24,7 @@ export class InputTextPage {
   labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
   iconPos: NgIconPosition = 'left';
   inputSize: NgSize = this.configService.getConfig().inputSize;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   addon: NgAddon;
   // native properties
   readonly: boolean = false;
