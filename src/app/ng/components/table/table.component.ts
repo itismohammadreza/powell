@@ -29,7 +29,7 @@ import {FilterMetadata, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {ScrollerOptions} from "primeng/scroller";
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-table',
@@ -44,7 +44,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() reorderableRows: boolean;
   @Input() selectableRows: boolean;
   @Input() actionsConfig: NgTableActionsConfig;
-  @Input() rtl: boolean = NgGlobal.config.rtl;
+  @Input() rtl: boolean = this.configService.getConfig().rtl;
   @Input() emptyMessage: string = 'موردی وجود ندارد';
   @Input() emptyIcon: string;
   @Input() emptyImageSrc: string;
@@ -177,6 +177,8 @@ export class TableComponent implements OnInit, AfterContentInit {
   loadingBodyTemplate: TemplateRef<any>
   cellTemplates: { [key: string]: TemplateRef<any> } = {}
 
+  constructor(private configService: ConfigService) {
+  }
 
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);
