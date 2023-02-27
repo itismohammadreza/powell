@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {NgFixLabelPosition} from '@ng/models/forms';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-knob-page',
@@ -17,8 +17,8 @@ export class KnobPage {
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = NgGlobal.config.rtl;
-  labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
+  rtl: boolean = this.configService.getConfig().rtl;
+  labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   // native properties
   size: number = 100;
   disabled: boolean = false;
@@ -32,4 +32,7 @@ export class KnobPage {
   strokeWidth: number = 14;
   showValue: boolean = true;
   valueTemplate: string = '{value}';
+
+  constructor(private configService: ConfigService) {
+  }
 }
