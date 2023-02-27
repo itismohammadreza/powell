@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {NgAddon, NgFixLabelPosition} from '@ng/models/forms';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-listbox-page',
@@ -17,8 +17,8 @@ export class ListboxPage {
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = NgGlobal.config.rtl;
-  labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
+  rtl: boolean = this.configService.getConfig().rtl;
+  labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   addon: NgAddon;
   // native properties
   checkbox: boolean = false;
@@ -43,4 +43,7 @@ export class ListboxPage {
     {label: 'Spain', value: 'ES'},
     {label: 'United States', value: 'US'}
   ];
+
+  constructor(private configService: ConfigService) {
+  }
 }
