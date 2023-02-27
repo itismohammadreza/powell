@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {OverlayService} from "@ng/services";
 import {NgDialogFormOptions} from "@ng/models/overlay";
 import {FormControl, Validators} from "@angular/forms";
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-dialog-form-page',
@@ -35,12 +35,12 @@ export class DialogFormPage {
     rejectLabel: 'لغو',
     rejectIcon: '',
     defaultFocus: 'accept',
-    rtl: NgGlobal.config.rtl,
+    rtl: this.configService.getConfig().rtl,
   }
 
   flag = false;
 
-  constructor(private overlayService: OverlayService) {
+  constructor(private overlayService: OverlayService, private configService: ConfigService) {
   }
 
   showDialogForm() {

@@ -3,7 +3,7 @@ import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult} from "@ng/models/overlay";
 import {NgValidation} from "@ng/models/forms";
 import {DomHandler} from "@ng/services";
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-dialog-form',
@@ -20,18 +20,18 @@ export class DialogFormComponent {
   onClose = new EventEmitter<void>();
   disableReject: boolean;
 
-  constructor(private el: ElementRef) {
+  constructor(private el: ElementRef, private configService: ConfigService) {
   }
 
   set config(value: NgDialogFormConfig[]) {
     this._config = value;
     this.form = new FormGroup({});
     for (const config of this._config) {
-      config.labelPos = config.labelPos ?? NgGlobal.config.labelPos;
-      config.fixLabelPos = config.fixLabelPos ?? NgGlobal.config.fixLabelPos;
-      config.selectiveSize = config.selectiveSize ?? NgGlobal.config.inputSize;
-      config.showRequiredStar = config.showRequiredStar ?? NgGlobal.config.showRequiredStar;
-      config.filled = config.filled ?? NgGlobal.config.filled;
+      config.labelPos = config.labelPos ?? this.configService.getConfig().labelPos;
+      config.fixLabelPos = config.fixLabelPos ?? this.configService.getConfig().fixLabelPos;
+      config.selectiveSize = config.selectiveSize ?? this.configService.getConfig().inputSize;
+      config.showRequiredStar = config.showRequiredStar ?? this.configService.getConfig().showRequiredStar;
+      config.filled = config.filled ?? this.configService.getConfig().filled;
       if (config.key) {
         this.form.addControl(config.key, new FormControl(null));
         this.handleConfigValue(config);
