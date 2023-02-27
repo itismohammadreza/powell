@@ -6,7 +6,6 @@ import {GlobalConfig} from "@core/global.config";
 import {DOCUMENT} from "@angular/common";
 import {ThemeService} from "@ng/services";
 import {NgTheme} from "@ng/models/config";
-import {NgGlobal} from "@ng/ng-global";
 import {ConfigService} from "@ng/services/config.service";
 import {NgFixLabelPosition, NgLabelPosition} from "@ng/models/forms";
 import {NgSize} from "@ng/models/offset";
@@ -223,10 +222,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
         this.maskEl.style.opacity = '0';
       }
     }
-  }
-
-  getWrapperClasses() {
-    return `menu-${this.tempSidebarType} ${this.fa ? 'rtl' : ''} ${this.sidebarLock ? 'sidebar-lock' : ''}  ${this.sidebarVisible ? 'sidebar-open' : ''}`
   }
 
   get maskEl() {

@@ -1,4 +1,9 @@
-<div class="main-content" [ngClass]="getWrapperClasses()">
+<div class="main-content menu-{{tempSidebarType}}"
+     [ngClass]="{
+        'rtl' : fa,
+        'sidebar-lock' : sidebarLock,
+        'sidebar-open' : sidebarVisible
+     }">
   <nav class="navbar navbar-expand shadow-sm fixed-top">
     <ng-button
       *ngIf="!sidebarLock && tempSidebarType != 'hover' && tempSidebarType != 'horizontal'"
@@ -9,8 +14,7 @@
     </ng-button>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav p-0 m{{ fa ? 'r' : 'l' }}-auto">
-        <li class="nav-item p{{ fa ? 'r' : 'l' }}-4 m{{ fa ? 'r' : 'l' }}-4 border-{{ fa ? 'right' : 'left' }}"
-            (click)="accountMenu.toggle($event)">
+        <li class="nav-item" (click)="accountMenu.toggle($event)">
           <span class="m{{ fa ? 'l' : 'r' }}-3">{{ "Admin" }}</span>
           <p-avatar shape="circle" size="large" icon="pi pi-user"></p-avatar>
         </li>
