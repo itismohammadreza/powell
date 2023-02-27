@@ -24,6 +24,7 @@
 - prevent change direction in language change
 - add pinch-zoom component
 - add class to body in config change
+- what is the priority in dialog form config.rtl & options.rtl & configService.rtl
 ### New
 
 - [ ] **whiteboard** - implement component.
