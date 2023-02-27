@@ -22,7 +22,6 @@ import {
 } from '@angular/forms';
 import {NgAddon, NgInputMode, NgInputType, NgKeyFilter, NgLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
-import {NgGlobal} from "@ng/ng-global";
 import {ConfigService} from "@ng/services";
 
 @Component({
