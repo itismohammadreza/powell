@@ -21,7 +21,7 @@ import {
 } from '@angular/forms';
 import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgOrientation} from '@ng/models/offset';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-multi-checkbox',
@@ -38,12 +38,12 @@ import {NgGlobal} from "@ng/ng-global";
 export class MultiCheckboxComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any[];
   @Input() label: string;
-  @Input() filled: boolean = NgGlobal.config.filled;
+  @Input() filled: boolean = this.configService.getConfig().filled;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = NgGlobal.config.rtl;
-  @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
-  @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
+  @Input() rtl: boolean = this.configService.getConfig().rtl;
+  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
   @Input() options: any[];
@@ -80,7 +80,7 @@ export class MultiCheckboxComponent implements OnInit, AfterViewInit, ControlVal
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
   }
 
   ngOnInit() {

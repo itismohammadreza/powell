@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {NgFixLabelPosition} from '@ng/models/forms';
 import {NgOrientation} from '@ng/models/offset';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-multi-checkbox-page',
@@ -16,11 +16,11 @@ export class MultiCheckboxPage {
   binding;
 
   label: string = 'label';
-  filled: boolean = NgGlobal.config.filled;
+  filled: boolean = this.configService.getConfig().filled;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = NgGlobal.config.rtl;
-  labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
+  rtl: boolean = this.configService.getConfig().rtl;
+  labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   // native properties
   orientation: NgOrientation = 'vertical';
   disabled: boolean = false;
@@ -38,4 +38,7 @@ export class MultiCheckboxPage {
     {label: 'Spain', value: 'ES'},
     {label: 'United States', value: 'US'}
   ];
+
+  constructor(private configService: ConfigService) {
+  }
 }
