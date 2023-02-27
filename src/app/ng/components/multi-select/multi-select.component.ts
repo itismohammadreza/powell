@@ -27,7 +27,7 @@ import {NgAddon, NgChipDisplayMode, NgFilterMatchMode, NgLabelPosition, NgValida
 import {NgIconPosition, NgPosition, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {ScrollerOptions} from "primeng/scroller";
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-multi-select',
@@ -44,17 +44,17 @@ import {NgGlobal} from "@ng/ng-global";
 export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValueAccessor, AfterContentInit {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = NgGlobal.config.filled;
+  @Input() filled: boolean = this.configService.getConfig().filled;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = NgGlobal.config.rtl;
-  @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
+  @Input() rtl: boolean = this.configService.getConfig().rtl;
+  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = NgGlobal.config.labelPos;
+  @Input() labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = NgGlobal.config.inputSize;
+  @Input() inputSize: NgSize = this.configService.getConfig().inputSize;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() appendTo: any;
@@ -136,7 +136,7 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
   }
 
   ngOnInit() {
