@@ -25,7 +25,7 @@ import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
 import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 import {EditorBaseComponent} from "@ng/components/editor/editor-base/editor-base.component";
 
 @Component({
@@ -45,9 +45,9 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = NgGlobal.config.rtl;
-  @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
-  @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
+  @Input() rtl: boolean = this.configService.getConfig().rtl;
+  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   @Input() validation: NgValidation;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
@@ -107,7 +107,7 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
   }
 
   ngOnInit() {
