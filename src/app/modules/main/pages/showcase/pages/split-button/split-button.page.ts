@@ -3,7 +3,7 @@ import {MenuItem} from "primeng/api";
 import {NgButtonAppearance} from "@ng/models/button";
 import {NgColor} from "@ng/models/color";
 import {NgIconPosition, NgSize} from "@ng/models/offset";
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-split-button-page',
@@ -17,7 +17,7 @@ export class SplitButtonPage {
   color: NgColor = 'primary';
   full: boolean = false;
   size: NgSize = 'md';
-  rtl: boolean = NgGlobal.config.rtl;
+  rtl: boolean = this.configService.getConfig().rtl;
   label: string = 'Label';
   icon: string = '';
   iconPos: NgIconPosition = 'left';
@@ -30,4 +30,7 @@ export class SplitButtonPage {
     {separator: true},
     {label: 'Setup', icon: 'pi pi-cog', routerLink: ['/setup']}
   ];
+
+  constructor(private configService: ConfigService) {
+  }
 }

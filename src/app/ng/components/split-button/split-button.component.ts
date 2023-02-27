@@ -13,7 +13,7 @@ import {NgColor} from '@ng/models/color';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {MenuItem} from 'primeng/api';
 import {TemplateDirective} from "@ng/directives/template.directive";
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-split-button',
@@ -28,7 +28,7 @@ export class SplitButtonComponent implements AfterContentInit {
   @Input() color: NgColor = 'primary';
   @Input() full: boolean;
   @Input() size: NgSize = 'md';
-  @Input() rtl: boolean = NgGlobal.config.rtl;
+  @Input() rtl: boolean = this.configService.getConfig().rtl;
   // native properties
   @Input() label: string;
   @Input() icon: string;
@@ -47,6 +47,8 @@ export class SplitButtonComponent implements AfterContentInit {
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
   contentTemplate: TemplateRef<any>;
 
+  constructor(private configService: ConfigService) {
+  }
 
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {
