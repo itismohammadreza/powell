@@ -8,13 +8,13 @@ export interface NgConfigChangeEvent {
 }
 
 export interface NgConfig {
+  disableConfigChangeEffect?: boolean;
   rtl?: boolean;
   labelPos?: NgLabelPosition;
   fixLabelPos?: NgFixLabelPosition;
   filled?: boolean;
   inputSize?: NgSize;
   showRequiredStar?: boolean;
-  disableConfigChangeEffect?: boolean;
   theme?: NgTheme;
   ripple?: boolean;
   overlayOptions?: OverlayOptions;
