@@ -28,8 +28,9 @@ export class ConfigHandlerDirective implements OnInit, OnDestroy {
   @Output() rippleChange = new EventEmitter();
   @Input() overlayOptions: OverlayOptions = this.configService.getConfig().overlayOptions;
   @Output() overlayOptionsChange = new EventEmitter();
-
   @Input() disableConfigChangeEffect: boolean;
+  @Output() disableConfigChangeEffectChange = new EventEmitter();
+
   @Output() configChange = new EventEmitter();
 
   destroy$: Subject<any> = new Subject<any>()
@@ -60,6 +61,10 @@ export class ConfigHandlerDirective implements OnInit, OnDestroy {
         }
       })
       this.configChange.emit({modifiedConfig, currentConfig})
+      if (modifiedConfig.disableConfigChangeEffect) {
+        this.destroy$.next(true)
+        this.destroy$.complete();
+      }
     })
   }
 
