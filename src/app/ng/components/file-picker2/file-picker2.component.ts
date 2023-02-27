@@ -22,7 +22,7 @@ import {
 } from '@angular/forms';
 import {NgColor} from '@ng/models/color';
 import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 import {UtilsService} from "@ng/services";
 
 @Component({
@@ -46,9 +46,9 @@ export class FilePicker2Component
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = NgGlobal.config.rtl;
-  @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
-  @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
+  @Input() rtl: boolean = this.configService.getConfig().rtl;
+  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
   @Input() disabled: boolean;
@@ -77,7 +77,8 @@ export class FilePicker2Component
   constructor(
     private cd: ChangeDetectorRef,
     private injector: Injector,
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    private configService: ConfigService
   ) {
   }
 
