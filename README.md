@@ -26,6 +26,8 @@
 - add class to body in config change
 - what is the priority in dialog form config.rtl & options.rtl & configService.rtl
 - add disableConfigChangeEffect to pages & to dialog form components and model
+- complete implementation of disableConfigChangeEffect in showcase pages
+- how about using disableConfigChangeEffect in overlay services? how should handle?
 ### New
 
 - [ ] **whiteboard** - implement component.
