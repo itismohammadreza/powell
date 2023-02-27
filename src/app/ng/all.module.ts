@@ -13,9 +13,8 @@ import {DOCUMENT} from "@angular/common";
   exports: [NgComponentsModule],
 })
 export class NgAllModule {
-  constructor(private injector: Injector, private themeService: ThemeService) {
+  constructor(private injector: Injector) {
     NgGlobal.Injector = this.injector;
-    this.themeService.initTheme();
   }
 
   static forRoot(ngConfig?: NgConfig): ModuleWithProviders<NgAllModule> {
@@ -27,6 +26,9 @@ export class NgAllModule {
           useFactory: (primengConfig: PrimeNGConfig, themeService: ThemeService, document: Document) => {
             const configService = new ConfigService(primengConfig, themeService, document);
             configService.setConfig(ngConfig);
+            themeService.initTheme();
+            themeService.changeTheme(configService.getConfig().theme);
+            console.log(1)
             return configService;
           },
           deps: [PrimeNGConfig, ThemeService, DOCUMENT]
