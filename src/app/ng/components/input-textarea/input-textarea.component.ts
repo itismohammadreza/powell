@@ -22,7 +22,7 @@ import {
 } from '@angular/forms';
 import {NgAddon, NgLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition} from '@ng/models/offset';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-input-textarea',
@@ -39,13 +39,13 @@ import {NgGlobal} from "@ng/ng-global";
 export class InputTextareaComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = NgGlobal.config.filled;
+  @Input() filled: boolean = this.configService.getConfig().filled;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = NgGlobal.config.rtl;
-  @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
+  @Input() rtl: boolean = this.configService.getConfig().rtl;
+  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = NgGlobal.config.labelPos;
+  @Input() labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
@@ -79,7 +79,10 @@ export class InputTextareaComponent implements OnInit, AfterViewInit, ControlVal
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector, private el: ElementRef) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private el: ElementRef,
+              private configService: ConfigService) {
   }
 
   ngOnInit() {
