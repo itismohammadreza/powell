@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-checkbox-page',
@@ -14,15 +14,18 @@ export class CheckboxPage {
   binding;
 
   label: string = 'label';
-  filled: boolean = NgGlobal.config.filled;
+  filled: boolean = this.configService.getConfig().filled;
   hint: string = '';
-  rtl: boolean = NgGlobal.config.rtl;
+  rtl: boolean = this.configService.getConfig().rtl;
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;
   async: boolean = false;
 
   asyncFlag = false;
+
+  constructor(private configService: ConfigService) {
+  }
 
   onChangeAsync({loadingCallback, value}) {
     this.asyncFlag = !this.asyncFlag;

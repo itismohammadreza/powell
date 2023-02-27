@@ -20,7 +20,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {NgValidation} from '@ng/models/forms';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-checkbox',
@@ -37,10 +37,10 @@ import {NgGlobal} from "@ng/ng-global";
 export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = NgGlobal.config.filled;
+  @Input() filled: boolean = this.configService.getConfig().filled;
   @Input() hint: string;
-  @Input() rtl: boolean = NgGlobal.config.rtl;
-  @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
+  @Input() rtl: boolean = this.configService.getConfig().rtl;
+  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   @Input() validation: NgValidation;
   @Input() onLabel: string;
   @Input() offLabel: string;
@@ -68,7 +68,7 @@ export class CheckboxComponent implements OnInit, AfterViewInit, ControlValueAcc
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
   }
 
   ngOnInit() {
