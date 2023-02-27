@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {NgFixLabelPosition} from '@ng/models/forms';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-rating-page',
@@ -17,8 +17,8 @@ export class RatingPage {
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = NgGlobal.config.rtl;
-  labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
+  rtl: boolean = this.configService.getConfig().rtl;
+  labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   // native properties
   stars: number = 5;
   cancel: boolean = true;
@@ -27,4 +27,7 @@ export class RatingPage {
   iconOnClass: string = 'pi pi-star-fill';
   iconOffClass: string = 'pi pi-star';
   iconCancelClass: string = 'pi pi-ban';
+
+  constructor(private configService: ConfigService) {
+  }
 }

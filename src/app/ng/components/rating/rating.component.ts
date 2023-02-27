@@ -20,7 +20,7 @@ import {
   NgControl,
 } from '@angular/forms';
 import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-rating',
@@ -39,9 +39,9 @@ export class RatingComponent implements OnInit, AfterViewInit, ControlValueAcces
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = NgGlobal.config.rtl;
-  @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
-  @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
+  @Input() rtl: boolean = this.configService.getConfig().rtl;
+  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
@@ -66,7 +66,7 @@ export class RatingComponent implements OnInit, AfterViewInit, ControlValueAcces
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
   }
 
   ngOnInit() {
