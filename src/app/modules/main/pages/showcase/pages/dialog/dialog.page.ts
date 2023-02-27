@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {OverlayService} from "@ng/services";
 import {NgDialogOptions} from "@ng/models/overlay";
-import {NgGlobal} from "@ng/ng-global";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-dialog',
@@ -28,11 +28,11 @@ export class DialogPage {
     buttonColor: 'primary',
     buttonAppearance: 'basic',
     buttonSize: 'md',
-    rtl: NgGlobal.config.rtl,
+    rtl: this.configService.getConfig().rtl,
     content: 'Some content inside dialog.',
   }
 
-  constructor(private overlayService: OverlayService) {
+  constructor(private overlayService: OverlayService, private configService: ConfigService) {
   }
 
   showDialog() {
