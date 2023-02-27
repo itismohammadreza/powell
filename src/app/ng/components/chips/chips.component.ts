@@ -54,6 +54,7 @@ export class ChipsComponent implements OnInit, AfterViewInit, AfterContentInit, 
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize = NgGlobal.config.inputSize;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() field: string;
   @Input() max: number;

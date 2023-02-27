@@ -54,6 +54,7 @@ export class CascadeSelectComponent implements OnInit, AfterViewInit, AfterConte
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize = NgGlobal.config.inputSize;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() options: any[];
   @Input() optionLabel: string = 'label';

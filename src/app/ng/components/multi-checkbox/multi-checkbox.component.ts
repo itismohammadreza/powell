@@ -45,6 +45,7 @@ export class MultiCheckboxComponent implements OnInit, AfterViewInit, ControlVal
   @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
   @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
   @Input() validation: NgValidation;
+  @Input() disableConfigChangeEffect: boolean;
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';

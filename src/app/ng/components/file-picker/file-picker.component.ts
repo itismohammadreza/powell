@@ -54,6 +54,7 @@ export class FilePickerComponent
   @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
   @Input() validation: NgValidation;
   @Input() resultType: 'base64' | 'file' | 'none' = 'file';
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() name: string;
   @Input() url: string;

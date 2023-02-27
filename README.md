@@ -19,9 +19,9 @@
 - fix AOS bug
 - add bootstrap 5
 - use gap instead of margin left and right
-- add emitConfigEvent @Input, add configChange directive and properties in html of input-text component
 - add ability to change showRequiredStart in run time
 - add disableConfigChangeEffect as a config
+- prevent change direction in language change
 
 ### New
 

@@ -50,6 +50,7 @@ export class FilePicker2Component
   @Input() showRequiredStar: boolean = NgGlobal.config.showRequiredStar;
   @Input() labelPos: NgFixLabelPosition = NgGlobal.config.fixLabelPos;
   @Input() validation: NgValidation;
+  @Input() disableConfigChangeEffect: boolean;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
   @Input() multiple: boolean = true;
