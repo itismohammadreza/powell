@@ -20,9 +20,10 @@
 - add bootstrap 5
 - use gap instead of margin left and right
 - add ability to change showRequiredStart in run time
-- add disableConfigChangeEffect as a config
+- add disableConfigChangeEffect as a config & unsub listener if disableConfigChangeEffect change at runtime
 - prevent change direction in language change
-
+- add pinch-zoom component
+- add class to body in config change
 ### New
 
 - [ ] **whiteboard** - implement component.
