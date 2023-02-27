@@ -170,7 +170,12 @@ export class UtilsService {
   //     observe: 'response',
   //     responseType: 'blob'
   //   }).toPromise();
-  //   const disposition = atob(res.headers.get('content-disposition'));
+  //   const b64DecodeUnicode = (str: string) => {
+  //     return decodeURIComponent(atob(str).split('').map(c =>{
+  //       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  //     }).join(''));
+  //   }
+  // const disposition = b64DecodeUnicode(res.headers.get('content-disposition'));
   //   const fileName = disposition.split('filename=')[1].split(';')[0];
   //   let downloadLink = document.createElement('a');
   //   downloadLink.href = window.URL.createObjectURL(new Blob([res.body], {type: res.body.type}));
