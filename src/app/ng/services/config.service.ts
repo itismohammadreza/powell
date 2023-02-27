@@ -18,6 +18,7 @@ export class ConfigService {
   configChange$ = this.configChangeSubject.asObservable();
 
   private _config: NgConfig = {
+    disableConfigChangeEffect: false,
     rtl: true,
     fixLabelPos: 'fix-side',
     labelPos: 'fix-side',
