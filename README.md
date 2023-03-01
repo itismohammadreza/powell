@@ -11,8 +11,10 @@
 ### Feature
 
 - fix below issue:
-  1- change sidebarType 2- responsive until mobile view 3- change size to desktop view 4- the sidebarType is reset to
-  its default value
+  - 1- change sidebarType
+  - 2- responsive until mobile view
+  - 3- change size to desktop view
+  - 4- the sidebarType is reset to its default value
 - replace css colors with variables and make theme colors configurable
 - fix AOS bug
 - add bootstrap 5
@@ -22,9 +24,8 @@
 - prevent change direction in language change
 - add pinch-zoom component
 - add class to body in config change
-- complete iran-map component
-- add selectionLimit to map + fix multiple value emit issue in map component onModelChange method.
 - add new properties to dialogForm and their showcase page.
+
 ### New
 
 - [ ] **whiteboard** - implement component.
