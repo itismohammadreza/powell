@@ -325,9 +325,11 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
       selectedLatLngs.push({lat, lng})
       if (this.multiple) {
         this.layers.push(this.getMarkerLayer({lat, lng}));
+        this.value = selectedLatLngs;
         this.onModelChange(selectedLatLngs);
       } else {
         this.layers = [this.getMarkerLayer({lat, lng})];
+        this.value = selectedLatLngs[0];
         this.onModelChange(selectedLatLngs[0]);
       }
       this.cd.detectChanges();
@@ -360,6 +362,7 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
 
   clearMap() {
     this.layers = [];
+    this.value = null;
     this.onModelChange(null);
     this.onClear.emit()
   }

@@ -479,11 +479,12 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
       selectedIds.splice(selectedIds.indexOf(province.id), 1)
       target.classList.remove('active');
     }
-    this.value = selectedIds;
     if (this.multiple) {
+      this.value = selectedIds;
       this.onModelChange(selectedIds);
       this.onChange.emit(selectedIds);
     } else {
+      this.value = selectedIds[0];
       this.onModelChange(selectedIds[0]);
       this.onChange.emit(selectedIds[0]);
     }
