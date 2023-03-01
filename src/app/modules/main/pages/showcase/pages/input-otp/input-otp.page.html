@@ -10,8 +10,10 @@
       'labelWidth',
       'hint',
       'rtl',
-      'selectiveSize',
+      'showRequiredStar',
       'fixLabelPos',
+      'selectiveSize',
+      'disableConfigChangeEffect',
       'readonly',
       'disabled',
       'placeholder',
@@ -23,8 +25,10 @@
       [(labelWidth)]="labelWidth"
       [(hint)]="hint"
       [(rtl)]="rtl"
-      [(selectiveSize)]="inputSize"
+      [(showRequiredStar)]="showRequiredStar"
       [(fixLabelPos)]="labelPos"
+      [(selectiveSize)]="inputSize"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
       [(readonly)]="readonly"
       [(disabled)]="disabled"
       [(placeholder)]="placeholder"
@@ -46,8 +50,10 @@
         [labelWidth]="labelWidth"
         [hint]="hint"
         [rtl]="rtl"
-        [inputSize]="inputSize"
+        [showRequiredStar]="showRequiredStar"
         [labelPos]="labelPos"
+        [inputSize]="inputSize"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
         [readonly]="readonly"
         [disabled]="disabled"
         [placeholder]="placeholder"

@@ -160,6 +160,9 @@ type PreviewItem =
   | 'offIcon'
   | 'showOtherMonths'
   | 'selectOtherMonths'
+  | 'gridlines'
+  | 'striped'
+  | 'clearMarkerOnClick'
   | 'showIcon'
   | 'showOnFocus'
   | 'showWeek'
@@ -230,6 +233,7 @@ type PreviewItem =
   | 'inputCount'
   | 'numbersOnly'
   | 'disableConfigChangeEffect'
+  | 'showRequiredStar'
 
   | 'addon'
   | 'selectiveSize'
@@ -470,8 +474,14 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() selectionLimitChange = new EventEmitter()
   @Input() showHeader: boolean;
   @Output() showHeaderChange = new EventEmitter()
+  @Input() gridlines: boolean;
+  @Output() gridlinesChange = new EventEmitter()
+  @Input() striped: boolean;
+  @Output() stripedChange = new EventEmitter()
   @Input() display: string;
   @Output() displayChange = new EventEmitter()
+  @Input() clearMarkerOnClick: boolean;
+  @Output() clearMarkerOnClickChange = new EventEmitter()
   @Input() stars: number;
   @Output() starsChange = new EventEmitter()
   @Input() cancel: boolean;
@@ -638,8 +648,10 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() inputCountChange = new EventEmitter();
   @Input() numbersOnly: boolean;
   @Output() numbersOnlyChange = new EventEmitter();
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() disableConfigChangeEffect: boolean;
   @Output() disableConfigChangeEffectChange = new EventEmitter();
+  @Input() showRequiredStar: boolean;
+  @Output() showRequiredStarChange = new EventEmitter();
 
   // instead of 'size' & 'inputSize'
   @Input() selectiveSize: NgSize;

@@ -9,19 +9,23 @@
       'labelWidth',
       'hint',
       'rtl',
+      'showRequiredStar',
       'fixLabelPos',
       'disabled',
       'readonly',
       'async',
+      'disableConfigChangeEffect',
       ]"
       [(label)]="label"
       [(labelWidth)]="labelWidth"
       [(hint)]="hint"
       [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
       [(fixLabelPos)]="labelPos"
       [(disabled)]="disabled"
       [(readonly)]="readonly"
       [(async)]="async"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
     ></ng-preview-options>
   </p-panel>
 
@@ -37,10 +41,12 @@
         [labelWidth]="labelWidth"
         [hint]="hint"
         [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
         [labelPos]="labelPos"
         [disabled]="disabled"
         [readonly]="readonly"
         [async]="async"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
         labelLeft="Left"
         labelRight="Right"
         (onChangeAsync)="onChangeAsync($event)"

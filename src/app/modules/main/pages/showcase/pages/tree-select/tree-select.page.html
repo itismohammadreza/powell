@@ -10,11 +10,13 @@
       'labelWidth',
       'hint',
       'rtl',
+      'showRequiredStar',
       'icon',
       'labelPos',
       'iconPos',
-      'selectiveSize',
       'addon',
+      'selectiveSize',
+      'disableConfigChangeEffect',
       'scrollHeight',
       'placeholder',
       'disabled',
@@ -33,11 +35,13 @@
       [(labelWidth)]="labelWidth"
       [(hint)]="hint"
       [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
       [(icon)]="icon"
       [(labelPos)]="labelPos"
       [(iconPos)]="iconPos"
-      [(selectiveSize)]="inputSize"
       [(addon)]="addon"
+      [(selectiveSize)]="inputSize"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
       [(scrollHeight)]="scrollHeight"
       [(placeholder)]="placeholder"
       [(disabled)]="disabled"
@@ -68,10 +72,12 @@
         [labelWidth]="labelWidth"
         [hint]="hint"
         [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
         [icon]="icon"
         [labelPos]="labelPos"
         [iconPos]="iconPos"
         [inputSize]="inputSize"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
         [scrollHeight]="scrollHeight"
         [placeholder]="placeholder"
         [disabled]="disabled"

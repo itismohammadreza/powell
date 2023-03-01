@@ -9,21 +9,29 @@
       'labelWidth',
       'hint',
       'rtl',
+      'showRequiredStar',
       'fixLabelPos',
       'addon',
       'disabled',
       'readonly',
       'multiple',
+      'clearMarkerOnClick',
+      'showClear',
+      'disableConfigChangeEffect',
       ]"
       [(label)]="label"
       [(labelWidth)]="labelWidth"
       [(hint)]="hint"
       [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
       [(fixLabelPos)]="labelPos"
       [(addon)]="addon"
       [(disabled)]="disabled"
       [(readonly)]="readonly"
       [(multiple)]="multiple"
+      [(clearMarkerOnClick)]="clearMarkerOnClick"
+      [(showClear)]="showClear"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
     ></ng-preview-options>
   </p-panel>
 
@@ -39,11 +47,15 @@
         [labelWidth]="labelWidth"
         [hint]="hint"
         [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
         [labelPos]="labelPos"
         [addon]="addon"
         [disabled]="disabled"
         [readonly]="readonly"
         [multiple]="multiple"
+        [clearMarkerOnClick]="clearMarkerOnClick"
+        [showClear]="showClear"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
       ></ng-map>
     </form>
 

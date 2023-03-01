@@ -9,15 +9,20 @@
       'labelWidth',
       'hint',
       'rtl',
+      'showRequiredStar',
       'fixLabelPos',
       'disabled',
+      'disableConfigChangeEffect',
+      'selectionLimit'
       ]"
       [(label)]="label"
       [(labelWidth)]="labelWidth"
       [(hint)]="hint"
       [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
       [(fixLabelPos)]="labelPos"
       [(disabled)]="disabled"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
     ></ng-preview-options>
   </p-panel>
 
@@ -33,8 +38,10 @@
         [labelWidth]="labelWidth"
         [hint]="hint"
         [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
         [labelPos]="labelPos"
         [disabled]="disabled"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
       ></ng-iran-map>
     </form>
 
