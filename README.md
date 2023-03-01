@@ -19,7 +19,6 @@
 - fix AOS bug
 - add bootstrap 5
 - use gap instead of margin left and right
-- prevent change direction in language change
 - add pinch-zoom component
 - add ability to change showRequiredStart in run time
 - add disableConfigChangeEffect as a config & unsub listener if disableConfigChangeEffect change at runtime
