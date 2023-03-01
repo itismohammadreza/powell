@@ -27,6 +27,7 @@
 - add disableConfigChangeEffect to pages & to dialog form components and model
 - complete implementation of disableConfigChangeEffect in showcase pages
 - how about using disableConfigChangeEffect in overlay services? how should handle?
+
 ### New
 
 - [ ] **whiteboard** - implement component.
