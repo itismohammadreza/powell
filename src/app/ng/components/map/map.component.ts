@@ -65,9 +65,12 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
   @Input() validation: NgValidation;
   @Input() disabled: boolean;
   @Input() multiple: boolean = true;
-  @Input() clearMapBtnTooltip: string;
-  @Input() clearMapBtnIcon: string = 'pi pi-trash';
+  @Input() clearMarkerOnClick: boolean = true;
+  @Input() showClear: boolean;
+  @Input() clearTooltip: string;
+  @Input() clearIcon: string = 'pi pi-trash';
   @Input() disableConfigChangeEffect: boolean;
+  @Input() selectionLimit: number;
   // native properties
   @Input() zoom: number = 10;
   @Input() center: LatLng = latLng(35.68419775656676, 51.38983726501465);
@@ -147,6 +150,7 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
   @Output() onMapZoom = new EventEmitter();
   @Output() onMapZoomStart = new EventEmitter();
   @Output() onMapZoomEnd = new EventEmitter();
+  @Output() onClear = new EventEmitter();
 
   inputId: string;
   controlContainer: FormGroupDirective;
@@ -174,12 +178,10 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-
       currentControl = this.ngControl.control;
       if (this.controlContainer) {
         parentForm = this.controlContainer.control;
         rootForm = this.controlContainer.formDirective as FormGroupDirective;
-
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
@@ -264,7 +266,11 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
 
   setDisabledState(val: boolean) {
     this.disabled = val;
+    if (!this.map) {
+      return
+    }
     if (this.disabled) {
+      this.readonly = true;
       this.map.dragging.disable();
       this.map.touchZoom.disable();
       this.map.doubleClickZoom.disable();
@@ -275,6 +281,7 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
         this.map.tap.disable();
       }
     } else {
+      this.readonly = false;
       this.map.dragging.enable();
       this.map.touchZoom.enable();
       this.map.doubleClickZoom.enable();
@@ -308,12 +315,20 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
 
   _onMapClick(event: LeafletMouseEvent): void {
     if (!this.readonly) {
+      const selectedLatLngs = this.layers.map((l: any) => l._latlng);
+      if (this.multiple) {
+        if (selectedLatLngs.length == this.selectionLimit) {
+          return
+        }
+      }
       const {lat, lng} = event.latlng;
-      this.onModelChange({lat, lng});
+      selectedLatLngs.push({lat, lng})
       if (this.multiple) {
         this.layers.push(this.getMarkerLayer({lat, lng}));
+        this.onModelChange(selectedLatLngs);
       } else {
         this.layers = [this.getMarkerLayer({lat, lng})];
+        this.onModelChange(selectedLatLngs[0]);
       }
       this.cd.detectChanges();
     }
@@ -330,10 +345,22 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
       }),
     }).on('click', (event: LeafletMouseEvent) => {
       this.onMapMarkerClick.emit(event);
+      if (this.clearMarkerOnClick) {
+        const {latlng} = event;
+        const idx = this.layers.findIndex(({_latlng: {lat, lng}}: any) => lat == latlng.lat && lng == latlng.lng);
+        if (idx != -1) {
+          this.layers.splice(idx, 1);
+          this.cd.detectChanges()
+        }
+        const selectedLatLngs = this.layers.map((l: any) => l._latlng);
+        this.onModelChange(this.multiple ? selectedLatLngs : selectedLatLngs[0])
+      }
     });
   }
 
   clearMap() {
     this.layers = [];
+    this.onModelChange(null);
+    this.onClear.emit()
   }
 }

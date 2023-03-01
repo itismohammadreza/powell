@@ -15,7 +15,7 @@
        (onAfterBtnClick)="emitter('onAfterBtnClick',$event)"
        (onBeforeBtnClick)="emitter('onBeforeBtnClick',$event)">
     <div>
-      <ng-button *ngIf="!readonly" class="clear-map-btn" [pTooltip]="clearMapBtnTooltip" [icon]="clearMapBtnIcon"
+      <ng-button *ngIf="!readonly && showClear" class="clear-map-btn" [pTooltip]="clearTooltip" [icon]="clearIcon"
                  size="sm" (click)="clearMap()"></ng-button>
       <div
         leaflet
