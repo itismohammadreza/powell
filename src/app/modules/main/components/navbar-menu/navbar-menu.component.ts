@@ -2,7 +2,6 @@ import {AfterContentInit, AfterViewChecked, Component, HostListener, Inject, Inp
 import {LanguageChecker} from '@core/utils';
 import {MenuItem, OverlayOptions} from 'primeng/api';
 import {SidebarType} from '@core/models';
-import {GlobalConfig} from "@core/global.config";
 import {DOCUMENT} from "@angular/common";
 import {ThemeService} from "@ng/services";
 import {NgTheme} from "@ng/models/config";
@@ -37,7 +36,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   sidebarTypes: MenuItem[];
   sidebarItems: MenuItem[];
   searchValue: string;
-  language: string = GlobalConfig.lang;
   accountItems: MenuItem[] = [
     {
       label: 'خروج',
@@ -154,14 +152,13 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     }));
   }
 
-  changeGlobalConfig(config: string, value: any) {
+  async changeGlobalConfig(config: string, value: any) {
     this[config] = value;
     this.configService.setConfig({[config]: value});
-  }
-
-  async changeLang(event) {
-    await this.translationService.use(event.value).toPromise();
-    this.language = event.value;
+    if (config == 'rtl') {
+      const language = value ? 'fa' : 'en';
+      await this.translationService.use(language).toPromise();
+    }
   }
 
   changeSidebarType(event: any) {

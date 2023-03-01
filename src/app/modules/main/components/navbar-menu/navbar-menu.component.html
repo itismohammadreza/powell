@@ -1,10 +1,10 @@
 <div class="main-content menu-{{tempSidebarType}}"
      [ngClass]="{
-        'rtl' : fa,
+        'rtl' : rtl,
         'sidebar-lock' : sidebarLock,
         'sidebar-open' : sidebarVisible
      }">
-  <nav class="navbar navbar-expand shadow-sm fixed-top">
+  <nav class="navbar navbar-expand shadow-sm fixed-top justify-content-between">
     <ng-button
       *ngIf="!sidebarLock && tempSidebarType != 'hover' && tempSidebarType != 'horizontal'"
       icon="pi pi-bars"
@@ -13,9 +13,9 @@
       (click)="toggleSidebarClick()">
     </ng-button>
     <div class="collapse navbar-collapse">
-      <ul class="navbar-nav p-0 m{{ fa ? 'r' : 'l' }}-auto">
+      <ul class="navbar-nav p-0 m{{ rtl ? 'r' : 'l' }}-auto">
         <li class="nav-item" (click)="accountMenu.toggle($event)">
-          <span class="m{{ fa ? 'l' : 'r' }}-3">{{ "Admin" }}</span>
+          <span class="m{{ rtl ? 'l' : 'r' }}-3">{{ "Admin" }}</span>
           <p-avatar shape="circle" size="large" icon="pi pi-user"></p-avatar>
         </li>
       </ul>
@@ -36,7 +36,7 @@
     [visible]="sidebarVisible"
     [blockScroll]="isModalSidebar"
     [modal]="isModalSidebar"
-    [position]="fa ? 'right' : 'left'"
+    [position]="rtl ? 'right' : 'left'"
     [showCloseIcon]="false"
     [closeOnEscape]="false"
     (visibleChange)="toggleSidebar($event)">
@@ -73,17 +73,6 @@
   [(visible)]="configSidebarVisible"
   [style]="{width:'30rem'}">
   <div class="h-100 py-3">
-    <ng-dropdown
-      [label]="'Lang' | translate"
-      inputSize="sm"
-      labelPos="fix-side"
-      [labelWidth]="150"
-      class="d-block mb-3"
-      [value]="language"
-      [options]="[{ label: 'EN', value: 'en' }, { label: 'FA', value: 'fa' }]"
-      [rtl]="fa"
-      (onChange)="changeLang($event)"
-    ></ng-dropdown>
     <ng-dropdown
       [label]="'Sidebar' | translate"
       inputSize="sm"
