@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Observable} from 'rxjs';
-import {GlobalConfig} from "@core/global.config";
+import {GlobalConfig} from "@core/config";
 import {DOCUMENT} from "@angular/common";
 
 @Injectable({

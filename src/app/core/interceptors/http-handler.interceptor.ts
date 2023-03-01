@@ -11,7 +11,7 @@ import {finalize, Observable, of, tap, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {OverlayService} from '@ng/services';
 import {AuthService} from '@core/http';
-import {RequestsConfig} from "@core/requests.config";
+import {RequestsConfig} from "@core/config";
 import {LoaderService} from "@core/utils";
 import {RequestConfig} from "@core/models";
 

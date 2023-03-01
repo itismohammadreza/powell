@@ -1,5 +1,5 @@
 import {AppGlobalConfig} from "@core/models";
-import {RouteAnimation} from "@core/animations";
+import {RouteAnimation} from "@core/config";
 
 export const GlobalConfig: AppGlobalConfig = {
   lang: 'fa',

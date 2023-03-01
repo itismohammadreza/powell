@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {GlobalConfig} from "@core/global.config";
+import {GlobalConfig} from "@core/config";
 
 @Component({
   selector: 'ng-main-page',
