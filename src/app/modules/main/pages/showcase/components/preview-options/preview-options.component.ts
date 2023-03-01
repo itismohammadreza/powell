@@ -735,6 +735,9 @@ export class PreviewOptionsComponent implements OnInit {
   }
 
   onConfigChange({modifiedConfig, currentConfig}: NgConfigChangeEvent) {
+    if (this.disableConfigChangeEffect) {
+      return
+    }
     const equalization = {
       rtl: 'rtl',
       fixLabelPos: 'fixLabelPos',
