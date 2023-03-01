@@ -26,7 +26,6 @@
 - what is the priority in dialog form config.rtl & options.rtl & configService.rtl
 - add disableConfigChangeEffect to pages & to dialog form components and model
 - how about using disableConfigChangeEffect in overlay services? how should handle?
-- remove using with ngModel
 
 ### New
 
