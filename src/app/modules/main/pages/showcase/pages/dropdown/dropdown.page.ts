@@ -26,7 +26,7 @@ export class DropdownPage {
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
   inputSize: NgSize = this.configService.getConfig().inputSize;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   filter: boolean = false;
   disabled: boolean = false;

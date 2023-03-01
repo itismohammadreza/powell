@@ -45,7 +45,7 @@ export class RadioComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   @Input() validation: NgValidation;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   @Input() orientation: NgOrientation = 'vertical';
   @Input() options: any[];
   @Input() optionLabel: string = 'label';

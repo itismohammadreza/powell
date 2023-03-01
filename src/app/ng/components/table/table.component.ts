@@ -55,7 +55,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() size: NgSize = 'sm';
   @Input() gridlines: boolean = true;
   @Input() striped: boolean;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   @Input() frozenColumns: any[];
   @Input() frozenValue: any[];

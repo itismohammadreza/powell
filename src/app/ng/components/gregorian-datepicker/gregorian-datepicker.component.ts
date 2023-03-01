@@ -47,7 +47,7 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize = this.configService.getConfig().inputSize;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   @Input() defaultDate: Date;
   @Input() selectionMode: NgDatepickerSelectionMode = 'single';

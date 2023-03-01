@@ -33,7 +33,7 @@ export class InputNumberPage {
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
   inputSize: NgSize = this.configService.getConfig().inputSize;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   format: boolean = true;
   showButtons: boolean = true;

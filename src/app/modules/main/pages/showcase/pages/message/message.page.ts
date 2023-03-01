@@ -15,7 +15,7 @@ export class MessagePage {
   inlineMessage: string = '';
   closable: boolean = false;
   rtl: boolean = this.configService.getConfig().rtl;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
 
   constructor(private configService: ConfigService) {
   }

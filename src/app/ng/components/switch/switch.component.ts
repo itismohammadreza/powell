@@ -36,7 +36,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   @Input() onLabel: string;
   @Input() offLabel: string;
   @Input() async: boolean;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   @Input() style: any;
   @Input() styleClass: string;

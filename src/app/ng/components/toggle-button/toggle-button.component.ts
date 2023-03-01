@@ -44,7 +44,7 @@ export class ToggleButtonComponent implements OnInit, AfterViewInit, ControlValu
   @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   @Input() validation: NgValidation;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   @Input() onLabel: string;
   @Input() offLabel: string;

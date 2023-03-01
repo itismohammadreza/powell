@@ -51,7 +51,7 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
   @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   @Input() items: any[];
   @Input() selectionMode: NgSelectionMode;

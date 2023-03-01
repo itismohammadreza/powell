@@ -23,7 +23,7 @@ export class InputOtpPage {
   showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   inputSize: NgSize = this.configService.getConfig().inputSize;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   readonly: boolean = false;
   disabled: boolean = false;
   placeholder: string = '';

@@ -38,7 +38,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   @Input() validation: NgValidation;
   @Input() async: boolean;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   @Input() style: any;
   @Input() styleClass: string;

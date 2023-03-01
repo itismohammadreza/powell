@@ -26,7 +26,7 @@ export class InputPasswordPage {
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
   inputSize: NgSize = this.configService.getConfig().inputSize;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   promptLabel: string = 'لطفا رمز عبور را وارد کنید';
   weakLabel: string = 'ضعیف';

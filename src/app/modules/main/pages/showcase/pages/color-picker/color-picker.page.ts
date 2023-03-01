@@ -28,7 +28,7 @@ export class ColorPickerPage {
   placeholder: string = '';
   readonly: boolean = false;
   disabled: boolean = false;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   maxlength: number = 7;
   inline: boolean = false;

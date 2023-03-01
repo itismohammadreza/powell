@@ -51,7 +51,7 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
   @Input() validation: NgValidation;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   @Input() options: SunEditorOptions;
   @Input() onDrop_param: boolean = true;

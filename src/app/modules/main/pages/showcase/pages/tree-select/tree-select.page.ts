@@ -26,7 +26,7 @@ export class TreeSelectPage {
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
   inputSize: NgSize = this.configService.getConfig().inputSize;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   scrollHeight: string = '400px';
   placeholder: string;

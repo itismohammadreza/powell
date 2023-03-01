@@ -54,7 +54,7 @@ export class AutoCompleteComponent implements OnInit, AfterViewInit, AfterConten
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize = this.configService.getConfig().inputSize;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   @Input() suggestions: any[];
   @Input() field: string;

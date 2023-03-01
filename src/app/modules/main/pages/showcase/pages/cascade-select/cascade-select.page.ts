@@ -26,7 +26,7 @@ export class CascadeSelectPage {
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
   inputSize: NgSize = this.configService.getConfig().inputSize;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   disabled: boolean = false;
   placeholder: string = '';

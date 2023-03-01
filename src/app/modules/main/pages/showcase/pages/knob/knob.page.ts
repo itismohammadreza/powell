@@ -20,7 +20,7 @@ export class KnobPage {
   rtl: boolean = this.configService.getConfig().rtl;
   showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   size: number = 100;
   disabled: boolean = false;

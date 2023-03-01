@@ -638,7 +638,7 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() inputCountChange = new EventEmitter();
   @Input() numbersOnly: boolean;
   @Output() numbersOnlyChange = new EventEmitter();
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   @Output() disableConfigChangeEffectChange = new EventEmitter();
 
   // instead of 'size' & 'inputSize'

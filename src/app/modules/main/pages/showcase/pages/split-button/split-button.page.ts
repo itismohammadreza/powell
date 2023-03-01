@@ -18,7 +18,7 @@ export class SplitButtonPage {
   full: boolean = false;
   size: NgSize = 'md';
   rtl: boolean = this.configService.getConfig().rtl;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   label: string = 'Label';
   icon: string = '';

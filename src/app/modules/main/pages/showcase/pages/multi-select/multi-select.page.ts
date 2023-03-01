@@ -26,7 +26,7 @@ export class MultiSelectPage {
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
   inputSize: NgSize = this.configService.getConfig().inputSize;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   autofocusFilter: boolean = false;
   defaultLabel: string = 'Choose';

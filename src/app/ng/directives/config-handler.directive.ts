@@ -28,7 +28,7 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   @Output() rippleChange = new EventEmitter();
   @Input() overlayOptions: OverlayOptions;
   @Output() overlayOptionsChange = new EventEmitter();
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   @Output() disableConfigChangeEffectChange = new EventEmitter();
 
   @Output() configChange = new EventEmitter();

@@ -24,7 +24,7 @@ export class DualLabelSwitchPage {
   disabled: boolean = false;
   readonly: boolean = false;
   async: boolean = false;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
 
   asyncFlag = false;
 

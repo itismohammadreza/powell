@@ -22,7 +22,7 @@ export class TreePage {
   showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   addon: NgAddon;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   selectionMode: NgSelectionMode;
   layout: NgOrientation = 'vertical';

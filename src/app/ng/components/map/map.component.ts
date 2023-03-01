@@ -69,7 +69,7 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
   @Input() showClear: boolean;
   @Input() clearTooltip: string;
   @Input() clearIcon: string = 'pi pi-trash';
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   @Input() selectionLimit: number;
   // native properties
   @Input() zoom: number = 10;

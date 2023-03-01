@@ -57,7 +57,7 @@ export class InputNumberComponent implements OnInit, AfterViewInit, ControlValue
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize = this.configService.getConfig().inputSize;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   @Input() format: boolean = true;
   @Input() showButtons: boolean;

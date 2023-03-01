@@ -49,7 +49,7 @@ export class InputTextareaComponent implements OnInit, AfterViewInit, ControlVal
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   @Input() rows: number;
   @Input() cols: number;
   @Input() autoResize: boolean;

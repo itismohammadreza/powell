@@ -16,7 +16,7 @@ export class MessageComponent implements AfterContentInit {
   @Input() severity: NgSeverity;
   @Input() closable: boolean;
   @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   contentTemplate: TemplateRef<any>;

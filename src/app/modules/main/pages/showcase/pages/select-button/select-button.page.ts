@@ -20,7 +20,7 @@ export class SelectButtonPage {
   rtl: boolean = this.configService.getConfig().rtl;
   showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   multiple: boolean = false;
   disabled: boolean = false;

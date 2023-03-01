@@ -13,7 +13,7 @@ export class EmptyComponent {
   @Input() imageSrc: string;
   @Input() text: string;
   @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
 
   constructor(private configService: ConfigService) {
   }

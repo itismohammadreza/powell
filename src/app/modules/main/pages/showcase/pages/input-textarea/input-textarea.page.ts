@@ -25,7 +25,7 @@ export class InputTextareaPage {
   labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
-  disableConfigChangeEffect: boolean;
+  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   readonly: boolean = false;
   disabled: boolean = false;

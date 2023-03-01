@@ -52,7 +52,7 @@ export class ColorPickerComponent implements OnInit, AfterViewInit, ControlValue
   @Input() readonly: boolean;
   @Input() maxlength: number = 7;
   @Input() placeholder: string;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   @Input() style: any;
   @Input() styleClass: string;
