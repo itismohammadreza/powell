@@ -4,8 +4,6 @@ import {PrimeNGConfig} from "primeng/api";
 import {ThemeService} from "@ng/services/theme.service";
 import {DOCUMENT} from "@angular/common";
 import {Subject} from "rxjs";
-import {NgFixLabelPosition, NgLabelPosition} from "@ng/models/forms";
-import {NgSize} from "@ng/models/offset";
 
 @Injectable()
 export class ConfigService {
@@ -42,9 +40,28 @@ export class ConfigService {
       this.themeService.changeTheme(config.theme)
     }
     this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
+    this.handleBodyClasses();
   }
 
   getConfig() {
     return this._config
+  }
+
+  private handleBodyClasses() {
+    const toKebabCase = (test: string) => {
+      return test.split(/(?=[A-Z])/).join('-').toLowerCase();
+    }
+    Object.entries(this._config).forEach(([key, value]) => {
+      key = toKebabCase(key);
+      if (typeof value == 'boolean') {
+        if (value) {
+          this.document.body.classList.add(`ng-${key}`)
+        } else {
+          this.document.body.classList.remove(`ng-${key}`)
+        }
+      } else if (typeof value != 'object') {
+        this.document.body.classList.add(`ng-${key}-${value}`)
+      }
+    })
   }
 }
