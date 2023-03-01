@@ -1,0 +1,105 @@
+:host ::ng-deep {
+  --fill: #f48138;
+
+  .iran-map-wrapper {
+    display: flex;
+    position: relative;
+
+    .message {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+    }
+
+    &.label-fix-top {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+
+    &.label-fix-side {
+      flex-direction: row-reverse;
+      align-items: center;
+
+      .fix-label {
+        margin-bottom: 0;
+      }
+    }
+
+    .field {
+      width: auto;
+      flex-grow: 1;
+      align-self: stretch;
+      display: inline-flex;
+
+      .map {
+        display: inline-flex;
+        flex-grow: 1;
+
+        .title {
+          display: none;
+          position: absolute;
+          background-color: #fff;
+          color: #333;
+          text-align: center;
+          line-height: 26px;
+          border-radius: 5px;
+          padding: 5px;
+          flex-direction: column;
+        }
+
+        .border path,
+        .island path {
+          fill: #8BF8FF
+        }
+
+        .sea path,
+        .lake path {
+          fill: #6caed8
+        }
+
+        .province path {
+          fill: #00949F;
+
+          &:not(.active):hover {
+            fill: lighten(#f48138, 10%) !important;
+            cursor: pointer
+          }
+
+          &.active {
+            fill: #f48138 !important;
+          }
+        }
+
+        path.disabled {
+          cursor: default !important;
+          pointer-events: none !important;
+          fill: #6c757d !important;
+        }
+      }
+    }
+
+    &.ltr {
+      direction: ltr;
+
+      .message {
+        left: 0;
+      }
+
+      .fix-label {
+        margin-right: 1rem;
+      }
+    }
+
+    &.rtl {
+      direction: rtl;
+
+      .message {
+        right: 0;
+      }
+
+      .fix-label {
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+
