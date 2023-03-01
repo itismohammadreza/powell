@@ -20,8 +20,10 @@ export class InputOtpPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;
-  inputSize: NgSize = this.configService.getConfig().inputSize;
+  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
+  inputSize: NgSize = this.configService.getConfig().inputSize;
+  disableConfigChangeEffect: boolean;
   readonly: boolean = false;
   disabled: boolean = false;
   placeholder: string = '';

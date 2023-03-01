@@ -18,8 +18,10 @@ export class ListboxPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;
+  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   addon: NgAddon;
+  disableConfigChangeEffect: boolean;
   // native properties
   checkbox: boolean = false;
   disabled: boolean = false;

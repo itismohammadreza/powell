@@ -20,10 +20,12 @@ export class InputTextareaPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;
+  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   icon: string = '';
   labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
+  disableConfigChangeEffect: boolean;
   // native properties
   readonly: boolean = false;
   disabled: boolean = false;

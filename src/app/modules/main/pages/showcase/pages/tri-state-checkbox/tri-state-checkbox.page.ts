@@ -17,6 +17,8 @@ export class TriStateCheckboxPage {
   filled: boolean = this.configService.getConfig().filled;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;
+  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  disableConfigChangeEffect: boolean;
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;

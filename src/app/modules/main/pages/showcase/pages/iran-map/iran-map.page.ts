@@ -18,8 +18,11 @@ export class IranMapPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;
+  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   disabled: boolean = false;
+  disableConfigChangeEffect: boolean;
+  selectionLimit: number = 31;
 
   constructor(private configService: ConfigService) {
   }

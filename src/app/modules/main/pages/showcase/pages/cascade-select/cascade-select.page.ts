@@ -1,5 +1,5 @@
-import {Component, Inject} from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgLabelPosition} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {ConfigService} from "@ng/services";
@@ -20,11 +20,13 @@ export class CascadeSelectPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;
+  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   icon: string = '';
   labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
   iconPos: NgIconPosition = 'left';
-  inputSize: NgSize = this.configService.getConfig().inputSize;
   addon: NgAddon;
+  inputSize: NgSize = this.configService.getConfig().inputSize;
+  disableConfigChangeEffect: boolean;
   // native properties
   disabled: boolean = false;
   placeholder: string = '';

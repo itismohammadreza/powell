@@ -29,6 +29,10 @@ export class TablePage {
   rtl: boolean = this.configService.getConfig().rtl;
   size: NgSize = 'md';
   header: string = 'Customers';
+  disableConfigChangeEffect: boolean;
+  gridlines: boolean = true;
+  striped: boolean = false;
+
   simpleCustomers = [
     {
       "id": 1000,

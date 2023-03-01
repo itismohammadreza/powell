@@ -18,7 +18,9 @@ export class FilePickerPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;
+  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
+  disableConfigChangeEffect: boolean;
   // native properties
   multiple: boolean = true;
   accept: string = 'image/*';

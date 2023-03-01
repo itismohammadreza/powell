@@ -18,12 +18,16 @@ export class MapPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;
+  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   addon: NgAddon;
-  // native properties
   disabled: boolean = false;
-  readonly: boolean = false;
   multiple: boolean = false;
+  clearMarkerOnClick: boolean = true;
+  showClear: boolean = true;
+  disableConfigChangeEffect: boolean;
+  // native properties
+  readonly: boolean = false;
 
   constructor(private configService: ConfigService) {
   }

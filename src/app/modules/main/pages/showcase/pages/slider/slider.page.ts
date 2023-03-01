@@ -19,7 +19,9 @@ export class SliderPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;
+  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
+  disableConfigChangeEffect: boolean;
   // native properties
   animate: boolean = true;
   disabled: boolean = false;

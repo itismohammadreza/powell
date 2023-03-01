@@ -27,11 +27,13 @@ export class InputNumberPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;
+  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   icon: string = '';
   labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
   iconPos: NgIconPosition = 'left';
-  inputSize: NgSize = this.configService.getConfig().inputSize;
   addon: NgAddon;
+  inputSize: NgSize = this.configService.getConfig().inputSize;
+  disableConfigChangeEffect: boolean;
   // native properties
   format: boolean = true;
   showButtons: boolean = true;

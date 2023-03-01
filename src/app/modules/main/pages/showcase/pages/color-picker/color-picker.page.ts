@@ -20,6 +20,7 @@ export class ColorPickerPage {
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;
+  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   icon: string = '';
   labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
   iconPos: NgIconPosition = 'left';
@@ -27,6 +28,7 @@ export class ColorPickerPage {
   placeholder: string = '';
   readonly: boolean = false;
   disabled: boolean = false;
+  disableConfigChangeEffect: boolean;
   // native properties
   maxlength: number = 7;
   inline: boolean = false;

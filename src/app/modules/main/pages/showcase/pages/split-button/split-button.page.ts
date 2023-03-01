@@ -18,6 +18,8 @@ export class SplitButtonPage {
   full: boolean = false;
   size: NgSize = 'md';
   rtl: boolean = this.configService.getConfig().rtl;
+  disableConfigChangeEffect: boolean;
+  // native properties
   label: string = 'Label';
   icon: string = '';
   iconPos: NgIconPosition = 'left';
