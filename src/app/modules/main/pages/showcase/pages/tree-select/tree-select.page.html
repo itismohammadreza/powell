@@ -58,9 +58,6 @@
   </p-panel>
 
   <p-panel dir="ltr" header="Preview">
-    <p-divider align="center">
-      <b>Using With Reactive Forms</b>
-    </p-divider>
     <form [formGroup]="form">
       <ng-tree-select
         formControlName="c1"
@@ -92,40 +89,5 @@
         [showClear]="showClear"
       ></ng-tree-select>
     </form>
-
-    <p-divider align="center">
-      <b>Using With NgModel</b>
-    </p-divider>
-    <ng-tree-select
-      name="myInput"
-      required
-      [(ngModel)]="binding"
-      [addon]="addon"
-      [validation]="{ required: 'error' }"
-      [options]="options"
-      [label]="label"
-      [filled]="filled"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [icon]="icon"
-      [labelPos]="labelPos"
-      [iconPos]="iconPos"
-      [inputSize]="inputSize"
-      [scrollHeight]="scrollHeight"
-      [placeholder]="placeholder"
-      [disabled]="disabled"
-      [selectionMode]="selectionMode"
-      [emptyMessage]="emptyMessage"
-      [display]="display"
-      [propagateSelectionUp]="propagateSelectionUp"
-      [propagateSelectionDown]="propagateSelectionDown"
-      [filter]="filter"
-      [filterPlaceHolder]="filterPlaceHolder"
-      [resetFilterOnHide]="resetFilterOnHide"
-      [showClear]="showClear"
-    ></ng-tree-select>
-    <pre class="mt-3 mb-0" dir="ltr"><b>Value :</b> {{binding | json}}</pre>
   </p-panel>
-
 </div>

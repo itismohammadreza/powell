@@ -28,9 +28,6 @@
   </p-panel>
 
   <p-panel dir="ltr" header="Preview">
-    <p-divider align="center">
-      <b>Using With Reactive Forms</b>
-    </p-divider>
     <form [formGroup]="form">
       <ng-select-button
         formControlName="c1"
@@ -47,24 +44,5 @@
         [disabled]="disabled"
       ></ng-select-button>
     </form>
-
-    <p-divider align="center">
-      <b>Using With NgModel</b>
-    </p-divider>
-    <ng-select-button
-      name="myInput"
-      required
-      [(ngModel)]="binding"
-      [validation]="{ required: 'error' }"
-      [options]="options"
-      [label]="label"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [labelPos]="labelPos"
-      [multiple]="multiple"
-      [disabled]="disabled"
-    ></ng-select-button>
-    <pre class="mt-3 mb-0" dir="ltr"><b>Value :</b> {{binding | json}}</pre>
   </p-panel>
 </div>

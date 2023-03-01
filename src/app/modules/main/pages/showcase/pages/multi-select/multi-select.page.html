@@ -74,9 +74,6 @@
   </p-panel>
 
   <p-panel dir="ltr" header="Preview">
-    <p-divider align="center">
-      <b>Using With Reactive Forms</b>
-    </p-divider>
     <form [formGroup]="form">
       <ng-multi-select
         formControlName="c1"
@@ -116,47 +113,5 @@
         [display]="display"
       ></ng-multi-select>
     </form>
-
-    <p-divider align="center">
-      <b>Using With NgModel</b>
-    </p-divider>
-    <ng-multi-select
-      name="myInput"
-      required
-      [(ngModel)]="binding"
-      [addon]="addon"
-      [validation]="{ required: 'error' }"
-      [options]="options"
-      [label]="label"
-      [filled]="filled"
-      [labelWidth]="labelWidth"
-      [hint]="hint"
-      [rtl]="rtl"
-      [icon]="icon"
-      [labelPos]="labelPos"
-      [iconPos]="iconPos"
-      [inputSize]="inputSize"
-      [autofocusFilter]="autofocusFilter"
-      [defaultLabel]="defaultLabel"
-      [disabled]="disabled"
-      [displaySelectedLabel]="displaySelectedLabel"
-      [emptyFilterMessage]="emptyFilterMessage"
-      [filter]="filter"
-      [filterPlaceHolder]="filterPlaceHolder"
-      [maxSelectedLabels]="maxSelectedLabels"
-      [overlayVisible]="overlayVisible"
-      [placeholder]="placeholder"
-      [readonly]="readonly"
-      [emptyMessage]="emptyMessage"
-      [resetFilterOnHide]="resetFilterOnHide"
-      [scrollHeight]="scrollHeight"
-      [selectedItemsLabel]="selectedItemsLabel"
-      [selectionLimit]="selectionLimit"
-      [showHeader]="showHeader"
-      [showToggleAll]="showToggleAll"
-      [showClear]="showClear"
-      [display]="display"
-    ></ng-multi-select>
-    <pre class="mt-3 mb-0" dir="ltr"><b>Value :</b> {{binding | json}}</pre>
   </p-panel>
 </div>
