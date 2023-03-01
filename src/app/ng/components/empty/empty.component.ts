@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {NgEmptyIcon} from "@ng/models/offset";
-import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-empty',
@@ -12,8 +11,4 @@ export class EmptyComponent {
   @Input() icon: string;
   @Input() imageSrc: string;
   @Input() text: string;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-
-  constructor(private configService: ConfigService) {
-  }
 }
