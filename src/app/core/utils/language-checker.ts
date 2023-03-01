@@ -1,4 +1,4 @@
-import {NgGlobal} from '@ng/ng-global';
+import {NgGlobal} from '@ng/global';
 import {TranslationService} from '@core/utils';
 
 export class LanguageChecker {

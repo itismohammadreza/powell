@@ -3,7 +3,7 @@ import {ConfirmationService, FilterService, MessageService, PrimeNGConfig,} from
 import {DialogService} from 'primeng/dynamicdialog';
 import {NgComponentsModule} from './components/components.module';
 import {ThemeService} from "@ng/services";
-import {NgGlobal} from '@ng/ng-global';
+import {NgGlobal} from '@ng/global';
 import {NgConfig} from "@ng/models/config";
 import {ConfigService} from "@ng/services/config.service";
 import {DOCUMENT} from "@angular/common";

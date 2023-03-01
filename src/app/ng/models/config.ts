@@ -8,6 +8,7 @@ export interface NgConfigChangeEvent {
 }
 
 export interface NgConfig {
+  disableConfigChangeEffect?: boolean;
   rtl?: boolean;
   labelPos?: NgLabelPosition;
   fixLabelPos?: NgFixLabelPosition;

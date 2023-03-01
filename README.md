@@ -23,7 +23,10 @@
 - add ability to change showRequiredStart in run time
 - add disableConfigChangeEffect as a config & unsub listener if disableConfigChangeEffect change at runtime
 - add new properties to dialogForm and their showcase page.
-
+- what is the priority in dialog form config.rtl & options.rtl & configService.rtl
+- add disableConfigChangeEffect to pages & to dialog form components and model
+- complete implementation of disableConfigChangeEffect in showcase pages
+- how about using disableConfigChangeEffect in overlay services? how should handle?
 ### New
 
 - [ ] **whiteboard** - implement component.
