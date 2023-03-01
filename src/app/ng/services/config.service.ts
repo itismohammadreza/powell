@@ -22,7 +22,7 @@ export class ConfigService {
     labelPos: 'fix-side',
     filled: false,
     inputSize: 'lg',
-    showRequiredStar: false,
+    showRequiredStar: true,
     theme: 'lara-light-indigo',
     ripple: true,
     overlayOptions: {}
