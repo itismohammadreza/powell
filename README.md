@@ -25,8 +25,8 @@
 - add new properties to dialogForm and their showcase page.
 - what is the priority in dialog form config.rtl & options.rtl & configService.rtl
 - add disableConfigChangeEffect to pages & to dialog form components and model
-- complete implementation of disableConfigChangeEffect in showcase pages
 - how about using disableConfigChangeEffect in overlay services? how should handle?
+- remove using with ngModel
 
 ### New
 
