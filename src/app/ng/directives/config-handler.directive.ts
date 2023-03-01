@@ -47,6 +47,7 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
 
   startSubscription() {
     this.configService.configChange$.pipe(takeUntil(this.destroy$)).subscribe(({modifiedConfig, currentConfig}) => {
+      console.log('subscription')
       const configs: string[] = [
         'disableConfigChangeEffect',
         'rtl',
@@ -73,9 +74,12 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.disableConfigChangeEffect) {
+    if (!changes.disableConfigChangeEffect) {
+      return
+    }
+    if (changes.disableConfigChangeEffect.currentValue === true) {
       this.stopSubscription()
-    } else if (!this.disableConfigChangeEffect) {
+    } else if (changes.disableConfigChangeEffect.currentValue === false && changes.disableConfigChangeEffect.previousValue === true) {
       this.startSubscription()
     }
   }
