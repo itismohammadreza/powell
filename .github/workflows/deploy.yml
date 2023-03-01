@@ -1,28 +1,22 @@
-name: Build and Deploy
+name: Continuous Deployment
 on:
   push:
     branches:
       - "master"
+permissions:
+  contents: write
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
     concurrency: ci-${{ github.ref}}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Configure Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '16.16.0'
-
-      - name: Install
-        run: |
-          npm ci
-          npm run build
+      - name: Install and Build
+        run: npm ci && npm run build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: build/prime-plus
-          branch: gh-pages
+          folder: dist/prime-plus
