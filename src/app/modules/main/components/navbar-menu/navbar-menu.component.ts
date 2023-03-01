@@ -116,6 +116,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       'input-password',
       'input-text',
       'input-textarea',
+      'iran-map',
       'jalali-datepicker',
       'knob',
       'listbox',

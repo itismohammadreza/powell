@@ -47,7 +47,7 @@ import {BottomSheetComponent} from "@ng/components/bottom-sheet/bottom-sheet.com
 import {DialogComponent} from "@ng/components/dialog/dialog.component";
 import {DynamicDialogComponent} from "@ng/components/dynamic-dialog/dynamic-dialog.component";
 import {Dialog2Component} from "@ng/components/dialog2/dialog2.component";
-// import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
+import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
 
 /***************************** UPLOAD *****************************/
 import {FilePickerComponent} from "@ng/components/file-picker/file-picker.component";
@@ -69,7 +69,7 @@ import {LoadingComponent} from "@ng/components/loading/loading.component";
 import {StatusComponent} from "@ng/components/status/status.component";
 import {DualLabelSwitchComponent} from "@ng/components/dual-label-switch/dual-label-switch.component";
 import {LoadingContainerComponent} from "@ng/components/loading-container/loading-container.component";
-import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
+import {IranMapComponent} from "@ng/components/iran-map/iran-map.component";
 
 export const COMPONENTS: Type<any>[] = [
   /***************************** FORM *************************/
@@ -132,4 +132,5 @@ export const COMPONENTS: Type<any>[] = [
   StatusComponent,
   LoadingComponent,
   LoadingContainerComponent,
+  IranMapComponent
 ];

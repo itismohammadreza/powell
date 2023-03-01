@@ -64,6 +64,7 @@ import {LoadingContainerPage} from "@modules/main/pages/showcase/pages/loading-c
 import {InfiniteScrollPage} from "@modules/main/pages/showcase/pages/infinite-scroll/infinite-scroll.page";
 import {AnimateOnScrollPage} from "@modules/main/pages/showcase/pages/animate-on-scroll/animate-on-scroll.page";
 import {InputOtpPage} from "@modules/main/pages/showcase/pages/input-otp/input-otp.page";
+import {IranMapPage} from "@modules/main/pages/showcase/pages/iran-map/iran-map.page";
 
 export const COMPONENTS: Type<any>[] = [
   // components
@@ -105,6 +106,7 @@ export const COMPONENTS: Type<any>[] = [
   InputPasswordPage,
   InputTextPage,
   InputTextareaPage,
+  IranMapPage,
   JalaliDatepickerPage,
   KnobPage,
   ListboxPage,

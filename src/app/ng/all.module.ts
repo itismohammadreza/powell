@@ -28,7 +28,6 @@ export class NgAllModule {
             configService.setConfig(ngConfig);
             themeService.initTheme();
             themeService.changeTheme(configService.getConfig().theme);
-            console.log(1)
             return configService;
           },
           deps: [PrimeNGConfig, ThemeService, DOCUMENT]

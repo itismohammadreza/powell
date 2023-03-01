@@ -54,6 +54,7 @@ import {InfiniteScrollPage} from "@modules/main/pages/showcase/pages/infinite-sc
 import {OpenDialogGuard} from "@core/guard";
 import {AnimateOnScrollPage} from "@modules/main/pages/showcase/pages/animate-on-scroll/animate-on-scroll.page";
 import {InputOtpPage} from "@modules/main/pages/showcase/pages/input-otp/input-otp.page";
+import {IranMapPage} from "@modules/main/pages/showcase/pages/iran-map/iran-map.page";
 
 const routes: Routes = [
   {
@@ -205,6 +206,11 @@ const routes: Routes = [
     path: 'input-textarea',
     component: InputTextareaPage,
     title: 'input-textarea'
+  },
+  {
+    path: 'iran-map',
+    component: IranMapPage,
+    title: 'iran-map'
   },
   {
     path: 'jalali-datepicker',
