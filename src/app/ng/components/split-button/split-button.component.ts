@@ -29,6 +29,7 @@ export class SplitButtonComponent implements AfterContentInit {
   @Input() full: boolean;
   @Input() size: NgSize = 'md';
   @Input() rtl: boolean = this.configService.getConfig().rtl;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() label: string;
   @Input() icon: string;

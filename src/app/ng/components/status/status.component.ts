@@ -14,6 +14,7 @@ export class StatusComponent {
   @Input() text: string;
   @Input() subText: string;
   @Input() rtl: boolean = this.configService.getConfig().rtl;
+  @Input() disableConfigChangeEffect: boolean;
 
   constructor(private configService: ConfigService) {
   }
