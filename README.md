@@ -23,8 +23,24 @@
 - add ability to change showRequiredStart in run time
 - add new properties to dialogForm and their showcase page.
 - what is the priority in dialog form config.rtl & options.rtl & configService.rtl
-- add disableConfigChangeEffect to pages & to dialog form components and model
 - how about using disableConfigChangeEffect in overlay services? how should handle?
+
+  handleLabelStar() {
+  const addStarTo = (value: string) => {
+  return value ? value.concat(' *') : '';
+  }
+  const removeStarFrom = (value: string) => {
+  return value ? value.slice(0, -2) : '';
+  }
+  if (this.showRequiredStar && this.isRequired()) {
+  this.label = addStarTo(this.label);
+  this.placeholder = addStarTo(this.placeholder);
+  } else {
+  this.label = removeStarFrom(this.label);
+  this.placeholder = removeStarFrom(this.placeholder);
+  }
+  this.cd.detectChanges();
+  }
 
 ### New
 

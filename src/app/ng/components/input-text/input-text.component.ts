@@ -76,7 +76,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onAfterBtnClick = new EventEmitter();
 
-  inputId: string;.0
+  inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
   onModelChange: any = (_: any) => {
