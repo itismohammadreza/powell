@@ -33,7 +33,7 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
 
   @Output() configChange = new EventEmitter();
 
-  destroy$: Subject<any> = new Subject<any>()
+  destroy$: Subject<any>;
 
   constructor(private configService: ConfigService) {
   }
@@ -46,8 +46,8 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   startSubscription() {
+    this.destroy$ = new Subject<any>();
     this.configService.configChange$.pipe(takeUntil(this.destroy$)).subscribe(({modifiedConfig, currentConfig}) => {
-      console.log('subscription')
       const configs: string[] = [
         'disableConfigChangeEffect',
         'rtl',
@@ -74,12 +74,13 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!changes.disableConfigChangeEffect) {
+    const {firstChange = true, previousValue, currentValue} = changes.disableConfigChangeEffect || {};
+    if (firstChange) {
       return
     }
-    if (changes.disableConfigChangeEffect.currentValue === true) {
+    if (currentValue === true) {
       this.stopSubscription()
-    } else if (changes.disableConfigChangeEffect.currentValue === false && changes.disableConfigChangeEffect.previousValue === true) {
+    } else if (currentValue === false && previousValue === true) {
       this.startSubscription()
     }
   }
