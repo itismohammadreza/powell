@@ -70,6 +70,7 @@ import {StatusComponent} from "@ng/components/status/status.component";
 import {DualLabelSwitchComponent} from "@ng/components/dual-label-switch/dual-label-switch.component";
 import {LoadingContainerComponent} from "@ng/components/loading-container/loading-container.component";
 import {IranMapComponent} from "@ng/components/iran-map/iran-map.component";
+import {PinchZoomComponent} from "@ng/components/image/lib/pinch-zoom.component";
 
 export const COMPONENTS: Type<any>[] = [
   /***************************** FORM *************************/
@@ -127,6 +128,7 @@ export const COMPONENTS: Type<any>[] = [
   /***************************** MEDIA *************************/
   ImageComponent,
   ImageSliderComponent,
+  PinchZoomComponent,
   /***************************** MISC *************************/
   EmptyComponent,
   StatusComponent,
