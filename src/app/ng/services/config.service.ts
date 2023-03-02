@@ -25,11 +25,18 @@ export class ConfigService {
     showRequiredStar: true,
     theme: 'lara-light-indigo',
     ripple: true,
+    zIndex: {
+      modal: 1100,
+      overlay: 1000,
+      menu: 1000,
+      tooltip: 1100
+    },
     overlayOptions: {}
   };
 
   setConfig(config: NgConfig) {
     this._config = {...this._config, ...config};
+    this.primengConfig.zIndex = this._config.zIndex;
     this.primengConfig.ripple = this._config.ripple;
     this.primengConfig.overlayOptions = this._config.overlayOptions;
     if (this._config.ripple === false) {
