@@ -86,8 +86,10 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   stopSubscription() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
+    if (this.destroy$) {
+      this.destroy$.next(true);
+      this.destroy$.complete();
+    }
   }
 
   ngOnDestroy() {
