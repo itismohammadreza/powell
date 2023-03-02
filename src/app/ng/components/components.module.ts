@@ -1,6 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgOptimizedImage} from '@angular/common';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 import {NgPipesModule} from '@ng/pipes/pipes.module';
 
@@ -19,6 +20,7 @@ import {PrimengModule} from '../primeng/primeng.module';
     LeafletModule,
     NgDirectivesModule,
     NgPipesModule,
+    NgOptimizedImage
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
