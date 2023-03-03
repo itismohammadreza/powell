@@ -145,6 +145,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
     const inputElement = event.target as HTMLInputElement;
     this.onInput.emit(event);
     this.onModelChange(inputElement.value);
+    this.setInputDirection();
   }
 
   _onBlur() {
@@ -166,7 +167,6 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
     const inputElement = event.target as HTMLInputElement;
     this.onKeyDown.emit(event);
     this.onModelChange(inputElement.value);
-    this.setInputDirection();
   }
 
   _onKeyUp(event: KeyboardEvent) {

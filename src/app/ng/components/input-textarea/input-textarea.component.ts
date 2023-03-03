@@ -142,6 +142,7 @@ export class InputTextareaComponent implements OnInit, AfterViewInit, ControlVal
     const inputElement = event.target as HTMLTextAreaElement;
     this.onInput.emit(event);
     this.onModelChange(inputElement.value);
+    this.setTextareaDirection();
   }
 
   _onBlur() {
@@ -157,7 +158,6 @@ export class InputTextareaComponent implements OnInit, AfterViewInit, ControlVal
     const inputElement = event.target as HTMLTextAreaElement;
     this.onKeyDown.emit(event);
     this.onModelChange(inputElement.value);
-    this.setTextareaDirection();
   }
 
   _onKeyUp(event: KeyboardEvent) {
