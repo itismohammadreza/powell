@@ -3,7 +3,7 @@ import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult} from "@ng/models/overlay";
 import {NgValidation} from "@ng/models/forms";
 import {ConfigService} from "@ng/services";
-import { DomHandler } from 'primeng/dom';
+import {DomHandler} from 'primeng/dom';
 
 @Component({
   selector: 'ng-dialog-form',
@@ -32,6 +32,7 @@ export class DialogFormComponent {
       config.selectiveSize = config.selectiveSize ?? this.configService.getConfig().inputSize;
       config.showRequiredStar = config.showRequiredStar ?? this.configService.getConfig().showRequiredStar;
       config.filled = config.filled ?? this.configService.getConfig().filled;
+      config.disableConfigChangeEffect = config.disableConfigChangeEffect ?? this.configService.getConfig().disableConfigChangeEffect;
       if (config.key) {
         this.form.addControl(config.key, new FormControl(null));
         this.handleConfigValue(config);
