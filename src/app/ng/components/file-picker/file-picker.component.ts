@@ -26,7 +26,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl,
 } from '@angular/forms';
-import {NgFilePickerMode, NgFixLabelPosition, NgValidation} from '@ng/models/forms';
+import {NgFilePickerMode, NgFileResultType, NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {FileUpload} from 'primeng/fileupload';
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {ConfigService} from "@ng/services";
@@ -53,7 +53,7 @@ export class FilePickerComponent
   @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   @Input() validation: NgValidation;
-  @Input() resultType: 'base64' | 'file' | 'none' = 'file';
+  @Input() resultType: NgFileResultType = 'file';
   @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   @Input() name: string;

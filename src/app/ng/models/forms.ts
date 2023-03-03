@@ -3,6 +3,7 @@ import {NgIconPosition} from './offset';
 import {NgButtonAppearance} from "@ng/models/button";
 
 export type NgFilePickerMode = 'basic' | 'advanced';
+export type NgFileResultType = 'base64' | 'file' | 'none';
 export type NgLabelPosition = 'fix-side' | 'fix-top' | 'float';
 export type NgFixLabelPosition = Exclude<NgLabelPosition, 'float'>;
 export type NgChipDisplayMode = 'comma' | 'chip';

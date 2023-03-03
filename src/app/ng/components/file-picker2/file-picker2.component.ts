@@ -21,7 +21,7 @@ import {
   NgControl,
 } from '@angular/forms';
 import {NgColor} from '@ng/models/color';
-import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
+import {NgFileResultType, NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {ConfigService} from "@ng/services";
 import {UtilsService} from "@ng/services";
 
@@ -58,7 +58,7 @@ export class FilePicker2Component
   @Input() accept: string;
   @Input() color: NgColor = 'primary';
   @Input() fileLimit: number = 20000;
-  @Input() resultType: 'base64' | 'file' | 'none' = 'base64';
+  @Input() resultType: NgFileResultType = 'base64';
   @Input() chooseLabel: string = 'انتخاب';
   @Output() onSelect = new EventEmitter();
   @Output() onRemove = new EventEmitter();

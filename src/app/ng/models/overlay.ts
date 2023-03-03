@@ -14,6 +14,7 @@ import {
   NgDatepickerSelectionMode,
   NgDatepickerViewMode,
   NgFilePickerMode,
+  NgFileResultType,
   NgFilterMatchMode,
   NgFixLabelPosition,
   NgInputMode,
@@ -277,9 +278,11 @@ export type NgDialogFormComponent =
   | 'image'
   | 'input-mask'
   | 'input-number'
+  | 'input-otp'
   | 'input-password'
   | 'input-text'
   | 'input-textarea'
+  | 'iran-map'
   | 'jalali-datepicker'
   | 'knob'
   | 'listbox'
@@ -423,7 +426,7 @@ export interface NgDialogFormConfig {
   ///////////////////////////////////////// file-picker2 /////////////////////////////////////////
   accept?: string;
   fileLimit?: number;
-  resultType?: 'base64' | 'file' | 'none';
+  resultType?: NgFileResultType;
   chooseLabel?: string;
   onRemove?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   isUnknownImageUrl?: boolean;
@@ -475,14 +478,12 @@ export interface NgDialogFormConfig {
   onMonthChange?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   onYearChange?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// image /////////////////////////////////////////
-  onErrorImagePlaceholder?: string;
   imageClass?: string;
   imageStyle?: any;
   src?: string;
   alt?: string;
   width?: string;
   preview?: boolean;
-  onError?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// input-mask /////////////////////////////////////////
   mask?: string;
   slotChar?: string;
@@ -511,6 +512,7 @@ export interface NgDialogFormConfig {
   title?: string;
   ///////////////////////////////////////// input-otp /////////////////////////////////////////
   inputCount?: number;
+  allowedKeyCodes?: string[];
   numbersOnly?: boolean;
   autoFocusFirst?: boolean;
   ///////////////////////////////////////// input-password /////////////////////////////////////////
@@ -537,6 +539,8 @@ export interface NgDialogFormConfig {
   onInput?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   onKeyDown?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   onKeyUp?: (dialogFormEvent?: NgDialogFormEventRes) => void;
+  ///////////////////////////////////////// iran-map /////////////////////////////////////////
+  disabledProvinces?: number;
   ///////////////////////////////////////// knob /////////////////////////////////////////
   valueColor?: string;
   rangeColor?: string;
@@ -550,8 +554,9 @@ export interface NgDialogFormConfig {
   listStyleClass?: string;
   onDblClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// map /////////////////////////////////////////
-  clearMapBtnTooltip?: string;
-  clearMapBtnIcon?: string;
+  clearMarkerOnClick?: boolean;
+  clearTooltip?: string;
+  clearIcon?: string;
   zoom?: number;
   center?: LatLng;
   height?: string;
@@ -725,6 +730,7 @@ export interface NgDialogFormConfig {
   readonly?: boolean;
   checkboxTrueIcon?: string;
   checkboxFalseIcon?: string;
+  disableConfigChangeEffect?: boolean;
 
   // instead of 'size'
   selectiveSize?: NgSize;
