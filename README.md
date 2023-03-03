@@ -20,10 +20,9 @@
 - add bootstrap 5
 - use gap instead of margin left and right
 - add pinch-zoom component
-- add ability to change showRequiredStart in run time
-- add new properties to dialogForm and their showcase page.
 - what is the priority in dialog form config.rtl & options.rtl & configService.rtl
 - how about using disableConfigChangeEffect in overlay services? how should handle?
+- add ability to change showRequiredStart in run time
 
   handleLabelStar() {
   const addStarTo = (value: string) => {
