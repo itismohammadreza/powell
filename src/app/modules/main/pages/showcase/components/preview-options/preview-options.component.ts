@@ -745,6 +745,7 @@ export class PreviewOptionsComponent implements OnInit {
       filled: 'filled',
       inputSize: 'selectiveSize',
       showRequiredStar: 'showRequiredStar',
+      disableConfigChangeEffect: 'disableConfigChangeEffect',
       theme: 'theme',
       ripple: 'ripple',
       overlayOptions: 'overlayOptions',
