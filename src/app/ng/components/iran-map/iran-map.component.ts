@@ -432,6 +432,15 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
 
     el.querySelector('.iran-map-wrapper').addEventListener('mousemove', (e: any) => {
       const wrapper = e.currentTarget;
+      const transform = getComputedStyle(wrapper.parentNode.parentNode).transform;
+      let matrixA = 1;
+      if (transform != 'none') {
+        let matrix: any = transform.split('(');
+        matrix.splice(0, 1);
+        matrix = matrix[0].slice(0, -1);
+        matrix = matrix.split(',').map(x => +x);
+        matrixA = matrix[0];
+      }
       let posx = 0;
       let posy = 0;
       if (!e) {
@@ -450,10 +459,10 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
           top: rect.top + window.scrollY,
           left: rect.left + window.scrollX,
         };
-        const x = (posx - offset.left + 25) + 'px';
-        const y = (posy - offset.top - 5) + 'px';
-        tooltipEl.style.left = x;
-        tooltipEl.style.top = y;
+        const x = (posx - offset.left + 25) / matrixA;
+        const y = (posy - offset.top - 5) / matrixA;
+        tooltipEl.style.left = x + 'px';
+        tooltipEl.style.top = y + 'px';
       }
     })
     this.onMapReady.emit(this._provinces.map(({d, ...p}) => p))
