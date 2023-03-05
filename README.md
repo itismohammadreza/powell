@@ -20,8 +20,9 @@
 - add bootstrap 5
 - use gap instead of margin left and right
 - add pinch-zoom component
-- add ability to change showRequiredStart in run time
 - how should disableConfigChangeEffect use in overlay.service like toast etc...? 
+- add ability to change showRequiredStart in run time
+
   handleLabelStar() {
   const addStarTo = (value: string) => {
   return value ? value.concat(' *') : '';
