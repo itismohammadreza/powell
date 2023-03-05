@@ -10,8 +10,7 @@ const routes: Routes = [
       {
         path: 'showcase',
         title: 'پیشنمایش',
-        loadChildren: (): Promise<any> =>
-          import('./pages/showcase/showcase.module').then((m) => m.ShowcaseModule),
+        loadChildren: () => import('./pages/showcase/showcase.module').then((m) => m.ShowcaseModule),
       },
       {
         path: '',
