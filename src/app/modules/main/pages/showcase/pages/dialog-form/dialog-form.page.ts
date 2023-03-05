@@ -50,13 +50,15 @@ export class DialogFormPage {
           component: 'jalali-datepicker',
           key: 'birthdate',
           label: 'birthdate',
+          labelWidth: 150,
           touchUI: true,
-          showTime: true
+          showTime: true,
         },
         {
           component: 'input-text',
           key: 'name',
           label: 'first name',
+          labelWidth: 150,
           validations: [
             {type: 'required', validator: Validators.required, message: 'is required'},
             {
@@ -88,6 +90,7 @@ export class DialogFormPage {
           component: 'multi-select',
           key: 'book',
           label: 'book',
+          labelWidth: 150,
           validations: [
             {type: 'required', validator: Validators.required, message: 'is required'},
           ],
