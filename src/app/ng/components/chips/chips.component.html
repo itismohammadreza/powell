@@ -62,14 +62,10 @@
     </div>
   </div>
   <label
+    class="fix-label"
     *ngIf="label && labelPos != 'float'"
     [attr.for]="inputId"
-    [ngClass]="{
-      'mb-0': labelPos == 'fix-side',
-      'ml-4': rtl,
-      'mr-4': !rtl,
-      'text-muted': disabled
-    }"
+    [class.p-disabled]="disabled"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label }}
   </label>
