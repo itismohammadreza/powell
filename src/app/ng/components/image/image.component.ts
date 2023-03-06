@@ -61,16 +61,9 @@ export class ImageComponent implements AfterContentInit {
   maskVisible: boolean = false;
   previewVisible: boolean = false;
   rotate: number = 0;
-  scale: number = 1;
   previewClick: boolean = false;
   container: HTMLElement;
   wrapper: HTMLElement;
-  zoomSettings = {
-    default: 1,
-    step: 0.1,
-    max: 1.5,
-    min: 0.5
-  };
 
   constructor(private config: ConfigService, private cd: ChangeDetectorRef) {
   }
@@ -117,16 +110,6 @@ export class ImageComponent implements AfterContentInit {
     this.previewClick = true;
   }
 
-  zoomIn() {
-    this.scale = this.scale + this.zoomSettings.step;
-    this.previewClick = true;
-  }
-
-  zoomOut() {
-    this.scale = this.scale - this.zoomSettings.step;
-    this.previewClick = true;
-  }
-
   onAnimationStart(event: AnimationEvent) {
     switch (event.toState) {
       case 'visible':
@@ -170,7 +153,7 @@ export class ImageComponent implements AfterContentInit {
   }
 
   imagePreviewStyle() {
-    return {transform: 'rotate(' + this.rotate + 'deg) scale(' + this.scale + ')'};
+    return {transform: 'rotate(' + this.rotate + 'deg)', width: '50%', height: '50%'};
   }
 
   containerClass() {
@@ -187,19 +170,10 @@ export class ImageComponent implements AfterContentInit {
   closePreview() {
     this.previewVisible = false;
     this.rotate = 0;
-    this.scale = this.zoomSettings.default;
   }
 
   imageError(event) {
     this.onImageError.emit(event);
-  }
-
-  get isZoomOutDisabled() {
-    return this.scale - this.zoomSettings.step <= this.zoomSettings.min;
-  }
-
-  get isZoomInDisabled() {
-    return this.scale + this.zoomSettings.step >= this.zoomSettings.max;
   }
 
   // @Input() onErrorImagePlaceholder: string;

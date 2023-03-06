@@ -1,29 +1,10 @@
-export interface Properties {
-  element: HTMLElement;
-  listeners?: 'auto' | 'mouse and touch';
-  touchListeners?: any;
-  mouseListeners?: any;
-  otherListeners?: any;
-  resize?: boolean;
-}
-
-export type EventType =
-  undefined
-  | 'touchend'
-  | 'pan'
-  | 'pinch'
-  | 'horizontal-swipe'
-  | 'vertical-swipe'
-  | 'tap'
-  | 'longtap';
-export type TouchHandler = 'handleTouchstart' | 'handleTouchmove' | 'handleTouchend';
-export type MouseHandler = 'handleMousedown' | 'handleMousemove' | 'handleMouseup';
+import {MouseHandler, TouchEventType, TouchOptions} from "@ng/models/image";
 
 export class Touches {
-  properties: Properties;
+  properties: TouchOptions;
   element: HTMLElement;
   elementPosition: ClientRect;
-  eventType: EventType = undefined;
+  eventType: TouchEventType = undefined;
   handlers: any = {};
   startX = 0;
   startY = 0;
@@ -36,18 +17,18 @@ export class Touches {
   isMousedown = false;
 
   _touchListeners: any = {
-    "touchstart": "handleTouchstart",
-    "touchmove": "handleTouchmove",
-    "touchend": "handleTouchend"
+    touchstart: "handleTouchstart",
+    touchmove: "handleTouchmove",
+    touchend: "handleTouchend"
   }
   _mouseListeners: any = {
-    "mousedown": "handleMousedown",
-    "mousemove": "handleMousemove",
-    "mouseup": "handleMouseup",
-    "wheel": "handleWheel"
+    mousedown: "handleMousedown",
+    mousemove: "handleMousemove",
+    mouseup: "handleMouseup",
+    wheel: "handleWheel"
   }
   _otherListeners: any = {
-    "resize": "handleResize"
+    resize: "handleResize"
   }
 
   get touchListeners() {
@@ -62,7 +43,7 @@ export class Touches {
     return this.properties.otherListeners ? this.properties.otherListeners : this._otherListeners;
   }
 
-  constructor(properties: Properties) {
+  constructor(properties: TouchOptions) {
     this.properties = properties;
     this.element = this.properties.element;
     this.elementPosition = this.getElementPosition();
@@ -87,7 +68,7 @@ export class Touches {
       listeners = Object.assign(listeners, this.otherListeners);
     }
 
-    for (var listener in listeners) {
+    for (const listener in listeners) {
       const handler: MouseHandler = listeners[listener];
 
       // Window
@@ -357,8 +338,8 @@ export class Touches {
   }
 
   detectTouchScreen() {
-    var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
-    var mq = function (query: any) {
+    const prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+    const mq = function (query: any) {
       return window.matchMedia(query).matches;
     }
 
@@ -366,11 +347,11 @@ export class Touches {
       return true;
     }
 
-    var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+    const query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
     return mq(query);
   }
 
-  on(event: EventType, handler: Function) {
+  on(event: TouchEventType, handler: Function) {
     if (event) {
       this.handlers[event] = handler;
     }

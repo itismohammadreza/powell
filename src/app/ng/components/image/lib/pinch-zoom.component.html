@@ -1,9 +1,3 @@
-<div class="pinch-zoom-content" [class.pz-dragging]="isDragging">
+<div class="pinch-zoom-content" [ngStyle]="style" [style.overflow]="overflow" [class.pz-dragging]="isDragging">
   <ng-content></ng-content>
 </div>
-
-<!-- Control: one button -->
-<!--<div class="pz-zoom-button pz-zoom-control-position-bottom" -->
-<!--	[class.pz-zoom-button-out]="isZoomedIn" -->
-<!--	*ngIf="isControl()" -->
-<!--	(click)="toggleZoom()"></div>-->

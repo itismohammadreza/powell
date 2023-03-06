@@ -1,11 +1,9 @@
 import {Touches} from './touches';
-import {Properties} from './interfaces';
-import {defaultProperties} from './properties';
-
-type PropertyName = keyof Properties;
+import {defaultProperties} from './defaults';
+import {PinchZoomOptions} from "@ng/models/image";
 
 export class IvyPinch {
-  properties: Properties = defaultProperties;
+  properties: PinchZoomOptions = defaultProperties;
   touches: any;
   element: any;
   elementTarget: any;
@@ -57,9 +55,9 @@ export class IvyPinch {
       listeners: properties.listeners,
       resize: properties.autoHeight,
       mouseListeners: {
-        "mousedown": "handleMousedown",
-        "mouseup": "handleMouseup",
-        "wheel": "handleWheel"
+        mousedown: "handleMousedown",
+        mouseup: "handleMouseup",
+        wheel: "handleWheel"
       }
     });
 
@@ -617,7 +615,7 @@ export class IvyPinch {
     this.touches.destroy();
   }
 
-  getPropertiesValue(propertyName: PropertyName) {
+  getPropertiesValue(propertyName: keyof PinchZoomOptions) {
     if (this.properties && this.properties[propertyName]) {
       return this.properties[propertyName]
     } else {
