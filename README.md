@@ -21,25 +21,7 @@
 - use gap instead of margin left and right
 - ----------------------------------------------------
 - add pinch-zoom component properties in dialogForm & showcase page.
-- how should disableConfigChangeEffect use in overlay.service like toast etc...? 
-- add ability to change showRequiredStart in run time
-
-  handleLabelStar() {
-  const addStarTo = (value: string) => {
-  return value ? value.concat(' *') : '';
-  }
-  const removeStarFrom = (value: string) => {
-  return value ? value.slice(0, -2) : '';
-  }
-  if (this.showRequiredStar && this.isRequired()) {
-  this.label = addStarTo(this.label);
-  this.placeholder = addStarTo(this.placeholder);
-  } else {
-  this.label = removeStarFrom(this.label);
-  this.placeholder = removeStarFrom(this.placeholder);
-  }
-  this.cd.detectChanges();
-  }
+- how should disableConfigChangeEffect use in overlay.service like toast etc...?
 
 ### New
 
