@@ -14,8 +14,9 @@ jobs:
 
       - name: Install and Build
         run: npm ci && npm run build
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: ~/work/prime-plus/dist/prime-plus
+      
+      - name: Run ls
+        run: ls
+      
+      - name: Run shell
+        run: tree .
