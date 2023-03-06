@@ -7,7 +7,6 @@ permissions:
   contents: write
 jobs:
   build-and-deploy:
-    concurrency: ci-${{ github.ref}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,4 +18,4 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist/prime-plus
+          folder: ./dist/prime-plus
