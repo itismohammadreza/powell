@@ -9,7 +9,7 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import {BreakPointItem, ImageItem} from '@ng/models/image-slider';
+import {BreakPointItem, ImageItem} from '@ng/models/image';
 import {TemplateDirective} from "@ng/directives/template.directive";
 
 @Component({
