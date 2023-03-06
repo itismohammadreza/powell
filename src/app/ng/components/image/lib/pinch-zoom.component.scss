@@ -5,8 +5,8 @@
 
 .pinch-zoom-content {
   height: inherit;
-}
 
-.pz-dragging {
-  cursor: all-scroll;
+  &.transformed ::ng-deep img {
+    cursor: all-scroll;
+  }
 }

@@ -377,9 +377,6 @@ export class IvyPinch {
     const imgElement = this.element.getElementsByTagName(this.elementTarget);
 
     if (imgElement.length) {
-      imgElement[0].style.maxWidth = '100%';
-      imgElement[0].style.maxHeight = '100%';
-
       this.setAutoHeight();
     }
   }
@@ -471,7 +468,12 @@ export class IvyPinch {
 
   transformElement(duration: any) {
     this.element.style.transition = "all " + duration + "ms";
-    this.element.style.transform = "matrix(" + Number(this.scale) + ", 0, 0, " + Number(this.scale) + ", " + Number(this.moveX) + ", " + Number(this.moveY) + ")";
+    this.element.style.transform = "matrix(" + (+this.scale) + ", 0, 0, " + (+this.scale) + ", " + (+this.moveX) + ", " + (+this.moveY) + ")";
+    if (this.moveX || this.moveY) {
+      this.element.classList.add('transformed')
+    } else {
+      this.element.classList.remove('transformed')
+    }
   }
 
   isTouchScreen() {
@@ -573,10 +575,7 @@ export class IvyPinch {
     }
   }
 
-  setZoom(properties: {
-    scale: number,
-    center?: number[]
-  }) {
+  setZoom(properties: { scale: number, center?: number[] }) {
     this.scale = properties.scale;
 
     let xCenter;

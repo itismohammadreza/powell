@@ -20,7 +20,6 @@ export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {
   @Input() overflow: Overflow;
   @Input() zoomControlScale: number;
   @Input() disableZoomControl: DisableZoomControl;
-  @Input() backgroundColor: string;
   @Input() limitPan: boolean;
   @Input() minPanScale: number;
   @Input() minScale: number;
@@ -44,7 +43,9 @@ export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {
   ngOnChanges(changes: SimpleChanges) {
     let properties: PinchZoomOptions = {};
     for (const prop in changes) {
-      properties[prop] = changes[prop].currentValue;
+      if (changes[prop].currentValue != undefined) {
+        properties[prop] = changes[prop].currentValue;
+      }
     }
     this.applyPropertiesDefault(defaultProperties, properties);
   }
@@ -62,10 +63,6 @@ export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {
 
   applyPropertiesDefault(defaultProperties: PinchZoomOptions, properties: PinchZoomOptions) {
     this.properties = Object.assign({}, defaultProperties, properties);
-  }
-
-  get isDragging() {
-    return this.ivyPinch ? this.ivyPinch.isDragging() : undefined;
   }
 
   ngOnDestroy() {

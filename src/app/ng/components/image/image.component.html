@@ -16,9 +16,7 @@
       <i class="p-image-preview-icon pi pi-eye"></i>
     </ng-template>
   </div>
-  <div #mask class="p-image-mask p-component-overlay p-component-overlay-enter"
-       *ngIf="maskVisible"
-       (click)="onMaskClick()">
+  <div #mask class="p-image-mask p-component-overlay p-component-overlay-enter" *ngIf="maskVisible">
     <div class="p-image-toolbar" (click)="handleToolbarClick($event)">
       <button class="p-image-action p-link" (click)="rotateRight()" type="button">
         <i class="pi pi-refresh"></i>
@@ -35,7 +33,26 @@
       [@animation]="{ value: 'visible', params: { showTransitionParams: showTransitionOptions, hideTransitionParams: hideTransitionOptions } }"
       (@animation.start)="onAnimationStart($event)"
       (@animation.done)="onAnimationEnd($event)">
-      <ng-pinch-zoom overflow="visible">
+      <ng-pinch-zoom
+        [transitionDuration]="pinchTransitionDuration"
+        [doubleTap]="pinchDoubleTap"
+        [doubleTapScale]="pinchDoubleTapScale"
+        [autoZoomOut]="pinchAutoZoomOut"
+        [limitZoom]="pinchLimitZoom"
+        [disabled]="pinchDisabled"
+        [disablePan]="pinchDisablePan"
+        [overflow]="pinchOverflow"
+        [zoomControlScale]="pinchZoomControlScale"
+        [disableZoomControl]="pinchDisableZoomControl"
+        [limitPan]="pinchLimitPan"
+        [minPanScale]="pinchMinPanScale"
+        [minScale]="pinchMinScale"
+        [listeners]="pinchListeners"
+        [wheel]="pinchWheel"
+        [autoHeight]="pinchAutoHeight"
+        [wheelZoomFactor]="pinchWheelZoomFactor"
+        [draggableImage]="pinchDraggableImage"
+        [style]="pinchStyle">
         <img [attr.src]="src"
              [attr.alt]="alt"
              class="p-image-preview"
@@ -45,20 +62,3 @@
     </div>
   </div>
 </span>
-
-<!--<p-image-->
-<!--  [imageClass]="imageClass"-->
-<!--  [imageStyle]="imageStyle"-->
-<!--  [styleClass]="styleClass"-->
-<!--  [style]="style"-->
-<!--  [src]="src"-->
-<!--  [alt]="alt"-->
-<!--  [width]="width"-->
-<!--  [height]="height"-->
-<!--  [appendTo]="appendTo"-->
-<!--  [preview]="preview"-->
-<!--  [showTransitionOptions]="showTransitionOptions"-->
-<!--  [hideTransitionOptions]="hideTransitionOptions"-->
-<!--  (onShow)="emitter('onShow',$event)"-->
-<!--  (onHide)="emitter('onHide',$event)"-->
-<!--&gt;</p-image>-->

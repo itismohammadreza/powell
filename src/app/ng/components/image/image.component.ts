@@ -15,9 +15,9 @@ import {
 import {animate, AnimationEvent, style, transition, trigger} from "@angular/animations";
 import {ConfigService} from "@ng/services";
 import {TemplateDirective} from "@ng/directives/template.directive";
-import {SafeUrl} from "@angular/platform-browser";
 import {ZIndexUtils} from "primeng/utils";
 import {DomHandler} from "primeng/dom";
+import {DisableZoomControl, LimitZoom, Listener, Overflow} from "@ng/models/image";
 
 @Component({
   selector: 'ng-image',
@@ -43,7 +43,7 @@ export class ImageComponent implements AfterContentInit {
   @Input() imageStyle: any;
   @Input() styleClass: string;
   @Input() style: any;
-  @Input() src: string | SafeUrl;
+  @Input() src: string;
   @Input() alt: string;
   @Input() width: string;
   @Input() height: string;
@@ -51,6 +51,27 @@ export class ImageComponent implements AfterContentInit {
   @Input() preview: boolean = false;
   @Input() showTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
+
+  @Input() pinchTransitionDuration: number;
+  @Input() pinchDoubleTap: boolean
+  @Input() pinchDoubleTapScale: number;
+  @Input() pinchAutoZoomOut: boolean;
+  @Input() pinchLimitZoom: LimitZoom;
+  @Input() pinchDisabled: boolean;
+  @Input() pinchDisablePan: boolean;
+  @Input() pinchOverflow: Overflow;
+  @Input() pinchZoomControlScale: number;
+  @Input() pinchDisableZoomControl: DisableZoomControl;
+  @Input() pinchLimitPan: boolean;
+  @Input() pinchMinPanScale: number;
+  @Input() pinchMinScale: number;
+  @Input() pinchListeners: Listener;
+  @Input() pinchWheel: boolean;
+  @Input() pinchAutoHeight: boolean;
+  @Input() pinchWheelZoomFactor: number;
+  @Input() pinchDraggableImage: boolean;
+  @Input() pinchStyle: any;
+
   @Output() onShow: EventEmitter<any> = new EventEmitter();
   @Output() onHide: EventEmitter<any> = new EventEmitter();
   @Output() onImageError: EventEmitter<any> = new EventEmitter();
@@ -87,13 +108,6 @@ export class ImageComponent implements AfterContentInit {
       this.maskVisible = true;
       this.previewVisible = true;
     }
-  }
-
-  onMaskClick() {
-    if (!this.previewClick) {
-      this.closePreview();
-    }
-    this.previewClick = false;
   }
 
   onPreviewImageClick() {
