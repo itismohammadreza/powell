@@ -1,6 +1,5 @@
 import {
   AfterContentInit,
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -40,7 +39,7 @@ import {ConfigService} from "@ng/services";
     },
   ],
 })
-export class TreeSelectComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
+export class TreeSelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean = this.configService.getConfig().filled;
@@ -131,18 +130,6 @@ export class TreeSelectComponent implements OnInit, AfterViewInit, AfterContentI
           }
         });
       }
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      if (this.placeholder) {
-        this.placeholder += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 

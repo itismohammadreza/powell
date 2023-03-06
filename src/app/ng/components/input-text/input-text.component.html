@@ -36,7 +36,7 @@
           [attr.id]="inputId"
           [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
           [attr.maxlength]="maxlength"
-          [attr.placeholder]="placeholder"
+          [attr.placeholder]="placeholder | labelStar:showRequiredStar:isRequired()"
           [attr.type]="type"
           [attr.inputmode]="inputMode"
           [disabled]="disabled"
@@ -54,7 +54,7 @@
           (keyup)="_onKeyUp($event)"
           (paste)="emitter('onPaste', $event)"/>
         <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
-          {{ label }}
+          {{ label | labelStar:showRequiredStar:isRequired() }}
         </label>
         <i *ngIf="showClear && !disabled && value != null"
            class="p-inputtext-clear-icon pi pi-times"
@@ -69,7 +69,7 @@
     [attr.for]="inputId"
     [class.p-disabled]="disabled"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label }}
+    {{ label | labelStar:showRequiredStar:isRequired() }}
   </label>
   <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
   <div class="message small">

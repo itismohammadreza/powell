@@ -319,12 +319,6 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   }
 
   ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      this.cd.detectChanges();
-    }
     if (!this.disabled) {
       this.loadMap();
     }

@@ -160,18 +160,6 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      if (this.placeholder) {
-        this.placeholder += ' *';
-      }
-      this.cd.detectChanges();
-    }
-  }
-
   _onInput(event: Event) {
     this.onInput.emit(event);
     this.onModelChange(this.value);

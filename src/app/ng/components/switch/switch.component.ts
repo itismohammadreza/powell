@@ -92,21 +92,6 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
     this.setLabel();
   }
 
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      if (this.onLabel) {
-        this.onLabel += ' *';
-      }
-      if (this.offLabel) {
-        this.offLabel += ' *';
-      }
-      this.cd.detectChanges();
-    }
-  }
-
   setLabel() {
     if (this.onLabel && this.offLabel) {
       if (this.value) {

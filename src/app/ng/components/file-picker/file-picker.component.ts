@@ -1,7 +1,6 @@
 import {HttpHeaders} from '@angular/common/http';
 import {
   AfterContentInit,
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -43,8 +42,7 @@ import {ConfigService} from "@ng/services";
     },
   ],
 })
-export class FilePickerComponent
-  implements OnInit, OnChanges, AfterViewInit, AfterContentInit, ControlValueAccessor {
+export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit, ControlValueAccessor {
   @Input() value: any = [];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -152,15 +150,6 @@ export class FilePickerComponent
   ngOnChanges() {
     if (this.isImage(this.value)) {
       this.init(this.value);
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 

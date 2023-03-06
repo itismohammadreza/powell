@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Injector,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -35,7 +25,7 @@ import {ConfigService} from "@ng/services";
     },
   ],
 })
-export class ToggleButtonComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class ToggleButtonComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -96,15 +86,6 @@ export class ToggleButtonComponent implements OnInit, AfterViewInit, ControlValu
           }
         });
       }
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 

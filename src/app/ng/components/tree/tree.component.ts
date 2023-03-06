@@ -1,6 +1,5 @@
 import {
   AfterContentInit,
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -42,7 +41,7 @@ import {ConfigService} from "@ng/services";
     },
   ],
 })
-export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
+export class TreeComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
@@ -139,15 +138,6 @@ export class TreeComponent implements OnInit, AfterViewInit, AfterContentInit, C
           currentControl.markAsTouched();
         });
       }
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 

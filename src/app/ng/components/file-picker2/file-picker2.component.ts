@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -22,8 +21,7 @@ import {
 } from '@angular/forms';
 import {NgColor} from '@ng/models/color';
 import {NgFileResultType, NgFixLabelPosition, NgValidation} from '@ng/models/forms';
-import {ConfigService} from "@ng/services";
-import {UtilsService} from "@ng/services";
+import {ConfigService, UtilsService} from "@ng/services";
 
 @Component({
   selector: 'ng-file-picker2',
@@ -40,8 +38,7 @@ import {UtilsService} from "@ng/services";
     '[style.display]': "'block'"
   }
 })
-export class FilePicker2Component
-  implements OnInit, OnChanges, AfterViewInit, ControlValueAccessor {
+export class FilePicker2Component implements OnInit, OnChanges, ControlValueAccessor {
   @Input() value: any = [];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -117,15 +114,6 @@ export class FilePicker2Component
 
   ngOnChanges() {
     this.init(this.value);
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      this.cd.detectChanges();
-    }
   }
 
   async onSingleSelect(event: any) {

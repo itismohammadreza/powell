@@ -78,7 +78,7 @@
     *ngIf="label"
     [attr.for]="inputId"
     [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label }}
+    {{ label | labelStar:showRequiredStar:isRequired() }}
   </label>
   <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
   <div class="message small">

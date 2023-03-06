@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -40,7 +39,7 @@ import {EditorBaseComponent} from "@ng/components/editor/editor-base/editor-base
     },
   ],
 })
-export class EditorComponent implements OnInit, OnChanges, AfterViewInit, ControlValueAccessor {
+export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -174,15 +173,6 @@ export class EditorComponent implements OnInit, OnChanges, AfterViewInit, Contro
       } else {
         this.editorInstance.enabled()
       }
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 

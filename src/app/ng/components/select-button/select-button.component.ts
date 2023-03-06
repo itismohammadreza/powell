@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChild,
@@ -36,7 +35,7 @@ import {ConfigService} from "@ng/services";
     },
   ],
 })
-export class SelectButtonComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class SelectButtonComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -102,15 +101,6 @@ export class SelectButtonComponent implements OnInit, AfterViewInit, ControlValu
           }
         });
       }
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 

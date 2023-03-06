@@ -92,15 +92,6 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
     this.setInitValue()
   }
 
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      this.cd.detectChanges();
-    }
-  }
-
   setInitValue() {
     if (!this.value) {
       this.value = this.labelLeftValue;

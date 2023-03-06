@@ -109,18 +109,6 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      if (this.placeholder) {
-        this.placeholder += ' *';
-      }
-      this.cd.detectChanges();
-    }
-  }
-
   _onInput(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     this.onInput.emit(event);

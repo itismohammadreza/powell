@@ -1,6 +1,5 @@
 import {
   AfterContentInit,
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -41,7 +40,7 @@ import {ConfigService} from "@ng/services";
     },
   ],
 })
-export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValueAccessor, AfterContentInit {
+export class MultiSelectComponent implements OnInit, ControlValueAccessor, AfterContentInit {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean = this.configService.getConfig().filled;
@@ -167,18 +166,6 @@ export class MultiSelectComponent implements OnInit, AfterViewInit, ControlValue
           }
         });
       }
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      if (this.placeholder) {
-        this.placeholder += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 

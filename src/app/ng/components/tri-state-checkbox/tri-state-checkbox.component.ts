@@ -1,13 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Injector,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Injector, Input, OnInit, Output} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -25,7 +16,7 @@ import {ConfigService} from "@ng/services";
   templateUrl: './tri-state-checkbox.component.html',
   styleUrls: ['./tri-state-checkbox.component.scss']
 })
-export class TriStateCheckboxComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean = this.configService.getConfig().filled;
@@ -83,15 +74,6 @@ export class TriStateCheckboxComponent implements OnInit, AfterViewInit, Control
           }
         });
       }
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 

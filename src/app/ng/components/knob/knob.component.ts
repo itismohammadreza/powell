@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Injector,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
 import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {
   AbstractControl,
@@ -34,7 +24,7 @@ import {ConfigService} from "@ng/services";
     }
   ]
 })
-export class KnobComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class KnobComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -100,15 +90,6 @@ export class KnobComponent implements OnInit, AfterViewInit, ControlValueAccesso
           }
         });
       }
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 

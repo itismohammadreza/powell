@@ -1,6 +1,5 @@
 import {
   AfterContentInit,
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -39,7 +38,7 @@ import {ConfigService} from "@ng/services";
     },
   ],
 })
-export class ListboxComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
+export class ListboxComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean = this.configService.getConfig().filled;
@@ -59,7 +58,7 @@ export class ListboxComponent implements OnInit, AfterViewInit, AfterContentInit
   @Input() filterMatchMode: NgFilterMatchMode = 'contains';
   @Input() filterValue: string;
   @Input() filterLocale: string;
-  @Input() filterBy:	string;
+  @Input() filterBy: string;
   @Input() filterPlaceHolder: string;
   @Input() emptyFilterMessage: string = 'موردی وجود ندارد';
   @Input() listStyle: string;
@@ -131,15 +130,6 @@ export class ListboxComponent implements OnInit, AfterViewInit, AfterContentInit
           }
         });
       }
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 

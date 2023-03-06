@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Injector,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
 import {
   CRS,
   FitBoundsOptions,
@@ -53,7 +43,7 @@ import {ConfigService} from "@ng/services";
     }
   ]
 })
-export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class MapComponent implements OnInit, ControlValueAccessor {
   @Input() value: LatLngLiteral | LatLngLiteral[];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -191,15 +181,6 @@ export class MapComponent implements OnInit, AfterViewInit, ControlValueAccessor
           }
         });
       }
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 

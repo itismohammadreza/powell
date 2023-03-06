@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Injector,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -43,7 +33,7 @@ import {ConfigService} from "@ng/services";
     },
   ],
 })
-export class InputNumberComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class InputNumberComponent implements OnInit, ControlValueAccessor {
   @Input() value: number;
   @Input() label: string;
   @Input() filled: boolean = this.configService.getConfig().filled;
@@ -139,18 +129,6 @@ export class InputNumberComponent implements OnInit, AfterViewInit, ControlValue
           }
         });
       }
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      if (this.placeholder) {
-        this.placeholder += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 

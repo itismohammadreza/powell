@@ -135,12 +135,6 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
       const input = this.getNthInput(0);
       this.focusInput(input);
     }
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      this.cd.detectChanges();
-    }
   }
 
   _onBlur() {

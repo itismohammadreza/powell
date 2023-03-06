@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Injector,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -35,7 +25,7 @@ import {ConfigService} from "@ng/services";
     },
   ],
 })
-export class MultiCheckboxComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class MultiCheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() value: any[];
   @Input() label: string;
   @Input() filled: boolean = this.configService.getConfig().filled;
@@ -115,15 +105,6 @@ export class MultiCheckboxComponent implements OnInit, AfterViewInit, ControlVal
           }
         });
       }
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 

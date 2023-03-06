@@ -1,6 +1,5 @@
 import {
   AfterContentInit,
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -40,7 +39,7 @@ import {ConfigService} from "@ng/services";
     },
   ],
 })
-export class CascadeSelectComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
+export class CascadeSelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean = this.configService.getConfig().filled;
@@ -120,18 +119,6 @@ export class CascadeSelectComponent implements OnInit, AfterViewInit, AfterConte
           }
         });
       }
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      if (this.placeholder) {
-        this.placeholder += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 

@@ -1,6 +1,5 @@
 import {
   AfterContentInit,
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -41,7 +40,7 @@ import {ConfigService} from "@ng/services";
     },
   ],
 })
-export class DropdownComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
+export class DropdownComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean = this.configService.getConfig().filled;
@@ -165,18 +164,6 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
     }
     if (this.autoDisplayFirst) {
       this.onModelChange(this.options[0][this.optionValue])
-    }
-  }
-
-  ngAfterViewInit() {
-    if (this.showRequiredStar && this.isRequired()) {
-      if (this.label) {
-        this.label += ' *';
-      }
-      if (this.placeholder) {
-        this.placeholder += ' *';
-      }
-      this.cd.detectChanges();
     }
   }
 
