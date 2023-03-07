@@ -2,7 +2,7 @@ import {NgFixLabelPosition, NgLabelPosition} from "@ng/models/forms";
 import {NgSize} from "@ng/models/offset";
 import {OverlayOptions} from "primeng/api";
 
-interface ZIndexOptions {
+interface NgZIndexOptions {
   modal: number;
   overlay: number;
   menu: number;
@@ -23,7 +23,7 @@ export interface NgConfig {
   inputSize?: NgSize;
   showRequiredStar?: boolean;
   theme?: NgTheme;
-  zIndex?: ZIndexOptions,
+  zIndex?: NgZIndexOptions,
   ripple?: boolean;
   overlayOptions?: OverlayOptions;
 }
