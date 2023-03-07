@@ -6,7 +6,7 @@
          [attr.width]="width"
          [attr.height]="height"
          [ngStyle]="imageStyle"
-         [class]="imageClass"
+         [class]="imageStyleClass"
          (error)="imageError($event)"/>
   <div class="p-image-preview-indicator" *ngIf="preview" (click)="onImageClick()">
     <ng-container *ngIf="indicatorTemplate; else defaultTemplate">
@@ -52,10 +52,12 @@
         [autoHeight]="pinchAutoHeight"
         [wheelZoomFactor]="pinchWheelZoomFactor"
         [draggableImage]="pinchDraggableImage"
-        [style]="pinchStyle">
+        [style]="previewStyle"
+        [styleClass]="previewStyleClass">
         <img [attr.src]="src"
              [attr.alt]="alt"
              class="p-image-preview"
+             [ngClass]="previewImageStyleClass"
              [ngStyle]="imagePreviewStyle()"
              (click)="onPreviewImageClick()"/>
       </ng-pinch-zoom>

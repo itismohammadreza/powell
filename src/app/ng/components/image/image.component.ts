@@ -39,19 +39,14 @@ import {DisableZoomControl, LimitZoom, Listener, Overflow} from "@ng/models/imag
   }
 })
 export class ImageComponent implements AfterContentInit {
-  @Input() imageClass: string;
-  @Input() imageStyle: any;
-  @Input() styleClass: string;
-  @Input() style: any;
   @Input() src: string;
   @Input() alt: string;
   @Input() width: string;
   @Input() height: string;
   @Input() appendTo: any;
-  @Input() preview: boolean = false;
+  @Input() preview: boolean;
   @Input() showTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
-
   @Input() pinchTransitionDuration: number;
   @Input() pinchDoubleTap: boolean
   @Input() pinchDoubleTapScale: number;
@@ -70,11 +65,18 @@ export class ImageComponent implements AfterContentInit {
   @Input() pinchAutoHeight: boolean;
   @Input() pinchWheelZoomFactor: number;
   @Input() pinchDraggableImage: boolean;
-  @Input() pinchStyle: any;
-
-  @Output() onShow: EventEmitter<any> = new EventEmitter();
-  @Output() onHide: EventEmitter<any> = new EventEmitter();
-  @Output() onImageError: EventEmitter<any> = new EventEmitter();
+  @Input() style: any;
+  @Input() styleClass: string;
+  @Input() previewStyle: any;
+  @Input() previewStyleClass: string;
+  @Input() imageStyle: any;
+  @Input() imageStyleClass: string;
+  @Input() previewImageStyle: any;
+  @Input() previewImageStyleClass: string;
+  @Input() errorPlaceholderSrc: string;
+  @Output() onShow = new EventEmitter();
+  @Output() onHide = new EventEmitter();
+  @Output() onImageError = new EventEmitter();
   @ViewChild('mask') mask: ElementRef;
   @ContentChildren(TemplateDirective) templates: QueryList<any>;
 
@@ -167,7 +169,7 @@ export class ImageComponent implements AfterContentInit {
   }
 
   imagePreviewStyle() {
-    return {transform: 'rotate(' + this.rotate + 'deg)', width: '50%', height: '50%'};
+    return {transform: 'rotate(' + this.rotate + 'deg)', width: '50%', height: '50%', ...this.previewImageStyle};
   }
 
   containerClass() {
@@ -187,21 +189,7 @@ export class ImageComponent implements AfterContentInit {
   }
 
   imageError(event) {
+    this.src = this.errorPlaceholderSrc ?? this.src;
     this.onImageError.emit(event);
   }
-
-  // @Input() onErrorImagePlaceholder: string;
-  // @Output() onError = new EventEmitter();
-  //
-  // ngOnInit(): void {
-  //   this.el.nativeElement.querySelector('img').onerror = (event) => {
-  //     event.target.onerror = null;
-  //     event.target.src = "assets/images/no-image-placeholder.jpg" || this.onErrorImagePlaceholder;
-  //     this.onError.emit(event);
-  //   }
-  // }
-  //
-  // emitter(name: string, event: any) {
-  //   (this[name] as EventEmitter<any>).emit(event);
-  // }
 }

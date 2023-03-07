@@ -29,6 +29,7 @@ export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {
   @Input() wheelZoomFactor: number;
   @Input() draggableImage: boolean;
   @Input() style: any;
+  @Input() styleClass: string;
 
   properties: PinchZoomOptions;
   ivyPinch: IvyPinch;
