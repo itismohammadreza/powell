@@ -20,7 +20,6 @@
 - add bootstrap 5
 - use gap instead of margin left and right
 - ----------------------------------------------------
-- add pinch-zoom component properties in dialogForm & showcase page.
 - how should disableConfigChangeEffect use in overlay.service like toast etc...?
 
 ### New
