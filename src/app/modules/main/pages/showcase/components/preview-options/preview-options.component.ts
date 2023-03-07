@@ -33,6 +33,7 @@ import {NgButtonAppearance} from '@ng/models/button';
 import {NgDefaultFocus, NgSeverity} from "@ng/models/overlay";
 import {NgConfigChangeEvent, NgTheme} from "@ng/models/config";
 import {OverlayOptions} from "primeng/api";
+import {DisableZoomControl, LimitZoom, Listener, Overflow} from "@ng/models/image";
 
 type PreviewItem =
   | 'label'
@@ -190,7 +191,27 @@ type PreviewItem =
   | 'text'
   | 'subText'
   | 'imageType'
+  | 'width'
+  | 'height'
   | 'preview'
+  | 'pinchTransitionDuration'
+  | 'pinchDoubleTap'
+  | 'pinchDoubleTapScale'
+  | 'pinchAutoZoomOut'
+  | 'pinchLimitZoom'
+  | 'pinchDisabled'
+  | 'pinchDisablePan'
+  | 'pinchOverflow'
+  | 'pinchZoomControlScale'
+  | 'pinchDisableZoomControl'
+  | 'pinchLimitPan'
+  | 'pinchMinPanScale'
+  | 'pinchMinScale'
+  | 'pinchListeners'
+  | 'pinchWheel'
+  | 'pinchAutoHeight'
+  | 'pinchWheelZoomFactor'
+  | 'pinchDraggableImage'
   | 'closable'
   | 'header'
   | 'acceptLabel'
@@ -562,8 +583,48 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() subTextChange = new EventEmitter()
   @Input() imageType: string;
   @Output() imageTypeChange = new EventEmitter()
+  @Input() width: string;
+  @Output() widthChange = new EventEmitter();
+  @Input() height: string;
+  @Output() heightChange = new EventEmitter();
   @Input() preview: boolean;
-  @Output() previewChange = new EventEmitter()
+  @Output() previewChange = new EventEmitter();
+  @Input() pinchTransitionDuration: number;
+  @Output() pinchTransitionDurationChange = new EventEmitter();
+  @Input() pinchDoubleTap: boolean;
+  @Output() pinchDoubleTapChange = new EventEmitter();
+  @Input() pinchDoubleTapScale: number;
+  @Output() pinchDoubleTapScaleChange = new EventEmitter();
+  @Input() pinchAutoZoomOut: boolean;
+  @Output() pinchAutoZoomOutChange = new EventEmitter();
+  @Input() pinchLimitZoom: LimitZoom;
+  @Output() pinchLimitZoomChange = new EventEmitter();
+  @Input() pinchDisabled: boolean;
+  @Output() pinchDisabledChange = new EventEmitter();
+  @Input() pinchDisablePan: boolean;
+  @Output() pinchDisablePanChange = new EventEmitter();
+  @Input() pinchOverflow: Overflow;
+  @Output() pinchOverflowChange = new EventEmitter();
+  @Input() pinchZoomControlScale: number;
+  @Output() pinchZoomControlScaleChange = new EventEmitter();
+  @Input() pinchDisableZoomControl: DisableZoomControl;
+  @Output() pinchDisableZoomControlChange = new EventEmitter();
+  @Input() pinchLimitPan: boolean;
+  @Output() pinchLimitPanChange = new EventEmitter();
+  @Input() pinchMinPanScale: number;
+  @Output() pinchMinPanScaleChange = new EventEmitter();
+  @Input() pinchMinScale: number;
+  @Output() pinchMinScaleChange = new EventEmitter();
+  @Input() pinchListeners: Listener;
+  @Output() pinchListenersChange = new EventEmitter();
+  @Input() pinchWheel: boolean;
+  @Output() pinchWheelChange = new EventEmitter();
+  @Input() pinchAutoHeight: boolean;
+  @Output() pinchAutoHeightChange = new EventEmitter();
+  @Input() pinchWheelZoomFactor: number;
+  @Output() pinchWheelZoomFactorChange = new EventEmitter();
+  @Input() pinchDraggableImage: boolean;
+  @Output() pinchDraggableImageChange = new EventEmitter();
   @Input() closable: boolean;
   @Output() closableChange = new EventEmitter()
   @Input() header: string;
@@ -720,7 +781,11 @@ export class PreviewOptionsComponent implements OnInit {
       buttonIconPos: ['left', 'right'],
       buttonColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
       buttonAppearance: ['basic', 'text', 'outlined', 'link'],
-      severity: ['success', 'error', 'info', 'warn']
+      severity: ['success', 'error', 'info', 'warn'],
+      pinchLimitZoom: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 'original image size'],
+      pinchOverflow: ['hidden', 'visible'],
+      pinchDisableZoomControl: ['disable', 'never', 'auto'],
+      pinchListeners: ['auto', 'mouse and touch'],
     };
     for (const item of this.previewItems) {
       if (Object.keys(dropdownData).includes(item)) {

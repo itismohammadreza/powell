@@ -31,6 +31,7 @@ import {SunEditorOptions} from "suneditor/src/options";
 import {Core} from "suneditor/src/lib/core";
 import {LatLng, LatLngBounds} from "leaflet";
 import {ScrollerOptions} from "primeng/scroller";
+import {DisableZoomControl, LimitZoom, Listener, Overflow} from "@ng/models/image";
 
 export type NgSeverity = 'success' | 'info' | 'warn' | 'error';
 export type NgDefaultFocus = 'accept' | 'reject';
@@ -478,12 +479,36 @@ export interface NgDialogFormConfig {
   onMonthChange?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   onYearChange?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// image /////////////////////////////////////////
-  imageClass?: string;
-  imageStyle?: any;
   src?: string;
   alt?: string;
   width?: string;
   preview?: boolean;
+  pinchTransitionDuration?: number;
+  pinchDoubleTap?: boolean;
+  pinchDoubleTapScale?: number;
+  pinchAutoZoomOut?: boolean;
+  pinchLimitZoom?: LimitZoom;
+  pinchDisabled?: boolean;
+  pinchDisablePan?: boolean;
+  pinchOverflow?: Overflow;
+  pinchZoomControlScale?: number;
+  pinchDisableZoomControl?: DisableZoomControl;
+  pinchLimitPan?: boolean;
+  pinchMinPanScale?: number;
+  pinchMinScale?: number;
+  pinchListeners?: Listener;
+  pinchWheel?: boolean;
+  pinchAutoHeight?: boolean;
+  pinchWheelZoomFactor?: number;
+  pinchDraggableImage?: boolean;
+  previewStyle?: any;
+  previewStyleClass?: string;
+  imageStyle?: any;
+  imageStyleClass?: string;
+  previewImageStyle?: any;
+  previewImageStyleClass?: string;
+  errorPlaceholderSrc?: string;
+  onImageError?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// input-mask /////////////////////////////////////////
   mask?: string;
   slotChar?: string;
