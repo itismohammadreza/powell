@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AnimateOnScrollService} from "@ng/services";
 
 @Component({
@@ -6,11 +6,11 @@ import {AnimateOnScrollService} from "@ng/services";
   templateUrl: './animate-on-scroll.page.html',
   styleUrls: ['./animate-on-scroll.page.scss']
 })
-export class AnimateOnScrollPage {
+export class AnimateOnScrollPage implements OnInit{
   constructor(private scrollService: AnimateOnScrollService) {
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.scrollService.init({easing: 'ease-in-out-sine'})
   }
 }
