@@ -5,7 +5,7 @@ import {FileNamePipe} from './file-name.pipe';
 import {FilterPipe} from './filter.pipe';
 import {SafePipe} from './safe.pipe';
 import {ToBase64Pipe} from './to-base64.pipe';
-import {LabelStarPipe} from "@ng/pipes/label-star.pipe";
+import {LabelStarPipe} from "./label-star.pipe";
 
 export const PIPES: Type<any>[] = [
   DotsPipe,
