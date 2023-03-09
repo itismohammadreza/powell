@@ -7,7 +7,7 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl,
+  NgControl
 } from '@angular/forms';
 import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {ConfigService} from "@ng/services";
@@ -20,9 +20,9 @@ import {ConfigService} from "@ng/services";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => RatingComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class RatingComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;

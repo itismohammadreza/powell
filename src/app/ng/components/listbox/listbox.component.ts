@@ -10,7 +10,7 @@ import {
   OnInit,
   Output,
   QueryList,
-  TemplateRef,
+  TemplateRef
 } from '@angular/core';
 import {
   AbstractControl,
@@ -20,9 +20,9 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl,
+  NgControl
 } from '@angular/forms';
-import {NgAddon, NgFilterMatchMode, NgFixLabelPosition, NgValidation,} from '@ng/models/forms';
+import {NgAddon, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {ConfigService} from "@ng/services";
 
@@ -34,9 +34,9 @@ import {ConfigService} from "@ng/services";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ListboxComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class ListboxComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;

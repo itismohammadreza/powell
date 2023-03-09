@@ -19,7 +19,6 @@ import {TemplateDirective} from "@ng/directives/template.directive";
   styleUrls: ['./infinite-scroll.component.scss']
 })
 export class InfiniteScrollComponent implements AfterContentInit, OnDestroy {
-
   @Input() data: any[];
   @Input() spinnerWidth: string = '40px';
   @Output() scrolled = new EventEmitter();

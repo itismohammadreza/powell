@@ -9,6 +9,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
+import {Moment} from "jalali-moment";
 import {
   NgAddon,
   NgDatepickerDateType,
@@ -19,7 +20,6 @@ import {
   NgValidation
 } from "@ng/models/forms";
 import {NgIconPosition, NgSize} from "@ng/models/offset";
-import {Moment} from "jalali-moment";
 import {ConfigService} from "@ng/services";
 
 @Component({
@@ -30,9 +30,9 @@ import {ConfigService} from "@ng/services";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => JalaliDatepickerComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;

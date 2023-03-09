@@ -7,7 +7,7 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl,
+  NgControl
 } from '@angular/forms';
 import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition} from '@ng/models/offset';
@@ -21,9 +21,9 @@ import {ConfigService} from "@ng/services";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ToggleButtonComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class ToggleButtonComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;

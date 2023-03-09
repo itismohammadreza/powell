@@ -1,4 +1,14 @@
 import {ApplicationRef, ComponentRef, createComponent, Inject, Injectable, Injector, Type} from '@angular/core';
+import {Router} from "@angular/router";
+import {DOCUMENT, LocationStrategy} from '@angular/common';
+import {Observable, Subject} from "rxjs";
+import {Confirmation, ConfirmationService, ConfirmEventType, Message, MessageService} from 'primeng/api';
+import {Toast} from 'primeng/toast';
+import {ConfirmPopup} from 'primeng/confirmpopup';
+import {ConfirmDialog} from 'primeng/confirmdialog';
+import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
+import {ConfigService} from "@ng/services";
+import {DialogComponent} from '@ng/components/dialog/dialog.component';
 import {
   NgConfirmDialogOptions,
   NgConfirmPopupOptions,
@@ -9,16 +19,6 @@ import {
   NgHistoryState,
   NgToastOptions
 } from '@ng/models/overlay';
-import {Confirmation, ConfirmationService, ConfirmEventType, Message, MessageService} from 'primeng/api';
-import {DialogComponent} from '@ng/components/dialog/dialog.component';
-import {DOCUMENT, LocationStrategy} from '@angular/common';
-import {Toast} from 'primeng/toast';
-import {ConfirmPopup} from 'primeng/confirmpopup';
-import {ConfirmDialog} from 'primeng/confirmdialog';
-import {Observable, Subject} from "rxjs";
-import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
-import {Router} from "@angular/router";
-import {ConfigService} from "@ng/services";
 
 @Injectable({
   providedIn: 'root'

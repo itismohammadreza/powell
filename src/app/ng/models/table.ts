@@ -1,5 +1,5 @@
-import {NgColor} from './color';
-import {NgFilterMatchMode} from './forms';
+import {NgColor} from '@ng/models/color';
+import {NgFilterMatchMode} from '@ng/models/forms';
 import {NgButtonAppearance} from "@ng/models/button";
 import {NgIconPosition, NgSize} from "@ng/models/offset";
 

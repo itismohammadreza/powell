@@ -1,10 +1,10 @@
 import {Directive, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
-import {ConfigService} from "@ng/services";
 import {Subject, takeUntil} from "rxjs";
+import {OverlayOptions} from "primeng/api";
 import {NgFixLabelPosition, NgLabelPosition} from "@ng/models/forms";
 import {NgTheme} from "@ng/models/config";
 import {NgSize} from "@ng/models/offset";
-import {OverlayOptions} from "primeng/api";
+import {ConfigService} from "@ng/services";
 
 @Directive({
   selector: '[ngConfigHandler]'

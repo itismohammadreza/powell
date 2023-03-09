@@ -3,7 +3,7 @@ import {DIRECTIVES} from '.';
 
 @NgModule({
   declarations: [...DIRECTIVES],
-  exports: [...DIRECTIVES],
+  exports: [...DIRECTIVES]
 })
 export class NgDirectivesModule {
 }

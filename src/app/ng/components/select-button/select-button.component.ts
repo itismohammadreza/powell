@@ -8,7 +8,7 @@ import {
   Input,
   OnInit,
   Output,
-  TemplateRef,
+  TemplateRef
 } from '@angular/core';
 import {
   AbstractControl,
@@ -18,7 +18,7 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl,
+  NgControl
 } from '@angular/forms';
 import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {ConfigService} from "@ng/services";
@@ -31,9 +31,9 @@ import {ConfigService} from "@ng/services";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SelectButtonComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class SelectButtonComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;

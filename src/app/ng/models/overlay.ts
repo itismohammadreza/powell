@@ -1,8 +1,8 @@
 import {HttpHeaders} from '@angular/common/http';
 import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {ContextMenu} from 'primeng/contextmenu';
-import {NgButtonAppearance, NgButtonType} from './button';
-import {NgColor} from './color';
+import {NgButtonAppearance, NgButtonType} from '@ng/models/button';
+import {NgColor} from '@ng/models/color';
 import {
   NgAddon,
   NgChipDisplayMode,

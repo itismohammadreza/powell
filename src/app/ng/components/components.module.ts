@@ -2,11 +2,11 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
-import {NgPipesModule} from '@ng/pipes/pipes.module';
 
 import {COMPONENTS} from '.';
-import {NgDirectivesModule} from '../directives/directives.module';
-import {PrimengModule} from '../primeng/primeng.module';
+import {NgDirectivesModule} from '@ng/directives/directives.module';
+import {PrimengModule} from '@ng/primeng/primeng.module';
+import {NgPipesModule} from '@ng/pipes/pipes.module';
 
 @NgModule({
   declarations: [...COMPONENTS],
@@ -18,8 +18,8 @@ import {PrimengModule} from '../primeng/primeng.module';
     PrimengModule,
     LeafletModule,
     NgDirectivesModule,
-    NgPipesModule,
-  ],
+    NgPipesModule
+  ]
 })
 export class NgComponentsModule {
 }

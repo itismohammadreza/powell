@@ -1,7 +1,7 @@
 import {Directive, HostListener, Input} from '@angular/core';
 
 @Directive({
-  selector: '[ngNumberOnly]',
+  selector: '[ngNumberOnly]'
 })
 export class NumberOnlyDirective {
   @Input() ngNumberOnly: boolean;

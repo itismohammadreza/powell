@@ -1,9 +1,9 @@
 import {Component, ElementRef, EventEmitter} from '@angular/core';
 import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
+import {DomHandler} from 'primeng/dom';
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult} from "@ng/models/overlay";
 import {NgValidation} from "@ng/models/forms";
 import {ConfigService} from "@ng/services";
-import {DomHandler} from 'primeng/dom';
 
 @Component({
   selector: 'ng-dialog-form',

@@ -4,14 +4,14 @@ import {LoaderService} from '@core/utils';
 @Component({
   selector: 'ng-loading',
   templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss'],
+  styleUrls: ['./loading.component.scss']
 })
 export class LoadingComponent {
   loading: boolean;
 
   constructor(private loaderService: LoaderService) {
-    this.loaderService.getLoadingState().subscribe((v) => {
-      this.loading = v;
+    this.loaderService.getLoadingState().subscribe(loading => {
+      this.loading = loading;
     });
   }
 }

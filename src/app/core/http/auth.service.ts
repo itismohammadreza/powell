@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {lastValueFrom} from "rxjs";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService extends ApiService {
   private readonly endpoint: string = 'auth';

@@ -7,7 +7,7 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl,
+  NgControl
 } from '@angular/forms';
 import {
   NgAddon,
@@ -16,7 +16,7 @@ import {
   NgLabelPosition,
   NgNumberButtonLayout,
   NgNumberMode,
-  NgValidation,
+  NgValidation
 } from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {ConfigService} from "@ng/services";
@@ -29,9 +29,9 @@ import {ConfigService} from "@ng/services";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputNumberComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class InputNumberComponent implements OnInit, ControlValueAccessor {
   @Input() value: number;

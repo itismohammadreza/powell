@@ -35,7 +35,7 @@ import {NgSize} from "@ng/models/offset";
       useExisting: forwardRef(() => InputOtpComponent),
       multi: true
     }
-  ],
+  ]
 })
 export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input('value') set value(v: any) {

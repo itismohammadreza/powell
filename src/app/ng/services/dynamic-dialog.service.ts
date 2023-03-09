@@ -8,11 +8,11 @@ import {
   Injector,
   Type
 } from '@angular/core';
+import {DOCUMENT} from "@angular/common";
 import {DynamicDialogComponent} from '@ng/components/dynamic-dialog/dynamic-dialog.component';
 import {DynamicDialogConfig} from '@ng/components/dynamic-dialog/dynamic-dialog-config';
 import {DynamicDialogRef} from '@ng/components/dynamic-dialog/dynamic-dialog-ref';
 import {DynamicDialogInjector} from '@ng/components/dynamic-dialog/dynamic-dialog-injector';
-import {DOCUMENT} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'

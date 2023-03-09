@@ -9,8 +9,11 @@ import {
   Output,
   QueryList,
   TemplateRef,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
+import {FilterMetadata, SortMeta} from 'primeng/api';
+import {Table} from 'primeng/table';
+import {ScrollerOptions} from "primeng/scroller";
 import {NgEmptyIcon, NgOrientation, NgSelectionMode, NgSize} from '@ng/models/offset';
 import {
   NgTableAction,
@@ -25,10 +28,7 @@ import {
   NgTableRowGroupMode,
   NgTableSortMode
 } from '@ng/models/table';
-import {FilterMetadata, SortMeta} from 'primeng/api';
-import {Table} from 'primeng/table';
 import {TemplateDirective} from "@ng/directives/template.directive";
-import {ScrollerOptions} from "primeng/scroller";
 import {ConfigService} from "@ng/services";
 
 @Component({

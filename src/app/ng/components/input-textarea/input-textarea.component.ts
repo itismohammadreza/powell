@@ -7,7 +7,7 @@ import {
   Injector,
   Input,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
 import {
   AbstractControl,
@@ -17,7 +17,7 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl,
+  NgControl
 } from '@angular/forms';
 import {NgAddon, NgLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition} from '@ng/models/offset';
@@ -31,9 +31,9 @@ import {ConfigService} from "@ng/services";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputTextareaComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;

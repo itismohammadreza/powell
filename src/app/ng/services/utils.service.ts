@@ -1,8 +1,8 @@
 import {Inject, Injectable} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import {DOCUMENT} from '@angular/common';
 import {fromEvent, merge, Observable, Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {DOCUMENT} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'

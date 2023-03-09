@@ -1,5 +1,4 @@
 import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
-import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {
   AbstractControl,
   ControlContainer,
@@ -10,6 +9,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
+import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
 import {ConfigService} from "@ng/services";
 
 @Component({

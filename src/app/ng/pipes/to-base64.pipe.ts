@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {UtilsService} from "@ng/services";
 
 @Pipe({
-  name: 'ngToBase64',
+  name: 'ngToBase64'
 })
 export class ToBase64Pipe implements PipeTransform {
   @Input() isUnknownImageUrl: boolean;

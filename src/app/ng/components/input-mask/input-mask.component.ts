@@ -21,9 +21,9 @@ import {ConfigService} from "@ng/services";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputMaskComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;

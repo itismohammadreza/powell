@@ -1,16 +1,15 @@
 import {Injector, ModuleWithProviders, NgModule} from '@angular/core';
-import {ConfirmationService, FilterService, MessageService, PrimeNGConfig,} from 'primeng/api';
+import {DOCUMENT} from "@angular/common";
+import {ConfirmationService, FilterService, MessageService, PrimeNGConfig} from 'primeng/api';
 import {DialogService} from 'primeng/dynamicdialog';
-import {NgComponentsModule} from './components/components.module';
-import {ThemeService} from "@ng/services";
+import {NgComponentsModule} from '@ng/components/components.module';
+import {ThemeService, ConfigService} from "@ng/services";
 import {NgGlobal} from '@ng/global';
 import {NgConfig} from "@ng/models/config";
-import {ConfigService} from "@ng/services/config.service";
-import {DOCUMENT} from "@angular/common";
 
 @NgModule({
   imports: [NgComponentsModule],
-  exports: [NgComponentsModule],
+  exports: [NgComponentsModule]
 })
 export class NgAllModule {
   constructor(private injector: Injector) {

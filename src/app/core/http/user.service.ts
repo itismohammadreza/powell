@@ -3,7 +3,7 @@ import {ApiService} from '@core/http';
 import {lastValueFrom} from "rxjs";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UserService extends ApiService {
   private endpoint: string = 'photos';

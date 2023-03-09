@@ -20,9 +20,9 @@ import {ConfigService} from "@ng/services";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DualLabelSwitchComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;

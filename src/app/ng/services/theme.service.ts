@@ -1,9 +1,10 @@
 import {Inject, Injectable} from "@angular/core";
 import {DOCUMENT} from "@angular/common";
 import {NgTheme} from "@ng/models/config";
-import {ConfigService} from "@ng/services";
 
-@Injectable({providedIn: 'root'})
+@Injectable({
+  providedIn: 'root'
+})
 export class ThemeService {
   constructor(@Inject(DOCUMENT) private document: Document) {
   }

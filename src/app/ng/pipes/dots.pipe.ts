@@ -1,7 +1,7 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
-  name: 'ngDots',
+  name: 'ngDots'
 })
 export class DotsPipe implements PipeTransform {
   transform(value: string, args: any[]): string {

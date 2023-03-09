@@ -19,12 +19,12 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl,
+  NgControl
 } from '@angular/forms';
+import {ScrollerOptions} from "primeng/scroller";
 import {NgAddon, NgInputType, NgLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
 import {TemplateDirective} from '@ng/directives/template.directive';
-import {ScrollerOptions} from "primeng/scroller";
 import {ConfigService} from "@ng/services";
 
 @Component({
@@ -35,9 +35,9 @@ import {ConfigService} from "@ng/services";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: AutoCompleteComponent,
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;

@@ -10,7 +10,7 @@ import {
   OnInit,
   Output,
   QueryList,
-  TemplateRef,
+  TemplateRef
 } from '@angular/core';
 import {
   AbstractControl,
@@ -20,7 +20,7 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl,
+  NgControl
 } from '@angular/forms';
 import {NgAddon, NgLabelPosition, NgValidation} from '@ng/models/forms';
 import {NgIconPosition, NgSize} from '@ng/models/offset';
@@ -35,9 +35,9 @@ import {ConfigService} from "@ng/services";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputPasswordComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class InputPasswordComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;

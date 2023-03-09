@@ -5,7 +5,7 @@ import {GlobalConfig} from "@core/config";
 import {DOCUMENT} from "@angular/common";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class TranslationService {
   private currentLang: string;

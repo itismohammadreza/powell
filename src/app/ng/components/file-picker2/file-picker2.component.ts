@@ -7,7 +7,7 @@ import {
   Input,
   OnChanges,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
 import {
   AbstractControl,
@@ -17,7 +17,7 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl,
+  NgControl
 } from '@angular/forms';
 import {NgColor} from '@ng/models/color';
 import {NgFileResultType, NgFixLabelPosition, NgValidation} from '@ng/models/forms';
@@ -31,8 +31,8 @@ import {ConfigService, UtilsService} from "@ng/services";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => FilePicker2Component),
-      multi: true,
-    },
+      multi: true
+    }
   ],
   host: {
     '[style.display]': "'block'"

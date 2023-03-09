@@ -9,15 +9,15 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
+import {Subscription} from "rxjs";
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {OverlayService} from "@ng/services";
 import {NgHistoryState} from "@ng/models/overlay";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'ng-bottom-sheet',
   templateUrl: './bottom-sheet.component.html',
-  styleUrls: ['./bottom-sheet.component.scss'],
+  styleUrls: ['./bottom-sheet.component.scss']
 })
 export class BottomSheetComponent implements OnInit, AfterContentInit {
   @Input() header: string;

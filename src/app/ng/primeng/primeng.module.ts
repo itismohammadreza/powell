@@ -2,6 +2,6 @@ import {NgModule} from '@angular/core';
 import {MODULES} from '.';
 
 @NgModule({
-  exports: [MODULES],
+  exports: [MODULES]
 })
 export class PrimengModule {}

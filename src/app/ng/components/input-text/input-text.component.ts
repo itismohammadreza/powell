@@ -33,7 +33,7 @@ import {ConfigService} from "@ng/services";
       useExisting: forwardRef(() => InputTextComponent),
       multi: true
     }
-  ],
+  ]
 })
 export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;

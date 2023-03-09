@@ -1,7 +1,7 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
-  name: 'labelStar',
+  name: 'labelStar'
 })
 export class LabelStarPipe implements PipeTransform {
   addStarTo(value: string) {

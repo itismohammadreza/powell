@@ -3,6 +3,6 @@ import {PIPES} from '.';
 
 @NgModule({
   exports: [...PIPES],
-  declarations: [...PIPES],
+  declarations: [...PIPES]
 })
 export class NgPipesModule {}

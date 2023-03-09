@@ -13,10 +13,10 @@ import {
   ViewChild
 } from '@angular/core';
 import {animate, AnimationEvent, style, transition, trigger} from "@angular/animations";
-import {ConfigService} from "@ng/services";
-import {TemplateDirective} from "@ng/directives/template.directive";
 import {ZIndexUtils} from "primeng/utils";
 import {DomHandler} from "primeng/dom";
+import {ConfigService} from "@ng/services";
+import {TemplateDirective} from "@ng/directives/template.directive";
 import {DisableZoomControl, LimitZoom, Listener, Overflow} from "@ng/models/image";
 
 @Component({

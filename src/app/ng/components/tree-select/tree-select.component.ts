@@ -12,8 +12,6 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import {NgIconPosition, NgSelectionMode, NgSize} from '@ng/models/offset';
-import {TemplateDirective} from '@ng/directives/template.directive';
 import {
   AbstractControl,
   ControlContainer,
@@ -24,6 +22,8 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
+import {NgIconPosition, NgSelectionMode, NgSize} from '@ng/models/offset';
+import {TemplateDirective} from '@ng/directives/template.directive';
 import {NgAddon, NgChipDisplayMode, NgLabelPosition, NgTreeFilterMode, NgValidation} from "@ng/models/forms";
 import {ConfigService} from "@ng/services";
 
@@ -35,9 +35,9 @@ import {ConfigService} from "@ng/services";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TreeSelectComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class TreeSelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
