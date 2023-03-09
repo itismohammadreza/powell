@@ -22,9 +22,17 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {NgIconPosition, NgSelectionMode, NgSize} from '@ng/models/offset';
+import {
+  NgAddon,
+  NgChipDisplayMode,
+  NgIconPosition,
+  NgLabelPosition,
+  NgSelectionMode,
+  NgSize,
+  NgTreeFilterMode,
+  NgValidation
+} from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template.directive';
-import {NgAddon, NgChipDisplayMode, NgLabelPosition, NgTreeFilterMode, NgValidation} from "@ng/models/forms";
 import {ConfigService} from "@ng/services";
 
 @Component({

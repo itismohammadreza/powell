@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NgEmptyIcon} from "@ng/models/offset";
+import {NgEmptyIcon} from "@ng/models";
 import {ConfigService} from "@ng/services";
 
 @Component({

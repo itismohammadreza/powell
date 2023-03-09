@@ -9,8 +9,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {NgColorFormat, NgLabelPosition, NgValidation} from '@ng/models/forms';
-import {NgIconPosition, NgSize} from '@ng/models/offset';
+import {NgColorFormat, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@ng/models';
 import {ConfigService} from "@ng/services";
 
 @Component({

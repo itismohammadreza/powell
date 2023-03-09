@@ -23,8 +23,16 @@ import {
   NgControl
 } from '@angular/forms';
 import {ScrollerOptions} from "primeng/scroller";
-import {NgAddon, NgChipDisplayMode, NgFilterMatchMode, NgLabelPosition, NgValidation} from '@ng/models/forms';
-import {NgIconPosition, NgPosition, NgSize} from '@ng/models/offset';
+import {
+  NgAddon,
+  NgChipDisplayMode,
+  NgFilterMatchMode,
+  NgIconPosition,
+  NgLabelPosition,
+  NgPosition,
+  NgSize,
+  NgValidation
+} from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {ConfigService} from "@ng/services";
 

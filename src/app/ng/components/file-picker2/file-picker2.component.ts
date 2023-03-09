@@ -19,8 +19,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {NgColor} from '@ng/models/color';
-import {NgFileResultType, NgFixLabelPosition, NgValidation} from '@ng/models/forms';
+import {NgColor, NgFileResultType, NgFixLabelPosition, NgValidation} from '@ng/models';
 import {ConfigService, UtilsService} from "@ng/services";
 
 @Component({

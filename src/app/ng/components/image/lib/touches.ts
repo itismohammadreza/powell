@@ -1,10 +1,10 @@
-import {MouseHandler, TouchEventType, TouchOptions} from "@ng/models/image";
+import {NgMouseHandler, NgTouchEventType, NgTouchOptions} from "@ng/models";
 
 export class Touches {
-  properties: TouchOptions;
+  properties: NgTouchOptions;
   element: HTMLElement;
   elementPosition: ClientRect;
-  eventType: TouchEventType = undefined;
+  eventType: NgTouchEventType = undefined;
   handlers: any = {};
   startX = 0;
   startY = 0;
@@ -43,7 +43,7 @@ export class Touches {
     return this.properties.otherListeners ? this.properties.otherListeners : this._otherListeners;
   }
 
-  constructor(properties: TouchOptions) {
+  constructor(properties: NgTouchOptions) {
     this.properties = properties;
     this.element = this.properties.element;
     this.elementPosition = this.getElementPosition();
@@ -69,7 +69,7 @@ export class Touches {
     }
 
     for (const listener in listeners) {
-      const handler: MouseHandler = listeners[listener];
+      const handler: NgMouseHandler = listeners[listener];
 
       // Window
       if (listener === "resize") {
@@ -100,12 +100,12 @@ export class Touches {
   }
 
   addEventListeners(listener: string) {
-    const handler: MouseHandler = this._mouseListeners[listener];
+    const handler: NgMouseHandler = this._mouseListeners[listener];
     window.addEventListener(listener, this[handler], false);
   }
 
   removeEventListeners(listener: string) {
-    const handler: MouseHandler = this._mouseListeners[listener];
+    const handler: NgMouseHandler = this._mouseListeners[listener];
     window.removeEventListener(listener, this[handler], false);
   }
 
@@ -351,7 +351,7 @@ export class Touches {
     return mq(query);
   }
 
-  on(event: TouchEventType, handler: Function) {
+  on(event: NgTouchEventType, handler: Function) {
     if (event) {
       this.handlers[event] = handler;
     }

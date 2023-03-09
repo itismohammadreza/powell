@@ -1,9 +1,7 @@
 import {Directive, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
 import {OverlayOptions} from "primeng/api";
-import {NgFixLabelPosition, NgLabelPosition} from "@ng/models/forms";
-import {NgTheme} from "@ng/models/config";
-import {NgSize} from "@ng/models/offset";
+import {NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@ng/models";
 import {ConfigService} from "@ng/services";
 
 @Directive({

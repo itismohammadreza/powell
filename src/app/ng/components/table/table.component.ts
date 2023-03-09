@@ -14,7 +14,7 @@ import {
 import {FilterMetadata, SortMeta} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {ScrollerOptions} from "primeng/scroller";
-import {NgEmptyIcon, NgOrientation, NgSelectionMode, NgSize} from '@ng/models/offset';
+import {NgEmptyIcon, NgOrientation, NgSelectionMode, NgSize} from '@ng/models';
 import {
   NgTableAction,
   NgTableActionsConfig,
@@ -27,7 +27,7 @@ import {
   NgTableResponsiveLayout,
   NgTableRowGroupMode,
   NgTableSortMode
-} from '@ng/models/table';
+} from '@ng/models';
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {ConfigService} from "@ng/services";
 

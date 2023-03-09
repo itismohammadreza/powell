@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NgStatus} from "@ng/models/offset";
+import {NgStatus} from "@ng/models";
 import {ConfigService} from "@ng/services";
 
 @Component({

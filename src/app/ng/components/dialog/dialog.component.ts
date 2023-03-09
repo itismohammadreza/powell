@@ -1,5 +1,5 @@
 import {Component, EventEmitter} from '@angular/core';
-import {NgDialogOptions} from '@ng/models/overlay';
+import {NgDialogOptions} from '@ng/models';
 
 @Component({
   selector: 'ng-dialog',

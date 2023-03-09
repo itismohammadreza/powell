@@ -1,13 +1,10 @@
 import {AfterContentInit, AfterViewChecked, Component, HostListener, Inject, Input, OnInit} from '@angular/core';
-import {LanguageChecker} from '@core/utils';
-import {MenuItem, OverlayOptions} from 'primeng/api';
-import {SidebarType} from '@core/models';
 import {DOCUMENT} from "@angular/common";
-import {ThemeService} from "@ng/services";
-import {NgTheme} from "@ng/models/config";
-import {ConfigService} from "@ng/services/config.service";
-import {NgFixLabelPosition, NgLabelPosition} from "@ng/models/forms";
-import {NgSize} from "@ng/models/offset";
+import {MenuItem, OverlayOptions} from 'primeng/api';
+import {LanguageChecker} from '@core/utils';
+import {SidebarType} from '@core/models';
+import {ConfigService, ThemeService} from "@ng/services";
+import {NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@ng/models";
 
 @Component({
   selector: 'ng-navbar-menu',

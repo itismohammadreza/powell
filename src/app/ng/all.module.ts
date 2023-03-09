@@ -3,9 +3,9 @@ import {DOCUMENT} from "@angular/common";
 import {ConfirmationService, FilterService, MessageService, PrimeNGConfig} from 'primeng/api';
 import {DialogService} from 'primeng/dynamicdialog';
 import {NgComponentsModule} from '@ng/components/components.module';
-import {ThemeService, ConfigService} from "@ng/services";
+import {ConfigService, ThemeService} from "@ng/services";
 import {NgGlobal} from '@ng/global';
-import {NgConfig} from "@ng/models/config";
+import {NgConfig} from "@ng/models";
 
 @NgModule({
   imports: [NgComponentsModule],

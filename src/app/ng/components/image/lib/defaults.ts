@@ -1,6 +1,6 @@
-import {PinchZoomOptions} from "@ng/models/image";
+import {NgPinchZoomOptions} from "@ng/models";
 
-export const defaultProperties: PinchZoomOptions = {
+export const defaultProperties: NgPinchZoomOptions = {
   transitionDuration: 200,
   doubleTap: true,
   doubleTapScale: 2,

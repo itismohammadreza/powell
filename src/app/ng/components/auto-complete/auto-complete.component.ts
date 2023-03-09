@@ -22,8 +22,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {ScrollerOptions} from "primeng/scroller";
-import {NgAddon, NgInputType, NgLabelPosition, NgValidation} from '@ng/models/forms';
-import {NgIconPosition, NgSize} from '@ng/models/offset';
+import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {ConfigService} from "@ng/services";
 

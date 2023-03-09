@@ -1,8 +1,6 @@
-import {Component, Inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {MenuItem} from "primeng/api";
-import {NgButtonAppearance} from "@ng/models/button";
-import {NgColor} from "@ng/models/color";
-import {NgIconPosition, NgSize} from "@ng/models/offset";
+import {NgButtonAppearance, NgColor, NgIconPosition, NgSize} from "@ng/models";
 import {ConfigService} from "@ng/services";
 
 @Component({

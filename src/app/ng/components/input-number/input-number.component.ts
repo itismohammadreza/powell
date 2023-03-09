@@ -13,12 +13,13 @@ import {
   NgAddon,
   NgCurrency,
   NgCurrencyDisplay,
+  NgIconPosition,
   NgLabelPosition,
   NgNumberButtonLayout,
   NgNumberMode,
+  NgSize,
   NgValidation
-} from '@ng/models/forms';
-import {NgIconPosition, NgSize} from '@ng/models/offset';
+} from '@ng/models';
 import {ConfigService} from "@ng/services";
 
 @Component({

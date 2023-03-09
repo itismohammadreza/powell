@@ -1,9 +1,9 @@
 import {Touches} from './touches';
 import {defaultProperties} from './defaults';
-import {PinchZoomOptions} from "@ng/models/image";
+import {NgPinchZoomOptions} from "@ng/models";
 
 export class IvyPinch {
-  properties: PinchZoomOptions = defaultProperties;
+  properties: NgPinchZoomOptions = defaultProperties;
   touches: any;
   element: any;
   elementTarget: any;
@@ -614,7 +614,7 @@ export class IvyPinch {
     this.touches.destroy();
   }
 
-  getPropertiesValue(propertyName: keyof PinchZoomOptions) {
+  getPropertiesValue(propertyName: keyof NgPinchZoomOptions) {
     if (this.properties && this.properties[propertyName]) {
       return this.properties[propertyName]
     } else {

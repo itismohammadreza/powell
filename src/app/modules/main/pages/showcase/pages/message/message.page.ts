@@ -1,5 +1,5 @@
-import {Component, Inject} from '@angular/core';
-import {NgSeverity} from "@ng/models/overlay";
+import {Component} from '@angular/core';
+import {NgSeverity} from "@ng/models";
 import {ConfigService} from "@ng/services";
 
 @Component({

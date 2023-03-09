@@ -10,9 +10,7 @@ import {
   SimpleChanges,
   TemplateRef
 } from '@angular/core';
-import {NgIconPosition, NgSize} from '@ng/models/offset';
-import {NgColor} from '@ng/models/color';
-import {NgButtonAppearance, NgButtonType} from '@ng/models/button';
+import {NgButtonAppearance, NgButtonType, NgColor, NgIconPosition, NgSize} from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template.directive';
 
 @Component({

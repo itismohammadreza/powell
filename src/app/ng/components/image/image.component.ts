@@ -17,7 +17,7 @@ import {ZIndexUtils} from "primeng/utils";
 import {DomHandler} from "primeng/dom";
 import {ConfigService} from "@ng/services";
 import {TemplateDirective} from "@ng/directives/template.directive";
-import {DisableZoomControl, LimitZoom, Listener, Overflow} from "@ng/models/image";
+import {NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow} from "@ng/models";
 
 @Component({
   selector: 'ng-image',
@@ -51,16 +51,16 @@ export class ImageComponent implements AfterContentInit {
   @Input() pinchDoubleTap: boolean
   @Input() pinchDoubleTapScale: number;
   @Input() pinchAutoZoomOut: boolean;
-  @Input() pinchLimitZoom: LimitZoom;
+  @Input() pinchLimitZoom: NgLimitZoom;
   @Input() pinchDisabled: boolean;
   @Input() pinchDisablePan: boolean;
-  @Input() pinchOverflow: Overflow;
+  @Input() pinchOverflow: NgOverflow;
   @Input() pinchZoomControlScale: number;
-  @Input() pinchDisableZoomControl: DisableZoomControl;
+  @Input() pinchDisableZoomControl: NgDisableZoomControl;
   @Input() pinchLimitPan: boolean;
   @Input() pinchMinPanScale: number;
   @Input() pinchMinScale: number;
-  @Input() pinchListeners: Listener;
+  @Input() pinchListeners: NgListener;
   @Input() pinchWheel: boolean;
   @Input() pinchAutoHeight: boolean;
   @Input() pinchWheelZoomFactor: number;

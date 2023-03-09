@@ -12,7 +12,7 @@ import {
 import {Subscription} from "rxjs";
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {OverlayService} from "@ng/services";
-import {NgHistoryState} from "@ng/models/overlay";
+import {NgHistoryState} from "@ng/models";
 
 @Component({
   selector: 'ng-bottom-sheet',

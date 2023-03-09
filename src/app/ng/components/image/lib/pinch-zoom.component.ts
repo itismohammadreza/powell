@@ -1,7 +1,7 @@
 import {Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {defaultProperties} from './defaults';
 import {IvyPinch} from './ivypinch';
-import {DisableZoomControl, LimitZoom, Listener, Overflow, PinchZoomOptions} from "@ng/models/image";
+import {NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow, NgPinchZoomOptions} from "@ng/models";
 
 @Component({
   selector: 'ng-pinch-zoom',
@@ -14,16 +14,16 @@ export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {
   @Input() doubleTap: boolean
   @Input() doubleTapScale: number;
   @Input() autoZoomOut: boolean;
-  @Input() limitZoom: LimitZoom;
+  @Input() limitZoom: NgLimitZoom;
   @Input() disabled: boolean;
   @Input() disablePan: boolean;
-  @Input() overflow: Overflow;
+  @Input() overflow: NgOverflow;
   @Input() zoomControlScale: number;
-  @Input() disableZoomControl: DisableZoomControl;
+  @Input() disableZoomControl: NgDisableZoomControl;
   @Input() limitPan: boolean;
   @Input() minPanScale: number;
   @Input() minScale: number;
-  @Input() listeners: Listener;
+  @Input() listeners: NgListener;
   @Input() wheel: boolean;
   @Input() autoHeight: boolean;
   @Input() wheelZoomFactor: number;
@@ -31,7 +31,7 @@ export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {
   @Input() style: any;
   @Input() styleClass: string;
 
-  properties: PinchZoomOptions;
+  properties: NgPinchZoomOptions;
   ivyPinch: IvyPinch;
 
   constructor(private el: ElementRef) {
@@ -42,7 +42,7 @@ export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    let properties: PinchZoomOptions = {};
+    let properties: NgPinchZoomOptions = {};
     for (const prop in changes) {
       if (changes[prop].currentValue != undefined) {
         properties[prop] = changes[prop].currentValue;
@@ -62,7 +62,7 @@ export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  applyPropertiesDefault(defaultProperties: PinchZoomOptions, properties: PinchZoomOptions) {
+  applyPropertiesDefault(defaultProperties: NgPinchZoomOptions, properties: NgPinchZoomOptions) {
     this.properties = Object.assign({}, defaultProperties, properties);
   }
 

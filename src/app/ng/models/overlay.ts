@@ -1,11 +1,12 @@
 import {HttpHeaders} from '@angular/common/http';
 import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {ContextMenu} from 'primeng/contextmenu';
-import {NgButtonAppearance, NgButtonType} from '@ng/models/button';
-import {NgColor} from '@ng/models/color';
 import {
   NgAddon,
+  NgButtonAppearance,
+  NgButtonType,
   NgChipDisplayMode,
+  NgColor,
   NgColorFormat,
   NgCurrency,
   NgCurrencyDisplay,
@@ -13,25 +14,33 @@ import {
   NgDatepickerHourFormat,
   NgDatepickerSelectionMode,
   NgDatepickerViewMode,
+  NgDisableZoomControl,
   NgFilePickerMode,
   NgFileResultType,
   NgFilterMatchMode,
   NgFixLabelPosition,
+  NgIconPosition,
   NgInputMode,
   NgInputType,
   NgKeyFilter,
   NgLabelPosition,
+  NgLimitZoom,
+  NgListener,
   NgNumberButtonLayout,
   NgNumberMode,
+  NgOrientation,
+  NgOverflow,
+  NgPlace,
+  NgPosition,
+  NgSelectionMode,
+  NgSize,
   NgTreeFilterMode,
-  NgValidationType,
-} from './forms';
-import {NgIconPosition, NgOrientation, NgPlace, NgPosition, NgSelectionMode, NgSize} from './offset';
+  NgValidationType
+} from '@ng/models';
 import {SunEditorOptions} from "suneditor/src/options";
 import {Core} from "suneditor/src/lib/core";
 import {LatLng, LatLngBounds} from "leaflet";
 import {ScrollerOptions} from "primeng/scroller";
-import {DisableZoomControl, LimitZoom, Listener, Overflow} from "@ng/models/image";
 
 export type NgSeverity = 'success' | 'info' | 'warn' | 'error';
 export type NgDefaultFocus = 'accept' | 'reject';
@@ -487,16 +496,16 @@ export interface NgDialogFormConfig {
   pinchDoubleTap?: boolean;
   pinchDoubleTapScale?: number;
   pinchAutoZoomOut?: boolean;
-  pinchLimitZoom?: LimitZoom;
+  pinchLimitZoom?: NgLimitZoom;
   pinchDisabled?: boolean;
   pinchDisablePan?: boolean;
-  pinchOverflow?: Overflow;
+  pinchOverflow?: NgOverflow;
   pinchZoomControlScale?: number;
-  pinchDisableZoomControl?: DisableZoomControl;
+  pinchDisableZoomControl?: NgDisableZoomControl;
   pinchLimitPan?: boolean;
   pinchMinPanScale?: number;
   pinchMinScale?: number;
-  pinchListeners?: Listener;
+  pinchListeners?: NgListener;
   pinchWheel?: boolean;
   pinchAutoHeight?: boolean;
   pinchWheelZoomFactor?: number;

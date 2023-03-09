@@ -19,8 +19,16 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {NgAddon, NgInputMode, NgInputType, NgKeyFilter, NgLabelPosition, NgValidation} from '@ng/models/forms';
-import {NgIconPosition, NgSize} from '@ng/models/offset';
+import {
+  NgAddon,
+  NgIconPosition,
+  NgInputMode,
+  NgInputType,
+  NgKeyFilter,
+  NgLabelPosition,
+  NgSize,
+  NgValidation
+} from '@ng/models';
 import {ConfigService} from "@ng/services";
 
 @Component({

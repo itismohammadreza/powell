@@ -1,6 +1,6 @@
 import {Inject, Injectable} from "@angular/core";
 import {DOCUMENT} from "@angular/common";
-import {NgTheme} from "@ng/models/config";
+import {NgTheme} from "@ng/models";
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {NgAddon, NgLabelPosition} from '@ng/models/forms';
-import {NgIconPosition, NgSize} from '@ng/models/offset';
+import {NgAddon, NgIconPosition, NgLabelPosition, NgSize} from '@ng/models';
 import {ConfigService} from "@ng/services";
 
 @Component({

@@ -26,7 +26,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {FileUpload} from 'primeng/fileupload';
-import {NgFilePickerMode, NgFileResultType, NgFixLabelPosition, NgValidation} from '@ng/models/forms';
+import {NgFilePickerMode, NgFileResultType, NgFixLabelPosition, NgValidation} from '@ng/models';
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {ConfigService} from "@ng/services";
 

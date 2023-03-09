@@ -10,30 +10,38 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import {
+  NgDisableZoomControl,
+  NgLimitZoom,
+  NgListener,
   NgAddon,
+  NgButtonAppearance,
+  NgColor,
   NgColorFormat,
+  NgConfigChangeEvent,
   NgCurrency,
   NgCurrencyDisplay,
   NgDatepickerSelectionMode,
   NgDatepickerViewMode,
+  NgDefaultFocus,
   NgFilePickerMode,
   NgFixLabelPosition,
+  NgIconPosition,
   NgInputType,
   NgKeyFilter,
   NgLabelPosition,
   NgNumberButtonLayout,
-  NgNumberMode
-} from '@ng/models/forms';
-import {NgIconPosition, NgOrientation, NgPlace, NgSelectionMode, NgSize, NgStatus} from '@ng/models/offset';
-import {NgColor} from '@ng/models/color';
+  NgNumberMode,
+  NgOrientation,
+  NgPlace,
+  NgSelectionMode,
+  NgSeverity,
+  NgSize,
+  NgStatus,
+  NgOverflow
+} from '@ng/models';
 import {DropdownComponent} from '@ng/components/dropdown/dropdown.component';
 import {InputTextComponent} from '@ng/components/input-text/input-text.component';
 import {CheckboxComponent} from '@ng/components/checkbox/checkbox.component';
-import {NgButtonAppearance} from '@ng/models/button';
-import {NgDefaultFocus, NgSeverity} from "@ng/models/overlay";
-import {NgConfigChangeEvent, NgTheme} from "@ng/models/config";
-import {OverlayOptions} from "primeng/api";
-import {DisableZoomControl, LimitZoom, Listener, Overflow} from "@ng/models/image";
 
 type PreviewItem =
   | 'label'
@@ -597,17 +605,17 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() pinchDoubleTapScaleChange = new EventEmitter();
   @Input() pinchAutoZoomOut: boolean;
   @Output() pinchAutoZoomOutChange = new EventEmitter();
-  @Input() pinchLimitZoom: LimitZoom;
+  @Input() pinchLimitZoom: NgLimitZoom;
   @Output() pinchLimitZoomChange = new EventEmitter();
   @Input() pinchDisabled: boolean;
   @Output() pinchDisabledChange = new EventEmitter();
   @Input() pinchDisablePan: boolean;
   @Output() pinchDisablePanChange = new EventEmitter();
-  @Input() pinchOverflow: Overflow;
+  @Input() pinchOverflow: NgOverflow;
   @Output() pinchOverflowChange = new EventEmitter();
   @Input() pinchZoomControlScale: number;
   @Output() pinchZoomControlScaleChange = new EventEmitter();
-  @Input() pinchDisableZoomControl: DisableZoomControl;
+  @Input() pinchDisableZoomControl: NgDisableZoomControl;
   @Output() pinchDisableZoomControlChange = new EventEmitter();
   @Input() pinchLimitPan: boolean;
   @Output() pinchLimitPanChange = new EventEmitter();
@@ -615,7 +623,7 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() pinchMinPanScaleChange = new EventEmitter();
   @Input() pinchMinScale: number;
   @Output() pinchMinScaleChange = new EventEmitter();
-  @Input() pinchListeners: Listener;
+  @Input() pinchListeners: NgListener;
   @Output() pinchListenersChange = new EventEmitter();
   @Input() pinchWheel: boolean;
   @Output() pinchWheelChange = new EventEmitter();

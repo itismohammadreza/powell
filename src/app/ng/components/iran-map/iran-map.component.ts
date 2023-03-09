@@ -11,7 +11,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import {NgFixLabelPosition, NgValidation} from "@ng/models/forms";
+import {NgFixLabelPosition, NgValidation} from "@ng/models";
 import {
   AbstractControl,
   ControlContainer,

@@ -1,8 +1,8 @@
-export type LimitZoom = number | 'original image size';
-export type Overflow = 'hidden' | 'visible';
-export type DisableZoomControl = 'disable' | 'never' | 'auto';
-export type Listener = 'auto' | 'mouse and touch';
-export type TouchEventType =
+export type NgLimitZoom = number | 'original image size';
+export type NgOverflow = 'hidden' | 'visible';
+export type NgDisableZoomControl = 'disable' | 'never' | 'auto';
+export type NgListener = 'auto' | 'mouse and touch';
+export type NgTouchEventType =
   | 'touchend'
   | 'pan'
   | 'pinch'
@@ -10,10 +10,10 @@ export type TouchEventType =
   | 'vertical-swipe'
   | 'tap'
   | 'longtap';
-export type TouchHandler = 'handleTouchstart' | 'handleTouchmove' | 'handleTouchend';
-export type MouseHandler = 'handleMousedown' | 'handleMousemove' | 'handleMouseup';
+export type NgTouchHandler = 'handleTouchstart' | 'handleTouchmove' | 'handleTouchend';
+export type NgMouseHandler = 'handleMousedown' | 'handleMousemove' | 'handleMouseup';
 
-export interface ImageItem {
+export interface NgImageItem {
   preview: string;
   alt: string;
   thumbnail?: string;
@@ -23,25 +23,25 @@ export interface ImageItem {
   };
 }
 
-export interface BreakPointItem {
+export interface NgBreakPointItem {
   breakpoint: string;
   numVisible: number;
 }
 
-export interface PinchZoomOptions {
+export interface NgPinchZoomOptions {
   element?: string;
   transitionDuration?: number;
   doubleTap?: boolean;
   doubleTapScale?: number;
   autoZoomOut?: boolean;
-  limitZoom?: LimitZoom;
+  limitZoom?: NgLimitZoom;
   disablePan?: boolean;
   zoomControlScale?: number;
   limitPan?: boolean;
   minPanScale?: number;
   minScale?: number;
   eventHandler?: any;
-  listeners?: Listener;
+  listeners?: NgListener;
   wheel?: boolean;
   fullImage?: {
     path: string,
@@ -52,14 +52,14 @@ export interface PinchZoomOptions {
   draggableImage?: boolean;
   // for component
   disabled?: boolean;
-  overflow?: Overflow;
-  disableZoomControl?: DisableZoomControl;
+  overflow?: NgOverflow;
+  disableZoomControl?: NgDisableZoomControl;
   style?: any;
 }
 
-export interface TouchOptions {
+export interface NgTouchOptions {
   element: HTMLElement;
-  listeners?: Listener;
+  listeners?: NgListener;
   touchListeners?: any;
   mouseListeners?: any;
   otherListeners?: any;

@@ -23,7 +23,7 @@ import {
 import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
-import {NgFixLabelPosition, NgValidation} from '@ng/models/forms';
+import {NgFixLabelPosition, NgValidation} from '@ng/models';
 import {ConfigService} from "@ng/services";
 import {EditorBaseComponent} from "@ng/components/editor/editor-base/editor-base.component";
 

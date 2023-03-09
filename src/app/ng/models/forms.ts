@@ -1,6 +1,4 @@
-import {NgColor} from '@ng/models/color';
-import {NgIconPosition} from '@ng/models/offset';
-import {NgButtonAppearance} from "@ng/models/button";
+import {NgButtonAppearance, NgColor, NgIconPosition} from '@ng/models';
 
 export type NgFilePickerMode = 'basic' | 'advanced';
 export type NgFileResultType = 'base64' | 'file' | 'none';

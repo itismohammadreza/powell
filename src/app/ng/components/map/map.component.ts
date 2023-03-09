@@ -28,7 +28,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {NgAddon, NgFixLabelPosition, NgValidation} from "@ng/models/forms";
+import {NgAddon, NgFixLabelPosition, NgValidation} from "@ng/models";
 import {ConfigService} from "@ng/services";
 
 @Component({

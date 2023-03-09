@@ -21,9 +21,8 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {NgFixLabelPosition, NgValidation} from "@ng/models/forms";
+import {NgFixLabelPosition, NgSize, NgValidation} from "@ng/models";
 import {ConfigService} from "@ng/services";
-import {NgSize} from "@ng/models/offset";
 
 @Component({
   selector: 'ng-input-otp',

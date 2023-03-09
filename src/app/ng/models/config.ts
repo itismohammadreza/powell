@@ -1,6 +1,5 @@
-import {NgFixLabelPosition, NgLabelPosition} from "@ng/models/forms";
+import {NgFixLabelPosition, NgLabelPosition, NgSize} from "@ng/models";
 import {OverlayOptions} from "primeng/api";
-import {NgSize} from "@ng/models/offset";
 
 interface NgZIndexOptions {
   modal: number;

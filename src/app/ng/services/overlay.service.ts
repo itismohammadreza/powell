@@ -18,7 +18,7 @@ import {
   NgDialogOptions,
   NgHistoryState,
   NgToastOptions
-} from '@ng/models/overlay';
+} from '@ng/models';
 
 @Injectable({
   providedIn: 'root'

@@ -19,8 +19,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {NgAddon, NgLabelPosition, NgValidation} from '@ng/models/forms';
-import {NgIconPosition} from '@ng/models/offset';
+import {NgAddon, NgIconPosition, NgLabelPosition, NgValidation} from '@ng/models';
 import {ConfigService} from "@ng/services";
 
 @Component({

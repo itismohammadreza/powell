@@ -1,7 +1,4 @@
-import {NgColor} from '@ng/models/color';
-import {NgFilterMatchMode} from '@ng/models/forms';
-import {NgButtonAppearance} from "@ng/models/button";
-import {NgIconPosition, NgSize} from "@ng/models/offset";
+import {NgButtonAppearance, NgColor, NgFilterMatchMode, NgIconPosition, NgSize} from '@ng/models';
 
 export type NgTableRendererType = 'text' | 'image' | 'ng-template';
 export type NgTableFilterDisplay = 'row' | 'menu';

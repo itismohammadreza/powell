@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {DisableZoomControl, LimitZoom, Listener, Overflow} from "@ng/models/image";
+import {NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow} from "@ng/models";
 
 @Component({
   selector: 'ng-image-page',
@@ -14,16 +14,16 @@ export class ImagePage {
   pinchDoubleTap: boolean = true;
   pinchDoubleTapScale: number = 2;
   pinchAutoZoomOut: boolean = false;
-  pinchLimitZoom: LimitZoom = 'original image size';
+  pinchLimitZoom: NgLimitZoom = 'original image size';
   pinchDisabled: boolean = false;
   pinchDisablePan: boolean = false;
-  pinchOverflow: Overflow = 'hidden';
+  pinchOverflow: NgOverflow = 'hidden';
   pinchZoomControlScale: number = 1;
-  pinchDisableZoomControl: DisableZoomControl = 'auto';
+  pinchDisableZoomControl: NgDisableZoomControl = 'auto';
   pinchLimitPan: boolean = false;
   pinchMinPanScale: number = 1.0001;
   pinchMinScale: number = 0;
-  pinchListeners: Listener = 'mouse and touch';
+  pinchListeners: NgListener = 'mouse and touch';
   pinchWheel: boolean = true;
   pinchAutoHeight: boolean = false;
   pinchWheelZoomFactor: number = 0.2;

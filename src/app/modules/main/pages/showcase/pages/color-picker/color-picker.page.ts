@@ -1,7 +1,6 @@
-import {Component, Inject} from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {NgIconPosition, NgSize} from '@ng/models/offset';
-import {NgColorFormat, NgLabelPosition} from '@ng/models/forms';
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {NgColorFormat, NgIconPosition, NgLabelPosition, NgSize} from '@ng/models';
 import {ConfigService} from "@ng/services";
 
 @Component({

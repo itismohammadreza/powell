@@ -1,7 +1,6 @@
-import {Component, Inject} from '@angular/core';
-import {OverlayService} from "@ng/services";
-import {NgDialogOptions} from "@ng/models/overlay";
-import {ConfigService} from "@ng/services";
+import {Component} from '@angular/core';
+import {ConfigService, OverlayService} from "@ng/services";
+import {NgDialogOptions} from "@ng/models";
 
 @Component({
   selector: 'ng-dialog',

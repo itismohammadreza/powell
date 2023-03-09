@@ -1,6 +1,5 @@
 import {Directive, ElementRef, EventEmitter, Input, OnChanges, Output, Renderer2, SimpleChanges} from '@angular/core';
-import {NgAddon, NgAddonConfig} from '@ng/models/forms';
-import {NgSize} from "@ng/models/offset";
+import {NgAddon, NgAddonConfig, NgSize} from '@ng/models';
 
 @Directive({
   selector: '[ngAddon]'

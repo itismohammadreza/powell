@@ -8,7 +8,7 @@ import {
   FormGroupDirective,
   NgControl
 } from "@angular/forms";
-import {NgValidation} from "@ng/models/forms";
+import {NgValidation} from "@ng/models";
 import {ConfigService} from "@ng/services";
 
 @Component({

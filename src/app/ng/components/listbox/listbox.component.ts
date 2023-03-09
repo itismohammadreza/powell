@@ -22,7 +22,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {NgAddon, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@ng/models/forms';
+import {NgAddon, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {ConfigService} from "@ng/services";
 

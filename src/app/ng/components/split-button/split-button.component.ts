@@ -9,9 +9,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import {MenuItem} from 'primeng/api';
-import {NgButtonAppearance} from '@ng/models/button';
-import {NgColor} from '@ng/models/color';
-import {NgIconPosition, NgSize} from '@ng/models/offset';
+import {NgButtonAppearance, NgColor, NgIconPosition, NgSize} from '@ng/models';
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {ConfigService} from "@ng/services";
 

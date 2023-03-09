@@ -25,8 +25,7 @@ import {
 import {ContextMenu} from 'primeng/contextmenu';
 import {ScrollerOptions} from 'primeng/scroller';
 import {TemplateDirective} from '@ng/directives/template.directive';
-import {NgAddon, NgFixLabelPosition, NgTreeFilterMode, NgValidation} from '@ng/models/forms';
-import {NgOrientation, NgSelectionMode} from "@ng/models/offset";
+import {NgAddon, NgFixLabelPosition, NgOrientation, NgSelectionMode, NgTreeFilterMode, NgValidation} from '@ng/models';
 import {ConfigService} from "@ng/services";
 
 @Component({

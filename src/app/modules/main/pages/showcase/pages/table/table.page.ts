@@ -1,7 +1,6 @@
-import {Component, Inject} from '@angular/core';
-import {NgTableActionsConfig, NgTableColDef} from '@ng/models/table';
+import {Component} from '@angular/core';
 import {LazyLoadEvent, MenuItem} from 'primeng/api';
-import {NgSize} from "@ng/models/offset";
+import {NgSize, NgTableActionsConfig, NgTableColDef} from '@ng/models';
 import {UserService} from "@core/http";
 import {ConfigService} from "@ng/services";
 

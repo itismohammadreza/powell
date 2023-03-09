@@ -1,8 +1,7 @@
-import {Component, Inject} from '@angular/core';
-import {OverlayService} from "@ng/services";
-import {NgDialogFormOptions} from "@ng/models/overlay";
+import {Component} from '@angular/core';
+import {ConfigService, OverlayService} from "@ng/services";
+import {NgDialogFormOptions} from "@ng/models";
 import {FormControl, Validators} from "@angular/forms";
-import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-dialog-form-page',

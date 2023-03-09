@@ -1,7 +1,6 @@
-import {Component, Inject} from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {NgAddon, NgFixLabelPosition} from '@ng/models/forms';
-import {NgOrientation, NgSelectionMode} from '@ng/models/offset';
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {NgAddon, NgFixLabelPosition, NgOrientation, NgSelectionMode} from '@ng/models';
 import {ConfigService} from "@ng/services";
 
 @Component({

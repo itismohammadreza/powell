@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ImageItem} from '@ng/models/image';
+import {NgImageItem} from '@ng/models';
 
 @Component({
   selector: 'ng-image-slider-page',
@@ -7,7 +7,7 @@ import {ImageItem} from '@ng/models/image';
   styleUrls: ['./image-slider.page.scss']
 })
 export class ImageSliderPage {
-  images: ImageItem[] = [
+  images: NgImageItem[] = [
     {
       preview: 'https://via.placeholder.com/640x380?text=test1',
       thumbnail: 'https://via.placeholder.com/240x130?text=test1',

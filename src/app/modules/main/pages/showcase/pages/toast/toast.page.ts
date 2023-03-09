@@ -1,7 +1,6 @@
-import {Component, Inject} from '@angular/core';
-import {NgToastOptions} from "@ng/models/overlay";
-import {OverlayService} from "@ng/services";
-import {ConfigService} from "@ng/services";
+import {Component} from '@angular/core';
+import {NgToastOptions} from "@ng/models";
+import {ConfigService, OverlayService} from "@ng/services";
 
 @Component({
   selector: 'ng-toast-page',

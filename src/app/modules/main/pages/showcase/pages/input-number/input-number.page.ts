@@ -1,20 +1,21 @@
-import {Component, Inject} from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {
   NgAddon,
   NgCurrency,
   NgCurrencyDisplay,
+  NgIconPosition,
   NgLabelPosition,
   NgNumberButtonLayout,
-  NgNumberMode
-} from '@ng/models/forms';
-import {NgIconPosition, NgSize} from '@ng/models/offset';
+  NgNumberMode,
+  NgSize
+} from '@ng/models';
 import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-input-number-page',
   templateUrl: './input-number.page.html',
-  styleUrls: ['./input-number.page.scss'],
+  styleUrls: ['./input-number.page.scss']
 })
 export class InputNumberPage {
   form = new FormGroup({

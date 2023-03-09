@@ -2,8 +2,8 @@ import {Inject, Injectable} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {Subject} from "rxjs";
 import {PrimeNGConfig} from "primeng/api";
-import {NgConfig, NgConfigChangeEvent} from "@ng/models/config";
-import {ThemeService} from "@ng/services/theme.service";
+import {NgConfig, NgConfigChangeEvent} from "@ng/models";
+import {ThemeService} from "@ng/services";
 
 @Injectable()
 export class ConfigService {

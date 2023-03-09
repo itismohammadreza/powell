@@ -9,7 +9,7 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import {BreakPointItem, ImageItem} from '@ng/models/image';
+import {NgBreakPointItem, NgImageItem} from '@ng/models';
 import {TemplateDirective} from "@ng/directives/template.directive";
 
 @Component({
@@ -18,12 +18,12 @@ import {TemplateDirective} from "@ng/directives/template.directive";
   styleUrls: ['./image-slider.component.scss']
 })
 export class ImageSliderComponent implements OnInit, AfterContentInit {
-  @Input() images: ImageItem[] = [];
+  @Input() images: NgImageItem[] = [];
   @Input() activeIndex: number = 0;
   @Input() fullScreen: boolean;
   @Input() visible: boolean;
   @Input() numVisible: number = 3;
-  @Input() responsiveOptions: BreakPointItem[] = [{
+  @Input() responsiveOptions: NgBreakPointItem[] = [{
     breakpoint: '1024px',
     numVisible: 3,
   }, {

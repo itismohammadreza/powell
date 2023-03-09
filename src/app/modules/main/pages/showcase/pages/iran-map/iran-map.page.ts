@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {NgFixLabelPosition} from "@ng/models/forms";
+import {NgFixLabelPosition} from "@ng/models";
 import {ConfigService} from "@ng/services";
 
 @Component({
