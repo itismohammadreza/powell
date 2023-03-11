@@ -15,8 +15,8 @@
   (onShow)="_onShow()"
   (onHide)="_onHide()">
   <div class="bottom-sheet-wrapper">
-    <div class="header px-3 py-2 d-flex align-items-center justify-content-between w-100"
-         *ngIf="header || showCloseIcon || headerTemplate">
+    <div class="header px-3 d-flex align-items-center justify-content-between w-100"
+         *ngIf="header || showCloseIcon || headerTemplate" [ngClass]="{'py-3': !showCloseIcon,'py-2':showCloseIcon}">
       <ng-container *ngIf="headerTemplate;else alternativeTitle">
         <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
       </ng-container>
