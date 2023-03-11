@@ -1,7 +1,7 @@
 <div class="container">
   <p-card header="FilePicker"
           subheader="FilePicker is an advanced uploader with drag and drop support, multi file uploads, auto uploading, progress tracking and validations."></p-card>
-  <p-panel header="Options">
+  <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
       'label',
@@ -36,7 +36,7 @@
     ></ng-preview-options>
   </p-panel>
 
-  <p-panel header="Preview">
+  <p-panel [header]="'preview' | translate">
     <form [formGroup]="form">
       <ng-file-picker2
         formControlName="c1"

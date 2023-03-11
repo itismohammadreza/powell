@@ -1,7 +1,7 @@
 <div class="container">
   <p-card header="Map"
           subheader="Map component provides integration with Leaflet Maps API. This sample demontrates various uses cases like binding, overlays and events. Click the map to add a new item."></p-card>
-  <p-panel header="Options">
+  <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
       'label',
@@ -34,7 +34,7 @@
     ></ng-preview-options>
   </p-panel>
 
-  <p-panel header="Preview">
+  <p-panel [header]="'preview' | translate">
     <form [formGroup]="form">
       <ng-map
         formControlName="c1"

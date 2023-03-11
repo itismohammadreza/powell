@@ -1,7 +1,7 @@
 <div class="container">
   <p-card header="IranMap"
           subheader="IranMap is used to show a selectable iran map."></p-card>
-  <p-panel header="Options">
+  <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
       'label',
@@ -25,7 +25,7 @@
     ></ng-preview-options>
   </p-panel>
 
-  <p-panel header="Preview">
+  <p-panel [header]="'preview' | translate">
     <form [formGroup]="form">
       <ng-iran-map
         formControlName="c1"

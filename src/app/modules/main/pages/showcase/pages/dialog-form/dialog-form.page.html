@@ -1,7 +1,7 @@
 <div class="container">
   <p-card header="DialogForm"
           subheader="DialogForm is a container to display form in an overlay window."></p-card>
-  <p-panel header="Options">
+  <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
       'header',
@@ -58,7 +58,7 @@
     ></ng-preview-options>
   </p-panel>
 
-  <p-panel header="Preview">
+  <p-panel [header]="'preview' | translate">
     <ng-button label="Open Dialog Form" (click)="showDialogForm()"></ng-button>
   </p-panel>
 </div>

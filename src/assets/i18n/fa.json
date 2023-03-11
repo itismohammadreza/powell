@@ -232,5 +232,7 @@
   "filePickerMode": "حالت فایل پیکر",
   "datepickerSelectionMode": "حالت انتخاب تقویم",
   "numberMode": "حالت عدد",
-  "fixLabelPos": "مکان برچسب فیکس"
+  "fixLabelPos": "مکان برچسب فیکس",
+
+  "options": "تنظیمات"
 }

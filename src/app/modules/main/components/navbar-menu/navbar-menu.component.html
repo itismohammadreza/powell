@@ -81,6 +81,7 @@
       class="d-block mb-3"
       [value]="tempSidebarType"
       [options]="sidebarTypes"
+      [disableConfigChangeEffect]="true"
       (onChange)="changeSidebarType($event)"
     ></ng-dropdown>
     <ng-switch
@@ -89,6 +90,7 @@
       [labelWidth]="170"
       class="d-block mb-3"
       [value]="rtl"
+      [disableConfigChangeEffect]="true"
       (onChange)="changeGlobalConfig('rtl',$event.checked)">
     </ng-switch>
     <ng-dual-label-switch
@@ -101,6 +103,7 @@
       [labelWidth]="170"
       class="d-block mb-3"
       [value]="lang"
+      [disableConfigChangeEffect]="true"
       (onChange)="changeLang($event)">
     </ng-dual-label-switch>
     <ng-dropdown
@@ -111,6 +114,7 @@
       class="d-block mb-3"
       [value]="theme"
       [options]="themes"
+      [disableConfigChangeEffect]="true"
       (onChange)="changeGlobalConfig('theme',$event.value)"
     ></ng-dropdown>
     <ng-dropdown
@@ -121,6 +125,7 @@
       class="d-block mb-3"
       [value]="labelPos"
       [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'},{label:'float',value:'float'}]"
+      [disableConfigChangeEffect]="true"
       (onChange)="changeGlobalConfig('labelPos',$event.value)"
     ></ng-dropdown>
     <ng-dropdown
@@ -131,6 +136,7 @@
       class="d-block mb-3"
       [value]="fixLabelPos"
       [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'}]"
+      [disableConfigChangeEffect]="true"
       (onChange)="changeGlobalConfig('fixLabelPos',$event.value)"
     ></ng-dropdown>
     <ng-switch
@@ -139,6 +145,7 @@
       [labelWidth]="170"
       class="d-block mb-3"
       [value]="filled"
+      [disableConfigChangeEffect]="true"
       (onChange)="changeGlobalConfig('filled',$event.checked)">
     </ng-switch>
     <ng-switch
@@ -147,6 +154,7 @@
       [labelWidth]="170"
       class="d-block mb-3"
       [value]="showRequiredStar"
+      [disableConfigChangeEffect]="true"
       (onChange)="changeGlobalConfig('showRequiredStar',$event.checked)">
     </ng-switch>
     <ng-dropdown
@@ -157,6 +165,7 @@
       class="d-block mb-3"
       [value]="inputSize"
       [options]="[{label:'sm',value:'sm'},{label:'md',value:'md'},{label:'lg',value:'lg'}]"
+      [disableConfigChangeEffect]="true"
       (onChange)="changeGlobalConfig('inputSize',$event.value)"
     ></ng-dropdown>
     <ng-switch
@@ -165,6 +174,7 @@
       [labelWidth]="170"
       class="d-block mb-3"
       [value]="ripple"
+      [disableConfigChangeEffect]="true"
       (onChange)="changeGlobalConfig('ripple',$event.checked)">
     </ng-switch>
   </div>

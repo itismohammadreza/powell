@@ -1,7 +1,7 @@
 <div class="container">
   <p-card header="ImageSlider"
           subheader="ImageSlider is an advanced content gallery component."></p-card>
-  <p-panel header="Options">
+  <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
       'numVisible',
@@ -36,7 +36,7 @@
     ></ng-preview-options>
   </p-panel>
 
-  <p-panel header="Preview">
+  <p-panel [header]="'preview' | translate">
     <ng-image-slider
       [(visible)]="visible"
       [images]="images"

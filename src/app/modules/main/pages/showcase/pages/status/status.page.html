@@ -1,7 +1,7 @@
 <div class="container">
   <p-card header="Status"
           subheader="Status used to feed back the results of a series of operational tasks."></p-card>
-  <p-panel header="Options">
+  <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
       'status',
@@ -20,7 +20,7 @@
     ></ng-preview-options>
   </p-panel>
 
-  <p-panel header="Preview">
+  <p-panel [header]="'preview' | translate">
     <ng-status
       [status]="status"
       [icon]="icon"

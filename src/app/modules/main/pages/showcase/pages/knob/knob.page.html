@@ -1,7 +1,7 @@
 <div class="container">
   <p-card header="Knob"
           subheader="Knob is a form component to define number inputs with a dial."></p-card>
-  <p-panel header="Options">
+  <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
       'label',
@@ -46,7 +46,7 @@
     ></ng-preview-options>
   </p-panel>
 
-  <p-panel header="Preview">
+  <p-panel [header]="'preview' | translate">
     <form [formGroup]="form">
       <ng-knob
         formControlName="c1"

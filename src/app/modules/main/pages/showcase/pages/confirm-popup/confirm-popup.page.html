@@ -1,7 +1,7 @@
 <div class="container">
   <p-card header="ConfirmPopup"
           subheader="ConfirmPopup displays a confirmation overlay displayed relatively to its target."></p-card>
-  <p-panel header="Options">
+  <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
       'icon',
@@ -38,7 +38,7 @@
     ></ng-preview-options>
   </p-panel>
 
-  <p-panel header="Preview">
+  <p-panel [header]="'preview' | translate">
     <ng-button (click)="showConfirmPopup($event)" label="Open Dialog Popup"></ng-button>
   </p-panel>
 </div>

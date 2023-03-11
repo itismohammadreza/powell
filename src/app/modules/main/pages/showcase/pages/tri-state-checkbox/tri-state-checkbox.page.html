@@ -1,7 +1,7 @@
 <div class="container">
   <p-card header="Checkbox"
           subheader="Checkbox is an extension to standard checkbox element with theming."></p-card>
-  <p-panel header="Options">
+  <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
       'label',
@@ -24,7 +24,7 @@
     ></ng-preview-options>
   </p-panel>
 
-  <p-panel header="Preview">
+  <p-panel [header]="'preview' | translate">
     <form [formGroup]="form">
       <ng-tri-state-checkbox
         formControlName="c1"

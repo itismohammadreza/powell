@@ -1,7 +1,7 @@
 <div class="container">
   <p-card header="Image"
           subheader="Image displays an image with preview and transformation options."></p-card>
-  <p-panel header="Options">
+  <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
       'width',
@@ -50,7 +50,7 @@
     ></ng-preview-options>
   </p-panel>
 
-  <p-panel header="Preview">
+  <p-panel [header]="'preview' | translate">
     <ng-image
       src="assets/images/logo.png"
       [width]="width"

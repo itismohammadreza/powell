@@ -1,7 +1,7 @@
 <div class="container">
   <p-card header="ConfirmDialog"
           subheader="ConfirmDialog is backed by a service utilizing Observables to display confirmation windows easily that can be shared by multiple actions on the same component."></p-card>
-  <p-panel header="Options">
+  <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
       'closable',
@@ -48,7 +48,7 @@
     ></ng-preview-options>
   </p-panel>
 
-  <p-panel header="Preview">
+  <p-panel [header]="'preview' | translate">
     <ng-button (click)="showConfirmDialog()" label="Open Confirm Dialog"></ng-button>
   </p-panel>
 </div>

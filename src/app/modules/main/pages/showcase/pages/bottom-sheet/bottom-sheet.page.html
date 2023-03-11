@@ -1,7 +1,7 @@
 <div class="container">
   <p-card header="BottomSheet"
           subheader="BottomSheet can be used to open panels to the bottom of the screen."></p-card>
-  <p-panel header="Options">
+  <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
       'blockScroll',
@@ -20,7 +20,7 @@
     ></ng-preview-options>
   </p-panel>
 
-  <p-panel header="Preview">
+  <p-panel [header]="'preview' | translate">
     <ng-button (click)="visible = true" label="Open Bottom Sheet"></ng-button>
   </p-panel>
 </div>

@@ -232,5 +232,7 @@
   "filePickerMode": "File Picker Mode",
   "datepickerSelectionMode": "Datepicker Selection Mode",
   "numberMode": "Number Mode",
-  "fixLabelPos": "Fix Label Pos"
+  "fixLabelPos": "Fix Label Pos",
+
+  "options": "Options"
 }
