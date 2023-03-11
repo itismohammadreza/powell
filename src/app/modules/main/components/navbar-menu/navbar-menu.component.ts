@@ -157,7 +157,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   async changeLang(event) {
-    await this.translationService.use(event.checked).toPromise();
+    await this.translationService.use(event.value).toPromise();
   }
 
   changeSidebarType(event: any) {
