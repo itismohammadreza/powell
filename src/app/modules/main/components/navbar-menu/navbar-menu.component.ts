@@ -137,7 +137,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       'tri-state-checkbox',
       'utils',
     ];
-    this.themes = themes.map((t, i) => ({label: `${i + 1}-${t}`, value: t}));
+    this.themes = themes.map((t, i) => ({label: t, value: t}));
     this.sidebarTypes = sidebarTypes.map((t) => ({label: t, value: t}));
     this.sidebarItems = sidebarItems.map(item => ({
       label: item,
