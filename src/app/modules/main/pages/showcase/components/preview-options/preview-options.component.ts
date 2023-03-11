@@ -2,7 +2,7 @@ import {
   Component,
   ComponentRef,
   EventEmitter,
-  Input,
+  Input, OnDestroy,
   OnInit,
   Output,
   Type,
@@ -42,6 +42,9 @@ import {
 import {DropdownComponent} from '@ng/components/dropdown/dropdown.component';
 import {InputTextComponent} from '@ng/components/input-text/input-text.component';
 import {CheckboxComponent} from '@ng/components/checkbox/checkbox.component';
+import {TranslationService} from "@core/utils";
+import {Subject, takeUntil} from "rxjs";
+import {ConfigService} from "@ng/services";
 
 type PreviewItem =
   | 'label'
@@ -279,8 +282,7 @@ type PreviewItem =
   templateUrl: './preview-options.component.html',
   styleUrls: ['./preview-options.component.scss']
 })
-
-export class PreviewOptionsComponent implements OnInit {
+export class PreviewOptionsComponent implements OnInit, OnDestroy {
   @Input() label: string;
   @Output() labelChange = new EventEmitter()
   @Input() filled: boolean;
@@ -750,6 +752,10 @@ export class PreviewOptionsComponent implements OnInit {
   @Input() previewItems: PreviewItem[]
 
   cmpRefs: ComponentRef<any>[] = [];
+  destroy$ = new Subject<boolean>();
+
+  constructor(private translationService: TranslationService, private configService: ConfigService) {
+  }
 
   ngOnInit(): void {
     const dropdownData = {
@@ -833,15 +839,17 @@ export class PreviewOptionsComponent implements OnInit {
     })
   }
 
-  private createComponent(cmp: Type<any>, previewItem: PreviewItem, row: 'firstRow' | 'secondRow') {
+  createComponent(cmp: Type<any>, previewItem: PreviewItem, row: 'firstRow' | 'secondRow') {
     const cmpRef = this[row].createComponent(cmp);
-    cmpRef.location.nativeElement.classList.add('col-md-6', 'col-lg-3');
-    cmpRef.instance.label = previewItem;
+    cmpRef.location.nativeElement.classList.add('col-md-6', 'col-lg-4');
+    cmpRef.instance.label = this.translationService.instant(previewItem);
     cmpRef.instance.value = this[previewItem];
-    cmpRef.instance.rtl = false;
+    cmpRef.instance.rtl = this.configService.getConfig().rtl;
     cmpRef.instance.filled = false;
-    cmpRef.instance.disableConfigChangeEffect = true;
     cmpRef.instance.inputSize = 'sm';
+    this.translationService.stream(previewItem).pipe(takeUntil(this.destroy$)).subscribe(res => {
+      cmpRef.instance.label = res;
+    })
     switch (cmp) {
       case DropdownComponent:
         cmpRef.location.nativeElement.classList.add('mb-3');
@@ -888,5 +896,10 @@ export class PreviewOptionsComponent implements OnInit {
     }
     this.cmpRefs.push(cmpRef);
     return cmpRef;
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete()
   }
 }

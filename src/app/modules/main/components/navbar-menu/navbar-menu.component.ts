@@ -5,6 +5,7 @@ import {LanguageChecker} from '@core/utils';
 import {SidebarType} from '@core/models';
 import {ConfigService, ThemeService} from "@ng/services";
 import {NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@ng/models";
+import {GlobalConfig} from "@core/config";
 
 @Component({
   selector: 'ng-navbar-menu',
@@ -27,6 +28,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   inputSize: NgSize = this.configService.getConfig().inputSize;
   ripple: boolean = this.configService.getConfig().ripple;
   overlayOptions: OverlayOptions = this.configService.getConfig().overlayOptions;
+  lang: string = GlobalConfig.lang;
 
   tempSidebarType: SidebarType;
   themes: MenuItem[];
@@ -149,13 +151,13 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     }));
   }
 
-  async changeGlobalConfig(config: string, value: any) {
+  changeGlobalConfig(config: string, value: any) {
     this[config] = value;
     this.configService.setConfig({[config]: value});
-    if (config == 'rtl') {
-      const language = value ? 'fa' : 'en';
-      await this.translationService.use(language).toPromise();
-    }
+  }
+
+  async changeLang(event) {
+    await this.translationService.use(event.checked).toPromise();
   }
 
   changeSidebarType(event: any) {
