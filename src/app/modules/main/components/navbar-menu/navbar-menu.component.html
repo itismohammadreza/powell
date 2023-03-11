@@ -72,7 +72,8 @@
   position="left"
   [(visible)]="configSidebarVisible"
   [style]="{width:'30rem'}">
-  <div class="h-100 py-4">
+  <div class="h-100 pb-4">
+    <p-divider align="center"><h5 class="mb-0">{{'siteConfigs' | translate}}</h5></p-divider>
     <ng-dropdown
       [label]="'sidebar' | translate"
       labelPos="fix-side"
@@ -91,7 +92,7 @@
       [options]="[{label:'EN',value:'en'},{label:'FA',value:'fa'}]"
       (onChange)="changeLang($event)">
     </ng-dropdown>
-    <p-divider></p-divider>
+    <p-divider class="d-block mt-5" align="center"><h5 class="mb-0">{{'componentsGlobalConfigs' | translate}}</h5></p-divider>
     <ng-dropdown
       [label]="'selectiveSize' | translate"
       labelPos="fix-side"

@@ -235,5 +235,8 @@
   "fixLabelPos": "Fix Label Pos",
 
   "options": "Options",
-  "searchComponents": "Search Components..."
+
+  "searchComponents": "Search Components...",
+  "siteConfigs": "siteConfigs",
+  "componentsGlobalConfigs": "componentsGlobalConfigs"
 }

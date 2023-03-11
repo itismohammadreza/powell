@@ -235,5 +235,7 @@
   "fixLabelPos": "مکان برچسب فیکس",
 
   "options": "تنظیمات",
-  "searchComponents": "جستجوی کامپوننت ها..."
+  "searchComponents": "جستجوی کامپوننت ها...",
+  "siteConfigs": "تنظیمات سایت",
+  "componentsGlobalConfigs": "تنظیمات کلی کامپوننت ها"
 }
