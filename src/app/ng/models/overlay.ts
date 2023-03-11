@@ -364,8 +364,8 @@ export interface NgDialogFormConfig {
   ///////////////////////////////////////// dual-label-switch /////////////////////////////////////////
   labelLeft?: string;
   labelRight?: string;
-  labelLeftValue?: string;
-  labelRightValue?: string;
+  leftValue?: string;
+  rightValue?: string;
   ///////////////////////////////////////// editor /////////////////////////////////////////
   onDrop_param?: boolean;
   onCopy_param?: boolean;

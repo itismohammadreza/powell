@@ -21,8 +21,8 @@
         [tabindex]="tabindex"
         [disabled]="disabled"
         [readonly]="readonly"
-        [trueValue]="labelRightValue"
-        [falseValue]="labelLeftValue"
+        [trueValue]="rightValue"
+        [falseValue]="leftValue"
         (onChange)="_onChange($event)"
       ></p-inputSwitch>
       <span class="label-right" [class.text-muted]="disabled">{{labelRight}}</span>

@@ -29,8 +29,8 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() label: string;
   @Input() labelLeft: string;
   @Input() labelRight: string;
-  @Input() labelLeftValue: string = 'left';
-  @Input() labelRightValue: string = 'right';
+  @Input() leftValue: string = 'left';
+  @Input() rightValue: string = 'right';
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean = this.configService.getConfig().rtl;
@@ -94,7 +94,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
 
   setInitValue() {
     if (!this.value) {
-      this.value = this.labelLeftValue;
+      this.value = this.leftValue;
       this.onModelChange(this.value)
     }
   }
