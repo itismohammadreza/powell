@@ -855,7 +855,7 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
         cmpRef.location.nativeElement.classList.add('mb-3');
         cmpRef.instance.labelPos = 'fix-top';
         if (previewItem == 'addon') {
-          cmpRef.instance.onChange.subscribe(event => {
+          cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
             switch (event.value) {
               case 'none':
                 this.addonChange.emit(null)
@@ -877,19 +877,19 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
           cmpRef.instance.value = 'none';
           break;
         }
-        cmpRef.instance.onChange.subscribe(event => {
+        cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
           this[`${previewItem}Change`].emit(event.value == 'none' ? null : event.value);
         });
         break;
       case InputTextComponent:
         cmpRef.location.nativeElement.classList.add('mb-3');
         cmpRef.instance.labelPos = 'fix-top';
-        cmpRef.instance.onInput.subscribe(event => {
+        cmpRef.instance.onInput.pipe(takeUntil(this.destroy$)).subscribe(event => {
           this[`${previewItem}Change`].emit(event.target.value);
         });
         break;
       case CheckboxComponent:
-        cmpRef.instance.onChange.subscribe(event => {
+        cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
           this[`${previewItem}Change`].emit(event.checked);
         });
         break;
