@@ -68,7 +68,6 @@ export class TranslationService {
    * Changes the lang currently used
    */
   use(lang: string): Observable<any> {
-    localStorage.setItem('lang', lang);
     return this.translate.use(lang);
   }
 
