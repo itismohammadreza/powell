@@ -177,6 +177,10 @@
     .p-sidebar {
       background: var(--surface-b);
 
+      .p-divider .p-divider-content {
+        background-color: var(--surface-b);
+      }
+
       .p-sidebar-content {
         height: 100%;
       }
