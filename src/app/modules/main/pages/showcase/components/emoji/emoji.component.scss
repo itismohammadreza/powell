@@ -1,5 +1,7 @@
 .wrapper {
   transition: 0.4s;
+  display: flex;
+  justify-content: center;
 
   .body {
     position: relative;
