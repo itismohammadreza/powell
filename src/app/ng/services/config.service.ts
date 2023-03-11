@@ -17,7 +17,7 @@ export class ConfigService {
 
   private _config: NgConfig = {
     disableConfigChangeEffect: false,
-    rtl: false,
+    rtl: true,
     fixLabelPos: 'fix-side',
     labelPos: 'fix-side',
     filled: false,
