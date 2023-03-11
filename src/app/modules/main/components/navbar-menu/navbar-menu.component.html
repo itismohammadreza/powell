@@ -78,7 +78,7 @@
       inputSize="sm"
       labelPos="fix-side"
       [labelWidth]="170"
-      class="d-block mb-3"
+      class="d-block mb-4"
       [value]="tempSidebarType"
       [options]="sidebarTypes"
       (onChange)="changeSidebarType($event)"
@@ -87,7 +87,7 @@
       [label]="'rtl' | translate"
       labelPos="fix-side"
       [labelWidth]="170"
-      class="d-block mb-3"
+      class="d-block mb-4"
       [value]="rtl"
       (onChange)="changeGlobalConfig('rtl',$event.checked)">
     </ng-switch>
@@ -99,7 +99,7 @@
       rightValue="en"
       labelPos="fix-side"
       [labelWidth]="170"
-      class="d-block mb-3"
+      class="d-block mb-4"
       [value]="lang"
       (onChange)="changeLang($event)">
     </ng-dual-label-switch>
@@ -108,7 +108,7 @@
       inputSize="sm"
       labelPos="fix-side"
       [labelWidth]="170"
-      class="d-block mb-3"
+      class="d-block mb-4"
       [value]="theme"
       [options]="themes"
       (onChange)="changeGlobalConfig('theme',$event.value)"
@@ -118,7 +118,7 @@
       inputSize="sm"
       labelPos="fix-side"
       [labelWidth]="170"
-      class="d-block mb-3"
+      class="d-block mb-4"
       [value]="labelPos"
       [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'},{label:'float',value:'float'}]"
       (onChange)="changeGlobalConfig('labelPos',$event.value)"
@@ -128,7 +128,7 @@
       inputSize="sm"
       labelPos="fix-side"
       [labelWidth]="170"
-      class="d-block mb-3"
+      class="d-block mb-4"
       [value]="fixLabelPos"
       [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'}]"
       (onChange)="changeGlobalConfig('fixLabelPos',$event.value)"
@@ -137,7 +137,7 @@
       [label]="'filled' | translate"
       labelPos="fix-side"
       [labelWidth]="170"
-      class="d-block mb-3"
+      class="d-block mb-4"
       [value]="filled"
       (onChange)="changeGlobalConfig('filled',$event.checked)">
     </ng-switch>
@@ -145,7 +145,7 @@
       [label]="'showRequiredStar' | translate"
       labelPos="fix-side"
       [labelWidth]="170"
-      class="d-block mb-3"
+      class="d-block mb-4"
       [value]="showRequiredStar"
       (onChange)="changeGlobalConfig('showRequiredStar',$event.checked)">
     </ng-switch>
@@ -154,7 +154,7 @@
       inputSize="sm"
       labelPos="fix-side"
       [labelWidth]="170"
-      class="d-block mb-3"
+      class="d-block mb-4"
       [value]="inputSize"
       [options]="[{label:'sm',value:'sm'},{label:'md',value:'md'},{label:'lg',value:'lg'}]"
       (onChange)="changeGlobalConfig('inputSize',$event.value)"
@@ -163,7 +163,7 @@
       [label]="'ripple' | translate"
       labelPos="fix-side"
       [labelWidth]="170"
-      class="d-block mb-3"
+      class="d-block mb-4"
       [value]="ripple"
       (onChange)="changeGlobalConfig('ripple',$event.checked)">
     </ng-switch>

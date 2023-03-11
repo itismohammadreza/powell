@@ -854,7 +854,7 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
     })
     switch (cmp) {
       case DropdownComponent:
-        cmpRef.location.nativeElement.classList.add('mb-3');
+        cmpRef.location.nativeElement.classList.add('mb-4');
         if (previewItem == 'addon') {
           cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
             switch (event.value) {
@@ -883,7 +883,7 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
         });
         break;
       case InputTextComponent:
-        cmpRef.location.nativeElement.classList.add('mb-3');
+        cmpRef.location.nativeElement.classList.add('mb-4');
         cmpRef.instance.onInput.pipe(takeUntil(this.destroy$)).subscribe(event => {
           this[`${previewItem}Change`].emit(event.target.value);
         });
