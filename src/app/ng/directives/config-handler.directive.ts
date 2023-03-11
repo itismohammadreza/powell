@@ -44,7 +44,7 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   startSubscription() {
-    this.destroy$ = new Subject<any>();
+    this.destroy$ = new Subject<boolean>();
     this.configService.configChange$.pipe(takeUntil(this.destroy$)).subscribe(({modifiedConfig, currentConfig}) => {
       const configs: string[] = [
         'disableConfigChangeEffect',
