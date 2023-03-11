@@ -1,4 +1,14 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  forwardRef,
+  Injector,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -9,6 +19,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
+import {Subject, takeUntil} from "rxjs";
 import {Moment} from "jalali-moment";
 import {
   NgAddon,
@@ -35,7 +46,7 @@ import {ConfigService} from "@ng/services";
     }
   ]
 })
-export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
+export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean = this.configService.getConfig().filled;
@@ -122,6 +133,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject<boolean>();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -152,7 +164,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -240,5 +252,10 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

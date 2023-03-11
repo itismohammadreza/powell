@@ -7,6 +7,7 @@ import {
   forwardRef,
   Injector,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -22,6 +23,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
+import {Subject, takeUntil} from "rxjs";
 import {
   NgAddon,
   NgChipDisplayMode,
@@ -47,7 +49,7 @@ import {ConfigService} from "@ng/services";
     }
   ]
 })
-export class TreeSelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
+export class TreeSelectComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean = this.configService.getConfig().filled;
@@ -98,6 +100,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject<boolean>();
   valueTemplate: TemplateRef<any>;
   headerTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
@@ -132,7 +135,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -237,5 +240,10 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

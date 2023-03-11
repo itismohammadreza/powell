@@ -1,4 +1,14 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  forwardRef,
+  Injector,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   CRS,
   FitBoundsOptions,
@@ -28,6 +38,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
+import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgFixLabelPosition, NgValidation} from "@ng/models";
 import {ConfigService} from "@ng/services";
 
@@ -43,7 +54,7 @@ import {ConfigService} from "@ng/services";
     }
   ]
 })
-export class MapComponent implements OnInit, ControlValueAccessor {
+export class MapComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() value: LatLngLiteral | LatLngLiteral[];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -145,6 +156,7 @@ export class MapComponent implements OnInit, ControlValueAccessor {
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject<boolean>();
   map: Map;
   layers: Layer[] = [];
   onModelChange: any = (_: any) => {
@@ -175,7 +187,7 @@ export class MapComponent implements OnInit, ControlValueAccessor {
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -346,5 +358,10 @@ export class MapComponent implements OnInit, ControlValueAccessor {
     this.value = null;
     this.onModelChange(null);
     this.onClear.emit()
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete()
   }
 }

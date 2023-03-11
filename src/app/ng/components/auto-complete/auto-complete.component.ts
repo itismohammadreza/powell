@@ -6,6 +6,7 @@ import {
   EventEmitter,
   Injector,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -21,6 +22,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
+import {Subject, takeUntil} from "rxjs";
 import {ScrollerOptions} from "primeng/scroller";
 import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template.directive';
@@ -38,7 +40,7 @@ import {ConfigService} from "@ng/services";
     }
   ]
 })
-export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlValueAccessor {
+export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean = this.configService.getConfig().filled;
@@ -116,6 +118,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject<boolean>();
   itemTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
@@ -152,7 +155,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -286,6 +289,11 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }
 

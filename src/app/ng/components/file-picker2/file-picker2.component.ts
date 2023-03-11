@@ -6,6 +6,7 @@ import {
   Injector,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
@@ -19,6 +20,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
+import {Subject, takeUntil} from "rxjs";
 import {NgColor, NgFileResultType, NgFixLabelPosition, NgValidation} from '@ng/models';
 import {ConfigService, UtilsService} from "@ng/services";
 
@@ -37,7 +39,7 @@ import {ConfigService, UtilsService} from "@ng/services";
     '[style.display]': "'block'"
   }
 })
-export class FilePicker2Component implements OnInit, OnChanges, ControlValueAccessor {
+export class FilePicker2Component implements OnInit, OnChanges, ControlValueAccessor, OnDestroy {
   @Input() value: any = [];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -62,6 +64,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject<boolean>();
   filesToShow: { display: string | ArrayBuffer, name: string }[] = [];
   filesToEmit: any[] = [];
   _chooseLabel: string;
@@ -102,7 +105,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -268,6 +271,11 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
   getFileType(file: any) {

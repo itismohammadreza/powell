@@ -7,6 +7,7 @@ import {
   forwardRef,
   Injector,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -22,6 +23,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
+import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template.directive';
 import {ConfigService} from "@ng/services";
@@ -38,7 +40,7 @@ import {ConfigService} from "@ng/services";
     }
   ]
 })
-export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAccessor {
+export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean = this.configService.getConfig().filled;
@@ -81,6 +83,7 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject<boolean>();
   itemTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
@@ -112,7 +115,7 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -210,5 +213,10 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

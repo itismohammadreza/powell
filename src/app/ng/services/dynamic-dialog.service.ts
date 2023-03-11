@@ -38,9 +38,9 @@ export class DynamicDialogService {
     const dialogRef = new DynamicDialogRef();
     map.set(DynamicDialogRef, dialogRef);
 
-    const sub = dialogRef.afterClosed.subscribe(() => {
+    const afterClosedSub = dialogRef.afterClosed.subscribe(() => {
       this.removeDialogComponentFromBody();
-      sub.unsubscribe();
+      afterClosedSub.unsubscribe();
     });
 
     // یه وقتایی پیش میاد که میخایم یه چیزی رو پرواید کنیم ولی به این صورت که هر بار یه ولیوی جدید به ما بده . خب پس نمیتونیم توی اپ ماژول یا روت پروایدش کنیم . از طرفی
@@ -69,8 +69,9 @@ export class DynamicDialogService {
     const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     this.document.body.appendChild(domElem);
     this.dialogComponentRef = componentRef;
-    this.dialogComponentRef.instance.onClose.subscribe(() => {
+    const onCloseSub = this.dialogComponentRef.instance.onClose.subscribe(() => {
       this.removeDialogComponentFromBody();
+      onCloseSub.unsubscribe();
     });
     return dialogRef;
   }
