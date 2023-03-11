@@ -77,7 +77,7 @@
     class="fix-label align-self-start"
     *ngIf="label"
     [attr.for]="inputId"
-    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label | labelStar:showRequiredStar:isRequired() }}
   </label>
   <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>

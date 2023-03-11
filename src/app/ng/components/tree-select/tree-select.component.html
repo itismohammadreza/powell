@@ -83,7 +83,7 @@
     *ngIf="label && labelPos != 'float'"
     [attr.for]="inputId"
     [class.p-disabled]="disabled"
-    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label | labelStar:showRequiredStar:isRequired() }}
   </label>
   <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>

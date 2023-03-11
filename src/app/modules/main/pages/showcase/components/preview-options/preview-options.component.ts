@@ -843,7 +843,9 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
     const cmpRef = this[row].createComponent(cmp);
     cmpRef.location.nativeElement.classList.add('col-md-6', 'col-lg-4');
     cmpRef.instance.label = this.translationService.instant(previewItem);
+    cmpRef.instance.labelWidth = 140;
     cmpRef.instance.value = this[previewItem];
+    cmpRef.instance.labelPos = this.configService.getConfig().labelPos;
     cmpRef.instance.rtl = this.configService.getConfig().rtl;
     cmpRef.instance.filled = this.configService.getConfig().filled;
     cmpRef.instance.inputSize = this.configService.getConfig().inputSize;
@@ -853,7 +855,6 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
     switch (cmp) {
       case DropdownComponent:
         cmpRef.location.nativeElement.classList.add('mb-3');
-        cmpRef.instance.labelPos = 'fix-top';
         if (previewItem == 'addon') {
           cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
             switch (event.value) {
@@ -883,7 +884,6 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
         break;
       case InputTextComponent:
         cmpRef.location.nativeElement.classList.add('mb-3');
-        cmpRef.instance.labelPos = 'fix-top';
         cmpRef.instance.onInput.pipe(takeUntil(this.destroy$)).subscribe(event => {
           this[`${previewItem}Change`].emit(event.target.value);
         });
