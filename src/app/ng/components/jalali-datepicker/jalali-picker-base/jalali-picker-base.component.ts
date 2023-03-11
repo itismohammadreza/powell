@@ -19,7 +19,7 @@ import {
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {animate, AnimationEvent, state, style, transition, trigger} from '@angular/animations';
-import {Subscription} from 'rxjs';
+import {Subject, Subscription, takeUntil} from 'rxjs';
 import {Moment} from "jalali-moment";
 import {ConnectedOverlayScrollHandler, DomHandler} from 'primeng/dom';
 import {OverlayService, PrimeNGConfig, PrimeTemplate} from 'primeng/api';
@@ -239,6 +239,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
   monthNames = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
   weekNamesShort = ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'];
   weekNames = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'];
+  destroy$ = new Subject<boolean>();
 
   @Input() get view(): CalendarTypeView {
     return this._view;
@@ -397,7 +398,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
       this.ticksTo1970 = (((1970 - 1) * 365 + Math.floor(1970 / 4) - Math.floor(1970 / 100) + Math.floor(1970 / 400)) * 24 * 60 * 60 * 10000000);
     }
 
-    this.translationSubscription = this.config.translationObserver.subscribe(() => {
+    this.translationSubscription = this.config.translationObserver.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.createWeekDays();
     });
 
@@ -2738,5 +2739,8 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     this.clearTimePickerTimer();
     this.restoreOverlayAppend();
     this.onOverlayHide();
+
+    this.destroy$.next(true);
+    this.destroy$.complete()
   }
 }

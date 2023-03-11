@@ -118,7 +118,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
     for (let index = 0; index < this.inputCount; index++) {
       this.form.addControl(this.getControlName(index), new FormControl());
     }
-    this.form.valueChanges.subscribe(() => {
+    this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.transformKeys(this.form.controls).forEach((k) => {
         const val = this.form.controls[k].value;
         if (val && val.length > 1) {

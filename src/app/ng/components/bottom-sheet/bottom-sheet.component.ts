@@ -9,10 +9,10 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import {Subscription} from "rxjs";
 import {TemplateDirective} from "@ng/directives/template.directive";
 import {OverlayService} from "@ng/services";
 import {NgHistoryState} from "@ng/models";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'ng-bottom-sheet',
@@ -42,7 +42,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
 
   headerTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
-  stateSubscription: Subscription;
+  destroy$ = new Subject<boolean>();
   state: NgHistoryState = {
     component: 'bottomSheet',
     key: this.overlayService.getId()
@@ -77,7 +77,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   _onShow() {
     this.visible = true;
     this.visibleChange.emit(this.visible);
-    this.stateSubscription = this.overlayService.stateChange().subscribe(res => {
+    this.overlayService.stateChange().pipe(takeUntil(this.destroy$)).subscribe(res => {
       if (this.state.key === res.key) {
         this._onHide()
       }
@@ -88,7 +88,8 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   _onHide() {
     this.visible = false;
     this.visibleChange.emit(this.visible);
-    this.stateSubscription?.unsubscribe();
+    this.destroy$?.next(true);
+    this.destroy$.complete();
     if (!this.overlayService.isPopped(this.state)) {
       this.overlayService.popState()
     }
