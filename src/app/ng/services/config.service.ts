@@ -17,11 +17,11 @@ export class ConfigService {
 
   private _config: NgConfig = {
     disableConfigChangeEffect: false,
-    rtl: true,
+    rtl: false,
     fixLabelPos: 'fix-side',
     labelPos: 'fix-side',
     filled: false,
-    inputSize: 'lg',
+    inputSize: 'sm',
     showRequiredStar: true,
     theme: 'lara-light-indigo',
     ripple: true,
