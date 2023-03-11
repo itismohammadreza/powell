@@ -845,8 +845,8 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
     cmpRef.instance.label = this.translationService.instant(previewItem);
     cmpRef.instance.value = this[previewItem];
     cmpRef.instance.rtl = this.configService.getConfig().rtl;
-    cmpRef.instance.filled = false;
-    cmpRef.instance.inputSize = 'sm';
+    cmpRef.instance.filled = this.configService.getConfig().filled;
+    cmpRef.instance.inputSize = this.configService.getConfig().inputSize;
     this.translationService.stream(previewItem).pipe(takeUntil(this.destroy$)).subscribe(res => {
       cmpRef.instance.label = res;
     })
