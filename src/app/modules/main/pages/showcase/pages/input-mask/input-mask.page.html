@@ -1,8 +1,7 @@
 <div class="container">
-  <p-card dir="ltr"
-          header="InputMask"
+  <p-card header="InputMask"
           subheader="InputMask component is used to enter input in a certain format such as numeric, date, currency and phone."></p-card>
-  <p-panel dir="ltr" header="Options">
+  <p-panel header="Options">
     <ng-preview-options
       [previewItems]="[
       'label',
@@ -55,7 +54,7 @@
     ></ng-preview-options>
   </p-panel>
 
-  <p-panel dir="ltr" header="Preview">
+  <p-panel header="Preview">
     <form [formGroup]="form">
       <ng-input-mask
         formControlName="c1"

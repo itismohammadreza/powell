@@ -16,30 +16,23 @@ export class TranslationService {
 
   async init() {
     this.onLangChange().subscribe((res: any) => {
+      this.storeLang(res.lang, this.currentLang);
       this.currentLang = res.lang;
-      this.handleBodyClass();
     });
-    const lang = GlobalConfig.lang;
-    localStorage.setItem('lang', lang);
+    this.currentLang = GlobalConfig.lang;
+    this.storeLang(this.currentLang);
     if (!this.getDefaultLang()) {
-      this.setDefaultLang(lang);
+      this.setDefaultLang(this.currentLang);
     }
-    this.handleBodyClass();
-    await this.use(lang).toPromise();
+    await this.use(this.currentLang).toPromise();
   }
 
-  private handleBodyClass() {
-    this.document.documentElement.setAttribute('lang', this.currentLang);
+  storeLang(currentLang: string, prevLang?: string) {
     const body = this.document.body;
-    if (this.fa) {
-      body.style.direction = 'rtl';
-      body.classList.add('ng-rtl');
-      body.classList.remove('ng-ltr');
-    } else if (this.en) {
-      body.style.direction = 'ltr';
-      body.classList.add('ng-ltr');
-      body.classList.remove('ng-rtl');
-    }
+    body.classList.remove(`ng-lang-${prevLang}`);
+    body.classList.add(`ng-lang-${currentLang}`);
+    this.document.documentElement.setAttribute('lang', currentLang);
+    localStorage.setItem('ng-lang', currentLang);
   }
 
   get en(): boolean {

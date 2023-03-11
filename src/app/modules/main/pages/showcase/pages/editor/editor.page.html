@@ -1,8 +1,7 @@
 <div class="container">
-  <p-card dir="ltr"
-          header="Editor"
+  <p-card header="Editor"
           subheader="Editor is rich text editor component based on SubEditor."></p-card>
-  <p-panel dir="ltr" header="Options">
+  <p-panel header="Options">
     <ng-preview-options
       [previewItems]="[
       'label',
@@ -27,7 +26,7 @@
     ></ng-preview-options>
   </p-panel>
 
-  <p-panel dir="ltr" header="Preview">
+  <p-panel header="Preview">
     <form [formGroup]="form">
       <ng-editor
         formControlName="c1"
