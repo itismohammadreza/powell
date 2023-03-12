@@ -1,9 +1,11 @@
-import {Inject, Injectable} from '@angular/core';
+import {Inject, Injectable, InjectionToken} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {Subject} from "rxjs";
 import {PrimeNGConfig} from "primeng/api";
 import {NgConfig, NgConfigChangeEvent} from "@ng/models";
 import {ThemeService} from "@ng/services";
+
+export const NG_CONFIG = new InjectionToken<NgConfig>('ng-config');
 
 @Injectable()
 export class ConfigService {

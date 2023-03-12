@@ -832,7 +832,7 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
     Object.entries(modifiedConfig).forEach(item => {
       const key = item[0];
       const value = item[1];
-      const ref = this.cmpRefs.find(({instance}) => instance.label == equalization[key]);
+      const ref = this.cmpRefs.find(({instance}) => instance.key == equalization[key]);
       if (ref) {
         ref.instance.value = value;
       }
@@ -849,6 +849,7 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
     cmpRef.instance.rtl = this.configService.getConfig().rtl;
     cmpRef.instance.filled = this.configService.getConfig().filled;
     cmpRef.instance.inputSize = this.configService.getConfig().inputSize;
+    Object.assign(cmpRef.instance, {key: previewItem})
     this.translationService.stream(previewItem).pipe(takeUntil(this.destroy$)).subscribe(res => {
       cmpRef.instance.label = res;
     })
