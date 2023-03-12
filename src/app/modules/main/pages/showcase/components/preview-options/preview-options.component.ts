@@ -841,7 +841,7 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
 
   createComponent(cmp: Type<any>, previewItem: PreviewItem, row: 'firstRow' | 'secondRow') {
     const cmpRef = this[row].createComponent(cmp);
-    cmpRef.location.nativeElement.classList.add('col-md-6', 'col-lg-4');
+    cmpRef.location.nativeElement.classList.add('col-md-6', 'col-xl-4');
     cmpRef.instance.label = this.translationService.instant(previewItem);
     cmpRef.instance.labelWidth = 140;
     cmpRef.instance.value = this[previewItem];
