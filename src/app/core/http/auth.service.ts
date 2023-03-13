@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {ApiService} from '@core/http';
 import {Router} from '@angular/router';
 import {lastValueFrom} from "rxjs";
+import {ApiService} from '@core/http';
 
 @Injectable({
   providedIn: 'root'

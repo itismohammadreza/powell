@@ -1,7 +1,7 @@
 import {HttpClient, HttpContext, HttpHeaders, HttpParams} from '@angular/common/http';
-import {NgGlobal} from '@ng/global';
 import {Observable} from 'rxjs';
 import {EnvService} from "@core/utils";
+import {NgGlobal} from '@ng/global';
 
 interface RequestOptions {
   headers?: HttpHeaders | { [header: string]: string | string[] };
