@@ -1,5 +1,6 @@
 export * from './animate-on-scroll.service';
 export * from './breadcrumb.service';
+export * from './config.provider';
 export * from './config.service';
 export * from './dynamic-dialog.service';
 export * from './moment.service';
