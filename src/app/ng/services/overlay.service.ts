@@ -6,9 +6,8 @@ import {Confirmation, ConfirmationService, ConfirmEventType, Message, MessageSer
 import {Toast} from 'primeng/toast';
 import {ConfirmPopup} from 'primeng/confirmpopup';
 import {ConfirmDialog} from 'primeng/confirmdialog';
-import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
+import {DialogComponent, DialogFormComponent} from "@ng/components/overlay";
 import {ConfigService} from "@ng/services";
-import {DialogComponent} from '@ng/components/dialog/dialog.component';
 import {
   NgConfirmDialogOptions,
   NgConfirmPopupOptions,
