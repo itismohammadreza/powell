@@ -81,77 +81,77 @@
 </div>
 
 
-<h1>Prime Lazy</h1>
-<p-table [value]="lazyCustomers"
-         [lazy]="true"
-         (onLazyLoad)="loadCustomers($event)"
-         responsiveLayout="scroll"
-         dataKey="id"
-         [selection]="selectedCustomers"
-         (selectionChange)="onSelectionChange($event)"
-         [selectAll]="selectAll"
-         (selectAllChange)="onSelectAllChange($event)"
-         [paginator]="true"
-         [rows]="10"
-         [totalRecords]="totalRecords"
-         [loading]="loading"
-         [globalFilterFields]="['name','country.name', 'company', 'representative.name']">
-  <ng-template pTemplate="header">
-    <tr>
-      <th style="width: 3rem"></th>
-      <th pSortableColumn="name">Name
-        <p-sortIcon field="name"></p-sortIcon>
-      </th>
-      <th pSortableColumn="country.name">Country
-        <p-sortIcon field="country.name"></p-sortIcon>
-      </th>
-      <th pSortableColumn="company">Company
-        <p-sortIcon field="company"></p-sortIcon>
-      </th>
-      <th pSortableColumn="representative.name">Representative
-        <p-sortIcon field="representative.name"></p-sortIcon>
-      </th>
-    </tr>
-    <tr>
-      <th style="width: 3rem">
-        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="name"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="country.name"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="company"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter field="representative" matchMode="in" [showMenu]="false">
-          <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-            <p-multiSelect [ngModel]="value" appendTo="body" [options]="[]" placeholder="Any"
-                           (onChange)="filter($event.value)" optionLabel="name">
-              <ng-template let-option pTemplate="item">
-                <div class="p-multiselect-representative-option">
-                  <img [alt]="option.label" src="assets/showcase/images/demo/avatar/{{option.image}}" width="32"
-                       style="vertical-align: middle"/>
-                  <span class="ml-1">{{option.name}}</span>
-                </div>
-              </ng-template>
-            </p-multiSelect>
-          </ng-template>
-        </p-columnFilter>
-      </th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-customer>
-    <tr>
-      <td>
-        <p-tableCheckbox [value]="customer"></p-tableCheckbox>
-      </td>
-      <td>{{customer.name}}</td>
-      <td>{{customer.country.name}}</td>
-      <td>{{customer.company}}</td>
-      <td>{{customer.representative.name}}</td>
-    </tr>
-  </ng-template>
-</p-table>
+<!--<h1>Prime Lazy</h1>-->
+<!--<p-table [value]="lazyCustomers"-->
+<!--         [lazy]="true"-->
+<!--         (onLazyLoad)="loadCustomers($event)"-->
+<!--         responsiveLayout="scroll"-->
+<!--         dataKey="id"-->
+<!--         [selection]="selectedCustomers"-->
+<!--         (selectionChange)="onSelectionChange($event)"-->
+<!--         [selectAll]="selectAll"-->
+<!--         (selectAllChange)="onSelectAllChange($event)"-->
+<!--         [paginator]="true"-->
+<!--         [rows]="10"-->
+<!--         [totalRecords]="totalRecords"-->
+<!--         [loading]="loading"-->
+<!--         [globalFilterFields]="['name','country.name', 'company', 'representative.name']">-->
+<!--  <ng-template pTemplate="header">-->
+<!--    <tr>-->
+<!--      <th style="width: 3rem"></th>-->
+<!--      <th pSortableColumn="name">Name-->
+<!--        <p-sortIcon field="name"></p-sortIcon>-->
+<!--      </th>-->
+<!--      <th pSortableColumn="country.name">Country-->
+<!--        <p-sortIcon field="country.name"></p-sortIcon>-->
+<!--      </th>-->
+<!--      <th pSortableColumn="company">Company-->
+<!--        <p-sortIcon field="company"></p-sortIcon>-->
+<!--      </th>-->
+<!--      <th pSortableColumn="representative.name">Representative-->
+<!--        <p-sortIcon field="representative.name"></p-sortIcon>-->
+<!--      </th>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th style="width: 3rem">-->
+<!--        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <p-columnFilter type="text" field="name"></p-columnFilter>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <p-columnFilter type="text" field="country.name"></p-columnFilter>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <p-columnFilter type="text" field="company"></p-columnFilter>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <p-columnFilter field="representative" matchMode="in" [showMenu]="false">-->
+<!--          <ng-template pTemplate="filter" let-value let-filter="filterCallback">-->
+<!--            <p-multiSelect [ngModel]="value" appendTo="body" [options]="[]" placeholder="Any"-->
+<!--                           (onChange)="filter($event.value)" optionLabel="name">-->
+<!--              <ng-template let-option pTemplate="item">-->
+<!--                <div class="p-multiselect-representative-option">-->
+<!--                  <img [alt]="option.label" src="assets/showcase/images/demo/avatar/{{option.image}}" width="32"-->
+<!--                       style="vertical-align: middle"/>-->
+<!--                  <span class="ml-1">{{option.name}}</span>-->
+<!--                </div>-->
+<!--              </ng-template>-->
+<!--            </p-multiSelect>-->
+<!--          </ng-template>-->
+<!--        </p-columnFilter>-->
+<!--      </th>-->
+<!--    </tr>-->
+<!--  </ng-template>-->
+<!--  <ng-template pTemplate="body" let-customer>-->
+<!--    <tr>-->
+<!--      <td>-->
+<!--        <p-tableCheckbox [value]="customer"></p-tableCheckbox>-->
+<!--      </td>-->
+<!--      <td>{{customer.name}}</td>-->
+<!--      <td>{{customer.country.name}}</td>-->
+<!--      <td>{{customer.company}}</td>-->
+<!--      <td>{{customer.representative.name}}</td>-->
+<!--    </tr>-->
+<!--  </ng-template>-->
+<!--</p-table>-->
