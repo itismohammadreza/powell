@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DynamicDialogConfig} from '@ng/components/dynamic-dialog/dynamic-dialog-config';
-import {DynamicDialogRef} from '@ng/components/dynamic-dialog/dynamic-dialog-ref';
+import {DynamicDialogConfig, DynamicDialogRef} from '@ng/components/dynamic-dialog';
 
 @Component({
   selector: 'ng-dynamic-dialog-sample',
