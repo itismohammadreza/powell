@@ -45,7 +45,6 @@ import {TreeComponent} from "@ng/components/tree/tree.component";
 /***************************** OVERLAY *****************************/
 import {BottomSheetComponent} from "@ng/components/bottom-sheet/bottom-sheet.component";
 import {DialogComponent} from "@ng/components/dialog/dialog.component";
-import {DynamicDialogComponent} from "@ng/components/dynamic-dialog/dynamic-dialog.component";
 import {Dialog2Component} from "@ng/components/dialog2/dialog2.component";
 import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
 
@@ -115,7 +114,6 @@ export const COMPONENTS: Type<any>[] = [
   /***************************** OVERLAY *************************/
   BottomSheetComponent,
   DialogComponent,
-  DynamicDialogComponent,
   Dialog2Component,
   DialogFormComponent,
   /***************************** UPLOAD *************************/
