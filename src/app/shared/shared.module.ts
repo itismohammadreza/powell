@@ -10,11 +10,9 @@ import {COMPONENTS} from '.';
   declarations: [...COMPONENTS],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    TranslateModule.forChild(),
     RouterModule,
-    NgAllModule
+    TranslateModule.forChild(),
+    // NgAllModule
   ],
   exports: [
     ...COMPONENTS,
@@ -22,7 +20,7 @@ import {COMPONENTS} from '.';
     ReactiveFormsModule,
     FormsModule,
     TranslateModule,
-    NgAllModule
+    // NgAllModule
   ]
 })
 export class SharedModule {
