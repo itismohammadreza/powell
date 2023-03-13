@@ -26,7 +26,7 @@ import {
 import {Subject, takeUntil} from "rxjs";
 import {ContextMenu} from 'primeng/contextmenu';
 import {ScrollerOptions} from 'primeng/scroller';
-import {TemplateDirective} from '@ng/directives/template.directive';
+import {TemplateDirective} from '@ng/directives/template/template.directive';
 import {NgAddon, NgFixLabelPosition, NgOrientation, NgSelectionMode, NgTreeFilterMode, NgValidation} from '@ng/models';
 import {ConfigService} from "@ng/services";
 
