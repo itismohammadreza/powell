@@ -1,6 +1,6 @@
 import {Type} from '@angular/core';
 /***************************** FORM *****************************/
-import {AutoCompleteComponent} from "@ng/components/auto-complete/auto-complete.component";
+// import {AutoCompleteComponent} from "@ng/components/auto-complete/auto-complete.component";
 import {CascadeSelectComponent} from "@ng/components/cascade-select/cascade-select.component";
 import {CheckboxComponent} from "@ng/components/checkbox/checkbox.component";
 import {ChipsComponent} from "@ng/components/chips/chips.component";
@@ -44,9 +44,9 @@ import {TreeComponent} from "@ng/components/tree/tree.component";
 
 /***************************** OVERLAY *****************************/
 import {BottomSheetComponent} from "@ng/components/bottom-sheet/bottom-sheet.component";
-import {DialogComponent} from "@ng/components/dialog/dialog.component";
-import {Dialog2Component} from "@ng/components/dialog2/dialog2.component";
-import {DialogFormComponent} from "@ng/components/dialog-form/dialog-form.component";
+import {DialogComponent} from "@ng/components/overlay/dialog/dialog.component";
+import {Dialog2Component} from "@ng/components/overlay/dialog2/dialog2.component";
+import {DialogFormComponent} from "@ng/components/overlay/dialog-form/dialog-form.component";
 
 /***************************** UPLOAD *****************************/
 import {FilePickerComponent} from "@ng/components/file-picker/file-picker.component";
@@ -64,16 +64,15 @@ import {ImageSliderComponent} from "@ng/components/image-slider/image-slider.com
 
 /***************************** MISC *****************************/
 import {EmptyComponent} from "@ng/components/empty/empty.component";
-import {LoadingComponent} from "@ng/components/loading/loading.component";
 import {StatusComponent} from "@ng/components/status/status.component";
 import {DualLabelSwitchComponent} from "@ng/components/dual-label-switch/dual-label-switch.component";
 import {LoadingContainerComponent} from "@ng/components/loading-container/loading-container.component";
 import {IranMapComponent} from "@ng/components/iran-map/iran-map.component";
-import {PinchZoomComponent} from "@ng/components/image/lib/pinch-zoom.component";
+import {PinchZoomComponent} from "@ng/components/image/pinch-zoom/pinch-zoom.component";
 
 export const COMPONENTS: Type<any>[] = [
   /***************************** FORM *************************/
-  AutoCompleteComponent,
+  // AutoCompleteComponent,
   CascadeSelectComponent,
   CheckboxComponent,
   ChipsComponent,
@@ -130,7 +129,6 @@ export const COMPONENTS: Type<any>[] = [
   /***************************** MISC *************************/
   EmptyComponent,
   StatusComponent,
-  LoadingComponent,
   LoadingContainerComponent,
   IranMapComponent
 ];
