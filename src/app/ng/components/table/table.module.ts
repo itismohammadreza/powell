@@ -14,6 +14,7 @@ import {SliderModule} from "@ng/components/slider";
 import {DropdownModule} from "@ng/components/dropdown";
 import {MultiSelectModule} from "@ng/components/multi-select";
 import {InputNumberModule} from "@ng/components/input-number";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [TableComponent],
@@ -31,7 +32,8 @@ import {InputNumberModule} from "@ng/components/input-number";
     DropdownModule,
     CheckboxModule,
     ImageModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [TableComponent]
 })
