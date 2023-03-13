@@ -11,7 +11,7 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import {TemplateDirective} from "@ng/directives/template.directive";
+import {TemplateDirective} from "@ng/directives/template/template.directive";
 
 @Component({
   selector: 'ng-infinite-scroll',
