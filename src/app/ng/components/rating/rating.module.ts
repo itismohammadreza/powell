@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {RatingModule as PRatingModule} from 'primeng/autocomplete';
+import {RatingModule as PRatingModule} from 'primeng/rating';
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {ConfigHandlerModule} from "@ng/directives/config-handler";
