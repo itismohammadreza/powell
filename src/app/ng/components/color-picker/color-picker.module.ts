@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
-import {ColorPickerModule as PColorPickerModule} from 'primeng/colorpicker';
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {ColorPickerModule as PColorPickerModule} from 'primeng/colorpicker';
 import {ConfigHandlerModule} from "@ng/directives/config-handler";
 import {AddonModule} from "@ng/directives/addon";
 import {ColorPickerComponent} from "@ng/components/color-picker";

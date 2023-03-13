@@ -8,7 +8,13 @@ import {LabelStarModule} from "@ng/pipes/label-star";
 
 @NgModule({
   declarations: [JalaliDatepickerComponent, JalaliPickerBaseComponent],
-  imports: [ConfigHandlerModule, AddonModule, LabelStarModule, CommonModule, FormsModule],
+  imports: [
+    ConfigHandlerModule,
+    AddonModule,
+    LabelStarModule,
+    CommonModule,
+    FormsModule
+  ],
   exports: [JalaliDatepickerComponent]
 })
 export class JalaliDatepickerModule {

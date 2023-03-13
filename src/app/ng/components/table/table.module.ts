@@ -6,7 +6,11 @@ import {TableComponent} from "@ng/components/table";
 
 @NgModule({
   declarations: [TableComponent],
-  imports: [PTableModule, ConfigHandlerModule, CommonModule],
+  imports: [
+    PTableModule,
+    ConfigHandlerModule,
+    CommonModule
+  ],
   exports: [TableComponent]
 })
 export class TableModule {

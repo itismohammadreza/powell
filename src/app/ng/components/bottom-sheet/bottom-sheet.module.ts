@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {BottomSheetComponent} from "@ng/components/bottom-sheet";
 import {SidebarModule} from "primeng/sidebar";
+import {BottomSheetComponent} from "@ng/components/bottom-sheet";
 
 @NgModule({
   declarations: [BottomSheetComponent],

@@ -3,13 +3,18 @@ import {TriStateCheckboxModule as PTriStateCheckboxModule} from 'primeng/tristat
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {ConfigHandlerModule} from "@ng/directives/config-handler";
-import {AddonModule} from "@ng/directives/addon";
 import {TriStateCheckboxComponent} from "@ng/components/tri-state-checkbox";
 import {LabelStarModule} from "@ng/pipes/label-star";
 
 @NgModule({
   declarations: [TriStateCheckboxComponent],
-  imports: [PTriStateCheckboxModule, ConfigHandlerModule, AddonModule, LabelStarModule, CommonModule, FormsModule],
+  imports: [
+    PTriStateCheckboxModule,
+    ConfigHandlerModule,
+    LabelStarModule,
+    CommonModule,
+    FormsModule
+  ],
   exports: [TriStateCheckboxComponent]
 })
 export class TriStateCheckboxModule {
