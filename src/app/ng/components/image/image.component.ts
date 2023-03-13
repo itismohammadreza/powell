@@ -16,7 +16,7 @@ import {animate, AnimationEvent, style, transition, trigger} from "@angular/anim
 import {ZIndexUtils} from "primeng/utils";
 import {DomHandler} from "primeng/dom";
 import {ConfigService} from "@ng/services";
-import {TemplateDirective} from "@ng/directives/template.directive";
+import {TemplateDirective} from "@ng/directives/template/template.directive";
 import {NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow} from "@ng/models";
 
 @Component({
