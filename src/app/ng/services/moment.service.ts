@@ -58,17 +58,19 @@ export class MomentService {
   }
 
   /*
-  * example usage for convert jalali to gregorian
-  * convertToGregorian('1392/6/3 16:40', 'YYYY/M/D HH:mm').format('YYYY-M-D HH:mm:ss'); // 2013-8-25 16:40:00
+  * example usage for convert jalali to gregorian:
+  *
+  * `convertToGregorian('1392/6/3 16:40', 'YYYY/M/D HH:mm').format('YYYY-M-D HH:mm:ss');` `// 2013-8-25 16:40:00`
   * */
   convertToGregorian(input: string, format?: string) {
     return jalaliMoment.from(input, 'fa', format);
   }
 
   /*
-  * example usage for convert gregorian to jalali
-  * convertToJalali('2013-8-25 16:40:00', 'YYYY-M-D HH:mm:ss').format('YYYY/M/D HH:mm:ss'); // 1392/6/31 23:59:59
-  * */
+  * example usage for convert gregorian to jalali:
+  *
+  * `convertToJalali('2013-8-25 16:40:00', 'YYYY-M-D HH:mm:ss').format('YYYY/M/D HH:mm:ss');` `// 1392/6/31 23:59:59`
+  */
   convertToJalali(input: MomentInput, format?: MomentFormatSpecification) {
     return jalaliMoment(input, format).locale('fa');
   }
