@@ -1,7 +1,9 @@
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {CoreModule} from '@core/core.module';
+import {CardModule} from "primeng/card";
+import {PanelModule} from "primeng/panel";
 import {COMPONENTS} from './index';
+import {CoreModule} from '@core/core.module';
 import {ShowcaseRoutingModule} from '@modules/main/pages/showcase/showcase-routing.module';
 import {AutoCompleteModule} from "@ng/components/auto-complete";
 import {BottomSheetModule} from "@ng/components/bottom-sheet";
@@ -47,14 +49,26 @@ import {ToggleButtonModule} from "@ng/components/toggle-button";
 import {TreeModule} from "@ng/components/tree";
 import {TreeSelectModule} from "@ng/components/tree-select";
 import {TriStateCheckboxModule} from "@ng/components/tri-state-checkbox";
+import {SharedModule} from "@shared/shared.module";
+import {MultiCheckboxModule} from "@ng/components/multi-checkbox";
+import {DividerModule} from "primeng/divider";
+import {ConfigHandlerModule} from "@ng/directives/config-handler";
 
 @NgModule({
   declarations: [...COMPONENTS,],
   exports: [...COMPONENTS],
   imports: [
+    //
+    CardModule,
+    PanelModule,
+    DividerModule,
+    //
     ShowcaseRoutingModule,
     FormsModule,
+    //
+    SharedModule,
     CoreModule,
+    ConfigHandlerModule,
     AutoCompleteModule,
     BottomSheetModule,
     ButtonModule,
@@ -86,6 +100,7 @@ import {TriStateCheckboxModule} from "@ng/components/tri-state-checkbox";
     LoadingContainerModule,
     MapModule,
     MessageModule,
+    MultiCheckboxModule,
     MultiSelectModule,
     RadioModule,
     RatingModule,
