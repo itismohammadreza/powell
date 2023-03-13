@@ -56,8 +56,16 @@ export class ThemeService {
     'viva-dark',
     'viva-light',
   ]
+  private initialized: boolean = false;
 
   changeTheme(theme: NgTheme) {
+    if (!this.initialized) {
+      console.warn('theme not initialized, call initTheme() first!');
+      return;
+    }
+    if (this.currentTheme === theme) {
+      return;
+    }
     const themeElement = this.document.getElementById('prime-theme-link');
     const themeLink = `assets/themes/${theme}/theme.css`;
     themeElement.setAttribute('href', themeLink);
@@ -65,9 +73,8 @@ export class ThemeService {
   }
 
   initTheme() {
-    if (this.document.getElementById('prime-theme-link')) {
-      console.warn('theme already initialized')
-      return
+    if (this.initialized) {
+      return;
     }
     const head = this.document.querySelector('head');
     const link = this.document.createElement('link');
@@ -75,6 +82,7 @@ export class ThemeService {
     link.rel = "stylesheet";
     link.type = "text/css";
     head.appendChild(link);
+    this.initialized = true;
   }
 
   get currentTheme() {

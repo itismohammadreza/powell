@@ -46,15 +46,14 @@ export class ConfigService {
     } else {
       this.document.body.classList.remove('p-ripple-disabled');
     }
-    if (config?.theme) {
-      this.themeService.changeTheme(config.theme)
-    }
+    this.themeService.initTheme();
+    this.themeService.changeTheme(this._config.theme);
     this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
     this.handleBodyClasses();
   }
 
   getConfig() {
-    return this._config
+    return this._config;
   }
 
   private handleBodyClasses() {
