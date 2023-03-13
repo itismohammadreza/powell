@@ -3,20 +3,13 @@ import {DOCUMENT} from "@angular/common";
 import {ConfirmationService, FilterService, MessageService, PrimeNGConfig} from 'primeng/api';
 import {DialogService} from 'primeng/dynamicdialog';
 import {NgComponentsModule} from '@ng/components/components.module';
-import {ConfigService, ThemeService} from "@ng/services";
-import {NgGlobal} from '@ng/global';
-import {NgConfig} from "@ng/models";
 
 @NgModule({
   imports: [NgComponentsModule],
   exports: [NgComponentsModule]
 })
 export class NgAllModule {
-  constructor(private injector: Injector) {
-    NgGlobal.Injector = this.injector;
-  }
-
-  static forRoot(ngConfig?: NgConfig): ModuleWithProviders<NgAllModule> {
+  static forRoot(): ModuleWithProviders<NgAllModule> {
     return {
       ngModule: NgAllModule,
       providers: [

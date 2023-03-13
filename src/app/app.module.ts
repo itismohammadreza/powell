@@ -50,4 +50,7 @@ export function InitializeLanguage(translationService: TranslationService) {
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(private injector: Injector) {
+    NgGlobal.Injector = this.injector;
+  }
 }
