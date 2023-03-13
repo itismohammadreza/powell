@@ -46,6 +46,7 @@ import {ToggleButtonModule} from "@ng/components/toggle-button";
 import {TreeModule} from "@ng/components/tree";
 import {TreeSelectModule} from "@ng/components/tree-select";
 import {TriStateCheckboxModule} from "@ng/components/tri-state-checkbox";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -54,14 +55,14 @@ import {TriStateCheckboxModule} from "@ng/components/tri-state-checkbox";
     Dialog2Component
   ],
   imports: [
-
+    CommonModule,
+    ReactiveFormsModule,
     ConfirmDialogModule,
     ConfirmPopupModule,
     DialogModule,
     DynamicDialogModule,
     ToastModule,
     SafeModule,
-    CommonModule,
     AutoCompleteModule,
     ButtonModule,
     CascadeSelectModule,
