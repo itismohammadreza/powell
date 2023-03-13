@@ -34,7 +34,7 @@ import {
   NgTreeFilterMode,
   NgValidation
 } from '@ng/models';
-import {TemplateDirective} from '@ng/directives/template.directive';
+import {TemplateDirective} from '@ng/directives/template/template.directive';
 import {ConfigService} from "@ng/services";
 
 @Component({
