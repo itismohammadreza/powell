@@ -9,7 +9,7 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import {TemplateDirective} from "@ng/directives/template.directive";
+import {TemplateDirective} from "@ng/directives/template/template.directive";
 import {OverlayService} from "@ng/services";
 import {NgHistoryState} from "@ng/models";
 import {Subject, takeUntil} from "rxjs";
