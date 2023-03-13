@@ -11,7 +11,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import {NgButtonAppearance, NgButtonType, NgColor, NgIconPosition, NgSize} from '@ng/models';
-import {TemplateDirective} from '@ng/directives/template.directive';
+import {TemplateDirective} from '@ng/directives/template/template.directive';
 
 @Component({
   selector: 'ng-button',
