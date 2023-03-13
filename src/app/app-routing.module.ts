@@ -6,12 +6,12 @@ export const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
-    // canLoad: [PagesGuard],
+    // canMatch: [PagesGuard],
   },
   {
     path: '',
     loadChildren: () => import('@modules/main/main.module').then((m) => m.MainModule),
-    // canLoad: [AuthGuard],
+    // canMatch: [AuthGuard],
   },
   {
     path: '404',
