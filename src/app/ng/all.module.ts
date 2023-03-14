@@ -10,7 +10,6 @@ export class NgAllModule {
     return {
       ngModule: NgAllModule,
       providers: [
-
         FilterService,
       ],
     };

@@ -4,9 +4,7 @@ import {DOCUMENT} from '@angular/common';
 import {fromEvent, merge, Observable, Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UtilsService {
   constructor(@Inject(DOCUMENT) private document: Document) {
   }

@@ -1,5 +1,4 @@
 import {APP_INITIALIZER, Injector, NgModule} from '@angular/core';
-import {CommonModule} from "@angular/common";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
@@ -29,7 +28,6 @@ export function InitializeLanguage(translationService: TranslationService) {
     AppComponent,
   ],
   imports: [
-    CommonModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,

@@ -16,9 +16,7 @@ import {
   DynamicDialogRef
 } from '@ng/components/dynamic-dialog';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DynamicDialogService {
   dialogComponentRef: ComponentRef<DynamicDialogComponent>;
 
