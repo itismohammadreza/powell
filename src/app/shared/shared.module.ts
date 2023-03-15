@@ -1,25 +1,22 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
-import {COMPONENTS} from '.';
+import {COMPONENTS, PRIME_MODULES} from '.';
 
 @NgModule({
   declarations: [...COMPONENTS],
   imports: [
     CommonModule,
-    RouterModule,
     TranslateModule.forChild(),
-    // NgAllModule
   ],
   exports: [
     ...COMPONENTS,
+    ...PRIME_MODULES,
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
     TranslateModule,
-    // NgAllModule
   ]
 })
 export class SharedModule {

@@ -106,7 +106,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     Dialog2Component
   ],
   providers: [
-    OverlayService,
+    // OverlayService,
     MessageService,
     DialogService,
     ConfirmationService
