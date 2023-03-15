@@ -1,8 +1,7 @@
 import {DOCUMENT} from "@angular/common";
 import {PrimeNGConfig} from "primeng/api";
 import {NgConfig} from "@ng/models";
-import {ThemeService} from "@ng/config/theme.service";
-import {ConfigService} from "@ng/config/config.service";
+import {ThemeService, ConfigService} from "@ng/api";
 
 export function setNgConfigProvider(ngConfig?: NgConfig) {
   return {

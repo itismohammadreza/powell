@@ -3,7 +3,7 @@ import {DOCUMENT} from "@angular/common";
 import {Subject} from "rxjs";
 import {PrimeNGConfig} from "primeng/api";
 import {NgConfig, NgConfigChangeEvent} from "@ng/models";
-import {ThemeService} from "@ng/services";
+import {ThemeService} from "@ng/api";
 
 @Injectable()
 export class ConfigService {
