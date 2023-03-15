@@ -1,2 +1,2 @@
 export * from './confirm-dialog.page';
-export * from './overlay.module';
+export * from './confirm-dialog.module';

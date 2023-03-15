@@ -1,2 +1,2 @@
 export * from './confirm-popup.page';
-export * from './overlay.module';
+export * from './confirm-popup.module';

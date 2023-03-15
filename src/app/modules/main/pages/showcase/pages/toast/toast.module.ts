@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {ToastPage} from '.';
+import {ToastPage} from '@modules/main/pages/showcase/pages/toast/toast.page';
 
 @NgModule({
   declarations: [
