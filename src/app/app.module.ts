@@ -34,7 +34,7 @@ export function InitializeLanguage(translationService: TranslationService) {
     CoreModule,
     LayoutModule,
     SharedModule,
-    NgAllModule.forRoot(),
+    // NgAllModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
