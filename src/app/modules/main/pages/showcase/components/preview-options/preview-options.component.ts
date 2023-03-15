@@ -45,7 +45,7 @@ import {InputTextComponent} from '@ng/components/input-text';
 import {CheckboxComponent} from '@ng/components/checkbox';
 import {TranslationService} from "@core/utils";
 import {Subject, takeUntil} from "rxjs";
-import {ConfigService} from "@ng/services";
+import {ConfigService} from "@ng/api";
 
 type PreviewItem =
   | 'label'

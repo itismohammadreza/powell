@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgIconPosition, NgLabelPosition, NgSize} from '@ng/models';
-import {ConfigService} from "@ng/services";
+import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-cascade-select-page',

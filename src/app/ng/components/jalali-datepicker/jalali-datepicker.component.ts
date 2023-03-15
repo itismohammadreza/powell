@@ -32,7 +32,7 @@ import {
   NgSize,
   NgValidation
 } from "@ng/models";
-import {ConfigService} from "@ng/services";
+import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-jalali-datepicker',

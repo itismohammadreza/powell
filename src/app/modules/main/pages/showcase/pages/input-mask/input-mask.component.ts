@@ -21,7 +21,7 @@ import {
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@ng/models';
-import {ConfigService} from "@ng/services";
+import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-input-mask',

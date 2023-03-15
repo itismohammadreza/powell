@@ -3,7 +3,7 @@ import {DOCUMENT} from "@angular/common";
 import {MenuItem, OverlayOptions} from 'primeng/api';
 import {LanguageChecker} from '@core/utils';
 import {SidebarType} from '@core/models';
-import {ConfigService, ThemeService} from "@ng/services";
+import {ConfigService, ThemeService} from "@ng/api";
 import {NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@ng/models";
 import {GlobalConfig} from "@core/config";
 

@@ -7,7 +7,7 @@ import {DialogModule} from 'primeng/dialog';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {ToastModule} from 'primeng/toast';
 import {Dialog2Component, DialogComponent, DialogFormComponent} from '.';
-import {OverlayService} from "@ng/services";
+import {OverlayService} from "@ng/api";
 import {ButtonModule} from "@ng/components/button";
 import {SafeModule} from "@ng/pipes/safe";
 import {CommonModule} from "@angular/common";

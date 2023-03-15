@@ -9,7 +9,7 @@ import {CoreModule} from "@core/core.module";
 import {SharedModule} from "@shared/shared.module";
 import {EnvServiceProvider, TranslationService} from "@core/utils";
 import {NgAllModule} from "@ng/all.module";
-import {setNgConfigProvider} from "@ng/services";
+import {setNgConfigProvider} from "@ng/api";
 import {NgGlobal} from "@core/config";
 import {LayoutModule} from "@modules/layout/layout.module";
 

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {LazyLoadEvent, MenuItem} from 'primeng/api';
 import {NgSize, NgTableActionsConfig, NgTableColDef} from '@ng/models';
 import {UserService} from "@core/http";
-import {ConfigService} from "@ng/services";
+import {ConfigService} from "@ng/api";
 
 interface Customer {
   id: any,

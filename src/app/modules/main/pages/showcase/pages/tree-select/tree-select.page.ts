@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgAddon, NgChipDisplayMode, NgIconPosition, NgLabelPosition, NgSelectionMode, NgSize} from "@ng/models";
-import {ConfigService} from "@ng/services";
+import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-tree-select-page',

@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {ConfigService} from "@ng/services";
+import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-checkbox-page',

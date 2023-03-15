@@ -195,9 +195,7 @@ class NumberToPersianWord {
   }
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PersianService {
   replaceArabicLettersWithPersianLetters(inputStr: string): string {
     if (inputStr == undefined) {

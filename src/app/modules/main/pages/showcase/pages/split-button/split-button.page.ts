@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {NgButtonAppearance, NgColor, NgIconPosition, NgSize} from "@ng/models";
-import {ConfigService} from "@ng/services";
+import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-split-button-page',
