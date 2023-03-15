@@ -19,9 +19,7 @@ import {
   NgToastOptions
 } from '@ng/models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class OverlayService {
   private toastCmpRef: ComponentRef<Toast>;
   private confirmPopupCmpRef: ComponentRef<ConfirmPopup>;
