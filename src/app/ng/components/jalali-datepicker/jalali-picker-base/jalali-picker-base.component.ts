@@ -24,7 +24,7 @@ import {Moment} from "jalali-moment";
 import {ConnectedOverlayScrollHandler, DomHandler} from 'primeng/dom';
 import {OverlayService, PrimeNGConfig, PrimeTemplate} from 'primeng/api';
 import {UniqueComponentId, ZIndexUtils} from 'primeng/utils';
-import {MomentService} from "@ng/services";
+import {MomentService} from "@ng/api";
 
 export interface DateMeta {
   day?: number,

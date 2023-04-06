@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NgSeverity} from "@ng/models";
-import {ConfigService} from "@ng/services";
+import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-message-page',

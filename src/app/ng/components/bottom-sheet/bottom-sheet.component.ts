@@ -10,7 +10,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import {TemplateDirective} from "@ng/directives/template";
-import {OverlayService} from "@ng/services";
+import {OverlayService} from "@ng/api";
 import {NgHistoryState} from "@ng/models";
 import {Subject, takeUntil} from "rxjs";
 

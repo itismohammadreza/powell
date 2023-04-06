@@ -31,7 +31,7 @@ import {
   NgValidation
 } from "@ng/models";
 import {Subject, takeUntil} from "rxjs";
-import {ConfigService} from "@ng/services";
+import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-gregorian-datepicker',

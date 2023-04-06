@@ -35,7 +35,7 @@ import {
   NgValidation
 } from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template';
-import {ConfigService} from "@ng/services";
+import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-dropdown',

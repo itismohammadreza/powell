@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NgFixLabelPosition, NgSize} from "@ng/models";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ConfigService} from "@ng/services";
+import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-input-otp-page',
