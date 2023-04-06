@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ConfigService, OverlayService} from "@ng/api";
+import {ConfigService, OverlayService} from "@ng/services";
 import {NgConfirmDialogOptions} from "@ng/models";
 
 @Component({

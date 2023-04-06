@@ -1,21 +1,21 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {KnobModule as PKnobModule} from 'primeng/knob';
 import {ConfigHandlerModule} from "@ng/directives/config-handler";
 import {KnobComponent} from "@ng/components/knob";
 import {LabelStarModule} from "@ng/pipes/label-star";
+import {PrimeKnobModule} from "@ng/primeng";
 
 @NgModule({
   declarations: [KnobComponent],
+  exports: [KnobComponent],
   imports: [
-    PKnobModule,
-    ConfigHandlerModule,
-    LabelStarModule,
+    PrimeKnobModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    LabelStarModule,
+    ConfigHandlerModule,
   ],
-  exports: [KnobComponent]
 })
 export class KnobModule {
 }

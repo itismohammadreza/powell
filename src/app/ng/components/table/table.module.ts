@@ -1,7 +1,5 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {TableModule as PTableModule} from 'primeng/table';
-import {TooltipModule} from "primeng/tooltip";
 import {ConfigHandlerModule} from "@ng/directives/config-handler";
 import {TableComponent} from "@ng/components/table";
 import {EmptyModule} from "@ng/components/empty";
@@ -15,16 +13,19 @@ import {DropdownModule} from "@ng/components/dropdown";
 import {MultiSelectModule} from "@ng/components/multi-select";
 import {InputNumberModule} from "@ng/components/input-number";
 import {FormsModule} from "@angular/forms";
+import {PrimeTableModule, PrimeTooltipModule} from "@ng/primeng";
+import {TemplateModule} from "@ng/directives/template";
 
 @NgModule({
   declarations: [TableComponent],
+  exports: [TableComponent, TemplateModule],
   imports: [
-    PTableModule,
+    PrimeTableModule,
     EmptyModule,
     InputTextModule,
     MultiSelectModule,
     InputNumberModule,
-    TooltipModule,
+    PrimeTooltipModule,
     ButtonModule,
     ConfigHandlerModule,
     GregorianDatepickerModule,
@@ -35,7 +36,6 @@ import {FormsModule} from "@angular/forms";
     CommonModule,
     FormsModule
   ],
-  exports: [TableComponent]
 })
 export class TableModule {
 }

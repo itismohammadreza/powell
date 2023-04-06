@@ -1,5 +1,5 @@
 import {Component, OnDestroy} from '@angular/core';
-import {DynamicDialogService} from "@ng/api";
+import {DynamicDialogService} from "@ng/services";
 import {UserService} from "@core/http";
 import {
   DynamicDialogSampleComponent

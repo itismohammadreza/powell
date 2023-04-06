@@ -1,12 +1,13 @@
 import {NgModule} from "@angular/core";
-import {ImageModule as PImageModule} from 'primeng/image';
 import {CommonModule} from "@angular/common";
 import {ImageComponent, PinchZoomComponent} from "@ng/components/image";
+import {PrimeImageModule} from "@ng/primeng";
+import {TemplateModule} from "@ng/directives/template";
 
 @NgModule({
   declarations: [ImageComponent, PinchZoomComponent],
-  imports: [PImageModule, CommonModule],
-  exports: [ImageComponent]
+  exports: [ImageComponent, TemplateModule],
+  imports: [PrimeImageModule, CommonModule],
 })
 export class ImageModule {
 }

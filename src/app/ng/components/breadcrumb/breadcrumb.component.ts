@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
 import {ActivatedRouteSnapshot, Data, NavigationEnd, Router} from "@angular/router";
-import {BehaviorSubject, Observable} from 'rxjs';
 import {filter} from "rxjs/operators";
 
 @Component({
@@ -9,18 +9,15 @@ import {filter} from "rxjs/operators";
   styleUrls: ['./breadcrumb.component.scss']
 })
 export class BreadcrumbComponent {
-  breadcrumbs$: Observable<any[]>;
-  breadcrumbSubject = new BehaviorSubject<any[]>([]);
+  _breadcrumbs$ = new BehaviorSubject<any[]>([]);
+  breadcrumbs$ = this._breadcrumbs$.asObservable();
 
   constructor(private router: Router) {
-    this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd)
-    ).subscribe(event => {
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(event => {
       const root = this.router.routerState.snapshot.root;
       const breadcrumbs: any[] = [];
       this.addBreadcrumb(root, [], breadcrumbs);
-      this.breadcrumbSubject.next(breadcrumbs);
-      this.breadcrumbs$ = this.breadcrumbSubject.asObservable();
+      this._breadcrumbs$.next(breadcrumbs);
     });
   }
 

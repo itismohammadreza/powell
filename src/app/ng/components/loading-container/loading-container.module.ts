@@ -1,12 +1,13 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {LoadingContainerComponent} from "@ng/components/loading-container";
+import {PrimeProgressSpinnerModule} from "@ng/primeng";
+import {TemplateModule} from "@ng/directives/template";
 
 @NgModule({
   declarations: [LoadingContainerComponent],
-  imports: [ProgressSpinnerModule, CommonModule],
-  exports: [LoadingContainerComponent]
+  exports: [LoadingContainerComponent, TemplateModule],
+  imports: [PrimeProgressSpinnerModule, CommonModule],
 })
 export class LoadingContainerModule {
 }

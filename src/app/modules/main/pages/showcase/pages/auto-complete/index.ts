@@ -1,2 +1,2 @@
 export * from './auto-complete.page';
-export * from './auto-complete.module';
+export * from './auto-complete-page.module';

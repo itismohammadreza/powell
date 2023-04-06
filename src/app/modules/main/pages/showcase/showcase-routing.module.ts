@@ -1,326 +1,272 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AutoCompletePage} from '@modules/main/pages/showcase/pages/auto-complete/auto-complete.page';
-import {ButtonPage} from '@modules/main/pages/showcase/pages/button/button.page';
-import {CascadeSelectPage} from '@modules/main/pages/showcase/pages/cascade-select/cascade-select.page';
-import {ChipsPage} from '@modules/main/pages/showcase/pages/chips/chips.page';
-import {ColorPickerPage} from '@modules/main/pages/showcase/pages/color-picker/color-picker.page';
-import {DropdownPage} from '@modules/main/pages/showcase/pages/dropdown/dropdown.page';
-import {EditorPage} from '@modules/main/pages/showcase/pages/editor/editor.page';
-import {FilePickerPage} from '@modules/main/pages/showcase/pages/file-picker/file-picker.page';
-import {FilePicker2Page} from '@modules/main/pages/showcase/pages/file-picker2/file-picker2.page';
-import {InputMaskPage} from '@modules/main/pages/showcase/pages/input-mask/input-mask.page';
-import {InputNumberPage} from '@modules/main/pages/showcase/pages/input-number/input-number.page';
-import {InputPasswordPage} from '@modules/main/pages/showcase/pages/input-password/input-password.page';
-import {InputTextPage} from '@modules/main/pages/showcase/pages/input-text/input-text.page';
-import {InputTextareaPage} from '@modules/main/pages/showcase/pages/input-textarea/input-textarea.page';
-import {ListboxPage} from '@modules/main/pages/showcase/pages/listbox/listbox.page';
-import {MapPage} from '@modules/main/pages/showcase/pages/map/map.page';
-import {MultiCheckboxPage} from '@modules/main/pages/showcase/pages/multi-checkbox/multi-checkbox.page';
-import {MultiSelectPage} from '@modules/main/pages/showcase/pages/multi-select/multi-select.page';
-import {RadioPage} from '@modules/main/pages/showcase/pages/radio/radio.page';
-import {RatingPage} from '@modules/main/pages/showcase/pages/rating/rating.page';
-import {SelectButtonPage} from '@modules/main/pages/showcase/pages/select-button/select-button.page';
-import {CheckboxPage} from '@modules/main/pages/showcase/pages/checkbox/checkbox.page';
-import {SliderPage} from '@modules/main/pages/showcase/pages/slider/slider.page';
-import {SplitButtonPage} from '@modules/main/pages/showcase/pages/split-button/split-button.page';
-import {SwitchPage} from '@modules/main/pages/showcase/pages/switch/switch.page';
-import {TablePage} from '@modules/main/pages/showcase/pages/table/table.page';
-import {ToggleButtonPage} from '@modules/main/pages/showcase/pages/toggle-button/toggle-button.page';
-import {TreePage} from '@modules/main/pages/showcase/pages/tree/tree.page';
-import {ImageSliderPage} from '@modules/main/pages/showcase/pages/image-slider/image-slider.page';
-import {DashboardPage} from '@modules/main/pages/showcase/pages/dashboard/dashboard.page';
-import {KnobPage} from '@modules/main/pages/showcase/pages/knob/knob.page';
-import {TreeSelectPage} from '@modules/main/pages/showcase/pages/tree-select/tree-select.page';
-import {UtilsPage} from "@modules/main/pages/showcase/pages/utils/utils.page";
-import {
-  GregorianDatepickerPage
-} from "@modules/main/pages/showcase/pages/gregorian-datepicker/gregorian-datepicker.page";
-import {JalaliDatepickerPage} from "@modules/main/pages/showcase/pages/jalali-datepicker/jalali-datepicker.page";
-import {TriStateCheckboxPage} from "@modules/main/pages/showcase/pages/tri-state-checkbox/tri-state-checkbox.page";
-import {EmptyPage} from "@modules/main/pages/showcase/pages/empty/empty.page";
-import {DualLabelSwitchPage} from "@modules/main/pages/showcase/pages/dual-label-switch/dual-label-switch.page";
-import {BottomSheetPage} from "@modules/main/pages/showcase/pages/bottom-sheet/bottom-sheet.page";
-import {StatusPage} from "@modules/main/pages/showcase/pages/status/status.page";
-import {ImagePage} from "@modules/main/pages/showcase/pages/image/image.page";
-import {ConfirmDialogPage} from "@modules/main/pages/showcase/pages/confirm-dialog/confirm-dialog.page";
-import {ConfirmPopupPage} from "@modules/main/pages/showcase/pages/confirm-popup/confirm-popup.page";
-import {DialogFormPage} from "@modules/main/pages/showcase/pages/dialog-form/dialog-form.page";
-import {MessagePage} from "@modules/main/pages/showcase/pages/message/message.page";
-import {ToastPage} from "@modules/main/pages/showcase/pages/toast/toast.page";
-import {DialogPage} from "@modules/main/pages/showcase/pages/dialog/dialog.page";
-import {LoadingContainerPage} from "@modules/main/pages/showcase/pages/loading-container/loading-container.page";
-import {InfiniteScrollPage} from "@modules/main/pages/showcase/pages/infinite-scroll/infinite-scroll.page";
 import {OpenDialogGuard} from "@core/guard";
-import {AnimateOnScrollPage} from "@modules/main/pages/showcase/pages/animate-on-scroll/animate-on-scroll.page";
-import {InputOtpPage} from "@modules/main/pages/showcase/pages/input-otp/input-otp.page";
-import {IranMapPage} from "@modules/main/pages/showcase/pages/iran-map/iran-map.page";
 
 const routes: Routes = [
   {
     path: 'dashboard',
-    component: DashboardPage,
+    loadChildren: () => import('./pages/dashboard/dashboard-page.module').then(m => m.DashboardPageModule),
     title: 'dashboard'
   },
   {
     path: 'animate-on-scroll',
-    component: AnimateOnScrollPage,
+    loadChildren: () => import('./pages/animate-on-scroll/animate-on-scroll-page.module').then(m => m.AnimateOnScrollPageModule),
     title: 'animate-on-scroll'
   },
   {
     path: 'auto-complete',
-    component: AutoCompletePage,
+    loadChildren: () => import('./pages/auto-complete/auto-complete-page.module').then(m => m.AutoCompletePageModule),
     title: 'auto-complete'
   },
   {
     path: 'bottom-sheet',
-    component: BottomSheetPage,
+    loadChildren: () => import('./pages/bottom-sheet/bottom-sheet-page.module').then(m => m.BottomSheetPageModule),
     canDeactivate: [OpenDialogGuard],
     title: 'bottom-sheet'
   },
   {
     path: 'button',
-    component: ButtonPage,
+    loadChildren: () => import('./pages/button/button-page.module').then(m => m.ButtonPageModule),
     title: 'button'
   },
   {
     path: 'cascade-select',
-    component: CascadeSelectPage,
+    loadChildren: () => import('./pages/cascade-select/cascade-select-page.module').then(m => m.CascadeSelectPageModule),
     title: 'cascade-select'
   },
   {
     path: 'checkbox',
-    component: CheckboxPage,
+    loadChildren: () => import('./pages/checkbox/checkbox-page.module').then(m => m.CheckboxPageModule),
     title: 'checkbox'
   },
   {
     path: 'chips',
-    component: ChipsPage,
+    loadChildren: () => import('./pages/chips/chips-page.module').then(m => m.ChipsPageModule),
     title: 'chips'
   },
   {
     path: 'color-picker',
-    component: ColorPickerPage,
+    loadChildren: () => import('./pages/color-picker/color-picker-page.module').then(m => m.ColorPickerPageModule),
     title: 'color-picker'
   },
   {
     path: 'confirm-dialog',
-    component: ConfirmDialogPage,
+    loadChildren: () => import('./pages/confirm-dialog/confirm-dialog-page.module').then(m => m.ConfirmDialogPageModule),
     canDeactivate: [OpenDialogGuard],
     title: 'confirm-dialog'
   },
   {
     path: 'confirm-popup',
-    component: ConfirmPopupPage,
+    loadChildren: () => import('./pages/confirm-popup/confirm-popup-page.module').then(m => m.ConfirmPopupPageModule),
     canDeactivate: [OpenDialogGuard],
     title: 'confirm-popup'
   },
   {
     path: 'dialog',
-    component: DialogPage,
+    loadChildren: () => import('./pages/dialog/dialog-page.module').then(m => m.DialogPageModule),
     canDeactivate: [OpenDialogGuard],
     title: 'dialog'
   },
   {
     path: 'dialog-form',
-    component: DialogFormPage,
+    loadChildren: () => import('./pages/dialog-form/dialog-form-page.module').then(m => m.DialogFormPageModule),
     canDeactivate: [OpenDialogGuard],
     title: 'dialog-form'
   },
   {
     path: 'dropdown',
-    component: DropdownPage,
+    loadChildren: () => import('./pages/dropdown/dropdown-page.module').then(m => m.DropdownPageModule),
     title: 'dropdown'
   },
   {
     path: 'dual-label-switch',
-    component: DualLabelSwitchPage,
+    loadChildren: () => import('./pages/dual-label-switch/dual-label-switch-page.module').then(m => m.DualLabelSwitchPageModule),
     title: 'dual-label-switch'
   },
   {
     path: 'editor',
-    component: EditorPage,
+    loadChildren: () => import('./pages/editor/editor-page.module').then(m => m.EditorPageModule),
     title: 'editor'
   },
   {
     path: 'empty',
-    component: EmptyPage,
+    loadChildren: () => import('./pages/empty/empty-page.module').then(m => m.EmptyPageModule),
     title: 'empty'
   },
   {
     path: 'file-picker',
-    component: FilePickerPage,
+    loadChildren: () => import('./pages/file-picker/file-picker-page.module').then(m => m.FilePickerPageModule),
     title: 'file-picker'
   },
   {
     path: 'file-picker2',
-    component: FilePicker2Page,
+    loadChildren: () => import('./pages/file-picker2/file-picker2-page.module').then(m => m.FilePicker2PageModule),
     title: 'file-picker2'
   },
   {
     path: 'gregorian-datepicker',
-    component: GregorianDatepickerPage,
+    loadChildren: () => import('./pages/gregorian-datepicker/gregorian-datepicker-page.module').then(m => m.GregorianDatepickerPageModule),
     title: 'gregorian-datepicker'
   },
   {
     path: 'image',
-    component: ImagePage,
+    loadChildren: () => import('./pages/image/image-page.module').then(m => m.ImagePageModule),
     title: 'image'
   },
   {
     path: 'image-slider',
-    component: ImageSliderPage,
+    loadChildren: () => import('./pages/image-slider/image-slider-page.module').then(m => m.ImageSliderPageModule),
     title: 'image-slider'
   },
   {
     path: 'infinite-scroll',
-    component: InfiniteScrollPage,
+    loadChildren: () => import('./pages/infinite-scroll/infinite-scroll-page.module').then(m => m.InfiniteScrollPageModule),
     title: 'infinite-scroll'
   },
   {
     path: 'input-mask',
-    component: InputMaskPage,
+    loadChildren: () => import('./pages/input-mask/input-mask-page.module').then(m => m.InputMaskPageModule),
     title: 'input-mask'
   },
   {
     path: 'input-number',
-    component: InputNumberPage,
+    loadChildren: () => import('./pages/input-number/input-number-page.module').then(m => m.InputNumberPageModule),
     title: 'input-number'
   },
   {
     path: 'input-otp',
-    component: InputOtpPage,
+    loadChildren: () => import('./pages/input-otp/input-otp-page.module').then(m => m.InputOtpPageModule),
     title: 'input-otp'
   },
   {
     path: 'input-password',
-    component: InputPasswordPage,
+    loadChildren: () => import('./pages/input-password/input-password-page.module').then(m => m.InputPasswordPageModule),
     title: 'input-password'
   },
   {
     path: 'input-text',
-    component: InputTextPage,
+    loadChildren: () => import('./pages/input-text/input-text-page.module').then(m => m.InputTextPageModule),
     title: 'input-text'
   },
   {
     path: 'input-textarea',
-    component: InputTextareaPage,
+    loadChildren: () => import('./pages/input-textarea/input-textarea-page.module').then(m => m.InputTextareaPageModule),
     title: 'input-textarea'
   },
   {
     path: 'iran-map',
-    component: IranMapPage,
+    loadChildren: () => import('./pages/iran-map/iran-map-page.module').then(m => m.IranMapPageModule),
     title: 'iran-map'
   },
   {
     path: 'jalali-datepicker',
-    component: JalaliDatepickerPage,
+    loadChildren: () => import('./pages/jalali-datepicker/jalali-datepicker-page.module').then(m => m.JalaliDatepickerPageModule),
     title: 'jalali-datepicker'
   },
   {
     path: 'knob',
-    component: KnobPage,
+    loadChildren: () => import('./pages/knob/knob-page.module').then(m => m.KnobPageModule),
     title: 'knob'
   },
   {
     path: 'listbox',
-    component: ListboxPage,
+    loadChildren: () => import('./pages/listbox/listbox-page.module').then(m => m.ListboxPageModule),
     title: 'listbox'
   },
   {
     path: 'loading-container',
-    component: LoadingContainerPage,
+    loadChildren: () => import('./pages/loading-container/loading-container-page.module').then(m => m.LoadingContainerPageModule),
     title: 'loading-container'
   },
   {
     path: 'map',
-    component: MapPage,
+    loadChildren: () => import('./pages/map/map-page.module').then(m => m.MapPageModule),
     title: 'map'
   },
   {
     path: 'message',
-    component: MessagePage,
+    loadChildren: () => import('./pages/message/message-page.module').then(m => m.MessagePageModule),
     title: 'message'
   },
   {
     path: 'multi-checkbox',
-    component: MultiCheckboxPage,
+    loadChildren: () => import('./pages/multi-checkbox/multi-checkbox-page.module').then(m => m.MultiCheckboxPageModule),
     title: 'multi-checkbox'
   },
   {
     path: 'multi-select',
-    component: MultiSelectPage,
+    loadChildren: () => import('./pages/multi-select/multi-select-page.module').then(m => m.MultiSelectPageModule),
     title: 'multi-select'
   },
   {
     path: 'radio',
-    component: RadioPage,
+    loadChildren: () => import('./pages/radio/radio-page.module').then(m => m.RadioPageModule),
     title: 'radio'
   },
   {
     path: 'rating',
-    component: RatingPage,
+    loadChildren: () => import('./pages/rating/rating-page.module').then(m => m.RatingPageModule),
     title: 'rating'
   },
   {
     path: 'select-button',
-    component: SelectButtonPage,
+    loadChildren: () => import('./pages/select-button/select-button-page.module').then(m => m.SelectButtonPageModule),
     title: 'select-button'
   },
   {
     path: 'slider',
-    component: SliderPage,
+    loadChildren: () => import('./pages/slider/slider-page.module').then(m => m.SliderPageModule),
     title: 'slider'
   },
   {
     path: 'split-button',
-    component: SplitButtonPage,
+    loadChildren: () => import('./pages/split-button/split-button-page.module').then(m => m.SplitButtonPageModule),
     title: 'split-button'
   },
   {
     path: 'status',
-    component: StatusPage,
+    loadChildren: () => import('./pages/status/status-page.module').then(m => m.StatusPageModule),
     title: 'status'
   },
   {
     path: 'switch',
-    component: SwitchPage,
+    loadChildren: () => import('./pages/switch/switch-page.module').then(m => m.SwitchPageModule),
     title: 'switch'
   },
   {
     path: 'table',
-    component: TablePage,
+    loadChildren: () => import('./pages/table/table-page.module').then(m => m.TablePageModule),
     title: 'table'
   },
   {
     path: 'toast',
-    component: ToastPage,
+    loadChildren: () => import('./pages/toast/toast-page.module').then(m => m.ToastPageModule),
     canDeactivate: [OpenDialogGuard],
     title: 'toast'
   },
   {
     path: 'toggle-button',
-    component: ToggleButtonPage,
+    loadChildren: () => import('./pages/toggle-button/toggle-button-page.module').then(m => m.ToggleButtonPageModule),
     title: 'toggle-button'
   },
   {
     path: 'tree',
-    component: TreePage,
+    loadChildren: () => import('./pages/tree/tree-page.module').then(m => m.TreePageModule),
     title: 'tree'
   },
   {
     path: 'tree-select',
-    component: TreeSelectPage,
+    loadChildren: () => import('./pages/tree-select/tree-select-page.module').then(m => m.TreeSelectPageModule),
     title: 'tree-select'
   },
   {
     path: 'tri-state-checkbox',
-    component: TriStateCheckboxPage,
+    loadChildren: () => import('./pages/tri-state-checkbox/tri-state-checkbox-page.module').then(m => m.TriStateCheckboxPageModule),
     title: 'tri-state-checkbox'
   },
   {
     path: 'utils',
-    component: UtilsPage,
+    loadChildren: () => import('./pages/utils/utils-page.module').then(m => m.UtilsPageModule),
     title: 'utils'
   },
   {

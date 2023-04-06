@@ -24,8 +24,17 @@
       [iconOffStyle]="iconOffStyle"
       [iconCancelStyle]="iconCancelStyle"
       (onCancel)="_onCancel($event)"
-      (onRate)="_onRate($event)"
-    ></p-rating>
+      (onRate)="_onRate($event)">
+      <ng-template pTemplate="cancel" let-item *ngIf="cancelTemplate">
+        <ng-container *ngTemplateOutlet="cancelTemplate"></ng-container>
+      </ng-template>
+      <ng-template pTemplate="onicon" let-item *ngIf="onIconTemplate">
+        <ng-container *ngTemplateOutlet="onIconTemplate"></ng-container>
+      </ng-template>
+      <ng-template pTemplate="officon" let-item *ngIf="offIconTemplate">
+        <ng-container *ngTemplateOutlet="offIconTemplate"></ng-container>
+      </ng-template>
+    </p-rating>
   </div>
   <label
     class="fix-label"

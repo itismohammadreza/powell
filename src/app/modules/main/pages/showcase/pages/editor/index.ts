@@ -1,2 +1,2 @@
 export * from './editor.page';
-export * from './editor.module';
+export * from './editor-page.module';

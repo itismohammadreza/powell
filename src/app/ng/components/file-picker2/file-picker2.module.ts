@@ -7,13 +7,13 @@ import {ButtonModule} from "@ng/components/button";
 
 @NgModule({
   declarations: [FilePicker2Component],
+  exports: [FilePicker2Component],
   imports: [
     ConfigHandlerModule,
     ButtonModule,
     LabelStarModule,
     CommonModule,
   ],
-  exports: [FilePicker2Component]
 })
 export class FilePicker2Module {
 }

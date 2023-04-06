@@ -5,21 +5,20 @@ import {ConfigHandlerModule} from "@ng/directives/config-handler";
 import {AddonModule} from "@ng/directives/addon";
 import {JalaliDatepickerComponent, JalaliPickerBaseComponent} from "@ng/components/jalali-datepicker";
 import {LabelStarModule} from "@ng/pipes/label-star";
-import {ButtonModule} from "primeng/button";
-import {RippleModule} from "primeng/ripple";
+import {PrimeButtonModule, PrimeRippleModule} from "@ng/primeng";
 
 @NgModule({
   declarations: [JalaliDatepickerComponent, JalaliPickerBaseComponent],
+  exports: [JalaliDatepickerComponent],
   imports: [
-    ButtonModule,
-    RippleModule,
+    PrimeButtonModule,
+    PrimeRippleModule,
+    CommonModule,
+    FormsModule,
+    LabelStarModule,
     ConfigHandlerModule,
     AddonModule,
-    LabelStarModule,
-    CommonModule,
-    FormsModule
   ],
-  exports: [JalaliDatepickerComponent]
 })
 export class JalaliDatepickerModule {
 }

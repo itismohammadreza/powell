@@ -1,2 +1,2 @@
 export * from './empty.page';
-export * from './empty.module';
+export * from './empty-page.module';

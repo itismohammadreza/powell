@@ -1,2 +1,2 @@
 export * from './image-slider.page';
-export * from './image-slider.module';
+export * from './image-slider-page.module';

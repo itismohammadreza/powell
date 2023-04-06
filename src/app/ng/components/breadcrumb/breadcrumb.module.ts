@@ -1,12 +1,12 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {BreadcrumbModule as PBreadcrumbModule} from 'primeng/breadcrumb';
 import {BreadcrumbComponent} from "@ng/components/breadcrumb";
+import {PrimeBreadcrumbModule} from "@ng/primeng";
 
 @NgModule({
   declarations: [BreadcrumbComponent],
-  imports: [PBreadcrumbModule, CommonModule],
-  exports: [BreadcrumbComponent]
+  exports: [BreadcrumbComponent],
+  imports: [PrimeBreadcrumbModule, CommonModule],
 })
 export class BreadcrumbModule {
 }

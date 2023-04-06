@@ -1,2 +1,2 @@
 export * from './radio.page';
-export * from './radio.module';
+export * from './radio-page.module';

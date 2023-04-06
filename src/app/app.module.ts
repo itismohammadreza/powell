@@ -1,4 +1,5 @@
 import {APP_INITIALIZER, Injector, NgModule} from '@angular/core';
+import {CommonModule} from "@angular/common";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
@@ -6,11 +7,10 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CoreModule} from "@core/core.module";
-import {SharedModule} from "@shared/shared.module";
 import {EnvServiceProvider, TranslationService} from "@core/utils";
-import {setNgConfigProvider} from "@ng/api";
+import {NgAllModule} from "@ng/all.module";
+import {setNgConfigProvider} from "@ng/services";
 import {NgGlobal} from "@core/config";
-import {LayoutModule} from "@modules/layout/layout.module";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -27,12 +27,12 @@ export function InitializeLanguage(translationService: TranslationService) {
     AppComponent,
   ],
   imports: [
+    CommonModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
-    LayoutModule,
-    SharedModule,
+    NgAllModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -1,2 +1,2 @@
 export * from './tree-select.page';
-export * from './tree-select.module';
+export * from './tree-select-page.module';

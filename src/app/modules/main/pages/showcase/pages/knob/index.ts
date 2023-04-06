@@ -1,2 +1,2 @@
 export * from './knob.page';
-export * from './knob.module';
+export * from './knob-page.module';

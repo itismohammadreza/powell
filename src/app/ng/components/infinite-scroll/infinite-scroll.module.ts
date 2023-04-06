@@ -1,12 +1,13 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {InfiniteScrollComponent} from "@ng/components/infinite-scroll";
+import {PrimeProgressSpinnerModule} from "@ng/primeng";
+import {TemplateModule} from "@ng/directives/template";
 
 @NgModule({
   declarations: [InfiniteScrollComponent],
-  imports: [ProgressSpinnerModule, CommonModule],
-  exports: [InfiniteScrollComponent]
+  exports: [InfiniteScrollComponent, TemplateModule],
+  imports: [PrimeProgressSpinnerModule, CommonModule],
 })
 export class InfiniteScrollModule {
 }

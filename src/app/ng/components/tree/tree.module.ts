@@ -1,21 +1,22 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {TreeModule as PTreeModule} from 'primeng/tree';
 import {ConfigHandlerModule} from "@ng/directives/config-handler";
 import {AddonModule} from "@ng/directives/addon";
 import {TreeComponent} from "@ng/components/tree";
 import {LabelStarModule} from "@ng/pipes/label-star";
+import {PrimeTreeModule} from "@ng/primeng";
+import {TemplateModule} from "@ng/directives/template";
 
 @NgModule({
   declarations: [TreeComponent],
+  exports: [TreeComponent, TemplateModule],
   imports: [
-    PTreeModule,
+    PrimeTreeModule,
     ConfigHandlerModule,
     AddonModule,
     LabelStarModule,
     CommonModule,
   ],
-  exports: [TreeComponent]
 })
 export class TreeModule {
 }

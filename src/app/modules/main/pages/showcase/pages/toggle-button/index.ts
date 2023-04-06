@@ -1,2 +1,2 @@
 export * from './toggle-button.page';
-export * from './toggle-button.module';
+export * from './toggle-button-page.module';

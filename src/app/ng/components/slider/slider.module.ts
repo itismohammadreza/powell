@@ -1,21 +1,21 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {SliderModule as PSliderModule} from 'primeng/slider';
 import {ConfigHandlerModule} from "@ng/directives/config-handler";
 import {SliderComponent} from "@ng/components/slider";
 import {LabelStarModule} from "@ng/pipes/label-star";
+import {PrimeSliderModule} from "@ng/primeng";
 
 @NgModule({
   declarations: [SliderComponent],
+  exports: [SliderComponent],
   imports: [
-    PSliderModule,
-    ConfigHandlerModule,
-    LabelStarModule,
+    PrimeSliderModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    LabelStarModule,
+    ConfigHandlerModule,
   ],
-  exports: [SliderComponent]
 })
 export class SliderModule {
 }

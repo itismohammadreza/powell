@@ -1,5 +1,5 @@
 import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
-import {TemplateDirective} from "@ng/directives/template/template.directive";
+import {TemplateDirective} from "@ng/directives/template";
 
 @Component({
   selector: 'ng-loading-container',

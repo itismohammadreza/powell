@@ -1,2 +1,2 @@
 export * from './dialog.page';
-export * from './dialog.module';
+export * from './dialog-page.module';

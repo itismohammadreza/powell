@@ -1,2 +1,2 @@
 export * from './chips.page';
-export * from './chips.module';
+export * from './chips-page.module';

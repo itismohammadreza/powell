@@ -1,2 +1,2 @@
 export * from './dropdown.page';
-export * from './dropdown.module';
+export * from './dropdown-page.module';

@@ -1,21 +1,21 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {SelectButtonModule as PSelectButtonModule} from 'primeng/selectbutton';
 import {ConfigHandlerModule} from "@ng/directives/config-handler";
 import {SelectButtonComponent} from "@ng/components/select-button";
 import {LabelStarModule} from "@ng/pipes/label-star";
+import {PrimeSelectButtonModule} from "@ng/primeng";
 
 @NgModule({
   declarations: [SelectButtonComponent],
+  exports: [SelectButtonComponent],
   imports: [
-    PSelectButtonModule,
-    ConfigHandlerModule,
-    LabelStarModule,
+    PrimeSelectButtonModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    LabelStarModule,
+    ConfigHandlerModule,
   ],
-  exports: [SelectButtonComponent]
 })
 export class SelectButtonModule {
 }

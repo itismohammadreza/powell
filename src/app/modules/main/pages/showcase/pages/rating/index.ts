@@ -1,2 +1,2 @@
 export * from './rating.page';
-export * from './rating.module';
+export * from './rating-page.module';

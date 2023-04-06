@@ -1,7 +1,7 @@
 import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
-import {TemplateDirective} from "@ng/directives/template/template.directive";
+import {TemplateDirective} from "@ng/directives/template";
 import {NgSeverity} from "@ng/models";
-import {ConfigService} from "@ng/api";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-message',

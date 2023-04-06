@@ -1,2 +1,2 @@
 export * from './listbox.page';
-export * from './listbox.module';
+export * from './listbox-page.module';

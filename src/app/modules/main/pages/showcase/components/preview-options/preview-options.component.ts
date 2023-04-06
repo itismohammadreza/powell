@@ -2,8 +2,7 @@ import {
   Component,
   ComponentRef,
   EventEmitter,
-  Input,
-  OnDestroy,
+  Input, OnDestroy,
   OnInit,
   Output,
   Type,
@@ -11,6 +10,9 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import {
+  NgDisableZoomControl,
+  NgLimitZoom,
+  NgListener,
   NgAddon,
   NgButtonAppearance,
   NgColor,
@@ -21,31 +23,28 @@ import {
   NgDatepickerSelectionMode,
   NgDatepickerViewMode,
   NgDefaultFocus,
-  NgDisableZoomControl,
   NgFilePickerMode,
   NgFixLabelPosition,
   NgIconPosition,
   NgInputType,
   NgKeyFilter,
   NgLabelPosition,
-  NgLimitZoom,
-  NgListener,
   NgNumberButtonLayout,
   NgNumberMode,
   NgOrientation,
-  NgOverflow,
   NgPlace,
   NgSelectionMode,
   NgSeverity,
   NgSize,
-  NgStatus
+  NgStatus,
+  NgOverflow
 } from '@ng/models';
-import {DropdownComponent} from '@ng/components/dropdown';
-import {InputTextComponent} from '@ng/components/input-text';
-import {CheckboxComponent} from '@ng/components/checkbox';
+import {DropdownComponent} from '@ng/components/dropdown/dropdown.component';
+import {InputTextComponent} from '@ng/components/input-text/input-text.component';
+import {CheckboxComponent} from '@ng/components/checkbox/checkbox.component';
 import {TranslationService} from "@core/utils";
 import {Subject, takeUntil} from "rxjs";
-import {ConfigService} from "@ng/api";
+import {ConfigService} from "@ng/services";
 
 type PreviewItem =
   | 'label'

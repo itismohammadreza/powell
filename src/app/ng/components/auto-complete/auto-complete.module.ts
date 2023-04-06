@@ -1,23 +1,24 @@
-import {NgModule} from "@angular/core";
-import {AutoCompleteModule as PAutoCompleteModule} from 'primeng/autocomplete';
-import {AutoCompleteComponent} from "@ng/components/auto-complete";
+import {NgModule} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {PrimeAutoCompleteModule} from "@ng/primeng";
+import {AutoCompleteComponent} from "@ng/components/auto-complete";
+import {LabelStarModule} from "@ng/pipes/label-star";
 import {ConfigHandlerModule} from "@ng/directives/config-handler";
 import {AddonModule} from "@ng/directives/addon";
-import {LabelStarModule} from "@ng/pipes/label-star";
+import {TemplateModule} from "@ng/directives/template";
 
 @NgModule({
   declarations: [AutoCompleteComponent],
+  exports: [AutoCompleteComponent, TemplateModule],
   imports: [
-    PAutoCompleteModule,
+    PrimeAutoCompleteModule,
+    CommonModule,
+    FormsModule,
+    LabelStarModule,
     ConfigHandlerModule,
     AddonModule,
-    LabelStarModule,
-    CommonModule,
-    FormsModule
-  ],
-  exports: [AutoCompleteComponent]
+  ]
 })
 export class AutoCompleteModule {
 }

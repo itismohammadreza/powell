@@ -1,12 +1,13 @@
 import {NgModule} from "@angular/core";
-import {ButtonModule as PButtonModule} from 'primeng/button';
 import {CommonModule} from "@angular/common";
 import {ButtonComponent} from "@ng/components/button";
+import {PrimeButtonModule} from "@ng/primeng";
+import {TemplateModule} from "@ng/directives/template";
 
 @NgModule({
   declarations: [ButtonComponent],
-  imports: [PButtonModule, CommonModule],
-  exports: [ButtonComponent]
+  exports: [ButtonComponent, TemplateModule],
+  imports: [PrimeButtonModule, CommonModule],
 })
 export class ButtonModule {
 }

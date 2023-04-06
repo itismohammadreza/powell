@@ -14,154 +14,154 @@
     </ng-button>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav p-0 m{{ rtl ? 'r' : 'l' }}-auto">
-        <!--        <li class="nav-item" (click)="accountMenu.toggle($event)">-->
-        <!--          <span class="m{{ rtl ? 'l' : 'r' }}-3">{{ "Admin" }}</span>-->
-        <!--          <p-avatar shape="circle" size="large" icon="pi pi-user"></p-avatar>-->
-        <!--        </li>-->
+        <li class="nav-item" (click)="accountMenu.toggle($event)">
+          <span class="m{{ rtl ? 'l' : 'r' }}-3">{{ "Admin" }}</span>
+          <p-avatar shape="circle" size="large" icon="pi pi-user"></p-avatar>
+        </li>
       </ul>
     </div>
   </nav>
 
   <main>
-    <!--    <p-menubar [model]="sidebarItems" *ngIf="tempSidebarType == 'horizontal'">-->
-    <!--      <ng-template pTemplate="start">-->
-    <!--        <ng-logo width="50px"></ng-logo>-->
-    <!--      </ng-template>-->
-    <!--    </p-menubar>-->
+    <p-menubar [model]="sidebarItems" *ngIf="tempSidebarType == 'horizontal'">
+      <ng-template pTemplate="start">
+        <ng-logo width="50px"></ng-logo>
+      </ng-template>
+    </p-menubar>
 
     <ng-content></ng-content>
   </main>
 
-  <!--  <p-sidebar-->
-  <!--    [visible]="sidebarVisible"-->
-  <!--    [blockScroll]="isModalSidebar"-->
-  <!--    [modal]="isModalSidebar"-->
-  <!--    [position]="rtl ? 'right' : 'left'"-->
-  <!--    [showCloseIcon]="false"-->
-  <!--    [closeOnEscape]="false"-->
-  <!--    (visibleChange)="toggleSidebar($event)">-->
-  <!--    <div class="sticky-top section-top pt-3">-->
-  <!--      <div class="d-flex align-items-center justify-content-between">-->
-  <!--        <ng-logo width="50px"></ng-logo>-->
-  <!--        <i class="d-none d-md-block border rounded-circle pi pi-circle{{ sidebarLock ? '-fill' : '' }}"-->
-  <!--           (click)="toggleLockSidebarClick()"></i>-->
-  <!--      </div>-->
-  <!--      <ng-input-text [rtl]="rtl"-->
-  <!--                     inputSize="sm"-->
-  <!--                     class="d-block my-3"-->
-  <!--                     [placeholder]="'searchComponents' | translate"-->
-  <!--                     [(ngModel)]="searchValue">-->
-  <!--      </ng-input-text>-->
-  <!--    </div>-->
-  <!--    <p-panelMenu [multiple]="false" [model]="sidebarItems | ngFilter:searchValue:'label'"></p-panelMenu>-->
-  <!--  </p-sidebar>-->
+  <p-sidebar
+    [visible]="sidebarVisible"
+    [blockScroll]="isModalSidebar"
+    [modal]="isModalSidebar"
+    [position]="rtl ? 'right' : 'left'"
+    [showCloseIcon]="false"
+    [closeOnEscape]="false"
+    (visibleChange)="toggleSidebar($event)">
+    <div class="sticky-top section-top pt-3">
+      <div class="d-flex align-items-center justify-content-between">
+        <ng-logo width="50px"></ng-logo>
+        <i class="d-none d-md-block border rounded-circle pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
+           (click)="toggleLockSidebarClick()"></i>
+      </div>
+      <ng-input-text [rtl]="rtl"
+                     inputSize="sm"
+                     class="d-block my-3"
+                     [placeholder]="'searchComponents' | translate"
+                     [(ngModel)]="searchValue">
+      </ng-input-text>
+    </div>
+    <p-panelMenu [multiple]="false" [model]="sidebarItems | ngFilter:searchValue:'label'"></p-panelMenu>
+  </p-sidebar>
 
   <ng-button class="config-btn" color="secondary" [class.active]="configSidebarVisible"
              (click)="configSidebarVisible = !configSidebarVisible" icon="pi pi-cog"></ng-button>
 </div>
 
-<!--<p-menu-->
-<!--  #accountMenu-->
-<!--  [styleClass]="rtl ? 'rtl' : 'ltr'"-->
-<!--  [baseZIndex]="1000"-->
-<!--  [popup]="true"-->
-<!--  [model]="accountItems"-->
-<!--&gt;</p-menu>-->
+<p-menu
+  #accountMenu
+  [styleClass]="rtl ? 'rtl' : 'ltr'"
+  [baseZIndex]="1000"
+  [popup]="true"
+  [model]="accountItems"
+></p-menu>
 
-<!--<p-sidebar-->
-<!--  position="left"-->
-<!--  [showCloseIcon]="false"-->
-<!--  [(visible)]="configSidebarVisible"-->
-<!--  [style]="{width:'30rem'}">-->
-<!--  <div class="h-100 pb-4">-->
-<!--    <p-divider align="center"><h5 class="mb-0">{{'siteConfigs' | translate}}</h5></p-divider>-->
-<!--    <ng-dropdown-->
-<!--      [label]="'sidebar' | translate"-->
-<!--      labelPos="fix-side"-->
-<!--      [labelWidth]="170"-->
-<!--      class="d-block mb-4"-->
-<!--      [value]="tempSidebarType"-->
-<!--      [options]="sidebarTypes"-->
-<!--      (onChange)="changeSidebarType($event)"-->
-<!--    ></ng-dropdown>-->
-<!--    <ng-dropdown-->
-<!--      [label]="'lang' | translate"-->
-<!--      labelPos="fix-side"-->
-<!--      [labelWidth]="170"-->
-<!--      class="d-block mb-4"-->
-<!--      [value]="lang"-->
-<!--      [options]="[{label:'EN',value:'en'},{label:'FA',value:'fa'}]"-->
-<!--      (onChange)="changeLang($event)">-->
-<!--    </ng-dropdown>-->
-<!--    <p-divider class="d-block mt-5" align="center"><h5 class="mb-0">{{'componentsGlobalConfigs' | translate}}</h5>-->
-<!--    </p-divider>-->
-<!--    <ng-dropdown-->
-<!--      [label]="'selectiveSize' | translate"-->
-<!--      labelPos="fix-side"-->
-<!--      [labelWidth]="170"-->
-<!--      class="d-block mb-4"-->
-<!--      [value]="inputSize"-->
-<!--      [options]="[{label:'sm',value:'sm'},{label:'md',value:'md'},{label:'lg',value:'lg'}]"-->
-<!--      (onChange)="changeGlobalConfig('inputSize',$event.value)"-->
-<!--    ></ng-dropdown>-->
-<!--    <ng-dropdown-->
-<!--      [label]="'theme' | translate"-->
-<!--      labelPos="fix-side"-->
-<!--      [labelWidth]="170"-->
-<!--      class="d-block mb-4"-->
-<!--      [value]="theme"-->
-<!--      [options]="themes"-->
-<!--      (onChange)="changeGlobalConfig('theme',$event.value)"-->
-<!--    ></ng-dropdown>-->
-<!--    <ng-dropdown-->
-<!--      [label]="'labelPos' | translate"-->
-<!--      labelPos="fix-side"-->
-<!--      [labelWidth]="170"-->
-<!--      class="d-block mb-4"-->
-<!--      [value]="labelPos"-->
-<!--      [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'},{label:'float',value:'float'}]"-->
-<!--      (onChange)="changeGlobalConfig('labelPos',$event.value)"-->
-<!--    ></ng-dropdown>-->
-<!--    <ng-dropdown-->
-<!--      [label]="'fixLabelPos' | translate"-->
-<!--      labelPos="fix-side"-->
-<!--      [labelWidth]="170"-->
-<!--      class="d-block mb-4"-->
-<!--      [value]="fixLabelPos"-->
-<!--      [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'}]"-->
-<!--      (onChange)="changeGlobalConfig('fixLabelPos',$event.value)"-->
-<!--    ></ng-dropdown>-->
-<!--    <ng-switch-->
-<!--      [label]="'filled' | translate"-->
-<!--      labelPos="fix-side"-->
-<!--      [labelWidth]="170"-->
-<!--      class="d-block mb-4"-->
-<!--      [value]="filled"-->
-<!--      (onChange)="changeGlobalConfig('filled',$event.checked)">-->
-<!--    </ng-switch>-->
-<!--    <ng-switch-->
-<!--      [label]="'showRequiredStar' | translate"-->
-<!--      labelPos="fix-side"-->
-<!--      [labelWidth]="170"-->
-<!--      class="d-block mb-4"-->
-<!--      [value]="showRequiredStar"-->
-<!--      (onChange)="changeGlobalConfig('showRequiredStar',$event.checked)">-->
-<!--    </ng-switch>-->
-<!--    <ng-switch-->
-<!--      [label]="'ripple' | translate"-->
-<!--      labelPos="fix-side"-->
-<!--      [labelWidth]="170"-->
-<!--      class="d-block mb-4"-->
-<!--      [value]="ripple"-->
-<!--      (onChange)="changeGlobalConfig('ripple',$event.checked)">-->
-<!--    </ng-switch>-->
-<!--    <ng-switch-->
-<!--      [label]="'rtl' | translate"-->
-<!--      labelPos="fix-side"-->
-<!--      [labelWidth]="170"-->
-<!--      class="d-block mb-4"-->
-<!--      [value]="rtl"-->
-<!--      (onChange)="changeGlobalConfig('rtl',$event.checked)">-->
-<!--    </ng-switch>-->
-<!--  </div>-->
-<!--</p-sidebar>-->
+<p-sidebar
+  position="left"
+  [showCloseIcon]="false"
+  [(visible)]="configSidebarVisible"
+  [style]="{width:'30rem'}">
+  <div class="h-100 pb-4">
+    <p-divider align="center"><h5 class="mb-0">{{'siteConfigs' | translate}}</h5></p-divider>
+    <ng-dropdown
+      [label]="'sidebar' | translate"
+      labelPos="fix-side"
+      [labelWidth]="170"
+      class="d-block mb-4"
+      [value]="tempSidebarType"
+      [options]="sidebarTypes"
+      (onChange)="changeSidebarType($event)"
+    ></ng-dropdown>
+    <ng-dropdown
+      [label]="'lang' | translate"
+      labelPos="fix-side"
+      [labelWidth]="170"
+      class="d-block mb-4"
+      [value]="lang"
+      [options]="[{label:'EN',value:'en'},{label:'FA',value:'fa'}]"
+      (onChange)="changeLang($event)">
+    </ng-dropdown>
+    <p-divider class="d-block mt-5" align="center"><h5 class="mb-0">{{'componentsGlobalConfigs' | translate}}</h5>
+    </p-divider>
+    <ng-dropdown
+      [label]="'selectiveSize' | translate"
+      labelPos="fix-side"
+      [labelWidth]="170"
+      class="d-block mb-4"
+      [value]="inputSize"
+      [options]="[{label:'sm',value:'sm'},{label:'md',value:'md'},{label:'lg',value:'lg'}]"
+      (onChange)="changeGlobalConfig('inputSize',$event.value)"
+    ></ng-dropdown>
+    <ng-dropdown
+      [label]="'theme' | translate"
+      labelPos="fix-side"
+      [labelWidth]="170"
+      class="d-block mb-4"
+      [value]="theme"
+      [options]="themes"
+      (onChange)="changeGlobalConfig('theme',$event.value)"
+    ></ng-dropdown>
+    <ng-dropdown
+      [label]="'labelPos' | translate"
+      labelPos="fix-side"
+      [labelWidth]="170"
+      class="d-block mb-4"
+      [value]="labelPos"
+      [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'},{label:'float',value:'float'}]"
+      (onChange)="changeGlobalConfig('labelPos',$event.value)"
+    ></ng-dropdown>
+    <ng-dropdown
+      [label]="'fixLabelPos' | translate"
+      labelPos="fix-side"
+      [labelWidth]="170"
+      class="d-block mb-4"
+      [value]="fixLabelPos"
+      [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'}]"
+      (onChange)="changeGlobalConfig('fixLabelPos',$event.value)"
+    ></ng-dropdown>
+    <ng-switch
+      [label]="'filled' | translate"
+      labelPos="fix-side"
+      [labelWidth]="170"
+      class="d-block mb-4"
+      [value]="filled"
+      (onChange)="changeGlobalConfig('filled',$event.checked)">
+    </ng-switch>
+    <ng-switch
+      [label]="'showRequiredStar' | translate"
+      labelPos="fix-side"
+      [labelWidth]="170"
+      class="d-block mb-4"
+      [value]="showRequiredStar"
+      (onChange)="changeGlobalConfig('showRequiredStar',$event.checked)">
+    </ng-switch>
+    <ng-switch
+      [label]="'ripple' | translate"
+      labelPos="fix-side"
+      [labelWidth]="170"
+      class="d-block mb-4"
+      [value]="ripple"
+      (onChange)="changeGlobalConfig('ripple',$event.checked)">
+    </ng-switch>
+    <ng-switch
+      [label]="'rtl' | translate"
+      labelPos="fix-side"
+      [labelWidth]="170"
+      class="d-block mb-4"
+      [value]="rtl"
+      (onChange)="changeGlobalConfig('rtl',$event.checked)">
+    </ng-switch>
+  </div>
+</p-sidebar>

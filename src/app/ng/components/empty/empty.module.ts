@@ -5,8 +5,8 @@ import {ConfigHandlerModule} from "@ng/directives/config-handler";
 
 @NgModule({
   declarations: [EmptyComponent],
-  imports: [CommonModule, ConfigHandlerModule],
-  exports: [EmptyComponent]
+  exports: [EmptyComponent],
+  imports: [ConfigHandlerModule, CommonModule],
 })
 export class EmptyModule {
 }

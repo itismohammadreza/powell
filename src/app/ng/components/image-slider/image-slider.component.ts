@@ -10,7 +10,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import {NgBreakPointItem, NgImageItem} from '@ng/models';
-import {TemplateDirective} from "@ng/directives/template/template.directive";
+import {TemplateDirective} from "@ng/directives/template";
 
 @Component({
   selector: 'ng-image-slider',

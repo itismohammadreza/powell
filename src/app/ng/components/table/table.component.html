@@ -314,7 +314,7 @@
             [pSelectableRowDisabled]="!selectionMode"
             [pSelectableRowIndex]="index">
           <td *ngIf="reorderableRows">
-            <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
+            <span class="pi pi-bars"></span>
           </td>
           <td *ngIf="selectionMode == 'radio'">
             <p-tableRadioButton [value]="item"></p-tableRadioButton>
@@ -431,6 +431,23 @@
     </ng-template>
     <ng-template pTemplate="summary" *ngIf="summaryTemplate">
       <ng-container *ngTemplateOutlet="summaryTemplate"></ng-container>
+      <!--      <p>non local paginator {{totalRecords}}</p>-->
+      <!--      <p-paginator-->
+      <!--        [totalRecords]="totalRecords"-->
+      <!--        [rows]="rows"-->
+      <!--        [first]="first || 1"-->
+      <!--        [rowsPerPageOptions]="rowsPerPageOptions"-->
+      <!--        [alwaysShow]="alwaysShowPaginator"-->
+      <!--        [showFirstLastIcon]="showFirstLastIcon"-->
+      <!--        [templateLeft]="paginatorLeftTemplate"-->
+      <!--        [templateRight]="paginatorRightTemplate"-->
+      <!--        [currentPageReportTemplate]="currentPageReportTemplate"-->
+      <!--        [showCurrentPageReport]="showCurrentPageReport"-->
+      <!--        [showJumpToPageDropdown]="showJumpToPageDropdown"-->
+      <!--        [showJumpToPageInput]="showJumpToPageInput"-->
+      <!--        [showPageLinks]="showPageLinks"-->
+      <!--        (onPageChange)="onPageChange($event)">-->
+      <!--      </p-paginator>-->
     </ng-template>
     <ng-template pTemplate="footer" *ngIf="footerTemplate">
       <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
@@ -456,3 +473,4 @@
     </ng-template>
   </p-table>
 </div>
+<!--<p-contextMenu #cm [model]="contextMenuItems" appendTo="body"></p-contextMenu>-->

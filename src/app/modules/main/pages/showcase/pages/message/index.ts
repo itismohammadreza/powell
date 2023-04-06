@@ -1,2 +1,2 @@
 export * from './message.page';
-export * from './message.module';
+export * from './message-page.module';

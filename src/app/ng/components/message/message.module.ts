@@ -1,14 +1,14 @@
 import {NgModule} from "@angular/core";
-import {MessageModule as PMessageModule} from 'primeng/message';
-import {MessagesModule as PMessagesModule} from 'primeng/messages';
 import {CommonModule} from "@angular/common";
 import {MessageComponent} from "@ng/components/message";
 import {ConfigHandlerModule} from "@ng/directives/config-handler";
+import {PrimeMessagesModule} from "@ng/primeng";
+import {TemplateModule} from "@ng/directives/template";
 
 @NgModule({
   declarations: [MessageComponent],
-  imports: [PMessageModule, PMessagesModule, ConfigHandlerModule, CommonModule],
-  exports: [MessageComponent]
+  exports: [MessageComponent, TemplateModule],
+  imports: [PrimeMessagesModule, ConfigHandlerModule, CommonModule],
 })
 export class MessageModule {
 }

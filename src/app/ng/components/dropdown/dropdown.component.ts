@@ -34,8 +34,8 @@ import {
   NgSize,
   NgValidation
 } from '@ng/models';
-import {TemplateDirective} from '@ng/directives/template/template.directive';
-import {ConfigService} from "@ng/api";
+import {TemplateDirective} from '@ng/directives/template';
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-dropdown',

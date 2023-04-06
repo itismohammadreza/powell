@@ -1,6 +1,6 @@
 import {Input, Pipe, PipeTransform} from '@angular/core';
 import {Observable} from 'rxjs';
-import {UtilsService} from "@ng/api";
+import {UtilsService} from "@ng/services";
 
 @Pipe({
   name: 'ngToBase64'

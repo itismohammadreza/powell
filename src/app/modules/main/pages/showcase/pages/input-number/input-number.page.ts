@@ -10,7 +10,7 @@ import {
   NgNumberMode,
   NgSize
 } from '@ng/models';
-import {ConfigService} from "@ng/api";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-input-number-page',

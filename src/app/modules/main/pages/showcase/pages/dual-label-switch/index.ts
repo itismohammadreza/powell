@@ -1,2 +1,2 @@
 export * from './dual-label-switch.page';
-export * from './dual-label-switch.module';
+export * from './dual-label-switch-page.module';

@@ -1,2 +1,2 @@
 export * from './bottom-sheet.page';
-export * from './bottom-sheet.module';
+export * from './bottom-sheet-page.module';

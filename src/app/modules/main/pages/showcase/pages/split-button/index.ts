@@ -1,2 +1,2 @@
 export * from './split-button.page';
-export * from './split-button.module';
+export * from './split-button-page.module';

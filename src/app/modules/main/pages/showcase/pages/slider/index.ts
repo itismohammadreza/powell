@@ -1,2 +1,2 @@
 export * from './slider.page';
-export * from './slider.module';
+export * from './slider-page.module';

@@ -1,13 +1,14 @@
 import {
+  AfterContentInit,
   ChangeDetectorRef,
-  Component,
+  Component, ContentChildren,
   EventEmitter,
   forwardRef,
   Injector,
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output, QueryList, TemplateRef,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -21,7 +22,8 @@ import {
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgValidation} from '@ng/models';
-import {ConfigService} from "@ng/api";
+import {ConfigService} from "@ng/services";
+import {TemplateDirective} from "@ng/directives/template";
 
 @Component({
   selector: 'ng-rating',
@@ -35,7 +37,7 @@ import {ConfigService} from "@ng/api";
     }
   ]
 })
-export class RatingComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class RatingComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -58,11 +60,15 @@ export class RatingComponent implements OnInit, ControlValueAccessor, OnDestroy 
   @Input() iconCancelStyle: any;
   @Output() onRate = new EventEmitter();
   @Output() onCancel = new EventEmitter();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
   destroy$ = new Subject<boolean>();
+  cancelTemplate: TemplateRef<any>;
+  onIconTemplate: TemplateRef<any>;
+  offIconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -100,6 +106,24 @@ export class RatingComponent implements OnInit, ControlValueAccessor, OnDestroy 
         });
       }
     }
+  }
+
+  ngAfterContentInit() {
+    this.templates.forEach((item: TemplateDirective) => {
+      switch (item.getType()) {
+        case 'cancel':
+          this.cancelTemplate = item.templateRef;
+          break;
+
+        case 'onicon':
+          this.onIconTemplate = item.templateRef;
+          break;
+
+        case 'officon':
+          this.offIconTemplate = item.templateRef;
+          break;
+      }
+    });
   }
 
   _onRate(event) {

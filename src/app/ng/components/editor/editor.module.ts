@@ -6,12 +6,12 @@ import {LabelStarModule} from "@ng/pipes/label-star";
 
 @NgModule({
   declarations: [EditorComponent, EditorBaseComponent],
+  exports: [EditorComponent],
   imports: [
     ConfigHandlerModule,
     LabelStarModule,
     CommonModule
   ],
-  exports: [EditorComponent]
 })
 export class EditorModule {
 }

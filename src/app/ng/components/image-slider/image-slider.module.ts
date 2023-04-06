@@ -1,12 +1,13 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {GalleriaModule} from "primeng/galleria";
 import {ImageSliderComponent} from "@ng/components/image-slider";
+import {PrimeGalleriaModule} from "@ng/primeng";
+import {TemplateModule} from "@ng/directives/template";
 
 @NgModule({
   declarations: [ImageSliderComponent],
-  imports: [GalleriaModule, CommonModule],
-  exports: [ImageSliderComponent]
+  exports: [ImageSliderComponent, TemplateModule],
+  imports: [PrimeGalleriaModule, CommonModule],
 })
 export class ImageSliderModule {
 }

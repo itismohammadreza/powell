@@ -22,7 +22,7 @@ import {
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
 import {NgColor, NgFileResultType, NgFixLabelPosition, NgValidation} from '@ng/models';
-import {ConfigService, UtilsService} from "@ng/api";
+import {ConfigService, UtilsService} from "@ng/services";
 
 @Component({
   selector: 'ng-file-picker2',

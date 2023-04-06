@@ -24,7 +24,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {Subject, takeUntil} from "rxjs";
-import {ConfigService} from "@ng/api";
+import {ConfigService} from "@ng/services";
 
 @Component({
   selector: 'ng-iran-map',

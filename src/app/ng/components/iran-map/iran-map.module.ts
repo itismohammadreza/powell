@@ -6,12 +6,12 @@ import {LabelStarModule} from "@ng/pipes/label-star";
 
 @NgModule({
   declarations: [IranMapComponent],
+  exports: [IranMapComponent],
   imports: [
     ConfigHandlerModule,
     LabelStarModule,
     CommonModule
   ],
-  exports: [IranMapComponent]
 })
 export class IranMapModule {
 }

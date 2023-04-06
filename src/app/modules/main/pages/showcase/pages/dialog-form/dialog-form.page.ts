@@ -1,5 +1,5 @@
 import {Component, OnDestroy} from '@angular/core';
-import {ConfigService, OverlayService} from "@ng/api";
+import {ConfigService, OverlayService} from "@ng/services";
 import {NgDialogFormOptions} from "@ng/models";
 import {FormControl, Validators} from "@angular/forms";
 import {Subject, takeUntil} from "rxjs";

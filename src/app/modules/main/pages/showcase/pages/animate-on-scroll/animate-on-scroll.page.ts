@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AnimateOnScrollService} from "@ng/api";
+import {AnimateOnScrollService} from "@ng/services";
 
 @Component({
   selector: 'ng-animate-on-scroll',
