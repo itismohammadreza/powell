@@ -1,6 +1,6 @@
 import {AnimationTransitionMetadata, AnimationTriggerMetadata} from "@angular/animations";
 
-type RequestMethods = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+export type RequestMethods = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 export type SidebarType = 'overlay' | 'push' | 'overlay-mask' | 'push-mask' | 'static' | 'hover' | 'horizontal';
 
 export interface AnimationDefinition {

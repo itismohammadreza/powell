@@ -7,11 +7,9 @@ import {
   Route,
   Router,
   RouterStateSnapshot,
-  UrlSegment,
-  UrlTree
+  UrlSegment
 } from '@angular/router';
 import {AuthService} from '@core/http';
-import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +18,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanMatch {
   constructor(private router: Router, private authService: AuthService) {
   }
 
-  canMatch(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+  canMatch(route: Route, segments: UrlSegment[]): boolean {
     if (this.authService.hasToken()) {
       return true;
     } else {

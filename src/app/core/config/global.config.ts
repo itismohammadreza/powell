@@ -3,5 +3,5 @@ import {RouteAnimation} from "@core/config";
 
 export const GlobalConfig: AppGlobalConfig = {
   lang: 'en',
-  routeAnimation: RouteAnimation('slide')
+  routeAnimation: RouteAnimation('fade2')
 };

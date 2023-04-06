@@ -2,6 +2,7 @@ import {HttpClient, HttpContext, HttpHeaders, HttpParams} from '@angular/common/
 import {Observable} from 'rxjs';
 import {EnvService} from "@core/utils";
 import {NgGlobal} from '@core/config';
+import {RequestMethods} from "@core/models";
 
 interface RequestOptions {
   headers?: HttpHeaders | { [header: string]: string | string[] };
@@ -76,7 +77,7 @@ export class ApiService {
     })
   }
 
-  protected _customRequest<T>(url: string, method: string, body: any = null, options: RequestOptions = null): Observable<T> {
+  protected _customRequest<T>(url: string, method: RequestMethods, body: any = null, options: RequestOptions = null): Observable<T> {
     switch (method.toLowerCase()) {
       case 'get':
       case 'delete':

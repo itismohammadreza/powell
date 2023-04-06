@@ -17,7 +17,7 @@ const SlideAnimation = [
   ])
 ]
 
-const FadeAnimation = [
+const FadeAnimation1 = [
   transition('* => *', [
     query(':enter', [
       style({opacity: 0})
@@ -52,12 +52,10 @@ const FadeAnimation3 = [
         'z-index': 10
       })
     ], {optional: true}),
-
     query(':leave', [
       style({opacity: 1}),
       animate('0.5s', style({opacity: 0}))
     ], {optional: true}),
-
     query(':enter',
       [
         style({opacity: 0}),
@@ -68,7 +66,9 @@ const FadeAnimation3 = [
 
 const animations: AnimationDefinition = {
   none: [],
-  fade: FadeAnimation2,
+  fade1: FadeAnimation1,
+  fade2: FadeAnimation2,
+  fade3: FadeAnimation3,
   slide: SlideAnimation
 }
 
