@@ -4,19 +4,23 @@ import {BehaviorSubject} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class StoreDataService {
-  private storeDataSubject = new BehaviorSubject<any>(null);
-  private data = {}
+export class StoreDataService<T = any> {
+  private storeDataSubject = new BehaviorSubject<T>(null);
+  private data: T;
 
-  set(event: any) {
-    this.data = {...this.data, ...event}
+  constructor() {
+    this.data = Object.create({})
+  }
+
+  set(event: T) {
+    this.data = {...this.data, ...event};
     if (event == null) {
       this.data = null;
     }
     this.storeDataSubject.next(this.data);
   }
 
-  get() {
+  get(): T {
     return this.storeDataSubject.getValue();
   }
 
