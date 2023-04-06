@@ -27,8 +27,8 @@ import {Subject, takeUntil} from "rxjs";
 import {ConfigService} from "@ng/api";
 
 @Component({
-  selector: 'ng-iran-map',
   templateUrl: './iran-map.component.html',
+  selector: 'ng-iran-map',
   styleUrls: ['./iran-map.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

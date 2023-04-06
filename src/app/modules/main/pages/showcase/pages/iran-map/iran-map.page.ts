@@ -23,6 +23,7 @@ export class IranMapPage {
   disabled: boolean = false;
   disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   selectionLimit: number = 31;
+  multiple: boolean = false;
 
   constructor(private configService: ConfigService) {
   }

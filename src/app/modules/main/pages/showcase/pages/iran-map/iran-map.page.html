@@ -12,7 +12,8 @@
       'fixLabelPos',
       'disabled',
       'disableConfigChangeEffect',
-      'selectionLimit'
+      'selectionLimit',
+      'multiple'
       ]"
       [(label)]="label"
       [(labelWidth)]="labelWidth"
@@ -22,6 +23,8 @@
       [(fixLabelPos)]="labelPos"
       [(disabled)]="disabled"
       [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(selectionLimit)]="selectionLimit"
+      [(multiple)]="multiple"
     ></ng-preview-options>
   </p-panel>
 
@@ -38,6 +41,8 @@
         [labelPos]="labelPos"
         [disabled]="disabled"
         [disableConfigChangeEffect]="disableConfigChangeEffect"
+        [selectionLimit]="selectionLimit"
+        [multiple]="multiple"
       ></ng-iran-map>
     </form>
   </p-panel>
