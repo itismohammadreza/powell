@@ -1,8 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
-import {ConfirmationService, MessageService} from "primeng/api";
-import {DialogService} from "primeng/dynamicdialog";
 import {Dialog2Component, DialogComponent, DialogFormComponent} from '.';
 import {AutoCompleteModule} from "@ng/components/auto-complete";
 
@@ -41,12 +39,6 @@ import {ButtonModule} from "@ng/components/button";
     DialogFormComponent,
     Dialog2Component
   ],
-  providers: [
-    // OverlayService,
-    MessageService,
-    DialogService,
-    ConfirmationService
-  ]
 })
 export class OverlayModule {
 }

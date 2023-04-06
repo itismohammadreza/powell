@@ -1,9 +1,9 @@
 import {DOCUMENT} from "@angular/common";
 import {ConfirmationService, FilterService, MessageService, PrimeNGConfig} from "primeng/api";
+import {DialogService} from "primeng/dynamicdialog";
 import {NgConfig} from "@ng/models";
 import {ThemeService} from "@ng/api/theme.service";
 import {ConfigService} from "@ng/api/config.service";
-import {DialogService} from "primeng/dynamicdialog";
 
 export function initiateNgConfigProvider(ngConfig?: NgConfig) {
   return [
