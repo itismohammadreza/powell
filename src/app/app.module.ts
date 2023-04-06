@@ -8,7 +8,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CoreModule} from "@core/core.module";
 import {EnvServiceProvider, TranslationService} from "@core/utils";
-import {NgAllModule} from "@ng/all.module";
 import {initiateNgConfigProvider} from "@ng/api";
 import {NgGlobal} from "@core/config";
 
@@ -32,7 +31,6 @@ export function initiateLanguage(translationService: TranslationService) {
     BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
-    NgAllModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
