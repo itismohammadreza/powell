@@ -18,6 +18,7 @@
 - add bootstrap 5
 - use gap instead of margin left and right
 - make components modular (and instead of ngAllModule, provide a NG_CONFIG and get configs via useFactory or useValue)
+- create page for persian service (write on input and print string value)
 - ----------------------------------------------------
 - how should disableConfigChangeEffect use in overlay.service like toast etc...?
 
