@@ -17,7 +17,6 @@
 - replace css colors with variables and make theme colors configurable
 - add bootstrap 5
 - use gap instead of margin left and right
-- make components modular (and instead of ngAllModule, provide a NG_CONFIG and get configs via useFactory or useValue)
 - create page for persian service (write on input and print string value)
 - create a shared module and make modules simplify
 - ----------------------------------------------------
