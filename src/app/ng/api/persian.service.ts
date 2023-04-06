@@ -1,200 +1,5 @@
 import {Injectable} from '@angular/core';
 
-class NumberToPersianWord {
-  private s_0_9 = [
-    'صفر',
-    'یک',
-    'دو',
-    'سه',
-    'چهار',
-    'پنج',
-    'شش',
-    'هفت',
-    'هشت',
-    'نه'
-  ];
-  private s_10_19 = [
-    'ده',
-    'یازده',
-    'دوازده',
-    'سیزده',
-    'چهارده',
-    'پانزده',
-    'شانزده',
-    'هفده',
-    'هجده',
-    'نوزده'
-  ];
-  private s_20_90 = [
-    'بیست',
-    'سی',
-    'چهل',
-    'پنجاه',
-    'شصت',
-    'هفتاد',
-    'هشتاد',
-    'نود'
-  ];
-  private s_100_900 = [
-    'صد',
-    'دویست',
-    'سیصد',
-    'چهارصد',
-    'پانصد',
-    'ششصد',
-    'هفتصد',
-    'هشتصد',
-    'نهصد'
-  ];
-  private s_Parts = ['هزار', 'میلیون', 'میلیارد', 'تريليون'];
-  private splitter = ' و ';
-  private veryBig = 'تعریف نشده';
-  private negative = 'منفی';
-
-  convertNumberToString(inputNumber: string | number) {
-    const tempNumber = Math.abs(+inputNumber).toString();
-    if (tempNumber.length == 0) {
-      return '';
-    }
-    if (tempNumber === '0') {
-      return this.s_0_9[0];
-    }
-    const partCount = Math.ceil(parseInt(tempNumber).toString().length / 3);
-    if (this.s_Parts.length < partCount) {
-      return this.veryBig;
-    }
-
-    const partFullString = [];
-
-    for (let i = 0; i < partCount; i++) {
-      let numberLength3: string;
-      let lengthToSelectFirstPart: number = 0;
-      if (i == 0) {
-        lengthToSelectFirstPart = tempNumber.length - (partCount - 1) * 3;
-        numberLength3 = tempNumber.substr(i * 3, lengthToSelectFirstPart);
-      } else {
-        numberLength3 = tempNumber.substr(
-          lengthToSelectFirstPart + (i - 1) * 3,
-          3
-        );
-      }
-
-      const partInWord = this.getPart(numberLength3);
-      const partIndex = partCount - 2 - i;
-      let partPreFix = this.s_Parts[partIndex];
-
-      if (i == partCount - 1) {
-        partPreFix = '';
-      }
-
-      if (i == 0) {
-        if (partInWord != '') {
-          partFullString[i] = partInWord + ' ' + partPreFix;
-        } else {
-          partFullString[i] = '';
-        }
-      } else {
-        if (partFullString[i - 1] != '') {
-          if (partInWord != '') {
-            partFullString[i] = this.splitter + partInWord + ' ' + partPreFix;
-          } else {
-            partFullString[i] = '';
-          }
-        } else {
-          if (partInWord != '') {
-            partFullString[i] = this.splitter + partInWord + ' ' + partPreFix;
-          } else {
-            partFullString[i] = '';
-          }
-        }
-      }
-    }
-
-    let outString = '';
-
-    for (let i = 0; i < partFullString.length; i++) {
-      outString += partFullString[i];
-    }
-
-    if (inputNumber.toString().substr(0, 1) == '-') {
-      outString = this.negative + ' ' + outString;
-    }
-
-    return outString;
-  }
-
-  private getPart(numberIn3: string) {
-    if (numberIn3.length > 3) {
-      return '';
-    }
-
-    let number = numberIn3.toString();
-
-    switch (number.length) {
-      case 1:
-        number = '00' + number;
-        break;
-      case 2:
-        number = '0' + number;
-        break;
-    }
-
-    let outString = '';
-
-    const n1 = parseInt(number.substr(0, 1));
-    const n2 = parseInt(number.substr(1, 1));
-    const n3 = parseInt(number.substr(2, 1));
-
-    if (n1 != 0) {
-      switch (n2) {
-        case 0:
-          if (n3 != 0) {
-            outString = this.s_100_900[n1 - 1] + this.splitter + this.s_0_9[n3];
-          } else {
-            outString = this.s_100_900[n1 - 1];
-          }
-          break;
-        case 1:
-          outString = this.s_100_900[n1 - 1] + this.splitter + this.s_10_19[n3];
-          break;
-        default:
-          if (n3 != 0) {
-            outString =
-              this.s_100_900[n1 - 1] +
-              this.splitter +
-              this.s_20_90[n2 - 2] +
-              this.splitter +
-              this.s_0_9[n3];
-          } else {
-            outString =
-              this.s_100_900[n1 - 1] + this.splitter + this.s_20_90[n2 - 2];
-          }
-      }
-    } else {
-      switch (n2) {
-        case 0:
-          if (n3 != 0) {
-            outString = this.s_0_9[n3];
-          } else {
-            outString = '';
-          }
-          break;
-        case 1:
-          outString = this.s_10_19[n3];
-          break;
-        default:
-          if (n3 != 0) {
-            outString = this.s_20_90[n2 - 2] + this.splitter + this.s_0_9[n3];
-          } else {
-            outString = this.s_20_90[n2 - 2];
-          }
-      }
-    }
-
-    return outString;
-  }
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -223,12 +28,6 @@ export class PersianService {
       throw new Error(`${num} is not valid persian Number`);
     }
     return engNumber;
-  }
-
-  toPersianWord(num: number | string): string {
-    return new NumberToPersianWord().convertNumberToString(
-      this.toEngNumber(num as string)
-    );
   }
 
   engNumberToPersian(num: string): string {
@@ -286,4 +85,152 @@ export class PersianService {
     str = str.replace(/۹/g, '9');
     return str;
   }
+
+  toPersianWord(input: string | number) {
+    const delimiter = ' و ';
+    const zero = 'صفر';
+    const negative = 'منفی ';
+    const letters = [
+      ['', 'یک', 'دو', 'سه', 'چهار', 'پنج', 'شش', 'هفت', 'هشت', 'نه'],
+      ['ده', 'یازده', 'دوازده', 'سیزده', 'چهارده', 'پانزده', 'شانزده', 'هفده', 'هجده', 'نوزده', 'بیست'],
+      ['', '', 'بیست', 'سی', 'چهل', 'پنجاه', 'شصت', 'هفتاد', 'هشتاد', 'نود'],
+      ['', 'یکصد', 'دویست', 'سیصد', 'چهارصد', 'پانصد', 'ششصد', 'هفتصد', 'هشتصد', 'نهصد'],
+      [
+        '',
+        ' هزار',
+        ' میلیون',
+        ' میلیارد',
+        ' بیلیون',
+        ' بیلیارد',
+        ' تریلیون',
+        ' تریلیارد',
+        ' کوآدریلیون',
+        ' کادریلیارد',
+        ' کوینتیلیون',
+        ' کوانتینیارد',
+        ' سکستیلیون',
+        ' سکستیلیارد',
+        ' سپتیلیون',
+        ' سپتیلیارد',
+        ' اکتیلیون',
+        ' اکتیلیارد',
+        ' نانیلیون',
+        ' نانیلیارد',
+        ' دسیلیون',
+        ' دسیلیارد'
+      ],
+    ];
+    const decimalSuffixes = [
+      '',
+      'دهم',
+      'صدم',
+      'هزارم',
+      'ده‌هزارم',
+      'صد‌هزارم',
+      'میلیونوم',
+      'ده‌میلیونوم',
+      'صدمیلیونوم',
+      'میلیاردم',
+      'ده‌میلیاردم',
+      'صد‌‌میلیاردم'
+    ];
+    const convertDecimalPart = (decimalPart: string) => {
+      decimalPart = decimalPart.replace(/0*$/, "");
+      if (decimalPart === '') {
+        return '';
+      }
+      if (decimalPart.length > 11) {
+        decimalPart = decimalPart.substr(0, 11);
+      }
+      return ' ممیز ' + this.toPersianWord(decimalPart) + ' ' + decimalSuffixes[decimalPart.length];
+    };
+    const tinyNumToWord = (num: string) => {
+      if (parseInt(num, 0) === 0) {
+        return '';
+      }
+      const parsedInt = parseInt(num, 0);
+      if (parsedInt < 10) {
+        return letters[0][parsedInt];
+      }
+      if (parsedInt <= 20) {
+        return letters[1][parsedInt - 10];
+      }
+      if (parsedInt < 100) {
+        const one = parsedInt % 10;
+        const ten = (parsedInt - one) / 10;
+        if (one > 0) {
+          return letters[2][ten] + delimiter + letters[0][one];
+        }
+        return letters[2][ten];
+      }
+      const one = parsedInt % 10;
+      const hundreds = (parsedInt - (parsedInt % 100)) / 100;
+      const ten = (parsedInt - ((hundreds * 100) + one)) / 10;
+      const out = [letters[3][hundreds]];
+      const secondPart = ((ten * 10) + one);
+      if (secondPart === 0) {
+        return out.join(delimiter);
+      }
+      if (secondPart < 10) {
+        out.push(letters[0][secondPart]);
+      } else if (secondPart <= 20) {
+        out.push(letters[1][secondPart - 10]);
+      } else {
+        out.push(letters[2][ten]);
+        if (one > 0) {
+          out.push(letters[0][one]);
+        }
+      }
+
+      return out.join(delimiter);
+    };
+    const prepareNumber = (num: string | number) => {
+      let out = num;
+      if (typeof out === 'number') {
+        out = out.toString();
+      }
+      if (out.length % 3 === 1) {
+        out = `00${out}`;
+      } else if (out.length % 3 === 2) {
+        out = `0${out}`;
+      }
+      return out.replace(/\d{3}(?=\d)/g, '$&*').split('*');
+    };
+
+    input = input.toString().replace(/[^0-9.-]/g, '');
+    let isNegative = false;
+    const floatParse = parseFloat(input);
+    if (isNaN(floatParse)) {
+      return zero;
+    }
+    if (floatParse === 0) {
+      return zero;
+    }
+    if (floatParse < 0) {
+      isNegative = true;
+      input = input.replace(/-/g, '');
+    }
+    let decimalPart = '';
+    let integerPart = input;
+    let pointIndex = input.indexOf('.');
+    if (pointIndex > -1) {
+      integerPart = input.substring(0, pointIndex);
+      decimalPart = input.substring(pointIndex + 1, input.length);
+    }
+    if (integerPart.length > 66) {
+      return 'خارج از محدوده';
+    }
+    const slicedNumber = prepareNumber(integerPart);
+    const out = [];
+    for (let i = 0; i < slicedNumber.length; i += 1) {
+      const converted = tinyNumToWord(slicedNumber[i]);
+      if (converted !== '') {
+        out.push(converted + letters[4][slicedNumber.length - (i + 1)]);
+      }
+    }
+    if (decimalPart.length > 0) {
+      decimalPart = convertDecimalPart(decimalPart);
+    }
+    return (isNegative ? negative : '') + out.join(delimiter) + decimalPart;
+  };
 }
