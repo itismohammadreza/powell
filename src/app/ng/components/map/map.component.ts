@@ -4,7 +4,7 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input,
+  Input, OnChanges,
   OnDestroy,
   OnInit,
   Output,
@@ -54,7 +54,7 @@ import {ConfigService} from "@ng/api";
     }
   ]
 })
-export class MapComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, OnDestroy {
   @Input() value: LatLngLiteral | LatLngLiteral[];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -196,6 +196,10 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnDestroy {
     }
   }
 
+  ngOnChanges() {
+    this.handleDisabledState()
+  }
+
   getId() {
     return 'id' + Math.random().toString(16).slice(2);
   }
@@ -262,6 +266,29 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnDestroy {
     if (!this.map) {
       return
     }
+    this.handleDisabledState()
+    this.cd.markForCheck();
+  }
+
+  emitter(name: string, event: any) {
+    (this[name] as EventEmitter<any>).emit(event);
+  }
+
+  onMapReady(event: Map): void {
+    this.map = event;
+  }
+
+  onZoomChange(event) {
+    this.zoom = event;
+    this.zoomChange.emit(this.zoom);
+  }
+
+  onCenterChange(event) {
+    this.center = event;
+    this.centerChange.emit(this.center);
+  }
+
+  handleDisabledState() {
     if (this.disabled) {
       this.readonly = true;
       this.map.dragging.disable();
@@ -285,29 +312,10 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnDestroy {
         this.map.tap.enable();
       }
     }
-    this.cd.markForCheck();
-  }
-
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
-  }
-
-  onMapReady(event: Map): void {
-    this.map = event;
-  }
-
-  onZoomChange(event) {
-    this.zoom = event;
-    this.zoomChange.emit(this.zoom);
-  }
-
-  onCenterChange(event) {
-    this.center = event;
-    this.centerChange.emit(this.center);
   }
 
   _onMapClick(event: LeafletMouseEvent): void {
-    if (!this.readonly) {
+    if (!this.readonly && !this.disabled) {
       const selectedLatLngs = this.layers.map((l: any) => l._latlng);
       if (this.multiple) {
         if (selectedLatLngs.length == this.selectionLimit) {
