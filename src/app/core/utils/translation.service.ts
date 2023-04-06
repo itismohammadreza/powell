@@ -1,8 +1,8 @@
 import {Inject, Injectable} from '@angular/core';
-import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
-import {Observable} from 'rxjs';
-import {GlobalConfig} from "@core/config";
 import {DOCUMENT} from "@angular/common";
+import {Observable} from 'rxjs';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import {GlobalConfig} from "@core/config";
 
 @Injectable({
   providedIn: 'root'
