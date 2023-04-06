@@ -19,9 +19,12 @@
 - use gap instead of margin left and right
 - create page for persian service (write on input and print string value)
 - create a shared module and make modules simplify
-- ----------------------------------------------------
 - how should disableConfigChangeEffect use in overlay.service like toast etc...?
-
+- create a public-api file in ng/primeng and
+1- export primeng/COMPONENT usage as follows and update imports : 
+`export const NgToastComponent = Toast;`
+2- export primeng/MODEL usage as follows and update imports: 
+`export type NgMenuItem = MenuItem;`
 ### New
 
 - [ ] **whiteboard** - implement component.
