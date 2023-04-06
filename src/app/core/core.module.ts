@@ -1,6 +1,10 @@
 import {APP_INITIALIZER, Injector, NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {AuthInterceptor, HttpHandlerInterceptor} from '@core/interceptors';
+import {EnvServiceProvider, TranslationService} from "@core/utils";
+import {NgGlobal} from "@core/config";
 import {
   AnimateOnScrollService,
   DynamicDialogService,
@@ -10,10 +14,6 @@ import {
   PersianService,
   UtilsService
 } from "@ng/api";
-import {EnvServiceProvider, TranslationService} from "@core/utils";
-import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
-import {TranslateHttpLoader} from "@ngx-translate/http-loader";
-import {NgGlobal} from "@core/config";
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
