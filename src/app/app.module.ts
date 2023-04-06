@@ -9,14 +9,14 @@ import {AppComponent} from './app.component';
 import {CoreModule} from "@core/core.module";
 import {EnvServiceProvider, TranslationService} from "@core/utils";
 import {NgAllModule} from "@ng/all.module";
-import {setNgConfigProvider} from "@ng/api";
+import {initiateNgConfigProvider} from "@ng/api";
 import {NgGlobal} from "@core/config";
 
-export function HttpLoaderFactory(http: HttpClient) {
+export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-export function InitializeLanguage(translationService: TranslationService) {
+export function initiateLanguage(translationService: TranslationService) {
   return (): Promise<any> => {
     return translationService.init();
   }
@@ -36,15 +36,15 @@ export function InitializeLanguage(translationService: TranslationService) {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
+        useFactory: httpLoaderFactory,
         deps: [HttpClient]
       }
     })
   ],
   providers: [
     EnvServiceProvider,
-    {provide: APP_INITIALIZER, useFactory: InitializeLanguage, deps: [TranslationService], multi: true},
-    setNgConfigProvider()
+    {provide: APP_INITIALIZER, useFactory: initiateLanguage, deps: [TranslationService], multi: true},
+    initiateNgConfigProvider()
   ],
   bootstrap: [AppComponent]
 })

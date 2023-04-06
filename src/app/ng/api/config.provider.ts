@@ -4,7 +4,7 @@ import {NgConfig} from "@ng/models";
 import {ThemeService} from "@ng/api/theme.service";
 import {ConfigService} from "@ng/api/config.service";
 
-export function setNgConfigProvider(ngConfig?: NgConfig) {
+export function initiateNgConfigProvider(ngConfig?: NgConfig) {
   return {
     provide: ConfigService,
     useFactory: (primengConfig: PrimeNGConfig, themeService: ThemeService, document: Document) => {

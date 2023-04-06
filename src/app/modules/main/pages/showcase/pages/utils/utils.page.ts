@@ -3,7 +3,7 @@ import {DynamicDialogService} from "@ng/api";
 import {UserService} from "@core/http";
 import {
   DynamicDialogSampleComponent
-} from "@modules/main/pages/showcase/components/dynamic-dialog-sample/dynamic-dialog-sample.component";
+} from "@modules/main/pages/showcase/pages/utils/dynamic-dialog-sample/dynamic-dialog-sample.component";
 import {Subject, takeUntil} from "rxjs";
 
 @Component({
