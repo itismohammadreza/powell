@@ -19,6 +19,8 @@
 - use gap instead of margin left and right
 - make components modular (and instead of ngAllModule, provide a NG_CONFIG and get configs via useFactory or useValue)
 - create page for persian service (write on input and print string value)
+- create separate module for each service? or a utilsModule for all of them?
+- create a shared module and make modules simplify
 - ----------------------------------------------------
 - how should disableConfigChangeEffect use in overlay.service like toast etc...?
 
