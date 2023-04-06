@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {ChartModule} from "primeng/chart";
 
 @NgModule({
-  // exports: [ChartModule]
+  exports: [ChartModule]
 })
 export class PrimeChartModule {
 }
