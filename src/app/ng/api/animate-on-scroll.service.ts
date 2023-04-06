@@ -1,4 +1,5 @@
-import {Injectable} from "@angular/core";
+import {Inject, Injectable} from "@angular/core";
+import {DOCUMENT} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,9 @@ export class AnimateOnScrollService {
   };
   callback = () => {
   };
+
+  constructor(@Inject(DOCUMENT) private document: Document) {
+  }
 
   ua() {
     return navigator.userAgent || navigator.vendor || '';
@@ -62,7 +66,7 @@ export class AnimateOnScrollService {
   calculateOffset(el, optionalOffset) {
     let elementOffsetTop = 0;
     let additionalOffset = 0;
-    const windowHeight = window.innerHeight;
+    const windowHeight = this.document.defaultView.innerHeight;
     const attrs = {
       offset: el.getAttribute('data-aos-offset'),
       anchor: el.getAttribute('data-aos-anchor'),
@@ -73,8 +77,8 @@ export class AnimateOnScrollService {
       additionalOffset = parseInt(attrs.offset);
     }
 
-    if (attrs.anchor && document.querySelectorAll(attrs.anchor)) {
-      el = document.querySelectorAll(attrs.anchor)[0];
+    if (attrs.anchor && this.document.querySelectorAll(attrs.anchor)) {
+      el = this.document.querySelectorAll(attrs.anchor)[0];
     }
 
     elementOffsetTop = this.offset(el).top;
@@ -114,7 +118,7 @@ export class AnimateOnScrollService {
   }
 
   createArrayWithElements() {
-    const elements = document.querySelectorAll('[data-aos]');
+    const elements = this.document.querySelectorAll('[data-aos]');
     return Array.prototype.map.call(elements, node => ({node}));
   }
 
@@ -130,8 +134,8 @@ export class AnimateOnScrollService {
   }
 
   handleScroll(elements, once) {
-    const scrollTop = window.pageYOffset;
-    const windowHeight = window.innerHeight;
+    const scrollTop = this.document.defaultView.pageYOffset;
+    const windowHeight = this.document.defaultView.innerHeight;
     elements.forEach((el, i) => {
       this.setState(el, windowHeight + scrollTop, once);
     });
@@ -146,11 +150,11 @@ export class AnimateOnScrollService {
   }
 
   ready(selector, fn) {
-    const doc = window.document;
+    const doc = this.document.defaultView.document;
     const MutationObserver =
-      window.MutationObserver ||
-      (window as any).WebKitMutationObserver ||
-      (window as any).MozMutationObserver;
+      this.document.defaultView.MutationObserver ||
+      (this.document.defaultView as any).WebKitMutationObserver ||
+      (this.document.defaultView as any).MozMutationObserver;
 
     const observer = new MutationObserver(this.check);
     this.callback = fn;
@@ -238,32 +242,32 @@ export class AnimateOnScrollService {
   init(settings) {
     this.options = Object.assign(this.options, settings);
     this.aosElements = this.createArrayWithElements();
-    const browserNotSupported = document.all && !window.atob;
+    const browserNotSupported = this.document.all && !this.document.defaultView.atob;
 
     if (this.isDisabled(this.options.disable) || browserNotSupported) {
       return this.disable();
     }
 
-    document.querySelector('body').setAttribute('data-aos-easing', this.options.easing);
-    document.querySelector('body').setAttribute('data-aos-duration', this.options.duration.toString());
-    document.querySelector('body').setAttribute('data-aos-delay', this.options.delay.toString());
+    this.document.querySelector('body').setAttribute('data-aos-easing', this.options.easing);
+    this.document.querySelector('body').setAttribute('data-aos-duration', this.options.duration.toString());
+    this.document.querySelector('body').setAttribute('data-aos-delay', this.options.delay.toString());
 
     if (this.options.startEvent === 'DOMContentLoaded' &&
-      ['complete', 'interactive'].indexOf(document.readyState) > -1) {
+      ['complete', 'interactive'].indexOf(this.document.readyState) > -1) {
       this.refresh(true);
     } else if (this.options.startEvent === 'load') {
-      window.addEventListener(this.options.startEvent, () => {
+      this.document.defaultView.addEventListener(this.options.startEvent, () => {
         this.refresh(true);
       });
     } else {
-      document.addEventListener(this.options.startEvent, () => {
+      this.document.addEventListener(this.options.startEvent, () => {
         this.refresh(true);
       });
     }
 
-    window.addEventListener('resize', this.debounce(this.refresh, this.options.debounceDelay, true));
-    window.addEventListener('orientationchange', this.debounce(this.refresh, this.options.debounceDelay, true));
-    window.addEventListener('scroll', this.throttle(() => {
+    this.document.defaultView.addEventListener('resize', this.debounce(this.refresh, this.options.debounceDelay, true));
+    this.document.defaultView.addEventListener('orientationchange', this.debounce(this.refresh, this.options.debounceDelay, true));
+    this.document.defaultView.addEventListener('scroll', this.throttle(() => {
       this.handleScroll(this.aosElements, this.options.once);
     }, this.options.throttleDelay));
 
@@ -287,6 +291,6 @@ export class AnimateOnScrollService {
 //   }
 //
 //   private manageScrollPos(): void {
-//     this.pos = typeof window !== "undefined" ? window.pageYOffset : 0;
+//     this.pos = typeof window !== "undefined" ? this.document.defaultView.pageYOffset : 0;
 //   }
 // }

@@ -10,7 +10,8 @@ import {
   PrimeConfirmDialogModule,
   PrimeConfirmPopupModule,
   PrimeDialogModule,
-  PrimeDynamicDialogModule, PrimeToastModule
+  PrimeDynamicDialogModule,
+  PrimeToastModule
 } from "@ng/primeng";
 import {SafeModule} from "@ng/pipes/safe";
 import {ButtonModule} from "@ng/components/button";

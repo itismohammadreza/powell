@@ -9,13 +9,16 @@ import {
   Type
 } from '@angular/core';
 import {DOCUMENT} from "@angular/common";
-import {DynamicDialogComponent} from '@ng/components/dynamic-dialog/dynamic-dialog.component';
-import {DynamicDialogConfig} from '@ng/components/dynamic-dialog/dynamic-dialog-config';
-import {DynamicDialogRef} from '@ng/components/dynamic-dialog/dynamic-dialog-ref';
-import {DynamicDialogInjector} from '@ng/components/dynamic-dialog/dynamic-dialog-injector';
+import {
+  DynamicDialogComponent,
+  DynamicDialogConfig,
+  DynamicDialogInjector,
+  DynamicDialogModule,
+  DynamicDialogRef
+} from '@ng/components/dynamic-dialog';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: DynamicDialogModule
 })
 export class DynamicDialogService {
   dialogComponentRef: ComponentRef<DynamicDialogComponent>;
