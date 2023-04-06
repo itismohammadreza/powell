@@ -13,13 +13,10 @@ import {
   DynamicDialogComponent,
   DynamicDialogConfig,
   DynamicDialogInjector,
-  DynamicDialogModule,
   DynamicDialogRef
 } from '@ng/components/dynamic-dialog';
 
-@Injectable({
-  providedIn: DynamicDialogModule
-})
+@Injectable()
 export class DynamicDialogService {
   dialogComponentRef: ComponentRef<DynamicDialogComponent>;
 

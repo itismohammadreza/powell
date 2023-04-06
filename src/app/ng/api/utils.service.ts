@@ -4,9 +4,7 @@ import {DOCUMENT} from '@angular/common';
 import {fromEvent, merge, Observable, Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UtilsService {
   constructor(@Inject(DOCUMENT) private document: Document) {
   }
@@ -45,7 +43,7 @@ export class UtilsService {
     return result;
   }
 
-  checkConnectionState(callback: any) {
+  checkConnectionSpeed(callback: any) {
     const imageUrl = 'https://via.placeholder.com/2000x2000';
     const downloadSize = 4995374;
     let startTime;

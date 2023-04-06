@@ -4,9 +4,7 @@ import {MomentFormatSpecification, MomentInput} from "jalali-moment";
 import * as moment from 'moment';
 import * as jalaliMoment from 'jalali-moment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class MomentService {
   setGlobalLocale(language: string) {
     moment.locale(language);

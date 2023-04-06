@@ -19,9 +19,7 @@ import {
 } from '@ng/models';
 import {DialogComponent, DialogFormComponent} from "@ng/components/overlay";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class OverlayService {
   private toastCmpRef: ComponentRef<Toast>;
   private confirmPopupCmpRef: ComponentRef<ConfirmPopup>;

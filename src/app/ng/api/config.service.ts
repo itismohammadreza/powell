@@ -5,6 +5,7 @@ import {PrimeNGConfig} from "primeng/api";
 import {NgConfig, NgConfigChangeEvent} from "@ng/models";
 import {ThemeService} from "@ng/api";
 
+// DON'T provide anywhere. will provide automatically after `initiateNgConfigProvider` call.
 @Injectable()
 export class ConfigService {
   constructor(private primengConfig: PrimeNGConfig,

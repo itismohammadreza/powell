@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PersianService {
   replaceArabicLettersWithPersianLetters(inputStr: string): string {
     if (inputStr == undefined) {

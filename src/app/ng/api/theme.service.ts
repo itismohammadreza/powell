@@ -2,9 +2,8 @@ import {Inject, Injectable} from "@angular/core";
 import {DOCUMENT} from "@angular/common";
 import {NgTheme} from "@ng/models";
 
-@Injectable({
-  providedIn: 'root'
-})
+// DON'T provide anywhere. will provide automatically after `initiateNgConfigProvider` call.
+@Injectable()
 export class ThemeService {
   constructor(@Inject(DOCUMENT) private document: Document) {
   }
