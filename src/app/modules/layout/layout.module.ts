@@ -1,13 +1,10 @@
 import {NgModule} from '@angular/core';
-import {COMPONENTS} from './index';
-import {StatusModule} from "@ng/components/status";
+import {DECLARATIONS, EXPORTS, IMPORTS} from ".";
 
 @NgModule({
-  declarations: [...COMPONENTS],
-  exports: [...COMPONENTS],
-  imports: [
-    StatusModule
-  ]
+  declarations: DECLARATIONS,
+  exports: EXPORTS,
+  imports: IMPORTS,
 })
 export class LayoutModule {
 }
