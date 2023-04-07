@@ -8,3 +8,4 @@ export class PrimeRatingModule {
 }
 
 export const PrimeRating = Rating;
+export type PrimeRating = Rating;

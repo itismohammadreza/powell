@@ -8,3 +8,4 @@ export class PrimeTieredMenuModule {
 }
 
 export const PrimeTieredMenu = TieredMenu;
+export type PrimeTieredMenu = TieredMenu;

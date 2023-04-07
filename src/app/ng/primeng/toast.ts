@@ -8,3 +8,4 @@ export class PrimeToastModule {
 }
 
 export const PrimeToast = Toast;
+export type PrimeToast = Toast;

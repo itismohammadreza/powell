@@ -8,3 +8,4 @@ export class PrimeCardModule {
 }
 
 export const PrimeCard = Card;
+export type PrimeCard = Card;

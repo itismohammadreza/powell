@@ -8,3 +8,4 @@ export class PrimeSplitterModule {
 }
 
 export const PrimeSplitter = Splitter;
+export type PrimeSplitter = Splitter;

@@ -8,3 +8,4 @@ export class PrimeInplaceModule {
 }
 
 export const PrimeInplace = Inplace;
+export type PrimeInplace = Inplace;

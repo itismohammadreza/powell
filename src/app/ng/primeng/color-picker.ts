@@ -8,3 +8,4 @@ export class PrimeColorPickerModule {
 }
 
 export const PrimeColorPicker = ColorPicker;
+export type PrimeColorPicker = ColorPicker;

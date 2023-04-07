@@ -7,4 +7,5 @@ import {Dropdown, DropdownModule} from "primeng/dropdown";
 export class PrimeDropdownModule {
 }
 
-export const Prime = Dropdown;
+export const PrimeDropdown = Dropdown;
+export type PrimeDropdown = Dropdown;

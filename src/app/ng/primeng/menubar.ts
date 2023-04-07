@@ -8,3 +8,4 @@ export class PrimeMenubarModule {
 }
 
 export const PrimeMenubar = Menubar;
+export type PrimeMenubar = Menubar;

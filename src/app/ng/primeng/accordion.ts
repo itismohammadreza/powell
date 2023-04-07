@@ -9,3 +9,5 @@ export class PrimeAccordionModule {
 
 export const PrimeAccordion = Accordion;
 export const PrimeAccordionTab = AccordionTab;
+export type PrimeAccordion = Accordion;
+export type PrimeAccordionTab = AccordionTab;

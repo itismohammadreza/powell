@@ -8,3 +8,4 @@ export class PrimeStyleClassModule {
 }
 
 export const PrimeStyleClass = StyleClass;
+export type PrimeStyleClass = StyleClass;

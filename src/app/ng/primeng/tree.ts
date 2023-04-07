@@ -8,3 +8,4 @@ export class PrimeTreeModule {
 }
 
 export const PrimeTree = Tree;
+export type PrimeTree = Tree;

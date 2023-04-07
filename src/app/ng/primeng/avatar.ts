@@ -10,3 +10,5 @@ export class PrimeAvatarModule {
 
 export const PrimeAvatar = Avatar;
 export const PrimeAvatarGroup = AvatarGroup;
+export type PrimeAvatar = Avatar;
+export type PrimeAvatarGroup = AvatarGroup;

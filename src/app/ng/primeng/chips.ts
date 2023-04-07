@@ -8,3 +8,4 @@ export class PrimeChipsModule {
 }
 
 export const PrimeChips = Chips;
+export type PrimeChips = Chips;

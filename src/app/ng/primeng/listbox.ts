@@ -8,3 +8,4 @@ export class PrimeListboxModule {
 }
 
 export const PrimeListbox = Listbox;
+export type PrimeListbox = Listbox;

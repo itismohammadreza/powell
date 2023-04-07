@@ -8,3 +8,4 @@ export class PrimeInputTextareaModule {
 }
 
 export const PrimeInputTextarea = InputTextarea;
+export type PrimeInputTextarea = InputTextarea;

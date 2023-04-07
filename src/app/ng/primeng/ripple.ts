@@ -8,3 +8,4 @@ export class PrimeRippleModule {
 }
 
 export const PrimeRipple = Ripple;
+export type PrimeRipple = Ripple;

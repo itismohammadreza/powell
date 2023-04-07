@@ -8,3 +8,4 @@ export class PrimeContextMenuModule {
 }
 
 export const PrimeContextMenu = ContextMenu;
+export type PrimeContextMenu = ContextMenu;

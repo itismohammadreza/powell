@@ -8,3 +8,4 @@ export class PrimeCarouselModule {
 }
 
 export const PrimeCarousel = Carousel;
+export type PrimeCarousel = Carousel;

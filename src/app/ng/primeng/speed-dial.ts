@@ -8,3 +8,4 @@ export class PrimeSpeedDialModule {
 }
 
 export const PrimeSpeedDial = SpeedDial;
+export type PrimeSpeedDial = SpeedDial;

@@ -8,3 +8,4 @@ export class PrimeTriStateCheckboxModule {
 }
 
 export const PrimeTriStateCheckbox = TriStateCheckbox;
+export type PrimeTriStateCheckbox = TriStateCheckbox;

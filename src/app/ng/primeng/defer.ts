@@ -8,3 +8,4 @@ export class PrimeDeferModule {
 }
 
 export const PrimeDefer = DeferredLoader
+export type PrimeDefer = DeferredLoader

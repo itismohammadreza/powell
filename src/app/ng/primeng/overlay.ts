@@ -8,3 +8,4 @@ export class PrimeOverlayModule {
 }
 
 export const PrimeOverlay = Overlay;
+export type PrimeOverlay = Overlay;

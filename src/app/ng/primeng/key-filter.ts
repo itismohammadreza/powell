@@ -8,3 +8,4 @@ export class PrimeKeyFilterModule {
 }
 
 export const PrimeKeyFilter = KeyFilter;
+export type PrimeKeyFilter = KeyFilter;

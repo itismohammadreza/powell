@@ -8,3 +8,4 @@ export class PrimeInputSwitchModule {
 }
 
 export const PrimeInputSwitch = InputSwitch;
+export type PrimeInputSwitch = InputSwitch;

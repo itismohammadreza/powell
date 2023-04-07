@@ -8,3 +8,4 @@ export class PrimeTimelineModule {
 }
 
 export const PrimeTimeline = Timeline;
+export type PrimeTimeline = Timeline;

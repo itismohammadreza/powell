@@ -8,3 +8,4 @@ export class PrimeEditorModule {
 }
 
 export const PrimeEditor = Editor;
+export type PrimeEditor = Editor;

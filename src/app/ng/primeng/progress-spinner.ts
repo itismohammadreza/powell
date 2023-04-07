@@ -8,3 +8,4 @@ export class PrimeProgressSpinnerModule {
 }
 
 export const PrimeProgressSpinner = ProgressSpinner
+export type PrimeProgressSpinner = ProgressSpinner

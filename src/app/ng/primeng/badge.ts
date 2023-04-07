@@ -8,3 +8,4 @@ export class PrimeBadgeModule {
 }
 
 export const PrimeBadge = Badge;
+export type PrimeBadge = Badge;

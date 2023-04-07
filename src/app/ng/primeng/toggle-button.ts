@@ -8,3 +8,4 @@ export class PrimeToggleButtonModule {
 }
 
 export const PrimeToggleButton = ToggleButton;
+export type PrimeToggleButton = ToggleButton;

@@ -8,3 +8,4 @@ export class PrimeMultiSelectModule {
 }
 
 export const PrimeMultiSelect = MultiSelect;
+export type PrimeMultiSelect = MultiSelect;

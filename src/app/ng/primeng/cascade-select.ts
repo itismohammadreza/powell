@@ -8,3 +8,4 @@ export class PrimeCascadeSelectModule {
 }
 
 export const PrimeCascadeSelect = CascadeSelect;
+export type PrimeCascadeSelect = CascadeSelect;

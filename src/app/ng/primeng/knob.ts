@@ -8,3 +8,4 @@ export class PrimeKnobModule {
 }
 
 export const PrimeKnob = Knob;
+export type PrimeKnob = Knob;

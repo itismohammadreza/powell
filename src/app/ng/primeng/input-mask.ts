@@ -8,3 +8,4 @@ export class PrimeInputMaskModule {
 }
 
 export const PrimeInputMask = InputMask;
+export type PrimeInputMask = InputMask;

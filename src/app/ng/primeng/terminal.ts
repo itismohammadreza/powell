@@ -8,3 +8,4 @@ export class PrimeTerminalModule {
 }
 
 export const PrimeTerminal = Terminal;
+export type PrimeTerminal = Terminal;

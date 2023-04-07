@@ -8,3 +8,4 @@ export class PrimeProgressBarModule {
 }
 
 export const PrimeProgressBar = ProgressBar;
+export type PrimeProgressBar = ProgressBar;

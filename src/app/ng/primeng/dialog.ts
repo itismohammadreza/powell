@@ -8,3 +8,4 @@ export class PrimeDialogModule {
 }
 
 export const PrimeDialog = Dialog;
+export type PrimeDialog = Dialog;

@@ -8,3 +8,4 @@ export class PrimeVirtualScrollerModule {
 }
 
 export const PrimeVirtualScroller = VirtualScroller;
+export type PrimeVirtualScroller = VirtualScroller;

@@ -8,3 +8,4 @@ export class PrimeScrollTopModule {
 }
 
 export const PrimeScrollTop = ScrollTop;
+export type PrimeScrollTop = ScrollTop;

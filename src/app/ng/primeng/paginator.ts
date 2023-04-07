@@ -8,3 +8,4 @@ export class PrimePaginatorModule {
 }
 
 export const PrimePaginator = Paginator;
+export type PrimePaginator = Paginator;

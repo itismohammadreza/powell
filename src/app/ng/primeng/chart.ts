@@ -8,3 +8,4 @@ export class PrimeChartModule {
 }
 
 export const PrimeChart = UIChart;
+export type PrimeChart = UIChart;

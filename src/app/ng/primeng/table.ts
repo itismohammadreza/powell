@@ -8,3 +8,4 @@ export class PrimeTableModule {
 }
 
 export const PrimeTable = Table;
+export type PrimeTable = Table;

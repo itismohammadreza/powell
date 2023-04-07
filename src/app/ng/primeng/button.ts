@@ -8,3 +8,4 @@ export class PrimeButtonModule {
 }
 
 export const PrimeButton = Button;
+export type PrimeButton = Button;

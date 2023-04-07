@@ -8,3 +8,4 @@ export class PrimeStepsModule {
 }
 
 export const PrimeSteps = Steps;
+export type PrimeSteps = Steps;

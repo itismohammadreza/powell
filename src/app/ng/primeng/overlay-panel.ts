@@ -8,3 +8,4 @@ export class PrimeOverlayPanelModule {
 }
 
 export const PrimeOverlayPanel = OverlayPanel;
+export type PrimeOverlayPanel = OverlayPanel;

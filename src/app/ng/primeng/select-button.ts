@@ -8,3 +8,4 @@ export class PrimeSelectButtonModule {
 }
 
 export const PrimeSelectButton = SelectButton;
+export type PrimeSelectButton = SelectButton;

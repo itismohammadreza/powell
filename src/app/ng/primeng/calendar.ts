@@ -8,3 +8,4 @@ export class PrimeCalendarModule {
 }
 
 export const PrimeCalendar = Calendar;
+export type PrimeCalendar = Calendar;

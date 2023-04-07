@@ -8,3 +8,4 @@ export class PrimeRadioButtonModule {
 }
 
 export const PrimeRadioButton = RadioButton;
+export type PrimeRadioButton = RadioButton;

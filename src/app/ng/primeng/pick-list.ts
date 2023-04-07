@@ -8,3 +8,4 @@ export class PrimePickListModule {
 }
 
 export const PrimePickList = PickList;
+export type PrimePickList = PickList;

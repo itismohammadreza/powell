@@ -8,3 +8,4 @@ export class PrimeBlockUiModule {
 }
 
 export const PrimeBlockUI = BlockUI;
+export type PrimeBlockUI = BlockUI;

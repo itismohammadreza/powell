@@ -8,3 +8,4 @@ export class PrimeSidebarModule {
 }
 
 export const PrimeSidebar = Sidebar;
+export type PrimeSidebar = Sidebar;

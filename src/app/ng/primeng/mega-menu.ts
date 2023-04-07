@@ -8,3 +8,4 @@ export class PrimeMegaMenuModule {
 }
 
 export const PrimeMegaMenu = MegaMenu;
+export type PrimeMegaMenu = MegaMenu;

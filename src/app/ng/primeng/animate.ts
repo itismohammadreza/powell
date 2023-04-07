@@ -8,3 +8,4 @@ export class PrimeAnimateModule {
 }
 
 export const PrimeAnimate = Animate;
+export type PrimeAnimate = Animate;

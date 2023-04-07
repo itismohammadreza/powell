@@ -8,3 +8,4 @@ export class PrimeImageModule {
 }
 
 export const PrimeImage = Image;
+export type PrimeImage = Image;

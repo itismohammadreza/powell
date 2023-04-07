@@ -8,3 +8,4 @@ export class PrimeSkeletonModule {
 }
 
 export const PrimeSkeleton = Skeleton;
+export type PrimeSkeleton = Skeleton;

@@ -8,3 +8,4 @@ export class PrimeInputTextModule {
 }
 
 export const PrimeInputText = InputText;
+export type PrimeInputText = InputText;

@@ -8,3 +8,4 @@ export class PrimeTreeTableModule {
 }
 
 export const PrimeTreeTable = TreeTable;
+export type PrimeTreeTable = TreeTable;

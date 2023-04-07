@@ -10,3 +10,5 @@ export class PrimeMessagesModule {
 
 export const PrimeMessages = Messages;
 export const PrimeMessage = UIMessage;
+export type PrimeMessages = Messages;
+export type PrimeMessage = UIMessage;

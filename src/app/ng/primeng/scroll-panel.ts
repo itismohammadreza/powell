@@ -8,3 +8,4 @@ export class PrimeScrollPanelModule {
 }
 
 export const PrimeScrollPanel = ScrollPanel;
+export type PrimeScrollPanel = ScrollPanel;

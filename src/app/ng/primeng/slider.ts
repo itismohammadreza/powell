@@ -8,3 +8,4 @@ export class PrimeSliderModule {
 }
 
 export const PrimeSlider = Slider;
+export type PrimeSlider = Slider;

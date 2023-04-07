@@ -8,3 +8,4 @@ export class PrimeGalleriaModule {
 }
 
 export const PrimeGalleria = Galleria;
+export type PrimeGalleria = Galleria;

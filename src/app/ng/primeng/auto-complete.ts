@@ -8,3 +8,4 @@ export class PrimeAutoCompleteModule {
 }
 
 export const PrimeAutoComplete = AutoComplete;
+export type PrimeAutoComplete = AutoComplete;

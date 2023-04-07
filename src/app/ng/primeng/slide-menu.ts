@@ -8,3 +8,4 @@ export class PrimeSlideMenuModule {
 }
 
 export const PrimeSlideMenu = SlideMenu;
+export type PrimeSlideMenu = SlideMenu;

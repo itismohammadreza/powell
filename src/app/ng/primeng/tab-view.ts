@@ -8,3 +8,4 @@ export class PrimeTabViewModule {
 }
 
 export const PrimeTabView = TabView;
+export type PrimeTabView = TabView;

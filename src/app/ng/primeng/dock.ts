@@ -8,3 +8,4 @@ export class PrimeDockModule {
 }
 
 export const PrimeDock = Dock;
+export type PrimeDock = Dock;

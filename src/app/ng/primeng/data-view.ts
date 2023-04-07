@@ -8,3 +8,4 @@ export class PrimeDataViewModule {
 }
 
 export const PrimeDataView = DataView;
+export type PrimeDataView = DataView;

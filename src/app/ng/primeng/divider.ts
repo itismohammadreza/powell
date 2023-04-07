@@ -8,3 +8,4 @@ export class PrimeDividerModule {
 }
 
 export const PrimeDivider = Divider;
+export type PrimeDivider = Divider;

@@ -8,3 +8,4 @@ export class PrimePanelMenuModule {
 }
 
 export const PrimePanelMenu = PanelMenu;
+export type PrimePanelMenu = PanelMenu;

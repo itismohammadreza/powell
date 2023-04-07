@@ -8,3 +8,4 @@ export class PrimeFocusTrapModule {
 }
 
 export const PrimeFocusTrap = FocusTrap;
+export type PrimeFocusTrap = FocusTrap;

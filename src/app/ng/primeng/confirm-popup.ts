@@ -8,3 +8,4 @@ export class PrimeConfirmPopupModule {
 }
 
 export const PrimeConfirmPopup = ConfirmPopup;
+export type PrimeConfirmPopup = ConfirmPopup;

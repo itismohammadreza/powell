@@ -8,3 +8,4 @@ export class PrimeTabMenuModule {
 }
 
 export const PrimeTabMenu = TabMenu;
+export type PrimeTabMenu = TabMenu;

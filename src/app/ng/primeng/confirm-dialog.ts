@@ -8,3 +8,4 @@ export class PrimeConfirmDialogModule {
 }
 
 export const PrimeConfirmDialog = ConfirmDialog;
+export type PrimeConfirmDialog = ConfirmDialog;

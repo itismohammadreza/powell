@@ -8,3 +8,4 @@ export class PrimeScrollerModule {
 }
 
 export const PrimeScroller = Scroller;
+export type PrimeScroller = Scroller;

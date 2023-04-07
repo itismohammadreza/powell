@@ -8,3 +8,4 @@ export class PrimeFieldsetModule {
 }
 
 export const PrimeFieldset = Fieldset;
+export type PrimeFieldset = Fieldset;

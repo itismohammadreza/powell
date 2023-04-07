@@ -8,3 +8,4 @@ export class PrimeOrganizationChartModule {
 }
 
 export const PrimeOrganizationChart = OrganizationChart;
+export type PrimeOrganizationChart = OrganizationChart;

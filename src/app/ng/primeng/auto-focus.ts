@@ -8,3 +8,4 @@ export class PrimeAutoFocusModule {
 }
 
 export const PrimeAutoFocus = AutoFocus;
+export type PrimeAutoFocus = AutoFocus;

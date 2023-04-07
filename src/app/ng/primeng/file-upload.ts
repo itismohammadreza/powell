@@ -8,3 +8,4 @@ export class PrimeFileUploadModule {
 }
 
 export const PrimeFileUpload = FileUpload;
+export type PrimeFileUpload = FileUpload;

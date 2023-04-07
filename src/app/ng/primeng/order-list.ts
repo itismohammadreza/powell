@@ -8,3 +8,4 @@ export class PrimeOrderListModule {
 }
 
 export const PrimeOrderList = OrderList;
+export type PrimeOrderList = OrderList;

@@ -9,3 +9,5 @@ export class PrimeDragDropModule {
 
 export const PrimeDraggable = Draggable;
 export const PrimeDroppable = Droppable;
+export type PrimeDraggable = Draggable;
+export type PrimeDroppable = Droppable;

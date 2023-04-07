@@ -8,3 +8,4 @@ export class PrimePasswordModule {
 }
 
 export const PrimePassword = Password;
+export type PrimePassword = Password;

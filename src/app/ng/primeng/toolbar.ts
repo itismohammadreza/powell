@@ -8,3 +8,4 @@ export class PrimeToolbarModule {
 }
 
 export const PrimeToolbar = Toolbar;
+export type PrimeToolbar = Toolbar;

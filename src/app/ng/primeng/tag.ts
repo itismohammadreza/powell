@@ -8,3 +8,4 @@ export class PrimeTagModule {
 }
 
 export const PrimeTag = Tag;
+export type PrimeTag = Tag;

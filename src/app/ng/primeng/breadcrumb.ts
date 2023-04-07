@@ -8,3 +8,4 @@ export class PrimeBreadcrumbModule {
 }
 
 export const PrimeBreadcrumb = Breadcrumb;
+export type PrimeBreadcrumb = Breadcrumb;
