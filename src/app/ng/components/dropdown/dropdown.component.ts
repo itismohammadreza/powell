@@ -24,7 +24,6 @@ import {
   NgControl
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
-import {ScrollerOptions} from "primeng/scroller";
 import {
   NgAddon,
   NgFilterMatchMode,
@@ -36,6 +35,7 @@ import {
 } from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template';
 import {ConfigService} from "@ng/api";
+import {PrimeScrollerOptions} from "@ng/primeng/api";
 
 @Component({
   selector: 'ng-dropdown',
@@ -109,7 +109,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() tooltipPositionStyle: string = 'absolute';
   @Input() virtualScroll: boolean;
   @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: ScrollerOptions;
+  @Input() virtualScrollOptions: PrimeScrollerOptions;
   @Input() lazy: boolean;
   @Output() onClick = new EventEmitter();
   @Output() onChange = new EventEmitter();

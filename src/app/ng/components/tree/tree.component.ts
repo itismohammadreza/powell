@@ -24,11 +24,11 @@ import {
   NgControl
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
-import {ContextMenu} from 'primeng/contextmenu';
-import {ScrollerOptions} from 'primeng/scroller';
 import {TemplateDirective} from '@ng/directives/template';
 import {NgAddon, NgFixLabelPosition, NgOrientation, NgSelectionMode, NgTreeFilterMode, NgValidation} from '@ng/models';
 import {ConfigService} from "@ng/api";
+import {PrimeContextMenu} from "@ng/primeng";
+import {PrimeScrollerOptions} from "@ng/primeng/api";
 
 @Component({
   selector: 'ng-tree',
@@ -58,7 +58,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() selection: any;
   @Input() style: string;
   @Input() styleClass: string;
-  @Input() contextMenu: ContextMenu;
+  @Input() contextMenu: PrimeContextMenu;
   @Input() layout: NgOrientation = 'vertical';
   @Input() draggableScope: string | string[];
   @Input() droppableScope: string | string[];
@@ -79,7 +79,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() scrollHeight: string;
   @Input() virtualScroll: boolean;
   @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: ScrollerOptions;
+  @Input() virtualScrollOptions: PrimeScrollerOptions;
   @Input() lazy: boolean;
   @Input() trackBy: Function;
   @Input() indentation: number = 1.5;

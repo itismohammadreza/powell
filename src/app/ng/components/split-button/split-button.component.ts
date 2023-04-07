@@ -8,10 +8,10 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import {MenuItem} from 'primeng/api';
 import {NgButtonAppearance, NgColor, NgIconPosition, NgSize} from '@ng/models';
 import {TemplateDirective} from "@ng/directives/template";
 import {ConfigService} from "@ng/api";
+import {PrimeMenuItem} from "@ng/primeng/api";
 
 @Component({
   selector: 'ng-split-button',
@@ -19,7 +19,7 @@ import {ConfigService} from "@ng/api";
   styleUrls: ['./split-button.component.scss']
 })
 export class SplitButtonComponent implements AfterContentInit {
-  @Input() items: MenuItem[];
+  @Input() items: PrimeMenuItem[];
   @Input() appearance: NgButtonAppearance = 'outlined';
   @Input() rounded: boolean;
   @Input() raised: boolean;

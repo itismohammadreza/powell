@@ -23,10 +23,10 @@ import {
   NgControl
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
-import {ScrollerOptions} from "primeng/scroller";
 import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template';
 import {ConfigService} from "@ng/api";
+import {PrimeScrollerOptions} from "@ng/primeng/api";
 
 @Component({
   selector: 'ng-auto-complete',
@@ -98,7 +98,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() showClear: boolean;
   @Input() virtualScroll: boolean;
   @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: ScrollerOptions;
+  @Input() virtualScrollOptions: PrimeScrollerOptions;
   @Input() lazy: boolean;
   @Output() completeMethod = new EventEmitter();
   @Output() onFocus = new EventEmitter();

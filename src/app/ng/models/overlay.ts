@@ -1,6 +1,5 @@
 import {HttpHeaders} from '@angular/common/http';
 import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
-import {ContextMenu} from 'primeng/contextmenu';
 import {
   NgAddon,
   NgButtonAppearance,
@@ -40,7 +39,8 @@ import {
 import {SunEditorOptions} from "suneditor/src/options";
 import {Core} from "suneditor/src/lib/core";
 import {LatLng, LatLngBounds} from "leaflet";
-import {ScrollerOptions} from "primeng/scroller";
+import {PrimeContextMenu} from "@ng/primeng";
+import {PrimeScrollerOptions} from "@ng/primeng/api";
 
 export type NgSeverity = 'success' | 'info' | 'warn' | 'error';
 export type NgDefaultFocus = 'accept' | 'reject';
@@ -695,7 +695,7 @@ export interface NgDialogFormConfig {
   ///////////////////////////////////////// tree /////////////////////////////////////////
   items?: any[];
   selection?: any;
-  contextMenu?: ContextMenu;
+  contextMenu?: PrimeContextMenu;
   layout?: NgOrientation;
   draggableScope?: string | string[];
   droppableScope?: string | string[];
@@ -706,7 +706,7 @@ export interface NgDialogFormConfig {
   validateDrop?: boolean;
   virtualScroll?: boolean;
   virtualScrollItemSize?: number;
-  virtualScrollOptions?: ScrollerOptions;
+  virtualScrollOptions?: PrimeScrollerOptions;
   lazy?: boolean;
   trackBy?: Function;
   indentation?: number;

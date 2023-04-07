@@ -27,10 +27,10 @@ import {
   NgControl
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
-import {FileUpload} from 'primeng/fileupload';
 import {NgFilePickerMode, NgFileResultType, NgFixLabelPosition, NgValidation} from '@ng/models';
 import {TemplateDirective} from "@ng/directives/template";
 import {ConfigService} from "@ng/api";
+import {PrimeFileUpload} from "@ng/primeng";
 
 @Component({
   selector: 'ng-file-picker',
@@ -99,7 +99,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Output() onUpload = new EventEmitter();
   @Output() onSend = new EventEmitter();
   @Output() uploadHandler = new EventEmitter();
-  @ViewChild(FileUpload) fileUploadComponent: FileUpload;
+  @ViewChild(PrimeFileUpload, {static: true}) fileUploadComponent: PrimeFileUpload;
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;

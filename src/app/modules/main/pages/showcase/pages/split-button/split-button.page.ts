@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {MenuItem} from "primeng/api";
 import {NgButtonAppearance, NgColor, NgIconPosition, NgSize} from "@ng/models";
 import {ConfigService} from "@ng/api";
+import {PrimeMenuItem} from "@ng/primeng/api";
 
 @Component({
   selector: 'ng-split-button-page',
@@ -23,7 +23,7 @@ export class SplitButtonPage {
   iconPos: NgIconPosition = 'left';
   disabled: boolean = false;
 
-  items: MenuItem[] = [
+  items: PrimeMenuItem[] = [
     {label: 'Update', icon: 'pi pi-refresh'},
     {label: 'Delete', icon: 'pi pi-times'},
     {label: 'Angular.io', icon: 'pi pi-info', url: 'http://angular.io'},

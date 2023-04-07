@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {LazyLoadEvent, MenuItem} from 'primeng/api';
 import {NgSize, NgTableActionsConfig, NgTableColDef} from '@ng/models';
 import {UserService} from "@core/http";
 import {ConfigService} from "@ng/api";
+import {PrimeLazyLoadEvent, PrimeMenuItem} from "@ng/primeng/api";
 
 interface Customer {
   id: any,
@@ -896,7 +896,7 @@ export class TablePage {
       "bool": false,
     }
   ];
-  contextMenu: MenuItem[] = [
+  contextMenu: PrimeMenuItem[] = [
     {
       label: 'View',
       icon: 'pi pi-fw pi-search',
@@ -1126,7 +1126,7 @@ export class TablePage {
     return data.index == 0 || data.index == 1;
   }
 
-  loadCustomers(event: LazyLoadEvent) {
+  loadCustomers(event: PrimeLazyLoadEvent) {
     this.loading = true;
     const filters = {
       first: event.first,

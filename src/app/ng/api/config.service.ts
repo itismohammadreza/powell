@@ -1,14 +1,14 @@
 import {Inject, Injectable} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {Subject} from "rxjs";
-import {PrimeNGConfig} from "primeng/api";
 import {NgConfig, NgConfigChangeEvent} from "@ng/models";
 import {ThemeService} from "@ng/api";
+import {PrimeConfig} from "@ng/primeng/api";
 
 // DON'T provide anywhere. will provide automatically after `initiateNgConfigProvider` call.
 @Injectable()
 export class ConfigService {
-  constructor(private primengConfig: PrimeNGConfig,
+  constructor(private primengConfig: PrimeConfig,
               private themeService: ThemeService,
               @Inject(DOCUMENT) private document: Document) {
   }

@@ -11,11 +11,11 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import {FilterMetadata, SortMeta} from 'primeng/api';
-import {Table} from 'primeng/table';
-import {ScrollerOptions} from "primeng/scroller";
-import {NgEmptyIcon, NgOrientation, NgSelectionMode, NgSize} from '@ng/models';
 import {
+  NgEmptyIcon,
+  NgOrientation,
+  NgSelectionMode,
+  NgSize,
   NgTableAction,
   NgTableActionsConfig,
   NgTableColDef,
@@ -30,6 +30,8 @@ import {
 } from '@ng/models';
 import {TemplateDirective} from "@ng/directives/template";
 import {ConfigService} from "@ng/api";
+import {PrimeFilterMetadata, PrimeScrollerOptions, PrimeSortMeta} from "@ng/primeng/api";
+import {PrimeTable} from "@ng/primeng";
 
 @Component({
   selector: 'ng-table',
@@ -80,7 +82,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() sortMode: NgTableSortMode = 'single';
   @Input() sortField: string;
   @Input() sortOrder: number = 1;
-  @Input() multiSortMeta: SortMeta[];
+  @Input() multiSortMeta: PrimeSortMeta[];
   @Input() rowGroupMode: NgTableRowGroupMode;
   @Input() groupRowsBy: string | string[];
   @Input() groupRowsByOrder: number = 1;
@@ -99,7 +101,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() compareSelectionBy: NgTableCompareSelectionBy = 'deepEquals';
   @Input() csvSeparator: string = ',';
   @Input() exportFilename: string = 'download';
-  @Input() filters: { [s: string]: FilterMetadata | FilterMetadata[] } = {};
+  @Input() filters: { [s: string]: PrimeFilterMetadata | PrimeFilterMetadata[] } = {};
   @Input() filterDelay: number = 300;
   @Input() globalFilterFields: string[];
   @Input() filterLocale: string;
@@ -111,7 +113,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() virtualScroll: boolean;
   @Input() virtualScrollDelay: number = 250;
   @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: ScrollerOptions;
+  @Input() virtualScrollOptions: PrimeScrollerOptions;
   @Input() contextMenu: any;
   @Input() resizableColumns: boolean = true;
   @Input() columnResizeMode: NgTableColumnResizeMode = 'fit';
@@ -158,7 +160,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Output() contextMenuSelectionChange = new EventEmitter();
 
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
-  @ViewChild('dataTable', {static: true}) dataTable: Table;
+  @ViewChild('dataTable', {static: true}) dataTable: PrimeTable;
 
   captionTemplate: TemplateRef<any>
   headerTemplate: TemplateRef<any>

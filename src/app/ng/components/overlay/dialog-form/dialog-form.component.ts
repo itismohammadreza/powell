@@ -1,8 +1,8 @@
 import {Component, ElementRef, EventEmitter} from '@angular/core';
 import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
-import {DomHandler} from 'primeng/dom';
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult, NgValidation} from "@ng/models";
 import {ConfigService} from "@ng/api";
+import {PrimeDomHandler} from "@ng/primeng/api";
 
 @Component({
   selector: 'ng-dialog-form',
@@ -176,11 +176,11 @@ export class DialogFormComponent {
     let element: HTMLButtonElement;
     switch (this.options.defaultFocus) {
       case 'reject':
-        element = DomHandler.findSingle(this.el.nativeElement, '.p-dialog-form-reject');
+        element = PrimeDomHandler.findSingle(this.el.nativeElement, '.p-dialog-form-reject');
         break;
 
       case 'accept':
-        element = DomHandler.findSingle(this.el.nativeElement, '.p-dialog-form-accept');
+        element = PrimeDomHandler.findSingle(this.el.nativeElement, '.p-dialog-form-accept');
         break;
 
       case undefined:

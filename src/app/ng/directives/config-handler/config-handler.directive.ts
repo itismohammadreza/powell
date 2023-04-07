@@ -1,8 +1,8 @@
 import {Directive, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {OverlayOptions} from "primeng/api";
 import {NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@ng/models";
 import {ConfigService} from "@ng/api";
+import {PrimeOverlayOptions} from "@ng/primeng/api";
 
 @Directive({
   selector: '[ngConfigHandler]'
@@ -24,7 +24,7 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   @Output() themeChange = new EventEmitter();
   @Input() ripple: boolean;
   @Output() rippleChange = new EventEmitter();
-  @Input() overlayOptions: OverlayOptions;
+  @Input() overlayOptions: PrimeOverlayOptions;
   @Output() overlayOptionsChange = new EventEmitter();
   @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   @Output() disableConfigChangeEffectChange = new EventEmitter();

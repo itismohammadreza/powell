@@ -1,11 +1,11 @@
 import {AfterContentInit, AfterViewChecked, Component, HostListener, Inject, Input, OnInit} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
-import {MenuItem, OverlayOptions} from 'primeng/api';
 import {LanguageChecker} from '@core/utils';
 import {SidebarType} from '@core/models';
 import {ConfigService, ThemeService} from "@ng/api";
 import {NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@ng/models";
 import {GlobalConfig} from "@core/config";
+import {PrimeMenuItem, PrimeOverlayOptions} from "@ng/primeng/api";
 
 @Component({
   selector: 'ng-navbar-menu',
@@ -27,15 +27,15 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   inputSize: NgSize = this.configService.getConfig().inputSize;
   ripple: boolean = this.configService.getConfig().ripple;
-  overlayOptions: OverlayOptions = this.configService.getConfig().overlayOptions;
+  overlayOptions: PrimeOverlayOptions = this.configService.getConfig().overlayOptions;
   lang: string = GlobalConfig.lang;
 
   tempSidebarType: SidebarType;
-  themes: MenuItem[];
-  sidebarTypes: MenuItem[];
-  sidebarItems: MenuItem[];
+  themes: PrimeMenuItem[];
+  sidebarTypes: PrimeMenuItem[];
+  sidebarItems: PrimeMenuItem[];
   searchValue: string;
-  accountItems: MenuItem[] = [
+  accountItems: PrimeMenuItem[] = [
     {
       label: 'خروج',
       icon: 'pi pi-sign-out',

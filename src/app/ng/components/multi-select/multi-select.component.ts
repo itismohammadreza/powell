@@ -24,7 +24,6 @@ import {
   NgControl
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
-import {ScrollerOptions} from "primeng/scroller";
 import {
   NgAddon,
   NgChipDisplayMode,
@@ -37,6 +36,7 @@ import {
 } from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template';
 import {ConfigService} from "@ng/api";
+import {PrimeScrollerOptions} from "@ng/primeng/api";
 
 @Component({
   selector: 'ng-multi-select',
@@ -114,7 +114,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() showClear: boolean
   @Input() virtualScroll: boolean;
   @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: ScrollerOptions;
+  @Input() virtualScrollOptions: PrimeScrollerOptions;
   @Input() lazy: boolean
   @Input() display: NgChipDisplayMode = 'comma';
   @Output() onClick = new EventEmitter();

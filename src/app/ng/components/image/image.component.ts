@@ -13,11 +13,10 @@ import {
   ViewChild
 } from '@angular/core';
 import {animate, AnimationEvent, style, transition, trigger} from "@angular/animations";
-import {ZIndexUtils} from "primeng/utils";
-import {DomHandler} from "primeng/dom";
 import {ConfigService} from "@ng/api";
 import {TemplateDirective} from "@ng/directives/template";
 import {NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow} from "@ng/models";
+import {PrimeDomHandler, PrimeZIndexUtils} from "@ng/primeng/api";
 
 @Component({
   selector: 'ng-image',
@@ -136,7 +135,7 @@ export class ImageComponent implements AfterContentInit {
         break;
 
       case 'void':
-        DomHandler.addClass(this.wrapper, 'p-component-overlay-leave');
+        PrimeDomHandler.addClass(this.wrapper, 'p-component-overlay-leave');
         break;
     }
   }
@@ -144,7 +143,7 @@ export class ImageComponent implements AfterContentInit {
   onAnimationEnd(event: AnimationEvent) {
     switch (event.toState) {
       case 'void':
-        ZIndexUtils.clear(this.wrapper);
+        PrimeZIndexUtils.clear(this.wrapper);
         this.maskVisible = false;
         this.container = null;
         this.wrapper = null;
@@ -158,13 +157,13 @@ export class ImageComponent implements AfterContentInit {
   }
 
   moveOnTop() {
-    ZIndexUtils.set('modal', this.wrapper, this.config.getConfig().zIndex.modal);
+    PrimeZIndexUtils.set('modal', this.wrapper, this.config.getConfig().zIndex.modal);
   }
 
   appendContainer() {
     if (this.appendTo) {
       if (this.appendTo === 'body') document.body.appendChild(this.wrapper);
-      else DomHandler.appendChild(this.wrapper, this.appendTo);
+      else PrimeDomHandler.appendChild(this.wrapper, this.appendTo);
     }
   }
 
