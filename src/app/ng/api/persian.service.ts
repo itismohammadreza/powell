@@ -73,6 +73,9 @@ export class PersianService {
   }
 
   toPersianWord(input: string | number) {
+    if (input == undefined || input == '') {
+      return '';
+    }
     const delimiter = ' و ';
     const zero = 'صفر';
     const negative = 'منفی ';
