@@ -14,7 +14,7 @@ import {FilterModule} from "@ng/pipes/filter";
 import {
   PrimeAvatarModule,
   PrimeDividerModule,
-  PrimeMenuBarModule,
+  PrimeMenubarModule,
   PrimeMenuModule,
   PrimePanelMenuModule,
   PrimeScrollTopModule,
@@ -30,7 +30,7 @@ export const IMPORTS: Type<any>[] = [
   CommonModule,
   MainRoutingModule,
   PrimeAvatarModule,
-  PrimeMenuBarModule,
+  PrimeMenubarModule,
   PrimeSidebarModule,
   PrimePanelMenuModule,
   PrimeMenuModule,
