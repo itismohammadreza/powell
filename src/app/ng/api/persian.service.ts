@@ -2,33 +2,21 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class PersianService {
-  replaceArabicLettersWithPersianLetters(inputStr: string): string {
-    if (inputStr == undefined) {
+  replaceArabicLettersWithPersianLetters(input: string) {
+    if (input == undefined) {
       return '';
     }
-    inputStr = inputStr.replace(/ي/g, 'ی');
-    inputStr = inputStr.replace(/ك/g, 'ک');
-    return inputStr;
+    input = input.replace(/ي/g, 'ی');
+    input = input.replace(/ك/g, 'ک');
+    return input;
   }
 
-  isPersianNumber(num: number | string): boolean {
+  isPersianNumber(num: number | string) {
     const regexp = new RegExp('^[\u06F0-\u06F9]+$');
     return regexp.test(num as string);
   }
 
-  toPersianNumber(num: number | string): string {
-    return this.arabicNumberToPersian(this.engNumberToPersian(num as string));
-  }
-
-  toEngNumber(num: string): number {
-    const engNumber = +this.persianNumberToEng(num);
-    if (isNaN(engNumber)) {
-      throw new Error(`${num} is not valid persian Number`);
-    }
-    return engNumber;
-  }
-
-  engNumberToPersian(num: string): string {
+  engNumberToPersian(num: string) {
     if (num == undefined) {
       return '';
     }
@@ -49,7 +37,7 @@ export class PersianService {
     return str;
   }
 
-  arabicNumberToPersian(num: string): string {
+  arabicNumberToPersian(num: string) {
     if (num == undefined) {
       return '';
     }
@@ -132,15 +120,15 @@ export class PersianService {
       'ده‌میلیاردم',
       'صد‌‌میلیاردم'
     ];
-    const convertDecimalPart = (decimalPart: string) => {
-      decimalPart = decimalPart.replace(/0*$/, "");
-      if (decimalPart === '') {
+    const convertDecimalPart = (num: string) => {
+      num = num.replace(/0*$/, "");
+      if (num === '') {
         return '';
       }
-      if (decimalPart.length > 11) {
-        decimalPart = decimalPart.substr(0, 11);
+      if (num.length > 11) {
+        num = num.substr(0, 11);
       }
-      return ' ممیز ' + this.toPersianWord(decimalPart) + ' ' + decimalSuffixes[decimalPart.length];
+      return ' ممیز ' + this.toPersianWord(num) + ' ' + decimalSuffixes[num.length];
     };
     const tinyNumToWord = (num: string) => {
       if (parseInt(num, 0) === 0) {
