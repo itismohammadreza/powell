@@ -1,17 +1,5 @@
-import {
-  AfterContentInit,
-  Component,
-  ContentChildren,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  QueryList,
-  SimpleChanges,
-  TemplateRef
-} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {NgButtonAppearance, NgButtonType, NgColor, NgIconPosition, NgSize} from '@ng/models';
-import {TemplateDirective} from '@ng/directives/template';
 
 @Component({
   selector: 'ng-button',
@@ -19,7 +7,7 @@ import {TemplateDirective} from '@ng/directives/template';
   styleUrls: ['./button.component.scss'],
   host: {'[class.full]': 'full'}
 })
-export class ButtonComponent implements OnChanges, AfterContentInit {
+export class ButtonComponent implements OnChanges {
   @Input() appearance: NgButtonAppearance;
   @Input() rounded: boolean;
   @Input() raised: boolean;
@@ -47,8 +35,6 @@ export class ButtonComponent implements OnChanges, AfterContentInit {
   @Output() onClick = new EventEmitter();
   @Output() defaultStateChange = new EventEmitter();
   @Output() onClickAsync = new EventEmitter();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
-  contentTemplate: TemplateRef<any>;
 
   loading: boolean;
   _tmpLabel: string;
@@ -60,16 +46,6 @@ export class ButtonComponent implements OnChanges, AfterContentInit {
     if (this.async) {
       this.toggleState(this.defaultState);
     }
-  }
-
-  ngAfterContentInit() {
-    this.templates.forEach((item: TemplateDirective) => {
-      switch (item.getType()) {
-        case 'content':
-          this.contentTemplate = item.templateRef;
-          break;
-      }
-    });
   }
 
   _onClick(event: any) {
