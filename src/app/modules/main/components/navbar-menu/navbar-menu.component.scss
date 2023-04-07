@@ -185,8 +185,10 @@
         height: 100%;
       }
 
-      .p-sidebar-header {
-        padding: 0;
+      &.components-sidebar {
+        .p-sidebar-header {
+          padding: 0;
+        }
       }
 
       .section-top {

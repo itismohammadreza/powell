@@ -38,6 +38,7 @@
   </main>
 
   <p-sidebar
+    styleClass="components-sidebar"
     [visible]="sidebarVisible"
     [blockScroll]="isModalSidebar"
     [modal]="isModalSidebar"
@@ -75,9 +76,9 @@
 
 <p-sidebar
   position="left"
-  [showCloseIcon]="false"
+  [showCloseIcon]="true"
   [(visible)]="configSidebarVisible"
-  [style]="{width:'30rem'}">
+  [style]="{width:'30rem', maxWidth:'100%'}">
   <div class="h-100 pb-4">
     <p-divider align="center"><h5 class="mb-0">{{'siteConfigs' | translate}}</h5></p-divider>
     <ng-dropdown
