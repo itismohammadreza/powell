@@ -1,4 +1,7 @@
 import {UniqueComponentId, ZIndexUtils} from "primeng/utils";
+import {ConnectedOverlayScrollHandler, DomHandler} from 'primeng/dom';
+import {ScrollerOptions} from "primeng/scroller";
+import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {
   Confirmation,
   ConfirmationService,
@@ -15,9 +18,6 @@ import {
   PrimeTemplate,
   SortMeta
 } from 'primeng/api';
-import {ConnectedOverlayScrollHandler, DomHandler} from 'primeng/dom';
-import {ScrollerOptions} from "primeng/scroller";
-import {DialogService} from "primeng/dynamicdialog";
 
 export const PrimeConfig = PrimeNGConfig;
 export type PrimeConfig = PrimeNGConfig;
@@ -33,6 +33,9 @@ export type PrimeMessageService = MessageService;
 
 export const PrimeDialogService = DialogService;
 export type PrimeDialogService = DialogService;
+
+export const PrimeDynamicDialogRef = DynamicDialogRef;
+export type PrimeDynamicDialogRef = DynamicDialogRef;
 
 export const PrimeConfirmEventType = ConfirmEventType;
 export type PrimeConfirmEventType = ConfirmEventType;
