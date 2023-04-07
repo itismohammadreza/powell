@@ -228,22 +228,23 @@
           margin-left: 0.5em;
         }
       }
-    }
 
-    &[ng-reflect-position="left"] {
-      .p-panelmenu {
-        &-header-link {
-          .p-panelmenu-icon {
-            margin-left: 0;
-            margin-right: 0.5rem;
+      &.p-sidebar-left {
+        .p-panelmenu {
+          &-header-link {
+            .p-panelmenu-icon {
+              margin-left: 0;
+              margin-right: 0.5rem;
+            }
           }
-        }
 
-        .p-menuitem-icon {
-          margin-left: 0;
-          margin-right: 0.5em;
+          .p-menuitem-icon {
+            margin-left: 0;
+            margin-right: 0.5em;
+          }
         }
       }
     }
+
   }
 }
