@@ -1,5 +1,5 @@
 import {Component, OnDestroy} from '@angular/core';
-import {DynamicDialogService} from "@ng/api";
+import {DynamicDialogService, PersianService} from "@ng/api";
 import {UserService} from "@core/http";
 import {
   DynamicDialogSampleComponent
@@ -13,9 +13,12 @@ import {Subject, takeUntil} from "rxjs";
 })
 export class UtilsPage implements OnDestroy {
   customDynamicDialogResult: any;
+  persianWord: string;
   destroy$ = new Subject<boolean>()
 
-  constructor(private userService: UserService, private dialog: DynamicDialogService) {
+  constructor(private userService: UserService,
+              private dialog: DynamicDialogService,
+              private persianService: PersianService) {
   }
 
   showCustomDynamicDialog() {
@@ -28,6 +31,10 @@ export class UtilsPage implements OnDestroy {
 
   async request() {
     await this.userService.get();
+  }
+
+  onInputChange(event) {
+    this.persianWord = this.persianService.toPersianWord(event.value)
   }
 
   ngOnDestroy() {
