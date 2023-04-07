@@ -45,12 +45,10 @@ body {
   }
 }
 
-body {
-  &.ng-rtl {
-    direction: rtl;
-  }
+.ng-rtl {
+  direction: rtl;
+}
 
-  &.ng-ltr {
-    direction: ltr;
-  }
+.ng-ltr {
+  direction: ltr;
 }

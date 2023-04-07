@@ -14,9 +14,14 @@
     </ng-button>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav p-0 m{{ rtl ? 'r' : 'l' }}-auto">
-        <li class="nav-item" (click)="accountMenu.toggle($event)">
-          <span class="m{{ rtl ? 'l' : 'r' }}-3">{{ "Admin" }}</span>
-          <p-avatar shape="circle" size="large" icon="pi pi-user"></p-avatar>
+        <!--        <li class="nav-item" (click)="accountMenu.toggle($event)">-->
+        <!--          <span class="m{{ rtl ? 'l' : 'r' }}-3">{{ "Admin" }}</span>-->
+        <!--          <p-avatar shape="circle" size="large" icon="pi pi-user"></p-avatar>-->
+        <!--        </li>-->
+        <li class="nav-item">
+          <a class="nav-link text-decoration-none ng-ltr" target="_blank" href="https://github.com/mohammadreza99/prime-plus">
+            <i class="pi pi-github mr-1 align-middle"></i><span>Github</span>
+          </a>
         </li>
       </ul>
     </div>
