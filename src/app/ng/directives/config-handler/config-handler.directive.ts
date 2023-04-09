@@ -26,7 +26,7 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   @Output() rippleChange = new EventEmitter();
   @Input() overlayOptions: PrimeOverlayOptions;
   @Output() overlayOptionsChange = new EventEmitter();
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() disableConfigChangeEffect: boolean;
   @Output() disableConfigChangeEffectChange = new EventEmitter();
 
   @Output() configChange = new EventEmitter();
@@ -40,33 +40,39 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
     if (this.disableConfigChangeEffect) {
       return
     }
+    // add initial configService value to above Inputs and then emit them to apply to components.
+    this.applyConfig(this.configService.getConfig(), this.configService.getConfig())
     this.startSubscription();
   }
 
   startSubscription() {
     this.destroy$ = new Subject<boolean>();
     this.configService.configChange$.pipe(takeUntil(this.destroy$)).subscribe(({modifiedConfig, currentConfig}) => {
-      const configs: string[] = [
-        'disableConfigChangeEffect',
-        'rtl',
-        'fixLabelPos',
-        'labelPos',
-        'filled',
-        'inputSize',
-        'showRequiredStar',
-        'theme',
-        'ripple',
-        'overlayOptions',
-      ]
-      configs.forEach(config => {
-        this[config] = currentConfig[config];
-        if (modifiedConfig[config] != undefined) {
-          this[`${config}Change`].emit(this[config]);
-        }
-      })
-      this.configChange.emit({modifiedConfig, currentConfig})
+      this.applyConfig(modifiedConfig, currentConfig);
+      this.configChange.emit({modifiedConfig, currentConfig});
       if (currentConfig.disableConfigChangeEffect) {
         this.stopSubscription();
+      }
+    })
+  }
+
+  applyConfig(modifiedConfig, currentConfig) {
+    const configs: string[] = [
+      'disableConfigChangeEffect',
+      'rtl',
+      'fixLabelPos',
+      'labelPos',
+      'filled',
+      'inputSize',
+      'showRequiredStar',
+      'theme',
+      'ripple',
+      'overlayOptions',
+    ]
+    configs.forEach(config => {
+      this[config] = currentConfig[config];
+      if (modifiedConfig[config] != undefined) {
+        this[`${config}Change`].emit(this[config]);
       }
     })
   }
