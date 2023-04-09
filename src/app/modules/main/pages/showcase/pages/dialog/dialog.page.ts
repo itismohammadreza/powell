@@ -3,7 +3,7 @@ import {ConfigService, OverlayService} from "@ng/api";
 import {NgDialogOptions} from "@ng/models";
 
 @Component({
-  selector: 'ng-dialog',
+  selector: 'ng-dialog-page',
   templateUrl: './dialog.page.html',
   styleUrls: ['./dialog.page.scss']
 })
