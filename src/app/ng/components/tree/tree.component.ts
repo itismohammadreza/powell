@@ -127,12 +127,10 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-
       currentControl = this.ngControl.control;
       if (this.controlContainer) {
         parentForm = this.controlContainer.control;
         rootForm = this.controlContainer.formDirective as FormGroupDirective;
-
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
