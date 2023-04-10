@@ -1,4 +1,14 @@
-import {Directive, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Directive,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@ng/models";
 import {ConfigService} from "@ng/api";
@@ -33,15 +43,15 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
 
   destroy$: Subject<any>;
 
-  constructor(private configService: ConfigService) {
+  constructor(private configService: ConfigService, private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
+    // add initial configService value to above Inputs and then emit them to apply to components.
+    this.applyConfig(this.configService.getConfig(), this.configService.getConfig())
     if (this.disableConfigChangeEffect) {
       return
     }
-    // add initial configService value to above Inputs and then emit them to apply to components.
-    this.applyConfig(this.configService.getConfig(), this.configService.getConfig())
     this.startSubscription();
   }
 
@@ -75,6 +85,7 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
         this[`${config}Change`].emit(this[config]);
       }
     })
+    this.cd.detectChanges();
   }
 
   ngOnChanges(changes: SimpleChanges) {
