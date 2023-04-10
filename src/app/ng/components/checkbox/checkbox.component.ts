@@ -21,7 +21,6 @@ import {
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
 import {NgValidation} from '@ng/models';
-import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-checkbox',
@@ -38,15 +37,15 @@ import {ConfigService} from "@ng/api";
 export class CheckboxComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = this.configService.getConfig().filled;
+  @Input() filled: boolean;
   @Input() hint: string;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  @Input() rtl: boolean;
+  @Input() showRequiredStar: boolean;
   @Input() validation: NgValidation;
   @Input() onLabel: string;
   @Input() offLabel: string;
   @Input() async: boolean;
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() disabled: boolean;
   @Input() tabindex: any;
@@ -70,7 +69,7 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor, OnDestro
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

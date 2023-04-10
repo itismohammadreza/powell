@@ -35,7 +35,6 @@ import {
   NgValidation
 } from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template';
-import {ConfigService} from "@ng/api";
 import {PrimeScrollerOptions} from "@ng/primeng/api";
 
 @Component({
@@ -53,18 +52,18 @@ import {PrimeScrollerOptions} from "@ng/primeng/api";
 export class MultiSelectComponent implements OnInit, ControlValueAccessor, AfterContentInit, OnDestroy {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = this.configService.getConfig().filled;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  @Input() rtl: boolean;
+  @Input() showRequiredStar: boolean;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
+  @Input() labelPos: NgLabelPosition;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = this.configService.getConfig().inputSize;
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() inputSize: NgSize;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() appendTo: any;
   @Input() autofocusFilter: boolean;
@@ -146,7 +145,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

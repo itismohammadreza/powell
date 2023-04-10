@@ -24,7 +24,6 @@ import {
   NgControl
 } from "@angular/forms";
 import {Subject, takeUntil} from "rxjs";
-import {ConfigService} from "@ng/api";
 
 @Component({
   templateUrl: './iran-map.component.html',
@@ -44,14 +43,14 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
-  @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
+  @Input() rtl: boolean;
+  @Input() showRequiredStar: boolean;
+  @Input() labelPos: NgFixLabelPosition;
   @Input() disabled: boolean;
   @Input() multiple: boolean = true;
   @Input() validation: NgValidation;
   @Input() disabledProvinces: number | number[];
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() disableConfigChangeEffect: boolean;
   @Input() selectionLimit: number;
   @Output() onClick = new EventEmitter();
   @Output() onChange = new EventEmitter();
@@ -287,8 +286,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
-              private el: ElementRef,
-              private configService: ConfigService) {
+              private el: ElementRef) {
   }
 
   ngOnInit() {

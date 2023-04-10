@@ -1,14 +1,17 @@
 import {
   AfterContentInit,
   ChangeDetectorRef,
-  Component, ContentChildren,
+  Component,
+  ContentChildren,
   EventEmitter,
   forwardRef,
   Injector,
   Input,
   OnDestroy,
   OnInit,
-  Output, QueryList, TemplateRef,
+  Output,
+  QueryList,
+  TemplateRef,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -22,7 +25,6 @@ import {
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgValidation} from '@ng/models';
-import {ConfigService} from "@ng/api";
 import {TemplateDirective} from "@ng/directives/template";
 
 @Component({
@@ -42,11 +44,11 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
-  @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
+  @Input() rtl: boolean;
+  @Input() showRequiredStar: boolean;
+  @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() stars: number = 5;
   @Input() cancel: boolean = true;
@@ -74,7 +76,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

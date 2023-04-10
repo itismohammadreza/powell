@@ -26,7 +26,6 @@ import {
 import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template';
-import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-cascade-select',
@@ -43,18 +42,18 @@ import {ConfigService} from "@ng/api";
 export class CascadeSelectComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = this.configService.getConfig().filled;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  @Input() rtl: boolean;
+  @Input() showRequiredStar: boolean;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
+  @Input() labelPos: NgLabelPosition;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = this.configService.getConfig().inputSize;
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() inputSize: NgSize;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
@@ -90,7 +89,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

@@ -21,7 +21,6 @@ import {
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgValidation} from '@ng/models';
-import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-switch',
@@ -40,14 +39,14 @@ export class SwitchComponent implements OnInit, ControlValueAccessor, OnDestroy 
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
-  @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
+  @Input() rtl: boolean;
+  @Input() showRequiredStar: boolean;
+  @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() onLabel: string;
   @Input() offLabel: string;
   @Input() async: boolean;
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() style: any;
   @Input() styleClass: string;
@@ -69,7 +68,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor, OnDestroy 
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

@@ -26,7 +26,6 @@ import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
 import {NgFixLabelPosition, NgValidation} from '@ng/models';
-import {ConfigService} from "@ng/api";
 import {EditorBaseComponent} from "@ng/components/editor/editor-base/editor-base.component";
 
 @Component({
@@ -46,13 +45,13 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor,
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
-  @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
+  @Input() rtl: boolean;
+  @Input() showRequiredStar: boolean;
+  @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() options: SunEditorOptions;
   @Input() onDrop_param: boolean = true;
@@ -109,7 +108,7 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor,
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

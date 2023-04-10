@@ -31,7 +31,6 @@ import {
   NgSize,
   NgValidation
 } from '@ng/models';
-import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-input-number',
@@ -48,18 +47,18 @@ import {ConfigService} from "@ng/api";
 export class InputNumberComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() value: number;
   @Input() label: string;
-  @Input() filled: boolean = this.configService.getConfig().filled;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  @Input() rtl: boolean;
+  @Input() showRequiredStar: boolean;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
+  @Input() labelPos: NgLabelPosition;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = this.configService.getConfig().inputSize;
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() inputSize: NgSize;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() format: boolean = true;
   @Input() showButtons: boolean;
@@ -111,7 +110,7 @@ export class InputNumberComponent implements OnInit, ControlValueAccessor, OnDes
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

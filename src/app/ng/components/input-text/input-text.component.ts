@@ -31,7 +31,6 @@ import {
   NgSize,
   NgValidation
 } from '@ng/models';
-import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-input-text',
@@ -48,18 +47,18 @@ import {ConfigService} from "@ng/api";
 export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = this.configService.getConfig().filled;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  @Input() rtl: boolean;
+  @Input() showRequiredStar: boolean;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
+  @Input() labelPos: NgLabelPosition;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = this.configService.getConfig().inputSize;
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() inputSize: NgSize;
+  @Input() disableConfigChangeEffect: boolean;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() maxlength: number;
@@ -96,8 +95,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestr
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
-              private el: ElementRef,
-              private configService: ConfigService) {
+              private el: ElementRef) {
   }
 
   ngOnInit() {

@@ -1,7 +1,6 @@
 import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
 import {TemplateDirective} from "@ng/directives/template";
 import {NgSeverity} from "@ng/models";
-import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-message',
@@ -15,14 +14,11 @@ export class MessageComponent implements AfterContentInit {
   @Input() icon: string;
   @Input() severity: NgSeverity;
   @Input() closable: boolean;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() rtl: boolean;
+  @Input() disableConfigChangeEffect: boolean;
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   contentTemplate: TemplateRef<any>;
-
-  constructor(private configService: ConfigService) {
-  }
 
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {

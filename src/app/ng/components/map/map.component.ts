@@ -4,7 +4,8 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input, OnChanges,
+  Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
@@ -40,7 +41,6 @@ import {
 } from "@angular/forms";
 import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgFixLabelPosition, NgValidation} from "@ng/models";
-import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-map',
@@ -59,9 +59,9 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, On
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
-  @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
+  @Input() rtl: boolean;
+  @Input() showRequiredStar: boolean;
+  @Input() labelPos: NgFixLabelPosition;
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() disabled: boolean;
@@ -70,7 +70,7 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, On
   @Input() showClear: boolean;
   @Input() clearTooltip: string;
   @Input() clearIcon: string = 'pi pi-trash';
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() disableConfigChangeEffect: boolean;
   @Input() selectionLimit: number;
   // native properties
   @Input() zoom: number = 10;
@@ -164,7 +164,7 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, On
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit(): void {

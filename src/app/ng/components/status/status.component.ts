@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {NgStatus} from "@ng/models";
-import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-status',
@@ -13,9 +12,6 @@ export class StatusComponent {
   @Input() imageSrc: string;
   @Input() text: string;
   @Input() subText: string;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
-
-  constructor(private configService: ConfigService) {
-  }
+  @Input() rtl: boolean;
+  @Input() disableConfigChangeEffect: boolean;
 }

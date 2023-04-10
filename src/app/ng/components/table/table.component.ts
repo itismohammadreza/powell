@@ -29,7 +29,6 @@ import {
   NgTableSortMode
 } from '@ng/models';
 import {TemplateDirective} from "@ng/directives/template";
-import {ConfigService} from "@ng/api";
 import {PrimeFilterMetadata, PrimeScrollerOptions, PrimeSortMeta} from "@ng/primeng/api";
 import {PrimeTable} from "@ng/primeng";
 
@@ -46,7 +45,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() reorderableRows: boolean;
   @Input() selectableRows: boolean;
   @Input() actionsConfig: NgTableActionsConfig;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
+  @Input() rtl: boolean;
   @Input() emptyMessage: string = 'موردی وجود ندارد';
   @Input() emptyIcon: string;
   @Input() emptyImageSrc: string;
@@ -57,7 +56,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() size: NgSize = 'sm';
   @Input() gridlines: boolean = true;
   @Input() striped: boolean;
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() frozenColumns: any[];
   @Input() frozenValue: any[];
@@ -179,9 +178,6 @@ export class TableComponent implements OnInit, AfterContentInit {
   paginatorRightTemplate: TemplateRef<any>
   loadingBodyTemplate: TemplateRef<any>
   cellTemplates: { [key: string]: TemplateRef<any> } = {}
-
-  constructor(private configService: ConfigService) {
-  }
 
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);

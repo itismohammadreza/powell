@@ -21,7 +21,6 @@ import {
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgOrientation, NgValidation} from '@ng/models';
-import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-slider',
@@ -40,11 +39,11 @@ export class SliderComponent implements OnInit, ControlValueAccessor, OnDestroy 
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
-  @Input() labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
+  @Input() rtl: boolean;
+  @Input() showRequiredStar: boolean;
+  @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() animate: boolean;
   @Input() disabled: boolean;
@@ -68,7 +67,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor, OnDestroy 
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

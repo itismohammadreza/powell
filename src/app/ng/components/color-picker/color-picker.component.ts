@@ -21,7 +21,6 @@ import {
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
 import {NgColorFormat, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@ng/models';
-import {ConfigService} from "@ng/api";
 
 @Component({
   selector: 'ng-color-picker',
@@ -39,20 +38,20 @@ import {ConfigService} from "@ng/api";
 export class ColorPickerComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean = this.configService.getConfig().filled;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  @Input() rtl: boolean;
+  @Input() showRequiredStar: boolean;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
+  @Input() labelPos: NgLabelPosition;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
   @Input() readonly: boolean;
   @Input() maxlength: number = 7;
   @Input() placeholder: string;
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() style: any;
   @Input() styleClass: string;
@@ -83,7 +82,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor, OnDes
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector, private configService: ConfigService) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
   }
 
   ngOnInit() {

@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import {NgButtonAppearance, NgColor, NgIconPosition, NgSize} from '@ng/models';
 import {TemplateDirective} from "@ng/directives/template";
-import {ConfigService} from "@ng/api";
 import {PrimeMenuItem} from "@ng/primeng/api";
 
 @Component({
@@ -26,8 +25,8 @@ export class SplitButtonComponent implements AfterContentInit {
   @Input() color: NgColor = 'primary';
   @Input() full: boolean;
   @Input() size: NgSize = 'md';
-  @Input() rtl: boolean = this.configService.getConfig().rtl;
-  @Input() disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  @Input() rtl: boolean;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() label: string;
   @Input() icon: string;
@@ -45,9 +44,6 @@ export class SplitButtonComponent implements AfterContentInit {
   @Output() onDropdownClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
   contentTemplate: TemplateRef<any>;
-
-  constructor(private configService: ConfigService) {
-  }
 
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {
