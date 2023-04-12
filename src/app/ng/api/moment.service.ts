@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Moment, DurationInputArg1, DurationInputArg2} from "moment";
+import * as moment from "moment";
+import {DurationInputArg1, DurationInputArg2, Moment} from "moment";
+import * as jalaliMoment from "jalali-moment";
 import {MomentFormatSpecification, MomentInput} from "jalali-moment";
-import * as moment from 'moment';
-import * as jalaliMoment from 'jalali-moment';
 
 @Injectable()
 export class MomentService {

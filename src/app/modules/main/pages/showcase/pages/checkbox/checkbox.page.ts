@@ -1,5 +1,5 @@
-import {Component, Inject} from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ConfigService} from "@ng/api";
 
 @Component({

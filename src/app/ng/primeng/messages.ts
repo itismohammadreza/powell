@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {MessagesModule, Messages} from "primeng/messages";
+import {Messages, MessagesModule} from "primeng/messages";
 import {MessageModule, UIMessage} from "primeng/message";
 
 @NgModule({
