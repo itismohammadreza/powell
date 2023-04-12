@@ -20,6 +20,9 @@
 - create a shared module and make modules simplify
 - how should disableConfigChangeEffect use in overlay.service like toast etc...?
 
+نمیشه کامپوننتی رو که داره کانفیگ رو توی خودش ایمپورت میکنه، توی سرویسی استفادش کرد
+چون کانفیگ توی خودش داره از کانفیگ سرویس استفاده میکنه
+دراصل مشکل توی استفاده ی کانفیگ سرویس توی دایرکتیوه
 ### New
 
 - [ ] **whiteboard** - implement component.
