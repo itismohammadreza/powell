@@ -19,6 +19,7 @@
 - use gap instead of margin left and right
 - create a shared module and make modules simplify
 - how should disableConfigChangeEffect use in overlay.service like toast etc...?
+- add OnPush change detection strategy
 
 نمیشه کامپوننتی رو که داره کانفیگ رو توی خودش ایمپورت میکنه، توی سرویسی استفادش کرد
 چون کانفیگ توی خودش داره از کانفیگ سرویس استفاده میکنه
