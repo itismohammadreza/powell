@@ -28,7 +28,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   inputSize: NgSize = this.configService.getConfig().inputSize;
   ripple: boolean = this.configService.getConfig().ripple;
   overlayOptions: PrimeOverlayOptions = this.configService.getConfig().overlayOptions;
-  lang: string = Global.config.lang;
+  lang: string = Global.Config.lang;
 
   tempSidebarType: SidebarType;
   themes: PrimeMenuItem[];

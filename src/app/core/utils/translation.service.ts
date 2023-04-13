@@ -19,7 +19,7 @@ export class TranslationService {
       this.storeLang(res.lang, this.currentLang);
       this.currentLang = res.lang;
     });
-    this.currentLang = Global.config.lang;
+    this.currentLang = Global.Config.lang;
     this.storeLang(this.currentLang);
     if (!this.getDefaultLang()) {
       this.setDefaultLang(this.currentLang);

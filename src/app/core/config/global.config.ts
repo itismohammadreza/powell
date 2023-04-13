@@ -5,7 +5,7 @@ import {RouteAnimation} from "@core/config";
 export class Global {
   static Injector: AngularInjector;
 
-  static config: AppConfig = {
+  static Config: AppConfig = {
     lang: 'en',
     routeAnimation: RouteAnimation('fade2')
   };
