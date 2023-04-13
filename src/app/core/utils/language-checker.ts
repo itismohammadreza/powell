@@ -1,11 +1,11 @@
-import {NgGlobal} from '@core/config';
+import {GlobalInjector} from '@core/config';
 import {TranslationService} from '@core/utils';
 
 export class LanguageChecker {
   protected translationService: TranslationService;
 
   constructor() {
-    this.translationService = NgGlobal.Injector.get(TranslationService);
+    this.translationService = GlobalInjector.Injector.get(TranslationService);
   }
 
   get en(): boolean {

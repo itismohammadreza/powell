@@ -1,5 +1,5 @@
 import {Injector} from '@angular/core';
 
-export class NgGlobal {
+export class GlobalInjector {
   static Injector: Injector;
 }
