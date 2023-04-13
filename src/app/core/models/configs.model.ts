@@ -7,7 +7,7 @@ export interface AnimationDefinition {
   [key: string]: AnimationTransitionMetadata[]
 }
 
-export interface AppGlobalConfig {
+export interface AppConfig {
   readonly lang?: string;
   readonly routeAnimation: AnimationTriggerMetadata | null;
 }

@@ -2,7 +2,7 @@ import {Inject, Injectable} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {Observable} from 'rxjs';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
-import {GlobalConfig} from "@core/config";
+import {Global} from "@core/config";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class TranslationService {
       this.storeLang(res.lang, this.currentLang);
       this.currentLang = res.lang;
     });
-    this.currentLang = GlobalConfig.lang;
+    this.currentLang = Global.config.lang;
     this.storeLang(this.currentLang);
     if (!this.getDefaultLang()) {
       this.setDefaultLang(this.currentLang);
