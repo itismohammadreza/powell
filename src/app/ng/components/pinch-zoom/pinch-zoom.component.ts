@@ -66,6 +66,9 @@ export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
+    if (this.properties.disabled) {
+      return;
+    }
     this.ivyPinch.destroy();
   }
 }
