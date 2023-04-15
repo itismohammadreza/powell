@@ -1,7 +1,6 @@
 import {Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
-import {defaultProperties} from './defaults';
-import {IvyPinch} from './ivypinch';
 import {NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow, NgPinchZoomOptions} from "@ng/models";
+import {defaultProperties, IvyPinch} from "@ng/components/pinch-zoom";
 
 @Component({
   selector: 'ng-pinch-zoom',
