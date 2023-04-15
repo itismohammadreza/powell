@@ -98,7 +98,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() autoDisplayFirst: boolean = false;
   @Input() group: boolean;
   @Input() showClear: boolean;
-  @Input() baseZIndex: number = 1000;
+  @Input() baseZIndex: number;
   @Input() autoZIndex: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';

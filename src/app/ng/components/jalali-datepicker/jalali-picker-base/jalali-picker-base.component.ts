@@ -143,7 +143,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
   @Input() todayButtonStyleClass: string = 'p-button-text';
   @Input() clearButtonStyleClass: string = 'p-button-text';
   @Input() autoZIndex: boolean = true;
-  @Input() baseZIndex: number = 0;
+  @Input() baseZIndex: number;
   @Input() panelStyleClass: string;
   @Input() panelStyle: any;
   @Input() keepInvalid: boolean = false;

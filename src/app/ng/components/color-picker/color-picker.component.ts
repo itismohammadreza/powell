@@ -60,7 +60,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor, OnDes
   @Input() appendTo: any;
   @Input() tabindex: any;
   @Input() disabled: boolean;
-  @Input() baseZIndex: number = 1000;
+  @Input() baseZIndex: number;
   @Input() autoZIndex: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';

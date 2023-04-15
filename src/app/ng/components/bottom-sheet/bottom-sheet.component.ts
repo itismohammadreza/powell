@@ -28,7 +28,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   @Input() styleClass: string;
   @Input() appendTo: any = 'body';
   @Input() blockScroll: boolean = true;
-  @Input() baseZIndex: number = 0;
+  @Input() baseZIndex: number;
   @Input() autoZIndex: boolean = true;
   @Input() modal: boolean = true;
   @Input() dismissible: boolean = true;

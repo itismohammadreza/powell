@@ -43,7 +43,7 @@ export class ImageSliderComponent implements OnInit, AfterContentInit {
   @Input() showIndicators: boolean;
   @Input() showIndicatorsOnItem: boolean;
   @Input() indicatorsPosition: string = 'bottom';
-  @Input() baseZIndex: number = 0;
+  @Input() baseZIndex: number;
   @Input() maskClass: string;
   @Input() containerStyle: string;
   @Input() showTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';

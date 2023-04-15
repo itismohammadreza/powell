@@ -98,7 +98,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor, 
   @Input() showButtonBar: boolean;
   @Input() todayButtonStyleClass: string = 'p-secondary-button';
   @Input() clearButtonStyleClass: string = 'p-secondary-button';
-  @Input() baseZIndex: number = 0;
+  @Input() baseZIndex: number;
   @Input() autoZIndex: boolean = true;
   @Input() panelStyleClass: string;
   @Input() panelStyle: object;

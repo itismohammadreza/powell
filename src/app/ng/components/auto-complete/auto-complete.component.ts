@@ -88,7 +88,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() autofocus: boolean;
   @Input() forceSelection: boolean = true;
   @Input() dropdownMode: 'blank' | 'current' = 'blank';
-  @Input() baseZIndex: number = 1000;
+  @Input() baseZIndex: number;
   @Input() autoZIndex: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
