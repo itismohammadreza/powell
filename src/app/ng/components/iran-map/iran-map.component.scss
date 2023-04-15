@@ -1,6 +1,4 @@
 :host ::ng-deep {
-  --fill: #f48138;
-
   .iran-map-wrapper {
     display: flex;
     position: relative;
@@ -48,24 +46,24 @@
 
         .border path,
         .island path {
-          fill: #8BF8FF
+          fill: #ffffff
         }
 
         .sea path,
         .lake path {
-          fill: #6caed8
+          fill: #78bbfc
         }
 
         .province path {
-          fill: #00949F;
+          fill: #C3E0E6;
 
           &:not(.active):hover {
-            fill: lighten(#f48138, 10%) !important;
+            fill: lighten(#87c0cd, 10%) !important;
             cursor: pointer
           }
 
           &.active {
-            fill: #f48138 !important;
+            fill: #87c0cd !important;
           }
         }
 
