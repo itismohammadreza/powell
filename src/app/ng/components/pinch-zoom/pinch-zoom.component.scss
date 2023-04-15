@@ -5,6 +5,7 @@
 
 .pinch-zoom-content {
   height: inherit;
+  text-align: center;
 
   &.transformed ::ng-deep img {
     cursor: all-scroll;
