@@ -10,7 +10,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@ng/models";
+import {NgConfig, NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@ng/models";
 import {ConfigService} from "@ng/api";
 import {PrimeOverlayOptions} from "@ng/primeng/api";
 
@@ -66,8 +66,8 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
     })
   }
 
-  applyConfig(modifiedConfig, currentConfig) {
-    const configs: string[] = [
+  applyConfig(modifiedConfig: NgConfig, currentConfig: NgConfig) {
+    const configs: (keyof NgConfig)[] = [
       'disableConfigChangeEffect',
       'rtl',
       'fixLabelPos',
@@ -79,7 +79,7 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
       'ripple',
       'overlayOptions',
     ]
-    configs.forEach(config => {
+    configs.forEach((config: string) => {
       this[config] = currentConfig[config];
       if (modifiedConfig[config] != undefined) {
         this[`${config}Change`].emit(this[config]);

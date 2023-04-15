@@ -98,7 +98,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       'dialog-form',
       'dropdown',
       'dual-label-switch',
-      'dynamic-form',
       'editor',
       'empty',
       'file-picker',
