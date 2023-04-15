@@ -2,7 +2,8 @@ import {
   Component,
   ComponentRef,
   EventEmitter,
-  Input, OnDestroy,
+  Input,
+  OnDestroy,
   OnInit,
   Output,
   Type,
@@ -10,9 +11,6 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import {
-  NgDisableZoomControl,
-  NgLimitZoom,
-  NgListener,
   NgAddon,
   NgButtonAppearance,
   NgColor,
@@ -23,21 +21,24 @@ import {
   NgDatepickerSelectionMode,
   NgDatepickerViewMode,
   NgDefaultFocus,
+  NgDisableZoomControl,
   NgFilePickerMode,
   NgFixLabelPosition,
   NgIconPosition,
   NgInputType,
   NgKeyFilter,
   NgLabelPosition,
+  NgLimitZoom,
+  NgListener,
   NgNumberButtonLayout,
   NgNumberMode,
   NgOrientation,
+  NgOverflow,
   NgPlace,
   NgSelectionMode,
   NgSeverity,
   NgSize,
-  NgStatus,
-  NgOverflow
+  NgStatus
 } from '@ng/models';
 import {DropdownComponent} from '@ng/components/dropdown/dropdown.component';
 import {InputTextComponent} from '@ng/components/input-text/input-text.component';

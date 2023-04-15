@@ -1,7 +1,12 @@
-import {AppGlobalConfig} from "@core/models";
+import {Injector as AngularInjector} from '@angular/core';
+import {AppConfig} from "@core/models";
 import {RouteAnimation} from "@core/config";
 
-export const GlobalConfig: AppGlobalConfig = {
-  lang: 'en',
-  routeAnimation: RouteAnimation('fade2')
-};
+export class Global {
+  static Injector: AngularInjector;
+
+  static Config: AppConfig = {
+    lang: 'en',
+    routeAnimation: RouteAnimation('fade2')
+  };
+}

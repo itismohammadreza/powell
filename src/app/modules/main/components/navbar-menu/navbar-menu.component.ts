@@ -4,7 +4,7 @@ import {LanguageChecker} from '@core/utils';
 import {SidebarType} from '@core/models';
 import {ConfigService, ThemeService} from "@ng/api";
 import {NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@ng/models";
-import {GlobalConfig} from "@core/config";
+import {Global} from "@core/config";
 import {PrimeMenuItem, PrimeOverlayOptions} from "@ng/primeng/api";
 
 @Component({
@@ -28,7 +28,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   inputSize: NgSize = this.configService.getConfig().inputSize;
   ripple: boolean = this.configService.getConfig().ripple;
   overlayOptions: PrimeOverlayOptions = this.configService.getConfig().overlayOptions;
-  lang: string = GlobalConfig.lang;
+  lang: string = Global.Config.lang;
 
   tempSidebarType: SidebarType;
   themes: PrimeMenuItem[];

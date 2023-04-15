@@ -1,8 +1,8 @@
 import {HttpClient, HttpContext, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {EnvService} from "@core/utils";
-import {NgGlobal} from '@core/config';
-import {RequestMethods} from "@core/models";
+import {Global} from '@core/config';
+import {RequestMethod} from "@core/models";
 
 interface RequestOptions {
   headers?: HttpHeaders | { [header: string]: string | string[] };
@@ -19,8 +19,8 @@ export class ApiService {
   private readonly baseUrl: string;
 
   constructor() {
-    const envService = NgGlobal.Injector.get(EnvService);
-    this.http = NgGlobal.Injector.get(HttpClient);
+    const envService = Global.Injector.get(EnvService);
+    this.http = Global.Injector.get(HttpClient);
     this.baseUrl = envService.apiUrl;
   }
 
@@ -77,7 +77,7 @@ export class ApiService {
     })
   }
 
-  protected _customRequest<T>(url: string, method: RequestMethods, body: any = null, options: RequestOptions = null): Observable<T> {
+  protected _customRequest<T>(url: string, method: RequestMethod, body: any = null, options: RequestOptions = null): Observable<T> {
     switch (method.toLowerCase()) {
       case 'get':
       case 'delete':

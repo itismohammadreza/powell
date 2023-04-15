@@ -4,7 +4,7 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {AuthInterceptor, HttpHandlerInterceptor} from '@core/interceptors';
 import {EnvServiceProvider, TranslationService} from "@core/utils";
-import {NgGlobal} from "@core/config";
+import {Global} from "@core/config";
 import {
   AnimateOnScrollService,
   DynamicDialogService,
@@ -51,6 +51,6 @@ export function initiateLanguage(translationService: TranslationService) {
 })
 export class CoreModule {
   constructor(private injector: Injector) {
-    NgGlobal.Injector = this.injector;
+    Global.Injector = this.injector;
   }
 }
