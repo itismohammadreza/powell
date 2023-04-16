@@ -20,7 +20,8 @@
 - create a shared module and make modules simplify
 - how should disableConfigChangeEffect use in overlay.service like toast etc...?
 - add OnPush change detection strategy
-- add copyToClipBoard directive
+- add copyToClipBoard directive and service
+
 [//]: # (نمیشه کامپوننتی رو که داره کانفیگ رو توی خودش ایمپورت میکنه، توی سرویسی استفادش کرد)
 
 [//]: # (چون کانفیگ توی خودش داره از کانفیگ سرویس استفاده میکنه)
