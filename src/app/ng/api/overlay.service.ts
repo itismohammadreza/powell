@@ -77,7 +77,7 @@ export class OverlayService {
     instance.preventDuplicates = options.preventDuplicates;
     instance.position = options.position || 'top-right';
     instance.style = options.style;
-    instance.baseZIndex = options.baseZIndex || 1000;
+    instance.baseZIndex = options.baseZIndex;
     instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
     instance.showTransitionOptions = options.showTransitionOptions || '300ms ease-out';
     instance.hideTransitionOptions = options.hideTransitionOptions || '250ms ease-in';
@@ -113,7 +113,7 @@ export class OverlayService {
     instance.showTransitionOptions = options.showTransitionOptions || '.12s cubic-bezier(0, 0, 0.2, 1)';
     instance.hideTransitionOptions = options.hideTransitionOptions || '.1s linear';
     instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
-    instance.baseZIndex = options.baseZIndex || 1000;
+    instance.baseZIndex = options.baseZIndex;
     instance.style = options.style;
     instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? this.configService.getConfig().rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
     return new Promise((accept) => {
@@ -152,7 +152,7 @@ export class OverlayService {
     instance.maskStyleClass = options.maskStyleClass;
     instance.closable = options.closable != undefined ? options.closable : true;
     instance.focusTrap = options.focusTrap;
-    instance.baseZIndex = options.baseZIndex || 1000;
+    instance.baseZIndex = options.baseZIndex;
     instance.acceptIcon = options.acceptIcon;
     instance.rejectIcon = options.rejectIcon;
     instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
@@ -197,7 +197,6 @@ export class OverlayService {
       content: '',
       modal: true,
       autoZIndex: true,
-      baseZIndex: 1000,
       showHeader: true,
       buttonLabel: 'بستن',
       transitionOptions: '150ms cubic-bezier(0, 0, 0.2, 1)',
@@ -233,7 +232,6 @@ export class OverlayService {
       modal: true,
       closable: true,
       showHeader: true,
-      baseZIndex: 1000,
       autoZIndex: true,
       transitionOptions: '150ms cubic-bezier(0, 0, 0.2, 1)',
       closeIcon: 'pi pi-times',
