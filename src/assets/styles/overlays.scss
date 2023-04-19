@@ -220,6 +220,21 @@
         content: "\e900";
       }
     }
+
+    .p-dropdown-panel {
+      .p-dropdown-header {
+        .p-dropdown-filter {
+          padding-left: 1.75rem;
+          margin-left: -1.75rem;
+          margin-right: 0;
+        }
+
+        .p-dropdown-filter-icon {
+          left: 0.75rem;
+          right: auto;
+        }
+      }
+    }
   }
 }
 
