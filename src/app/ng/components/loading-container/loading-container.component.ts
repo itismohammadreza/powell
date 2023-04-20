@@ -1,4 +1,13 @@
-import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  Input,
+  Output,
+  QueryList,
+  TemplateRef
+} from '@angular/core';
 import {TemplateDirective} from "@ng/directives/template";
 
 @Component({
@@ -8,6 +17,8 @@ import {TemplateDirective} from "@ng/directives/template";
 })
 export class LoadingContainerComponent implements AfterContentInit {
   @Input() data: any;
+  @Input() considerEmptyArrayAsFilled: boolean = true;
+  @Input() considerEmptyObjectAsFilled: boolean = true;
   @Input() spinnerStrokeWidth: number = 4;
   @Input() spinnerFill: string = 'var(--surface-ground)';
   @Input() spinnerWidth: string = '70px';
@@ -30,7 +41,31 @@ export class LoadingContainerComponent implements AfterContentInit {
     });
   }
 
-  dataFilled() {
-    return !!this.data === true;
+  isEmptyData() {
+    const isEmpty = (data: any) => {
+      const stringifyData = JSON.stringify(data);
+      if (data == undefined && data == null) {
+        return true;
+      } else if (typeof data == 'string') {
+        if (data == '' || !data?.length || data.trim() == '') {
+          return true;
+        }
+      } else if (Array.isArray(data)) {
+        if ((!data?.length || stringifyData == "[]") && !this.considerEmptyArrayAsFilled) {
+          return true;
+        }
+      } else if (typeof data == 'object') {
+        if (stringifyData == "{}" && !this.considerEmptyObjectAsFilled) {
+          return true;
+        }
+      } else {
+        return false;
+      }
+    }
+    if (typeof this.data === 'function') {
+      return isEmpty(this.data());
+    } else {
+      return isEmpty(this.data);
+    }
   }
 }
