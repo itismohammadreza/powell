@@ -75,7 +75,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() displaySelectedLabel: boolean = true;
   @Input() dropdownIcon: string = 'pi pi-chevron-down';
   @Input() emptyFilterMessage: string = 'موردی وجود ندارد';
-  @Input() filter: boolean = true;
+  @Input() filter: boolean;
   @Input() filterMatchMode: NgFilterMatchMode = 'contains';
   @Input() filterValue: string;
   @Input() filterLocale: string = undefined;
