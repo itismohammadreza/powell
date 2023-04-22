@@ -826,8 +826,6 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
       inputSize: 'selectiveSize',
       showRequiredStar: 'showRequiredStar',
       disableConfigChangeEffect: 'disableConfigChangeEffect',
-      theme: 'theme',
-      ripple: 'ripple'
     }
     Object.entries(modifiedConfig).forEach(item => {
       const key = item[0];
