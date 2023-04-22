@@ -12,7 +12,6 @@ import {
 import {Subject, takeUntil} from "rxjs";
 import {NgConfig, NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@ng/models";
 import {ConfigService} from "@ng/api";
-import {PrimeOverlayOptions} from "@ng/primeng/api";
 
 @Directive({
   selector: '[ngConfigHandler]'
@@ -34,8 +33,6 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   @Output() themeChange = new EventEmitter();
   @Input() ripple: boolean;
   @Output() rippleChange = new EventEmitter();
-  @Input() overlayOptions: PrimeOverlayOptions;
-  @Output() overlayOptionsChange = new EventEmitter();
   @Input() disableConfigChangeEffect: boolean;
   @Output() disableConfigChangeEffectChange = new EventEmitter();
 
@@ -76,8 +73,7 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
       'inputSize',
       'showRequiredStar',
       'theme',
-      'ripple',
-      'overlayOptions',
+      'ripple'
     ]
     configs.forEach((config: string) => {
       this[config] = currentConfig[config];
