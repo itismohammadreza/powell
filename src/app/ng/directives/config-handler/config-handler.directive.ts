@@ -29,10 +29,6 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   @Output() inputSizeChange = new EventEmitter();
   @Input() showRequiredStar: boolean;
   @Output() showRequiredStarChange = new EventEmitter();
-  @Input() theme: NgTheme;
-  @Output() themeChange = new EventEmitter();
-  @Input() ripple: boolean;
-  @Output() rippleChange = new EventEmitter();
   @Input() disableConfigChangeEffect: boolean;
   @Output() disableConfigChangeEffectChange = new EventEmitter();
 
@@ -71,9 +67,7 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
       'labelPos',
       'filled',
       'inputSize',
-      'showRequiredStar',
-      'theme',
-      'ripple'
+      'showRequiredStar'
     ]
     configs.forEach((config: string) => {
       this[config] = currentConfig[config];
