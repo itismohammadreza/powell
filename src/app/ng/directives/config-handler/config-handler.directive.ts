@@ -12,6 +12,7 @@ import {
 import {Subject, takeUntil} from "rxjs";
 import {NgConfig, NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@ng/models";
 import {ConfigService} from "@ng/api";
+import {Global} from "@core/config";
 
 @Directive({
   selector: '[ngConfigHandler]'
@@ -35,8 +36,10 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   @Output() configChange = new EventEmitter();
 
   destroy$: Subject<any>;
+  configService: ConfigService;
 
-  constructor(private configService: ConfigService, private cd: ChangeDetectorRef) {
+  constructor() {
+    this.configService = Global.Injector.get(ConfigService);
   }
 
   ngOnInit() {
@@ -75,7 +78,6 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
         this[`${config}Change`].emit(this[config]);
       }
     })
-    this.cd.detectChanges();
   }
 
   ngOnChanges(changes: SimpleChanges) {
