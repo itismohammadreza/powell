@@ -1,16 +1,6 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Output,
-  SimpleChanges
-} from '@angular/core';
+import {Directive, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {NgConfig, NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@ng/models";
+import {NgConfig, NgFixLabelPosition, NgLabelPosition, NgSize} from "@ng/models";
 import {ConfigService} from "@ng/api";
 import {Global} from "@core/config";
 
