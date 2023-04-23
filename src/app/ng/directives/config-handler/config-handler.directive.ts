@@ -35,7 +35,7 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
 
   @Output() configChange = new EventEmitter();
 
-  destroy$: Subject<any>;
+  stopConfigSubscription$: Subject<any>;
   configService: ConfigService;
 
   constructor() {
@@ -52,8 +52,8 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   startSubscription() {
-    this.destroy$ = new Subject<boolean>();
-    this.configService.configChange$.pipe(takeUntil(this.destroy$)).subscribe(({modifiedConfig, currentConfig}) => {
+    this.stopConfigSubscription$ = new Subject<boolean>();
+    this.configService.configChange$.pipe(takeUntil(this.stopConfigSubscription$)).subscribe(({modifiedConfig, currentConfig}) => {
       this.applyConfig(modifiedConfig, currentConfig);
       this.configChange.emit({modifiedConfig, currentConfig});
       if (currentConfig.disableConfigChangeEffect) {
@@ -72,7 +72,7 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
       'inputSize',
       'showRequiredStar'
     ]
-    configs.forEach((config: string) => {
+    configs.forEach(config => {
       this[config] = currentConfig[config];
       if (modifiedConfig[config] != undefined) {
         this[`${config}Change`].emit(this[config]);
@@ -93,9 +93,9 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   stopSubscription() {
-    if (this.destroy$) {
-      this.destroy$.next(true);
-      this.destroy$.complete();
+    if (this.stopConfigSubscription$) {
+      this.stopConfigSubscription$.next(true);
+      this.stopConfigSubscription$.complete();
     }
   }
 
