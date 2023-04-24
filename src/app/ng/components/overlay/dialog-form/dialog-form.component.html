@@ -964,13 +964,15 @@
 <!--          [labelPos]="config.fixLabelPos"-->
 <!--          [disabled]="handleConfigDisable(config)"-->
 <!--          [multiple]="config.multiple"-->
+<!--          [async]="config.async"-->
 <!--          [validation]="convertToComponentValidation(config)"-->
 <!--          [disabledProvinces]="config.disabledProvinces"-->
 <!--          [disableConfigChangeEffect]="config.disableConfigChangeEffect"-->
 <!--          [selectionLimit]="config.selectionLimit"-->
 <!--          (onClick)="handleConfigEvent(config,'onClick',$event)"-->
 <!--          (onChange)="handleConfigEvent(config,'onChange',$event)"-->
-<!--          (onMapReady)="handleConfigEvent(config,'onMapReady',$event)">-->
+<!--          (onMapReady)="handleConfigEvent(config,'onMapReady',$event)"-->
+<!--          (onChangeAsync)="handleConfigEvent(config,'onChangeAsync',$event)">-->
 <!--        </ng-iran-map>-->
 <!--        <ng-jalali-datepicker-->
 <!--          *ngSwitchCase="'jalali-datepicker'"-->
