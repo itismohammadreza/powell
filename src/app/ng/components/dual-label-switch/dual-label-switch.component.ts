@@ -154,19 +154,6 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor, O
     return !hasError;
   }
 
-  isRequired(): boolean {
-    if (this.ngControl) {
-      const control = this.ngControl.control;
-      if (control.validator) {
-        const validator = control.validator({} as AbstractControl);
-        if (validator && validator.required) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
   writeValue(value: any) {
     this.value = value;
     this.setInitValue()

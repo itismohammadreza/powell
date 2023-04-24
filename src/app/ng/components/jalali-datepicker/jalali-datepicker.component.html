@@ -40,7 +40,7 @@
           [styleClass]="styleClass"
           [inputStyle]="inputStyle"
           [inputStyleClass]="inputStyleClass"
-          [placeholder]="placeholder | labelStar:showRequiredStar:isRequired()"
+          [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
           [disabled]="disabled"
           [dateFormat]="dateFormat"
           [inline]="false"
@@ -101,7 +101,7 @@
           (onClear)="_onClear()"
         ></ng-jalali-picker-base>
         <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
-          {{ label | labelStar:showRequiredStar:isRequired() }}
+          {{ label | ngLabelStar:showRequiredStar:ngControl }}
         </label>
       </ng-container>
       <ng-container *ngIf="inline">
@@ -115,7 +115,7 @@
           [styleClass]="styleClass"
           [inputStyle]="inputStyle"
           [inputStyleClass]="inputStyleClass"
-          [placeholder]="placeholder | labelStar:showRequiredStar:isRequired()"
+          [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
           [disabled]="disabled"
           [dateFormat]="dateFormat"
           [inline]="true"
@@ -186,7 +186,7 @@
     [class.p-disabled]="disabled"
     [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
     [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label | labelStar:showRequiredStar:isRequired() }}
+    {{ label | ngLabelStar:showRequiredStar:ngControl }}
   </label>
   <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
   <div class="message small">

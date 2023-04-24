@@ -34,7 +34,7 @@
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
         [options]="options"
         [scrollHeight]="scrollHeight"
-        [placeholder]="placeholder | labelStar:showRequiredStar:isRequired()"
+        [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
         [disabled]="disabled"
         [tabindex]="tabindex"
         [selectionMode]="selectionMode"
@@ -74,7 +74,7 @@
         </ng-template>
       </p-treeSelect>
       <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
-        {{ label | labelStar:showRequiredStar:isRequired() }}
+        {{ label | ngLabelStar:showRequiredStar:ngControl }}
       </label>
     </div>
   </div>
@@ -85,7 +85,7 @@
     [class.p-disabled]="disabled"
     [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
     [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label | labelStar:showRequiredStar:isRequired() }}
+    {{ label | ngLabelStar:showRequiredStar:ngControl }}
   </label>
   <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
   <div class="message small">

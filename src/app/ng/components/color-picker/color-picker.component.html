@@ -44,7 +44,7 @@
       [readonly]="readonly"
       [disabled]="disabled"
       [maxlength]="maxlength"
-      [placeholder]="placeholder | labelStar:showRequiredStar:isRequired()"
+      [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
       (onBlur)="_onBlur()"
       (onChange)="_onChangeInput($event)"
       (onFocus)="emitter('onFocus', $event)"
@@ -75,7 +75,7 @@
     [class.p-disabled]="disabled"
     [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
     [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label | labelStar:showRequiredStar:isRequired() }}
+    {{ label | ngLabelStar:showRequiredStar:ngControl }}
   </label>
   <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
   <div class="message small">

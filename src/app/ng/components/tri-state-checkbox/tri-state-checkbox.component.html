@@ -21,7 +21,7 @@
     <label
       [attr.for]="inputId"
       [class.p-disabled]="disabled">
-      {{ label | labelStar:showRequiredStar:isRequired() }}
+      {{ label | ngLabelStar:showRequiredStar:ngControl }}
     </label>
   </div>
   <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>

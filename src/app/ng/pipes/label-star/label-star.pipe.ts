@@ -1,24 +1,34 @@
 import {Pipe, PipeTransform} from '@angular/core';
+import {AbstractControl, NgControl} from "@angular/forms";
 
 @Pipe({
-  name: 'labelStar'
+  name: 'ngLabelStar'
 })
 export class LabelStarPipe implements PipeTransform {
-  addStarTo(value: string) {
-    return value.concat(' *');
-  }
-
-  removeStarFrom(value: string) {
-    return value.slice(0, -2);
-  }
-
-  transform(label: string, showRequiredStar: boolean, isControlRequired: boolean): string {
+  transform(label: string, showRequiredStar: boolean, ngControl: NgControl): string {
     if (!label) {
       return '';
     }
-    if (showRequiredStar && isControlRequired) {
-      return this.addStarTo(label);
+    if (showRequiredStar && this.isControlRequired(ngControl)) {
+      return this.starredLabel(label);
     }
     return label;
+  }
+
+  starredLabel(value: string) {
+    return value.concat(' *');
+  }
+
+  isControlRequired(ngControl: NgControl): boolean {
+    if (ngControl) {
+      const control = ngControl.control;
+      if (control.validator) {
+        const validator = control.validator({} as AbstractControl);
+        if (validator && validator.required) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }
