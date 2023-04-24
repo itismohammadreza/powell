@@ -370,20 +370,24 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
 
   writeValue(value: any) {
     this.value = value;
-    if (value) {
-      if (Array.isArray(this.value)) {
-        this.value = this.value.slice(0, this.selectionLimit);
-        this.value.forEach(id => {
-          this._provinces.find(p => p.id == id).selected = true;
-        })
-      } else {
-        this._provinces.forEach(x => {
-          x.selected = false;
-        })
-        this._provinces.find(p => p.id == this.value).selected = true;
-      }
-      this.cd.markForCheck();
+    if (this.value == null) {
+      this._provinces.forEach(x => {
+        x.selected = false;
+      })
+      return
     }
+    if (Array.isArray(this.value)) {
+      this.value = this.value.slice(0, this.selectionLimit);
+      this.value.forEach(id => {
+        this._provinces.find(p => p.id == id).selected = true;
+      })
+    } else {
+      this._provinces.forEach(x => {
+        x.selected = false;
+      })
+      this._provinces.find(p => p.id == this.value).selected = true;
+    }
+    this.cd.markForCheck();
   }
 
   registerOnChange(fn) {
