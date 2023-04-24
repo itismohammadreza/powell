@@ -52,8 +52,10 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   @Input() disabledProvinces: number | number[];
   @Input() disableConfigChangeEffect: boolean;
   @Input() selectionLimit: number;
+  @Input() async: boolean;
   @Output() onClick = new EventEmitter();
   @Output() onChange = new EventEmitter();
+  @Output() onChangeAsync = new EventEmitter();
   @Output() onMapReady = new EventEmitter();
 
   _provinces = [
@@ -370,10 +372,13 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
 
   writeValue(value: any) {
     this.value = value;
-    if (this.value == null) {
-      this._provinces.forEach(x => {
-        x.selected = false;
+    const resetSelection = () => {
+      this._provinces.forEach(p => {
+        p.selected = false;
       })
+    }
+    if (this.value == null) {
+      resetSelection()
       return
     }
     if (Array.isArray(this.value)) {
@@ -382,9 +387,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
         this._provinces.find(p => p.id == id).selected = true;
       })
     } else {
-      this._provinces.forEach(p => {
-        p.selected = false;
-      })
+      resetSelection()
       const province = this._provinces.find(p => p.id == this.value);
       if (province) {
         province.selected = true;
@@ -505,6 +508,19 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
       this.onModelChange(selectedIds[0]);
       this.onChange.emit(selectedIds[0]);
     }
+    if (this.async) {
+      this.disabled = true;
+      this.cd.detectChanges();
+      this.onChangeAsync.emit({loadingCallback: this.removeLoading, value: this.value});
+    }
     this.onClick.emit(event);
   }
+
+  removeLoading = () => {
+    this.disabled = false;
+    this.cd.detectChanges()
+    if (this.controlContainer && this.ngControl) {
+      this.onModelChange(this.value);
+    }
+  };
 }
