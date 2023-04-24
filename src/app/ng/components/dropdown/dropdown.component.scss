@@ -38,6 +38,10 @@
       align-self: stretch;
       display: inline-flex;
 
+      &, > div {
+        max-width: 100%;
+      }
+
       > div {
         display: block;
         flex-grow: 1;
@@ -59,6 +63,10 @@
       &.has-after .p-dropdown {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
+      }
+
+      .p-dropdown-item {
+        white-space: break-spaces;
       }
     }
 
