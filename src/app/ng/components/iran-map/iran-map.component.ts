@@ -377,6 +377,9 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
           this._provinces.find(p => p.id == id).selected = true;
         })
       } else {
+        this._provinces.forEach(x => {
+          x.selected = false;
+        })
         this._provinces.find(p => p.id == this.value).selected = true;
       }
       this.cd.markForCheck();
