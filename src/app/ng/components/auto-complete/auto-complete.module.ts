@@ -4,9 +4,9 @@ import {FormsModule} from "@angular/forms";
 import {PrimeAutoCompleteModule} from "@ng/primeng";
 import {AutoCompleteComponent} from "@ng/components/auto-complete";
 import {LabelStarModule} from "@ng/pipes/label-star";
-import {ConfigHandlerModule} from "@ng/directives/config-handler";
 import {AddonModule} from "@ng/directives/addon";
 import {TemplateModule} from "@ng/directives/template";
+import {ConfigHandlerModule} from "@ng/components/config-handler";
 
 @NgModule({
   declarations: [AutoCompleteComponent],

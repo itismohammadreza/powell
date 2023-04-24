@@ -20,13 +20,17 @@
 - create a shared module and make modules simplify
 - how should disableConfigChangeEffect use in overlay.service like toast etc...?
 - add OnPush change detection strategy
-- add copyToClipBoard directive and service
+- complete implementation of configHandlerComponent like autoComplete
 
 [//]: # (نمیشه کامپوننتی رو که داره کانفیگ رو توی خودش ایمپورت میکنه، توی سرویسی استفادش کرد)
 
 [//]: # (چون کانفیگ توی خودش داره از کانفیگ سرویس استفاده میکنه)
 
 [//]: # (دراصل مشکل توی استفاده ی کانفیگ سرویس توی دایرکتیوه)
+
+[//]: # (یه سرویس دارم که توش یه کامپوننت داره که توش یه دایرکتیو داره که توش اون سرویس رو داره)
+
+[//]: # (service => component => directive => service)
 
 ### New
 

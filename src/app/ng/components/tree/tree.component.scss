@@ -93,6 +93,21 @@
         .pi-chevron-right:before {
           content: "\e900";
         }
+
+        .p-tree-filter-container {
+          margin-right: 0;
+          margin-left: 0.5rem;
+
+          .p-tree-filter-icon {
+            right: auto;
+            left: 0.75rem;
+          }
+
+          .p-tree-filter {
+            padding-right: 0.65625rem;
+            padding-left: 1.75rem;
+          }
+        }
       }
     }
   }

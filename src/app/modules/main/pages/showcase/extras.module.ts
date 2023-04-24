@@ -16,7 +16,8 @@ import {TranslateModule} from "@ngx-translate/core";
     PrimeCardModule,
     PrimePanelModule,
     PrimeDividerModule,
-    TranslateModule
+    TranslateModule,
+    CommonModule
   ],
   imports: [
     CommonModule,

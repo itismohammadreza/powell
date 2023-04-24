@@ -1,13 +1,11 @@
-import {Directive, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
 import {NgConfig, NgFixLabelPosition, NgLabelPosition, NgSize} from "@ng/models";
 import {ConfigService} from "@ng/api";
 import {Global} from "@core/config";
 
-@Directive({
-  selector: '[ngConfigHandler]'
-})
-export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
+@Component({template: ''})
+export class ConfigHandlerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() rtl: boolean;
   @Output() rtlChange = new EventEmitter();
   @Input() fixLabelPos: NgFixLabelPosition;
@@ -41,15 +39,39 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
     this.startSubscription();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    const {firstChange = true, previousValue, currentValue} = changes.disableConfigChangeEffect || {};
+    if (firstChange) {
+      return
+    }
+    if (currentValue === true) {
+      this.stopSubscription()
+    } else if (currentValue === false && previousValue === true) {
+      this.startSubscription()
+    }
+  }
+
+  ngOnDestroy() {
+    this.stopSubscription();
+  }
+
   startSubscription() {
     this.stopConfigSubscription$ = new Subject<boolean>();
-    this.configService.configChange$.pipe(takeUntil(this.stopConfigSubscription$)).subscribe(({modifiedConfig, currentConfig}) => {
-      this.applyConfig(modifiedConfig, currentConfig);
-      this.configChange.emit({modifiedConfig, currentConfig});
-      if (currentConfig.disableConfigChangeEffect) {
-        this.stopSubscription();
-      }
-    })
+    this.configService.configChange$.pipe(takeUntil(this.stopConfigSubscription$))
+      .subscribe(({modifiedConfig, currentConfig}) => {
+        this.applyConfig(modifiedConfig, currentConfig);
+        this.configChange.emit({modifiedConfig, currentConfig});
+        if (currentConfig.disableConfigChangeEffect) {
+          this.stopSubscription();
+        }
+      })
+  }
+
+  stopSubscription() {
+    if (this.stopConfigSubscription$) {
+      this.stopConfigSubscription$.next(true);
+      this.stopConfigSubscription$.complete();
+    }
   }
 
   applyConfig(modifiedConfig: NgConfig, currentConfig: NgConfig) {
@@ -68,28 +90,5 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
         this[`${config}Change`].emit(this[config]);
       }
     })
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    const {firstChange = true, previousValue, currentValue} = changes.disableConfigChangeEffect || {};
-    if (firstChange) {
-      return
-    }
-    if (currentValue === true) {
-      this.stopSubscription()
-    } else if (currentValue === false && previousValue === true) {
-      this.startSubscription()
-    }
-  }
-
-  stopSubscription() {
-    if (this.stopConfigSubscription$) {
-      this.stopConfigSubscription$.next(true);
-      this.stopConfigSubscription$.complete();
-    }
-  }
-
-  ngOnDestroy() {
-    this.stopSubscription();
   }
 }

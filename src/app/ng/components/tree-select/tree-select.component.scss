@@ -153,20 +153,39 @@
         }
       }
 
-      .p-tree {
-        .p-tree-toggler,
-        .p-treenode-icon,
-        .p-checkbox {
-          margin-right: 0;
-          margin-left: 0.5rem;
+      .p-treeselect-panel {
+        .p-tree {
+          .p-tree-toggler,
+          .p-treenode-icon,
+          .p-checkbox {
+            margin-right: 0;
+            margin-left: 0.5rem;
+          }
+
+          .p-treenode-children {
+            padding: 0 1rem 0 0;
+          }
+
+          .pi-chevron-right:before {
+            content: "\e900";
+          }
         }
 
-        .p-treenode-children {
-          padding: 0 1rem 0 0;
-        }
+        .p-treeselect-header {
+          .p-treeselect-filter-container {
+            margin-right: 0;
+            margin-left: 0.5rem;
 
-        .pi-chevron-right:before {
-          content: "\e900";
+            .p-treeselect-filter-icon {
+              right: auto;
+              left: 0.75rem;
+            }
+
+            .p-treeselect-filter {
+              padding-right: 0.65625rem;
+              padding-left: 1.75rem;
+            }
+          }
         }
       }
     }
