@@ -4,6 +4,7 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
+  forwardRef,
   Injector,
   Input,
   OnDestroy,
@@ -23,10 +24,10 @@ import {
   NgControl
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
-import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@ng/models';
+import {NgAddon, NgIconPosition, NgInputType, NgValidation} from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template';
 import {PrimeScrollerOptions} from "@ng/primeng/api";
-import {ConfigHandlerComponent} from "@ng/components/config-handler/config-handler.component";
+import {ConfigHandlerComponent} from "@ng/components/config-handler";
 
 @Component({
   selector: 'ng-auto-complete',
@@ -35,7 +36,7 @@ import {ConfigHandlerComponent} from "@ng/components/config-handler/config-handl
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: AutoCompleteComponent,
+      useExisting: forwardRef(() => AutoCompleteComponent),
       multi: true
     }
   ]
