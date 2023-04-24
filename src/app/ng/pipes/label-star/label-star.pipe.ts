@@ -1,15 +1,11 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
-  name: 'labelStar'
+  name: 'ngLabelStar'
 })
 export class LabelStarPipe implements PipeTransform {
-  addStarTo(value: string) {
+  starredLabel(value: string) {
     return value.concat(' *');
-  }
-
-  removeStarFrom(value: string) {
-    return value.slice(0, -2);
   }
 
   transform(label: string, showRequiredStar: boolean, isControlRequired: boolean): string {
@@ -17,7 +13,7 @@ export class LabelStarPipe implements PipeTransform {
       return '';
     }
     if (showRequiredStar && isControlRequired) {
-      return this.addStarTo(label);
+      return this.starredLabel(label);
     }
     return label;
   }

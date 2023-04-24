@@ -37,7 +37,7 @@
         [disabled]="disabled"
         [style]="style"
         [styleClass]="styleClass"
-        [placeholder]="placeholder | labelStar:showRequiredStar:isRequired()"
+        [placeholder]="placeholder | ngLabelStar:showRequiredStar:isRequired()"
         [tabindex]="tabindex"
         [allowDuplicate]="allowDuplicate"
         [inputStyle]="inputStyle"
@@ -57,7 +57,7 @@
         </ng-template>
       </p-chips>
       <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
-        {{ label | labelStar:showRequiredStar:isRequired() }}
+        {{ label | ngLabelStar:showRequiredStar:isRequired() }}
       </label>
     </div>
   </div>
@@ -68,7 +68,7 @@
     [class.p-disabled]="disabled"
     [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
     [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label | labelStar:showRequiredStar:isRequired() }}
+    {{ label | ngLabelStar:showRequiredStar:isRequired() }}
   </label>
   <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
   <div class="message small">

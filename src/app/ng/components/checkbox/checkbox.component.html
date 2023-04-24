@@ -24,7 +24,7 @@
     <label
       [attr.for]="inputId"
       [class.p-disabled]="disabled">
-      {{ label | labelStar:showRequiredStar:isRequired() }}
+      {{ label | ngLabelStar:showRequiredStar:isRequired() }}
     </label>
     <p-progressSpinner *ngIf="loading" strokeWidth="4" fill="var(--surface-ground)"></p-progressSpinner>
   </div>
