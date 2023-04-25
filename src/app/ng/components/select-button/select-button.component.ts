@@ -1,7 +1,8 @@
 import {
+  AfterContentInit,
   ChangeDetectorRef,
   Component,
-  ContentChild,
+  ContentChildren,
   EventEmitter,
   forwardRef,
   Injector,
@@ -9,6 +10,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  QueryList,
   TemplateRef
 } from '@angular/core';
 import {
@@ -23,6 +25,7 @@ import {
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgValidation} from '@ng/models';
+import {TemplateDirective} from "@ng/directives/template";
 
 @Component({
   selector: 'ng-select-button',
@@ -36,7 +39,7 @@ import {NgFixLabelPosition, NgValidation} from '@ng/models';
     }
   ]
 })
-export class SelectButtonComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class SelectButtonComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -59,14 +62,13 @@ export class SelectButtonComponent implements OnInit, ControlValueAccessor, OnDe
   @Input() dataKey: string;
   @Output() onChange = new EventEmitter();
   @Output() onOptionClick = new EventEmitter();
-  @Output() onBeforeBtnClick = new EventEmitter();
-  @Output() onAfterBtnClick = new EventEmitter();
-  @ContentChild(TemplateRef) itemTemplate: TemplateRef<any>;
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
   destroy$ = new Subject<boolean>();
+  itemTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -104,6 +106,18 @@ export class SelectButtonComponent implements OnInit, ControlValueAccessor, OnDe
     }
   }
 
+  ngAfterContentInit() {
+    this.templates.forEach((item: TemplateDirective) => {
+      switch (item.getType()) {
+        case 'item':
+          this.itemTemplate = item.templateRef;
+          break;
+      }
+    });
+
+    console.log(this.itemTemplate)
+  }
+
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
   }
@@ -114,7 +128,6 @@ export class SelectButtonComponent implements OnInit, ControlValueAccessor, OnDe
   }
 
   _onOptionClick(event) {
-    this.onModelChange(event.value);
     this.onOptionClick.emit(event);
   }
 
