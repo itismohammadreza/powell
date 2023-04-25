@@ -14,15 +14,15 @@
   - 2- responsive until mobile view
   - 3- change size to desktop view
   - 4- the sidebarType is reset to its default value
+- complete implementation of configHandlerComponent like autoComplete
+- add OnPush change detection strategy
+- create error and hint manager directive
+- fix selectButton issue
+- fix table issue
+- how should disableConfigChangeEffect use in overlay-service like toast etc...?
 - replace css colors with variables and make theme colors configurable
 - add bootstrap 5
 - use gap instead of margin left and right
-- create a shared module and make modules simplify
-- how should disableConfigChangeEffect use in overlay.service like toast etc...?
-- add OnPush change detection strategy
-- complete implementation of configHandlerComponent like autoComplete
-- fix selectButton issue
-- create error and hint manager directive
 
 [//]: # (نمیشه کامپوننتی رو که داره کانفیگ رو توی خودش ایمپورت میکنه، توی سرویسی استفادش کرد)
 
