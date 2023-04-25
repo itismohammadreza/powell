@@ -21,6 +21,7 @@
 - how should disableConfigChangeEffect use in overlay.service like toast etc...?
 - add OnPush change detection strategy
 - complete implementation of configHandlerComponent like autoComplete
+- fix selectButton issue
 
 [//]: # (نمیشه کامپوننتی رو که داره کانفیگ رو توی خودش ایمپورت میکنه، توی سرویسی استفادش کرد)
 
