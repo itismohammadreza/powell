@@ -22,6 +22,7 @@
 - add OnPush change detection strategy
 - complete implementation of configHandlerComponent like autoComplete
 - fix selectButton issue
+- create error and hint manager directive
 
 [//]: # (نمیشه کامپوننتی رو که داره کانفیگ رو توی خودش ایمپورت میکنه، توی سرویسی استفادش کرد)
 
