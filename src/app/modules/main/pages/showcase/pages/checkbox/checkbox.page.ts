@@ -9,7 +9,7 @@ import {ConfigService} from "@ng/api";
 })
 export class CheckboxPage {
   form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
+    c1: new FormControl(null, [Validators.requiredTrue]),
   });
   binding;
 

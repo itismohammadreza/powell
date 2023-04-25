@@ -98,13 +98,7 @@ export class ToggleButtonComponent implements OnInit, ControlValueAccessor, OnDe
   }
 
   _onChange(event) {
-    if (this.controlContainer && this.ngControl) {
-      if (this.isRequired()) {
-        this.onModelChange(event.checked ? true : null);
-      } else {
-        this.onModelChange(event.checked);
-      }
-    }
+    this.onModelChange(event.checked);
     this.onChange.emit(event);
     this.value = event.checked;
   }
@@ -133,19 +127,6 @@ export class ToggleButtonComponent implements OnInit, ControlValueAccessor, OnDe
       }
     }
     return !hasError;
-  }
-
-  isRequired(): boolean {
-    if (this.ngControl) {
-      const control = this.ngControl.control;
-      if (control.validator) {
-        const validator = control.validator({} as AbstractControl);
-        if (validator && validator.required) {
-          return true;
-        }
-      }
-    }
-    return false;
   }
 
   writeValue(value: any) {
