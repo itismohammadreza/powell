@@ -37,7 +37,7 @@
         [optionValue]="optionValue"
         [optionGroupLabel]="optionGroupLabel"
         [optionGroupChildren]="optionGroupChildren"
-        [placeholder]="placeholder | ngLabelStar:showRequiredStar:isRequired()"
+        [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
         [disabled]="disabled"
         [dataKey]="dataKey"
         [tabindex]="tabindex"
@@ -57,7 +57,7 @@
         </ng-template>
       </p-cascadeSelect>
       <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
-        {{ label | ngLabelStar:showRequiredStar:isRequired() }}
+        {{ label | ngLabelStar:showRequiredStar:ngControl }}
       </label>
     </div>
   </div>
@@ -68,7 +68,7 @@
     [class.p-disabled]="disabled"
     [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
     [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label | ngLabelStar:showRequiredStar:isRequired() }}
+    {{ label | ngLabelStar:showRequiredStar:ngControl }}
   </label>
   <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
   <div class="message small">

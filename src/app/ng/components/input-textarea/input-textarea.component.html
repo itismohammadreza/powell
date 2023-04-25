@@ -31,7 +31,7 @@
         [attr.id]="inputId"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
         [attr.maxlength]="maxlength"
-        [attr.placeholder]="placeholder | ngLabelStar:showRequiredStar:isRequired()"
+        [attr.placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
         [autoResize]="autoResize"
         [cols]="cols"
         [disabled]="disabled"
@@ -48,7 +48,7 @@
         (onResize)="_onResize($event)"
       ></textarea>
       <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
-        {{ label | ngLabelStar:showRequiredStar:isRequired() }}
+        {{ label | ngLabelStar:showRequiredStar:ngControl }}
       </label>
     </div>
   </div>
@@ -59,7 +59,7 @@
     [class.p-disabled]="disabled"
     [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
     [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label | ngLabelStar:showRequiredStar:isRequired() }}
+    {{ label | ngLabelStar:showRequiredStar:ngControl }}
   </label>
   <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
   <div class="message small">
