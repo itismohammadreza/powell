@@ -26,8 +26,8 @@
       [dataKey]="dataKey"
       (onChange)="_onChange($event)"
       (onOptionClick)="_onOptionClick($event)">
-      <ng-template *ngIf="itemTemplate">
-        <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>
+      <ng-template let-item let-index="index" *ngIf="itemTemplate">
+        <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item,index}"></ng-container>
       </ng-template>
     </p-selectButton>
   </div>

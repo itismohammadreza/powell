@@ -77,7 +77,7 @@ export class ImageComponent implements AfterContentInit {
   @Output() onHide = new EventEmitter();
   @Output() onImageError = new EventEmitter();
   @ViewChild('mask') mask: ElementRef;
-  @ContentChildren(TemplateDirective) templates: QueryList<any>;
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   indicatorTemplate: TemplateRef<any>;
   maskVisible: boolean = false;
@@ -94,11 +94,11 @@ export class ImageComponent implements AfterContentInit {
     this.templates.forEach((item) => {
       switch (item.getType()) {
         case 'indicator':
-          this.indicatorTemplate = item.template;
+          this.indicatorTemplate = item.templateRef;
           break;
 
         default:
-          this.indicatorTemplate = item.template;
+          this.indicatorTemplate = item.templateRef;
           break;
       }
     });

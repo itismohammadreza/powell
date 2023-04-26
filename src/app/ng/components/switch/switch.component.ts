@@ -118,13 +118,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor, OnDestroy 
       this.cd.detectChanges();
       this.onChangeAsync.emit({loadingCallback: this.removeLoading, value: event.checked});
     } else {
-      if (this.controlContainer && this.ngControl) {
-        if (this.isRequired()) {
-          this.onModelChange(event.checked ? true : null);
-        } else {
-          this.onModelChange(event.checked);
-        }
-      }
+      this.onModelChange(event.checked);
       this.onChange.emit(event);
       this.setLabel();
     }
@@ -136,15 +130,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor, OnDestroy 
     if (!ok) {
       this.value = !this.value;
     }
-    if (this.controlContainer && this.ngControl) {
-      if (this.isRequired()) {
-        this.onModelChange(this.value ? true : null);
-      } else {
-        this.onModelChange(this.value);
-      }
-    } else {
-      this.onModelChange(this.value);
-    }
+    this.onModelChange(this.value);
     this.setLabel();
   };
 
@@ -172,19 +158,6 @@ export class SwitchComponent implements OnInit, ControlValueAccessor, OnDestroy 
       }
     }
     return !hasError;
-  }
-
-  isRequired(): boolean {
-    if (this.ngControl) {
-      const control = this.ngControl.control;
-      if (control.validator) {
-        const validator = control.validator({} as AbstractControl);
-        if (validator && validator.required) {
-          return true;
-        }
-      }
-    }
-    return false;
   }
 
   writeValue(value: any) {
