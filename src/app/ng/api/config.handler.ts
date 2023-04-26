@@ -5,7 +5,7 @@ import {ConfigService} from "@ng/api";
 import {Global} from "@core/config";
 
 @Component({template: ''})
-export class ConfigHandlerComponent implements OnInit, OnChanges, OnDestroy {
+export class ConfigHandler implements OnInit, OnChanges, OnDestroy {
   @Input() rtl: boolean;
   @Output() rtlChange = new EventEmitter();
   @Input() fixLabelPos: NgFixLabelPosition;

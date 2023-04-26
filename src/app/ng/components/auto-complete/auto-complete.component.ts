@@ -27,7 +27,7 @@ import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgInputType, NgValidation} from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template';
 import {PrimeScrollerOptions} from "@ng/primeng/api";
-import {ConfigHandlerComponent} from "@ng/components/config-handler";
+import {ConfigHandler} from "@ng/api";
 
 @Component({
   selector: 'ng-auto-complete',
@@ -41,7 +41,7 @@ import {ConfigHandlerComponent} from "@ng/components/config-handler";
     }
   ]
 })
-export class AutoCompleteComponent extends ConfigHandlerComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
+export class AutoCompleteComponent extends ConfigHandler implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   // @Input() filled: boolean;
