@@ -24,10 +24,9 @@ import {
   NgControl
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
-import {NgAddon, NgIconPosition, NgInputType, NgValidation} from '@ng/models';
+import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template';
 import {PrimeScrollerOptions} from "@ng/primeng/api";
-import {ConfigHandler} from "@ng/api";
 
 @Component({
   selector: 'ng-auto-complete',
@@ -41,21 +40,21 @@ import {ConfigHandler} from "@ng/api";
     }
   ]
 })
-export class AutoCompleteComponent extends ConfigHandler implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
+export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
-  // @Input() filled: boolean;
+  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  // @Input() rtl: boolean;
-  // @Input() showRequiredStar: boolean;
+  @Input() rtl: boolean;
+  @Input() showRequiredStar: boolean;
   @Input() icon: string;
-  // @Input() labelPos: NgLabelPosition;
+  @Input() labelPos: NgLabelPosition;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  // @Input() inputSize: NgSize;
-  // @Input() disableConfigChangeEffect: boolean;
+  @Input() inputSize: NgSize;
+  @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() suggestions: any[];
   @Input() field: string;
@@ -132,11 +131,9 @@ export class AutoCompleteComponent extends ConfigHandler implements OnInit, Afte
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit()
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -279,8 +276,7 @@ export class AutoCompleteComponent extends ConfigHandler implements OnInit, Afte
     this.cd.markForCheck();
   }
 
-  override ngOnDestroy() {
-    super.ngOnDestroy();
+  ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.complete();
   }

@@ -6,6 +6,7 @@ import {AutoCompleteComponent} from "@ng/components/auto-complete";
 import {LabelStarModule} from "@ng/pipes/label-star";
 import {AddonModule} from "@ng/directives/addon";
 import {TemplateModule} from "@ng/directives/template";
+import {ConfigHandlerModule} from "@ng/directives/config-handler";
 
 @NgModule({
   declarations: [AutoCompleteComponent],
@@ -15,6 +16,7 @@ import {TemplateModule} from "@ng/directives/template";
     CommonModule,
     FormsModule,
     LabelStarModule,
+    ConfigHandlerModule,
     AddonModule,
   ]
 })
