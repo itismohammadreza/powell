@@ -15,6 +15,11 @@
   - 3- change size to desktop view
   - 4- the sidebarType is reset to its default value
 - complete implementation of configHandlerComponent like autoComplete
+
+[//]: # (ولی این یه مشکلی بوجود میاره، چون کامپوننت ها باید از این کلاس ارث بری کنن، باعث میشه کامپونت هایی که مثلا یه اینپوتی مثل فییلد رو نمیپذیرن هم ثابلیت اینکه 
+این اینپوت رو آی دی ای پیشنهاد بده بوجود میاد براشون. هرچقدرم که استفاده ای نمیکنن ازش.
+و مشکل دوم اینه که ما توی کانفیگ کلی، هم لیبل پوز داریم و هم فیکس لیبل پوز، درحالی که این کامپوننت پدر باید فقط یکیش رو داشته باشه)
+
 - add OnPush change detection strategy
 - create error and hint manager directive
 - fix selectButton issue
