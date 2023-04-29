@@ -55,19 +55,19 @@ export class DynamicDialogService {
     //     }
     //   ]
     // });
-    const componentRef = createComponent(DynamicDialogComponent, {
+    const dialogComponentRef = createComponent(DynamicDialogComponent, {
       environmentInjector: this.appRef.injector,
       elementInjector: new DynamicDialogInjector(this.injector, map)
     })
-    this.appRef.attachView(componentRef.hostView);
-    const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+    this.appRef.attachView(dialogComponentRef.hostView);
+    const domElem = (dialogComponentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     this.document.body.appendChild(domElem);
-    const onCloseSub = componentRef.instance.onClose.subscribe(() => {
+    const onCloseSub = dialogComponentRef.instance.onClose.subscribe(() => {
       this.removeDialogComponentFromBody();
       onCloseSub.unsubscribe();
     });
-    componentRef.instance.open(componentType);
-    this.dialogComponentRef = componentRef;
+    dialogComponentRef.instance.open(componentType);
+    this.dialogComponentRef = dialogComponentRef;
     return dialogRef;
   }
 
