@@ -110,13 +110,7 @@ export class OverlayService {
     //     }
     //   ]
     // });
-    const dynamicDialogCmpRef = createComponent(DynamicDialogComponent, {
-      environmentInjector: this.appRef.injector,
-      elementInjector: new DynamicDialogInjector(this.injector, map)
-    })
-    this.appRef.attachView(dynamicDialogCmpRef.hostView);
-    const domElem = (dynamicDialogCmpRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
-    this.document.body.appendChild(domElem);
+    const dynamicDialogCmpRef = this.addToBody(DynamicDialogComponent,new DynamicDialogInjector(this.injector, map))
     const onCloseSub = dynamicDialogCmpRef.instance.onClose.subscribe(() => {
       this.removeFromBody(this.dynamicDialogCmpRef);
       onCloseSub.unsubscribe();
@@ -343,10 +337,10 @@ export class OverlayService {
     })
   }
 
-  private addToBody<T>(component: Type<T>): ComponentRef<T> {
+  private addToBody<T>(component: Type<T>, injector: Injector = this.injector): ComponentRef<T> {
     const componentRef = createComponent(component, {
       environmentInjector: this.appRef.injector,
-      elementInjector: this.injector
+      elementInjector: injector
     })
     this.appRef.attachView(componentRef.hostView);
     this.document.body.appendChild(componentRef.location.nativeElement);
