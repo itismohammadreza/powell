@@ -1,5 +1,5 @@
 import {Component, OnDestroy} from '@angular/core';
-import {DynamicDialogService, PersianService} from "@ng/api";
+import {OverlayService, PersianService} from "@ng/api";
 import {UserService} from "@core/http";
 import {
   DynamicDialogSampleComponent
@@ -17,12 +17,12 @@ export class UtilsPage implements OnDestroy {
   destroy$ = new Subject<boolean>()
 
   constructor(private userService: UserService,
-              private dialog: DynamicDialogService,
+              private overlayService: OverlayService,
               private persianService: PersianService) {
   }
 
   showCustomDynamicDialog() {
-    this.dialog.open(DynamicDialogSampleComponent, {
+    this.overlayService.open(DynamicDialogSampleComponent, {
       data: {message: 'I am a dynamic component inside of a dialog!'}
     }).afterClosed.pipe(takeUntil(this.destroy$)).subscribe(result => {
       this.customDynamicDialogResult = result;

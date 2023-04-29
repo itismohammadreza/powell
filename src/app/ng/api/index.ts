@@ -2,7 +2,6 @@ export * from './animate-on-scroll.service';
 export * from './config.provider';
 export * from './config.service';
 export * from './config.handler';
-export * from './dynamic-dialog.service';
 export * from './moment.service';
 export * from './utils.service';
 export * from './persian.service';

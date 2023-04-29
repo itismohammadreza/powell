@@ -7,7 +7,6 @@ import {EnvServiceProvider, TranslationService} from "@core/utils";
 import {Global} from "@core/config";
 import {
   AnimateOnScrollService,
-  DynamicDialogService,
   initiateNgConfigProvider,
   MomentService,
   OverlayService,
@@ -42,7 +41,6 @@ export function initiateLanguage(translationService: TranslationService) {
     initiateNgConfigProvider(),
     EnvServiceProvider,
     AnimateOnScrollService,
-    DynamicDialogService,
     MomentService,
     OverlayService,
     PersianService,
