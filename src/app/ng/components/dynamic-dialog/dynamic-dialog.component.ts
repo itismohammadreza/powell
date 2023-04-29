@@ -16,20 +16,18 @@ import {DynamicDialogRef} from './dynamic-dialog-ref';
   templateUrl: './dynamic-dialog.component.html',
   styleUrls: ['./dynamic-dialog.component.scss']
 })
-export class DynamicDialogComponent implements AfterViewInit, OnDestroy {
+export class DynamicDialogComponent implements OnDestroy {
   componentRef: ComponentRef<any>;
-  childComponentType: Type<any>;
   private _onClose = new Subject<any>();
   onClose = this._onClose.asObservable();
-  @ViewChild('insertion', {read: ViewContainerRef})
-  insertionPoint: ViewContainerRef;
+  @ViewChild('insertion', {read: ViewContainerRef, static: true}) insertionPoint: ViewContainerRef;
 
   constructor(private cd: ChangeDetectorRef, private dialogRef: DynamicDialogRef) {
   }
 
-  ngAfterViewInit() {
-    this.loadChildComponent(this.childComponentType);
-    this.cd.detectChanges();
+  open(childComponent: Type<any>) {
+    this.insertionPoint.clear();
+    this.componentRef = this.insertionPoint.createComponent(childComponent);
   }
 
   onOverlayClicked(evt: MouseEvent) {
@@ -38,11 +36,6 @@ export class DynamicDialogComponent implements AfterViewInit, OnDestroy {
 
   onDialogClicked(evt: MouseEvent) {
     evt.stopPropagation();
-  }
-
-  loadChildComponent(componentType: Type<any>) {
-    this.insertionPoint.clear();
-    this.componentRef = this.insertionPoint.createComponent(componentType);
   }
 
   ngOnDestroy() {

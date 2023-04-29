@@ -26,12 +26,6 @@ export class DynamicDialogService {
   }
 
   open(componentType: Type<any>, config: DynamicDialogConfig) {
-    const dialogRef = this.appendDialogComponentToBody(config);
-    this.dialogComponentRef.instance.childComponentType = componentType;
-    return dialogRef;
-  }
-
-  private appendDialogComponentToBody(config: DynamicDialogConfig) {
     const map = new WeakMap();
     map.set(DynamicDialogConfig, config);
 
@@ -73,6 +67,7 @@ export class DynamicDialogService {
       this.removeDialogComponentFromBody();
       onCloseSub.unsubscribe();
     });
+    this.dialogComponentRef.instance.open(componentType);
     return dialogRef;
   }
 
