@@ -62,12 +62,12 @@ export class DynamicDialogService {
     this.appRef.attachView(componentRef.hostView);
     const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     this.document.body.appendChild(domElem);
-    this.dialogComponentRef = componentRef;
-    const onCloseSub = this.dialogComponentRef.instance.onClose.subscribe(() => {
+    const onCloseSub = componentRef.instance.onClose.subscribe(() => {
       this.removeDialogComponentFromBody();
       onCloseSub.unsubscribe();
     });
-    this.dialogComponentRef.instance.open(componentType);
+    componentRef.instance.open(componentType);
+    this.dialogComponentRef = componentRef;
     return dialogRef;
   }
 
