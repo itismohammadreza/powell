@@ -110,13 +110,12 @@ export class OverlayService {
     //     }
     //   ]
     // });
-    const dynamicDialogCmpRef = this.addToBody(DynamicDialogComponent,new DynamicDialogInjector(this.injector, map))
-    const onCloseSub = dynamicDialogCmpRef.instance.onClose.subscribe(() => {
+    this.dynamicDialogCmpRef = this.addToBody(DynamicDialogComponent, new DynamicDialogInjector(this.injector, map))
+    const onCloseSub = this.dynamicDialogCmpRef.instance.onClose.subscribe(() => {
       this.removeFromBody(this.dynamicDialogCmpRef);
       onCloseSub.unsubscribe();
     });
-    dynamicDialogCmpRef.instance.open(componentType);
-    this.dynamicDialogCmpRef = dynamicDialogCmpRef;
+    this.dynamicDialogCmpRef.instance.open(componentType);
     return dialogRef;
   }
 
