@@ -181,7 +181,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     this.selectedFiles = event.currentFiles;
     for (let file of event.currentFiles) {
       if (this.resultType == 'base64') {
-        this.filesToEmit.push(await this.fileToBase64(file));
+        this.filesToEmit.push(await this.utilsService.fileToBase64(file));
       } else if (this.resultType == 'file') {
         this.filesToEmit.push(file);
       } else {
@@ -209,7 +209,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
         if (item instanceof File) {
           dt.items.add(item);
           if (wantBase64) {
-            result.push(await this.fileToBase64(item));
+            result.push(await this.utilsService.fileToBase64(item));
           } else if (wantFile) {
             result.push(item);
           } else {
@@ -219,23 +219,23 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
         if (typeof item == 'string') {
           //Array of base64
           if (item.startsWith('src=')) {
-            dt.items.add(this.base64toFile(item, item.split('/').pop()));
+            dt.items.add(this.utilsService.base64toFile(item, item.split('/').pop()));
             if (wantBase64) {
               result.push(item);
             } else if (wantFile) {
-              result.push(this.base64toFile(item, item.split('/').pop()));
+              result.push(this.utilsService.base64toFile(item, item.split('/').pop()));
             } else {
               result.push(item);
             }
           }
           //Array of url
           else {
-            const base64 = await this.urlToBase64(item);
-            dt.items.add(this.base64toFile(base64, item.split('/').pop()));
+            const base64 = await this.utilsService.urlToBase64(item);
+            dt.items.add(this.utilsService.base64toFile(base64, item.split('/').pop()));
             if (wantBase64) {
               result.push(base64);
             } else if (wantFile) {
-              result.push(this.base64toFile(base64, item.split('/').pop()));
+              result.push(this.utilsService.base64toFile(base64, item.split('/').pop()));
             } else {
               result.push(item);
             }
@@ -251,8 +251,8 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
       dt.items.add(value);
       this.value = dt.files;
       if (wantBase64) {
-        this.filesToEmit.push(await this.fileToBase64(value));
-        this.onModelChange(await this.fileToBase64(value));
+        this.filesToEmit.push(await this.utilsService.fileToBase64(value));
+        this.onModelChange(await this.utilsService.fileToBase64(value));
       } else if (wantFile) {
         this.filesToEmit.push(value);
         this.onModelChange(value);
@@ -260,29 +260,29 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     } else if (typeof value == 'string') {
       //value is a single  base64
       if (value.startsWith('src=')) {
-        dt.items.add(this.base64toFile(value, value.split('/').pop()));
+        dt.items.add(this.utilsService.base64toFile(value, value.split('/').pop()));
         if (wantBase64) {
           this.onModelChange(value);
           this.filesToEmit.push(value);
         } else if (wantFile) {
           this.filesToEmit.push(
-            this.base64toFile(value, value.split('/').pop())
+            this.utilsService.base64toFile(value, value.split('/').pop())
           );
-          this.onModelChange(this.base64toFile(value, value.split('/').pop()));
+          this.onModelChange(this.utilsService.base64toFile(value, value.split('/').pop()));
         }
       }
       //value is a single  url
       else {
-        const base64 = await this.urlToBase64(value);
-        dt.items.add(this.base64toFile(base64, value.split('/').pop()));
+        const base64 = await this.utilsService.urlToBase64(value);
+        dt.items.add(this.utilsService.base64toFile(base64, value.split('/').pop()));
         this.value = dt.files;
         if (wantBase64) {
           this.onModelChange(base64);
           this.filesToEmit.push(base64);
         } else if (wantFile) {
-          this.onModelChange(this.base64toFile(base64, value.split('/').pop()));
+          this.onModelChange(this.utilsService.base64toFile(base64, value.split('/').pop()));
           this.filesToEmit.push(
-            this.base64toFile(base64, value.split('/').pop())
+            this.utilsService.base64toFile(base64, value.split('/').pop())
           );
         }
       }
@@ -293,8 +293,8 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
       for (let i = 0; i < value.length; i++) {
         const file: File = value.item(i);
         if (wantBase64) {
-          this.filesToEmit.push(await this.fileToBase64(file));
-          result.push(await this.fileToBase64(file));
+          this.filesToEmit.push(await this.utilsService.fileToBase64(file));
+          result.push(await this.utilsService.fileToBase64(file));
         } else if (wantFile) {
           this.filesToEmit.push(file);
           result.push(file);
@@ -341,7 +341,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   }
 
   writeValue(value: any) {
-    if (value && this.isImage(value)) {
+    if (value && this.utilsService.isImage(value)) {
       this.init(value);
     }
   }
@@ -357,90 +357,6 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
-  }
-
-  fileToBase64(file: File): Promise<string | ArrayBuffer> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        resolve(reader.result);
-      };
-      reader.onerror = (error) => reject(error);
-    });
-  }
-
-  urlToBase64(url: string): Promise<string | ArrayBuffer> {
-    return fetch(url, {
-      headers: new Headers({
-        Origin: '*',
-      }),
-    })
-      .then((response) => response.blob())
-      .then((blob: File) => this.fileToBase64(blob));
-  }
-
-  base64toFile(dataurl: any, filename: string): File {
-    var arr = dataurl.split(','),
-      mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]),
-      n = bstr.length,
-      u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], filename, {type: mime});
-  }
-
-  isImageUrl(url: string) {
-    return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
-  }
-
-  isImageFile(file: File) {
-    return file && file['type'].split('/')[0] === 'image';
-  }
-
-  isImage(value: any) {
-    let result = false;
-    if (Array.isArray(value)) {
-      if (
-        value.every((item) => item instanceof File && this.isImageFile(item))
-      ) {
-        result = true;
-      }
-      if (
-        value.every(
-          (item) =>
-            typeof item == 'string' &&
-            (this.isImageUrl(item) || item.startsWith('src='))
-        )
-      ) {
-        result = true;
-      }
-    } else if (value instanceof File && this.isImageFile(value)) {
-      result = true;
-    } else if (
-      typeof value == 'string' &&
-      (this.isImageUrl(value) || value.startsWith('src='))
-    ) {
-      result = true;
-    } else if (value instanceof FileList) {
-      for (let i = 0; i < value.length; i++) {
-        if (this.isImageFile(value.item(i))) {
-          result = true;
-          continue;
-        } else {
-          result = false;
-          break;
-        }
-      }
-    }
-    return result;
   }
 
   clear() {
