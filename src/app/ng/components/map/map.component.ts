@@ -168,7 +168,7 @@ export class MapComponent extends ConfigHandler implements OnInit, ControlValueA
     super()
   }
 
-  override ngOnInit(): void {
+  override ngOnInit() {
     super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;

@@ -143,7 +143,7 @@ export class DropdownComponent extends ConfigHandler implements OnInit, AfterCon
   }
 
   override ngOnInit() {
-    super.ngOnInit()
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;

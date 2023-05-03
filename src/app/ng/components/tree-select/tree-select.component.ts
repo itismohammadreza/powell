@@ -113,7 +113,7 @@ export class TreeSelectComponent extends ConfigHandler implements OnInit, AfterC
   }
 
   override ngOnInit() {
-    super.ngOnInit()
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;

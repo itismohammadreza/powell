@@ -80,7 +80,7 @@ export class InputMaskComponent extends ConfigHandler implements OnInit, Control
   }
 
   override ngOnInit() {
-    super.ngOnInit()
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;

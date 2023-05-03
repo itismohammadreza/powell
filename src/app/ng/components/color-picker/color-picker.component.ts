@@ -77,7 +77,7 @@ export class ColorPickerComponent extends ConfigHandler implements OnInit, Contr
   }
 
   override ngOnInit() {
-    super.ngOnInit()
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;

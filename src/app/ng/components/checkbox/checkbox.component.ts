@@ -64,7 +64,7 @@ export class CheckboxComponent extends ConfigHandler implements OnInit, ControlV
   }
 
   override ngOnInit() {
-    super.ngOnInit()
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;

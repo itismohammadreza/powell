@@ -63,7 +63,7 @@ export class DualLabelSwitchComponent extends ConfigHandler implements OnInit, C
   }
 
   override ngOnInit() {
-    super.ngOnInit()
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;

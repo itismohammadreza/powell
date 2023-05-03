@@ -134,7 +134,7 @@ export class AutoCompleteComponent extends ConfigHandler implements OnInit, Afte
   }
 
   override ngOnInit() {
-    super.ngOnInit()
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;

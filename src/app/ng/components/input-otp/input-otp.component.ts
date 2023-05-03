@@ -85,7 +85,7 @@ export class InputOtpComponent extends ConfigHandler implements OnInit, AfterVie
   }
 
   override ngOnInit() {
-    super.ngOnInit()
+    super.ngOnInit();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;

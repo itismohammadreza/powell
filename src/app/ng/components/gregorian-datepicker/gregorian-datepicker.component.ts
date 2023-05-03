@@ -132,7 +132,7 @@ export class GregorianDatepickerComponent extends ConfigHandler implements OnIni
   }
 
   override ngOnInit() {
-    super.ngOnInit()
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;

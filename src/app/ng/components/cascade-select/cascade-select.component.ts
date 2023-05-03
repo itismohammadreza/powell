@@ -93,7 +93,7 @@ export class CascadeSelectComponent extends ConfigHandler implements OnInit, Aft
   }
 
   override ngOnInit() {
-    super.ngOnInit()
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;

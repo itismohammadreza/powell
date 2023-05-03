@@ -93,7 +93,7 @@ export class ChipsComponent extends ConfigHandler implements OnInit, AfterConten
   }
 
   override ngOnInit() {
-    super.ngOnInit()
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;

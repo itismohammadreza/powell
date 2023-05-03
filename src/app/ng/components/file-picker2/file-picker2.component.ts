@@ -78,7 +78,7 @@ export class FilePicker2Component extends ConfigHandler implements OnInit, OnCha
   }
 
   override ngOnInit() {
-    super.ngOnInit()
+    super.ngOnInit();
     //store user defined label for single selection mode
     this._chooseLabel = this.chooseLabel;
     this.inputId = this.getId();
