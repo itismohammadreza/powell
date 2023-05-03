@@ -4,7 +4,10 @@ import {NgConfig} from "@ng/models";
 import {ConfigService} from "@ng/api";
 import {Global} from "@core/config";
 
-@Directive({selector: '[configChange]'})
+@Directive({
+  selector: '[configChange]',
+  standalone: true
+})
 export class ConfigHandler implements OnInit, OnChanges, OnDestroy {
   @Output() configChange = new EventEmitter();
 
@@ -12,7 +15,7 @@ export class ConfigHandler implements OnInit, OnChanges, OnDestroy {
   destroy$ = new Subject<boolean>();
   configService: ConfigService;
 
-  constructor() {
+  protected constructor() {
     this.configService = Global.Injector.get(ConfigService);
   }
 

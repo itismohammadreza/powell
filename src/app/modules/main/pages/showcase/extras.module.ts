@@ -4,8 +4,8 @@ import {
 } from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 import {PrimeCardModule, PrimeDividerModule, PrimePanelModule} from "@ng/primeng";
 import {CommonModule} from "@angular/common";
-import {ConfigHandlerModule} from "@ng/directives/config-handler";
 import {TranslateModule} from "@ngx-translate/core";
+import {ConfigHandler} from "@ng/api";
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import {TranslateModule} from "@ngx-translate/core";
   imports: [
     CommonModule,
     PrimeDividerModule,
-    ConfigHandlerModule
+    ConfigHandler
   ]
 })
 export class ExtrasModule {
