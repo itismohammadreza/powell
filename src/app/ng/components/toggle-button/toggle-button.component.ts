@@ -1,14 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -19,8 +9,9 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgIconPosition, NgValidation} from '@ng/models';
+import {ConfigHandler} from "@ng/api";
 
 @Component({
   selector: 'ng-toggle-button',
@@ -34,7 +25,7 @@ import {NgFixLabelPosition, NgIconPosition, NgValidation} from '@ng/models';
     }
   ]
 })
-export class ToggleButtonComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class ToggleButtonComponent extends ConfigHandler implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -59,16 +50,17 @@ export class ToggleButtonComponent implements OnInit, ControlValueAccessor, OnDe
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject<boolean>();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+    super()
   }
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -145,10 +137,5 @@ export class ToggleButtonComponent implements OnInit, ControlValueAccessor, OnDe
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

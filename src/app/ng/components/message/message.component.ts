@@ -1,13 +1,14 @@
 import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
 import {TemplateDirective} from "@ng/directives/template";
 import {NgSeverity} from "@ng/models";
+import {ConfigHandler} from "@ng/api";
 
 @Component({
   selector: 'ng-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss']
 })
-export class MessageComponent implements AfterContentInit {
+export class MessageComponent extends ConfigHandler implements AfterContentInit {
   @Input() inlineMessage: string;
   @Input() summary: string;
   @Input() detail: string;
@@ -19,6 +20,10 @@ export class MessageComponent implements AfterContentInit {
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   contentTemplate: TemplateRef<any>;
+
+  constructor() {
+    super();
+  }
 
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {

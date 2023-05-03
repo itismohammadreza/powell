@@ -11,13 +11,14 @@ import {
 import {NgButtonAppearance, NgColor, NgIconPosition, NgSize} from '@ng/models';
 import {TemplateDirective} from "@ng/directives/template";
 import {PrimeMenuItem} from "@ng/primeng/api";
+import {ConfigHandler} from "@ng/api";
 
 @Component({
   selector: 'ng-split-button',
   templateUrl: './split-button.component.html',
   styleUrls: ['./split-button.component.scss']
 })
-export class SplitButtonComponent implements AfterContentInit {
+export class SplitButtonComponent extends ConfigHandler implements AfterContentInit {
   @Input() items: PrimeMenuItem[];
   @Input() appearance: NgButtonAppearance = 'outlined';
   @Input() rounded: boolean;
@@ -44,6 +45,10 @@ export class SplitButtonComponent implements AfterContentInit {
   @Output() onDropdownClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
   contentTemplate: TemplateRef<any>;
+
+  constructor() {
+    super();
+  }
 
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {

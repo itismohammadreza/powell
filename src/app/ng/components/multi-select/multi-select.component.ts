@@ -7,7 +7,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -23,7 +22,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {
   NgAddon,
   NgChipDisplayMode,
@@ -36,6 +35,7 @@ import {
 } from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template';
 import {PrimeScrollerOptions} from "@ng/primeng/api";
+import {ConfigHandler} from "@ng/api";
 
 @Component({
   selector: 'ng-multi-select',
@@ -49,7 +49,7 @@ import {PrimeScrollerOptions} from "@ng/primeng/api";
     }
   ]
 })
-export class MultiSelectComponent implements OnInit, ControlValueAccessor, AfterContentInit, OnDestroy {
+export class MultiSelectComponent extends ConfigHandler implements OnInit, ControlValueAccessor, AfterContentInit {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -132,7 +132,6 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject<boolean>();
   itemTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
   selectedItemsTemplate: TemplateRef<any>;
@@ -146,9 +145,11 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+    super()
   }
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -272,10 +273,5 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

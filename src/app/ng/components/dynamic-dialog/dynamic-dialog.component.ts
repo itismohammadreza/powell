@@ -1,13 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  ComponentRef,
-  OnDestroy,
-  Type,
-  ViewChild,
-  ViewContainerRef
-} from '@angular/core';
+import {ChangeDetectorRef, Component, ComponentRef, OnDestroy, Type, ViewChild, ViewContainerRef} from '@angular/core';
 import {Subject} from 'rxjs';
 import {DynamicDialogRef} from './dynamic-dialog-ref';
 

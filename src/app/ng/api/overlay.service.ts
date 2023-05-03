@@ -111,10 +111,10 @@ export class OverlayService {
     //   ]
     // });
     this.dynamicDialogCmpRef = this.addToBody(DynamicDialogComponent, new DynamicDialogInjector(this.injector, map))
-    // const onCloseSub = this.dynamicDialogCmpRef.instance.onClose.subscribe(() => {
-    //   this.removeFromBody(this.dynamicDialogCmpRef);
-    //   onCloseSub.unsubscribe();
-    // });
+    const onCloseSub = this.dynamicDialogCmpRef.instance.onClose.subscribe(() => {
+      this.removeFromBody(this.dynamicDialogCmpRef);
+      onCloseSub.unsubscribe();
+    });
     this.dynamicDialogCmpRef.instance.open(componentType);
     return dialogRef;
   }
@@ -245,7 +245,7 @@ export class OverlayService {
 
   showDialog(options: NgDialogOptions): Promise<void> {
     if (!this.bodyContains(this.dialogCmpRef)) {
-      // this.dialogCmpRef = this.addToBody(DialogComponent);
+      this.dialogCmpRef = this.addToBody(DialogComponent);
     }
     const {instance} = this.dialogCmpRef;
     instance.options = {
@@ -279,7 +279,7 @@ export class OverlayService {
 
   showDialogForm(config: NgDialogFormConfig[], options: NgDialogFormOptions = {}): Observable<NgDialogFormResult> {
     if (!this.bodyContains(this.dialogFormCmpRef)) {
-      // this.dialogFormCmpRef = this.addToBody(DialogFormComponent);
+      this.dialogFormCmpRef = this.addToBody(DialogFormComponent);
     }
     const {instance} = this.dialogFormCmpRef;
     instance.config = config;

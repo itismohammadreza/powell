@@ -7,7 +7,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -23,9 +22,10 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgAddon, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template';
+import {ConfigHandler} from "@ng/api";
 
 @Component({
   selector: 'ng-listbox',
@@ -39,7 +39,7 @@ import {TemplateDirective} from '@ng/directives/template';
     }
   ]
 })
-export class ListboxComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
+export class ListboxComponent extends ConfigHandler implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -88,7 +88,6 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject<boolean>();
   headerTemplate: TemplateRef<any>;
   itemTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
@@ -102,9 +101,11 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+    super()
   }
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -228,10 +229,5 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

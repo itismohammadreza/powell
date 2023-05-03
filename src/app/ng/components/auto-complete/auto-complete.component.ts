@@ -7,7 +7,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -23,10 +22,11 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@ng/models';
 import {TemplateDirective} from '@ng/directives/template';
 import {PrimeScrollerOptions} from "@ng/primeng/api";
+import {ConfigHandler} from "@ng/api";
 
 @Component({
   selector: 'ng-auto-complete',
@@ -40,7 +40,7 @@ import {PrimeScrollerOptions} from "@ng/primeng/api";
     }
   ]
 })
-export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
+export class AutoCompleteComponent extends ConfigHandler implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -118,7 +118,6 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject<boolean>();
   itemTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
@@ -131,9 +130,11 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+    super()
   }
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit()
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -274,11 +275,6 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }
 

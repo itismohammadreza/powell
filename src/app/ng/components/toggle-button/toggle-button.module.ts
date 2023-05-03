@@ -1,7 +1,6 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {ConfigHandlerModule} from "@ng/directives/config-handler";
 import {ToggleButtonComponent} from "@ng/components/toggle-button";
 import {LabelStarModule} from "@ng/pipes/label-star";
 import {PrimeToggleButtonModule} from "@ng/primeng";
@@ -14,7 +13,6 @@ import {PrimeToggleButtonModule} from "@ng/primeng";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    ConfigHandlerModule,
   ],
 })
 

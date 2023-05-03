@@ -6,9 +6,9 @@ import {
   Injector,
   Input,
   OnChanges,
-  OnDestroy,
   OnInit,
-  Output
+  Output,
+  SimpleChanges
 } from '@angular/core';
 import {
   AbstractControl,
@@ -20,9 +20,9 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgColor, NgFileResultType, NgFixLabelPosition, NgValidation} from '@ng/models';
-import {UtilsService} from "@ng/api";
+import {ConfigHandler, UtilsService} from "@ng/api";
 
 @Component({
   selector: 'ng-file-picker2',
@@ -34,12 +34,9 @@ import {UtilsService} from "@ng/api";
       useExisting: forwardRef(() => FilePicker2Component),
       multi: true
     }
-  ],
-  host: {
-    '[style.display]': "'block'"
-  }
+  ]
 })
-export class FilePicker2Component implements OnInit, OnChanges, ControlValueAccessor, OnDestroy {
+export class FilePicker2Component extends ConfigHandler implements OnInit, OnChanges, ControlValueAccessor {
   @Input() value: any = [];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -64,7 +61,6 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject<boolean>();
   filesToShow: { display: string | ArrayBuffer, name: string }[] = [];
   filesToEmit: any[] = [];
   _chooseLabel: string;
@@ -78,9 +74,11 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     private injector: Injector,
     private utilsService: UtilsService
   ) {
+    super()
   }
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit()
     //store user defined label for single selection mode
     this._chooseLabel = this.chooseLabel;
     this.inputId = this.getId();
@@ -111,7 +109,8 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     }
   }
 
-  ngOnChanges() {
+  override ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes)
     this.init(this.value);
   }
 
@@ -255,11 +254,6 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 
   getFileType(file: any) {

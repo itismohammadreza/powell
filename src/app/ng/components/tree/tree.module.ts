@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {ConfigHandlerModule} from "@ng/directives/config-handler";
 import {AddonModule} from "@ng/directives/addon";
 import {TreeComponent} from "@ng/components/tree";
 import {LabelStarModule} from "@ng/pipes/label-star";
@@ -12,7 +11,6 @@ import {TemplateModule} from "@ng/directives/template";
   exports: [TreeComponent, TemplateModule],
   imports: [
     PrimeTreeModule,
-    ConfigHandlerModule,
     AddonModule,
     LabelStarModule,
     CommonModule,

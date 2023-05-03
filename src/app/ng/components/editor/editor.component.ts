@@ -6,7 +6,6 @@ import {
   Injector,
   Input,
   OnChanges,
-  OnDestroy,
   OnInit,
   Output,
   SimpleChanges
@@ -21,12 +20,13 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
 import {NgFixLabelPosition, NgValidation} from '@ng/models';
 import {EditorBaseComponent} from "@ng/components/editor/editor-base/editor-base.component";
+import {ConfigHandler} from "@ng/api";
 
 @Component({
   selector: 'ng-editor',
@@ -40,7 +40,7 @@ import {EditorBaseComponent} from "@ng/components/editor/editor-base/editor-base
     },
   ],
 })
-export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor, OnDestroy {
+export class EditorComponent extends ConfigHandler implements OnInit, OnChanges, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -100,7 +100,6 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor,
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject<boolean>();
   editorInstance: EditorBaseComponent;
 
   onModelChange: any = (_: any) => {
@@ -109,9 +108,11 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor,
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+    super()
   }
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit();
     if (!this.options) {
       this.options = {
         plugins: plugins,
@@ -160,7 +161,8 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor,
     }
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  override ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes)
     if (!this.editorInstance) {
       return
     }
@@ -260,10 +262,5 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor,
       this.editorInstance.enabled()
     }
     this.cd.markForCheck()
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete()
   }
 }

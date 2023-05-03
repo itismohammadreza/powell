@@ -1,14 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -30,7 +20,8 @@ import {
   NgSize,
   NgValidation
 } from "@ng/models";
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
+import {ConfigHandler} from "@ng/api";
 
 @Component({
   selector: 'ng-gregorian-datepicker',
@@ -44,7 +35,7 @@ import {Subject, takeUntil} from "rxjs";
     },
   ],
 })
-export class GregorianDatepickerComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class GregorianDatepickerComponent extends ConfigHandler implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -131,16 +122,17 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject<boolean>();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+    super()
   }
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit()
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -235,10 +227,5 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

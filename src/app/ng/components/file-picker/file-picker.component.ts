@@ -9,10 +9,10 @@ import {
   Injector,
   Input,
   OnChanges,
-  OnDestroy,
   OnInit,
   Output,
   QueryList,
+  SimpleChanges,
   TemplateRef,
   ViewChild
 } from '@angular/core';
@@ -26,10 +26,11 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgFilePickerMode, NgFileResultType, NgFixLabelPosition, NgValidation} from '@ng/models';
 import {TemplateDirective} from "@ng/directives/template";
 import {PrimeFileUpload} from "@ng/primeng";
+import {ConfigHandler, UtilsService} from "@ng/api";
 
 @Component({
   selector: 'ng-file-picker',
@@ -43,7 +44,7 @@ import {PrimeFileUpload} from "@ng/primeng";
     }
   ]
 })
-export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit, ControlValueAccessor, OnDestroy {
+export class FilePickerComponent extends ConfigHandler implements OnInit, OnChanges, AfterContentInit, ControlValueAccessor {
   @Input() value: any = [];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -104,7 +105,6 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject<boolean>();
   selectedFiles: any[] = [];
   filesToEmit: (string | ArrayBuffer | File)[] | any = [];
   toolbarTemplate: TemplateRef<any>;
@@ -115,10 +115,12 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef, private injector: Injector, private utilsService: UtilsService) {
+    super()
   }
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -147,8 +149,9 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     }
   }
 
-  ngOnChanges() {
-    if (this.isImage(this.value)) {
+  override ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes)
+    if (this.utilsService.isImage(this.value)) {
       this.init(this.value);
     }
   }

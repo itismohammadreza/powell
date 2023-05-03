@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {ConfigHandlerModule} from "@ng/directives/config-handler";
 import {TableComponent} from "@ng/components/table";
 import {EmptyModule} from "@ng/components/empty";
 import {InputTextModule} from "@ng/components/input-text";
@@ -27,7 +26,6 @@ import {TemplateModule} from "@ng/directives/template";
     InputNumberModule,
     PrimeTooltipModule,
     ButtonModule,
-    ConfigHandlerModule,
     GregorianDatepickerModule,
     SliderModule,
     DropdownModule,

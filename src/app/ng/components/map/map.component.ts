@@ -6,9 +6,9 @@ import {
   Injector,
   Input,
   OnChanges,
-  OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
 } from '@angular/core';
 import {
   CRS,
@@ -39,8 +39,9 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgAddon, NgFixLabelPosition, NgValidation} from "@ng/models";
+import {ConfigHandler} from "@ng/api";
 
 @Component({
   selector: 'ng-map',
@@ -54,7 +55,7 @@ import {NgAddon, NgFixLabelPosition, NgValidation} from "@ng/models";
     }
   ]
 })
-export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, OnDestroy {
+export class MapComponent extends ConfigHandler implements OnInit, ControlValueAccessor, OnChanges {
   @Input() value: LatLngLiteral | LatLngLiteral[];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -156,7 +157,6 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, On
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject<boolean>();
   map: Map;
   layers: Layer[] = [];
   onModelChange: any = (_: any) => {
@@ -165,9 +165,11 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, On
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+    super()
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -196,7 +198,8 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, On
     }
   }
 
-  ngOnChanges() {
+  override ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes)
     this.handleDisabledState()
   }
 
@@ -353,10 +356,5 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, On
     this.value = null;
     this.onModelChange(null);
     this.onClear.emit()
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete()
   }
 }

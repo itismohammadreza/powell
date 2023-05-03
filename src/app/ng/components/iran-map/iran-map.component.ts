@@ -8,7 +8,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
@@ -23,7 +22,8 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
+import {ConfigHandler} from "@ng/api";
 
 @Component({
   templateUrl: './iran-map.component.html',
@@ -38,7 +38,7 @@ import {Subject, takeUntil} from "rxjs";
     }
   ]
 })
-export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAccessor, OnDestroy {
+export class IranMapComponent extends ConfigHandler implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: number | number[];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -280,7 +280,6 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject<boolean>();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -289,9 +288,11 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
               private el: ElementRef) {
+    super()
   }
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -394,11 +395,6 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 
   loadMap() {

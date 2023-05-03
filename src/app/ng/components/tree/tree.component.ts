@@ -7,7 +7,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -23,11 +22,12 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {TemplateDirective} from '@ng/directives/template';
 import {NgAddon, NgFixLabelPosition, NgOrientation, NgSelectionMode, NgTreeFilterMode, NgValidation} from '@ng/models';
 import {PrimeContextMenu} from "@ng/primeng";
 import {PrimeScrollerOptions} from "@ng/primeng/api";
+import {ConfigHandler} from "@ng/api";
 
 @Component({
   selector: 'ng-tree',
@@ -41,7 +41,7 @@ import {PrimeScrollerOptions} from "@ng/primeng/api";
     }
   ]
 })
-export class TreeComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
+export class TreeComponent extends ConfigHandler implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
@@ -100,7 +100,6 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject<boolean>();
   headerTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
@@ -111,9 +110,11 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+    super()
   }
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit();
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -209,11 +210,6 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
 
   registerOnTouched(fn) {
     this.onModelTouched = fn;
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete()
   }
 }
 
