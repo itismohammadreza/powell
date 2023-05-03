@@ -14,12 +14,6 @@
   - 2- responsive until mobile view
   - 3- change size to desktop view
   - 4- the sidebarType is reset to its default value
-- complete implementation of configHandlerComponent like autoComplete
-
-[//]: # (ولی این یه مشکلی بوجود میاره، چون کامپوننت ها باید از این کلاس ارث بری کنن، باعث میشه کامپونت هایی که مثلا یه اینپوتی مثل فییلد رو نمیپذیرن هم ثابلیت اینکه 
-این اینپوت رو آی دی ای پیشنهاد بده بوجود میاد براشون. هرچقدرم که استفاده ای نمیکنن ازش.
-و مشکل دوم اینه که ما توی کانفیگ کلی، هم لیبل پوز داریم و هم فیکس لیبل پوز، درحالی که این کامپوننت پدر باید فقط یکیش رو داشته باشه)
-
 - add OnPush change detection strategy
 - create error and hint manager directive
 - fix selectButton issue
@@ -28,16 +22,6 @@
 - replace css colors with variables and make theme colors configurable
 - add bootstrap 5
 - use gap instead of margin left and right
-
-[//]: # (نمیشه کامپوننتی رو که داره کانفیگ رو توی خودش ایمپورت میکنه، توی سرویسی استفادش کرد)
-
-[//]: # (چون کانفیگ توی خودش داره از کانفیگ سرویس استفاده میکنه)
-
-[//]: # (دراصل مشکل توی استفاده ی کانفیگ سرویس توی دایرکتیوه)
-
-[//]: # (یه سرویس دارم که توش یه کامپوننت داره که توش یه دایرکتیو داره که توش اون سرویس رو داره)
-
-[//]: # (service => component => directive => service)
 
 ### New
 
