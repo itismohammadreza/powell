@@ -76,7 +76,7 @@ export class ConfigHandler implements OnInit, OnChanges, OnDestroy {
       'showRequiredStar'
     ]
     configs.forEach(config => {
-      this[config] = currentConfig[config];
+      this[config] = this[config] && currentConfig[config];
       // if (modifiedConfig[config] != undefined) {
       //   this[`${config}Change`]?.emit(this[config]);
       // }
