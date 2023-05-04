@@ -168,7 +168,7 @@ export class OverlayService {
     instance.showTransitionOptions = options.showTransitionOptions || '.12s cubic-bezier(0, 0, 0.2, 1)';
     instance.hideTransitionOptions = options.hideTransitionOptions || '.1s linear';
     instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
-    instance.baseZIndex = options.baseZIndex;
+    instance.baseZIndex = options.baseZIndex ?? this.configService.getConfig().zIndex.modal;
     instance.style = options.style;
     instance.styleClass = `${options.styleClass} ${(options.rtl == undefined ? this.configService.getConfig().rtl : options.rtl) ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
     return new Promise((accept) => {
@@ -207,7 +207,7 @@ export class OverlayService {
     instance.maskStyleClass = options.maskStyleClass;
     instance.closable = options.closable != undefined ? options.closable : true;
     instance.focusTrap = options.focusTrap;
-    instance.baseZIndex = options.baseZIndex;
+    instance.baseZIndex = options.baseZIndex ?? this.configService.getConfig().zIndex.modal;
     instance.acceptIcon = options.acceptIcon;
     instance.rejectIcon = options.rejectIcon;
     instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
@@ -258,6 +258,7 @@ export class OverlayService {
       closeIcon: 'pi pi-times',
       minimizeIcon: 'pi pi-window-minimize',
       maximizeIcon: 'pi pi-window-maximize',
+      baseZIndex: options.baseZIndex ?? this.configService.getConfig().zIndex.modal,
       ...options,
       styleClass: `${options.styleClass} ${(options.rtl == undefined ? this.configService.getConfig().rtl : options.rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`,
     };
@@ -300,6 +301,7 @@ export class OverlayService {
       rejectAppearance: 'outlined',
       rejectColor: 'danger',
       defaultFocus: 'accept',
+      baseZIndex: options.baseZIndex ?? this.configService.getConfig().zIndex.modal,
       rtl: this.configService.getConfig().rtl,
       ...options,
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-dialog-form-accept`,
