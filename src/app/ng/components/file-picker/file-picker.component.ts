@@ -1,6 +1,7 @@
 import {HttpHeaders} from '@angular/common/http';
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -36,6 +37,7 @@ import {ConfigHandler, UtilsService} from "@ng/api";
   selector: 'ng-file-picker',
   templateUrl: './file-picker.component.html',
   styleUrls: ['./file-picker.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

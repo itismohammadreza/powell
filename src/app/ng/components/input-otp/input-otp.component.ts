@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -29,6 +30,7 @@ import {ConfigHandler} from "@ng/api";
   selector: 'ng-input-otp',
   templateUrl: './input-otp.component.html',
   styleUrls: ['./input-otp.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

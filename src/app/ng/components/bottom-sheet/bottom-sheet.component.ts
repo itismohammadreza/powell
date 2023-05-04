@@ -1,5 +1,5 @@
 import {
-  AfterContentInit,
+  AfterContentInit, ChangeDetectionStrategy,
   Component,
   ContentChildren,
   EventEmitter,
@@ -17,7 +17,8 @@ import {Subject, takeUntil} from "rxjs";
 @Component({
   selector: 'ng-bottom-sheet',
   templateUrl: './bottom-sheet.component.html',
-  styleUrls: ['./bottom-sheet.component.scss']
+  styleUrls: ['./bottom-sheet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BottomSheetComponent implements OnInit, AfterContentInit {
   @Input() header: string;

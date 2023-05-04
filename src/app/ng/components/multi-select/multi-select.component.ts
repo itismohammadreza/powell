@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -41,6 +42,7 @@ import {ConfigHandler} from "@ng/api";
   selector: 'ng-multi-select',
   templateUrl: './multi-select.component.html',
   styleUrls: ['./multi-select.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

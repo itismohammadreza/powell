@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -31,6 +32,7 @@ import {ConfigHandler} from "@ng/api";
   selector: 'ng-select-button',
   templateUrl: './select-button.component.html',
   styleUrls: ['./select-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

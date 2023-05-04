@@ -1,10 +1,11 @@
-import {Component, ElementRef, Inject, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, Inject, OnDestroy, OnInit} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'ng-dialog2',
   templateUrl: './dialog2.component.html',
-  styleUrls: ['./dialog2.component.scss']
+  styleUrls: ['./dialog2.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Dialog2Component implements OnInit, OnDestroy {
   constructor(private element: ElementRef, @Inject(DOCUMENT) private document: Document) {

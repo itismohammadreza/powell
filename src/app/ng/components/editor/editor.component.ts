@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -32,6 +33,7 @@ import {ConfigHandler} from "@ng/api";
   selector: 'ng-editor',
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

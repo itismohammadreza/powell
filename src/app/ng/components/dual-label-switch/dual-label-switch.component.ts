@@ -1,4 +1,14 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  forwardRef,
+  Injector,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -17,6 +27,7 @@ import {ConfigHandler} from "@ng/api";
   selector: 'ng-dual-label-switch',
   templateUrl: './dual-label-switch.component.html',
   styleUrls: ['./dual-label-switch.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

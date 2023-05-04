@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -32,6 +33,7 @@ import {ConfigHandler} from "@ng/api";
   selector: 'ng-auto-complete',
   templateUrl: './auto-complete.component.html',
   styleUrls: ['./auto-complete.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

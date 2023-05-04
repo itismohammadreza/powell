@@ -1,4 +1,13 @@
-import {ChangeDetectorRef, Component, EventEmitter, Injector, Input, OnInit, Output} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Injector,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -15,7 +24,8 @@ import {ConfigHandler} from "@ng/api";
 @Component({
   selector: 'ng-tri-state-checkbox',
   templateUrl: './tri-state-checkbox.component.html',
-  styleUrls: ['./tri-state-checkbox.component.scss']
+  styleUrls: ['./tri-state-checkbox.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TriStateCheckboxComponent extends ConfigHandler implements OnInit, ControlValueAccessor {
   @Input() value: any;

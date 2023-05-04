@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -31,6 +32,7 @@ import {ConfigHandler} from "@ng/api";
   selector: 'ng-cascade-select',
   templateUrl: './cascade-select.component.html',
   styleUrls: ['./cascade-select.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

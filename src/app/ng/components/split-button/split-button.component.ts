@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   Component,
   ContentChildren,
   EventEmitter,
@@ -16,7 +17,8 @@ import {ConfigHandler} from "@ng/api";
 @Component({
   selector: 'ng-split-button',
   templateUrl: './split-button.component.html',
-  styleUrls: ['./split-button.component.scss']
+  styleUrls: ['./split-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SplitButtonComponent extends ConfigHandler implements AfterContentInit {
   @Input() items: PrimeMenuItem[];

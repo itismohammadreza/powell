@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {ActivatedRouteSnapshot, Data, NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs/operators";
@@ -6,7 +6,8 @@ import {filter} from "rxjs/operators";
 @Component({
   selector: 'ng-breadcrumb',
   templateUrl: './breadcrumb.component.html',
-  styleUrls: ['./breadcrumb.component.scss']
+  styleUrls: ['./breadcrumb.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbComponent {
   _breadcrumbs$ = new BehaviorSubject<any[]>([]);

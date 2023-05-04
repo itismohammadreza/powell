@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -27,6 +28,7 @@ import {ConfigHandler} from "@ng/api";
   selector: 'ng-input-textarea',
   templateUrl: './input-textarea.component.html',
   styleUrls: ['./input-textarea.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

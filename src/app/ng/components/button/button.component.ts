@@ -1,10 +1,11 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {NgButtonAppearance, NgButtonType, NgColor, NgIconPosition, NgSize} from '@ng/models';
 
 @Component({
   selector: 'ng-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {'[class.full]': 'full'}
 })
 export class ButtonComponent implements OnChanges {

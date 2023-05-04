@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   Component,
   ContentChildren,
   EventEmitter,
@@ -15,7 +16,8 @@ import {TemplateDirective} from "@ng/directives/template";
 @Component({
   selector: 'ng-image-slider',
   templateUrl: './image-slider.component.html',
-  styleUrls: ['./image-slider.component.scss']
+  styleUrls: ['./image-slider.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageSliderComponent implements OnInit, AfterContentInit {
   @Input() images: NgImageItem[] = [];

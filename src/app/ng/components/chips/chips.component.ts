@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -31,6 +32,7 @@ import {ConfigHandler} from "@ng/api";
   selector: 'ng-chips',
   templateUrl: './chips.component.html',
   styleUrls: ['./chips.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

@@ -1,11 +1,12 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {NgEmptyIcon} from "@ng/models";
 import {ConfigHandler} from "@ng/api";
 
 @Component({
   selector: 'ng-empty',
   templateUrl: './empty.component.html',
-  styleUrls: ['./empty.component.scss']
+  styleUrls: ['./empty.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmptyComponent extends ConfigHandler {
   @Input() imageType: NgEmptyIcon = 'box2';

@@ -1,11 +1,21 @@
-import {Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges
+} from '@angular/core';
 import {NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow, NgPinchZoomOptions} from "@ng/models";
 import {defaultProperties, IvyPinch} from "@ng/components/pinch-zoom";
 
 @Component({
   selector: 'ng-pinch-zoom',
   templateUrl: './pinch-zoom.component.html',
-  styleUrls: ['./pinch-zoom.component.scss']
+  styleUrls: ['./pinch-zoom.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {

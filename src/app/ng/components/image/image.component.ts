@@ -22,6 +22,7 @@ import {PrimeDomHandler, PrimeZIndexUtils} from "@ng/primeng/api";
   selector: 'ng-image',
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('animation', [
       transition('void => visible', [
@@ -32,7 +33,6 @@ import {PrimeDomHandler, PrimeZIndexUtils} from "@ng/primeng/api";
       ])
     ])
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'p-element'
   }

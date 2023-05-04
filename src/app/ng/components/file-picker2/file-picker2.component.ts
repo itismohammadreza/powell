@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -28,6 +29,7 @@ import {ConfigHandler, UtilsService} from "@ng/api";
   selector: 'ng-file-picker2',
   templateUrl: './file-picker2.component.html',
   styleUrls: ['./file-picker2.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

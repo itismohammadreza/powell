@@ -1,10 +1,11 @@
-import {Component, EventEmitter} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter} from '@angular/core';
 import {NgDialogOptions} from '@ng/models';
 
 @Component({
   selector: 'ng-dialog',
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+  styleUrls: ['./dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogComponent {
   onClose = new EventEmitter();

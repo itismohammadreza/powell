@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -40,6 +41,7 @@ import {ConfigHandler} from "@ng/api";
   selector: 'ng-tree-select',
   templateUrl: './tree-select.component.html',
   styleUrls: ['./tree-select.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
