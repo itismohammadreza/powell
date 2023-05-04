@@ -14,7 +14,6 @@
   - 2- responsive until mobile view
   - 3- change size to desktop view
   - 4- the sidebarType is reset to its default value
-- add OnPush change detection strategy
 - create error and hint manager directive
 - fix selectButton issue
 - fix table issue
