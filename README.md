@@ -21,6 +21,7 @@
 - replace css colors with variables and make theme colors configurable
 - add bootstrap 5
 - use gap instead of margin left and right
+- remove powell components dependencies to bootstrap5
 
 ### New
 
