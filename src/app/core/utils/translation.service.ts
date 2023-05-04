@@ -18,13 +18,29 @@ export class TranslationService {
     this.onLangChange().subscribe((res: any) => {
       this.storeLang(res.lang, this.currentLang);
       this.currentLang = res.lang;
+      this.handleBootstrapFiles()
     });
     this.currentLang = Global.Config.lang;
     this.storeLang(this.currentLang);
+    this.handleBootstrapFiles()
     if (!this.getDefaultLang()) {
       this.setDefaultLang(this.currentLang);
     }
     await this.use(this.currentLang).toPromise();
+  }
+
+  handleBootstrapFiles() {
+    let bootStrapLinkEl: any = this.document.querySelector('#bootstrap-theme-link');
+    if (!bootStrapLinkEl) {
+      const head = this.document.querySelector('head');
+      bootStrapLinkEl = this.document.createElement('link');
+      bootStrapLinkEl.id = "bootstrap-theme-link"
+      bootStrapLinkEl.rel = "stylesheet";
+      bootStrapLinkEl.type = "text/css";
+      head.appendChild(bootStrapLinkEl);
+    }
+    const themeLink = `assets/styles/vendor/bootstrap-v5/bootstrap${this.currentLang == 'fa' ? '.rtl' : ''}.css`;
+    bootStrapLinkEl.setAttribute('href', themeLink);
   }
 
   storeLang(currentLang: string, prevLang?: string) {
