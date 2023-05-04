@@ -26,7 +26,7 @@ import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
 import {NgFixLabelPosition, NgValidation} from '@ng/models';
-import {EditorBaseComponent} from "@ng/components/editor/editor-base/editor-base.component";
+import {EditorBaseComponent} from "@ng/components/editor";
 import {ConfigHandler} from "@ng/api";
 
 @Component({

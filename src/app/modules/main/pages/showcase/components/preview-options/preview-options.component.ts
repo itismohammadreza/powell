@@ -40,9 +40,9 @@ import {
   NgSize,
   NgStatus
 } from '@ng/models';
-import {DropdownComponent} from '@ng/components/dropdown/dropdown.component';
-import {InputTextComponent} from '@ng/components/input-text/input-text.component';
-import {CheckboxComponent} from '@ng/components/checkbox/checkbox.component';
+import {DropdownComponent} from '@ng/components/dropdown';
+import {InputTextComponent} from '@ng/components/input-text';
+import {CheckboxComponent} from '@ng/components/checkbox';
 import {TranslationService} from "@core/utils";
 import {Subject, takeUntil} from "rxjs";
 import {ConfigService} from "@ng/api";

@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {MultiCheckboxComponent} from "@ng/components/multi-checkbox/multi-checkbox.component";
+import {MultiCheckboxComponent} from "@ng/components/multi-checkbox";
 import {LabelStarModule} from "@ng/pipes/label-star";
 import {PrimeCheckboxModule} from "@ng/primeng";
 
