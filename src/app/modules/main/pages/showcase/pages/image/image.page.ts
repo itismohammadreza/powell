@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow} from "@ng/models";
+import {NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow} from "@powell/models";
 
 @Component({
   selector: 'ng-image-page',

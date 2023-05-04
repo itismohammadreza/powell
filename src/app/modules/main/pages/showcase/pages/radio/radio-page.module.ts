@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {RadioModule} from "@ng/components/radio";
+import {RadioModule} from "@powell/components/radio";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";

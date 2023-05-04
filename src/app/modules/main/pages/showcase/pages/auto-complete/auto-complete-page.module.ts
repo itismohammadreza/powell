@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {AutoCompleteModule} from "@ng/components/auto-complete";
+import {AutoCompleteModule} from "@powell/components/auto-complete";
 import {AutoCompletePage} from "@modules/main/pages/showcase/pages/auto-complete";
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";

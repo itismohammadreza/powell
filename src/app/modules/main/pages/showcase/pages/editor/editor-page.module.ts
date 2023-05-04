@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {EditorModule} from "@ng/components/editor";
+import {EditorModule} from "@powell/components/editor";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";

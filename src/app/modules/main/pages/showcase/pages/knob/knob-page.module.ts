@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {ReactiveFormsModule} from "@angular/forms";
-import {KnobModule} from "@ng/components/knob";
+import {KnobModule} from "@powell/components/knob";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {KnobPage} from "@modules/main/pages/showcase/pages/knob";

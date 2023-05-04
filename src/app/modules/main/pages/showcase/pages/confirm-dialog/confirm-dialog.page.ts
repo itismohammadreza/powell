@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {ConfigService, OverlayService} from "@ng/api";
-import {NgConfirmDialogOptions} from "@ng/models";
+import {ConfigService, OverlayService} from "@powell/api";
+import {NgConfirmDialogOptions} from "@powell/models";
 
 @Component({
   selector: 'ng-confirm-dialog-page',

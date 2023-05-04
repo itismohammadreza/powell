@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {ColorPickerModule} from "@ng/components/color-picker";
+import {ColorPickerModule} from "@powell/components/color-picker";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {ColorPickerPage} from "@modules/main/pages/showcase/pages/color-picker";

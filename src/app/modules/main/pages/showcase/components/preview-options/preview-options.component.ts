@@ -39,13 +39,13 @@ import {
   NgSeverity,
   NgSize,
   NgStatus
-} from '@ng/models';
-import {DropdownComponent} from '@ng/components/dropdown';
-import {InputTextComponent} from '@ng/components/input-text';
-import {CheckboxComponent} from '@ng/components/checkbox';
+} from '@powell/models';
+import {DropdownComponent} from '@powell/components/dropdown';
+import {InputTextComponent} from '@powell/components/input-text';
+import {CheckboxComponent} from '@powell/components/checkbox';
 import {TranslationService} from "@core/utils";
 import {Subject, takeUntil} from "rxjs";
-import {ConfigService} from "@ng/api";
+import {ConfigService} from "@powell/api";
 
 type PreviewItem =
   | 'label'

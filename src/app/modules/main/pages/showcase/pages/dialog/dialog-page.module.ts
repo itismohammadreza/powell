@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {DialogPage} from "@modules/main/pages/showcase/pages/dialog";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
-import {ButtonModule} from "@ng/components/button";
+import {ButtonModule} from "@powell/components/button";
 
 @NgModule({
   declarations: [DialogPage],

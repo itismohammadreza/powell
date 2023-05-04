@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {NgFilePickerMode, NgFixLabelPosition} from '@ng/models';
-import {ConfigService} from "@ng/api";
+import {NgFilePickerMode, NgFixLabelPosition} from '@powell/models';
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-file-picker-page',

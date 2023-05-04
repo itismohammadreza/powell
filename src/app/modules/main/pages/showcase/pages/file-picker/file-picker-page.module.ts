@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {FilePickerModule} from "@ng/components/file-picker";
+import {FilePickerModule} from "@powell/components/file-picker";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";

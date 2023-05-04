@@ -6,11 +6,11 @@ import {MainPage} from "@modules/main/main.page";
 import {NavbarMenuComponent} from "@modules/main/components/navbar-menu/navbar-menu.component";
 import {MainRoutingModule} from "@modules/main/main-routing.module";
 import {LayoutModule} from "@modules/layout/layout.module";
-import {ButtonModule} from "@ng/components/button";
-import {InputTextModule} from "@ng/components/input-text";
-import {DropdownModule} from "@ng/components/dropdown";
-import {SwitchModule} from "@ng/components/switch";
-import {FilterModule} from "@ng/pipes/filter";
+import {ButtonModule} from "@powell/components/button";
+import {InputTextModule} from "@powell/components/input-text";
+import {DropdownModule} from "@powell/components/dropdown";
+import {SwitchModule} from "@powell/components/switch";
+import {FilterModule} from "@powell/pipes/filter";
 import {
   PrimeAvatarModule,
   PrimeDividerModule,
@@ -19,7 +19,7 @@ import {
   PrimePanelMenuModule,
   PrimeScrollTopModule,
   PrimeSidebarModule
-} from "@ng/primeng";
+} from "@powell/primeng";
 
 export const DECLARATIONS: Type<any>[] = [
   MainPage,

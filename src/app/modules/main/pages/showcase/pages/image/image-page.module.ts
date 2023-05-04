@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {ImageModule} from "@ng/components/image";
+import {ImageModule} from "@powell/components/image";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {ImagePage} from "@modules/main/pages/showcase/pages/image";

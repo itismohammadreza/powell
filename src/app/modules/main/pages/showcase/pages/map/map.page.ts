@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {NgAddon, NgFixLabelPosition} from "@ng/models";
-import {ConfigService} from "@ng/api";
+import {NgAddon, NgFixLabelPosition} from "@powell/models";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-map-page',

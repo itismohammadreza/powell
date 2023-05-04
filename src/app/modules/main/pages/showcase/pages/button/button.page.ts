@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NgButtonAppearance, NgColor, NgIconPosition, NgSize} from '@ng/models';
+import {NgButtonAppearance, NgColor, NgIconPosition, NgSize} from '@powell/models';
 
 @Component({
   selector: 'ng-button-page',

@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {ReactiveFormsModule} from "@angular/forms";
-import {JalaliDatepickerModule} from "@ng/components/jalali-datepicker";
+import {JalaliDatepickerModule} from "@powell/components/jalali-datepicker";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {JalaliDatepickerPage} from "@modules/main/pages/showcase/pages/jalali-datepicker";

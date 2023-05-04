@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {InfiniteScrollModule} from "@ng/components/infinite-scroll";
+import {InfiniteScrollModule} from "@powell/components/infinite-scroll";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {InfiniteScrollPage} from "@modules/main/pages/showcase/pages/infinite-scroll";

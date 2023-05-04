@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {ReactiveFormsModule} from "@angular/forms";
-import {MultiSelectModule} from "@ng/components/multi-select";
+import {MultiSelectModule} from "@powell/components/multi-select";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {MultiSelectPage} from "@modules/main/pages/showcase/pages/multi-select";

@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import {finalize, Observable, of, tap, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {OverlayService} from '@ng/api';
+import {OverlayService} from '@powell/api';
 import {AuthService} from '@core/http';
 import {RequestsConfig} from "@core/config";
 import {LoaderService} from "@core/utils";

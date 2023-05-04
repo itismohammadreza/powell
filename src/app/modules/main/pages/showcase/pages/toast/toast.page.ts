@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {NgToastOptions} from "@ng/models";
-import {ConfigService, OverlayService} from "@ng/api";
+import {NgToastOptions} from "@powell/models";
+import {ConfigService, OverlayService} from "@powell/api";
 
 @Component({
   selector: 'ng-toast-page',

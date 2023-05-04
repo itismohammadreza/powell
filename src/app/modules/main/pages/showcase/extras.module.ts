@@ -2,10 +2,10 @@ import {NgModule} from '@angular/core';
 import {
   PreviewOptionsComponent
 } from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
-import {PrimeCardModule, PrimeDividerModule, PrimePanelModule} from "@ng/primeng";
+import {PrimeCardModule, PrimeDividerModule, PrimePanelModule} from "@powell/primeng";
 import {CommonModule} from "@angular/common";
 import {TranslateModule} from "@ngx-translate/core";
-import {ConfigHandler} from "@ng/api";
+import {ConfigHandler} from "@powell/api";
 
 @NgModule({
   declarations: [

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {ConfigService, OverlayService} from "@ng/api";
-import {NgDialogOptions} from "@ng/models";
+import {ConfigService, OverlayService} from "@powell/api";
+import {NgDialogOptions} from "@powell/models";
 
 @Component({
   selector: 'ng-dialog-page',

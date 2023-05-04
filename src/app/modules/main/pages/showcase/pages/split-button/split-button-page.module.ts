@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {SplitButtonModule} from "@ng/components/split-button";
+import {SplitButtonModule} from "@powell/components/split-button";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {SplitButtonPage} from "@modules/main/pages/showcase/pages/split-button";

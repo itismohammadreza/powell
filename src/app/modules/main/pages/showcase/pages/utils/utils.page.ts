@@ -1,5 +1,5 @@
 import {Component, OnDestroy} from '@angular/core';
-import {OverlayService, PersianService} from "@ng/api";
+import {OverlayService, PersianService} from "@powell/api";
 import {UserService} from "@core/http";
 import {
   DynamicDialogSampleComponent

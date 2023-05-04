@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {NgFixLabelPosition, NgIconPosition} from "@ng/models";
-import {ConfigService} from "@ng/api";
+import {NgFixLabelPosition, NgIconPosition} from "@powell/models";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-toggle-button-page',

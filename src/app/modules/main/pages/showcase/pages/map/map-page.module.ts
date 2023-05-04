@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {MapModule} from "@ng/components/map";
+import {MapModule} from "@powell/components/map";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {MapPage} from "@modules/main/pages/showcase/pages/map";

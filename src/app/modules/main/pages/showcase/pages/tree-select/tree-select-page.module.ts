@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {ReactiveFormsModule} from "@angular/forms";
-import {TreeSelectModule} from "@ng/components/tree-select";
+import {TreeSelectModule} from "@powell/components/tree-select";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {TreeSelectPage} from "@modules/main/pages/showcase/pages/tree-select";

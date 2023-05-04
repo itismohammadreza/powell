@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {OverlayService} from "@ng/api";
+import {OverlayService} from "@powell/api";
 
 @Component({
   selector: 'ng-bottom-sheet-page',

@@ -9,8 +9,8 @@ import {
   NgNumberButtonLayout,
   NgNumberMode,
   NgSize
-} from '@ng/models';
-import {ConfigService} from "@ng/api";
+} from '@powell/models';
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-input-number-page',

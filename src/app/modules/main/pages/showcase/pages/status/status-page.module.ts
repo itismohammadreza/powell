@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {StatusModule} from "@ng/components/status";
+import {StatusModule} from "@powell/components/status";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {StatusPage} from "@modules/main/pages/showcase/pages/status";

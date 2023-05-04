@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {NgEmptyIcon} from "@ng/models";
-import {ConfigService} from "@ng/api";
+import {NgEmptyIcon} from "@powell/models";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-empty-page',

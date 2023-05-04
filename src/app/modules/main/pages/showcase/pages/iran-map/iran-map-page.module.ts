@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {IranMapModule} from "@ng/components/iran-map";
+import {IranMapModule} from "@powell/components/iran-map";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";

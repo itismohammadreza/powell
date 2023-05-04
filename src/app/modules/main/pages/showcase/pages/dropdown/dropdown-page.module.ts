@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {DropdownModule} from "@ng/components/dropdown";
+import {DropdownModule} from "@powell/components/dropdown";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";

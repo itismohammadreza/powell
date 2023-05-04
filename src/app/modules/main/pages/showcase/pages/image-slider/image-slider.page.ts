@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NgImageItem} from '@ng/models';
+import {NgImageItem} from '@powell/models';
 
 @Component({
   selector: 'ng-image-slider-page',

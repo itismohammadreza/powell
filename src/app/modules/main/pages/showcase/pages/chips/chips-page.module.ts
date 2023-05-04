@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {ChipsModule} from "@ng/components/chips";
+import {ChipsModule} from "@powell/components/chips";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {ChipsPage} from "@modules/main/pages/showcase/pages/chips";

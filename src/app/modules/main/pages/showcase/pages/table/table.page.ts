@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {NgSize, NgTableActionsConfig, NgTableColDef} from '@ng/models';
+import {NgSize, NgTableActionsConfig, NgTableColDef} from '@powell/models';
 import {UserService} from "@core/http";
-import {ConfigService} from "@ng/api";
-import {PrimeLazyLoadEvent, PrimeMenuItem} from "@ng/primeng/api";
+import {ConfigService} from "@powell/api";
+import {PrimeLazyLoadEvent, PrimeMenuItem} from "@powell/primeng/api";
 
 interface Customer {
   id: any,

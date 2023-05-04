@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {NgConfirmPopupOptions} from "@ng/models";
-import {ConfigService, OverlayService} from "@ng/api";
+import {NgConfirmPopupOptions} from "@powell/models";
+import {ConfigService, OverlayService} from "@powell/api";
 
 @Component({
   selector: 'ng-confirm-popup-page',

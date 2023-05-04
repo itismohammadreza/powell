@@ -4,8 +4,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@ng/*": [
-        "src/app/ng/*"
+      "@powell/*": [
+        "src/app/powell/*"
       ],
       "@core/*": [
         "src/app/core/*"

@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {EmptyModule} from "@ng/components/empty";
+import {EmptyModule} from "@powell/components/empty";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {EmptyPage} from "@modules/main/pages/showcase/pages/empty";

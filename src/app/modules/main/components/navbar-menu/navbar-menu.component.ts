@@ -2,10 +2,10 @@ import {AfterContentInit, AfterViewChecked, Component, HostListener, Inject, Inp
 import {DOCUMENT} from "@angular/common";
 import {LanguageChecker} from '@core/utils';
 import {SidebarType} from '@core/models';
-import {ConfigService, ThemeService} from "@ng/api";
-import {NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@ng/models";
+import {ConfigService, ThemeService} from "@powell/api";
+import {NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@powell/models";
 import {Global} from "@core/config";
-import {PrimeMenuItem} from "@ng/primeng/api";
+import {PrimeMenuItem} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-navbar-menu',

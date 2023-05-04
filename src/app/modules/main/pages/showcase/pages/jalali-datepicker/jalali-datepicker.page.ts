@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {NgAddon, NgIconPosition, NgLabelPosition, NgSize} from "@ng/models";
-import {ConfigService, MomentService} from "@ng/api";
+import {NgAddon, NgIconPosition, NgLabelPosition, NgSize} from "@powell/models";
+import {ConfigService, MomentService} from "@powell/api";
 
 @Component({
   selector: 'ng-jalali-datepicker-page',

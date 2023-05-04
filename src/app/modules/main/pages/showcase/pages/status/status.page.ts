@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {NgStatus} from "@ng/models";
-import {ConfigService} from "@ng/api";
+import {NgStatus} from "@powell/models";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-status-page',

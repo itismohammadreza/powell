@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {TreeModule} from "@ng/components/tree";
+import {TreeModule} from "@powell/components/tree";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";

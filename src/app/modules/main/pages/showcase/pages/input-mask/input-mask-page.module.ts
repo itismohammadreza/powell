@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {ReactiveFormsModule} from "@angular/forms";
-import {InputMaskModule} from "@ng/components/input-mask";
+import {InputMaskModule} from "@powell/components/input-mask";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {InputMaskPage} from "@modules/main/pages/showcase/pages/input-mask";

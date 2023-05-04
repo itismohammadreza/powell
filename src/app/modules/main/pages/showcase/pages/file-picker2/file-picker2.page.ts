@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {NgColor, NgFixLabelPosition} from '@ng/models';
-import {ConfigService} from "@ng/api";
+import {NgColor, NgFixLabelPosition} from '@powell/models';
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-file-picker2-page',

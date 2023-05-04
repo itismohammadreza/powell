@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {ReactiveFormsModule} from "@angular/forms";
-import {InputOtpModule} from "@ng/components/input-otp";
+import {InputOtpModule} from "@powell/components/input-otp";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {InputOtpPage} from "@modules/main/pages/showcase/pages/input-otp";

@@ -12,7 +12,7 @@ import {
   OverlayService,
   PersianService,
   UtilsService
-} from "@ng/api";
+} from "@powell/api";
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);

@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {MessageModule} from "@ng/components/message";
+import {MessageModule} from "@powell/components/message";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {MessagePage} from "@modules/main/pages/showcase/pages/message";

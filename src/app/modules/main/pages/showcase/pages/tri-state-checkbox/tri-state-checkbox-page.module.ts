@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {ReactiveFormsModule} from "@angular/forms";
-import {TriStateCheckboxModule} from "@ng/components/tri-state-checkbox";
+import {TriStateCheckboxModule} from "@powell/components/tri-state-checkbox";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {TriStateCheckboxPage} from "@modules/main/pages/showcase/pages/tri-state-checkbox";

@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {SelectButtonModule} from "@ng/components/select-button";
+import {SelectButtonModule} from "@powell/components/select-button";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 import {SelectButtonPage} from "@modules/main/pages/showcase/pages/select-button";

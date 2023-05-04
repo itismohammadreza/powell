@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BottomSheetPage} from "@modules/main/pages/showcase/pages/bottom-sheet";
-import {BottomSheetModule} from "@ng/components/bottom-sheet";
-import {ButtonModule} from "@ng/components/button";
+import {BottomSheetModule} from "@powell/components/bottom-sheet";
+import {ButtonModule} from "@powell/components/button";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {RouterModule} from "@angular/router";
 
