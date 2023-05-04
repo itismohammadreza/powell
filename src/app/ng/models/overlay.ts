@@ -73,6 +73,7 @@ export interface NgToastOptions {
   showTransformOptions?: string;
   hideTransformOptions?: string;
   breakpoints?: any;
+  closeIcon?: string;
 
   rtl?: boolean;
 }
