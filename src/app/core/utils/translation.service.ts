@@ -39,7 +39,7 @@ export class TranslationService {
       bootStrapLinkEl.type = "text/css";
       head.appendChild(bootStrapLinkEl);
     }
-    const themeLink = `assets/styles/vendor/bootstrap-v5/bootstrap${this.currentLang == 'fa' ? '.rtl' : ''}.css`;
+    const themeLink = `assets/styles/vendor/bootstrap/bootstrap${this.currentLang == 'fa' ? '.rtl' : ''}.css`;
     bootStrapLinkEl.setAttribute('href', themeLink);
   }
 
