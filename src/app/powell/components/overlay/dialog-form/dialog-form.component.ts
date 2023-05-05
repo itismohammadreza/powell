@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ElementRef, EventEmitter} from '@angular/core';
+import {Component, ElementRef, EventEmitter} from '@angular/core';
 import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult, NgValidation} from "@powell/models";
 import {ConfigService} from "@powell/api";
@@ -8,7 +8,6 @@ import {PrimeDomHandler} from "@powell/primeng/api";
   selector: 'ng-dialog-form',
   templateUrl: './dialog-form.component.html',
   styleUrls: ['./dialog-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogFormComponent {
   form: FormGroup;

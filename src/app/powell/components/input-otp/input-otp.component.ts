@@ -1,6 +1,5 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -30,7 +29,6 @@ import {ConfigHandler} from "@powell/api";
   selector: 'ng-input-otp',
   templateUrl: './input-otp.component.html',
   styleUrls: ['./input-otp.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

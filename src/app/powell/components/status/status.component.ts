@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {NgStatus} from "@powell/models";
 import {ConfigHandler} from "@powell/api";
 
@@ -6,7 +6,6 @@ import {ConfigHandler} from "@powell/api";
   selector: 'ng-status',
   templateUrl: './status.component.html',
   styleUrls: ['./status.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusComponent extends ConfigHandler {
   @Input() status: NgStatus = "success";

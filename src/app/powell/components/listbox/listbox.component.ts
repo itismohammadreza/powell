@@ -1,5 +1,5 @@
 import {
-  AfterContentInit, ChangeDetectionStrategy,
+  AfterContentInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -31,7 +31,6 @@ import {ConfigHandler} from "@powell/api";
   selector: 'ng-listbox',
   templateUrl: './listbox.component.html',
   styleUrls: ['./listbox.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

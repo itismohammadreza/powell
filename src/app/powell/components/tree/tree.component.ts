@@ -1,6 +1,5 @@
 import {
   AfterContentInit,
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -25,7 +24,14 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {TemplateDirective} from '@powell/directives/template';
-import {NgAddon, NgFixLabelPosition, NgOrientation, NgSelectionMode, NgTreeFilterMode, NgValidation} from '@powell/models';
+import {
+  NgAddon,
+  NgFixLabelPosition,
+  NgOrientation,
+  NgSelectionMode,
+  NgTreeFilterMode,
+  NgValidation
+} from '@powell/models';
 import {PrimeContextMenu} from "@powell/primeng";
 import {PrimeScrollerOptions} from "@powell/primeng/api";
 import {ConfigHandler} from "@powell/api";
@@ -34,7 +40,6 @@ import {ConfigHandler} from "@powell/api";
   selector: 'ng-tree',
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

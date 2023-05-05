@@ -1,5 +1,5 @@
 import {
-  AfterContentInit, ChangeDetectionStrategy,
+  AfterContentInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -31,7 +31,6 @@ import {ConfigHandler} from "@powell/api";
   selector: 'ng-input-password',
   templateUrl: './input-password.component.html',
   styleUrls: ['./input-password.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

@@ -1,6 +1,5 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -29,7 +28,6 @@ import {ConfigHandler} from "@powell/api";
   selector: 'ng-iran-map',
   templateUrl: './iran-map.component.html',
   styleUrls: ['./iran-map.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

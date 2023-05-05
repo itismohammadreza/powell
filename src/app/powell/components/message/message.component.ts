@@ -1,12 +1,4 @@
-import {
-  AfterContentInit,
-  ChangeDetectionStrategy,
-  Component,
-  ContentChildren,
-  Input,
-  QueryList,
-  TemplateRef
-} from '@angular/core';
+import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
 import {TemplateDirective} from "@powell/directives/template";
 import {NgSeverity} from "@powell/models";
 import {ConfigHandler} from "@powell/api";
@@ -15,7 +7,6 @@ import {ConfigHandler} from "@powell/api";
   selector: 'ng-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageComponent extends ConfigHandler implements AfterContentInit {
   @Input() inlineMessage: string;

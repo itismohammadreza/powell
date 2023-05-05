@@ -1,6 +1,5 @@
 import {
   AfterContentInit,
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -32,7 +31,6 @@ import {ConfigHandler} from "@powell/api";
   selector: 'ng-rating',
   templateUrl: './rating.component.html',
   styleUrls: ['./rating.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {NgEmptyIcon} from "@powell/models";
 import {ConfigHandler} from "@powell/api";
 
@@ -6,7 +6,6 @@ import {ConfigHandler} from "@powell/api";
   selector: 'ng-empty',
   templateUrl: './empty.component.html',
   styleUrls: ['./empty.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmptyComponent extends ConfigHandler {
   @Input() imageType: NgEmptyIcon = 'box2';
