@@ -47,12 +47,27 @@ export class ConfigService {
     }
     this.themeService.initTheme();
     this.themeService.changeTheme(this._config.theme);
+    this.handleBootstrapFiles();
     this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
     this.handleBodyClasses();
   }
 
   getConfig() {
     return this._config;
+  }
+
+  private handleBootstrapFiles() {
+    let bootStrapLinkEl: any = this.document.querySelector('#bootstrap-style-link');
+    if (!bootStrapLinkEl) {
+      const head = this.document.querySelector('head');
+      bootStrapLinkEl = this.document.createElement('link');
+      bootStrapLinkEl.id = "bootstrap-style-link";
+      bootStrapLinkEl.rel = "stylesheet";
+      bootStrapLinkEl.type = "text/css";
+      head.appendChild(bootStrapLinkEl);
+    }
+    const themeLink = `assets/styles/vendor/bootstrap/bootstrap${this._config.rtl ? '.rtl' : ''}.css`;
+    bootStrapLinkEl.setAttribute('href', themeLink);
   }
 
   private handleBodyClasses() {
