@@ -279,11 +279,6 @@
   }
 }
 
-.p-scrolltop {
-  right: auto;
-  left: 20px;
-}
-
 .p-menu-overlay.rtl {
   .p-menuitem-link .p-menuitem-icon {
     margin-left: 0.5rem;
@@ -291,3 +286,7 @@
   }
 }
 
+.p-scrolltop {
+  right: auto;
+  left: 20px;
+}
