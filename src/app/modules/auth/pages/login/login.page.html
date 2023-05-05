@@ -8,7 +8,6 @@
       icon="pi pi-user"
       placeholder="نام کاربری"
       [validation]="{'required':'این فیلد الزامیست.','email':'ایمیل نامعتبر است.'}"
-      [rtl]="fa"
     ></ng-input-text>
     <ng-input-text
       type="password"
@@ -17,9 +16,8 @@
       formControlName="password"
       placeholder="رمز عبور"
       [validation]="{'required':'این فیلد الزامیست.'}"
-      [rtl]="fa"
     ></ng-input-text>
-    <ng-checkbox formControlName="rememberMe" [rtl]="fa" label="مرا بخاطر بسپار"></ng-checkbox>
+    <ng-checkbox formControlName="rememberMe" label="مرا بخاطر بسپار"></ng-checkbox>
     <ng-button
       [async]="true"
       [full]="true"

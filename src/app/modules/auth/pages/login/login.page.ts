@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {LanguageChecker} from '@core/utils';
 import {AuthService} from '@core/http';
 import {Router} from '@angular/router';
 
@@ -9,7 +8,7 @@ import {Router} from '@angular/router';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage extends LanguageChecker {
+export class LoginPage {
   form = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required]),
@@ -17,7 +16,6 @@ export class LoginPage extends LanguageChecker {
   });
 
   constructor(private authService: AuthService, private router: Router) {
-    super();
   }
 
   async onSubmit(callback: any) {

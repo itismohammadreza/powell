@@ -8,7 +8,6 @@
       icon="pi pi-user"
       placeholder="نام کاربری"
       [validation]="{'required':'این فیلد الزامیست.','email':'ایمیل نامعتبر است.'}"
-      [rtl]="fa"
     ></ng-input-text>
     <ng-input-text
       type="password"
@@ -17,7 +16,6 @@
       formControlName="password"
       placeholder="رمز عبور"
       [validation]="{'required': 'این فیلد الزامیست.'}"
-      [rtl]="fa"
     ></ng-input-text>
     <ng-input-text
       type="password"
@@ -26,7 +24,6 @@
       formControlName="confirmPassword"
       placeholder="تکرار رمز عبور"
       [validation]="{'required': 'این فیلد الزامیست.'}"
-      [rtl]="fa"
     ></ng-input-text>
     <small class="p-error mt-n4"
            *ngIf="form.hasError('notSame') && !form.get('confirmPassword').hasError('required')">
