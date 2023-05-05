@@ -1,5 +1,5 @@
-<form class="form-row justify-content-center" [formGroup]="form">
-  <div class="p-4 box rounded-lg shadow">
+<form class="row justify-content-center" [formGroup]="form">
+  <div class="p-4 box rounded-4 shadow">
     <ng-logo class="text-center mb-2"></ng-logo>
     <h3 class="text-center">ثبت نام</h3>
     <ng-input-text
@@ -25,7 +25,7 @@
       placeholder="تکرار رمز عبور"
       [validation]="{'required': 'این فیلد الزامیست.'}"
     ></ng-input-text>
-    <small class="p-error mt-n4"
+    <small class="p-error text-center"
            *ngIf="form.hasError('notSame') && !form.get('confirmPassword').hasError('required')">
       رمزعبور و تکرار مطابقت ندارند
     </small>

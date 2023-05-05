@@ -39,7 +39,7 @@
         (click)="multipleUploader.click()">
         <i class="pi pi-paperclip h2 mb-0"></i>
       </div>
-      <div *ngFor="let item of filesToShow; let i = index" class="image-item mr-3 mb-2">
+      <div *ngFor="let item of filesToShow; let i = index" class="image-item me-3 mb-2">
         <ng-container [ngSwitch]="getFileType(item.display)">
           <div *ngSwitchCase="'image'"
                [style.backgroundImage]="'url(' + item.display + ')'"

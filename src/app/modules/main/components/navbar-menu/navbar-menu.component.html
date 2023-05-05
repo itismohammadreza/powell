@@ -4,26 +4,30 @@
         'sidebar-lock' : sidebarLock,
         'sidebar-open' : sidebarVisible
      }">
-  <nav class="navbar navbar-expand shadow-sm fixed-top justify-content-between">
-    <ng-button
-      *ngIf="!sidebarLock && tempSidebarType != 'hover' && tempSidebarType != 'horizontal'"
-      icon="pi pi-bars"
-      color="primary"
-      appearance="text"
-      (click)="toggleSidebarClick()">
-    </ng-button>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav p-0 m{{ rtl ? 'r' : 'l' }}-auto">
-        <!--        <li class="nav-item" (click)="accountMenu.toggle($event)">-->
-        <!--          <span class="m{{ rtl ? 'l' : 'r' }}-3">{{ "Admin" }}</span>-->
-        <!--          <p-avatar shape="circle" size="large" icon="pi pi-user"></p-avatar>-->
-        <!--        </li>-->
-        <li class="nav-item">
-          <a class="nav-link text-decoration-none ng-ltr" target="_blank" href="https://github.com/mohammadreza99/powell">
-            <i class="pi pi-github mr-1 align-middle"></i><span>Github</span>
-          </a>
-        </li>
-      </ul>
+  <nav class="navbar shadow-sm fixed-top justify-content-between">
+    <div class="container-fluid">
+      <ng-button
+        *ngIf="!sidebarLock && tempSidebarType != 'hover' && tempSidebarType != 'horizontal'"
+        icon="pi pi-bars"
+        color="primary"
+        appearance="text"
+        (click)="toggleSidebarClick()">
+      </ng-button>
+      <span class="navbar-text">
+        <a target="_blank" href="https://github.com/mohammadreza99/powell">
+          <i class="pi pi-github me-2 align-middle"></i><span>Github</span>
+        </a>
+      </span>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav p-0 me-auto">
+          <!--        <li class="nav-item" (click)="accountMenu.toggle($event)">-->
+          <!--          <span class="me-3">{{ "Admin" }}</span>-->
+          <!--          <p-avatar shape="circle" size="large" icon="pi pi-user"></p-avatar>-->
+          <!--        </li>-->
+          <li class="nav-item">
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 
