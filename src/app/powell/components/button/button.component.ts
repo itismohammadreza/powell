@@ -5,7 +5,6 @@ import {NgButtonAppearance, NgButtonType, NgColor, NgIconPosition, NgSize} from 
   selector: 'ng-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {'[class.full]': 'full'}
 })
 export class ButtonComponent implements OnChanges {
