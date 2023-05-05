@@ -19,9 +19,8 @@
 - fix table issue
 - how should disableConfigChangeEffect use in overlay-service like toast etc...?
 - replace css colors with variables and make theme colors configurable
-- add bootstrap 5
 - use gap instead of margin left and right
-- remove powell components dependencies to bootstrap5
+- remove powell dependencies to bootstrap5
 
 ### New
 
