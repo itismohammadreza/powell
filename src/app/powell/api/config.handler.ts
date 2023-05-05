@@ -20,7 +20,6 @@ export class ConfigHandler implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
-    // add initial configService value to above Inputs and then emit them to apply to components.
     if (this['disableConfigChangeEffect']) {
       return
     }
@@ -77,9 +76,6 @@ export class ConfigHandler implements OnInit, OnChanges, OnDestroy {
     ]
     configs.forEach(config => {
       this[config] = currentConfig[config];
-      // if (modifiedConfig[config] != undefined) {
-      //   this[`${config}Change`]?.emit(this[config]);
-      // }
     })
   }
 }
