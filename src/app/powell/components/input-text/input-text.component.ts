@@ -219,13 +219,17 @@ export class InputTextComponent extends ConfigHandler implements OnInit, Control
     const inputEl = this.el.nativeElement.querySelector('input');
     const rgx = /^[-!$%^&*()_+|~=`{}\[\]:\";'<>?,.\/]*[A-Za-z]/;
     const isAscii = rgx.test(this.value);
-
     if (isAscii) {
       inputEl.style.direction = 'ltr';
       inputEl.style.textAlign = 'left';
     } else {
-      inputEl.style.direction = 'rtl';
-      inputEl.style.textAlign = 'right';
+      if (this.value) {
+        inputEl.style.direction = 'rtl';
+        inputEl.style.textAlign = 'right';
+      } else {
+        inputEl.style.direction = this.rtl ? 'rtl' : 'ltr';
+        inputEl.style.textAlign = this.rtl ? 'right' : 'left';
+      }
     }
-  };
+  }
 }

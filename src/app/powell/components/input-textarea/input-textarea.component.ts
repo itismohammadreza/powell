@@ -205,8 +205,13 @@ export class InputTextareaComponent extends ConfigHandler implements OnInit, Con
       textareaEl.style.direction = 'ltr';
       textareaEl.style.textAlign = 'left';
     } else {
-      textareaEl.style.direction = 'rtl';
-      textareaEl.style.textAlign = 'right';
+      if (this.value) {
+        textareaEl.style.direction = 'rtl';
+        textareaEl.style.textAlign = 'right';
+      } else {
+        textareaEl.style.direction = this.rtl ? 'rtl' : 'ltr';
+        textareaEl.style.textAlign = this.rtl ? 'right' : 'left';
+      }
     }
-  };
+  }
 }
