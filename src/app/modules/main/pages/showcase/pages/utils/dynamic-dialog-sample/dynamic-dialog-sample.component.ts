@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DynamicDialogConfig, DynamicDialogRef} from '@powell/components/dynamic-dialog';
+import {DynamicDialogConfig, DynamicDialogRef} from '@powell/components/overlay';
 
 @Component({
   selector: 'ng-dynamic-dialog-sample',

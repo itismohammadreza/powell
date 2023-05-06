@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
-import {Dialog2Component, DialogComponent, DialogFormComponent} from '.';
+import {Dialog2Component, DialogComponent, DialogFormComponent, DynamicDialogComponent} from '.';
 import {
   PrimeConfirmDialogModule,
   PrimeConfirmPopupModule,
@@ -51,7 +51,8 @@ import {TriStateCheckboxModule} from "@powell/components/tri-state-checkbox";
   declarations: [
     DialogComponent,
     DialogFormComponent,
-    Dialog2Component
+    Dialog2Component,
+    DynamicDialogComponent
   ],
   imports: [
     CommonModule,

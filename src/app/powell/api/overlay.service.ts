@@ -36,7 +36,7 @@ import {
   DynamicDialogConfig,
   DynamicDialogInjector,
   DynamicDialogRef
-} from "@powell/components/dynamic-dialog";
+} from "@powell/components/overlay";
 
 @Injectable()
 export class OverlayService {
