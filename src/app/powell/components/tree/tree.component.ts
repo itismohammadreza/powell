@@ -6,7 +6,7 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input,
+  Input, OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -22,7 +22,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {TemplateDirective} from '@powell/directives/template';
 import {
   NgAddon,
@@ -48,7 +48,7 @@ import {ConfigHandler} from "@powell/api";
     }
   ]
 })
-export class TreeComponent extends ConfigHandler implements OnInit, AfterContentInit, ControlValueAccessor {
+export class TreeComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
@@ -107,6 +107,7 @@ export class TreeComponent extends ConfigHandler implements OnInit, AfterContent
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   headerTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
@@ -117,11 +118,9 @@ export class TreeComponent extends ConfigHandler implements OnInit, AfterContent
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -217,6 +216,11 @@ export class TreeComponent extends ConfigHandler implements OnInit, AfterContent
 
   registerOnTouched(fn) {
     this.onModelTouched = fn;
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }
 

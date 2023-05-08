@@ -1,4 +1,7 @@
-<div [ngClass]="{ 'rtl': rtl, 'ltr': !rtl }" class="table-wrapper">
+<div ngConfigHandler
+     [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+     [(rtl)]="rtl"
+     [ngClass]="{ 'rtl': rtl, 'ltr': !rtl }" class="table-wrapper">
   <p-table #dataTable
            [value]="items"
            [columns]="colDef"

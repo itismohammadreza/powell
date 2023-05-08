@@ -6,7 +6,7 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input,
+  Input, OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -22,7 +22,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {
   NgAddon,
   NgChipDisplayMode,
@@ -48,7 +48,7 @@ import {ConfigHandler} from "@powell/api";
     }
   ]
 })
-export class TreeSelectComponent extends ConfigHandler implements OnInit, AfterContentInit, ControlValueAccessor {
+export class TreeSelectComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -99,6 +99,7 @@ export class TreeSelectComponent extends ConfigHandler implements OnInit, AfterC
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   valueTemplate: TemplateRef<any>;
   headerTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
@@ -109,11 +110,9 @@ export class TreeSelectComponent extends ConfigHandler implements OnInit, AfterC
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -225,5 +224,10 @@ export class TreeSelectComponent extends ConfigHandler implements OnInit, AfterC
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

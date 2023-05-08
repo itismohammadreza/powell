@@ -7,7 +7,7 @@ import {ConfigHandler} from "@powell/api";
   templateUrl: './status.component.html',
   styleUrls: ['./status.component.scss'],
 })
-export class StatusComponent extends ConfigHandler {
+export class StatusComponent {
   @Input() status: NgStatus = "success";
   @Input() icon: string;
   @Input() imageSrc: string;
@@ -15,8 +15,4 @@ export class StatusComponent extends ConfigHandler {
   @Input() subText: string;
   @Input() rtl: boolean;
   @Input() disableConfigChangeEffect: boolean;
-
-  constructor() {
-    super();
-  }
 }

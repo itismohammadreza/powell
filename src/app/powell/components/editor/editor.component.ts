@@ -5,7 +5,7 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnChanges,
+  OnChanges, OnDestroy,
   OnInit,
   Output,
   SimpleChanges
@@ -20,7 +20,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
@@ -40,7 +40,7 @@ import {ConfigHandler} from "@powell/api";
     },
   ],
 })
-export class EditorComponent extends ConfigHandler implements OnInit, OnChanges, ControlValueAccessor {
+export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -100,6 +100,7 @@ export class EditorComponent extends ConfigHandler implements OnInit, OnChanges,
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   editorInstance: EditorBaseComponent;
 
   onModelChange: any = (_: any) => {
@@ -108,11 +109,9 @@ export class EditorComponent extends ConfigHandler implements OnInit, OnChanges,
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     if (!this.options) {
       this.options = {
         plugins: plugins,
@@ -161,8 +160,7 @@ export class EditorComponent extends ConfigHandler implements OnInit, OnChanges,
     }
   }
 
-  override ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes)
+  ngOnChanges(changes: SimpleChanges) {
     if (!this.editorInstance) {
       return
     }
@@ -262,5 +260,10 @@ export class EditorComponent extends ConfigHandler implements OnInit, OnChanges,
       this.editorInstance.enabled()
     }
     this.cd.markForCheck()
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

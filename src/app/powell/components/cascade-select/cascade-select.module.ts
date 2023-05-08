@@ -6,6 +6,7 @@ import {CascadeSelectComponent} from "@powell/components/cascade-select";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {PrimeCascadeSelectModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
+import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [CascadeSelectComponent],
@@ -16,6 +17,7 @@ import {TemplateModule} from "@powell/directives/template";
     FormsModule,
     LabelStarModule,
     AddonModule,
+    ConfigHandlerModule
   ],
 })
 export class CascadeSelectModule {

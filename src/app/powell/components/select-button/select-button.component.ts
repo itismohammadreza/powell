@@ -6,7 +6,7 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input,
+  Input, OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -22,7 +22,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigHandler} from "@powell/api";
@@ -39,7 +39,7 @@ import {ConfigHandler} from "@powell/api";
     }
   ]
 })
-export class SelectButtonComponent extends ConfigHandler implements OnInit, AfterContentInit, ControlValueAccessor {
+export class SelectButtonComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -67,6 +67,7 @@ export class SelectButtonComponent extends ConfigHandler implements OnInit, Afte
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   itemTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
@@ -74,11 +75,9 @@ export class SelectButtonComponent extends ConfigHandler implements OnInit, Afte
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -115,8 +114,6 @@ export class SelectButtonComponent extends ConfigHandler implements OnInit, Afte
           break;
       }
     });
-
-    console.log(this.itemTemplate)
   }
 
   emitter(name: string, event: any) {
@@ -174,5 +171,10 @@ export class SelectButtonComponent extends ConfigHandler implements OnInit, Afte
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

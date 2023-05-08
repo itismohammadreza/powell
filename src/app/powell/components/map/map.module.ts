@@ -6,6 +6,7 @@ import {MapComponent} from "@powell/components/map";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {PrimeTooltipModule} from "@powell/primeng";
 import {ButtonModule} from "@powell/components/button";
+import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [MapComponent],
@@ -17,6 +18,7 @@ import {ButtonModule} from "@powell/components/button";
     CommonModule,
     LabelStarModule,
     AddonModule,
+    ConfigHandlerModule
   ],
 })
 export class MapModule {

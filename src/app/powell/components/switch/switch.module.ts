@@ -4,6 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {SwitchComponent} from "@powell/components/switch";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {PrimeInputSwitchModule, PrimeProgressSpinnerModule} from "@powell/primeng";
+import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [SwitchComponent],
@@ -14,6 +15,7 @@ import {PrimeInputSwitchModule, PrimeProgressSpinnerModule} from "@powell/primen
     CommonModule,
     FormsModule,
     LabelStarModule,
+    ConfigHandlerModule
   ],
 })
 export class SwitchModule {

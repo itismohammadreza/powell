@@ -4,6 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {RadioComponent} from "@powell/components/radio";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {PrimeRadioButtonModule} from "@powell/primeng";
+import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [RadioComponent],
@@ -13,6 +14,7 @@ import {PrimeRadioButtonModule} from "@powell/primeng";
     CommonModule,
     FormsModule,
     LabelStarModule,
+    ConfigHandlerModule
   ],
 })
 export class RadioModule {

@@ -5,7 +5,7 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnChanges,
+  OnChanges, OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
@@ -39,7 +39,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgFixLabelPosition, NgValidation} from "@powell/models";
 import {ConfigHandler} from "@powell/api";
 
@@ -55,7 +55,7 @@ import {ConfigHandler} from "@powell/api";
     }
   ]
 })
-export class MapComponent extends ConfigHandler implements OnInit, ControlValueAccessor, OnChanges {
+export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, OnDestroy {
   @Input() value: LatLngLiteral | LatLngLiteral[];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -157,6 +157,7 @@ export class MapComponent extends ConfigHandler implements OnInit, ControlValueA
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   map: Map;
   layers: Layer[] = [];
   onModelChange: any = (_: any) => {
@@ -165,11 +166,9 @@ export class MapComponent extends ConfigHandler implements OnInit, ControlValueA
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -198,8 +197,7 @@ export class MapComponent extends ConfigHandler implements OnInit, ControlValueA
     }
   }
 
-  override ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes)
+  ngOnChanges(changes: SimpleChanges) {
     this.handleDisabledState()
   }
 
@@ -356,5 +354,10 @@ export class MapComponent extends ConfigHandler implements OnInit, ControlValueA
     this.value = null;
     this.onModelChange(null);
     this.onClear.emit()
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

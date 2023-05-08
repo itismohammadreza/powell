@@ -6,7 +6,7 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input,
+  Input, OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
@@ -21,7 +21,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {ConfigHandler} from "@powell/api";
 
 @Component({
@@ -36,7 +36,7 @@ import {ConfigHandler} from "@powell/api";
     }
   ]
 })
-export class IranMapComponent extends ConfigHandler implements OnInit, AfterViewInit, ControlValueAccessor {
+export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAccessor, OnDestroy {
   @Input() value: number | number[];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -278,6 +278,7 @@ export class IranMapComponent extends ConfigHandler implements OnInit, AfterView
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -286,11 +287,9 @@ export class IranMapComponent extends ConfigHandler implements OnInit, AfterView
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
               private el: ElementRef) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -504,4 +503,9 @@ export class IranMapComponent extends ConfigHandler implements OnInit, AfterView
       this.onModelChange(this.value);
     }
   };
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
+  }
 }

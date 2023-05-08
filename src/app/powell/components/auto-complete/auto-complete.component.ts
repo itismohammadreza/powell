@@ -22,7 +22,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {PrimeScrollerOptions} from "@powell/primeng/api";
@@ -40,7 +40,7 @@ import {ConfigHandler} from "@powell/api";
     }
   ]
 })
-export class AutoCompleteComponent extends ConfigHandler implements OnInit, AfterContentInit, ControlValueAccessor {
+export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -118,6 +118,7 @@ export class AutoCompleteComponent extends ConfigHandler implements OnInit, Afte
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   itemTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
@@ -130,11 +131,9 @@ export class AutoCompleteComponent extends ConfigHandler implements OnInit, Afte
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -276,5 +275,9 @@ export class AutoCompleteComponent extends ConfigHandler implements OnInit, Afte
     this.disabled = val;
     this.cd.markForCheck();
   }
-}
 
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
+  }
+}

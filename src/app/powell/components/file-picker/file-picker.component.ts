@@ -8,7 +8,7 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnChanges,
+  OnChanges, OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -26,7 +26,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {NgFilePickerMode, NgFileResultType, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {PrimeFileUpload} from "@powell/primeng";
@@ -44,7 +44,7 @@ import {ConfigHandler, UtilsService} from "@powell/api";
     }
   ]
 })
-export class FilePickerComponent extends ConfigHandler implements OnInit, OnChanges, AfterContentInit, ControlValueAccessor {
+export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any = [];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -105,6 +105,7 @@ export class FilePickerComponent extends ConfigHandler implements OnInit, OnChan
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   selectedFiles: any[] = [];
   filesToEmit: (string | ArrayBuffer | File)[] | any = [];
   toolbarTemplate: TemplateRef<any>;
@@ -116,11 +117,9 @@ export class FilePickerComponent extends ConfigHandler implements OnInit, OnChan
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector, private utilsService: UtilsService) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -149,8 +148,7 @@ export class FilePickerComponent extends ConfigHandler implements OnInit, OnChan
     }
   }
 
-  override ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes)
+  ngOnChanges(changes: SimpleChanges) {
     if (this.utilsService.isImage(this.value)) {
       this.init(this.value);
     }
@@ -364,5 +362,10 @@ export class FilePickerComponent extends ConfigHandler implements OnInit, OnChan
 
   clear() {
     this.fileUploadComponent.clear();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

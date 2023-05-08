@@ -6,7 +6,7 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input,
+  Input, OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -22,7 +22,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {ConfigHandler} from "@powell/api";
@@ -39,7 +39,7 @@ import {ConfigHandler} from "@powell/api";
     }
   ]
 })
-export class CascadeSelectComponent extends ConfigHandler implements OnInit, AfterContentInit, ControlValueAccessor {
+export class CascadeSelectComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -82,6 +82,7 @@ export class CascadeSelectComponent extends ConfigHandler implements OnInit, Aft
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   optionTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
@@ -89,11 +90,9 @@ export class CascadeSelectComponent extends ConfigHandler implements OnInit, Aft
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -200,5 +199,10 @@ export class CascadeSelectComponent extends ConfigHandler implements OnInit, Aft
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

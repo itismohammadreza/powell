@@ -1,4 +1,14 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  forwardRef,
+  Injector,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -20,7 +30,7 @@ import {
   NgSize,
   NgValidation
 } from "@powell/models";
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {ConfigHandler} from "@powell/api";
 
 @Component({
@@ -35,7 +45,7 @@ import {ConfigHandler} from "@powell/api";
     },
   ],
 })
-export class GregorianDatepickerComponent extends ConfigHandler implements OnInit, ControlValueAccessor {
+export class GregorianDatepickerComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -122,17 +132,16 @@ export class GregorianDatepickerComponent extends ConfigHandler implements OnIni
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -227,5 +236,10 @@ export class GregorianDatepickerComponent extends ConfigHandler implements OnIni
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

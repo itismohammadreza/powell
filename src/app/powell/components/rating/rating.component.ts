@@ -6,7 +6,7 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input,
+  Input, OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -22,7 +22,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigHandler} from "@powell/api";
@@ -39,7 +39,7 @@ import {ConfigHandler} from "@powell/api";
     }
   ]
 })
-export class RatingComponent extends ConfigHandler implements OnInit, AfterContentInit, ControlValueAccessor {
+export class RatingComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -67,6 +67,7 @@ export class RatingComponent extends ConfigHandler implements OnInit, AfterConte
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   cancelTemplate: TemplateRef<any>;
   onIconTemplate: TemplateRef<any>;
   offIconTemplate: TemplateRef<any>;
@@ -76,11 +77,9 @@ export class RatingComponent extends ConfigHandler implements OnInit, AfterConte
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -179,5 +178,10 @@ export class RatingComponent extends ConfigHandler implements OnInit, AfterConte
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

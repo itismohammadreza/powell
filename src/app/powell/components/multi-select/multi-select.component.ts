@@ -6,7 +6,7 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input,
+  Input, OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -22,7 +22,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {
   NgAddon,
   NgChipDisplayMode,
@@ -49,7 +49,7 @@ import {ConfigHandler} from "@powell/api";
     }
   ]
 })
-export class MultiSelectComponent extends ConfigHandler implements OnInit, ControlValueAccessor, AfterContentInit {
+export class MultiSelectComponent implements OnInit, ControlValueAccessor, AfterContentInit, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -132,6 +132,7 @@ export class MultiSelectComponent extends ConfigHandler implements OnInit, Contr
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   itemTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
   selectedItemsTemplate: TemplateRef<any>;
@@ -145,11 +146,9 @@ export class MultiSelectComponent extends ConfigHandler implements OnInit, Contr
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -273,5 +272,10 @@ export class MultiSelectComponent extends ConfigHandler implements OnInit, Contr
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

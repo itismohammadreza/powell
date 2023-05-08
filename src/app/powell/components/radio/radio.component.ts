@@ -1,4 +1,14 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  forwardRef,
+  Injector,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -9,7 +19,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
 import {ConfigHandler} from "@powell/api";
 
@@ -25,7 +35,7 @@ import {ConfigHandler} from "@powell/api";
     }
   ]
 })
-export class RadioComponent extends ConfigHandler implements OnInit, ControlValueAccessor {
+export class RadioComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -61,17 +71,16 @@ export class RadioComponent extends ConfigHandler implements OnInit, ControlValu
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.groupName = this.getId();
     this.inputId = this.getId();
     let parentForm: FormGroup;
@@ -157,5 +166,10 @@ export class RadioComponent extends ConfigHandler implements OnInit, ControlValu
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

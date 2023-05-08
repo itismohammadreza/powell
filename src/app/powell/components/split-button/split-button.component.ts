@@ -18,7 +18,7 @@ import {ConfigHandler} from "@powell/api";
   templateUrl: './split-button.component.html',
   styleUrls: ['./split-button.component.scss'],
 })
-export class SplitButtonComponent extends ConfigHandler implements AfterContentInit {
+export class SplitButtonComponent implements AfterContentInit {
   @Input() items: PrimeMenuItem[];
   @Input() appearance: NgButtonAppearance = 'outlined';
   @Input() rounded: boolean;
@@ -45,10 +45,6 @@ export class SplitButtonComponent extends ConfigHandler implements AfterContentI
   @Output() onDropdownClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
   contentTemplate: TemplateRef<any>;
-
-  constructor() {
-    super();
-  }
 
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {

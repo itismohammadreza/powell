@@ -5,7 +5,7 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input,
+  Input, OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
@@ -19,7 +19,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgValidation} from '@powell/models';
 import {ConfigHandler} from "@powell/api";
 
@@ -35,7 +35,7 @@ import {ConfigHandler} from "@powell/api";
     }
   ]
 })
-export class InputTextareaComponent extends ConfigHandler implements OnInit, ControlValueAccessor {
+export class InputTextareaComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -73,6 +73,7 @@ export class InputTextareaComponent extends ConfigHandler implements OnInit, Con
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -81,11 +82,9 @@ export class InputTextareaComponent extends ConfigHandler implements OnInit, Con
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
               private el: ElementRef) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -213,5 +212,10 @@ export class InputTextareaComponent extends ConfigHandler implements OnInit, Con
         textareaEl.style.textAlign = this.rtl ? 'right' : 'left';
       }
     }
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

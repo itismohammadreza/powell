@@ -5,7 +5,7 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input,
+  Input, OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
@@ -19,7 +19,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {
   NgAddon,
   NgIconPosition,
@@ -44,7 +44,7 @@ import {ConfigHandler} from "@powell/api";
     }
   ]
 })
-export class InputTextComponent extends ConfigHandler implements OnInit, ControlValueAccessor {
+export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -87,6 +87,7 @@ export class InputTextComponent extends ConfigHandler implements OnInit, Control
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -95,11 +96,9 @@ export class InputTextComponent extends ConfigHandler implements OnInit, Control
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
               private el: ElementRef) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     if (!this.keyFilter) {
       this.keyFilter = /.*/g;
     }
@@ -231,5 +230,10 @@ export class InputTextComponent extends ConfigHandler implements OnInit, Control
         inputEl.style.textAlign = this.rtl ? 'right' : 'left';
       }
     }
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

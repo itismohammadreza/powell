@@ -6,7 +6,7 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input,
+  Input, OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -22,7 +22,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {
   NgAddon,
   NgFilterMatchMode,
@@ -48,7 +48,7 @@ import {ConfigHandler} from "@powell/api";
     },
   ],
 })
-export class DropdownComponent extends ConfigHandler implements OnInit, AfterContentInit, ControlValueAccessor {
+export class DropdownComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -126,6 +126,7 @@ export class DropdownComponent extends ConfigHandler implements OnInit, AfterCon
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   itemTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
   selectedItemTemplate: TemplateRef<any>;
@@ -139,11 +140,9 @@ export class DropdownComponent extends ConfigHandler implements OnInit, AfterCon
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -270,5 +269,10 @@ export class DropdownComponent extends ConfigHandler implements OnInit, AfterCon
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

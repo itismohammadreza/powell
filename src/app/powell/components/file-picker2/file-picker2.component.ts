@@ -5,7 +5,7 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnChanges,
+  OnChanges, OnDestroy,
   OnInit,
   Output,
   SimpleChanges
@@ -20,7 +20,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {NgColor, NgFileResultType, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {ConfigHandler, UtilsService} from "@powell/api";
 
@@ -36,7 +36,7 @@ import {ConfigHandler, UtilsService} from "@powell/api";
     }
   ]
 })
-export class FilePicker2Component extends ConfigHandler implements OnInit, OnChanges, ControlValueAccessor {
+export class FilePicker2Component implements OnInit, OnChanges, ControlValueAccessor, OnDestroy {
   @Input() value: any = [];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -61,6 +61,7 @@ export class FilePicker2Component extends ConfigHandler implements OnInit, OnCha
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   filesToShow: { display: string | ArrayBuffer, name: string }[] = [];
   filesToEmit: any[] = [];
   _chooseLabel: string;
@@ -74,11 +75,9 @@ export class FilePicker2Component extends ConfigHandler implements OnInit, OnCha
     private injector: Injector,
     private utilsService: UtilsService
   ) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     //store user defined label for single selection mode
     this._chooseLabel = this.chooseLabel;
     this.inputId = this.getId();
@@ -109,8 +108,7 @@ export class FilePicker2Component extends ConfigHandler implements OnInit, OnCha
     }
   }
 
-  override ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes)
+  ngOnChanges(changes: SimpleChanges) {
     this.init(this.value);
   }
 
@@ -264,5 +262,10 @@ export class FilePicker2Component extends ConfigHandler implements OnInit, OnCha
       result = 'file';
     }
     return result
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

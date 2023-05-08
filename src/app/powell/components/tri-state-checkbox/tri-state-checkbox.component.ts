@@ -8,7 +8,7 @@ import {
   FormGroupDirective,
   NgControl
 } from "@angular/forms";
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {NgValidation} from "@powell/models";
 import {ConfigHandler} from "@powell/api";
 
@@ -17,7 +17,7 @@ import {ConfigHandler} from "@powell/api";
   templateUrl: './tri-state-checkbox.component.html',
   styleUrls: ['./tri-state-checkbox.component.scss'],
 })
-export class TriStateCheckboxComponent extends ConfigHandler implements OnInit, ControlValueAccessor {
+export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -39,17 +39,16 @@ export class TriStateCheckboxComponent extends ConfigHandler implements OnInit, 
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
   };
 
   constructor(private cd: ChangeDetectorRef, private injector: Injector) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
@@ -125,5 +124,10 @@ export class TriStateCheckboxComponent extends ConfigHandler implements OnInit, 
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

@@ -5,6 +5,7 @@ import {LabelStarModule} from "@powell/pipes/label-star";
 import {CheckboxComponent} from "@powell/components/checkbox";
 import {PrimeCheckboxModule, PrimeProgressSpinnerModule} from "@powell/primeng";
 import {AddonModule} from "@powell/directives/addon";
+import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [CheckboxComponent],
@@ -16,6 +17,7 @@ import {AddonModule} from "@powell/directives/addon";
     FormsModule,
     LabelStarModule,
     AddonModule,
+    ConfigHandlerModule
   ],
 })
 export class CheckboxModule {

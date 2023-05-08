@@ -6,7 +6,7 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input,
+  Input, OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
@@ -21,7 +21,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgSize, NgValidation} from "@powell/models";
 import {ConfigHandler} from "@powell/api";
 
@@ -37,7 +37,7 @@ import {ConfigHandler} from "@powell/api";
     }
   ]
 })
-export class InputOtpComponent extends ConfigHandler implements OnInit, AfterViewInit, ControlValueAccessor {
+export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAccessor, OnDestroy {
   @Input('value') set value(v: any) {
     this.setValue(v)
   };
@@ -73,6 +73,7 @@ export class InputOtpComponent extends ConfigHandler implements OnInit, AfterVie
   form: FormGroup;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -81,11 +82,9 @@ export class InputOtpComponent extends ConfigHandler implements OnInit, AfterVie
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
               private el: ElementRef) {
-    super()
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
+  ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -341,5 +340,10 @@ export class InputOtpComponent extends ConfigHandler implements OnInit, AfterVie
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

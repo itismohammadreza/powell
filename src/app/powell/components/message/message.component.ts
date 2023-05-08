@@ -8,7 +8,7 @@ import {ConfigHandler} from "@powell/api";
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
 })
-export class MessageComponent extends ConfigHandler implements AfterContentInit {
+export class MessageComponent implements AfterContentInit {
   @Input() inlineMessage: string;
   @Input() summary: string;
   @Input() detail: string;
@@ -20,10 +20,6 @@ export class MessageComponent extends ConfigHandler implements AfterContentInit 
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   contentTemplate: TemplateRef<any>;
-
-  constructor() {
-    super();
-  }
 
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {

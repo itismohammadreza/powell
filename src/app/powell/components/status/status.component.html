@@ -1,4 +1,5 @@
-<div class="status-wrapper" [ngClass]="{rtl: rtl, ltr:!rtl}">
+<div class="status-wrapper"
+     [ngClass]="{rtl: rtl, ltr:!rtl}">
   <div class="status-icon">
     <ng-container *ngIf="status" [ngSwitch]="status">
       <i *ngSwitchCase="'success'" class="pi pi-check-circle"></i>

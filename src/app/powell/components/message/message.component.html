@@ -1,4 +1,7 @@
-<p-messages *ngIf="!inlineMessage"
+<p-messages ngConfigHandler
+            [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+            [(rtl)]="rtl"
+            *ngIf="!inlineMessage"
             [class.rtl]="rtl"
             [enableService]="false"
             [severity]="severity"
