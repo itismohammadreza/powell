@@ -20,7 +20,11 @@
 - how should disableConfigChangeEffect use in overlay-service like toast etc...?
 - replace css colors with variables and make theme colors configurable
 - use gap instead of margin left and right (like label in components) OR better to remove powell dependencies to bootstrap5?
-- fixLabelPos is not apply on components with global config
+- remove components dependency to bootstrap and handle rtl ltr file in config change.
+- remove configHandler import and remove file.
+- pass labelPos to fixLabelPos in some components
+- add configHandler directive to status component and fix error.
+
 ### New
 
 - [ ] **whiteboard** - implement component.
