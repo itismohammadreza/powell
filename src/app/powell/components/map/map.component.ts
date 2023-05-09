@@ -5,7 +5,8 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnChanges, OnDestroy,
+  OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
@@ -41,7 +42,6 @@ import {
 } from "@angular/forms";
 import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgFixLabelPosition, NgValidation} from "@powell/models";
-import {ConfigHandler} from "@powell/api";
 
 @Component({
   selector: 'ng-map',

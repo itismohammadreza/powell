@@ -21,7 +21,6 @@ import {
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
-import {ConfigHandler} from "@powell/api";
 
 @Component({
   selector: 'ng-radio',

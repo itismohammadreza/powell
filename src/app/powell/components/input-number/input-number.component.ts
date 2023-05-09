@@ -31,7 +31,6 @@ import {
   NgSize,
   NgValidation
 } from '@powell/models';
-import {ConfigHandler} from "@powell/api";
 
 @Component({
   selector: 'ng-input-number',

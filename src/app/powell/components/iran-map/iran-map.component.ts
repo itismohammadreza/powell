@@ -6,7 +6,8 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input, OnDestroy,
+  Input,
+  OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
@@ -22,7 +23,6 @@ import {
   NgControl
 } from "@angular/forms";
 import {Subject, takeUntil} from "rxjs";
-import {ConfigHandler} from "@powell/api";
 
 @Component({
   selector: 'ng-iran-map',

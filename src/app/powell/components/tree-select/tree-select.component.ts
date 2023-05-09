@@ -6,7 +6,8 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input, OnDestroy,
+  Input,
+  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -34,7 +35,6 @@ import {
   NgValidation
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
-import {ConfigHandler} from "@powell/api";
 
 @Component({
   selector: 'ng-tree-select',

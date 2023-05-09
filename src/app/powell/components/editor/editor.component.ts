@@ -5,7 +5,8 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnChanges, OnDestroy,
+  OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges
@@ -26,7 +27,6 @@ import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
 import {NgFixLabelPosition, NgValidation} from '@powell/models';
 import {EditorBaseComponent} from "@powell/components/editor";
-import {ConfigHandler} from "@powell/api";
 
 @Component({
   selector: 'ng-editor',

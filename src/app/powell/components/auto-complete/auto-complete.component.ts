@@ -26,7 +26,6 @@ import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {PrimeScrollerOptions} from "@powell/primeng/api";
-import {ConfigHandler} from "@powell/api";
 
 @Component({
   selector: 'ng-auto-complete',

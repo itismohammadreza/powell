@@ -1,7 +1,6 @@
 import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
 import {TemplateDirective} from "@powell/directives/template";
 import {NgSeverity} from "@powell/models";
-import {ConfigHandler} from "@powell/api";
 
 @Component({
   selector: 'ng-message',

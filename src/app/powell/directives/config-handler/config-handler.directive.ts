@@ -48,10 +48,10 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     // add initial configService value to above Inputs and then emit them to apply to components.
-    this.applyConfig(this.configService.getConfig(), this.configService.getConfig())
     if (this.disableConfigChangeEffect) {
       return
     }
+    this.applyConfig(this.configService.getConfig(), this.configService.getConfig())
     this.startSubscription();
   }
 

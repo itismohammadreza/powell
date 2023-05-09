@@ -5,7 +5,8 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input, OnDestroy,
+  Input,
+  OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
@@ -30,7 +31,6 @@ import {
   NgSize,
   NgValidation
 } from '@powell/models';
-import {ConfigHandler} from "@powell/api";
 
 @Component({
   selector: 'ng-input-text',

@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {NgStatus} from "@powell/models";
-import {ConfigHandler} from "@powell/api";
 
 @Component({
   selector: 'ng-status',

@@ -10,7 +10,6 @@ import {
 } from "@angular/forms";
 import {Subject, takeUntil} from "rxjs";
 import {NgValidation} from "@powell/models";
-import {ConfigHandler} from "@powell/api";
 
 @Component({
   selector: 'ng-tri-state-checkbox',

@@ -8,7 +8,8 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnChanges, OnDestroy,
+  OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -30,7 +31,7 @@ import {Subject, takeUntil} from "rxjs";
 import {NgFilePickerMode, NgFileResultType, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {PrimeFileUpload} from "@powell/primeng";
-import {ConfigHandler, UtilsService} from "@powell/api";
+import {UtilsService} from "@powell/api";
 
 @Component({
   selector: 'ng-file-picker',

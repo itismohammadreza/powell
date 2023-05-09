@@ -11,7 +11,6 @@ import {
 import {NgButtonAppearance, NgColor, NgIconPosition, NgSize} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {PrimeMenuItem} from "@powell/primeng/api";
-import {ConfigHandler} from "@powell/api";
 
 @Component({
   selector: 'ng-split-button',

@@ -5,7 +5,8 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnChanges, OnDestroy,
+  OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges
@@ -22,7 +23,7 @@ import {
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
 import {NgColor, NgFileResultType, NgFixLabelPosition, NgValidation} from '@powell/models';
-import {ConfigHandler, UtilsService} from "@powell/api";
+import {UtilsService} from "@powell/api";
 
 @Component({
   selector: 'ng-file-picker2',

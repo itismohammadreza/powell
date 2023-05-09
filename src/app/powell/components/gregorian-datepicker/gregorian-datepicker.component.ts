@@ -31,7 +31,6 @@ import {
   NgValidation
 } from "@powell/models";
 import {Subject, takeUntil} from "rxjs";
-import {ConfigHandler} from "@powell/api";
 
 @Component({
   selector: 'ng-gregorian-datepicker',

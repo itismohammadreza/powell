@@ -6,7 +6,8 @@ import {
   EventEmitter,
   forwardRef,
   Injector,
-  Input, OnDestroy,
+  Input,
+  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -34,7 +35,6 @@ import {
 } from '@powell/models';
 import {PrimeContextMenu} from "@powell/primeng";
 import {PrimeScrollerOptions} from "@powell/primeng/api";
-import {ConfigHandler} from "@powell/api";
 
 @Component({
   selector: 'ng-tree',
