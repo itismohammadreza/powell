@@ -21,7 +21,6 @@
 - replace css colors with variables and make theme colors configurable
 - use gap instead of margin left and right (like label in components) OR better to remove powell dependencies to bootstrap5?
 - remove components dependency to bootstrap and handle rtl ltr file in config change.
-- remove configHandler import and remove file.
 - pass labelPos to fixLabelPos in some components
 - add configHandler directive to status component and fix error.
 
