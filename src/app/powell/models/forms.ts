@@ -267,18 +267,3 @@ export interface NgAddon {
   before?: NgAddonConfig;
   after?: NgAddonConfig;
 }
-
-export interface NgDropdownItem {
-  label?: string;
-  value: any;
-  styleClass?: string;
-  icon?: string;
-  title?: string;
-  disabled?: boolean;
-}
-
-export interface NgDropdownGroup {
-  label: string;
-  value?: any;
-  items: NgDropdownItem[];
-}
