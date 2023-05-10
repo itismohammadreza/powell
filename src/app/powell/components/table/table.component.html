@@ -115,7 +115,7 @@
             <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"></p-tableHeaderCheckbox>
           </th>
           <th *ngFor="let col of colDef"
-              [pSortableColumn]="col.field"
+              [pSortableColumn]="col.sort && col.field"
               pReorderableColumn
               [pReorderableColumnDisabled]="!reorderableColumns">
             {{ col.header }}
