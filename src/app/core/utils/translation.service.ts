@@ -26,6 +26,7 @@ export class TranslationService {
     }
     await this.use(this.currentLang).toPromise();
   }
+
   storeLang(currentLang: string, prevLang?: string) {
     const body = this.document.body;
     body.classList.remove(`ng-lang-${prevLang}`);
