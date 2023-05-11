@@ -159,15 +159,29 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   }
 
   async handleFile(item: File) {
-    const base64 = await this.utilsService.fileToBase64(item);
-    this.filesToShow.push({display: base64, name: item.name});
+    if (this.utilsService.isImage(item)) {
+      const blobUrl = window.URL.createObjectURL(new Blob([item], {type: item.type}));
+      this.filesToShow.push({display: blobUrl, name: item.name});
+    } else {
+      this.filesToShow.push({display: null, name: item.name});
+    }
     this.chooseLabel = item.name;
     if (this.resultType == 'base64') {
+      const base64 = await this.utilsService.fileToBase64(item);
       this.filesToEmit.push(base64);
     } else if (this.resultType == 'file') {
       this.filesToEmit.push(item);
     } else {
       this.filesToEmit.push(item);
+    }
+  }
+
+  getFileType(file: any) {
+    const isImage = !!file && ((typeof file == 'string' && file.includes('blob')) || this.isUnknownImageUrl);
+    if (isImage) {
+      return 'image';
+    } else {
+      return 'file';
     }
   }
 
@@ -263,16 +277,6 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  getFileType(file: any) {
-    let result;
-    if (!!file && (this.utilsService.isImage(file) || (this.utilsService.isValidURL(file) && this.isUnknownImageUrl))) {
-      result = 'image';
-    } else {
-      result = 'file';
-    }
-    return result
   }
 
   ngOnDestroy() {
