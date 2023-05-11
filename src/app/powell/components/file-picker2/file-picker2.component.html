@@ -10,58 +10,64 @@
       'label-fix-side': labelPos == 'fix-side'
     }" class="file-picker-wrapper">
   <div [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }" class="field">
+    <input
+      #inputFile
+      type="file"
+      onclick="this.value = null"
+      [accept]="accept"
+      [disabled]="disabled"
+      (change)="_onSelect($event)"/>
+
     <div class="file-picker-single-wrapper" *ngIf="!multiple">
-      <input
-        class="sr-only"
-        onclick="this.value = null"
-        [accept]="accept"
-        [disabled]="disabled"
-        type="file"
-        #singleUploader
-        (change)="onSingleSelect($event)"/>
-      <div class="preview rounded-top p-3" [ngSwitch]="getFileType(filesToShow[0]?.display)">
-        <div *ngSwitchCase="'image'" [style.backgroundImage]="'url('+(filesToShow[0]?.display)+')'"></div>
-        <i *ngSwitchCase="'file'" class="pi pi-file h2 mb-0"></i>
+      <div class="preview" [ngSwitch]="getFileType(filesToShow[0]?.display)">
+        <div *ngSwitchCase="'image'" class="image-preview"
+             [style.backgroundImage]="'url('+(filesToShow[0]?.display)+')'"></div>
+        <i *ngSwitchCase="'file'" class="pi pi-file file-preview"></i>
       </div>
-      <button type="button" (click)="singleUploader.click()"
-              class="w-100 btn btn-{{ color }}">{{ chooseLabel }}</button>
-      <ng-button color="danger" size="sm" (click)="onSingleDelete()"
-                 *ngIf="filesToShow.length != 0" icon="pi pi-trash"></ng-button>
+      <ng-button
+        [full]="true"
+        [disabled]="disabled"
+        (onClick)="inputFile.click()"
+        [color]="color"
+        [label]="chooseLabel">
+      </ng-button>
+      <ng-button
+        color="danger"
+        size="sm"
+        (onClick)="onSingleDelete()"
+        *ngIf="filesToShow.length != 0"
+        icon="pi pi-trash">
+      </ng-button>
     </div>
 
-    <div [class.flex-row-reverse]="rtl" class="file-picker-multiple-wrapper" *ngIf="multiple">
-      <input
-        #multipleUploader
-        type="file"
-        class="sr-only"
-        onclick="this.value = null"
-        [accept]="accept"
-        [disabled]="disabled"
-        (change)="onMultipleSelect($event)"/>
-      <div
-        *ngIf="!readonly && filesToEmit.length < fileLimit"
-        class="image-uploader d-flex align-items-center justify-content-center"
-        (click)="multipleUploader.click()">
-        <i class="pi pi-paperclip h2 mb-0"></i>
+    <div class="file-picker-multiple-wrapper" *ngIf="multiple">
+      <div *ngIf="!readonly && filesToEmit.length < fileLimit" class="picker" (click)="inputFile.click()">
+        <i class="pi pi-paperclip"></i>
       </div>
-      <div *ngFor="let item of filesToShow; let i = index" class="image-item me-3 mb-2">
+      <div *ngFor="let item of filesToShow; let i = index" class="preview">
         <ng-container [ngSwitch]="getFileType(item.display)">
           <div *ngSwitchCase="'image'"
                [style.backgroundImage]="'url(' + item.display + ')'"
-               class="image-item-image"
-          ></div>
-          <div *ngSwitchCase="'file'" class="image-item-preview">
-            <i class="pi pi-file h2 my-3 mb-0"></i>
+               class="image-preview">
           </div>
-          <div class="small px-1 bg-dark text-white p-1 text-truncate">{{item.name}}</div>
+          <div *ngSwitchCase="'file'" class="file-preview">
+            <i class="pi pi-file"></i>
+          </div>
+          <div class="file-name">{{item.name}}</div>
         </ng-container>
-        <ng-button color="danger" class="image-item-trash" size="sm" (click)="onMultipleDelete($event, i)"
-                   *ngIf="!readonly" icon="pi pi-trash"></ng-button>
+        <ng-button
+          color="danger"
+          class="image-item-trash"
+          size="sm"
+          (click)="onMultipleDelete($event, i)"
+          *ngIf="!readonly"
+          icon="pi pi-trash">
+        </ng-button>
       </div>
     </div>
   </div>
   <label
-    class="fix-label align-self-start"
+    class="fix-label"
     *ngIf="label"
     [attr.for]="inputId"
     [class.p-disabled]="disabled"
@@ -76,4 +82,3 @@
     </div>
   </ng-container>
 </div>
-

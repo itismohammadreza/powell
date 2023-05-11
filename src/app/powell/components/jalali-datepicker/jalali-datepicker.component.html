@@ -5,6 +5,7 @@
      [(filled)]="filled"
      [(inputSize)]="inputSize"
      [(showRequiredStar)]="showRequiredStar"
+     [class.inline]="inline"
      [ngClass]="{
       'rtl': rtl,
       'ltr': !rtl,
@@ -180,7 +181,6 @@
   </div>
   <label
     class="fix-label"
-    [class.align-self-start]="inline"
     *ngIf="label && labelPos != 'float'"
     [attr.for]="inputId"
     [class.p-disabled]="disabled"

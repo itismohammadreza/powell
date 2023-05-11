@@ -29,6 +29,12 @@
       .fix-label {
         margin-bottom: 0;
       }
+
+      &.inline {
+        .fix-label {
+          align-self: start;
+        }
+      }
     }
 
     ng-input-text {

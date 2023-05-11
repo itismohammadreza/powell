@@ -101,10 +101,6 @@
   .p-sidebar-content {
     padding: 0 !important;
     flex-grow: 1;
-  }
-
-  .p-sidebar-content,
-  .bottom-sheet-wrapper {
     overflow: hidden;
   }
 
@@ -112,6 +108,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow: hidden;
 
     .header,
     .footer {
@@ -119,6 +116,17 @@
     }
 
     .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 1rem;
+
+      &.show-close-icon {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+      }
+
       h5 {
         margin-bottom: 0;
       }
@@ -127,14 +135,31 @@
     .content {
       flex-grow: 1;
       overflow-y: auto;
+
+      &.has-gutter {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+
+    .footer {
+      padding: 0.5rem 1rem;
     }
   }
 }
 
 .p-dialog-form {
   .p-dialog-form-wrapper {
-    form > *:not(:last-child) {
-      margin-bottom: 1.75rem;
+    form {
+      display: flex;
+      padding-top: 1rem;
+      flex-wrap: wrap;
+      margin-right: calc(-0.5 * 1.5rem);
+      margin-left: calc(-0.5 * 1.5rem);
+
+      > *:not(:last-child) {
+        margin-bottom: 1.75rem;
+      }
     }
 
     .footer {

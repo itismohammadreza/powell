@@ -15,8 +15,7 @@
   (onShow)="_onShow()"
   (onHide)="_onHide()">
   <div class="bottom-sheet-wrapper">
-    <div class="header px-3 d-flex align-items-center justify-content-between w-100"
-         *ngIf="header || showCloseIcon || headerTemplate" [ngClass]="{'py-3': !showCloseIcon,'py-2':showCloseIcon}">
+    <div class="header" *ngIf="header || showCloseIcon || headerTemplate" [class.show-close-icon]="showCloseIcon">
       <ng-container *ngIf="headerTemplate;else alternativeTitle">
         <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
       </ng-container>
@@ -31,10 +30,10 @@
         (onClick)="_onHide()">
       </ng-button>
     </div>
-    <div class="content" [class.px-3]="gutter">
+    <div class="content" [class.has-gutter]="gutter">
       <ng-content></ng-content>
     </div>
-    <div class="footer px-3 py-2" *ngIf="footerTemplate">
+    <div class="footer" *ngIf="footerTemplate">
       <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
     </div>
   </div>

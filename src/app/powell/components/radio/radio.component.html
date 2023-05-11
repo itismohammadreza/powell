@@ -28,13 +28,13 @@
         (onClick)="_onChange($event)"
         (onFocus)="emitter('onFocus',$event)"
       ></p-radioButton>
-      <label [attr.for]="'id'+item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
+      <label [attr.for]="'id' + item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
         {{ item[optionLabel] }}
       </label>
     </div>
   </div>
   <label
-    class="fix-label align-self-start"
+    class="fix-label"
     *ngIf="label"
     [attr.for]="inputId"
     [class.p-disabled]="disabled"

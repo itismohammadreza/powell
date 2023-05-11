@@ -33,7 +33,7 @@
       <ng-container *ngTemplateOutlet="thumbnailTemplate;context:{$implicit:item}"></ng-container>
     </ng-container>
     <ng-template #thumbnailAlternative>
-      <div class="row no-gutters justify-content-center" *ngIf="item.thumbnail">
+      <div *ngIf="item.thumbnail">
         <img [alt]="item.alt" [src]="item.thumbnail"/>
       </div>
     </ng-template>
@@ -45,7 +45,7 @@
     <ng-template #itemAlternative>
       <img
         [alt]="item.alt"
-        [src]="item.preview || 'assets/images/loader.gif'"
+        [src]="item.preview"
         class="w-100"
       />
     </ng-template>
@@ -60,7 +60,7 @@
     <ng-template #captionAlternative>
       <div class="galleria-caption" *ngIf="item.caption">
         <h4>{{item.caption.title}}</h4>
-        <p class="mb-0">{{item.caption.subtitle}}</p>
+        <span>{{item.caption.subtitle}}</span>
       </div>
     </ng-template>
   </ng-template>

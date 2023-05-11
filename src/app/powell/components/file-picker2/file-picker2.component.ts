@@ -110,7 +110,17 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.init(this.value);
+    if (changes.value) {
+      this.init(this.value);
+    }
+  }
+
+  _onSelect(event: any) {
+    if (this.multiple) {
+      this.onMultipleSelect(event)
+    } else if (!this.multiple) {
+      this.onSingleSelect(event)
+    }
   }
 
   async onSingleSelect(event: any) {

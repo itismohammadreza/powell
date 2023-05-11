@@ -14,10 +14,12 @@
      [ngStyle]="style"
      [class]="styleClass">
   <div class="field">
-    <div [ngClass]="{
+    <div *ngIf="form?.controls"
+         [ngClass]="{
           'p-input-filled': filled,
           'p-inputtext-sm': inputSize == 'sm',
-          'p-inputtext-lg': inputSize == 'lg' }" *ngIf="form?.controls">
+          'p-inputtext-lg': inputSize == 'lg'
+          }">
       <input
         *ngFor="let item of transformKeys(form.controls);let i=index"
         [formControl]="$any(form.controls[item])"

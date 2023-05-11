@@ -1,17 +1,18 @@
-<p-messages ngConfigHandler
-            [(disableConfigChangeEffect)]="disableConfigChangeEffect"
-            [(rtl)]="rtl"
-            *ngIf="!inlineMessage"
-            [class.rtl]="rtl"
-            [enableService]="false"
-            [severity]="severity"
-            [closable]="closable"
-            [value]="[{
-              summary:summary,
-              detail:detail,
-              icon:icon,
-              severity:severity
-            }]">
+<p-messages
+  ngConfigHandler
+  [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+  [(rtl)]="rtl"
+  *ngIf="!inlineMessage"
+  [class.rtl]="rtl"
+  [enableService]="false"
+  [severity]="severity"
+  [closable]="closable"
+  [value]="[{
+    summary:summary,
+    detail:detail,
+    icon:icon,
+    severity:severity
+  }]">
   <ng-template pTemplate="content" *ngIf="contentTemplate">
     <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
   </ng-template>

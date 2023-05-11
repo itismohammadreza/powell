@@ -35,7 +35,7 @@
   (onShow)="setDefaultFocus()"
   (onHide)="close()"
   #dialogWrapper>
-  <form [formGroup]="form" class="row pt-3">
+  <form [formGroup]="form">
     <ng-container *ngFor="let config of config">
       <ng-container [ngSwitch]="config.component">
         <input
@@ -1387,8 +1387,6 @@
           [dataKey]="config.dataKey"
           (onChange)="handleConfigEvent(config,'onChange',$event)"
           (onOptionClick)="handleConfigEvent(config,'onOptionClick',$event)"
-          (onBeforeBtnClick)="handleConfigEvent(config,'onBeforeBtnClick',$event)"
-          (onAfterBtnClick)="handleConfigEvent(config,'onAfterBtnClick',$event)"
         ></ng-select-button>
         <ng-slider
           *ngSwitchCase="'slider'"
