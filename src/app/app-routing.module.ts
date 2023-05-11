@@ -1,5 +1,5 @@
 import {inject, NgModule} from '@angular/core';
-import {Router, RouterModule, Routes, UrlSegment} from '@angular/router';
+import {Router, RouterModule, Routes} from '@angular/router';
 import {NotFoundPage} from "@modules/layout/not-found/not-found.page";
 import {AuthService} from "@core/http";
 

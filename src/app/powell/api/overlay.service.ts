@@ -1,18 +1,16 @@
-import {
-  ApplicationRef,
-  ComponentRef,
-  createComponent,
-  EmbeddedViewRef,
-  Inject,
-  Injectable,
-  Injector,
-  Type
-} from '@angular/core';
+import {ApplicationRef, ComponentRef, createComponent, Inject, Injectable, Injector, Type} from '@angular/core';
 import {Router} from "@angular/router";
 import {DOCUMENT, LocationStrategy} from '@angular/common';
 import {Observable, Subject} from "rxjs";
 import {ConfigService} from "@powell/api";
-import {DialogComponent, DialogFormComponent} from "@powell/components/overlay";
+import {
+  DialogComponent,
+  DialogFormComponent,
+  DynamicDialogComponent,
+  DynamicDialogConfig,
+  DynamicDialogInjector,
+  DynamicDialogRef
+} from "@powell/components/overlay";
 import {PrimeConfirmDialog, PrimeConfirmPopup, PrimeToast} from "@powell/primeng";
 import {
   NgConfirmDialogOptions,
@@ -31,12 +29,6 @@ import {
   PrimeMessage,
   PrimeMessageService
 } from "@powell/primeng/api";
-import {
-  DynamicDialogComponent,
-  DynamicDialogConfig,
-  DynamicDialogInjector,
-  DynamicDialogRef
-} from "@powell/components/overlay";
 
 @Injectable()
 export class OverlayService {
