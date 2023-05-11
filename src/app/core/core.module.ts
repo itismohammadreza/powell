@@ -1,10 +1,9 @@
-import {APP_INITIALIZER, Injector, NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {AuthInterceptor, HttpHandlerInterceptor} from '@core/interceptors';
 import {EnvServiceProvider, TranslationService} from "@core/utils";
-import {Global} from "@core/config";
 import {
   AnimateOnScrollService,
   initiateNgConfigProvider,
@@ -48,7 +47,4 @@ export function initiateLanguage(translationService: TranslationService) {
   ],
 })
 export class CoreModule {
-  constructor(private injector: Injector) {
-    Global.Injector = this.injector;
-  }
 }

@@ -1,7 +1,7 @@
 import {HttpClient, HttpContext, HttpHeaders, HttpParams} from '@angular/common/http';
+import {inject} from "@angular/core";
 import {Observable} from 'rxjs';
 import {EnvService} from "@core/utils";
-import {Global} from '@core/config';
 import {RequestMethod} from "@core/models";
 
 interface RequestOptions {
@@ -19,8 +19,8 @@ export class ApiService {
   private readonly baseUrl: string;
 
   constructor() {
-    const envService = Global.Injector.get(EnvService);
-    this.http = Global.Injector.get(HttpClient);
+    const envService = inject(EnvService);
+    this.http = inject(HttpClient);
     this.baseUrl = envService.apiUrl;
   }
 
