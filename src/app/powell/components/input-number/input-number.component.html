@@ -88,12 +88,10 @@
     [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label | ngLabelStar:showRequiredStar:ngControl }}
   </label>
-  <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
-  <div class="message small">
-    <ng-container *ngFor="let v of validation | keyvalue">
-      <div *ngIf="hasError(v.key)" class="p-error">
-        {{ v.value }}
-      </div>
-    </ng-container>
-  </div>
+  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
+  <ng-container *ngFor="let v of validation | keyvalue">
+    <div *ngIf="hasError(v.key)" class="message p-error">
+      {{ v.value }}
+    </div>
+  </ng-container>
 </div>

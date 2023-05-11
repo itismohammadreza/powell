@@ -28,12 +28,10 @@
     </label>
     <p-progressSpinner *ngIf="loading" strokeWidth="4" fill="var(--surface-ground)"></p-progressSpinner>
   </div>
-  <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
-  <div class="message small">
-    <ng-container *ngFor="let v of validation | keyvalue">
-      <div *ngIf="hasError(v.key)" class="p-error">
-        {{ v.value }}
-      </div>
-    </ng-container>
-  </div>
+  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
+  <ng-container *ngFor="let v of validation | keyvalue">
+    <div *ngIf="hasError(v.key)" class="message p-error">
+      {{ v.value }}
+    </div>
+  </ng-container>
 </div>
