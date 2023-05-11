@@ -41,14 +41,14 @@
         <input
           *ngSwitchCase="'hidden'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           type="hidden"
         />
         <ng-auto-complete
           *ngSwitchCase="'auto-complete'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -125,7 +125,7 @@
         <ng-button
           *ngSwitchCase="'button'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [appearance]="config.appearance"
           [rounded]="config.rounded"
           [raised]="config.raised"
@@ -156,7 +156,7 @@
         <ng-cascade-select
           *ngSwitchCase="'cascade-select'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -198,7 +198,7 @@
         <ng-checkbox
           *ngSwitchCase="'checkbox'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -226,7 +226,7 @@
         <ng-chips
           *ngSwitchCase="'chips'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -268,7 +268,7 @@
         <ng-color-picker
           *ngSwitchCase="'color-picker'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -309,7 +309,7 @@
         <ng-dropdown
           *ngSwitchCase="'dropdown'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -386,7 +386,7 @@
         <ng-dual-label-switch
           *ngSwitchCase="'dual-label-switch'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -413,7 +413,7 @@
         <ng-editor
           *ngSwitchCase="'editor'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -473,7 +473,7 @@
         <ng-file-picker
           *ngSwitchCase="'file-picker'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value ?? []"
           [label]="config.label"
@@ -532,7 +532,7 @@
         <ng-file-picker2
           *ngSwitchCase="'file-picker2'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value ?? []"
           [label]="config.label"
@@ -558,7 +558,7 @@
         <ng-gregorian-datepicker
           *ngSwitchCase="'gregorian-datepicker'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -645,7 +645,7 @@
         <ng-image
           *ngSwitchCase="'image'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [src]="config.src"
           [alt]="config.alt"
           [width]="config.width"
@@ -688,7 +688,7 @@
         <ng-input-mask
           *ngSwitchCase="'input-mask'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -733,7 +733,7 @@
         <ng-input-number
           *ngSwitchCase="'input-number'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -793,7 +793,7 @@
         <ng-input-otp
           *ngSwitchCase="'input-otp'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -827,7 +827,7 @@
         <ng-input-password
           *ngSwitchCase="'input-password'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -872,7 +872,7 @@
         <ng-input-text
           *ngSwitchCase="'input-text'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -914,7 +914,7 @@
         <ng-input-textarea
           *ngSwitchCase="'input-textarea'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -953,7 +953,7 @@
         <ng-iran-map
           *ngSwitchCase="'iran-map'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -977,7 +977,7 @@
         <ng-jalali-datepicker
           *ngSwitchCase="'jalali-datepicker'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -1064,7 +1064,7 @@
         <ng-knob
           *ngSwitchCase="'knob'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -1094,7 +1094,7 @@
         <ng-listbox
           *ngSwitchCase="'listbox'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -1142,7 +1142,7 @@
         <ng-map
           *ngSwitchCase="'map'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -1188,7 +1188,7 @@
         <ng-message
           *ngSwitchCase="'message'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [inlineMessage]="config.inlineMessage"
           [summary]="config.summary"
           [detail]="config.detail"
@@ -1201,7 +1201,7 @@
         <ng-multi-checkbox
           *ngSwitchCase="'multi-checkbox'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -1228,7 +1228,7 @@
         <ng-multi-select
           *ngSwitchCase="'multi-select'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -1310,7 +1310,7 @@
         <ng-radio
           *ngSwitchCase="'radio'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -1337,7 +1337,7 @@
         <ng-rating
           *ngSwitchCase="'rating'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -1364,7 +1364,7 @@
         <ng-select-button
           *ngSwitchCase="'select-button'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -1391,7 +1391,7 @@
         <ng-slider
           *ngSwitchCase="'slider'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -1418,7 +1418,7 @@
         <ng-switch
           *ngSwitchCase="'switch'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -1445,7 +1445,7 @@
         <ng-toggle-button
           *ngSwitchCase="'toggle-button'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -1470,7 +1470,7 @@
         <ng-tree
           *ngSwitchCase="'tree'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [label]="config.label"
           [labelWidth]="config.labelWidth"
@@ -1528,7 +1528,7 @@
         <ng-tree-select
           *ngSwitchCase="'tree-select'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -1578,7 +1578,7 @@
         <ng-tri-state-checkbox
           *ngSwitchCase="'tri-state-checkbox'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [formControlName]="config.key"
           [value]="config.value"
           [label]="config.label"
@@ -1599,18 +1599,18 @@
         <div
           *ngSwitchCase="'template'"
           [hidden]="handleConfigVisibility(config)"
-          [ngClass]="config.className ?? 'col-12'"
+          [ngClass]="config.className"
           [innerHTML]="config.template"
           [ngStyle]="config.style"
         ></div>
       </ng-container>
     </ng-container>
-    <div class="col-12" *ngIf="options.formValidator && form.hasError(options.formValidator.type)">
+    <div *ngIf="options.formValidator && form.hasError(options.formValidator.type)">
       <div class="p-error" [ngStyle]="options.formValidator.style" [innerHTML]="options.formValidator.message"></div>
     </div>
   </form>
   <ng-template pTemplate="footer">
-    <div class="footer d-flex align-content-center justify-content-end">
+    <div class="footer">
       <ng-button
         *ngIf="options.rejectVisible"
         [styleClass]="options.rejectButtonStyleClass"

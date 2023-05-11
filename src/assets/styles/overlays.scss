@@ -155,13 +155,21 @@
       flex-wrap: wrap;
       padding-top: 1rem;
 
-      > *:not(:last-child) {
-        margin-bottom: 1.75rem;
+      > * {
+        flex: 0 0 auto;
+        width: 100%;
+
+        &:not(:last-child) {
+          margin-bottom: 1.75rem;
+        }
       }
     }
 
     .footer {
       gap: 1rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
     }
 
     &.ltr {
