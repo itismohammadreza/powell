@@ -22,7 +22,7 @@
 - remove baseZIndex and autoZIndex from components
 - how should disableConfigChangeEffect use in overlay-service like toast etc...?
 - replace css colors with variables and make theme colors configurable
-
+- add new features of primeng to components
 ### New
 
 - [ ] **whiteboard** - implement component.
