@@ -46,7 +46,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() selectableRows: boolean;
   @Input() actionsConfig: NgTableActionsConfig;
   @Input() rtl: boolean;
-  @Input() emptyMessage: string = 'موردی وجود ندارد';
+  @Input() emptyMessage: string;
   @Input() emptyIcon: string;
   @Input() emptyImageSrc: string;
   @Input() emptyImageType: NgEmptyIcon = 'box1';

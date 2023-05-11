@@ -45,6 +45,9 @@ export class ConfigService {
     } else {
       this.document.body.classList.remove('p-ripple-disabled');
     }
+    if (this._config.translation) {
+      this.primengConfig.setTranslation(this._config.translation)
+    }
     this.themeService.initTheme();
     this.themeService.changeTheme(this._config.theme);
     this.handleBodyClasses();

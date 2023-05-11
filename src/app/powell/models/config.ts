@@ -1,5 +1,5 @@
 import {NgFixLabelPosition, NgLabelPosition, NgSize} from "@powell/models";
-import {PrimeOverlayOptions} from "@powell/primeng/api";
+import {PrimeOverlayOptions, PrimeTranslation} from "@powell/primeng/api";
 
 interface NgZIndexOptions {
   modal: number;
@@ -25,6 +25,7 @@ export interface NgConfig {
   zIndex?: NgZIndexOptions,
   ripple?: boolean;
   overlayOptions?: PrimeOverlayOptions;
+  translation?: PrimeTranslation;
 }
 
 export type NgTheme =

@@ -36,7 +36,7 @@ export class AutoCompletePage {
   disabled: boolean = false;
   maxlength: number = 100;
   showEmptyMessage: boolean = false;
-  emptyMessage: string = 'موردی وجود ندارد';
+  emptyMessage: string = '';
   forceSelection: boolean = true;
   unique: boolean = true;
   showClear: boolean = true;

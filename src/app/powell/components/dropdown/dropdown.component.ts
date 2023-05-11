@@ -83,8 +83,8 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() filterLocale: string;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
-  @Input() emptyMessage: string = 'موردی وجود ندارد';
-  @Input() emptyFilterMessage: string = 'موردی وجود ندارد';
+  @Input() emptyMessage: string;
+  @Input() emptyFilterMessage: string;
   @Input() editable: boolean;
   @Input() maxlength: number;
   @Input() appendTo: any;

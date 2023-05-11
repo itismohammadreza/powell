@@ -31,7 +31,7 @@ export class TreeSelectPage {
   placeholder: string;
   disabled: boolean;
   selectionMode: NgSelectionMode = 'single';
-  emptyMessage: string = 'موردی وجود ندارد';
+  emptyMessage: string = '';
   display: NgChipDisplayMode = 'comma';
   propagateSelectionUp: boolean = true;
   propagateSelectionDown: boolean = true;

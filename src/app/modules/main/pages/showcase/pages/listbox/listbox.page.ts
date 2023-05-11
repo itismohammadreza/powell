@@ -27,10 +27,10 @@ export class ListboxPage {
   disabled: boolean = false;
   filter: boolean = false;
   filterPlaceHolder: string = '';
-  emptyFilterMessage: string = 'موردی وجود ندارد';
+  emptyFilterMessage: string = '';
   multiple: boolean = false;
   readonly: boolean = false;
-  emptyMessage: string = 'موردی وجود ندارد';
+  emptyMessage: string = '';
   showToggleAll: boolean = true;
 
   options: any[] = [

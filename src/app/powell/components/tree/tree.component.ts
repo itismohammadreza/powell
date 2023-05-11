@@ -75,7 +75,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() propagateSelectionDown: boolean = true;
   @Input() loading: boolean;
   @Input() loadingIcon: string = 'pi pi-spinner';
-  @Input() emptyMessage: string = 'موردی وجود ندارد';
+  @Input() emptyMessage: string;
   @Input() validateDrop: boolean;
   @Input() filter: boolean;
   @Input() filterBy: string = "label";

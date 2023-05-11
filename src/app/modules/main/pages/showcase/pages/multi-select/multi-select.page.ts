@@ -31,14 +31,14 @@ export class MultiSelectPage {
   defaultLabel: string = 'Choose';
   disabled: boolean = false;
   displaySelectedLabel: boolean = true;
-  emptyFilterMessage: string = 'موردی وجود ندارد';
+  emptyFilterMessage: string = '';
   filter: boolean = true;
   filterPlaceHolder: string = '';
   maxSelectedLabels: number = 3;
   overlayVisible: boolean = false;
   placeholder: string = '';
   readonly: boolean = false;
-  emptyMessage: string = 'موردی وجود ندارد';
+  emptyMessage: string = '';
   resetFilterOnHide: boolean = false;
   scrollHeight: string = '200px';
   selectedItemsLabel: string | 'ellipsis' = 'ellipsis';

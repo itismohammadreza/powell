@@ -74,7 +74,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() disabled: boolean;
   @Input() displaySelectedLabel: boolean = true;
   @Input() dropdownIcon: string = 'pi pi-chevron-down';
-  @Input() emptyFilterMessage: string = 'موردی وجود ندارد';
+  @Input() emptyFilterMessage: string;
   @Input() filter: boolean;
   @Input() filterMatchMode: NgFilterMatchMode = 'contains';
   @Input() filterValue: string;
@@ -95,7 +95,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() panelStyle: any;
   @Input() placeholder: string;
   @Input() readonly: boolean;
-  @Input() emptyMessage: string = 'موردی وجود ندارد';
+  @Input() emptyMessage: string;
   @Input() resetFilterOnHide: boolean;
   @Input() scrollHeight: string = '200px';
   @Input() selectedItemsLabel: string | 'ellipsis' = 'ellipsis';

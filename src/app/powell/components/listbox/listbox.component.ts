@@ -61,13 +61,13 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() filterLocale: string;
   @Input() filterBy: string;
   @Input() filterPlaceHolder: string;
-  @Input() emptyFilterMessage: string = 'موردی وجود ندارد';
+  @Input() emptyFilterMessage: string;
   @Input() listStyle: string;
   @Input() listStyleClass: string;
   @Input() metaKeySelection: boolean = true;
   @Input() multiple: boolean;
   @Input() readonly: boolean;
-  @Input() emptyMessage: string = 'موردی وجود ندارد';
+  @Input() emptyMessage: string;
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';

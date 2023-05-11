@@ -30,8 +30,8 @@ export class DropdownPage {
   filter: boolean = false;
   disabled: boolean = false;
   readonly: boolean = false;
-  emptyMessage: string = 'موردی وجود ندارد';
-  emptyFilterMessage: string = 'موردی وجود ندارد';
+  emptyMessage: string = '';
+  emptyFilterMessage: string = '';
   editable: boolean = false;
   maxlength: number = 100;
   placeholder: string = '';

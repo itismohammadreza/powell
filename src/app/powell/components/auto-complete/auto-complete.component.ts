@@ -84,7 +84,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() autoHighlight: boolean;
   @Input() type: NgInputType = 'text';
   @Input() showEmptyMessage: boolean;
-  @Input() emptyMessage: string = 'موردی وجود ندارد';
+  @Input() emptyMessage: string;
   @Input() autofocus: boolean;
   @Input() forceSelection: boolean = true;
   @Input() dropdownMode: 'blank' | 'current' = 'blank';

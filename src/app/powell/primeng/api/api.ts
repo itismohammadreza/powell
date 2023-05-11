@@ -16,7 +16,7 @@ import {
   OverlayService,
   PrimeNGConfig,
   PrimeTemplate,
-  SortMeta
+  SortMeta, Translation
 } from 'primeng/api';
 
 export const PrimeConfig = PrimeNGConfig;
@@ -59,5 +59,6 @@ export type PrimeLazyLoadEvent = LazyLoadEvent;
 export type PrimeMenuItem = MenuItem;
 export type PrimeConfirmation = Confirmation;
 export type PrimeMessage = Message;
+export type PrimeTranslation = Translation;
 
 

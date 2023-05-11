@@ -72,7 +72,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() selectionMode: NgSelectionMode;
   @Input() panelClass: string;
   @Input() appendTo: any;
-  @Input() emptyMessage: string = 'موردی وجود ندارد';
+  @Input() emptyMessage: string;
   @Input() display: NgChipDisplayMode = 'comma';
   @Input() propagateSelectionUp: boolean = true;
   @Input() propagateSelectionDown: boolean = true;
