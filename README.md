@@ -25,6 +25,3 @@
 - update to v16 and use takeUtilDestroy insteadof destroy$.
 - move themes and style files inside powell directory
 
-### New
-
-- [ ] **whiteboard** - implement component.
