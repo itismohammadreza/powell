@@ -17,7 +17,6 @@
 - create error and hint manager directive
 - fix selectButton issue
 - fix table issue
-- remove components dependency to bootstrap and handle rtl ltr file in config change
 - add configHandler directive to status component and fix error
 - create url from blob in file pickers (instead of convert to base64)
 - set local service in config
