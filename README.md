@@ -19,9 +19,7 @@
 - fix selectButton issue
 - fix table issue
 - add configHandler directive to status component and fix error
-- remove baseZIndex and autoZIndex from components
 - replace css colors with variables and make theme colors configurable
 - add new features of primeng to components
-- update to v16 and use takeUtilDestroy insteadof destroy$.
 - move themes and style files inside powell directory
-
+- remove baseZIndex and autoZIndex from components
