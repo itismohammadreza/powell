@@ -7,7 +7,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -23,7 +22,6 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
 import {TemplateDirective} from '@powell/directives/template';
 import {
   NgAddon,
@@ -35,6 +33,7 @@ import {
 } from '@powell/models';
 import {PrimeContextMenu} from "@powell/primeng";
 import {PrimeScrollerOptions} from "@powell/primeng/api";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'ng-tree',
@@ -48,7 +47,7 @@ import {PrimeScrollerOptions} from "@powell/primeng/api";
     }
   ]
 })
-export class TreeComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
+export class TreeComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
@@ -107,7 +106,6 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject();
   headerTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
@@ -140,7 +138,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntilDestroyed()).subscribe(() => {
           currentControl.markAsTouched();
         });
       }
@@ -216,11 +214,6 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
 
   registerOnTouched(fn) {
     this.onModelTouched = fn;
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }
 

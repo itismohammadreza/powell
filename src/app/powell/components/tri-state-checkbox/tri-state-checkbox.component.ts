@@ -8,8 +8,8 @@ import {
   FormGroupDirective,
   NgControl
 } from "@angular/forms";
-import {Subject, takeUntil} from "rxjs";
 import {NgValidation} from "@powell/models";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'ng-tri-state-checkbox',
@@ -38,7 +38,6 @@ export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -67,7 +66,7 @@ export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntilDestroyed()).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -123,10 +122,5 @@ export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

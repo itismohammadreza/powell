@@ -1,14 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -19,8 +9,8 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'ng-multi-checkbox',
@@ -34,7 +24,7 @@ import {NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
     }
   ]
 })
-export class MultiCheckboxComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class MultiCheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() value: any[];
   @Input() label: string;
   @Input() filled: boolean;
@@ -74,7 +64,6 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor, OnD
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -107,7 +96,7 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor, OnD
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntilDestroyed()).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -163,10 +152,5 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor, OnD
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

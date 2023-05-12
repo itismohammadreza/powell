@@ -9,7 +9,6 @@ import {
   Injector,
   Input,
   OnChanges,
-  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -27,11 +26,11 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
 import {NgFilePickerMode, NgFileResultType, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {PrimeFileUpload} from "@powell/primeng";
 import {UtilsService} from "@powell/api";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'ng-file-picker',
@@ -45,7 +44,7 @@ import {UtilsService} from "@powell/api";
     }
   ]
 })
-export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit, ControlValueAccessor, OnDestroy {
+export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit, ControlValueAccessor {
   @Input() value: any = [];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -106,7 +105,6 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject();
   selectedFiles: any[] = [];
   filesToEmit: (string | ArrayBuffer | File)[] | any = [];
   toolbarTemplate: TemplateRef<any>;
@@ -140,7 +138,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntilDestroyed()).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -363,10 +361,5 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
 
   clear() {
     this.fileUploadComponent.clear();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

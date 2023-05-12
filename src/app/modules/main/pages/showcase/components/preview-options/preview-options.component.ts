@@ -3,7 +3,6 @@ import {
   ComponentRef,
   EventEmitter,
   Input,
-  OnDestroy,
   OnInit,
   Output,
   Type,
@@ -44,8 +43,8 @@ import {DropdownComponent} from '@powell/components/dropdown';
 import {InputTextComponent} from '@powell/components/input-text';
 import {CheckboxComponent} from '@powell/components/checkbox';
 import {TranslationService} from "@core/utils";
-import {Subject, takeUntil} from "rxjs";
 import {ConfigService} from "@powell/api";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 type PreviewItem =
   | 'label'
@@ -283,7 +282,7 @@ type PreviewItem =
   templateUrl: './preview-options.component.html',
   styleUrls: ['./preview-options.component.scss']
 })
-export class PreviewOptionsComponent implements OnInit, OnDestroy {
+export class PreviewOptionsComponent implements OnInit{
   @Input() label: string;
   @Output() labelChange = new EventEmitter()
   @Input() filled: boolean;
@@ -753,7 +752,6 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
   @Input() previewItems: PreviewItem[]
 
   cmpRefs: ComponentRef<any>[] = [];
-  destroy$ = new Subject<boolean>();
 
   constructor(private translationService: TranslationService, private configService: ConfigService) {
   }
@@ -848,14 +846,14 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
     cmpRef.instance.filled = this.configService.getConfig().filled;
     cmpRef.instance.inputSize = this.configService.getConfig().inputSize;
     cmpRef.instance.key = previewItem;
-    this.translationService.stream(previewItem).pipe(takeUntil(this.destroy$)).subscribe(res => {
+    this.translationService.stream(previewItem).pipe(takeUntilDestroyed()).subscribe(res => {
       cmpRef.instance.label = res;
     })
     switch (cmp) {
       case DropdownComponent:
         cmpRef.location.nativeElement.classList.add('mb-4');
         if (previewItem == 'addon') {
-          cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
+          cmpRef.instance.onChange.pipe(takeUntilDestroyed()).subscribe(event => {
             switch (event.value) {
               case 'none':
                 this.addonChange.emit(null)
@@ -877,28 +875,23 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
           cmpRef.instance.value = 'none';
           break;
         }
-        cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
+        cmpRef.instance.onChange.pipe(takeUntilDestroyed()).subscribe(event => {
           this[`${previewItem}Change`].emit(event.value == 'none' ? null : event.value);
         });
         break;
       case InputTextComponent:
         cmpRef.location.nativeElement.classList.add('mb-4');
-        cmpRef.instance.onInput.pipe(takeUntil(this.destroy$)).subscribe(event => {
+        cmpRef.instance.onInput.pipe(takeUntilDestroyed()).subscribe(event => {
           this[`${previewItem}Change`].emit(event.target.value);
         });
         break;
       case CheckboxComponent:
-        cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
+        cmpRef.instance.onChange.pipe(takeUntilDestroyed()).subscribe(event => {
           this[`${previewItem}Change`].emit(event.checked);
         });
         break;
     }
     this.cmpRefs.push(cmpRef);
     return cmpRef;
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete()
   }
 }

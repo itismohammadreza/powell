@@ -22,10 +22,10 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {PrimeScrollerOptions} from "@powell/primeng/api";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'ng-auto-complete',
@@ -117,7 +117,6 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject();
   itemTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
@@ -152,7 +151,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntilDestroyed()).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -273,10 +272,5 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

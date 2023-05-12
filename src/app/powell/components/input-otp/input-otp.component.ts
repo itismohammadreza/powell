@@ -7,7 +7,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
@@ -22,8 +21,8 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {Subject, takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgSize, NgValidation} from "@powell/models";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'ng-input-otp',
@@ -37,7 +36,7 @@ import {NgFixLabelPosition, NgSize, NgValidation} from "@powell/models";
     }
   ]
 })
-export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAccessor, OnDestroy {
+export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input('value') set value(v: any) {
     this.setValue(v)
   };
@@ -73,7 +72,6 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   form: FormGroup;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -103,7 +101,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntilDestroyed()).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -114,7 +112,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
     for (let index = 0; index < this.inputCount; index++) {
       this.form.addControl(this.getControlName(index), new FormControl());
     }
-    this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
+    this.form.valueChanges.pipe(takeUntilDestroyed()).subscribe(() => {
       this.transformKeys(this.form.controls).forEach((k) => {
         const val = this.form.controls[k].value;
         if (val && val.length > 1) {
@@ -340,10 +338,5 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

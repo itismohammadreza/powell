@@ -7,7 +7,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -23,7 +22,6 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
 import {
   NgAddon,
   NgFilterMatchMode,
@@ -35,6 +33,7 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {PrimeScrollerOptions} from "@powell/primeng/api";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'ng-dropdown',
@@ -48,7 +47,7 @@ import {PrimeScrollerOptions} from "@powell/primeng/api";
     },
   ],
 })
-export class DropdownComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
+export class DropdownComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -126,7 +125,6 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject();
   itemTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
   selectedItemTemplate: TemplateRef<any>;
@@ -162,7 +160,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntilDestroyed()).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -269,10 +267,5 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

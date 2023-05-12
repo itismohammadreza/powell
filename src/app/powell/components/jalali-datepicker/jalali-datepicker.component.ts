@@ -1,14 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -19,7 +9,6 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {Subject, takeUntil} from "rxjs";
 import {Moment} from "jalali-moment";
 import {
   NgAddon,
@@ -32,6 +21,7 @@ import {
   NgSize,
   NgValidation
 } from "@powell/models";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'ng-jalali-datepicker',
@@ -45,7 +35,7 @@ import {
     }
   ]
 })
-export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -132,7 +122,6 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor, 
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -161,7 +150,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor, 
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntilDestroyed()).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -236,10 +225,5 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor, 
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

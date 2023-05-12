@@ -1,14 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -19,8 +9,8 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl,
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'ng-input-mask',
@@ -34,7 +24,7 @@ import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidat
     }
   ]
 })
-export class InputMaskComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -79,7 +69,6 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor, OnDestr
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
-  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -108,7 +97,7 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor, OnDestr
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntilDestroyed()).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -179,10 +168,5 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor, OnDestr
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }
