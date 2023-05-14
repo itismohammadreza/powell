@@ -3,7 +3,7 @@ import {DOCUMENT} from "@angular/common";
 import {LanguageChecker} from '@core/utils';
 import {SidebarType} from '@core/models';
 import {ConfigService, ThemeService} from "@powell/api";
-import {NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@powell/models";
+import {NgConfig} from "@powell/models";
 import {Global} from "@core/config";
 import {PrimeMenuItem} from "@powell/primeng/api";
 
@@ -19,16 +19,17 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   @Input() responsiveThreshold: number = 768;
 
   configSidebarVisible: boolean = false;
-  rtl: boolean = this.configService.getConfig().rtl;
-  theme: NgTheme = this.configService.getConfig().theme;
-  labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
-  fixLabelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
-  filled: boolean = this.configService.getConfig().filled;
-  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
-  inputSize: NgSize = this.configService.getConfig().inputSize;
-  ripple: boolean = this.configService.getConfig().ripple;
+  config: NgConfig = {
+    rtl: this.configService.getConfig().rtl,
+    theme: this.configService.getConfig().theme,
+    labelPos: this.configService.getConfig().labelPos,
+    fixLabelPos: this.configService.getConfig().fixLabelPos,
+    filled: this.configService.getConfig().filled,
+    showRequiredStar: this.configService.getConfig().showRequiredStar,
+    inputSize: this.configService.getConfig().inputSize,
+    ripple: this.configService.getConfig().ripple,
+  }
   lang: string = Global.Config.lang;
-
   tempSidebarType: SidebarType;
   themes: PrimeMenuItem[];
   sidebarTypes: PrimeMenuItem[];

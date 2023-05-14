@@ -1,6 +1,6 @@
 <div class="main-content menu-{{tempSidebarType}}"
      [ngClass]="{
-        'rtl' : rtl,
+        'rtl' : config.rtl,
         'sidebar-lock' : sidebarLock,
         'sidebar-open' : sidebarVisible
      }">
@@ -46,7 +46,7 @@
     [visible]="sidebarVisible"
     [blockScroll]="isModalSidebar"
     [modal]="isModalSidebar"
-    [position]="rtl ? 'right' : 'left'"
+    [position]="config.rtl ? 'right' : 'left'"
     [showCloseIcon]="false"
     [closeOnEscape]="false"
     (visibleChange)="toggleSidebar($event)">
@@ -56,7 +56,7 @@
         <i class="d-none d-md-block border rounded-circle pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
            (click)="toggleLockSidebarClick()"></i>
       </div>
-      <ng-input-text [rtl]="rtl"
+      <ng-input-text [rtl]="config.rtl"
                      inputSize="sm"
                      class="d-block my-3"
                      [placeholder]="'searchComponents' | translate"
@@ -72,7 +72,7 @@
 
 <p-menu
   #accountMenu
-  [styleClass]="rtl ? 'rtl' : 'ltr'"
+  [styleClass]="config.rtl ? 'rtl' : 'ltr'"
   [popup]="true"
   [model]="accountItems"
 ></p-menu>
@@ -109,7 +109,7 @@
       labelPos="fix-side"
       [labelWidth]="170"
       class="d-block mb-4"
-      [value]="inputSize"
+      [value]="config.inputSize"
       [options]="[{label:'sm',value:'sm'},{label:'md',value:'md'},{label:'lg',value:'lg'}]"
       (onChange)="changeGlobalConfig('inputSize',$event.value)"
     ></ng-dropdown>
@@ -118,7 +118,7 @@
       labelPos="fix-side"
       [labelWidth]="170"
       class="d-block mb-4"
-      [value]="theme"
+      [value]="config.theme"
       [options]="themes"
       (onChange)="changeGlobalConfig('theme',$event.value)"
     ></ng-dropdown>
@@ -127,7 +127,7 @@
       labelPos="fix-side"
       [labelWidth]="170"
       class="d-block mb-4"
-      [value]="labelPos"
+      [value]="config.labelPos"
       [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'},{label:'float',value:'float'}]"
       (onChange)="changeGlobalConfig('labelPos',$event.value)"
     ></ng-dropdown>
@@ -136,7 +136,7 @@
       labelPos="fix-side"
       [labelWidth]="170"
       class="d-block mb-4"
-      [value]="fixLabelPos"
+      [value]="config.fixLabelPos"
       [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'}]"
       (onChange)="changeGlobalConfig('fixLabelPos',$event.value)"
     ></ng-dropdown>
@@ -145,7 +145,7 @@
       labelPos="fix-side"
       [labelWidth]="170"
       class="d-block mb-4"
-      [value]="filled"
+      [value]="config.filled"
       (onChange)="changeGlobalConfig('filled',$event.checked)">
     </ng-switch>
     <ng-switch
@@ -153,7 +153,7 @@
       labelPos="fix-side"
       [labelWidth]="170"
       class="d-block mb-4"
-      [value]="showRequiredStar"
+      [value]="config.showRequiredStar"
       (onChange)="changeGlobalConfig('showRequiredStar',$event.checked)">
     </ng-switch>
     <ng-switch
@@ -161,7 +161,7 @@
       labelPos="fix-side"
       [labelWidth]="170"
       class="d-block mb-4"
-      [value]="ripple"
+      [value]="config.ripple"
       (onChange)="changeGlobalConfig('ripple',$event.checked)">
     </ng-switch>
     <ng-switch
@@ -169,7 +169,7 @@
       labelPos="fix-side"
       [labelWidth]="170"
       class="d-block mb-4"
-      [value]="rtl"
+      [value]="config.rtl"
       (onChange)="changeGlobalConfig('rtl',$event.checked)">
     </ng-switch>
   </div>
