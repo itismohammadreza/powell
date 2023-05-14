@@ -24,7 +24,14 @@ export class IranMapPage {
   disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   selectionLimit: number = 31;
   multiple: boolean = false;
+  async: boolean = false;
 
   constructor(private configService: ConfigService) {
+  }
+
+  onChangeAsync({loadingCallback}) {
+    setTimeout(() => {
+      loadingCallback()
+    }, 3000)
   }
 }

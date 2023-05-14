@@ -13,7 +13,8 @@
       'disabled',
       'disableConfigChangeEffect',
       'selectionLimit',
-      'multiple'
+      'multiple',
+      'async'
       ]"
       [(label)]="label"
       [(labelWidth)]="labelWidth"
@@ -25,6 +26,7 @@
       [(disableConfigChangeEffect)]="disableConfigChangeEffect"
       [(selectionLimit)]="selectionLimit"
       [(multiple)]="multiple"
+      [(async)]="async"
     ></ng-preview-options>
   </p-panel>
 
@@ -43,6 +45,8 @@
         [disableConfigChangeEffect]="disableConfigChangeEffect"
         [selectionLimit]="selectionLimit"
         [multiple]="multiple"
+        [async]="async"
+        (onChangeAsync)="onChangeAsync($event)"
       ></ng-iran-map>
     </form>
   </p-panel>
