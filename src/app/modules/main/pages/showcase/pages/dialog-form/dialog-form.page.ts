@@ -1,15 +1,15 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {ConfigService, OverlayService} from "@powell/api";
 import {NgDialogFormOptions} from "@powell/models";
 import {FormControl, Validators} from "@angular/forms";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'ng-dialog-form-page',
   templateUrl: './dialog-form.page.html',
   styleUrls: ['./dialog-form.page.scss']
 })
-export class DialogFormPage {
+export class DialogFormPage implements OnDestroy {
   dialogForm: NgDialogFormOptions = {
     header: 'Dialog',
     draggable: false,
@@ -39,6 +39,7 @@ export class DialogFormPage {
   }
 
   flag = false;
+  destroy$ = new Subject<boolean>()
 
   constructor(private overlayService: OverlayService, private configService: ConfigService) {
   }
@@ -138,7 +139,7 @@ export class DialogFormPage {
           message: 'فرم نامعتبر است',
           style: {textAlign: 'center'}
         }
-      }).pipe(takeUntilDestroyed()).subscribe(res => {
+      }).pipe(takeUntil(this.destroy$)).subscribe(res => {
       if (!res) {
         return
       }
@@ -153,5 +154,10 @@ export class DialogFormPage {
 
   akbarValidator(control: FormControl) {
     return control.value == 'akbar' ? {akbarDenied: true} : null
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

@@ -1,4 +1,14 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  forwardRef,
+  Injector,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -20,7 +30,7 @@ import {
   NgSize,
   NgValidation
 } from "@powell/models";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'ng-gregorian-datepicker',
@@ -34,7 +44,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
     },
   ],
 })
-export class GregorianDatepickerComponent implements OnInit, ControlValueAccessor {
+export class GregorianDatepickerComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -121,6 +131,7 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -149,7 +160,7 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.pipe(takeUntilDestroyed()).subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -224,5 +235,10 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

@@ -6,6 +6,7 @@ import {
   forwardRef,
   Injector,
   Input,
+  OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
@@ -19,6 +20,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
+import {Subject, takeUntil} from "rxjs";
 import {
   NgAddon,
   NgIconPosition,
@@ -29,7 +31,6 @@ import {
   NgSize,
   NgValidation
 } from '@powell/models';
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'ng-input-text',
@@ -43,7 +44,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
     }
   ]
 })
-export class InputTextComponent implements OnInit, ControlValueAccessor {
+export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -86,6 +87,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -119,7 +121,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.pipe(takeUntilDestroyed()).subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -228,5 +230,10 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
         inputEl.style.textAlign = this.rtl ? 'right' : 'left';
       }
     }
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

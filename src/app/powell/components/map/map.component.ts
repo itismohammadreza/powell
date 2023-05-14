@@ -6,6 +6,7 @@ import {
   Injector,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
@@ -39,8 +40,8 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
+import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgFixLabelPosition, NgValidation} from "@powell/models";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'ng-map',
@@ -54,7 +55,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
     }
   ]
 })
-export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
+export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, OnDestroy {
   @Input() value: LatLngLiteral | LatLngLiteral[];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -156,6 +157,7 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   map: Map;
   layers: Layer[] = [];
   onModelChange: any = (_: any) => {
@@ -186,7 +188,7 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.pipe(takeUntilDestroyed()).subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -352,5 +354,10 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
     this.value = null;
     this.onModelChange(null);
     this.onClear.emit()
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

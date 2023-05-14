@@ -6,6 +6,7 @@ import {
   Injector,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges
@@ -20,12 +21,12 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
+import {Subject, takeUntil} from "rxjs";
 import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
 import {NgFixLabelPosition, NgValidation} from '@powell/models';
 import {EditorBaseComponent} from "@powell/components/editor";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'ng-editor',
@@ -39,7 +40,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
     },
   ],
 })
-export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor {
+export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -99,6 +100,7 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   editorInstance: EditorBaseComponent;
 
   onModelChange: any = (_: any) => {
@@ -149,7 +151,7 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.pipe(takeUntilDestroyed()).subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -258,5 +260,10 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
       this.editorInstance.enabled()
     }
     this.cd.markForCheck()
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

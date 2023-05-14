@@ -7,6 +7,7 @@ import {
   forwardRef,
   Injector,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -22,9 +23,9 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
+import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'ng-listbox',
@@ -38,7 +39,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
     }
   ]
 })
-export class ListboxComponent implements OnInit, AfterContentInit, ControlValueAccessor {
+export class ListboxComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -87,6 +88,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   inputId: string;
   controlContainer: FormGroupDirective;
   ngControl: NgControl;
+  destroy$ = new Subject();
   headerTemplate: TemplateRef<any>;
   itemTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
@@ -122,7 +124,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
-        rootForm.ngSubmit.pipe(takeUntilDestroyed()).subscribe(() => {
+        rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
             currentControl.markAsTouched();
           }
@@ -226,5 +228,10 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

@@ -2,7 +2,6 @@ import {Component, Inject} from '@angular/core';
 import {ConfigService} from "@powell/api";
 import {DOCUMENT} from "@angular/common";
 import {Global} from "@core/config";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-root',
@@ -12,7 +11,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 export class AppComponent {
   constructor(private configService: ConfigService, @Inject(DOCUMENT) private document: Document) {
     this.handleBootstrapFiles(Global.Config.rtl);
-    this.configService.configChange$.pipe(takeUntilDestroyed()).subscribe(res => {
+    this.configService.configChange$.subscribe(res => {
       this.handleBootstrapFiles(res.currentConfig.rtl)
     })
   }
