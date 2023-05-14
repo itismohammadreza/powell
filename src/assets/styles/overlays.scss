@@ -310,14 +310,18 @@
   }
 }
 
-.p-menu-overlay.rtl {
-  .p-menuitem-link .p-menuitem-icon {
-    margin-left: 0.5rem;
-    margin-right: 0;
+.p-menu-overlay {
+  &.rtl {
+    .p-menuitem-link .p-menuitem-icon {
+      margin-left: 0.5rem;
+      margin-right: 0;
+    }
   }
 }
 
-.p-scrolltop {
-  right: auto;
-  left: 20px;
+body.ng-rtl {
+  .p-scrolltop {
+    right: auto;
+    left: 20px;
+  }
 }
