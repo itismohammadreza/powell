@@ -97,7 +97,6 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
-  controlContainer: FormGroupDirective;
   ngControl: NgControl;
   destroy$ = new Subject();
   valueTemplate: TemplateRef<any>;
@@ -117,7 +116,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    this.controlContainer = this.injector.get(
+    const controlContainer = this.injector.get(
       ControlContainer,
       null,
       {optional: true, host: true, skipSelf: true}
@@ -126,9 +125,9 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
       currentControl = this.ngControl.control;
-      if (this.controlContainer) {
-        parentForm = this.controlContainer.control;
-        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+      if (controlContainer) {
+        parentForm = controlContainer.control;
+        rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }

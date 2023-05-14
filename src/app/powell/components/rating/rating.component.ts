@@ -65,7 +65,6 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
-  controlContainer: FormGroupDirective;
   ngControl: NgControl;
   destroy$ = new Subject();
   cancelTemplate: TemplateRef<any>;
@@ -84,7 +83,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    this.controlContainer = this.injector.get(
+    const controlContainer = this.injector.get(
       ControlContainer,
       null,
       {optional: true, host: true, skipSelf: true}
@@ -93,9 +92,9 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
       currentControl = this.ngControl.control;
-      if (this.controlContainer) {
-        parentForm = this.controlContainer.control;
-        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+      if (controlContainer) {
+        parentForm = controlContainer.control;
+        rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }

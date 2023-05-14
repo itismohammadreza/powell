@@ -60,7 +60,6 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Output() onRemove = new EventEmitter();
 
   inputId: string;
-  controlContainer: FormGroupDirective;
   ngControl: NgControl;
   destroy$ = new Subject();
   filesToShow: { display: string | ArrayBuffer, name: string }[] = [];
@@ -85,7 +84,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    this.controlContainer = this.injector.get(
+    const controlContainer = this.injector.get(
       ControlContainer,
       null,
       {optional: true, host: true, skipSelf: true}
@@ -94,9 +93,9 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
       currentControl = this.ngControl.control;
-      if (this.controlContainer) {
-        parentForm = this.controlContainer.control;
-        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+      if (controlContainer) {
+        parentForm = controlContainer.control;
+        rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }

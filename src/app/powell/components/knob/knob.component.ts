@@ -62,7 +62,6 @@ export class KnobComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @Output() onChange = new EventEmitter();
 
   inputId: string;
-  controlContainer: FormGroupDirective;
   ngControl: NgControl;
   destroy$ = new Subject();
   onModelChange: any = (_: any) => {
@@ -78,7 +77,7 @@ export class KnobComponent implements OnInit, ControlValueAccessor, OnDestroy {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    this.controlContainer = this.injector.get(
+    const controlContainer = this.injector.get(
       ControlContainer,
       null,
       {optional: true, host: true, skipSelf: true}
@@ -87,9 +86,9 @@ export class KnobComponent implements OnInit, ControlValueAccessor, OnDestroy {
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
       currentControl = this.ngControl.control;
-      if (this.controlContainer) {
-        parentForm = this.controlContainer.control;
-        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+      if (controlContainer) {
+        parentForm = controlContainer.control;
+        rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }

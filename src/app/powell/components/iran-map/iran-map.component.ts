@@ -276,7 +276,6 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
     },
   ]
   inputId: string;
-  controlContainer: FormGroupDirective;
   ngControl: NgControl;
   destroy$ = new Subject();
   onModelChange: any = (_: any) => {
@@ -294,7 +293,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    this.controlContainer = this.injector.get(
+    const controlContainer = this.injector.get(
       ControlContainer,
       null,
       {optional: true, host: true, skipSelf: true}
@@ -303,9 +302,9 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
       currentControl = this.ngControl.control;
-      if (this.controlContainer) {
-        parentForm = this.controlContainer.control;
-        rootForm = this.controlContainer.formDirective as FormGroupDirective;
+      if (controlContainer) {
+        parentForm = controlContainer.control;
+        rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
           currentControl = parentForm.get(this.ngControl.name.toString());
         }
@@ -499,9 +498,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   removeLoading = () => {
     this.disabled = false;
     this.cd.detectChanges()
-    if (this.controlContainer && this.ngControl) {
-      this.onModelChange(this.value);
-    }
+    this.onModelChange(this.value);
   };
 
   ngOnDestroy() {
