@@ -30,7 +30,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     ripple: this.configService.getConfig().ripple,
   }
   lang: string = Global.Config.lang;
-  tempSidebarType: SidebarType;
+  tempSidebarType: SidebarType = 'push-mask';
   themes: PrimeMenuItem[];
   sidebarTypes: PrimeMenuItem[];
   sidebarItems: PrimeMenuItem[];
@@ -47,10 +47,10 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (this.document.defaultView.innerWidth < this.responsiveThreshold) {
-      this.changeSidebarType('overlay');
+      this.changeSidebarType('overlay', false);
       this.maskEl?.classList.remove('d-none');
     } else if (this.document.defaultView.innerWidth >= this.responsiveThreshold) {
-      this.changeSidebarType(this.sidebarType);
+      this.changeSidebarType(this.sidebarType, false);
     }
   }
 
@@ -75,7 +75,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
 
   ngAfterContentInit() {
     if (this.document.defaultView.innerWidth < this.responsiveThreshold) {
-      this.changeSidebarType('overlay');
+      this.changeSidebarType('overlay', false);
     }
   }
 
@@ -159,8 +159,11 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     await this.translationService.use(event.value).toPromise();
   }
 
-  changeSidebarType(event: any) {
+  changeSidebarType(event: any, assign: boolean) {
     this.tempSidebarType = event.value || event;
+    if (assign) {
+      this.sidebarType = this.tempSidebarType;
+    }
     if (this.tempSidebarType == 'hover') {
       this.toggleSidebar(true);
     } else {

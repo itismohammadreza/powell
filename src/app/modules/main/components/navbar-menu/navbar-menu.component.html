@@ -91,7 +91,7 @@
       class="d-block mb-4"
       [value]="tempSidebarType"
       [options]="sidebarTypes"
-      (onChange)="changeSidebarType($event)"
+      (onChange)="changeSidebarType($event, true)"
     ></ng-dropdown>
     <ng-dropdown
       [label]="'lang' | translate"
