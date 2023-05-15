@@ -10,11 +10,6 @@
 
 ### Feature
 
-- fix below issue:
-  - 1- change sidebarType
-  - 2- responsive until mobile view
-  - 3- change size to desktop view
-  - 4- the sidebarType is reset to its default value
 - create error and hint manager directive
 - fix selectButton issue
 - fix table issue
