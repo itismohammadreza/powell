@@ -16,7 +16,8 @@ import {
   OverlayService,
   PrimeNGConfig,
   PrimeTemplate,
-  SortMeta, Translation
+  SortMeta,
+  Translation
 } from 'primeng/api';
 
 export const PrimeConfig = PrimeNGConfig;
