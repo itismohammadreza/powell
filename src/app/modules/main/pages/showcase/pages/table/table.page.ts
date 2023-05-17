@@ -31,7 +31,6 @@ export class TablePage {
   disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   gridlines: boolean = true;
   striped: boolean = false;
-
   simpleCustomers = [
     {
       "id": 1000,
@@ -1112,7 +1111,7 @@ export class TablePage {
   globalFilterFields: string[] = ['status'];
   selectedCustomers: any[];
   contextMenuSelection: any;
-  loading: boolean;
+  loading: boolean = true;
   totalRecords: number;
   selectAll: boolean = false;
 
