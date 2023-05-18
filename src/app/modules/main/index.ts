@@ -5,7 +5,6 @@ import {TranslateModule} from "@ngx-translate/core";
 import {MainPage} from "@modules/main/main.page";
 import {NavbarMenuComponent} from "@modules/main/components/navbar-menu/navbar-menu.component";
 import {MainRoutingModule} from "@modules/main/main-routing.module";
-import {LayoutModule} from "@modules/layout/layout.module";
 import {ButtonModule} from "@powell/components/button";
 import {InputTextModule} from "@powell/components/input-text";
 import {DropdownModule} from "@powell/components/dropdown";
@@ -20,6 +19,7 @@ import {
   PrimeScrollTopModule,
   PrimeSidebarModule
 } from "@powell/primeng";
+import {LoadingComponent} from "@modules/layout/loading/loading.component";
 
 export const DECLARATIONS: Type<any>[] = [
   MainPage,
@@ -28,6 +28,7 @@ export const DECLARATIONS: Type<any>[] = [
 
 export const IMPORTS: Type<any>[] = [
   CommonModule,
+  LoadingComponent,
   MainRoutingModule,
   PrimeAvatarModule,
   PrimeMenubarModule,
@@ -36,7 +37,6 @@ export const IMPORTS: Type<any>[] = [
   PrimeMenuModule,
   PrimeDividerModule,
   PrimeScrollTopModule,
-  LayoutModule,
   ButtonModule,
   InputTextModule,
   DropdownModule,

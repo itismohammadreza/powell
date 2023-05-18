@@ -7,8 +7,8 @@ import {InputTextModule} from "@powell/components/input-text";
 import {ButtonModule} from "@powell/components/button";
 import {CheckboxModule} from "@powell/components/checkbox";
 import {ReactiveFormsModule} from "@angular/forms";
-import {LayoutModule} from "@modules/layout/layout.module";
 import {CommonModule} from "@angular/common";
+import {LogoComponent} from "@modules/layout/logo/logo.component";
 
 export const DECLARATIONS: Type<any>[] = [
   AuthPage,
@@ -19,11 +19,11 @@ export const DECLARATIONS: Type<any>[] = [
 export const IMPORTS: Type<any>[] = [
   ReactiveFormsModule,
   AuthRoutingModule,
-  LayoutModule,
   InputTextModule,
   ButtonModule,
   CheckboxModule,
-  CommonModule
+  CommonModule,
+  LogoComponent
 ];
 
 export const EXPORTS: Type<any>[] = [
