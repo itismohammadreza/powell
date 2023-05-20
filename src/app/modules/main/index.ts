@@ -20,6 +20,7 @@ import {
   PrimeSidebarModule
 } from "@powell/primeng";
 import {LoadingComponent} from "@modules/layout/loading/loading.component";
+import {LogoComponent} from "@modules/layout/logo/logo.component";
 
 export const DECLARATIONS: Type<any>[] = [
   MainPage,
@@ -29,6 +30,7 @@ export const DECLARATIONS: Type<any>[] = [
 export const IMPORTS: Type<any>[] = [
   CommonModule,
   LoadingComponent,
+  LogoComponent,
   MainRoutingModule,
   PrimeAvatarModule,
   PrimeMenubarModule,
