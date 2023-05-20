@@ -11,7 +11,6 @@
 ### Feature
 
 - fix selectButton issue
-- fix table issue
 - replace css colors with variables and make theme colors configurable
 - add new features of primeng to components
 - move themes and style files inside powell directory
