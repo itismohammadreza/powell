@@ -173,14 +173,6 @@ export class TablePage {
       "bool": false,
     },
   ]
-  contextMenu: PrimeMenuItem[] = [
-    {
-      label: 'View',
-      icon: 'pi pi-fw pi-search',
-      command: (item) => {
-      },
-    },
-  ];
   lazyColDef: NgTableColDef<Customer>[] = [
     {
       header: 'name',
@@ -386,13 +378,11 @@ export class TablePage {
       }
     ]
   }
-  globalFilterFields: string[] = ['status'];
   selectedCustomers: any[];
-  contextMenuSelection: any;
   loading: boolean;
   totalRecords: number;
   selectAll: boolean = false;
-  customers;
+  customers: Customer[];
 
   constructor(private userService: UserService, private configService: ConfigService) {
   }
