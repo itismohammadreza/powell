@@ -118,7 +118,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() columnResizeMode: NgTableColumnResizeMode = 'fit';
   @Input() reorderableColumns: boolean;
   @Input() loading: boolean;
-  @Input() loadingIcon: string = 'pi pi-spinner';
+  @Input() loadingIcon: string = 'pi pi-spinner pi-spin';
   @Input() showLoader: boolean = true;
   @Input() rowHover: boolean;
   @Input() paginatorDropdownAppendTo: any;
