@@ -81,14 +81,14 @@ export class ApiService {
     switch (method.toLowerCase()) {
       case 'get':
       case 'delete':
-        return this.http[method]<T>(url, {
+        return this.http[method.toLowerCase()]<T>(url, {
           ...options,
           params: this.getHttpParams(options?.params)
         })
       case 'post':
       case 'put':
       case 'patch':
-        return this.http[method]<T>(url, body, {
+        return this.http[method.toLowerCase()]<T>(url, body, {
           ...options,
           params: this.getHttpParams(options?.params)
         })
