@@ -168,7 +168,7 @@ export class ImageComponent implements AfterContentInit {
   }
 
   imagePreviewStyle() {
-    return {transform: 'rotate(' + this.rotate + 'deg)', width: '50%', height: '50%', ...this.previewImageStyle};
+    return {transform: 'rotate(' + this.rotate + 'deg)', ...this.previewImageStyle};
   }
 
   containerClass() {

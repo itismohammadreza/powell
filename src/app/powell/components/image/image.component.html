@@ -54,12 +54,14 @@
         [draggableImage]="pinchDraggableImage"
         [style]="previewStyle"
         [styleClass]="previewStyleClass">
+        <span>
         <img [attr.src]="src"
              [attr.alt]="alt"
              class="p-image-preview"
              [ngClass]="previewImageStyleClass"
              [ngStyle]="imagePreviewStyle()"
              (click)="onPreviewImageClick()"/>
+        </span>
       </ng-pinch-zoom>
     </div>
   </div>
