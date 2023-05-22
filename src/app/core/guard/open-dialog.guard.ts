@@ -5,7 +5,7 @@ import {OverlayService} from "@powell/api";
 @Injectable({
   providedIn: 'root'
 })
-export class OpenDialogGuard  {
+export class OpenDialogGuard {
   constructor(private overlayService: OverlayService) {
   }
 

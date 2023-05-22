@@ -6,7 +6,7 @@ import {AnimateOnScrollService} from "@powell/api";
   templateUrl: './animate-on-scroll.page.html',
   styleUrls: ['./animate-on-scroll.page.scss']
 })
-export class AnimateOnScrollPage implements OnInit{
+export class AnimateOnScrollPage implements OnInit {
   constructor(private scrollService: AnimateOnScrollService) {
   }
 

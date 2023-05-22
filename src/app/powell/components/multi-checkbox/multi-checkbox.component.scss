@@ -73,7 +73,7 @@
       }
 
       &.layout-horizontal {
-        .option-item:not(:last-of-type){
+        .option-item:not(:last-of-type) {
           margin-right: 1.5rem;
         }
       }
@@ -95,7 +95,7 @@
       }
 
       &.layout-horizontal {
-        .option-item:not(:last-of-type){
+        .option-item:not(:last-of-type) {
           margin-left: 1.5rem;
         }
       }
