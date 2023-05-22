@@ -117,7 +117,6 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() resizableColumns: boolean = true;
   @Input() columnResizeMode: NgTableColumnResizeMode = 'fit';
   @Input() reorderableColumns: boolean;
-  @Input() loading: boolean;
   @Input() loadingIcon: string = 'pi pi-spinner pi-spin';
   @Input() showLoader: boolean = true;
   @Input() rowHover: boolean;
@@ -178,6 +177,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   paginatorRightTemplate: TemplateRef<any>
   loadingBodyTemplate: TemplateRef<any>
   cellTemplates: { [key: string]: TemplateRef<any> } = {}
+  loading: boolean;
 
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);
@@ -265,6 +265,11 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
+  }
+
+  _onLazyLoad(event) {
+    this.loading = true;
+    this.onLazyLoad.emit({event, loadingCallback: this.removeLoading})
   }
 
   onPageChange(event) {
@@ -358,5 +363,9 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   onGlobalFilterChange(event: any) {
     this.dataTable.filterGlobal(event.target.value, 'contains')
+  }
+
+  removeLoading = () => {
+    this.loading = false
   }
 }

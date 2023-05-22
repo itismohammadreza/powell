@@ -91,7 +91,7 @@
            (onPage)="emitter('onPage',$event)"
            (onSort)="emitter('onSort',$event)"
            (onFilter)="emitter('onFilter',$event)"
-           (onLazyLoad)="emitter('onLazyLoad',$event)"
+           (onLazyLoad)="_onLazyLoad($event)"
            (onRowExpand)="emitter('onRowExpand',$event)"
            (onRowCollapse)="emitter('onRowCollapse',$event)"
            (onContextMenuSelect)="emitter('onContextMenuSelect',$event)"

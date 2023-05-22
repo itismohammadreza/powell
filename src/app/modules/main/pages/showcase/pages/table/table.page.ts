@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {NgSize, NgTableActionsConfig, NgTableColDef} from '@powell/models';
 import {UserService} from "@core/http";
 import {ConfigService} from "@powell/api";
-import {PrimeLazyLoadEvent, PrimeMenuItem} from "@powell/primeng/api";
 
 interface Customer {
   id: any,
@@ -379,7 +378,6 @@ export class TablePage {
     ]
   }
   selectedCustomers: any[];
-  loading: boolean;
   totalRecords: number;
   selectAll: boolean = false;
   customers: Customer[];
@@ -394,8 +392,7 @@ export class TablePage {
     return data.index == 0 || data.index == 1;
   }
 
-  loadCustomers(event: PrimeLazyLoadEvent) {
-    this.loading = true;
+  loadCustomers({event, loadingCallback}) {
     const filters = {
       first: event.first,
       rows: event.rows,
@@ -412,7 +409,7 @@ export class TablePage {
       this.userService.getCustomers({lazyEvent: JSON.stringify(filters)}).then(res => {
         this.customers = res.customers;
         this.totalRecords = res.totalRecords;
-        this.loading = false;
+        loadingCallback()
       })
     }, 1000);
   }
