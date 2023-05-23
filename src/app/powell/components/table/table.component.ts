@@ -26,7 +26,7 @@ import {
   NgTablePaginationPosition,
   NgTableResponsiveLayout,
   NgTableRowGroupMode,
-  NgTableSortMode
+  NgTableSortMode, NgTableStateStorage
 } from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {PrimeFilterMetadata, PrimeScrollerOptions, PrimeSortMeta} from "@powell/primeng/api";
@@ -126,7 +126,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() resetPageOnSort: boolean = true;
   @Input() exportFunction: Function;
   @Input() stateKey: string;
-  @Input() stateStorage: 'session' | 'local' = 'session';
+  @Input() stateStorage: NgTableStateStorage = 'session';
   @Input() exportHeader: string;
   @Output() onTableReady = new EventEmitter();
   @Output() onRowSelect = new EventEmitter();

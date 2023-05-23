@@ -10,12 +10,9 @@ export class FilterPipe implements PipeTransform {
     }
     return (value || []).filter((item: any) => {
       if (keys) {
-        return keys
-          .split(',')
-          .some(
-            (key: string) =>
-              item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key])
-          )
+        return keys.split(',').some((key: string) => {
+          return item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key])
+        })
       } else {
         return new RegExp(term, 'gi').test(item)
       }
