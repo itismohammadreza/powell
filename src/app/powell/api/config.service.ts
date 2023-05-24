@@ -13,9 +13,6 @@ export class ConfigService {
               @Inject(DOCUMENT) private document: Document) {
   }
 
-  private configChangeSubject = new Subject<NgConfigChangeEvent>();
-  configChange$ = this.configChangeSubject.asObservable();
-
   private _config: NgConfig = {
     disableConfigChangeEffect: false,
     rtl: false,
@@ -34,6 +31,8 @@ export class ConfigService {
     },
     overlayOptions: {}
   };
+  private configChangeSubject = new Subject<NgConfigChangeEvent>();
+  configChange$ = this.configChangeSubject.asObservable();
 
   setConfig(config: NgConfig) {
     this._config = {...this._config, ...config};
@@ -50,29 +49,10 @@ export class ConfigService {
     }
     this.themeService.initTheme();
     this.themeService.changeTheme(this._config.theme);
-    this.handleBodyClasses();
     this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
   }
 
   getConfig() {
     return this._config;
-  }
-
-  private handleBodyClasses() {
-    const toKebabCase = (test: string) => {
-      return test.split(/(?=[A-Z])/).join('-').toLowerCase();
-    }
-    Object.entries(this._config).forEach(([key, value]) => {
-      key = toKebabCase(key);
-      if (typeof value == 'boolean') {
-        if (value) {
-          this.document.body.classList.add(`ng-${key}`)
-        } else {
-          this.document.body.classList.remove(`ng-${key}`)
-        }
-      } else if (typeof value != 'object') {
-        this.document.body.classList.add(`ng-${key}-${value}`)
-      }
-    })
   }
 }
