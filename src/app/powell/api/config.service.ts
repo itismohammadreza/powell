@@ -62,7 +62,7 @@ export class ConfigService {
       return test.split(/(?=[A-Z])/).join('-').toLowerCase();
     }
     const bodyClasses = this.document.body.classList.value.split(" ");
-    Object.entries(this._config).filter(([key, value]) => typeof value != 'object').forEach(([key, value]) => {
+    Object.entries(this._config).filter(c => typeof c[1] != 'object').forEach(([key, value]) => {
       key = toKebabCase(key);
       const foundedClass = bodyClasses.find(c => c.includes(key));
       let newClass;
