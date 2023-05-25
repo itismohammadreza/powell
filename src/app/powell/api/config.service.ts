@@ -49,10 +49,37 @@ export class ConfigService {
     }
     this.themeService.initTheme();
     this.themeService.changeTheme(this._config.theme);
+    this.handleBodyClasses();
     this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
   }
 
   getConfig() {
     return this._config;
+  }
+
+  private handleBodyClasses() {
+    const toKebabCase = (test: string) => {
+      return test.split(/(?=[A-Z])/).join('-').toLowerCase();
+    }
+    const bodyClasses = this.document.body.classList.value.split(" ");
+    Object.entries(this._config).filter(([key, value]) => typeof value != 'object').forEach(([key, value]) => {
+      key = toKebabCase(key);
+      const foundedClass = bodyClasses.find(c => c.includes(key));
+      let newClass;
+      if (typeof value == 'boolean') {
+        if (value) {
+          newClass = `ng-${key}`;
+        } else {
+          this.document.body.classList.remove(`ng-${key}`);
+        }
+      } else {
+        newClass = `ng-${key}-${value}`;
+      }
+      if (foundedClass) {
+        this.document.body.classList.replace(foundedClass, newClass);
+      } else {
+        this.document.body.classList.add(newClass);
+      }
+    })
   }
 }
