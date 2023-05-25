@@ -77,7 +77,7 @@ export class ConfigService {
       }
       if (foundedClass) {
         this.document.body.classList.replace(foundedClass, newClass);
-      } else {
+      } else if (newClass) {
         this.document.body.classList.add(newClass);
       }
     })
