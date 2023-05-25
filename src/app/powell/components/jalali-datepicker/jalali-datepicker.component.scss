@@ -1,220 +1,224 @@
-:host ::ng-deep {
-  .jalali-datepicker-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    p-calendar,
-    .p-calendar,
-    .p-inputtext {
-      width: 100%;
-    }
+  ::ng-deep {
+    .jalali-datepicker-wrapper {
+      display: flex;
+      position: relative;
 
-    i {
-      z-index: 200;
-    }
-
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
-
-    &.label-fix-top {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    &.label-fix-side {
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .fix-label {
-        margin-bottom: 0;
+      p-calendar,
+      .p-calendar,
+      .p-inputtext {
+        width: 100%;
       }
 
-      &.inline {
-        .fix-label {
-          align-self: start;
-        }
+      i {
+        z-index: 200;
       }
-    }
-
-    .field {
-      width: auto;
-      flex-grow: 1;
-      align-self: stretch;
-      display: inline-flex;
-
-      > div {
-        display: block;
-        flex-grow: 1;
-
-        &.p-input-icon-right .p-calendar .p-inputtext {
-          padding-right: 2.25rem;
-        }
-
-        &.p-input-icon-left .p-calendar .p-inputtext {
-          padding-left: 2.25rem;
-        }
-      }
-
-      &.has-before {
-        .p-calendar .p-inputtext,
-        .p-datepicker-inline {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-        }
-      }
-
-      &.has-after {
-        .p-calendar .p-inputtext,
-        .p-datepicker-inline {
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-        }
-      }
-    }
-
-    .p-datepicker {
-      direction: ltr;
-      text-align: center;
-    }
-
-    &.ltr {
-      direction: ltr;
 
       .message {
-        left: 0;
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
       }
 
-      .fix-label {
-        margin-right: 1rem;
+      &.label-fix-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
       }
 
-      .p-float-label {
-        &.p-input-icon-left {
-          label {
-            left: 2.25rem;
+      &.label-fix-side {
+        flex-direction: row-reverse;
+        align-items: center;
+
+        .fix-label {
+          margin-bottom: 0;
+        }
+
+        &.inline {
+          .fix-label {
+            align-self: start;
           }
         }
       }
 
-      &.clearable {
-        .p-input-icon-right {
-          .p-calendar-clear-icon {
-            right: 2.25rem;
-            left: auto;
+      .field {
+        width: auto;
+        flex-grow: 1;
+        align-self: stretch;
+        display: inline-flex;
+
+        > div {
+          display: block;
+          flex-grow: 1;
+
+          &.p-input-icon-right .p-calendar .p-inputtext {
+            padding-right: 2.25rem;
           }
 
-          .p-calendar .p-inputtext {
-            padding-right: 3.75rem;
+          &.p-input-icon-left .p-calendar .p-inputtext {
+            padding-left: 2.25rem;
+          }
+        }
+
+        &.has-before {
+          .p-calendar .p-inputtext,
+          .p-datepicker-inline {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+        }
+
+        &.has-after {
+          .p-calendar .p-inputtext,
+          .p-datepicker-inline {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
           }
         }
       }
 
-      &.has-icon {
-        .has-after {
-          .p-calendar .p-datepicker-trigger {
-            border-radius: 0;
-          }
+      .p-datepicker {
+        direction: ltr;
+        text-align: center;
+      }
+
+      &.ltr {
+        direction: ltr;
+
+        .message {
+          left: 0;
         }
 
-        .p-input-icon-right > i {
-          right: 3.75rem;
+        .fix-label {
+          margin-right: 1rem;
+        }
+
+        .p-float-label {
+          &.p-input-icon-left {
+            label {
+              left: 2.25rem;
+            }
+          }
         }
 
         &.clearable {
-          .p-calendar-clear-icon {
-            right: 3.25rem;
-          }
-
           .p-input-icon-right {
             .p-calendar-clear-icon {
-              right: 5.25rem;
+              right: 2.25rem;
+              left: auto;
+            }
+
+            .p-calendar .p-inputtext {
+              padding-right: 3.75rem;
+            }
+          }
+        }
+
+        &.has-icon {
+          .has-after {
+            .p-calendar .p-datepicker-trigger {
+              border-radius: 0;
+            }
+          }
+
+          .p-input-icon-right > i {
+            right: 3.75rem;
+          }
+
+          &.clearable {
+            .p-calendar-clear-icon {
+              right: 3.25rem;
+            }
+
+            .p-input-icon-right {
+              .p-calendar-clear-icon {
+                right: 5.25rem;
+              }
             }
           }
         }
       }
-    }
 
-    &.rtl {
-      direction: rtl;
+      &.rtl {
+        direction: rtl;
 
-      .message {
-        right: 0;
-      }
-
-      .field {
-        flex-direction: row-reverse;
-      }
-
-      .fix-label {
-        margin-left: 1rem;
-      }
-
-      .p-float-label {
-        label {
-          right: 0.75rem;
-          left: auto;
+        .message {
+          right: 0;
         }
 
-        &.p-input-icon-right {
+        .field {
+          flex-direction: row-reverse;
+        }
+
+        .fix-label {
+          margin-left: 1rem;
+        }
+
+        .p-float-label {
           label {
-            right: 2.25rem;
-          }
-        }
-      }
-
-      &.clearable {
-        .p-calendar .p-inputtext {
-          padding-right: 0.75rem;
-          padding-left: 2.25rem;
-        }
-
-        .p-calendar-clear-icon {
-          right: auto;
-          left: 0.75rem;
-        }
-
-        .p-input-icon-left {
-          .p-calendar-clear-icon {
-            left: 2.25rem;
-            right: auto;
+            right: 0.75rem;
+            left: auto;
           }
 
-          .p-calendar .p-inputtext {
-            padding-left: 3.75rem;
+          &.p-input-icon-right {
+            label {
+              right: 2.25rem;
+            }
           }
-        }
-      }
-
-      &.has-icon {
-        .has-before {
-          .p-calendar .p-datepicker-trigger {
-            border-radius: 0;
-          }
-        }
-
-        .p-inputtext {
-          border-radius: 0 var(--border-radius) var(--border-radius) 0;
-        }
-
-        .p-datepicker-trigger {
-          border-radius: var(--border-radius) 0 0 var(--border-radius);
-        }
-
-        .p-input-icon-left > i {
-          left: 3.75rem;
         }
 
         &.clearable {
+          .p-calendar .p-inputtext {
+            padding-right: 0.75rem;
+            padding-left: 2.25rem;
+          }
+
           .p-calendar-clear-icon {
-            left: 3.25rem;
+            right: auto;
+            left: 0.75rem;
           }
 
           .p-input-icon-left {
             .p-calendar-clear-icon {
-              left: 5.25rem;
+              left: 2.25rem;
+              right: auto;
+            }
+
+            .p-calendar .p-inputtext {
+              padding-left: 3.75rem;
+            }
+          }
+        }
+
+        &.has-icon {
+          .has-before {
+            .p-calendar .p-datepicker-trigger {
+              border-radius: 0;
+            }
+          }
+
+          .p-inputtext {
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+          }
+
+          .p-datepicker-trigger {
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+          }
+
+          .p-input-icon-left > i {
+            left: 3.75rem;
+          }
+
+          &.clearable {
+            .p-calendar-clear-icon {
+              left: 3.25rem;
+            }
+
+            .p-input-icon-left {
+              .p-calendar-clear-icon {
+                left: 5.25rem;
+              }
             }
           }
         }

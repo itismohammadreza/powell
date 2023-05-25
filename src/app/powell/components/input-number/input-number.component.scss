@@ -1,147 +1,80 @@
-:host ::ng-deep {
-  .input-number-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    p-inputNumber,
-    .p-inputnumber,
-    .p-inputtext {
-      width: 100%;
-    }
+  ::ng-deep {
+    .input-number-wrapper {
+      display: flex;
+      position: relative;
 
-    i {
-      z-index: 200;
-    }
-
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
-
-    &.label-fix-top {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    &.label-fix-side {
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .fix-label {
-        margin-bottom: 0;
-      }
-    }
-
-    .field {
-      width: auto;
-      flex-grow: 1;
-      align-self: stretch;
-      display: inline-flex;
-
-      > div {
-        display: block;
-        flex-grow: 1;
-
-        &.p-input-icon-right .p-inputnumber .p-inputtext {
-          padding-right: 2.25rem;
-        }
-
-        &.p-input-icon-left .p-inputnumber .p-inputtext {
-          padding-left: 2.25rem;
-        }
+      p-inputNumber,
+      .p-inputnumber,
+      .p-inputtext {
+        width: 100%;
       }
 
-
-      &.has-before .p-inputnumber .p-inputtext {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
+      i {
+        z-index: 200;
       }
-
-      &.has-after .p-inputnumber .p-inputtext {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-    }
-
-    &.buttons-vertical {
-      &.clearable .p-inputnumber .p-inputtext,
-      .p-input-icon-right .p-inputnumber .p-inputtext,
-      .p-input-icon-left .p-inputnumber .p-inputtext {
-        padding-right: 0.75rem !important;
-        padding-left: 0.75rem !important;
-      }
-
-      .has-after {
-        .p-inputnumber-button-up {
-          border-top-right-radius: 0;
-        }
-
-        .p-inputnumber-button-down {
-          border-bottom-right-radius: 0;
-        }
-      }
-
-      .has-before {
-        .p-inputnumber-button-up {
-          border-top-left-radius: 0;
-        }
-
-        .p-inputnumber-button-down {
-          border-bottom-left-radius: 0;
-        }
-      }
-    }
-
-    &.buttons-horizontal {
-      .has-after {
-        .p-inputnumber-button-up {
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-        }
-      }
-
-      .has-before {
-        .p-inputnumber-button-down {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-        }
-      }
-    }
-
-    &.ltr {
-      direction: ltr;
 
       .message {
-        left: 0;
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
       }
 
-      .fix-label {
-        margin-right: 1rem;
+      &.label-fix-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
       }
 
-      .p-float-label {
-        &.p-input-icon-left {
-          label {
-            left: 2.25rem;
-          }
+      &.label-fix-side {
+        flex-direction: row-reverse;
+        align-items: center;
+
+        .fix-label {
+          margin-bottom: 0;
         }
       }
 
-      &.clearable {
-        .p-input-icon-right {
-          .p-inputnumber-clear-icon {
-            right: 2.25rem;
-            left: auto;
+      .field {
+        width: auto;
+        flex-grow: 1;
+        align-self: stretch;
+        display: inline-flex;
+
+        > div {
+          display: block;
+          flex-grow: 1;
+
+          &.p-input-icon-right .p-inputnumber .p-inputtext {
+            padding-right: 2.25rem;
           }
 
-          .p-inputnumber .p-inputtext {
-            padding-right: 3.75rem;
+          &.p-input-icon-left .p-inputnumber .p-inputtext {
+            padding-left: 2.25rem;
           }
+        }
+
+
+        &.has-before .p-inputnumber .p-inputtext {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        &.has-after .p-inputnumber .p-inputtext {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
         }
       }
 
-      &.buttons-stacked {
+      &.buttons-vertical {
+        &.clearable .p-inputnumber .p-inputtext,
+        .p-input-icon-right .p-inputnumber .p-inputtext,
+        .p-input-icon-left .p-inputnumber .p-inputtext {
+          padding-right: 0.75rem !important;
+          padding-left: 0.75rem !important;
+        }
+
         .has-after {
           .p-inputnumber-button-up {
             border-top-right-radius: 0;
@@ -151,98 +84,7 @@
             border-bottom-right-radius: 0;
           }
         }
-      }
 
-      &.buttons-stacked,
-      &.buttons-horizontal {
-        .p-input-icon-right > i {
-          right: 3.75rem;
-        }
-
-        &.clearable {
-          .p-inputnumber-clear-icon {
-            right: 3.75rem;
-          }
-
-          .p-input-icon-right {
-            .p-inputnumber-clear-icon {
-              right: 5.25rem;
-            }
-          }
-        }
-      }
-
-      &.buttons-horizontal {
-        .p-input-icon-left > i {
-          left: 3.75rem;
-        }
-
-        .p-float-label {
-          label {
-            left: 3.75rem;
-          }
-
-          &.p-input-icon-left {
-            label {
-              left: 5.25rem;
-            }
-          }
-        }
-      }
-    }
-
-    &.rtl {
-      direction: rtl;
-
-      .message {
-        right: 0;
-      }
-
-      .field {
-        flex-direction: row-reverse;
-      }
-
-      .fix-label {
-        margin-left: 1rem;
-      }
-
-      .p-float-label {
-        label {
-          right: 0.75rem;
-          left: auto;
-        }
-
-        &.p-input-icon-right {
-          label {
-            right: 2.25rem;
-          }
-        }
-      }
-
-      &.clearable {
-        .p-inputnumber .p-inputtext {
-          padding-right: 0.75rem;
-          padding-left: 2.25rem;
-        }
-
-        .p-inputnumber-clear-icon {
-          right: auto;
-          left: 0.75rem;
-        }
-
-        .p-input-icon-left {
-          .p-inputnumber-clear-icon {
-            left: 2.25rem;
-            right: auto;
-          }
-
-          .p-inputnumber .p-inputtext {
-            padding-left: 3.75rem;
-          }
-        }
-      }
-
-      &.buttons-stacked {
         .has-before {
           .p-inputnumber-button-up {
             border-top-left-radius: 0;
@@ -252,62 +94,224 @@
             border-bottom-left-radius: 0;
           }
         }
+      }
 
-        .p-inputnumber-input {
-          border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      &.buttons-horizontal {
+        .has-after {
+          .p-inputnumber-button-up {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
         }
 
-        .p-inputnumber-button-up {
-          border-top-left-radius: var(--border-radius);
-          border-top-right-radius: 0;
-        }
-
-        .p-inputnumber-button-down {
-          border-bottom-left-radius: var(--border-radius);
-          border-bottom-right-radius: 0;
+        .has-before {
+          .p-inputnumber-button-down {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
         }
       }
 
-      &.buttons-stacked,
-      &.buttons-horizontal {
-        .p-input-icon-left > i {
-          left: 3.75rem;
+      &.ltr {
+        direction: ltr;
+
+        .message {
+          left: 0;
+        }
+
+        .fix-label {
+          margin-right: 1rem;
+        }
+
+        .p-float-label {
+          &.p-input-icon-left {
+            label {
+              left: 2.25rem;
+            }
+          }
         }
 
         &.clearable {
-          .p-inputnumber-clear-icon {
+          .p-input-icon-right {
+            .p-inputnumber-clear-icon {
+              right: 2.25rem;
+              left: auto;
+            }
+
+            .p-inputnumber .p-inputtext {
+              padding-right: 3.75rem;
+            }
+          }
+        }
+
+        &.buttons-stacked {
+          .has-after {
+            .p-inputnumber-button-up {
+              border-top-right-radius: 0;
+            }
+
+            .p-inputnumber-button-down {
+              border-bottom-right-radius: 0;
+            }
+          }
+        }
+
+        &.buttons-stacked,
+        &.buttons-horizontal {
+          .p-input-icon-right > i {
+            right: 3.75rem;
+          }
+
+          &.clearable {
+            .p-inputnumber-clear-icon {
+              right: 3.75rem;
+            }
+
+            .p-input-icon-right {
+              .p-inputnumber-clear-icon {
+                right: 5.25rem;
+              }
+            }
+          }
+        }
+
+        &.buttons-horizontal {
+          .p-input-icon-left > i {
             left: 3.75rem;
           }
 
-          .p-input-icon-left {
-            .p-inputnumber-clear-icon {
-              left: 5.25rem;
+          .p-float-label {
+            label {
+              left: 3.75rem;
+            }
+
+            &.p-input-icon-left {
+              label {
+                left: 5.25rem;
+              }
             }
           }
         }
       }
 
-      &.buttons-horizontal {
-        .p-inputnumber-button-up {
-          order: 1;
+      &.rtl {
+        direction: rtl;
+
+        .message {
+          right: 0;
         }
 
-        .p-inputnumber-button-down {
-          order: 3;
+        .field {
+          flex-direction: row-reverse;
         }
 
-        .p-input-icon-right > i {
-          right: 3.75rem;
+        .fix-label {
+          margin-left: 1rem;
         }
 
         .p-float-label {
           label {
-            right: 3.75rem;
+            right: 0.75rem;
+            left: auto;
           }
 
           &.p-input-icon-right {
             label {
-              right: 5.25rem;
+              right: 2.25rem;
+            }
+          }
+        }
+
+        &.clearable {
+          .p-inputnumber .p-inputtext {
+            padding-right: 0.75rem;
+            padding-left: 2.25rem;
+          }
+
+          .p-inputnumber-clear-icon {
+            right: auto;
+            left: 0.75rem;
+          }
+
+          .p-input-icon-left {
+            .p-inputnumber-clear-icon {
+              left: 2.25rem;
+              right: auto;
+            }
+
+            .p-inputnumber .p-inputtext {
+              padding-left: 3.75rem;
+            }
+          }
+        }
+
+        &.buttons-stacked {
+          .has-before {
+            .p-inputnumber-button-up {
+              border-top-left-radius: 0;
+            }
+
+            .p-inputnumber-button-down {
+              border-bottom-left-radius: 0;
+            }
+          }
+
+          .p-inputnumber-input {
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+          }
+
+          .p-inputnumber-button-up {
+            border-top-left-radius: var(--border-radius);
+            border-top-right-radius: 0;
+          }
+
+          .p-inputnumber-button-down {
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: 0;
+          }
+        }
+
+        &.buttons-stacked,
+        &.buttons-horizontal {
+          .p-input-icon-left > i {
+            left: 3.75rem;
+          }
+
+          &.clearable {
+            .p-inputnumber-clear-icon {
+              left: 3.75rem;
+            }
+
+            .p-input-icon-left {
+              .p-inputnumber-clear-icon {
+                left: 5.25rem;
+              }
+            }
+          }
+        }
+
+        &.buttons-horizontal {
+          .p-inputnumber-button-up {
+            order: 1;
+          }
+
+          .p-inputnumber-button-down {
+            order: 3;
+          }
+
+          .p-input-icon-right > i {
+            right: 3.75rem;
+          }
+
+          .p-float-label {
+            label {
+              right: 3.75rem;
+            }
+
+            &.p-input-icon-right {
+              label {
+                right: 5.25rem;
+              }
             }
           }
         }

@@ -1,6 +1,9 @@
-@import "mixins";
-
 :host {
   display: block;
-  direction: ltr;
+
+  ::ng-deep {
+    .p-breadcrumb {
+      direction: ltr;
+    }
+  }
 }

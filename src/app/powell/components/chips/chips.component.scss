@@ -1,159 +1,163 @@
-:host ::ng-deep {
-  .chips-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    p-chips,
-    .p-chips,
-    .p-inputtext {
-      width: 100%;
-    }
+  ::ng-deep {
+    .chips-wrapper {
+      display: flex;
+      position: relative;
 
-    i {
-      z-index: 200;
-    }
-
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
-
-    &.label-fix-top {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    &.label-fix-side {
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .fix-label {
-        margin-bottom: 0;
-      }
-    }
-
-    .field {
-      width: auto;
-      flex-grow: 1;
-      align-self: stretch;
-      display: inline-flex;
-
-      > div {
-        display: block;
-        flex-grow: 1;
-
-        &.p-input-icon-right .p-chips .p-inputtext {
-          padding-right: 2.25rem;
-        }
-
-        &.p-input-icon-left .p-chips .p-inputtext {
-          padding-left: 2.25rem;
-        }
+      p-chips,
+      .p-chips,
+      .p-inputtext {
+        width: 100%;
       }
 
-      &.has-before .p-chips .p-inputtext {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
+      i {
+        z-index: 200;
       }
-
-      &.has-after .p-chips .p-inputtext {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-    }
-
-    &.ltr {
-      direction: ltr;
 
       .message {
-        left: 0;
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
       }
 
-      .fix-label {
-        margin-right: 1rem;
+      &.label-fix-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
       }
 
-      .p-float-label {
-        &.p-input-icon-left {
-          label {
-            left: 2.25rem;
-          }
+      &.label-fix-side {
+        flex-direction: row-reverse;
+        align-items: center;
+
+        .fix-label {
+          margin-bottom: 0;
         }
-      }
-
-      &.clearable {
-        .p-input-icon-right {
-          .p-chips-clear-icon {
-            right: 2.25rem;
-            left: auto;
-          }
-
-          .p-chips .p-inputtext {
-            padding-right: 3.75rem;
-          }
-        }
-      }
-    }
-
-    &.rtl {
-      direction: rtl;
-
-      .message {
-        right: 0;
       }
 
       .field {
-        flex-direction: row-reverse;
-      }
+        width: auto;
+        flex-grow: 1;
+        align-self: stretch;
+        display: inline-flex;
 
-      .fix-label {
-        margin-left: 1rem;
-      }
+        > div {
+          display: block;
+          flex-grow: 1;
 
-      .p-float-label {
-        label {
-          right: 0.75rem;
-          left: auto;
+          &.p-input-icon-right .p-chips .p-inputtext {
+            padding-right: 2.25rem;
+          }
+
+          &.p-input-icon-left .p-chips .p-inputtext {
+            padding-left: 2.25rem;
+          }
         }
 
-        &.p-input-icon-right {
+        &.has-before .p-chips .p-inputtext {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        &.has-after .p-chips .p-inputtext {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      &.ltr {
+        direction: ltr;
+
+        .message {
+          left: 0;
+        }
+
+        .fix-label {
+          margin-right: 1rem;
+        }
+
+        .p-float-label {
+          &.p-input-icon-left {
+            label {
+              left: 2.25rem;
+            }
+          }
+        }
+
+        &.clearable {
+          .p-input-icon-right {
+            .p-chips-clear-icon {
+              right: 2.25rem;
+              left: auto;
+            }
+
+            .p-chips .p-inputtext {
+              padding-right: 3.75rem;
+            }
+          }
+        }
+      }
+
+      &.rtl {
+        direction: rtl;
+
+        .message {
+          right: 0;
+        }
+
+        .field {
+          flex-direction: row-reverse;
+        }
+
+        .fix-label {
+          margin-left: 1rem;
+        }
+
+        .p-float-label {
           label {
-            right: 2.25rem;
-          }
-        }
-      }
-
-      &.clearable {
-        .p-chips .p-inputtext {
-          padding-right: 0.75rem;
-          padding-left: 2.25rem;
-        }
-
-        .p-chips-clear-icon {
-          right: auto;
-          left: 0.75rem;
-        }
-
-        .p-input-icon-left {
-          .p-chips-clear-icon {
-            left: 2.25rem;
-            right: auto;
+            right: 0.75rem;
+            left: auto;
           }
 
+          &.p-input-icon-right {
+            label {
+              right: 2.25rem;
+            }
+          }
+        }
+
+        &.clearable {
           .p-chips .p-inputtext {
-            padding-left: 3.75rem;
+            padding-right: 0.75rem;
+            padding-left: 2.25rem;
+          }
+
+          .p-chips-clear-icon {
+            right: auto;
+            left: 0.75rem;
+          }
+
+          .p-input-icon-left {
+            .p-chips-clear-icon {
+              left: 2.25rem;
+              right: auto;
+            }
+
+            .p-chips .p-inputtext {
+              padding-left: 3.75rem;
+            }
           }
         }
-      }
 
-      .p-chips-token {
-        margin-left: 0.5rem;
-        margin-right: 0;
+        .p-chips-token {
+          margin-left: 0.5rem;
+          margin-right: 0;
 
-        .p-chips-token-icon {
-          margin-right: 0.5rem;
-          margin-left: 0;
+          .p-chips-token-icon {
+            margin-right: 0.5rem;
+            margin-left: 0;
+          }
         }
       }
     }

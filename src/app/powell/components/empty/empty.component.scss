@@ -1,33 +1,35 @@
 :host {
   display: block;
 
-  .empty-wrapper {
-    text-align: center;
+  ::ng-deep {
+    .empty-wrapper {
+      text-align: center;
 
-    .empty-icon {
-      i {
-        font-size: 3.5rem;
+      .empty-icon {
+        i {
+          font-size: 3.5rem;
+        }
+
+        img {
+          max-width: 120px;
+        }
       }
 
-      img {
-        max-width: 120px;
-      }
-    }
-
-    .empty-title {
-      margin-top: 1.5rem;
-      font-size: 0.875em;
-    }
-
-    &.rtl {
       .empty-title {
-        direction: rtl;
+        margin-top: 1.5rem;
+        font-size: 0.875em;
       }
-    }
 
-    &.ltr {
-      .empty-title {
-        direction: ltr;
+      &.rtl {
+        .empty-title {
+          direction: rtl;
+        }
+      }
+
+      &.ltr {
+        .empty-title {
+          direction: ltr;
+        }
       }
     }
   }

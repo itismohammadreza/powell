@@ -1,88 +1,92 @@
-:host ::ng-deep {
-  .color-picker-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    .field {
-      width: auto;
-      flex-grow: 1;
-      align-self: stretch;
-      align-items: stretch;
-      display: inline-flex;
-    }
+  ::ng-deep {
+    .color-picker-wrapper {
+      display: flex;
+      position: relative;
 
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
-
-    &.label-fix-top {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    &.label-fix-side {
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .fix-label {
-        margin-bottom: 0;
+      .field {
+        width: auto;
+        flex-grow: 1;
+        align-self: stretch;
+        align-items: stretch;
+        display: inline-flex;
       }
 
-      &.inline {
+      .message {
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
+      }
+
+      &.label-fix-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+
+      &.label-fix-side {
+        flex-direction: row-reverse;
+        align-items: center;
+
         .fix-label {
-          align-self: start;
-        }
-      }
-    }
-
-    ng-input-text {
-      flex-grow: 1;
-    }
-
-    .p-colorpicker-preview {
-      height: auto;
-      width: 3rem;
-    }
-
-    &.ltr {
-      direction: ltr;
-
-      .message {
-        left: 0;
-      }
-
-      .field {
-        ng-input-text .p-inputtext {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
+          margin-bottom: 0;
         }
 
-        .p-colorpicker-preview {
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
+        &.inline {
+          .fix-label {
+            align-self: start;
+          }
         }
       }
 
-    }
-
-    &.rtl {
-      direction: rtl;
-
-      .message {
-        right: 0;
+      ng-input-text {
+        flex-grow: 1;
       }
 
-      .field {
-        .p-colorpicker-preview {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
+      .p-colorpicker-preview {
+        height: auto;
+        width: 3rem;
+      }
+
+      &.ltr {
+        direction: ltr;
+
+        .message {
+          left: 0;
         }
 
-        ng-input-text .p-inputtext {
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
+        .field {
+          ng-input-text .p-inputtext {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+
+          .p-colorpicker-preview {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+
+      }
+
+      &.rtl {
+        direction: rtl;
+
+        .message {
+          right: 0;
+        }
+
+        .field {
+          .p-colorpicker-preview {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+
+          ng-input-text .p-inputtext {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
         }
       }
     }

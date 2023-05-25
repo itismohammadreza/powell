@@ -1,5 +1,11 @@
-.loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+:host {
+  display: block;
+
+  ::ng-deep {
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }

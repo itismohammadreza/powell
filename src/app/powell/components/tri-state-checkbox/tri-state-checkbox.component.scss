@@ -1,45 +1,49 @@
-:host ::ng-deep {
-  .tri-state-checkbox-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    .field {
-      flex-grow: 1;
+  ::ng-deep {
+    .tri-state-checkbox-wrapper {
       display: flex;
-      align-items: center;
-    }
+      position: relative;
 
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
-
-    label {
-      margin-bottom: 0;
-    }
-
-    &.ltr {
-      direction: ltr;
-
-      label {
-        margin-left: 0.5rem;
+      .field {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
       }
 
       .message {
-        left: 0;
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
       }
-    }
-
-    &.rtl {
-      direction: rtl;
 
       label {
-        margin-right: 0.5rem;
+        margin-bottom: 0;
       }
 
-      .message {
-        right: 0;
+      &.ltr {
+        direction: ltr;
+
+        label {
+          margin-left: 0.5rem;
+        }
+
+        .message {
+          left: 0;
+        }
+      }
+
+      &.rtl {
+        direction: rtl;
+
+        label {
+          margin-right: 0.5rem;
+        }
+
+        .message {
+          right: 0;
+        }
       }
     }
   }

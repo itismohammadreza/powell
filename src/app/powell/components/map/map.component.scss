@@ -1,85 +1,89 @@
-:host ::ng-deep {
-  .map-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
+  ::ng-deep {
+    .map-wrapper {
+      display: flex;
+      position: relative;
 
-    &.label-fix-top {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    &.label-fix-side {
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .fix-label {
-        margin-bottom: 0;
-        align-self: start;
+      .message {
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
       }
-    }
 
-    .field {
-      width: auto;
-      flex-grow: 1;
-      align-self: stretch;
-      display: inline-flex;
+      &.label-fix-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
 
+      &.label-fix-side {
+        flex-direction: row-reverse;
+        align-items: center;
 
-      > div {
-        display: block;
-        flex-grow: 1;
-        position: relative;
-
-        .clear-map-btn {
-          position: absolute;
-          top: 0.5rem;
-          right: 0.5rem;
-          z-index: 20000;
+        .fix-label {
+          margin-bottom: 0;
+          align-self: start;
         }
       }
 
-      &.has-before > div {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-
-      &.has-after > div {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-    }
-
-    &.ltr {
-      direction: ltr;
-
-      .message {
-        left: 0;
-      }
-
-      .fix-label {
-        margin-right: 1rem;
-      }
-    }
-
-    &.rtl {
-      direction: rtl;
-
-      .message {
-        right: 0;
-      }
-
       .field {
-        flex-direction: row-reverse;
+        width: auto;
+        flex-grow: 1;
+        align-self: stretch;
+        display: inline-flex;
+
+
+        > div {
+          display: block;
+          flex-grow: 1;
+          position: relative;
+
+          .clear-map-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            z-index: 20000;
+          }
+        }
+
+        &.has-before > div {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        &.has-after > div {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
       }
 
-      .fix-label {
-        margin-left: 1rem;
+      &.ltr {
+        direction: ltr;
+
+        .message {
+          left: 0;
+        }
+
+        .fix-label {
+          margin-right: 1rem;
+        }
+      }
+
+      &.rtl {
+        direction: rtl;
+
+        .message {
+          right: 0;
+        }
+
+        .field {
+          flex-direction: row-reverse;
+        }
+
+        .fix-label {
+          margin-left: 1rem;
+        }
       }
     }
   }

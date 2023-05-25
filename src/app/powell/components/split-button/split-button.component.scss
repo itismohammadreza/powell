@@ -1,35 +1,41 @@
-p-splitButton {
-  direction: ltr;
+:host {
+  display: block;
 
-  &.full ::ng-deep {
-    .p-splitbutton {
-      width: 100%;
-    }
-  }
+  ::ng-deep {
+    p-splitButton {
+      direction: ltr;
 
-  &.rtl ::ng-deep {
-    .p-splitbutton {
-      direction: rtl;
-
-      .p-splitbutton-defaultbutton {
-        border-bottom-right-radius: var(--border-radius);
-        border-top-right-radius: var(--border-radius);
-        border-bottom-left-radius: 0;
-        border-top-left-radius: 0;
-        border-right: 1px solid;
-        border-left: 0;
+      &.full {
+        .p-splitbutton {
+          width: 100%;
+        }
       }
 
-      .p-splitbutton-menubutton {
-        border-bottom-left-radius: var(--border-radius);
-        border-top-left-radius: var(--border-radius);
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0;
-      }
+      &.rtl {
+        .p-splitbutton {
+          direction: rtl;
 
-      .p-menuitem-icon {
-        margin-right: 0;
-        margin-left: 0.5rem;
+          .p-splitbutton-defaultbutton {
+            border-bottom-right-radius: var(--border-radius);
+            border-top-right-radius: var(--border-radius);
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+            border-right: 1px solid;
+            border-left: 0;
+          }
+
+          .p-splitbutton-menubutton {
+            border-bottom-left-radius: var(--border-radius);
+            border-top-left-radius: var(--border-radius);
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+          }
+
+          .p-menuitem-icon {
+            margin-right: 0;
+            margin-left: 0.5rem;
+          }
+        }
       }
     }
   }

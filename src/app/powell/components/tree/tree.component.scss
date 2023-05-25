@@ -1,113 +1,117 @@
-:host ::ng-deep {
-  .tree-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
-
-    &.label-fix-top {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    &.label-fix-side {
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .fix-label {
-        margin-bottom: 0;
-        align-self: start;
-      }
-    }
-
-    .field {
-      width: auto;
-      flex-grow: 1;
-      align-self: stretch;
-      display: inline-flex;
-
-      > div {
-        display: block;
-        flex-grow: 1;
-      }
-
-      &.has-before .p-tree {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-
-      &.has-after .p-tree {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-    }
-
-    &.ltr {
-      direction: ltr;
+  ::ng-deep {
+    .tree-wrapper {
+      display: flex;
+      position: relative;
 
       .message {
-        left: 0;
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
       }
 
-      .fix-label {
-        margin-right: 1rem;
+      &.label-fix-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
       }
-    }
 
-    &.rtl {
-      direction: rtl;
+      &.label-fix-side {
+        flex-direction: row-reverse;
+        align-items: center;
 
-      .message {
-        right: 0;
+        .fix-label {
+          margin-bottom: 0;
+          align-self: start;
+        }
       }
 
       .field {
-        flex-direction: row-reverse;
+        width: auto;
+        flex-grow: 1;
+        align-self: stretch;
+        display: inline-flex;
+
+        > div {
+          display: block;
+          flex-grow: 1;
+        }
+
+        &.has-before .p-tree {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        &.has-after .p-tree {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
       }
 
-      .fix-label {
-        margin-left: 1rem;
+      &.ltr {
+        direction: ltr;
+
+        .message {
+          left: 0;
+        }
+
+        .fix-label {
+          margin-right: 1rem;
+        }
       }
 
-      .p-tree {
-        .p-tree-toggler,
-        .p-treenode-icon,
-        .p-checkbox {
-          margin-right: 0;
-          margin-left: 0.5rem;
+      &.rtl {
+        direction: rtl;
+
+        .message {
+          right: 0;
         }
 
-        &:not(.p-tree-horizontal) .p-treenode-children {
-          padding: 0 1rem 0 0;
+        .field {
+          flex-direction: row-reverse;
         }
 
-        &.p-tree-horizontal {
-          .p-treenode-collapsed {
-            padding-left: 0;
-            padding-right: 2.5rem;
-          }
+        .fix-label {
+          margin-left: 1rem;
         }
 
-        .pi-chevron-right:before {
-          content: "\e900";
-        }
-
-        .p-tree-filter-container {
-          margin-right: 0;
-          margin-left: 0.5rem;
-
-          .p-tree-filter-icon {
-            right: auto;
-            left: 0.75rem;
+        .p-tree {
+          .p-tree-toggler,
+          .p-treenode-icon,
+          .p-checkbox {
+            margin-right: 0;
+            margin-left: 0.5rem;
           }
 
-          .p-tree-filter {
-            padding-right: 0.65625rem;
-            padding-left: 1.75rem;
+          &:not(.p-tree-horizontal) .p-treenode-children {
+            padding: 0 1rem 0 0;
+          }
+
+          &.p-tree-horizontal {
+            .p-treenode-collapsed {
+              padding-left: 0;
+              padding-right: 2.5rem;
+            }
+          }
+
+          .pi-chevron-right:before {
+            content: "\e900";
+          }
+
+          .p-tree-filter-container {
+            margin-right: 0;
+            margin-left: 0.5rem;
+
+            .p-tree-filter-icon {
+              right: auto;
+              left: 0.75rem;
+            }
+
+            .p-tree-filter {
+              padding-right: 0.65625rem;
+              padding-left: 1.75rem;
+            }
           }
         }
       }

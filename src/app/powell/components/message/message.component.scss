@@ -1,41 +1,45 @@
-:host ::ng-deep {
-  .p-messages,
-  .p-inline-message {
-    direction: ltr;
-  }
+:host {
+  display: block;
 
-  p-messages.rtl {
-    .p-messages {
-      direction: rtl;
+  ::ng-deep {
+    .p-messages,
+    .p-inline-message {
+      direction: ltr;
+    }
 
-      .p-message {
-        border-width: 0 6px 0 0;
-      }
+    p-messages.rtl {
+      .p-messages {
+        direction: rtl;
 
-      .p-message-icon {
-        margin-right: 0;
-        margin-left: 0.5rem;
-      }
+        .p-message {
+          border-width: 0 6px 0 0;
+        }
 
-      .p-message-detail {
-        margin-left: 0;
-        margin-right: 0.5rem;
-      }
+        .p-message-icon {
+          margin-right: 0;
+          margin-left: 0.5rem;
+        }
 
-      .p-message-close {
-        margin-left: 0;
-        margin-right: auto;
+        .p-message-detail {
+          margin-left: 0;
+          margin-right: 0.5rem;
+        }
+
+        .p-message-close {
+          margin-left: 0;
+          margin-right: auto;
+        }
       }
     }
-  }
 
-  p-message.rtl {
-    .p-inline-message {
-      direction: rtl;
+    p-message.rtl {
+      .p-inline-message {
+        direction: rtl;
 
-      .p-inline-message-icon {
-        margin-right: 0;
-        margin-left: 0.5rem;
+        .p-inline-message-icon {
+          margin-right: 0;
+          margin-left: 0.5rem;
+        }
       }
     }
   }

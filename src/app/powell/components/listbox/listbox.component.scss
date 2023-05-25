@@ -1,104 +1,108 @@
-:host ::ng-deep {
-  .listbox-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
-
-    &.label-fix-top {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    &.label-fix-side {
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .fix-label {
-        margin-bottom: 0;
-        align-self: start;
-      }
-    }
-
-    .field {
-      width: auto;
-      flex-grow: 1;
-      align-self: stretch;
-      display: inline-flex;
-
-      > div {
-        display: block;
-        flex-grow: 1;
-      }
-
-      &.has-before .p-listbox {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-
-      &.has-after .p-listbox {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-    }
-
-    .p-listbox-filter {
-      width: 100%;
-    }
-
-    &.ltr {
-      direction: ltr;
+  ::ng-deep {
+    .listbox-wrapper {
+      display: flex;
+      position: relative;
 
       .message {
-        left: 0;
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
       }
 
-      .fix-label {
-        margin-right: 1rem;
+      &.label-fix-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
       }
-    }
 
-    &.rtl {
-      direction: rtl;
+      &.label-fix-side {
+        flex-direction: row-reverse;
+        align-items: center;
 
-      .message {
-        right: 0;
+        .fix-label {
+          margin-bottom: 0;
+          align-self: start;
+        }
       }
 
       .field {
-        flex-direction: row-reverse;
-      }
+        width: auto;
+        flex-grow: 1;
+        align-self: stretch;
+        display: inline-flex;
 
-      .fix-label {
-        margin-left: 1rem;
-      }
-
-      .p-listbox {
-        .p-listbox-list .p-checkbox {
-          margin-right: 0;
-          margin-left: 0.5rem;
+        > div {
+          display: block;
+          flex-grow: 1;
         }
 
-        .p-listbox-header {
-          .p-checkbox {
+        &.has-before .p-listbox {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        &.has-after .p-listbox {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      .p-listbox-filter {
+        width: 100%;
+      }
+
+      &.ltr {
+        direction: ltr;
+
+        .message {
+          left: 0;
+        }
+
+        .fix-label {
+          margin-right: 1rem;
+        }
+      }
+
+      &.rtl {
+        direction: rtl;
+
+        .message {
+          right: 0;
+        }
+
+        .field {
+          flex-direction: row-reverse;
+        }
+
+        .fix-label {
+          margin-left: 1rem;
+        }
+
+        .p-listbox {
+          .p-listbox-list .p-checkbox {
             margin-right: 0;
             margin-left: 0.5rem;
           }
-        }
 
-        .p-listbox-filter-container {
-          .p-listbox-filter {
-            padding-right: 0.5rem;
-            padding-left: 1.5rem;
+          .p-listbox-header {
+            .p-checkbox {
+              margin-right: 0;
+              margin-left: 0.5rem;
+            }
           }
 
-          .p-listbox-filter-icon {
-            right: auto;
-            left: 0.5rem;
+          .p-listbox-filter-container {
+            .p-listbox-filter {
+              padding-right: 0.5rem;
+              padding-left: 1.5rem;
+            }
+
+            .p-listbox-filter-icon {
+              right: auto;
+              left: 0.5rem;
+            }
           }
         }
       }

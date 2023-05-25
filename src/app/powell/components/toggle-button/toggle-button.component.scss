@@ -1,61 +1,64 @@
-:host ::ng-deep {
-  .toggle-button-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
-
-    &.label-fix-top {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    &.label-fix-side {
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .fix-label {
-        margin-bottom: 0;
-      }
-    }
-
-    .field {
-      width: auto;
-      flex-grow: 1;
-      align-self: stretch;
-    }
-
-    &.ltr {
-      direction: ltr;
+  ::ng-deep {
+    .toggle-button-wrapper {
+      display: flex;
+      position: relative;
 
       .message {
-        left: 0;
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
       }
 
-      .fix-label {
-        margin-right: 1rem;
-      }
-    }
-
-    &.rtl {
-      direction: rtl;
-
-      .message {
-        right: 0;
+      &.label-fix-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
       }
 
-      .fix-label {
-        margin-left: 1rem;
+      &.label-fix-side {
+        flex-direction: row-reverse;
+        align-items: center;
+
+        .fix-label {
+          margin-bottom: 0;
+        }
       }
 
-      .p-togglebutton {
+      .field {
+        width: auto;
+        flex-grow: 1;
+        align-self: stretch;
+      }
+
+      &.ltr {
         direction: ltr;
+
+        .message {
+          left: 0;
+        }
+
+        .fix-label {
+          margin-right: 1rem;
+        }
+      }
+
+      &.rtl {
+        direction: rtl;
+
+        .message {
+          right: 0;
+        }
+
+        .fix-label {
+          margin-left: 1rem;
+        }
+
+        .p-togglebutton {
+          direction: ltr;
+        }
       }
     }
   }
 }
-

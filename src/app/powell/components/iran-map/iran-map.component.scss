@@ -1,104 +1,108 @@
-:host ::ng-deep {
-  .iran-map-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
+  ::ng-deep {
+    .iran-map-wrapper {
+      display: flex;
+      position: relative;
 
-    &.label-fix-top {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    &.label-fix-side {
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .fix-label {
-        margin-bottom: 0;
-        align-self: start;
+      .message {
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
       }
-    }
 
-    .field {
-      width: auto;
-      flex-grow: 1;
-      align-self: stretch;
-      display: inline-flex;
+      &.label-fix-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
 
-      .map {
-        display: inline-flex;
+      &.label-fix-side {
+        flex-direction: row-reverse;
+        align-items: center;
+
+        .fix-label {
+          margin-bottom: 0;
+          align-self: start;
+        }
+      }
+
+      .field {
+        width: auto;
         flex-grow: 1;
-        transition: all 0.3s;
+        align-self: stretch;
+        display: inline-flex;
 
-        .title {
-          display: none;
-          position: absolute;
-          background-color: #fff;
-          color: #333;
-          text-align: center;
-          line-height: 26px;
-          border-radius: 5px;
-          padding: 5px;
-          flex-direction: column;
-        }
+        .map {
+          display: inline-flex;
+          flex-grow: 1;
+          transition: all 0.3s;
 
-        .border path,
-        .island path {
-          fill: #ffffff
-        }
-
-        .sea path,
-        .lake path {
-          fill: #78bbfc
-        }
-
-        .province path {
-          fill: #C3E0E6;
-
-          &:not(.active):hover {
-            fill: lighten(#87c0cd, 10%) !important;
-            cursor: pointer
+          .title {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            color: #333;
+            text-align: center;
+            line-height: 26px;
+            border-radius: 5px;
+            padding: 5px;
+            flex-direction: column;
           }
 
-          &.active {
-            fill: #87c0cd !important;
+          .border path,
+          .island path {
+            fill: #ffffff
+          }
+
+          .sea path,
+          .lake path {
+            fill: #78bbfc
+          }
+
+          .province path {
+            fill: #C3E0E6;
+
+            &:not(.active):hover {
+              fill: lighten(#87c0cd, 10%) !important;
+              cursor: pointer
+            }
+
+            &.active {
+              fill: #87c0cd !important;
+            }
+          }
+
+          path.disabled {
+            cursor: default !important;
+            pointer-events: none !important;
+            fill: #6c757d !important;
           }
         }
+      }
 
-        path.disabled {
-          cursor: default !important;
-          pointer-events: none !important;
-          fill: #6c757d !important;
+      &.ltr {
+        direction: ltr;
+
+        .message {
+          left: 0;
+        }
+
+        .fix-label {
+          margin-right: 1rem;
         }
       }
-    }
 
-    &.ltr {
-      direction: ltr;
+      &.rtl {
+        direction: rtl;
 
-      .message {
-        left: 0;
-      }
+        .message {
+          right: 0;
+        }
 
-      .fix-label {
-        margin-right: 1rem;
-      }
-    }
-
-    &.rtl {
-      direction: rtl;
-
-      .message {
-        right: 0;
-      }
-
-      .fix-label {
-        margin-left: 1rem;
+        .fix-label {
+          margin-left: 1rem;
+        }
       }
     }
   }

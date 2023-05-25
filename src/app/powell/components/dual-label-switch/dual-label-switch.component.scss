@@ -1,90 +1,94 @@
-:host ::ng-deep {
-  .dual-label-switch-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
+  ::ng-deep {
+    .dual-label-switch-wrapper {
+      display: flex;
+      position: relative;
 
-    &.label-fix-top {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    &.label-fix-side {
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .fix-label {
-        margin-bottom: 0;
+      .message {
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
       }
-    }
 
-    .field {
-      flex-grow: 1;
-      align-self: stretch;
-      display: inline-flex;
-      align-items: center;
-      justify-content: flex-start;
+      &.label-fix-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
 
-      > .field-inner {
-        direction: ltr;
+      &.label-fix-side {
+        flex-direction: row-reverse;
+        align-items: center;
+
+        .fix-label {
+          margin-bottom: 0;
+        }
+      }
+
+      .field {
+        flex-grow: 1;
+        align-self: stretch;
         display: inline-flex;
-        align-items: flex-end;
+        align-items: center;
+        justify-content: flex-start;
 
-        .label-left {
+        > .field-inner {
+          direction: ltr;
+          display: inline-flex;
+          align-items: flex-end;
+
+          .label-left {
+            margin-right: 1rem;
+          }
+
+          .label-right {
+            margin-left: 1rem;
+          }
+        }
+      }
+
+      p-progressSpinner {
+        display: inline-flex;
+        margin: 0 0.5rem;
+        vertical-align: sub;
+
+        .p-progress-spinner {
+          width: 25px;
+          height: 25px;
+        }
+      }
+
+      p-inputswitch {
+        display: inline-flex;
+
+        .p-inputswitch-slider {
+          background-color: var(--primary-color) !important;
+        }
+      }
+
+      &.ltr {
+        direction: ltr;
+
+        .message {
+          left: 0;
+        }
+
+        .fix-label {
           margin-right: 1rem;
         }
+      }
 
-        .label-right {
+      &.rtl {
+        direction: rtl;
+
+        .message {
+          right: 0;
+        }
+
+        .fix-label {
           margin-left: 1rem;
         }
-      }
-    }
-
-    p-progressSpinner {
-      display: inline-flex;
-      margin: 0 0.5rem;
-      vertical-align: sub;
-
-      .p-progress-spinner {
-        width: 25px;
-        height: 25px;
-      }
-    }
-
-    p-inputswitch {
-      display: inline-flex;
-
-      .p-inputswitch-slider {
-        background-color: var(--primary-color) !important;
-      }
-    }
-
-    &.ltr {
-      direction: ltr;
-
-      .message {
-        left: 0;
-      }
-
-      .fix-label {
-        margin-right: 1rem;
-      }
-    }
-
-    &.rtl {
-      direction: rtl;
-
-      .message {
-        right: 0;
-      }
-
-      .fix-label {
-        margin-left: 1rem;
       }
     }
   }

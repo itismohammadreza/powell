@@ -1,88 +1,92 @@
-:host ::ng-deep {
-  .input-otp-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
-
-    &.label-fix-top {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    &.label-fix-side {
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .fix-label {
-        margin-bottom: 0;
-      }
-    }
-
-    .field {
-      width: auto;
-      flex-grow: 1;
-      align-self: stretch;
-      display: inline-flex;
-
-      > div {
-        display: block;
-        flex-grow: 1;
-      }
-
-      input {
-        width: 50px;
-        text-align: center;
-      }
-
-      .p-inputtext-sm input {
-        width: 40px
-      }
-
-      .p-inputtext-lg input {
-        width: 60px
-      }
-    }
-
-    &.ltr {
-      direction: ltr;
+  ::ng-deep {
+    .input-otp-wrapper {
+      display: flex;
+      position: relative;
 
       .message {
-        left: 0;
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
       }
 
-      .field {
-        input:not(:last-child) {
-          margin-right: 0.5rem;
-        }
+      &.label-fix-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
       }
 
-      .fix-label {
-        margin-right: 1rem;
-      }
-    }
-
-    &.rtl {
-      direction: rtl;
-
-      .message {
-        right: 0;
-      }
-
-      .field {
+      &.label-fix-side {
         flex-direction: row-reverse;
+        align-items: center;
 
-        input:not(:first-child) {
-          margin-right: 0.5rem;
+        .fix-label {
+          margin-bottom: 0;
         }
       }
 
-      .fix-label {
-        margin-left: 1rem;
+      .field {
+        width: auto;
+        flex-grow: 1;
+        align-self: stretch;
+        display: inline-flex;
+
+        > div {
+          display: block;
+          flex-grow: 1;
+        }
+
+        input {
+          width: 50px;
+          text-align: center;
+        }
+
+        .p-inputtext-sm input {
+          width: 40px
+        }
+
+        .p-inputtext-lg input {
+          width: 60px
+        }
+      }
+
+      &.ltr {
+        direction: ltr;
+
+        .message {
+          left: 0;
+        }
+
+        .field {
+          input:not(:last-child) {
+            margin-right: 0.5rem;
+          }
+        }
+
+        .fix-label {
+          margin-right: 1rem;
+        }
+      }
+
+      &.rtl {
+        direction: rtl;
+
+        .message {
+          right: 0;
+        }
+
+        .field {
+          flex-direction: row-reverse;
+
+          input:not(:first-child) {
+            margin-right: 0.5rem;
+          }
+        }
+
+        .fix-label {
+          margin-left: 1rem;
+        }
       }
     }
   }

@@ -1,190 +1,194 @@
-:host ::ng-deep {
-  .tree-select-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    p-treeSelect,
-    .p-treeselect {
-      width: 100%;
-    }
+  ::ng-deep {
+    .tree-select-wrapper {
+      display: flex;
+      position: relative;
 
-    i {
-      z-index: 200;
-    }
-
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
-
-    &.label-fix-top {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    &.label-fix-side {
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .fix-label {
-        margin-bottom: 0;
-      }
-    }
-
-    .field {
-      width: auto;
-      flex-grow: 1;
-      align-self: stretch;
-      display: inline-flex;
-
-      > div {
-        display: block;
-        flex-grow: 1;
-
-        &.p-input-icon-right .p-treeselect .p-treeselect-label-container {
-          padding-right: 2.25rem;
-        }
-
-        &.p-input-icon-left .p-treeselect .p-treeselect-label-container {
-          padding-left: 2.25rem;
-        }
+      p-treeSelect,
+      .p-treeselect {
+        width: 100%;
       }
 
-      &.has-before .p-treeselect {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
+      i {
+        z-index: 200;
       }
-
-      &.has-after .p-treeselect {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-    }
-
-    &.ltr {
-      direction: ltr;
 
       .message {
-        left: 0;
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
       }
 
-      .fix-label {
-        margin-right: 1rem;
+      &.label-fix-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
       }
 
-      .p-float-label {
-        &.p-input-icon-left {
-          label {
-            left: 2.25rem;
-          }
+      &.label-fix-side {
+        flex-direction: row-reverse;
+        align-items: center;
+
+        .fix-label {
+          margin-bottom: 0;
         }
-      }
-
-      .p-input-icon-right > i {
-        right: 3rem;
-      }
-
-      &.clearable {
-        .p-input-icon-right {
-          .p-treeselect-clear-icon {
-            right: 4.5rem;
-            left: auto;
-          }
-
-          .p-treeselect .p-treeselect-label-container {
-            padding-right: 3.75rem;
-          }
-        }
-      }
-    }
-
-    &.rtl {
-      direction: rtl;
-
-      .message {
-        right: 0;
       }
 
       .field {
-        flex-direction: row-reverse;
-      }
+        width: auto;
+        flex-grow: 1;
+        align-self: stretch;
+        display: inline-flex;
 
-      .fix-label {
-        margin-left: 1rem;
-      }
+        > div {
+          display: block;
+          flex-grow: 1;
 
-      .p-float-label {
-        label {
-          right: 0.75rem;
-          left: auto;
+          &.p-input-icon-right .p-treeselect .p-treeselect-label-container {
+            padding-right: 2.25rem;
+          }
+
+          &.p-input-icon-left .p-treeselect .p-treeselect-label-container {
+            padding-left: 2.25rem;
+          }
         }
 
-        &.p-input-icon-right {
-          label {
-            right: 2.25rem;
+        &.has-before .p-treeselect {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        &.has-after .p-treeselect {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      &.ltr {
+        direction: ltr;
+
+        .message {
+          left: 0;
+        }
+
+        .fix-label {
+          margin-right: 1rem;
+        }
+
+        .p-float-label {
+          &.p-input-icon-left {
+            label {
+              left: 2.25rem;
+            }
+          }
+        }
+
+        .p-input-icon-right > i {
+          right: 3rem;
+        }
+
+        &.clearable {
+          .p-input-icon-right {
+            .p-treeselect-clear-icon {
+              right: 4.5rem;
+              left: auto;
+            }
+
+            .p-treeselect .p-treeselect-label-container {
+              padding-right: 3.75rem;
+            }
           }
         }
       }
 
-      .p-input-icon-left > i {
-        left: 3rem;
-      }
+      &.rtl {
+        direction: rtl;
 
-      &.clearable {
-        .p-treeselect .p-treeselect-label-container {
-          padding-right: 0.75rem;
-          padding-left: 2.25rem;
+        .message {
+          right: 0;
         }
 
-        .p-treeselect-clear-icon {
-          right: auto;
+        .field {
+          flex-direction: row-reverse;
+        }
+
+        .fix-label {
+          margin-left: 1rem;
+        }
+
+        .p-float-label {
+          label {
+            right: 0.75rem;
+            left: auto;
+          }
+
+          &.p-input-icon-right {
+            label {
+              right: 2.25rem;
+            }
+          }
+        }
+
+        .p-input-icon-left > i {
           left: 3rem;
         }
 
-        .p-input-icon-left {
-          .p-treeselect-clear-icon {
-            left: 4.5rem;
-            right: auto;
-          }
-
+        &.clearable {
           .p-treeselect .p-treeselect-label-container {
-            padding-left: 3.75rem;
-          }
-        }
-      }
-
-      .p-treeselect-panel {
-        .p-tree {
-          .p-tree-toggler,
-          .p-treenode-icon,
-          .p-checkbox {
-            margin-right: 0;
-            margin-left: 0.5rem;
+            padding-right: 0.75rem;
+            padding-left: 2.25rem;
           }
 
-          .p-treenode-children {
-            padding: 0 1rem 0 0;
+          .p-treeselect-clear-icon {
+            right: auto;
+            left: 3rem;
           }
 
-          .pi-chevron-right:before {
-            content: "\e900";
-          }
-        }
-
-        .p-treeselect-header {
-          .p-treeselect-filter-container {
-            margin-right: 0;
-            margin-left: 0.5rem;
-
-            .p-treeselect-filter-icon {
+          .p-input-icon-left {
+            .p-treeselect-clear-icon {
+              left: 4.5rem;
               right: auto;
-              left: 0.75rem;
             }
 
-            .p-treeselect-filter {
-              padding-right: 0.65625rem;
-              padding-left: 1.75rem;
+            .p-treeselect .p-treeselect-label-container {
+              padding-left: 3.75rem;
+            }
+          }
+        }
+
+        .p-treeselect-panel {
+          .p-tree {
+            .p-tree-toggler,
+            .p-treenode-icon,
+            .p-checkbox {
+              margin-right: 0;
+              margin-left: 0.5rem;
+            }
+
+            .p-treenode-children {
+              padding: 0 1rem 0 0;
+            }
+
+            .pi-chevron-right:before {
+              content: "\e900";
+            }
+          }
+
+          .p-treeselect-header {
+            .p-treeselect-filter-container {
+              margin-right: 0;
+              margin-left: 0.5rem;
+
+              .p-treeselect-filter-icon {
+                right: auto;
+                left: 0.75rem;
+              }
+
+              .p-treeselect-filter {
+                padding-right: 0.65625rem;
+                padding-left: 1.75rem;
+              }
             }
           }
         }

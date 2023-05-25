@@ -1,13 +1,16 @@
 :host {
   position: relative;
   display: block;
-}
 
-.pinch-zoom-content {
-  height: inherit;
-  text-align: center;
+  ::ng-deep {
+    .pinch-zoom-content {
+      height: inherit;
+      text-align: center;
 
-  &.transformed ::ng-deep img {
-    cursor: all-scroll;
+      &.transformed ::ng-deep img {
+        cursor: all-scroll;
+      }
+    }
   }
 }
+

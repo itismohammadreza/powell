@@ -1,179 +1,183 @@
-:host ::ng-deep {
-  .dropdown-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    p-dropdown,
-    .p-dropdown,
-    .p-inputtext {
-      width: 100%;
-    }
+  ::ng-deep {
+    .dropdown-wrapper {
+      display: flex;
+      position: relative;
 
-    i {
-      z-index: 200;
-    }
-
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
-
-    &.label-fix-top {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    &.label-fix-side {
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .fix-label {
-        margin-bottom: 0;
-      }
-    }
-
-    .field {
-      width: auto;
-      flex-grow: 1;
-      align-self: stretch;
-      display: inline-flex;
-
-      &, > div {
-        max-width: 100%;
+      p-dropdown,
+      .p-dropdown,
+      .p-inputtext {
+        width: 100%;
       }
 
-      > div {
-        display: block;
-        flex-grow: 1;
-
-        &.p-input-icon-right .p-dropdown .p-inputtext {
-          padding-right: 2.25rem;
-        }
-
-        &.p-input-icon-left .p-dropdown .p-inputtext {
-          padding-left: 2.25rem;
-        }
+      i {
+        z-index: 200;
       }
-
-      &.has-before .p-dropdown {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-
-      &.has-after .p-dropdown {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-
-      .p-dropdown-item {
-        white-space: break-spaces;
-      }
-    }
-
-    &.ltr {
-      direction: ltr;
 
       .message {
-        left: 0;
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
       }
 
-      .fix-label {
-        margin-right: 1rem;
+      &.label-fix-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
       }
 
-      .p-float-label {
-        &.p-input-icon-left {
-          label {
-            left: 2.25rem;
-          }
+      &.label-fix-side {
+        flex-direction: row-reverse;
+        align-items: center;
+
+        .fix-label {
+          margin-bottom: 0;
         }
-      }
-
-      .p-input-icon-right > i {
-        right: 3rem;
-      }
-
-      &.clearable {
-        .p-input-icon-right {
-          .p-dropdown-clear-icon {
-            right: 4.5rem;
-            left: auto;
-          }
-
-          .p-dropdown .p-inputtext {
-            padding-right: 3.75rem;
-          }
-        }
-      }
-    }
-
-    &.rtl {
-      direction: rtl;
-
-      .message {
-        right: 0;
       }
 
       .field {
-        flex-direction: row-reverse;
-      }
+        width: auto;
+        flex-grow: 1;
+        align-self: stretch;
+        display: inline-flex;
 
-      .fix-label {
-        margin-left: 1rem;
-      }
-
-      .p-float-label {
-        label {
-          right: 0.75rem;
-          left: auto;
+        &, > div {
+          max-width: 100%;
         }
 
-        &.p-input-icon-right {
-          label {
-            right: 2.25rem;
+        > div {
+          display: block;
+          flex-grow: 1;
+
+          &.p-input-icon-right .p-dropdown .p-inputtext {
+            padding-right: 2.25rem;
+          }
+
+          &.p-input-icon-left .p-dropdown .p-inputtext {
+            padding-left: 2.25rem;
+          }
+        }
+
+        &.has-before .p-dropdown {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        &.has-after .p-dropdown {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        .p-dropdown-item {
+          white-space: break-spaces;
+        }
+      }
+
+      &.ltr {
+        direction: ltr;
+
+        .message {
+          left: 0;
+        }
+
+        .fix-label {
+          margin-right: 1rem;
+        }
+
+        .p-float-label {
+          &.p-input-icon-left {
+            label {
+              left: 2.25rem;
+            }
+          }
+        }
+
+        .p-input-icon-right > i {
+          right: 3rem;
+        }
+
+        &.clearable {
+          .p-input-icon-right {
+            .p-dropdown-clear-icon {
+              right: 4.5rem;
+              left: auto;
+            }
+
+            .p-dropdown .p-inputtext {
+              padding-right: 3.75rem;
+            }
           }
         }
       }
 
-      .p-input-icon-left > i {
-        left: 3rem;
-      }
+      &.rtl {
+        direction: rtl;
 
-      &.clearable {
-        .p-dropdown .p-inputtext {
-          padding-right: 0.75rem;
-          padding-left: 2.25rem;
+        .message {
+          right: 0;
         }
 
-        .p-dropdown-clear-icon {
-          right: auto;
+        .field {
+          flex-direction: row-reverse;
+        }
+
+        .fix-label {
+          margin-left: 1rem;
+        }
+
+        .p-float-label {
+          label {
+            right: 0.75rem;
+            left: auto;
+          }
+
+          &.p-input-icon-right {
+            label {
+              right: 2.25rem;
+            }
+          }
+        }
+
+        .p-input-icon-left > i {
           left: 3rem;
         }
 
-        .p-input-icon-left {
-          .p-dropdown-clear-icon {
-            left: 4.5rem;
-            right: auto;
+        &.clearable {
+          .p-dropdown .p-inputtext {
+            padding-right: 0.75rem;
+            padding-left: 2.25rem;
           }
 
-          .p-dropdown .p-inputtext {
-            padding-left: 3.75rem;
+          .p-dropdown-clear-icon {
+            right: auto;
+            left: 3rem;
+          }
+
+          .p-input-icon-left {
+            .p-dropdown-clear-icon {
+              left: 4.5rem;
+              right: auto;
+            }
+
+            .p-dropdown .p-inputtext {
+              padding-left: 3.75rem;
+            }
           }
         }
-      }
 
-      .p-dropdown-panel {
-        .p-dropdown-header {
-          .p-dropdown-filter {
-            padding-left: 1.75rem;
-            margin-left: -1.75rem;
-            margin-right: 0;
-          }
+        .p-dropdown-panel {
+          .p-dropdown-header {
+            .p-dropdown-filter {
+              padding-left: 1.75rem;
+              margin-left: -1.75rem;
+              margin-right: 0;
+            }
 
-          .p-dropdown-filter-icon {
-            left: 0.75rem;
-            right: auto;
+            .p-dropdown-filter-icon {
+              left: 0.75rem;
+              right: auto;
+            }
           }
         }
       }

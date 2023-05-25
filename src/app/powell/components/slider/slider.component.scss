@@ -1,59 +1,63 @@
-:host ::ng-deep {
-  .slider-wrapper {
-    display: flex;
-    position: relative;
+:host {
+  display: block;
 
-    .message {
-      position: absolute;
-      top: calc(100% + 0.25rem);
-      font-size: 0.875em;
-    }
+  ::ng-deep {
+    .slider-wrapper {
+      display: flex;
+      position: relative;
 
-    &.label-fix-top {
-      flex-direction: column-reverse;
-      align-items: flex-start;
+      .message {
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        font-size: 0.875em;
+      }
+
+      &.label-fix-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+
+        .field {
+          width: 100%;
+        }
+      }
+
+      &.label-fix-side {
+        flex-direction: row-reverse;
+        align-items: center;
+
+        .fix-label {
+          margin-bottom: 0;
+          align-self: start;
+        }
+      }
 
       .field {
-        width: 100%;
-      }
-    }
-
-    &.label-fix-side {
-      flex-direction: row-reverse;
-      align-items: center;
-
-      .fix-label {
-        margin-bottom: 0;
-        align-self: start;
-      }
-    }
-
-    .field {
-      width: auto;
-      flex-grow: 1;
-    }
-
-    &.ltr {
-      direction: ltr;
-
-      .message {
-        left: 0;
+        width: auto;
+        flex-grow: 1;
       }
 
-      .fix-label {
-        margin-right: 1rem;
+      &.ltr {
+        direction: ltr;
+
+        .message {
+          left: 0;
+        }
+
+        .fix-label {
+          margin-right: 1rem;
+        }
       }
-    }
 
-    &.rtl {
-      direction: rtl;
+      &.rtl {
+        direction: rtl;
 
-      .message {
-        right: 0;
-      }
+        .message {
+          right: 0;
+        }
 
-      .fix-label {
-        margin-left: 1rem;
+        .fix-label {
+          margin-left: 1rem;
+        }
       }
     }
   }
