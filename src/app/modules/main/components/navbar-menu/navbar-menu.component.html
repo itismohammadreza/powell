@@ -6,13 +6,15 @@
      }">
   <nav class="navbar shadow-sm fixed-top">
     <div class="container-fluid">
-      <ng-button
-        *ngIf="!sidebarLock && tempSidebarType != 'hover' && tempSidebarType != 'horizontal'"
-        icon="pi pi-bars"
-        color="primary"
-        appearance="text"
-        (click)="toggleSidebarClick()">
-      </ng-button>
+      <span>
+        <ng-button
+          *ngIf="!sidebarLock && tempSidebarType != 'hover' && tempSidebarType != 'horizontal'"
+          icon="pi pi-bars"
+          color="primary"
+          appearance="text"
+          (click)="toggleSidebarClick()">
+        </ng-button>
+      </span>
       <span class="navbar-text">
         <a target="_blank" href="https://github.com/mohammadreza99/powell">
           <i class="pi pi-github me-2 align-middle"></i><span>Github</span>
