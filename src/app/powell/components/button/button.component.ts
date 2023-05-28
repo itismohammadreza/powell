@@ -28,7 +28,6 @@ export class ButtonComponent implements OnChanges {
   @Input() iconPos: NgIconPosition = 'left';
   @Input() badge: string;
   @Input() badgeClass: string;
-  @Input() loadingIcon: string = 'pi pi-spinner pi-spin';
   @Input() disabled: boolean;
   @Input() style: any;
   @Input() styleClass: any;
