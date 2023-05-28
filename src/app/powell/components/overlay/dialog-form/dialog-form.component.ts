@@ -26,13 +26,11 @@ export class DialogFormComponent {
     this._config = value;
     this.form = new FormGroup({});
     for (const config of this._config) {
-      config.rtl = config.rtl ?? this.configService.getConfig().rtl;
       config.filled = config.filled ?? this.configService.getConfig().filled;
       config.labelPos = config.labelPos ?? this.configService.getConfig().labelPos;
       config.fixLabelPos = config.fixLabelPos ?? this.configService.getConfig().fixLabelPos;
       config.selectiveSize = config.selectiveSize ?? this.configService.getConfig().inputSize;
       config.showRequiredStar = config.showRequiredStar ?? this.configService.getConfig().showRequiredStar;
-      config.disableConfigChangeEffect = config.disableConfigChangeEffect ?? this.configService.getConfig().disableConfigChangeEffect;
       if (config.key) {
         this.form.addControl(config.key, new FormControl(null));
         this.handleConfigValue(config);

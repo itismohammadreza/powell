@@ -765,7 +765,6 @@ export interface NgDialogFormConfig {
   readonly?: boolean;
   checkboxTrueIcon?: string;
   checkboxFalseIcon?: string;
-  disableConfigChangeEffect?: boolean;
 
   // instead of 'size'
   selectiveSize?: NgSize;
