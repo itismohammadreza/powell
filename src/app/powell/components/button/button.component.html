@@ -17,5 +17,13 @@
   p-button-{{ rounded ? 'rounded' : '' }}
   p-button-{{ raised ? 'raised' : '' }}"
   (onClick)="_onClick($event)">
-  <ng-content></ng-content>
+  <ng-template pTemplate="content" *ngIf="contentTemplate">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="icon" *ngIf="iconTemplate">
+    <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
+  </ng-template>
+  <ng-template pTemplate="loadingIcon" *ngIf="loadingIconTemplate">
+    <ng-container *ngTemplateOutlet="loadingIconTemplate"></ng-container>
+  </ng-template>
 </p-button>

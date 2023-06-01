@@ -1,5 +1,15 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output, QueryList,
+  SimpleChanges, TemplateRef
+} from '@angular/core';
 import {NgButtonAppearance, NgButtonType, NgColor, NgIconPosition, NgSize} from '@powell/models';
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-button',
@@ -7,7 +17,7 @@ import {NgButtonAppearance, NgButtonType, NgColor, NgIconPosition, NgSize} from 
   styleUrls: ['./button.component.scss'],
   host: {'[class.full]': 'full'}
 })
-export class ButtonComponent implements OnChanges {
+export class ButtonComponent implements AfterViewInit, OnChanges {
   @Input() appearance: NgButtonAppearance;
   @Input() rounded: boolean;
   @Input() raised: boolean;
@@ -28,15 +38,19 @@ export class ButtonComponent implements OnChanges {
   @Input() iconPos: NgIconPosition = 'left';
   @Input() badge: string;
   @Input() badgeClass: string;
-  @Input() loadingIcon: string = 'pi pi-spinner pi-spin';
+  @Input() loadingIcon: string;
   @Input() disabled: boolean;
   @Input() style: any;
   @Input() styleClass: any;
   @Output() onClick = new EventEmitter();
   @Output() defaultStateChange = new EventEmitter();
   @Output() onClickAsync = new EventEmitter();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   loading: boolean;
+  contentTemplate: TemplateRef<any>;
+  iconTemplate: TemplateRef<any>;
+  loadingIconTemplate: TemplateRef<any>;
   _tmpLabel: string;
   _tmpIcon: string;
   _tmpAppearance: NgButtonAppearance;
@@ -46,6 +60,24 @@ export class ButtonComponent implements OnChanges {
     if (this.async) {
       this.toggleState(this.defaultState);
     }
+  }
+
+  ngAfterViewInit() {
+    this.templates.forEach((item: TemplateDirective) => {
+      switch (item.getType()) {
+        case 'content':
+          this.contentTemplate = item.templateRef;
+          break;
+
+        case 'icon':
+          this.iconTemplate = item.templateRef;
+          break;
+
+        case 'loadingIcon':
+          this.loadingIconTemplate = item.templateRef;
+          break;
+      }
+    });
   }
 
   _onClick(event: any) {
