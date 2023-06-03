@@ -1,60 +1,58 @@
-﻿$baseUrl: "/assets/styles/fonts/iran-sans";
+﻿$baseUrl: "/assets/styles/fonts/iran-sans/plain";
 :root {
   --font-family: IranSans !important;
 }
 
 @font-face {
   font-family: IranSans;
+  font-weight: 200;
   font-style: normal;
   font-display: swap;
-  font-weight: 200;
   src: url("#{$baseUrl}/woff2/IranSans-ExtraLight.woff2") format("woff2"),
   url("#{$baseUrl}/ttf/IranSans-ExtraLight.ttf") format("truetype");
 }
 
 @font-face {
   font-family: IranSans;
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
-  font-weight: 300;
   src: url("#{$baseUrl}/woff2/IranSans-Light.woff2") format("woff2"),
   url("#{$baseUrl}/ttf/IranSans-Light.ttf") format("truetype");
 }
 
 @font-face {
   font-family: IranSans;
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
-  font-weight: normal;
   src: url("#{$baseUrl}/woff2/IranSans-Regular.woff2") format("woff2"),
   url("#{$baseUrl}/ttf/IranSans-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: IranSans;
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
-  font-weight: 500;
   src: url("#{$baseUrl}/woff2/IranSans-Medium.woff2") format("woff2"),
   url("#{$baseUrl}/ttf/IranSans-Medium.ttf") format("truetype");
 }
 
 @font-face {
   font-family: IranSans;
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
-  font-weight: bold;
   src: url("#{$baseUrl}/woff2/IranSans-Bold.woff2") format("woff2"),
   url("#{$baseUrl}/ttf/IranSans-Bold.ttf") format("truetype");
 }
 
 @font-face {
   font-family: IranSans;
+  font-weight: 900;
   font-style: normal;
   font-display: swap;
-  font-weight: 900;
   src: url("#{$baseUrl}/woff2/IranSans-Black.woff2") format("woff2"),
   url("#{$baseUrl}/ttf/IranSans-Black.ttf") format("truetype"),
 }
-
-@import "./farsi-digits/farsi-digits";
