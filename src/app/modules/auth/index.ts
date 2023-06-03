@@ -27,5 +27,4 @@ export const IMPORTS: Type<any>[] = [
 ];
 
 export const EXPORTS: Type<any>[] = [
-  ...DECLARATIONS
 ];
