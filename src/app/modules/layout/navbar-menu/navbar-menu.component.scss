@@ -12,15 +12,6 @@
       background-color: var(--surface-b);
       border-bottom: 1px solid var(--surface-d);
       transition: all 200ms;
-
-      .nav-item {
-        display: flex;
-        align-items: center;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
     }
 
     main {
@@ -173,78 +164,43 @@
     }
   }
 
-  p-sidebar {
-    .p-sidebar {
-      background: var(--surface-b);
+  .p-sidebar {
+    .p-sidebar-footer {
+      padding: 0;
+    }
 
-      .p-divider .p-divider-content {
-        background-color: var(--surface-b);
-      }
+    .section-top {
+      i {
+        cursor: pointer;
 
-      .p-sidebar-content {
-        height: 100%;
-      }
-
-      &.components-sidebar {
-        .p-sidebar-header {
-          padding: 0;
+        &:hover {
+          opacity: .7;
         }
       }
+    }
 
-      .section-top {
-        background: var(--surface-b);
-
-        i {
-          cursor: pointer;
-
-          &:hover {
-            opacity: .7;
-          }
-        }
+    .p-panelmenu {
+      &-header-link {
+        border-radius: var(--border-radius) !important;
       }
 
-      .p-panelmenu {
-        &-header-link {
-          background: var(--surface-b);
-          border: 0;
-          transition: all .2s;
-          border-radius: 8px !important;
-
-          .p-panelmenu-icon {
-            margin-right: 0;
-            margin-left: 0.5rem;
-          }
-
-          &:focus {
-            box-shadow: none;
-          }
-        }
-
-        .p-menuitem-link-active {
-          background: var(--surface-c);
-          border-color: var(--surface-c);
-        }
-
-        .p-menuitem-icon {
-          margin-right: 0;
-          margin-left: 0.5em;
-        }
+      .p-menuitem-link-active {
+        background: var(--surface-c);
+        border-color: var(--surface-c);
       }
+    }
 
-      &.p-sidebar-left {
-        .p-panelmenu {
-          &-header-link {
-            .p-panelmenu-icon {
-              margin-left: 0;
-              margin-right: 0.5rem;
-            }
-          }
+    &.p-sidebar-right {
+      .p-panelmenu-header-link .p-menuitem-icon {
+        margin-left: 0.5rem;
+        margin-right: 0;
+      }
+    }
 
-          .p-menuitem-icon {
-            margin-left: 0;
-            margin-right: 0.5em;
-          }
-        }
+    &.p-sidebar-left {
+      .p-panelmenu-header-link .p-menuitem-icon {
+        margin-left: 0;
+        margin-right: 0.5rem;
       }
     }
   }

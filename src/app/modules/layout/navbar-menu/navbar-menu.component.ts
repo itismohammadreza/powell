@@ -1,16 +1,49 @@
 import {AfterContentInit, AfterViewChecked, Component, HostListener, Inject, Input, OnInit} from '@angular/core';
-import {DOCUMENT} from "@angular/common";
+import {CommonModule, DOCUMENT} from "@angular/common";
 import {LanguageChecker} from '@core/utils';
 import {SidebarType} from '@core/models';
 import {ConfigService, ThemeService} from "@powell/api";
 import {NgConfig} from "@powell/models";
 import {Global} from "@core/config";
 import {PrimeMenuItem} from "@powell/primeng/api";
+import {
+  PrimeAvatarModule, PrimeDividerModule,
+  PrimeMenubarModule,
+  PrimeMenuModule,
+  PrimePanelMenuModule,
+  PrimeSidebarModule
+} from "@powell/primeng";
+import {ButtonModule} from "@powell/components/button";
+import {InputTextModule} from "@powell/components/input-text";
+import {DropdownModule} from "@powell/components/dropdown";
+import {SwitchModule} from "@powell/components/switch";
+import {FilterModule} from "@powell/pipes/filter";
+import {TranslateModule} from "@ngx-translate/core";
+import {FormsModule} from "@angular/forms";
+import {LogoComponent} from "@modules/layout/logo/logo.component";
 
 @Component({
   selector: 'ng-navbar-menu',
   templateUrl: './navbar-menu.component.html',
-  styleUrls: ['./navbar-menu.component.scss']
+  styleUrls: ['./navbar-menu.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    LogoComponent,
+    PrimeAvatarModule,
+    PrimeMenubarModule,
+    PrimeSidebarModule,
+    PrimePanelMenuModule,
+    PrimeMenuModule,
+    PrimeDividerModule,
+    ButtonModule,
+    InputTextModule,
+    DropdownModule,
+    SwitchModule,
+    FilterModule,
+    TranslateModule,
+    FormsModule,
+  ]
 })
 export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterViewChecked, AfterContentInit {
   @Input() sidebarType: SidebarType = 'push-mask';
