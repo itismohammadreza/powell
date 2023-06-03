@@ -52,7 +52,7 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor, OnDestro
   @Input() style: any;
   @Input() styleClass: string;
   @Input() labelStyleClass: string;
-  @Input() checkboxIcon: string = 'pi pi-check';
+  @Input() checkboxIcon: string;
   @Input() readonly: boolean;
   @Input() trueValue: any = true;
   @Input() falseValue: any = false;

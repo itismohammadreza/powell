@@ -65,7 +65,7 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor, OnD
 
   @Input() style: any;
   @Input() styleClass: string;
-  @Input() checkboxIcon: string = 'pi pi-check';
+  @Input() checkboxIcon: string;
   @Output() onChange = new EventEmitter();
 
   readonly: boolean = false;

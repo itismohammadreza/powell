@@ -216,7 +216,7 @@
           [style]="config.style"
           [styleClass]="config.styleClass"
           [labelStyleClass]="config.labelStyleClass"
-          [checkboxIcon]="config.checkboxIcon ?? 'pi pi-check'"
+          [checkboxIcon]="config.checkboxIcon"
           [readonly]="config.readonly"
           [trueValue]="config.trueValue ?? true"
           [falseValue]="config.falseValue ?? false"
@@ -1222,7 +1222,7 @@
           [readonly]="config.readonly ?? false"
           [style]="config.style"
           [styleClass]="config.styleClass"
-          [checkboxIcon]="config.checkboxIcon ?? 'pi pi-check'"
+          [checkboxIcon]="config.checkboxIcon"
           (onChange)="handleConfigEvent(config,'onChange',$event)"
         ></ng-multi-checkbox>
         <ng-multi-select
