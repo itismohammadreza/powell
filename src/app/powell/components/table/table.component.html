@@ -131,7 +131,7 @@
                               [showOperator]="false"
                               [showAddButton]="false">
                 <ng-template pTemplate="header">
-                  <div class="px-3 pt-3 pb-0"><span class="font-bold">{{filter.header}}</span></div>
+                  <div class="px-3 pt-3 pb-0"><span>{{filter.header}}</span></div>
                 </ng-template>
                 <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback" [ngSwitch]="filter.type">
                   <ng-input-text
@@ -232,7 +232,7 @@
                               [showOperator]="false"
                               [showAddButton]="false">
                 <ng-template pTemplate="header">
-                  <div class="px-3 pt-3 pb-0"><span class="font-bold">{{filter.header}}</span></div>
+                  <div class="px-3 pt-3 pb-0"><span>{{filter.header}}</span></div>
                 </ng-template>
                 <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback" [ngSwitch]="filter.type">
                   <ng-input-text

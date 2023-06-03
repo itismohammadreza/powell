@@ -1,65 +1,67 @@
 @use "sass:list";
+@use "sass:color";
+@use "sass:map";
 @use "sass:string";
 @import "variable";
 
 // positions: top-right / top-left / top-center / bottom-right / bottom-left / bottom-center /
 //            left-top / left-center / left-bottom / right-top / right-center / right-bottom /
 //            both-y-left / both-y-left / both-y-left / both-x-top / both-x-top / both-x-top
-@mixin addLine(
+@mixin add-line(
   $width: 60px,
   $height: 2px,
   $space: 15px,
-  $bgColor: $primary,
+  $bg-color: Null,
   $position: "bottom-right",
   $hoverable: false
 ) {
-  $isTop: str-slice($position, 1, 3) == 'top';
-  $isBottom: str-slice($position, 1, 6) == 'bottom';
-  $isLeft: str-slice($position, 1, 4) == 'left';
-  $isRight: str-slice($position, 1, 5) == 'right';
-  $isBoth: str-slice($position, 1, 4) == 'both';
-  $isBothX: str-slice($position, 1, 6) == 'both-x';
-  $isBothY: str-slice($position, 1, 6) == 'both-y';
+  $is-top: str-slice($position, 1, 3) == 'top';
+  $is-bottom: str-slice($position, 1, 6) == 'bottom';
+  $is-left: str-slice($position, 1, 4) == 'left';
+  $is-right: str-slice($position, 1, 5) == 'right';
+  $is-both: str-slice($position, 1, 4) == 'both';
+  $is-both-x: str-slice($position, 1, 6) == 'both-x';
+  $is-both-y: str-slice($position, 1, 6) == 'both-y';
   position: relative;
   &:before {
     content: "";
     position: absolute;
     width: #{$width};
     height: #{$height};
-    background: $bgColor;
+    background: $bg-color;
   }
   &:after {
     content: "";
     position: absolute;
-    background: $bgColor;
+    background: $bg-color;
   }
-  @if ($isTop) {
+  @if ($is-top) {
     margin-top: $space;
     &:before {
       top: -#{$space};
     }
   }
-  @if ($isBottom) {
+  @if ($is-bottom) {
     margin-bottom: $space;
     &:before {
       bottom: -#{$space};
       top: auto;
     }
   }
-  @if ($isLeft) {
+  @if ($is-left) {
     margin-left: $space;
     &:before {
       left: -#{$space};
     }
   }
-  @if ($isRight) {
+  @if ($is-right) {
     margin-right: $space;
     &:before {
       right: -#{$space};
       left: auto;
     }
   }
-  @if ($isBothX) {
+  @if ($is-both-x) {
     margin-left: $space;
     margin-right: $space;
     &:before {
@@ -68,12 +70,12 @@
     &:after {
       width: #{$width};
       height: #{$height};
-      background: $bgColor;
+      background: $bg-color;
       right: -#{$space};
       left: auto;
     }
   }
-  @if ($isBothY) {
+  @if ($is-both-y) {
     margin-top: $space;
     margin-bottom: $space;
     &:before {
@@ -82,7 +84,7 @@
     &:after {
       width: #{$width};
       height: #{$height};
-      background: $bgColor;
+      background: $bg-color;
       bottom: -#{$space};
     }
   }
@@ -144,7 +146,7 @@
     }
   }
   @if ($hoverable != false) {
-    @if ($isTop or $isBottom or $isBothY) {
+    @if ($is-top or $is-bottom or $is-both-y) {
       &:before, &:after {
         width: 0;
         transition: width 0.4s;
@@ -156,7 +158,7 @@
         }
       }
     }
-    @if ($isLeft or $isRight or $isBothX) {
+    @if ($is-left or $is-right or $is-both-x) {
       &:before, &:after {
         height: 0;
         transition: height 0.4s;
@@ -168,7 +170,7 @@
         }
       }
     }
-    @if ($isBothY) {
+    @if ($is-both-y) {
       &:hover {
         &:after {
           height: $height;
@@ -177,7 +179,7 @@
       }
     }
 
-    @if ($isBothX) {
+    @if ($is-both-x) {
       &:hover {
         &:after {
           width: $width;
@@ -187,7 +189,6 @@
     }
   }
 }
-
 
 @function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
   $n: index($breakpoint-names, $name);
@@ -264,6 +265,29 @@
   } @else if $min == null {
     @include media-breakpoint-down($next, $breakpoints) {
       @content;
+    }
+  }
+}
+
+@mixin scrollbar($width:8px,$radius:10px,$track-color,$thumb-color) {
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: $track-color;
+  }
+
+  ::-webkit-scrollbar {
+    width: $width;
+    background-color: $track-color;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: $thumb-color;
+
+    &:hover {
+      background-color: lighten($thumb-color, 15%);
     }
   }
 }
