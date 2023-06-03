@@ -269,7 +269,7 @@
   }
 }
 
-@mixin scrollbar($width:8px,$radius:10px,$track-color,$thumb-color) {
+@mixin scrollbar($thickness:8px,$radius:10px,$track-color,$thumb-color) {
   ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
@@ -277,7 +277,8 @@
   }
 
   ::-webkit-scrollbar {
-    width: $width;
+    width: $thickness;
+    height: $thickness;
     background-color: $track-color;
   }
 
