@@ -89,7 +89,7 @@
            (onRowSelect)="emitter('onRowSelect',$event)"
            (onRowUnselect)="emitter('onRowUnselect',$event)"
            (onPage)="emitter('onPage',$event)"
-           (onSort)="emitter('onSort',$event)"
+           (onSort)="_onSort($event)"
            (onFilter)="emitter('onFilter',$event)"
            (onLazyLoad)="_onLazyLoad($event)"
            (onRowExpand)="emitter('onRowExpand',$event)"
@@ -121,7 +121,13 @@
               [pReorderableColumnDisabled]="!reorderableColumns">
             {{ col.header }}
             <p-sortIcon *ngIf="col.sort" [field]="col.field"></p-sortIcon>
-
+            <ng-button [rounded]="true"
+                       *ngIf="activeSortField == col.field"
+                       appearance="text"
+                       size="sm"
+                       icon="pi pi-sort-alt-slash"
+                       (onClick)="onResetSort($event)">
+            </ng-button>
             <ng-container *ngIf="col.filter as filter">
               <p-columnFilter [field]="col.field"
                               display="menu"
@@ -440,7 +446,7 @@
       </ng-container>
       <ng-template #defaultEmptyMessage>
         <tr>
-          <td class="py-5"
+          <td class="empty-message-wrapper"
               [attr.colspan]="columns.length +
               (actionsConfig?.inSameColumn ? 1 : actionsConfig?.actions?.length) +
               (selectableRows && (selectionMode == 'checkbox' || selectionMode == 'radio') ? 1 : 0)">

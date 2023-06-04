@@ -26,7 +26,8 @@ import {
   NgTablePaginationPosition,
   NgTableResponsiveLayout,
   NgTableRowGroupMode,
-  NgTableSortMode, NgTableStateStorage
+  NgTableSortMode,
+  NgTableStateStorage
 } from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {PrimeFilterMetadata, PrimeScrollerOptions, PrimeSortMeta} from "@powell/primeng/api";
@@ -87,7 +88,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() groupRowsByOrder: number = 1;
   @Input() defaultSortOrder: number = 1;
   @Input() customSort: boolean;
-  @Input() showInitialSortBadge: boolean = true;
+  @Input() showInitialSortBadge: boolean;
   @Input() selectionMode: NgSelectionMode;
   @Input() selectionPageOnly: boolean;
   @Input() contextMenuSelectionMode: NgTableContextMenuSelectionMode = 'separate';
@@ -178,6 +179,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   loadingBodyTemplate: TemplateRef<any>
   cellTemplates: { [key: string]: TemplateRef<any> } = {}
   loading: boolean;
+  activeSortField: string;
 
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);
@@ -187,6 +189,28 @@ export class TableComponent implements OnInit, AfterContentInit {
         Object.assign(conf.filter, {sliderValue: conf.filter.range ? [conf.filter.min || 0, conf.filter.max || 100] : conf.filter.max})
       }
     })
+  }
+
+  _onSort(event: any) {
+    if (this.sortMode == 'multiple') {
+      if (event.multisortmeta?.length > 1) {
+        this.activeSortField = null;
+      } else {
+        this.activeSortField = event.multisortmeta?.map(sortMeta => sortMeta.field)[0];
+      }
+    } else {
+      this.activeSortField = event.field;
+    }
+    this.onSort.emit(event);
+  }
+
+  onResetSort(event: any) {
+    event.stopPropagation();
+    this.activeSortField = null;
+    this.dataTable.reset();
+    this.dataTable._sortOrder = 1;
+    this.dataTable._sortField = this.sortField || 'id';
+    this.dataTable.sortSingle();
   }
 
   ngAfterContentInit() {

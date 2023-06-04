@@ -3,40 +3,6 @@
 
   ::ng-deep {
     .table-wrapper {
-      .image-cell {
-        box-shadow: 0 1px 10px #0000001f, 0 4px 5px #00000024, 0 2px 4px -1px #0003;
-      }
-
-      .p-datatable-sm {
-        .image-cell {
-          width: 60px;
-        }
-      }
-
-      .p-datatable {
-        .p-datatable-thead > tr > th {
-          white-space: nowrap;
-        }
-      }
-
-      .row-filter-wrapper {
-        min-width: 200px;
-      }
-
-      .filter-header {
-        padding: 1rem 1rem 0;
-      }
-
-      .same-column-actions-wrapper div {
-        display: flex;
-        align-items: center;
-        flex-wrap: nowrap;
-      }
-
-      p-columnFilter {
-        vertical-align: middle;
-      }
-
       .caption {
         display: flex;
         align-items: center;
@@ -44,6 +10,47 @@
 
         h5 {
           margin-bottom: 0;
+        }
+      }
+
+      .p-datatable {
+        &.p-datatable-sm {
+          .image-cell {
+            max-width: 60px;
+          }
+        }
+
+        .p-datatable-thead > tr > th {
+          white-space: nowrap;
+
+          &.row-filter-wrapper {
+            min-width: 200px;
+
+            .filter-header {
+              padding: 1rem 1rem 0;
+            }
+          }
+
+          p-columnFilter {
+            vertical-align: middle;
+          }
+        }
+
+        .p-datatable-tbody > tr > td {
+          &.empty-message-wrapper {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+          }
+
+          &.same-column-actions-wrapper div {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+          }
+
+          .image-cell {
+            box-shadow: 0 1px 10px #0000001f, 0 4px 5px #00000024, 0 2px 4px -1px #0003;
+          }
         }
       }
 
