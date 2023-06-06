@@ -9,7 +9,11 @@
       .message {
         position: absolute;
         top: calc(100% + 0.25rem);
-        font-size: 0.875em;
+                font-size: 0.875em;
+
+        &:not(.p-error) {
+          color: #6c757d;
+        }
       }
 
       &.label-fix-top {
