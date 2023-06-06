@@ -12,7 +12,7 @@ import {
   PersianService,
   UtilsService
 } from "@powell/api";
-import {Global} from "@core/config";
+import {appConfig} from "@core/config";
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -38,7 +38,7 @@ export function initiateLanguage(translationService: TranslationService) {
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: HttpHandlerInterceptor, multi: true},
     {provide: APP_INITIALIZER, useFactory: initiateLanguage, deps: [TranslationService], multi: true},
-    initiateNgConfigProvider({rtl: Global.Config.rtl}),
+    initiateNgConfigProvider({rtl: appConfig.rtl}),
     EnvServiceProvider,
     AnimateOnScrollService,
     MomentService,

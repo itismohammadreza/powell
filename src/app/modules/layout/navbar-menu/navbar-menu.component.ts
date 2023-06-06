@@ -4,7 +4,7 @@ import {LanguageChecker} from '@core/utils';
 import {SidebarType} from '@core/models';
 import {ConfigService, ThemeService} from "@powell/api";
 import {NgConfig} from "@powell/models";
-import {Global} from "@core/config";
+import {appConfig} from "@core/config";
 import {PrimeMenuItem} from "@powell/primeng/api";
 import {
   PrimeAvatarModule, PrimeDividerModule,
@@ -62,7 +62,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     inputSize: this.configService.getConfig().inputSize,
     ripple: this.configService.getConfig().ripple,
   }
-  lang: string = Global.Config.lang;
+  lang: string = appConfig.lang;
   tempSidebarType: SidebarType = 'push-mask';
   themes: PrimeMenuItem[];
   sidebarTypes: PrimeMenuItem[];
