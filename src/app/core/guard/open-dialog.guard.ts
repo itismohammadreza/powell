@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot} from '@angular/router';
 import {OverlayService} from "@powell/api";
 
 @Injectable({
   providedIn: 'root'
 })
-export class OpenDialogGuard {
+export class OpenDialogGuard implements CanDeactivate<any> {
   constructor(private overlayService: OverlayService) {
   }
 
