@@ -24,7 +24,7 @@ export class LabelStarPipe implements PipeTransform {
       const control = ngControl.control;
       if (control.validator) {
         const validator = control.validator({} as AbstractControl);
-        if (validator && validator.required) {
+        if (validator?.required) {
           return true;
         }
       }

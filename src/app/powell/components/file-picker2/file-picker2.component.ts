@@ -63,7 +63,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   ngControl: NgControl;
   destroy$ = new Subject();
   filesToShow: { display: string | ArrayBuffer, name: string }[] = [];
-  filesToEmit: any[] = [];
+  filesToEmit: (string | ArrayBuffer | File)[] = [];
   _chooseLabel: string;
   onModelChange: any = (_: any) => {
   };
@@ -175,15 +175,6 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     }
   }
 
-  getFileType(file: any) {
-    const isImage = !!file && ((typeof file == 'string' && file.includes('blob')) || this.isUnknownImageUrl);
-    if (isImage) {
-      return 'image';
-    } else {
-      return 'file';
-    }
-  }
-
   async handleStringValue(item: string) {
     if (item.indexOf('base64') != -1) {
       this.filesToShow.push({display: item, name: '--'});
@@ -206,6 +197,15 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
       } else {
         this.filesToEmit.push(item);
       }
+    }
+  }
+
+  getFileType(file: any) {
+    const isImage = !!file && ((typeof file == 'string' && file.includes('blob')) || this.isUnknownImageUrl);
+    if (isImage) {
+      return 'image';
+    } else {
+      return 'file';
     }
   }
 

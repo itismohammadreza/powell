@@ -107,7 +107,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   ngControl: NgControl;
   destroy$ = new Subject();
   selectedFiles: any[] = [];
-  filesToEmit: (string | ArrayBuffer | File)[] | any = [];
+  filesToEmit: (string | ArrayBuffer | File)[] = [];
   toolbarTemplate: TemplateRef<any>;
   fileTemplate: TemplateRef<any>;
   contentTemplate: TemplateRef<any>;
@@ -213,8 +213,6 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
             result.push(await this.utilsService.fileToBase64(item));
           } else if (wantFile) {
             result.push(item);
-          } else {
-            result.push(item);
           }
         }
         if (typeof item == 'string') {
@@ -225,8 +223,6 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
               result.push(item);
             } else if (wantFile) {
               result.push(this.utilsService.base64toFile(item, item.split('/').pop()));
-            } else {
-              result.push(item);
             }
           }
           //Array of url
@@ -237,8 +233,6 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
               result.push(base64);
             } else if (wantFile) {
               result.push(this.utilsService.base64toFile(base64, item.split('/').pop()));
-            } else {
-              result.push(item);
             }
           }
         }

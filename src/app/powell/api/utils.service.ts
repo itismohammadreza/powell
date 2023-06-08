@@ -113,7 +113,7 @@ export class UtilsService {
     }
 
     const isImageUrl = (url: string) => {
-      return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
+      return /\.(jpeg|jpg|gif|png)$/.exec(url) != null;
     }
 
     const isImageFile = (file: File) => {
@@ -144,7 +144,6 @@ export class UtilsService {
       for (let i = 0; i < value.length; i++) {
         if (isImageFile(value.item(i))) {
           result = true;
-          continue;
         } else {
           result = false;
           break;
