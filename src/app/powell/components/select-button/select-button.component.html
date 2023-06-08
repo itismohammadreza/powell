@@ -41,9 +41,11 @@
     {{ label | ngLabelStar:showRequiredStar:ngControl }}
   </label>
   <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
-  <ng-container *ngFor="let v of validation | keyvalue">
-    <div *ngIf="hasError(v.key)" class="message p-error">
-      {{ v.value }}
-    </div>
-  </ng-container>
+  <div class="message p-error">
+    <ng-container *ngFor="let v of validation | keyvalue">
+      <div *ngIf="hasError(v.key)">
+        {{ v.value }}
+      </div>
+    </ng-container>
+  </div>
 </div>
