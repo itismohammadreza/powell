@@ -183,7 +183,7 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);
-    this.colDef = this.colDef.filter(col => col.visible != undefined ? col.visible : true);
+    this.colDef = this.colDef.filter(col => col.visible ?? true);
     this.colDef.forEach(conf => {
       if (conf.filter?.type == 'slider') {
         Object.assign(conf.filter, {sliderValue: conf.filter.range ? [conf.filter.min || 0, conf.filter.max || 100] : conf.filter.max})
@@ -326,14 +326,15 @@ export class TableComponent implements OnInit, AfterContentInit {
   }
 
   resolveFieldData(obj: any, field: string | string[], value?: any) {
-    if (typeof field == 'string')
+    if (typeof field == 'string') {
       return this.resolveFieldData(obj, field.split('.'), value);
-    else if (field.length == 1 && value !== undefined)
+    } else if (field.length == 1 && value !== undefined) {
       return obj[field[0]] = value;
-    else if (field.length == 0)
+    } else if (field.length == 0) {
       return obj;
-    else
+    } else {
       return this.resolveFieldData(obj[field[0]], field.slice(1), value);
+    }
   }
 
   onChangeFilterValue(event: any, filterCallback: Function, col: NgTableColDef) {
@@ -381,7 +382,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     if (typeof action.visible == 'function')
       return action.visible(item);
     else {
-      return action.visible != undefined ? action.visible : true;
+      return action.visible ?? true;
     }
   }
 

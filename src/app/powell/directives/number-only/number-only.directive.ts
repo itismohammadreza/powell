@@ -6,8 +6,8 @@ import {Directive, HostListener, Input} from '@angular/core';
 export class NumberOnlyDirective {
   @Input() ngNumberOnly: boolean;
 
-  @HostListener('keydown', ['$event']) onKeyDown(event) {
-    let e = <KeyboardEvent>event;
+  @HostListener('keydown', ['$event'])
+  onKeyDown(e: KeyboardEvent) {
     if (this.ngNumberOnly) {
       if (
         [46, 8, 9, 27, 13, 110, 190].indexOf(e.keyCode) !== -1 ||

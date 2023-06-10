@@ -111,11 +111,11 @@
     <ng-template pTemplate="header">
       <ng-container *ngIf="filterDisplay == 'menu'">
         <tr>
-          <th style="width: 3rem" *ngIf="reorderableRows"></th>
-          <th style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
+          <th scope="col" style="width: 3rem" *ngIf="reorderableRows"></th>
+          <th scope="col" style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
             <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"></p-tableHeaderCheckbox>
           </th>
-          <th *ngFor="let col of colDef"
+          <th scope="col" *ngFor="let col of colDef"
               [pSortableColumn]="col.sort && col.field"
               pReorderableColumn
               [pReorderableColumnDisabled]="!reorderableColumns">
@@ -207,11 +207,11 @@
       </ng-container>
       <ng-container *ngIf="filterDisplay == 'row'">
         <tr>
-          <th style="width: 3rem" *ngIf="reorderableRows"></th>
-          <th style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
+          <th scope="col" style="width: 3rem" *ngIf="reorderableRows"></th>
+          <th scope="col" style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
             <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"></p-tableHeaderCheckbox>
           </th>
-          <th *ngFor="let col of colDef"
+          <th scope="col" *ngFor="let col of colDef"
               [pSortableColumn]="col.field"
               pReorderableColumn
               [pReorderableColumnDisabled]="!reorderableColumns">
@@ -226,9 +226,9 @@
           </ng-container>
         </tr>
         <tr>
-          <th style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
+          <th scope="col" style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
           </th>
-          <th class="row-filter-wrapper" *ngFor="let col of colDef">
+          <th scope="col" class="row-filter-wrapper" *ngFor="let col of colDef">
             <ng-container *ngIf="col.filter as filter">
               <p-columnFilter [field]="col.field"
                               [showMenu]="filter.rowFilterShowMenu"

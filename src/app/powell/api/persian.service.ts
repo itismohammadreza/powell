@@ -12,7 +12,7 @@ export class PersianService {
   }
 
   isPersianNumber(num: number | string) {
-    const regexp = new RegExp('^[\u06F0-\u06F9]+$');
+    const regexp = /^[\u06F0-\u06F9]+$/;
     return regexp.test(num as string);
   }
 
@@ -129,7 +129,7 @@ export class PersianService {
         return '';
       }
       if (num.length > 11) {
-        num = num.substr(0, 11);
+        num = num.substring(0, 11);
       }
       return ' ممیز ' + this.toPersianWord(num) + ' ' + decimalSuffixes[num.length];
     };

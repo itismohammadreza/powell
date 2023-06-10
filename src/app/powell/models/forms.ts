@@ -13,7 +13,7 @@ export type NgColorFormat = 'hex' | 'rgb' | 'hsb';
 export type NgNumberMode = 'decimal' | 'currency';
 export type NgNumberButtonLayout = 'stacked' | 'horizontal' | 'vertical';
 export type NgCurrencyDisplay = 'symbol' | 'code' | 'name';
-export type NgValidation = Partial<Record<NgValidationType | any, string>>; // equal to : [validationType in NgValidationType]?: string;
+export type NgValidation = Partial<Record<NgValidationType | string, string>>; // equal to : [validationType in NgValidationType]?: string;
 export type NgTreeFilterMode = 'strict' | 'lenient';
 export type NgFilterMatchMode =
   | 'contains'

@@ -225,7 +225,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
     return (
       isMobile ||
       /[a-zA-Z0-9-_]/.test(inp) ||
-      (this.allowedKeyCodes && this.allowedKeyCodes.includes(event.keyCode))
+      (this.allowedKeyCodes?.includes(event.keyCode))
     );
   }
 
@@ -319,7 +319,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   focusInput(input: HTMLInputElement) {
-    if (input && input.focus) {
+    if (input) {
       input.focus();
     }
   }

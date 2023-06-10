@@ -1144,7 +1144,7 @@ export class EditorBaseComponent implements AfterViewInit {
       core: Core
     ) => {
       this.onAudioUploadError.emit({errorMessage, result, core});
-      return this.onAudioUploadError_param as boolean;
+      return this.onAudioUploadError_param;
     };
     this.editor.onImageUploadBefore = (
       files: any[],
@@ -1153,7 +1153,7 @@ export class EditorBaseComponent implements AfterViewInit {
       uploadHandler: Function
     ) => {
       this.onImageUploadBefore.emit({files, info, core, uploadHandler});
-      return this.onImageUploadBefore_param as boolean;
+      return this.onImageUploadBefore_param;
     };
     this.editor.onImageUploadError = (
       errorMessage: string,
@@ -1161,7 +1161,7 @@ export class EditorBaseComponent implements AfterViewInit {
       core: Core
     ) => {
       this.onImageUploadError.emit({errorMessage, result, core});
-      return this.onImageUploadError_param as boolean;
+      return this.onImageUploadError_param;
     };
     this.editor.onVideoUploadBefore = (
       files: any[],
@@ -1170,7 +1170,7 @@ export class EditorBaseComponent implements AfterViewInit {
       uploadHandler: Function
     ) => {
       this.onVideoUploadBefore.emit({files, info, core, uploadHandler});
-      return this.onVideoUploadBefore_param as boolean;
+      return this.onVideoUploadBefore_param;
     };
     this.editor.onVideoUploadError = (
       errorMessage: string,
@@ -1178,7 +1178,7 @@ export class EditorBaseComponent implements AfterViewInit {
       core: Core
     ) => {
       this.onVideoUploadError.emit({errorMessage, result, core});
-      return this.onVideoUploadError_param as boolean;
+      return this.onVideoUploadError_param;
     };
     this.editor.onAudioUploadBefore = (
       files: any[],
@@ -1187,7 +1187,7 @@ export class EditorBaseComponent implements AfterViewInit {
       uploadHandler: Function
     ) => {
       this.onAudioUploadBefore.emit({files, info, core, uploadHandler});
-      return this.onAudioUploadBefore_param as boolean;
+      return this.onAudioUploadBefore_param;
     };
     this.editor.onResizeEditor = (
       height: number,
@@ -1195,7 +1195,7 @@ export class EditorBaseComponent implements AfterViewInit {
       core: Core
     ) => {
       this.onResizeEditor.emit({height, prevHeight, core});
-      return this.onResizeEditor_param as Object;
+      return this.onResizeEditor_param;
     };
   }
 

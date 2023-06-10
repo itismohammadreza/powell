@@ -178,7 +178,6 @@ export class IvyPinch {
 
   handleDoubleTap = (event: any) => {
     this.toggleZoom(event);
-    return;
   }
 
   handlePinch = (event: any) => {
@@ -566,7 +565,7 @@ export class IvyPinch {
 
   toggleZoom(event: any = false) {
     if (this.initialScale === 1) {
-      if (event && event.changedTouches) {
+      if (event?.changedTouches) {
         if (this.properties.doubleTapScale === undefined) {
           return;
         }
@@ -641,7 +640,7 @@ export class IvyPinch {
 export class Touches {
   properties: NgTouchOptions;
   element: HTMLElement;
-  elementPosition: ClientRect;
+  elementPosition: DOMRect;
   eventType: NgTouchEventType = undefined;
   handlers: any = {};
   startX = 0;

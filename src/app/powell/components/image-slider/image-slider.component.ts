@@ -5,7 +5,6 @@ import {
   ContentChildren,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   QueryList,
   TemplateRef
@@ -19,7 +18,7 @@ import {TemplateDirective} from "@powell/directives/template";
   styleUrls: ['./image-slider.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ImageSliderComponent implements OnInit, AfterContentInit {
+export class ImageSliderComponent implements AfterContentInit {
   @Input() images: NgImageItem[] = [];
   @Input() activeIndex: number = 0;
   @Input() fullScreen: boolean;
@@ -60,9 +59,6 @@ export class ImageSliderComponent implements OnInit, AfterContentInit {
   indicatorTemplate: TemplateRef<any>;
   captionTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
-
-  ngOnInit(): void {
-  }
 
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {
