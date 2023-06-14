@@ -50,6 +50,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   @Input() sidebarVisible: boolean = false;
   @Input() sidebarLock: boolean = false; // overrides the sidebarVisible.
   @Input() responsiveThreshold: number = 768;
+  @Input() sidebarItems: PrimeMenuItem[];
 
   configSidebarVisible: boolean = false;
   config: NgConfig = {
@@ -66,7 +67,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   tempSidebarType: SidebarType = 'push-mask';
   themes: PrimeMenuItem[];
   sidebarTypes: PrimeMenuItem[];
-  sidebarItems: PrimeMenuItem[];
   searchValue: string;
   accountItems: PrimeMenuItem[] = [
     {
