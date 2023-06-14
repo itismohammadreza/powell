@@ -5,7 +5,7 @@ import {ApiService} from '@core/http';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends ApiService {
+export class DataService extends ApiService {
   private endpoint: string = 'photos';
 
   constructor() {

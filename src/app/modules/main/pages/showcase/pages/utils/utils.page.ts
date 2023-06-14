@@ -1,6 +1,6 @@
 import {Component, OnDestroy} from '@angular/core';
 import {OverlayService, PersianService} from "@powell/api";
-import {UserService} from "@core/http";
+import {DataService} from "@core/http";
 import {
   DynamicDialogSampleComponent
 } from "@modules/main/pages/showcase/pages/utils/dynamic-dialog-sample/dynamic-dialog-sample.component";
@@ -16,7 +16,7 @@ export class UtilsPage implements OnDestroy {
   persianWord: string;
   destroy$ = new Subject<boolean>()
 
-  constructor(private userService: UserService,
+  constructor(private userService: DataService,
               private overlayService: OverlayService,
               private persianService: PersianService) {
   }

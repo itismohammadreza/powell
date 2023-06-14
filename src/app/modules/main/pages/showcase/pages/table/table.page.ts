@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NgSize, NgTableActionsConfig, NgTableColDef} from '@powell/models';
-import {UserService} from "@core/http";
+import {DataService} from "@core/http";
 import {ConfigService} from "@powell/api";
 
 interface Customer {
@@ -382,7 +382,7 @@ export class TablePage {
   selectAll: boolean = false;
   customers: Customer[];
 
-  constructor(private userService: UserService, private configService: ConfigService) {
+  constructor(private userService: DataService, private configService: ConfigService) {
   }
 
   onRowSelect(event: any) {
