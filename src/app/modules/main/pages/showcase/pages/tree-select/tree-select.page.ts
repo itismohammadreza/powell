@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {NgAddon, NgChipDisplayMode, NgIconPosition, NgLabelPosition, NgSelectionMode, NgSize} from "@powell/models";
+import {NgAddon, NgChipDisplayMode, NgIconPosition, NgLabelPosition, NgSize, NgTreeSelectionMode} from "@powell/models";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -30,7 +30,7 @@ export class TreeSelectPage {
   scrollHeight: string = '400px';
   placeholder: string;
   disabled: boolean;
-  selectionMode: NgSelectionMode = 'single';
+  selectionMode: NgTreeSelectionMode = 'single';
   emptyMessage: string = '';
   display: NgChipDisplayMode = 'comma';
   propagateSelectionUp: boolean = true;

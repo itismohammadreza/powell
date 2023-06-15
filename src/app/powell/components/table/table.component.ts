@@ -14,7 +14,6 @@ import {
 import {
   NgEmptyIcon,
   NgOrientation,
-  NgSelectionMode,
   NgSize,
   NgTableAction,
   NgTableActionsConfig,
@@ -25,7 +24,9 @@ import {
   NgTableFilterDisplay,
   NgTablePaginationPosition,
   NgTableResponsiveLayout,
+  NgTableRowExpandMode,
   NgTableRowGroupMode,
+  NgTableSelectionMode,
   NgTableSortMode,
   NgTableStateStorage
 } from '@powell/models';
@@ -89,7 +90,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() defaultSortOrder: number = 1;
   @Input() customSort: boolean;
   @Input() showInitialSortBadge: boolean;
-  @Input() selectionMode: NgSelectionMode;
+  @Input() selectionMode: NgTableSelectionMode;
   @Input() selectionPageOnly: boolean;
   @Input() contextMenuSelectionMode: NgTableContextMenuSelectionMode = 'separate';
   @Input() dataKey: string;
@@ -106,7 +107,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() globalFilterFields: string[];
   @Input() filterLocale: string;
   @Input() expandedRowKeys: { [s: string]: boolean; } = {};
-  @Input() rowExpandMode: string = 'multiple';
+  @Input() rowExpandMode: NgTableRowExpandMode = 'multiple';
   @Input() scrollable: boolean;
   @Input() scrollDirection: NgOrientation = "vertical";
   @Input() scrollHeight: string;

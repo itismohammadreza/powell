@@ -29,9 +29,9 @@ import {
   NgChipDisplayMode,
   NgIconPosition,
   NgLabelPosition,
-  NgSelectionMode,
   NgSize,
   NgTreeFilterMode,
+  NgTreeSelectionMode,
   NgValidation
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
@@ -69,7 +69,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() placeholder: string;
   @Input() disabled: boolean;
   @Input() tabindex: string;
-  @Input() selectionMode: NgSelectionMode;
+  @Input() selectionMode: NgTreeSelectionMode;
   @Input() panelClass: string;
   @Input() appendTo: any;
   @Input() emptyMessage: string;

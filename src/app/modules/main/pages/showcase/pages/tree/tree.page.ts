@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {NgAddon, NgFixLabelPosition, NgOrientation, NgSelectionMode} from '@powell/models';
+import {NgAddon, NgFixLabelPosition, NgOrientation, NgTreeSelectionMode} from '@powell/models';
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -23,7 +23,7 @@ export class TreePage {
   addon: NgAddon;
   disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
-  selectionMode: NgSelectionMode;
+  selectionMode: NgTreeSelectionMode;
   layout: NgOrientation = 'vertical';
   propagateSelectionUp: boolean = true;
   propagateSelectionDown: boolean = true;
