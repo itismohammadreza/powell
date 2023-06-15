@@ -17,16 +17,17 @@ export class AppComponent {
   }
 
   private handleBootstrapFiles(rtl: boolean) {
-    let bootStrapLinkEl: any = this.document.querySelector('#bootstrap-style-link');
-    if (!bootStrapLinkEl) {
-      const head = this.document.querySelector('head');
-      bootStrapLinkEl = this.document.createElement('link');
-      bootStrapLinkEl.id = "bootstrap-style-link";
-      bootStrapLinkEl.rel = "stylesheet";
-      bootStrapLinkEl.type = "text/css";
-      head.appendChild(bootStrapLinkEl);
-    }
+    let bootstrapLink: HTMLLinkElement = this.document.querySelector('#bootstrap-style-link');
+    const {documentElement, head} = this.document;
     const themeLink = `assets/styles/vendor/bootstrap/bootstrap${rtl ? '.rtl' : ''}.css`;
-    bootStrapLinkEl.setAttribute('href', themeLink);
+    if (!bootstrapLink) {
+      bootstrapLink = this.document.createElement('link');
+      bootstrapLink.id = "bootstrap-style-link";
+      bootstrapLink.rel = "stylesheet";
+      bootstrapLink.type = "text/css";
+      head.appendChild(bootstrapLink);
+    }
+    bootstrapLink.setAttribute('href', themeLink);
+    documentElement.setAttribute('dir', rtl ? 'rtl' : 'ltr');
   }
 }
