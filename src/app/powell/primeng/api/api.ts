@@ -1,6 +1,5 @@
 import {UniqueComponentId, ZIndexUtils} from "primeng/utils";
 import {ConnectedOverlayScrollHandler, DomHandler} from 'primeng/dom';
-import {ScrollerOptions} from "primeng/scroller";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {
   Confirmation,
@@ -16,6 +15,7 @@ import {
   OverlayService,
   PrimeNGConfig,
   PrimeTemplate,
+  ScrollerOptions,
   SortMeta,
   Translation
 } from 'primeng/api';
