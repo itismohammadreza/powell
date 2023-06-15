@@ -28,7 +28,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
-import {NgFilePickerMode, NgFileResultType, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {NgFilePickerMethod, NgFilePickerMode, NgFileResultType, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {PrimeFileUpload} from "@powell/primeng";
 import {UtilsService} from "@powell/api";
@@ -59,7 +59,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   // native properties
   @Input() name: string;
   @Input() url: string;
-  @Input() method: string = 'post';
+  @Input() method: NgFilePickerMethod = 'post';
   @Input() multiple: boolean = true;
   @Input() accept: string = 'image/*';
   @Input() disabled: boolean;

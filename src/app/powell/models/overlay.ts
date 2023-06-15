@@ -13,7 +13,9 @@ import {
   NgDatepickerHourFormat,
   NgDatepickerSelectionMode,
   NgDatepickerViewMode,
+  NgDialogPosition,
   NgDisableZoomControl,
+  NgFilePickerMethod,
   NgFilePickerMode,
   NgFileResultType,
   NgFilterMatchMode,
@@ -29,11 +31,11 @@ import {
   NgNumberMode,
   NgOrientation,
   NgOverflow,
-  NgPlace,
   NgPosition,
-  NgSelectionMode,
   NgSize,
+  NgToastPosition,
   NgTreeFilterMode,
+  NgTreeSelectionMode,
   NgValidationType
 } from '@powell/models';
 import {SunEditorOptions} from "suneditor/src/options";
@@ -64,7 +66,7 @@ export interface NgToastOptions {
   styleClass?: string;
   contentStyleClass?: string;
   preventDuplicates?: boolean;
-  position?: NgPlace;
+  position?: NgToastPosition;
   style?: any;
   baseZIndex?: number;
   autoZIndex?: boolean;
@@ -128,7 +130,7 @@ export interface NgConfirmDialogOptions {
   rejectLabel?: string;
   rejectIcon?: string;
   rejectVisible?: boolean;
-  position?: NgPlace;
+  position?: NgDialogPosition;
   focusTrap?: boolean;
   baseZIndex?: number;
   autoZIndex?: boolean;
@@ -160,7 +162,7 @@ export interface NgDialogOptions {
   resizable?: boolean;
   contentStyle?: object;
   modal?: boolean;
-  position?: NgPlace;
+  position?: NgDialogPosition;
   blockScroll?: boolean;
   closeOnEscape?: boolean;
   dismissableMask?: boolean;
@@ -184,7 +186,6 @@ export interface NgDialogOptions {
   minimizeIcon?: string;
   maximizeIcon?: string;
 
-  //add this to other
   buttonStyleClass?: string;
   buttonIcon?: string;
   buttonIconPos?: NgIconPosition;
@@ -204,7 +205,7 @@ export interface NgDialogFormOptions {
   resizable?: boolean;
   contentStyle?: object;
   modal?: boolean;
-  position?: NgPlace;
+  position?: NgDialogPosition;
   blockScroll?: boolean;
   closeOnEscape?: boolean;
   dismissableMask?: boolean;
@@ -405,7 +406,7 @@ export interface NgDialogFormConfig {
   ///////////////////////////////////////// file-picker /////////////////////////////////////////
   name?: string;
   url?: string;
-  method?: string;
+  method?: NgFilePickerMethod;
   auto?: boolean;
   maxFileSize?: number;
   invalidFileSizeMessageSummary?: string;
@@ -726,7 +727,7 @@ export interface NgDialogFormConfig {
   options?: any[];
   scrollHeight?: string;
   placeholder?: string;
-  selectionMode?: NgSelectionMode;
+  selectionMode?: NgTreeSelectionMode;
   panelClass?: string;
   appendTo?: string;
   emptyMessage?: string;
