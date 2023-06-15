@@ -25,9 +25,10 @@
     "jalali-moment": "^3.3.11",
     "leaflet": "^1.9.3",
     "primeicons": "^6.0.1",
-    "rxjs": "~7.5.0",
-    "suneditor": "^2.44.3",
-    "tslib": "^2.3.0",
+    "primeng": "^16.0.0",
+    "rxjs": "^7.8.1",
+    "suneditor": "^2.44.12",
+    "tslib": "^2.5.3",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
