@@ -11,7 +11,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.0.1",
-    "@angular/cdk": "^16.0.1",
+    "@angular/cdk": "^16.1.1",
     "@angular/common": "^16.0.1",
     "@angular/compiler": "^16.0.1",
     "@angular/core": "^16.0.1",
@@ -25,7 +25,6 @@
     "jalali-moment": "^3.3.11",
     "leaflet": "^1.9.3",
     "primeicons": "^6.0.1",
-    "primeng": "^16.0.0-rc.1",
     "rxjs": "~7.5.0",
     "suneditor": "^2.44.3",
     "tslib": "^2.3.0",
