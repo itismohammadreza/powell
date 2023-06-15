@@ -112,17 +112,17 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor, OnD
     }
   }
 
-  _onResize(event: Event) {
+  _onResize(event: any) {
     this.onResize.emit(event);
   }
 
-  _onChange(event: Event) {
+  _onChange(event: any) {
     const inputElement = event.target as HTMLTextAreaElement;
     this.onChange.emit(event);
     this.onModelChange(inputElement.value);
   }
 
-  _onInput(event: Event) {
+  _onInput(event: any) {
     const inputElement = event.target as HTMLTextAreaElement;
     this.onInput.emit(event);
     this.onModelChange(inputElement.value);

@@ -73,4 +73,3 @@ export type NgTheme =
   'vela-purple' |
   'viva-dark' |
   'viva-light';
-

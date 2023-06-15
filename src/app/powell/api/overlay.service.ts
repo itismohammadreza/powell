@@ -258,7 +258,7 @@ export class OverlayService {
     const state: NgHistoryState = {component: 'dialog'};
     this.pushState(state);
     return new Promise((accept) => {
-      const subscription = this.dialogCmpRef.instance.onClose.subscribe(() => {
+      const subscription = instance.onClose.subscribe(() => {
         if (!this.isPopped(state)) {
           this.popState()
         }

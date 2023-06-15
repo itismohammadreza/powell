@@ -5,7 +5,6 @@ import {NgDialogOptions} from '@powell/models';
   selector: 'ng-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogComponent {
   onClose = new EventEmitter();

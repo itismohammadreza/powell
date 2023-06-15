@@ -9,7 +9,7 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import {NgBreakPointItem, NgImageItem} from '@powell/models';
+import {NgBreakPointItem, NgImageItem, NgPosition} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
@@ -39,11 +39,11 @@ export class ImageSliderComponent implements AfterContentInit {
   @Input() autoPlay: boolean = true;
   @Input() transitionInterval: number = 4000;
   @Input() showThumbnails: boolean = true;
-  @Input() thumbnailsPosition: string = 'bottom';
+  @Input() thumbnailsPosition: NgPosition = 'bottom';
   @Input() verticalThumbnailViewPortHeight: string = '300px';
   @Input() showIndicators: boolean;
   @Input() showIndicatorsOnItem: boolean;
-  @Input() indicatorsPosition: string = 'bottom';
+  @Input() indicatorsPosition: NgPosition = 'bottom';
   @Input() baseZIndex: number;
   @Input() maskClass: string;
   @Input() containerStyle: any;

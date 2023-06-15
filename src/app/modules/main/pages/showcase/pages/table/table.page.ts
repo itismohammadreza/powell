@@ -338,7 +338,7 @@ export class TablePage {
       filter: {
         type: 'slider',
         range: true,
-        matchMode: 'between',
+        matchMode: 'in',
         min: 0,
         max: 100,
       },

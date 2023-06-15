@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NgImageItem} from '@powell/models';
+import {NgImageItem, NgPosition} from '@powell/models';
 
 @Component({
   selector: 'ng-image-slider-page',
@@ -81,11 +81,11 @@ export class ImageSliderPage {
   autoPlay: boolean = true;
   transitionInterval: number = 4000;
   showThumbnails: boolean = true;
-  thumbnailsPosition: string = 'bottom';
+  thumbnailsPosition: NgPosition = 'bottom';
   verticalThumbnailViewPortHeight: string = '300px';
   showIndicators: boolean = false;
   showIndicatorsOnItem: boolean = false;
-  indicatorsPosition: string = 'bottom';
+  indicatorsPosition: NgPosition = 'bottom';
 
   visible: boolean = false;
   activeIndex: number = 0;

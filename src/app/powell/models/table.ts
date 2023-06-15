@@ -5,6 +5,7 @@ export type NgTableFilterDisplay = 'row' | 'menu';
 export type NgTableResponsiveLayout = 'stack' | 'scroll';
 export type NgTablePaginationPosition = 'bottom' | 'top' | 'both';
 export type NgTableSortMode = 'single' | 'multiple';
+export type NgTableRowExpandMode = 'single' | 'multiple';
 export type NgTableRowGroupMode = 'subheader' | 'rowspan';
 export type NgTableContextMenuSelectionMode = 'separate' | 'joint';
 export type NgTableCompareSelectionBy = 'equals' | 'deepEquals';

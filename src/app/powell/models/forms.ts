@@ -1,6 +1,7 @@
 import {NgButtonAppearance, NgColor, NgIconPosition} from '@powell/models';
 
 export type NgFilePickerMode = 'basic' | 'advanced';
+export type NgFilePickerMethod = 'post' | 'put';
 export type NgFileResultType = 'base64' | 'file' | 'none';
 export type NgLabelPosition = 'fix-side' | 'fix-top' | 'float';
 export type NgFixLabelPosition = Exclude<NgLabelPosition, 'float'>;
@@ -25,8 +26,7 @@ export type NgFilterMatchMode =
   | 'lt'
   | 'lte'
   | 'gt'
-  | 'gte'
-  | 'between';
+  | 'gte';
 
 export type NgKeyFilter =
   | 'pint' // Positive integers
