@@ -62,7 +62,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() filterBy: string;
   @Input() filterPlaceHolder: string;
   @Input() emptyFilterMessage: string;
-  @Input() listStyle: string;
+  @Input() listStyle: any;
   @Input() listStyleClass: string;
   @Input() metaKeySelection: boolean = true;
   @Input() multiple: boolean;

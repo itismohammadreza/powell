@@ -62,7 +62,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() items: any[];
   @Input() selectionMode: NgSelectionMode;
   @Input() selection: any;
-  @Input() style: string;
+  @Input() style: any;
   @Input() styleClass: string;
   @Input() contextMenu: PrimeContextMenu;
   @Input() layout: NgOrientation = 'vertical';

@@ -63,7 +63,7 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   @Input() placeholder: string;
   @Input() tabindex: any;
   @Input() allowDuplicate: boolean = true;
-  @Input() inputStyle: string;
+  @Input() inputStyle: any;
   @Input() inputStyleClass: string;
   @Input() addOnTab: boolean;
   @Input() addOnBlur: boolean;

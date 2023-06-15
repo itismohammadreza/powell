@@ -62,9 +62,9 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   // native properties
   @Input() defaultDate: Date;
   @Input() selectionMode: NgDatepickerSelectionMode = 'single';
-  @Input() style: string;
+  @Input() style: any;
   @Input() styleClass: string;
-  @Input() inputStyle: string;
+  @Input() inputStyle: any;
   @Input() inputStyleClass: string;
   @Input() placeholder: string;
   @Input() disabled: boolean;

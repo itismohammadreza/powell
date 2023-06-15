@@ -46,7 +46,7 @@ export class ImageSliderComponent implements AfterContentInit {
   @Input() indicatorsPosition: string = 'bottom';
   @Input() baseZIndex: number;
   @Input() maskClass: string;
-  @Input() containerStyle: string;
+  @Input() containerStyle: any;
   @Input() showTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
   @Output() visibleChange = new EventEmitter();

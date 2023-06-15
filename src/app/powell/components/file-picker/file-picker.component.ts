@@ -72,7 +72,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Input() invalidFileLimitMessageDetail: string = 'حداکثر مجاز به انتخاب {0} فایل هستید.';
   @Input() invalidFileLimitMessageSummary: string = 'مجاز به انتخاب فایل بیشتری نیستید.';
   @Input() invalidFileTypeMessageDetail: string = 'فرمت مجاز : {0}';
-  @Input() style: string;
+  @Input() style: any;
   @Input() styleClass: string;
   @Input() previewWidth: number = 50;
   @Input() chooseLabel: string = 'انتخاب';
