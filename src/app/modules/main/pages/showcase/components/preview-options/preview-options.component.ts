@@ -21,6 +21,7 @@ import {
   NgDatepickerSelectionMode,
   NgDatepickerViewMode,
   NgDefaultFocus,
+  NgDialogPosition,
   NgDisableZoomControl,
   NgFilePickerMode,
   NgFixLabelPosition,
@@ -34,11 +35,11 @@ import {
   NgNumberMode,
   NgOrientation,
   NgOverflow,
-  NgPlace,
-  NgSelectionMode,
   NgSeverity,
   NgSize,
-  NgStatus
+  NgStatus,
+  NgToastPosition,
+  NgTreeSelectionMode
 } from '@powell/models';
 import {DropdownComponent} from '@powell/components/dropdown';
 import {InputTextComponent} from '@powell/components/input-text';
@@ -244,7 +245,8 @@ type PreviewItem =
   | 'draggable'
   | 'resizable'
   | 'modal'
-  | 'position'
+  | 'dialogPosition'
+  | 'toastPosition'
   | 'maximizable'
   | 'buttonIcon'
   | 'buttonIconPos'
@@ -576,7 +578,7 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
   @Output() touchUIChange = new EventEmitter()
   @Input() hourFormat: string;
   @Output() hourFormatChange = new EventEmitter()
-  @Input() selectionMode: NgSelectionMode;
+  @Input() selectionMode: NgTreeSelectionMode;
   @Output() selectionModeChange = new EventEmitter();
   @Input() propagateSelectionUp: boolean;
   @Output() propagateSelectionUpChange = new EventEmitter();
@@ -676,8 +678,6 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
   @Output() resizableChange = new EventEmitter()
   @Input() modal: boolean;
   @Output() modalChange = new EventEmitter()
-  @Input() position: NgPlace;
-  @Output() positionChange = new EventEmitter()
   @Input() maximizable: boolean;
   @Output() maximizableChange = new EventEmitter()
   @Input() buttonIcon: string;
@@ -725,6 +725,11 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
   @Input() showRequiredStar: boolean;
   @Output() showRequiredStarChange = new EventEmitter();
 
+  // instead of 'position'
+  @Input() dialogPosition: NgDialogPosition;
+  @Output() dialogPositionChange = new EventEmitter()
+  @Input() toastPosition: NgToastPosition;
+  @Output() toastPositionChange = new EventEmitter()
   // instead of 'size' & 'inputSize'
   @Input() selectiveSize: NgSize;
   @Output() selectiveSizeChange = new EventEmitter()
@@ -792,7 +797,8 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
       rejectColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
       rejectAppearance: ['basic', 'text', 'outlined', 'link'],
       defaultFocus: ['none', 'accept', 'reject'],
-      position: ['top', 'bottom', 'left', 'right', 'top-right', 'top-left', 'bottom-right', 'bottom-left', 'center'],
+      toastPosition: ['top-right', 'top-left', 'bottom-right', 'bottom-left', 'top-center', 'bottom-center', 'center'],
+      dialogPosition: ['top', 'bottom', 'left', 'right', 'topleft', 'topright', 'bottomleft', 'bottomright', 'center'],
       buttonIconPos: ['left', 'right'],
       buttonColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
       buttonAppearance: ['basic', 'text', 'outlined', 'link'],
