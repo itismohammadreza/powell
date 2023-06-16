@@ -1,0 +1,26 @@
+@import "./fonts/fonts.scss";
+@import "./overlays";
+@import "./mixins";
+@import "./animate";
+
+html,
+body {
+  background-color: var(--surface-a);
+  color: var(--text-color);
+
+  &,
+  .p-component,
+  .p-inputtext {
+    font-family: var(--font-family);
+  }
+
+  @include scrollbar($thickness: 10px, $radius: 10px, $track-color: #f5f5f5, $thumb-color: #949494);
+}
+
+.ng-rtl {
+  direction: rtl;
+}
+
+.ng-ltr {
+  direction: ltr;
+}
