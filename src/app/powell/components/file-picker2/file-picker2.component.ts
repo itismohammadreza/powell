@@ -201,7 +201,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   }
 
   getFileType(file: any) {
-    const isImage = !!file && ((typeof file == 'string' && file.includes('blob')) || this.isUnknownImageUrl);
+    const isImage = !!file && ((typeof file == 'string' && file.includes('blob')) || this.isUnknownImageUrl || this.utilsService.isImage(file));
     if (isImage) {
       return 'image';
     } else {
