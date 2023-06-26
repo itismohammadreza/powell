@@ -16,7 +16,7 @@ export class LanguageChecker {
     return this.translationService.fa;
   }
 
-  instant(key: string) {
-    return this.translationService.instant(key) as any;
+  instant(key: string, interpolateParams?: any) {
+    return this.translationService.instant(key, interpolateParams) as any;
   }
 }
