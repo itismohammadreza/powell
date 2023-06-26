@@ -23,5 +23,5 @@ export const IMPORTS: Type<any>[] = [
   ButtonModule,
   CheckboxModule,
   CommonModule,
-  LogoComponent
+  LogoComponent,
 ];
