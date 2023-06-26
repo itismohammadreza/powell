@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {OpenDialogGuard} from "@core/guard";
+import {openDialogGuard} from "@core/guard";
 
 const routes: Routes = [
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: 'bottom-sheet',
     loadChildren: () => import('./pages/bottom-sheet/bottom-sheet-page.module').then(m => m.BottomSheetPageModule),
-    canDeactivate: [OpenDialogGuard],
+    canDeactivate: [openDialogGuard],
     title: 'bottom-sheet'
   },
   {
@@ -52,25 +52,25 @@ const routes: Routes = [
   {
     path: 'confirm-dialog',
     loadChildren: () => import('./pages/confirm-dialog/confirm-dialog-page.module').then(m => m.ConfirmDialogPageModule),
-    canDeactivate: [OpenDialogGuard],
+    canDeactivate: [openDialogGuard],
     title: 'confirm-dialog'
   },
   {
     path: 'confirm-popup',
     loadChildren: () => import('./pages/confirm-popup/confirm-popup-page.module').then(m => m.ConfirmPopupPageModule),
-    canDeactivate: [OpenDialogGuard],
+    canDeactivate: [openDialogGuard],
     title: 'confirm-popup'
   },
   {
     path: 'dialog',
     loadChildren: () => import('./pages/dialog/dialog-page.module').then(m => m.DialogPageModule),
-    canDeactivate: [OpenDialogGuard],
+    canDeactivate: [openDialogGuard],
     title: 'dialog'
   },
   {
     path: 'dialog-form',
     loadChildren: () => import('./pages/dialog-form/dialog-form-page.module').then(m => m.DialogFormPageModule),
-    canDeactivate: [OpenDialogGuard],
+    canDeactivate: [openDialogGuard],
     title: 'dialog-form'
   },
   {
@@ -241,7 +241,7 @@ const routes: Routes = [
   {
     path: 'toast',
     loadChildren: () => import('./pages/toast/toast-page.module').then(m => m.ToastPageModule),
-    canDeactivate: [OpenDialogGuard],
+    canDeactivate: [openDialogGuard],
     title: 'toast'
   },
   {
