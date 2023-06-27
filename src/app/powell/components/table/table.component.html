@@ -361,6 +361,7 @@
                     [color]="action.color"
                     [size]="action.size"
                     [pTooltip]="action.tooltip"
+                    [tooltipPosition]="action.tooltipPosition ?? 'bottom'"
                     (onClick)="action.onClick(item)">
                   </ng-button>
                 </ng-container>
@@ -381,6 +382,7 @@
                 [color]="action.color"
                 [size]="action.size"
                 [pTooltip]="action.tooltip"
+                [tooltipPosition]="action.tooltipPosition ?? 'bottom'"
                 (onClick)="action.onClick(item,index)">
               </ng-button>
             </td>

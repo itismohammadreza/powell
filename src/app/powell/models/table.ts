@@ -1,4 +1,4 @@
-import {NgButtonAppearance, NgColor, NgFilterMatchMode, NgIconPosition, NgSize} from '@powell/models';
+import {NgButtonAppearance, NgColor, NgFilterMatchMode, NgIconPosition, NgPosition, NgSize} from '@powell/models';
 
 export type NgTableRendererType = 'text' | 'image' | 'ng-template';
 export type NgTableFilterDisplay = 'row' | 'menu';
@@ -63,6 +63,7 @@ export interface NgTableActionsConfig<T = any> {
 export interface NgTableAction<T = any> {
   header?: string;
   tooltip?: string;
+  tooltipPosition?: NgPosition;
   icon?: string;
   label?: string;
   color?: NgColor;
