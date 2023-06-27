@@ -5,5 +5,15 @@
     .p-breadcrumb {
       direction: ltr;
     }
+
+    .rtl {
+      .p-breadcrumb ul {
+        flex-direction: row-reverse;
+
+        .p-breadcrumb-chevron {
+          transform: rotate(180deg);
+        }
+      }
+    }
   }
 }

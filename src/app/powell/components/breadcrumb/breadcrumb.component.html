@@ -1,1 +1,3 @@
-<p-breadcrumb [model]="breadcrumbs$ | async"></p-breadcrumb>
+<div ngConfigHandler [(rtl)]="rtl" [ngClass]="{'rtl': rtl}">
+  <p-breadcrumb [model]="breadcrumbs$ | async"></p-breadcrumb>
+</div>

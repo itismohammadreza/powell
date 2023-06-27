@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {ActivatedRouteSnapshot, Data, NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs/operators";
@@ -10,6 +10,8 @@ import {filter} from "rxjs/operators";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbComponent {
+  @Input() rtl: boolean;
+
   _breadcrumbs$ = new BehaviorSubject<any[]>([]);
   breadcrumbs$ = this._breadcrumbs$.asObservable();
 
