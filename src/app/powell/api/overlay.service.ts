@@ -139,7 +139,7 @@ export class OverlayService {
         subscription.unsubscribe();
         setTimeout(() => {
           accept(true);
-        }, 1)
+        }, 5)
       });
     });
   }
@@ -172,13 +172,13 @@ export class OverlayService {
           this.popState();
           setTimeout(() => {
             accept(true);
-          }, 1)
+          }, 5)
         },
         reject: () => {
           this.popState();
           setTimeout(() => {
             accept(false);
-          }, 1)
+          }, 5)
         },
       });
     });
@@ -211,24 +211,23 @@ export class OverlayService {
       this.confirmationService.confirm({
         ...confirmation,
         accept: () => {
+          this.popState();
           setTimeout(() => {
             accept(true);
-            this.popState();
-          }, 1)
+          }, 5)
         },
         reject: (type: PrimeConfirmEventType) => {
+          this.popState();
           switch (type) {
             case PrimeConfirmEventType.REJECT:
               setTimeout(() => {
                 accept(false);
-                this.popState();
-              }, 1)
+              }, 5)
               break;
             case PrimeConfirmEventType.CANCEL:
               setTimeout(() => {
                 accept(null);
-                this.popState();
-              }, 1)
+              }, 5)
               break;
           }
         }
@@ -266,7 +265,7 @@ export class OverlayService {
         subscription.unsubscribe();
         setTimeout(() => {
           accept();
-        }, 1)
+        }, 5)
       });
     });
   }
