@@ -73,5 +73,5 @@ export interface NgTableAction<T = any> {
   full?: boolean;
   size?: NgSize;
   visible?: boolean | ((item: T) => boolean);
-  onClick?: (item: T) => void;
+  onClick?: (item: T, index: number) => void;
 }
