@@ -218,8 +218,13 @@ export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestr
     const rgx = /^[-!$%^&*()_+|~=`{}\[\]:\";'<>?,.\/]*[A-Za-z]/;
     const isAscii = rgx.test(this.value);
     if (isAscii) {
-      inputEl.style.direction = 'ltr';
-      inputEl.style.textAlign = 'left';
+      if (this.value) {
+        inputEl.style.direction = 'ltr';
+        inputEl.style.textAlign = 'left';
+      } else {
+        inputEl.style.direction = this.rtl ? 'rtl' : 'ltr';
+        inputEl.style.textAlign = this.rtl ? 'right' : 'left';
+      }
     } else {
       if (this.value) {
         inputEl.style.direction = 'rtl';

@@ -198,10 +198,14 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor, OnD
     const textareaEl = this.el.nativeElement.querySelector('textarea');
     const rgx = /^[-!$%^&*()_+|~=`{}\[\]:\";'<>?,.\/]*[A-Za-z]/;
     const isAscii = rgx.test(this.value);
-
     if (isAscii) {
-      textareaEl.style.direction = 'ltr';
-      textareaEl.style.textAlign = 'left';
+      if (this.value) {
+        textareaEl.style.direction = 'ltr';
+        textareaEl.style.textAlign = 'left';
+      } else {
+        textareaEl.style.direction = this.rtl ? 'rtl' : 'ltr';
+        textareaEl.style.textAlign = this.rtl ? 'right' : 'left';
+      }
     } else {
       if (this.value) {
         textareaEl.style.direction = 'rtl';
