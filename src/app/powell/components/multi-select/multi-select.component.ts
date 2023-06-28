@@ -125,8 +125,6 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Output() onPanelHide = new EventEmitter();
   @Output() onClear = new EventEmitter();
   @Output() onLazyLoad = new EventEmitter();
-  @Output() onBeforeBtnClick = new EventEmitter();
-  @Output() onAfterBtnClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;

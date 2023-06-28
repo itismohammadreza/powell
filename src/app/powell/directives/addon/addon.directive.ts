@@ -1,4 +1,4 @@
-import {Directive, ElementRef, EventEmitter, Input, OnChanges, Output, Renderer2, SimpleChanges} from '@angular/core';
+import {Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
 import {NgAddon, NgAddonConfig, NgSize} from '@powell/models';
 
 @Directive({
@@ -8,8 +8,6 @@ export class AddonDirective implements OnChanges {
   @Input() ngAddon: NgAddon;
   @Input() addonDisabled: boolean;
   @Input() addonSize: NgSize = 'md';
-  @Output() onBeforeBtnClick = new EventEmitter();
-  @Output() onAfterBtnClick = new EventEmitter();
 
   constructor(private renderer: Renderer2,
               private el: ElementRef) {
@@ -75,11 +73,7 @@ export class AddonDirective implements OnChanges {
     }
     this.addToDOM(BTN, side);
     this.renderer.listen(BTN, 'click', (event) => {
-      if (side === 'after') {
-        this.onAfterBtnClick.emit(event);
-      } else {
-        this.onBeforeBtnClick.emit(event);
-      }
+      config.onClick?.(event)
     });
   }
 
@@ -90,6 +84,9 @@ export class AddonDirective implements OnChanges {
     this.setIconClasses(ICON, _icon);
     this.renderer.addClass(ICON_SPAN, 'p-inputgroup-addon');
     this.renderer.appendChild(ICON_SPAN, ICON);
+    this.renderer.listen(ICON_SPAN, 'click', (event) => {
+      config.onClick?.(event)
+    });
     this.addToDOM(ICON_SPAN, side);
   }
 
@@ -98,6 +95,9 @@ export class AddonDirective implements OnChanges {
     const TEXT_SPAN = this.renderer.createElement('span');
     this.renderer.addClass(TEXT_SPAN, 'p-inputgroup-addon');
     this.renderer.appendChild(TEXT_SPAN, TEXT);
+    this.renderer.listen(TEXT_SPAN, 'click', (event) => {
+      config.onClick?.(event)
+    });
     this.addToDOM(TEXT_SPAN, side);
   }
 

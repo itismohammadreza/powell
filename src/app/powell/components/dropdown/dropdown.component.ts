@@ -119,8 +119,6 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Output() onHide = new EventEmitter();
   @Output() onClear = new EventEmitter();
   @Output() onLazyLoad = new EventEmitter();
-  @Output() onBeforeBtnClick = new EventEmitter();
-  @Output() onAfterBtnClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;

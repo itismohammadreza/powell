@@ -89,8 +89,6 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() lazy: boolean;
   @Input() trackBy: Function;
   @Input() indentation: number = 1.5;
-  @Output() onAfterBtnClick = new EventEmitter();
-  @Output() onBeforeBtnClick = new EventEmitter();
   @Output() onNodeSelect = new EventEmitter();
   @Output() onNodeUnselect = new EventEmitter();
   @Output() onNodeExpand = new EventEmitter();

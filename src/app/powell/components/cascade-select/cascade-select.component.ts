@@ -75,8 +75,6 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Output() onShow = new EventEmitter();
   @Output() onHide = new EventEmitter();
   @Output() onClear = new EventEmitter();
-  @Output() onBeforeBtnClick = new EventEmitter();
-  @Output() onAfterBtnClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;

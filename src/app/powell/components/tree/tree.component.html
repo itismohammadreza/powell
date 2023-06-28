@@ -9,10 +9,7 @@
       'label-fix-top': labelPos == 'fix-top',
       'label-fix-side': labelPos == 'fix-side'
     }" class="tree-wrapper">
-  <div class="field"
-       [ngAddon]="addon"
-       (onAfterBtnClick)="emitter('onAfterBtnClick',$event)"
-       (onBeforeBtnClick)="emitter('onBeforeBtnClick',$event)">
+  <div class="field" [ngAddon]="addon">
     <div>
       <p-tree
         [id]="inputId"

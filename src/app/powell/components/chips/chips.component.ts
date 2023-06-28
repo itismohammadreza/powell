@@ -75,8 +75,6 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   @Output() onFocus = new EventEmitter();
   @Output() onBlur = new EventEmitter();
   @Output() onClear = new EventEmitter();
-  @Output() onBeforeBtnClick = new EventEmitter();
-  @Output() onAfterBtnClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;

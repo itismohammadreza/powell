@@ -11,9 +11,7 @@
     }" class="map-wrapper">
   <div class="field"
        [ngAddon]="addon"
-       [addonDisabled]="disabled"
-       (onAfterBtnClick)="emitter('onAfterBtnClick',$event)"
-       (onBeforeBtnClick)="emitter('onBeforeBtnClick',$event)">
+       [addonDisabled]="disabled">
     <div>
       <ng-button *ngIf="!readonly && showClear" class="clear-map-btn" [pTooltip]="clearTooltip" [icon]="clearIcon"
                  size="sm" (click)="clearMap()"></ng-button>

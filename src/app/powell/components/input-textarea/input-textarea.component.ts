@@ -67,8 +67,6 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor, OnD
   @Output() onKeyUp = new EventEmitter();
   @Output() onBlur = new EventEmitter();
   @Output() onFocus = new EventEmitter();
-  @Output() onBeforeBtnClick = new EventEmitter();
-  @Output() onAfterBtnClick = new EventEmitter();
 
   inputId: string;
   ngControl: NgControl;

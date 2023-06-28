@@ -73,8 +73,6 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor, OnDestr
   @Output() onComplete = new EventEmitter();
   @Output() onInput = new EventEmitter();
   @Output() onClear = new EventEmitter();
-  @Output() onBeforeBtnClick = new EventEmitter();
-  @Output() onAfterBtnClick = new EventEmitter();
 
   inputId: string;
   ngControl: NgControl;

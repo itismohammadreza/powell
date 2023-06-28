@@ -110,8 +110,6 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Output() onShow = new EventEmitter();
   @Output() onHide = new EventEmitter();
   @Output() onLazyLoad = new EventEmitter();
-  @Output() onBeforeBtnClick = new EventEmitter();
-  @Output() onAfterBtnClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;

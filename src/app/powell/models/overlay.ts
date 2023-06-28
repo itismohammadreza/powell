@@ -744,8 +744,6 @@ export interface NgDialogFormConfig {
   filterLocale?: string;
   resetFilterOnHide?: boolean;
   showClear?: boolean;
-  onBeforeBtnClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
-  onAfterBtnClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   onShow?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   onHide?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   onFilter?: (dialogFormEvent?: NgDialogFormEventRes) => void;

@@ -18,9 +18,7 @@
   <div class="field"
        [ngAddon]="addon"
        [addonDisabled]="disabled"
-       [addonSize]="inputSize"
-       (onAfterBtnClick)="emitter('onAfterBtnClick',$event)"
-       (onBeforeBtnClick)="emitter('onBeforeBtnClick',$event)">
+       [addonSize]="inputSize">
     <div [ngClass]="{
       'p-float-label': label && labelPos == 'float',
       'p-input-icon-left': icon && iconPos == 'left',

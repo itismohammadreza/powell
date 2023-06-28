@@ -126,8 +126,6 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor, 
   @Output() onMonthChange = new EventEmitter();
   @Output() onYearChange = new EventEmitter();
   @Output() onClear = new EventEmitter();
-  @Output() onBeforeBtnClick = new EventEmitter();
-  @Output() onAfterBtnClick = new EventEmitter();
 
   inputId: string;
   ngControl: NgControl;

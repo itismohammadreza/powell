@@ -81,8 +81,6 @@ export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestr
   @Output() onFocus = new EventEmitter();
   @Output() onClear = new EventEmitter();
   @Output() onPaste = new EventEmitter();
-  @Output() onBeforeBtnClick = new EventEmitter();
-  @Output() onAfterBtnClick = new EventEmitter();
 
   inputId: string;
   ngControl: NgControl;

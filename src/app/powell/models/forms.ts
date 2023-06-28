@@ -261,6 +261,7 @@ export interface NgAddonConfig {
   icon?: string;
   iconPos?: NgIconPosition;
   text?: string;
+  onClick?: (event) => any;
 }
 
 export interface NgAddon {

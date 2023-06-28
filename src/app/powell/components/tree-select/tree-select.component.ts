@@ -84,8 +84,6 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() filterLocale: string;
   @Input() resetFilterOnHide: boolean = true;
   @Input() showClear: boolean;
-  @Output() onBeforeBtnClick = new EventEmitter();
-  @Output() onAfterBtnClick = new EventEmitter();
   @Output() onShow = new EventEmitter();
   @Output() onHide = new EventEmitter();
   @Output() onFilter = new EventEmitter();

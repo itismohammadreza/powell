@@ -98,8 +98,6 @@ export class InputNumberComponent implements OnInit, ControlValueAccessor, OnDes
   @Output() onBlur = new EventEmitter();
   @Output() onInput = new EventEmitter();
   @Output() onClear = new EventEmitter();
-  @Output() onBeforeBtnClick = new EventEmitter();
-  @Output() onAfterBtnClick = new EventEmitter();
 
   inputId: string;
   ngControl: NgControl;

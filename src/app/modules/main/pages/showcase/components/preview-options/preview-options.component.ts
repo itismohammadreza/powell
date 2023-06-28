@@ -867,10 +867,16 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
                 this.addonChange.emit(null)
                 break;
               case 'before':
-                this.addonChange.emit({before: {type: 'icon', icon: 'pi pi-home'}})
+                this.addonChange.emit({
+                  before: {
+                    type: 'icon',
+                    icon: 'pi pi-home',
+                    onClick: () => alert('icon clicked!')
+                  }
+                })
                 break;
               case 'after':
-                this.addonChange.emit({after: {type: 'button', label: 'home'}})
+                this.addonChange.emit({after: {type: 'button', label: 'home', onClick: () => alert('button clicked!')}})
                 break;
               case 'both':
                 this.addonChange.emit({

@@ -78,8 +78,6 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Output() onBlur = new EventEmitter();
   @Output() onFocus = new EventEmitter();
   @Output() onClear = new EventEmitter();
-  @Output() onBeforeBtnClick = new EventEmitter();
-  @Output() onAfterBtnClick = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
