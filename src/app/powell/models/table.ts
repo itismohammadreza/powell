@@ -51,6 +51,7 @@ export interface NgTableColDef<T = any> {
   filter?: NgTableFilter;
   render?: NgTableRender<T>;
   cellStyleClass?: string | ((item: T) => string);
+  cellStyle?: any | ((item: T) => any);
   visible?: boolean;
 }
 
