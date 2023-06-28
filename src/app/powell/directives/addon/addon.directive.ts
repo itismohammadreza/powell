@@ -34,30 +34,32 @@ export class AddonDirective implements OnChanges {
   }
 
   applyButton(config: NgAddonConfig, side: string) {
-    const BTN = this.renderer.createElement('button') as HTMLButtonElement;
-    const BTN_ICON_SPAN = this.renderer.createElement('span') as HTMLSpanElement;
-    const BTN_TEXT_SPAN = this.renderer.createElement('span') as HTMLSpanElement;
-    const BTN_TEXT = this.renderer.createText(config.label) as HTMLElement;
     const _btnColor = config.color;
     const _btnAppearance = config.appearance;
-    const _btnIcon = config.icon || null;
-    const _btnLabel = config.label || null;
+    const _btnIcon = config.icon;
+    const _btnLabel = config.label;
     const _btnIconPos = config.iconPos || 'left';
+    const BTN = this.renderer.createElement('button') as HTMLButtonElement;
     this.renderer.setAttribute(BTN, 'type', 'button');
     this.renderer.addClass(BTN, 'p-button');
     this.renderer.addClass(BTN, 'p-component');
     this.renderer.addClass(BTN, `p-button-${_btnColor}`);
     this.renderer.addClass(BTN, `p-button-${_btnAppearance}`);
     this.renderer.addClass(BTN, `p-button-${this.addonSize}`);
-    this.renderer.addClass(BTN_TEXT_SPAN, 'p-button-label');
     this.renderer.setStyle(BTN, 'white-space', 'nowrap');
-    this.renderer.appendChild(BTN_TEXT_SPAN, BTN_TEXT || 'p-btn');
-    this.renderer.appendChild(BTN, BTN_ICON_SPAN);
-    this.renderer.appendChild(BTN, BTN_TEXT_SPAN);
-    if (_btnIcon != null) {
+    if (_btnLabel) {
+      const BTN_TEXT_SPAN = this.renderer.createElement('span') as HTMLSpanElement;
+      const BTN_TEXT = this.renderer.createText(config.label) as HTMLElement;
+      this.renderer.addClass(BTN_TEXT_SPAN, 'p-button-label');
+      this.renderer.appendChild(BTN_TEXT_SPAN, BTN_TEXT || 'p-btn');
+      this.renderer.appendChild(BTN, BTN_TEXT_SPAN);
+    }
+    if (_btnIcon) {
+      const BTN_ICON_SPAN = this.renderer.createElement('span') as HTMLSpanElement;
+      this.renderer.appendChild(BTN, BTN_ICON_SPAN);
       this.setIconClasses(BTN_ICON_SPAN, _btnIcon);
       this.renderer.addClass(BTN_ICON_SPAN, 'p-button-icon');
-      if (_btnLabel != null) {
+      if (_btnLabel) {
         // has icon & text
         this.renderer.addClass(
           BTN_ICON_SPAN,
