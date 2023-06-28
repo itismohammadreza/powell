@@ -327,8 +327,9 @@
           <td *ngIf="selectionMode == 'checkbox'">
             <p-tableCheckbox [value]="item"></p-tableCheckbox>
           </td>
-          <td *ngFor="let col of colDef" [ngClass]="handleCellStyleClass(col.cellStyleClass,item)"
-              [ngStyle]="col.cellStyle">
+          <td *ngFor="let col of colDef"
+              [ngClass]="handleCellStyleClass(col.cellStyleClass,item)"
+              [ngStyle]="handleCellStyle(col.cellStyle,item)">
             <ng-container [ngSwitch]="col.render?.as">
               <ng-image
                 *ngSwitchCase="'image'"

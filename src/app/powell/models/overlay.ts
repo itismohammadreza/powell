@@ -229,6 +229,8 @@ export interface NgDialogFormOptions {
   minimizeIcon?: string;
   maximizeIcon?: string;
 
+  containerStyleClass?: string;
+  containerStyle?: any;
   defaultFocus?: NgDefaultFocus;
   acceptButtonStyleClass?: string;
   rejectButtonStyleClass?: string;

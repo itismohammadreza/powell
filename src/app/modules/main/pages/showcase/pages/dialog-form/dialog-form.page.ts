@@ -50,6 +50,7 @@ export class DialogFormPage implements OnDestroy {
         {
           component: 'jalali-datepicker',
           key: 'birthdate',
+          className: 'col-md-6',
           label: 'birthdate',
           labelWidth: 150,
           touchUI: true,
@@ -130,6 +131,7 @@ export class DialogFormPage implements OnDestroy {
         rtl: this.dialogForm.rtl,
         style: {width: '800px'},
         defaultFocus: this.dialogForm.defaultFocus,
+        containerStyleClass: 'row',
         submitDisabled: ({form}) => form.invalid,
         formValidator: {
           validator: (group) => {

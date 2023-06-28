@@ -371,6 +371,14 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
+  handleCellStyle(cellStyle: Function | any, item: any) {
+    if (typeof cellStyle == 'function')
+      return cellStyle(item);
+    else {
+      return cellStyle
+    }
+  }
+
   handleCellRenderer(col: NgTableColDef, item: any) {
     if (col.render && typeof col.render.as == 'function')
       return col.render.as(item);

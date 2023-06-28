@@ -151,14 +151,9 @@
 .p-dialog-form {
   .p-dialog-form-wrapper {
     form {
-      display: flex;
-      flex-wrap: wrap;
       padding-top: 1rem;
 
       > * {
-        flex: 0 0 auto;
-        width: 100%;
-
         &:not(:last-child) {
           margin-bottom: 1.75rem;
         }

@@ -35,7 +35,7 @@
   (onShow)="setDefaultFocus()"
   (onHide)="close()"
   #dialogWrapper>
-  <form [formGroup]="form">
+  <form [ngClass]="options.containerStyleClass" [ngStyle]="options.containerStyle" [formGroup]="form">
     <ng-container *ngFor="let config of config">
       <ng-container [ngSwitch]="config.component">
         <input
