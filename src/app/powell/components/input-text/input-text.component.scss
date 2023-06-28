@@ -55,6 +55,10 @@
           &.p-input-icon-left .p-inputtext {
             padding-left: 2.25rem;
           }
+
+          > div {
+            position: relative;
+          }
         }
 
         &.has-before .p-inputtext {
