@@ -164,10 +164,6 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
     });
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
-  }
-
   _onChange(event) {
     this.onChange.emit(event);
     this.onModelChange(event.value);
