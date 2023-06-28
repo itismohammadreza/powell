@@ -38,7 +38,6 @@ import {PrimeTable} from "@powell/primeng";
   selector: 'ng-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TableComponent implements OnInit, AfterContentInit {
   @Input() items: any[];
