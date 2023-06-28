@@ -50,7 +50,7 @@ export class DialogFormPage implements OnDestroy {
         {
           component: 'jalali-datepicker',
           key: 'birthdate',
-          className: 'col-md-6',
+          className: 'col-12',
           label: 'birthdate',
           labelWidth: 150,
           touchUI: true,
@@ -59,6 +59,7 @@ export class DialogFormPage implements OnDestroy {
         {
           component: 'input-text',
           key: 'name',
+          className: 'col-12',
           label: 'first name',
           labelWidth: 150,
           validations: [
@@ -91,6 +92,7 @@ export class DialogFormPage implements OnDestroy {
         {
           component: 'multi-select',
           key: 'book',
+          className: 'col-12',
           label: 'book',
           labelWidth: 150,
           validations: [
@@ -140,7 +142,7 @@ export class DialogFormPage implements OnDestroy {
           type: 'invalidGr',
           message: 'فرم نامعتبر است',
           style: {textAlign: 'center'}
-        }
+        },
       }).pipe(takeUntil(this.destroy$)).subscribe(res => {
       if (!res) {
         return

@@ -153,10 +153,8 @@
     form {
       padding-top: 1rem;
 
-      > * {
-        &:not(:last-child) {
-          margin-bottom: 1.75rem;
-        }
+      > *:not(:last-child) {
+        margin-bottom: 1.75rem;
       }
     }
 
