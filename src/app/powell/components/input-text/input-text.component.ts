@@ -150,6 +150,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestr
   clear() {
     this.value = null;
     this.onModelChange(this.value);
+    this.setInputDirection();
     this.onClear.emit();
   }
 
