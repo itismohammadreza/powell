@@ -84,22 +84,11 @@
         }
 
         p-paginator {
-          button {
-            .pi-angle-double-left:before {
-              content: "\e92e";
-            }
-
-            .pi-angle-double-right:before {
-              content: "\e92d";
-            }
-
-            .pi-angle-right:before {
-              content: "\e931";
-            }
-
-            .pi-angle-left:before {
-              content: "\e932";
-            }
+          .p-paginator-first,
+          .p-paginator-prev,
+          .p-paginator-next,
+          .p-paginator-last {
+            transform: rotate(180deg);
           }
 
           .p-dropdown .p-dropdown-label {
