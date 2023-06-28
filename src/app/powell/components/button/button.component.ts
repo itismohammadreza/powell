@@ -91,7 +91,7 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  removeLoading = (ok: boolean = true) => {
+  removeLoading = (ok: boolean = false) => {
     this.loading = false;
     if (ok) {
       this.toggleState(this.defaultState);
