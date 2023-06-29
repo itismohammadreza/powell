@@ -4,11 +4,11 @@
         'sidebar-lock' : sidebarLock,
         'sidebar-open' : sidebarVisible
      }">
-  <nav class="navbar shadow-sm fixed-top">
+  <nav class="navbar shadow-sm fixed-top" *ngIf="tempSidebarType != 'horizontal'">
     <div class="container-fluid">
       <span>
         <ng-button
-          *ngIf="!sidebarLock && tempSidebarType != 'hover' && tempSidebarType != 'horizontal'"
+          *ngIf="!sidebarLock && tempSidebarType != 'hover'"
           icon="pi pi-bars"
           color="primary"
           appearance="text"
@@ -22,12 +22,7 @@
       </span>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav p-0 me-auto">
-          <!--        <li class="nav-item" (click)="accountMenu.toggle($event)">-->
-          <!--          <span class="me-3">{{ "Admin" }}</span>-->
-          <!--          <p-avatar shape="circle" size="large" icon="pi pi-user"></p-avatar>-->
-          <!--        </li>-->
-          <li class="nav-item">
-          </li>
+          <li class="nav-item"></li>
         </ul>
       </div>
     </div>

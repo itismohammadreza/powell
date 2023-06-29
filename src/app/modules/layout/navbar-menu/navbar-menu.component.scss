@@ -5,7 +5,6 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding-top: 68px;
 
     nav {
       height: 68px;
@@ -17,6 +16,15 @@
     main {
       transition: all 200ms;
       flex: 1;
+
+      .p-menubar {
+        overflow: auto;
+
+        ul {
+          white-space: nowrap;
+          flex-wrap: nowrap;
+        }
+      }
     }
 
     .config-btn {
@@ -35,6 +43,10 @@
       &.active {
         left: 30rem;
       }
+    }
+
+    &:not(.menu-horizontal) {
+      padding-top: 68px;
     }
 
     &.menu-overlay, &.menu-overlay-mask {
