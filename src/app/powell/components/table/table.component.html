@@ -122,7 +122,7 @@
             {{ col.header }}
             <p-sortIcon *ngIf="col.sort" [field]="col.field"></p-sortIcon>
             <ng-button [rounded]="true"
-                       *ngIf="activeSortField == col.field"
+                       *ngIf="col.sort && activeSortField == col.field"
                        appearance="text"
                        size="sm"
                        icon="pi pi-sort-alt-slash"
