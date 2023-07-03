@@ -158,6 +158,28 @@ export class UtilsService {
     return (res !== null)
   };
 
+  setInputDirection(element: any, value: string, rtl: boolean) {
+    const rgx = /^[-!$%^&*()_+|~=`{}\[\]:\";'<>?,.\/]*[A-Za-z]/;
+    const isAscii = rgx.test(value);
+    if (isAscii) {
+      if (value) {
+        element.style.direction = 'ltr';
+        element.style.textAlign = 'left';
+      } else {
+        element.style.direction = rtl ? 'rtl' : 'ltr';
+        element.style.textAlign = rtl ? 'right' : 'left';
+      }
+    } else {
+      if (value) {
+        element.style.direction = 'rtl';
+        element.style.textAlign = 'right';
+      } else {
+        element.style.direction = rtl ? 'rtl' : 'ltr';
+        element.style.textAlign = rtl ? 'right' : 'left';
+      }
+    }
+  }
+
   // async downloadLink(url: string) {
   //   const res = await this._customRequest<any>(url, 'get', null, {
   //     observe: 'response',

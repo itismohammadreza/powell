@@ -2,7 +2,7 @@ import {
   AfterContentInit,
   ChangeDetectorRef,
   Component,
-  ContentChildren,
+  ContentChildren, ElementRef,
   EventEmitter,
   forwardRef,
   Injector,
@@ -26,6 +26,7 @@ import {
 import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
+import {UtilsService} from "@powell/api";
 
 @Component({
   selector: 'ng-input-password',
@@ -91,7 +92,10 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private el: ElementRef,
+              private utilsService: UtilsService) {
   }
 
   ngOnInit() {
@@ -151,6 +155,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
     const inputElement = event.target as HTMLInputElement;
     this.onInput.emit(event);
     this.onModelChange(inputElement.value);
+    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
   }
 
   _onBlur() {
@@ -173,6 +178,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   _onClear() {
     this.onClear.emit();
     this.onModelChange(null);
+    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
   }
 
   emitter(name: string, event: any) {

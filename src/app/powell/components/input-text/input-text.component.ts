@@ -31,6 +31,7 @@ import {
   NgSize,
   NgValidation
 } from '@powell/models';
+import {UtilsService} from "@powell/api";
 
 @Component({
   selector: 'ng-input-text',
@@ -92,7 +93,8 @@ export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestr
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
-              private el: ElementRef) {
+              private el: ElementRef,
+              private utilsService: UtilsService) {
   }
 
   ngOnInit() {
@@ -137,7 +139,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestr
     const inputElement = event.target as HTMLInputElement;
     this.onInput.emit(event);
     this.onModelChange(inputElement.value);
-    this.setInputDirection();
+    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
   }
 
   _onBlur() {
@@ -148,7 +150,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestr
   clear() {
     this.value = null;
     this.onModelChange(this.value);
-    this.setInputDirection();
+    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
     this.onClear.emit();
   }
 
@@ -210,29 +212,6 @@ export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestr
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  setInputDirection() {
-    const inputEl = this.el.nativeElement.querySelector('input');
-    const rgx = /^[-!$%^&*()_+|~=`{}\[\]:\";'<>?,.\/]*[A-Za-z]/;
-    const isAscii = rgx.test(this.value);
-    if (isAscii) {
-      if (this.value) {
-        inputEl.style.direction = 'ltr';
-        inputEl.style.textAlign = 'left';
-      } else {
-        inputEl.style.direction = this.rtl ? 'rtl' : 'ltr';
-        inputEl.style.textAlign = this.rtl ? 'right' : 'left';
-      }
-    } else {
-      if (this.value) {
-        inputEl.style.direction = 'rtl';
-        inputEl.style.textAlign = 'right';
-      } else {
-        inputEl.style.direction = this.rtl ? 'rtl' : 'ltr';
-        inputEl.style.textAlign = this.rtl ? 'right' : 'left';
-      }
-    }
   }
 
   ngOnDestroy() {

@@ -22,6 +22,7 @@ import {
 } from '@angular/forms';
 import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgValidation} from '@powell/models';
+import {UtilsService} from "@powell/api";
 
 @Component({
   selector: 'ng-input-textarea',
@@ -78,7 +79,8 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor, OnD
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
-              private el: ElementRef) {
+              private el: ElementRef,
+              private utilsService: UtilsService) {
   }
 
   ngOnInit() {
@@ -124,7 +126,7 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor, OnD
     const inputElement = event.target as HTMLTextAreaElement;
     this.onInput.emit(event);
     this.onModelChange(inputElement.value);
-    this.setTextareaDirection();
+    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('textarea'), this.value, this.rtl);
   }
 
   _onBlur() {
@@ -190,29 +192,6 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor, OnD
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  setTextareaDirection() {
-    const textareaEl = this.el.nativeElement.querySelector('textarea');
-    const rgx = /^[-!$%^&*()_+|~=`{}\[\]:\";'<>?,.\/]*[A-Za-z]/;
-    const isAscii = rgx.test(this.value);
-    if (isAscii) {
-      if (this.value) {
-        textareaEl.style.direction = 'ltr';
-        textareaEl.style.textAlign = 'left';
-      } else {
-        textareaEl.style.direction = this.rtl ? 'rtl' : 'ltr';
-        textareaEl.style.textAlign = this.rtl ? 'right' : 'left';
-      }
-    } else {
-      if (this.value) {
-        textareaEl.style.direction = 'rtl';
-        textareaEl.style.textAlign = 'right';
-      } else {
-        textareaEl.style.direction = this.rtl ? 'rtl' : 'ltr';
-        textareaEl.style.textAlign = this.rtl ? 'right' : 'left';
-      }
-    }
   }
 
   ngOnDestroy() {
