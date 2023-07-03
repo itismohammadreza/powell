@@ -49,11 +49,18 @@
       }
 
       &.rtl {
-        direction: rtl;
-
         .p-selectbutton {
           direction: ltr;
           text-align: right;
+
+          .p-button {
+            direction: rtl;
+
+            .p-button-icon {
+              margin-right: 0;
+              margin-left: 0.5rem;
+            }
+          }
         }
 
         .message {

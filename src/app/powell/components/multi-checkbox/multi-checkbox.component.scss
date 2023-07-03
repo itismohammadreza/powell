@@ -49,7 +49,7 @@
         .field {
           flex-direction: column;
 
-          .option-item {
+          .option-item:not(:last-child) {
             margin-bottom: 0.5rem;
           }
         }
