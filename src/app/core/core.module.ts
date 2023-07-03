@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {APP_INITIALIZER, Injector, NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
@@ -13,6 +13,7 @@ import {
   UtilsService
 } from "@powell/api";
 import {appConfig} from "@core/config";
+import {AppInjector} from "@core/config/app.injector";
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -48,4 +49,7 @@ export function initiateLanguage(translationService: TranslationService) {
   ],
 })
 export class CoreModule {
+  constructor(injector: Injector) {
+    AppInjector.setInjector(injector);
+  }
 }
