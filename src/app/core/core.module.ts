@@ -12,8 +12,7 @@ import {
   PersianService,
   UtilsService
 } from "@powell/api";
-import {appConfig} from "@core/config";
-import {AppInjector} from "@core/config/app.injector";
+import {appConfig, AppInjector} from "@core/config";
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -50,6 +49,6 @@ export function initiateLanguage(translationService: TranslationService) {
 })
 export class CoreModule {
   constructor(injector: Injector) {
-    AppInjector.setInjector(injector);
+    AppInjector.set(injector);
   }
 }
