@@ -72,6 +72,28 @@
           text-align: right;
         }
 
+        .p-datatable-gridlines:has(.p-datatable-thead):has(.p-datatable-tbody) {
+          .p-datatable-thead > tr {
+            > th {
+              border-width: 1px 1px 1px 0;
+
+              &:last-child {
+                border-width: 1px;
+              }
+            }
+          }
+
+          .p-datatable-tbody > tr {
+            > td {
+              border-width: 0 1px 1px 0;
+
+              &:last-child {
+                border-width: 0 1px 1px 1px;
+              }
+            }
+          }
+        }
+
         .p-sortable-column .p-sortable-column-icon {
           margin-right: 0.5rem;
           margin-left: 0;
