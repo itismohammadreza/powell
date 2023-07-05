@@ -51,7 +51,7 @@ export class MomentService {
     return moment.duration(value, unit);
   }
 
-  getJalaliMoment(input?: MomentInput, format?: MomentFormatSpecification, language?: string, strict?: boolean): jalaliMoment.Moment {
+  getJalaliMoment(input?: MomentInput, format?: MomentFormatSpecification, language?: string, strict?: boolean) {
     return jalaliMoment(input, format, language, strict);
   }
 

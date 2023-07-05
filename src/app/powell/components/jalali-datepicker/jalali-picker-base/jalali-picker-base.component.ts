@@ -247,7 +247,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
   weekNames = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'];
   destroy$ = new Subject<boolean>();
 
-  @Input() get view(): CalendarTypeView {
+  @Input() get view() {
     return this._view;
   };
 
@@ -256,7 +256,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     this.currentView = this._view;
   }
 
-  @Input() get defaultDate(): Moment {
+  @Input() get defaultDate() {
     return this._defaultDate;
   };
 
@@ -271,7 +271,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     }
   }
 
-  @Input() get minDate(): Moment {
+  @Input() get minDate() {
     return this._minDate;
   }
 
@@ -283,7 +283,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     }
   }
 
-  @Input() get maxDate(): Moment {
+  @Input() get maxDate() {
     return this._maxDate;
   }
 
@@ -294,7 +294,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     }
   }
 
-  @Input() get disabledDates(): Moment[] {
+  @Input() get disabledDates() {
     return this._disabledDates;
   }
 
@@ -305,7 +305,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     }
   }
 
-  @Input() get disabledDays(): number[] {
+  @Input() get disabledDays() {
     return this._disabledDays;
   }
 
@@ -316,7 +316,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     }
   }
 
-  @Input() get yearRange(): string {
+  @Input() get yearRange() {
     return this._yearRange;
   }
 
@@ -330,7 +330,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     }
   }
 
-  @Input() get showTime(): boolean {
+  @Input() get showTime() {
     return this._showTime;
   }
 
@@ -346,7 +346,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     return this._locale;
   }
 
-  @Input() get responsiveOptions(): any[] {
+  @Input() get responsiveOptions() {
     return this._responsiveOptions;
   };
 
@@ -357,7 +357,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
   }
 
 
-  @Input() get numberOfMonths(): number {
+  @Input() get numberOfMonths() {
     return this._numberOfMonths;
   }
 
@@ -367,7 +367,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     this.createResponsiveStyle();
   }
 
-  @Input() get firstDayOfWeek(): number {
+  @Input() get firstDayOfWeek() {
     return this._firstDayOfWeek;
   }
 
@@ -1931,7 +1931,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     this.onInput.emit(event);
   }
 
-  isValidSelection(value: Moment | Moment[]): boolean {
+  isValidSelection(value: Moment | Moment[]) {
     let isValid = true;
     if (this.isSingleSelection() && !Array.isArray(value)) {
       if (!this.isSelectable(value.jDate(), value.jMonth(), value.jYear(), false)) {
@@ -1945,7 +1945,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     return isValid;
   }
 
-  parseValueFromString(text: string): Moment | Moment[] {
+  parseValueFromString(text: string) {
     if (!text || text.trim().length === 0) {
       return null;
     }
@@ -1971,7 +1971,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     return value;
   }
 
-  parseDateTime(text: string): Moment {
+  parseDateTime(text: string) {
     let date: Moment;
     let parts: string[] = text.split(' ');
 
@@ -2223,15 +2223,15 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn: Function): void {
+  registerOnChange(fn: Function) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn: Function): void {
+  registerOnTouched(fn: Function) {
     this.onModelTouched = fn;
   }
 
-  setDisabledState(val: boolean): void {
+  setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
   }

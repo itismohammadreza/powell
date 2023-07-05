@@ -465,7 +465,7 @@ export class EditorBaseComponent implements AfterViewInit {
   ) {
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     this.ngZone.runOutsideAngular(() => {
       if (this._content) this.options.value = this._content;
       this.editor = sunEditor.create(
@@ -489,7 +489,7 @@ export class EditorBaseComponent implements AfterViewInit {
   /**
    * Returns the HTML id Attribute that is randomly generated on startup on every editor instance.
    */
-  public getEditorID(): string {
+  public getEditorID() {
     return this.editorID;
   }
 
@@ -497,7 +497,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * Returns the raw editor instance.
    * @returns SunEditor
    */
-  public getEditor(): SunEditor {
+  public getEditor() {
     return this.editor;
   }
 
@@ -505,7 +505,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * Set the toolbar buttons
    * @param buttonList any[]
    */
-  public setToolbarButtons(buttonList: any[]): void {
+  public setToolbarButtons(buttonList: any[]) {
     this.editor.setToolbarButtons(buttonList);
   }
 
@@ -513,7 +513,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * Pass a `SunEditorOptions` object to the editor to change the options after the editor was created
    * @param options SunEditorOptions
    */
-  public setOptions(options: SunEditorOptions): void {
+  public setOptions(options: SunEditorOptions) {
     this.editor.setOptions(options);
   }
 
@@ -521,7 +521,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * Define the style of the edit area without re render
    * @param style Style string
    */
-  public setDefaultStyle(style: string): void {
+  public setDefaultStyle(style: string) {
     this.editor.setDefaultStyle(style);
   }
 
@@ -529,14 +529,14 @@ export class EditorBaseComponent implements AfterViewInit {
    * Opens a message in the notice panel (Alert)
    * @param message string
    */
-  public noticeOpen(message: string): void {
+  public noticeOpen(message: string) {
     this.editor.noticeOpen(message);
   }
 
   /**
    * Closes the notice panel (Alert)
    */
-  public noticeClose(): void {
+  public noticeClose() {
     this.editor.noticeClose();
   }
 
@@ -546,7 +546,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * @param onlyContent boolean
    * @returns string | HTMLInputElement - content or the full textarea
    */
-  public save(onlyContent?: boolean): HTMLInputElement | string {
+  public save(onlyContent?: boolean) {
     this.editor.save();
     if (onlyContent) {
       return this._content;
@@ -557,7 +557,7 @@ export class EditorBaseComponent implements AfterViewInit {
   /**
    * Gets the SunEditor's context object. Contains settings, plugins, and cached element objects
    */
-  public getContext(): Context {
+  public getContext() {
     return this.editor.getContext();
   }
 
@@ -566,14 +566,14 @@ export class EditorBaseComponent implements AfterViewInit {
    * @param onlyContents boolean - Return only the contents of the body without headers when the "fullPage" option is true
    * @returns string - editor content
    */
-  public getContents(onlyContents: boolean): string {
+  public getContents(onlyContents: boolean) {
     return this.editor.getContents(onlyContents);
   }
 
   /**
    * Gets only the text of the suneditor contents
    */
-  public getText(): string {
+  public getText() {
     return this.editor.getText();
   }
 
@@ -583,7 +583,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * options - charCounterType ('char', 'byte', 'byte-html') If argument is no value, the currently set "charCounterType" option is used.
    * @returns number
    */
-  public getCharCount(charCounterType?: string | undefined): number {
+  public getCharCount(charCounterType?: string | undefined) {
     return this.editor.getCharCount(charCounterType);
   }
 
@@ -598,7 +598,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * src: src attribute of img tag
    * @returns fileInfo[]
    */
-  public getImagesInfo(): fileInfo[] {
+  public getImagesInfo() {
     return this.editor.getImagesInfo();
   }
 
@@ -608,7 +608,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * @param pluginName Plugin name (image, video, audio)
    * @returns fileInfo[]
    */
-  public getFilesInfo(pluginName: string): fileInfo[] {
+  public getFilesInfo(pluginName: string) {
     return this.editor.getFilesInfo(pluginName);
   }
 
@@ -616,7 +616,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * Upload images using image plugin
    * @param files FileList
    */
-  public insertImage(files: FileList): void {
+  public insertImage(files: FileList) {
     this.editor.insertImage(files);
   }
 
@@ -632,7 +632,7 @@ export class EditorBaseComponent implements AfterViewInit {
     notCleaningData?: boolean | undefined,
     checkCharCount?: boolean | undefined,
     rangeSelection?: boolean | undefined
-  ): void {
+  ) {
     this.editor.insertHTML(
       html,
       notCleaningData,
@@ -645,7 +645,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * Change the contents of the suneditor
    * @param contents Contents to Input
    */
-  public setContents(contents: string): void {
+  public setContents(contents: string) {
     this.editor.setContents(contents);
   }
 
@@ -653,7 +653,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * Add contents to the suneditor
    * @param contents Contents to Input
    */
-  public appendContents(contents: string): void {
+  public appendContents(contents: string) {
     this.editor.appendContents(contents);
   }
 
@@ -661,7 +661,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * Switch to or off "ReadOnly" mode.
    * @param value "readOnly" boolean value.
    */
-  public readOnly(value: boolean): void {
+  public readOnly(value: boolean) {
     this._readonly = value;
     this.editor.readOnly(value);
   }
@@ -670,14 +670,14 @@ export class EditorBaseComponent implements AfterViewInit {
    * Returns the readonly state of the SunEditor
    * @returns boolean
    */
-  public isReadOnly(): boolean {
+  public isReadOnly() {
     return this._readonly;
   }
 
   /**
    * Disable the suneditor
    */
-  public disabled(): void {
+  public disabled() {
     this._disabled = true;
     this.editor.disable();
   }
@@ -686,14 +686,14 @@ export class EditorBaseComponent implements AfterViewInit {
    * Returns the disabled state of the SunEditor
    * @returns boolean
    */
-  public isDisabled(): boolean {
+  public isDisabled() {
     return this._disabled;
   }
 
   /**
    * Enable the suneditor
    */
-  public enabled(): void {
+  public enabled() {
     this._disabled = false;
     this.editor.enable();
   }
@@ -701,7 +701,7 @@ export class EditorBaseComponent implements AfterViewInit {
   /**
    * Show the editor
    */
-  public show(): void {
+  public show() {
     this._hidden = false;
     this.editor.show();
   }
@@ -709,7 +709,7 @@ export class EditorBaseComponent implements AfterViewInit {
   /**
    * Hide the editor
    */
-  public hide(): void {
+  public hide() {
     this._hidden = true;
     this.editor.hide();
   }
@@ -718,14 +718,14 @@ export class EditorBaseComponent implements AfterViewInit {
    * Returns the hidden state of the editor
    * @returns boolean
    */
-  public isHidden(): boolean {
+  public isHidden() {
     return this._hidden;
   }
 
   /**
    * Add or remove the class name of "body" so that the code block is visible
    */
-  public toggleDisplayBlocks(): void {
+  public toggleDisplayBlocks() {
     this.editor.core.toggleDisplayBlocks();
     this._displayBlocks = !this._displayBlocks;
   }
@@ -734,14 +734,14 @@ export class EditorBaseComponent implements AfterViewInit {
    * Returns the displayBlocks state of the editor
    * @returns boolean
    */
-  public isDisplayBlocks(): boolean {
+  public isDisplayBlocks() {
     return this._displayBlocks;
   }
 
   /**
    * Changes to code view or wysiwyg view
    */
-  public toggleCodeViewMode(): void {
+  public toggleCodeViewMode() {
     this.editor.core.toggleCodeView();
     this._codeView = !this._codeView;
   }
@@ -750,42 +750,42 @@ export class EditorBaseComponent implements AfterViewInit {
    * Returns the CodeViewMode state of the editor
    * @returns boolean
    */
-  public isCodeViewMode(): boolean {
+  public isCodeViewMode() {
     return this._codeView;
   }
 
   /**
    * Undo changes
    */
-  public undo(): void {
+  public undo() {
     this.editor.core.history.undo();
   }
 
   /**
    * Redo changes
    */
-  public redo(): void {
+  public redo() {
     this.editor.core.history.redo();
   }
 
   /**
    * Remove format of the currently selected range
    */
-  public removeFormat(): void {
+  public removeFormat() {
     this.editor.core.removeFormat();
   }
 
   /**
    * Prints the current contents of the editor.
    */
-  public print(): void {
+  public print() {
     this.editor.core.print();
   }
 
   /**
    * Open a new tab as preview window.
    */
-  public preview(): void {
+  public preview() {
     this.editor.core.preview();
   }
 
@@ -793,14 +793,14 @@ export class EditorBaseComponent implements AfterViewInit {
    * Get the actual history Stack
    * @returns any[]
    */
-  public getHistory(): any[] {
+  public getHistory() {
     return this.editor.core.history.stack;
   }
 
   /**
    * Select all in the editor
    */
-  public selectAll(): void {
+  public selectAll() {
     this.commandHandler(null, 'selectAll');
   }
 
@@ -808,14 +808,14 @@ export class EditorBaseComponent implements AfterViewInit {
    * Get window selection obejct
    * @returns Selection
    */
-  public getSelection(): Selection {
+  public getSelection() {
     return this.editor.core.getSelection();
   }
 
   /**
    * Set the editor in loading mode. Show a loading spinner, disable inputs and grey out
    */
-  public showLoading(): void {
+  public showLoading() {
     this._loading = true;
     this.editor.core.showLoading();
   }
@@ -823,7 +823,7 @@ export class EditorBaseComponent implements AfterViewInit {
   /**
    * Remove the loading mode
    */
-  public closeLoading(): void {
+  public closeLoading() {
     this._loading = false;
     this.editor.core.closeLoading();
   }
@@ -832,7 +832,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * Returns the loading state of the SunEditor
    * @returns boolean
    */
-  public isLoading(): boolean {
+  public isLoading() {
     return this._loading;
   }
 
@@ -840,14 +840,14 @@ export class EditorBaseComponent implements AfterViewInit {
    * Enabled submenu
    * @param element Submenu's button element to call
    */
-  public submenuOn(element: Element): void {
+  public submenuOn(element: Element) {
     this.editor.core.submenuOn(element);
   }
 
   /**
    * Disable submenu
    */
-  public submenuOff(): void {
+  public submenuOff() {
     this.editor.core.submenuOff();
   }
 
@@ -855,14 +855,14 @@ export class EditorBaseComponent implements AfterViewInit {
    * Enabled container
    * @param element Container's button element to call
    */
-  public containerOn(element: Element): void {
+  public containerOn(element: Element) {
     this.editor.core.containerOn(element);
   }
 
   /**
    * Disable container
    */
-  public containerOff(): void {
+  public containerOff() {
     this.editor.core.containerOff();
   }
 
@@ -871,7 +871,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * @param element Elements to add class name
    * @param className Class name to be add
    */
-  public addClass(element: Element, className: string): void {
+  public addClass(element: Element, className: string) {
     this.editor.util.addClass(element, className);
   }
 
@@ -894,7 +894,7 @@ export class EditorBaseComponent implements AfterViewInit {
     element: Element,
     styleName: string,
     value: string | number
-  ): void {
+  ) {
     this.editor.util.setStyle(element, styleName, value);
   }
 
@@ -939,14 +939,14 @@ export class EditorBaseComponent implements AfterViewInit {
    * Set indentation separator "indent" or "outdent"
    * @param command 'indent' | 'outdent'
    */
-  public indent_outdent(command: 'indent' | 'outdent'): void {
+  public indent_outdent(command: 'indent' | 'outdent') {
     this.commandHandler(null, command);
   }
 
   /**
    * Display blocks in the editor
    */
-  public showBlocks(): void {
+  public showBlocks() {
     const element = document.querySelector('[data-command="showBlocks"]');
     if (element) {
       this.commandHandler(element, 'showBlocks');
@@ -1199,7 +1199,7 @@ export class EditorBaseComponent implements AfterViewInit {
     };
   }
 
-  private generateID(): string {
+  private generateID() {
     const min = Math.ceil(1);
     const max = Math.floor(100000);
     return `ngxsuneditor_${(

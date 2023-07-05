@@ -321,7 +321,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     return false
   }
 
-  hasError(type: string): boolean {
+  hasError(type: string) {
     return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 

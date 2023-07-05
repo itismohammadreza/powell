@@ -32,7 +32,7 @@ export class RegisterPage {
     }
   }
 
-  checkPasswords(group: AbstractControl): ValidationErrors | null {
+  checkPasswords(group: AbstractControl) {
     const pass = group.get('password').value;
     const confirmPass = group.get('confirmPassword').value;
     return pass === confirmPass ? null : {notSame: true};

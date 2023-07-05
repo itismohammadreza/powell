@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {DynamicDialogConfig, DynamicDialogRef} from '@powell/components/overlay';
 
 @Component({
@@ -6,15 +6,11 @@ import {DynamicDialogConfig, DynamicDialogRef} from '@powell/components/overlay'
   templateUrl: './dynamic-dialog-sample.component.html',
   styleUrls: ['./dynamic-dialog-sample.component.scss']
 })
-export class DynamicDialogSampleComponent implements OnInit {
+export class DynamicDialogSampleComponent {
   constructor(public config: DynamicDialogConfig, public dialog: DynamicDialogRef) {
   }
 
   onClose() {
     this.dialog.close('some value');
   }
-
-  ngOnInit(): void {
-  }
-
 }

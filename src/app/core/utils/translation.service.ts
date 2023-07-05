@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {Observable} from 'rxjs';
-import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import {TranslateService} from '@ngx-translate/core';
 import {appConfig} from "@core/config";
 
 @Injectable({
@@ -35,46 +35,46 @@ export class TranslationService {
     localStorage.setItem('ng-lang', currentLang);
   }
 
-  get en(): boolean {
+  get en() {
     return this.currentLang === 'en';
   }
 
-  get fa(): boolean {
+  get fa() {
     return this.currentLang === 'fa';
   }
 
   /**
    * Get language changes as observable
    */
-  onLangChange(): Observable<LangChangeEvent> {
+  onLangChange() {
     return this.translate.onLangChange.asObservable();
   }
 
   /**
    * Sets the default language to use as a fallback
    */
-  setDefaultLang(lang: string): void {
+  setDefaultLang(lang: string) {
     return this.translate.setDefaultLang(lang);
   }
 
   /**
    * Gets the default language
    */
-  getDefaultLang(): string {
+  getDefaultLang() {
     return this.translate.getDefaultLang();
   }
 
   /**
    * Changes the lang currently used
    */
-  use(lang: string): Observable<any> {
+  use(lang: string) {
     return this.translate.use(lang);
   }
 
   /**
    * Gets an object of translations for a given language with the current loader
    */
-  getTranslation(lang: string): Observable<any> {
+  getTranslation(lang: string) {
     return this.translate.getTranslation(lang);
   }
 
@@ -86,31 +86,28 @@ export class TranslationService {
     lang: string,
     translations: any,
     shouldMerge: boolean = false
-  ): void {
+  ) {
     return this.translate.setTranslation(lang, translations, shouldMerge);
   }
 
   /**
    * Add new langs to the list
    */
-  addLangs(langs: Array<string>): void {
+  addLangs(langs: string[]) {
     return this.translate.addLangs(langs);
   }
 
   /**
    * Returns an array of currently available langs
    */
-  getLangs(): string[] {
+  getLangs() {
     return this.translate.getLangs();
   }
 
   /**
    * Gets the translated value of a key (or an array of keys) or the key if the value was not found
    */
-  get(
-    key: string | Array<string>,
-    interpolateParams?: any
-  ): Observable<string | object> {
+  get(key: string | Array<string>, interpolateParams?: any) {
     return this.translate.get(key, interpolateParams);
   }
 
@@ -118,20 +115,14 @@ export class TranslationService {
    * Returns a stream of translated values of a key or the key if the value wasn't found.Without any
    * onTranslationChange events.
    */
-  getStreamOnTranslationChange(
-    key: string | Array<string>,
-    interpolateParams?: any
-  ): Observable<string | object> {
+  getStreamOnTranslationChange(key: string | string[], interpolateParams?: any) {
     return this.translate.getStreamOnTranslationChange(key, interpolateParams);
   }
 
   /**
    * Returns a stream of translated values of a key (or an array of keys) or the key if the value was not found.
    */
-  stream(
-    key: string | Array<string>,
-    interpolateParams?: any
-  ): Observable<string | object> {
+  stream(key: string | string[], interpolateParams?: any) {
     return this.translate.stream(key, interpolateParams);
   }
 
@@ -139,24 +130,21 @@ export class TranslationService {
    * Gets the instant translated value of a key. This method is synchronous and the default file loader is
    * asynchronous.
    */
-  instant(
-    key: string | Array<string>,
-    interpolateParams?: any
-  ): string | object {
+  instant(key: string | string[], interpolateParams?: any) {
     return this.translate.instant(key, interpolateParams);
   }
 
   /**
    * Sets the translated value of a key
    */
-  set(key: string, value: string, lang?: string): void {
+  set(key: string, value: string, lang?: string) {
     return this.translate.set(key, value, lang);
   }
 
   /**
    * Calls resetLang and retrieves the translations object for the current loader
    */
-  reloadLang(lang: string): Observable<string | object> {
+  reloadLang(lang: string) {
     return this.translate.reloadLang(lang);
   }
 
@@ -164,21 +152,21 @@ export class TranslationService {
    * Removes the current translations for this lang.You have to call use, reloadLang or getTranslation again to be
    * able to get translations
    */
-  resetLang(lang: string): void {
+  resetLang(lang: string) {
     return this.translate.resetLang(lang);
   }
 
   /**
    * Returns the current browser lang if available, or undefined otherwise
    */
-  getBrowserLang(): string | undefined {
+  getBrowserLang() {
     return this.translate.getBrowserLang();
   }
 
   /**
    * Returns the current browser culture language name (e.g. "de-DE" if available, or undefined otherwise
    */
-  getBrowserCultureLang(): string | undefined {
+  getBrowserCultureLang() {
     return this.translate.getBrowserCultureLang();
   }
 }

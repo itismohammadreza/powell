@@ -120,7 +120,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor, OnDestroy 
     return false
   }
 
-  hasError(type: string): boolean {
+  hasError(type: string) {
     return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 

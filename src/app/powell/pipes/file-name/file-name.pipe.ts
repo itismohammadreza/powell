@@ -8,7 +8,7 @@ export class FileNamePipe implements PipeTransform {
   constructor(private utilsService: UtilsService) {
   }
 
-  transform(value: any): string {
+  transform(value: any) {
     if (value) {
       if (value instanceof File) {
         return value.name;

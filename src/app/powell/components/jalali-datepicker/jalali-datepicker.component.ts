@@ -203,7 +203,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor, 
     return false
   }
 
-  hasError(type: string): boolean {
+  hasError(type: string) {
     return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 

@@ -247,7 +247,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     return false
   }
 
-  hasError(type: string): boolean {
+  hasError(type: string) {
     return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 

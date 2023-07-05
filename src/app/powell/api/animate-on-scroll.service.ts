@@ -288,7 +288,7 @@ export class AnimateOnScrollService {
 //     this.resizeObs.subscribe(() => this.manageScrollPos());
 //   }
 //
-//   private manageScrollPos(): void {
+//   private manageScrollPos() {
 //     this.pos = typeof window !== "undefined" ? this.document.defaultView.pageYOffset : 0;
 //   }
 // }

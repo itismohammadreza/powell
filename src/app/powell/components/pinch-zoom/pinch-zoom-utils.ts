@@ -887,7 +887,7 @@ export class Touches {
     return undefined;
   }
 
-  detectTap(): void {
+  detectTap() {
     if (this.eventType != undefined) {
       return;
     }

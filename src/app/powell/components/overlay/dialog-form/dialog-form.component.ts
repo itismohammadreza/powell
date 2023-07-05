@@ -73,8 +73,8 @@ export class DialogFormComponent {
     }
   }
 
-  convertToComponentValidation(config: NgDialogFormConfig): NgValidation {
-    const errObj = {};
+  convertToComponentValidation(config: NgDialogFormConfig) {
+    const errObj: NgValidation = {};
     if (!config.validations) {
       return errObj;
     }

@@ -139,7 +139,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor, O
     return false
   }
 
-  hasError(type: string): boolean {
+  hasError(type: string) {
     return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 

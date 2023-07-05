@@ -13,22 +13,22 @@ export class AuthService extends ApiService {
     super();
   }
 
-  login(data: any): Promise<any> {
+  login(data: any) {
     const res = this._post<any>(`${this.endpoint}/login`, data);
     return lastValueFrom(res);
   }
 
-  register(data: any): Promise<any> {
+  register(data: any) {
     const res = this._post(`${this.endpoint}/register`, data);
     return lastValueFrom(res);
   }
 
-  logout(): void {
+  logout() {
     localStorage.removeItem('token');
     this.router.navigateByUrl('/auth/login');
   }
 
-  hasToken(): boolean {
+  hasToken() {
     return !!localStorage.getItem('token');
   }
 }

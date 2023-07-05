@@ -1,15 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'ng-bubbles',
   templateUrl: './bubbles.component.html',
   styleUrls: ['./bubbles.component.scss']
 })
-export class BubblesComponent implements OnInit {
-
+export class BubblesComponent {
   bubbleNumbers = new Array(100);
-
-  ngOnInit(): void {
-  }
-
 }

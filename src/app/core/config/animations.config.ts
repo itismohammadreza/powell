@@ -72,6 +72,6 @@ const animations: AnimationDefinition = {
   slide: SlideAnimation
 }
 
-export function RouteAnimation(name: string): AnimationTriggerMetadata {
+export function RouteAnimation(name: string) {
   return trigger('routeAnimation', animations[name] || animations['none']);
 }

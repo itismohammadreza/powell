@@ -212,7 +212,7 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, On
     return false
   }
 
-  hasError(type: string): boolean {
+  hasError(type: string) {
     return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 
@@ -261,7 +261,7 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, On
     (this[name] as EventEmitter<any>).emit(event);
   }
 
-  onMapReady(event: Map): void {
+  onMapReady(event: Map) {
     this.map = event;
   }
 
@@ -301,7 +301,7 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, On
     }
   }
 
-  _onMapClick(event: LeafletMouseEvent): void {
+  _onMapClick(event: LeafletMouseEvent) {
     if (!this.readonly && !this.disabled) {
       const selectedLatLngs = this.layers.map((l: any) => l._latlng);
       if (this.multiple) {
@@ -325,7 +325,7 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, On
     this.onMapClick.emit(event);
   }
 
-  getMarkerLayer(latLng: LatLngLiteral): Marker<any> {
+  getMarkerLayer(latLng: LatLngLiteral) {
     return marker(latLng, {
       icon: icon({
         iconSize: [25, 41],

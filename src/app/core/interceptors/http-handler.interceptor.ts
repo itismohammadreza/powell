@@ -29,7 +29,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
               private authService: AuthService) {
   }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler) {
     const clonedReq = request.clone();
     const shouldShowSuccess = this.isRequestFounded(this.hasSuccessMessageApis, request);
     const shouldShowFailure = this.isRequestFounded(this.hasFailureMessageApis, request);

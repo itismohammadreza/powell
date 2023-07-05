@@ -9,7 +9,7 @@ export class UtilsService {
   constructor(@Inject(DOCUMENT) private document: Document) {
   }
 
-  checkOnlineState(): Observable<boolean> {
+  checkOnlineState() {
     return merge(
       fromEvent(this.document.defaultView, 'offline').pipe(map(() => false)),
       fromEvent(this.document.defaultView, 'online').pipe(map(() => true)),
@@ -20,7 +20,7 @@ export class UtilsService {
     );
   }
 
-  getDirtyControls(form: FormGroup, type: 'object' | 'array' | 'names' = 'object'): {} {
+  getDirtyControls(form: FormGroup, type: 'object' | 'array' | 'names' = 'object') {
     const kv = Object.entries(form.controls).filter(val => val[1].dirty && val[1].value != undefined);
     const result = {
       object: kv.reduce((accum, val) => Object.assign(accum, {[val[0]]: val[1].value}), {}),
@@ -76,8 +76,8 @@ export class UtilsService {
     }
   }
 
-  fileToBase64(file: File): Promise<string | ArrayBuffer> {
-    return new Promise((resolve, reject) => {
+  fileToBase64(file: File) {
+    return new Promise<string | ArrayBuffer>((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
@@ -87,7 +87,7 @@ export class UtilsService {
     });
   }
 
-  urlToBase64(url: string): Promise<string | ArrayBuffer> {
+  urlToBase64(url: string) {
     return fetch(url, {
       headers: new Headers({
         Origin: '*',
@@ -95,7 +95,7 @@ export class UtilsService {
     }).then((response) => response.blob()).then((blob: File) => this.fileToBase64(blob));
   }
 
-  base64toFile(dataUrl: any, filename: string): File {
+  base64toFile(dataUrl: any, filename: string) {
     const arr = dataUrl.split(',');
     const mime = arr[0].match(/:(.*?);/)[1];
     const bstr = atob(arr[1]);

@@ -127,7 +127,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
     });
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     if (this.autoFocusFirst) {
       const input = this.getNthInput(0);
       this.focusInput(input);
@@ -147,7 +147,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
     return false
   }
 
-  hasError(type: string): boolean {
+  hasError(type: string) {
     return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 
@@ -284,7 +284,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
     this.onPaste.emit(event)
   }
 
-  transformKeys(value: any): string[] {
+  transformKeys(value: any) {
     return Object.keys(value);
   }
 

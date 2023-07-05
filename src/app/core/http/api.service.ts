@@ -24,60 +24,42 @@ export class ApiService {
     this.baseUrl = envService.apiUrl;
   }
 
-  protected _get<T>(
-    endpoint: string,
-    options: RequestOptions = null
-  ): Observable<T> {
+  protected _get<T>(endpoint: string, options: RequestOptions = null) {
     return this.http.get<T>(`${this.baseUrl}/${endpoint}`, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
-  protected _post<T>(
-    endpoint: string,
-    body: any,
-    options: RequestOptions = null
-  ): Observable<T> {
+  protected _post<T>(endpoint: string, body: any, options: RequestOptions = null) {
     return this.http.post<T>(`${this.baseUrl}/${endpoint}`, body, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
-  protected _put<T>(
-    endpoint: string,
-    body: any,
-    options: RequestOptions = null
-  ): Observable<T> {
+  protected _put<T>(endpoint: string, body: any, options: RequestOptions = null) {
     return this.http.put<T>(`${this.baseUrl}/${endpoint}`, body, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
-  protected _patch<T>(
-    endpoint: string,
-    body: any,
-    options: RequestOptions = null
-  ): Observable<T> {
+  protected _patch<T>(endpoint: string, body: any, options: RequestOptions = null) {
     return this.http.patch<T>(`${this.baseUrl}/${endpoint}`, body, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
-  protected _delete<T>(
-    endpoint: string,
-    options: RequestOptions = null
-  ): Observable<T> {
+  protected _delete<T>(endpoint: string, options: RequestOptions = null) {
     return this.http.delete<T>(`${this.baseUrl}/${endpoint}`, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
-  protected _customRequest<T>(url: string, method: RequestMethod, body: any = null, options: RequestOptions = null): Observable<T> {
+  protected _customRequest<T>(url: string, method: RequestMethod, body: any = null, options: RequestOptions = null) {
     switch (method.toLowerCase()) {
       case 'get':
       case 'delete':
@@ -95,7 +77,7 @@ export class ApiService {
     }
   }
 
-  protected _getFormData(obj: any, excludes: string[] = []): FormData {
+  protected _getFormData(obj: any, excludes: string[] = []) {
     const formData = new FormData();
     for (const key in obj) {
       const value = obj[key];
@@ -122,7 +104,7 @@ export class ApiService {
     return formData;
   }
 
-  private getHttpParams(params: any): HttpParams {
+  private getHttpParams(params: any) {
     let httpParams: HttpParams = new HttpParams();
     if (params) {
       Object.keys(params).map((x: string) => {

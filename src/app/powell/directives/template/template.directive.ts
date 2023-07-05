@@ -9,7 +9,7 @@ export class TemplateDirective {
   constructor(public templateRef: TemplateRef<any>) {
   }
 
-  getType(): string {
+  getType() {
     return this.templateName;
   }
 }

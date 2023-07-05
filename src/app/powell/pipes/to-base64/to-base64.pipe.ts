@@ -11,7 +11,7 @@ export class ToBase64Pipe implements PipeTransform {
   constructor(private utilsService: UtilsService) {
   }
 
-  transform(value: any): any {
+  transform(value: any) {
     return this.initImage(value);
   }
 

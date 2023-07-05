@@ -178,7 +178,7 @@ export class ImageComponent implements AfterContentInit {
     };
   }
 
-  handleToolbarClick(event: MouseEvent): void {
+  handleToolbarClick(event: MouseEvent) {
     event.stopPropagation();
   }
 

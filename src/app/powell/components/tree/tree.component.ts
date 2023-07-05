@@ -188,7 +188,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
     return false
   }
 
-  hasError(type: string): boolean {
+  hasError(type: string) {
     return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 

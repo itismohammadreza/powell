@@ -239,7 +239,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
     return false
   }
 
-  hasError(type: string): boolean {
+  hasError(type: string) {
     return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 

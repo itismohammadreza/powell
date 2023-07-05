@@ -763,7 +763,7 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
   constructor(private translationService: TranslationService, private configService: ConfigService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     const dropdownData = {
       iconPos: ['left', 'right'],
       display: ['comma', 'chip'],

@@ -80,7 +80,7 @@ Usage Sample :
 
 /*
 Mode 2 for this directive :
-  ngOnInit(): void {
+  ngOnInit() {
     if (this.sessionService.currentUser.role !== this.permission) {
       this.viewContainer.clear();
     } else {

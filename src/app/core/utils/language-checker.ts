@@ -8,11 +8,11 @@ export class LanguageChecker {
     this.translationService = inject(TranslationService);
   }
 
-  get en(): boolean {
+  get en() {
     return this.translationService.en;
   }
 
-  get fa(): boolean {
+  get fa() {
     return this.translationService.fa;
   }
 

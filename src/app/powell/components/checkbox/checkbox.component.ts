@@ -147,7 +147,7 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor, OnDestro
     return false
   }
 
-  hasError(type: string): boolean {
+  hasError(type: string) {
     return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 

@@ -15,7 +15,7 @@ export class AppInjector {
     AppInjector.injector = injector;
   }
 
-  static get(): Injector {
+  static get() {
     return AppInjector.injector;
   }
 }

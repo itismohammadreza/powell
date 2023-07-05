@@ -19,7 +19,7 @@ export function httpLoaderFactory(http: HttpClient) {
 }
 
 export function initiateLanguage(translationService: TranslationService) {
-  return (): Promise<any> => {
+  return () => {
     return translationService.init();
   }
 }

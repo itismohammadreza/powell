@@ -123,6 +123,6 @@ class App {
 })
 export class SmokeComponent implements OnInit {
   ngOnInit(): void {
-    const myApp = new App();
+    new App();
   }
 }

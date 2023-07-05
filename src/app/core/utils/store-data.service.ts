@@ -20,7 +20,7 @@ export class StoreDataService<T = any> {
     this.storeDataSubject.next(this.data);
   }
 
-  get(): T {
+  get() {
     return this.storeDataSubject.getValue();
   }
 

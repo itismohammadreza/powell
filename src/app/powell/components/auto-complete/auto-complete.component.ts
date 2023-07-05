@@ -240,7 +240,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
     return false
   }
 
-  hasError(type: string): boolean {
+  hasError(type: string) {
     return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 

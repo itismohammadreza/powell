@@ -11,7 +11,7 @@ export class Dialog2Component implements OnInit, OnDestroy {
   constructor(private element: ElementRef, @Inject(DOCUMENT) private document: Document) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.document.body.appendChild(this.element.nativeElement);
     this.element.nativeElement.addEventListener('click', el => {
       if (el.target.className === 'jw-modal') {
@@ -20,17 +20,17 @@ export class Dialog2Component implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.element.nativeElement.remove();
   }
 
-  open(): void {
+  open() {
     this.element.nativeElement.style.display = 'block';
     this.document.body.classList.add('jw-modal-open');
     this.document.body.style.overflow = 'hidden';
   }
 
-  close(): void {
+  close() {
     this.element.nativeElement.style.display = 'none';
     this.document.body.classList.remove('jw-modal-open');
     this.document.body.style.overflow = null;

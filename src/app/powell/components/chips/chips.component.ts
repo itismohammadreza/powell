@@ -164,7 +164,7 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
     return false
   }
 
-  hasError(type: string): boolean {
+  hasError(type: string) {
     return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 
