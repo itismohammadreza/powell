@@ -213,6 +213,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
 
   writeValue(value: any) {
     this.value = value;
+    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
     this.cd.markForCheck();
   }
 

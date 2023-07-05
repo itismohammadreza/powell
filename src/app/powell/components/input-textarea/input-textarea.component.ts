@@ -178,6 +178,7 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor, OnD
 
   writeValue(value: any) {
     this.value = value;
+    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('textarea'), this.value, this.rtl);
     this.cd.markForCheck();
   }
 
