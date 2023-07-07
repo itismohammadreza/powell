@@ -59,7 +59,7 @@ export class ApiService {
     })
   }
 
-  protected _customRequest<T>(url: string, method: RequestMethod, body: any = null, options: RequestOptions = null) {
+  protected _customRequest<T>(url: string, method: RequestMethod, body: any = null, options: RequestOptions = null): Observable<T> {
     switch (method.toLowerCase()) {
       case 'get':
       case 'delete':
