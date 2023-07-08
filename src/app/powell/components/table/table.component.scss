@@ -34,6 +34,10 @@
           p-columnFilter {
             vertical-align: middle;
           }
+
+          .sort-reset {
+            vertical-align: middle;
+          }
         }
 
         .p-datatable-tbody > tr > td {
@@ -62,6 +66,10 @@
             margin-right: 0.5rem;
           }
         }
+
+        .sort-reset {
+          margin-left: 0.25rem;
+        }
       }
 
       &.rtl {
@@ -70,6 +78,10 @@
         .p-datatable-thead > tr > th,
         .p-datatable-tbody > tr > td {
           text-align: right;
+        }
+
+        .sort-reset {
+          margin-right: 0.25rem;
         }
 
         .p-datatable-gridlines:has(.p-datatable-thead):has(.p-datatable-tbody) {

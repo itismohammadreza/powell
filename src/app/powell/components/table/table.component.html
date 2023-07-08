@@ -121,12 +121,14 @@
               [pReorderableColumnDisabled]="!reorderableColumns">
             {{ col.header }}
             <p-sortIcon *ngIf="col.sort" [field]="col.field"></p-sortIcon>
-            <ng-button [rounded]="true"
-                       *ngIf="col.sort && activeSortField == col.field"
-                       appearance="text"
-                       size="sm"
-                       icon="pi pi-sort-alt-slash"
-                       (onClick)="onResetSort($event)">
+            <ng-button
+              class="sort-reset"
+              [rounded]="true"
+              *ngIf="col.sort && activeSortField == col.field"
+              appearance="text"
+              size="sm"
+              icon="pi pi-sort-alt-slash"
+              (onClick)="onResetSort($event)">
             </ng-button>
             <ng-container *ngIf="col.filter as filter">
               <p-columnFilter [field]="col.field"
