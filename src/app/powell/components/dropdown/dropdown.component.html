@@ -27,7 +27,7 @@
     }">
       <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
       <p-dropdown
-        [(ngModel)]="value"
+        [ngModel]="value"
         [inputId]="inputId"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
         [options]="options"

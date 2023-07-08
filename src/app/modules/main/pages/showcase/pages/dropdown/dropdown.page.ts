@@ -25,6 +25,7 @@ export class DropdownPage {
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
   inputSize: NgSize = this.configService.getConfig().inputSize;
+  async: boolean = false;
   disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   filter: boolean = false;
@@ -37,7 +38,7 @@ export class DropdownPage {
   placeholder: string = '';
   autofocusFilter: boolean = false;
   resetFilterOnHide: boolean = false;
-  autoDisplayFirst: boolean = true;
+  autoDisplayFirst: boolean = false;
   showClear: boolean = true;
 
   options: any[] = [
@@ -52,7 +53,15 @@ export class DropdownPage {
     {label: 'Spain', value: 'ES'},
     {label: 'United States', value: 'US'}
   ];
+  asyncFlag = false;
 
   constructor(private configService: ConfigService) {
+  }
+
+  onChangeAsync({loadingCallback, value}) {
+    this.asyncFlag = !this.asyncFlag;
+    setTimeout(() => {
+      loadingCallback(this.asyncFlag)
+    }, 1000)
   }
 }

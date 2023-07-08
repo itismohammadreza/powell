@@ -62,6 +62,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
+  @Input() async: boolean;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() options: any[];
@@ -119,6 +120,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Output() onHide = new EventEmitter();
   @Output() onClear = new EventEmitter();
   @Output() onLazyLoad = new EventEmitter();
+  @Output() onChangeAsync = new EventEmitter();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
@@ -131,6 +133,10 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   emptyTemplate: TemplateRef<any>;
   emptyFilterTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
+  _oldIcon: string;
+  _oldValue: string;
+  _newValue: string;
+
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -206,8 +212,35 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   }
 
   _onChange(event) {
-    this.onChange.emit(event);
-    this.onModelChange(event.value);
+    if (this.async) {
+      this.disabled = true;
+      this._oldIcon = this.icon;
+      this._oldValue = this.value;
+      this._newValue = event.value;
+      this.icon = 'pi pi-spinner pi-spin';
+      this.onChangeAsync.emit({loadingCallback: this.removeLoading, value: event.value});
+    } else {
+      this.value = event.value;
+      this.onChange.emit(event);
+      this.onModelChange(event.value);
+    }
+  }
+
+  removeLoading = (ok: boolean = true) => {
+    this.icon = this._oldIcon;
+    this.disabled = false;
+
+    if (ok) {
+      this.value = this._newValue;
+      this.onModelChange(this.value);
+    } else {
+      this.value = null;
+      setTimeout(() => {
+        this.value = this._oldValue + '';
+        this.onModelChange(this.value);
+      }, 0)
+    }
+    this.cd.detectChanges()
   }
 
   _onBlur() {
@@ -236,7 +269,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
     return false
   }
 
-  hasError(type: string): boolean {
+  hasError(type: string) {
     return this.isInvalid() && this.ngControl.control.hasError(type);
   }
 

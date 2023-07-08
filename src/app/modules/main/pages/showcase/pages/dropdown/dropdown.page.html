@@ -15,6 +15,7 @@
       'iconPos',
       'addon',
       'selectiveSize',
+      'async',
       'disableConfigChangeEffect',
       'filter',
       'disabled',
@@ -39,6 +40,7 @@
       [(labelPos)]="labelPos"
       [(iconPos)]="iconPos"
       [(selectiveSize)]="inputSize"
+      [(async)]="async"
       [(disableConfigChangeEffect)]="disableConfigChangeEffect"
       [(addon)]="addon"
       [(filter)]="filter"
@@ -73,6 +75,7 @@
         [labelPos]="labelPos"
         [iconPos]="iconPos"
         [inputSize]="inputSize"
+        [async]="async"
         [disableConfigChangeEffect]="disableConfigChangeEffect"
         [filter]="filter"
         [disabled]="disabled"
@@ -86,6 +89,7 @@
         [resetFilterOnHide]="resetFilterOnHide"
         [autoDisplayFirst]="autoDisplayFirst"
         [showClear]="showClear"
+        (onChangeAsync)="onChangeAsync($event)"
       ></ng-dropdown>
     </form>
   </p-panel>
