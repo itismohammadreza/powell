@@ -318,6 +318,7 @@
           [addon]="config.addon"
           [validation]="convertToComponentValidation(config)"
           [inputSize]="config.selectiveSize"
+          [async]="config.async"
           [disableConfigChangeEffect]="true"
           [options]="config.options"
           [optionLabel]="config.optionLabel ?? 'label'"
@@ -374,6 +375,7 @@
           (onHide)="handleConfigEvent(config,'onHide',$event)"
           (onClear)="handleConfigEvent(config,'onClear',$event)"
           (onLazyLoad)="handleConfigEvent(config,'onLazyLoad',$event)"
+          (onChangeAsync)="handleConfigEvent(config,'onChangeAsync',$event)"
         ></ng-dropdown>
         <ng-dual-label-switch
           *ngSwitchCase="'dual-label-switch'"
