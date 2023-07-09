@@ -3,10 +3,11 @@ import {FormGroup} from '@angular/forms';
 import {DOCUMENT} from '@angular/common';
 import {fromEvent, merge, Observable, Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {ConfigService} from "@powell/api/config.service";
 
 @Injectable()
 export class UtilsService {
-  constructor(@Inject(DOCUMENT) private document: Document) {
+  constructor(@Inject(DOCUMENT) private document: Document, private configService: ConfigService) {
   }
 
   checkOnlineState() {
@@ -161,21 +162,22 @@ export class UtilsService {
   setInputDirection(element: any, value: string, rtl: boolean) {
     const rgx = /^[-!$%^&*()_+|~=`{}\[\]:\";'<>?,.\/]*[A-Za-z]/;
     const isAscii = rgx.test(value);
+    const isRtl = rtl ?? this.configService.getConfig().rtl;
     if (isAscii) {
       if (value) {
         element.style.direction = 'ltr';
         element.style.textAlign = 'left';
       } else {
-        element.style.direction = rtl ? 'rtl' : 'ltr';
-        element.style.textAlign = rtl ? 'right' : 'left';
+        element.style.direction = isRtl ? 'rtl' : 'ltr';
+        element.style.textAlign = isRtl ? 'right' : 'left';
       }
     } else {
       if (value) {
         element.style.direction = 'rtl';
         element.style.textAlign = 'right';
       } else {
-        element.style.direction = rtl ? 'rtl' : 'ltr';
-        element.style.textAlign = rtl ? 'right' : 'left';
+        element.style.direction = isRtl ? 'rtl' : 'ltr';
+        element.style.textAlign = isRtl ? 'right' : 'left';
       }
     }
   }
