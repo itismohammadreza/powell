@@ -18,6 +18,7 @@
   p-button-{{ rounded ? 'rounded' : '' }}
   p-button-{{ raised ? 'raised' : '' }}"
   (onClick)="_onClick($event)">
+  <ng-content></ng-content>
   <ng-template pTemplate="content" *ngIf="contentTemplate">
     <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
   </ng-template>
