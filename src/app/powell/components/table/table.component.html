@@ -199,10 +199,10 @@
               </p-columnFilter>
             </ng-container>
           </th>
-          <ng-container *ngIf="actionsConfig?.inSameColumn && allActionsVisible()">
+          <ng-container *ngIf="actionsConfig?.inSameColumn && actionsConfig?.actions.length">
             <th class="text-center">{{actionsConfig.header}}</th>
           </ng-container>
-          <ng-container *ngIf="!actionsConfig?.inSameColumn && allActionsVisible()">
+          <ng-container *ngIf="!actionsConfig?.inSameColumn && actionsConfig?.actions.length">
             <ng-container *ngFor="let action of actionsConfig?.actions">
               <th class="text-center" *ngIf="action.visible">{{action.header}}</th>
             </ng-container>
@@ -222,11 +222,13 @@
             {{ col.header }}
             <p-sortIcon *ngIf="col.sort" [field]="col.field"></p-sortIcon>
           </th>
-          <ng-container *ngIf="actionsConfig && actionsConfig.inSameColumn">
+          <ng-container *ngIf="actionsConfig?.inSameColumn && actionsConfig?.actions.length">
             <th>{{actionsConfig.header}}</th>
           </ng-container>
-          <ng-container *ngIf="actionsConfig && !actionsConfig.inSameColumn">
-            <th class="text-center" *ngFor="let action of actionsConfig.actions">{{action.header}}</th>
+          <ng-container *ngIf="!actionsConfig?.inSameColumn && actionsConfig?.actions.length">
+            <ng-container *ngFor="let action of actionsConfig?.actions">
+              <th class="text-center" *ngIf="action.visible">{{action.header}}</th>
+            </ng-container>
           </ng-container>
         </tr>
         <tr>

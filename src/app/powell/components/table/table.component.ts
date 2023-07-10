@@ -183,6 +183,7 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);
+    this.actionsConfig.actions = this.actionsConfig?.actions.filter(action => action.visible) || [];
     this.colDef = this.colDef.filter(col => col.visible ?? true);
     this.colDef.forEach(conf => {
       if (conf.filter?.type == 'slider') {
@@ -396,10 +397,6 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   onGlobalFilterChange(event: any) {
     this.dataTable.filterGlobal(event.target.value, 'contains')
-  }
-
-  allActionsVisible() {
-    return this.actionsConfig?.actions.every(a => a.visible)
   }
 
   removeLoading = () => {
