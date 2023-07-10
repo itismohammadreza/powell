@@ -28,7 +28,7 @@ export class MultiSelectPage {
   disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   autofocusFilter: boolean = false;
-  defaultLabel: string = 'Choose';
+  defaultLabel: string = '';
   disabled: boolean = false;
   displaySelectedLabel: boolean = true;
   emptyFilterMessage: string = '';

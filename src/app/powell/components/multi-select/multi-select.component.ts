@@ -69,7 +69,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() autofocusFilter: boolean;
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: number;
-  @Input() defaultLabel: string = 'Choose';
+  @Input() defaultLabel: string;
   @Input() dataKey: string;
   @Input() disabled: boolean;
   @Input() displaySelectedLabel: boolean = true;
