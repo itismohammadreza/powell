@@ -6,6 +6,10 @@
       display: flex;
       position: relative;
 
+      .p-autocomplete-multiple-container .p-autocomplete-input-token input {
+        font-family: inherit;
+      }
+
       p-autoComplete,
       .p-autocomplete,
       .p-inputtext {
