@@ -398,6 +398,10 @@ export class TableComponent implements OnInit, AfterContentInit {
     this.dataTable.filterGlobal(event.target.value, 'contains')
   }
 
+  allActionsVisible() {
+    return this.actionsConfig?.actions.every(a => a.visible)
+  }
+
   removeLoading = () => {
     this.loading = false
   }

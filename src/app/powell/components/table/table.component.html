@@ -199,11 +199,13 @@
               </p-columnFilter>
             </ng-container>
           </th>
-          <ng-container *ngIf="actionsConfig && actionsConfig.inSameColumn">
-            <th>{{actionsConfig.header}}</th>
+          <ng-container *ngIf="actionsConfig?.inSameColumn && allActionsVisible()">
+            <th class="text-center">{{actionsConfig.header}}</th>
           </ng-container>
-          <ng-container *ngIf="actionsConfig && !actionsConfig.inSameColumn">
-            <th class="text-center" *ngFor="let action of actionsConfig.actions">{{action.header}}</th>
+          <ng-container *ngIf="!actionsConfig?.inSameColumn && allActionsVisible()">
+            <ng-container *ngFor="let action of actionsConfig?.actions">
+              <th class="text-center" *ngIf="action.visible">{{action.header}}</th>
+            </ng-container>
           </ng-container>
         </tr>
       </ng-container>
