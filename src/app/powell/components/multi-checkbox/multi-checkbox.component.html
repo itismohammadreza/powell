@@ -20,6 +20,7 @@
         [inputId]="item.id"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
         [disabled]="item[optionDisabled]"
+        [class]="item.styleClass"
         [name]="groupName"
         [value]="item[optionValue]"
         [readonly]="readonly"
