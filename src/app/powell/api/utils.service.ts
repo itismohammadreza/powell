@@ -67,18 +67,21 @@ export class UtilsService {
     download.src = imageUrl + cacheBuster;
   }
 
-  requestFullScreen(elem: any) {
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) {
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) {
-      elem.msRequestFullscreen();
+  requestFullScreen(element?: any) {
+    if (!element) {
+      element = this.document;
+    }
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+      element.msRequestFullscreen();
     }
   }
 
   exitFullscreen() {
-    const doc = document as any;
+    const doc = this.document as any;
     if (doc.exitFullscreen) {
       doc.exitFullscreen();
     } else if (doc.webkitExitFullscreen) {
