@@ -5,7 +5,7 @@ form {
     width: 400px;
     z-index: 20000;
 
-    > *:not(ng-button) {
+    > *:not(small) {
       display: block;
       margin-bottom: 2rem;
     }
