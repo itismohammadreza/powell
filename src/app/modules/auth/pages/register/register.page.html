@@ -1,6 +1,6 @@
 <form class="row justify-content-center" [formGroup]="form">
   <div class="p-4 box rounded-4 shadow">
-    <ng-logo class="text-center mb-2"></ng-logo>
+    <ng-logo [disableNavigation]="true" class="text-center mb-2"></ng-logo>
     <h3 class="text-center">ثبت نام</h3>
     <ng-input-text
       formControlName="email"

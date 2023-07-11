@@ -10,4 +10,6 @@ import {RouterModule} from "@angular/router";
 })
 export class LogoComponent {
   @Input() width: string = '100px';
+  @Input() link: string[] = ['/'];
+  @Input() disableNavigation: boolean = false;
 }
