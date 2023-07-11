@@ -12,10 +12,12 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginPage,
+        title: 'ورود'
       },
       {
         path: 'register',
         component: RegisterPage,
+        title: 'ثبت نام'
       },
       {
         path: '',
