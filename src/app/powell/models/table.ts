@@ -73,7 +73,9 @@ export interface NgTableAction<T = any> {
   iconPos?: NgIconPosition;
   rounded?: boolean;
   full?: boolean;
+  async?: boolean;
   size?: NgSize;
   visible?: boolean | ((item: T) => boolean);
   onClick?: (item: T, index: number) => void;
+  onClickAsync?: (callback: VoidFunction, item: T, index: number) => void;
 }

@@ -364,13 +364,15 @@
                     [appearance]="action.appearance"
                     [iconPos]="action.iconPos"
                     [rounded]="action.rounded"
+                    [async]="action.async"
                     [full]="action.full"
                     [styleClass]="action.styleClass"
                     [color]="action.color"
                     [size]="action.size"
                     [pTooltip]="action.tooltip"
                     [tooltipPosition]="action.tooltipPosition ?? 'top'"
-                    (onClick)="action.onClick(item,index)">
+                    (onClick)="action.onClick(item,index)"
+                    (onClickAsync)="action.onClickAsync($event,item,index)">
                   </ng-button>
                 </ng-container>
               </div>
@@ -385,13 +387,15 @@
                 [appearance]="action.appearance"
                 [iconPos]="action.iconPos"
                 [rounded]="action.rounded"
+                [async]="action.async"
                 [full]="action.full"
                 [styleClass]="action.styleClass"
                 [color]="action.color"
                 [size]="action.size"
                 [pTooltip]="action.tooltip"
                 [tooltipPosition]="action.tooltipPosition ?? 'top'"
-                (onClick)="action.onClick(item,index)">
+                (onClick)="action.onClick(item,index)"
+                (onClickAsync)="action.onClickAsync($event,item,index)">
               </ng-button>
             </td>
           </ng-container>
