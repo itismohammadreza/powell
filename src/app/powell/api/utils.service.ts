@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {DOCUMENT} from '@angular/common';
 import {fromEvent, merge, Observable, Observer} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -21,17 +21,28 @@ export class UtilsService {
     );
   }
 
-  getDirtyControls(form: FormGroup, type: 'object' | 'array' | 'names' = 'object') {
-    const kv = Object.entries(form.controls).filter(val => val[1].dirty && val[1].value != undefined);
-    const result = {
-      object: kv.reduce((accum, val) => Object.assign(accum, {[val[0]]: val[1].value}), {}),
-      array: kv.map(val => val[1]),
-      names: kv.map(val => val[0])
-    };
-    if (JSON.stringify(result[type]) == '{}') {
-      return null
+  getDirtyControls(form: FormGroup) {
+    const result = {};
+    const fillResult = (group: FormGroup, res: any) => Object.entries(group.controls).forEach(([name, control]) => {
+      if (control instanceof FormControl && control.dirty && !!control.value) {
+        res[name] = control.value;
+      } else if (control instanceof FormGroup && control.dirty) {
+        res[name] = {};
+        fillResult(control, res[name])
+      } else if (control instanceof FormArray && control.dirty) {
+        res[name] = {}
+        control.controls.forEach((g: FormGroup) => {
+          if (g.dirty) {
+            fillResult(g, res[name])
+          }
+        })
+      }
+    })
+    fillResult(form, result);
+    if (JSON.stringify(result) == '{}') {
+      return null;
     }
-    return result[type];
+    return result;
   }
 
   convertToTimeFormat(seconds: number) {
