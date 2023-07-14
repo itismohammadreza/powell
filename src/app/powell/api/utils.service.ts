@@ -26,7 +26,7 @@ export class UtilsService {
     const fillResult = (group: FormGroup, res: any) => Object.entries(group.controls).forEach(([name, control]) => {
       if (control instanceof FormControl && control.dirty && !!control.value) {
         res[name] = control.value;
-      } else if (control instanceof FormGroup && control.dirty) {
+      } else if (control instanceof FormGroup && Object.values(control).some(x => x.dirty && !!x.value)) {
         res[name] = {};
         fillResult(control, res[name])
       } else if (control instanceof FormArray && control.dirty) {
