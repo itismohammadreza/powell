@@ -72,5 +72,16 @@
         [showClear]="showClear"
       ></ng-input-text>
     </form>
+    <form [formGroup]="form2">
+      <input placeholder="c1" formControlName="c1">
+      <div formGroupName="c2">
+        <input placeholder="c21" formControlName="c21">
+        <input placeholder="c22" formControlName="c22">
+        <div formGroupName="c23">
+          <input placeholder="c231" formControlName="c231">
+          <input placeholder="c232" formControlName="c232">
+        </div>
+      </div>
+    </form>
   </p-panel>
 </div>

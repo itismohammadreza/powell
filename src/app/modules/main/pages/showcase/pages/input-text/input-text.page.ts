@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgIconPosition, NgInputType, NgKeyFilter, NgLabelPosition, NgSize} from '@powell/models';
-import {ConfigService} from "@powell/api";
+import {ConfigService, UtilsService} from "@powell/api";
 
 @Component({
   selector: 'ng-input-text-page',
@@ -34,8 +34,22 @@ export class InputTextPage {
   type: NgInputType = 'text';
   keyFilter: NgKeyFilter | RegExp = /.*/g;
   showClear: boolean = true;
+  form2 = new FormGroup({
+    c1: new FormControl(),
+    c2: new FormGroup({
+      c21: new FormControl(),
+      c22: new FormControl(),
+      c23: new FormGroup({
+        c231: new FormControl(),
+        c232: new FormControl()
+      })
+    })
+  })
 
-  constructor(private configService: ConfigService) {
+  constructor(private configService: ConfigService, private utl: UtilsService) {
+    setTimeout(() => {
+      console.log(this.utl.getDirtyControls(this.form2))
+    }, 5000)
   }
 
   akbarValidator(control: FormControl) {
