@@ -23,20 +23,31 @@ export class UtilsService {
 
   getDirtyControls(form: FormGroup) {
     const result = {};
-    const isAllChildrenDirty = (group: FormGroup) => {
-      // todo: fillOut this function. + test in input text page
-      return true
+    const isDirty = (control: AbstractControl) => {
+      if (control instanceof FormGroup) {
+        return Object.values(control.controls).some((c: AbstractControl) => c.dirty && isDirty(c))
+      }
+      if (control instanceof FormControl) {
+        return control.value && control.dirty
+      }
+      if (control instanceof FormArray) {
+        return control.controls.some(g => isDirty(g))
+      }
     }
     const fillResult = (group: FormGroup, res: any) => Object.entries(group.controls).forEach(([name, control]) => {
-      if (control instanceof FormControl && control.dirty && control.value) {
-        res[name] = control.value;
-      } else if (control instanceof FormGroup && isAllChildrenDirty(control)) {
+      if (control instanceof FormControl && isDirty(control)) {
+        if (Array.isArray(res)) {
+          res.push({[name]: control.value})
+        } else {
+          res[name] = control.value;
+        }
+      } else if (control instanceof FormGroup && isDirty(control)) {
         res[name] = {};
         fillResult(control, res[name])
-      } else if (control instanceof FormArray) {
-        res[name] = {}
+      } else if (control instanceof FormArray && isDirty(control)) {
+        res[name] = [];
         control.controls.forEach((g: FormGroup) => {
-          if (g.dirty) {
+          if (isDirty(g)) {
             fillResult(g, res[name])
           }
         })
