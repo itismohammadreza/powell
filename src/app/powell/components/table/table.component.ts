@@ -399,7 +399,11 @@ export class TableComponent implements OnInit, AfterContentInit {
     this.dataTable.filterGlobal(event.target.value, 'contains')
   }
 
-  removeLoading = () => {
+  removeLoading = (ok: boolean = true) => {
     this.loading = false
+    if (!ok) {
+      this.dataTable.reset();
+      this.activeSortField = null
+    }
   }
 }
