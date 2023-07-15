@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms';
 import {DOCUMENT} from '@angular/common';
-import {fromEvent, merge, Observable, Observer} from 'rxjs';
+import {fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {ConfigService} from "@powell/api/config.service";
 
@@ -14,7 +14,7 @@ export class UtilsService {
     return merge(
       fromEvent(this.document.defaultView, 'offline').pipe(map(() => false)),
       fromEvent(this.document.defaultView, 'online').pipe(map(() => true)),
-      new Observable((observer: Observer<boolean>) => {
+      new Observable<boolean>(observer => {
         observer.next(navigator.onLine);
         observer.complete();
       })
