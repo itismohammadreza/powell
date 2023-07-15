@@ -45,6 +45,7 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor, OnDestro
   @Input() onLabel: string;
   @Input() offLabel: string;
   @Input() async: boolean;
+  @Input() showAsyncLoading: boolean = true;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() disabled: boolean;

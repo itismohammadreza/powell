@@ -26,7 +26,7 @@
       [class.p-disabled]="disabled">
       {{ label | ngLabelStar:showRequiredStar:ngControl }}
     </label>
-    <p-progressSpinner *ngIf="loading" strokeWidth="4" fill="var(--surface-ground)"></p-progressSpinner>
+    <p-progressSpinner *ngIf="loading && showAsyncLoading" strokeWidth="4" fill="var(--surface-ground)"></p-progressSpinner>
   </div>
   <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
   <div class="message p-error">

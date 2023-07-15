@@ -46,6 +46,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor, OnDestroy 
   @Input() onLabel: string;
   @Input() offLabel: string;
   @Input() async: boolean;
+  @Input() showAsyncLoading: boolean = true;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() style: any;

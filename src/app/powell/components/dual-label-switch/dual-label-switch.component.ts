@@ -48,6 +48,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor, O
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() async: boolean;
+  @Input() showAsyncLoading: boolean = true;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() style: any;

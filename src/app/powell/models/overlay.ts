@@ -687,6 +687,7 @@ export interface NgDialogFormConfig {
   onSlideEnd?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// switch /////////////////////////////////////////
   async?: boolean;
+  showAsyncLoading?: boolean;
   trueValue?: any;
   falseValue?: any;
   onChangeAsync?: (dialogFormEvent?: NgDialogFormEventRes) => void;
