@@ -7,7 +7,8 @@ import {NgConfig} from "@powell/models";
 import {appConfig} from "@core/config";
 import {PrimeMenuItem} from "@powell/primeng/api";
 import {
-  PrimeAvatarModule, PrimeDividerModule,
+  PrimeAvatarModule,
+  PrimeDividerModule,
   PrimeMenubarModule,
   PrimeMenuModule,
   PrimePanelMenuModule,

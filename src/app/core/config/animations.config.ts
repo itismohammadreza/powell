@@ -1,4 +1,4 @@
-import {animate, AnimationTriggerMetadata, group, query, style, transition, trigger} from '@angular/animations';
+import {animate, group, query, style, transition, trigger} from '@angular/animations';
 import {AnimationDefinition} from "@core/models";
 
 const SlideAnimation = [

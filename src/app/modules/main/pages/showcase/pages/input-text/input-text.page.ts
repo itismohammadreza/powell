@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgIconPosition, NgInputType, NgKeyFilter, NgLabelPosition, NgSize} from '@powell/models';
-import {ConfigService, UtilsService} from "@powell/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-input-text-page',

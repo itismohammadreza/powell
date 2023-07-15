@@ -1,6 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
-import {Observable} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
 import {appConfig} from "@core/config";
 
