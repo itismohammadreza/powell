@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '@core/http';
 import {Router} from '@angular/router';
+import {samePasswordsValidator} from "@core/utils";
 
 @Component({
   selector: 'ng-register-page',
@@ -13,7 +14,7 @@ export class RegisterPage {
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required]),
     confirmPassword: new FormControl(null, [Validators.required]),
-  }, {validators: this.checkPasswords});
+  }, {validators: samePasswordsValidator('password', 'confirmPassword')});
 
   constructor(private authService: AuthService, private router: Router) {
   }
@@ -30,11 +31,5 @@ export class RegisterPage {
     } catch (e) {
       callback()
     }
-  }
-
-  checkPasswords(group: AbstractControl) {
-    const pass = group.get('password').value;
-    const confirmPass = group.get('confirmPassword').value;
-    return pass === confirmPass ? null : {notSame: true};
   }
 }
