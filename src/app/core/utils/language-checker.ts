@@ -2,7 +2,7 @@ import {TranslationService} from '@core/utils';
 import {inject} from "@angular/core";
 
 export class LanguageChecker {
-  protected translationService: TranslationService;
+  protected readonly translationService: TranslationService;
 
   constructor() {
     this.translationService = inject(TranslationService);
