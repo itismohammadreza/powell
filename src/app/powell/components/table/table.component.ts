@@ -402,7 +402,6 @@ export class TableComponent implements OnInit, AfterContentInit {
   removeLoading = (ok: boolean = true) => {
     this.loading = false
     if (!ok) {
-      this.dataTable.reset();
       this.activeSortField = null
     }
   }
