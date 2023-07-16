@@ -25,10 +25,10 @@
       placeholder="تکرار رمز عبور"
       [validation]="{'required': 'این فیلد الزامیست.'}"
     ></ng-input-text>
-    <small class="p-error text-center"
+    <p class="p-error small text-center"
            *ngIf="form.hasError('notSame') && !form.get('confirmPassword').hasError('required')">
       رمزعبور و تکرار مطابقت ندارند
-    </small>
+    </p>
     <ng-button
       [full]="true"
       [async]="true"
