@@ -8,4 +8,4 @@ export const samePasswordsValidator = (passwordField: string, confirmPasswordFie
   }
 }
 
-export const phoneValidator = Validators.pattern(/^(?:0|98|\+98|\+980|0098|098|00980)?(9\d{9})$/gm);
+export const phoneValidator = Validators.pattern(/^(?:0|98|\+98|\+980|0098|098|00980)?(9\d{9})$/);
