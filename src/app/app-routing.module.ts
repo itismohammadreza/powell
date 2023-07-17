@@ -28,7 +28,8 @@ export const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       initialNavigation: 'enabledBlocking',
-      scrollPositionRestoration: 'top'
+      scrollPositionRestoration: 'top',
+      useHash: true
     }),
   ],
   exports: [RouterModule],
