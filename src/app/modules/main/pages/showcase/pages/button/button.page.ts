@@ -19,13 +19,13 @@ export class ButtonPage {
   color: NgColor = 'primary';
   badgeColor: NgColor = 'secondary';
   size: NgSize = 'md';
-  async: boolean = true;
+  async: boolean = false;
   newLabel: string = 'New Label';
   newColor: NgColor = 'secondary';
 
   onClickAsync(loadingCallback) {
     setTimeout(() => {
-      loadingCallback()
+      loadingCallback(true)
     }, 3000)
   }
 }
