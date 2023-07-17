@@ -94,7 +94,8 @@
 }
 
 .p-bottom-sheet {
-  .p-sidebar-header {
+  .p-sidebar-header,
+  .p-sidebar-footer {
     display: none;
   }
 
