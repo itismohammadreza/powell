@@ -1,5 +1,12 @@
 import {Injectable} from '@angular/core';
-import {HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse,} from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse,
+  HttpResponseBase,
+} from '@angular/common/http';
 import {finalize, of, tap, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {OverlayService} from '@powell/api';
@@ -19,10 +26,8 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     const clonedReq = request.clone();
-    const shouldCatch = this.getRequestProp(request, 'catch');
-    const shouldLoading = this.getRequestProp(request, 'loading');
-    const successMessage = this.getRequestProp(request, 'successMessage');
-    const failureMessage = this.getRequestProp(request, 'failureMessage');
+    const shouldCatch = this.getRequestProp(request, null, 'catch');
+    const shouldLoading = this.getRequestProp(request, null, 'loading');
 
     if (shouldCatch) {
       const cachedResponse = this.cachedRequests.get(request.url);
@@ -37,28 +42,30 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     }
 
     return next.handle(clonedReq).pipe(
-      tap((event: any) => {
-        if (!(event instanceof HttpResponse) || /2\d+/.test(event.status.toString()) == false) {
+      tap((response: any) => {
+        const successMessage = this.getRequestProp(request, response, 'successMessage');
+        if (!(response instanceof HttpResponse) || /2\d+/.test(response.status.toString()) == false) {
           return;
         }
         if (![false, undefined].includes(successMessage)) {
-          this.showSuccessToast(successMessage ?? event.body.message)
+          this.showSuccessToast(successMessage ?? response.body.message)
         }
         if (shouldCatch) {
-          this.cachedRequests.set(request.url, event);
+          this.cachedRequests.set(request.url, response);
         }
         this.removeRequestFromQueue(clonedReq);
       }),
-      catchError((event: HttpErrorResponse) => {
+      catchError((httpError: HttpErrorResponse) => {
+        const failureMessage = this.getRequestProp(request, httpError, 'failureMessage');
         if (![false, undefined].includes(failureMessage)) {
-          const {error_description} = event.error;
+          const {error_description} = httpError.error;
           this.showFailureToast(failureMessage ?? error_description);
         }
-        if (event.status === 403) {
+        if (httpError.status === 403) {
           this.authService.logout();
         }
         this.removeRequestFromQueue(clonedReq);
-        return throwError(() => event);
+        return throwError(() => httpError);
       }),
       finalize(() => {
         this.removeRequestFromQueue(clonedReq);
@@ -120,13 +127,13 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     this.loaderService.setLoadingState(this.requestsQueue.length > 0);
   }
 
-  getRequestProp(request: HttpRequest<any>, prop: 'successMessage' | 'failureMessage' | 'catch' | 'loading') {
+  getRequestProp(request: HttpRequest<any>, response: HttpResponseBase, prop: 'successMessage' | 'failureMessage' | 'catch' | 'loading') {
     const requestConfig: any = this.getRequestConfig(request);
     if (!requestConfig) {
       return false;
     }
     if (typeof requestConfig[prop] === 'function') {
-      return requestConfig[prop](request);
+      return requestConfig[prop](request, response);
     } else {
       return requestConfig[prop];
     }
