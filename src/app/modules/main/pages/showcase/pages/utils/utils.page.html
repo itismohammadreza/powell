@@ -2,7 +2,7 @@
   <p-card header="Utils"
           subheader="Utils is a helper utility service to implement different things. Example below demonstrates how to use methods of it."></p-card>
   <p-panel [header]="'preview' | translate">
-    <ng-button (onClickAsync)="request($event)" label="HTTP Request"></ng-button>
+    <ng-button [async]="true" (onClickAsync)="request($event)" label="HTTP Request"></ng-button>
   </p-panel>
   <p-panel [header]="'preview' | translate">
     <ng-button (click)="modal.open()" label="Custom Dialog"></ng-button>

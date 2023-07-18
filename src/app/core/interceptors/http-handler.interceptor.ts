@@ -69,14 +69,14 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
   showSuccessToast(message: string) {
     this.overlayService.showToast({
       severity: 'success',
-      detail: message === null ? 'با موفقیت انجام شد' : message,
+      detail: message ?? 'با موفقیت انجام شد'
     });
   }
 
   showFailureToast(message: string) {
     this.overlayService.showToast({
       severity: 'error',
-      detail: message === null ? 'خطایی رخ داده است' : message,
+      detail: message ?? 'خطایی رخ داده است'
     });
   }
 
