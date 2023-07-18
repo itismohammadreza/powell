@@ -6,15 +6,10 @@ import {OverlayService} from '@powell/api';
 import {AuthService} from '@core/http';
 import {RequestsConfig} from "@core/config";
 import {LoaderService} from "@core/utils";
-import {RequestConfig} from "@core/models";
 
 @Injectable()
 export class HttpHandlerInterceptor implements HttpInterceptor {
   requestsQueue: HttpRequest<any>[] = [];
-  hasSuccessMessageApis = RequestsConfig.filter(r => r.success);
-  hasFailureMessageApis = RequestsConfig.filter(r => r.failure);
-  hasLoadingApis = RequestsConfig.filter(r => r.loading);
-  catchEnabledApis = RequestsConfig.filter(r => r.catch);
   cachedRequests = new Map<string, any>();
 
   constructor(private overlayService: OverlayService,
@@ -24,10 +19,10 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     const clonedReq = request.clone();
-    const shouldShowSuccess = this.isRequestFounded(this.hasSuccessMessageApis, request);
-    const shouldShowFailure = this.isRequestFounded(this.hasFailureMessageApis, request);
-    const shouldShowLoading = this.isRequestFounded(this.hasLoadingApis, request);
-    const shouldCatch = this.isRequestFounded(this.catchEnabledApis, request);
+    const shouldCatch = this.getRequestProp(request, 'catch');
+    const shouldLoading = this.getRequestProp(request, 'loading');
+    const successMessage = this.getRequestProp(request, 'successMessage');
+    const failureMessage = this.getRequestProp(request, 'failureMessage');
 
     if (shouldCatch) {
       const cachedResponse = this.cachedRequests.get(request.url);
@@ -36,7 +31,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
       }
     }
 
-    if (shouldShowLoading) {
+    if (shouldLoading) {
       this.requestsQueue.push(clonedReq);
       this.loaderService.setLoadingState(true);
     }
@@ -46,8 +41,8 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
         if (!(event instanceof HttpResponse) || /2\d+/.test(event.status.toString()) == false) {
           return;
         }
-        if (shouldShowSuccess) {
-          this.showSuccessToast('', event.body.message)
+        if (![false, undefined].includes(successMessage)) {
+          this.showSuccessToast(successMessage ?? event.body.message)
         }
         if (shouldCatch) {
           this.cachedRequests.set(request.url, event);
@@ -55,9 +50,9 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
         this.removeRequestFromQueue(clonedReq);
       }),
       catchError((event: HttpErrorResponse) => {
-        if (shouldShowFailure) {
-          const {error, error_description} = event.error;
-          this.showFailureToast(error, error_description);
+        if (![false, undefined].includes(failureMessage)) {
+          const {error_description} = event.error;
+          this.showFailureToast(failureMessage ?? error_description);
         }
         if (event.status === 403) {
           this.authService.logout();
@@ -71,25 +66,23 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     );
   }
 
-  showSuccessToast(summary: string, detail: string) {
+  showSuccessToast(message: string) {
     this.overlayService.showToast({
       severity: 'success',
-      summary,
-      detail,
+      detail: message === null ? 'با موفقیت انجام شد' : message,
     });
   }
 
-  showFailureToast(summary: string, detail: string) {
+  showFailureToast(message: string) {
     this.overlayService.showToast({
       severity: 'error',
-      summary,
-      detail,
+      detail: message === null ? 'خطایی رخ داده است' : message,
     });
   }
 
-  isRequestFounded(targetArray: RequestConfig[], request: HttpRequest<any>) {
+  getRequestConfig(request: HttpRequest<any>) {
     const {pathname} = this.getUrlParts(request.url);
-    const foundedIndex = targetArray.findIndex(x => {
+    const idx = RequestsConfig.findIndex(x => {
       const requestMethodMatch = x.method === request.method;
       const requestPathMatch = () => {
         if (x.pathTemplate instanceof RegExp) {
@@ -105,7 +98,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
       }
       return requestMethodMatch && requestPathMatch();
     });
-    return foundedIndex >= 0;
+    return RequestsConfig[idx];
   }
 
   getUrlParts(url: string) {
@@ -125,5 +118,17 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
       this.requestsQueue.splice(i, 1);
     }
     this.loaderService.setLoadingState(this.requestsQueue.length > 0);
+  }
+
+  getRequestProp(request: HttpRequest<any>, prop: 'successMessage' | 'failureMessage' | 'catch' | 'loading') {
+    const requestConfig: any = this.getRequestConfig(request);
+    if (!requestConfig) {
+      return false;
+    }
+    if (typeof requestConfig[prop] === 'function') {
+      return requestConfig[prop](request);
+    } else {
+      return requestConfig[prop];
+    }
   }
 }

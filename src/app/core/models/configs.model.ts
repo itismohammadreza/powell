@@ -1,4 +1,5 @@
 import {AnimationTransitionMetadata, AnimationTriggerMetadata} from "@angular/animations";
+import {HttpRequest} from "@angular/common/http";
 
 export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 export type SidebarType = 'overlay' | 'push' | 'overlay-mask' | 'push-mask' | 'static' | 'hover' | 'horizontal';
@@ -16,8 +17,9 @@ export interface AppConfig {
 export interface RequestConfig {
   pathTemplate?: string | RegExp,
   method: RequestMethod;
-  loading?: boolean,
-  success?: boolean,
-  failure?: boolean,
-  catch?: boolean,
+  // null: default message, false: don't show message, string: custom message
+  successMessage?: string | null | false | ((request: HttpRequest<any>) => string | null | false),
+  failureMessage?: string | null | false | ((request: HttpRequest<any>) => string | null | false),
+  catch?: boolean | ((request: HttpRequest<any>) => boolean),
+  loading?: boolean | ((request: HttpRequest<any>) => boolean),
 }
