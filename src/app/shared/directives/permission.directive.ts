@@ -81,10 +81,10 @@ Usage Sample :
 /*
 Mode 2 for this directive :
   ngOnInit() {
-    if (this.sessionService.currentUser.role !== this.permission) {
-      this.viewContainer.clear();
-    } else {
+    if (this.authService.hasPermission(this.ngPermission)) {
       this.viewContainer.createEmbeddedView(this.templateRef);
+    } else {
+      this.viewContainer.clear();
     }
   }
 
