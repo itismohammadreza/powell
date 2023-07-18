@@ -40,9 +40,9 @@ import {PrimeTable} from "@powell/primeng";
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, AfterContentInit {
-  @Input() items: any[];
+  @Input({required: true}) items: any[];
   @Input() filterDisplay: NgTableFilterDisplay = 'menu';
-  @Input() colDef: NgTableColDef[];
+  @Input({required: true}) colDef: NgTableColDef[];
   @Input() reorderableRows: boolean;
   @Input() selectableRows: boolean;
   @Input() actionsConfig: NgTableActionsConfig;

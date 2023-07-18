@@ -29,8 +29,13 @@ export class UtilsPage implements OnDestroy {
     });
   }
 
-  async request() {
-    await this.userService.get();
+  async request(callback: VoidFunction) {
+    try {
+      await this.userService.get();
+      callback();
+    } catch {
+      callback();
+    }
   }
 
   onInputChange(event) {
