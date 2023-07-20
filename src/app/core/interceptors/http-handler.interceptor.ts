@@ -13,6 +13,7 @@ import {OverlayService} from '@powell/api';
 import {AuthService} from '@core/http';
 import {RequestsConfig} from "@core/config";
 import {LoaderService} from "@core/utils";
+import {RequestConfig} from "@core/models";
 
 @Injectable()
 export class HttpHandlerInterceptor implements HttpInterceptor {
@@ -127,7 +128,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     this.loaderService.setLoadingState(this.requestsQueue.length > 0);
   }
 
-  getRequestProp(request: HttpRequest<any>, response: HttpResponseBase, prop: 'successMessage' | 'failureMessage' | 'catch' | 'loading') {
+  getRequestProp(request: HttpRequest<any>, response: HttpResponseBase, prop: keyof RequestConfig) {
     const requestConfig: any = this.getRequestConfig(request);
     if (!requestConfig) {
       return false;
