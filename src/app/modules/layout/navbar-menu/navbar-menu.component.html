@@ -15,6 +15,7 @@
           (click)="toggleSidebarClick()">
         </ng-button>
       </span>
+      <ng-logo width="35px" type="logo-only"></ng-logo>
       <a target="_blank" href="https://github.com/mohammadreza99/powell">
         <ng-button appearance="text" icon="pi pi-github" label="16.0.2"></ng-button>
       </a>
@@ -29,7 +30,7 @@
   <main>
     <p-menubar [model]="sidebarItems" *ngIf="tempSidebarType == 'horizontal'">
       <ng-template pTemplate="start">
-        <ng-logo width="50px"></ng-logo>
+        <ng-logo></ng-logo>
       </ng-template>
     </p-menubar>
 
@@ -47,7 +48,7 @@
     <ng-template pTemplate="header">
       <div class="sticky-top section-top flex-grow-1">
         <div class="d-flex align-items-center justify-content-between">
-          <ng-logo width="50px"></ng-logo>
+          <ng-logo></ng-logo>
           <i class="d-none d-md-block border rounded-circle pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
              (click)="toggleLockSidebarClick()"></i>
         </div>
