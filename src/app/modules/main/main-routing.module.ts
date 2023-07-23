@@ -12,7 +12,6 @@ const routes: Routes = [
     children: [
       {
         path: 'showcase',
-        title: 'پیشنمایش',
         loadChildren: () => import('./pages/showcase/showcase.module').then((m) => m.ShowcaseModule),
         // permissions usage :
         // data: {permissions: routePermissions['showcase']}
