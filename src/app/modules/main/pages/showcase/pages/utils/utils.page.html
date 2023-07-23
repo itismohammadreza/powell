@@ -3,16 +3,15 @@
           subheader="Utils is a helper utility service to implement different things. Example below demonstrates how to use methods of it."></p-card>
   <p-panel [header]="'preview' | translate">
     <ng-button [async]="true" (onClickAsync)="request($event)" label="HTTP Request"></ng-button>
-  </p-panel>
-  <p-panel [header]="'preview' | translate">
     <ng-button (click)="modal.open()" label="Custom Dialog"></ng-button>
-  </p-panel>
-  <p-panel [header]="'preview' | translate">
     <ng-button (click)="showCustomDynamicDialog()" label="Custom Dynamic Dialog"></ng-button>
-    <p class="mb-0"><b> Custom Dynamic Dialog Result: </b> {{customDynamicDialogResult}} </p>
-  </p-panel>
-  <p-panel [header]="'preview' | translate">
-    <ng-input-number (onInput)="onInputChange($event)"></ng-input-number>
+    <p class="mt-3 mb-0" *ngIf="customDynamicDialogResult">
+      <b> Custom Dynamic Dialog Result: </b>
+      {{customDynamicDialogResult}}
+    </p>
+    <p-divider></p-divider>
+    <h6>{{'numberToPersianWord' | translate}}</h6>
+    <ng-input-number [placeholder]="'typeNumber' | translate" (onInput)="onInputChange($event)"></ng-input-number>
     <p class="mt-3 border rounded p-2">{{persianWord || '-'}}</p>
   </p-panel>
 </div>

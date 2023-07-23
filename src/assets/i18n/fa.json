@@ -236,5 +236,7 @@
   "options": "تنظیمات",
   "searchComponents": "جستجوی کامپوننت ها...",
   "siteConfigs": "تنظیمات سایت",
-  "componentsGlobalConfigs": "تنظیمات کلی کامپوننت ها"
+  "componentsGlobalConfigs": "تنظیمات کلی کامپوننت ها",
+  "numberToPersianWord": "تبدیل عدد به حرف : ",
+  "typeNumber": "عددی بنویسید..."
 }

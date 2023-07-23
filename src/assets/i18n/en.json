@@ -236,5 +236,7 @@
   "options": "Options",
   "searchComponents": "Search Components...",
   "siteConfigs": "Site Configs",
-  "componentsGlobalConfigs": "Components Global Configs"
+  "componentsGlobalConfigs": "Components Global Configs",
+  "numberToPersianWord": "Number To Persian Word: ",
+  "typeNumber": "Type a number..."
 }
