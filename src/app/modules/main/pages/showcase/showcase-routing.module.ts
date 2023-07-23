@@ -2,278 +2,273 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {openDialogGuard} from "@core/guard";
 
-const routes: Routes = [
+export const routes: Routes = [
   {
-    path: 'dashboard',
+    path: '',
     loadChildren: () => import('./pages/dashboard/dashboard-page.module').then(m => m.DashboardPageModule),
-    title: 'dashboard'
+    title: 'Home'
   },
   {
     path: 'animate-on-scroll',
     loadChildren: () => import('./pages/animate-on-scroll/animate-on-scroll-page.module').then(m => m.AnimateOnScrollPageModule),
-    title: 'animate-on-scroll'
+    title: 'Animate On Scroll'
   },
   {
     path: 'auto-complete',
     loadChildren: () => import('./pages/auto-complete/auto-complete-page.module').then(m => m.AutoCompletePageModule),
-    title: 'auto-complete'
+    title: 'Auto Complete'
   },
   {
     path: 'bottom-sheet',
     loadChildren: () => import('./pages/bottom-sheet/bottom-sheet-page.module').then(m => m.BottomSheetPageModule),
     canDeactivate: [openDialogGuard],
-    title: 'bottom-sheet'
+    title: 'Bottom Sheet'
   },
   {
     path: 'button',
     loadChildren: () => import('./pages/button/button-page.module').then(m => m.ButtonPageModule),
-    title: 'button'
+    title: 'Button'
   },
   {
     path: 'cascade-select',
     loadChildren: () => import('./pages/cascade-select/cascade-select-page.module').then(m => m.CascadeSelectPageModule),
-    title: 'cascade-select'
+    title: 'Cascade Select'
   },
   {
     path: 'checkbox',
     loadChildren: () => import('./pages/checkbox/checkbox-page.module').then(m => m.CheckboxPageModule),
-    title: 'checkbox'
+    title: 'Checkbox'
   },
   {
     path: 'chips',
     loadChildren: () => import('./pages/chips/chips-page.module').then(m => m.ChipsPageModule),
-    title: 'chips'
+    title: 'Chips'
   },
   {
     path: 'color-picker',
     loadChildren: () => import('./pages/color-picker/color-picker-page.module').then(m => m.ColorPickerPageModule),
-    title: 'color-picker'
+    title: 'Color Picker'
   },
   {
     path: 'confirm-dialog',
     loadChildren: () => import('./pages/confirm-dialog/confirm-dialog-page.module').then(m => m.ConfirmDialogPageModule),
     canDeactivate: [openDialogGuard],
-    title: 'confirm-dialog'
+    title: 'Confirm Dialog'
   },
   {
     path: 'confirm-popup',
     loadChildren: () => import('./pages/confirm-popup/confirm-popup-page.module').then(m => m.ConfirmPopupPageModule),
     canDeactivate: [openDialogGuard],
-    title: 'confirm-popup'
+    title: 'Confirm Popup'
   },
   {
     path: 'dialog',
     loadChildren: () => import('./pages/dialog/dialog-page.module').then(m => m.DialogPageModule),
     canDeactivate: [openDialogGuard],
-    title: 'dialog'
+    title: 'Dialog'
   },
   {
     path: 'dialog-form',
     loadChildren: () => import('./pages/dialog-form/dialog-form-page.module').then(m => m.DialogFormPageModule),
     canDeactivate: [openDialogGuard],
-    title: 'dialog-form'
+    title: 'Dialog Form'
   },
   {
     path: 'dropdown',
     loadChildren: () => import('./pages/dropdown/dropdown-page.module').then(m => m.DropdownPageModule),
-    title: 'dropdown'
+    title: 'Dropdown'
   },
   {
     path: 'dual-label-switch',
     loadChildren: () => import('./pages/dual-label-switch/dual-label-switch-page.module').then(m => m.DualLabelSwitchPageModule),
-    title: 'dual-label-switch'
+    title: 'Dual Label Switch'
   },
   {
     path: 'editor',
     loadChildren: () => import('./pages/editor/editor-page.module').then(m => m.EditorPageModule),
-    title: 'editor'
+    title: 'Editor'
   },
   {
     path: 'empty',
     loadChildren: () => import('./pages/empty/empty-page.module').then(m => m.EmptyPageModule),
-    title: 'empty'
+    title: 'Empty'
   },
   {
     path: 'file-picker',
     loadChildren: () => import('./pages/file-picker/file-picker-page.module').then(m => m.FilePickerPageModule),
-    title: 'file-picker'
+    title: 'File Picker'
   },
   {
     path: 'file-picker2',
     loadChildren: () => import('./pages/file-picker2/file-picker2-page.module').then(m => m.FilePicker2PageModule),
-    title: 'file-picker2'
+    title: 'File Picker2'
   },
   {
     path: 'gregorian-datepicker',
     loadChildren: () => import('./pages/gregorian-datepicker/gregorian-datepicker-page.module').then(m => m.GregorianDatepickerPageModule),
-    title: 'gregorian-datepicker'
+    title: 'Gregorian Datepicker'
   },
   {
     path: 'image',
     loadChildren: () => import('./pages/image/image-page.module').then(m => m.ImagePageModule),
-    title: 'image'
+    title: 'Image'
   },
   {
     path: 'image-slider',
     loadChildren: () => import('./pages/image-slider/image-slider-page.module').then(m => m.ImageSliderPageModule),
-    title: 'image-slider'
+    title: 'Image Slider'
   },
   {
     path: 'infinite-scroll',
     loadChildren: () => import('./pages/infinite-scroll/infinite-scroll-page.module').then(m => m.InfiniteScrollPageModule),
-    title: 'infinite-scroll'
+    title: 'Infinite Scroll'
   },
   {
     path: 'input-mask',
     loadChildren: () => import('./pages/input-mask/input-mask-page.module').then(m => m.InputMaskPageModule),
-    title: 'input-mask'
+    title: 'Input Mask'
   },
   {
     path: 'input-number',
     loadChildren: () => import('./pages/input-number/input-number-page.module').then(m => m.InputNumberPageModule),
-    title: 'input-number'
+    title: 'Input Number'
   },
   {
     path: 'input-otp',
     loadChildren: () => import('./pages/input-otp/input-otp-page.module').then(m => m.InputOtpPageModule),
-    title: 'input-otp'
+    title: 'Input Otp'
   },
   {
     path: 'input-password',
     loadChildren: () => import('./pages/input-password/input-password-page.module').then(m => m.InputPasswordPageModule),
-    title: 'input-password'
+    title: 'Input Password'
   },
   {
     path: 'input-text',
     loadChildren: () => import('./pages/input-text/input-text-page.module').then(m => m.InputTextPageModule),
-    title: 'input-text'
+    title: 'Input Text'
   },
   {
     path: 'input-textarea',
     loadChildren: () => import('./pages/input-textarea/input-textarea-page.module').then(m => m.InputTextareaPageModule),
-    title: 'input-textarea'
+    title: 'Input Textarea'
   },
   {
     path: 'iran-map',
     loadChildren: () => import('./pages/iran-map/iran-map-page.module').then(m => m.IranMapPageModule),
-    title: 'iran-map'
+    title: 'Iran Map'
   },
   {
     path: 'jalali-datepicker',
     loadChildren: () => import('./pages/jalali-datepicker/jalali-datepicker-page.module').then(m => m.JalaliDatepickerPageModule),
-    title: 'jalali-datepicker'
+    title: 'Jalali Datepicker'
   },
   {
     path: 'knob',
     loadChildren: () => import('./pages/knob/knob-page.module').then(m => m.KnobPageModule),
-    title: 'knob'
+    title: 'Knob'
   },
   {
     path: 'listbox',
     loadChildren: () => import('./pages/listbox/listbox-page.module').then(m => m.ListboxPageModule),
-    title: 'listbox'
+    title: 'Listbox'
   },
   {
     path: 'loading-container',
     loadChildren: () => import('./pages/loading-container/loading-container-page.module').then(m => m.LoadingContainerPageModule),
-    title: 'loading-container'
+    title: 'Loading Container'
   },
   {
     path: 'map',
     loadChildren: () => import('./pages/map/map-page.module').then(m => m.MapPageModule),
-    title: 'map'
+    title: 'Map'
   },
   {
     path: 'message',
     loadChildren: () => import('./pages/message/message-page.module').then(m => m.MessagePageModule),
-    title: 'message'
+    title: 'Message'
   },
   {
     path: 'multi-checkbox',
     loadChildren: () => import('./pages/multi-checkbox/multi-checkbox-page.module').then(m => m.MultiCheckboxPageModule),
-    title: 'multi-checkbox'
+    title: 'Multi Checkbox'
   },
   {
     path: 'multi-select',
     loadChildren: () => import('./pages/multi-select/multi-select-page.module').then(m => m.MultiSelectPageModule),
-    title: 'multi-select'
+    title: 'Multi Select'
   },
   {
     path: 'radio',
     loadChildren: () => import('./pages/radio/radio-page.module').then(m => m.RadioPageModule),
-    title: 'radio'
+    title: 'Radio'
   },
   {
     path: 'rating',
     loadChildren: () => import('./pages/rating/rating-page.module').then(m => m.RatingPageModule),
-    title: 'rating'
+    title: 'Rating'
   },
   {
     path: 'select-button',
     loadChildren: () => import('./pages/select-button/select-button-page.module').then(m => m.SelectButtonPageModule),
-    title: 'select-button'
+    title: 'Select Button'
   },
   {
     path: 'slider',
     loadChildren: () => import('./pages/slider/slider-page.module').then(m => m.SliderPageModule),
-    title: 'slider'
+    title: 'Slider'
   },
   {
     path: 'split-button',
     loadChildren: () => import('./pages/split-button/split-button-page.module').then(m => m.SplitButtonPageModule),
-    title: 'split-button'
+    title: 'Split Button'
   },
   {
     path: 'status',
     loadChildren: () => import('./pages/status/status-page.module').then(m => m.StatusPageModule),
-    title: 'status'
+    title: 'Status'
   },
   {
     path: 'switch',
     loadChildren: () => import('./pages/switch/switch-page.module').then(m => m.SwitchPageModule),
-    title: 'switch'
+    title: 'Switch'
   },
   {
     path: 'table',
     loadChildren: () => import('./pages/table/table-page.module').then(m => m.TablePageModule),
-    title: 'table'
+    title: 'Table'
   },
   {
     path: 'toast',
     loadChildren: () => import('./pages/toast/toast-page.module').then(m => m.ToastPageModule),
     canDeactivate: [openDialogGuard],
-    title: 'toast'
+    title: 'Toast'
   },
   {
     path: 'toggle-button',
     loadChildren: () => import('./pages/toggle-button/toggle-button-page.module').then(m => m.ToggleButtonPageModule),
-    title: 'toggle-button'
+    title: 'Toggle Button'
   },
   {
     path: 'tree',
     loadChildren: () => import('./pages/tree/tree-page.module').then(m => m.TreePageModule),
-    title: 'tree'
+    title: 'Tree'
   },
   {
     path: 'tree-select',
     loadChildren: () => import('./pages/tree-select/tree-select-page.module').then(m => m.TreeSelectPageModule),
-    title: 'tree-select'
+    title: 'Tree Select'
   },
   {
     path: 'tri-state-checkbox',
     loadChildren: () => import('./pages/tri-state-checkbox/tri-state-checkbox-page.module').then(m => m.TriStateCheckboxPageModule),
-    title: 'tri-state-checkbox'
+    title: 'Tri State Checkbox'
   },
   {
     path: 'utils',
     loadChildren: () => import('./pages/utils/utils-page.module').then(m => m.UtilsPageModule),
-    title: 'utils'
+    title: 'Utils'
   },
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
-  }
 ];
 
 @NgModule({
