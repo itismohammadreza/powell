@@ -93,7 +93,7 @@ export class InputNumberComponent implements OnInit, ControlValueAccessor, OnDes
   @Input() readonly: boolean;
   @Input() title: string;
   @Input() autocomplete: string;
-  @Input() showClear: boolean = false;
+  @Input() showClear: boolean;
   @Output() onFocus = new EventEmitter();
   @Output() onBlur = new EventEmitter();
   @Output() onInput = new EventEmitter();

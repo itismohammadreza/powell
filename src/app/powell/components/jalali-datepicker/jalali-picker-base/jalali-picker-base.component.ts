@@ -116,7 +116,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
   @Input() dateFormat: string;
   @Input() multipleSeparator: string = ',';
   @Input() rangeSeparator: string = '-';
-  @Input() inline: boolean = false;
+  @Input() inline: boolean;
   @Input() showOtherMonths: boolean = true;
   @Input() selectOtherMonths: boolean;
   @Input() showIcon: boolean;
@@ -131,11 +131,11 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
   @Input() stepHour: number = 1;
   @Input() stepMinute: number = 1;
   @Input() stepSecond: number = 1;
-  @Input() showSeconds: boolean = false;
+  @Input() showSeconds: boolean;
   @Input() required: boolean;
   @Input() showOnFocus: boolean = true;
-  @Input() showWeek: boolean = false;
-  @Input() showClear: boolean = false;
+  @Input() showWeek: boolean;
+  @Input() showClear: boolean;
   @Input() dataType: string = 'date';
   @Input() selectionMode: string = 'single';
   @Input() maxDateCount: number;
@@ -146,7 +146,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
   @Input() baseZIndex: number;
   @Input() panelStyleClass: string;
   @Input() panelStyle: any;
-  @Input() keepInvalid: boolean = false;
+  @Input() keepInvalid: boolean;
   @Input() hideOnDateTimeSelect: boolean = true;
   @Input() touchUI: boolean;
   @Input() timeSeparator: string = ":";

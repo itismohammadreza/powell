@@ -96,7 +96,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() autofocusFilter: boolean;
   @Input() resetFilterOnHide: boolean;
   @Input() dropdownIcon: string = 'pi pi-chevron-down';
-  @Input() autoDisplayFirst: boolean = false;
+  @Input() autoDisplayFirst: boolean;
   @Input() group: boolean;
   @Input() showClear: boolean;
   @Input() baseZIndex: number;
