@@ -6,7 +6,7 @@
      }">
   <nav class="navbar shadow-sm fixed-top" *ngIf="tempSidebarType != 'horizontal'">
     <div class="container-fluid">
-      <span>
+      <span class="d-flex align-items-center gap-2">
         <ng-button
           *ngIf="!sidebarLock && tempSidebarType != 'hover'"
           icon="pi pi-bars"
@@ -14,8 +14,8 @@
           appearance="text"
           (click)="toggleSidebarClick()">
         </ng-button>
+        <ng-logo></ng-logo>
       </span>
-      <ng-logo width="35px" type="logo-only"></ng-logo>
       <a target="_blank" href="https://github.com/mohammadreza99/powell">
         <ng-button appearance="text" icon="pi pi-github" label="16.0.2"></ng-button>
       </a>
@@ -46,18 +46,16 @@
     [closeOnEscape]="false"
     (visibleChange)="toggleSidebar($event)">
     <ng-template pTemplate="header">
-      <div class="sticky-top section-top flex-grow-1">
-        <div class="d-flex align-items-center justify-content-between">
-          <ng-logo></ng-logo>
-          <i class="d-none d-md-block border rounded-circle pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
-             (click)="toggleLockSidebarClick()"></i>
-        </div>
-        <ng-input-text [rtl]="config.rtl"
-                       inputSize="sm"
-                       class="d-block mt-3"
-                       [placeholder]="'searchComponents' | translate"
-                       [(ngModel)]="searchValue">
+      <div class="d-flex align-items-center w-100">
+        <ng-input-text
+          [rtl]="config.rtl"
+          class="flex-grow-1"
+          inputSize="sm"
+          [placeholder]="'searchComponents' | translate"
+          [(ngModel)]="searchValue">
         </ng-input-text>
+        <i role="button" class="ms-2 d-none d-md-inline border rounded-circle pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
+           (click)="toggleLockSidebarClick()"></i>
       </div>
     </ng-template>
     <p-panelMenu [multiple]="false" [model]="sidebarItems | ngFilter:searchValue:'label'"></p-panelMenu>
