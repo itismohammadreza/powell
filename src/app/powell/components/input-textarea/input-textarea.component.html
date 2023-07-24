@@ -39,7 +39,7 @@
         [class]="inputStyleClass"
         (blur)="_onBlur()"
         (change)="_onChange($event)"
-        (focus)="emitter('onFocus', $event)"
+        (focus)="_onFocus()"
         (input)="_onInput($event)"
         (keydown)="_onKeyDown($event)"
         (keyup)="_onKeyUp($event)"

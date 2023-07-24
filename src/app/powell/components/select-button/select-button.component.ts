@@ -117,10 +117,6 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
     });
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
-  }
-
   _onChange(event) {
     this.onModelChange(event.value);
     this.onChange.emit(event);

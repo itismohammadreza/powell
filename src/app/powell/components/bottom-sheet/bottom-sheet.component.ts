@@ -72,10 +72,6 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
     });
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
-  }
-
   _onShow() {
     this.visible = true;
     this.visibleChange.emit(this.visible);

@@ -47,8 +47,8 @@
         (onGroupChange)="_onGroupChange($event)"
         (onBeforeShow)="emitter('onBeforeShow', $event)"
         (onBeforeHide)="emitter('onBeforeHide', $event)"
-        (onShow)="_onShow()"
-        (onHide)="_onHide()"
+        (onShow)="emitter('onShow', $event)"
+        (onHide)="emitter('onHide', $event)"
         (onClear)="_onClear()">
         <ng-template pTemplate="option" let-option *ngIf="optionTemplate">
           <ng-container *ngTemplateOutlet="optionTemplate;context:{$implicit:option}"></ng-container>

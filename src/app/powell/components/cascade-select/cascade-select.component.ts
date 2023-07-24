@@ -143,14 +143,6 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
     (this[name] as EventEmitter<any>).emit(event);
   }
 
-  _onShow() {
-    this.onShow.emit();
-  }
-
-  _onHide() {
-    this.onHide.emit();
-  }
-
   _onClear() {
     this.onClear.emit();
     this.onModelChange(null);

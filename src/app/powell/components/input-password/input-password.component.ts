@@ -183,8 +183,8 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
     this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  _onFocus() {
+    this.onFocus.emit();
   }
 
   getId() {

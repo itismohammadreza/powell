@@ -111,8 +111,8 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
     this.onModelTouched();
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  _onFocus() {
+    this.onFocus.emit();
   }
 
   getId() {

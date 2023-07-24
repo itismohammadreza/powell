@@ -68,7 +68,7 @@
         [autocomplete]="autocomplete"
         [showClear]="showClear"
         (onBlur)="_onBlur()"
-        (onFocus)="emitter('onFocus',$event)"
+        (onFocus)="_onFocus()"
         (onInput)="_onInput($event)"
         (onClear)="_onClear()"
       ></p-inputNumber>

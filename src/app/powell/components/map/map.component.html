@@ -13,8 +13,14 @@
        [ngAddon]="addon"
        [addonDisabled]="disabled">
     <div>
-      <ng-button *ngIf="!readonly && showClear" class="clear-map-btn" [pTooltip]="clearTooltip" [icon]="clearIcon"
-                 size="sm" (click)="clearMap()"></ng-button>
+      <ng-button
+        *ngIf="!readonly && showClear"
+        class="clear-map-btn"
+        [pTooltip]="clearTooltip"
+        [icon]="clearIcon"
+        size="sm"
+        (click)="clearMap()">
+      </ng-button>
       <div
         leaflet
         [attr.id]="inputId"

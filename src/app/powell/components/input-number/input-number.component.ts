@@ -147,8 +147,8 @@ export class InputNumberComponent implements OnInit, ControlValueAccessor {
     this.onModelChange(null);
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  _onFocus() {
+    this.onFocus.emit();
   }
 
   getId() {
