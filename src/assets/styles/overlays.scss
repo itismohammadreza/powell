@@ -1,3 +1,5 @@
+@import "mixins";
+
 .p-confirm-popup {
   .p-confirm-popup-message {
     margin-left: 0;
@@ -90,6 +92,11 @@
         margin: 0 1rem 0 0;
       }
     }
+  }
+
+  @include media-breakpoint-down(md) {
+    width: 90%;
+    max-width: 90%;
   }
 }
 
