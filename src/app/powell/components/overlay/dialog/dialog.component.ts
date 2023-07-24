@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter} from '@angular/core';
+import {Component, EventEmitter} from '@angular/core';
 import {NgDialogOptions} from '@powell/models';
 
 @Component({

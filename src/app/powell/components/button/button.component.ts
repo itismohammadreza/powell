@@ -5,8 +5,10 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  Output, QueryList,
-  SimpleChanges, TemplateRef
+  Output,
+  QueryList,
+  SimpleChanges,
+  TemplateRef
 } from '@angular/core';
 import {NgButtonAppearance, NgButtonType, NgColor, NgIconPosition, NgSize} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
