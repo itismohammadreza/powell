@@ -47,7 +47,7 @@
         (onAdd)="_onAdd($event)"
         (onRemove)="_onRemove($event)"
         (onChipClick)="emitter('onChipClick', $event)"
-        (onFocus)="_onFocus($event)"
+        (onFocus)="emitter('onChipClick', $event)"
         (onBlur)="_onBlur()"
         (onClear)="_onClear()">
         <ng-template pTemplate="item" let-item *ngIf="itemTemplate">

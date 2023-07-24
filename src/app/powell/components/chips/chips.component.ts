@@ -150,8 +150,8 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
     this.onModelChange(null);
   }
 
-  _onFocus() {
-    this.onFocus.emit();
+  emitter(name: string, event: any) {
+    (this[name] as EventEmitter<any>).emit(event);
   }
 
   getId() {
