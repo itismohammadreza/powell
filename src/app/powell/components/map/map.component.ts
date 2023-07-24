@@ -6,7 +6,6 @@ import {
   Injector,
   Input,
   OnChanges,
-  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
@@ -24,7 +23,6 @@ import {
   Map,
   MapOptions,
   marker,
-  Marker,
   PanOptions,
   tileLayer,
   ZoomOptions,
@@ -40,8 +38,9 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgAddon, NgFixLabelPosition, NgValidation} from "@powell/models";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-map',
@@ -52,10 +51,11 @@ import {NgAddon, NgFixLabelPosition, NgValidation} from "@powell/models";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MapComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, OnDestroy {
+export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
   @Input() value: LatLngLiteral | LatLngLiteral[];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -156,7 +156,6 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, On
 
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   map: Map;
   layers: Layer[] = [];
   onModelChange: any = (_: any) => {
@@ -164,7 +163,9 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, On
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -353,10 +354,5 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges, On
     this.value = null;
     this.onModelChange(null);
     this.onClear.emit()
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

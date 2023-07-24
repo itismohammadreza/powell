@@ -6,7 +6,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
@@ -20,9 +19,10 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgValidation} from '@powell/models';
 import {UtilsService} from "@powell/api";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-input-textarea',
@@ -33,10 +33,11 @@ import {UtilsService} from "@powell/api";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputTextareaComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class InputTextareaComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -71,7 +72,6 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor, OnD
 
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -80,7 +80,8 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor, OnD
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
               private el: ElementRef,
-              private utilsService: UtilsService) {
+              private utilsService: UtilsService,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -193,10 +194,5 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor, OnD
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

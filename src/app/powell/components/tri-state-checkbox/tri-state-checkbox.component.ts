@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, EventEmitter, Injector, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -6,15 +6,25 @@ import {
   FormControlName,
   FormGroup,
   FormGroupDirective,
+  NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgValidation} from "@powell/models";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-tri-state-checkbox',
   templateUrl: './tri-state-checkbox.component.html',
   styleUrls: ['./tri-state-checkbox.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TriStateCheckboxComponent),
+      multi: true
+    },
+    DestroyService
+  ]
 })
 export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
@@ -37,13 +47,14 @@ export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
 
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -122,10 +133,5 @@ export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

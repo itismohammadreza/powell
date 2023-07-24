@@ -22,10 +22,11 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {PrimeScrollerOptions} from "@powell/primeng/api";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-auto-complete',
@@ -36,7 +37,8 @@ import {PrimeScrollerOptions} from "@powell/primeng/api";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => AutoCompleteComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
 export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlValueAccessor {
@@ -114,7 +116,6 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
 
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   itemTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
@@ -126,7 +127,9 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -270,10 +273,5 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

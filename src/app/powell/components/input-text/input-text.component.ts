@@ -6,7 +6,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
@@ -20,7 +19,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {
   NgAddon,
   NgIconPosition,
@@ -32,6 +31,7 @@ import {
   NgValidation
 } from '@powell/models';
 import {UtilsService} from "@powell/api";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-input-text',
@@ -42,10 +42,11 @@ import {UtilsService} from "@powell/api";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputTextComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -85,7 +86,6 @@ export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestr
 
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -94,7 +94,8 @@ export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestr
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
               private el: ElementRef,
-              private utilsService: UtilsService) {
+              private utilsService: UtilsService,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -213,10 +214,5 @@ export class InputTextComponent implements OnInit, ControlValueAccessor, OnDestr
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

@@ -2,12 +2,12 @@ import {
   AfterContentInit,
   ChangeDetectorRef,
   Component,
-  ContentChildren, ElementRef,
+  ContentChildren,
+  ElementRef,
   EventEmitter,
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -23,10 +23,11 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {UtilsService} from "@powell/api";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-input-password',
@@ -37,10 +38,11 @@ import {UtilsService} from "@powell/api";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputPasswordComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class InputPasswordComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
+export class InputPasswordComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -83,7 +85,6 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
 
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   contentTemplate: TemplateRef<any>;
   headerTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
@@ -95,7 +96,8 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
               private el: ElementRef,
-              private utilsService: UtilsService) {
+              private utilsService: UtilsService,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -228,10 +230,5 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

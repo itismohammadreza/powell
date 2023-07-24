@@ -7,7 +7,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
@@ -22,8 +21,9 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgSize, NgValidation} from "@powell/models";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-input-otp',
@@ -34,10 +34,11 @@ import {NgFixLabelPosition, NgSize, NgValidation} from "@powell/models";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputOtpComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAccessor, OnDestroy {
+export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input('value') set value(v: any) {
     this.setValue(v)
   };
@@ -72,7 +73,6 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
 
   form: FormGroup;
   ngControl: NgControl;
-  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -80,7 +80,8 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
-              private el: ElementRef) {
+              private el: ElementRef,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -339,10 +340,5 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

@@ -3,13 +3,15 @@ import {ConfigService, OverlayService} from "@powell/api";
 import {NgDialogFormOptions} from "@powell/models";
 import {FormControl, Validators} from "@angular/forms";
 import {Subject, takeUntil} from "rxjs";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-dialog-form-page',
   templateUrl: './dialog-form.page.html',
-  styleUrls: ['./dialog-form.page.scss']
+  styleUrls: ['./dialog-form.page.scss'],
+  providers: [DestroyService]
 })
-export class DialogFormPage implements OnDestroy {
+export class DialogFormPage {
   dialogForm: NgDialogFormOptions = {
     header: 'Dialog',
     draggable: false,
@@ -39,9 +41,10 @@ export class DialogFormPage implements OnDestroy {
   }
 
   flag = false;
-  destroy$ = new Subject<boolean>()
 
-  constructor(private overlayService: OverlayService, private configService: ConfigService) {
+  constructor(private overlayService: OverlayService,
+              private configService: ConfigService,
+              private destroy$: DestroyService) {
   }
 
   showDialogForm() {
@@ -158,10 +161,5 @@ export class DialogFormPage implements OnDestroy {
 
   akbarValidator(control: FormControl) {
     return control.value == 'akbar' ? {akbarDenied: true} : null
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

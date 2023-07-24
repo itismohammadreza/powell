@@ -6,7 +6,6 @@ import {
   Injector,
   Input,
   OnChanges,
-  OnDestroy,
   OnInit,
   Output,
   SimpleChanges
@@ -21,12 +20,13 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
 import {NgFixLabelPosition, NgValidation} from '@powell/models';
 import {EditorBaseComponent} from "@powell/components/editor";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-editor',
@@ -38,9 +38,10 @@ import {EditorBaseComponent} from "@powell/components/editor";
       useExisting: forwardRef(() => EditorComponent),
       multi: true,
     },
+    DestroyService
   ],
 })
-export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor, OnDestroy {
+export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -99,7 +100,6 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor,
 
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   editorInstance: EditorBaseComponent;
 
   onModelChange: any = (_: any) => {
@@ -107,7 +107,9 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor,
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -259,10 +261,5 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor,
       this.editorInstance.enabled()
     }
     this.cd.markForCheck()
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

@@ -1,14 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -19,8 +9,9 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgValidation} from '@powell/models';
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-checkbox',
@@ -31,10 +22,11 @@ import {NgValidation} from '@powell/models';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CheckboxComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class CheckboxComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class CheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -63,13 +55,14 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor, OnDestro
   loading: boolean;
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -179,10 +172,5 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor, OnDestro
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

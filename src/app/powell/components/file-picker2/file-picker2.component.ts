@@ -6,7 +6,6 @@ import {
   Injector,
   Input,
   OnChanges,
-  OnDestroy,
   OnInit,
   Output,
   SimpleChanges
@@ -21,9 +20,10 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgColor, NgFileResultType, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {UtilsService} from "@powell/api";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-file-picker2',
@@ -34,10 +34,11 @@ import {UtilsService} from "@powell/api";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => FilePicker2Component),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class FilePicker2Component implements OnInit, OnChanges, ControlValueAccessor, OnDestroy {
+export class FilePicker2Component implements OnInit, OnChanges, ControlValueAccessor {
   @Input() value: any = [];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -61,7 +62,6 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
 
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   filesToShow: { display: string | ArrayBuffer, name: string }[] = [];
   filesToEmit: (string | ArrayBuffer | File)[] = [];
   _chooseLabel: string;
@@ -73,7 +73,8 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   constructor(
     private cd: ChangeDetectorRef,
     private injector: Injector,
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    private destroy$: DestroyService
   ) {
   }
 
@@ -276,10 +277,5 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

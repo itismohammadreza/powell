@@ -7,7 +7,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -23,9 +22,10 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-cascade-select',
@@ -36,10 +36,11 @@ import {TemplateDirective} from '@powell/directives/template';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CascadeSelectComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class CascadeSelectComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
+export class CascadeSelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -79,14 +80,15 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
 
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   optionTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -196,10 +198,5 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

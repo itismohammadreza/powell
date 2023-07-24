@@ -1,14 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -19,8 +9,9 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgValidation} from '@powell/models';
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-switch',
@@ -31,10 +22,11 @@ import {NgFixLabelPosition, NgValidation} from '@powell/models';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SwitchComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class SwitchComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class SwitchComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -62,13 +54,14 @@ export class SwitchComponent implements OnInit, ControlValueAccessor, OnDestroy 
   loading: boolean;
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -177,10 +170,5 @@ export class SwitchComponent implements OnInit, ControlValueAccessor, OnDestroy 
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

@@ -44,7 +44,7 @@ import {
 import {DropdownComponent} from '@powell/components/dropdown';
 import {InputTextComponent} from '@powell/components/input-text';
 import {CheckboxComponent} from '@powell/components/checkbox';
-import {TranslationService} from "@core/utils";
+import {DestroyService, TranslationService} from "@core/utils";
 import {Subject, takeUntil} from "rxjs";
 import {ConfigService} from "@powell/api";
 
@@ -283,9 +283,10 @@ type PreviewItem =
 @Component({
   selector: 'ng-preview-options',
   templateUrl: './preview-options.component.html',
-  styleUrls: ['./preview-options.component.scss']
+  styleUrls: ['./preview-options.component.scss'],
+  providers: [DestroyService]
 })
-export class PreviewOptionsComponent implements OnInit, OnDestroy {
+export class PreviewOptionsComponent implements OnInit {
   @Input() label: string;
   @Output() labelChange = new EventEmitter()
   @Input() filled: boolean;
@@ -758,9 +759,10 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
   @Input() previewItems: PreviewItem[]
 
   cmpRefs: ComponentRef<any>[] = [];
-  destroy$ = new Subject<boolean>();
 
-  constructor(private translationService: TranslationService, private configService: ConfigService) {
+  constructor(private translationService: TranslationService,
+              private configService: ConfigService,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -907,10 +909,5 @@ export class PreviewOptionsComponent implements OnInit, OnDestroy {
     }
     this.cmpRefs.push(cmpRef);
     return cmpRef;
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete()
   }
 }

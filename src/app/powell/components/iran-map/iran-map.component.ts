@@ -7,7 +7,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
@@ -22,7 +21,8 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from "@angular/forms";
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-iran-map',
@@ -33,10 +33,11 @@ import {Subject, takeUntil} from "rxjs";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => IranMapComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAccessor, OnDestroy {
+export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() value: number | number[];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -277,7 +278,6 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   ]
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -285,7 +285,8 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
-              private el: ElementRef) {
+              private el: ElementRef,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -499,10 +500,5 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
     this.disabled = false;
     this.cd.detectChanges()
     this.onModelChange(this.value);
-  };
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

@@ -7,7 +7,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -23,9 +22,10 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-chips',
@@ -36,10 +36,11 @@ import {TemplateDirective} from '@powell/directives/template';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ChipsComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
+export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -79,14 +80,15 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
 
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   itemTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -194,10 +196,5 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

@@ -7,7 +7,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -23,7 +22,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {
   NgAddon,
   NgChipDisplayMode,
@@ -36,6 +35,7 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {PrimeScrollerOptions} from "@powell/primeng/api";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-multi-select',
@@ -46,10 +46,11 @@ import {PrimeScrollerOptions} from "@powell/primeng/api";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MultiSelectComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class MultiSelectComponent implements OnInit, ControlValueAccessor, AfterContentInit, OnDestroy {
+export class MultiSelectComponent implements OnInit, ControlValueAccessor, AfterContentInit {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -129,7 +130,6 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
 
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   itemTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
   selectedItemsTemplate: TemplateRef<any>;
@@ -142,7 +142,9 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -269,10 +271,5 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

@@ -7,7 +7,6 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output,
   QueryList,
@@ -23,7 +22,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {TemplateDirective} from '@powell/directives/template';
 import {
   NgAddon,
@@ -35,6 +34,7 @@ import {
 } from '@powell/models';
 import {PrimeContextMenu} from "@powell/primeng";
 import {PrimeScrollerOptions} from "@powell/primeng/api";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-tree',
@@ -45,10 +45,11 @@ import {PrimeScrollerOptions} from "@powell/primeng/api";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TreeComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class TreeComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
+export class TreeComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() label: string;
   @Input() labelWidth: number;
   @Input() hint: string;
@@ -104,7 +105,6 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
 
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   headerTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
@@ -114,7 +114,9 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -214,11 +216,4 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   registerOnTouched(fn) {
     this.onModelTouched = fn;
   }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
-  }
 }
-
-

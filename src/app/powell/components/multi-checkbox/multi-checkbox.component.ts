@@ -1,14 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -19,8 +9,9 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-multi-checkbox',
@@ -31,10 +22,11 @@ import {NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MultiCheckboxComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class MultiCheckboxComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class MultiCheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() value: any[];
   @Input() label: string;
   @Input() filled: boolean;
@@ -73,13 +65,14 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor, OnD
   groupName: string;
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -162,10 +155,5 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor, OnD
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

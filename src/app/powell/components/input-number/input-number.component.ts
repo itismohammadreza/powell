@@ -1,14 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -19,7 +9,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {
   NgAddon,
   NgCurrency,
@@ -31,6 +21,7 @@ import {
   NgSize,
   NgValidation
 } from '@powell/models';
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-input-number',
@@ -41,10 +32,11 @@ import {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputNumberComponent),
       multi: true
-    }
+    },
+    DestroyService
   ]
 })
-export class InputNumberComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class InputNumberComponent implements OnInit, ControlValueAccessor {
   @Input() value: number;
   @Input() label: string;
   @Input() filled: boolean;
@@ -101,13 +93,14 @@ export class InputNumberComponent implements OnInit, ControlValueAccessor, OnDes
 
   inputId: string;
   ngControl: NgControl;
-  destroy$ = new Subject();
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef, private injector: Injector) {
+  constructor(private cd: ChangeDetectorRef,
+              private injector: Injector,
+              private destroy$: DestroyService) {
   }
 
   ngOnInit() {
@@ -200,10 +193,5 @@ export class InputNumberComponent implements OnInit, ControlValueAccessor, OnDes
   setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 }

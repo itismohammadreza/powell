@@ -1,24 +1,25 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component} from '@angular/core';
 import {OverlayService, PersianService} from "@powell/api";
 import {DataService} from "@core/http";
 import {
   DynamicDialogSampleComponent
 } from "@modules/main/pages/showcase/pages/utils/dynamic-dialog-sample/dynamic-dialog-sample.component";
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-utils-page',
   templateUrl: './utils.page.html',
   styleUrls: ['./utils.page.scss']
 })
-export class UtilsPage implements OnDestroy {
+export class UtilsPage {
   customDynamicDialogResult: any;
   persianWord: string;
-  destroy$ = new Subject<boolean>()
 
   constructor(private userService: DataService,
               private overlayService: OverlayService,
-              private persianService: PersianService) {
+              private persianService: PersianService,
+              private destroy$: DestroyService) {
   }
 
   showCustomDynamicDialog() {
@@ -40,10 +41,5 @@ export class UtilsPage implements OnDestroy {
 
   onInputChange(event) {
     this.persianWord = this.persianService.toPersianWord(event.value)
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete()
   }
 }
