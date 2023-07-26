@@ -17,7 +17,7 @@
     <div *ngFor="let item of options" class="option-item">
       <p-checkbox
         [(ngModel)]="value"
-        [inputId]="item.id"
+        [inputId]="item.__id"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
         [disabled]="item[optionDisabled]"
         [class]="item.styleClass"

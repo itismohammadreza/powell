@@ -77,7 +77,7 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.options?.forEach((item) => {
-      Object.assign(item, {id: this.getId()});
+      Object.assign(item, {__id: this.getId()});
     });
     this.groupName = this.getId();
     this.inputId = this.getId();
