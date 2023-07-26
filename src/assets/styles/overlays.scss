@@ -324,6 +324,11 @@
   }
 }
 
+.p-menu-overlay {
+  width: auto;
+  min-width: 190px;
+}
+
 body.ng-rtl {
   .p-scrolltop {
     right: auto;
