@@ -77,7 +77,7 @@
           border-top-right-radius: var(--border-radius);
 
           .image-preview {
-            padding: clamp(50%, 100%, 1%) 0;
+            padding: clamp(50%, 100%, 50%) 0
           }
 
           + ng-button {
