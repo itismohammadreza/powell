@@ -166,10 +166,7 @@
           .p-cascadeselect-group-icon {
             margin-left: 0;
             margin-right: auto;
-
-            &:before {
-              content: "\e931";
-            }
+            transform: rotate(180deg);
           }
 
           .p-cascadeselect-item-active > .p-cascadeselect-sublist {
