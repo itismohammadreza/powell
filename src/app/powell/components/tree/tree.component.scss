@@ -99,8 +99,8 @@
             }
           }
 
-          .pi-chevron-right:before {
-            content: "\e900";
+          chevronrighticon {
+            transform: rotate(180deg);
           }
 
           .p-tree-filter-container {
