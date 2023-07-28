@@ -238,5 +238,8 @@
   "siteConfigs": "Site Configs",
   "componentsGlobalConfigs": "Components Global Configs",
   "numberToPersianWord": "Number To Persian Word: ",
-  "typeNumber": "Type a number..."
+  "typeNumber": "Type a number...",
+  "httpRequest": "Http Request",
+  "customDialog": "Custom Dialog",
+  "customDynamicDialog": "Custom Dynamic Dialog"
 }

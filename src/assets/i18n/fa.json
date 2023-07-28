@@ -238,5 +238,8 @@
   "siteConfigs": "تنظیمات سایت",
   "componentsGlobalConfigs": "تنظیمات کلی کامپوننت ها",
   "numberToPersianWord": "تبدیل عدد به حرف : ",
-  "typeNumber": "عددی بنویسید..."
+  "typeNumber": "عددی بنویسید...",
+  "httpRequest": "درخواست سرور",
+  "customDialog": "دیالوگ شخصی ساز",
+  "customDynamicDialog": "دیالوگ داینامیک شخصی ساز"
 }
