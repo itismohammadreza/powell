@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {OverlayService, PersianService} from "@powell/api";
+import {OverlayService, PersianService, UtilsService} from "@powell/api";
 import {DataService} from "@core/http";
 import {
   DynamicDialogSampleComponent
@@ -16,11 +16,16 @@ import {DestroyService} from "@core/utils";
 export class UtilsPage {
   customDynamicDialogResult: any;
   persianWord: string;
+  networkStatus: string;
 
   constructor(private userService: DataService,
               private overlayService: OverlayService,
               private persianService: PersianService,
+              private utilsService: UtilsService,
               private destroy$: DestroyService) {
+    this.utilsService.checkOnlineState().subscribe(res => {
+      this.networkStatus = res ? 'online' : 'offline';
+    })
   }
 
   showCustomDynamicDialog() {

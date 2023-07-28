@@ -3,7 +3,7 @@ import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms
 import {DOCUMENT} from '@angular/common';
 import {fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {ConfigService} from "@powell/api/config.service";
+import {ConfigService} from "@powell/api";
 
 @Injectable()
 export class UtilsService {

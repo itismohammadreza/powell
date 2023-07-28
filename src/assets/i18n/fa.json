@@ -241,5 +241,8 @@
   "typeNumber": "عددی بنویسید...",
   "httpRequest": "درخواست سرور",
   "customDialog": "دیالوگ شخصی ساز",
-  "customDynamicDialog": "دیالوگ داینامیک شخصی ساز"
+  "customDynamicDialog": "دیالوگ داینامیک شخصی ساز",
+  "networkStatus": "وضعیت اینترنت",
+  "online": "آنلاین",
+  "offline": "آفلاین"
 }

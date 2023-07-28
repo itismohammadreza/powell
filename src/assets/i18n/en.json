@@ -241,5 +241,8 @@
   "typeNumber": "Type a number...",
   "httpRequest": "Http Request",
   "customDialog": "Custom Dialog",
-  "customDynamicDialog": "Custom Dynamic Dialog"
+  "customDynamicDialog": "Custom Dynamic Dialog",
+  "networkStatus": "Network Status",
+  "online": "Online",
+  "offline": "Offline"
 }
