@@ -76,6 +76,6 @@ export interface NgTableAction<T = any> {
   async?: boolean;
   size?: NgSize;
   visible?: boolean | ((item: T) => boolean);
-  onClick?: (item: T, index: number) => void;
+  onClick?: (item: T, index: number, event: any) => void;
   onClickAsync?: (callback: VoidFunction, item: T, index: number) => void;
 }

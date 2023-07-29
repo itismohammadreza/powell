@@ -371,7 +371,7 @@
                     [size]="action.size"
                     [pTooltip]="action.tooltip"
                     [tooltipPosition]="action.tooltipPosition ?? 'top'"
-                    (onClick)="action.onClick(item,index)"
+                    (onClick)="action.onClick(item,index,$event)"
                     (onClickAsync)="action.onClickAsync($event,item,index)">
                   </ng-button>
                 </ng-container>
@@ -394,7 +394,7 @@
                 [size]="action.size"
                 [pTooltip]="action.tooltip"
                 [tooltipPosition]="action.tooltipPosition ?? 'top'"
-                (onClick)="action.onClick(item,index)"
+                (onClick)="action.onClick(item,index,$event)"
                 (onClickAsync)="action.onClickAsync($event,item,index)">
               </ng-button>
             </td>
