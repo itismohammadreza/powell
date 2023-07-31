@@ -12,7 +12,7 @@ import {PrimeDomHandler} from "@powell/primeng/api";
 export class DialogFormComponent {
   form: FormGroup;
   visible: boolean;
-  loadingCallback: () => void;
+  loadingCallback: VoidFunction;
   _config: NgDialogFormConfig[];
   _options: NgDialogFormOptions;
   onSubmit = new EventEmitter<NgDialogFormResult>();
