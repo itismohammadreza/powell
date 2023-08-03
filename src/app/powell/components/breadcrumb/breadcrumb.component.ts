@@ -1,7 +1,8 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {ActivatedRouteSnapshot, Data, NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs/operators";
+import {PrimeBreadcrumbItemClickEvent, PrimeMenuItem} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-breadcrumb',
@@ -10,21 +11,25 @@ import {filter} from "rxjs/operators";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbComponent {
+  @Input() style: any;
+  @Input() styleClass: string;
+  @Input() home: PrimeMenuItem;
   @Input() rtl: boolean;
+  @Output() onItemClick = new EventEmitter<PrimeBreadcrumbItemClickEvent>();
 
-  _breadcrumbs$ = new BehaviorSubject<any[]>([]);
+  _breadcrumbs$ = new BehaviorSubject<PrimeMenuItem[]>([]);
   breadcrumbs$ = this._breadcrumbs$.asObservable();
 
   constructor(private router: Router) {
-    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(event => {
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
       const root = this.router.routerState.snapshot.root;
-      const breadcrumbs: any[] = [];
+      const breadcrumbs: PrimeMenuItem[] = [];
       this.addBreadcrumb(root, [], breadcrumbs);
       this._breadcrumbs$.next(breadcrumbs);
     });
   }
 
-  addBreadcrumb(route: ActivatedRouteSnapshot, parentUrl: string[], breadcrumbs: any[]) {
+  addBreadcrumb(route: ActivatedRouteSnapshot, parentUrl: string[], breadcrumbs: PrimeMenuItem[]) {
     if (route) {
       const routeUrl = parentUrl.concat(route.url.map(url => url.path));
       if (route.data.breadcrumb) {
@@ -40,5 +45,9 @@ export class BreadcrumbComponent {
 
   getLabel(data: Data) {
     return typeof data.breadcrumb === 'function' ? data.breadcrumb(data) : data.breadcrumb;
+  }
+
+  _onItemClick(event: PrimeBreadcrumbItemClickEvent) {
+    this.onItemClick.emit(event)
   }
 }

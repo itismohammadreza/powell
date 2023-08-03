@@ -1,3 +1,8 @@
 <div ngConfigHandler [(rtl)]="rtl" [ngClass]="{'rtl': rtl}">
-  <p-breadcrumb [model]="breadcrumbs$ | async"></p-breadcrumb>
+  <p-breadcrumb
+    [style]="style"
+    [styleClass]="styleClass"
+    home [model]="breadcrumbs$ | async"
+    (onItemClick)="_onItemClick($event)">
+  </p-breadcrumb>
 </div>
