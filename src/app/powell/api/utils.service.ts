@@ -148,6 +148,30 @@ export class UtilsService {
     return new File([u8arr], filename, {type: mime});
   }
 
+  getTypeClass(fileType: string) {
+    return fileType.substring(0, fileType.indexOf('/'));
+  }
+
+  isWildcard(fileType: string) {
+    return fileType.indexOf('*') !== -1;
+  }
+
+  getFileExtension(file: File) {
+    return '.' + file.name.split('.').pop();
+  }
+
+  isFileTypeValid(file: File, acceptList: string) {
+    let acceptableTypes = acceptList.split(',').map((type) => type.trim());
+    for (let type of acceptableTypes) {
+      let acceptable = this.isWildcard(type) ? this.getTypeClass(file.type) === this.getTypeClass(type) : file.type == type || this.getFileExtension(file).toLowerCase() === type.toLowerCase();
+
+      if (acceptable) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   isImage(value: any) {
     if (!value) {
       return
@@ -158,7 +182,7 @@ export class UtilsService {
     }
 
     const isImageFile = (file: File) => {
-      return file && file['type'].split('/')[0] === 'image';
+      return file.type.split('/')[0] === 'image' || /^image\//.test(file.type);
     }
 
     const isImageBase64 = (url: string) => {

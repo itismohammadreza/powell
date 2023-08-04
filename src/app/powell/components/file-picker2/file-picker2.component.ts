@@ -59,11 +59,14 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() readonly: boolean;
   @Input() multiple: boolean = true;
   @Input() isUnknownImageUrl: boolean = false;
-  @Input() accept: string;
+  @Input() accept: string = 'image/*';
   @Input() color: NgColor = 'primary';
+  @Input() maxFileSize: number = 2;
   @Input() fileLimit: number = 20000;
-  @Input() resultType: NgFileResultType = 'base64';
+  @Input() resultType: NgFileResultType = 'file';
   @Input() chooseLabel: string = 'انتخاب';
+  @Input() invalidFileSizeMessage: string = 'سایز فایل نامعتبر است.';
+  @Input() invalidFileTypeMessage: string = 'فرمت نامعتبر است.';
   @Output() onSelect = new EventEmitter<NgFilePickerSelectEvent>();
   @Output() onRemove = new EventEmitter<NgFilePickerRemoveEvent>();
 
@@ -72,6 +75,8 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   filesToShow: { display: string | ArrayBuffer, name: string }[] = [];
   filesToEmit: (string | ArrayBuffer | File)[] = [];
   _chooseLabel: string;
+  invalidFileSize: boolean;
+  invalidFileType: boolean;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -123,15 +128,20 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   }
 
   _onSelect(event: any) {
+    const file: File = event.target.files[0];
+    this.invalidFileType = false;
+    this.invalidFileSize = false;
+    if (!this.isValidFile(file)) {
+      return;
+    }
     if (this.multiple) {
-      this.onMultipleSelect(event)
+      this.onMultipleSelect(file)
     } else if (!this.multiple) {
-      this.onSingleSelect(event)
+      this.onSingleSelect(file)
     }
   }
 
-  async onSingleSelect(event: any) {
-    const file: File = event.target.files[0];
+  async onSingleSelect(file: File) {
     this.filesToShow = [];
     this.filesToEmit = [];
     await this.handleFile(file);
@@ -147,8 +157,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     this.onModelChange(null);
   }
 
-  async onMultipleSelect(event: any) {
-    const file: File = event.target.files[0];
+  async onMultipleSelect(file: File) {
     if (this.filesToShow.findIndex(f => f.name == file.name) > -1) {
       return
     }
@@ -157,12 +166,24 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     this.onModelChange(this.filesToEmit);
   }
 
-  onMultipleDelete(event: any, index: number) {
+  onMultipleDelete(event: MouseEvent, index: number) {
     event.stopPropagation();
     this.onRemove.emit(this.filesToEmit[index]);
     this.filesToShow.splice(index, 1);
     this.filesToEmit.splice(index, 1);
     this.onModelChange(this.filesToEmit);
+  }
+
+  isValidFile(file: File) {
+    if (this.accept && !this.utilsService.isFileTypeValid(file, this.accept)) {
+      this.invalidFileType = true;
+      return false;
+    }
+    if (this.maxFileSize && file.size > this.maxFileSize) {
+      this.invalidFileSize = true;
+      return false;
+    }
+    return true;
   }
 
   async handleFile(item: File) {

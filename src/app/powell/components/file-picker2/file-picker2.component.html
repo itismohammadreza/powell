@@ -58,7 +58,7 @@
         <ng-button
           color="danger"
           size="sm"
-          (click)="onMultipleDelete($event, i)"
+          (onClick)="onMultipleDelete($event, i)"
           *ngIf="!readonly"
           icon="pi pi-trash">
         </ng-button>
@@ -76,10 +76,17 @@
   </label>
   <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
   <div class="message p-error">
-    <ng-container *ngFor="let v of validation | keyvalue">
-      <div *ngIf="hasError(v.key)">
-        {{ v.value }}
-      </div>
+    <ng-container *ngIf="!invalidFileSize && !invalidFileType">
+      <ng-container *ngFor="let v of validation | keyvalue">
+        <div *ngIf="hasError(v.key)">
+          {{ v.value }}
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="invalidFileSize || invalidFileType">
+      <div *ngIf="invalidFileSize">{{invalidFileSizeMessage}}</div>
+      <div *ngIf="invalidFileType">{{invalidFileTypeMessage}}</div>
     </ng-container>
   </div>
 </div>
