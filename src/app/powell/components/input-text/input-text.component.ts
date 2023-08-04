@@ -74,15 +74,15 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() inputStyle: any;
   @Input() inputStyleClass: string;
   @Input() autocomplete: any;
-  @Output() onInput = new EventEmitter();
-  @Output() onClick = new EventEmitter();
-  @Output() onChange = new EventEmitter();
-  @Output() onKeyDown = new EventEmitter();
-  @Output() onKeyUp = new EventEmitter();
-  @Output() onBlur = new EventEmitter();
-  @Output() onFocus = new EventEmitter();
-  @Output() onClear = new EventEmitter();
-  @Output() onPaste = new EventEmitter();
+  @Output() onInput = new EventEmitter<Event>();
+  @Output() onClick = new EventEmitter<Event>();
+  @Output() onChange = new EventEmitter<Event>();
+  @Output() onKeyDown = new EventEmitter<KeyboardEvent>();
+  @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
+  @Output() onBlur = new EventEmitter<FocusEvent>();
+  @Output() onFocus = new EventEmitter<FocusEvent>();
+  @Output() onClear = new EventEmitter<void>();
+  @Output() onPaste = new EventEmitter<Event>();
 
   inputId: string;
   ngControl: NgControl;
@@ -143,8 +143,8 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
     this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
   }
 
-  _onBlur() {
-    this.onBlur.emit();
+  _onBlur(event: FocusEvent) {
+    this.onBlur.emit(event);
     this.onModelTouched();
   }
 

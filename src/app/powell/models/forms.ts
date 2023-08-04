@@ -268,3 +268,11 @@ export interface NgAddon {
   before?: NgAddonConfig;
   after?: NgAddonConfig;
 }
+
+export interface NgProvince {
+  id: number;
+  name: string;
+  selected: boolean;
+  disabled: boolean;
+  d: string;
+}

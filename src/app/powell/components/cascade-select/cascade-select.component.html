@@ -44,7 +44,7 @@
         [styleClass]="styleClass"
         [showClear]="showClear"
         (onChange)="_onChange($event)"
-        (onGroupChange)="_onGroupChange($event)"
+        (onGroupChange)="emitter('onGroupChange', $event)"
         (onBeforeShow)="emitter('onBeforeShow', $event)"
         (onBeforeHide)="emitter('onBeforeHide', $event)"
         (onShow)="emitter('onShow', $event)"

@@ -25,6 +25,7 @@ import {
 import {takeUntil} from "rxjs";
 import {
   NgAddon,
+  NgAsyncEvent,
   NgFilterMatchMode,
   NgIconPosition,
   NgLabelPosition,
@@ -33,7 +34,12 @@ import {
   NgValidation
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
-import {PrimeScrollerOptions} from "@powell/primeng/api";
+import {
+  PrimeDropdownChangeEvent,
+  PrimeDropdownFilterEvent,
+  PrimeDropdownLazyLoadEvent,
+  PrimeScrollerOptions
+} from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
 
 @Component({
@@ -90,7 +96,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() editable: boolean;
   @Input() maxlength: number;
   @Input() appendTo: any;
-  @Input() tabindex: any;
+  @Input() tabindex: number;
   @Input() placeholder: string;
   @Input() dataKey: string;
   @Input() autofocus: boolean;
@@ -112,16 +118,16 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() virtualScrollItemSize: number;
   @Input() virtualScrollOptions: PrimeScrollerOptions;
   @Input() lazy: boolean;
-  @Output() onClick = new EventEmitter();
-  @Output() onChange = new EventEmitter();
-  @Output() onFilter = new EventEmitter();
-  @Output() onFocus = new EventEmitter();
-  @Output() onBlur = new EventEmitter();
-  @Output() onShow = new EventEmitter();
-  @Output() onHide = new EventEmitter();
-  @Output() onClear = new EventEmitter();
-  @Output() onLazyLoad = new EventEmitter();
-  @Output() onChangeAsync = new EventEmitter();
+  @Output() onClick = new EventEmitter<MouseEvent>();
+  @Output() onChange = new EventEmitter<PrimeDropdownChangeEvent>();
+  @Output() onFilter = new EventEmitter<PrimeDropdownFilterEvent>();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
+  @Output() onShow = new EventEmitter<AnimationEvent>();
+  @Output() onHide = new EventEmitter<AnimationEvent>();
+  @Output() onClear = new EventEmitter<void>();
+  @Output() onLazyLoad = new EventEmitter<PrimeDropdownLazyLoadEvent>();
+  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<PrimeDropdownChangeEvent>>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
@@ -213,14 +219,14 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
     });
   }
 
-  _onChange(event) {
+  _onChange(event: PrimeDropdownChangeEvent) {
     if (this.async) {
       this.disabled = true;
       this._oldIcon = this.icon;
       this._oldValue = this.value;
       this._newValue = event.value;
       this.icon = 'pi pi-spinner pi-spin';
-      this.onChangeAsync.emit({loadingCallback: this.removeLoading, value: event.value});
+      this.onChangeAsync.emit({loadingCallback: this.removeLoading, event});
     } else {
       this.value = event.value;
       this.onChange.emit(event);
@@ -245,8 +251,8 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
     this.cd.detectChanges()
   }
 
-  _onBlur() {
-    this.onBlur.emit();
+  _onBlur(event: Event) {
+    this.onBlur.emit(event);
     this.onModelTouched();
   }
 

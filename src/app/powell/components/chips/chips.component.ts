@@ -26,6 +26,7 @@ import {takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
+import {PrimeChipsAddEvent, PrimeChipsClickEvent, PrimeChipsRemoveEvent} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-chips',
@@ -62,7 +63,7 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   @Input() style: any;
   @Input() styleClass: string;
   @Input() placeholder: string;
-  @Input() tabindex: any;
+  @Input() tabindex: number;
   @Input() allowDuplicate: boolean = true;
   @Input() inputStyle: any;
   @Input() inputStyleClass: string;
@@ -70,12 +71,12 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   @Input() addOnBlur: boolean;
   @Input() separator: string;
   @Input() showClear: boolean;
-  @Output() onAdd = new EventEmitter();
-  @Output() onRemove = new EventEmitter();
-  @Output() onChipClick = new EventEmitter();
-  @Output() onFocus = new EventEmitter();
-  @Output() onBlur = new EventEmitter();
-  @Output() onClear = new EventEmitter();
+  @Output() onAdd = new EventEmitter<PrimeChipsAddEvent>();
+  @Output() onRemove = new EventEmitter<PrimeChipsRemoveEvent>();
+  @Output() onChipClick = new EventEmitter<PrimeChipsClickEvent>();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
+  @Output() onClear = new EventEmitter<void>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
@@ -130,18 +131,18 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
     });
   }
 
-  _onAdd(event) {
+  _onAdd(event: PrimeChipsAddEvent) {
     this.onAdd.emit(event);
     this.onModelChange(this.value);
   }
 
-  _onRemove(event) {
+  _onRemove(event: PrimeChipsRemoveEvent) {
     this.onRemove.emit(event);
     this.onModelChange(this.value);
   }
 
-  _onBlur() {
-    this.onBlur.emit();
+  _onBlur(event: Event) {
+    this.onBlur.emit(event);
     this.onModelTouched();
   }
 

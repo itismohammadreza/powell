@@ -22,6 +22,7 @@ import {
   NgValidation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
+import {PrimeInputNumberInputEvent} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-input-number',
@@ -80,16 +81,17 @@ export class InputNumberComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder: string;
   @Input() size: number;
   @Input() maxlength: number;
-  @Input() tabindex: any;
+  @Input() tabindex: number;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
   @Input() title: string;
   @Input() autocomplete: string;
   @Input() showClear: boolean;
-  @Output() onFocus = new EventEmitter();
-  @Output() onBlur = new EventEmitter();
-  @Output() onInput = new EventEmitter();
-  @Output() onClear = new EventEmitter();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
+  @Output() onInput = new EventEmitter<PrimeInputNumberInputEvent>();
+  @Output() onKeyDown = new EventEmitter<KeyboardEvent>();
+  @Output() onClear = new EventEmitter<void>();
 
   inputId: string;
   ngControl: NgControl;
@@ -137,8 +139,8 @@ export class InputNumberComponent implements OnInit, ControlValueAccessor {
     this.onModelChange(event.value);
   }
 
-  _onBlur() {
-    this.onBlur.emit();
+  _onBlur(event: Event) {
+    this.onBlur.emit(event);
     this.onModelTouched();
   }
 
@@ -147,8 +149,12 @@ export class InputNumberComponent implements OnInit, ControlValueAccessor {
     this.onModelChange(null);
   }
 
-  _onFocus() {
-    this.onFocus.emit();
+  _onFocus(event: Event) {
+    this.onFocus.emit(event);
+  }
+
+  _onKeyDown(event: KeyboardEvent) {
+    this.onKeyDown.emit(event);
   }
 
   getId() {

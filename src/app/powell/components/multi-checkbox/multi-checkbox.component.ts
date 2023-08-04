@@ -47,20 +47,16 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor {
   @Input('disabled') set setDisabled(disabled: boolean) {
     this.disabled = disabled;
     this.options.forEach(option => {
-      option[this.optionDisabled] = disabled
+      option[this.optionDisabled] = disabled;
     })
   };
 
-  @Input('readonly') set setReadonly(readonly: boolean) {
-    this.readonly = readonly;
-  }
-
+  @Input() readonly: boolean;
   @Input() style: any;
   @Input() styleClass: string;
   @Input() checkboxIcon: string;
-  @Output() onChange = new EventEmitter();
+  @Output() onChange = new EventEmitter<any[]>();
 
-  readonly: boolean = false;
   disabled: boolean = false;
   groupName: string;
   inputId: string;
@@ -139,7 +135,7 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor {
     return !hasError;
   }
 
-  writeValue(value: any) {
+  writeValue(value: string[]) {
     this.value = value;
     this.cd.markForCheck();
   }

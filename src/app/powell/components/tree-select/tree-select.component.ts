@@ -35,6 +35,14 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
+import {
+  PrimeOverlayOnHideEvent,
+  PrimeOverlayOnShowEvent,
+  PrimeTreeNode,
+  PrimeTreeSelectFilterEvent,
+  PrimeTreeSelectNodeCollapseEvent,
+  PrimeTreeSelectNodeExpandEvent
+} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-tree-select',
@@ -85,14 +93,14 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() filterLocale: string;
   @Input() resetFilterOnHide: boolean = true;
   @Input() showClear: boolean;
-  @Output() onShow = new EventEmitter();
-  @Output() onHide = new EventEmitter();
-  @Output() onFilter = new EventEmitter();
-  @Output() onNodeSelect = new EventEmitter();
-  @Output() onNodeUnselect = new EventEmitter();
-  @Output() onNodeExpand = new EventEmitter();
-  @Output() onNodeCollapse = new EventEmitter();
-  @Output() onClear = new EventEmitter();
+  @Output() onShow = new EventEmitter<PrimeOverlayOnShowEvent>();
+  @Output() onHide = new EventEmitter<PrimeOverlayOnHideEvent>();
+  @Output() onFilter = new EventEmitter<PrimeTreeSelectFilterEvent>();
+  @Output() onNodeSelect = new EventEmitter<PrimeTreeNode<any>>();
+  @Output() onNodeUnselect = new EventEmitter<PrimeTreeNode<any>>();
+  @Output() onNodeExpand = new EventEmitter<PrimeTreeSelectNodeExpandEvent>();
+  @Output() onNodeCollapse = new EventEmitter<PrimeTreeSelectNodeCollapseEvent>();
+  @Output() onClear = new EventEmitter<void>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
@@ -162,12 +170,12 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
     });
   }
 
-  _onNodeSelect(event) {
+  _onNodeSelect(event: PrimeTreeNode<any>) {
     this.onNodeSelect.emit(event);
     this.onModelChange(this.value);
   }
 
-  _onNodeUnselect(event) {
+  _onNodeUnselect(event: PrimeTreeNode<any>) {
     this.onNodeUnselect.emit(event);
     this.onModelChange(this.value);
   }

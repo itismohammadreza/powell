@@ -26,6 +26,7 @@ import {takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
+import {PrimeSelectButtonChangeEvent, PrimeSelectButtonOptionClickEvent} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-select-button',
@@ -61,8 +62,8 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() styleClass: string;
   @Input() disabled: boolean;
   @Input() dataKey: string;
-  @Output() onChange = new EventEmitter();
-  @Output() onOptionClick = new EventEmitter();
+  @Output() onChange = new EventEmitter<PrimeSelectButtonChangeEvent>();
+  @Output() onOptionClick = new EventEmitter<PrimeSelectButtonOptionClickEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
@@ -117,12 +118,12 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
     });
   }
 
-  _onChange(event) {
+  _onChange(event: PrimeSelectButtonChangeEvent) {
     this.onModelChange(event.value);
     this.onChange.emit(event);
   }
 
-  _onOptionClick(event) {
+  _onOptionClick(event: PrimeSelectButtonOptionClickEvent) {
     this.onOptionClick.emit(event);
   }
 

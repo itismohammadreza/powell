@@ -21,7 +21,14 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgColor, NgFileResultType, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {
+  NgColor,
+  NgFilePickerRemoveEvent,
+  NgFilePickerSelectEvent,
+  NgFileResultType,
+  NgFixLabelPosition,
+  NgValidation
+} from '@powell/models';
 import {UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 
@@ -57,8 +64,8 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() fileLimit: number = 20000;
   @Input() resultType: NgFileResultType = 'base64';
   @Input() chooseLabel: string = 'انتخاب';
-  @Output() onSelect = new EventEmitter();
-  @Output() onRemove = new EventEmitter();
+  @Output() onSelect = new EventEmitter<NgFilePickerSelectEvent>();
+  @Output() onRemove = new EventEmitter<NgFilePickerRemoveEvent>();
 
   inputId: string;
   ngControl: NgControl;

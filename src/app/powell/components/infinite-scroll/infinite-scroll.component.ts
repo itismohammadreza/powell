@@ -21,7 +21,7 @@ import {TemplateDirective} from "@powell/directives/template";
 export class InfiniteScrollComponent implements AfterContentInit, OnDestroy {
   @Input() data: any[];
   @Input() spinnerWidth: string = '40px';
-  @Output() scrolled = new EventEmitter();
+  @Output() scrolled = new EventEmitter<Function>();
   @ViewChild('anchor', {static: true}) anchor: ElementRef<HTMLElement>;
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 

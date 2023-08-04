@@ -47,8 +47,8 @@
         (onAdd)="_onAdd($event)"
         (onRemove)="_onRemove($event)"
         (onChipClick)="emitter('onChipClick', $event)"
-        (onFocus)="emitter('onChipClick', $event)"
-        (onBlur)="_onBlur()"
+        (onFocus)="emitter('onFocus', $event)"
+        (onBlur)="_onBlur($event)"
         (onClear)="_onClear()">
         <ng-template pTemplate="item" let-item *ngIf="itemTemplate">
           <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item}"></ng-container>

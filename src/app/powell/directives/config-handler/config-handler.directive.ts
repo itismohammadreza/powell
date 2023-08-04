@@ -19,25 +19,25 @@ import {PrimeOverlayOptions} from "@powell/primeng/api";
 })
 export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   @Input() rtl: boolean;
-  @Output() rtlChange = new EventEmitter();
+  @Output() rtlChange = new EventEmitter<boolean>();
   @Input() fixLabelPos: NgFixLabelPosition;
-  @Output() fixLabelPosChange = new EventEmitter();
+  @Output() fixLabelPosChange = new EventEmitter<NgFixLabelPosition>();
   @Input() labelPos: NgLabelPosition;
-  @Output() labelPosChange = new EventEmitter();
+  @Output() labelPosChange = new EventEmitter<NgLabelPosition>();
   @Input() filled: boolean;
-  @Output() filledChange = new EventEmitter();
+  @Output() filledChange = new EventEmitter<boolean>();
   @Input() inputSize: NgSize;
-  @Output() inputSizeChange = new EventEmitter();
+  @Output() inputSizeChange = new EventEmitter<NgSize>();
   @Input() showRequiredStar: boolean;
-  @Output() showRequiredStarChange = new EventEmitter();
+  @Output() showRequiredStarChange = new EventEmitter<boolean>();
   @Input() theme: NgTheme;
-  @Output() themeChange = new EventEmitter();
+  @Output() themeChange = new EventEmitter<NgTheme>();
   @Input() ripple: boolean;
-  @Output() rippleChange = new EventEmitter();
+  @Output() rippleChange = new EventEmitter<boolean>();
   @Input() overlayOptions: PrimeOverlayOptions;
-  @Output() overlayOptionsChange = new EventEmitter();
+  @Output() overlayOptionsChange = new EventEmitter<PrimeOverlayOptions>();
   @Input() disableConfigChangeEffect: boolean;
-  @Output() disableConfigChangeEffectChange = new EventEmitter();
+  @Output() disableConfigChangeEffectChange = new EventEmitter<boolean>();
 
   @Output() configChange = new EventEmitter();
 

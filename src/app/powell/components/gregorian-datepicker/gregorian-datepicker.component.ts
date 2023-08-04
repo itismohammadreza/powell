@@ -22,6 +22,7 @@ import {
 } from "@powell/models";
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@core/utils";
+import {PrimeCalendarMonthChangeEvent, PrimeCalendarYearChangeEvent} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-gregorian-datepicker',
@@ -105,18 +106,18 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Input() hideTransitionOptions: string = '.1s linear';
   @Input() firstDayOfWeek: number = 0;
   @Input() showClear: boolean;
-  @Output() onSelect = new EventEmitter();
-  @Output() onBlur = new EventEmitter();
-  @Output() onFocus = new EventEmitter();
-  @Output() onClose = new EventEmitter();
-  @Output() onShow = new EventEmitter();
-  @Output() onClickOutside = new EventEmitter();
-  @Output() onInput = new EventEmitter();
-  @Output() onTodayClick = new EventEmitter();
-  @Output() onClearClick = new EventEmitter();
-  @Output() onMonthChange = new EventEmitter();
-  @Output() onYearChange = new EventEmitter();
-  @Output() onClear = new EventEmitter();
+  @Output() onSelect = new EventEmitter<Date>();
+  @Output() onBlur = new EventEmitter<Event>();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onClose = new EventEmitter<AnimationEvent>();
+  @Output() onShow = new EventEmitter<AnimationEvent>();
+  @Output() onClickOutside = new EventEmitter<Event>();
+  @Output() onInput = new EventEmitter<KeyboardEvent>();
+  @Output() onTodayClick = new EventEmitter<Date>();
+  @Output() onClearClick = new EventEmitter<Event>();
+  @Output() onMonthChange = new EventEmitter<PrimeCalendarMonthChangeEvent>();
+  @Output() onYearChange = new EventEmitter<PrimeCalendarYearChangeEvent>();
+  @Output() onClear = new EventEmitter<void>();
 
   inputId: string;
   ngControl: NgControl;
@@ -159,18 +160,18 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
     }
   }
 
-  _onInput(event: Event) {
+  _onInput(event: KeyboardEvent) {
     this.onInput.emit(event);
     this.onModelChange(this.value);
   }
 
-  _onSelect(event) {
+  _onSelect(event: Date) {
     this.onSelect.emit(event);
     this.onModelChange(event);
   }
 
-  _onBlur() {
-    this.onBlur.emit();
+  _onBlur(event: Event) {
+    this.onBlur.emit(event);
     this.onModelTouched();
   }
 

@@ -51,7 +51,7 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder: string;
   @Input() size: number;
   @Input() maxlength: number;
-  @Input() tabindex: any;
+  @Input() tabindex: string;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
   @Input() characterPattern: string = '[A-Za-z]';
@@ -59,11 +59,11 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() showClear: boolean;
   @Input() autocomplete: string;
   @Input() title: string;
-  @Output() onFocus = new EventEmitter();
-  @Output() onBlur = new EventEmitter();
-  @Output() onComplete = new EventEmitter();
-  @Output() onInput = new EventEmitter();
-  @Output() onClear = new EventEmitter();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
+  @Output() onComplete = new EventEmitter<void>();
+  @Output() onInput = new EventEmitter<Event>();
+  @Output() onClear = new EventEmitter<void>();
 
   inputId: string;
   ngControl: NgControl;
@@ -112,8 +112,8 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
     this.onModelChange(inputElement.value);
   }
 
-  _onBlur() {
-    this.onBlur.emit();
+  _onBlur(event: Event) {
+    this.onBlur.emit(event);
     this.onModelTouched();
   }
 

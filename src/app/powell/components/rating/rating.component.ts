@@ -26,6 +26,7 @@ import {takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
+import {PrimeRatingRateEvent} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-rating',
@@ -61,8 +62,8 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() iconOnStyle: any;
   @Input() iconOffStyle: any;
   @Input() iconCancelStyle: any;
-  @Output() onRate = new EventEmitter();
-  @Output() onCancel = new EventEmitter();
+  @Output() onRate = new EventEmitter<PrimeRatingRateEvent>();
+  @Output() onCancel = new EventEmitter<Event>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
@@ -127,12 +128,12 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
     });
   }
 
-  _onRate(event) {
+  _onRate(event: PrimeRatingRateEvent) {
     this.onRate.emit(event);
     this.onModelChange(event.value);
   }
 
-  _onCancel(event) {
+  _onCancel(event: Event) {
     this.onCancel.emit(event);
     this.onModelChange(null);
   }

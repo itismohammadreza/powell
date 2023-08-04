@@ -1,19 +1,10 @@
-import {
-  AfterContentInit,
-  ChangeDetectionStrategy,
-  Component,
-  ContentChildren,
-  Input,
-  QueryList,
-  TemplateRef
-} from '@angular/core';
+import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
 import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-loading-container',
   templateUrl: './loading-container.component.html',
   styleUrls: ['./loading-container.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingContainerComponent implements AfterContentInit {
   @Input() data: any;

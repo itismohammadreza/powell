@@ -34,7 +34,13 @@ import {
   NgValidation
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
-import {PrimeScrollerOptions} from "@powell/primeng/api";
+import {
+  PrimeMultiSelectBlurEvent,
+  PrimeMultiSelectChangeEvent,
+  PrimeMultiSelectFilterEvent, PrimeMultiSelectFocusEvent,
+  PrimeMultiSelectLazyLoadEvent, PrimeMultiSelectRemoveEvent,
+  PrimeScrollerOptions
+} from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
 
 @Component({
@@ -106,7 +112,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() showToggleAll: boolean = true;
   @Input() style: any;
   @Input() styleClass: string;
-  @Input() tabindex: any;
+  @Input() tabindex: number;
   @Input() tooltip: any;
   @Input() tooltipStyleClass: string;
   @Input() tooltipPosition: NgPosition = 'top';
@@ -117,15 +123,16 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() virtualScrollOptions: PrimeScrollerOptions;
   @Input() lazy: boolean
   @Input() display: NgChipDisplayMode = 'comma';
-  @Output() onClick = new EventEmitter();
-  @Output() onChange = new EventEmitter();
-  @Output() onFilter = new EventEmitter();
-  @Output() onFocus = new EventEmitter();
-  @Output() onBlur = new EventEmitter();
-  @Output() onPanelShow = new EventEmitter();
-  @Output() onPanelHide = new EventEmitter();
-  @Output() onClear = new EventEmitter();
-  @Output() onLazyLoad = new EventEmitter();
+  @Output() onClick = new EventEmitter<MouseEvent>();
+  @Output() onChange = new EventEmitter<PrimeMultiSelectChangeEvent>();
+  @Output() onRemove = new EventEmitter<PrimeMultiSelectRemoveEvent>();
+  @Output() onFilter = new EventEmitter<PrimeMultiSelectFilterEvent>();
+  @Output() onFocus = new EventEmitter<PrimeMultiSelectFocusEvent>();
+  @Output() onBlur = new EventEmitter<PrimeMultiSelectBlurEvent>();
+  @Output() onPanelShow = new EventEmitter<void>();
+  @Output() onPanelHide = new EventEmitter<void>();
+  @Output() onClear = new EventEmitter<void>();
+  @Output() onLazyLoad = new EventEmitter<PrimeMultiSelectLazyLoadEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
@@ -210,13 +217,13 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
     });
   }
 
-  _onChange(event) {
+  _onChange(event: PrimeMultiSelectChangeEvent) {
     this.onChange.emit(event);
     this.onModelChange(event.value);
   }
 
-  _onBlur() {
-    this.onBlur.emit();
+  _onBlur(event: PrimeMultiSelectBlurEvent) {
+    this.onBlur.emit(event);
     this.onModelTouched();
   }
 
@@ -272,4 +279,6 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
     this.disabled = val;
     this.cd.markForCheck();
   }
+
+  protected readonly event = event;
 }

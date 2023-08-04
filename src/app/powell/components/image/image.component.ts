@@ -73,9 +73,9 @@ export class ImageComponent implements AfterContentInit {
   @Input() previewImageStyle: any;
   @Input() previewImageStyleClass: string;
   @Input() errorPlaceholderSrc: string;
-  @Output() onShow = new EventEmitter();
-  @Output() onHide = new EventEmitter();
-  @Output() onImageError = new EventEmitter();
+  @Output() onShow = new EventEmitter<AnimationEvent>();
+  @Output() onHide = new EventEmitter<AnimationEvent>();
+  @Output() onImageError = new EventEmitter<Event>();
   @ViewChild('mask') mask: ElementRef;
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
@@ -148,10 +148,10 @@ export class ImageComponent implements AfterContentInit {
         this.container = null;
         this.wrapper = null;
         this.cd.markForCheck();
-        this.onHide.emit({});
+        this.onHide.emit(event);
         break;
       case 'visible':
-        this.onShow.emit({});
+        this.onShow.emit(event);
         break;
     }
   }
@@ -187,7 +187,7 @@ export class ImageComponent implements AfterContentInit {
     this.rotate = 0;
   }
 
-  imageError(event) {
+  imageError(event: Event) {
     this.src = this.errorPlaceholderSrc ?? this.src;
     this.onImageError.emit(event);
   }

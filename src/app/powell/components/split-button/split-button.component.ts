@@ -40,8 +40,8 @@ export class SplitButtonComponent implements AfterContentInit {
   @Input() tabindex: number;
   @Input() showTransitionOptions: string = '225ms ease-out';
   @Input() hideTransitionOptions: string = '195ms ease-in';
-  @Output() onClick = new EventEmitter();
-  @Output() onDropdownClick = new EventEmitter();
+  @Output() onClick = new EventEmitter<MouseEvent>();
+  @Output() onDropdownClick = new EventEmitter<MouseEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
   contentTemplate: TemplateRef<any>;
 

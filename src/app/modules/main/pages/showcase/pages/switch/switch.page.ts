@@ -28,7 +28,7 @@ export class SwitchPage {
 
   asyncFlag = false;
 
-  onChangeAsync({loadingCallback, value}) {
+  onChangeAsync({loadingCallback}) {
     this.asyncFlag = !this.asyncFlag;
     setTimeout(() => {
       loadingCallback(this.asyncFlag)

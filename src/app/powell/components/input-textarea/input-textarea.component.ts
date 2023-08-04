@@ -23,6 +23,7 @@ import {takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgValidation} from '@powell/models';
 import {UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
+import * as events from "events";
 
 @Component({
   selector: 'ng-input-textarea',
@@ -62,13 +63,13 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Input() styleClass: string;
   @Input() inputStyle: any;
   @Input() inputStyleClass: string;
-  @Output() onResize = new EventEmitter();
-  @Output() onInput = new EventEmitter();
-  @Output() onChange = new EventEmitter();
-  @Output() onKeyDown = new EventEmitter();
-  @Output() onKeyUp = new EventEmitter();
-  @Output() onBlur = new EventEmitter();
-  @Output() onFocus = new EventEmitter();
+  @Output() onResize = new EventEmitter<Event | {}>();
+  @Output() onInput = new EventEmitter<Event>();
+  @Output() onChange = new EventEmitter<Event>();
+  @Output() onKeyDown = new EventEmitter<KeyboardEvent>();
+  @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
+  @Output() onBlur = new EventEmitter<FocusEvent>();
+  @Output() onFocus = new EventEmitter<FocusEvent>();
 
   inputId: string;
   ngControl: NgControl;
@@ -113,30 +114,30 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  _onResize(event: any) {
+  _onResize(event: Event | {}) {
     this.onResize.emit(event);
   }
 
-  _onChange(event: any) {
+  _onChange(event: Event) {
     const inputElement = event.target as HTMLTextAreaElement;
     this.onChange.emit(event);
     this.onModelChange(inputElement.value);
   }
 
-  _onInput(event: any) {
+  _onInput(event: Event) {
     const inputElement = event.target as HTMLTextAreaElement;
     this.onInput.emit(event);
     this.onModelChange(inputElement.value);
     this.utilsService.setInputDirection(this.el.nativeElement.querySelector('textarea'), this.value, this.rtl);
   }
 
-  _onBlur() {
-    this.onBlur.emit();
+  _onBlur(event: FocusEvent) {
+    this.onBlur.emit(event);
     this.onModelTouched();
   }
 
-  _onFocus() {
-    this.onFocus.emit();
+  _onFocus(event: FocusEvent) {
+    this.onFocus.emit(event);
   }
 
   _onKeyDown(event: KeyboardEvent) {
@@ -195,4 +196,6 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
     this.disabled = val;
     this.cd.markForCheck();
   }
+
+  protected readonly events = events;
 }

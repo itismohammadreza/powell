@@ -33,7 +33,20 @@ import {
   NgValidation
 } from '@powell/models';
 import {PrimeContextMenu} from "@powell/primeng";
-import {PrimeScrollerOptions} from "@powell/primeng/api";
+import {
+  PrimeScrollerOptions,
+  PrimeTreeFilterEvent,
+  PrimeTreeLazyLoadEvent,
+  PrimeTreeNode,
+  PrimeTreeNodeCollapseEvent,
+  PrimeTreeNodeContextMenuSelectEvent,
+  PrimeTreeNodeDropEvent,
+  PrimeTreeNodeExpandEvent,
+  PrimeTreeNodeSelectEvent,
+  PrimeTreeNodeUnSelectEvent,
+  PrimeTreeScrollEvent,
+  PrimeTreeScrollIndexChangeEvent, PrimeTreeSelectionChangeEvent
+} from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
 
 @Component({
@@ -90,17 +103,17 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() lazy: boolean;
   @Input() trackBy: Function;
   @Input() indentation: number = 1.5;
-  @Output() onNodeSelect = new EventEmitter();
-  @Output() onNodeUnselect = new EventEmitter();
-  @Output() onNodeExpand = new EventEmitter();
-  @Output() onNodeCollapse = new EventEmitter();
-  @Output() onNodeContextMenuSelect = new EventEmitter();
-  @Output() onNodeDrop = new EventEmitter();
-  @Output() onFilter = new EventEmitter();
-  @Output() onLazyLoad = new EventEmitter();
-  @Output() onScroll = new EventEmitter();
-  @Output() onScrollIndexChange = new EventEmitter();
-  @Output() selectionChange = new EventEmitter();
+  @Output() onNodeSelect = new EventEmitter<PrimeTreeNodeSelectEvent>();
+  @Output() onNodeUnselect = new EventEmitter<PrimeTreeNodeUnSelectEvent>();
+  @Output() onNodeExpand = new EventEmitter<PrimeTreeNodeExpandEvent>();
+  @Output() onNodeCollapse = new EventEmitter<PrimeTreeNodeCollapseEvent>();
+  @Output() onNodeContextMenuSelect = new EventEmitter<PrimeTreeNodeContextMenuSelectEvent>();
+  @Output() onNodeDrop = new EventEmitter<PrimeTreeNodeDropEvent>();
+  @Output() onFilter = new EventEmitter<PrimeTreeFilterEvent>();
+  @Output() onLazyLoad = new EventEmitter<PrimeTreeLazyLoadEvent>();
+  @Output() onScroll = new EventEmitter<PrimeTreeScrollEvent>();
+  @Output() onScrollIndexChange = new EventEmitter<PrimeTreeScrollIndexChangeEvent>();
+  @Output() selectionChange = new EventEmitter<PrimeTreeSelectionChangeEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
@@ -168,7 +181,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
     });
   }
 
-  _onSelectionChange(event) {
+  _onSelectionChange(event: PrimeTreeSelectionChangeEvent) {
     this.selection = event;
     this.selectionChange.emit(this.selection);
     this.onModelChange(this.selection);

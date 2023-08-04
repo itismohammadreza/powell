@@ -25,9 +25,9 @@
         [value]="item[optionValue]"
         [style]="style"
         [styleClass]="styleClass"
-        (onBlur)="_onBlur()"
+        (onBlur)="_onBlur($event)"
         (onClick)="_onChange($event)"
-        (onFocus)="_onFocus()"
+        (onFocus)="_onFocus($event)"
       ></p-radioButton>
       <label [attr.for]="'id' + item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
         {{ item[optionLabel] }}

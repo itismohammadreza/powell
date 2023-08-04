@@ -49,7 +49,7 @@
         [autocomplete]="autocomplete"
         [title]="title"
         (onFocus)="emitter('onFocus', $event)"
-        (onBlur)="_onBlur()"
+        (onBlur)="_onBlur($event)"
         (onComplete)="emitter('onComplete', $event)"
         (onInput)="_onInput($event)"
         (onClear)="_onClear()"

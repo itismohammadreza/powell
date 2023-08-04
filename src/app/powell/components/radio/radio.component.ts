@@ -12,6 +12,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
+import {PrimeRadioButtonClickEvent} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-radio',
@@ -53,9 +54,9 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
 
   @Input() style: any;
   @Input() styleClass: string;
-  @Output() onChange = new EventEmitter();
-  @Output() onFocus = new EventEmitter();
-  @Output() onBlur = new EventEmitter();
+  @Output() onChange = new EventEmitter<PrimeRadioButtonClickEvent>();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
 
   disabled: boolean = false;
   groupName: string;
@@ -101,18 +102,18 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  _onChange(event) {
-    this.onChange.emit({originalEvent: event, value: this.value});
+  _onChange(event: PrimeRadioButtonClickEvent) {
+    this.onChange.emit(event);
     this.onModelChange(this.value);
   }
 
-  _onBlur() {
-    this.onBlur.emit();
+  _onBlur(event: Event) {
+    this.onBlur.emit(event);
     this.onModelTouched();
   }
 
-  _onFocus() {
-    this.onFocus.emit();
+  _onFocus(event: Event) {
+    this.onFocus.emit(event);
   }
 
   getId() {

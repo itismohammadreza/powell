@@ -10,7 +10,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import {NgFixLabelPosition, NgValidation} from "@powell/models";
+import {NgAsyncEvent, NgFixLabelPosition, NgMapChangeEvent, NgProvince, NgValidation} from "@powell/models";
 import {
   AbstractControl,
   ControlContainer,
@@ -52,12 +52,12 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   @Input() disableConfigChangeEffect: boolean;
   @Input() selectionLimit: number;
   @Input() async: boolean;
-  @Output() onClick = new EventEmitter();
-  @Output() onChange = new EventEmitter();
-  @Output() onChangeAsync = new EventEmitter();
-  @Output() onMapReady = new EventEmitter();
+  @Output() onClick = new EventEmitter<MouseEvent>();
+  @Output() onChange = new EventEmitter<NgMapChangeEvent>();
+  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<NgMapChangeEvent>>();
+  @Output() onMapReady = new EventEmitter<NgProvince[]>();
 
-  _provinces = [
+  _provinces: NgProvince[] = [
     {
       id: 3,
       name: "آذربایجان شرقی",
@@ -324,11 +324,6 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
     }
   }
 
-  _onChange(event: any) {
-    this.onChange.emit(event);
-    this.onModelChange(event);
-  }
-
   getId() {
     return 'id' + Math.random().toString(16).slice(2);
   }
@@ -457,11 +452,11 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
         tooltipEl.style.top = y + 'px';
       }
     })
-    this.onMapReady.emit(this._provinces.map(({d, ...p}) => p))
+    this.onMapReady.emit(this._provinces)
   }
 
-  onProvinceClick(event: any, province: any) {
-    const target = event.target
+  onProvinceClick(event: MouseEvent, province: NgProvince) {
+    const target = event.target as HTMLElement;
     const selectedIds = this._provinces.filter(p => p.selected).map(p => p.id);
     if (this.multiple) {
       if (selectedIds.length == this.selectionLimit && !selectedIds.find(id => id == province.id)) {
@@ -482,16 +477,16 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
     if (this.multiple) {
       this.value = selectedIds;
       this.onModelChange(selectedIds);
-      this.onChange.emit(selectedIds);
+      this.onChange.emit({originalEvent: event, value: selectedIds});
     } else {
       this.value = selectedIds[0];
       this.onModelChange(selectedIds[0]);
-      this.onChange.emit(selectedIds[0]);
+      this.onChange.emit({originalEvent: event, value: selectedIds[0]});
     }
     if (this.async) {
       this.disabled = true;
       this.cd.detectChanges();
-      this.onChangeAsync.emit({loadingCallback: this.removeLoading, value: this.value});
+      this.onChangeAsync.emit({loadingCallback: this.removeLoading, event: {originalEvent: event, value: this.value}});
     }
     this.onClick.emit(event);
   }

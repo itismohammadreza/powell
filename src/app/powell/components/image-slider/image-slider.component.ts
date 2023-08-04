@@ -49,8 +49,8 @@ export class ImageSliderComponent implements AfterContentInit {
   @Input() containerStyle: any;
   @Input() showTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
-  @Output() visibleChange = new EventEmitter();
-  @Output() activeIndexChange = new EventEmitter();
+  @Output() visibleChange = new EventEmitter<boolean>();
+  @Output() activeIndexChange = new EventEmitter<number>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   headerTemplate: TemplateRef<any>;
@@ -90,13 +90,13 @@ export class ImageSliderComponent implements AfterContentInit {
     })
   }
 
-  onVisibleChange(event) {
+  onVisibleChange(event: boolean) {
     this.visible = event;
     this.visibleChange.emit(this.visible);
   }
 
-  onActiveIndexChange(event: any) {
+  onActiveIndexChange(event: number) {
     this.activeIndex = event;
-    this.activeIndexChange.emit(this.visible);
+    this.activeIndexChange.emit(this.activeIndex);
   }
 }

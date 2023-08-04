@@ -12,6 +12,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgColorFormat, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
+import {PrimeColorPickerChangeEvent} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-color-picker',
@@ -50,20 +51,20 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() inline: boolean;
   @Input() format: NgColorFormat = 'hex';
   @Input() appendTo: any;
-  @Input() tabindex: any;
+  @Input() tabindex: string;
   @Input() disabled: boolean;
   @Input() baseZIndex: number;
   @Input() autoZIndex: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
-  @Output() onInput = new EventEmitter();
-  @Output() onChange = new EventEmitter();
-  @Output() onKeyDown = new EventEmitter();
-  @Output() onKeyUp = new EventEmitter();
-  @Output() onBlur = new EventEmitter();
-  @Output() onFocus = new EventEmitter();
-  @Output() onShow = new EventEmitter();
-  @Output() onHide = new EventEmitter();
+  @Output() onChange = new EventEmitter<PrimeColorPickerChangeEvent>();
+  @Output() onShow = new EventEmitter<void>();
+  @Output() onHide = new EventEmitter<void>();
+  @Output() onInput = new EventEmitter<Event>();
+  @Output() onKeyDown = new EventEmitter<KeyboardEvent>();
+  @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
+  @Output() onBlur = new EventEmitter<FocusEvent>();
+  @Output() onFocus = new EventEmitter<FocusEvent>();
 
   inputId: string;
   ngControl: NgControl;
@@ -106,14 +107,14 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  _onChangeColorPicker(event) {
+  _onChangeColorPicker(event: PrimeColorPickerChangeEvent) {
     this.onChange.emit(event);
     this.onModelChange(event.value);
   }
 
   _onChangeInput(event: Event) {
     const inputElement = event.target as HTMLInputElement;
-    this.onChange.emit(event);
+    this.onChange.emit({originalEvent: event, value: inputElement.value});
     this.onModelChange(inputElement.value);
   }
 
@@ -123,8 +124,8 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
     this.onModelChange(inputElement.value);
   }
 
-  _onBlur() {
-    this.onBlur.emit();
+  _onBlur(event: FocusEvent) {
+    this.onBlur.emit(event);
     this.onModelTouched();
   }
 

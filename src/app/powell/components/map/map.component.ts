@@ -19,6 +19,7 @@ import {
   LatLngBounds,
   LatLngLiteral,
   Layer,
+  LeafletEvent,
   LeafletMouseEvent,
   Map,
   MapOptions,
@@ -136,23 +137,23 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
     tapTolerance: 15,
     bounceAtZoomLimits: true
   };
-  @Output() zoomChange = new EventEmitter();
-  @Output() centerChange = new EventEmitter();
-  @Output() onMapMarkerClick = new EventEmitter();
-  @Output() onMapClick = new EventEmitter();
-  @Output() onMapDoubleClick = new EventEmitter();
-  @Output() onMapMouseDown = new EventEmitter();
-  @Output() onMapMouseUp = new EventEmitter();
-  @Output() onMapMouseMove = new EventEmitter();
-  @Output() onMapMouseOver = new EventEmitter();
-  @Output() onMapMouseOut = new EventEmitter();
-  @Output() onMapMove = new EventEmitter();
-  @Output() onMapMoveStart = new EventEmitter();
-  @Output() onMapMoveEnd = new EventEmitter();
-  @Output() onMapZoom = new EventEmitter();
-  @Output() onMapZoomStart = new EventEmitter();
-  @Output() onMapZoomEnd = new EventEmitter();
-  @Output() onClear = new EventEmitter();
+  @Output() zoomChange = new EventEmitter<number>();
+  @Output() centerChange = new EventEmitter<LatLng>();
+  @Output() onMapMarkerClick = new EventEmitter<LeafletMouseEvent>();
+  @Output() onMapClick = new EventEmitter<LeafletMouseEvent>();
+  @Output() onMapDoubleClick = new EventEmitter<LeafletMouseEvent>();
+  @Output() onMapMouseDown = new EventEmitter<LeafletMouseEvent>();
+  @Output() onMapMouseUp = new EventEmitter<LeafletMouseEvent>();
+  @Output() onMapMouseMove = new EventEmitter<LeafletMouseEvent>();
+  @Output() onMapMouseOver = new EventEmitter<LeafletMouseEvent>();
+  @Output() onMapMouseOut = new EventEmitter<LeafletMouseEvent>();
+  @Output() onMapMove = new EventEmitter<LeafletEvent>();
+  @Output() onMapMoveStart = new EventEmitter<LeafletEvent>();
+  @Output() onMapMoveEnd = new EventEmitter<LeafletEvent>();
+  @Output() onMapZoom = new EventEmitter<LeafletEvent>();
+  @Output() onMapZoomStart = new EventEmitter<LeafletEvent>();
+  @Output() onMapZoomEnd = new EventEmitter<LeafletEvent>();
+  @Output() onClear = new EventEmitter<void>();
 
   inputId: string;
   ngControl: NgControl;
@@ -266,12 +267,12 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
     this.map = event;
   }
 
-  onZoomChange(event) {
+  onZoomChange(event: number) {
     this.zoom = event;
     this.zoomChange.emit(this.zoom);
   }
 
-  onCenterChange(event) {
+  onCenterChange(event: LatLng) {
     this.center = event;
     this.centerChange.emit(this.center);
   }

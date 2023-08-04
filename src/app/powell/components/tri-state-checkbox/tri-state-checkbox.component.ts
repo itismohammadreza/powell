@@ -12,6 +12,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
+import {PrimeTriStateCheckboxChangeEvent} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-tri-state-checkbox',
@@ -37,13 +38,13 @@ export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() disabled: boolean;
-  @Input() tabindex: any;
+  @Input() tabindex: number;
   @Input() style: any;
   @Input() styleClass: string;
   @Input() readonly: boolean;
   @Input() checkboxTrueIcon: string = 'pi pi-check';
   @Input() checkboxFalseIcon: string = 'pi pi-times';
-  @Output() onChange = new EventEmitter();
+  @Output() onChange = new EventEmitter<PrimeTriStateCheckboxChangeEvent>();
 
   inputId: string;
   ngControl: NgControl;
@@ -86,7 +87,7 @@ export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  _onChange(event) {
+  _onChange(event: PrimeTriStateCheckboxChangeEvent) {
     this.onModelChange(event.value);
     this.onChange.emit(event);
   }

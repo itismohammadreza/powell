@@ -12,6 +12,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgIconPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
+import {PrimeToggleButtonChangeEvent} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-toggle-button',
@@ -45,8 +46,8 @@ export class ToggleButtonComponent implements OnInit, ControlValueAccessor {
   @Input() style: any;
   @Input() styleClass: string;
   @Input() disabled: boolean;
-  @Input() tabindex: any;
-  @Output() onChange = new EventEmitter();
+  @Input() tabindex: number;
+  @Output() onChange = new EventEmitter<PrimeToggleButtonChangeEvent>();
 
   inputId: string;
   ngControl: NgControl;
@@ -89,7 +90,7 @@ export class ToggleButtonComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  _onChange(event) {
+  _onChange(event: PrimeToggleButtonChangeEvent) {
     this.onModelChange(event.checked);
     this.onChange.emit(event);
     this.value = event.checked;

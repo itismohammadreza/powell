@@ -10,7 +10,15 @@ import {
   SimpleChanges,
   TemplateRef
 } from '@angular/core';
-import {NgButtonAppearance, NgButtonType, NgColor, NgIconPosition, NgSize} from '@powell/models';
+import {
+  NgButtonAppearance,
+  NgAsyncEvent,
+  NgButtonState,
+  NgButtonType,
+  NgColor,
+  NgIconPosition,
+  NgSize
+} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
@@ -32,7 +40,7 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
   @Input() newIcon: string;
   @Input() newAppearance: NgButtonAppearance;
   @Input() newColor: NgColor = 'primary';
-  @Input() defaultState: 1 | 2 = 1;
+  @Input() defaultState: NgButtonState = 1;
   // native properties
   @Input() type: NgButtonType = 'button';
   @Input() label: string;
@@ -44,9 +52,11 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
   @Input() disabled: boolean;
   @Input() style: any;
   @Input() styleClass: any;
-  @Output() onClick = new EventEmitter();
-  @Output() defaultStateChange = new EventEmitter();
-  @Output() onClickAsync = new EventEmitter();
+  @Output() onClick = new EventEmitter<MouseEvent>();
+  @Output() onBlur = new EventEmitter<FocusEvent>();
+  @Output() onFocus = new EventEmitter<FocusEvent>();
+  @Output() defaultStateChange = new EventEmitter<NgButtonState>();
+  @Output() onClickAsync = new EventEmitter<NgAsyncEvent<MouseEvent>>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   loading: boolean;
@@ -82,12 +92,12 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
     });
   }
 
-  _onClick(event: any) {
+  _onClick(event: MouseEvent) {
     if (this.async) {
       this.loading = true;
       this.defaultState = this.defaultState === 1 ? 2 : 1;
       this.defaultStateChange.emit(this.defaultState);
-      this.onClickAsync.emit(this.removeLoading);
+      this.onClickAsync.emit({event, loadingCallback: this.removeLoading});
     } else {
       this.onClick.emit(event);
     }
@@ -98,9 +108,9 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
     if (ok) {
       this.toggleState(this.defaultState);
     }
-  };
+  }
 
-  toggleState(defaultState: 1 | 2) {
+  toggleState(defaultState: NgButtonState) {
     if (!this.disabled) {
       this._tmpLabel = defaultState === 1 ? this.label : this.newLabel || this.label;
       this._tmpIcon = defaultState === 1 ? this.icon : this.newIcon || this.icon;

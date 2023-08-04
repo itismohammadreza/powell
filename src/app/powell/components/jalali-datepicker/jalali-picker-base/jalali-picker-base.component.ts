@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -23,6 +24,7 @@ import {Subject, Subscription, takeUntil} from 'rxjs';
 import {Moment} from "jalali-moment";
 import {MomentService} from "@powell/api";
 import {
+  PrimeCalendarMonthChangeEvent, PrimeCalendarYearChangeEvent,
   PrimeConfig,
   PrimeConnectedOverlayScrollHandler,
   PrimeDomHandler,
@@ -102,7 +104,7 @@ export type CalendarTypeView = 'date' | 'month' | 'year';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValueAccessor {
+export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewInit, ControlValueAccessor {
   @Input() style: any;
   @Input() styleClass: string;
   @Input() inputStyle: any;
@@ -156,18 +158,18 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
   @Input() tabindex: number;
   @Input() todayLabel: string = 'امروز';
   @Input() clearLabel: string = 'پاک کردن';
-  @Output() onFocus: EventEmitter<any> = new EventEmitter();
-  @Output() onBlur: EventEmitter<any> = new EventEmitter();
-  @Output() onClose: EventEmitter<any> = new EventEmitter();
-  @Output() onSelect: EventEmitter<any> = new EventEmitter();
-  @Output() onClear: EventEmitter<any> = new EventEmitter();
-  @Output() onInput: EventEmitter<any> = new EventEmitter();
-  @Output() onTodayClick: EventEmitter<any> = new EventEmitter();
-  @Output() onClearClick: EventEmitter<any> = new EventEmitter();
-  @Output() onMonthChange: EventEmitter<any> = new EventEmitter();
-  @Output() onYearChange: EventEmitter<any> = new EventEmitter();
-  @Output() onClickOutside: EventEmitter<any> = new EventEmitter();
-  @Output() onShow: EventEmitter<any> = new EventEmitter();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
+  @Output() onClose = new EventEmitter<AnimationEvent>();
+  @Output() onSelect = new EventEmitter<Moment>();
+  @Output() onClear = new EventEmitter<void>();
+  @Output() onInput = new EventEmitter<KeyboardEvent>();
+  @Output() onTodayClick = new EventEmitter<Event>();
+  @Output() onClearClick = new EventEmitter<Event>();
+  @Output() onMonthChange = new EventEmitter<PrimeCalendarMonthChangeEvent>();
+  @Output() onYearChange = new EventEmitter<PrimeCalendarYearChangeEvent>();
+  @Output() onClickOutside = new EventEmitter<Event>();
+  @Output() onShow = new EventEmitter<AnimationEvent>();
   @ContentChildren(PrimeTemplateDirective) templates: QueryList<any>;
   @ViewChild('container', {static: false}) containerViewChild: ElementRef;
   @ViewChild('inputfield', {static: false}) inputfieldViewChild: ElementRef;
@@ -380,13 +382,14 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     console.warn("Locale property has no effect, use new i18n API instead.");
   }
 
-  constructor(public el: ElementRef,
-              public renderer: Renderer2,
-              public cd: ChangeDetectorRef,
-              private zone: NgZone,
-              private config: PrimeConfig,
-              public overlayService: PrimeOverlayService,
-              private momentService: MomentService) {
+  constructor(
+    public el: ElementRef,
+    public renderer: Renderer2,
+    public cd: ChangeDetectorRef,
+    private zone: NgZone,
+    private config: PrimeConfig,
+    public overlayService: PrimeOverlayService,
+    private momentService: MomentService) {
   }
 
   ngOnInit() {
@@ -2571,7 +2574,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     this.filled = this.inputFieldValue && this.inputFieldValue != '';
   }
 
-  onTodayButtonClick(event: any) {
+  onTodayButtonClick(event: Event) {
     const date = this.getMoment();
     const dateMeta = {
       day: date.jDate(),
@@ -2585,7 +2588,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, ControlValu
     this.onTodayClick.emit(event);
   }
 
-  onClearButtonClick(event: any) {
+  onClearButtonClick(event: Event) {
     this.updateModel(null);
     this.updateInputField();
     this.hideOverlay();

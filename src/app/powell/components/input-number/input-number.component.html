@@ -67,10 +67,11 @@
         [title]="title"
         [autocomplete]="autocomplete"
         [showClear]="showClear"
-        (onBlur)="_onBlur()"
-        (onFocus)="_onFocus()"
+        (onBlur)="_onBlur($event)"
+        (onFocus)="_onFocus($event)"
         (onInput)="_onInput($event)"
         (onClear)="_onClear()"
+        (onKeyDown)="_onKeyDown($event)"
       ></p-inputNumber>
       <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
         {{ label | ngLabelStar:showRequiredStar:ngControl }}

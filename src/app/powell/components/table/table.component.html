@@ -372,7 +372,7 @@
                     [pTooltip]="action.tooltip"
                     [tooltipPosition]="action.tooltipPosition ?? 'top'"
                     (onClick)="action.onClick(item,index,$event)"
-                    (onClickAsync)="action.onClickAsync($event,item,index)">
+                    (onClickAsync)="action.onClickAsync(item,index,$event)">
                   </ng-button>
                 </ng-container>
               </div>
@@ -395,7 +395,7 @@
                 [pTooltip]="action.tooltip"
                 [tooltipPosition]="action.tooltipPosition ?? 'top'"
                 (onClick)="action.onClick(item,index,$event)"
-                (onClickAsync)="action.onClickAsync($event,item,index)">
+                (onClickAsync)="action.onClickAsync(item,index,$event)">
               </ng-button>
             </td>
           </ng-container>
@@ -410,10 +410,11 @@
       <ng-template #defaultCaption>
         <div class="caption">
           <h5>{{header}}</h5>
-          <ng-input-text *ngIf="globalFilter"
-                         [placeholder]="globalFilterPlaceholder"
-                         icon="pi pi-search"
-                         (onKeyDown)="onGlobalFilterChange($event)">
+          <ng-input-text
+            *ngIf="globalFilter"
+            [placeholder]="globalFilterPlaceholder"
+            icon="pi pi-search"
+            (onKeyDown)="onGlobalFilterChange($event)">
           </ng-input-text>
         </div>
       </ng-template>

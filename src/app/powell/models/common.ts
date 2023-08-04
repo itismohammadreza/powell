@@ -3,7 +3,7 @@ export type NgSize = 'sm' | 'md' | 'lg';
 export type NgOrientation = 'horizontal' | 'vertical';
 export type NgTableSelectionMode = 'single' | 'multiple' | 'checkbox' | 'radio';
 export type NgTreeSelectionMode = Exclude<NgTableSelectionMode, 'radio'>;
-export type NgStatus = 'success' | 'info' | 'warning' | 'error' | '403' | '404' | '500';
+export type NgStatusIcon = 'success' | 'info' | 'warning' | 'error' | '403' | '404' | '500';
 export type NgEmptyIcon = 'box1' | 'box2' | 'magnifier';
 export type NgPosition = 'left' | 'right' | 'top' | 'bottom';
 export type NgIconPosition = Exclude<NgPosition, 'top' | 'bottom'>;
@@ -25,5 +25,3 @@ export type NgDialogPosition =
   | 'bottomleft'
   | 'bottomright'
   | 'center';
-
-

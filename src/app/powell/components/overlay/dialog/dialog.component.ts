@@ -7,7 +7,7 @@ import {NgDialogOptions} from '@powell/models';
   styleUrls: ['./dialog.component.scss'],
 })
 export class DialogComponent {
-  onClose = new EventEmitter();
+  onClose = new EventEmitter<void>();
   options: NgDialogOptions = {};
   visible: boolean = true;
 

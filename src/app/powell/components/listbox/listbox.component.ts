@@ -26,6 +26,7 @@ import {takeUntil} from "rxjs";
 import {NgAddon, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
+import {PrimeListboxChangeEvent, PrimeListboxClickEvent, PrimeListboxDoubleClickEvent} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-listbox',
@@ -40,7 +41,7 @@ import {DestroyService} from "@core/utils";
     DestroyService
   ]
 })
-export class ListboxComponent implements OnInit, AfterContentInit, ControlValueAccessor{
+export class ListboxComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -79,9 +80,9 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() showToggleAll: boolean = true;
   @Input() style: any;
   @Input() styleClass: string;
-  @Output() onChange = new EventEmitter();
-  @Output() onDblClick = new EventEmitter();
-  @Output() onClick = new EventEmitter();
+  @Output() onChange = new EventEmitter<PrimeListboxChangeEvent>();
+  @Output() onDblClick = new EventEmitter<PrimeListboxDoubleClickEvent>();
+  @Output() onClick = new EventEmitter<PrimeListboxClickEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
@@ -166,17 +167,17 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
     });
   }
 
-  _onChange(event) {
+  _onChange(event: PrimeListboxChangeEvent) {
     this.onChange.emit(event);
     this.onModelChange(event.value);
   }
 
-  _onDblClick(event) {
+  _onDblClick(event: PrimeListboxDoubleClickEvent) {
     this.onDblClick.emit(event);
     this.onModelChange(event.value);
   }
 
-  _onClick(event) {
+  _onClick(event: PrimeListboxClickEvent) {
     this.onClick.emit(event);
     this.onModelChange(event.value);
   }

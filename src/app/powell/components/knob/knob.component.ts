@@ -51,7 +51,7 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
   @Input() valueTemplate: string = '{value}';
   @Input() style: any;
   @Input() styleClass: string;
-  @Output() onChange = new EventEmitter();
+  @Output() onChange = new EventEmitter<number>();
 
   inputId: string;
   ngControl: NgControl;
@@ -94,7 +94,7 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  _onChange(event: any) {
+  _onChange(event: number) {
     this.onChange.emit(event);
     this.onModelChange(event);
   }

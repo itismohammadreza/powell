@@ -31,7 +31,7 @@ export class DualLabelSwitchPage {
   constructor(private configService: ConfigService) {
   }
 
-  onChangeAsync({loadingCallback, value}) {
+  onChangeAsync({loadingCallback}) {
     this.asyncFlag = !this.asyncFlag;
     setTimeout(() => {
       loadingCallback(this.asyncFlag)

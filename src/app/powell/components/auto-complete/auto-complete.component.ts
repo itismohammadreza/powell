@@ -25,7 +25,12 @@ import {
 import {takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
-import {PrimeScrollerOptions} from "@powell/primeng/api";
+import {
+  PrimeAutoCompleteCompleteEvent,
+  PrimeAutoCompleteDropdownClickEvent,
+  PrimeAutoCompleteLazyLoadEvent,
+  PrimeScrollerOptions
+} from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
 
 @Component({
@@ -81,7 +86,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() maxlength: number;
   @Input() size: number;
   @Input() appendTo: any;
-  @Input() tabindex: any;
+  @Input() tabindex: number;
   @Input() dataKey: string;
   @Input() autoHighlight: boolean;
   @Input() type: NgInputType = 'text';
@@ -101,17 +106,17 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() virtualScrollItemSize: number;
   @Input() virtualScrollOptions: PrimeScrollerOptions;
   @Input() lazy: boolean;
-  @Output() completeMethod = new EventEmitter();
-  @Output() onFocus = new EventEmitter();
-  @Output() onBlur = new EventEmitter();
-  @Output() onKeyUp = new EventEmitter();
-  @Output() onSelect = new EventEmitter();
-  @Output() onUnselect = new EventEmitter();
-  @Output() onDropdownClick = new EventEmitter();
-  @Output() onClear = new EventEmitter();
-  @Output() onShow = new EventEmitter();
-  @Output() onHide = new EventEmitter();
-  @Output() onLazyLoad = new EventEmitter();
+  @Output() completeMethod = new EventEmitter<PrimeAutoCompleteCompleteEvent>();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
+  @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
+  @Output() onSelect = new EventEmitter<any>();
+  @Output() onUnselect = new EventEmitter<any>();
+  @Output() onDropdownClick = new EventEmitter<PrimeAutoCompleteDropdownClickEvent>();
+  @Output() onClear = new EventEmitter<Event>();
+  @Output() onShow = new EventEmitter<Event>();
+  @Output() onHide = new EventEmitter<Event>();
+  @Output() onLazyLoad = new EventEmitter<PrimeAutoCompleteLazyLoadEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
@@ -191,12 +196,8 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
     });
   }
 
-  _completeMethod(event) {
-    this.completeMethod.emit(event);
-  }
-
-  _onBlur() {
-    this.onBlur.emit();
+  _onBlur(event: Event) {
+    this.onBlur.emit(event);
     this.onModelTouched();
   }
 
@@ -208,22 +209,18 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
     }
   }
 
-  _onSelect(event) {
+  _onSelect(event: any) {
     this.onSelect.emit(event);
     this.onModelChange(this.value);
   }
 
-  _onUnselect(event) {
+  _onUnselect(event: any) {
     this.onUnselect.emit(event);
     this.onModelChange(this.value);
   }
 
-  _onDropdownClick(event) {
-    this.onDropdownClick.emit(event);
-  }
-
-  _onClear() {
-    this.onClear.emit();
+  _onClear(event: Event) {
+    this.onClear.emit(event);
     this.onModelChange(null);
   }
 

@@ -26,6 +26,12 @@ import {takeUntil} from "rxjs";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
+import {
+  PrimeCascadeSelectBeforeHideEvent,
+  PrimeCascadeSelectBeforeShowEvent,
+  PrimeCascadeSelectHideEvent,
+  PrimeCascadeSelectShowEvent
+} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-cascade-select',
@@ -64,18 +70,18 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() placeholder: string;
   @Input() disabled: boolean;
   @Input() dataKey: string;
-  @Input() tabindex: any;
+  @Input() tabindex: string;
   @Input() appendTo: any;
   @Input() style: any;
   @Input() styleClass: string;
   @Input() showClear: boolean = true;
-  @Output() onChange = new EventEmitter();
-  @Output() onGroupChange = new EventEmitter();
-  @Output() onBeforeShow = new EventEmitter();
-  @Output() onBeforeHide = new EventEmitter();
-  @Output() onShow = new EventEmitter();
-  @Output() onHide = new EventEmitter();
-  @Output() onClear = new EventEmitter();
+  @Output() onChange = new EventEmitter<any>();
+  @Output() onGroupChange = new EventEmitter<Event>();
+  @Output() onBeforeShow = new EventEmitter<PrimeCascadeSelectBeforeShowEvent>();
+  @Output() onBeforeHide = new EventEmitter<PrimeCascadeSelectBeforeHideEvent>();
+  @Output() onShow = new EventEmitter<PrimeCascadeSelectShowEvent>();
+  @Output() onHide = new EventEmitter<PrimeCascadeSelectHideEvent>();
+  @Output() onClear = new EventEmitter<void>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
@@ -130,13 +136,9 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
     });
   }
 
-  _onChange(event) {
+  _onChange(event: any) {
     this.onChange.emit(event);
     this.onModelChange(event.value);
-  }
-
-  _onGroupChange(event) {
-    this.onGroupChange.emit(event);
   }
 
   emitter(name: string, event: any) {

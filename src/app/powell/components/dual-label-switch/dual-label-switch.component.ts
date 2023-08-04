@@ -10,8 +10,9 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgFixLabelPosition, NgValidation} from "@powell/models";
+import {NgAsyncEvent, NgFixLabelPosition, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
+import {PrimeInputSwitchOnChangeEvent} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-dual-label-switch',
@@ -45,11 +46,11 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   // native properties
   @Input() style: any;
   @Input() styleClass: string;
-  @Input() tabindex: any;
+  @Input() tabindex: number;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
-  @Output() onChange = new EventEmitter();
-  @Output() onChangeAsync = new EventEmitter();
+  @Output() onChange = new EventEmitter<PrimeInputSwitchOnChangeEvent>();
+  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<PrimeInputSwitchOnChangeEvent>>();
 
   loading: boolean;
   inputId: string;
@@ -101,12 +102,12 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  _onChange(event) {
+  _onChange(event: PrimeInputSwitchOnChangeEvent) {
     if (this.async) {
       this.loading = true;
       this.disabled = true;
       this.cd.detectChanges();
-      this.onChangeAsync.emit({loadingCallback: this.removeLoading, value: event.checked});
+      this.onChangeAsync.emit({loadingCallback: this.removeLoading, event});
     } else {
       this.onModelChange(event.checked);
       this.onChange.emit(event);

@@ -1,4 +1,12 @@
-import {NgButtonAppearance, NgColor, NgFilterMatchMode, NgIconPosition, NgPosition, NgSize} from '@powell/models';
+import {
+  NgButtonAppearance,
+  NgAsyncEvent,
+  NgColor,
+  NgFilterMatchMode,
+  NgIconPosition,
+  NgPosition,
+  NgSize
+} from '@powell/models';
 
 export type NgTableRendererType = 'text' | 'image' | 'ng-template';
 export type NgTableFilterDisplay = 'row' | 'menu';
@@ -76,6 +84,6 @@ export interface NgTableAction<T = any> {
   async?: boolean;
   size?: NgSize;
   visible?: boolean | ((item: T) => boolean);
-  onClick?: (item: T, index: number, event: any) => void;
-  onClickAsync?: (callback: VoidFunction, item: T, index: number) => void;
+  onClick?: (item: T, index: number, event: Event) => any;
+  onClickAsync?: (item: T, index: number, event: NgAsyncEvent<MouseEvent>) => any;
 }

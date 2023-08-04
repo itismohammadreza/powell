@@ -64,12 +64,12 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() allowedKeyCodes: string[];
   @Input() numbersOnly: boolean = true;
   @Input() autoFocusFirst: boolean;
-  @Output() onChange = new EventEmitter();
-  @Output() onKeyDown = new EventEmitter();
-  @Output() onKeyUp = new EventEmitter();
-  @Output() onBlur = new EventEmitter();
-  @Output() onFocus = new EventEmitter();
-  @Output() onPaste = new EventEmitter();
+  @Output() onChange = new EventEmitter<string>();
+  @Output() onKeyDown = new EventEmitter<KeyboardEvent>();
+  @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
+  @Output() onBlur = new EventEmitter<FocusEvent>();
+  @Output() onFocus = new EventEmitter<FocusEvent>();
+  @Output() onPaste = new EventEmitter<Event>();
 
   form: FormGroup;
   ngControl: NgControl;
@@ -135,8 +135,8 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
     }
   }
 
-  _onBlur() {
-    this.onBlur.emit()
+  _onBlur(event: FocusEvent) {
+    this.onBlur.emit(event)
     this.onModelTouched();
   }
 

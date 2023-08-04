@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {NgStatus} from "@powell/models";
+import {NgStatusIcon} from "@powell/models";
 
 @Component({
   selector: 'ng-status',
@@ -7,7 +7,7 @@ import {NgStatus} from "@powell/models";
   styleUrls: ['./status.component.scss'],
 })
 export class StatusComponent {
-  @Input() status: NgStatus = "success";
+  @Input() status: NgStatusIcon = "success";
   @Input() icon: string;
   @Input() imageSrc: string;
   @Input() text: string;

@@ -74,13 +74,13 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() styleClass: string;
   @Input() placeholder: string;
   @Input() showClear: boolean;
-  @Output() onInput = new EventEmitter();
-  @Output() onChange = new EventEmitter();
-  @Output() onKeyDown = new EventEmitter();
-  @Output() onKeyUp = new EventEmitter();
-  @Output() onBlur = new EventEmitter();
-  @Output() onFocus = new EventEmitter();
-  @Output() onClear = new EventEmitter();
+  @Output() onInput = new EventEmitter<Event>();
+  @Output() onChange = new EventEmitter<Event>();
+  @Output() onKeyDown = new EventEmitter<KeyboardEvent>();
+  @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
+  @Output() onBlur = new EventEmitter<Event>();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onClear = new EventEmitter<void>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
@@ -154,14 +154,15 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   }
 
   _onInput(event: Event) {
+    console.log(event)
     const inputElement = event.target as HTMLInputElement;
     this.onInput.emit(event);
     this.onModelChange(inputElement.value);
     this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
   }
 
-  _onBlur() {
-    this.onBlur.emit();
+  _onBlur(event: Event) {
+    this.onBlur.emit(event);
     this.onModelTouched();
   }
 
@@ -183,8 +184,8 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
     this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
   }
 
-  _onFocus() {
-    this.onFocus.emit();
+  _onFocus(event: Event) {
+    this.onFocus.emit(event);
   }
 
   getId() {

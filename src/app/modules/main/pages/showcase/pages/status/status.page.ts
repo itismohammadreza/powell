@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NgStatus} from "@powell/models";
+import {NgStatusIcon} from "@powell/models";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -11,7 +11,7 @@ export class StatusPage {
   constructor(private configService: ConfigService) {
   }
 
-  status: NgStatus = 'info';
+  status: NgStatusIcon = 'info';
   icon: string = '';
   text: string = '';
   subText: string = '';

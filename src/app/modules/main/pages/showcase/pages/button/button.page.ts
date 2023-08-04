@@ -23,7 +23,7 @@ export class ButtonPage {
   newLabel: string = 'New Label';
   newColor: NgColor = 'secondary';
 
-  onClickAsync(loadingCallback) {
+  onClickAsync({loadingCallback}) {
     setTimeout(() => {
       loadingCallback(true)
     }, 3000)

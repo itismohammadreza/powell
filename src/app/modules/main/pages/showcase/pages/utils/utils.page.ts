@@ -36,12 +36,12 @@ export class UtilsPage {
     });
   }
 
-  async request(callback: VoidFunction) {
+  async request({loadingCallback}) {
     try {
       await this.userService.get();
-      callback();
+      loadingCallback();
     } catch {
-      callback();
+      loadingCallback();
     }
   }
 

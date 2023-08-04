@@ -10,8 +10,9 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgValidation} from '@powell/models';
+import {NgAsyncEvent, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
+import {PrimeCheckboxChangeEvent} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-checkbox',
@@ -41,7 +42,7 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() disabled: boolean;
-  @Input() tabindex: any;
+  @Input() tabindex: number;
   @Input() style: any;
   @Input() styleClass: string;
   @Input() labelStyleClass: string;
@@ -49,8 +50,8 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() readonly: boolean;
   @Input() trueValue: any = true;
   @Input() falseValue: any = false;
-  @Output() onChange = new EventEmitter();
-  @Output() onChangeAsync = new EventEmitter();
+  @Output() onChange = new EventEmitter<PrimeCheckboxChangeEvent>();
+  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<PrimeCheckboxChangeEvent>>();
 
   loading: boolean;
   inputId: string;
@@ -105,12 +106,12 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  _onChange(event) {
+  _onChange(event: PrimeCheckboxChangeEvent) {
     if (this.async) {
       this.loading = true;
       this.disabled = true;
       this.cd.detectChanges();
-      this.onChangeAsync.emit({loadingCallback: this.removeLoading, value: event.checked});
+      this.onChangeAsync.emit({loadingCallback: this.removeLoading, event});
     } else {
       this.onModelChange(event.checked);
       this.onChange.emit(event);

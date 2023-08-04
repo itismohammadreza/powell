@@ -32,6 +32,16 @@ import {TemplateDirective} from "@powell/directives/template";
 import {PrimeFileUpload} from "@powell/primeng";
 import {UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
+import {
+  PrimeFileBeforeUploadEvent,
+  PrimeFileProgressEvent,
+  PrimeFileRemoveEvent,
+  PrimeFileSelectEvent,
+  PrimeFileSendEvent,
+  PrimeFileUploadErrorEvent,
+  PrimeFileUploadEvent,
+  PrimeFileUploadHandlerEvent
+} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-file-picker',
@@ -92,22 +102,22 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Input() cancelStyleClass: string;
   @Input() removeStyleClass: string;
   @Input() chooseStyleClass: string;
-  @Output() onProgress = new EventEmitter();
-  @Output() onSelect = new EventEmitter();
-  @Output() onRemove = new EventEmitter();
-  @Output() onClear = new EventEmitter();
-  @Output() onError = new EventEmitter();
-  @Output() onBeforeUpload = new EventEmitter();
-  @Output() onUpload = new EventEmitter();
-  @Output() onSend = new EventEmitter();
-  @Output() uploadHandler = new EventEmitter();
+  @Output() onProgress = new EventEmitter<PrimeFileProgressEvent>();
+  @Output() onSelect = new EventEmitter<PrimeFileSelectEvent>();
+  @Output() onRemove = new EventEmitter<PrimeFileRemoveEvent>();
+  @Output() onClear = new EventEmitter<void>();
+  @Output() onError = new EventEmitter<PrimeFileUploadErrorEvent>();
+  @Output() onBeforeUpload = new EventEmitter<PrimeFileBeforeUploadEvent>();
+  @Output() onUpload = new EventEmitter<PrimeFileUploadEvent>();
+  @Output() onSend = new EventEmitter<PrimeFileSendEvent>();
+  @Output() uploadHandler = new EventEmitter<PrimeFileUploadHandlerEvent>();
   @ViewChild(PrimeFileUpload, {static: true}) fileUploadComponent: PrimeFileUpload;
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
   ngControl: NgControl;
   selectedFiles: any[] = [];
-  filesToEmit: (string | ArrayBuffer | File)[] = [];
+  filesToEmit: any[] = [];
   toolbarTemplate: TemplateRef<any>;
   fileTemplate: TemplateRef<any>;
   contentTemplate: TemplateRef<any>;
@@ -175,13 +185,13 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     })
   }
 
-  _onRemove(event) {
+  _onRemove(event: PrimeFileRemoveEvent) {
     this.filesToEmit.splice(this.selectedFiles.indexOf(event.file), 1);
     this.onModelChange(this.filesToEmit);
     this.onRemove.emit(event);
   }
 
-  async _onSelect(event) {
+  async _onSelect(event: PrimeFileSelectEvent) {
     this.selectedFiles = event.currentFiles;
     for (let file of event.currentFiles) {
       if (this.resultType == 'base64') {
@@ -192,13 +202,12 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
         this.filesToEmit.push(file);
       }
     }
-    if (this.multiple) {
-      this.onSelect.emit(this.filesToEmit);
-      this.onModelChange(this.filesToEmit);
-    } else if (!this.multiple) {
-      this.onSelect.emit(this.filesToEmit[0]);
-      this.onModelChange(this.filesToEmit[0]);
-    }
+    this.onSelect.emit({
+      files: this.filesToEmit,
+      currentFiles: event.currentFiles,
+      originalEvent: event.originalEvent
+    });
+    this.onModelChange(this.filesToEmit);
   }
 
   async init(value: any) {

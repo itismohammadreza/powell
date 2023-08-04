@@ -37,9 +37,9 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   @Input() showCloseIcon: boolean = true;
   @Input() transitionOptions: string = '270ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() closeOnEscape: boolean = true;
-  @Output() onShow = new EventEmitter();
-  @Output() onHide = new EventEmitter();
-  @Output() visibleChange = new EventEmitter();
+  @Output() onShow = new EventEmitter<any>();
+  @Output() onHide = new EventEmitter<any>();
+  @Output() visibleChange = new EventEmitter<boolean>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   headerTemplate: TemplateRef<any>;

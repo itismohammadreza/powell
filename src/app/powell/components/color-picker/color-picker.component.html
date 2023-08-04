@@ -46,7 +46,7 @@
       [disabled]="disabled"
       [maxlength]="maxlength"
       [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
-      (onBlur)="_onBlur()"
+      (onBlur)="_onBlur($event)"
       (onChange)="_onChangeInput($event)"
       (onFocus)="emitter('onFocus', $event)"
       (onInput)="_onInput($event)"

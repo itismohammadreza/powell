@@ -37,7 +37,7 @@ import {
   NgOverflow,
   NgSeverity,
   NgSize,
-  NgStatus,
+  NgStatusIcon,
   NgToastPosition,
   NgTreeSelectionMode
 } from '@powell/models';
@@ -589,7 +589,7 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() indentationChange = new EventEmitter();
   @Input() layout: NgOrientation;
   @Output() layoutChange = new EventEmitter();
-  @Input() status: NgStatus;
+  @Input() status: NgStatusIcon;
   @Output() statusChange = new EventEmitter()
   @Input() text: string;
   @Output() textChange = new EventEmitter()
