@@ -41,7 +41,7 @@
     </div>
 
     <div class="file-picker-multiple-wrapper" *ngIf="multiple">
-      <div *ngIf="!readonly && filesToEmit.length < fileLimit" class="picker" (click)="inputFile.click()">
+      <div *ngIf="!readonly && (fileLimit && filesToEmit.length < fileLimit)" class="picker" (click)="inputFile.click()">
         <i class="pi pi-paperclip"></i>
       </div>
       <div *ngFor="let item of filesToShow; let i = index" class="preview">

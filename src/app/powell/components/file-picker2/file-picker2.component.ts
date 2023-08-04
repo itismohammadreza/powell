@@ -61,8 +61,8 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() isUnknownImageUrl: boolean = false;
   @Input() accept: string = 'image/*';
   @Input() color: NgColor = 'primary';
-  @Input() maxFileSize: number = 2;
-  @Input() fileLimit: number = 20000;
+  @Input() maxFileSize: number;
+  @Input() fileLimit: number;
   @Input() resultType: NgFileResultType = 'file';
   @Input() chooseLabel: string = 'انتخاب';
   @Input() invalidFileSizeMessage: string = 'سایز فایل نامعتبر است.';
