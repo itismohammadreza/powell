@@ -37,7 +37,6 @@ import {
   PrimeScrollerOptions,
   PrimeTreeFilterEvent,
   PrimeTreeLazyLoadEvent,
-  PrimeTreeNode,
   PrimeTreeNodeCollapseEvent,
   PrimeTreeNodeContextMenuSelectEvent,
   PrimeTreeNodeDropEvent,
@@ -45,7 +44,8 @@ import {
   PrimeTreeNodeSelectEvent,
   PrimeTreeNodeUnSelectEvent,
   PrimeTreeScrollEvent,
-  PrimeTreeScrollIndexChangeEvent, PrimeTreeSelectionChangeEvent
+  PrimeTreeScrollIndexChangeEvent,
+  PrimeTreeSelectionChangeEvent
 } from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
 

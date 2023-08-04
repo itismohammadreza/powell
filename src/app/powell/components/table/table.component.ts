@@ -38,7 +38,8 @@ import {
   PrimeSortMeta,
   PrimeTableColResizeEvent,
   PrimeTableColumnReorderEvent,
-  PrimeTableContextMenuSelectEvent, PrimeTableContextMenuSelectionChangeEvent,
+  PrimeTableContextMenuSelectEvent,
+  PrimeTableContextMenuSelectionChangeEvent,
   PrimeTableFilterEvent,
   PrimeTableHeaderCheckboxToggleEvent,
   PrimeTableLazyLoadEvent,
@@ -47,7 +48,8 @@ import {
   PrimeTableRowExpandEvent,
   PrimeTableRowReorderEvent,
   PrimeTableRowSelectEvent,
-  PrimeTableRowUnSelectEvent, PrimeTableSelectAllChangeEvent,
+  PrimeTableRowUnSelectEvent,
+  PrimeTableSelectAllChangeEvent,
   PrimeTableSortEvent,
   PrimeTableState
 } from "@powell/primeng/api";

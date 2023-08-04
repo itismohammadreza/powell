@@ -24,7 +24,8 @@ import {Subject, Subscription, takeUntil} from 'rxjs';
 import {Moment} from "jalali-moment";
 import {MomentService} from "@powell/api";
 import {
-  PrimeCalendarMonthChangeEvent, PrimeCalendarYearChangeEvent,
+  PrimeCalendarMonthChangeEvent,
+  PrimeCalendarYearChangeEvent,
   PrimeConfig,
   PrimeConnectedOverlayScrollHandler,
   PrimeDomHandler,

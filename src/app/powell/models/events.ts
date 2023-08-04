@@ -1,8 +1,8 @@
 import {
+  audioInputInformation,
   Controllers,
   Core,
   fileInfo,
-  audioInputInformation,
   imageInputInformation,
   videoInputInformation
 } from "suneditor/src/lib/core";

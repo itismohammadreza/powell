@@ -37,8 +37,10 @@ import {TemplateDirective} from '@powell/directives/template';
 import {
   PrimeMultiSelectBlurEvent,
   PrimeMultiSelectChangeEvent,
-  PrimeMultiSelectFilterEvent, PrimeMultiSelectFocusEvent,
-  PrimeMultiSelectLazyLoadEvent, PrimeMultiSelectRemoveEvent,
+  PrimeMultiSelectFilterEvent,
+  PrimeMultiSelectFocusEvent,
+  PrimeMultiSelectLazyLoadEvent,
+  PrimeMultiSelectRemoveEvent,
   PrimeScrollerOptions
 } from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";

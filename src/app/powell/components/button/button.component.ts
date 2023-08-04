@@ -11,8 +11,8 @@ import {
   TemplateRef
 } from '@angular/core';
 import {
-  NgButtonAppearance,
   NgAsyncEvent,
+  NgButtonAppearance,
   NgButtonState,
   NgButtonType,
   NgColor,
