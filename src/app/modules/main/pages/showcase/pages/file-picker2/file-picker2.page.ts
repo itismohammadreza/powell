@@ -25,7 +25,7 @@ export class FilePicker2Page {
   disabled: boolean = false;
   readonly: boolean = false;
   multiple: boolean = true;
-  accept: string = 'image/*';
+  accept: string = '';
   color: NgColor = 'primary';
   fileLimit: number = 20000;
   chooseLabel: string = 'انتخاب';
