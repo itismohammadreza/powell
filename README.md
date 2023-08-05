@@ -13,4 +13,4 @@
 - replace css colors with variables and make theme colors configurable
 - add new features of primeng to components
 - move themes and style files inside powell directory
-- implement file size and file type handler in file picker (implement Validate interface from angular)
+- remove extra any types (create a model for LabelValue, create a model for normal objects)
