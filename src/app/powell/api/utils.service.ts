@@ -160,11 +160,12 @@ export class UtilsService {
     return '.' + file.name.split('.').pop();
   }
 
-  isFileTypeValid(file: File, acceptList: string) {
-    let acceptableTypes = acceptList.split(',').map((type) => type.trim());
+  isFileTypeValid(file: File, acceptList: string, separator: string = ',') {
+    let acceptableTypes = acceptList.split(separator).map((type) => type.trim());
     for (let type of acceptableTypes) {
-      let acceptable = this.isWildcard(type) ? this.getTypeClass(file.type) === this.getTypeClass(type) : file.type == type || this.getFileExtension(file).toLowerCase() === type.toLowerCase();
-
+      const checkTypeClass = this.getTypeClass(file.type) === this.getTypeClass(type);
+      const checkExtension = file.type == type || this.getFileExtension(file).toLowerCase() === type.toLowerCase();
+      let acceptable = this.isWildcard(type) ? checkTypeClass : checkExtension;
       if (acceptable) {
         return true;
       }
