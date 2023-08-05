@@ -172,6 +172,13 @@ export class UtilsService {
     return false;
   }
 
+  isFileSizeValid(file: File, max: number, min?: number) {
+    const size = file.size;
+    const supportMin = min ? size >= min : true;
+    const supportMax = max ? size <= min : true;
+    return supportMin && supportMax;
+  }
+
   isImage(value: any) {
     if (!value) {
       return
