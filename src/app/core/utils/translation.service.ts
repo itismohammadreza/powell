@@ -14,7 +14,7 @@ export class TranslationService {
   }
 
   async init() {
-    this.onLangChange().subscribe((res: any) => {
+    this.onLangChange().subscribe(res => {
       this.storeLang(res.lang, this.currentLang);
       this.currentLang = res.lang;
     });
