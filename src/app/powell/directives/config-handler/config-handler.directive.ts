@@ -10,7 +10,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@powell/models";
+import {NgConfig, NgFixLabelPosition, NgLabelPosition, NgSize, NgTheme} from "@powell/models";
 import {ConfigService} from "@powell/api";
 import {PrimeOverlayOptions} from "@powell/primeng/api";
 
@@ -39,7 +39,7 @@ export class ConfigHandlerDirective implements OnInit, OnChanges, OnDestroy {
   @Input() disableConfigChangeEffect: boolean;
   @Output() disableConfigChangeEffectChange = new EventEmitter<boolean>();
 
-  @Output() configChange = new EventEmitter();
+  @Output() configChange = new EventEmitter<{ modifiedConfig: NgConfig, currentConfig:NgConfig }>();
 
   destroy$: Subject<any>;
 
