@@ -18,8 +18,9 @@ export interface RequestConfig {
   pathTemplate?: string | RegExp,
   method: RequestMethod;
   // null: default message, false: don't show message, string: custom message
-  successMessage?: string | null | false | ((request: HttpRequest<any>, response?: HttpResponseBase) => string | null | false),
-  failureMessage?: string | null | false | ((request: HttpRequest<any>, response?: HttpResponseBase) => string | null | false),
-  catch?: boolean | ((request: HttpRequest<any>) => boolean),
-  loading?: boolean | ((request: HttpRequest<any>) => boolean),
+  successMessage?: string | null | false | ((request: HttpRequest<any>, response?: HttpResponseBase) => string | null | false);
+  failureMessage?: string | null | false | ((request: HttpRequest<any>, response?: HttpResponseBase) => string | null | false);
+  catch?: boolean | ((request: HttpRequest<any>) => boolean);
+  loading?: boolean | ((request: HttpRequest<any>) => boolean);
+  isCustomApi?: boolean;
 }

@@ -4,13 +4,14 @@ export const RequestsConfig: RequestConfig[] = [
   // {pathTemplate: /photos/g},
   // {pathTemplate: 'your/*/custom/*/path/*/template'},
   {
-    pathTemplate: '/photos',
+    pathTemplate: 'https://jsonplaceholder.typicode.com/photos*',
     method: 'GET',
     successMessage: (req, res) => {
       return 'موفقیت آمیز بود'
     },
     failureMessage: null,
     loading: true,
-    catch: false
+    catch: false,
+    isCustomApi: true // when set to true, pathTemplate compared with complete request url with its params, otherwise compared with endpoint
   },
 ];

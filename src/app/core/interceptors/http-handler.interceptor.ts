@@ -48,6 +48,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
         if (!(response instanceof HttpResponse) || /2\d+/.test(response.status.toString()) == false) {
           return;
         }
+        console.log(successMessage)
         if (![false, undefined].includes(successMessage)) {
           this.showSuccessToast(successMessage ?? response.body.message)
         }
@@ -90,21 +91,22 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
 
   getRequestConfig(request: HttpRequest<any>) {
     const {pathname} = this.getUrlParts(request.url);
-    const idx = RequestsConfig.findIndex(x => {
-      const requestMethodMatch = x.method === request.method;
-      const requestPathMatch = () => {
-        if (x.pathTemplate instanceof RegExp) {
-          return x.pathTemplate.test(pathname);
-        } else if (x.pathTemplate.includes('*')) {
-          const rep1 = x.pathTemplate.replace(/\*/g, '.*')
-          const rep2 = rep1.replace(/\//g, "\\\/");
-          const regex = new RegExp(rep2, 'g');
-          return regex.test(pathname);
-        } else {
-          return x.pathTemplate == pathname
-        }
+    const requestPathMatch = ({pathTemplate, isCustomApi}: RequestConfig) => {
+      const testCase = isCustomApi ? request.urlWithParams : pathname;
+      if (pathTemplate instanceof RegExp) {
+        return pathTemplate.test(testCase);
+      } else if (pathTemplate.includes('*')) {
+        const rep1 = pathTemplate.replace(/\*/g, '.*');
+        const rep2 = rep1.replace(/\//g, "\\\/");
+        const regex = new RegExp(rep2, 'g');
+        return regex.test(testCase);
+      } else {
+        return pathTemplate == testCase;
       }
-      return requestMethodMatch && requestPathMatch();
+    }
+    const idx = RequestsConfig.findIndex(config => {
+      const requestMethodMatch = config.method === request.method;
+      return requestMethodMatch && requestPathMatch(config);
     });
     return RequestsConfig[idx];
   }
