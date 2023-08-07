@@ -48,7 +48,6 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
         if (!(response instanceof HttpResponse) || /2\d+/.test(response.status.toString()) == false) {
           return;
         }
-        console.log(successMessage)
         if (![false, undefined].includes(successMessage)) {
           this.showSuccessToast(successMessage ?? response.body.message)
         }

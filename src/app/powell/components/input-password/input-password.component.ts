@@ -154,7 +154,6 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   }
 
   _onInput(event: Event) {
-    console.log(event)
     const inputElement = event.target as HTMLInputElement;
     this.onInput.emit(event);
     this.onModelChange(inputElement.value);
