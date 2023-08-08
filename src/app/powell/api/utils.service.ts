@@ -148,6 +148,13 @@ export class UtilsService {
     return new File([u8arr], filename, {type: mime});
   }
 
+  blobToFile(blob: Blob, fileName: string) {
+    const b = blob as any;
+    b.lastModifiedDate = new Date();
+    b.name = fileName;
+    return blob as File;
+  }
+
   getTypeClass(fileType: string) {
     return fileType.substring(0, fileType.indexOf('/'));
   }
