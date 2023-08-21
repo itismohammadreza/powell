@@ -23,4 +23,5 @@ export interface RequestConfig {
   catch?: boolean | ((request: HttpRequest<any>) => boolean);
   loading?: boolean | ((request: HttpRequest<any>) => boolean);
   isCustomApi?: boolean;
+  loadingOnlyOnce?: boolean;
 }

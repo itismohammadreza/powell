@@ -19,6 +19,7 @@ import {RequestConfig} from "@core/models";
 export class HttpHandlerInterceptor implements HttpInterceptor {
   requestsQueue: HttpRequest<any>[] = [];
   cachedRequests = new Map<string, any>();
+  loadingRequestsCounter = new Map<string, number>();
 
   constructor(private overlayService: OverlayService,
               private loaderService: LoaderService,
@@ -38,8 +39,13 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     }
 
     if (shouldLoading) {
-      this.requestsQueue.push(clonedReq);
-      this.loaderService.setLoadingState(true);
+      const pathTemplate = this.getRequestProp(request, null, 'pathTemplate');
+      const loadingOnlyOnce = this.getRequestProp(request, null, 'loadingOnlyOnce');
+      this.loadingRequestsCounter.set(pathTemplate, (this.loadingRequestsCounter.get(pathTemplate) ?? 0) + 1);
+      if (!loadingOnlyOnce || (loadingOnlyOnce && this.loadingRequestsCounter.get(pathTemplate) == 1)) {
+        this.requestsQueue.push(clonedReq);
+        this.loaderService.setLoadingState(true);
+      }
     }
 
     return next.handle(clonedReq).pipe(
