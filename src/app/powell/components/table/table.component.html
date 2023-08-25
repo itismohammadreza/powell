@@ -204,7 +204,7 @@
           </ng-container>
           <ng-container *ngIf="!actionsConfig?.inSameColumn && actionsConfig?.actions.length">
             <ng-container *ngFor="let action of actionsConfig?.actions">
-              <th class="text-center" *ngIf="action.visible">{{action.header}}</th>
+              <th class="text-center" *ngIf="action.visible ?? true">{{action.header}}</th>
             </ng-container>
           </ng-container>
         </tr>
@@ -227,7 +227,7 @@
           </ng-container>
           <ng-container *ngIf="!actionsConfig?.inSameColumn && actionsConfig?.actions.length">
             <ng-container *ngFor="let action of actionsConfig?.actions">
-              <th class="text-center" *ngIf="action.visible">{{action.header}}</th>
+              <th class="text-center" *ngIf="action.visible ?? true">{{action.header}}</th>
             </ng-container>
           </ng-container>
         </tr>

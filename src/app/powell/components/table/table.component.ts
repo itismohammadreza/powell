@@ -205,7 +205,7 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);
-    this.actionsConfig.actions = this.actionsConfig?.actions.filter(action => action.visible) || [];
+    this.actionsConfig.actions = this.actionsConfig?.actions.filter(action => action.visible ?? true) || [];
     this.colDef = this.colDef.filter(col => col.visible ?? true);
     this.colDef.forEach(conf => {
       if (conf.filter?.type == 'slider') {
