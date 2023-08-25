@@ -54,7 +54,6 @@ import {
   PrimeTableState
 } from "@powell/primeng/api";
 import {PrimeTable} from "@powell/primeng";
-import {Table} from "primeng/table";
 
 @Component({
   selector: 'ng-table',
@@ -151,7 +150,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() stateKey: string;
   @Input() stateStorage: NgTableStateStorage = 'session';
   @Input() exportHeader: string;
-  @Output() onTableReady = new EventEmitter<Table>();
+  @Output() onTableReady = new EventEmitter<PrimeTable>();
   @Output() onRowSelect = new EventEmitter<PrimeTableRowSelectEvent>();
   @Output() onRowUnselect = new EventEmitter<PrimeTableRowUnSelectEvent>();
   @Output() onPage = new EventEmitter<PrimeTablePageEvent>();
