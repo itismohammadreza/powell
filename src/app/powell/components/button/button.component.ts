@@ -3,6 +3,7 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
+  Inject,
   Input,
   OnChanges,
   Output,
@@ -20,12 +21,17 @@ import {
   NgSize
 } from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
+import {fromEvent} from "rxjs";
+import {DOCUMENT} from "@angular/common";
+import {takeUntil} from "rxjs/operators";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
-  host: {'[class.full]': 'full'}
+  host: {'[class.full]': 'full'},
+  providers: [DestroyService]
 })
 export class ButtonComponent implements AfterViewInit, OnChanges {
   @Input() appearance: NgButtonAppearance;
@@ -35,6 +41,11 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
   @Input() full: boolean;
   @Input() badgeColor: NgColor = 'primary';
   @Input() size: NgSize = 'md';
+  @Input() sizeOnXS: NgSize;
+  @Input() sizeOnSM: NgSize;
+  @Input() sizeOnMD: NgSize;
+  @Input() sizeOnLG: NgSize;
+  @Input() sizeOnXL: NgSize;
   @Input() async: boolean;
   @Input() newLabel: string;
   @Input() newIcon: string;
@@ -67,6 +78,11 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
   _tmpIcon: string;
   _tmpAppearance: NgButtonAppearance;
   _tmpColor: NgColor;
+  _tmpSize: NgSize;
+
+  constructor(@Inject(DOCUMENT) private document: Document,
+              private destroy$: DestroyService) {
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.async) {
@@ -75,6 +91,25 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
   }
 
   ngAfterViewInit() {
+    this._tmpSize = this.size;
+    const getButtonSize = () => {
+      const windowWidth = this.document.defaultView.innerWidth;
+      if (windowWidth <= 575.98) {
+        this.size = this.sizeOnXS ?? this._tmpSize;
+      } else if (windowWidth <= 767.98) {
+        this.size = this.sizeOnSM ?? this._tmpSize;
+      } else if (windowWidth <= 991.98) {
+        this.size = this.sizeOnMD ?? this._tmpSize;
+      } else if (windowWidth <= 1199.98) {
+        this.size = this.sizeOnLG ?? this._tmpSize;
+      } else {
+        this.size = this.sizeOnXL ?? this._tmpSize;
+      }
+    }
+    getButtonSize()
+    fromEvent(this.document.defaultView, 'resize').pipe(takeUntil(this.destroy$)).subscribe(() => {
+      getButtonSize()
+    })
     this.templates.forEach((item: TemplateDirective) => {
       switch (item.getType()) {
         case 'content':
