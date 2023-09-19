@@ -5,6 +5,7 @@ import {Injector} from "@angular/core";
 export const appConfig: AppConfig = {
   lang: 'en',
   rtl: false,
+  requestTimeout: 15000,
   routeAnimation: RouteAnimation('fade2')
 };
 

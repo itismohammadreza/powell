@@ -11,6 +11,7 @@ export interface AnimationDefinition {
 export interface AppConfig {
   readonly lang: string;
   readonly rtl: boolean;
+  readonly requestTimeout: number;
   readonly routeAnimation: AnimationTriggerMetadata | null;
 }
 

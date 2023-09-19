@@ -7,11 +7,11 @@ import {
   HttpResponse,
   HttpResponseBase,
 } from '@angular/common/http';
-import {finalize, of, tap, throwError} from 'rxjs';
+import {finalize, of, tap, throwError, timeout} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {OverlayService} from '@powell/api';
 import {AuthService} from '@core/http';
-import {RequestsConfig} from "@core/config";
+import {appConfig, RequestsConfig} from "@core/config";
 import {LoaderService} from "@core/utils";
 import {RequestConfig} from "@core/models";
 
@@ -49,6 +49,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     }
 
     return next.handle(clonedReq).pipe(
+      timeout(appConfig.requestTimeout),
       tap((response: any) => {
         const successMessage = this.getRequestProp(request, response, 'successMessage');
         if (!(response instanceof HttpResponse) || /2\d+/.test(response.status.toString()) == false) {
