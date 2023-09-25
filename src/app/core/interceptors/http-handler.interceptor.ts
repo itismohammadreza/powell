@@ -7,7 +7,7 @@ import {
   HttpResponse,
   HttpResponseBase,
 } from '@angular/common/http';
-import {finalize, of, tap, throwError, timeout} from 'rxjs';
+import {finalize, identity, of, tap, throwError, timeout} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {OverlayService} from '@powell/api';
 import {AuthService} from '@core/http';
@@ -28,6 +28,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     const clonedReq = request.clone();
+    const requestTimeout = this.getTimeout(request.url);
     const shouldCatch = this.getRequestProp(request, null, 'catch');
     const shouldLoading = this.getRequestProp(request, null, 'loading');
 
@@ -49,7 +50,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     }
 
     return next.handle(clonedReq).pipe(
-      timeout(appConfig.requestTimeout),
+      (requestTimeout ? timeout(requestTimeout) : identity),
       tap((response: any) => {
         const successMessage = this.getRequestProp(request, response, 'successMessage');
         if (!(response instanceof HttpResponse) || /2\d+/.test(response.status.toString()) == false) {
@@ -146,5 +147,16 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     } else {
       return requestConfig[prop];
     }
+  }
+
+  getTimeout(url: string) {
+    let timeout;
+    if (!url.includes('http')) {
+      timeout = appConfig.requestTimeout;
+    } else {
+      const requestSearchParams = new URL(url).search;
+      timeout = new URLSearchParams(requestSearchParams).get('timeout');
+    }
+    return timeout == 'unset' ? null : appConfig.requestTimeout;
   }
 }
