@@ -10,7 +10,15 @@ import {
   NgControl,
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {
+  CSSStyleDeclaration,
+  NgAddon,
+  NgIconPosition,
+  NgInputType,
+  NgLabelPosition,
+  NgSize,
+  NgValidation
+} from '@powell/models';
 import {DestroyService} from "@core/utils";
 
 @Component({
@@ -46,7 +54,7 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() slotChar: string = '_';
   @Input() autoClear: boolean = true;
   @Input() unmask: boolean;
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() placeholder: string;
   @Input() size: number;

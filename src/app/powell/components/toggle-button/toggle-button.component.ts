@@ -10,7 +10,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgFixLabelPosition, NgIconPosition, NgValidation} from '@powell/models';
+import {CSSStyleDeclaration, NgFixLabelPosition, NgIconPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeToggleButtonChangeEvent} from "@powell/primeng/api";
 
@@ -43,7 +43,7 @@ export class ToggleButtonComponent implements OnInit, ControlValueAccessor {
   @Input() onIcon: string = 'pi pi-check';
   @Input() offIcon: string = 'pi pi-times';
   @Input() iconPos: NgIconPosition = 'left';
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() disabled: boolean;
   @Input() tabindex: number;

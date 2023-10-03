@@ -10,7 +10,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgFixLabelPosition, NgValidation} from '@powell/models';
+import {CSSStyleDeclaration, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 
 @Component({
@@ -49,7 +49,7 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
   @Input() strokeWidth: number = 14;
   @Input() showValue: boolean = true;
   @Input() valueTemplate: string = '{value}';
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Output() onChange = new EventEmitter<number>();
 

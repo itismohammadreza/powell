@@ -24,7 +24,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {CSSStyleDeclaration, NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
@@ -68,9 +68,9 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() toggleMask: boolean;
   @Input() appendTo: any;
   @Input() disabled: boolean;
-  @Input() inputStyle: any;
+  @Input() inputStyle: CSSStyleDeclaration;
   @Input() inputStyleClass: string;
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() placeholder: string;
   @Input() showClear: boolean;

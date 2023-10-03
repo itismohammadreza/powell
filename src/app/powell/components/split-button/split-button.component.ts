@@ -8,7 +8,7 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import {NgButtonAppearance, NgColor, NgIconPosition, NgSize} from '@powell/models';
+import {CSSStyleDeclaration, NgButtonAppearance, NgColor, NgIconPosition, NgSize} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {PrimeMenuItem} from "@powell/primeng/api";
 
@@ -31,9 +31,9 @@ export class SplitButtonComponent implements AfterContentInit {
   @Input() label: string;
   @Input() icon: string;
   @Input() iconPos: NgIconPosition;
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
-  @Input() menuStyle: any;
+  @Input() menuStyle: CSSStyleDeclaration;
   @Input() menuStyleClass: string;
   @Input() appendTo: any;
   @Input() disabled: boolean;

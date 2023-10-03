@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
+  CSSStyleDeclaration,
   NgAddon,
   NgCurrency,
   NgCurrencyDisplay,
@@ -74,9 +75,9 @@ export class InputNumberComponent implements OnInit, ControlValueAccessor {
   @Input() max: number;
   @Input() step: number = 1;
   @Input() allowEmpty: boolean = true;
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
-  @Input() inputStyle: string;
+  @Input() inputStyle: CSSStyleDeclaration;
   @Input() inputStyleClass: string;
   @Input() placeholder: string;
   @Input() size: number;

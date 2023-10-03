@@ -11,6 +11,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {
+  CSSStyleDeclaration,
   NgAsyncEvent,
   NgEmptyIcon,
   NgOrientation,
@@ -84,9 +85,9 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() frozenValue: any[];
   @Input() responsiveLayout: NgTableResponsiveLayout = 'scroll';
   @Input() breakpoint: string = '960px';
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
-  @Input() tableStyle: any;
+  @Input() tableStyle: CSSStyleDeclaration;
   @Input() tableStyleClass: string;
   @Input() paginator: boolean;
   @Input() totalRecords: number;
@@ -391,7 +392,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  handleCellStyle(cellStyle: Function | any, item: any) {
+  handleCellStyle(cellStyle: Function | CSSStyleDeclaration, item: any) {
     if (typeof cellStyle == 'function')
       return cellStyle(item);
     else {

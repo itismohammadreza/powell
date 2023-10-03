@@ -10,7 +10,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
+import {CSSStyleDeclaration, NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeRadioButtonClickEvent} from "@powell/primeng/api";
 
@@ -52,7 +52,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
     })
   };
 
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Output() onChange = new EventEmitter<PrimeRadioButtonClickEvent>();
   @Output() onFocus = new EventEmitter<Event>();

@@ -10,6 +10,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {
+  CSSStyleDeclaration,
   NgAddon,
   NgDatepickerDateType,
   NgDatepickerHourFormat,
@@ -55,9 +56,9 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   // native properties
   @Input() defaultDate: Date;
   @Input() selectionMode: NgDatepickerSelectionMode = 'single';
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
-  @Input() inputStyle: any;
+  @Input() inputStyle: CSSStyleDeclaration;
   @Input() inputStyleClass: string;
   @Input() placeholder: string;
   @Input() disabled: boolean;
@@ -93,7 +94,7 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Input() baseZIndex: number;
   @Input() autoZIndex: boolean = true;
   @Input() panelStyleClass: string;
-  @Input() panelStyle: object;
+  @Input() panelStyle: CSSStyleDeclaration;
   @Input() keepInvalid: boolean;
   @Input() hideOnDateTimeSelect: boolean = true;
   @Input() numberOfMonths: number = 1;

@@ -10,7 +10,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgValidation} from "@powell/models";
+import {CSSStyleDeclaration, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {PrimeTriStateCheckboxChangeEvent} from "@powell/primeng/api";
 
@@ -39,7 +39,7 @@ export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
   // native properties
   @Input() disabled: boolean;
   @Input() tabindex: number;
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() readonly: boolean;
   @Input() checkboxTrueIcon: string = 'pi pi-check';

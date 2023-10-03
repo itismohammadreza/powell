@@ -23,7 +23,15 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAddon, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {
+  CSSStyleDeclaration,
+  NgAddon,
+  NgIconPosition,
+  NgInputType,
+  NgLabelPosition,
+  NgSize,
+  NgValidation
+} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {
   PrimeAutoCompleteCompleteEvent,
@@ -71,9 +79,9 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() minlength: number = 1;
   @Input() delay: number = 300;
   @Input() completeOnFocus: boolean;
-  @Input() style: any;
-  @Input() inputStyle: any;
-  @Input() panelStyle: any;
+  @Input() style: CSSStyleDeclaration;
+  @Input() inputStyle: CSSStyleDeclaration;
+  @Input() panelStyle: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() inputStyleClass: string;
   @Input() panelStyleClass: string;

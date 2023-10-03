@@ -38,7 +38,7 @@ import {DestroyService} from "@core/utils";
 import {
   PrimeOverlayOnHideEvent,
   PrimeOverlayOnShowEvent,
-  PrimeTreeNode,
+  PrimeTreeNode, PrimeTreeNodeSelectEvent, PrimeTreeNodeUnSelectEvent,
   PrimeTreeSelectFilterEvent,
   PrimeTreeSelectNodeCollapseEvent,
   PrimeTreeSelectNodeExpandEvent
@@ -96,8 +96,8 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Output() onShow = new EventEmitter<PrimeOverlayOnShowEvent>();
   @Output() onHide = new EventEmitter<PrimeOverlayOnHideEvent>();
   @Output() onFilter = new EventEmitter<PrimeTreeSelectFilterEvent>();
-  @Output() onNodeSelect = new EventEmitter<PrimeTreeNode<any>>();
-  @Output() onNodeUnselect = new EventEmitter<PrimeTreeNode<any>>();
+  @Output() onNodeSelect = new EventEmitter<PrimeTreeNodeSelectEvent>();
+  @Output() onNodeUnselect = new EventEmitter<PrimeTreeNodeUnSelectEvent>();
   @Output() onNodeExpand = new EventEmitter<PrimeTreeSelectNodeExpandEvent>();
   @Output() onNodeCollapse = new EventEmitter<PrimeTreeSelectNodeCollapseEvent>();
   @Output() onClear = new EventEmitter<void>();
@@ -170,12 +170,12 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
     });
   }
 
-  _onNodeSelect(event: PrimeTreeNode<any>) {
+  _onNodeSelect(event: PrimeTreeNodeSelectEvent) {
     this.onNodeSelect.emit(event);
     this.onModelChange(this.value);
   }
 
-  _onNodeUnselect(event: PrimeTreeNode<any>) {
+  _onNodeUnselect(event: PrimeTreeNodeUnSelectEvent) {
     this.onNodeUnselect.emit(event);
     this.onModelChange(this.value);
   }

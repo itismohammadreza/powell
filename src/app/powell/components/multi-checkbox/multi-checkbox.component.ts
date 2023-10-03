@@ -10,7 +10,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
+import {CSSStyleDeclaration, NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 
 @Component({
@@ -52,7 +52,7 @@ export class MultiCheckboxComponent implements OnInit, ControlValueAccessor {
   };
 
   @Input() readonly: boolean;
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() checkboxIcon: string;
   @Output() onChange = new EventEmitter<any[]>();

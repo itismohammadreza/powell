@@ -3,6 +3,7 @@ import {BehaviorSubject} from 'rxjs';
 import {ActivatedRouteSnapshot, Data, NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs/operators";
 import {PrimeBreadcrumbItemClickEvent, PrimeMenuItem} from "@powell/primeng/api";
+import {CSSStyleDeclaration} from "@powell/models";
 
 @Component({
   selector: 'ng-breadcrumb',
@@ -11,7 +12,7 @@ import {PrimeBreadcrumbItemClickEvent, PrimeMenuItem} from "@powell/primeng/api"
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbComponent {
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() home: PrimeMenuItem;
   @Input() rtl: boolean;

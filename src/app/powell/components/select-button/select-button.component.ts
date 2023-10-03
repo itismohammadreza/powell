@@ -23,7 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgFixLabelPosition, NgValidation} from '@powell/models';
+import {CSSStyleDeclaration, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
 import {PrimeSelectButtonChangeEvent, PrimeSelectButtonOptionClickEvent} from "@powell/primeng/api";
@@ -58,7 +58,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() optionDisabled: string = 'disabled';
   @Input() multiple: boolean;
   @Input() tabindex: number = 0;
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() disabled: boolean;
   @Input() dataKey: string;

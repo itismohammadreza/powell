@@ -10,7 +10,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAsyncEvent, NgValidation} from '@powell/models';
+import {CSSStyleDeclaration, NgAsyncEvent, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeCheckboxChangeEvent} from "@powell/primeng/api";
 
@@ -43,7 +43,7 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   // native properties
   @Input() disabled: boolean;
   @Input() tabindex: number;
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() labelStyleClass: string;
   @Input() checkboxIcon: string;

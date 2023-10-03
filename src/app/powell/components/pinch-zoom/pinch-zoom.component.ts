@@ -8,7 +8,14 @@ import {
   OnInit,
   SimpleChanges
 } from '@angular/core';
-import {NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow, NgPinchZoomOptions} from "@powell/models";
+import {
+  CSSStyleDeclaration,
+  NgDisableZoomControl,
+  NgLimitZoom,
+  NgListener,
+  NgOverflow,
+  NgPinchZoomOptions
+} from "@powell/models";
 import {defaultProperties, IvyPinch} from "@powell/components/pinch-zoom";
 
 @Component({
@@ -37,7 +44,7 @@ export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {
   @Input() autoHeight: boolean;
   @Input() wheelZoomFactor: number;
   @Input() draggableImage: boolean;
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
 
   properties: NgPinchZoomOptions;

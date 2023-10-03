@@ -24,6 +24,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
+  CSSStyleDeclaration,
   NgAddon,
   NgChipDisplayMode,
   NgFilterMatchMode,
@@ -101,7 +102,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() optionGroupChildren: string = 'items';
   @Input() group: boolean;
   @Input() overlayVisible: boolean;
-  @Input() panelStyle: any;
+  @Input() panelStyle: CSSStyleDeclaration;
   @Input() placeholder: string;
   @Input() readonly: boolean;
   @Input() emptyMessage: string;
@@ -112,7 +113,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() showHeader: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() showToggleAll: boolean = true;
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() tabindex: number;
   @Input() tooltip: any;

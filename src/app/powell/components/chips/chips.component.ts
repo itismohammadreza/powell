@@ -23,7 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {CSSStyleDeclaration, NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {PrimeChipsAddEvent, PrimeChipsClickEvent, PrimeChipsRemoveEvent} from "@powell/primeng/api";
@@ -60,12 +60,12 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   @Input() field: string;
   @Input() max: number;
   @Input() disabled: boolean;
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() placeholder: string;
   @Input() tabindex: number;
   @Input() allowDuplicate: boolean = true;
-  @Input() inputStyle: any;
+  @Input() inputStyle: CSSStyleDeclaration;
   @Input() inputStyleClass: string;
   @Input() addOnTab: boolean;
   @Input() addOnBlur: boolean;

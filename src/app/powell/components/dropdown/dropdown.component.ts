@@ -24,6 +24,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
+  CSSStyleDeclaration,
   NgAddon,
   NgAsyncEvent,
   NgFilterMatchMode,
@@ -79,8 +80,8 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() optionGroupLabel: string = 'label';
   @Input() optionGroupChildren: string = 'items';
   @Input() scrollHeight: string = '200px';
-  @Input() style: any;
-  @Input() panelStyle: any;
+  @Input() style: CSSStyleDeclaration;
+  @Input() panelStyle: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() panelStyleClass: string;
   @Input() filter: boolean;

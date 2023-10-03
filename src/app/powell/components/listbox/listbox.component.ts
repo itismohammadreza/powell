@@ -23,7 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAddon, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {CSSStyleDeclaration, NgAddon, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {PrimeListboxChangeEvent, PrimeListboxClickEvent, PrimeListboxDoubleClickEvent} from "@powell/primeng/api";
@@ -64,7 +64,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() filterBy: string;
   @Input() filterPlaceHolder: string;
   @Input() emptyFilterMessage: string;
-  @Input() listStyle: any;
+  @Input() listStyle: CSSStyleDeclaration;
   @Input() listStyleClass: string;
   @Input() metaKeySelection: boolean = true;
   @Input() multiple: boolean;
@@ -78,7 +78,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() optionGroupChildren: string = 'items';
   @Input() group: boolean;
   @Input() showToggleAll: boolean = true;
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Output() onChange = new EventEmitter<PrimeListboxChangeEvent>();
   @Output() onDblClick = new EventEmitter<PrimeListboxDoubleClickEvent>();

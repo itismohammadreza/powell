@@ -27,7 +27,14 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgFilePickerMethod, NgFilePickerMode, NgFileResultType, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {
+  CSSStyleDeclaration,
+  NgFilePickerMethod,
+  NgFilePickerMode,
+  NgFileResultType,
+  NgFixLabelPosition,
+  NgValidation
+} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {PrimeFileUpload} from "@powell/primeng";
 import {UtilsService} from "@powell/api";
@@ -83,7 +90,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Input() invalidFileLimitMessageDetail: string = 'حداکثر مجاز به انتخاب {0} فایل هستید.';
   @Input() invalidFileLimitMessageSummary: string = 'مجاز به انتخاب فایل بیشتری نیستید.';
   @Input() invalidFileTypeMessageDetail: string = 'فرمت مجاز : {0}';
-  @Input() style: any;
+  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() previewWidth: number = 50;
   @Input() chooseLabel: string = 'انتخاب';

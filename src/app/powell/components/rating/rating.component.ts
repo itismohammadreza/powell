@@ -23,7 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgFixLabelPosition, NgValidation} from '@powell/models';
+import {CSSStyleDeclaration, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
 import {PrimeRatingRateEvent} from "@powell/primeng/api";
@@ -59,9 +59,9 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() iconOnClass: string = 'pi pi-star-fill';
   @Input() iconOffClass: string = 'pi pi-star';
   @Input() iconCancelClass: string = 'pi pi-ban';
-  @Input() iconOnStyle: any;
-  @Input() iconOffStyle: any;
-  @Input() iconCancelStyle: any;
+  @Input() iconOnStyle: CSSStyleDeclaration;
+  @Input() iconOffStyle: CSSStyleDeclaration;
+  @Input() iconCancelStyle: CSSStyleDeclaration;
   @Output() onRate = new EventEmitter<PrimeRatingRateEvent>();
   @Output() onCancel = new EventEmitter<Event>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
