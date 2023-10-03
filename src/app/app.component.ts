@@ -25,7 +25,7 @@ export class AppComponent {
       bootstrapLink.id = "bootstrap-style-link";
       bootstrapLink.rel = "stylesheet";
       bootstrapLink.type = "text/css";
-      head.appendChild(bootstrapLink);
+      head.insertBefore(bootstrapLink, head.childNodes[1]);
     }
     bootstrapLink.setAttribute('href', themeLink);
     documentElement.setAttribute('dir', rtl ? 'rtl' : 'ltr');
