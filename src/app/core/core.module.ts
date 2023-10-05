@@ -5,7 +5,6 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {AuthInterceptor, HttpHandlerInterceptor} from '@core/interceptors';
 import {EnvServiceProvider, TranslationService} from "@core/utils";
 import {
-  AnimateOnScrollService,
   initiateNgConfigProvider,
   MomentService,
   OverlayService,
@@ -40,7 +39,6 @@ export function initiateLanguage(translationService: TranslationService) {
     {provide: APP_INITIALIZER, useFactory: initiateLanguage, deps: [TranslationService], multi: true},
     initiateNgConfigProvider({rtl: appConfig.rtl}),
     EnvServiceProvider,
-    AnimateOnScrollService,
     MomentService,
     OverlayService,
     PersianService,

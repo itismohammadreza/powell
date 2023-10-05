@@ -9,11 +9,6 @@ export const routes: Routes = [
     title: 'Home'
   },
   {
-    path: 'animate-on-scroll',
-    loadChildren: () => import('./pages/animate-on-scroll/animate-on-scroll-page.module').then(m => m.AnimateOnScrollPageModule),
-    title: 'Animate On Scroll'
-  },
-  {
     path: 'auto-complete',
     loadChildren: () => import('./pages/auto-complete/auto-complete-page.module').then(m => m.AutoCompletePageModule),
     title: 'Auto Complete'
