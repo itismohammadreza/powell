@@ -47,6 +47,7 @@ export class ConfigService {
     if (this._config.translation) {
       this.primengConfig.setTranslation(this._config.translation)
     }
+    this.document.documentElement.setAttribute('dir', this._config.rtl ? 'rtl' : 'ltr');
     this.themeService.initTheme();
     this.themeService.changeTheme(this._config.theme);
     this.handleBodyClasses();
