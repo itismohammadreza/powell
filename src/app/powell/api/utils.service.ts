@@ -262,9 +262,8 @@ export class UtilsService {
   }
 
   joinWithoutDuplicates(array1: any[], array2: any[], field: string) {
-    const a = new Set(array1.map(x => x[field]));
-    const b = new Set(array2.map(x => x[field]));
-    return [...array1.filter(x => !b.has(x[field])), ...array2.filter(x => !a.has(x[field]))]
+    const set1 = new Set(array1.map(x => x[field]));
+    return [...array1, ...array2.filter(x => !set1.has(x[field]))]
   }
 
   // async downloadLink(url: string) {
