@@ -150,6 +150,9 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
 
   handleTimeout(request: HttpRequest<any>) {
     const getQueryTimeout = (url: string) => {
+      if (!url.includes('http')) {
+        return 'none';
+      }
       const requestSearchParams = new URL(url).search;
       return new URLSearchParams(requestSearchParams).get('timeout');
     }
