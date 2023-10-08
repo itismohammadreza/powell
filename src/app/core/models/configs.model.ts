@@ -25,4 +25,5 @@ export interface RequestConfig {
   loading?: boolean | ((request: HttpRequest<any>) => boolean);
   isCustomApi?: boolean;
   loadingOnlyOnce?: boolean;
+  timeout?: number | 'none' | ((request: HttpRequest<any>) => number | 'none');
 }

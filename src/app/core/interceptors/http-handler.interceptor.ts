@@ -28,7 +28,6 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     const clonedReq = request.clone();
-    const requestTimeout = this.getTimeout(request.url);
     const shouldCatch = this.getRequestProp(request, null, 'catch');
     const shouldLoading = this.getRequestProp(request, null, 'loading');
 
@@ -50,7 +49,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     }
 
     return next.handle(clonedReq).pipe(
-      (requestTimeout ? timeout(requestTimeout) : identity),
+      this.handleTimeout(request),
       tap((response: any) => {
         const successMessage = this.getRequestProp(request, response, 'successMessage');
         if (!(response instanceof HttpResponse) || /2\d+/.test(response.status.toString()) == false) {
@@ -149,14 +148,17 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     }
   }
 
-  getTimeout(url: string) {
-    let timeout;
-    if (!url.includes('http')) {
-      timeout = appConfig.requestTimeout;
-    } else {
+  handleTimeout(request: HttpRequest<any>) {
+    const getQueryTimeout = (url: string) => {
       const requestSearchParams = new URL(url).search;
-      timeout = new URLSearchParams(requestSearchParams).get('timeout');
+      return new URLSearchParams(requestSearchParams).get('timeout');
     }
-    return timeout == 'unset' ? null : appConfig.requestTimeout;
+    let configTimeout = this.getRequestProp(request, null, 'timeout');
+    let queryTimeout = getQueryTimeout(request.url);
+    if (configTimeout == 'none' || queryTimeout == 'none') {
+      return identity;
+    } else {
+      return timeout(+queryTimeout || configTimeout || appConfig.requestTimeout);
+    }
   }
 }
