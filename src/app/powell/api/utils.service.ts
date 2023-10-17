@@ -261,9 +261,13 @@ export class UtilsService {
     }
   }
 
-  joinWithoutDuplicates(array1: any[], array2: any[], field: string) {
+  joinArraysWithoutDuplicates(array1: any[], array2: any[], field: string) {
     const set1 = new Set(array1.map(x => x[field]));
     return [...array1, ...array2.filter(x => !set1.has(x[field]))]
+  }
+
+  getOneFromArray<T = any>(array: T[], conditions: Partial<T>) {
+    return array.findIndex(item => Object.entries(conditions).reduce((prev, next) => prev && item[next[0]] === next[1], {}));
   }
 
   // async downloadLink(url: string) {
