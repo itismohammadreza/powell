@@ -266,7 +266,7 @@ export class UtilsService {
     return [...array1, ...array2.filter(x => !set1.has(x[field]))]
   }
 
-  getOneFromArray<T = any>(array: T[], conditions: Partial<T>) {
+  findIndex<T = any>(array: T[], conditions: T | Partial<T>) {
     return array.findIndex(item => Object.entries(conditions).reduce((prev, next) => prev && item[next[0]] === next[1], {}));
   }
 
