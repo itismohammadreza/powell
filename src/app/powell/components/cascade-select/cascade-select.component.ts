@@ -70,7 +70,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() placeholder: string;
   @Input() disabled: boolean;
   @Input() dataKey: string;
-  @Input() tabindex: string;
+  @Input() tabindex: number;
   @Input() appendTo: any;
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;

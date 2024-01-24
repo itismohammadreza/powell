@@ -43,7 +43,7 @@ import {RadioButtonClickEvent} from "primeng/radiobutton";
 import {RatingRateEvent} from "primeng/rating";
 import {SelectButtonChangeEvent, SelectButtonOptionClickEvent} from "primeng/selectbutton";
 import {SliderChangeEvent, SliderSlideEndEvent} from "primeng/slider";
-import {InputSwitchOnChangeEvent} from "primeng/inputswitch";
+import {InputSwitchChangeEvent} from "primeng/inputswitch";
 import {
   TableColResizeEvent,
   TableColumnReorderEvent,
@@ -175,7 +175,7 @@ export type PrimeSelectButtonChangeEvent = SelectButtonChangeEvent;
 export type PrimeSliderChangeEvent = SliderChangeEvent;
 export type PrimeSliderSlideEndEvent = SliderSlideEndEvent;
 
-export type PrimeInputSwitchOnChangeEvent = InputSwitchOnChangeEvent;
+export type PrimeInputSwitchChangeEvent = InputSwitchChangeEvent;
 
 export type PrimeTableColResizeEvent = TableColResizeEvent;
 export type PrimeTableColumnReorderEvent = TableColumnReorderEvent;

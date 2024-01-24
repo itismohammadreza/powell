@@ -12,7 +12,7 @@ import {
 import {takeUntil} from "rxjs";
 import {CSSStyleDeclaration, NgAsyncEvent, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeInputSwitchOnChangeEvent} from "@powell/primeng/api";
+import {PrimeInputSwitchChangeEvent} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-switch',
@@ -49,8 +49,8 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   @Input() readonly: boolean;
   @Input() trueValue: any = true;
   @Input() falseValue: any = false;
-  @Output() onChange = new EventEmitter<PrimeInputSwitchOnChangeEvent>();
-  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<PrimeInputSwitchOnChangeEvent>>();
+  @Output() onChange = new EventEmitter<PrimeInputSwitchChangeEvent>();
+  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<PrimeInputSwitchChangeEvent>>();
 
   loading: boolean;
   inputId: string;
@@ -105,7 +105,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  _onChange(event: PrimeInputSwitchOnChangeEvent) {
+  _onChange(event: PrimeInputSwitchChangeEvent) {
     if (this.async) {
       this.loading = true;
       this.disabled = true;
