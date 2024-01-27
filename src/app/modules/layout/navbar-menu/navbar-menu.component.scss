@@ -11,6 +11,16 @@
       background-color: var(--surface-b);
       border-bottom: 1px solid var(--surface-d);
       transition: all 200ms;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 0;
+
+      .container-fluid {
+        display: flex;
+        flex-wrap: inherit;
+        align-items: center;
+        justify-content: space-between;
+      }
     }
 
     main {
