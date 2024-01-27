@@ -4,26 +4,20 @@
         'sidebar-lock' : sidebarLock,
         'sidebar-open' : sidebarVisible
      }">
-  <nav class="navbar shadow-sm fixed-top" *ngIf="tempSidebarType != 'horizontal'">
+
+  <nav class="navbar shadow-sm fixed-top navbar-expand-lg">
     <div class="container-fluid">
-      <span class="d-flex align-items-center gap-2">
-        <ng-button
-          *ngIf="!sidebarLock && tempSidebarType != 'hover'"
-          icon="pi pi-bars"
-          color="primary"
-          appearance="text"
-          (click)="toggleSidebarClick()">
-        </ng-button>
-        <ng-logo></ng-logo>
-      </span>
+      <ng-button
+        *ngIf="!sidebarLock && tempSidebarType != 'hover'"
+        icon="pi pi-bars"
+        color="primary"
+        appearance="text"
+        (click)="toggleSidebarClick()">
+      </ng-button>
+      <ng-logo></ng-logo>
       <a target="_blank" href="https://github.com/mohammadreza99/powell">
         <ng-button appearance="text" color="secondary" icon="pi pi-github"></ng-button>
       </a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav p-0 me-auto">
-          <li class="nav-item"></li>
-        </ul>
-      </div>
     </div>
   </nav>
 
@@ -54,7 +48,8 @@
           [placeholder]="'searchComponents' | translate"
           [(ngModel)]="searchValue">
         </ng-input-text>
-        <i role="button" class="ms-2 d-none d-md-inline border rounded-circle pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
+        <i role="button"
+           class="ms-2 d-none d-md-inline border rounded-circle pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
            (click)="toggleLockSidebarClick()"></i>
       </div>
     </ng-template>
@@ -77,7 +72,7 @@
   [showCloseIcon]="true"
   [(visible)]="configSidebarVisible"
   [style]="{width:'30rem', maxWidth:'100%'}">
-  <p-divider align="center"><h5 class="mb-0">{{'siteConfigs' | translate}}</h5></p-divider>
+  <p-divider align="center"><h5 class="mb-0">{{ 'siteConfigs' | translate }}</h5></p-divider>
   <ng-dropdown
     [label]="'sidebar' | translate"
     labelPos="fix-side"
@@ -96,7 +91,7 @@
     [options]="[{label:'EN',value:'en'},{label:'FA',value:'fa'}]"
     (onChange)="changeLang($event)">
   </ng-dropdown>
-  <p-divider class="d-block mt-5" align="center"><h5 class="mb-0">{{'componentsGlobalConfigs' | translate}}</h5>
+  <p-divider class="d-block mt-5" align="center"><h5 class="mb-0">{{ 'componentsGlobalConfigs' | translate }}</h5>
   </p-divider>
   <ng-dropdown
     [label]="'selectiveSize' | translate"

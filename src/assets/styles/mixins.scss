@@ -2,7 +2,15 @@
 @use "sass:color";
 @use "sass:map";
 @use "sass:string";
-@import "variable";
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
 
 // positions: top-right / top-left / top-center / bottom-right / bottom-left / bottom-center /
 //            left-top / left-center / left-bottom / right-top / right-center / right-bottom /
