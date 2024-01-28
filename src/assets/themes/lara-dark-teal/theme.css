@@ -50,23 +50,6 @@
   --highlight-text-color: rgba(255, 255, 255, 0.87);
   color-scheme: dark;
 }
-
-@font-face {
-  font-family: "Inter var";
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: normal;
-  font-named-instance: "Regular";
-  src: url("../_fonts/Inter-roman.var.woff2?v=3.19") format("woff2");
-}
-@font-face {
-  font-family: "Inter var";
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: italic;
-  font-named-instance: "Italic";
-  src: url("../_fonts/Inter-italic.var.woff2?v=3.19") format("woff2");
-}
 :root {
   --blue-50:#f5f9ff;
   --blue-100:#d0e1fd;

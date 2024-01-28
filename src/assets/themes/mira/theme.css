@@ -47,31 +47,6 @@
   --focus-ring: 0 0 0 0.2rem #c0d0e0;
   color-scheme: light;
 }
-
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Inter"), local("Inter-Regular"), url("../_fonts/Inter-Regular.woff2") format("woff2"), url("../_fonts/Inter-Regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  src: local("Inter Medium"), local("Inter-Medium"), url("../_fonts/Inter-Medium.woff2") format("woff2"), url("../_fonts/Inter-Medium.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 600;
-  src: local("Inter SemiBold"), local("Inter-SemiBold"), url("../_fonts/Inter-SemiBold.woff2") format("woff2"), url("../_fonts/Inter-SemiBold.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 700;
-  src: local("Inter Bold"), local("Inter-Bold"), url("../_fonts/Inter-Bold.woff2") format("woff2"), url("../_fonts/Inter-Bold.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
 :root {
   --blue-50:#f7f9fb;
   --blue-100:#d8e1eb;

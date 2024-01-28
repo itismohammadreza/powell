@@ -49,27 +49,6 @@
   color-scheme: light;
 }
 
-/* roboto-regular - latin-ext_latin */
-@font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Roboto"), local("Roboto-Regular"), url("../_fonts/roboto-v20-latin-ext_latin-regular.woff2") format("woff2"), url("../_fonts/roboto-v20-latin-ext_latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* roboto-500 - latin-ext_latin */
-@font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  src: local("Roboto Medium"), local("Roboto-Medium"), url("../_fonts/roboto-v20-latin-ext_latin-500.woff2") format("woff2"), url("../_fonts/roboto-v20-latin-ext_latin-500.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* roboto-700 - latin-ext_latin */
-@font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 700;
-  src: local("Roboto Bold"), local("Roboto-Bold"), url("../_fonts/roboto-v20-latin-ext_latin-700.woff2") format("woff2"), url("../_fonts/roboto-v20-latin-ext_latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
 :root {
   --blue-50:#f4fafe;
   --blue-100:#cae6fc;

@@ -1,7 +1,4 @@
 $baseUrl: "/assets/styles/fonts/vazirmatn/non-latin";
-:root {
-  --font-family: Vazirmatn !important;
-}
 
 @font-face {
   font-family: Vazirmatn;
@@ -9,7 +6,8 @@ $baseUrl: "/assets/styles/fonts/vazirmatn/non-latin";
   font-style: normal;
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Vazirmatn-NL-Thin.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-Thin.ttf") format("truetype")
+  url("#{$baseUrl}/ttf/Vazirmatn-NL-Thin.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
 }
 
 @font-face {
@@ -18,7 +16,8 @@ $baseUrl: "/assets/styles/fonts/vazirmatn/non-latin";
   font-style: normal;
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Vazirmatn-NL-ExtraLight.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-ExtraLight.ttf") format("truetype")
+  url("#{$baseUrl}/ttf/Vazirmatn-NL-ExtraLight.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
 }
 
 @font-face {
@@ -27,7 +26,8 @@ $baseUrl: "/assets/styles/fonts/vazirmatn/non-latin";
   font-style: normal;
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Vazirmatn-NL-Light.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-Light.ttf") format("truetype")
+  url("#{$baseUrl}/ttf/Vazirmatn-NL-Light.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
 }
 
 @font-face {
@@ -36,7 +36,8 @@ $baseUrl: "/assets/styles/fonts/vazirmatn/non-latin";
   font-style: normal;
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Vazirmatn-NL-Regular.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-Regular.ttf") format("truetype")
+  url("#{$baseUrl}/ttf/Vazirmatn-NL-Regular.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
 }
 
 @font-face {
@@ -45,7 +46,8 @@ $baseUrl: "/assets/styles/fonts/vazirmatn/non-latin";
   font-style: normal;
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Vazirmatn-NL-Medium.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-Medium.ttf") format("truetype")
+  url("#{$baseUrl}/ttf/Vazirmatn-NL-Medium.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
 }
 
 @font-face {
@@ -54,7 +56,8 @@ $baseUrl: "/assets/styles/fonts/vazirmatn/non-latin";
   font-style: normal;
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Vazirmatn-NL-SemiBold.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-SemiBold.ttf") format("truetype")
+  url("#{$baseUrl}/ttf/Vazirmatn-NL-SemiBold.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
 }
 
 @font-face {
@@ -63,7 +66,8 @@ $baseUrl: "/assets/styles/fonts/vazirmatn/non-latin";
   font-style: normal;
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Vazirmatn-NL-Bold.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-Bold.ttf") format("truetype")
+  url("#{$baseUrl}/ttf/Vazirmatn-NL-Bold.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
 }
 
 @font-face {
@@ -72,7 +76,8 @@ $baseUrl: "/assets/styles/fonts/vazirmatn/non-latin";
   font-style: normal;
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Vazirmatn-NL-ExtraBold.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-ExtraBold.ttf") format("truetype")
+  url("#{$baseUrl}/ttf/Vazirmatn-NL-ExtraBold.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
 }
 
 @font-face {
@@ -81,5 +86,6 @@ $baseUrl: "/assets/styles/fonts/vazirmatn/non-latin";
   font-style: normal;
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Vazirmatn-NL-Black.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-Black.ttf") format("truetype")
+  url("#{$baseUrl}/ttf/Vazirmatn-NL-Black.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
 }
