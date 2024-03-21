@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {CascadeSelect, CascadeSelectModule} from "primeng/cascadeselect";
 
-@NgModule({
-  exports: [CascadeSelectModule]
-})
-export class PrimeCascadeSelectModule {
-}
-
+export const PrimeCascadeSelectModule = CascadeSelectModule;
 export const PrimeCascadeSelect = CascadeSelect;
 export type PrimeCascadeSelect = CascadeSelect;
