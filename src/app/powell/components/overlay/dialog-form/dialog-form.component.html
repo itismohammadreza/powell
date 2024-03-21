@@ -1179,8 +1179,8 @@
           [rtl]="config.rtl ?? options.rtl"
           [disableConfigChangeEffect]="true"
         ></ng-message>
-        <ng-multi-checkbox
-          *ngSwitchCase="'multi-checkbox'"
+        <ng-checkbox-group
+          *ngSwitchCase="'checkbox-group'"
           [hidden]="handleConfigVisibility(config)"
           [ngClass]="config.className"
           [formControlName]="config.key"
@@ -1205,7 +1205,7 @@
           [styleClass]="config.styleClass"
           [checkboxIcon]="config.checkboxIcon"
           (onChange)="handleConfigEvent(config,'onChange',$event)"
-        ></ng-multi-checkbox>
+        ></ng-checkbox-group>
         <ng-multi-select
           *ngSwitchCase="'multi-select'"
           [hidden]="handleConfigVisibility(config)"

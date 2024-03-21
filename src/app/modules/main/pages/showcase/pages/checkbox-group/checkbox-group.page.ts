@@ -4,11 +4,11 @@ import {NgFixLabelPosition, NgOrientation} from '@powell/models';
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-multi-checkbox-page',
-  templateUrl: './multi-checkbox.page.html',
-  styleUrls: ['./multi-checkbox.page.scss'],
+  selector: 'ng-checkbox-group-page',
+  templateUrl: './checkbox-group.page.html',
+  styleUrls: ['./checkbox-group.page.scss'],
 })
-export class MultiCheckboxPage {
+export class CheckboxGroupPage {
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });

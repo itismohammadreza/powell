@@ -32,7 +32,7 @@
 
   <p-panel [header]="'preview' | translate">
     <form [formGroup]="form">
-      <ng-multi-checkbox
+      <ng-checkbox-group
         formControlName="c1"
         [validation]="{ required: 'error' }"
         [options]="options"
@@ -47,7 +47,7 @@
         [orientation]="orientation"
         [disabled]="disabled"
         [readonly]="readonly"
-      ></ng-multi-checkbox>
+      ></ng-checkbox-group>
     </form>
   </p-panel>
 </div>

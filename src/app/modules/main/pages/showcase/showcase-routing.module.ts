@@ -35,6 +35,11 @@ export const routes: Routes = [
     title: 'Checkbox'
   },
   {
+    path: 'checkbox-group',
+    loadChildren: () => import('@modules/main/pages/showcase/pages/checkbox-group/checkbox-group-page.module').then(m => m.CheckboxGroupPageModule),
+    title: 'Checkbox Group'
+  },
+  {
     path: 'chips',
     loadChildren: () => import('./pages/chips/chips-page.module').then(m => m.ChipsPageModule),
     title: 'Chips'
@@ -182,11 +187,6 @@ export const routes: Routes = [
     path: 'message',
     loadChildren: () => import('./pages/message/message-page.module').then(m => m.MessagePageModule),
     title: 'Message'
-  },
-  {
-    path: 'multi-checkbox',
-    loadChildren: () => import('./pages/multi-checkbox/multi-checkbox-page.module').then(m => m.MultiCheckboxPageModule),
-    title: 'Multi Checkbox'
   },
   {
     path: 'multi-select',

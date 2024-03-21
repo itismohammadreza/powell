@@ -281,6 +281,7 @@ export type NgDialogFormComponent =
   | 'button'
   | 'cascade-select'
   | 'checkbox'
+  | 'checkbox-group'
   | 'chips'
   | 'color-picker'
   | 'dropdown'
@@ -302,7 +303,6 @@ export type NgDialogFormComponent =
   | 'listbox'
   | 'map'
   | 'message'
-  | 'multi-checkbox'
   | 'multi-select'
   | 'radio'
   | 'rating'
@@ -352,6 +352,8 @@ export interface NgDialogFormConfig {
   onBeforeHide?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// checkbox /////////////////////////////////////////
   labelStyleClass?: string;
+  ///////////////////////////////////////// checkbox-group /////////////////////////////////////////
+  checkboxIcon?: string;
   ///////////////////////////////////////// chips /////////////////////////////////////////
   field?: string;
   allowDuplicate?: boolean;
@@ -624,8 +626,6 @@ export interface NgDialogFormConfig {
   detail?: string;
   severity?: NgSeverity;
   closable?: boolean;
-  ///////////////////////////////////////// multi-checkbox /////////////////////////////////////////
-  checkboxIcon?: string;
   ///////////////////////////////////////// multi-select /////////////////////////////////////////
   autofocusFilter?: boolean;
   autoZIndex?: boolean;

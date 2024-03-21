@@ -14,19 +14,19 @@ import {CSSStyleDeclaration, NgFixLabelPosition, NgOrientation, NgValidation} fr
 import {DestroyService} from "@core/utils";
 
 @Component({
-  selector: 'ng-multi-checkbox',
-  templateUrl: './multi-checkbox.component.html',
-  styleUrls: ['./multi-checkbox.component.scss'],
+  selector: 'ng-checkbox-group',
+  templateUrl: './checkbox-group.component.html',
+  styleUrls: ['./checkbox-group.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => MultiCheckboxComponent),
+      useExisting: forwardRef(() => CheckboxGroupComponent),
       multi: true
     },
     DestroyService
   ]
 })
-export class MultiCheckboxComponent implements OnInit, ControlValueAccessor {
+export class CheckboxGroupComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any[];
   @Input() label: string;
   @Input() filled: boolean;

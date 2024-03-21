@@ -35,7 +35,7 @@ import {KnobModule} from "@powell/components/knob";
 import {ListboxModule} from "@powell/components/listbox";
 import {MapModule} from "@powell/components/map";
 import {MessageModule} from "@powell/components/message";
-import {MultiCheckboxModule} from "@powell/components/multi-checkbox";
+import {CheckboxGroupModule} from "src/app/powell/components/checkbox-group";
 import {MultiSelectModule} from "@powell/components/multi-select";
 import {RadioModule} from "@powell/components/radio";
 import {RatingModule} from "@powell/components/rating";
@@ -87,7 +87,7 @@ import {TriStateCheckboxModule} from "@powell/components/tri-state-checkbox";
     ListboxModule,
     MapModule,
     MessageModule,
-    MultiCheckboxModule,
+    CheckboxGroupModule,
     MultiSelectModule,
     RadioModule,
     RatingModule,
