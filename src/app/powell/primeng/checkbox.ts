@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {Checkbox, CheckboxModule} from "primeng/checkbox";
 
-@NgModule({
-  exports: [CheckboxModule]
-})
-export class PrimeCheckboxModule {
-}
-
+export const PrimeCheckboxModule = CheckboxModule;
 export const PrimeCheckbox = Checkbox;
 export type PrimeCheckbox = Checkbox;

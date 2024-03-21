@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {Ripple, RippleModule} from "primeng/ripple";
 
-@NgModule({
-  exports: [RippleModule]
-})
-export class PrimeRippleModule {
-}
-
+export const PrimeRippleModule = RippleModule;
 export const PrimeRipple = Ripple;
 export type PrimeRipple = Ripple;

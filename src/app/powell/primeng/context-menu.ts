@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {ContextMenu, ContextMenuModule} from "primeng/contextmenu";
 
-@NgModule({
-  exports: [ContextMenuModule]
-})
-export class PrimeContextMenuModule {
-}
-
+export const PrimeContextMenuModule = ContextMenuModule;
 export const PrimeContextMenu = ContextMenu;
 export type PrimeContextMenu = ContextMenu;

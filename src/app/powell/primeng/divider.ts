@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {Divider, DividerModule} from "primeng/divider";
 
-@NgModule({
-  exports: [DividerModule]
-})
-export class PrimeDividerModule {
-}
-
+export const PrimeDividerModule = DividerModule;
 export const PrimeDivider = Divider;
 export type PrimeDivider = Divider;

@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {ScrollPanel, ScrollPanelModule} from "primeng/scrollpanel";
 
-@NgModule({
-  exports: [ScrollPanelModule]
-})
-export class PrimeScrollPanelModule {
-}
-
+export const PrimeScrollPanelModule = ScrollPanelModule;
 export const PrimeScrollPanel = ScrollPanel;
 export type PrimeScrollPanel = ScrollPanel;

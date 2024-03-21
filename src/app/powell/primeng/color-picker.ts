@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {ColorPicker, ColorPickerModule} from "primeng/colorpicker";
 
-@NgModule({
-  exports: [ColorPickerModule]
-})
-export class PrimeColorPickerModule {
-}
-
+export const PrimeColorPickerModule = ColorPickerModule;
 export const PrimeColorPicker = ColorPicker;
 export type PrimeColorPicker = ColorPicker;

@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {Knob, KnobModule} from "primeng/knob";
 
-@NgModule({
-  exports: [KnobModule]
-})
-export class PrimeKnobModule {
-}
-
+export const PrimeKnobModule = KnobModule;
 export const PrimeKnob = Knob;
 export type PrimeKnob = Knob;

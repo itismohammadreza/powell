@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {Splitter, SplitterModule} from "primeng/splitter";
 
-@NgModule({
-  exports: [SplitterModule]
-})
-export class PrimeSplitterModule {
-}
-
+export const PrimeSplitterModule = SplitterModule;
 export const PrimeSplitter = Splitter;
 export type PrimeSplitter = Splitter;

@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {SlideMenu, SlideMenuModule} from "primeng/slidemenu";
 
-@NgModule({
-  exports: [SlideMenuModule]
-})
-export class PrimeSlideMenuModule {
-}
-
+export const PrimeSlideMenuModule = SlideMenuModule;
 export const PrimeSlideMenu = SlideMenu;
 export type PrimeSlideMenu = SlideMenu;

@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {InputSwitch, InputSwitchModule} from "primeng/inputswitch";
 
-@NgModule({
-  exports: [InputSwitchModule]
-})
-export class PrimeInputSwitchModule {
-}
-
+export const PrimeInputSwitchModule = InputSwitchModule;
 export const PrimeInputSwitch = InputSwitch;
 export type PrimeInputSwitch = InputSwitch;

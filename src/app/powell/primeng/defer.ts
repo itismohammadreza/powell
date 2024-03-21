@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {DeferModule, DeferredLoader} from "primeng/defer";
 
-@NgModule({
-  exports: [DeferModule]
-})
-export class PrimeDeferModule {
-}
-
+export const PrimeDeferModule = DeferModule;
 export const PrimeDefer = DeferredLoader
 export type PrimeDefer = DeferredLoader

@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {Timeline, TimelineModule} from "primeng/timeline";
 
-@NgModule({
-  exports: [TimelineModule]
-})
-export class PrimeTimelineModule {
-}
-
+export const PrimeTimelineModule = TimelineModule;
 export const PrimeTimeline = Timeline;
 export type PrimeTimeline = Timeline;

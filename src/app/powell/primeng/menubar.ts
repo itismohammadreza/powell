@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {Menubar, MenubarModule} from "primeng/menubar";
 
-@NgModule({
-  exports: [MenubarModule]
-})
-export class PrimeMenubarModule {
-}
-
+export const PrimeMenubarModule = MenubarModule;
 export const PrimeMenubar = Menubar;
 export type PrimeMenubar = Menubar;

@@ -1,11 +1,5 @@
-import {NgModule} from '@angular/core';
 import {Panel, PanelModule} from "primeng/panel";
 
-@NgModule({
-  exports: [PanelModule]
-})
-export class PrimePanelModule {
-}
-
+export const PrimePanelModule = PanelModule;
 export const PrimePanel = Panel;
 export type PrimePanel = Panel;
