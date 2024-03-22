@@ -114,11 +114,6 @@ export const routes: Routes = [
     title: 'Image'
   },
   {
-    path: 'image-slider',
-    loadChildren: () => import('./pages/image-slider/image-slider-page.module').then(m => m.ImageSliderPageModule),
-    title: 'Image Slider'
-  },
-  {
     path: 'infinite-scroll',
     loadChildren: () => import('./pages/infinite-scroll/infinite-scroll-page.module').then(m => m.InfiniteScrollPageModule),
     title: 'Infinite Scroll'
