@@ -209,11 +209,6 @@ export const routes: Routes = [
     title: 'Slider'
   },
   {
-    path: 'split-button',
-    loadChildren: () => import('./pages/split-button/split-button-page.module').then(m => m.SplitButtonPageModule),
-    title: 'Split Button'
-  },
-  {
     path: 'status',
     loadChildren: () => import('./pages/status/status-page.module').then(m => m.StatusPageModule),
     title: 'Status'
