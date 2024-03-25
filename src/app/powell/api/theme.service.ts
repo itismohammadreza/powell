@@ -47,7 +47,6 @@ export class ThemeService {
     'saga-purple',
     'soho-dark',
     'soho-light',
-    'tailwind-light',
     'vela-blue',
     'vela-green',
     'vela-orange',
@@ -66,7 +65,7 @@ export class ThemeService {
       return;
     }
     const themeElement = this.document.getElementById('powell-theme-link');
-    const themeLink = `assets/themes/${theme}/theme.css`;
+    const themeLink = `${theme}.css`;
     themeElement.setAttribute('href', themeLink);
     this._currentTheme = theme;
   }

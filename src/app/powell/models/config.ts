@@ -66,7 +66,6 @@ export type NgTheme =
   'saga-purple' |
   'soho-dark' |
   'soho-light' |
-  'tailwind-light' |
   'vela-blue' |
   'vela-green' |
   'vela-orange' |
