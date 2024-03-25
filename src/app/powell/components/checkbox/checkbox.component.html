@@ -7,10 +7,13 @@
   <div class="field">
     <p-checkbox
       [(ngModel)]="value"
-      [inputId]="inputId"
       [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
       [disabled]="disabled"
+      [binary]="true"
+      [ariaLabelledBy]="ariaLabelledBy"
+      [ariaLabel]="ariaLabel"
       [tabindex]="tabindex"
+      [inputId]="inputId"
       [style]="style"
       [styleClass]="styleClass"
       [labelStyleClass]="labelStyleClass"
@@ -18,9 +21,13 @@
       [readonly]="readonly"
       [trueValue]="trueValue"
       [falseValue]="falseValue"
-      [binary]="true"
       (onChange)="_onChange($event)"
-    ></p-checkbox>
+      (onFocus)="_onFocus($event)"
+      (onBlur)="_onBlur($event)">
+      <ng-template pTemplate="icon" let-option *ngIf="iconTemplate">
+        <ng-container *ngTemplateOutlet="iconTemplate;context:{$implicit:option}"></ng-container>
+      </ng-template>
+    </p-checkbox>
     <label
       [attr.for]="inputId"
       [class.p-disabled]="disabled">

@@ -1,4 +1,17 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  forwardRef,
+  Injector,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  TemplateRef,
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -20,6 +33,7 @@ import {
   NgValidation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-input-mask',
@@ -33,7 +47,7 @@ import {DestroyService} from "@core/utils";
     }
   ]
 })
-export class InputMaskComponent implements OnInit, ControlValueAccessor {
+export class InputMaskComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -50,31 +64,40 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() type: NgInputType = 'text';
-  @Input() mask: string = '99-999999';
   @Input() slotChar: string = '_';
   @Input() autoClear: boolean = true;
-  @Input() unmask: boolean;
+  @Input() showClear: boolean = false;
   @Input() style: CSSStyleDeclaration;
+  @Input() inputId: string = this.getId();
   @Input() styleClass: string;
   @Input() placeholder: string;
   @Input() size: number;
   @Input() maxlength: number;
   @Input() tabindex: string;
-  @Input() disabled: boolean;
-  @Input() readonly: boolean;
-  @Input() characterPattern: string = '[A-Za-z]';
-  @Input() autoFocus: boolean;
-  @Input() showClear: boolean;
-  @Input() autocomplete: string;
   @Input() title: string;
+  @Input() ariaLabel: string;
+  @Input() ariaLabelledBy: string;
+  @Input() ariaRequired: boolean = false;
+  @Input() disabled: boolean;
+  @Input() readonly: boolean = false;
+  @Input() unmask: boolean = false;
+  @Input() name: string;
+  @Input() required: boolean = false;
+  @Input() characterPattern: string = '[A-Za-z]';
+  @Input() autoFocus: boolean = false;
+  @Input() autocomplete: string;
+  @Input() keepBuffer: boolean = false;
+  @Input() mask: string;
+  @Output() onComplete = new EventEmitter<void>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
-  @Output() onComplete = new EventEmitter<void>();
   @Output() onInput = new EventEmitter<Event>();
+  @Output() onKeydown = new EventEmitter<Event>();
   @Output() onClear = new EventEmitter<void>();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
+  clearIconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -86,14 +109,13 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
@@ -113,6 +135,17 @@ export class InputMaskComponent implements OnInit, ControlValueAccessor {
       }
     }
   }
+
+  ngAfterContentInit() {
+    this.templates.forEach((item) => {
+      switch (item.getType()) {
+        case 'clearicon':
+          this.clearIconTemplate = item.templateRef;
+          break;
+      }
+    });
+  }
+
 
   _onInput(event: Event) {
     const inputElement = event.target as HTMLInputElement;

@@ -31,7 +31,7 @@ export class CascadeSelectPage {
   placeholder: string = '';
   showClear: boolean = true;
 
-  options = [
+  options: any[] = [
     {
       name: 'Australia',
       value: 'AU',

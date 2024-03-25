@@ -2,7 +2,9 @@
   <p-breadcrumb
     [style]="style"
     [styleClass]="styleClass"
-    home [model]="breadcrumbs$ | async"
+    [home]="home"
+    [homeAriaLabel]="homeAriaLabel"
+    [model]="breadcrumbs$ | async"
     (onItemClick)="_onItemClick($event)">
   </p-breadcrumb>
 </div>

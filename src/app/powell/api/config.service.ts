@@ -29,6 +29,7 @@ export class ConfigService {
       menu: 1000,
       tooltip: 1100
     },
+    translation: {},
     overlayOptions: {}
   };
   private configChangeSubject = new Subject<NgConfigChangeEvent>();

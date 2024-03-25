@@ -12,8 +12,8 @@
   <div class="field">
     <p-slider
       [(ngModel)]="value"
-      [attr.id]="inputId"
       [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
+      [attr.id]="inputId"
       [animate]="animate"
       [disabled]="disabled"
       [min]="min"
@@ -23,6 +23,8 @@
       [range]="range"
       [style]="style"
       [styleClass]="styleClass"
+      [ariaLabel]="ariaLabel"
+      [ariaLabelledBy]="ariaLabelledBy"
       [tabindex]="tabindex"
       (onChange)="_onChange($event)"
       (onSlideEnd)="_onSlideEnd($event)"

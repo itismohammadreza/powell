@@ -78,46 +78,47 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Input() name: string;
   @Input() url: string;
   @Input() method: NgFilePickerMethod = 'post';
-  @Input() multiple: boolean = true;
-  @Input() accept: string = 'image/*';
+  @Input() multiple: boolean = false;
+  @Input() accept: string;
   @Input() disabled: boolean;
-  @Input() auto: boolean;
+  @Input() auto: boolean = false;
+  @Input() withCredentials: boolean = false;
   @Input() maxFileSize: number;
-  @Input() fileLimit: number;
   @Input() invalidFileSizeMessageSummary: string = '{0} - سایز فایل نامعتبر است.';
   @Input() invalidFileSizeMessageDetail: string = 'حداکثر سایز فایل {0} است.';
   @Input() invalidFileTypeMessageSummary: string = '{0} - نوع فایل نامعتبر است.';
+  @Input() invalidFileTypeMessageDetail: string = 'فرمت مجاز : {0}';
   @Input() invalidFileLimitMessageDetail: string = 'حداکثر مجاز به انتخاب {0} فایل هستید.';
   @Input() invalidFileLimitMessageSummary: string = 'مجاز به انتخاب فایل بیشتری نیستید.';
-  @Input() invalidFileTypeMessageDetail: string = 'فرمت مجاز : {0}';
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() previewWidth: number = 50;
-  @Input() chooseLabel: string = 'انتخاب';
-  @Input() uploadLabel: string = 'آپلود';
-  @Input() cancelLabel: string = 'انصراف';
-  @Input() chooseIcon: string = 'pi pi-plus';
-  @Input() uploadIcon: string = 'pi pi-upload';
-  @Input() cancelIcon: string = 'pi pi-times';
-  @Input() withCredentials: boolean;
-  @Input() mode: NgFilePickerMode = 'advanced';
-  @Input() customUpload: boolean = true;
+  @Input() chooseLabel: string;
+  @Input() uploadLabel: string;
+  @Input() cancelLabel: string;
+  @Input() chooseIcon: string;
+  @Input() uploadIcon: string;
+  @Input() cancelIcon: string;
   @Input() showUploadButton: boolean = true;
   @Input() showCancelButton: boolean = true;
+  @Input() mode: NgFilePickerMode = 'advanced';
   @Input() headers: HttpHeaders;
+  @Input() customUpload: boolean = false;
+  @Input() fileLimit: number;
   @Input() uploadStyleClass: string;
   @Input() cancelStyleClass: string;
   @Input() removeStyleClass: string;
   @Input() chooseStyleClass: string;
-  @Output() onProgress = new EventEmitter<PrimeFileProgressEvent>();
-  @Output() onSelect = new EventEmitter<PrimeFileSelectEvent>();
-  @Output() onRemove = new EventEmitter<PrimeFileRemoveEvent>();
-  @Output() onClear = new EventEmitter<void>();
-  @Output() onError = new EventEmitter<PrimeFileUploadErrorEvent>();
   @Output() onBeforeUpload = new EventEmitter<PrimeFileBeforeUploadEvent>();
-  @Output() onUpload = new EventEmitter<PrimeFileUploadEvent>();
   @Output() onSend = new EventEmitter<PrimeFileSendEvent>();
+  @Output() onUpload = new EventEmitter<PrimeFileUploadEvent>();
+  @Output() onError = new EventEmitter<PrimeFileUploadErrorEvent>();
+  @Output() onClear = new EventEmitter<void>();
+  @Output() onRemove = new EventEmitter<PrimeFileRemoveEvent>();
+  @Output() onSelect = new EventEmitter<PrimeFileSelectEvent>();
+  @Output() onProgress = new EventEmitter<PrimeFileProgressEvent>();
   @Output() uploadHandler = new EventEmitter<PrimeFileUploadHandlerEvent>();
+  @Output() onImageError = new EventEmitter<Event>();
   @ViewChild(PrimeFileUpload, {static: true}) fileUploadComponent: PrimeFileUpload;
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
@@ -128,6 +129,9 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   toolbarTemplate: TemplateRef<any>;
   fileTemplate: TemplateRef<any>;
   contentTemplate: TemplateRef<any>;
+  chooseIconTemplate: TemplateRef<any>;
+  uploadIconTemplate: TemplateRef<any>;
+  cancelIconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -177,16 +181,28 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {
       switch (item.getType()) {
-        case 'toolbar':
-          this.toolbarTemplate = item.templateRef;
-          break;
-
         case 'file':
           this.fileTemplate = item.templateRef;
           break;
 
         case 'content':
           this.contentTemplate = item.templateRef;
+          break;
+
+        case 'toolbar':
+          this.toolbarTemplate = item.templateRef;
+          break;
+
+        case 'chooseicon':
+          this.chooseIconTemplate = item.templateRef;
+          break;
+
+        case 'uploadicon':
+          this.uploadIconTemplate = item.templateRef;
+          break;
+
+        case 'cancelicon':
+          this.cancelIconTemplate = item.templateRef;
           break;
       }
     })

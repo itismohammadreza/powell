@@ -58,22 +58,29 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() inputSize: NgSize;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
-  @Input() promptLabel: string = 'لطفا رمز عبور را وارد کنید';
-  @Input() mediumRegex: string = '/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})./';
-  @Input() strongRegex: string = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/';
-  @Input() weakLabel: string = 'ضعیف';
-  @Input() mediumLabel: string = 'متوسط';
-  @Input() strongLabel: string = 'قوی';
-  @Input() feedback: boolean = true;
-  @Input() toggleMask: boolean;
-  @Input() appendTo: any;
+  @Input() ariaLabel: string;
+  @Input() ariaLabelledBy: string;
   @Input() disabled: boolean;
-  @Input() inputStyle: CSSStyleDeclaration;
+  @Input() promptLabel: string;
+  @Input() mediumRegex: string = '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})';
+  @Input() strongRegex: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})';
+  @Input() weakLabel: string;
+  @Input() mediumLabel: string;
+  @Input() maxLength: number;
+  @Input() strongLabel: string;
+  @Input() inputId: string = this.getId();
+  @Input() feedback: boolean = true;
+  @Input() appendTo: any;
+  @Input() toggleMask: boolean = false;
   @Input() inputStyleClass: string;
-  @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
+  @Input() style: CSSStyleDeclaration;
+  @Input() inputStyle: CSSStyleDeclaration;
+  @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
+  @Input() hideTransitionOptions: string = '.1s linear';
+  @Input() autocomplete: string;
   @Input() placeholder: string;
-  @Input() showClear: boolean;
+  @Input() showClear: boolean = false;
   @Output() onInput = new EventEmitter<Event>();
   @Output() onChange = new EventEmitter<Event>();
   @Output() onKeyDown = new EventEmitter<KeyboardEvent>();
@@ -83,11 +90,13 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Output() onClear = new EventEmitter<void>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
   contentTemplate: TemplateRef<any>;
   headerTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
+  clearIconTemplate: TemplateRef<any>;
+  hideIconTemplate: TemplateRef<any>;
+  showIconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -101,14 +110,13 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
@@ -142,6 +150,18 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
 
         case 'footer':
           this.footerTemplate = item.templateRef;
+          break;
+
+        case 'clearicon':
+          this.clearIconTemplate = item.templateRef;
+          break;
+
+        case 'hideicon':
+          this.hideIconTemplate = item.templateRef;
+          break;
+
+        case 'showicon':
+          this.showIconTemplate = item.templateRef;
           break;
       }
     });

@@ -1,4 +1,17 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  forwardRef,
+  Injector,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  TemplateRef,
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -13,17 +26,17 @@ import {takeUntil} from "rxjs";
 import {
   CSSStyleDeclaration,
   NgAddon,
-  NgCurrency,
-  NgCurrencyDisplay,
   NgIconPosition,
   NgLabelPosition,
   NgNumberButtonLayout,
+  NgNumberLocaleMatcher,
   NgNumberMode,
   NgSize,
   NgValidation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeInputNumberInputEvent} from "@powell/primeng/api";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-input-number',
@@ -38,7 +51,7 @@ import {PrimeInputNumberInputEvent} from "@powell/primeng/api";
     DestroyService
   ]
 })
-export class InputNumberComponent implements OnInit, ControlValueAccessor {
+export class InputNumberComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: number;
   @Input() label: string;
   @Input() filled: boolean;
@@ -54,48 +67,57 @@ export class InputNumberComponent implements OnInit, ControlValueAccessor {
   @Input() inputSize: NgSize;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
+  @Input() showButtons: boolean = false;
   @Input() format: boolean = true;
-  @Input() showButtons: boolean;
   @Input() buttonLayout: NgNumberButtonLayout = 'stacked';
-  @Input() incrementButtonClass: string;
-  @Input() decrementButtonClass: string;
-  @Input() incrementButtonIcon: string = 'pi pi-chevron-up';
-  @Input() decrementButtonIcon: string = 'pi pi-chevron-down';
-  @Input() locale: string;
-  @Input() localeMatcher: 'lookup' | 'best fit' = 'best fit';
-  @Input() mode: NgNumberMode = 'decimal';
-  @Input() prefix: string;
-  @Input() suffix: string;
-  @Input() currency: NgCurrency;
-  @Input() currencyDisplay: NgCurrencyDisplay = 'symbol';
-  @Input() useGrouping: boolean = true;
-  @Input() minFractionDigits: number;
-  @Input() maxFractionDigits: number;
-  @Input() min: number;
-  @Input() max: number;
-  @Input() step: number = 1;
-  @Input() allowEmpty: boolean = true;
-  @Input() style: CSSStyleDeclaration;
+  @Input() inputId: string = this.getId();
   @Input() styleClass: string;
-  @Input() inputStyle: CSSStyleDeclaration;
-  @Input() inputStyleClass: string;
+  @Input() style: CSSStyleDeclaration;
   @Input() placeholder: string;
   @Input() size: number;
   @Input() maxlength: number;
   @Input() tabindex: number;
-  @Input() disabled: boolean;
-  @Input() readonly: boolean;
   @Input() title: string;
+  @Input() ariaLabelledBy: string;
+  @Input() ariaLabel: string;
+  @Input() ariaRequired: boolean = false;
+  @Input() name: string;
+  @Input() required: boolean = false;
   @Input() autocomplete: string;
-  @Input() showClear: boolean;
+  @Input() min: number;
+  @Input() max: number;
+  @Input() incrementButtonClass: string;
+  @Input() decrementButtonClass: string;
+  @Input() incrementButtonIcon: string;
+  @Input() decrementButtonIcon: string;
+  @Input() readonly: boolean = false;
+  @Input() step: number = 1;
+  @Input() allowEmpty: boolean = true;
+  @Input() locale: string;
+  @Input() localeMatcher: NgNumberLocaleMatcher = 'best fit';
+  @Input() mode: NgNumberMode = 'decimal';
+  @Input() currency: string;
+  @Input() currencyDisplay: string;
+  @Input() useGrouping: boolean = true;
+  @Input() minFractionDigits: number;
+  @Input() maxFractionDigits: number;
+  @Input() prefix: string;
+  @Input() suffix: string;
+  @Input() inputStyle: CSSStyleDeclaration;
+  @Input() inputStyleClass: string;
+  @Input() showClear: boolean = false;
+  @Input() disabled: boolean;
+  @Output() onInput = new EventEmitter<PrimeInputNumberInputEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
-  @Output() onInput = new EventEmitter<PrimeInputNumberInputEvent>();
   @Output() onKeyDown = new EventEmitter<KeyboardEvent>();
   @Output() onClear = new EventEmitter<void>();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
+  clearIconTemplate: TemplateRef<any>;
+  incrementButtonIconTemplate: TemplateRef<any>;
+  decrementButtonIconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -107,7 +129,6 @@ export class InputNumberComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -133,6 +154,24 @@ export class InputNumberComponent implements OnInit, ControlValueAccessor {
         });
       }
     }
+  }
+
+  ngAfterContentInit() {
+    this.templates.forEach((item) => {
+      switch (item.getType()) {
+        case 'clearicon':
+          this.clearIconTemplate = item.templateRef;
+          break;
+
+        case 'incrementbuttonicon':
+          this.incrementButtonIconTemplate = item.templateRef;
+          break;
+
+        case 'decrementbuttonicon':
+          this.decrementButtonIconTemplate = item.templateRef;
+          break;
+      }
+    });
   }
 
   _onInput(event: any) {

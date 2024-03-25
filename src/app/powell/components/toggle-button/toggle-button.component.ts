@@ -40,16 +40,18 @@ export class ToggleButtonComponent implements OnInit, ControlValueAccessor {
   // native properties
   @Input() onLabel: string;
   @Input() offLabel: string;
-  @Input() onIcon: string = 'pi pi-check';
-  @Input() offIcon: string = 'pi pi-times';
-  @Input() iconPos: NgIconPosition = 'left';
+  @Input() onIcon: string;
+  @Input() offIcon: string;
+  @Input() ariaLabel: string;
+  @Input() ariaLabelledBy: string;
+  @Input() disabled: boolean;
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
-  @Input() disabled: boolean;
+  @Input() inputId: string = this.getId();
   @Input() tabindex: number;
+  @Input() iconPos: NgIconPosition = 'left';
   @Output() onChange = new EventEmitter<PrimeToggleButtonChangeEvent>();
 
-  inputId: string;
   ngControl: NgControl;
   onModelChange: any = (_: any) => {
   };
@@ -62,14 +64,13 @@ export class ToggleButtonComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {

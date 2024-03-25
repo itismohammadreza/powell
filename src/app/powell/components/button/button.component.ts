@@ -55,15 +55,15 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
   @Input() defaultState: NgButtonState = 1;
   // native properties
   @Input() type: NgButtonType = 'button';
-  @Input() label: string;
-  @Input() icon: string;
   @Input() iconPos: NgIconPosition = 'left';
+  @Input() icon: string;
   @Input() badge: string;
+  @Input() label: string;
+  @Input() disabled: boolean;
   @Input() badgeClass: string;
   @Input() loadingIcon: string;
-  @Input() disabled: boolean;
   @Input() style: CSSStyleDeclaration;
-  @Input() styleClass: any;
+  @Input() styleClass: string;
   @Output() onClick = new EventEmitter<MouseEvent>();
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
@@ -107,10 +107,13 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
         this.size = this.sizeOnXL ?? this._tmpSize;
       }
     }
-    getButtonSize()
+
+    getButtonSize();
+
     fromEvent(this.document.defaultView, 'resize').pipe(takeUntil(this.destroy$)).subscribe(() => {
-      getButtonSize()
+      getButtonSize();
     })
+
     this.templates.forEach((item: TemplateDirective) => {
       switch (item.getType()) {
         case 'content':
@@ -137,6 +140,10 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
     } else {
       this.onClick.emit(event);
     }
+  }
+
+  emitter(name: string, event: any) {
+    (this[name] as EventEmitter<any>).emit(event);
   }
 
   removeLoading = (ok: boolean = false) => {

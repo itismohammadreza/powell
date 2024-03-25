@@ -1,9 +1,21 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  Input, OnInit,
+  Output,
+  QueryList,
+  TemplateRef
+} from '@angular/core';
+import {BehaviorSubject, takeUntil} from 'rxjs';
 import {ActivatedRouteSnapshot, Data, NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs/operators";
 import {PrimeBreadcrumbItemClickEvent, PrimeMenuItem} from "@powell/primeng/api";
 import {CSSStyleDeclaration} from "@powell/models";
+import {DestroyService} from "@core/utils";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-breadcrumb',
@@ -11,23 +23,49 @@ import {CSSStyleDeclaration} from "@powell/models";
   styleUrls: ['./breadcrumb.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BreadcrumbComponent {
+export class BreadcrumbComponent implements OnInit, AfterContentInit {
+  @Input() items: PrimeMenuItem[];
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() home: PrimeMenuItem;
+  @Input() homeAriaLabel: string;
   @Input() rtl: boolean;
   @Output() onItemClick = new EventEmitter<PrimeBreadcrumbItemClickEvent>();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   _breadcrumbs$ = new BehaviorSubject<PrimeMenuItem[]>([]);
   breadcrumbs$ = this._breadcrumbs$.asObservable();
+  itemTemplate: TemplateRef<any>;
+  separatorTemplate: TemplateRef<any>;
 
-  constructor(private router: Router) {
-    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+  constructor(private router: Router, private destroy$: DestroyService) {
+  }
+
+  ngOnInit() {
+    if (this.items) {
+      this._breadcrumbs$.next(this.items);
+      return;
+    }
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd), takeUntil(this.destroy$)).subscribe(() => {
       const root = this.router.routerState.snapshot.root;
       const breadcrumbs: PrimeMenuItem[] = [];
       this.addBreadcrumb(root, [], breadcrumbs);
       this._breadcrumbs$.next(breadcrumbs);
     });
+  }
+
+  ngAfterContentInit() {
+    this.templates.forEach((item: TemplateDirective) => {
+      switch (item.getType()) {
+        case 'separator':
+          this.separatorTemplate = item.templateRef;
+          break;
+
+        case 'item':
+          this.itemTemplate = item.templateRef;
+          break;
+      }
+    })
   }
 
   addBreadcrumb(route: ActivatedRouteSnapshot, parentUrl: string[], breadcrumbs: PrimeMenuItem[]) {

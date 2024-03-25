@@ -12,24 +12,32 @@
       'layout-horizontal':orientation == 'horizontal',
       'layout-vertical':orientation == 'vertical',
       'p-input-filled': filled
-    }" class="multi-checkbox-wrapper">
+    }" class="checkbox-group-wrapper">
   <div [attr.id]="inputId" class="field">
     <div *ngFor="let item of options" class="option-item">
       <p-checkbox
         [(ngModel)]="value"
-        [inputId]="item.__id"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [inputId]="'id'+item[optionValue]"
         [disabled]="item[optionDisabled]"
         [class]="item.styleClass"
-        [name]="groupName"
-        [value]="item[optionValue]"
-        [readonly]="readonly"
+        [ariaLabelledBy]="ariaLabelledBy"
+        [ariaLabel]="ariaLabel"
         [style]="style"
         [styleClass]="styleClass"
+        [labelStyleClass]="labelStyleClass"
         [checkboxIcon]="checkboxIcon"
-        (onChange)="_onChange()"
-      ></p-checkbox>
-      <label [attr.for]="item.id" [class.p-disabled]="disabled || item[optionDisabled]">
+        [readonly]="readonly"
+        [name]="groupName"
+        [value]="item[optionValue]"
+        (onChange)="_onChange($event)"
+        (onFocus)="_onFocus($event)"
+        (onBlur)="_onBlur($event)">
+        <ng-template pTemplate="icon" let-option *ngIf="iconTemplate">
+          <ng-container *ngTemplateOutlet="iconTemplate;context:{$implicit:option}"></ng-container>
+        </ng-template>
+      </p-checkbox>
+      <label [attr.for]="'id'+item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
         {{ item[optionLabel] }}
       </label>
     </div>

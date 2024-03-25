@@ -64,6 +64,7 @@ export class DialogFormComponent {
       this.loadingCallback()
     }
     this.onClose.emit();
+    this.handleEvent('onHide');
   }
 
   handleConfigValue(config: NgDialogFormConfig) {
@@ -188,6 +189,8 @@ export class DialogFormComponent {
     if (element) {
       element.focus();
     }
+
+    this.handleEvent('onShow');
   }
 
   onSubmitClick(loadingCallback: any) {
@@ -199,5 +202,9 @@ export class DialogFormComponent {
     this.disableReject = true;
     this.loadingCallback = loadingCallback;
     this.onSubmit.emit({formValue: this.form.value, changeDialogVisibilityTo: this.changeDialogVisibilityTo})
+  }
+
+  handleEvent(event: string, args?: any) {
+    this.options[event]?.(args);
   }
 }

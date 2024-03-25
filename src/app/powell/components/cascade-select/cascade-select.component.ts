@@ -30,7 +30,8 @@ import {
   PrimeCascadeSelectBeforeHideEvent,
   PrimeCascadeSelectBeforeShowEvent,
   PrimeCascadeSelectHideEvent,
-  PrimeCascadeSelectShowEvent
+  PrimeCascadeSelectShowEvent,
+  PrimeOverlayOptions
 } from "@powell/primeng/api";
 
 @Component({
@@ -62,31 +63,55 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() inputSize: NgSize;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
-  @Input() options: any[];
-  @Input() optionLabel: string = 'label';
-  @Input() optionValue: string = 'value';
-  @Input() optionGroupLabel: string = 'label';
-  @Input() optionGroupChildren: string[] = ['items'];
-  @Input() placeholder: string;
-  @Input() disabled: boolean;
-  @Input() dataKey: string;
-  @Input() tabindex: number;
-  @Input() appendTo: any;
-  @Input() style: CSSStyleDeclaration;
+  @Input() id: string;
+  @Input() selectOnFocus: boolean = false;
+  @Input() searchMessage: string;
+  @Input() emptyMessage: string;
+  @Input() selectionMessage: string;
+  @Input() emptySearchMessage: string;
+  @Input() emptySelectionMessage: string;
+  @Input() searchLocale: string;
+  @Input() optionDisabled: any;
+  @Input() autoOptionFocus: boolean = true;
   @Input() styleClass: string;
-  @Input() showClear: boolean = true;
+  @Input() style: CSSStyleDeclaration;
+  @Input() options: any[];
+  @Input() optionLabel: string;
+  @Input() optionValue: string;
+  @Input() optionGroupLabel: string | string[];
+  @Input() optionGroupChildren: string | string[];
+  @Input() placeholder: string;
+  @Input() dataKey: string;
+  @Input() inputId: string = this.getId();
+  @Input() tabindex: number;
+  @Input() ariaLabelledBy: string;
+  @Input() inputLabel: string;
+  @Input() ariaLabel: string;
+  @Input() appendTo: any;
+  @Input() disabled: boolean;
+  @Input() showClear: boolean = false;
+  @Input() panelStyleClass: string;
+  @Input() panelStyle: CSSStyleDeclaration;
+  @Input() overlayOptions: PrimeOverlayOptions;
+  @Input() showTransitionOptions: string;
+  @Input() hideTransitionOptions: string;
   @Output() onChange = new EventEmitter<any>();
   @Output() onGroupChange = new EventEmitter<Event>();
-  @Output() onBeforeShow = new EventEmitter<PrimeCascadeSelectBeforeShowEvent>();
-  @Output() onBeforeHide = new EventEmitter<PrimeCascadeSelectBeforeHideEvent>();
   @Output() onShow = new EventEmitter<PrimeCascadeSelectShowEvent>();
   @Output() onHide = new EventEmitter<PrimeCascadeSelectHideEvent>();
   @Output() onClear = new EventEmitter<void>();
+  @Output() onBeforeShow = new EventEmitter<PrimeCascadeSelectBeforeShowEvent>();
+  @Output() onBeforeHide = new EventEmitter<PrimeCascadeSelectBeforeHideEvent>();
+  @Output() onFocus = new EventEmitter<FocusEvent>();
+  @Output() onBlur = new EventEmitter<FocusEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
+  valueTemplate: TemplateRef<any>;
   optionTemplate: TemplateRef<any>;
+  triggerIconTemplate: TemplateRef<any>;
+  clearIconTemplate: TemplateRef<any>;
+  optionGroupIconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -98,7 +123,6 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -129,8 +153,24 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {
       switch (item.getType()) {
-        case 'item':
+        case 'value':
+          this.valueTemplate = item.templateRef;
+          break;
+
+        case 'option':
           this.optionTemplate = item.templateRef;
+          break;
+
+        case 'triggericon':
+          this.triggerIconTemplate = item.templateRef;
+          break;
+
+        case 'clearicon':
+          this.clearIconTemplate = item.templateRef;
+          break;
+
+        case 'optiongroupicon':
+          this.optionGroupIconTemplate = item.templateRef;
           break;
       }
     });

@@ -16,16 +16,16 @@
   <div class="field" *ngIf="!inline">
     <p-colorPicker
       [(ngModel)]="value"
-      [inputId]="inputId"
       [style]="style"
       [styleClass]="styleClass"
-      [inline]="inline"
+      [inline]="false"
       [format]="format"
       [appendTo]="appendTo"
-      [tabindex]="tabindex"
       [disabled]="disabled"
-      [baseZIndex]="baseZIndex"
+      [tabindex]="tabindex"
+      [inputId]="inputId"
       [autoZIndex]="autoZIndex"
+      [baseZIndex]="baseZIndex"
       [showTransitionOptions]="showTransitionOptions"
       [hideTransitionOptions]="hideTransitionOptions"
       (onChange)="_onChangeColorPicker($event)"
@@ -62,11 +62,14 @@
       [inline]="true"
       [format]="format"
       [appendTo]="appendTo"
-      [tabindex]="tabindex"
       [disabled]="disabled"
+      [tabindex]="tabindex"
+      [inputId]="inputId"
+      [autoZIndex]="autoZIndex"
+      [baseZIndex]="baseZIndex"
+      [showTransitionOptions]="showTransitionOptions"
+      [hideTransitionOptions]="hideTransitionOptions"
       (onChange)="_onChangeColorPicker($event)"
-      (onHide)="emitter('onHide',$event)"
-      (onShow)="emitter('onShow',$event)"
     ></p-colorPicker>
   </div>
   <label

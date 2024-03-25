@@ -47,13 +47,16 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() tabindex: number;
+  @Input() inputId: string = this.getId();
+  @Input() name: string;
   @Input() disabled: boolean;
-  @Input() readonly: boolean;
+  @Input() readonly: boolean = false;
+  @Input() ariaLabel: string;
+  @Input() ariaLabelledBy: string;
   @Output() onChange = new EventEmitter<PrimeInputSwitchChangeEvent>();
   @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<PrimeInputSwitchChangeEvent>>();
 
   loading: boolean;
-  inputId: string;
   ngControl: NgControl;
   onModelChange: any = (_: any) => {
   };
@@ -66,7 +69,6 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;

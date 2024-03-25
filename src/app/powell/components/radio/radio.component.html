@@ -17,16 +17,20 @@
     <div *ngFor="let item of options" class="option-item">
       <p-radioButton
         [(ngModel)]="value"
-        [inputId]="'id'+item[optionValue]"
         [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
-        [disabled]="item[optionDisabled]"
-        [class]="item.styleClass"
         [name]="groupName"
-        [value]="item[optionValue]"
+        [tabindex]="tabindex"
+        [inputId]="'id' + item[optionValue]"
+        [ariaLabelledBy]="ariaLabelledBy"
+        [ariaLabel]="ariaLabel"
         [style]="style"
         [styleClass]="styleClass"
-        (onBlur)="_onBlur($event)"
+        [labelStyleClass]="labelStyleClass"
+        [disabled]="item[optionDisabled]"
+        [class]="item.styleClass"
+        [value]="item[optionValue]"
         (onClick)="_onChange($event)"
+        (onBlur)="_onBlur($event)"
         (onFocus)="_onFocus($event)"
       ></p-radioButton>
       <label [attr.for]="'id' + item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">

@@ -1,6 +1,6 @@
 import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
 import {TemplateDirective} from "@powell/directives/template";
-import {NgSeverity} from "@powell/models";
+import {CSSStyleDeclaration} from "@powell/models";
 
 @Component({
   selector: 'ng-message',
@@ -12,10 +12,18 @@ export class MessageComponent implements AfterContentInit {
   @Input() summary: string;
   @Input() detail: string;
   @Input() icon: string;
-  @Input() severity: NgSeverity;
-  @Input() closable: boolean;
   @Input() rtl: boolean;
   @Input() disableConfigChangeEffect: boolean;
+  @Input() closable: boolean = true;
+  @Input() style: CSSStyleDeclaration;
+  @Input() styleClass: string;
+  @Input() enableService: boolean = true;
+  @Input() key: string;
+  @Input() escape: boolean = true;
+  @Input() severity: string;
+  @Input() showTransitionOptions: string = '300ms ease-out';
+  @Input() hideTransitionOptions: string = '200ms cubic-bezier(0.86, 0, 0.07, 1)';
+
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   contentTemplate: TemplateRef<any>;

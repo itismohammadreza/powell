@@ -37,21 +37,23 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
+  @Input() inputId: string = this.getId();
   // native properties
-  @Input() animate: boolean;
+  @Input() animate: boolean = false;
   @Input() disabled: boolean;
   @Input() min: number = 0;
   @Input() max: number = 100;
   @Input() orientation: NgOrientation = 'horizontal';
-  @Input() step: number = 1;
-  @Input() range: boolean;
+  @Input() step: number;
+  @Input() range: boolean = false;
   @Input() style: CSSStyleDeclaration;
-  @Input() styleClass: any;
+  @Input() styleClass: string;
+  @Input() ariaLabel: string;
+  @Input() ariaLabelledBy: string;
   @Input() tabindex: number;
   @Output() onChange = new EventEmitter<PrimeSliderChangeEvent>();
   @Output() onSlideEnd = new EventEmitter<PrimeSliderSlideEndEvent>();
 
-  inputId: string;
   ngControl: NgControl;
   onModelChange: any = (_: any) => {
   };
@@ -64,14 +66,13 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {

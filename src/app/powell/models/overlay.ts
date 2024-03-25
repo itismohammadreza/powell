@@ -1,7 +1,9 @@
 import {HttpHeaders} from '@angular/common/http';
 import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {
+  CSSStyleDeclaration,
   NgAddon,
+  NgAutoCompleteDropdownMode,
   NgButtonAppearance,
   NgButtonType,
   NgChipDisplayMode,
@@ -43,6 +45,7 @@ import {Core} from "suneditor/src/lib/core";
 import {LatLng, LatLngBounds} from "leaflet";
 import {PrimeContextMenu} from "@powell/primeng";
 import {PrimeScrollerOptions} from "@powell/primeng/api";
+import {EventEmitter} from "@angular/core";
 
 export type NgSeverity = 'success' | 'info' | 'warn' | 'error';
 export type NgDefaultFocus = 'accept' | 'reject';
@@ -54,27 +57,29 @@ export interface NgHistoryState {
 }
 
 export interface NgToastOptions {
+  autoZIndex?: boolean;
+  baseZIndex?: number;
+  style?: CSSStyleDeclaration;
+  position?: NgToastPosition;
+  preventOpenDuplicates?: boolean;
+  preventDuplicates?: boolean;
+  showTransformOptions?: string;
+  hideTransformOptions?: string;
+  showTransitionOptions?: string;
+  hideTransitionOptions?: string;
+  breakpoints?: any;
   severity?: NgSeverity;
   summary?: string;
   detail?: string;
   id?: any;
-  icon?: string;
+  key?: string;
   life?: number;
   sticky?: boolean;
   closable?: boolean;
   data?: any;
-  styleClass?: string;
+  icon?: string;
   contentStyleClass?: string;
-  preventDuplicates?: boolean;
-  position?: NgToastPosition;
-  style?: any;
-  baseZIndex?: number;
-  autoZIndex?: boolean;
-  showTransitionOptions?: string;
-  hideTransitionOptions?: string;
-  showTransformOptions?: string;
-  hideTransformOptions?: string;
-  breakpoints?: any;
+  styleClass?: string;
   closeIcon?: string;
 
   rtl?: boolean;
@@ -87,24 +92,33 @@ export interface NgMessageOptions {
 }
 
 export interface NgConfirmPopupOptions {
-  message?: string;
-  icon?: string;
+  showTransitionOptions?: string;
+  hideTransitionOptions?: string;
   autoZIndex?: boolean;
   baseZIndex?: number;
-  style?: any;
+  style?: CSSStyleDeclaration;
   styleClass?: string;
-  target?: any;
+  message?: string;
+  key?: string;
+  icon?: string;
+  header?: string;
+  accept?: Function;
+  reject?: Function;
   acceptLabel?: string;
   rejectLabel?: string;
   acceptIcon?: string;
   rejectIcon?: string;
   acceptVisible?: boolean;
   rejectVisible?: boolean;
+  blockScroll?: boolean;
+  closeOnEscape?: boolean;
+  dismissableMask?: boolean;
+  defaultFocus?: NgDefaultFocus;
   acceptButtonStyleClass?: string;
   rejectButtonStyleClass?: string;
-  defaultFocus?: NgDefaultFocus;
-  showTransitionOptions?: string;
-  hideTransitionOptions?: string;
+  target?: EventTarget;
+  acceptEvent?: EventEmitter<any>;
+  rejectEvent?: EventEmitter<any>;
 
   buttonFull?: boolean;
   acceptColor?: NgColor;
@@ -118,34 +132,38 @@ export interface NgConfirmPopupOptions {
 
 export interface NgConfirmDialogOptions {
   header?: string;
-  blockScroll?: boolean;
-  message?: string;
   icon?: string;
-  dismissableMask?: boolean;
-  closeOnEscape?: boolean;
-  closable?: boolean;
-  acceptLabel?: string;
-  acceptVisible?: boolean;
-  acceptIcon?: string;
-  rejectLabel?: string;
-  rejectIcon?: string;
-  rejectVisible?: boolean;
-  position?: NgDialogPosition;
-  focusTrap?: boolean;
-  baseZIndex?: number;
-  autoZIndex?: boolean;
-  breakpoints?: any;
-  transitionOptions?: string;
-  acceptStyleClass?: string;
-  rejectStyleClass?: string;
-  style?: any;
+  message?: string;
+  style?: CSSStyleDeclaration;
   styleClass?: string;
   maskStyleClass?: string;
+  acceptIcon?: string;
+  acceptLabel?: string;
+  closeAriaLabel?: string;
+  acceptAriaLabel?: string;
+  acceptVisible?: boolean;
+  rejectIcon?: string;
+  rejectLabel?: string;
+  rejectAriaLabel?: string;
+  rejectVisible?: boolean;
   acceptButtonStyleClass?: string;
   rejectButtonStyleClass?: string;
-  defaultFocus?: NgDefaultFocus
+  closeOnEscape?: boolean;
+  dismissableMask?: boolean;
+  blockScroll?: boolean;
+  closable?: boolean;
+  appendTo?: any;
+  key?: string;
+  autoZIndex?: boolean;
+  baseZIndex?: number;
+  transitionOptions?: string;
+  focusTrap?: boolean;
+  defaultFocus?: NgDefaultFocus;
+  breakpoints?: any;
+  visible?: any;
+  position?: string;
 
-  buttonFull?: boolean;
+  buttonFull?: boolean
   acceptColor?: NgColor;
   acceptAppearance?: NgButtonAppearance;
   rejectColor?: NgColor;
@@ -155,37 +173,54 @@ export interface NgConfirmDialogOptions {
   rtl?: boolean;
 }
 
-export interface NgDialogOptions {
+interface NgDialogBase {
   header?: string;
   draggable?: boolean;
-  keepInViewport?: boolean;
   resizable?: boolean;
-  contentStyle?: object;
+  positionLeft?: number;
+  positionTop?: number;
+  contentStyle?: any;
+  contentStyleClass?: string;
   modal?: boolean;
-  position?: NgDialogPosition;
-  blockScroll?: boolean;
   closeOnEscape?: boolean;
   dismissableMask?: boolean;
+  rtl?: boolean;
   closable?: boolean;
-  style?: object;
+  responsive?: boolean;
+  appendTo?: any;
+  breakpoints?: any;
   styleClass?: string;
   maskStyleClass?: string;
-  contentStyleClass?: string;
+  maskStyle?: string;
   showHeader?: boolean;
-  baseZIndex?: number;
+  breakpoint?: number;
+  blockScroll?: boolean;
   autoZIndex?: boolean;
-  minY?: number;
+  baseZIndex?: number;
   minX?: number;
+  minY?: number;
   focusOnShow?: boolean;
-  focusTrap?: boolean;
   maximizable?: boolean;
-  breakpoints?: object;
+  keepInViewport?: boolean;
+  focusTrap?: boolean;
   transitionOptions?: string;
   closeIcon?: string;
+  closeAriaLabel?: string;
   closeTabindex?: string;
   minimizeIcon?: string;
   maximizeIcon?: string;
+  style?: CSSStyleDeclaration;
+  position?: NgDialogPosition;
+  onShow?: () => any;
+  onHide?: () => any;
+  visibleChange?: (event: any) => any;
+  onResizeInit?: (event: any) => any;
+  onResizeEnd?: (event: any) => any;
+  onDragEnd?: (event: any) => any;
+  onMaximize?: (event: any) => any;
+}
 
+export interface NgDialogOptions extends NgDialogBase {
   buttonStyleClass?: string;
   buttonIcon?: string;
   buttonIconPos?: NgIconPosition;
@@ -194,41 +229,10 @@ export interface NgDialogOptions {
   buttonColor?: NgColor;
   buttonAppearance?: NgButtonAppearance;
   buttonSize?: NgSize;
-  rtl?: boolean;
   content?: string;
 }
 
-export interface NgDialogFormOptions {
-  header?: string;
-  draggable?: boolean;
-  keepInViewport?: boolean;
-  resizable?: boolean;
-  contentStyle?: object;
-  modal?: boolean;
-  position?: NgDialogPosition;
-  blockScroll?: boolean;
-  closeOnEscape?: boolean;
-  dismissableMask?: boolean;
-  closable?: boolean;
-  style?: object;
-  styleClass?: string;
-  maskStyleClass?: string;
-  contentStyleClass?: string;
-  showHeader?: boolean;
-  baseZIndex?: number;
-  autoZIndex?: boolean;
-  minX?: number;
-  minY?: number;
-  focusOnShow?: boolean;
-  focusTrap?: boolean;
-  maximizable?: boolean;
-  breakpoints?: object;
-  transitionOptions?: string;
-  closeIcon?: string;
-  closeTabindex?: string;
-  minimizeIcon?: string;
-  maximizeIcon?: string;
-
+export interface NgDialogFormOptions extends NgDialogBase {
   containerStyleClass?: string;
   containerStyle?: any;
   defaultFocus?: NgDefaultFocus;
@@ -275,44 +279,44 @@ export interface NgDialogFormEventRes {
 }
 
 export type NgDialogFormComponent =
-  | 'hidden'
-  | 'template'
-  | 'auto-complete'
-  | 'button'
-  | 'cascade-select'
-  | 'checkbox'
-  | 'checkbox-group'
-  | 'chips'
-  | 'color-picker'
-  | 'dropdown'
-  | 'dual-label-switch'
-  | 'editor'
-  | 'file-picker'
-  | 'file-picker2'
-  | 'gregorian-datepicker'
-  | 'image'
-  | 'input-mask'
-  | 'input-number'
-  | 'input-otp'
-  | 'input-password'
-  | 'input-text'
-  | 'input-textarea'
-  | 'iran-map'
-  | 'jalali-datepicker'
-  | 'knob'
-  | 'listbox'
-  | 'map'
-  | 'message'
-  | 'multi-select'
-  | 'radio'
-  | 'rating'
-  | 'select-button'
-  | 'slider'
-  | 'switch'
-  | 'toggle-button'
-  | 'tree'
-  | 'tree-select'
-  | 'tri-state-checkbox'
+    | 'hidden'
+    | 'template'
+    | 'auto-complete'
+    | 'button'
+    | 'cascade-select'
+    | 'checkbox'
+    | 'checkbox-group'
+    | 'chips'
+    | 'color-picker'
+    | 'dropdown'
+    | 'dual-label-switch'
+    | 'editor'
+    | 'file-picker'
+    | 'file-picker2'
+    | 'gregorian-datepicker'
+    | 'image'
+    | 'input-mask'
+    | 'input-number'
+    | 'input-otp'
+    | 'input-password'
+    | 'input-text'
+    | 'input-textarea'
+    | 'iran-map'
+    | 'jalali-datepicker'
+    | 'knob'
+    | 'listbox'
+    | 'map'
+    | 'message'
+    | 'multi-select'
+    | 'radio'
+    | 'rating'
+    | 'select-button'
+    | 'slider'
+    | 'switch'
+    | 'toggle-button'
+    | 'tree'
+    | 'tree-select'
+    | 'tri-state-checkbox'
 
 export interface NgDialogFormConfig {
   ///////////////////////////////////////// auto-complete /////////////////////////////////////////
@@ -324,7 +328,7 @@ export interface NgDialogFormConfig {
   autoHighlight?: boolean;
   showEmptyMessage?: boolean;
   forceSelection?: boolean;
-  dropdownMode?: 'blank' | 'current';
+  dropdownMode?: NgAutoCompleteDropdownMode;
   unique?: boolean;
   autocomplete?: string;
   completeMethod?: (dialogFormEvent?: NgDialogFormEventRes) => void;

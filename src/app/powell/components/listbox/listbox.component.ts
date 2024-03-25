@@ -26,7 +26,12 @@ import {takeUntil} from "rxjs";
 import {CSSStyleDeclaration, NgAddon, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
-import {PrimeListboxChangeEvent, PrimeListboxClickEvent, PrimeListboxDoubleClickEvent} from "@powell/primeng/api";
+import {
+  PrimeListboxChangeEvent,
+  PrimeListboxClickEvent,
+  PrimeListboxDoubleClickEvent, PrimeListboxFilterEvent, PrimeListboxSelectAllChangeEvent,
+  PrimeScrollerOptions
+} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-listbox',
@@ -54,38 +59,59 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
-  @Input() checkbox: boolean;
-  @Input() dataKey: string;
-  @Input() disabled: boolean;
-  @Input() filter: boolean;
-  @Input() filterMatchMode: NgFilterMatchMode = 'contains';
-  @Input() filterValue: string;
-  @Input() filterLocale: string;
-  @Input() filterBy: string;
-  @Input() filterPlaceHolder: string;
-  @Input() emptyFilterMessage: string;
-  @Input() listStyle: CSSStyleDeclaration;
-  @Input() listStyleClass: string;
-  @Input() metaKeySelection: boolean = true;
-  @Input() multiple: boolean;
-  @Input() readonly: boolean;
-  @Input() emptyMessage: string;
-  @Input() options: any[];
-  @Input() optionLabel: string = 'label';
-  @Input() optionValue: string = 'value';
-  @Input() optionDisabled: string = 'disabled';
-  @Input() optionGroupLabel: string = 'label';
-  @Input() optionGroupChildren: string = 'items';
-  @Input() group: boolean;
-  @Input() showToggleAll: boolean = true;
+  @Input() id: string = this.getId();
+  @Input() searchMessage: string;
+  @Input() emptySelectionMessage: string;
+  @Input() selectionMessage: string;
+  @Input() autoOptionFocus: boolean = true;
+  @Input() selectOnFocus: boolean = false;
+  @Input() searchLocale: boolean = false;
+  @Input() focusOnHover: boolean = false;
+  @Input() filterMessage: string;
+  @Input() filterFields: any[];
+  @Input() lazy: boolean = false;
+  @Input() virtualScroll: boolean = false;
+  @Input() virtualScrollItemSize: number;
+  @Input() virtualScrollOptions: PrimeScrollerOptions;
+  @Input() scrollHeight: string = '200px';
+  @Input() tabindex: number;
+  @Input() multiple: boolean = false;
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
+  @Input() listStyle: CSSStyleDeclaration;
+  @Input() listStyleClass: string;
+  @Input() readonly: boolean = false;
+  @Input() disabled: boolean;
+  @Input() checkbox: boolean = false;
+  @Input() filter: boolean = false;
+  @Input() filterBy: string;
+  @Input() filterMatchMode: NgFilterMatchMode = 'contains';
+  @Input() filterLocale: string;
+  @Input() metaKeySelection: boolean = false;
+  @Input() dataKey: string;
+  @Input() showToggleAll: boolean = true;
+  @Input() optionLabel: string;
+  @Input() optionValue: string;
+  @Input() optionGroupChildren: string = 'items';
+  @Input() optionGroupLabel: string = 'label';
+  @Input() optionDisabled: string;
+  @Input() ariaFilterLabel: string;
+  @Input() filterPlaceHolder: string;
+  @Input() emptyFilterMessage: string;
+  @Input() emptyMessage: string;
+  @Input() group: boolean = false;
+  @Input() options: any[];
+  @Input() filterValue: string;
+  @Input() selectAll: boolean;
   @Output() onChange = new EventEmitter<PrimeListboxChangeEvent>();
-  @Output() onDblClick = new EventEmitter<PrimeListboxDoubleClickEvent>();
   @Output() onClick = new EventEmitter<PrimeListboxClickEvent>();
+  @Output() onDblClick = new EventEmitter<PrimeListboxDoubleClickEvent>();
+  @Output() onFilter = new EventEmitter<PrimeListboxFilterEvent>();
+  @Output() onFocus = new EventEmitter<FocusEvent>();
+  @Output() onBlur = new EventEmitter<FocusEvent>();
+  @Output() onSelectAllChange = new EventEmitter<PrimeListboxSelectAllChangeEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
   headerTemplate: TemplateRef<any>;
   itemTemplate: TemplateRef<any>;
@@ -94,6 +120,8 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   emptyTemplate: TemplateRef<any>;
   emptyFilterTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
+  filterIconTemplate: TemplateRef<any>;
+  checkIconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -105,14 +133,13 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
@@ -136,10 +163,6 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {
       switch (item.getType()) {
-        case 'header':
-          this.headerTemplate = item.templateRef;
-          break;
-
         case 'item':
           this.itemTemplate = item.templateRef;
           break;
@@ -148,8 +171,16 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
           this.groupTemplate = item.templateRef;
           break;
 
+        case 'header':
+          this.headerTemplate = item.templateRef;
+          break;
+
         case 'filter':
           this.filterTemplate = item.templateRef;
+          break;
+
+        case 'footer':
+          this.footerTemplate = item.templateRef;
           break;
 
         case 'empty':
@@ -160,11 +191,19 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
           this.emptyFilterTemplate = item.templateRef;
           break;
 
-        case 'footer':
-          this.footerTemplate = item.templateRef;
+        case 'filtericon':
+          this.filterIconTemplate = item.templateRef;
+          break;
+
+        case 'checkicon':
+          this.checkIconTemplate = item.templateRef;
           break;
       }
     });
+  }
+
+  emitter(name: string, event: any) {
+    (this[name] as EventEmitter<any>).emit(event);
   }
 
   _onChange(event: PrimeListboxChangeEvent) {

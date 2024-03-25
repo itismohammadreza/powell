@@ -55,13 +55,14 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   // native properties
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
-  @Input() inline: boolean;
-  @Input() format: NgColorFormat = 'hex';
+  @Input() inline: boolean = false;
+  @Input() format:NgColorFormat = 'hex';
   @Input() appendTo: any;
-  @Input() tabindex: string;
   @Input() disabled: boolean;
-  @Input() baseZIndex: number;
+  @Input() tabindex: string;
+  @Input() inputId: string = this.getId();
   @Input() autoZIndex: boolean = true;
+  @Input() baseZIndex: number = 0;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
   @Output() onChange = new EventEmitter<PrimeColorPickerChangeEvent>();
@@ -73,7 +74,6 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
 
-  inputId: string;
   ngControl: NgControl;
   onModelChange: any = (_: any) => {
   };
@@ -86,7 +86,6 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;

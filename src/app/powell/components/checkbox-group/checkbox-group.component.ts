@@ -1,4 +1,17 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  forwardRef,
+  Injector,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  TemplateRef,
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -12,6 +25,8 @@ import {
 import {takeUntil} from "rxjs";
 import {CSSStyleDeclaration, NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
+import {PrimeCheckboxChangeEvent, PrimeCheckboxGroupChangeEvent} from "@powell/primeng/api";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-checkbox-group',
@@ -42,25 +57,36 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() optionValue: string = 'value';
   @Input() optionDisabled: string = 'disabled';
   @Input() orientation: NgOrientation = 'vertical';
+  @Input() groupName: string = this.getId();
+  @Input() inputId: string = this.getId();
 
   // native properties
-  @Input('disabled') set setDisabled(disabled: boolean) {
-    this.disabled = disabled;
+  @Input() set disabled(disabled: boolean) {
+    this._disabled = disabled;
     this.options.forEach(option => {
       option[this.optionDisabled] = disabled;
     })
   };
 
-  @Input() readonly: boolean;
+  get disabled() {
+    return this._disabled;
+  }
+
+  @Input() ariaLabelledBy: string;
+  @Input() ariaLabel: string;
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
+  @Input() labelStyleClass: string;
   @Input() checkboxIcon: string;
-  @Output() onChange = new EventEmitter<any[]>();
+  @Input() readonly: boolean;
+  @Output() onChange = new EventEmitter<PrimeCheckboxGroupChangeEvent>();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  disabled: boolean = false;
-  groupName: string;
-  inputId: string;
+  _disabled: boolean = false;
   ngControl: NgControl;
+  iconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -72,11 +98,6 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   }
 
   ngOnInit() {
-    this.options?.forEach((item) => {
-      Object.assign(item, {__id: this.getId()});
-    });
-    this.groupName = this.getId();
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -104,9 +125,28 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
     }
   }
 
-  _onChange() {
-    this.onChange.emit(this.value);
+  ngAfterContentInit() {
+    this.templates.forEach((item) => {
+      switch (item.getType()) {
+        case 'icon':
+          this.iconTemplate = item.templateRef;
+          break;
+      }
+    });
+  }
+
+  _onChange(event: PrimeCheckboxChangeEvent) {
+    this.onChange.emit({originalEvent: event.originalEvent, value: this.value});
     this.onModelChange(this.value);
+  }
+
+  _onBlur(event: Event) {
+    this.onBlur.emit(event);
+    this.onModelTouched();
+  }
+
+  _onFocus(event: Event) {
+    this.onFocus.emit(event);
   }
 
   getId() {

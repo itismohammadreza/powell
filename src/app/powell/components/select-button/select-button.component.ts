@@ -51,22 +51,25 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
+  @Input() inputId: string = this.getId();
   // native properties
   @Input() options: any[];
-  @Input() optionLabel: string = 'label';
-  @Input() optionValue: string = 'value';
-  @Input() optionDisabled: string = 'disabled';
-  @Input() multiple: boolean;
-  @Input() tabindex: number = 0;
+  @Input() optionLabel: string;
+  @Input() optionValue: string;
+  @Input() optionDisabled: string;
+  @Input() unselectable: boolean = false;
+  @Input() tabindex: number;
+  @Input() multiple: boolean = false;
+  @Input() allowEmpty: boolean = true;
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
+  @Input() ariaLabelledBy: string;
   @Input() disabled: boolean;
   @Input() dataKey: string;
   @Output() onChange = new EventEmitter<PrimeSelectButtonChangeEvent>();
   @Output() onOptionClick = new EventEmitter<PrimeSelectButtonOptionClickEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
   itemTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
@@ -80,14 +83,13 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {

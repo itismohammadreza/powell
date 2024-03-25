@@ -50,6 +50,8 @@ import {DestroyService} from "@core/utils";
 export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
+  @Input() ariaLabelledBy: string;
+  @Input() ariaLabel: string;
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
@@ -58,6 +60,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() icon: string;
   @Input() labelPos: NgLabelPosition;
   @Input() iconPos: NgIconPosition = 'left';
+  @Input() inputId: string = this.getId();
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
@@ -68,7 +71,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder: string;
   @Input() type: NgInputType = 'text';
   @Input() inputMode: NgInputMode = 'text';
-  @Input() keyFilter: NgKeyFilter | RegExp;
+  @Input() keyFilter: NgKeyFilter | RegExp = /.*/g;
   @Input() showClear: boolean;
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
@@ -85,7 +88,6 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Output() onClear = new EventEmitter<void>();
   @Output() onPaste = new EventEmitter<Event>();
 
-  inputId: string;
   ngControl: NgControl;
   onModelChange: any = (_: any) => {
   };
@@ -100,17 +102,13 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    if (!this.keyFilter) {
-      this.keyFilter = /.*/g;
-    }
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {

@@ -12,15 +12,18 @@
   <div class="field">
     <p-inputSwitch
       [(ngModel)]="value"
-      [inputId]="inputId"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [style]="style"
       [styleClass]="styleClass"
       [tabindex]="tabindex"
+      [inputId]="inputId"
+      [name]="name"
       [disabled]="disabled"
       [readonly]="readonly"
       [trueValue]="trueValue"
       [falseValue]="falseValue"
+      [ariaLabel]="ariaLabel"
+      [ariaLabelledBy]="ariaLabelledBy"
       (onChange)="_onChange($event)"
     ></p-inputSwitch>
     <p-progressSpinner *ngIf="loading && showAsyncLoading" strokeWidth="4"></p-progressSpinner>

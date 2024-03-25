@@ -6,6 +6,8 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
+  HostListener,
+  Inject,
   Input,
   Output,
   QueryList,
@@ -14,9 +16,10 @@ import {
 } from '@angular/core';
 import {animate, AnimationEvent, style, transition, trigger} from "@angular/animations";
 import {ConfigService} from "@powell/api";
-import {TemplateDirective} from "@powell/directives/template";
 import {CSSStyleDeclaration, NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow} from "@powell/models";
-import {PrimeDomHandler, PrimeZIndexUtils} from "@powell/primeng/api";
+import {PrimeDomHandler, PrimeTemplateDirective, PrimeZIndexUtils} from "@powell/primeng/api";
+import {SafeUrl} from "@angular/platform-browser";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'ng-image',
@@ -38,14 +41,25 @@ import {PrimeDomHandler, PrimeZIndexUtils} from "@powell/primeng/api";
   }
 })
 export class ImageComponent implements AfterContentInit {
-  @Input() src: string;
+  @Input() imageClass: string;
+  @Input() imageStyle: CSSStyleDeclaration;
+  @Input() styleClass: string;
+  @Input() style: CSSStyleDeclaration;
+  @Input() src: string | SafeUrl;
+  @Input() srcSet: string | SafeUrl;
+  @Input() sizes: string;
+  @Input() previewImageSrc: string | SafeUrl;
+  @Input() previewImageSrcSet: string | SafeUrl;
+  @Input() previewImageSizes: string;
   @Input() alt: string;
   @Input() width: string;
   @Input() height: string;
+  @Input() loading: "eager" | "lazy";
   @Input() appendTo: any;
-  @Input() preview: boolean;
+  @Input() preview: boolean = false;
   @Input() showTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
+  // pinch-zoom properties
   @Input() pinchTransitionDuration: number;
   @Input() pinchDoubleTap: boolean
   @Input() pinchDoubleTapScale: number;
@@ -64,11 +78,8 @@ export class ImageComponent implements AfterContentInit {
   @Input() pinchAutoHeight: boolean;
   @Input() pinchWheelZoomFactor: number;
   @Input() pinchDraggableImage: boolean;
-  @Input() style: CSSStyleDeclaration;
-  @Input() styleClass: string;
   @Input() previewStyle: CSSStyleDeclaration;
   @Input() previewStyleClass: string;
-  @Input() imageStyle: CSSStyleDeclaration;
   @Input() imageStyleClass: string;
   @Input() previewImageStyle: CSSStyleDeclaration;
   @Input() previewImageStyleClass: string;
@@ -77,28 +88,73 @@ export class ImageComponent implements AfterContentInit {
   @Output() onHide = new EventEmitter<AnimationEvent>();
   @Output() onImageError = new EventEmitter<Event>();
   @ViewChild('mask') mask: ElementRef;
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ViewChild('previewButton') previewButton: ElementRef;
+  @ViewChild('closeButton') closeButton: ElementRef;
+  @ContentChildren(PrimeTemplateDirective) templates: QueryList<PrimeTemplateDirective>;
 
-  indicatorTemplate: TemplateRef<any>;
+  indicatorTemplate: TemplateRef<any> | undefined;
+  rotateRightIconTemplate: TemplateRef<any> | undefined;
+  rotateLeftIconTemplate: TemplateRef<any> | undefined;
+  zoomOutIconTemplate: TemplateRef<any> | undefined;
+  zoomInIconTemplate: TemplateRef<any> | undefined;
+  closeIconTemplate: TemplateRef<any> | undefined;
   maskVisible: boolean = false;
   previewVisible: boolean = false;
   rotate: number = 0;
+  scale: number = 1;
   previewClick: boolean = false;
   container: HTMLElement;
   wrapper: HTMLElement;
 
-  constructor(private config: ConfigService, private cd: ChangeDetectorRef) {
+  get isZoomOutDisabled(): boolean {
+    return this.scale - this.zoomSettings.step <= this.zoomSettings.min;
+  }
+
+  get isZoomInDisabled(): boolean {
+    return this.scale + this.zoomSettings.step >= this.zoomSettings.max;
+  }
+
+  private zoomSettings = {
+    default: 1,
+    step: 0.1,
+    max: 1.5,
+    min: 0.5
+  };
+
+  constructor(@Inject(DOCUMENT) private document: Document,
+              private configService: ConfigService,
+              private cd: ChangeDetectorRef, public el: ElementRef) {
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item) => {
+    this.templates?.forEach((item) => {
       switch (item.getType()) {
         case 'indicator':
-          this.indicatorTemplate = item.templateRef;
+          this.indicatorTemplate = item.template;
+          break;
+
+        case 'rotaterighticon':
+          this.rotateRightIconTemplate = item.template;
+          break;
+
+        case 'rotatelefticon':
+          this.rotateLeftIconTemplate = item.template;
+          break;
+
+        case 'zoomouticon':
+          this.zoomOutIconTemplate = item.template;
+          break;
+
+        case 'zoominicon':
+          this.zoomInIconTemplate = item.template;
+          break;
+
+        case 'closeicon':
+          this.closeIconTemplate = item.template;
           break;
 
         default:
-          this.indicatorTemplate = item.templateRef;
+          this.indicatorTemplate = item.template;
           break;
       }
     });
@@ -108,6 +164,31 @@ export class ImageComponent implements AfterContentInit {
     if (this.preview) {
       this.maskVisible = true;
       this.previewVisible = true;
+      PrimeDomHandler.blockBodyScroll();
+    }
+  }
+
+  onMaskClick() {
+    if (!this.previewClick) {
+      this.closePreview();
+    }
+
+    this.previewClick = false;
+  }
+
+  onMaskKeydown(event) {
+    switch (event.code) {
+      case 'Escape':
+        this.onMaskClick();
+        setTimeout(() => {
+          PrimeDomHandler.focus(this.previewButton.nativeElement);
+        }, 25);
+        event.preventDefault();
+
+        break;
+
+      default:
+        break;
     }
   }
 
@@ -125,13 +206,27 @@ export class ImageComponent implements AfterContentInit {
     this.previewClick = true;
   }
 
+  zoomIn() {
+    this.scale = this.scale + this.zoomSettings.step;
+    this.previewClick = true;
+  }
+
+  zoomOut() {
+    this.scale = this.scale - this.zoomSettings.step;
+    this.previewClick = true;
+  }
+
   onAnimationStart(event: AnimationEvent) {
     switch (event.toState) {
       case 'visible':
         this.container = event.element;
-        this.wrapper = this.container.parentElement;
+        this.wrapper = this.container?.parentElement;
         this.appendContainer();
         this.moveOnTop();
+
+        setTimeout(() => {
+          PrimeDomHandler.focus(this.closeButton.nativeElement);
+        }, 25);
         break;
 
       case 'void':
@@ -157,18 +252,22 @@ export class ImageComponent implements AfterContentInit {
   }
 
   moveOnTop() {
-    PrimeZIndexUtils.set('modal', this.wrapper, this.config.getConfig().zIndex.modal);
+    PrimeZIndexUtils.set('modal', this.wrapper, this.configService.getConfig().zIndex.modal);
   }
 
   appendContainer() {
     if (this.appendTo) {
-      if (this.appendTo === 'body') document.body.appendChild(this.wrapper);
+      if (this.appendTo === 'body') this.document.body.appendChild(this.wrapper as HTMLElement);
       else PrimeDomHandler.appendChild(this.wrapper, this.appendTo);
     }
   }
 
   imagePreviewStyle() {
-    return {transform: 'rotate(' + this.rotate + 'deg)', ...this.previewImageStyle};
+    return {transform: 'rotate(' + this.rotate + 'deg) scale(' + this.scale + ')'};
+  }
+
+  get zoomImageAriaLabel() {
+    return this.getTranslation().aria ? this.getTranslation().aria.zoomImage : undefined;
   }
 
   containerClass() {
@@ -178,17 +277,48 @@ export class ImageComponent implements AfterContentInit {
     };
   }
 
-  handleToolbarClick(event: MouseEvent) {
+  handleToolbarClick(event: MouseEvent): void {
     event.stopPropagation();
   }
 
-  closePreview() {
+  closePreview(): void {
     this.previewVisible = false;
     this.rotate = 0;
+    this.scale = this.zoomSettings.default;
+    PrimeDomHandler.unblockBodyScroll();
   }
 
   imageError(event: Event) {
-    this.src = this.errorPlaceholderSrc ?? this.src;
     this.onImageError.emit(event);
+  }
+
+  rightAriaLabel() {
+    return this.getTranslation().aria ? this.getTranslation().aria.rotateRight : undefined;
+  }
+
+  leftAriaLabel() {
+    return this.getTranslation().aria ? this.getTranslation().aria.rotateLeft : undefined;
+  }
+
+  zoomInAriaLabel() {
+    return this.getTranslation().aria ? this.getTranslation().aria.zoomIn : undefined;
+  }
+
+  zoomOutAriaLabel() {
+    return this.getTranslation().aria ? this.getTranslation().aria.zoomOut : undefined;
+  }
+
+  closeAriaLabel() {
+    return this.getTranslation().aria ? this.getTranslation().aria.close : undefined;
+  }
+
+  getTranslation(){
+    return this.configService.getConfig().translation;
+  }
+
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    if (this.previewVisible) {
+      this.closePreview();
+    }
   }
 }

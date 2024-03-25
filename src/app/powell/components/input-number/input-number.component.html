@@ -31,48 +31,62 @@
       <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
       <p-inputNumber
         [(ngModel)]="value"
-        [inputId]="inputId"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-        [format]="format"
         [showButtons]="showButtons"
+        [format]="format"
         [buttonLayout]="buttonLayout"
+        [inputId]="inputId"
+        [styleClass]="styleClass"
+        [style]="style"
+        [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
+        [size]="size"
+        [maxlength]="maxlength"
+        [tabindex]="tabindex"
+        [title]="title"
+        [ariaLabelledBy]="ariaLabelledBy"
+        [ariaLabel]="ariaLabel"
+        [ariaRequired]="ariaRequired"
+        [name]="name"
+        [required]="required"
+        [autocomplete]="autocomplete"
+        [min]="min"
+        [max]="max"
         [incrementButtonClass]="incrementButtonClass"
         [decrementButtonClass]="decrementButtonClass"
         [incrementButtonIcon]="incrementButtonIcon"
         [decrementButtonIcon]="decrementButtonIcon"
+        [readonly]="readonly"
+        [step]="step"
+        [allowEmpty]="allowEmpty"
         [locale]="locale"
         [localeMatcher]="localeMatcher"
         [mode]="mode"
-        [prefix]="prefix"
-        [suffix]="suffix"
         [currency]="currency"
         [currencyDisplay]="currencyDisplay"
         [useGrouping]="useGrouping"
         [minFractionDigits]="minFractionDigits"
         [maxFractionDigits]="maxFractionDigits"
-        [min]="min"
-        [max]="max"
-        [step]="step"
-        [allowEmpty]="allowEmpty"
-        [style]="style"
-        [styleClass]="styleClass"
+        [prefix]="prefix"
+        [suffix]="suffix"
         [inputStyle]="inputStyle"
         [inputStyleClass]="inputStyleClass"
-        [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
-        [size]="size"
-        [maxlength]="maxlength"
-        [tabindex]="tabindex"
-        [disabled]="disabled"
-        [readonly]="readonly"
-        [title]="title"
-        [autocomplete]="autocomplete"
         [showClear]="showClear"
-        (onBlur)="_onBlur($event)"
-        (onFocus)="_onFocus($event)"
+        [disabled]="disabled"
         (onInput)="_onInput($event)"
+        (onFocus)="_onFocus($event)"
+        (onBlur)="_onBlur($event)"
         (onClear)="_onClear()"
-        (onKeyDown)="_onKeyDown($event)"
-      ></p-inputNumber>
+        (onKeyDown)="_onKeyDown($event)">
+        <ng-template pTemplate="clearicon" *ngIf="clearIconTemplate">
+          <ng-container *ngTemplateOutlet="clearIconTemplate"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="incrementbuttonicon" *ngIf="incrementButtonIconTemplate">
+          <ng-container *ngTemplateOutlet="incrementButtonIconTemplate"></ng-container>
+        </ng-template>
+        <ng-template pTemplate="decrementbuttonicon" *ngIf="decrementButtonIconTemplate">
+          <ng-container *ngTemplateOutlet="decrementButtonIconTemplate"></ng-container>
+        </ng-template>
+      </p-inputNumber>
       <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
         {{ label | ngLabelStar:showRequiredStar:ngControl }}
       </label>

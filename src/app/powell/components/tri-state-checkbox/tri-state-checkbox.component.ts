@@ -1,4 +1,14 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectorRef,
+  Component, ContentChildren,
+  EventEmitter,
+  forwardRef,
+  Injector,
+  Input,
+  OnInit,
+  Output, QueryList, TemplateRef
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -13,6 +23,7 @@ import {takeUntil} from "rxjs";
 import {CSSStyleDeclaration, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {PrimeTriStateCheckboxChangeEvent} from "@powell/primeng/api";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-tri-state-checkbox',
@@ -27,7 +38,7 @@ import {PrimeTriStateCheckboxChangeEvent} from "@powell/primeng/api";
     DestroyService
   ]
 })
-export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
+export class TriStateCheckboxComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -38,16 +49,22 @@ export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() disabled: boolean;
+  @Input() name: string;
+  @Input() ariaLabel: string;
+  @Input() ariaLabelledBy: string;
   @Input() tabindex: number;
+  @Input() inputId: string = this.getId();
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
-  @Input() readonly: boolean;
-  @Input() checkboxTrueIcon: string = 'pi pi-check';
-  @Input() checkboxFalseIcon: string = 'pi pi-times';
+  @Input() readonly: boolean = false;
+  @Input() checkboxTrueIcon: string;
+  @Input() checkboxFalseIcon: string;
   @Output() onChange = new EventEmitter<PrimeTriStateCheckboxChangeEvent>();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
+  checkIconTemplate: TemplateRef<any>;
+  uncheckIconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -64,9 +81,9 @@ export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
@@ -86,6 +103,21 @@ export class TriStateCheckboxComponent implements OnInit, ControlValueAccessor {
       }
     }
   }
+
+  ngAfterContentInit() {
+    this.templates.forEach((item) => {
+      switch (item.getType()) {
+        case 'checkicon':
+          this.checkIconTemplate = item.templateRef;
+          break;
+
+        case 'uncheckicon':
+          this.uncheckIconTemplate = item.templateRef;
+          break;
+      }
+    });
+  }
+
 
   _onChange(event: PrimeTriStateCheckboxChangeEvent) {
     this.onModelChange(event.value);

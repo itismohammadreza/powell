@@ -12,7 +12,6 @@
   <div class="field">
     <p-fileUpload
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [files]="value || []"
       [name]="name"
       [url]="url"
       [method]="method"
@@ -20,14 +19,14 @@
       [accept]="accept"
       [disabled]="disabled"
       [auto]="auto"
+      [withCredentials]="withCredentials"
       [maxFileSize]="maxFileSize"
-      [fileLimit]="fileLimit"
       [invalidFileSizeMessageSummary]="invalidFileSizeMessageSummary"
       [invalidFileSizeMessageDetail]="invalidFileSizeMessageDetail"
       [invalidFileTypeMessageSummary]="invalidFileTypeMessageSummary"
+      [invalidFileTypeMessageDetail]="invalidFileTypeMessageDetail"
       [invalidFileLimitMessageDetail]="invalidFileLimitMessageDetail"
       [invalidFileLimitMessageSummary]="invalidFileLimitMessageSummary"
-      [invalidFileTypeMessageDetail]="invalidFileTypeMessageDetail"
       [style]="style"
       [styleClass]="styleClass"
       [previewWidth]="previewWidth"
@@ -37,12 +36,12 @@
       [chooseIcon]="chooseIcon"
       [uploadIcon]="uploadIcon"
       [cancelIcon]="cancelIcon"
-      [withCredentials]="withCredentials"
-      [mode]="mode"
-      [customUpload]="customUpload"
       [showUploadButton]="showUploadButton"
       [showCancelButton]="showCancelButton"
+      [mode]="mode"
       [headers]="headers"
+      [customUpload]="customUpload"
+      [fileLimit]="fileLimit"
       [uploadStyleClass]="uploadStyleClass"
       [cancelStyleClass]="cancelStyleClass"
       [removeStyleClass]="removeStyleClass"
@@ -55,7 +54,8 @@
       (onRemove)="_onRemove($event)"
       (onSelect)="_onSelect($event)"
       (onProgress)="emitter('onProgress',$event)"
-      (uploadHandler)="emitter('uploadHandler',$event)">
+      (uploadHandler)="emitter('uploadHandler',$event)"
+      (onImageError)="emitter('onImageError',$event)">
       <ng-template pTemplate="toolbar" *ngIf="toolbarTemplate">
         <ng-container *ngTemplateOutlet="toolbarTemplate"></ng-container>
       </ng-template>

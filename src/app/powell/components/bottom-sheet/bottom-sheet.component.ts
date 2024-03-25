@@ -25,18 +25,19 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   @Input() header: string;
   @Input() gutter: boolean = true;
   // native properties
-  @Input() visible: boolean;
+  @Input() appendTo: any;
+  @Input() blockScroll: boolean;
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
-  @Input() appendTo: any = 'body';
-  @Input() blockScroll: boolean = true;
-  @Input() baseZIndex: number;
+  @Input() ariaCloseLabel: string;
   @Input() autoZIndex: boolean = true;
+  @Input() baseZIndex: number;
   @Input() modal: boolean = true;
   @Input() dismissible: boolean = true;
   @Input() showCloseIcon: boolean = true;
-  @Input() transitionOptions: string = '270ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() closeOnEscape: boolean = true;
+  @Input() transitionOptions: string = '270ms cubic-bezier(0, 0, 0.2, 1)';
+  @Input() visible: boolean;
   @Output() onShow = new EventEmitter<any>();
   @Output() onHide = new EventEmitter<any>();
   @Output() visibleChange = new EventEmitter<boolean>();

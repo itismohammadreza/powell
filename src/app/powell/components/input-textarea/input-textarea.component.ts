@@ -41,6 +41,8 @@ import * as events from "events";
 export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
+  @Input() ariaLabelledBy: string;
+  @Input() ariaLabel: string;
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
@@ -52,6 +54,7 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
+  @Input() inputId: string = this.getId();
   @Input() rows: number;
   @Input() cols: number;
   @Input() autoResize: boolean;
@@ -71,7 +74,6 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
 
-  inputId: string;
   ngControl: NgControl;
   onModelChange: any = (_: any) => {
   };
@@ -86,7 +88,6 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;

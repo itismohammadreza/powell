@@ -36,24 +36,28 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
+  @Input() inputId: string = this.getId();
   // native properties
+  @Input() styleClass: string;
+  @Input() style: CSSStyleDeclaration;
+  @Input() ariaLabel: string;
+  @Input() ariaLabelledBy: string;
+  @Input() tabindex: number;
+  @Input() valueColor: string = 'var(--primary-color, Black)';
+  @Input() rangeColor: string = 'var(--surface-border, LightGray)';
+  @Input() textColor: string = 'var(--text-color-secondary, Black)';
+  @Input() valueTemplate: string = '{value}';
+  @Input() name: string;
   @Input() size: number = 100;
-  @Input() disabled: boolean;
-  @Input() readonly: boolean;
   @Input() step: number = 1;
   @Input() min: number = 0;
   @Input() max: number = 100;
-  @Input() valueColor: string = "var(--primary-color, Black)";
-  @Input() rangeColor: string = "var(--surface-border, LightGray)";
-  @Input() textColor: string = "var(--text-color-secondary, Black)";
   @Input() strokeWidth: number = 14;
+  @Input() disabled: boolean;
   @Input() showValue: boolean = true;
-  @Input() valueTemplate: string = '{value}';
-  @Input() style: CSSStyleDeclaration;
-  @Input() styleClass: string;
+  @Input() readonly: boolean = false;
   @Output() onChange = new EventEmitter<number>();
 
-  inputId: string;
   ngControl: NgControl;
   onModelChange: any = (_: any) => {
   }
@@ -66,14 +70,13 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {

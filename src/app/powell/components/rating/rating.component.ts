@@ -51,24 +51,26 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
+  @Input() inputId: string = this.getId();
   // native properties
+  @Input() disabled: boolean;
+  @Input() readonly: boolean = false;
   @Input() stars: number = 5;
   @Input() cancel: boolean = true;
-  @Input() disabled: boolean;
-  @Input() readonly: boolean;
-  @Input() iconOnClass: string = 'pi pi-star-fill';
-  @Input() iconOffClass: string = 'pi pi-star';
-  @Input() iconCancelClass: string = 'pi pi-ban';
+  @Input() iconOnClass: string;
   @Input() iconOnStyle: CSSStyleDeclaration;
+  @Input() iconOffClass: string;
   @Input() iconOffStyle: CSSStyleDeclaration;
+  @Input() iconCancelClass: string;
   @Input() iconCancelStyle: CSSStyleDeclaration;
   @Output() onRate = new EventEmitter<PrimeRatingRateEvent>();
   @Output() onCancel = new EventEmitter<Event>();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
-  cancelTemplate: TemplateRef<any>;
+  cancelIconTemplate: TemplateRef<any>;
   onIconTemplate: TemplateRef<any>;
   offIconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
@@ -82,14 +84,13 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
@@ -113,8 +114,8 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   ngAfterContentInit() {
     this.templates.forEach((item: TemplateDirective) => {
       switch (item.getType()) {
-        case 'cancel':
-          this.cancelTemplate = item.templateRef;
+        case 'cancelicon':
+          this.cancelIconTemplate = item.templateRef;
           break;
 
         case 'onicon':
@@ -136,6 +137,10 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   _onCancel(event: Event) {
     this.onCancel.emit(event);
     this.onModelChange(null);
+  }
+
+  emitter(name: string, event: any) {
+    (this[name] as EventEmitter<any>).emit(event);
   }
 
   getId() {

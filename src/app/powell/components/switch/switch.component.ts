@@ -45,15 +45,18 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() tabindex: number;
+  @Input() inputId: string = this.getId();
+  @Input() name: string;
   @Input() disabled: boolean;
-  @Input() readonly: boolean;
+  @Input() readonly: boolean = false;
   @Input() trueValue: any = true;
   @Input() falseValue: any = false;
+  @Input() ariaLabel: string;
+  @Input() ariaLabelledBy: string;
   @Output() onChange = new EventEmitter<PrimeInputSwitchChangeEvent>();
   @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<PrimeInputSwitchChangeEvent>>();
 
   loading: boolean;
-  inputId: string;
   ngControl: NgControl;
   onModelChange: any = (_: any) => {
   };
@@ -66,14 +69,13 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {

@@ -36,12 +36,14 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {
+  PrimeMultiSelectAllChangeEvent,
   PrimeMultiSelectBlurEvent,
   PrimeMultiSelectChangeEvent,
   PrimeMultiSelectFilterEvent,
   PrimeMultiSelectFocusEvent,
   PrimeMultiSelectLazyLoadEvent,
   PrimeMultiSelectRemoveEvent,
+  PrimeOverlayOptions,
   PrimeScrollerOptions
 } from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
@@ -75,78 +77,100 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() inputSize: NgSize;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
-  @Input() appendTo: any;
-  @Input() autofocusFilter: boolean;
-  @Input() autoZIndex: boolean = true;
-  @Input() baseZIndex: number;
-  @Input() defaultLabel: string;
-  @Input() dataKey: string;
-  @Input() disabled: boolean;
-  @Input() displaySelectedLabel: boolean = true;
-  @Input() dropdownIcon: string = 'pi pi-chevron-down';
-  @Input() emptyFilterMessage: string;
-  @Input() filter: boolean;
-  @Input() filterMatchMode: NgFilterMatchMode = 'contains';
-  @Input() filterValue: string;
-  @Input() filterLocale: string = undefined;
-  @Input() filterBy: string;
-  @Input() filterPlaceHolder: string;
-  @Input() hideTransitionOptions: string = '.1s linear';
-  @Input() itemSize: number;
-  @Input() maxSelectedLabels: number = 3;
-  @Input() options: any[];
-  @Input() optionLabel: string = 'label';
-  @Input() optionValue: string = 'value';
-  @Input() optionDisabled: string = 'disabled';
-  @Input() optionGroupLabel: string = 'label';
-  @Input() optionGroupChildren: string = 'items';
-  @Input() group: boolean;
-  @Input() overlayVisible: boolean;
-  @Input() panelStyle: CSSStyleDeclaration;
-  @Input() placeholder: string;
-  @Input() readonly: boolean;
-  @Input() emptyMessage: string;
-  @Input() resetFilterOnHide: boolean;
-  @Input() scrollHeight: string = '200px';
-  @Input() selectedItemsLabel: string | 'ellipsis' = 'ellipsis';
-  @Input() selectionLimit: number;
-  @Input() showHeader: boolean = true;
-  @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
-  @Input() showToggleAll: boolean = true;
+  @Input() id: string;
+  @Input() ariaLabel: string;
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
+  @Input() panelStyle: CSSStyleDeclaration;
+  @Input() panelStyleClass: string;
+  @Input() inputId: string = this.getId();
+  @Input() disabled: boolean;
+  @Input() readonly: boolean = false;
+  @Input() group: boolean = false;
+  @Input() filter: boolean = true;
+  @Input() filterPlaceHolder: string;
+  @Input() filterLocale: string;
+  @Input() overlayVisible: boolean = false;
   @Input() tabindex: number;
-  @Input() tooltip: any;
-  @Input() tooltipStyleClass: string;
-  @Input() tooltipPosition: NgPosition = 'top';
-  @Input() tooltipPositionStyle: string = 'absolute';
-  @Input() showClear: boolean
-  @Input() virtualScroll: boolean;
+  @Input() appendTo: any;
+  @Input() dataKey: string;
+  @Input() name: string;
+  @Input() ariaLabelledBy: string;
+  @Input() displaySelectedLabel: boolean;
+  @Input() maxSelectedLabels: number;
+  @Input() selectionLimit: number;
+  @Input() selectedItemsLabel: string;
+  @Input() showToggleAll: boolean = true;
+  @Input() emptyFilterMessage: string = null;
+  @Input() emptyMessage: string = null;
+  @Input() resetFilterOnHide: boolean = false;
+  @Input() dropdownIcon: string = null;
+  @Input() optionLabel: string = null;
+  @Input() optionValue: string = null;
+  @Input() optionDisabled: string = null;
+  @Input() optionGroupLabel: string = 'label';
+  @Input() optionGroupChildren: string = 'items';
+  @Input() showHeader: boolean = true;
+  @Input() filterBy: string = null;
+  @Input() scrollHeight: string = '200px';
+  @Input() lazy: boolean = false;
+  @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
   @Input() virtualScrollOptions: PrimeScrollerOptions;
-  @Input() lazy: boolean
+  @Input() overlayOptions: PrimeOverlayOptions;
+  @Input() ariaFilterLabel: string;
+  @Input() filterMatchMode: NgFilterMatchMode = 'contains';
+  @Input() tooltip: string;
+  @Input() tooltipPosition: NgPosition = 'right';
+  @Input() tooltipPositionStyle: string = 'absolute';
+  @Input() tooltipStyleClass: string;
+  @Input() autofocusFilter: boolean = true;
   @Input() display: NgChipDisplayMode = 'comma';
-  @Output() onClick = new EventEmitter<MouseEvent>();
+  @Input() autocomplete: string = 'off';
+  @Input() showClear: boolean = false;
+  @Input() autoZIndex: boolean;
+  @Input() baseZIndex: number;
+  @Input() showTransitionOptions: string;
+  @Input() hideTransitionOptions: string;
+  @Input() defaultLabel: string;
+  @Input() placeholder: string;
+  @Input() options: any[];
+  @Input() filterValue: string;
+  @Input() itemSize: number;
+  @Input() selectAll: boolean;
+  @Input() focusOnHover: boolean = false;
+  @Input() filterFields: any[];
+  @Input() selectOnFocus: boolean = false;
+  @Input() autoOptionFocus: boolean = true;
   @Output() onChange = new EventEmitter<PrimeMultiSelectChangeEvent>();
-  @Output() onRemove = new EventEmitter<PrimeMultiSelectRemoveEvent>();
   @Output() onFilter = new EventEmitter<PrimeMultiSelectFilterEvent>();
   @Output() onFocus = new EventEmitter<PrimeMultiSelectFocusEvent>();
   @Output() onBlur = new EventEmitter<PrimeMultiSelectBlurEvent>();
+  @Output() onClick = new EventEmitter<Event>();
+  @Output() onClear = new EventEmitter<void>();
   @Output() onPanelShow = new EventEmitter<void>();
   @Output() onPanelHide = new EventEmitter<void>();
-  @Output() onClear = new EventEmitter<void>();
   @Output() onLazyLoad = new EventEmitter<PrimeMultiSelectLazyLoadEvent>();
+  @Output() onRemove = new EventEmitter<PrimeMultiSelectRemoveEvent>();
+  @Output() onSelectAllChange = new EventEmitter<PrimeMultiSelectAllChangeEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
   itemTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
   selectedItemsTemplate: TemplateRef<any>;
   headerTemplate: TemplateRef<any>;
+  filterTemplate: TemplateRef<any>;
   emptyFilterTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
+  loaderTemplate: TemplateRef<any>;
+  checkIconTemplate: TemplateRef<any>;
+  filterIconTemplate: TemplateRef<any>;
+  removeTokenIconTemplate: TemplateRef<any>;
+  closeIconTemplate: TemplateRef<any>;
+  clearIconTemplate: TemplateRef<any>;
+  dropdownIconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -163,9 +187,9 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
@@ -205,6 +229,10 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
           this.headerTemplate = item.templateRef;
           break;
 
+        case 'filter':
+          this.filterTemplate = item.templateRef;
+          break;
+
         case 'emptyfilter':
           this.emptyFilterTemplate = item.templateRef;
           break;
@@ -215,6 +243,34 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
 
         case 'footer':
           this.footerTemplate = item.templateRef;
+          break;
+
+        case 'loader':
+          this.loaderTemplate = item.templateRef;
+          break;
+
+        case 'checkicon':
+          this.checkIconTemplate = item.templateRef;
+          break;
+
+        case 'filtericon':
+          this.filterIconTemplate = item.templateRef;
+          break;
+
+        case 'removetokenicon':
+          this.removeTokenIconTemplate = item.templateRef;
+          break;
+
+        case 'closeicon':
+          this.closeIconTemplate = item.templateRef;
+          break;
+
+        case 'clearicon':
+          this.clearIconTemplate = item.templateRef;
+          break;
+
+        case 'dropdownicon':
+          this.dropdownIconTemplate = item.templateRef;
           break;
       }
     });

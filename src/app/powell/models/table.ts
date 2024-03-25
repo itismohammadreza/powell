@@ -7,11 +7,13 @@ import {
   NgPosition,
   NgSize
 } from '@powell/models';
+import {PrimeFilterMetadata} from "@powell/primeng/api";
 
 export type NgTableRendererType = 'text' | 'image' | 'ng-template';
 export type NgTableFilterDisplay = 'row' | 'menu';
 export type NgTableResponsiveLayout = 'stack' | 'scroll';
 export type NgTablePaginationPosition = 'bottom' | 'top' | 'both';
+export type NgTableScrollDirection = 'vertical' | 'horizontal' | 'both';
 export type NgTableSortMode = 'single' | 'multiple';
 export type NgTableRowExpandMode = 'single' | 'multiple';
 export type NgTableRowGroupMode = 'subheader' | 'rowspan';
@@ -27,6 +29,8 @@ export type NgTableFilterType =
   | 'gregorian-datepicker'
   | 'jalali-datepicker'
   | 'slider';
+
+export type NgTableFilters = Record<string, PrimeFilterMetadata | PrimeFilterMetadata[]>;
 
 export interface NgTableFilter {
   type?: NgTableFilterType;

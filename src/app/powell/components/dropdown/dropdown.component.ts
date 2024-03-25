@@ -39,6 +39,7 @@ import {
   PrimeDropdownChangeEvent,
   PrimeDropdownFilterEvent,
   PrimeDropdownLazyLoadEvent,
+  PrimeOverlayOptions,
   PrimeScrollerOptions
 } from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
@@ -73,57 +74,69 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() async: boolean;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
-  @Input() options: any[];
-  @Input() optionLabel: string = 'label';
-  @Input() optionValue: string = 'value';
-  @Input() optionDisabled: string = 'disabled';
-  @Input() optionGroupLabel: string = 'label';
-  @Input() optionGroupChildren: string = 'items';
+  @Input() id: string;
   @Input() scrollHeight: string = '200px';
+  @Input() filter: boolean = false;
+  @Input() name: string;
   @Input() style: CSSStyleDeclaration;
   @Input() panelStyle: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() panelStyleClass: string;
-  @Input() filter: boolean;
-  @Input() filterValue: string;
-  @Input() filterBy: string;
-  @Input() filterMatchMode: NgFilterMatchMode = 'contains';
-  @Input() filterPlaceHolder: string;
-  @Input() filterLocale: string;
-  @Input() disabled: boolean;
-  @Input() readonly: boolean;
-  @Input() emptyMessage: string;
-  @Input() emptyFilterMessage: string;
-  @Input() editable: boolean;
-  @Input() maxlength: number;
+  @Input() readonly: boolean = false;
+  @Input() editable: boolean = false;
   @Input() appendTo: any;
   @Input() tabindex: number;
   @Input() placeholder: string;
+  @Input() filterPlaceholder: string;
+  @Input() filterLocale: string;
+  @Input() inputId: string = this.getId();
   @Input() dataKey: string;
-  @Input() autofocus: boolean;
-  @Input() autofocusFilter: boolean;
-  @Input() resetFilterOnHide: boolean;
-  @Input() dropdownIcon: string = 'pi pi-chevron-down';
-  @Input() autoDisplayFirst: boolean;
-  @Input() group: boolean;
-  @Input() showClear: boolean;
-  @Input() baseZIndex: number;
-  @Input() autoZIndex: boolean = true;
-  @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
-  @Input() hideTransitionOptions: string = '.1s linear';
-  @Input() tooltip: string;
-  @Input() tooltipStyleClass: string;
-  @Input() tooltipPosition: NgPosition = 'top';
-  @Input() tooltipPositionStyle: string = 'absolute';
-  @Input() virtualScroll: boolean;
+  @Input() filterBy: string;
+  @Input() filterFields: any[];
+  @Input() autofocus: boolean = false;
+  @Input() resetFilterOnHide: boolean = false;
+  @Input() dropdownIcon: string;
+  @Input() optionLabel: string;
+  @Input() optionValue: string;
+  @Input() optionDisabled: string;
+  @Input() optionGroupLabel: string = 'label';
+  @Input() optionGroupChildren: string = 'items';
+  @Input() autoDisplayFirst: boolean = true;
+  @Input() group: boolean = false;
+  @Input() showClear: boolean = false;
+  @Input() emptyFilterMessage: string;
+  @Input() emptyMessage: string;
+  @Input() lazy: boolean = false;
+  @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
   @Input() virtualScrollOptions: PrimeScrollerOptions;
-  @Input() lazy: boolean;
-  @Output() onClick = new EventEmitter<MouseEvent>();
+  @Input() overlayOptions: PrimeOverlayOptions;
+  @Input() ariaFilterLabel: string;
+  @Input() ariaLabel: string;
+  @Input() ariaLabelledBy: string;
+  @Input() filterMatchMode: NgFilterMatchMode = 'contains';
+  @Input() maxlength: number;
+  @Input() tooltip: string;
+  @Input() tooltipPosition: NgPosition = 'right';
+  @Input() tooltipPositionStyle: string = 'absolute';
+  @Input() tooltipStyleClass: string;
+  @Input() focusOnHover: boolean = false;
+  @Input() selectOnFocus: boolean = false;
+  @Input() autoOptionFocus: boolean = true;
+  @Input() autofocusFilter: boolean = true;
+  @Input() disabled: boolean;
+  @Input() itemSize: number;
+  @Input() autoZIndex: boolean;
+  @Input() baseZIndex: number;
+  @Input() showTransitionOptions: string;
+  @Input() hideTransitionOptions: string;
+  @Input() filterValue: string;
+  @Input() options: any[];
   @Output() onChange = new EventEmitter<PrimeDropdownChangeEvent>();
   @Output() onFilter = new EventEmitter<PrimeDropdownFilterEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
+  @Output() onClick = new EventEmitter<MouseEvent>();
   @Output() onShow = new EventEmitter<AnimationEvent>();
   @Output() onHide = new EventEmitter<AnimationEvent>();
   @Output() onClear = new EventEmitter<void>();
@@ -131,7 +144,6 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<PrimeDropdownChangeEvent>>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
   itemTemplate: TemplateRef<any>;
   groupTemplate: TemplateRef<any>;
@@ -140,6 +152,11 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   emptyTemplate: TemplateRef<any>;
   emptyFilterTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
+  filterTemplate: TemplateRef<any>;
+  loaderTemplate: TemplateRef<any>;
+  dropdownIconTemplate: TemplateRef<any>;
+  clearIconTemplate: TemplateRef<any>;
+  filterIconTemplate: TemplateRef<any>;
   _oldIcon: string;
   _oldValue: string;
   _newValue: string;
@@ -155,7 +172,6 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -201,6 +217,10 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
           this.headerTemplate = item.templateRef;
           break;
 
+        case 'filter':
+          this.filterTemplate = item.templateRef;
+          break;
+
         case 'footer':
           this.footerTemplate = item.templateRef;
           break;
@@ -215,6 +235,22 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
 
         case 'group':
           this.groupTemplate = item.templateRef;
+          break;
+
+        case 'loader':
+          this.loaderTemplate = item.templateRef;
+          break;
+
+        case 'dropdownicon':
+          this.dropdownIconTemplate = item.templateRef;
+          break;
+
+        case 'clearicon':
+          this.clearIconTemplate = item.templateRef;
+          break;
+
+        case 'filtericon':
+          this.filterIconTemplate = item.templateRef;
           break;
       }
     });

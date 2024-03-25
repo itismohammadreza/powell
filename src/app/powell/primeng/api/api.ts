@@ -1,13 +1,31 @@
-import {UniqueComponentId, ZIndexUtils} from "primeng/utils";
+import {ObjectUtils, UniqueComponentId, ZIndexUtils} from "primeng/utils";
 import {ConnectedOverlayScrollHandler, DomHandler} from 'primeng/dom';
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {
   AutoCompleteCompleteEvent,
   AutoCompleteDropdownClickEvent,
-  AutoCompleteLazyLoadEvent
+  AutoCompleteLazyLoadEvent,
+  AutoCompleteSelectEvent,
+  AutoCompleteUnselectEvent
 } from "primeng/autocomplete";
 import {BreadcrumbItemClickEvent} from "primeng/breadcrumb";
-import {CalendarMonthChangeEvent, CalendarYearChangeEvent} from "primeng/calendar";
+import {ChevronLeftIcon} from 'primeng/icons/chevronleft';
+import {ChevronRightIcon} from 'primeng/icons/chevronright';
+import {ChevronUpIcon} from 'primeng/icons/chevronup';
+import {ChevronDownIcon} from 'primeng/icons/chevrondown';
+import {TimesIcon} from 'primeng/icons/times';
+import {CalendarIcon} from 'primeng/icons/calendar';
+
+import {
+  CalendarMonthChangeEvent,
+  CalendarResponsiveOptions,
+  CalendarTypeView,
+  CalendarYearChangeEvent,
+  LocaleSettings,
+  Month,
+  NavigationState,
+} from "primeng/calendar";
+
 import {
   CascadeSelectBeforeHideEvent,
   CascadeSelectBeforeShowEvent,
@@ -30,7 +48,13 @@ import {
   UploadEvent
 } from "primeng/fileupload";
 import {InputNumberInputEvent} from "primeng/inputnumber";
-import {ListboxChangeEvent, ListboxClickEvent, ListboxDoubleClickEvent} from "primeng/listbox";
+import {
+  ListboxChangeEvent,
+  ListboxClickEvent,
+  ListboxDoubleClickEvent,
+  ListboxFilterEvent,
+  ListboxSelectAllChangeEvent
+} from "primeng/listbox";
 import {
   MultiSelectBlurEvent,
   MultiSelectChangeEvent,
@@ -38,6 +62,7 @@ import {
   MultiSelectFocusEvent,
   MultiSelectLazyLoadEvent,
   MultiSelectRemoveEvent,
+  MultiSelectSelectAllChangeEvent,
 } from "primeng/multiselect";
 import {RadioButtonClickEvent} from "primeng/radiobutton";
 import {RatingRateEvent} from "primeng/rating";
@@ -94,9 +119,15 @@ import {
   SortMeta,
   TableState,
   Translation,
+  TranslationKeys,
   TreeNode
 } from 'primeng/api';
 import {NgTableSortMode} from "@powell/models";
+import {RefreshIcon} from "primeng/icons/refresh";
+import {EyeIcon} from "primeng/icons/eye";
+import {UndoIcon} from "primeng/icons/undo";
+import {SearchMinusIcon} from "primeng/icons/searchminus";
+import {SearchPlusIcon} from "primeng/icons/searchplus";
 
 interface PrimeMultiSortEvent {
   data: any[];
@@ -116,14 +147,26 @@ export interface PrimeTreeSelectFilterEvent {
   filteredValue: any;
 }
 
+export interface PrimeCheckboxGroupChangeEvent {
+  originalEvent: Event;
+  value: any[];
+}
+
 export type PrimeAutoCompleteLazyLoadEvent = AutoCompleteLazyLoadEvent;
 export type PrimeAutoCompleteCompleteEvent = AutoCompleteCompleteEvent;
+export type PrimeAutoCompleteSelectEvent = AutoCompleteSelectEvent;
+export type PrimeAutoCompleteUnSelectEvent = AutoCompleteUnselectEvent;
 export type PrimeAutoCompleteDropdownClickEvent = AutoCompleteDropdownClickEvent;
 
 export type PrimeBreadcrumbItemClickEvent = BreadcrumbItemClickEvent;
 
-export type PrimeCalendarYearChangeEvent = CalendarYearChangeEvent;
 export type PrimeCalendarMonthChangeEvent = CalendarMonthChangeEvent;
+export type PrimeCalendarYearChangeEvent = CalendarYearChangeEvent;
+export type PrimeNavigationState = NavigationState;
+export type PrimeCalendarResponsiveOptions = CalendarResponsiveOptions;
+export type PrimeCalendarTypeView = CalendarTypeView;
+export type PrimeLocaleSettings = LocaleSettings;
+export type PrimeMonth = Month;
 
 export type PrimeCascadeSelectBeforeHideEvent = CascadeSelectBeforeHideEvent;
 export type PrimeCascadeSelectBeforeShowEvent = CascadeSelectBeforeShowEvent;
@@ -157,6 +200,8 @@ export type PrimeInputNumberInputEvent = InputNumberInputEvent;
 export type PrimeListboxChangeEvent = ListboxChangeEvent;
 export type PrimeListboxClickEvent = ListboxClickEvent;
 export type PrimeListboxDoubleClickEvent = ListboxDoubleClickEvent;
+export type PrimeListboxFilterEvent = ListboxFilterEvent;
+export type PrimeListboxSelectAllChangeEvent = ListboxSelectAllChangeEvent;
 
 export type PrimeMultiSelectBlurEvent = MultiSelectBlurEvent;
 export type PrimeMultiSelectChangeEvent = MultiSelectChangeEvent;
@@ -164,6 +209,7 @@ export type PrimeMultiSelectFilterEvent = MultiSelectFilterEvent;
 export type PrimeMultiSelectFocusEvent = MultiSelectFocusEvent;
 export type PrimeMultiSelectLazyLoadEvent = MultiSelectLazyLoadEvent;
 export type PrimeMultiSelectRemoveEvent = MultiSelectRemoveEvent;
+export type PrimeMultiSelectAllChangeEvent = MultiSelectSelectAllChangeEvent;
 
 export type PrimeRadioButtonClickEvent = RadioButtonClickEvent;
 
@@ -243,11 +289,16 @@ export type PrimeOverlayService = OverlayService;
 export const PrimeTemplateDirective = PrimeTemplate;
 export type PrimeTemplateDirective = PrimeTemplate;
 
+
 export const PrimeZIndexUtils = ZIndexUtils;
 export const PrimeDomHandler = DomHandler;
 export const PrimeUniqueComponentId = UniqueComponentId;
 export const PrimeConnectedOverlayScrollHandler = ConnectedOverlayScrollHandler;
+export const PrimeTranslationKeys = TranslationKeys;
+export const PrimeObjectUtils = ObjectUtils;
+export const PrimeSearchPlusIcon = SearchPlusIcon;
 
+export type PrimeConnectedOverlayScrollHandler = ConnectedOverlayScrollHandler;
 export type PrimeScrollerOptions = ScrollerOptions;
 export type PrimeOverlayOptions = OverlayOptions;
 export type PrimeFilterMetadata = FilterMetadata;
@@ -258,4 +309,13 @@ export type PrimeMessage = Message;
 export type PrimeTranslation = Translation;
 export type PrimeTreeNode<T> = TreeNode<T>;
 
-
+export const PrimeChevronLeftIcon = ChevronLeftIcon;
+export const PrimeChevronRightIcon = ChevronRightIcon;
+export const PrimeChevronUpIcon = ChevronUpIcon;
+export const PrimeChevronDownIcon = ChevronDownIcon;
+export const PrimeTimesIcon = TimesIcon;
+export const PrimeCalendarIcon = CalendarIcon;
+export const PrimeRefreshIcon = RefreshIcon;
+export const PrimeEyeIcon = EyeIcon;
+export const PrimeUndoIcon = UndoIcon;
+export const PrimeSearchMinusIcon = SearchMinusIcon;

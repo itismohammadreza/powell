@@ -14,7 +14,6 @@ import {
   CSSStyleDeclaration,
   NgAsyncEvent,
   NgEmptyIcon,
-  NgOrientation,
   NgSize,
   NgTableAction,
   NgTableActionsConfig,
@@ -23,19 +22,19 @@ import {
   NgTableCompareSelectionBy,
   NgTableContextMenuSelectionMode,
   NgTableFilterDisplay,
+  NgTableFilters,
   NgTablePaginationPosition,
   NgTableResponsiveLayout,
   NgTableRowExpandMode,
   NgTableRowGroupMode,
+  NgTableScrollDirection,
   NgTableSelectionMode,
   NgTableSortMode,
   NgTableStateStorage
 } from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {
-  PrimeFilterMetadata,
   PrimeScrollerOptions,
-  PrimeSortFunctionEvent,
   PrimeSortMeta,
   PrimeTableColResizeEvent,
   PrimeTableColumnReorderEvent,
@@ -83,79 +82,90 @@ export class TableComponent implements OnInit, AfterContentInit {
   // native properties
   @Input() frozenColumns: any[];
   @Input() frozenValue: any[];
-  @Input() responsiveLayout: NgTableResponsiveLayout = 'scroll';
-  @Input() breakpoint: string = '960px';
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() tableStyle: CSSStyleDeclaration;
   @Input() tableStyleClass: string;
-  @Input() paginator: boolean;
-  @Input() totalRecords: number;
+  @Input() paginator: boolean = false;
   @Input() pageLinks: number = 5;
   @Input() rowsPerPageOptions: any[];
   @Input() alwaysShowPaginator: boolean = true;
-  @Input() showFirstLastIcon: boolean = true;
   @Input() paginatorPosition: NgTablePaginationPosition = 'bottom';
+  @Input() paginatorStyleClass: string;
+  @Input() paginatorDropdownAppendTo: any;
+  @Input() paginatorDropdownScrollHeight: string = '200px';
   @Input() currentPageReportTemplate: string = '{currentPage} of {totalPages}';
-  @Input() showCurrentPageReport: boolean;
-  @Input() showJumpToPageDropdown: boolean;
-  @Input() showJumpToPageInput: boolean;
+  @Input() showCurrentPageReport: boolean = false;
+  @Input() showJumpToPageDropdown: boolean = false;
+  @Input() showJumpToPageInput: boolean = false;
+  @Input() showFirstLastIcon: boolean = true;
   @Input() showPageLinks: boolean = true;
-  @Input() sortMode: NgTableSortMode = 'single';
-  @Input() sortField: string;
-  @Input() sortOrder: number = 1;
-  @Input() multiSortMeta: PrimeSortMeta[];
-  @Input() rowGroupMode: NgTableRowGroupMode;
-  @Input() groupRowsBy: string | string[];
-  @Input() groupRowsByOrder: number = 1;
   @Input() defaultSortOrder: number = 1;
-  @Input() customSort: boolean;
-  @Input() showInitialSortBadge: boolean;
+  @Input() sortMode: NgTableSortMode = 'single';
+  @Input() resetPageOnSort: boolean = true;
   @Input() selectionMode: NgTableSelectionMode;
-  @Input() selectionPageOnly: boolean;
+  @Input() selectionPageOnly: boolean = false;
+  @Input() contextMenuSelection: any;
   @Input() contextMenuSelectionMode: NgTableContextMenuSelectionMode = 'separate';
   @Input() dataKey: string;
-  @Input() metaKeySelection: boolean;
-  @Input() rowSelectable: Function;
-  @Input() rowTrackBy: Function = (index: number, item: any) => index;
-  @Input() lazy: boolean;
+  @Input() metaKeySelection: boolean = false;
+  @Input() rowSelectable: any;
+  @Input() rowTrackBy: Function;
+  @Input() lazy: boolean = false;
   @Input() lazyLoadOnInit: boolean = true;
   @Input() compareSelectionBy: NgTableCompareSelectionBy = 'deepEquals';
   @Input() csvSeparator: string = ',';
   @Input() exportFilename: string = 'download';
-  @Input() filters: { [s: string]: PrimeFilterMetadata | PrimeFilterMetadata[] } = {};
-  @Input() filterDelay: number = 300;
+  @Input() filters: NgTableFilters = {};
   @Input() globalFilterFields: string[];
+  @Input() filterDelay: number = 300;
   @Input() filterLocale: string;
-  @Input() expandedRowKeys: { [s: string]: boolean; } = {};
+  @Input() expandedRowKeys: Record<string, boolean> = {};
   @Input() rowExpandMode: NgTableRowExpandMode = 'multiple';
-  @Input() scrollable: boolean;
-  @Input() scrollDirection: NgOrientation = "vertical";
+  @Input() scrollable: boolean = false;
+  @Input() scrollDirection: NgTableScrollDirection = 'vertical';
+  @Input() rowGroupMode: NgTableRowGroupMode;
   @Input() scrollHeight: string;
-  @Input() virtualScroll: boolean;
-  @Input() virtualScrollDelay: number = 250;
+  @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
   @Input() virtualScrollOptions: PrimeScrollerOptions;
+  @Input() virtualScrollDelay: number = 250;
+  @Input() frozenWidth: string;
+  @Input() responsive: boolean;
   @Input() contextMenu: any;
-  @Input() resizableColumns: boolean = true;
+  @Input() resizableColumns: boolean = false;
   @Input() columnResizeMode: NgTableColumnResizeMode = 'fit';
-  @Input() reorderableColumns: boolean;
-  @Input() loadingIcon: string = 'pi pi-spinner pi-spin';
+  @Input() reorderableColumns: boolean = false;
+  @Input() loadingIcon: string;
   @Input() showLoader: boolean = true;
-  @Input() rowHover: boolean;
-  @Input() paginatorDropdownAppendTo: any;
-  @Input() paginatorDropdownScrollHeight: string = '200px';
-  @Input() autoLayout: boolean;
-  @Input() resetPageOnSort: boolean = true;
+  @Input() rowHover: boolean = false;
+  @Input() customSort: boolean = false;
+  @Input() showInitialSortBadge: boolean = true;
+  @Input() autoLayout: boolean = false;
   @Input() exportFunction: Function;
+  @Input() exportHeader: string;
   @Input() stateKey: string;
   @Input() stateStorage: NgTableStateStorage = 'session';
-  @Input() exportHeader: string;
-  @Output() onTableReady = new EventEmitter<PrimeTable>();
+  @Input() groupRowsBy: any;
+  @Input() groupRowsByOrder: number = 1;
+  @Input() responsiveLayout: NgTableResponsiveLayout = 'scroll';
+  @Input() breakpoint: string = '640px';
+  @Input() paginatorLocale: string;
+  @Input() first: number;
+  @Input() rows: number;
+  @Input() totalRecords: number;
+  @Input() sortField: string;
+  @Input() sortOrder: number;
+  @Input() multiSortMeta: PrimeSortMeta[];
+  @Input() selection: any;
+  @Input() selectAll: boolean;
+  @Input() virtualRowHeight: number;
+  @Output() selectionChange = new EventEmitter<any>();
+  @Output() selectAllChange = new EventEmitter<PrimeTableSelectAllChangeEvent>();
   @Output() onRowSelect = new EventEmitter<PrimeTableRowSelectEvent>();
   @Output() onRowUnselect = new EventEmitter<PrimeTableRowUnSelectEvent>();
+  @Output() onSort = new EventEmitter<{ multisortmeta: PrimeSortMeta[] } | any>();
   @Output() onPage = new EventEmitter<PrimeTablePageEvent>();
-  @Output() onSort = new EventEmitter<PrimeTableSortEvent>();
   @Output() onFilter = new EventEmitter<PrimeTableFilterEvent>();
   @Output() onLazyLoad = new EventEmitter<NgAsyncEvent<PrimeTableLazyLoadEvent>>();
   @Output() onRowExpand = new EventEmitter<PrimeTableRowExpandEvent>();
@@ -165,21 +175,13 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Output() onColReorder = new EventEmitter<PrimeTableColumnReorderEvent>();
   @Output() onRowReorder = new EventEmitter<PrimeTableRowReorderEvent>();
   @Output() onHeaderCheckboxToggle = new EventEmitter<PrimeTableHeaderCheckboxToggleEvent>();
-  @Output() onStateSave = new EventEmitter<PrimeTableState>();
-  @Output() onStateRestore = new EventEmitter<PrimeTableState>();
-  @Output() sortFunction = new EventEmitter<PrimeSortFunctionEvent>();
-  // two-way bindings
-  @Input() rows: number;
-  @Input() first: number = 0;
-  @Input() selectAll: boolean;
-  @Input() selection: any[];
-  @Input() contextMenuSelection: any;
+  @Output() sortFunction = new EventEmitter<any>();
   @Output() firstChange = new EventEmitter<number>();
   @Output() rowsChange = new EventEmitter<number>();
-  @Output() selectAllChange = new EventEmitter<PrimeTableSelectAllChangeEvent>();
-  @Output() selectionChange = new EventEmitter<any[]>();
+  @Output() onStateSave = new EventEmitter<PrimeTableState>();
+  @Output() onStateRestore = new EventEmitter<PrimeTableState>();
+  @Output() onTableReady = new EventEmitter<PrimeTable>();
   @Output() contextMenuSelectionChange = new EventEmitter<PrimeTableContextMenuSelectionChangeEvent>();
-
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
   @ViewChild('dataTable', {static: true}) dataTable: PrimeTable;
 
@@ -187,18 +189,34 @@ export class TableComponent implements OnInit, AfterContentInit {
   headerTemplate: TemplateRef<any>;
   headerGroupedTemplate: TemplateRef<any>;
   bodyTemplate: TemplateRef<any>;
-  footerGroupedTemplate: TemplateRef<any>;
+  loadingBodyTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
+  footerGroupedTemplate: TemplateRef<any>;
   summaryTemplate: TemplateRef<any>;
-  rowExpansionTemplate: TemplateRef<any>;
-  frozenBodyTemplate: TemplateRef<any>;
-  frozenRowExpansionTemplate: TemplateRef<any>;
+  colGroupTemplate: TemplateRef<any>;
+  expandedRowTemplate: TemplateRef<any>;
   groupHeaderTemplate: TemplateRef<any>;
   groupFooterTemplate: TemplateRef<any>;
+  frozenHeaderTemplate: TemplateRef<any>;
+  frozenBodyTemplate: TemplateRef<any>;
+  frozenFooterTemplate: TemplateRef<any>;
+  frozenColGroupTemplate: TemplateRef<any>;
+  frozenExpandedRowTemplate: TemplateRef<any>;
   emptyMessageTemplate: TemplateRef<any>;
   paginatorLeftTemplate: TemplateRef<any>;
   paginatorRightTemplate: TemplateRef<any>;
-  loadingBodyTemplate: TemplateRef<any>;
+  paginatorDropdownIconTemplate: TemplateRef<any>;
+  paginatorDropdownItemTemplate: TemplateRef<any>;
+  paginatorFirstPageLinkIconTemplate: TemplateRef<any>;
+  paginatorLastPageLinkIconTemplate: TemplateRef<any>;
+  paginatorPreviousPageLinkIconTemplate: TemplateRef<any>;
+  paginatorNextPageLinkIconTemplate: TemplateRef<any>;
+  loadingIconTemplate: TemplateRef<any>;
+  reorderIndicatorUpIconTemplate: TemplateRef<any>;
+  reorderIndicatorDownIconTemplate: TemplateRef<any>;
+  sortIconTemplate: TemplateRef<any>;
+  checkboxIconTemplate: TemplateRef<any>;
+  headerCheckboxIconTemplate: TemplateRef<any>;
   cellTemplates: { [key: string]: TemplateRef<any> } = {}
   loading: boolean;
   activeSortField: string;
@@ -255,28 +273,28 @@ export class TableComponent implements OnInit, AfterContentInit {
           this.bodyTemplate = item.templateRef;
           break;
 
-        case 'footergrouped':
-          this.footerGroupedTemplate = item.templateRef;
+        case 'loadingbody':
+          this.loadingBodyTemplate = item.templateRef;
           break;
 
         case 'footer':
           this.footerTemplate = item.templateRef;
           break;
 
+        case 'footergrouped':
+          this.footerGroupedTemplate = item.templateRef;
+          break;
+
         case 'summary':
           this.summaryTemplate = item.templateRef;
           break;
 
+        case 'colgroup':
+          this.colGroupTemplate = item.templateRef;
+          break;
+
         case 'rowexpansion':
-          this.rowExpansionTemplate = item.templateRef;
-          break;
-
-        case 'frozenbody':
-          this.frozenBodyTemplate = item.templateRef;
-          break;
-
-        case 'frozenrowexpansion':
-          this.frozenRowExpansionTemplate = item.templateRef;
+          this.expandedRowTemplate = item.templateRef;
           break;
 
         case 'groupheader':
@@ -285,6 +303,26 @@ export class TableComponent implements OnInit, AfterContentInit {
 
         case 'groupfooter':
           this.groupFooterTemplate = item.templateRef;
+          break;
+
+        case 'frozenheader':
+          this.frozenHeaderTemplate = item.templateRef;
+          break;
+
+        case 'frozenbody':
+          this.frozenBodyTemplate = item.templateRef;
+          break;
+
+        case 'frozenfooter':
+          this.frozenFooterTemplate = item.templateRef;
+          break;
+
+        case 'frozencolgroup':
+          this.frozenColGroupTemplate = item.templateRef;
+          break;
+
+        case 'frozenrowexpansion':
+          this.frozenExpandedRowTemplate = item.templateRef;
           break;
 
         case 'emptymessage':
@@ -299,8 +337,52 @@ export class TableComponent implements OnInit, AfterContentInit {
           this.paginatorRightTemplate = item.templateRef;
           break;
 
-        case 'loadingbody':
-          this.loadingBodyTemplate = item.templateRef;
+        case 'paginatordropdownicon':
+          this.paginatorDropdownIconTemplate = item.templateRef;
+          break;
+
+        case 'paginatordropdownitem':
+          this.paginatorDropdownItemTemplate = item.templateRef;
+          break;
+
+        case 'paginatorfirstpagelinkicon':
+          this.paginatorFirstPageLinkIconTemplate = item.templateRef;
+          break;
+
+        case 'paginatorlastpagelinkicon':
+          this.paginatorLastPageLinkIconTemplate = item.templateRef;
+          break;
+
+        case 'paginatorpreviouspagelinkicon':
+          this.paginatorPreviousPageLinkIconTemplate = item.templateRef;
+          break;
+
+        case 'paginatornextpagelinkicon':
+          this.paginatorNextPageLinkIconTemplate = item.templateRef;
+          break;
+
+        case 'loadingicon':
+          this.loadingIconTemplate = item.templateRef;
+          break;
+
+        case 'reorderindicatorupicon':
+          this.reorderIndicatorUpIconTemplate = item.templateRef;
+          break;
+
+        case 'reorderindicatordownicon':
+          this.reorderIndicatorDownIconTemplate = item.templateRef;
+          break;
+
+        case 'sorticon':
+          this.sortIconTemplate = item.templateRef;
+          break;
+
+        case 'checkboxicon':
+          this.checkboxIconTemplate = item.templateRef;
+          break;
+
+        case 'headercheckboxicon':
+          this.headerCheckboxIconTemplate = item.templateRef;
           break;
 
         default:

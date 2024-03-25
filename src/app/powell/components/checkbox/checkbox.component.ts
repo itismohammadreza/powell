@@ -1,4 +1,17 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  forwardRef,
+  Injector,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  TemplateRef
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -13,6 +26,7 @@ import {takeUntil} from "rxjs";
 import {CSSStyleDeclaration, NgAsyncEvent, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeCheckboxChangeEvent} from "@powell/primeng/api";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-checkbox',
@@ -27,7 +41,7 @@ import {PrimeCheckboxChangeEvent} from "@powell/primeng/api";
     DestroyService
   ]
 })
-export class CheckboxComponent implements OnInit, ControlValueAccessor {
+export class CheckboxComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -42,20 +56,27 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() disabled: boolean;
+  @Input() binary: boolean = false;
+  @Input() ariaLabelledBy: string;
+  @Input() ariaLabel: string;
   @Input() tabindex: number;
+  @Input() inputId: string = this.getId();
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
   @Input() labelStyleClass: string;
   @Input() checkboxIcon: string;
-  @Input() readonly: boolean;
+  @Input() readonly: boolean = false;
   @Input() trueValue: any = true;
   @Input() falseValue: any = false;
   @Output() onChange = new EventEmitter<PrimeCheckboxChangeEvent>();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
   @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<PrimeCheckboxChangeEvent>>();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   loading: boolean;
-  inputId: string;
   ngControl: NgControl;
+  iconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -67,7 +88,6 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -96,6 +116,16 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
     this.setLabel();
   }
 
+  ngAfterContentInit() {
+    this.templates.forEach((item) => {
+      switch (item.getType()) {
+        case 'icon':
+          this.iconTemplate = item.templateRef;
+          break;
+      }
+    });
+  }
+
   setLabel() {
     if (this.onLabel && this.offLabel) {
       if (this.value) {
@@ -117,6 +147,15 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
       this.onChange.emit(event);
       this.setLabel();
     }
+  }
+
+  _onBlur(event: Event) {
+    this.onBlur.emit(event);
+    this.onModelTouched();
+  }
+
+  _onFocus(event: Event) {
+    this.onFocus.emit(event);
   }
 
   removeLoading = (ok: boolean = true) => {

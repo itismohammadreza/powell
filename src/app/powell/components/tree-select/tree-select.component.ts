@@ -24,6 +24,7 @@ import {
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
 import {
+  CSSStyleDeclaration,
   NgAddon,
   NgChipDisplayMode,
   NgIconPosition,
@@ -38,7 +39,10 @@ import {DestroyService} from "@core/utils";
 import {
   PrimeOverlayOnHideEvent,
   PrimeOverlayOnShowEvent,
-  PrimeTreeNode, PrimeTreeNodeSelectEvent, PrimeTreeNodeUnSelectEvent,
+  PrimeOverlayOptions,
+  PrimeTreeNode,
+  PrimeTreeNodeSelectEvent,
+  PrimeTreeNodeUnSelectEvent,
   PrimeTreeSelectFilterEvent,
   PrimeTreeSelectNodeCollapseEvent,
   PrimeTreeSelectNodeExpandEvent
@@ -73,42 +77,61 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() inputSize: NgSize;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
-  @Input() options: any[];
+  @Input() inputId: string = this.getId();
   @Input() scrollHeight: string = '400px';
-  @Input() placeholder: string;
   @Input() disabled: boolean;
-  @Input() tabindex: string;
-  @Input() selectionMode: NgTreeSelectionMode;
-  @Input() panelClass: string;
-  @Input() appendTo: any;
-  @Input() emptyMessage: string;
+  @Input() metaKeySelection: boolean = false;
   @Input() display: NgChipDisplayMode = 'comma';
-  @Input() propagateSelectionUp: boolean = true;
-  @Input() propagateSelectionDown: boolean = true;
-  @Input() metaKeySelection: boolean = true;
-  @Input() filter: boolean;
+  @Input() selectionMode: NgTreeSelectionMode = 'single';
+  @Input() tabindex: string;
+  @Input() ariaLabel: string;
+  @Input() ariaLabelledBy: string;
+  @Input() placeholder: string;
+  @Input() panelClass: string;
+  @Input() panelStyle: CSSStyleDeclaration;
+  @Input() panelStyleClass: string;
+  @Input() containerStyle: CSSStyleDeclaration;
+  @Input() containerStyleClass: string;
+  @Input() labelStyle: CSSStyleDeclaration;
+  @Input() labelStyleClass: string;
+  @Input() overlayOptions: PrimeOverlayOptions;
+  @Input() emptyMessage: string;
+  @Input() appendTo: any;
+  @Input() filter: boolean = false;
   @Input() filterBy: string = 'label';
   @Input() filterMode: NgTreeFilterMode = 'lenient';
-  @Input() filterPlaceHolder: string;
+  @Input() filterPlaceholder: string;
   @Input() filterLocale: string;
+  @Input() filterInputAutoFocus: boolean = true;
+  @Input() propagateSelectionDown: boolean = true;
+  @Input() propagateSelectionUp: boolean = true;
+  @Input() showClear: boolean = false;
   @Input() resetFilterOnHide: boolean = true;
-  @Input() showClear: boolean;
-  @Output() onShow = new EventEmitter<PrimeOverlayOnShowEvent>();
-  @Output() onHide = new EventEmitter<PrimeOverlayOnHideEvent>();
-  @Output() onFilter = new EventEmitter<PrimeTreeSelectFilterEvent>();
-  @Output() onNodeSelect = new EventEmitter<PrimeTreeNodeSelectEvent>();
-  @Output() onNodeUnselect = new EventEmitter<PrimeTreeNodeUnSelectEvent>();
+  @Input() options: PrimeTreeNode<any>[];
+  @Input() showTransitionOptions: string;
+  @Input() hideTransitionOptions: string;
   @Output() onNodeExpand = new EventEmitter<PrimeTreeSelectNodeExpandEvent>();
   @Output() onNodeCollapse = new EventEmitter<PrimeTreeSelectNodeCollapseEvent>();
+  @Output() onShow = new EventEmitter<PrimeOverlayOnShowEvent>();
+  @Output() onHide = new EventEmitter<PrimeOverlayOnHideEvent>();
   @Output() onClear = new EventEmitter<void>();
+  @Output() onFilter = new EventEmitter<PrimeTreeSelectFilterEvent>();
+  @Output() onNodeUnselect = new EventEmitter<PrimeTreeNodeUnSelectEvent>();
+  @Output() onNodeSelect = new EventEmitter<PrimeTreeNodeSelectEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
   valueTemplate: TemplateRef<any>;
   headerTemplate: TemplateRef<any>;
-  footerTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
+  footerTemplate: TemplateRef<any>;
+  clearIconTemplate: TemplateRef<any>;
+  triggerIconTemplate: TemplateRef<any>;
+  filterIconTemplate: TemplateRef<any>;
+  closeIconTemplate: TemplateRef<any>;
+  itemTogglerIconTemplate: TemplateRef<any>;
+  itemCheckboxIconTemplate: TemplateRef<any>;
+  itemLoadingIconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -120,14 +143,13 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
@@ -159,12 +181,40 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
           this.headerTemplate = item.templateRef;
           break;
 
+        case 'empty':
+          this.emptyTemplate = item.templateRef;
+          break;
+
         case 'footer':
           this.footerTemplate = item.templateRef;
           break;
 
-        case 'empty':
-          this.emptyTemplate = item.templateRef;
+        case 'clearicon':
+          this.clearIconTemplate = item.templateRef;
+          break;
+
+        case 'triggericon':
+          this.triggerIconTemplate = item.templateRef;
+          break;
+
+        case 'filtericon':
+          this.filterIconTemplate = item.templateRef;
+          break;
+
+        case 'closeicon':
+          this.closeIconTemplate = item.templateRef;
+          break;
+
+        case 'itemtogglericon':
+          this.itemTogglerIconTemplate = item.templateRef;
+          break;
+
+        case 'itemcheckboxicon':
+          this.itemCheckboxIconTemplate = item.templateRef;
+          break;
+
+        case 'itemloadingicon':
+          this.itemLoadingIconTemplate = item.templateRef;
           break;
       }
     });

@@ -14,15 +14,18 @@
       <span class="label-left" [class.text-muted]="disabled">{{labelLeft}}</span>
       <p-inputSwitch
         [(ngModel)]="value"
-        [inputId]="inputId"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
         [style]="style"
         [styleClass]="styleClass"
         [tabindex]="tabindex"
+        [inputId]="inputId"
+        [name]="name"
         [disabled]="disabled"
         [readonly]="readonly"
         [trueValue]="rightValue"
         [falseValue]="leftValue"
+        [ariaLabel]="ariaLabel"
+        [ariaLabelledBy]="ariaLabelledBy"
         (onChange)="_onChange($event)"
       ></p-inputSwitch>
       <span class="label-right" [class.text-muted]="disabled">{{labelRight}}</span>

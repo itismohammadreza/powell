@@ -7,7 +7,7 @@ import {NgDialogOptions} from '@powell/models';
   styleUrls: ['./dialog.component.scss'],
 })
 export class DialogComponent {
-  onClose = new EventEmitter<void>();
+  onClose = new EventEmitter();
   options: NgDialogOptions = {};
   visible: boolean = true;
 
@@ -20,11 +20,16 @@ export class DialogComponent {
   }
 
   onButtonClick() {
-    this.visible = false;
+    this.close();
     this.onClose.emit();
   }
 
   onHide() {
     this.onClose.emit();
+    this.handleEvent('onHide');
+  }
+
+  handleEvent(event: string, args?: any) {
+    this.options[event]?.(args);
   }
 }

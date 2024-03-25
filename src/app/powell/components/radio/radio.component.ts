@@ -43,24 +43,32 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';
   @Input() optionDisabled: string = 'disabled';
-
   // native properties
-  @Input('disabled') set setDisabled(disabled: boolean) {
-    this.disabled = disabled;
+  @Input() set disabled(disabled: boolean) {
+    this._disabled = disabled;
     this.options.forEach(option => {
       option[this.optionDisabled] = disabled
     })
   };
 
+  get disabled() {
+    return this._disabled;
+  }
+
+  @Input() name: string;
+  @Input() tabindex: number;
+  @Input() inputId: string = this.getId();
+  @Input() ariaLabelledBy: string;
+  @Input() ariaLabel: string;
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
+  @Input() labelStyleClass: string;
   @Output() onChange = new EventEmitter<PrimeRadioButtonClickEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
 
-  disabled: boolean = false;
-  groupName: string;
-  inputId: string;
+  _disabled: boolean = false;
+  groupName: string = this.getId();
   ngControl: NgControl;
   onModelChange: any = (_: any) => {
   };
@@ -73,15 +81,13 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.groupName = this.getId();
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {

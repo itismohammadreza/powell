@@ -26,6 +26,7 @@ import {takeUntil} from "rxjs";
 import {
   CSSStyleDeclaration,
   NgAddon,
+  NgAutoCompleteDropdownMode,
   NgIconPosition,
   NgInputType,
   NgLabelPosition,
@@ -37,6 +38,9 @@ import {
   PrimeAutoCompleteCompleteEvent,
   PrimeAutoCompleteDropdownClickEvent,
   PrimeAutoCompleteLazyLoadEvent,
+  PrimeAutoCompleteSelectEvent,
+  PrimeAutoCompleteUnSelectEvent,
+  PrimeOverlayOptions,
   PrimeScrollerOptions
 } from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
@@ -70,56 +74,73 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() inputSize: NgSize;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
-  @Input() suggestions: any[];
-  @Input() field: string;
-  @Input() scrollHeight: string = '200px';
-  @Input() dropdown: boolean;
-  @Input() multiple: boolean;
-  @Input() dropdownIcon: string = 'pi pi-chevron-down';
-  @Input() minlength: number = 1;
+  @Input() minLength: number = 1;
   @Input() delay: number = 300;
-  @Input() completeOnFocus: boolean;
   @Input() style: CSSStyleDeclaration;
-  @Input() inputStyle: CSSStyleDeclaration;
   @Input() panelStyle: CSSStyleDeclaration;
   @Input() styleClass: string;
-  @Input() inputStyleClass: string;
   @Input() panelStyleClass: string;
-  @Input() optionGroupLabel: string = 'label';
-  @Input() group: boolean;
-  @Input() optionGroupChildren: string = 'items';
+  @Input() inputStyle: CSSStyleDeclaration;
+  @Input() inputId: string = this.getId();
+  @Input() inputStyleClass: string;
   @Input() placeholder: string;
-  @Input() readonly: boolean;
+  @Input() readonly: boolean = false;
   @Input() disabled: boolean;
-  @Input() maxlength: number;
-  @Input() size: number;
-  @Input() appendTo: any;
-  @Input() tabindex: number;
-  @Input() dataKey: string;
-  @Input() autoHighlight: boolean;
-  @Input() type: NgInputType = 'text';
-  @Input() showEmptyMessage: boolean;
-  @Input() emptyMessage: string;
-  @Input() autofocus: boolean;
-  @Input() forceSelection: boolean = true;
-  @Input() dropdownMode: 'blank' | 'current' = 'blank';
-  @Input() baseZIndex: number;
-  @Input() autoZIndex: boolean = true;
-  @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
-  @Input() hideTransitionOptions: string = '.1s linear';
-  @Input() unique: boolean = true;
-  @Input() autocomplete: string;
-  @Input() showClear: boolean;
-  @Input() virtualScroll: boolean;
+  @Input() scrollHeight: string = '200px';
+  @Input() lazy: boolean = false;
+  @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
   @Input() virtualScrollOptions: PrimeScrollerOptions;
-  @Input() lazy: boolean;
+  @Input() maxlength: number;
+  @Input() name: string;
+  @Input() size: number;
+  @Input() appendTo: any;
+  @Input() autoHighlight: boolean = false;
+  @Input() forceSelection: boolean = false;
+  @Input() type: NgInputType = 'text';
+  @Input() autoZIndex: boolean = true;
+  @Input() baseZIndex: number = 0;
+  @Input() ariaLabel: string;
+  @Input() dropdownAriaLabel: string;
+  @Input() ariaLabelledBy: string;
+  @Input() dropdownIcon: string;
+  @Input() unique: boolean = true;
+  @Input() group: boolean = false;
+  @Input() completeOnFocus: boolean = false;
+  @Input() showClear: boolean = false;
+  @Input() field: string;
+  @Input() dropdown: boolean = false;
+  @Input() showEmptyMessage: boolean = true;
+  @Input() dropdownMode: NgAutoCompleteDropdownMode = 'blank';
+  @Input() multiple: boolean = false;
+  @Input() tabindex: number;
+  @Input() dataKey: string;
+  @Input() emptyMessage: string;
+  @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
+  @Input() hideTransitionOptions: string = '.1s linear';
+  @Input() autofocus: boolean = false;
+  @Input() autocomplete: string = 'off';
+  @Input() optionGroupChildren: string = 'items';
+  @Input() optionGroupLabel: string = 'label';
+  @Input() overlayOptions: PrimeOverlayOptions;
+  @Input() suggestions: any[];
+  @Input() itemSize: number;
+  @Input() optionLabel: string | ((item: any) => string);
+  @Input() id: string;
+  @Input() searchMessage: string;
+  @Input() emptySelectionMessage: string;
+  @Input() selectionMessage: string;
+  @Input() autoOptionFocus: boolean = false;
+  @Input() selectOnFocus: boolean = false;
+  @Input() searchLocale: boolean = false;
+  @Input() optionDisabled: string;
+  @Input() focusOnHover: boolean = false;
   @Output() completeMethod = new EventEmitter<PrimeAutoCompleteCompleteEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
-  @Output() onSelect = new EventEmitter<any>();
-  @Output() onUnselect = new EventEmitter<any>();
+  @Output() onSelect = new EventEmitter<PrimeAutoCompleteSelectEvent>();
+  @Output() onUnselect = new EventEmitter<PrimeAutoCompleteUnSelectEvent>();
   @Output() onDropdownClick = new EventEmitter<PrimeAutoCompleteDropdownClickEvent>();
   @Output() onClear = new EventEmitter<Event>();
   @Output() onShow = new EventEmitter<Event>();
@@ -127,7 +148,6 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Output() onLazyLoad = new EventEmitter<PrimeAutoCompleteLazyLoadEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
   itemTemplate: TemplateRef<any>;
   emptyTemplate: TemplateRef<any>;
@@ -135,6 +155,10 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   selectedItemTemplate: TemplateRef<any>;
   headerTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
+  removeTokenIconTemplate: TemplateRef<any>;
+  loadingIconTemplate: TemplateRef<any>;
+  clearIconTemplate: TemplateRef<any>;
+  dropdownIconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -146,7 +170,6 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -199,6 +222,26 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
 
         case 'footer':
           this.footerTemplate = item.templateRef;
+          break;
+
+        case 'loader':
+          this.footerTemplate = item.templateRef;
+          break;
+
+        case 'removetokenicon':
+          this.removeTokenIconTemplate = item.templateRef;
+          break;
+
+        case 'loadingicon':
+          this.loadingIconTemplate = item.templateRef;
+          break;
+
+        case 'clearicon':
+          this.clearIconTemplate = item.templateRef;
+          break;
+
+        case 'dropdownicon':
+          this.dropdownIconTemplate = item.templateRef;
           break;
       }
     });

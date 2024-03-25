@@ -33,11 +33,11 @@ import {
   NgTreeSelectionMode,
   NgValidation
 } from '@powell/models';
-import {PrimeContextMenu} from "@powell/primeng";
 import {
   PrimeScrollerOptions,
   PrimeTreeFilterEvent,
   PrimeTreeLazyLoadEvent,
+  PrimeTreeNode,
   PrimeTreeNodeCollapseEvent,
   PrimeTreeNodeContextMenuSelectEvent,
   PrimeTreeNodeDropEvent,
@@ -73,56 +73,66 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
-  // native properties
   @Input() items: any[];
+  // native properties
   @Input() selectionMode: NgTreeSelectionMode;
   @Input() selection: any;
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
-  @Input() contextMenu: PrimeContextMenu;
+  @Input() contextMenu: any;
   @Input() layout: NgOrientation = 'vertical';
-  @Input() draggableScope: string | string[];
-  @Input() droppableScope: string | string[];
-  @Input() draggableNodes: boolean;
-  @Input() droppableNodes: boolean;
-  @Input() metaKeySelection: boolean = true;
+  @Input() draggableScope: any;
+  @Input() droppableScope: any;
+  @Input() draggableNodes: boolean = false;
+  @Input() droppableNodes: boolean = false;
+  @Input() metaKeySelection: boolean = false;
   @Input() propagateSelectionUp: boolean = true;
   @Input() propagateSelectionDown: boolean = true;
-  @Input() loading: boolean;
-  @Input() loadingIcon: string = 'pi pi-spinner';
+  @Input() loading: boolean = false;
+  @Input() loadingIcon: string;
   @Input() emptyMessage: string;
-  @Input() validateDrop: boolean;
-  @Input() filter: boolean;
-  @Input() filterBy: string = "label";
+  @Input() ariaLabel: string;
+  @Input() togglerAriaLabel: string;
+  @Input() ariaLabelledBy: string;
+  @Input() validateDrop: boolean = false;
+  @Input() filter: boolean = false;
+  @Input() filterBy: string = 'label';
   @Input() filterMode: NgTreeFilterMode = 'lenient';
-  @Input() filterPlaceHolder: string;
+  @Input() filterPlaceholder: string;
+  @Input() filteredNodes: PrimeTreeNode<any>[];
   @Input() filterLocale: string;
   @Input() scrollHeight: string;
-  @Input() virtualScroll: boolean;
+  @Input() lazy: boolean = false;
+  @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
   @Input() virtualScrollOptions: PrimeScrollerOptions;
-  @Input() lazy: boolean;
-  @Input() trackBy: Function;
   @Input() indentation: number = 1.5;
+  @Input() templateMap: any;
+  @Input() trackBy: Function;
+  @Input() virtualNodeHeight: number;
+  @Output() selectionChange = new EventEmitter<PrimeTreeSelectionChangeEvent>();
   @Output() onNodeSelect = new EventEmitter<PrimeTreeNodeSelectEvent>();
   @Output() onNodeUnselect = new EventEmitter<PrimeTreeNodeUnSelectEvent>();
   @Output() onNodeExpand = new EventEmitter<PrimeTreeNodeExpandEvent>();
   @Output() onNodeCollapse = new EventEmitter<PrimeTreeNodeCollapseEvent>();
   @Output() onNodeContextMenuSelect = new EventEmitter<PrimeTreeNodeContextMenuSelectEvent>();
   @Output() onNodeDrop = new EventEmitter<PrimeTreeNodeDropEvent>();
-  @Output() onFilter = new EventEmitter<PrimeTreeFilterEvent>();
   @Output() onLazyLoad = new EventEmitter<PrimeTreeLazyLoadEvent>();
   @Output() onScroll = new EventEmitter<PrimeTreeScrollEvent>();
   @Output() onScrollIndexChange = new EventEmitter<PrimeTreeScrollIndexChangeEvent>();
-  @Output() selectionChange = new EventEmitter<PrimeTreeSelectionChangeEvent>();
+  @Output() onFilter = new EventEmitter<PrimeTreeFilterEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   inputId: string;
   ngControl: NgControl;
   headerTemplate: TemplateRef<any>;
-  emptyTemplate: TemplateRef<any>;
+  emptyMessageTemplate: TemplateRef<any>;
   footerTemplate: TemplateRef<any>;
   loaderTemplate: TemplateRef<any>;
+  togglerIconTemplate: TemplateRef<any>;
+  checkboxIconTemplate: TemplateRef<any>;
+  loadingIconTemplate: TemplateRef<any>;
+  filterIconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -139,9 +149,9 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
+        ControlContainer,
+        null,
+        {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
@@ -167,16 +177,32 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
           this.headerTemplate = item.templateRef;
           break;
 
+        case 'empty':
+          this.emptyMessageTemplate = item.templateRef;
+          break;
+
         case 'footer':
           this.footerTemplate = item.templateRef;
           break;
 
-        case 'empty':
-          this.emptyTemplate = item.templateRef;
-          break;
-
         case 'loader':
           this.loaderTemplate = item.templateRef;
+          break;
+
+        case 'togglericon':
+          this.togglerIconTemplate = item.templateRef;
+          break;
+
+        case 'checkboxicon':
+          this.checkboxIconTemplate = item.templateRef;
+          break;
+
+        case 'loadingicon':
+          this.loadingIconTemplate = item.templateRef;
+          break;
+
+        case 'filtericon':
+          this.filterIconTemplate = item.templateRef;
           break;
       }
     });

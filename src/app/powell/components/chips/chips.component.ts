@@ -57,31 +57,37 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   @Input() inputSize: NgSize;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
-  @Input() field: string;
-  @Input() max: number;
-  @Input() disabled: boolean;
   @Input() style: CSSStyleDeclaration;
   @Input() styleClass: string;
+  @Input() disabled: boolean;
+  @Input() field: string;
   @Input() placeholder: string;
+  @Input() max: number;
+  @Input() maxLength: number;
+  @Input() ariaLabel: string;
+  @Input() ariaLabelledBy: string;
   @Input() tabindex: number;
+  @Input() inputId: string = this.getId();
   @Input() allowDuplicate: boolean = true;
+  @Input() caseSensitiveDuplication: boolean = true;
   @Input() inputStyle: CSSStyleDeclaration;
   @Input() inputStyleClass: string;
-  @Input() addOnTab: boolean;
-  @Input() addOnBlur: boolean;
-  @Input() separator: string;
-  @Input() showClear: boolean;
+  @Input() addOnTab: boolean = false;
+  @Input() addOnBlur: boolean = false;
+  @Input() separator: string | RegExp;
+  @Input() showClear: boolean = false;
   @Output() onAdd = new EventEmitter<PrimeChipsAddEvent>();
   @Output() onRemove = new EventEmitter<PrimeChipsRemoveEvent>();
-  @Output() onChipClick = new EventEmitter<PrimeChipsClickEvent>();
   @Output() onFocus = new EventEmitter<Event>();
+  @Output() onChipClick = new EventEmitter<PrimeChipsClickEvent>();
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onClear = new EventEmitter<void>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
   itemTemplate: TemplateRef<any>;
+  removeTokenIconTemplate: TemplateRef<any>;
+  clearIconTemplate: TemplateRef<any>;
   onModelChange: any = (_: any) => {
   };
   onModelTouched: any = () => {
@@ -93,7 +99,6 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -126,6 +131,14 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
       switch (item.getType()) {
         case 'item':
           this.itemTemplate = item.templateRef;
+          break;
+
+        case 'removetokenicon':
+          this.removeTokenIconTemplate = item.templateRef;
+          break;
+
+        case 'clearicon':
+          this.clearIconTemplate = item.templateRef;
           break;
       }
     });

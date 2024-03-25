@@ -31,11 +31,13 @@
         <input
           pInputText
           [(ngModel)]="value"
-          [attr.id]="inputId"
           [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+          [attr.id]="inputId"
           [attr.maxlength]="maxlength"
           [attr.placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
           [attr.type]="type"
+          [attr.aria-label]="ariaLabel"
+          [attr.aria-labelledBy]="ariaLabelledBy"
           [attr.inputmode]="inputMode"
           [disabled]="disabled"
           [readonly]="readonly"
