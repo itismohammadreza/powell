@@ -13,7 +13,7 @@ import {BehaviorSubject, takeUntil} from 'rxjs';
 import {ActivatedRouteSnapshot, Data, NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs/operators";
 import {PrimeBreadcrumbItemClickEvent, PrimeMenuItem} from "@powell/primeng/api";
-import {CSSStyleDeclaration} from "@powell/models";
+import {NgCssObject} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {TemplateDirective} from "@powell/directives/template";
 
@@ -25,7 +25,7 @@ import {TemplateDirective} from "@powell/directives/template";
 })
 export class BreadcrumbComponent implements OnInit, AfterContentInit {
   @Input() items: PrimeMenuItem[];
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() home: PrimeMenuItem;
   @Input() homeAriaLabel: string;

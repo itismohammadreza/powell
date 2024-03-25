@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import {TemplateDirective} from "@powell/directives/template";
 import {OverlayService} from "@powell/api";
-import {CSSStyleDeclaration, NgHistoryState} from "@powell/models";
+import {NgCssObject, NgHistoryState} from "@powell/models";
 import {Subject, takeUntil} from "rxjs";
 
 @Component({
@@ -27,7 +27,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   // native properties
   @Input() appendTo: any;
   @Input() blockScroll: boolean;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() ariaCloseLabel: string;
   @Input() autoZIndex: boolean = true;

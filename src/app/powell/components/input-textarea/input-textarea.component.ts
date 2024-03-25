@@ -20,7 +20,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {CSSStyleDeclaration, NgAddon, NgIconPosition, NgLabelPosition, NgValidation} from '@powell/models';
+import {NgCssObject, NgAddon, NgIconPosition, NgLabelPosition, NgValidation} from '@powell/models';
 import {UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import * as events from "events";
@@ -62,9 +62,9 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Input() disabled: boolean;
   @Input() maxlength: number;
   @Input() placeholder: string;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() inputStyle: CSSStyleDeclaration;
+  @Input() inputStyle: NgCssObject;
   @Input() inputStyleClass: string;
   @Output() onResize = new EventEmitter<Event | {}>();
   @Output() onInput = new EventEmitter<Event>();

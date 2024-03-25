@@ -10,7 +10,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {CSSStyleDeclaration, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 
 @Component({
@@ -39,7 +39,7 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
   @Input() inputId: string = this.getId();
   // native properties
   @Input() styleClass: string;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() tabindex: number;

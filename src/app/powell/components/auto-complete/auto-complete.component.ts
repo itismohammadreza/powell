@@ -24,7 +24,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  CSSStyleDeclaration,
+  NgCssObject,
   NgAddon,
   NgAutoCompleteDropdownMode,
   NgIconPosition,
@@ -76,11 +76,11 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   // native properties
   @Input() minLength: number = 1;
   @Input() delay: number = 300;
-  @Input() style: CSSStyleDeclaration;
-  @Input() panelStyle: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
+  @Input() panelStyle: NgCssObject;
   @Input() styleClass: string;
   @Input() panelStyleClass: string;
-  @Input() inputStyle: CSSStyleDeclaration;
+  @Input() inputStyle: NgCssObject;
   @Input() inputId: string = this.getId();
   @Input() inputStyleClass: string;
   @Input() placeholder: string;

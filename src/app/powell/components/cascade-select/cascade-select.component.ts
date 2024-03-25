@@ -23,7 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {CSSStyleDeclaration, NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {NgCssObject, NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
@@ -74,7 +74,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() optionDisabled: any;
   @Input() autoOptionFocus: boolean = true;
   @Input() styleClass: string;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() options: any[];
   @Input() optionLabel: string;
   @Input() optionValue: string;
@@ -91,7 +91,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() disabled: boolean;
   @Input() showClear: boolean = false;
   @Input() panelStyleClass: string;
-  @Input() panelStyle: CSSStyleDeclaration;
+  @Input() panelStyle: NgCssObject;
   @Input() overlayOptions: PrimeOverlayOptions;
   @Input() showTransitionOptions: string;
   @Input() hideTransitionOptions: string;

@@ -24,7 +24,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  CSSStyleDeclaration,
+  NgCssObject,
   NgAddon,
   NgIconPosition,
   NgInputType,
@@ -67,7 +67,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @Input() slotChar: string = '_';
   @Input() autoClear: boolean = true;
   @Input() showClear: boolean = false;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() inputId: string = this.getId();
   @Input() styleClass: string;
   @Input() placeholder: string;

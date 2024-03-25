@@ -23,7 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {CSSStyleDeclaration, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
 import {PrimeSelectButtonChangeEvent, PrimeSelectButtonOptionClickEvent} from "@powell/primeng/api";
@@ -61,7 +61,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() tabindex: number;
   @Input() multiple: boolean = false;
   @Input() allowEmpty: boolean = true;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() ariaLabelledBy: string;
   @Input() disabled: boolean;

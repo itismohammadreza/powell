@@ -1,7 +1,7 @@
 import {HttpHeaders} from '@angular/common/http';
 import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {
-  CSSStyleDeclaration,
+  NgCssObject,
   NgAddon,
   NgAutoCompleteDropdownMode,
   NgButtonAppearance,
@@ -59,7 +59,7 @@ export interface NgHistoryState {
 export interface NgToastOptions {
   autoZIndex?: boolean;
   baseZIndex?: number;
-  style?: CSSStyleDeclaration;
+  style?: NgCssObject;
   position?: NgToastPosition;
   preventOpenDuplicates?: boolean;
   preventDuplicates?: boolean;
@@ -96,7 +96,7 @@ export interface NgConfirmPopupOptions {
   hideTransitionOptions?: string;
   autoZIndex?: boolean;
   baseZIndex?: number;
-  style?: CSSStyleDeclaration;
+  style?: NgCssObject;
   styleClass?: string;
   message?: string;
   key?: string;
@@ -134,7 +134,7 @@ export interface NgConfirmDialogOptions {
   header?: string;
   icon?: string;
   message?: string;
-  style?: CSSStyleDeclaration;
+  style?: NgCssObject;
   styleClass?: string;
   maskStyleClass?: string;
   acceptIcon?: string;
@@ -209,7 +209,7 @@ interface NgDialogBase {
   closeTabindex?: string;
   minimizeIcon?: string;
   maximizeIcon?: string;
-  style?: CSSStyleDeclaration;
+  style?: NgCssObject;
   position?: NgDialogPosition;
   onShow?: () => any;
   onHide?: () => any;

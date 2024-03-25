@@ -23,7 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {CSSStyleDeclaration, NgAddon, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {NgCssObject, NgAddon, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
@@ -76,9 +76,9 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() scrollHeight: string = '200px';
   @Input() tabindex: number;
   @Input() multiple: boolean = false;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() listStyle: CSSStyleDeclaration;
+  @Input() listStyle: NgCssObject;
   @Input() listStyleClass: string;
   @Input() readonly: boolean = false;
   @Input() disabled: boolean;

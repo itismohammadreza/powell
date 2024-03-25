@@ -23,7 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {CSSStyleDeclaration, NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {NgCssObject, NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {PrimeChipsAddEvent, PrimeChipsClickEvent, PrimeChipsRemoveEvent} from "@powell/primeng/api";
@@ -57,7 +57,7 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   @Input() inputSize: NgSize;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() disabled: boolean;
   @Input() field: string;
@@ -70,7 +70,7 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   @Input() inputId: string = this.getId();
   @Input() allowDuplicate: boolean = true;
   @Input() caseSensitiveDuplication: boolean = true;
-  @Input() inputStyle: CSSStyleDeclaration;
+  @Input() inputStyle: NgCssObject;
   @Input() inputStyleClass: string;
   @Input() addOnTab: boolean = false;
   @Input() addOnBlur: boolean = false;

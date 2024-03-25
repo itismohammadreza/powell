@@ -24,7 +24,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  CSSStyleDeclaration,
+  NgCssObject,
   NgAddon,
   NgChipDisplayMode,
   NgFilterMatchMode,
@@ -79,9 +79,9 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   // native properties
   @Input() id: string;
   @Input() ariaLabel: string;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() panelStyle: CSSStyleDeclaration;
+  @Input() panelStyle: NgCssObject;
   @Input() panelStyleClass: string;
   @Input() inputId: string = this.getId();
   @Input() disabled: boolean;

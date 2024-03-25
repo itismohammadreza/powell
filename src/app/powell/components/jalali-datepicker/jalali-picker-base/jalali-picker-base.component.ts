@@ -34,7 +34,7 @@ import {
   PrimeUniqueComponentId,
   PrimeZIndexUtils
 } from "@powell/primeng/api";
-import {CSSStyleDeclaration} from "@powell/models";
+import {NgCssObject} from "@powell/models";
 
 export interface DateMeta {
   day?: number,
@@ -107,9 +107,9 @@ export type CalendarTypeView = 'date' | 'month' | 'year';
   encapsulation: ViewEncapsulation.None,
 })
 export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewInit, ControlValueAccessor {
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() inputStyle: CSSStyleDeclaration;
+  @Input() inputStyle: NgCssObject;
   @Input() inputId: string;
   @Input() name: string;
   @Input() inputStyleClass: string;
@@ -149,7 +149,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: number;
   @Input() panelStyleClass: string;
-  @Input() panelStyle: CSSStyleDeclaration;
+  @Input() panelStyle: NgCssObject;
   @Input() keepInvalid: boolean;
   @Input() hideOnDateTimeSelect: boolean = true;
   @Input() touchUI: boolean;

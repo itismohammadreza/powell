@@ -12,7 +12,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import {
-  CSSStyleDeclaration,
+  NgCssObject,
   NgAsyncEvent,
   NgButtonAppearance,
   NgButtonState,
@@ -62,7 +62,7 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
   @Input() disabled: boolean;
   @Input() badgeClass: string;
   @Input() loadingIcon: string;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Output() onClick = new EventEmitter<MouseEvent>();
   @Output() onBlur = new EventEmitter<FocusEvent>();

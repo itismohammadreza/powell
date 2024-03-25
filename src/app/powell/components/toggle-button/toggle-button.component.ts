@@ -10,7 +10,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {CSSStyleDeclaration, NgFixLabelPosition, NgIconPosition, NgValidation} from '@powell/models';
+import {NgCssObject, NgFixLabelPosition, NgIconPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeToggleButtonChangeEvent} from "@powell/primeng/api";
 
@@ -45,7 +45,7 @@ export class ToggleButtonComponent implements OnInit, ControlValueAccessor {
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() disabled: boolean;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() inputId: string = this.getId();
   @Input() tabindex: number;

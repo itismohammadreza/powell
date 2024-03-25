@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import {animate, AnimationEvent, style, transition, trigger} from "@angular/animations";
 import {ConfigService} from "@powell/api";
-import {CSSStyleDeclaration, NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow} from "@powell/models";
+import {NgCssObject, NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow} from "@powell/models";
 import {PrimeDomHandler, PrimeTemplateDirective, PrimeZIndexUtils} from "@powell/primeng/api";
 import {SafeUrl} from "@angular/platform-browser";
 import {DOCUMENT} from "@angular/common";
@@ -42,9 +42,9 @@ import {DOCUMENT} from "@angular/common";
 })
 export class ImageComponent implements AfterContentInit {
   @Input() imageClass: string;
-  @Input() imageStyle: CSSStyleDeclaration;
+  @Input() imageStyle: NgCssObject;
   @Input() styleClass: string;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() src: string | SafeUrl;
   @Input() srcSet: string | SafeUrl;
   @Input() sizes: string;
@@ -78,10 +78,10 @@ export class ImageComponent implements AfterContentInit {
   @Input() pinchAutoHeight: boolean;
   @Input() pinchWheelZoomFactor: number;
   @Input() pinchDraggableImage: boolean;
-  @Input() previewStyle: CSSStyleDeclaration;
+  @Input() previewStyle: NgCssObject;
   @Input() previewStyleClass: string;
   @Input() imageStyleClass: string;
-  @Input() previewImageStyle: CSSStyleDeclaration;
+  @Input() previewImageStyle: NgCssObject;
   @Input() previewImageStyleClass: string;
   @Input() errorPlaceholderSrc: string;
   @Output() onShow = new EventEmitter<AnimationEvent>();

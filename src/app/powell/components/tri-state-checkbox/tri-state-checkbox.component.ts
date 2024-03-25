@@ -20,7 +20,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {CSSStyleDeclaration, NgValidation} from "@powell/models";
+import {NgCssObject, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {PrimeTriStateCheckboxChangeEvent} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
@@ -54,7 +54,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
   @Input() ariaLabelledBy: string;
   @Input() tabindex: number;
   @Input() inputId: string = this.getId();
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() readonly: boolean = false;
   @Input() checkboxTrueIcon: string;

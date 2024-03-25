@@ -22,7 +22,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {CSSStyleDeclaration, NgFixLabelPosition, NgSize, NgValidation} from "@powell/models";
+import {NgCssObject, NgFixLabelPosition, NgSize, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 
 @Component({
@@ -56,9 +56,9 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() placeholder: string;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() inputStyle: CSSStyleDeclaration;
+  @Input() inputStyle: NgCssObject;
   @Input() inputStyleClass: string;
   @Input() inputCount: number = 4;
   @Input() allowedKeyCodes: string[];

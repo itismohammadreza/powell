@@ -11,7 +11,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  CSSStyleDeclaration,
+  NgCssObject,
   NgColorFormat,
   NgIconPosition,
   NgLabelPosition,
@@ -53,7 +53,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder: string;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() inline: boolean = false;
   @Input() format:NgColorFormat = 'hex';

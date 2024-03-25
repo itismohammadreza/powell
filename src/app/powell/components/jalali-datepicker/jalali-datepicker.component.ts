@@ -12,7 +12,7 @@ import {
 import {takeUntil} from "rxjs";
 import {Moment} from "jalali-moment";
 import {
-  CSSStyleDeclaration,
+  NgCssObject,
   NgAddon,
   NgDatepickerDateType,
   NgDatepickerHourFormat,
@@ -58,9 +58,9 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   // native properties
   @Input() defaultDate: Moment;
   @Input() selectionMode: NgDatepickerSelectionMode = 'single';
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() inputStyle: CSSStyleDeclaration;
+  @Input() inputStyle: NgCssObject;
   @Input() inputStyleClass: string;
   @Input() placeholder: string;
   @Input() disabled: boolean;
@@ -96,7 +96,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() baseZIndex: number;
   @Input() autoZIndex: boolean = true;
   @Input() panelStyleClass: string;
-  @Input() panelStyle: CSSStyleDeclaration;
+  @Input() panelStyle: NgCssObject;
   @Input() keepInvalid: boolean;
   @Input() hideOnDateTimeSelect: boolean = true;
   @Input() numberOfMonths: number = 1;

@@ -25,7 +25,7 @@ import {
 import {takeUntil} from "rxjs";
 import {TemplateDirective} from '@powell/directives/template';
 import {
-  CSSStyleDeclaration,
+  NgCssObject,
   NgAddon,
   NgFixLabelPosition,
   NgOrientation,
@@ -77,7 +77,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   // native properties
   @Input() selectionMode: NgTreeSelectionMode;
   @Input() selection: any;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() contextMenu: any;
   @Input() layout: NgOrientation = 'vertical';

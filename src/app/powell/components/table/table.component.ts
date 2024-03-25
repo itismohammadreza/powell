@@ -11,7 +11,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {
-  CSSStyleDeclaration,
+  NgCssObject,
   NgAsyncEvent,
   NgEmptyIcon,
   NgSize,
@@ -82,9 +82,9 @@ export class TableComponent implements OnInit, AfterContentInit {
   // native properties
   @Input() frozenColumns: any[];
   @Input() frozenValue: any[];
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() tableStyle: CSSStyleDeclaration;
+  @Input() tableStyle: NgCssObject;
   @Input() tableStyleClass: string;
   @Input() paginator: boolean = false;
   @Input() pageLinks: number = 5;
@@ -474,7 +474,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  handleCellStyle(cellStyle: Function | CSSStyleDeclaration, item: any) {
+  handleCellStyle(cellStyle: Function | NgCssObject, item: any) {
     if (typeof cellStyle == 'function')
       return cellStyle(item);
     else {

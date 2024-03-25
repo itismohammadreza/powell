@@ -9,7 +9,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {
-  CSSStyleDeclaration,
+  NgCssObject,
   NgDisableZoomControl,
   NgLimitZoom,
   NgListener,
@@ -44,7 +44,7 @@ export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {
   @Input() autoHeight: boolean;
   @Input() wheelZoomFactor: number;
   @Input() draggableImage: boolean;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
 
   properties: NgPinchZoomOptions;

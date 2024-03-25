@@ -1,6 +1,6 @@
 import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
 import {TemplateDirective} from "@powell/directives/template";
-import {CSSStyleDeclaration} from "@powell/models";
+import {NgCssObject} from "@powell/models";
 
 @Component({
   selector: 'ng-message',
@@ -15,7 +15,7 @@ export class MessageComponent implements AfterContentInit {
   @Input() rtl: boolean;
   @Input() disableConfigChangeEffect: boolean;
   @Input() closable: boolean = true;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() enableService: boolean = true;
   @Input() key: string;

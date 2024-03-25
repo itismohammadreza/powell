@@ -21,7 +21,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  CSSStyleDeclaration,
+  NgCssObject,
   NgAddon,
   NgIconPosition,
   NgInputMode,
@@ -73,9 +73,9 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() inputMode: NgInputMode = 'text';
   @Input() keyFilter: NgKeyFilter | RegExp = /.*/g;
   @Input() showClear: boolean;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() inputStyle: CSSStyleDeclaration;
+  @Input() inputStyle: NgCssObject;
   @Input() inputStyleClass: string;
   @Input() autocomplete: any;
   @Output() onInput = new EventEmitter<Event>();

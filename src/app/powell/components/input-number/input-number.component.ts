@@ -24,7 +24,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  CSSStyleDeclaration,
+  NgCssObject,
   NgAddon,
   NgIconPosition,
   NgLabelPosition,
@@ -72,7 +72,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() buttonLayout: NgNumberButtonLayout = 'stacked';
   @Input() inputId: string = this.getId();
   @Input() styleClass: string;
-  @Input() style: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
   @Input() placeholder: string;
   @Input() size: number;
   @Input() maxlength: number;
@@ -103,7 +103,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() maxFractionDigits: number;
   @Input() prefix: string;
   @Input() suffix: string;
-  @Input() inputStyle: CSSStyleDeclaration;
+  @Input() inputStyle: NgCssObject;
   @Input() inputStyleClass: string;
   @Input() showClear: boolean = false;
   @Input() disabled: boolean;

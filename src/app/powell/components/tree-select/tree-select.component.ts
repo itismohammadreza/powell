@@ -24,7 +24,7 @@ import {
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
 import {
-  CSSStyleDeclaration,
+  NgCssObject,
   NgAddon,
   NgChipDisplayMode,
   NgIconPosition,
@@ -88,11 +88,11 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() ariaLabelledBy: string;
   @Input() placeholder: string;
   @Input() panelClass: string;
-  @Input() panelStyle: CSSStyleDeclaration;
+  @Input() panelStyle: NgCssObject;
   @Input() panelStyleClass: string;
-  @Input() containerStyle: CSSStyleDeclaration;
+  @Input() containerStyle: NgCssObject;
   @Input() containerStyleClass: string;
-  @Input() labelStyle: CSSStyleDeclaration;
+  @Input() labelStyle: NgCssObject;
   @Input() labelStyleClass: string;
   @Input() overlayOptions: PrimeOverlayOptions;
   @Input() emptyMessage: string;

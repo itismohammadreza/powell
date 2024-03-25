@@ -24,7 +24,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  CSSStyleDeclaration,
+  NgCssObject,
   NgAddon,
   NgAsyncEvent,
   NgFilterMatchMode,
@@ -78,8 +78,8 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() scrollHeight: string = '200px';
   @Input() filter: boolean = false;
   @Input() name: string;
-  @Input() style: CSSStyleDeclaration;
-  @Input() panelStyle: CSSStyleDeclaration;
+  @Input() style: NgCssObject;
+  @Input() panelStyle: NgCssObject;
   @Input() styleClass: string;
   @Input() panelStyleClass: string;
   @Input() readonly: boolean = false;
