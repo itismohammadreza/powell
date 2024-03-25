@@ -23,7 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
+import {NgCssObject, NgFixLabelPosition, NgModelChangeFn, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeCheckboxChangeEvent, PrimeCheckboxGroupChangeEvent} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
@@ -87,10 +87,8 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   _disabled: boolean = false;
   ngControl: NgControl;
   iconTemplate: TemplateRef<any>;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

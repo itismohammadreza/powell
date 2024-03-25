@@ -10,7 +10,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
+import {NgCssObject, NgFixLabelPosition, NgModelChangeFn, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeRadioButtonClickEvent} from "@powell/primeng/api";
 
@@ -43,6 +43,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';
   @Input() optionDisabled: string = 'disabled';
+
   // native properties
   @Input() set disabled(disabled: boolean) {
     this._disabled = disabled;
@@ -70,10 +71,8 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   _disabled: boolean = false;
   groupName: string = this.getId();
   ngControl: NgControl;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

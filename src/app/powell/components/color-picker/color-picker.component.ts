@@ -11,10 +11,11 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgCssObject,
   NgColorFormat,
+  NgCssObject,
   NgIconPosition,
   NgLabelPosition,
+  NgModelChangeFn,
   NgSize,
   NgValidation
 } from '@powell/models';
@@ -75,10 +76,8 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Output() onFocus = new EventEmitter<FocusEvent>();
 
   ngControl: NgControl;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

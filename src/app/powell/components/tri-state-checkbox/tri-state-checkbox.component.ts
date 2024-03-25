@@ -1,13 +1,16 @@
 import {
   AfterContentInit,
   ChangeDetectorRef,
-  Component, ContentChildren,
+  Component,
+  ContentChildren,
   EventEmitter,
   forwardRef,
   Injector,
   Input,
   OnInit,
-  Output, QueryList, TemplateRef
+  Output,
+  QueryList,
+  TemplateRef
 } from '@angular/core';
 import {
   AbstractControl,
@@ -20,7 +23,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgValidation} from "@powell/models";
+import {NgCssObject, NgModelChangeFn, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {PrimeTriStateCheckboxChangeEvent} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
@@ -65,10 +68,8 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
   ngControl: NgControl;
   checkIconTemplate: TemplateRef<any>;
   uncheckIconTemplate: TemplateRef<any>;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

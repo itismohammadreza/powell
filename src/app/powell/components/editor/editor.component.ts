@@ -46,6 +46,7 @@ import {
   NgEditorToggleCodeView,
   NgEditorToggleFullScreen,
   NgFixLabelPosition,
+  NgModelChangeFn,
   NgValidation
 } from '@powell/models';
 import {EditorBaseComponent} from "@powell/components/editor";
@@ -124,11 +125,8 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   inputId: string;
   ngControl: NgControl;
   editorInstance: EditorBaseComponent;
-
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

@@ -12,12 +12,12 @@ import {
   TemplateRef
 } from '@angular/core';
 import {
-  NgCssObject,
   NgAsyncEvent,
   NgButtonAppearance,
   NgButtonState,
   NgButtonType,
   NgColor,
+  NgCssObject,
   NgIconPosition,
   NgSize
 } from '@powell/models';

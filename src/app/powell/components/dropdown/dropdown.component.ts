@@ -24,12 +24,13 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgCssObject,
   NgAddon,
   NgAsyncEvent,
+  NgCssObject,
   NgFilterMatchMode,
   NgIconPosition,
   NgLabelPosition,
+  NgModelChangeFn,
   NgPosition,
   NgSize,
   NgValidation
@@ -160,11 +161,8 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   _oldIcon: string;
   _oldValue: string;
   _newValue: string;
-
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

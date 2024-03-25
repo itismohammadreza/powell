@@ -24,11 +24,12 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgCssObject,
   NgAddon,
+  NgCssObject,
   NgIconPosition,
   NgInputType,
   NgLabelPosition,
+  NgModelChangeFn,
   NgSize,
   NgValidation
 } from '@powell/models';
@@ -98,10 +99,8 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
 
   ngControl: NgControl;
   clearIconTemplate: TemplateRef<any>;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

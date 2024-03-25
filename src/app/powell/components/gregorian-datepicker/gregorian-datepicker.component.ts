@@ -10,14 +10,15 @@ import {
   NgControl
 } from "@angular/forms";
 import {
-  NgCssObject,
   NgAddon,
+  NgCssObject,
   NgDatepickerDateType,
   NgDatepickerHourFormat,
   NgDatepickerSelectionMode,
   NgDatepickerViewMode,
   NgIconPosition,
   NgLabelPosition,
+  NgModelChangeFn,
   NgSize,
   NgValidation
 } from "@powell/models";
@@ -122,10 +123,8 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
 
   inputId: string;
   ngControl: NgControl;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

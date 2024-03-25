@@ -24,11 +24,12 @@ import {
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
 import {
-  NgCssObject,
   NgAddon,
   NgChipDisplayMode,
+  NgCssObject,
   NgIconPosition,
   NgLabelPosition,
+  NgModelChangeFn,
   NgSize,
   NgTreeFilterMode,
   NgTreeSelectionMode,
@@ -132,10 +133,8 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   itemTogglerIconTemplate: TemplateRef<any>;
   itemCheckboxIconTemplate: TemplateRef<any>;
   itemLoadingIconTemplate: TemplateRef<any>;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

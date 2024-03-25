@@ -20,7 +20,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgAddon, NgIconPosition, NgLabelPosition, NgValidation} from '@powell/models';
+import {NgAddon, NgCssObject, NgIconPosition, NgLabelPosition, NgModelChangeFn, NgValidation} from '@powell/models';
 import {UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import * as events from "events";
@@ -75,10 +75,8 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Output() onFocus = new EventEmitter<FocusEvent>();
 
   ngControl: NgControl;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

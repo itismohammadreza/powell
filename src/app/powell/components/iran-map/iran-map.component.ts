@@ -10,7 +10,14 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import {NgAsyncEvent, NgFixLabelPosition, NgMapChangeEvent, NgProvince, NgValidation} from "@powell/models";
+import {
+  NgAsyncEvent,
+  NgFixLabelPosition,
+  NgMapChangeEvent,
+  NgModelChangeFn,
+  NgProvince,
+  NgValidation
+} from "@powell/models";
 import {
   AbstractControl,
   ControlContainer,
@@ -278,10 +285,8 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   ]
   inputId: string;
   ngControl: NgControl;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

@@ -12,14 +12,15 @@ import {
 import {takeUntil} from "rxjs";
 import {Moment} from "jalali-moment";
 import {
-  NgCssObject,
   NgAddon,
+  NgCssObject,
   NgDatepickerDateType,
   NgDatepickerHourFormat,
   NgDatepickerSelectionMode,
   NgDatepickerViewMode,
   NgIconPosition,
   NgLabelPosition,
+  NgModelChangeFn,
   NgSize,
   NgValidation
 } from "@powell/models";
@@ -124,10 +125,8 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
 
   inputId: string;
   ngControl: NgControl;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

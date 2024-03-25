@@ -255,6 +255,8 @@ export type NgCurrency =
   | 'XPT'
   | 'XAG';
 
+export type NgModelChangeFn = (v: any) => {};
+
 export interface NgAddonConfig {
   type: 'button' | 'icon' | 'text';
   label?: string;

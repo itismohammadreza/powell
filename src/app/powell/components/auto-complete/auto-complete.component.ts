@@ -24,12 +24,13 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgCssObject,
   NgAddon,
   NgAutoCompleteDropdownMode,
+  NgCssObject,
   NgIconPosition,
   NgInputType,
   NgLabelPosition,
+  NgModelChangeFn,
   NgSize,
   NgValidation
 } from '@powell/models';
@@ -159,10 +160,8 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   loadingIconTemplate: TemplateRef<any>;
   clearIconTemplate: TemplateRef<any>;
   dropdownIconTemplate: TemplateRef<any>;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

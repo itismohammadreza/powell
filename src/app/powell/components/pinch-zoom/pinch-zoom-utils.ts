@@ -248,7 +248,7 @@ export class IvyPinch {
     });
   }
 
-  handleResize = (_event: any) => {
+  handleResize() {
     this.setAutoHeight();
   }
 

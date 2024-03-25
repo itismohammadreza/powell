@@ -24,10 +24,11 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgCssObject,
   NgAddon,
+  NgCssObject,
   NgIconPosition,
   NgLabelPosition,
+  NgModelChangeFn,
   NgNumberButtonLayout,
   NgNumberLocaleMatcher,
   NgNumberMode,
@@ -118,10 +119,8 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   clearIconTemplate: TemplateRef<any>;
   incrementButtonIconTemplate: TemplateRef<any>;
   decrementButtonIconTemplate: TemplateRef<any>;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

@@ -21,13 +21,14 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgCssObject,
   NgAddon,
+  NgCssObject,
   NgIconPosition,
   NgInputMode,
   NgInputType,
   NgKeyFilter,
   NgLabelPosition,
+  NgModelChangeFn,
   NgSize,
   NgValidation
 } from '@powell/models';
@@ -89,10 +90,8 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Output() onPaste = new EventEmitter<Event>();
 
   ngControl: NgControl;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

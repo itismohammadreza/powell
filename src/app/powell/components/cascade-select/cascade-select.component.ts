@@ -23,7 +23,15 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgAddon, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {
+  NgAddon,
+  NgCssObject,
+  NgIconPosition,
+  NgLabelPosition,
+  NgModelChangeFn,
+  NgSize,
+  NgValidation
+} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
@@ -112,10 +120,8 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   triggerIconTemplate: TemplateRef<any>;
   clearIconTemplate: TemplateRef<any>;
   optionGroupIconTemplate: TemplateRef<any>;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

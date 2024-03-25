@@ -4,7 +4,8 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
-  Input, OnInit,
+  Input,
+  OnInit,
   Output,
   QueryList,
   TemplateRef

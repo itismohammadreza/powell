@@ -23,13 +23,22 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgAddon, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {
+  NgAddon,
+  NgCssObject,
+  NgFilterMatchMode,
+  NgFixLabelPosition,
+  NgModelChangeFn,
+  NgValidation
+} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
   PrimeListboxChangeEvent,
   PrimeListboxClickEvent,
-  PrimeListboxDoubleClickEvent, PrimeListboxFilterEvent, PrimeListboxSelectAllChangeEvent,
+  PrimeListboxDoubleClickEvent,
+  PrimeListboxFilterEvent,
+  PrimeListboxSelectAllChangeEvent,
   PrimeScrollerOptions
 } from "@powell/primeng/api";
 
@@ -122,10 +131,8 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   footerTemplate: TemplateRef<any>;
   filterIconTemplate: TemplateRef<any>;
   checkIconTemplate: TemplateRef<any>;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

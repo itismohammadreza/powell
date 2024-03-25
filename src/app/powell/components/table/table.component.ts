@@ -11,8 +11,8 @@ import {
   ViewChild
 } from '@angular/core';
 import {
-  NgCssObject,
   NgAsyncEvent,
+  NgCssObject,
   NgEmptyIcon,
   NgSize,
   NgTableAction,

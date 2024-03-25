@@ -10,7 +10,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {NgCssObject, NgFixLabelPosition, NgModelChangeFn, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 
 @Component({
@@ -59,10 +59,8 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
   @Output() onChange = new EventEmitter<number>();
 
   ngControl: NgControl;
-  onModelChange: any = (_: any) => {
-  }
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

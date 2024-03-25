@@ -25,9 +25,10 @@ import {
 import {takeUntil} from "rxjs";
 import {TemplateDirective} from '@powell/directives/template';
 import {
-  NgCssObject,
   NgAddon,
+  NgCssObject,
   NgFixLabelPosition,
+  NgModelChangeFn,
   NgOrientation,
   NgTreeFilterMode,
   NgTreeSelectionMode,
@@ -133,10 +134,8 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   checkboxIconTemplate: TemplateRef<any>;
   loadingIconTemplate: TemplateRef<any>;
   filterIconTemplate: TemplateRef<any>;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

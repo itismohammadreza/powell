@@ -24,12 +24,13 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgCssObject,
   NgAddon,
   NgChipDisplayMode,
+  NgCssObject,
   NgFilterMatchMode,
   NgIconPosition,
   NgLabelPosition,
+  NgModelChangeFn,
   NgPosition,
   NgSize,
   NgValidation
@@ -171,10 +172,8 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   closeIconTemplate: TemplateRef<any>;
   clearIconTemplate: TemplateRef<any>;
   dropdownIconTemplate: TemplateRef<any>;
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

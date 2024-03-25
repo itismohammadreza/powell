@@ -40,7 +40,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgAddon, NgFixLabelPosition, NgValidation} from "@powell/models";
+import {NgAddon, NgFixLabelPosition, NgModelChangeFn, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 
 @Component({
@@ -159,10 +159,8 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
   ngControl: NgControl;
   map: Map;
   layers: Layer[] = [];
-  onModelChange: any = (_: any) => {
-  };
-  onModelTouched: any = () => {
-  };
+  onModelChange: NgModelChangeFn;
+  onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
