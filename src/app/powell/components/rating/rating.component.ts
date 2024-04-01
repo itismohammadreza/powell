@@ -73,8 +73,10 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   cancelIconTemplate: TemplateRef<any>;
   onIconTemplate: TemplateRef<any>;
   offIconTemplate: TemplateRef<any>;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

@@ -68,8 +68,10 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
   ngControl: NgControl;
   checkIconTemplate: TemplateRef<any>;
   uncheckIconTemplate: TemplateRef<any>;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

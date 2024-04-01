@@ -206,8 +206,10 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
   overlay: HTMLDivElement;
   responsiveStyleElement: any;
   overlayVisible: boolean;
-  onModelChange: Function;
+  onModelChange: Function = () => {
+  };
   onModelTouched: Function = () => {
+  }; = () => {
   };
   timePickerTimer: any;
   documentClickListener: any;

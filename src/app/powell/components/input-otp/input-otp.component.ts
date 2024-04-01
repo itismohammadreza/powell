@@ -73,8 +73,10 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
 
   form: FormGroup;
   ngControl: NgControl;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

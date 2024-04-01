@@ -104,8 +104,10 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   clearIconTemplate: TemplateRef<any>;
   hideIconTemplate: TemplateRef<any>;
   showIconTemplate: TemplateRef<any>;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

@@ -132,8 +132,10 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   itemTogglerIconTemplate: TemplateRef<any>;
   itemCheckboxIconTemplate: TemplateRef<any>;
   itemLoadingIconTemplate: TemplateRef<any>;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

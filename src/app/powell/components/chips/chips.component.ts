@@ -95,8 +95,10 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   itemTemplate: TemplateRef<any>;
   removeTokenIconTemplate: TemplateRef<any>;
   clearIconTemplate: TemplateRef<any>;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

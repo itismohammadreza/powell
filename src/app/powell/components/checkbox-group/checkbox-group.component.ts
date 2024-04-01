@@ -87,8 +87,10 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   _disabled: boolean = false;
   ngControl: NgControl;
   iconTemplate: TemplateRef<any>;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

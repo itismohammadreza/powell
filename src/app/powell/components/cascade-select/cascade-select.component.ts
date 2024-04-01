@@ -119,8 +119,10 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   triggerIconTemplate: TemplateRef<any>;
   clearIconTemplate: TemplateRef<any>;
   optionGroupIconTemplate: TemplateRef<any>;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

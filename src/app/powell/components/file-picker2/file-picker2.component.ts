@@ -77,8 +77,10 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   _chooseLabel: string;
   invalidFileSize: boolean;
   invalidFileType: boolean;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(
     private cd: ChangeDetectorRef,

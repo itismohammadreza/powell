@@ -130,8 +130,10 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   footerTemplate: TemplateRef<any>;
   filterIconTemplate: TemplateRef<any>;
   checkIconTemplate: TemplateRef<any>;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

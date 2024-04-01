@@ -58,8 +58,10 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
 
   loading: boolean;
   ngControl: NgControl;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

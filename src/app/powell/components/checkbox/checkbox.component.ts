@@ -77,8 +77,10 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   loading: boolean;
   ngControl: NgControl;
   iconTemplate: TemplateRef<any>;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

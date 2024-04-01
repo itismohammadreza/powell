@@ -75,8 +75,10 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Output() onFocus = new EventEmitter<FocusEvent>();
 
   ngControl: NgControl;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

@@ -69,8 +69,10 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
 
   iconTemplate: TemplateRef<any>;
   ngControl: NgControl;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
@@ -82,9 +84,9 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-        ControlContainer,
-        null,
-        {optional: true, host: true, skipSelf: true}
+      ControlContainer,
+      null,
+      {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {

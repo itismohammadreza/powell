@@ -159,8 +159,10 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
   ngControl: NgControl;
   map: Map;
   layers: Layer[] = [];
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

@@ -160,8 +160,10 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   _oldIcon: string;
   _oldValue: string;
   _newValue: string;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

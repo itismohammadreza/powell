@@ -98,8 +98,10 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
 
   ngControl: NgControl;
   clearIconTemplate: TemplateRef<any>;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

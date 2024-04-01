@@ -118,8 +118,10 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   clearIconTemplate: TemplateRef<any>;
   incrementButtonIconTemplate: TemplateRef<any>;
   decrementButtonIconTemplate: TemplateRef<any>;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

@@ -59,8 +59,10 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
   @Output() onChange = new EventEmitter<number>();
 
   ngControl: NgControl;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

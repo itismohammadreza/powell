@@ -124,8 +124,10 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   inputId: string;
   ngControl: NgControl;
   editorInstance: EditorBaseComponent;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

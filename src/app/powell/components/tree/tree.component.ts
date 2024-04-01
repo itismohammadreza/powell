@@ -133,8 +133,10 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   checkboxIconTemplate: TemplateRef<any>;
   loadingIconTemplate: TemplateRef<any>;
   filterIconTemplate: TemplateRef<any>;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

@@ -72,8 +72,10 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
 
   ngControl: NgControl;
   itemTemplate: TemplateRef<any>;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

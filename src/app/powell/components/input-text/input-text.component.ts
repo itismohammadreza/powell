@@ -89,8 +89,10 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Output() onPaste = new EventEmitter<Event>();
 
   ngControl: NgControl;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

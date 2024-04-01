@@ -124,8 +124,10 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
 
   inputId: string;
   ngControl: NgControl;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

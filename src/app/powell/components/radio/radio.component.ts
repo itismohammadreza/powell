@@ -71,8 +71,10 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   _disabled: boolean = false;
   groupName: string = this.getId();
   ngControl: NgControl;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,

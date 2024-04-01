@@ -132,8 +132,10 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   chooseIconTemplate: TemplateRef<any>;
   uploadIconTemplate: TemplateRef<any>;
   cancelIconTemplate: TemplateRef<any>;
-  onModelChange: Function;
-  onModelTouched: Function;
+  onModelChange: Function = () => {
+  };
+  onModelTouched: Function = () => {
+  };
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
