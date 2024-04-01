@@ -14,6 +14,7 @@ import {TemplateDirective} from "@powell/directives/template";
 import {OverlayService} from "@powell/api";
 import {NgCssObject, NgHistoryState} from "@powell/models";
 import {Subject, takeUntil} from "rxjs";
+import {PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-bottom-sheet',
@@ -48,7 +49,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   destroy$ = new Subject<boolean>();
   state: NgHistoryState = {
     component: 'bottomSheet',
-    key: this.overlayService.getId()
+    key: PrimeUniqueComponentId()
   }
 
   constructor(private overlayService: OverlayService) {

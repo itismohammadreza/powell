@@ -11,6 +11,7 @@
     }" class="file-picker-wrapper">
   <div class="field">
     <p-fileUpload
+      [attr.id]="inputId"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [name]="name"
       [url]="url"

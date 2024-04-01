@@ -40,7 +40,8 @@ import {
   PrimeDropdownFilterEvent,
   PrimeDropdownLazyLoadEvent,
   PrimeOverlayOptions,
-  PrimeScrollerOptions
+  PrimeScrollerOptions,
+  PrimeUniqueComponentId
 } from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
 
@@ -89,7 +90,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() placeholder: string;
   @Input() filterPlaceholder: string;
   @Input() filterLocale: string;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() dataKey: string;
   @Input() filterBy: string;
   @Input() filterFields: any[];
@@ -299,10 +300,6 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

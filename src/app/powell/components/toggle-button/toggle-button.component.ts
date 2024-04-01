@@ -25,7 +25,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgIconPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeToggleButtonChangeEvent} from "@powell/primeng/api";
+import {PrimeToggleButtonChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
@@ -61,7 +61,7 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() disabled: boolean;
   @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() tabindex: number;
   @Input() iconPos: NgIconPosition = 'left';
   @Output() onChange = new EventEmitter<PrimeToggleButtonChangeEvent>();
@@ -121,10 +121,6 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
     this.onModelChange(event.checked);
     this.onChange.emit(event);
     this.value = event.checked;
-  }
-
-  getId() {
-    return 'id' + Math.random().toString(16).slice(2);
   }
 
   isInvalid() {

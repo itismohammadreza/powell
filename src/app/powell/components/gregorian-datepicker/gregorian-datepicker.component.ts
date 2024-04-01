@@ -23,7 +23,7 @@ import {
 } from "@powell/models";
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@core/utils";
-import {PrimeCalendarMonthChangeEvent, PrimeCalendarYearChangeEvent} from "@powell/primeng/api";
+import {PrimeCalendarMonthChangeEvent, PrimeCalendarYearChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-gregorian-datepicker',
@@ -53,6 +53,7 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
   @Input() disableConfigChangeEffect: boolean;
+  @Input() inputId: string = PrimeUniqueComponentId();
   // native properties
   @Input() defaultDate: Date;
   @Input() selectionMode: NgDatepickerSelectionMode = 'single';
@@ -120,7 +121,6 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Output() onYearChange = new EventEmitter<PrimeCalendarYearChangeEvent>();
   @Output() onClear = new EventEmitter<void>();
 
-  inputId: string;
   ngControl: NgControl;
   onModelChange: Function = () => {
   };
@@ -133,7 +133,6 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -183,10 +182,6 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

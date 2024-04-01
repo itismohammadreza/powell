@@ -12,6 +12,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
+import {PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-knob',
@@ -36,7 +37,7 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   // native properties
   @Input() styleClass: string;
   @Input() style: NgCssObject;
@@ -100,10 +101,6 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
   _onChange(event: number) {
     this.onChange.emit(event);
     this.onModelChange(event);
-  }
-
-  getId() {
-    return 'id' + Math.random().toString(16).slice(2);
   }
 
   isInvalid() {

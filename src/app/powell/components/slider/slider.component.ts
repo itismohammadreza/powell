@@ -12,7 +12,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeSliderChangeEvent, PrimeSliderSlideEndEvent} from "@powell/primeng/api";
+import {PrimeSliderChangeEvent, PrimeSliderSlideEndEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-slider',
@@ -37,7 +37,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   // native properties
   @Input() animate: boolean = false;
   @Input() disabled: boolean;
@@ -101,10 +101,6 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   _onSlideEnd(event: PrimeSliderSlideEndEvent) {
     this.onModelChange(event.value);
     this.onSlideEnd.emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

@@ -10,16 +10,9 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {
-  NgColorFormat,
-  NgCssObject,
-  NgIconPosition,
-  NgLabelPosition,
-  NgSize,
-  NgValidation
-} from '@powell/models';
+import {NgColorFormat, NgCssObject, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeColorPickerChangeEvent} from "@powell/primeng/api";
+import {PrimeColorPickerChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-color-picker',
@@ -60,7 +53,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() appendTo: any;
   @Input() disabled: boolean;
   @Input() tabindex: string;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: number = 0;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
@@ -149,10 +142,6 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
-  }
-
-  getId() {
-    return 'id' + Math.random().toString(16).slice(2);
   }
 
   isInvalid() {

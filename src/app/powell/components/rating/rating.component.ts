@@ -26,7 +26,7 @@ import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
-import {PrimeRatingRateEvent} from "@powell/primeng/api";
+import {PrimeRatingRateEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-rating',
@@ -51,7 +51,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   // native properties
   @Input() disabled: boolean;
   @Input() readonly: boolean = false;
@@ -141,10 +141,6 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

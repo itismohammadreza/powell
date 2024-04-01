@@ -10,13 +10,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import {
-  NgAsyncEvent,
-  NgFixLabelPosition,
-  NgMapChangeEvent,
-  NgProvince,
-  NgValidation
-} from "@powell/models";
+import {NgAsyncEvent, NgFixLabelPosition, NgMapChangeEvent, NgProvince, NgValidation} from "@powell/models";
 import {
   AbstractControl,
   ControlContainer,
@@ -29,6 +23,7 @@ import {
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@core/utils";
+import {PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-iran-map',
@@ -49,6 +44,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;
+  @Input() inputId = PrimeUniqueComponentId();
   @Input() showRequiredStar: boolean;
   @Input() labelPos: NgFixLabelPosition;
   @Input() disabled: boolean;
@@ -282,7 +278,6 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
       d: "M 635.85 301.89 C 639.99 299.90 643.11 295.75 647.94 295.28 C 651.37 294.98 655.06 294.50 658.37 295.71 C 663.31 299.05 666.96 304.07 669.07 309.62 C 666.85 313.17 665.19 317.20 662.08 320.09 C 658.96 322.30 654.87 321.77 651.26 322.19 C 646.43 333.48 643.03 345.40 637.03 356.19 C 635.89 358.47 634.10 361.02 635.39 363.64 C 638.42 371.24 641.81 378.71 645.91 385.80 C 647.75 388.89 649.11 392.51 651.99 394.82 C 653.94 395.16 655.93 395.16 657.92 395.26 C 662.17 390.53 667.02 385.90 673.51 384.63 C 672.33 387.69 670.81 390.74 670.71 394.09 C 670.94 397.58 672.82 400.65 673.81 403.96 C 675.69 409.44 675.32 415.32 676.03 421.00 C 676.18 422.78 677.45 424.13 678.49 425.49 C 681.56 429.08 684.47 432.84 688.03 435.97 C 690.83 438.50 693.90 441.06 695.20 444.74 C 697.26 450.58 696.76 456.88 696.83 462.97 C 699.40 464.84 702.00 466.66 704.63 468.47 C 698.51 478.22 693.07 488.37 688.65 499.01 C 680.55 495.57 671.78 493.99 663.89 490.05 C 657.79 487.21 651.25 485.49 645.12 482.76 C 641.78 481.28 638.89 479.00 635.63 477.41 C 631.71 475.55 626.82 475.72 623.25 478.25 C 619.22 480.91 614.71 482.85 611.11 486.13 C 606.80 489.91 602.36 493.82 596.87 495.77 C 590.52 498.16 583.42 499.71 578.37 504.52 C 577.34 514.08 577.90 524.23 574.31 533.30 C 568.21 536.43 560.69 537.06 554.20 534.60 C 547.73 532.25 541.32 535.43 535.11 536.98 C 531.10 538.04 526.92 538.00 522.81 537.98 C 519.63 541.22 515.96 544.40 514.62 548.92 C 513.74 551.80 512.73 554.81 513.08 557.87 C 514.16 560.31 515.96 562.34 517.31 564.65 C 519.26 567.68 518.82 571.45 519.11 574.89 C 521.01 577.14 523.58 579.07 524.59 581.93 C 524.46 584.70 523.62 587.38 523.22 590.12 C 522.40 595.08 523.01 600.11 523.63 605.05 C 520.41 605.86 517.36 607.20 514.64 609.13 C 510.48 606.71 506.49 604.01 502.52 601.30 C 500.95 600.12 499.13 598.92 498.56 596.93 C 496.78 591.23 497.17 585.00 494.73 579.48 C 492.65 574.78 488.46 571.59 485.35 567.64 C 481.16 562.34 477.25 556.70 474.84 550.35 C 470.92 541.33 468.75 531.65 464.36 522.84 C 460.87 515.54 453.72 511.15 447.41 506.55 C 443.87 503.87 438.55 502.74 436.98 498.11 C 434.49 491.70 437.30 484.93 439.07 478.73 C 442.10 470.02 441.38 460.61 440.42 451.62 C 443.06 450.79 445.87 450.12 448.04 448.31 C 450.70 446.33 452.92 443.56 456.15 442.49 C 463.01 442.04 469.20 446.36 476.07 446.02 C 481.70 445.72 487.15 443.81 492.07 441.13 C 500.91 436.50 509.96 432.01 519.78 429.89 C 525.83 428.33 532.62 427.69 537.51 423.44 C 542.98 417.07 541.70 407.44 547.06 401.02 C 549.46 399.58 552.53 400.23 555.22 399.95 C 558.44 395.38 562.74 390.89 563.02 384.99 C 563.49 377.75 564.70 370.48 563.72 363.22 C 562.87 356.82 562.96 350.35 563.04 343.90 C 570.46 345.19 578.43 345.58 585.41 342.33 C 592.08 337.06 595.18 328.84 600.12 322.21 C 607.00 321.86 614.66 323.17 620.53 318.54 C 626.50 315.03 628.42 307.95 628.33 301.44 C 630.82 301.73 633.34 302.25 635.85 301.89 Z"
     },
   ]
-  inputId: string;
   ngControl: NgControl;
   onModelChange: Function = () => {
   };
@@ -296,7 +291,6 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -328,10 +322,6 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
     if (!this.disabled) {
       this.loadMap();
     }
-  }
-
-  getId() {
-    return 'id' + Math.random().toString(16).slice(2);
   }
 
   isInvalid() {

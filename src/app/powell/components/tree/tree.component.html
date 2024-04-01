@@ -12,7 +12,7 @@
   <div class="field" [ngAddon]="addon">
     <div>
       <p-tree
-        [id]="inputId"
+        [attr.id]="inputId"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
         [value]="items"
         [selectionMode]="selectionMode"

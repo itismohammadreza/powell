@@ -26,7 +26,11 @@ import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
-import {PrimeSelectButtonChangeEvent, PrimeSelectButtonOptionClickEvent} from "@powell/primeng/api";
+import {
+  PrimeSelectButtonChangeEvent,
+  PrimeSelectButtonOptionClickEvent,
+  PrimeUniqueComponentId
+} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-select-button',
@@ -51,7 +55,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   // native properties
   @Input() options: any[];
   @Input() optionLabel: string;
@@ -127,10 +131,6 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
 
   _onOptionClick(event: PrimeSelectButtonOptionClickEvent) {
     this.onOptionClick.emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

@@ -31,6 +31,7 @@ import {
 } from '@powell/models';
 import {UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
+import {PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-file-picker2',
@@ -67,10 +68,10 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() chooseLabel: string = 'انتخاب';
   @Input() invalidFileSizeMessage: string = 'سایز فایل نامعتبر است.';
   @Input() invalidFileTypeMessage: string = 'فرمت نامعتبر است.';
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Output() onSelect = new EventEmitter<NgFilePickerSelectEvent>();
   @Output() onRemove = new EventEmitter<NgFilePickerRemoveEvent>();
 
-  inputId: string;
   ngControl: NgControl;
   filesToShow: { display: string | ArrayBuffer, name: string }[] = [];
   filesToEmit: (string | ArrayBuffer | File)[] = [];
@@ -93,7 +94,6 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   ngOnInit() {
     //store user defined label for single selection mode
     this._chooseLabel = this.chooseLabel;
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -262,10 +262,6 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
       this.onModelChange(this.filesToEmit[0]);
     }
     this.cd.markForCheck();
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

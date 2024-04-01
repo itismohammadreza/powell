@@ -46,7 +46,8 @@ import {
   PrimeTreeNodeUnSelectEvent,
   PrimeTreeScrollEvent,
   PrimeTreeScrollIndexChangeEvent,
-  PrimeTreeSelectionChangeEvent
+  PrimeTreeSelectionChangeEvent,
+  PrimeUniqueComponentId
 } from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
 
@@ -74,6 +75,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
   @Input() items: any[];
+  @Input() inputId: string = PrimeUniqueComponentId();
   // native properties
   @Input() selectionMode: NgTreeSelectionMode;
   @Input() selection: any;
@@ -123,7 +125,6 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Output() onFilter = new EventEmitter<PrimeTreeFilterEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
   headerTemplate: TemplateRef<any>;
   emptyMessageTemplate: TemplateRef<any>;
@@ -144,14 +145,13 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-        ControlContainer,
-        null,
-        {optional: true, host: true, skipSelf: true}
+      ControlContainer,
+      null,
+      {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
@@ -216,10 +216,6 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

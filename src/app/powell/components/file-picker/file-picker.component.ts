@@ -47,7 +47,8 @@ import {
   PrimeFileSendEvent,
   PrimeFileUploadErrorEvent,
   PrimeFileUploadEvent,
-  PrimeFileUploadHandlerEvent
+  PrimeFileUploadHandlerEvent,
+  PrimeUniqueComponentId
 } from "@powell/primeng/api";
 
 @Component({
@@ -74,6 +75,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Input() validation: NgValidation;
   @Input() resultType: NgFileResultType = 'file';
   @Input() disableConfigChangeEffect: boolean;
+  @Input() inputId: string = PrimeUniqueComponentId();
   // native properties
   @Input() name: string;
   @Input() url: string;
@@ -122,7 +124,6 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @ViewChild(PrimeFileUpload, {static: true}) fileUploadComponent: PrimeFileUpload;
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  inputId: string;
   ngControl: NgControl;
   selectedFiles: any[] = [];
   filesToEmit: any[] = [];
@@ -144,7 +145,6 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -342,10 +342,6 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

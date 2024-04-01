@@ -23,17 +23,10 @@ import {
   NgControl,
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {
-  NgAddon,
-  NgCssObject,
-  NgIconPosition,
-  NgInputType,
-  NgLabelPosition,
-  NgSize,
-  NgValidation
-} from '@powell/models';
+import {NgAddon, NgCssObject, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {TemplateDirective} from "@powell/directives/template";
+import {PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-input-mask',
@@ -68,7 +61,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @Input() autoClear: boolean = true;
   @Input() showClear: boolean = false;
   @Input() style: NgCssObject;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() styleClass: string;
   @Input() placeholder: string;
   @Input() size: number;
@@ -165,10 +158,6 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

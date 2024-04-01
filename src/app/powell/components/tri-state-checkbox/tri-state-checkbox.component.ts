@@ -25,7 +25,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
-import {PrimeTriStateCheckboxChangeEvent} from "@powell/primeng/api";
+import {PrimeTriStateCheckboxChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
@@ -56,7 +56,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() tabindex: number;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() readonly: boolean = false;
@@ -79,7 +79,6 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -125,10 +124,6 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
   _onChange(event: PrimeTriStateCheckboxChangeEvent) {
     this.onModelChange(event.value);
     this.onChange.emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

@@ -35,7 +35,7 @@ import {
   NgValidation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeInputNumberInputEvent} from "@powell/primeng/api";
+import {PrimeInputNumberInputEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
@@ -70,7 +70,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() showButtons: boolean = false;
   @Input() format: boolean = true;
   @Input() buttonLayout: NgNumberButtonLayout = 'stacked';
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() styleClass: string;
   @Input() style: NgCssObject;
   @Input() placeholder: string;
@@ -195,10 +195,6 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
 
   _onKeyDown(event: KeyboardEvent) {
     this.onKeyDown.emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

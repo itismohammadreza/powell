@@ -23,17 +23,15 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {
-  NgAddon,
-  NgCssObject,
-  NgIconPosition,
-  NgLabelPosition,
-  NgSize,
-  NgValidation
-} from '@powell/models';
+import {NgAddon, NgCssObject, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
-import {PrimeChipsAddEvent, PrimeChipsClickEvent, PrimeChipsRemoveEvent} from "@powell/primeng/api";
+import {
+  PrimeChipsAddEvent,
+  PrimeChipsClickEvent,
+  PrimeChipsRemoveEvent,
+  PrimeUniqueComponentId
+} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-chips',
@@ -74,7 +72,7 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() tabindex: number;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() allowDuplicate: boolean = true;
   @Input() caseSensitiveDuplication: boolean = true;
   @Input() inputStyle: NgCssObject;
@@ -173,10 +171,6 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

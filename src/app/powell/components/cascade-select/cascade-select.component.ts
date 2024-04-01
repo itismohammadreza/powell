@@ -23,14 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {
-  NgAddon,
-  NgCssObject,
-  NgIconPosition,
-  NgLabelPosition,
-  NgSize,
-  NgValidation
-} from '@powell/models';
+import {NgAddon, NgCssObject, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
@@ -38,7 +31,8 @@ import {
   PrimeCascadeSelectBeforeShowEvent,
   PrimeCascadeSelectHideEvent,
   PrimeCascadeSelectShowEvent,
-  PrimeOverlayOptions
+  PrimeOverlayOptions,
+  PrimeUniqueComponentId
 } from "@powell/primeng/api";
 
 @Component({
@@ -89,7 +83,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() optionGroupChildren: string | string[];
   @Input() placeholder: string;
   @Input() dataKey: string;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() tabindex: number;
   @Input() ariaLabelledBy: string;
   @Input() inputLabel: string;
@@ -195,10 +189,6 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   _onClear() {
     this.onClear.emit();
     this.onModelChange(null);
-  }
-
-  getId() {
-    return 'id' + Math.random().toString(16).slice(2);
   }
 
   isInvalid() {

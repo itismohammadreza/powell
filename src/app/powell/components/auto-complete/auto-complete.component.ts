@@ -41,7 +41,8 @@ import {
   PrimeAutoCompleteSelectEvent,
   PrimeAutoCompleteUnSelectEvent,
   PrimeOverlayOptions,
-  PrimeScrollerOptions
+  PrimeScrollerOptions,
+  PrimeUniqueComponentId
 } from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
 
@@ -81,7 +82,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() styleClass: string;
   @Input() panelStyleClass: string;
   @Input() inputStyle: NgCssObject;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() inputStyleClass: string;
   @Input() placeholder: string;
   @Input() readonly: boolean = false;
@@ -277,10 +278,6 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
-  }
-
-  getId() {
-    return 'id' + Math.random().toString(16).slice(2);
   }
 
   isInvalid() {

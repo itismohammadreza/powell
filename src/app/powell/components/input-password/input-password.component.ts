@@ -24,17 +24,11 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {
-  NgAddon,
-  NgCssObject,
-  NgIconPosition,
-  NgLabelPosition,
-  NgSize,
-  NgValidation
-} from '@powell/models';
+import {NgAddon, NgCssObject, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
+import {PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-input-password',
@@ -75,7 +69,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() mediumLabel: string;
   @Input() maxLength: number;
   @Input() strongLabel: string;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() feedback: boolean = true;
   @Input() appendTo: any;
   @Input() toggleMask: boolean = false;
@@ -212,10 +206,6 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
 
   _onFocus(event: Event) {
     this.onFocus.emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

@@ -44,7 +44,8 @@ import {
   PrimeMultiSelectLazyLoadEvent,
   PrimeMultiSelectRemoveEvent,
   PrimeOverlayOptions,
-  PrimeScrollerOptions
+  PrimeScrollerOptions,
+  PrimeUniqueComponentId
 } from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
 
@@ -83,7 +84,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() styleClass: string;
   @Input() panelStyle: NgCssObject;
   @Input() panelStyleClass: string;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() disabled: boolean;
   @Input() readonly: boolean = false;
   @Input() group: boolean = false;
@@ -182,7 +183,6 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -293,10 +293,6 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

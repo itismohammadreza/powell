@@ -25,7 +25,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeCheckboxChangeEvent, PrimeCheckboxGroupChangeEvent} from "@powell/primeng/api";
+import {PrimeCheckboxChangeEvent, PrimeCheckboxGroupChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
@@ -57,8 +57,8 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() optionValue: string = 'value';
   @Input() optionDisabled: string = 'disabled';
   @Input() orientation: NgOrientation = 'vertical';
-  @Input() groupName: string = this.getId();
-  @Input() inputId: string = this.getId();
+  @Input() groupName: string = PrimeUniqueComponentId();
+  @Input() inputId: string = PrimeUniqueComponentId();
 
   // native properties
   @Input() set disabled(disabled: boolean) {
@@ -147,10 +147,6 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
 
   _onFocus(event: Event) {
     this.onFocus.emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

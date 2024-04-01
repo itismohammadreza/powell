@@ -23,13 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {
-  NgAddon,
-  NgCssObject,
-  NgFilterMatchMode,
-  NgFixLabelPosition,
-  NgValidation
-} from '@powell/models';
+import {NgAddon, NgCssObject, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
@@ -38,7 +32,8 @@ import {
   PrimeListboxDoubleClickEvent,
   PrimeListboxFilterEvent,
   PrimeListboxSelectAllChangeEvent,
-  PrimeScrollerOptions
+  PrimeScrollerOptions,
+  PrimeUniqueComponentId
 } from "@powell/primeng/api";
 
 @Component({
@@ -67,7 +62,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
-  @Input() id: string = this.getId();
+  @Input() id: string = PrimeUniqueComponentId();
   @Input() searchMessage: string;
   @Input() emptySelectionMessage: string;
   @Input() selectionMessage: string;
@@ -227,10 +222,6 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   _onClick(event: PrimeListboxClickEvent) {
     this.onClick.emit(event);
     this.onModelChange(event.value);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

@@ -25,7 +25,7 @@ import {
 } from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {AnimationEvent} from "@angular/animations";
-import {PrimeCalendarMonthChangeEvent, PrimeCalendarYearChangeEvent} from "@powell/primeng/api";
+import {PrimeCalendarMonthChangeEvent, PrimeCalendarYearChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-jalali-datepicker',
@@ -55,6 +55,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
   @Input() disableConfigChangeEffect: boolean;
+  @Input() inputId: string = PrimeUniqueComponentId();
   // native properties
   @Input() defaultDate: Moment;
   @Input() selectionMode: NgDatepickerSelectionMode = 'single';
@@ -122,7 +123,6 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Output() onClickOutside = new EventEmitter<Event>();
   @Output() onShow = new EventEmitter<AnimationEvent>();
 
-  inputId: string;
   ngControl: NgControl;
   onModelChange: Function = () => {
   };
@@ -135,7 +135,6 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -185,10 +184,6 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

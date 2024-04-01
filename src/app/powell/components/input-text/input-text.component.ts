@@ -33,6 +33,7 @@ import {
 } from '@powell/models';
 import {UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
+import {PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-input-text',
@@ -60,7 +61,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() icon: string;
   @Input() labelPos: NgLabelPosition;
   @Input() iconPos: NgIconPosition = 'left';
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
@@ -168,10 +169,6 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
     const inputElement = event.target as HTMLInputElement;
     this.onKeyUp.emit(event);
     this.onModelChange(inputElement.value);
-  }
-
-  getId() {
-    return 'id' + Math.random().toString(16).slice(2);
   }
 
   isInvalid() {

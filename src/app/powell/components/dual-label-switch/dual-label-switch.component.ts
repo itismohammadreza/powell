@@ -12,7 +12,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgAsyncEvent, NgCssObject, NgFixLabelPosition, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
-import {PrimeInputSwitchChangeEvent} from "@powell/primeng/api";
+import {PrimeInputSwitchChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-dual-label-switch',
@@ -47,7 +47,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() tabindex: number;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() name: string;
   @Input() disabled: boolean;
   @Input() readonly: boolean = false;
@@ -123,10 +123,6 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
       this.value = !this.value;
     }
   };
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
-  }
 
   isInvalid() {
     if (this.ngControl) {

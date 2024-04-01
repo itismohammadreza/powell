@@ -24,6 +24,7 @@ import {NgAddon, NgCssObject, NgIconPosition, NgLabelPosition, NgValidation} fro
 import {UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import * as events from "events";
+import {PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-input-textarea',
@@ -54,7 +55,7 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() rows: number;
   @Input() cols: number;
   @Input() autoResize: boolean;
@@ -151,10 +152,6 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
     const inputElement = event.target as HTMLTextAreaElement;
     this.onKeyUp.emit(event);
     this.onModelChange(inputElement.value);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

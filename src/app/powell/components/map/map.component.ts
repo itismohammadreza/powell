@@ -42,6 +42,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgAddon, NgFixLabelPosition, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
+import {PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-map',
@@ -74,6 +75,7 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
   @Input() clearIcon: string = 'pi pi-trash';
   @Input() disableConfigChangeEffect: boolean;
   @Input() selectionLimit: number;
+  @Input() inputId = PrimeUniqueComponentId();
   // native properties
   @Input() zoom: number = 10;
   @Input() center: LatLng = latLng(35.68419775656676, 51.38983726501465);
@@ -155,7 +157,6 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
   @Output() onMapZoomEnd = new EventEmitter<LeafletEvent>();
   @Output() onClear = new EventEmitter<void>();
 
-  inputId: string;
   ngControl: NgControl;
   map: Map;
   layers: Layer[] = [];
@@ -170,7 +171,6 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
   }
 
   ngOnInit() {
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -200,10 +200,6 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     this.handleDisabledState()
-  }
-
-  getId() {
-    return 'id' + Math.random().toString(16).slice(2);
   }
 
   isInvalid() {

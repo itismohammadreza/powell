@@ -12,7 +12,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeRadioButtonClickEvent} from "@powell/primeng/api";
+import {PrimeRadioButtonClickEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-radio',
@@ -58,7 +58,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
 
   @Input() name: string;
   @Input() tabindex: number;
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
   @Input() style: NgCssObject;
@@ -69,7 +69,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Output() onBlur = new EventEmitter<Event>();
 
   _disabled: boolean = false;
-  groupName: string = this.getId();
+  groupName: string = PrimeUniqueComponentId();
   ngControl: NgControl;
   onModelChange: Function = () => {
   };
@@ -121,10 +121,6 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
 
   _onFocus(event: Event) {
     this.onFocus.emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

@@ -50,6 +50,7 @@ import {
 } from '@powell/models';
 import {EditorBaseComponent} from "@powell/components/editor";
 import {DestroyService} from "@core/utils";
+import {PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
   selector: 'ng-editor',
@@ -76,6 +77,7 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   @Input() disabled: boolean;
   @Input() readonly: boolean;
   @Input() disableConfigChangeEffect: boolean;
+  @Input() inputId = PrimeUniqueComponentId();
   // native properties
   @Input() options: SunEditorOptions;
   @Input() onDrop_param: boolean = true;
@@ -121,7 +123,6 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   @Output() onCut = new EventEmitter<NgEditorOnCut>();
   @Output() onCopy = new EventEmitter<NgEditorOnCopy>();
 
-  inputId: string;
   ngControl: NgControl;
   editorInstance: EditorBaseComponent;
   onModelChange: Function = () => {
@@ -155,7 +156,6 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
         ],
       }
     }
-    this.inputId = this.getId();
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -232,10 +232,6 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   _onBlur(event: NgEditorEvent) {
     this.onBlur.emit(event);
     this.onModelTouched();
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

@@ -45,7 +45,8 @@ import {
   PrimeTreeNodeUnSelectEvent,
   PrimeTreeSelectFilterEvent,
   PrimeTreeSelectNodeCollapseEvent,
-  PrimeTreeSelectNodeExpandEvent
+  PrimeTreeSelectNodeExpandEvent,
+  PrimeUniqueComponentId
 } from "@powell/primeng/api";
 
 @Component({
@@ -77,7 +78,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() inputSize: NgSize;
   @Input() disableConfigChangeEffect: boolean;
   // native properties
-  @Input() inputId: string = this.getId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   @Input() scrollHeight: string = '400px';
   @Input() disabled: boolean;
   @Input() metaKeySelection: boolean = false;
@@ -237,10 +238,6 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
-  }
-
-  getId() {
-    return "id" + Math.random().toString(16).slice(2)
   }
 
   isInvalid() {

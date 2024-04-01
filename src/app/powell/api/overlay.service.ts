@@ -27,7 +27,7 @@ import {
   PrimeConfirmationService,
   PrimeConfirmEventType,
   PrimeMessage,
-  PrimeMessageService
+  PrimeMessageService, PrimeUniqueComponentId
 } from "@powell/primeng/api";
 
 @Injectable()
@@ -391,7 +391,7 @@ export class OverlayService {
 
   pushState(state: NgHistoryState) {
     if (!state.key) {
-      state.key = this.getId()
+      state.key = PrimeUniqueComponentId();
     }
     this.location.pushState(state, '', this.router.url, '');
     this.states.push(state);
@@ -403,10 +403,6 @@ export class OverlayService {
 
   stateChange() {
     return this.stateChangeSubject.asObservable()
-  }
-
-  getId() {
-    return 'id' + Math.random().toString(16).slice(2);
   }
 
   isPopped(state: NgHistoryState) {
