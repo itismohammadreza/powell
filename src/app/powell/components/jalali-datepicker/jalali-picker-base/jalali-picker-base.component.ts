@@ -209,7 +209,6 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
-  }; = () => {
   };
   timePickerTimer: any;
   documentClickListener: any;
