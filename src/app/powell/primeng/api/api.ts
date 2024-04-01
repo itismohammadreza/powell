@@ -116,6 +116,7 @@ import {
   PrimeNGConfig,
   PrimeTemplate,
   ScrollerOptions,
+  SharedModule,
   SortMeta,
   TableState,
   Translation,
@@ -319,3 +320,4 @@ export const PrimeRefreshIcon = RefreshIcon;
 export const PrimeEyeIcon = EyeIcon;
 export const PrimeUndoIcon = UndoIcon;
 export const PrimeSearchMinusIcon = SearchMinusIcon;
+export const PrimeSharedModule = SharedModule;

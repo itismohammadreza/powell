@@ -1,4 +1,17 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output,} from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  forwardRef,
+  Injector,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  TemplateRef,
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -13,6 +26,7 @@ import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgIconPosition, NgModelChangeFn, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeToggleButtonChangeEvent} from "@powell/primeng/api";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-toggle-button',
@@ -27,7 +41,7 @@ import {PrimeToggleButtonChangeEvent} from "@powell/primeng/api";
     DestroyService
   ]
 })
-export class ToggleButtonComponent implements OnInit, ControlValueAccessor {
+export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -51,7 +65,9 @@ export class ToggleButtonComponent implements OnInit, ControlValueAccessor {
   @Input() tabindex: number;
   @Input() iconPos: NgIconPosition = 'left';
   @Output() onChange = new EventEmitter<PrimeToggleButtonChangeEvent>();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
+  iconTemplate: TemplateRef<any>;
   ngControl: NgControl;
   onModelChange: NgModelChangeFn;
   onModelTouched: Function;
@@ -87,6 +103,16 @@ export class ToggleButtonComponent implements OnInit, ControlValueAccessor {
         });
       }
     }
+  }
+
+  ngAfterContentInit() {
+    this.templates.forEach((item: TemplateDirective) => {
+      switch (item.getType()) {
+        case 'icon':
+          this.iconTemplate = item.templateRef;
+          break;
+      }
+    })
   }
 
   _onChange(event: PrimeToggleButtonChangeEvent) {

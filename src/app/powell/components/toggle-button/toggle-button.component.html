@@ -25,8 +25,11 @@
       [inputId]="inputId"
       [tabindex]="tabindex"
       [iconPos]="iconPos"
-      (onChange)="_onChange($event)"
-    ></p-toggleButton>
+      (onChange)="_onChange($event)">
+      <ng-template pTemplate="icon" let-item *ngIf="iconTemplate">
+        <ng-container *ngTemplateOutlet="iconTemplate;context:{$implicit:item}"></ng-container>
+      </ng-template>
+    </p-toggleButton>
   </div>
   <label
     class="fix-label"
