@@ -27,7 +27,6 @@ import {
   NgFilePickerSelectEvent,
   NgFileResultType,
   NgFixLabelPosition,
-  NgModelChangeFn,
   NgValidation
 } from '@powell/models';
 import {UtilsService} from "@powell/api";
@@ -78,7 +77,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   _chooseLabel: string;
   invalidFileSize: boolean;
   invalidFileType: boolean;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(

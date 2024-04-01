@@ -23,7 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgIconPosition, NgModelChangeFn, NgValidation} from '@powell/models';
+import {NgCssObject, NgFixLabelPosition, NgIconPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeToggleButtonChangeEvent} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
@@ -69,7 +69,7 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
 
   iconTemplate: TemplateRef<any>;
   ngControl: NgControl;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

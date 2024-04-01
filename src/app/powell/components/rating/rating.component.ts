@@ -23,7 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgModelChangeFn, NgValidation} from '@powell/models';
+import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
 import {PrimeRatingRateEvent} from "@powell/primeng/api";
@@ -73,7 +73,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   cancelIconTemplate: TemplateRef<any>;
   onIconTemplate: TemplateRef<any>;
   offIconTemplate: TemplateRef<any>;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

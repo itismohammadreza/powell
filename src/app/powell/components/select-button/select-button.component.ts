@@ -23,7 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgModelChangeFn, NgValidation} from '@powell/models';
+import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
 import {PrimeSelectButtonChangeEvent, PrimeSelectButtonOptionClickEvent} from "@powell/primeng/api";
@@ -72,7 +72,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
 
   ngControl: NgControl;
   itemTemplate: TemplateRef<any>;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

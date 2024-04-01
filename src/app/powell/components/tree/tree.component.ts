@@ -28,7 +28,6 @@ import {
   NgAddon,
   NgCssObject,
   NgFixLabelPosition,
-  NgModelChangeFn,
   NgOrientation,
   NgTreeFilterMode,
   NgTreeSelectionMode,
@@ -134,7 +133,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   checkboxIconTemplate: TemplateRef<any>;
   loadingIconTemplate: TemplateRef<any>;
   filterIconTemplate: TemplateRef<any>;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

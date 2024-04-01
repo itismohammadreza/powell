@@ -29,7 +29,6 @@ import {
   NgCssObject,
   NgIconPosition,
   NgLabelPosition,
-  NgModelChangeFn,
   NgSize,
   NgTreeFilterMode,
   NgTreeSelectionMode,
@@ -133,7 +132,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   itemTogglerIconTemplate: TemplateRef<any>;
   itemCheckboxIconTemplate: TemplateRef<any>;
   itemLoadingIconTemplate: TemplateRef<any>;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

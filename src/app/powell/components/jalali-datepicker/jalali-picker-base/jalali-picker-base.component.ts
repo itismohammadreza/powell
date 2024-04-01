@@ -34,7 +34,7 @@ import {
   PrimeUniqueComponentId,
   PrimeZIndexUtils
 } from "@powell/primeng/api";
-import {NgCssObject, NgModelChangeFn} from "@powell/models";
+import {NgCssObject} from "@powell/models";
 
 export interface DateMeta {
   day?: number,
@@ -206,7 +206,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
   overlay: HTMLDivElement;
   responsiveStyleElement: any;
   overlayVisible: boolean;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function = () => {
   };
   timePickerTimer: any;

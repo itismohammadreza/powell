@@ -15,7 +15,6 @@ import {
   NgCssObject,
   NgIconPosition,
   NgLabelPosition,
-  NgModelChangeFn,
   NgSize,
   NgValidation
 } from '@powell/models';
@@ -76,7 +75,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Output() onFocus = new EventEmitter<FocusEvent>();
 
   ngControl: NgControl;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

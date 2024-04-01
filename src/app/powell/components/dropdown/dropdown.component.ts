@@ -30,7 +30,6 @@ import {
   NgFilterMatchMode,
   NgIconPosition,
   NgLabelPosition,
-  NgModelChangeFn,
   NgPosition,
   NgSize,
   NgValidation
@@ -161,7 +160,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   _oldIcon: string;
   _oldValue: string;
   _newValue: string;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

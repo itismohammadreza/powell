@@ -30,7 +30,6 @@ import {
   NgIconPosition,
   NgInputType,
   NgLabelPosition,
-  NgModelChangeFn,
   NgSize,
   NgValidation
 } from '@powell/models';
@@ -160,7 +159,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   loadingIconTemplate: TemplateRef<any>;
   clearIconTemplate: TemplateRef<any>;
   dropdownIconTemplate: TemplateRef<any>;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

@@ -30,7 +30,6 @@ import {
   NgFilterMatchMode,
   NgIconPosition,
   NgLabelPosition,
-  NgModelChangeFn,
   NgPosition,
   NgSize,
   NgValidation
@@ -172,7 +171,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   closeIconTemplate: TemplateRef<any>;
   clearIconTemplate: TemplateRef<any>;
   dropdownIconTemplate: TemplateRef<any>;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

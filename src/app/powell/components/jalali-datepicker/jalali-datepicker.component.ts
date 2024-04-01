@@ -20,7 +20,6 @@ import {
   NgDatepickerViewMode,
   NgIconPosition,
   NgLabelPosition,
-  NgModelChangeFn,
   NgSize,
   NgValidation
 } from "@powell/models";
@@ -125,7 +124,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
 
   inputId: string;
   ngControl: NgControl;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

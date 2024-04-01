@@ -18,7 +18,6 @@ import {
   NgDatepickerViewMode,
   NgIconPosition,
   NgLabelPosition,
-  NgModelChangeFn,
   NgSize,
   NgValidation
 } from "@powell/models";
@@ -123,7 +122,7 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
 
   inputId: string;
   ngControl: NgControl;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

@@ -28,7 +28,6 @@ import {
   NgCssObject,
   NgIconPosition,
   NgLabelPosition,
-  NgModelChangeFn,
   NgSize,
   NgValidation
 } from '@powell/models';
@@ -120,7 +119,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   triggerIconTemplate: TemplateRef<any>;
   clearIconTemplate: TemplateRef<any>;
   optionGroupIconTemplate: TemplateRef<any>;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

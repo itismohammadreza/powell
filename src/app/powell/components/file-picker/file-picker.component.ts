@@ -33,7 +33,6 @@ import {
   NgFilePickerMode,
   NgFileResultType,
   NgFixLabelPosition,
-  NgModelChangeFn,
   NgValidation
 } from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
@@ -133,7 +132,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   chooseIconTemplate: TemplateRef<any>;
   uploadIconTemplate: TemplateRef<any>;
   cancelIconTemplate: TemplateRef<any>;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

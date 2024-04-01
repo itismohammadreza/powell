@@ -10,7 +10,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgAsyncEvent, NgCssObject, NgFixLabelPosition, NgModelChangeFn, NgValidation} from "@powell/models";
+import {NgAsyncEvent, NgCssObject, NgFixLabelPosition, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {PrimeInputSwitchChangeEvent} from "@powell/primeng/api";
 
@@ -58,7 +58,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
 
   loading: boolean;
   ngControl: NgControl;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

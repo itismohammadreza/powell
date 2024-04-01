@@ -22,7 +22,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgModelChangeFn, NgSize, NgValidation} from "@powell/models";
+import {NgCssObject, NgFixLabelPosition, NgSize, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 
 @Component({
@@ -73,7 +73,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
 
   form: FormGroup;
   ngControl: NgControl;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

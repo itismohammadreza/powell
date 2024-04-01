@@ -29,7 +29,6 @@ import {
   NgCssObject,
   NgIconPosition,
   NgLabelPosition,
-  NgModelChangeFn,
   NgSize,
   NgValidation
 } from '@powell/models';
@@ -105,7 +104,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   clearIconTemplate: TemplateRef<any>;
   hideIconTemplate: TemplateRef<any>;
   showIconTemplate: TemplateRef<any>;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

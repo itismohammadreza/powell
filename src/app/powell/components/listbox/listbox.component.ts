@@ -28,7 +28,6 @@ import {
   NgCssObject,
   NgFilterMatchMode,
   NgFixLabelPosition,
-  NgModelChangeFn,
   NgValidation
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
@@ -131,7 +130,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   footerTemplate: TemplateRef<any>;
   filterIconTemplate: TemplateRef<any>;
   checkIconTemplate: TemplateRef<any>;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

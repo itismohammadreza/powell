@@ -23,7 +23,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAsyncEvent, NgCssObject, NgModelChangeFn, NgValidation} from '@powell/models';
+import {NgAsyncEvent, NgCssObject, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeCheckboxChangeEvent} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
@@ -77,7 +77,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   loading: boolean;
   ngControl: NgControl;
   iconTemplate: TemplateRef<any>;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

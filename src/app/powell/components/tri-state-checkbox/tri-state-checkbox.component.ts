@@ -23,7 +23,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgModelChangeFn, NgValidation} from "@powell/models";
+import {NgCssObject, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {PrimeTriStateCheckboxChangeEvent} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
@@ -68,7 +68,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
   ngControl: NgControl;
   checkIconTemplate: TemplateRef<any>;
   uncheckIconTemplate: TemplateRef<any>;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

@@ -29,7 +29,6 @@ import {
   NgIconPosition,
   NgInputType,
   NgLabelPosition,
-  NgModelChangeFn,
   NgSize,
   NgValidation
 } from '@powell/models';
@@ -99,7 +98,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
 
   ngControl: NgControl;
   clearIconTemplate: TemplateRef<any>;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

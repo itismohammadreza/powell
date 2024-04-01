@@ -14,7 +14,6 @@ import {
   NgAsyncEvent,
   NgFixLabelPosition,
   NgMapChangeEvent,
-  NgModelChangeFn,
   NgProvince,
   NgValidation
 } from "@powell/models";
@@ -285,7 +284,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   ]
   inputId: string;
   ngControl: NgControl;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

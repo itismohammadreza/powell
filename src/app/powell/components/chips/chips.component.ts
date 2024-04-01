@@ -28,7 +28,6 @@ import {
   NgCssObject,
   NgIconPosition,
   NgLabelPosition,
-  NgModelChangeFn,
   NgSize,
   NgValidation
 } from '@powell/models';
@@ -96,7 +95,7 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   itemTemplate: TemplateRef<any>;
   removeTokenIconTemplate: TemplateRef<any>;
   clearIconTemplate: TemplateRef<any>;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,

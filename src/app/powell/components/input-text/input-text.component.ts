@@ -28,7 +28,6 @@ import {
   NgInputType,
   NgKeyFilter,
   NgLabelPosition,
-  NgModelChangeFn,
   NgSize,
   NgValidation
 } from '@powell/models';
@@ -90,7 +89,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Output() onPaste = new EventEmitter<Event>();
 
   ngControl: NgControl;
-  onModelChange: NgModelChangeFn;
+  onModelChange: Function;
   onModelTouched: Function;
 
   constructor(private cd: ChangeDetectorRef,
