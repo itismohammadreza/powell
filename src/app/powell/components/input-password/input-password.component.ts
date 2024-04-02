@@ -139,7 +139,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item: TemplateDirective) => {
+    this.templates.forEach(item => {
       switch (item.getType()) {
         case 'content':
           this.contentTemplate = item.templateRef;

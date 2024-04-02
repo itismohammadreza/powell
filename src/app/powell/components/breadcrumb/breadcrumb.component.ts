@@ -56,7 +56,7 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item: TemplateDirective) => {
+    this.templates.forEach(item => {
       switch (item.getType()) {
         case 'separator':
           this.separatorTemplate = item.templateRef;

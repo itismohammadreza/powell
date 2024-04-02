@@ -203,7 +203,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item: TemplateDirective) => {
+    this.templates.forEach(item => {
       switch (item.getType()) {
         case 'item':
           this.itemTemplate = item.templateRef;

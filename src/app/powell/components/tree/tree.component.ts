@@ -171,7 +171,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item: TemplateDirective) => {
+    this.templates.forEach(item => {
       switch (item.getType()) {
         case 'header':
           this.headerTemplate = item.templateRef;

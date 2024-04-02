@@ -211,7 +211,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item: TemplateDirective) => {
+    this.templates.forEach(item => {
       switch (item.getType()) {
         case 'item':
           this.itemTemplate = item.templateRef;

@@ -61,7 +61,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item: TemplateDirective) => {
+    this.templates.forEach(item => {
       switch (item.getType()) {
         case 'title':
           this.headerTemplate = item.templateRef;

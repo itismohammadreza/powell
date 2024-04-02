@@ -179,7 +179,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item: TemplateDirective) => {
+    this.templates.forEach(item => {
       switch (item.getType()) {
         case 'file':
           this.fileTemplate = item.templateRef;

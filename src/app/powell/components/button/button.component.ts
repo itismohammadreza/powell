@@ -114,7 +114,7 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
       getButtonSize();
     })
 
-    this.templates.forEach((item: TemplateDirective) => {
+    this.templates.forEach(item => {
       switch (item.getType()) {
         case 'content':
           this.contentTemplate = item.templateRef;

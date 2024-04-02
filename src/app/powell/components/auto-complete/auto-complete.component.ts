@@ -199,7 +199,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item: TemplateDirective) => {
+    this.templates.forEach(item => {
       switch (item.getType()) {
         case 'item':
           this.itemTemplate = item.templateRef;

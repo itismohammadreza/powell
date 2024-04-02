@@ -164,7 +164,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item: TemplateDirective) => {
+    this.templates.forEach(item => {
       switch (item.getType()) {
         case 'item':
           this.itemTemplate = item.templateRef;

@@ -112,7 +112,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item: TemplateDirective) => {
+    this.templates.forEach(item => {
       switch (item.getType()) {
         case 'cancelicon':
           this.cancelIconTemplate = item.templateRef;
