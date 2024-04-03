@@ -36,8 +36,7 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
 
   _breadcrumbs$ = new BehaviorSubject<PrimeMenuItem[]>([]);
   breadcrumbs$ = this._breadcrumbs$.asObservable();
-  itemTemplate: TemplateRef<any>;
-  separatorTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
 
   constructor(private router: Router, private destroy$: DestroyService) {
   }
@@ -57,16 +56,9 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'separator':
-          this.separatorTemplate = item.templateRef;
-          break;
-
-        case 'item':
-          this.itemTemplate = item.templateRef;
-          break;
-      }
-    })
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
+    });
   }
 
   addBreadcrumb(route: ActivatedRouteSnapshot, parentUrl: string[], breadcrumbs: PrimeMenuItem[]) {

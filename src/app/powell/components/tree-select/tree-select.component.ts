@@ -122,17 +122,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
-  valueTemplate: TemplateRef<any>;
-  headerTemplate: TemplateRef<any>;
-  emptyTemplate: TemplateRef<any>;
-  footerTemplate: TemplateRef<any>;
-  clearIconTemplate: TemplateRef<any>;
-  triggerIconTemplate: TemplateRef<any>;
-  filterIconTemplate: TemplateRef<any>;
-  closeIconTemplate: TemplateRef<any>;
-  itemTogglerIconTemplate: TemplateRef<any>;
-  itemCheckboxIconTemplate: TemplateRef<any>;
-  itemLoadingIconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -173,51 +163,8 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'value':
-          this.valueTemplate = item.templateRef;
-          break;
-
-        case 'header':
-          this.headerTemplate = item.templateRef;
-          break;
-
-        case 'empty':
-          this.emptyTemplate = item.templateRef;
-          break;
-
-        case 'footer':
-          this.footerTemplate = item.templateRef;
-          break;
-
-        case 'clearicon':
-          this.clearIconTemplate = item.templateRef;
-          break;
-
-        case 'triggericon':
-          this.triggerIconTemplate = item.templateRef;
-          break;
-
-        case 'filtericon':
-          this.filterIconTemplate = item.templateRef;
-          break;
-
-        case 'closeicon':
-          this.closeIconTemplate = item.templateRef;
-          break;
-
-        case 'itemtogglericon':
-          this.itemTogglerIconTemplate = item.templateRef;
-          break;
-
-        case 'itemcheckboxicon':
-          this.itemCheckboxIconTemplate = item.templateRef;
-          break;
-
-        case 'itemloadingicon':
-          this.itemLoadingIconTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

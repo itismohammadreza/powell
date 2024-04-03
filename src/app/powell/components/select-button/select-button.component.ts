@@ -75,7 +75,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
-  itemTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -116,11 +116,8 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'item':
-          this.itemTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

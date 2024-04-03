@@ -47,7 +47,7 @@
         [virtualScrollItemSize]="virtualScrollItemSize"
         [virtualScrollOptions]="virtualScrollOptions"
         [indentation]="indentation"
-        [_templateMap]="templateMap"
+        [_templateMap]="_templateMap"
         [trackBy]="trackBy"
         [virtualNodeHeight]="virtualNodeHeight"
         (selectionChange)="_onSelectionChange($event)"
@@ -61,18 +61,11 @@
         (onScroll)="emitter('onScroll', $event)"
         (onScrollIndexChange)="emitter('onScrollIndexChange', $event)"
         (onFilter)="emitter('onFilter', $event)">
-        <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
-          <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
-          <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="empty" let-item *ngIf="emptyMessageTemplate">
-          <ng-container *ngTemplateOutlet="emptyMessageTemplate;context:{$implicit:item}"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="loader" let-item *ngIf="loaderTemplate">
-          <ng-container *ngTemplateOutlet="loaderTemplate;context:{$implicit:item}"></ng-container>
-        </ng-template>
+        <ng-container *ngFor="let t of templates">
+          <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"></ng-container>
+          </ng-template>
+        </ng-container>
       </p-tree>
     </div>
   </div>

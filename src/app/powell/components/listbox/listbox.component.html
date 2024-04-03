@@ -68,27 +68,11 @@
         (onFocus)="emitter('onFocus', $event)"
         (onBlur)="emitter('onBlur', $event)"
         (onSelectAllChange)="emitter('onSelectAllChange', $event)">
-        <ng-template pTemplate="header" *ngIf="headerTemplate">
-          <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="item" let-item *ngIf="itemTemplate">
-          <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item}"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="group" let-group *ngIf="groupTemplate">
-          <ng-container *ngTemplateOutlet="groupTemplate;context:{$implicit:group}"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="filter" let-options="options" *ngIf="filterTemplate">
-          <ng-container *ngTemplateOutlet="filterTemplate;context:{options:options}"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="empty" *ngIf="emptyTemplate">
-          <ng-container *ngTemplateOutlet="emptyTemplate;context"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="emptyfilter" *ngIf="emptyFilterTemplate">
-          <ng-container *ngTemplateOutlet="emptyFilterTemplate"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="footer" *ngIf="footerTemplate">
-          <ng-container *ngTemplateOutlet="footerTemplate;context"></ng-container>
-        </ng-template>
+        <ng-container *ngFor="let t of templates">
+          <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"></ng-container>
+          </ng-template>
+        </ng-container>
       </p-listbox>
     </div>
   </div>

@@ -146,18 +146,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
-  itemTemplate: TemplateRef<any>;
-  groupTemplate: TemplateRef<any>;
-  selectedItemTemplate: TemplateRef<any>;
-  headerTemplate: TemplateRef<any>;
-  emptyTemplate: TemplateRef<any>;
-  emptyFilterTemplate: TemplateRef<any>;
-  footerTemplate: TemplateRef<any>;
-  filterTemplate: TemplateRef<any>;
-  loaderTemplate: TemplateRef<any>;
-  dropdownIconTemplate: TemplateRef<any>;
-  clearIconTemplate: TemplateRef<any>;
-  filterIconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   _oldIcon: string;
   _oldValue: string;
   _newValue: string;
@@ -204,55 +193,8 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'item':
-          this.itemTemplate = item.templateRef;
-          break;
-
-        case 'selectedItem':
-          this.selectedItemTemplate = item.templateRef;
-          break;
-
-        case 'header':
-          this.headerTemplate = item.templateRef;
-          break;
-
-        case 'filter':
-          this.filterTemplate = item.templateRef;
-          break;
-
-        case 'footer':
-          this.footerTemplate = item.templateRef;
-          break;
-
-        case 'emptyfilter':
-          this.emptyFilterTemplate = item.templateRef;
-          break;
-
-        case 'empty':
-          this.emptyTemplate = item.templateRef;
-          break;
-
-        case 'group':
-          this.groupTemplate = item.templateRef;
-          break;
-
-        case 'loader':
-          this.loaderTemplate = item.templateRef;
-          break;
-
-        case 'dropdownicon':
-          this.dropdownIconTemplate = item.templateRef;
-          break;
-
-        case 'clearicon':
-          this.clearIconTemplate = item.templateRef;
-          break;
-
-        case 'filtericon':
-          this.filterIconTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

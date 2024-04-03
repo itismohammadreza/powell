@@ -77,15 +77,11 @@
         (onBlur)="_onBlur($event)"
         (onClear)="_onClear()"
         (onKeyDown)="_onKeyDown($event)">
-        <ng-template pTemplate="clearicon" *ngIf="clearIconTemplate">
-          <ng-container *ngTemplateOutlet="clearIconTemplate"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="incrementbuttonicon" *ngIf="incrementButtonIconTemplate">
-          <ng-container *ngTemplateOutlet="incrementButtonIconTemplate"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="decrementbuttonicon" *ngIf="decrementButtonIconTemplate">
-          <ng-container *ngTemplateOutlet="decrementButtonIconTemplate"></ng-container>
-        </ng-template>
+        <ng-container *ngFor="let t of templates">
+          <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"></ng-container>
+          </ng-template>
+        </ng-container>
       </p-inputNumber>
       <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
         {{ label | ngLabelStar:showRequiredStar:ngControl }}

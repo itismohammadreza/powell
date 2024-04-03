@@ -44,9 +44,8 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   @Output() visibleChange = new EventEmitter<boolean>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  headerTemplate: TemplateRef<any>;
-  footerTemplate: TemplateRef<any>;
   destroy$ = new Subject<boolean>();
+  templateMap: Record<string, TemplateRef<any>> = {};
   state: NgHistoryState = {
     component: 'bottomSheet',
     key: PrimeUniqueComponentId()
@@ -62,15 +61,8 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'title':
-          this.headerTemplate = item.templateRef;
-          break;
-
-        case 'footer':
-          this.footerTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

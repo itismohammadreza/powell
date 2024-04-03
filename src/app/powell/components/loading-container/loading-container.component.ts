@@ -16,19 +16,12 @@ export class LoadingContainerComponent implements AfterContentInit {
   @Input() spinnerHeight: string = '70px';
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  contentTemplate: TemplateRef<any>;
-  loadingTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'content':
-          this.contentTemplate = item.templateRef;
-          break;
-        case 'loading':
-          this.loadingTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

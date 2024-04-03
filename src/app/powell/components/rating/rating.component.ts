@@ -70,9 +70,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
-  cancelIconTemplate: TemplateRef<any>;
-  onIconTemplate: TemplateRef<any>;
-  offIconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -113,19 +111,8 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'cancelicon':
-          this.cancelIconTemplate = item.templateRef;
-          break;
-
-        case 'onicon':
-          this.onIconTemplate = item.templateRef;
-          break;
-
-        case 'officon':
-          this.offIconTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

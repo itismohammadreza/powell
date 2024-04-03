@@ -102,24 +102,11 @@
         (onHide)="emitter('onHide', $event)"
         (onShow)="emitter('onShow', $event)"
         (onLazyLoad)="emitter('onLazyLoad', $event)">
-        <ng-template pTemplate="item" let-item let-index="index" *ngIf="itemTemplate">
-          <ng-container *ngTemplateOutlet="itemTemplate;context:{$implicit:item,index:index}"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="group" let-item *ngIf="groupTemplate">
-          <ng-container *ngTemplateOutlet="groupTemplate;context:{$implicit:item}"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="empty" let-item *ngIf="emptyTemplate">
-          <ng-container *ngTemplateOutlet="emptyTemplate;context:{$implicit:item}"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="selectedItem" let-item *ngIf="selectedItemTemplate">
-          <ng-container *ngTemplateOutlet="selectedItemTemplate;context:{$implicit:item}"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
-          <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
-        </ng-template>
-        <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
-          <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
-        </ng-template>
+        <ng-container *ngFor="let t of templates">
+          <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"></ng-container>
+          </ng-template>
+        </ng-container>
       </p-autoComplete>
       <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
         {{ label | ngLabelStar:showRequiredStar:ngControl }}

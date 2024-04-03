@@ -108,11 +108,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
-  valueTemplate: TemplateRef<any>;
-  optionTemplate: TemplateRef<any>;
-  triggerIconTemplate: TemplateRef<any>;
-  clearIconTemplate: TemplateRef<any>;
-  optionGroupIconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -153,27 +149,8 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'value':
-          this.valueTemplate = item.templateRef;
-          break;
-
-        case 'option':
-          this.optionTemplate = item.templateRef;
-          break;
-
-        case 'triggericon':
-          this.triggerIconTemplate = item.templateRef;
-          break;
-
-        case 'clearicon':
-          this.clearIconTemplate = item.templateRef;
-          break;
-
-        case 'optiongroupicon':
-          this.optionGroupIconTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

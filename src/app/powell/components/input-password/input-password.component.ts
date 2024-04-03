@@ -92,12 +92,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
-  contentTemplate: TemplateRef<any>;
-  headerTemplate: TemplateRef<any>;
-  footerTemplate: TemplateRef<any>;
-  clearIconTemplate: TemplateRef<any>;
-  hideIconTemplate: TemplateRef<any>;
-  showIconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -140,31 +135,8 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'content':
-          this.contentTemplate = item.templateRef;
-          break;
-
-        case 'header':
-          this.headerTemplate = item.templateRef;
-          break;
-
-        case 'footer':
-          this.footerTemplate = item.templateRef;
-          break;
-
-        case 'clearicon':
-          this.clearIconTemplate = item.templateRef;
-          break;
-
-        case 'hideicon':
-          this.hideIconTemplate = item.templateRef;
-          break;
-
-        case 'showicon':
-          this.showIconTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

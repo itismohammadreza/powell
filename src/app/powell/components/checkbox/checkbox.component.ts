@@ -76,7 +76,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
 
   loading: boolean;
   ngControl: NgControl;
-  iconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -117,12 +117,9 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item) => {
-      switch (item.getType()) {
-        case 'icon':
-          this.iconTemplate = item.templateRef;
-          break;
-      }
+    this.templates.forEach(item => {
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

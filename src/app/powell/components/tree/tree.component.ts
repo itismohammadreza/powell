@@ -109,7 +109,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() virtualScrollItemSize: number;
   @Input() virtualScrollOptions: PrimeScrollerOptions;
   @Input() indentation: number = 1.5;
-  @Input() templateMap: any;
+  @Input() _templateMap: any;
   @Input() trackBy: Function;
   @Input() virtualNodeHeight: number;
   @Output() selectionChange = new EventEmitter<PrimeTreeSelectionChangeEvent>();
@@ -126,14 +126,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
-  headerTemplate: TemplateRef<any>;
-  emptyMessageTemplate: TemplateRef<any>;
-  footerTemplate: TemplateRef<any>;
-  loaderTemplate: TemplateRef<any>;
-  togglerIconTemplate: TemplateRef<any>;
-  checkboxIconTemplate: TemplateRef<any>;
-  loadingIconTemplate: TemplateRef<any>;
-  filterIconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -172,39 +165,8 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'header':
-          this.headerTemplate = item.templateRef;
-          break;
-
-        case 'empty':
-          this.emptyMessageTemplate = item.templateRef;
-          break;
-
-        case 'footer':
-          this.footerTemplate = item.templateRef;
-          break;
-
-        case 'loader':
-          this.loaderTemplate = item.templateRef;
-          break;
-
-        case 'togglericon':
-          this.togglerIconTemplate = item.templateRef;
-          break;
-
-        case 'checkboxicon':
-          this.checkboxIconTemplate = item.templateRef;
-          break;
-
-        case 'loadingicon':
-          this.loadingIconTemplate = item.templateRef;
-          break;
-
-        case 'filtericon':
-          this.filterIconTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

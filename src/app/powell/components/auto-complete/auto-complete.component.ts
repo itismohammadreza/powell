@@ -150,16 +150,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
-  itemTemplate: TemplateRef<any>;
-  emptyTemplate: TemplateRef<any>;
-  groupTemplate: TemplateRef<any>;
-  selectedItemTemplate: TemplateRef<any>;
-  headerTemplate: TemplateRef<any>;
-  footerTemplate: TemplateRef<any>;
-  removeTokenIconTemplate: TemplateRef<any>;
-  loadingIconTemplate: TemplateRef<any>;
-  clearIconTemplate: TemplateRef<any>;
-  dropdownIconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -200,51 +191,8 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'item':
-          this.itemTemplate = item.templateRef;
-          break;
-
-        case 'group':
-          this.groupTemplate = item.templateRef;
-          break;
-
-        case 'selectedItem':
-          this.selectedItemTemplate = item.templateRef;
-          break;
-
-        case 'header':
-          this.headerTemplate = item.templateRef;
-          break;
-
-        case 'empty':
-          this.emptyTemplate = item.templateRef;
-          break;
-
-        case 'footer':
-          this.footerTemplate = item.templateRef;
-          break;
-
-        case 'loader':
-          this.footerTemplate = item.templateRef;
-          break;
-
-        case 'removetokenicon':
-          this.removeTokenIconTemplate = item.templateRef;
-          break;
-
-        case 'loadingicon':
-          this.loadingIconTemplate = item.templateRef;
-          break;
-
-        case 'clearicon':
-          this.clearIconTemplate = item.templateRef;
-          break;
-
-        case 'dropdownicon':
-          this.dropdownIconTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

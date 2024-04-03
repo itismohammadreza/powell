@@ -116,15 +116,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
-  headerTemplate: TemplateRef<any>;
-  itemTemplate: TemplateRef<any>;
-  groupTemplate: TemplateRef<any>;
-  filterTemplate: TemplateRef<any>;
-  emptyTemplate: TemplateRef<any>;
-  emptyFilterTemplate: TemplateRef<any>;
-  footerTemplate: TemplateRef<any>;
-  filterIconTemplate: TemplateRef<any>;
-  checkIconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -165,43 +157,8 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'item':
-          this.itemTemplate = item.templateRef;
-          break;
-
-        case 'group':
-          this.groupTemplate = item.templateRef;
-          break;
-
-        case 'header':
-          this.headerTemplate = item.templateRef;
-          break;
-
-        case 'filter':
-          this.filterTemplate = item.templateRef;
-          break;
-
-        case 'footer':
-          this.footerTemplate = item.templateRef;
-          break;
-
-        case 'empty':
-          this.emptyTemplate = item.templateRef;
-          break;
-
-        case 'emptyfilter':
-          this.emptyFilterTemplate = item.templateRef;
-          break;
-
-        case 'filtericon':
-          this.filterIconTemplate = item.templateRef;
-          break;
-
-        case 'checkicon':
-          this.checkIconTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

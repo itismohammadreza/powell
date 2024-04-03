@@ -66,8 +66,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
-  checkIconTemplate: TemplateRef<any>;
-  uncheckIconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -107,16 +106,9 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item) => {
-      switch (item.getType()) {
-        case 'checkicon':
-          this.checkIconTemplate = item.templateRef;
-          break;
-
-        case 'uncheckicon':
-          this.uncheckIconTemplate = item.templateRef;
-          break;
-      }
+    this.templates.forEach(item => {
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

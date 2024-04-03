@@ -9,50 +9,46 @@
       'label-fix-top': labelPos == 'fix-top',
       'label-fix-side': labelPos == 'fix-side'
     }" class="rating-wrapper">
-    <div class="field">
-        <p-rating
-                [id]="inputId"
-                [(ngModel)]="value"
-                [disabled]="disabled"
-                [readonly]="readonly"
-                [stars]="stars"
-                [cancel]="cancel"
-                [iconOnClass]="iconOnClass"
-                [iconOnStyle]="iconOnStyle"
-                [iconOffClass]="iconOffClass"
-                [iconOffStyle]="iconOffStyle"
-                [iconCancelClass]="iconCancelClass"
-                [iconCancelStyle]="iconCancelStyle"
-                (onRate)="_onRate($event)"
-                (onCancel)="_onCancel($event)"
-                (onFocus)="emitter('onFocus',$event)"
-                (onBlur)="emitter('onBlur',$event)">
-            <ng-template pTemplate="cancelicon" *ngIf="cancelIconTemplate">
-                <ng-container *ngTemplateOutlet="cancelIconTemplate"></ng-container>
-            </ng-template>
-            <ng-template pTemplate="onicon" *ngIf="onIconTemplate">
-                <ng-container *ngTemplateOutlet="onIconTemplate"></ng-container>
-            </ng-template>
-            <ng-template pTemplate="officon" *ngIf="offIconTemplate">
-                <ng-container *ngTemplateOutlet="offIconTemplate"></ng-container>
-            </ng-template>
-        </p-rating>
-    </div>
-    <label
-            class="fix-label"
-            *ngIf="label"
-            [attr.for]="inputId"
-            [class.p-disabled]="disabled"
-            [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
-            [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-        {{ label | ngLabelStar:showRequiredStar:ngControl }}
-    </label>
-    <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
-    <div class="message p-error">
-        <ng-container *ngFor="let v of validation | keyvalue">
-            <div *ngIf="hasError(v.key)">
-                {{ v.value }}
-            </div>
-        </ng-container>
-    </div>
+  <div class="field">
+    <p-rating
+      [id]="inputId"
+      [(ngModel)]="value"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [stars]="stars"
+      [cancel]="cancel"
+      [iconOnClass]="iconOnClass"
+      [iconOnStyle]="iconOnStyle"
+      [iconOffClass]="iconOffClass"
+      [iconOffStyle]="iconOffStyle"
+      [iconCancelClass]="iconCancelClass"
+      [iconCancelStyle]="iconCancelStyle"
+      (onRate)="_onRate($event)"
+      (onCancel)="_onCancel($event)"
+      (onFocus)="emitter('onFocus',$event)"
+      (onBlur)="emitter('onBlur',$event)">
+      <ng-container *ngFor="let t of templates">
+        <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
+          <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"></ng-container>
+        </ng-template>
+      </ng-container>
+    </p-rating>
+  </div>
+  <label
+    class="fix-label"
+    *ngIf="label"
+    [attr.for]="inputId"
+    [class.p-disabled]="disabled"
+    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+    [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label | ngLabelStar:showRequiredStar:ngControl }}
+  </label>
+  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
+  <div class="message p-error">
+    <ng-container *ngFor="let v of validation | keyvalue">
+      <div *ngIf="hasError(v.key)">
+        {{ v.value }}
+      </div>
+    </ng-container>
+  </div>
 </div>

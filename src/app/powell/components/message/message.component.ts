@@ -26,15 +26,12 @@ export class MessageComponent implements AfterContentInit {
 
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  contentTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'content':
-          this.contentTemplate = item.templateRef;
-          break;
-      }
-    })
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
+    });
   }
 }

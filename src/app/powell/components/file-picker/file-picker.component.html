@@ -57,15 +57,11 @@
       (onProgress)="emitter('onProgress',$event)"
       (uploadHandler)="emitter('uploadHandler',$event)"
       (onImageError)="emitter('onImageError',$event)">
-      <ng-template pTemplate="toolbar" *ngIf="toolbarTemplate">
-        <ng-container *ngTemplateOutlet="toolbarTemplate"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="file" let-file *ngIf="fileTemplate">
-        <ng-container *ngTemplateOutlet="fileTemplate;context:{$implicit:file}"></ng-container>
-      </ng-template>
-      <ng-template pTemplate="content" let-files *ngIf="contentTemplate">
-        <ng-container *ngTemplateOutlet="contentTemplate;context:{$implicit:files}"></ng-container>
-      </ng-template>
+      <ng-container *ngFor="let t of templates">
+        <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
+          <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"></ng-container>
+        </ng-template>
+      </ng-container>
     </p-fileUpload>
   </div>
   <label

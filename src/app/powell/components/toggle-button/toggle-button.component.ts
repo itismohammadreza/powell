@@ -67,8 +67,8 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
   @Output() onChange = new EventEmitter<PrimeToggleButtonChangeEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  iconTemplate: TemplateRef<any>;
   ngControl: NgControl;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -109,12 +109,9 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'icon':
-          this.iconTemplate = item.templateRef;
-          break;
-      }
-    })
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
+    });
   }
 
   _onChange(event: PrimeToggleButtonChangeEvent) {

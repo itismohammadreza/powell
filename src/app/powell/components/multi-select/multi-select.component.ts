@@ -157,21 +157,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
-  itemTemplate: TemplateRef<any>;
-  groupTemplate: TemplateRef<any>;
-  selectedItemsTemplate: TemplateRef<any>;
-  headerTemplate: TemplateRef<any>;
-  filterTemplate: TemplateRef<any>;
-  emptyFilterTemplate: TemplateRef<any>;
-  emptyTemplate: TemplateRef<any>;
-  footerTemplate: TemplateRef<any>;
-  loaderTemplate: TemplateRef<any>;
-  checkIconTemplate: TemplateRef<any>;
-  filterIconTemplate: TemplateRef<any>;
-  removeTokenIconTemplate: TemplateRef<any>;
-  closeIconTemplate: TemplateRef<any>;
-  clearIconTemplate: TemplateRef<any>;
-  dropdownIconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -212,67 +198,8 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'item':
-          this.itemTemplate = item.templateRef;
-          break;
-
-        case 'group':
-          this.groupTemplate = item.templateRef;
-          break;
-
-        case 'selectedItems':
-          this.selectedItemsTemplate = item.templateRef;
-          break;
-
-        case 'header':
-          this.headerTemplate = item.templateRef;
-          break;
-
-        case 'filter':
-          this.filterTemplate = item.templateRef;
-          break;
-
-        case 'emptyfilter':
-          this.emptyFilterTemplate = item.templateRef;
-          break;
-
-        case 'empty':
-          this.emptyTemplate = item.templateRef;
-          break;
-
-        case 'footer':
-          this.footerTemplate = item.templateRef;
-          break;
-
-        case 'loader':
-          this.loaderTemplate = item.templateRef;
-          break;
-
-        case 'checkicon':
-          this.checkIconTemplate = item.templateRef;
-          break;
-
-        case 'filtericon':
-          this.filterIconTemplate = item.templateRef;
-          break;
-
-        case 'removetokenicon':
-          this.removeTokenIconTemplate = item.templateRef;
-          break;
-
-        case 'closeicon':
-          this.closeIconTemplate = item.templateRef;
-          break;
-
-        case 'clearicon':
-          this.clearIconTemplate = item.templateRef;
-          break;
-
-        case 'dropdownicon':
-          this.dropdownIconTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

@@ -72,9 +72,7 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   loading: boolean;
-  contentTemplate: TemplateRef<any>;
-  iconTemplate: TemplateRef<any>;
-  loadingIconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   _tmpLabel: string;
   _tmpIcon: string;
   _tmpAppearance: NgButtonAppearance;
@@ -115,19 +113,8 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
     })
 
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'content':
-          this.contentTemplate = item.templateRef;
-          break;
-
-        case 'icon':
-          this.iconTemplate = item.templateRef;
-          break;
-
-        case 'loadingIcon':
-          this.loadingIconTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

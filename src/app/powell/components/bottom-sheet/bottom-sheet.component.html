@@ -15,12 +15,12 @@
   (onShow)="_onShow()"
   (onHide)="_onHide()">
   <div class="bottom-sheet-wrapper">
-    <div class="header" *ngIf="header || showCloseIcon || headerTemplate" [class.show-close-icon]="showCloseIcon">
-      <ng-container *ngIf="headerTemplate;else alternativeTitle">
-        <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+    <div class="header" *ngIf="header || showCloseIcon || templateMap.header" [class.show-close-icon]="showCloseIcon">
+      <ng-container *ngIf="templateMap.header;else alternativeTitle">
+        <ng-container *ngTemplateOutlet="templateMap.header"></ng-container>
       </ng-container>
       <ng-template #alternativeTitle>
-        <h5>{{header}}</h5>
+        <h5>{{ header }}</h5>
       </ng-template>
       <ng-button
         *ngIf="showCloseIcon"
@@ -33,8 +33,8 @@
     <div class="content" [class.has-gutter]="gutter">
       <ng-content></ng-content>
     </div>
-    <div class="footer" *ngIf="footerTemplate">
-      <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+    <div class="footer" *ngIf="templateMap.footer">
+      <ng-container *ngTemplateOutlet="templateMap.footer"></ng-container>
     </div>
   </div>
 </p-sidebar>

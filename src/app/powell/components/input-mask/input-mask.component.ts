@@ -90,7 +90,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
-  clearIconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -130,12 +130,9 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item) => {
-      switch (item.getType()) {
-        case 'clearicon':
-          this.clearIconTemplate = item.templateRef;
-          break;
-      }
+    this.templates.forEach(item => {
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

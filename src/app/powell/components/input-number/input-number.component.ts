@@ -115,9 +115,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
-  clearIconTemplate: TemplateRef<any>;
-  incrementButtonIconTemplate: TemplateRef<any>;
-  decrementButtonIconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -157,20 +155,9 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item) => {
-      switch (item.getType()) {
-        case 'clearicon':
-          this.clearIconTemplate = item.templateRef;
-          break;
-
-        case 'incrementbuttonicon':
-          this.incrementButtonIconTemplate = item.templateRef;
-          break;
-
-        case 'decrementbuttonicon':
-          this.decrementButtonIconTemplate = item.templateRef;
-          break;
-      }
+    this.templates.forEach(item => {
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

@@ -90,9 +90,7 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
-  itemTemplate: TemplateRef<any>;
-  removeTokenIconTemplate: TemplateRef<any>;
-  clearIconTemplate: TemplateRef<any>;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -133,19 +131,8 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'item':
-          this.itemTemplate = item.templateRef;
-          break;
-
-        case 'removetokenicon':
-          this.removeTokenIconTemplate = item.templateRef;
-          break;
-
-        case 'clearicon':
-          this.clearIconTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
   }
 

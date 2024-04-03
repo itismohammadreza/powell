@@ -25,25 +25,17 @@ export class InfiniteScrollComponent implements AfterContentInit, OnDestroy {
   @ViewChild('anchor', {static: true}) anchor: ElementRef<HTMLElement>;
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  contentTemplate: TemplateRef<any>;
-  loadingTemplate: TemplateRef<any>;
-  observer: IntersectionObserver;
   loading: boolean;
+  templateMap: Record<string, TemplateRef<any>> = {};
+  observer: IntersectionObserver;
 
   constructor(private el: ElementRef) {
   }
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'content':
-          this.contentTemplate = item.templateRef;
-          break;
-
-        case 'loading':
-          this.loadingTemplate = item.templateRef;
-          break;
-      }
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
     this.observer = new IntersectionObserver(([entry]) => {
       if (this.loading) {

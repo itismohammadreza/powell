@@ -33,9 +33,11 @@
         (onChange)="_onChange($event)"
         (onFocus)="_onFocus($event)"
         (onBlur)="_onBlur($event)">
-        <ng-template pTemplate="icon" let-option *ngIf="iconTemplate">
-          <ng-container *ngTemplateOutlet="iconTemplate;context:{$implicit:option}"></ng-container>
-        </ng-template>
+        <ng-container *ngFor="let t of templates">
+          <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"></ng-container>
+          </ng-template>
+        </ng-container>
       </p-checkbox>
       <label [attr.for]="'id'+item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
         {{ item[optionLabel] }}

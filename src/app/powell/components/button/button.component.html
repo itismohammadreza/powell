@@ -22,13 +22,9 @@
   (onBlur)="emitter('onBlur',$event)"
 >
   <ng-content></ng-content>
-  <ng-template pTemplate="content" *ngIf="contentTemplate">
-    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
-  </ng-template>
-  <ng-template pTemplate="icon" *ngIf="iconTemplate">
-    <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
-  </ng-template>
-  <ng-template pTemplate="loadingIcon" *ngIf="loadingIconTemplate">
-    <ng-container *ngTemplateOutlet="loadingIconTemplate"></ng-container>
-  </ng-template>
+  <ng-container *ngFor="let t of templates">
+    <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
+      <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"></ng-container>
+    </ng-template>
+  </ng-container>
 </p-button>

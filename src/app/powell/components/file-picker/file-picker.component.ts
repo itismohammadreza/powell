@@ -125,14 +125,9 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
+  templateMap: Record<string, TemplateRef<any>> = {};
   selectedFiles: any[] = [];
   filesToEmit: any[] = [];
-  toolbarTemplate: TemplateRef<any>;
-  fileTemplate: TemplateRef<any>;
-  contentTemplate: TemplateRef<any>;
-  chooseIconTemplate: TemplateRef<any>;
-  uploadIconTemplate: TemplateRef<any>;
-  cancelIconTemplate: TemplateRef<any>;
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -180,32 +175,9 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      switch (item.getType()) {
-        case 'file':
-          this.fileTemplate = item.templateRef;
-          break;
-
-        case 'content':
-          this.contentTemplate = item.templateRef;
-          break;
-
-        case 'toolbar':
-          this.toolbarTemplate = item.templateRef;
-          break;
-
-        case 'chooseicon':
-          this.chooseIconTemplate = item.templateRef;
-          break;
-
-        case 'uploadicon':
-          this.uploadIconTemplate = item.templateRef;
-          break;
-
-        case 'cancelicon':
-          this.cancelIconTemplate = item.templateRef;
-          break;
-      }
-    })
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
+    });
   }
 
   _onRemove(event: PrimeFileRemoveEvent) {
