@@ -59,8 +59,13 @@
         (onBlur)="_onBlur($event)"
         (onInput)="_onInput($event)"
         (onKeydown)="emitter('onKeydown', $event)"
-        (onClear)="_onClear()"
-      ></p-inputMask>
+        (onClear)="_onClear()">
+        <ng-container *ngFor="let t of templates">
+          <ng-template [pTemplate]="t.getType()" *ngIf="templateMap[t.getType()]">
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()]"></ng-container>
+          </ng-template>
+        </ng-container>
+      </p-inputMask>
       <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
         {{ label | ngLabelStar:showRequiredStar:ngControl }}
       </label>

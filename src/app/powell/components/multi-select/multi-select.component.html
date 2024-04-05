@@ -106,8 +106,8 @@
         (onRemove)="emitter('onRemove', $event)"
         (onSelectAllChange)="emitter('onSelectAllChange', $event)">
         <ng-container *ngFor="let t of templates">
-          <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
-            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"></ng-container>
+          <ng-template [pTemplate]="t.getType()" let-item let-removeChip="removeChip" let-options="options" *ngIf="templateMap[t.getType()]">
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item,removeChip,options}"></ng-container>
           </ng-template>
         </ng-container>
       </p-multiSelect>
