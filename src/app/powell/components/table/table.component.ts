@@ -217,7 +217,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   sortIconTemplate: TemplateRef<any>;
   checkboxIconTemplate: TemplateRef<any>;
   headerCheckboxIconTemplate: TemplateRef<any>;
-  cellTemplates: { [key: string]: TemplateRef<any> } = {}
+  cellTemplates: Record<string, TemplateRef<any>> = {}
   loading: boolean;
   activeSortField: string;
 
