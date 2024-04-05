@@ -13,7 +13,7 @@
       'layout-vertical':orientation == 'vertical',
       'p-input-filled': filled
     }" class="checkbox-group-wrapper">
-  <div [attr.id]="inputId" class="field">
+  <div [attr.id]="id" class="field">
     <div *ngFor="let item of options" class="option-item">
       <p-checkbox
         [(ngModel)]="value"
@@ -47,7 +47,7 @@
   <label
     class="fix-label"
     *ngIf="label"
-    [attr.for]="inputId"
+    [attr.for]="id"
     [class.p-disabled]="disabled"
     [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
     [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">

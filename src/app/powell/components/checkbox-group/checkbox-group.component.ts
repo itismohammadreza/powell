@@ -58,7 +58,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() optionDisabled: string = 'disabled';
   @Input() orientation: NgOrientation = 'vertical';
   @Input() groupName: string = PrimeUniqueComponentId();
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() id: string = PrimeUniqueComponentId();
 
   // native properties
   @Input() set disabled(disabled: boolean) {

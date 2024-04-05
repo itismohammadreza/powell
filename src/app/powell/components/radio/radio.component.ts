@@ -58,7 +58,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
 
   @Input() name: string;
   @Input() tabindex: number;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() id: string = PrimeUniqueComponentId();
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
   @Input() style: NgCssObject;
