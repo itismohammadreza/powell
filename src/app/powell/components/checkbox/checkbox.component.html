@@ -3,7 +3,11 @@
      [(rtl)]="rtl"
      [(filled)]="filled"
      [(showRequiredStar)]="showRequiredStar"
-     [ngClass]="{ 'rtl': rtl, 'ltr': !rtl, 'p-input-filled': filled}" class="checkbox-wrapper">
+     [ngClass]="{
+       'rtl': rtl,
+       'ltr': !rtl,
+       'p-input-filled': filled
+     }" class="checkbox-wrapper">
   <div class="field">
     <p-checkbox
       [(ngModel)]="value"
@@ -25,8 +29,8 @@
       (onFocus)="_onFocus($event)"
       (onBlur)="_onBlur($event)">
       <ng-container *ngFor="let t of templates">
-        <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
-          <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"></ng-container>
+        <ng-template [pTemplate]="t.getType()" *ngIf="templateMap[t.getType()]">
+          <ng-container *ngTemplateOutlet="templateMap[t.getType()]"></ng-container>
         </ng-template>
       </ng-container>
     </p-checkbox>

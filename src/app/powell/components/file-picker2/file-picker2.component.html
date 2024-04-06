@@ -15,7 +15,7 @@
       type="file"
       onclick="this.value = null"
       [accept]="accept"
-      [attr.id]="inputId"
+      [attr.id]="id"
       [disabled]="disabled"
       (change)="_onSelect($event)"/>
 
@@ -69,7 +69,7 @@
   <label
     class="fix-label"
     *ngIf="label"
-    [attr.for]="inputId"
+    [attr.for]="id"
     [class.p-disabled]="disabled"
     [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
     [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">

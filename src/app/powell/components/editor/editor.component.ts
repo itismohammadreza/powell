@@ -77,7 +77,7 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   @Input() disabled: boolean;
   @Input() readonly: boolean;
   @Input() disableConfigChangeEffect: boolean;
-  @Input() inputId = PrimeUniqueComponentId();
+  @Input() inputId: string = PrimeUniqueComponentId();
   // native properties
   @Input() options: SunEditorOptions;
   @Input() onDrop_param: boolean = true;

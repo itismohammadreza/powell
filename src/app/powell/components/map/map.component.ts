@@ -75,7 +75,7 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
   @Input() clearIcon: string = 'pi pi-trash';
   @Input() disableConfigChangeEffect: boolean;
   @Input() selectionLimit: number;
-  @Input() inputId = PrimeUniqueComponentId();
+  @Input() id: string = PrimeUniqueComponentId();
   // native properties
   @Input() zoom: number = 10;
   @Input() center: LatLng = latLng(35.68419775656676, 51.38983726501465);

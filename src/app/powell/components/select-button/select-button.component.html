@@ -13,7 +13,7 @@
     <p-selectButton
       [(ngModel)]="value"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [attr.id]="inputId"
+      [attr.id]="id"
       [options]="options"
       [optionLabel]="optionLabel"
       [optionValue]="optionValue"
@@ -30,8 +30,8 @@
       (onChange)="_onChange($event)"
       (onOptionClick)="_onOptionClick($event)">
       <ng-container *ngFor="let t of templates">
-        <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
-          <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"></ng-container>
+        <ng-template [pTemplate]="t.getType()" *ngIf="templateMap[t.getType()]">
+          <ng-container *ngTemplateOutlet="templateMap[t.getType()]"></ng-container>
         </ng-template>
       </ng-container>
     </p-selectButton>
@@ -39,7 +39,7 @@
   <label
     class="fix-label"
     *ngIf="label"
-    [attr.for]="inputId"
+    [attr.for]="id"
     [class.p-disabled]="disabled"
     [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
     [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">

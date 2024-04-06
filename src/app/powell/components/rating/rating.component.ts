@@ -51,7 +51,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() id: string = PrimeUniqueComponentId();
   // native properties
   @Input() disabled: boolean;
   @Input() readonly: boolean = false;

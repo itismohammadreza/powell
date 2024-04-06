@@ -10,7 +10,7 @@
       'label-fix-side': labelPos == 'fix-side'
     }" class="iran-map-wrapper">
   <div class="field">
-    <div class="map" [attr.id]="inputId" [class.p-disabled]="disabled">
+    <div class="map" [attr.id]="id" [class.p-disabled]="disabled">
       <span class="title"></span>
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0"
            viewBox="20 0 970 960" enable-background="new 20 0 970 960" xml:space="preserve">
@@ -77,7 +77,7 @@
   <label
     class="fix-label"
     *ngIf="label"
-    [attr.for]="inputId"
+    [attr.for]="id"
     [class.p-disabled]="disabled"
     [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
     [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">

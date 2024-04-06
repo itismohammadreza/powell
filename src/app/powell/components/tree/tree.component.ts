@@ -75,7 +75,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
   @Input() items: any[];
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() id: string = PrimeUniqueComponentId();
   // native properties
   @Input() selectionMode: NgTreeSelectionMode;
   @Input() selection: any;

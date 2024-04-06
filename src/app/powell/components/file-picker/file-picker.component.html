@@ -11,7 +11,7 @@
     }" class="file-picker-wrapper">
   <div class="field">
     <p-fileUpload
-      [attr.id]="inputId"
+      [attr.id]="id"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [name]="name"
       [url]="url"
@@ -67,7 +67,7 @@
   <label
     class="fix-label"
     *ngIf="label"
-    [attr.for]="inputId"
+    [attr.for]="id"
     [class.p-disabled]="disabled"
     [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
     [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">

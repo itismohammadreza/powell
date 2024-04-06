@@ -55,7 +55,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() disableConfigChangeEffect: boolean;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() id: string = PrimeUniqueComponentId();
   // native properties
   @Input() options: any[];
   @Input() optionLabel: string;

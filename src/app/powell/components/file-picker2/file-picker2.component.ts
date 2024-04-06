@@ -68,7 +68,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() chooseLabel: string = 'انتخاب';
   @Input() invalidFileSizeMessage: string = 'سایز فایل نامعتبر است.';
   @Input() invalidFileTypeMessage: string = 'فرمت نامعتبر است.';
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() id: string = PrimeUniqueComponentId();
   @Output() onSelect = new EventEmitter<NgFilePickerSelectEvent>();
   @Output() onRemove = new EventEmitter<NgFilePickerRemoveEvent>();
 

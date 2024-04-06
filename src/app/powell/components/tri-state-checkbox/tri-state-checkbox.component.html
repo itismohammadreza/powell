@@ -20,8 +20,13 @@
       [readonly]="readonly"
       [checkboxTrueIcon]="checkboxTrueIcon"
       [checkboxFalseIcon]="checkboxFalseIcon"
-      (onChange)="_onChange($event)"
-    ></p-triStateCheckbox>
+      (onChange)="_onChange($event)">
+      <ng-container *ngFor="let t of templates">
+        <ng-template [pTemplate]="t.getType()" *ngIf="templateMap[t.getType()]">
+          <ng-container *ngTemplateOutlet="templateMap[t.getType()]"></ng-container>
+        </ng-template>
+      </ng-container>
+    </p-triStateCheckbox>
     <label
       [attr.for]="inputId"
       [class.p-disabled]="disabled">

@@ -12,7 +12,7 @@
   <div class="field" [ngAddon]="addon">
     <div>
       <p-tree
-        [attr.id]="inputId"
+        [attr.id]="id"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
         [value]="items"
         [selectionMode]="selectionMode"
@@ -62,8 +62,8 @@
         (onScrollIndexChange)="emitter('onScrollIndexChange', $event)"
         (onFilter)="emitter('onFilter', $event)">
         <ng-container *ngFor="let t of templates">
-          <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
-            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"></ng-container>
+          <ng-template [pTemplate]="t.getType()" let-item let-options="options" let-partialSelected="partialSelected" *ngIf="templateMap[t.getType()]">
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item,options,partialSelected}"></ng-container>
           </ng-template>
         </ng-container>
       </p-tree>
@@ -72,7 +72,7 @@
   <label
     class="fix-label"
     *ngIf="label"
-    [attr.for]="inputId"
+    [attr.for]="id"
     [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
     [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
     {{ label | ngLabelStar:showRequiredStar:ngControl }}

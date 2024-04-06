@@ -44,7 +44,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;
-  @Input() inputId = PrimeUniqueComponentId();
+  @Input() id: string = PrimeUniqueComponentId();
   @Input() showRequiredStar: boolean;
   @Input() labelPos: NgFixLabelPosition;
   @Input() disabled: boolean;
