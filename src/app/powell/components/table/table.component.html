@@ -456,7 +456,7 @@
     <ng-template pTemplate="groupheader" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing" let-frozen="frozen" *ngIf="groupHeaderTemplate">
       <ng-container *ngTemplateOutlet="groupHeaderTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
     </ng-template>
-    <ng-template pTemplate="groupfooter" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing" let-frozen="frozen" let-item *ngIf="groupFooterTemplate">
+    <ng-template pTemplate="groupfooter" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing" let-frozen="frozen" *ngIf="groupFooterTemplate">
       <ng-container *ngTemplateOutlet="groupFooterTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
     </ng-template>
     <ng-template pTemplate="frozenheader" *ngIf="frozenHeaderTemplate">
@@ -472,7 +472,7 @@
       <ng-container *ngTemplateOutlet="frozenColGroupTemplate"></ng-container>
     </ng-template>
     <ng-template pTemplate="frozenexpandedrow" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded" *ngIf="frozenColGroupTemplate">
-      <ng-container *ngTemplateOutlet="frozenColGroupTemplate;context:{$implicit:rowspan,rowgroup,expanded}"></ng-container>
+      <ng-container *ngTemplateOutlet="frozenColGroupTemplate;context:{rowspan,rowgroup,expanded}"></ng-container>
     </ng-template>
     <ng-template pTemplate="paginatorleft" *ngIf="paginatorLeftTemplate">
       <ng-container *ngTemplateOutlet="paginatorLeftTemplate"></ng-container>
