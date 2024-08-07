@@ -13,3 +13,7 @@
 - replace css colors with variables and make theme colors configurable
 - add new features of primeng to components
 - move themes and style files inside powell directory
+
+- change NgConfig model by extending primeng model
+- change config handler just like what do in react project
+- create datepicker base that locale based on shamsi and gregorian datepicker and use it in gregorian.datepicker and jalali.datepicker components for managing error and label etc.
