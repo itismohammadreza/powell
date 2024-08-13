@@ -222,7 +222,7 @@
   "showCloseIcon": "نمایش ایکن خروج",
   "inputCount": "تعداد اینپوت",
   "numbersOnly": "فقط اعداد",
-  "disableConfigChangeEffect": "غیرفعالسازی شنونده کانفیگ",
+  "followConfig": "تاثیرپذیری از کانفیگ گلوبال",
   "showRequiredStar": "نمایش ستاره ضروری",
   "addon": "پیشوند/پسوند",
   "selectiveSize": "سایز",

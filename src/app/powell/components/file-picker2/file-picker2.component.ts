@@ -62,7 +62,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() showRequiredStar: boolean;
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
   @Input() multiple: boolean = true;

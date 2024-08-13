@@ -22,7 +22,7 @@ export class FilePickerPage {
   rtl: boolean = this.configService.getConfig().rtl;
   showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
-  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  followConfig: boolean = this.configService.getConfig().followConfig;
   // native properties
   multiple: boolean = true;
   accept: string = 'image/*';

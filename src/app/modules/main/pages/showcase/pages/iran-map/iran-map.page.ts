@@ -23,7 +23,7 @@ export class IranMapPage {
   showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
   labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
   disabled: boolean = false;
-  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  followConfig: boolean = this.configService.getConfig().followConfig;
   selectionLimit: number = 31;
   multiple: boolean = false;
   async: boolean = false;

@@ -80,7 +80,7 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
   @Input() showClear: boolean;
   @Input() clearTooltip: string;
   @Input() clearIcon: string = 'pi pi-trash';
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   @Input() selectionLimit: number;
   @Input() id: string = PrimeUniqueComponentId();
   // native properties

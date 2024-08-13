@@ -69,7 +69,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   // native properties
   @Input() id: string;
   @Input() selectOnFocus: boolean = false;

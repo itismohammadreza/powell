@@ -56,7 +56,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
   @Input() validation: NgValidation;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   // native properties
   @Input() disabled: boolean;
   @Input() name: string;

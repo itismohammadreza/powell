@@ -15,7 +15,7 @@ export class EmptyComponent implements OnInit {
   @Input() imageSrc: string;
   @Input() text: string;
   @Input() rtl: boolean;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
 
   ngOnInit() {
     this.configService.applyConfigToComponent(this);

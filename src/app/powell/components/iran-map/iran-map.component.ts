@@ -59,7 +59,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   @Input() multiple: boolean = true;
   @Input() validation: NgValidation;
   @Input() disabledProvinces: number | number[];
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   @Input() selectionLimit: number;
   @Input() async: boolean;
   @Output() onClick = new EventEmitter<MouseEvent>();

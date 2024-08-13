@@ -56,7 +56,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   @Input() offLabel: string;
   @Input() async: boolean;
   @Input() showAsyncLoading: boolean = true;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   // native properties
   @Input() style: NgCssObject;
   @Input() styleClass: string;

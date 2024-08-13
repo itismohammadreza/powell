@@ -27,7 +27,7 @@ export class ChipsPage {
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
   inputSize: NgSize = this.configService.getConfig().inputSize;
-  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  followConfig: boolean = this.configService.getConfig().followConfig;
   // native properties
   max: number = 0;
   disabled: boolean = false;

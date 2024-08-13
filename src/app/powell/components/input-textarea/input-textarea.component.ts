@@ -61,7 +61,7 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   @Input() inputId: string = PrimeUniqueComponentId();
   @Input() rows: number;
   @Input() cols: number;

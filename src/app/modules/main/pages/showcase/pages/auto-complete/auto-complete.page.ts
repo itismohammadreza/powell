@@ -27,7 +27,7 @@ export class AutoCompletePage {
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
   inputSize: NgSize = this.configService.getConfig().inputSize;
-  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  followConfig: boolean = this.configService.getConfig().followConfig;
   // native properties
   scrollHeight: string = '200px';
   dropdown: boolean = false;

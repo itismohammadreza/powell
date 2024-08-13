@@ -13,7 +13,7 @@ export class ConfigService {
   private themeService = inject(ThemeService);
 
   private _config: NgConfig = {
-    disableConfigChangeEffect: false,
+    followConfig: true,
     rtl: false,
     fixLabelPos: 'fix-side',
     labelPos: 'fix-side',
@@ -101,7 +101,7 @@ export class ConfigService {
       Object.entries(modifiedConfig).forEach(([key, value]) => {
         let componentKey = this.getComponentConfigKey(key as keyof NgConfig);
         // component[componentKey] = initializedConfigs.includes(componentKey) ? component[componentKey] : value;
-        component[componentKey] = component.disableConfigChangeEffect ? component[componentKey] : value;
+        component[componentKey] = component.followConfig ? value : component[componentKey];
       })
     })
   }

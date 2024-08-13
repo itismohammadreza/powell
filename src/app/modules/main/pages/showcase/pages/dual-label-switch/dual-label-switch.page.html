@@ -13,7 +13,7 @@
       'disabled',
       'readonly',
       'async',
-      'disableConfigChangeEffect',
+      'followConfig',
       ]"
       [(label)]="label"
       [(labelWidth)]="labelWidth"
@@ -24,7 +24,7 @@
       [(disabled)]="disabled"
       [(readonly)]="readonly"
       [(async)]="async"
-      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(followConfig)]="followConfig"
     ></ng-preview-options>
   </p-panel>
 
@@ -42,7 +42,7 @@
         [disabled]="disabled"
         [readonly]="readonly"
         [async]="async"
-        [disableConfigChangeEffect]="disableConfigChangeEffect"
+        [followConfig]="followConfig"
         labelLeft="Left"
         labelRight="Right"
         (onChangeAsync)="onChangeAsync($event)"

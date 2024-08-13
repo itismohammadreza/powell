@@ -266,7 +266,7 @@ type PreviewItem =
   | 'showCloseIcon'
   | 'inputCount'
   | 'numbersOnly'
-  | 'disableConfigChangeEffect'
+  | 'followConfig'
   | 'showRequiredStar'
 
   | 'addon'
@@ -724,8 +724,8 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() inputCountChange = new EventEmitter();
   @Input() numbersOnly: boolean;
   @Output() numbersOnlyChange = new EventEmitter();
-  @Input() disableConfigChangeEffect: boolean;
-  @Output() disableConfigChangeEffectChange = new EventEmitter();
+  @Input() followConfig: boolean;
+  @Output() followConfigChange = new EventEmitter();
   @Input() showRequiredStar: boolean;
   @Output() showRequiredStarChange = new EventEmitter();
 
@@ -820,7 +820,7 @@ export class PreviewOptionsComponent implements OnInit {
     }
 
     this.configService.configChange$.subscribe(({modifiedConfig, currentConfig}) => {
-      if (this.disableConfigChangeEffect) {
+      if (!this.followConfig) {
         return
       }
       const equalization = {
@@ -830,7 +830,7 @@ export class PreviewOptionsComponent implements OnInit {
         filled: 'filled',
         inputSize: 'selectiveSize',
         showRequiredStar: 'showRequiredStar',
-        disableConfigChangeEffect: 'disableConfigChangeEffect',
+        followConfig: 'followConfig',
       }
       Object.entries(modifiedConfig).forEach(item => {
         const key = item[0];

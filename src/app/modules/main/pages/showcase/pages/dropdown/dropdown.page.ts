@@ -28,7 +28,7 @@ export class DropdownPage {
   addon: NgAddon;
   inputSize: NgSize = this.configService.getConfig().inputSize;
   async: boolean = false;
-  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  followConfig: boolean = this.configService.getConfig().followConfig;
   // native properties
   filter: boolean = false;
   disabled: boolean = false;

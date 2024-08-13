@@ -60,7 +60,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   // native properties
   @Input() type: NgInputType = 'text';
   @Input() slotChar: string = '_';

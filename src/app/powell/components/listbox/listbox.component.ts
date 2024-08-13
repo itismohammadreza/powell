@@ -67,7 +67,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() labelPos: NgFixLabelPosition;
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   // native properties
   @Input() id: string = PrimeUniqueComponentId();
   @Input() searchMessage: string;

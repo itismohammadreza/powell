@@ -83,7 +83,7 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   @Input() validation: NgValidation;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   @Input() inputId: string = PrimeUniqueComponentId();
   // native properties
   @Input() options: SunEditorOptions;

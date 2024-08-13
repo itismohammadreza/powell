@@ -14,7 +14,7 @@ export interface NgConfigChangeEvent {
 }
 
 export interface NgConfig extends Partial<PrimeConfig> {
-  disableConfigChangeEffect?: boolean;
+  followConfig?: boolean;
   rtl?: boolean;
   labelPos?: NgLabelPosition;
   fixLabelPos?: NgFixLabelPosition;

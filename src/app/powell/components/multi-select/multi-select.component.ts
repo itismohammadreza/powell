@@ -83,7 +83,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   // native properties
   @Input() id: string;
   @Input() ariaLabel: string;

@@ -60,7 +60,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() placeholder: string;

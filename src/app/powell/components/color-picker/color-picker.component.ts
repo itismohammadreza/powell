@@ -60,7 +60,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() readonly: boolean;
   @Input() maxlength: number = 7;
   @Input() placeholder: string;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   // native properties
   @Input() style: NgCssObject;
   @Input() styleClass: string;

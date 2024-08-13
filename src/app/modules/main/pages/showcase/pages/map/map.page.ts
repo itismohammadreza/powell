@@ -27,7 +27,7 @@ export class MapPage {
   multiple: boolean = false;
   clearMarkerOnClick: boolean = true;
   showClear: boolean = true;
-  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  followConfig: boolean = this.configService.getConfig().followConfig;
   // native properties
   readonly: boolean = false;
 }

@@ -65,7 +65,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   // native properties
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;

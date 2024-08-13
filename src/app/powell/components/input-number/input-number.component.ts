@@ -72,7 +72,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   // native properties
   @Input() showButtons: boolean = false;
   @Input() format: boolean = true;

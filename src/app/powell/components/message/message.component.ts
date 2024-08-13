@@ -25,7 +25,7 @@ export class MessageComponent implements OnInit, AfterContentInit {
   @Input() detail: string;
   @Input() icon: string;
   @Input() rtl: boolean;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   @Input() closable: boolean = true;
   @Input() style: NgCssObject;
   @Input() styleClass: string;

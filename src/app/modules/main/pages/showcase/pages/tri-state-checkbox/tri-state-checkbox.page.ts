@@ -20,7 +20,7 @@ export class TriStateCheckboxPage {
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;
   showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
-  disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
+  followConfig: boolean = this.configService.getConfig().followConfig;
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;

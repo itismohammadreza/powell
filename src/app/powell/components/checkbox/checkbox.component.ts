@@ -60,7 +60,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   @Input() offLabel: string;
   @Input() async: boolean;
   @Input() showAsyncLoading: boolean = true;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   // native properties
   @Input() disabled: boolean;
   @Input() binary: boolean = false;

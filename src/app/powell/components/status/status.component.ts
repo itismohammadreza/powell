@@ -13,5 +13,5 @@ export class StatusComponent {
   @Input() text: string;
   @Input() subText: string;
   @Input() rtl: boolean;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
 }

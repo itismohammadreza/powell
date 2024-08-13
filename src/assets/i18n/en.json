@@ -222,7 +222,7 @@
   "showCloseIcon": "Show Close Icon",
   "inputCount": "Input Count",
   "numbersOnly": "Numbers Only",
-  "disableConfigChangeEffect": "Disable Config Change Effect",
+  "followConfig": "Follow Config",
   "showRequiredStar": "Show Required Star",
   "addon": "Addon",
   "selectiveSize": "Selective Size",

@@ -80,7 +80,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
   @Input() async: boolean;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   // native properties
   @Input() id: string;
   @Input() scrollHeight: string = '200px';

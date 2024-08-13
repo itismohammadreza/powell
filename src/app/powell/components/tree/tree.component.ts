@@ -80,7 +80,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() labelPos: NgFixLabelPosition;
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() disableConfigChangeEffect: boolean;
+  @Input() followConfig: boolean;
   @Input() items: any[];
   @Input() id: string = PrimeUniqueComponentId();
   // native properties
