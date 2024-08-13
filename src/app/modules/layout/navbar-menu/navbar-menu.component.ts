@@ -1,10 +1,10 @@
-import {AfterContentInit, AfterViewChecked, Component, HostListener, Inject, Input, OnInit} from '@angular/core';
+import {AfterContentInit, AfterViewChecked, Component, HostListener, inject, Input, OnInit} from '@angular/core';
 import {CommonModule, DOCUMENT} from "@angular/common";
 import {LanguageChecker} from '@core/utils';
 import {SidebarType} from '@core/models';
 import {ConfigService, ThemeService} from "@powell/api";
 import {NgConfig} from "@powell/models";
-import {appConfig} from "@core/config";
+import {globalConfig} from "@core/config";
 import {PrimeMenuItem} from "@powell/primeng/api";
 import {
   PrimeAvatarModule,
@@ -48,6 +48,10 @@ import {routes} from "@modules/main/pages/showcase/showcase-routing.module";
   ]
 })
 export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterViewChecked, AfterContentInit {
+  private document = inject(DOCUMENT);
+  private themeService = inject(ThemeService);
+  private configService = inject(ConfigService);
+
   @Input() sidebarType: SidebarType = 'push-mask';
   @Input() sidebarVisible: boolean = false;
   @Input() sidebarLock: boolean = false; // overrides the sidebarVisible.
@@ -65,7 +69,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     inputSize: this.configService.getConfig().inputSize,
     ripple: this.configService.getConfig().ripple,
   }
-  lang: string = appConfig.lang;
+  lang: string = globalConfig.lang;
   tempSidebarType: SidebarType = 'push-mask';
   themes: PrimeMenuItem[];
   sidebarTypes: PrimeMenuItem[];
@@ -87,12 +91,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     } else if (this.document.defaultView.innerWidth >= this.responsiveThreshold) {
       this.changeSidebarType(this.sidebarType, false);
     }
-  }
-
-  constructor(@Inject(DOCUMENT) private document: Document,
-              private themeService: ThemeService,
-              private configService: ConfigService) {
-    super();
   }
 
   ngOnInit() {

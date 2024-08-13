@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgIconPosition, NgInputType, NgKeyFilter, NgLabelPosition, NgSize} from '@powell/models';
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./input-text.page.scss'],
 })
 export class InputTextPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.email, this.akbarValidator]),
   });
@@ -34,9 +36,6 @@ export class InputTextPage {
   type: NgInputType = 'text';
   keyFilter: NgKeyFilter | RegExp = /.*/g;
   showClear: boolean = true;
-
-  constructor(private configService: ConfigService) {
-  }
 
   akbarValidator(control: FormControl) {
     return control.value == 'akbar' ? {akbarDenied: true} : null

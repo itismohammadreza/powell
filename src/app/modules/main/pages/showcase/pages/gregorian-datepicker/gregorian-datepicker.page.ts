@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgSize} from "@powell/models";
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./gregorian-datepicker.page.scss']
 })
 export class GregorianDatepickerPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -52,7 +54,4 @@ export class GregorianDatepickerPage {
   view: 'date' | 'month' | 'year' = 'date';
   touchUI: boolean = false;
   showClear: boolean = false;
-
-  constructor(private configService: ConfigService) {
-  }
 }

@@ -1,20 +1,13 @@
-import {APP_INITIALIZER, Injector, NgModule} from '@angular/core';
-import {HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
-import {AuthInterceptor, HttpHandlerInterceptor} from '@core/interceptors';
 import {EnvServiceProvider, TranslationService} from "@core/utils";
-import {
-  initiateNgConfigProvider,
-  MomentService,
-  OverlayService,
-  PersianService,
-  UtilsService
-} from "@powell/api";
-import {appConfig, AppInjector} from "@core/config";
+import {initiateNgConfigProvider, MomentService, OverlayService, PersianService, UtilsService} from "@powell/api";
+import {globalConfig} from "@core/config";
 
 export function httpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 
 export function initiateLanguage(translationService: TranslationService) {
@@ -34,10 +27,8 @@ export function initiateLanguage(translationService: TranslationService) {
     })
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: HttpHandlerInterceptor, multi: true},
     {provide: APP_INITIALIZER, useFactory: initiateLanguage, deps: [TranslationService], multi: true},
-    initiateNgConfigProvider({rtl: appConfig.rtl}),
+    initiateNgConfigProvider({rtl: globalConfig.rtl}),
     EnvServiceProvider,
     MomentService,
     OverlayService,
@@ -46,7 +37,4 @@ export function initiateLanguage(translationService: TranslationService) {
   ],
 })
 export class CoreModule {
-  constructor(injector: Injector) {
-    AppInjector.set(injector);
-  }
 }

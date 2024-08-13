@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter} from '@angular/core';
+import {Component, ElementRef, EventEmitter, inject} from '@angular/core';
 import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult, NgValidation} from "@powell/models";
 import {ConfigService} from "@powell/api";
@@ -10,6 +10,9 @@ import {PrimeDomHandler} from "@powell/primeng/api";
   styleUrls: ['./dialog-form.component.scss'],
 })
 export class DialogFormComponent {
+  private el = inject(ElementRef);
+  private configService = inject(ConfigService);
+
   form: FormGroup;
   visible: boolean;
   loadingCallback: VoidFunction;
@@ -18,9 +21,6 @@ export class DialogFormComponent {
   onSubmit = new EventEmitter<NgDialogFormResult>();
   onClose = new EventEmitter<void>();
   disableReject: boolean;
-
-  constructor(private el: ElementRef, private configService: ConfigService) {
-  }
 
   set config(value: NgDialogFormConfig[]) {
     this._config = value;

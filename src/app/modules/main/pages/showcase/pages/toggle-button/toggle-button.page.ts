@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgFixLabelPosition, NgIconPosition} from "@powell/models";
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./toggle-button.page.scss'],
 })
 export class ToggleButtonPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.requiredTrue]),
   });
@@ -28,7 +30,4 @@ export class ToggleButtonPage {
   offIcon: string = 'pi pi-times';
   iconPos: NgIconPosition = 'left';
   disabled: boolean = false;
-
-  constructor(private configService: ConfigService) {
-  }
 }

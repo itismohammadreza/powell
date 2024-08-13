@@ -1,12 +1,11 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import {inject, Pipe, PipeTransform} from '@angular/core';
 import {UtilsService} from "@powell/api";
 
 @Pipe({
   name: 'ngFileName'
 })
 export class FileNamePipe implements PipeTransform {
-  constructor(private utilsService: UtilsService) {
-  }
+  private utilsService = inject(UtilsService);
 
   transform(value: any) {
     if (value) {

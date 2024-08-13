@@ -1,4 +1,13 @@
-import {AfterContentInit, Component, ContentChildren, Input, OnInit, QueryList, TemplateRef} from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ContentChildren,
+  inject,
+  Input,
+  OnInit,
+  QueryList,
+  TemplateRef
+} from '@angular/core';
 import {TemplateDirective} from "@powell/directives/template";
 import {NgCssObject} from "@powell/models";
 import {ConfigService} from "@powell/api";
@@ -9,6 +18,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./message.component.scss'],
 })
 export class MessageComponent implements OnInit, AfterContentInit {
+  private configService = inject(ConfigService);
+
   @Input() inlineMessage: string;
   @Input() summary: string;
   @Input() detail: string;
@@ -28,9 +39,6 @@ export class MessageComponent implements OnInit, AfterContentInit {
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   templateMap: Record<string, TemplateRef<any>> = {};
-
-  constructor(private configService: ConfigService) {
-  }
 
   ngOnInit() {
     this.configService.applyConfigToComponent(this);

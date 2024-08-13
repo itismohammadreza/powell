@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ElementRef, Inject, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, inject, OnDestroy, OnInit} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 
 @Component({
@@ -8,8 +8,8 @@ import {DOCUMENT} from "@angular/common";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Dialog2Component implements OnInit, OnDestroy {
-  constructor(private element: ElementRef, @Inject(DOCUMENT) private document: Document) {
-  }
+  private document = inject(DOCUMENT);
+  private element = inject(ElementRef);
 
   ngOnInit() {
     this.document.body.appendChild(this.element.nativeElement);

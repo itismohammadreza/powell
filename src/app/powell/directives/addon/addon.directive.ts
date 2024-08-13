@@ -1,17 +1,16 @@
-import {Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
+import {Directive, ElementRef, inject, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
 import {NgAddon, NgAddonConfig, NgSize} from '@powell/models';
 
 @Directive({
   selector: '[ngAddon]'
 })
 export class AddonDirective implements OnChanges {
+  private renderer = inject(Renderer2);
+  private el = inject(ElementRef);
+
   @Input() ngAddon: NgAddon;
   @Input() addonDisabled: boolean;
   @Input() addonSize: NgSize = 'md';
-
-  constructor(private renderer: Renderer2,
-              private el: ElementRef) {
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     this.destroy();

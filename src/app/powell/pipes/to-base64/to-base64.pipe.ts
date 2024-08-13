@@ -1,4 +1,4 @@
-import {Input, Pipe, PipeTransform} from '@angular/core';
+import {inject, Input, Pipe, PipeTransform} from '@angular/core';
 import {Observable} from 'rxjs';
 import {UtilsService} from "@powell/api";
 
@@ -6,10 +6,9 @@ import {UtilsService} from "@powell/api";
   name: 'ngToBase64'
 })
 export class ToBase64Pipe implements PipeTransform {
-  @Input() isUnknownImageUrl: boolean;
+  private utilsService = inject(UtilsService);
 
-  constructor(private utilsService: UtilsService) {
-  }
+  @Input() isUnknownImageUrl: boolean;
 
   transform(value: any) {
     return this.initImage(value);

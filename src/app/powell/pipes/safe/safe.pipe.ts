@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import {inject, Pipe, PipeTransform} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 
 type TrustType = 'html' | 'style' | 'script' | 'url' | 'resourceUrl';
@@ -7,8 +7,7 @@ type TrustType = 'html' | 'style' | 'script' | 'url' | 'resourceUrl';
   name: 'ngSafe'
 })
 export class SafePipe implements PipeTransform {
-  constructor(protected sanitizer: DomSanitizer) {
-  }
+  protected sanitizer = inject(DomSanitizer);
 
   transform(value: string, type: TrustType = 'html') {
     switch (type) {

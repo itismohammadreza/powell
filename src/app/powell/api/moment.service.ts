@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import * as moment from "moment";
+import moment from "moment";
 import {DurationInputArg1, DurationInputArg2, Moment} from "moment";
-import * as jalaliMoment from "jalali-moment";
+import jalaliMoment from "jalali-moment";
 import {MomentFormatSpecification, MomentInput} from "jalali-moment";
 
 @Injectable()

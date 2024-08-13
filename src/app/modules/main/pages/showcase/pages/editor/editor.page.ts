@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgFixLabelPosition} from '@powell/models';
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./editor.page.scss'],
 })
 export class EditorPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -24,7 +26,4 @@ export class EditorPage {
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;
-
-  constructor(private configService: ConfigService) {
-  }
 }

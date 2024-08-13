@@ -2,7 +2,7 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  Inject,
+  inject,
   Input,
   OnChanges,
   OnDestroy,
@@ -17,6 +17,10 @@ import {DOCUMENT, isPlatformBrowser} from '@angular/common';
   selector: '[ngClickOutside]',
 })
 export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
+  private document = inject(DOCUMENT);
+  private platformId = inject(PLATFORM_ID);
+  private _el = inject(ElementRef);
+
   @Input() attachOutsideOnClick: boolean = false;
   @Input() delayClickOutsideInit: boolean = false;
   @Input() exclude: string = '';
@@ -27,10 +31,7 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
   _nodesExcluded: Array<HTMLElement> = [];
   _events: Array<string> = ['click'];
 
-  constructor(private _el: ElementRef,
-              @Inject(PLATFORM_ID) protected platformId: any,
-              @Inject(DOCUMENT) private document: Document) {
-
+  constructor() {
     this._initOnClickBody = this._initOnClickBody.bind(this);
     this._onClickBody = this._onClickBody.bind(this);
   }

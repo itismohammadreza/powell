@@ -7,7 +7,7 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
-  Inject,
+  inject,
   Input,
   Output,
   QueryList,
@@ -41,6 +41,11 @@ import {DOCUMENT} from "@angular/common";
   }
 })
 export class ImageComponent implements AfterContentInit {
+  private document = inject(DOCUMENT);
+  private configService = inject(ConfigService);
+  private cd = inject(ChangeDetectorRef);
+  public el = inject(ElementRef);
+
   @Input() imageClass: string;
   @Input() imageStyle: NgCssObject;
   @Input() styleClass: string;
@@ -105,6 +110,12 @@ export class ImageComponent implements AfterContentInit {
   previewClick: boolean = false;
   container: HTMLElement;
   wrapper: HTMLElement;
+  zoomSettings = {
+    default: 1,
+    step: 0.1,
+    max: 1.5,
+    min: 0.5
+  };
 
   get isZoomOutDisabled(): boolean {
     return this.scale - this.zoomSettings.step <= this.zoomSettings.min;
@@ -112,18 +123,6 @@ export class ImageComponent implements AfterContentInit {
 
   get isZoomInDisabled(): boolean {
     return this.scale + this.zoomSettings.step >= this.zoomSettings.max;
-  }
-
-  private zoomSettings = {
-    default: 1,
-    step: 0.1,
-    max: 1.5,
-    min: 0.5
-  };
-
-  constructor(@Inject(DOCUMENT) private document: Document,
-              private configService: ConfigService,
-              private cd: ChangeDetectorRef, public el: ElementRef) {
   }
 
   ngAfterContentInit() {
@@ -312,7 +311,7 @@ export class ImageComponent implements AfterContentInit {
     return this.getTranslation().aria ? this.getTranslation().aria.close : undefined;
   }
 
-  getTranslation(){
+  getTranslation() {
     return this.configService.getConfig().translation;
   }
 

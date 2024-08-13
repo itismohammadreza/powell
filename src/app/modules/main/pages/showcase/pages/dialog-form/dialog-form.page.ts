@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {ConfigService, OverlayService} from "@powell/api";
 import {NgDialogFormOptions} from "@powell/models";
 import {FormControl, Validators} from "@angular/forms";
@@ -12,6 +12,10 @@ import {DestroyService} from "@core/utils";
   providers: [DestroyService]
 })
 export class DialogFormPage {
+  private overlayService = inject(OverlayService);
+  private configService = inject(ConfigService);
+  private destroy$ = inject(DestroyService);
+
   dialogForm: NgDialogFormOptions = {
     header: 'Dialog',
     draggable: false,
@@ -41,11 +45,6 @@ export class DialogFormPage {
   }
 
   flag = false;
-
-  constructor(private overlayService: OverlayService,
-              private configService: ConfigService,
-              private destroy$: DestroyService) {
-  }
 
   showDialogForm() {
     this.overlayService.showDialogForm(

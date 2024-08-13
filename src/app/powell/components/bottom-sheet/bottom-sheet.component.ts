@@ -4,6 +4,7 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
+  inject,
   Input,
   OnInit,
   Output,
@@ -23,6 +24,8 @@ import {PrimeUniqueComponentId} from "@powell/primeng/api";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BottomSheetComponent implements OnInit, AfterContentInit {
+  private overlayService = inject(OverlayService);
+
   @Input() header: string;
   @Input() gutter: boolean = true;
   // native properties
@@ -49,9 +52,6 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   state: NgHistoryState = {
     component: 'bottomSheet',
     key: PrimeUniqueComponentId()
-  }
-
-  constructor(private overlayService: OverlayService) {
   }
 
   ngOnInit() {

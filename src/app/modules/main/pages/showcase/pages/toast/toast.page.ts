@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {NgToastOptions} from "@powell/models";
 import {ConfigService, OverlayService} from "@powell/api";
 
@@ -8,6 +8,9 @@ import {ConfigService, OverlayService} from "@powell/api";
   styleUrls: ['./toast.page.scss']
 })
 export class ToastPage {
+  private configService = inject(ConfigService);
+  private overlayService = inject(OverlayService);
+
   toast: NgToastOptions = {
     life: 3000,
     sticky: false,
@@ -19,9 +22,6 @@ export class ToastPage {
     detail: 'Some Detail',
     preventDuplicates: false,
     position: 'top-right'
-  }
-
-  constructor(private overlayService: OverlayService, private configService: ConfigService) {
   }
 
   showToast() {

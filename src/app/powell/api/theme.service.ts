@@ -1,14 +1,14 @@
-import {Inject, Injectable} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import {DOCUMENT} from "@angular/common";
 import {NgTheme} from "@powell/models";
 
 // DON'T provide anywhere. will provide automatically after `initiateNgConfigProvider` call.
 @Injectable()
 export class ThemeService {
-  constructor(@Inject(DOCUMENT) private document: Document) {
-  }
+  private document = inject(DOCUMENT);
 
   private _currentTheme: NgTheme;
+  private initialized: boolean = false;
   private _allThemes: NgTheme[] = [
     'arya-blue',
     'arya-green',
@@ -54,7 +54,6 @@ export class ThemeService {
     'viva-dark',
     'viva-light',
   ]
-  private initialized: boolean = false;
 
   changeTheme(theme: NgTheme) {
     if (!this.initialized) {

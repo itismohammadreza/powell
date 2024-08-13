@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgAddon, NgFixLabelPosition} from "@powell/models";
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./map.page.scss'],
 })
 export class MapPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -28,7 +30,4 @@ export class MapPage {
   disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
   // native properties
   readonly: boolean = false;
-
-  constructor(private configService: ConfigService) {
-  }
 }

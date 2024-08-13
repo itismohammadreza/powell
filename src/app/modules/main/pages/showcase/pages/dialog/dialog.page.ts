@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {ConfigService, OverlayService} from "@powell/api";
 import {NgDialogOptions} from "@powell/models";
 
@@ -8,6 +8,9 @@ import {NgDialogOptions} from "@powell/models";
   styleUrls: ['./dialog.page.scss']
 })
 export class DialogPage {
+  private overlayService = inject(OverlayService);
+  private configService = inject(ConfigService);
+
   dialog: NgDialogOptions = {
     header: 'Dialog',
     draggable: false,
@@ -29,9 +32,6 @@ export class DialogPage {
     buttonSize: 'md',
     rtl: this.configService.getConfig().rtl,
     content: 'Some content inside dialog.',
-  }
-
-  constructor(private overlayService: OverlayService, private configService: ConfigService) {
   }
 
   showDialog() {

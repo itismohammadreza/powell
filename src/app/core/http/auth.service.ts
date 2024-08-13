@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {lastValueFrom} from "rxjs";
 import {ApiService} from '@core/http';
@@ -9,10 +9,7 @@ import {ApiService} from '@core/http';
 export class AuthService extends ApiService {
   private readonly endpoint: string = 'auth';
   private _currentUser: any;
-
-  constructor(private router: Router) {
-    super();
-  }
+  private router = inject(Router);
 
   set currentUser(data: any) {
     this._currentUser = data;

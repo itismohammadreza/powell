@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 
 @Component({
@@ -7,8 +7,7 @@ import {DOCUMENT} from "@angular/common";
   styleUrls: ['./emoji.component.scss']
 })
 export class EmojiComponent implements OnInit {
-  constructor(@Inject(DOCUMENT) private document: Document) {
-  }
+  private document = inject(DOCUMENT);
 
   ngOnInit() {
     const emoji = this.document.querySelector<HTMLDivElement>('.wrapper');

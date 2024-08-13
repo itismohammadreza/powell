@@ -3,7 +3,7 @@ import {
   Component,
   ContentChildren,
   ElementRef,
-  EventEmitter,
+  EventEmitter, inject,
   Input,
   OnDestroy,
   Output,
@@ -19,6 +19,8 @@ import {TemplateDirective} from "@powell/directives/template";
   styleUrls: ['./infinite-scroll.component.scss']
 })
 export class InfiniteScrollComponent implements AfterContentInit, OnDestroy {
+  private el = inject(ElementRef);
+
   @Input() data: any[];
   @Input() spinnerWidth: string = '40px';
   @Output() scrolled = new EventEmitter<Function>();
@@ -28,9 +30,6 @@ export class InfiniteScrollComponent implements AfterContentInit, OnDestroy {
   loading: boolean;
   templateMap: Record<string, TemplateRef<any>> = {};
   observer: IntersectionObserver;
-
-  constructor(private el: ElementRef) {
-  }
 
   ngAfterContentInit() {
     this.templates.forEach(item => {

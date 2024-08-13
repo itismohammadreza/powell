@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgFixLabelPosition} from '@powell/models';
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./knob.page.scss'],
 })
 export class KnobPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -34,7 +36,4 @@ export class KnobPage {
   strokeWidth: number = 14;
   showValue: boolean = true;
   valueTemplate: string = '{value}';
-
-  constructor(private configService: ConfigService) {
-  }
 }

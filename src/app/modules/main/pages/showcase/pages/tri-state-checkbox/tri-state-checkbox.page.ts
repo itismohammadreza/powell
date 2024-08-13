@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ConfigService} from "@powell/api";
 
@@ -8,6 +8,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./tri-state-checkbox.page.scss']
 })
 export class TriStateCheckboxPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -22,7 +24,4 @@ export class TriStateCheckboxPage {
   // native properties
   disabled: boolean = false;
   readonly: boolean = false;
-
-  constructor(private configService: ConfigService) {
-  }
 }

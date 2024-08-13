@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {NgSize, NgTableActionsConfig, NgTableColDef} from '@powell/models';
-import {DataService} from "@core/http";
 import {ConfigService} from "@powell/api";
+import {DataService} from "@core/http";
 
 interface Customer {
   id: any,
@@ -24,6 +24,9 @@ interface Customer {
   styleUrls: ['./table.page.scss'],
 })
 export class TablePage {
+  private configService = inject(ConfigService);
+  private dataService = inject(DataService);
+
   rtl: boolean = this.configService.getConfig().rtl;
   size: NgSize = 'md';
   header: string = 'Customers';
@@ -382,9 +385,6 @@ export class TablePage {
   selectAll: boolean = false;
   customers: Customer[];
 
-  constructor(private userService: DataService, private configService: ConfigService) {
-  }
-
   onRowSelect(event: any) {
   }
 
@@ -406,7 +406,7 @@ export class TablePage {
       globalFilter: event.globalFilter
     }
     setTimeout(() => {
-      this.userService.getCustomers({lazyEvent: JSON.stringify(filters)}).then(res => {
+      this.dataService.getCustomers({lazyEvent: JSON.stringify(filters)}).then(res => {
         this.customers = res.customers;
         this.totalRecords = res.totalRecords;
         loadingCallback()
@@ -423,7 +423,7 @@ export class TablePage {
     const checked = event.checked;
 
     if (checked) {
-      this.userService.getCustomers().then(res => {
+      this.dataService.getCustomers().then(res => {
         this.selectedCustomers = res.customers;
         this.selectAll = true;
       });

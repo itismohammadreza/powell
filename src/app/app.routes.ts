@@ -1,5 +1,4 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { Routes } from '@angular/router';
 import {NotFoundPage} from "@modules/layout/not-found/not-found.page";
 
 export const routes: Routes = [
@@ -22,16 +21,3 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {
-      initialNavigation: 'enabledBlocking',
-      scrollPositionRestoration: 'top',
-      useHash: true
-    }),
-  ],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {
-}

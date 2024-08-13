@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgColorFormat, NgIconPosition, NgLabelPosition, NgSize} from '@powell/models';
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./color-picker.page.scss']
 })
 export class ColorPickerPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -32,7 +34,4 @@ export class ColorPickerPage {
   maxlength: number = 7;
   inline: boolean = false;
   format: NgColorFormat = 'hex';
-
-  constructor(private configService: ConfigService) {
-  }
 }

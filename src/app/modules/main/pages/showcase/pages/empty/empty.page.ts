@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {NgEmptyIcon} from "@powell/models";
 import {ConfigService} from "@powell/api";
 
@@ -8,8 +8,7 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./empty.page.scss']
 })
 export class EmptyPage {
-  constructor(private configService: ConfigService) {
-  }
+  private configService = inject(ConfigService);
 
   imageType: NgEmptyIcon = 'box1';
   icon: string = '';

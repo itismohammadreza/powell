@@ -1,4 +1,4 @@
-import {ApplicationRef, ComponentRef, createComponent, Inject, Injectable, Injector, Type} from '@angular/core';
+import {ApplicationRef, ComponentRef, createComponent, inject, Injectable, Injector, Type} from '@angular/core';
 import {Router} from "@angular/router";
 import {DOCUMENT, LocationStrategy} from '@angular/common';
 import {Observable, Subject} from "rxjs";
@@ -27,11 +27,21 @@ import {
   PrimeConfirmationService,
   PrimeConfirmEventType,
   PrimeMessage,
-  PrimeMessageService, PrimeUniqueComponentId
+  PrimeMessageService,
+  PrimeUniqueComponentId
 } from "@powell/primeng/api";
 
 @Injectable()
 export class OverlayService {
+  private document = inject(DOCUMENT);
+  private confirmationService = inject(PrimeConfirmationService);
+  private messageService = inject(PrimeMessageService);
+  private injector = inject(Injector);
+  private appRef = inject(ApplicationRef);
+  private router = inject(Router);
+  private location = inject(LocationStrategy);
+  private configService = inject(ConfigService);
+
   private toastCmpRef: ComponentRef<PrimeToast>;
   private confirmPopupCmpRef: ComponentRef<PrimeConfirmPopup>;
   private confirmCmpRef: ComponentRef<PrimeConfirmDialog>;
@@ -41,16 +51,7 @@ export class OverlayService {
   private states: NgHistoryState[] = [];
   private stateChangeSubject = new Subject<NgHistoryState>();
 
-  constructor(
-      private confirmationService: PrimeConfirmationService,
-      private messageService: PrimeMessageService,
-      private injector: Injector,
-      private appRef: ApplicationRef,
-      private router: Router,
-      private location: LocationStrategy,
-      @Inject(DOCUMENT) private document: Document,
-      private configService: ConfigService
-  ) {
+  constructor() {
     this.location.onPopState((e) => {
       const currentState = this.states.pop();
       if (!currentState) {

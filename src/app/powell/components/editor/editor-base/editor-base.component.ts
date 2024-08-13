@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, NgZone, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, inject, Input, NgZone, Output} from '@angular/core';
 import sunEditor from 'suneditor';
 import {SunEditorOptions} from "suneditor/src/options";
 import {Context} from 'suneditor/src/lib/context';
@@ -18,6 +18,8 @@ import SunEditor, {
   styleUrls: ['./editor-base.component.scss']
 })
 export class EditorBaseComponent implements AfterViewInit {
+  private ngZone = inject(NgZone);
+
   // The editor instance that is returned on create
   private editor: SunEditor;
 
@@ -246,47 +248,47 @@ export class EditorBaseComponent implements AfterViewInit {
   /**
    *  When reloaded with the "setOptions" method
    */
-  @Output() onload = new EventEmitter<{ core: Core; reload: boolean }>();
+  @Output() onload = new EventEmitter<{core: Core; reload: boolean}>();
 
   /**
    * Scroll event
    */
-  @Output() onScroll = new EventEmitter<{ e: Event; core: Core }>();
+  @Output() onScroll = new EventEmitter<{e: Event; core: Core}>();
 
   /**
    * Mouse down
    */
-  @Output() onMouseDown = new EventEmitter<{ e: Event; core: Core }>();
+  @Output() onMouseDown = new EventEmitter<{e: Event; core: Core}>();
 
   /**
    * clicked
    */
-  @Output() onClick = new EventEmitter<{ e: Event; core: Core }>();
+  @Output() onClick = new EventEmitter<{e: Event; core: Core}>();
 
   /**
    * Wysiwyg editor area Input event
    */
-  @Output() onInput = new EventEmitter<{ e: Event; core: Core }>();
+  @Output() onInput = new EventEmitter<{e: Event; core: Core}>();
 
   /**
    * keydown event
    */
-  @Output() onKeyDown = new EventEmitter<{ e: Event; core: Core }>();
+  @Output() onKeyDown = new EventEmitter<{e: Event; core: Core}>();
 
   /**
    * keyup event
    */
-  @Output() onKeyUp = new EventEmitter<{ e: Event; core: Core }>();
+  @Output() onKeyUp = new EventEmitter<{e: Event; core: Core}>();
 
   /**
    * Focus event
    */
-  @Output() onFocus = new EventEmitter<{ e: Event; core: Core }>();
+  @Output() onFocus = new EventEmitter<{e: Event; core: Core}>();
 
   /**
    * Blur event
    */
-  @Output() onBlur = new EventEmitter<{ e: Event; core: Core }>();
+  @Output() onBlur = new EventEmitter<{e: Event; core: Core}>();
 
   /**
    * Called when the editor is resized using the bottom bar
@@ -459,11 +461,6 @@ export class EditorBaseComponent implements AfterViewInit {
     clipboardData: any;
     core: Core;
   }>();
-
-  constructor(
-    private ngZone: NgZone,
-  ) {
-  }
 
   ngAfterViewInit() {
     this.ngZone.runOutsideAngular(() => {

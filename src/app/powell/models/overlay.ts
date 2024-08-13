@@ -191,7 +191,7 @@ interface NgDialogBase {
   breakpoints?: any;
   styleClass?: string;
   maskStyleClass?: string;
-  maskStyle?: string;
+  maskStyle?: NgCssObject;
   showHeader?: boolean;
   breakpoint?: number;
   blockScroll?: boolean;

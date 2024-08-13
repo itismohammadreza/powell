@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   forwardRef,
+  inject,
   Injector,
   Input,
   OnChanges,
@@ -47,6 +48,12 @@ import {PrimeUniqueComponentId} from "@powell/primeng/api";
   ]
 })
 export class FilePicker2Component implements OnInit, OnChanges, ControlValueAccessor {
+  private cd = inject(ChangeDetectorRef);
+  private injector = inject(Injector);
+  private configService = inject(ConfigService);
+  private destroy$ = inject(DestroyService);
+  private utilsService = inject(UtilsService);
+
   @Input() value: any = [];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -73,7 +80,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Output() onRemove = new EventEmitter<NgFilePickerRemoveEvent>();
 
   ngControl: NgControl;
-  filesToShow: { display: string | ArrayBuffer, name: string }[] = [];
+  filesToShow: {display: string | ArrayBuffer, name: string}[] = [];
   filesToEmit: (string | ArrayBuffer | File)[] = [];
   _chooseLabel: string;
   invalidFileSize: boolean;
@@ -82,15 +89,6 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   };
   onModelTouched: Function = () => {
   };
-
-  constructor(
-    private cd: ChangeDetectorRef,
-    private injector: Injector,
-    private utilsService: UtilsService,
-    private configService: ConfigService,
-    private destroy$: DestroyService
-  ) {
-  }
 
   ngOnInit() {
     //store user defined label for single selection mode

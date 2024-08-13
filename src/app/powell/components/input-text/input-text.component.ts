@@ -4,6 +4,7 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
+  inject,
   Injector,
   Input,
   OnInit,
@@ -49,6 +50,13 @@ import {PrimeUniqueComponentId} from "@powell/primeng/api";
   ]
 })
 export class InputTextComponent implements OnInit, ControlValueAccessor {
+  private cd = inject(ChangeDetectorRef);
+  private injector = inject(Injector);
+  private configService = inject(ConfigService);
+  private destroy$ = inject(DestroyService);
+  private el = inject(ElementRef);
+  private utilsService = inject(UtilsService);
+
   @Input() value: any;
   @Input() label: string;
   @Input() ariaLabelledBy: string;
@@ -95,22 +103,14 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   onModelTouched: Function = () => {
   };
 
-  constructor(private cd: ChangeDetectorRef,
-              private injector: Injector,
-              private el: ElementRef,
-              private utilsService: UtilsService,
-              private configService: ConfigService,
-              private destroy$: DestroyService) {
-  }
-
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-        ControlContainer,
-        null,
-        {optional: true, host: true, skipSelf: true}
+      ControlContainer,
+      null,
+      {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {

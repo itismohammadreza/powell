@@ -8,7 +8,7 @@ export interface AnimationDefinition {
   [key: string]: AnimationTransitionMetadata[]
 }
 
-export interface AppConfig {
+export interface GlobalConfig {
   readonly lang: string;
   readonly rtl: boolean;
   readonly requestTimeout: number;

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {OverlayService, PersianService, UtilsService} from "@powell/api";
 import {DataService} from "@core/http";
 import {
@@ -13,16 +13,18 @@ import {DestroyService} from "@core/utils";
   styleUrls: ['./utils.page.scss'],
   providers: [DestroyService]
 })
-export class UtilsPage {
+export class UtilsPage implements OnInit {
+  private dataService = inject(DataService);
+  private overlayService = inject(OverlayService);
+  private persianService = inject(PersianService);
+  private utilsService = inject(UtilsService);
+  private destroy$ = inject(DestroyService);
+
   customDynamicDialogResult: any;
   persianWord: string;
   networkStatus: string;
 
-  constructor(private userService: DataService,
-              private overlayService: OverlayService,
-              private persianService: PersianService,
-              private utilsService: UtilsService,
-              private destroy$: DestroyService) {
+  ngOnInit() {
     this.utilsService.checkOnlineState().subscribe(res => {
       this.networkStatus = res ? 'online' : 'offline';
     })
@@ -38,7 +40,7 @@ export class UtilsPage {
 
   async request({loadingCallback}) {
     try {
-      await this.userService.get();
+      await this.dataService.get();
       loadingCallback();
     } catch {
       loadingCallback();

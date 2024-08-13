@@ -2,6 +2,7 @@ import {
   Component,
   ComponentRef,
   EventEmitter,
+  inject,
   Input,
   OnInit,
   Output,
@@ -285,6 +286,10 @@ type PreviewItem =
   providers: [DestroyService]
 })
 export class PreviewOptionsComponent implements OnInit {
+  private translationService = inject(TranslationService);
+  private configService = inject(ConfigService);
+  private destroy$ = inject(DestroyService);
+
   @Input() label: string;
   @Output() labelChange = new EventEmitter()
   @Input() filled: boolean;
@@ -757,11 +762,6 @@ export class PreviewOptionsComponent implements OnInit {
   @Input() previewItems: PreviewItem[]
 
   cmpRefs: ComponentRef<any>[] = [];
-
-  constructor(private translationService: TranslationService,
-              private configService: ConfigService,
-              private destroy$: DestroyService) {
-  }
 
   ngOnInit() {
     const dropdownData = {

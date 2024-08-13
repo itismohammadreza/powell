@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   forwardRef,
+  inject,
   Injector,
   Input,
   OnChanges,
@@ -59,6 +60,11 @@ import {ConfigService} from "@powell/api";
   ]
 })
 export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
+  private cd = inject(ChangeDetectorRef);
+  private injector = inject(Injector);
+  private configService = inject(ConfigService);
+  private destroy$ = inject(DestroyService);
+
   @Input() value: LatLngLiteral | LatLngLiteral[];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -165,12 +171,6 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
   };
   onModelTouched: Function = () => {
   };
-
-  constructor(private cd: ChangeDetectorRef,
-              private injector: Injector,
-              private configService: ConfigService,
-              private destroy$: DestroyService) {
-  }
 
   ngOnInit() {
     let parentForm: FormGroup;

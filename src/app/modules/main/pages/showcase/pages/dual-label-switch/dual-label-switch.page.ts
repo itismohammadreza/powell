@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgFixLabelPosition} from "@powell/models";
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./dual-label-switch.page.scss']
 })
 export class DualLabelSwitchPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -27,9 +29,6 @@ export class DualLabelSwitchPage {
   disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
 
   asyncFlag = false;
-
-  constructor(private configService: ConfigService) {
-  }
 
   onChangeAsync({loadingCallback}) {
     this.asyncFlag = !this.asyncFlag;

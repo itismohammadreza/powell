@@ -4,6 +4,7 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
+  inject,
   Injector,
   Input,
   OnInit,
@@ -23,7 +24,6 @@ import {takeUntil} from "rxjs";
 import {NgAddon, NgCssObject, NgIconPosition, NgLabelPosition, NgValidation} from '@powell/models';
 import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
-import * as events from "events";
 import {PrimeUniqueComponentId} from "@powell/primeng/api";
 
 @Component({
@@ -40,6 +40,13 @@ import {PrimeUniqueComponentId} from "@powell/primeng/api";
   ]
 })
 export class InputTextareaComponent implements OnInit, ControlValueAccessor {
+  private cd = inject(ChangeDetectorRef);
+  private injector = inject(Injector);
+  private configService = inject(ConfigService);
+  private destroy$ = inject(DestroyService);
+  private el = inject(ElementRef);
+  private utilsService = inject(UtilsService);
+
   @Input() value: any;
   @Input() label: string;
   @Input() ariaLabelledBy: string;
@@ -80,14 +87,6 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   };
   onModelTouched: Function = () => {
   };
-
-  constructor(private cd: ChangeDetectorRef,
-              private injector: Injector,
-              private configService: ConfigService,
-              private el: ElementRef,
-              private utilsService: UtilsService,
-              private destroy$: DestroyService) {
-  }
 
   ngOnInit() {
     let parentForm: FormGroup;
@@ -196,6 +195,4 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
     this.disabled = val;
     this.cd.markForCheck();
   }
-
-  protected readonly events = events;
 }

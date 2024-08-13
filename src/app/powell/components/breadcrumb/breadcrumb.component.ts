@@ -4,6 +4,7 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
+  inject,
   Input,
   OnInit,
   Output,
@@ -26,6 +27,10 @@ import {ConfigService} from "@powell/api";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbComponent implements OnInit, AfterContentInit {
+  private router = inject(Router);
+  private destroy$ = inject(DestroyService);
+  private configService = inject(ConfigService);
+
   @Input() items: PrimeMenuItem[];
   @Input() style: NgCssObject;
   @Input() styleClass: string;
@@ -38,13 +43,6 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
   _breadcrumbs$ = new BehaviorSubject<PrimeMenuItem[]>([]);
   breadcrumbs$ = this._breadcrumbs$.asObservable();
   templateMap: Record<string, TemplateRef<any>> = {};
-
-  constructor(
-    private router: Router,
-    private destroy$: DestroyService,
-    private configService: ConfigService,
-    ) {
-  }
 
   ngOnInit() {
     if (this.items) {

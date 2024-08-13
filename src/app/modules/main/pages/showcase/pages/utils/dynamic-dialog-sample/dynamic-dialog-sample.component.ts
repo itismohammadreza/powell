@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {DynamicDialogConfig, DynamicDialogRef} from '@powell/components/overlay';
 
 @Component({
@@ -7,8 +7,8 @@ import {DynamicDialogConfig, DynamicDialogRef} from '@powell/components/overlay'
   styleUrls: ['./dynamic-dialog-sample.component.scss']
 })
 export class DynamicDialogSampleComponent {
-  constructor(public config: DynamicDialogConfig, public dialog: DynamicDialogRef) {
-  }
+  public config = inject(DynamicDialogConfig);
+  public dialog = inject(DynamicDialogRef);
 
   onClose() {
     this.dialog.close('some value');

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {LoaderService} from '@core/utils';
 
 @Component({
@@ -7,10 +7,12 @@ import {LoaderService} from '@core/utils';
   styleUrls: ['./loading.component.scss'],
   standalone: true,
 })
-export class LoadingComponent {
+export class LoadingComponent implements OnInit {
+  private loaderService = inject(LoaderService);
+
   loading: boolean;
 
-  constructor(private loaderService: LoaderService) {
+  ngOnInit() {
     this.loaderService.getLoadingState().subscribe(loading => {
       this.loading = loading;
     });

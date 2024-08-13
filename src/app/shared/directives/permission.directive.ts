@@ -1,9 +1,12 @@
-import {Directive, Input, TemplateRef, ViewContainerRef,} from '@angular/core';
+import {Directive, inject, Input, TemplateRef, ViewContainerRef,} from '@angular/core';
 
 @Directive({
   selector: '[ngPermission]',
 })
 export class PermissionDirective {
+  private templateRef = inject(TemplateRef<any>);
+  private viewContainer = inject(ViewContainerRef);
+
   @Input() set hasPermission(val: string[]) {
     this.permissions = val;
     this.updateView();
@@ -18,12 +21,6 @@ export class PermissionDirective {
   permissions: string[] = [];
   logicalOp: 'AND' | 'OR' = 'AND';
   isHidden: boolean = true;
-
-  constructor(
-    private templateRef: TemplateRef<any>,
-    private viewContainer: ViewContainerRef,
-  ) {
-  }
 
   updateView() {
     if (this.checkPermission()) {

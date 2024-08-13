@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgFixLabelPosition, NgOrientation} from '@powell/models';
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./checkbox-group.page.scss'],
 })
 export class CheckboxGroupPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -39,7 +41,4 @@ export class CheckboxGroupPage {
     {label: 'Spain', value: 'ES'},
     {label: 'United States', value: 'US'}
   ];
-
-  constructor(private configService: ConfigService) {
-  }
 }

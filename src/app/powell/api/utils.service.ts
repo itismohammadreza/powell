@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms';
 import {DOCUMENT} from '@angular/common';
 import {fromEvent, merge, Observable} from 'rxjs';
@@ -7,8 +7,8 @@ import {ConfigService} from "@powell/api";
 
 @Injectable()
 export class UtilsService {
-  constructor(@Inject(DOCUMENT) private document: Document, private configService: ConfigService) {
-  }
+  private document = inject(DOCUMENT);
+  private configService = inject(ConfigService);
 
   checkOnlineState() {
     return merge(

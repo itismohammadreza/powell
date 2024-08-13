@@ -6,11 +6,7 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class StoreDataService<T = any> {
   private storeDataSubject = new BehaviorSubject<T>(null);
-  private data: T;
-
-  constructor() {
-    this.data = Object.create({})
-  }
+  private data: T = Object.create({});
 
   set(event: T) {
     this.data = {...this.data, ...event};

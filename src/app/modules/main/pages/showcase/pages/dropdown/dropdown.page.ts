@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgIconPosition, NgLabelPosition, NgSize} from '@powell/models';
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./dropdown.page.scss'],
 })
 export class DropdownPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -54,9 +56,6 @@ export class DropdownPage {
     {label: 'United States', value: 'US'}
   ];
   asyncFlag = false;
-
-  constructor(private configService: ConfigService) {
-  }
 
   onChangeAsync({loadingCallback}) {
     this.asyncFlag = !this.asyncFlag;

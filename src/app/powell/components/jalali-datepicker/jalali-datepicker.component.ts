@@ -1,4 +1,14 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Injector, Input, OnInit, Output} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  forwardRef,
+  inject,
+  Injector,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -42,6 +52,11 @@ import {ConfigService} from "@powell/api";
   ]
 })
 export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
+  private cd = inject(ChangeDetectorRef);
+  private injector = inject(Injector);
+  private configService = inject(ConfigService);
+  private destroy$ = inject(DestroyService);
+
   @Input() value: any;
   @Input() label: string;
   @Input() filled: boolean;
@@ -129,12 +144,6 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   };
   onModelTouched: Function = () => {
   };
-
-  constructor(private cd: ChangeDetectorRef,
-              private injector: Injector,
-              private configService: ConfigService,
-              private destroy$: DestroyService) {
-  }
 
   ngOnInit() {
     let parentForm: FormGroup;

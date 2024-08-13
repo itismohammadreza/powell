@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {
   NgAddon,
@@ -18,6 +18,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./input-number.page.scss']
 })
 export class InputNumberPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -55,7 +57,4 @@ export class InputNumberPage {
   disabled: boolean = false;
   readonly: boolean = false;
   showClear: boolean = true;
-
-  constructor(private configService: ConfigService) {
-  }
 }

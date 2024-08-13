@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   forwardRef,
+  inject,
   Injector,
   Input,
   OnChanges,
@@ -67,6 +68,11 @@ import {ConfigService} from "@powell/api";
   ],
 })
 export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor {
+  private cd = inject(ChangeDetectorRef);
+  private injector = inject(Injector);
+  private configService = inject(ConfigService);
+  private destroy$ = inject(DestroyService);
+
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -130,12 +136,6 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   };
   onModelTouched: Function = () => {
   };
-
-  constructor(private cd: ChangeDetectorRef,
-              private injector: Injector,
-              private configService: ConfigService,
-              private destroy$: DestroyService) {
-  }
 
   ngOnInit() {
     if (!this.options) {

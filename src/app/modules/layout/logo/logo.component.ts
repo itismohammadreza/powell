@@ -12,7 +12,7 @@ import {CommonModule} from "@angular/common";
 export class LogoComponent {
   @Input() width: string = '100px';
   @Input() type: 'light-vertical' | 'light-horizontal' | 'dark-vertical' | 'dark-horizontal' | 'logo-only' = 'dark-horizontal';
-  @Input() src: string = null; /* /assets/images/logo.png */
+  @Input() src: string = null;
   @Input() link: string[] = ['/'];
   @Input() disableNavigation: boolean = false;
 }

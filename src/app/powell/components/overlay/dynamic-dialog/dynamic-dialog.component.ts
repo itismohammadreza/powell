@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, ComponentRef, OnDestroy, Type, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ComponentRef, inject, OnDestroy, Type, ViewChild, ViewContainerRef} from '@angular/core';
 import {Subject} from 'rxjs';
 import {DynamicDialogRef} from './dynamic-dialog-ref';
 
@@ -8,13 +8,13 @@ import {DynamicDialogRef} from './dynamic-dialog-ref';
   styleUrls: ['./dynamic-dialog.component.scss']
 })
 export class DynamicDialogComponent implements OnDestroy {
-  componentRef: ComponentRef<any>;
+  private dialogRef = inject(DynamicDialogRef);
   private _onClose = new Subject<any>();
-  onClose = this._onClose.asObservable();
-  @ViewChild('insertion', {read: ViewContainerRef, static: true}) insertionPoint: ViewContainerRef;
 
-  constructor(private cd: ChangeDetectorRef, private dialogRef: DynamicDialogRef) {
-  }
+  componentRef: ComponentRef<any>;
+  onClose = this._onClose.asObservable();
+
+  @ViewChild('insertion', {read: ViewContainerRef, static: true}) insertionPoint: ViewContainerRef;
 
   open(childComponent: Type<any>) {
     this.insertionPoint.clear();

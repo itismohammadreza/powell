@@ -5,6 +5,7 @@ import {
   ContentChildren,
   EventEmitter,
   forwardRef,
+  inject,
   Injector,
   Input,
   OnInit,
@@ -47,6 +48,11 @@ import {ConfigService} from "@powell/api";
   ]
 })
 export class SelectButtonComponent implements OnInit, AfterContentInit, ControlValueAccessor {
+  private cd = inject(ChangeDetectorRef);
+  private injector = inject(Injector);
+  private configService = inject(ConfigService);
+  private destroy$ = inject(DestroyService);
+
   @Input() value: any;
   @Input() label: string;
   @Input() labelWidth: number;
@@ -81,12 +87,6 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   };
   onModelTouched: Function = () => {
   };
-
-  constructor(private cd: ChangeDetectorRef,
-              private injector: Injector,
-              private configService: ConfigService,
-              private destroy$: DestroyService) {
-  }
 
   ngOnInit() {
     let parentForm: FormGroup;

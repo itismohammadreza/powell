@@ -1,24 +1,23 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {TranslateService} from '@ngx-translate/core';
-import {appConfig} from "@core/config";
+import {globalConfig} from "@core/config";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TranslationService {
-  private currentLang: string;
+  private document = inject(DOCUMENT);
+  private translate = inject(TranslateService);
 
-  constructor(private translate: TranslateService,
-              @Inject(DOCUMENT) private document: Document) {
-  }
+  private currentLang: string;
 
   async init() {
     this.onLangChange().subscribe(res => {
       this.storeLang(res.lang, this.currentLang);
       this.currentLang = res.lang;
     });
-    this.currentLang = appConfig.lang;
+    this.currentLang = globalConfig.lang;
     this.storeLang(this.currentLang);
     if (!this.getDefaultLang()) {
       this.setDefaultLang(this.currentLang);

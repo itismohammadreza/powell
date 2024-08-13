@@ -6,6 +6,7 @@ import {
   ContentChildren,
   EventEmitter,
   forwardRef,
+  inject,
   Injector,
   Input,
   OnChanges,
@@ -65,6 +66,12 @@ import {
   ]
 })
 export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit, ControlValueAccessor {
+  private cd = inject(ChangeDetectorRef);
+  private injector = inject(Injector);
+  private configService = inject(ConfigService);
+  private destroy$ = inject(DestroyService);
+  private utilsService = inject(UtilsService);
+
   @Input() value: any = [];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -132,13 +139,6 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   };
   onModelTouched: Function = () => {
   };
-
-  constructor(private cd: ChangeDetectorRef,
-              private injector: Injector,
-              private utilsService: UtilsService,
-              private configService: ConfigService,
-              private destroy$: DestroyService) {
-  }
 
   ngOnInit() {
     let parentForm: FormGroup;

@@ -5,6 +5,7 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
+  inject,
   Injector,
   Input,
   OnInit,
@@ -40,6 +41,12 @@ import {ConfigService} from "@powell/api";
   ]
 })
 export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+  private cd = inject(ChangeDetectorRef);
+  private injector = inject(Injector);
+  private configService = inject(ConfigService);
+  private destroy$ = inject(DestroyService);
+  private el = inject(ElementRef);
+
   @Input() value: number | number[];
   @Input() label: string;
   @Input() labelWidth: number;
@@ -284,13 +291,6 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   };
   onModelTouched: Function = () => {
   };
-
-  constructor(private cd: ChangeDetectorRef,
-              private injector: Injector,
-              private configService: ConfigService,
-              private el: ElementRef,
-              private destroy$: DestroyService) {
-  }
 
   ngOnInit() {
     let parentForm: FormGroup;

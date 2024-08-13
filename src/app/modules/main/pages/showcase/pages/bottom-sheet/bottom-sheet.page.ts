@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {OverlayService} from "@powell/api";
 
 @Component({
@@ -7,6 +7,8 @@ import {OverlayService} from "@powell/api";
   styleUrls: ['./bottom-sheet.page.scss']
 })
 export class BottomSheetPage {
+  private overlayService = inject(OverlayService);
+
   blockScroll: boolean = false;
   modal: boolean = true;
   dismissible: boolean = true;
@@ -19,11 +21,7 @@ export class BottomSheetPage {
   visible3 = false;
   visible4 = false;
 
-  constructor(private overlayService: OverlayService) {
-  }
-
   async openDialog() {
-    // await this.overlayService.showDialog({content: 'asdsad'})
     await this.overlayService.showConfirmDialog({message: 'asdsad'})
     this.visible4 = true
   }

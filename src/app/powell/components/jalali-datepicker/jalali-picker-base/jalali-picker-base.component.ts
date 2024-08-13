@@ -7,6 +7,7 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
+  inject,
   Input,
   NgZone,
   OnDestroy,
@@ -107,6 +108,14 @@ export type CalendarTypeView = 'date' | 'month' | 'year';
   encapsulation: ViewEncapsulation.None,
 })
 export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewInit, ControlValueAccessor {
+  public el = inject(ElementRef);
+  public renderer = inject(Renderer2);
+  public cd = inject(ChangeDetectorRef);
+  public overlayService = inject(PrimeOverlayService);
+  private zone = inject(NgZone);
+  private config = inject(PrimeConfig);
+  private momentService = inject(MomentService);
+
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() inputStyle: NgCssObject;
@@ -382,16 +391,6 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
 
   @Input() set locale(newLocale: LocaleSettings) {
     console.warn("Locale property has no effect, use new i18n API instead.");
-  }
-
-  constructor(
-    public el: ElementRef,
-    public renderer: Renderer2,
-    public cd: ChangeDetectorRef,
-    private zone: NgZone,
-    private config: PrimeConfig,
-    public overlayService: PrimeOverlayService,
-    private momentService: MomentService) {
   }
 
   ngOnInit() {
@@ -1377,16 +1376,12 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
       }
 
       //enter
-      case 13: {
-        this.onMonthSelect(event, index);
-        event.preventDefault();
-        break;
-      }
-
-      //enter
       //space
       case 13:
       case 32: {
+        if(event.which == 13){
+          this.onMonthSelect(event, index);
+        }
         this.overlayVisible = false;
         event.preventDefault();
         break;
@@ -2608,8 +2603,8 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
       let innerHTML = '';
       if (this.responsiveOptions) {
         let responsiveOptions = [...this.responsiveOptions]
-          .filter(o => !!(o.breakpoint && o.numMonths))
-          .sort((o1, o2) => -1 * o1.breakpoint.localeCompare(o2.breakpoint, undefined, {numeric: true}));
+        .filter(o => !!(o.breakpoint && o.numMonths))
+        .sort((o1, o2) => -1 * o1.breakpoint.localeCompare(o2.breakpoint, undefined, {numeric: true}));
 
         for (let i = 0; i < responsiveOptions.length; i++) {
           let {breakpoint, numMonths} = responsiveOptions[i];

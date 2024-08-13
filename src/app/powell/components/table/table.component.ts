@@ -3,6 +3,7 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
+  inject,
   Input,
   OnInit,
   Output,
@@ -62,6 +63,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, AfterContentInit {
+  private configService = inject(ConfigService);
+
   @Input({required: true}) items: any[];
   @Input() filterDisplay: NgTableFilterDisplay = 'menu';
   @Input({required: true}) colDef: NgTableColDef[];
@@ -165,7 +168,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Output() selectAllChange = new EventEmitter<PrimeTableSelectAllChangeEvent>();
   @Output() onRowSelect = new EventEmitter<PrimeTableRowSelectEvent>();
   @Output() onRowUnselect = new EventEmitter<PrimeTableRowUnSelectEvent>();
-  @Output() onSort = new EventEmitter<{ multisortmeta: PrimeSortMeta[] } | any>();
+  @Output() onSort = new EventEmitter<{multisortmeta: PrimeSortMeta[]} | any>();
   @Output() onPage = new EventEmitter<PrimeTablePageEvent>();
   @Output() onFilter = new EventEmitter<PrimeTableFilterEvent>();
   @Output() onLazyLoad = new EventEmitter<NgAsyncEvent<PrimeTableLazyLoadEvent>>();
@@ -221,9 +224,6 @@ export class TableComponent implements OnInit, AfterContentInit {
   cellTemplates: Record<string, TemplateRef<any>> = {}
   loading: boolean;
   activeSortField: string;
-
-  constructor(private configService: ConfigService) {
-  }
 
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);

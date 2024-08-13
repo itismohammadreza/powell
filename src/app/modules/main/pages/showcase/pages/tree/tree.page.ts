@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgFixLabelPosition, NgOrientation, NgTreeSelectionMode} from '@powell/models';
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./tree.page.scss'],
 })
 export class TreePage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -101,7 +103,4 @@ export class TreePage {
       ]
     }
   ]
-
-  constructor(private configService: ConfigService) {
-  }
 }

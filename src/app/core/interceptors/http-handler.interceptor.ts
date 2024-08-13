@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
+import {inject} from '@angular/core';
 import {
   HttpErrorResponse,
-  HttpHandler,
-  HttpInterceptor,
+  HttpHandlerFn,
+  HttpInterceptorFn,
   HttpRequest,
   HttpResponse,
   HttpResponseBase,
@@ -11,92 +11,31 @@ import {finalize, identity, of, tap, throwError, timeout} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {OverlayService} from '@powell/api';
 import {AuthService} from '@core/http';
-import {appConfig, RequestsConfig} from "@core/config";
+import {globalConfig, RequestsConfig} from "@core/config";
 import {LoaderService} from "@core/utils";
 import {RequestConfig} from "@core/models";
 
-@Injectable()
-export class HttpHandlerInterceptor implements HttpInterceptor {
-  requestsQueue: HttpRequest<any>[] = [];
-  cachedRequests = new Map<string, any>();
-  loadingRequestsCounter = new Map<string, number>();
+export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>, next: HttpHandlerFn) => {
+  const overlayService = inject(OverlayService);
+  const loaderService = inject(LoaderService);
+  const authService = inject(AuthService);
 
-  constructor(private overlayService: OverlayService,
-              private loaderService: LoaderService,
-              private authService: AuthService) {
-  }
-
-  intercept(request: HttpRequest<any>, next: HttpHandler) {
-    const clonedReq = request.clone();
-    const shouldCatch = this.getRequestProp(request, null, 'catch');
-    const shouldLoading = this.getRequestProp(request, null, 'loading');
-
-    if (shouldCatch) {
-      const cachedResponse = this.cachedRequests.get(request.url);
-      if (cachedResponse) {
-        return of(cachedResponse);
-      }
-    }
-
-    if (shouldLoading) {
-      const pathTemplate = this.getRequestProp(request, null, 'pathTemplate');
-      const loadingOnlyOnce = this.getRequestProp(request, null, 'loadingOnlyOnce');
-      this.loadingRequestsCounter.set(pathTemplate, (this.loadingRequestsCounter.get(pathTemplate) ?? 0) + 1);
-      if (!loadingOnlyOnce || (loadingOnlyOnce && this.loadingRequestsCounter.get(pathTemplate) == 1)) {
-        this.requestsQueue.push(clonedReq);
-        this.loaderService.setLoadingState(true);
-      }
-    }
-
-    return next.handle(clonedReq).pipe(
-      this.handleTimeout(request),
-      tap((response: any) => {
-        const successMessage = this.getRequestProp(request, response, 'successMessage');
-        if (!(response instanceof HttpResponse) || /2\d+/.test(response.status.toString()) == false) {
-          return;
-        }
-        if (![false, undefined].includes(successMessage)) {
-          this.showSuccessToast(successMessage ?? response.body.message)
-        }
-        if (shouldCatch) {
-          this.cachedRequests.set(request.url, response);
-        }
-        this.removeRequestFromQueue(clonedReq);
-      }),
-      catchError((httpError: HttpErrorResponse) => {
-        const failureMessage = this.getRequestProp(request, httpError, 'failureMessage');
-        if (![false, undefined].includes(failureMessage)) {
-          const {error_description} = httpError.error;
-          this.showFailureToast(failureMessage ?? error_description);
-        }
-        if (httpError.status === 403) {
-          this.authService.logout();
-        }
-        this.removeRequestFromQueue(clonedReq);
-        return throwError(() => httpError);
-      }),
-      finalize(() => {
-        this.removeRequestFromQueue(clonedReq);
-      }),
-    );
-  }
-
-  showSuccessToast(message: string) {
-    this.overlayService.showToast({
+  const showSuccessToast = (message: string) => {
+    overlayService.showToast({
       severity: 'success',
       detail: message ?? 'با موفقیت انجام شد'
     });
   }
 
-  showFailureToast(message: string) {
-    this.overlayService.showToast({
+  const showFailureToast = (message: string) => {
+    overlayService.showToast({
       severity: 'error',
       detail: message ?? 'خطایی رخ داده است'
     });
   }
 
-  getRequestConfig(request: HttpRequest<any>) {
-    const {pathname} = this.getUrlParts(request.url);
+  const getRequestConfig = (request: HttpRequest<any>) => {
+    const {pathname} = getUrlParts(request.url);
     const requestPathMatch = ({pathTemplate, isCustomApi}: RequestConfig) => {
       const testCase = isCustomApi ? request.urlWithParams : pathname;
       if (pathTemplate instanceof RegExp) {
@@ -117,7 +56,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     return RequestsConfig[idx];
   }
 
-  getUrlParts(url: string) {
+  const getUrlParts = (url: string) => {
     const linkElement = document.createElement('a');
     const res: any = {};
     linkElement.href = url;
@@ -128,16 +67,16 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     return res;
   }
 
-  removeRequestFromQueue(request: HttpRequest<any>) {
-    const i = this.requestsQueue.indexOf(request);
+  const removeRequestFromQueue = (request: HttpRequest<any>) => {
+    const i = requestsQueue.indexOf(request);
     if (i >= 0) {
-      this.requestsQueue.splice(i, 1);
+      requestsQueue.splice(i, 1);
     }
-    this.loaderService.setLoadingState(this.requestsQueue.length > 0);
+    loaderService.setLoadingState(requestsQueue.length > 0);
   }
 
-  getRequestProp(request: HttpRequest<any>, response: HttpResponseBase, prop: keyof RequestConfig) {
-    const requestConfig: any = this.getRequestConfig(request);
+  const getRequestProp = (request: HttpRequest<any>, response: HttpResponseBase, prop: keyof RequestConfig) => {
+    const requestConfig: any = getRequestConfig(request);
     if (!requestConfig) {
       return false;
     }
@@ -148,7 +87,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     }
   }
 
-  handleTimeout(request: HttpRequest<any>) {
+  const handleTimeout = (request: HttpRequest<any>) => {
     const getQueryTimeout = (url: string) => {
       if (!url.includes('http')) {
         return 'none';
@@ -156,12 +95,69 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
       const requestSearchParams = new URL(url).search;
       return new URLSearchParams(requestSearchParams).get('timeout');
     }
-    let configTimeout = this.getRequestProp(request, null, 'timeout');
+    let configTimeout = getRequestProp(request, null, 'timeout');
     let queryTimeout = getQueryTimeout(request.url);
     if (configTimeout == 'none' || queryTimeout == 'none') {
       return identity;
     } else {
-      return timeout(+queryTimeout || configTimeout || appConfig.requestTimeout);
+      return timeout(+queryTimeout || configTimeout || globalConfig.requestTimeout);
     }
   }
+
+  const requestsQueue: HttpRequest<any>[] = [];
+  const cachedRequests = new Map<string, any>();
+  const loadingRequestsCounter = new Map<string, number>();
+
+  const clonedReq = request.clone();
+  const shouldCatch = getRequestProp(request, null, 'catch');
+  const shouldLoading = getRequestProp(request, null, 'loading');
+
+  if (shouldCatch) {
+    const cachedResponse = cachedRequests.get(request.url);
+    if (cachedResponse) {
+      return of(cachedResponse);
+    }
+  }
+
+  if (shouldLoading) {
+    const pathTemplate = getRequestProp(request, null, 'pathTemplate');
+    const loadingOnlyOnce = getRequestProp(request, null, 'loadingOnlyOnce');
+    loadingRequestsCounter.set(pathTemplate, (loadingRequestsCounter.get(pathTemplate) ?? 0) + 1);
+    if (!loadingOnlyOnce || (loadingOnlyOnce && loadingRequestsCounter.get(pathTemplate) == 1)) {
+      requestsQueue.push(clonedReq);
+      loaderService.setLoadingState(true);
+    }
+  }
+
+  return next(clonedReq).pipe(
+    handleTimeout(request),
+    tap((response: any) => {
+      const successMessage = getRequestProp(request, response, 'successMessage');
+      if (!(response instanceof HttpResponse) || /2\d+/.test(response.status.toString()) == false) {
+        return;
+      }
+      if (![false, undefined].includes(successMessage)) {
+        showSuccessToast(successMessage ?? response.body.message)
+      }
+      if (shouldCatch) {
+        cachedRequests.set(request.url, response);
+      }
+      removeRequestFromQueue(clonedReq);
+    }),
+    catchError((httpError: HttpErrorResponse) => {
+      const failureMessage = getRequestProp(request, httpError, 'failureMessage');
+      if (![false, undefined].includes(failureMessage)) {
+        const {error_description} = httpError.error;
+        showFailureToast(failureMessage ?? error_description);
+      }
+      if (httpError.status === 403) {
+        authService.logout();
+      }
+      removeRequestFromQueue(clonedReq);
+      return throwError(() => httpError);
+    }),
+    finalize(() => {
+      removeRequestFromQueue(clonedReq);
+    }),
+  );
 }

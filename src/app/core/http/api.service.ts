@@ -5,24 +5,19 @@ import {EnvService} from "@core/utils";
 import {RequestMethod} from "@core/models";
 
 interface RequestOptions {
-  headers?: HttpHeaders | { [header: string]: string | string[] };
+  headers?: HttpHeaders | {[header: string]: string | string[]};
   context?: HttpContext;
   observe?: any;
-  params?: HttpParams | { [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>; };
+  params?: HttpParams | {[param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;};
   reportProgress?: boolean;
   responseType?: any;
   withCredentials?: boolean;
 }
 
 export class ApiService {
-  private readonly http: HttpClient;
-  private readonly baseUrl: string;
-
-  constructor() {
-    const envService = inject(EnvService);
-    this.http = inject(HttpClient);
-    this.baseUrl = envService.apiUrl;
-  }
+  private readonly http = inject(HttpClient);
+  private readonly envService = inject(EnvService);
+  private readonly baseUrl = this.envService.apiUrl;
 
   protected _get<T>(endpoint: string, options: RequestOptions = null) {
     return this.http.get<T>(`${this.baseUrl}/${endpoint}`, {

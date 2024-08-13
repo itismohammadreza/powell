@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  inject,
   Input,
   OnChanges,
   OnDestroy,
@@ -26,6 +27,8 @@ import {defaultProperties, IvyPinch} from "@powell/components/pinch-zoom";
 })
 
 export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {
+  private el = inject(ElementRef);
+
   @Input() transitionDuration: number;
   @Input() doubleTap: boolean
   @Input() doubleTapScale: number;
@@ -49,9 +52,6 @@ export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {
 
   properties: NgPinchZoomOptions;
   ivyPinch: IvyPinch;
-
-  constructor(private el: ElementRef) {
-  }
 
   ngOnInit() {
     this.initPinchZoom();

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgAddon, NgIconPosition, NgLabelPosition, NgSize} from '@powell/models';
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./chips.page.scss'],
 })
 export class ChipsPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -34,7 +36,4 @@ export class ChipsPage {
   addOnTab: boolean = false;
   addOnBlur: boolean = false;
   showClear: boolean = true;
-
-  constructor(private configService: ConfigService) {
-  }
 }

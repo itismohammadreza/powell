@@ -7,8 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss",
-          "displayBlock": true
+          "style": "scss"
         }
       },
       "root": "",
@@ -16,257 +15,257 @@
       "prefix": "ng",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/",
+            "outputPath": "dist/powell",
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
               "src/assets",
               "src/env.js",
               {
                 "glob": "**/*",
-                "input": "./node_modules/leaflet/dist/images",
-                "output": "assets/"
+                "input": "public"
               }
             ],
             "styles": [
               {
-                "input": "src/assets/themes/arya-blue.css",
+                "input": "public/themes/arya-blue.css",
                 "bundleName": "arya-blue",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/arya-green.css",
+                "input": "public/themes/arya-green.css",
                 "bundleName": "arya-green",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/arya-orange.css",
+                "input": "public/themes/arya-orange.css",
                 "bundleName": "arya-orange",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/arya-purple.css",
+                "input": "public/themes/arya-purple.css",
                 "bundleName": "arya-purple",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/bootstrap4-dark-blue.css",
+                "input": "public/themes/bootstrap4-dark-blue.css",
                 "bundleName": "bootstrap4-dark-blue",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/bootstrap4-dark-purple.css",
+                "input": "public/themes/bootstrap4-dark-purple.css",
                 "bundleName": "bootstrap4-dark-purple",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/bootstrap4-light-blue.css",
+                "input": "public/themes/bootstrap4-light-blue.css",
                 "bundleName": "bootstrap4-light-blue",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/bootstrap4-light-purple.css",
+                "input": "public/themes/bootstrap4-light-purple.css",
                 "bundleName": "bootstrap4-light-purple",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/fluent-light.css",
+                "input": "public/themes/fluent-light.css",
                 "bundleName": "fluent-light",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/lara-dark-blue.css",
+                "input": "public/themes/lara-dark-blue.css",
                 "bundleName": "lara-dark-blue",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/lara-dark-indigo.css",
+                "input": "public/themes/lara-dark-indigo.css",
                 "bundleName": "lara-dark-indigo",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/lara-dark-purple.css",
+                "input": "public/themes/lara-dark-purple.css",
                 "bundleName": "lara-dark-purple",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/lara-dark-teal.css",
+                "input": "public/themes/lara-dark-teal.css",
                 "bundleName": "lara-dark-teal",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/lara-light-blue.css",
+                "input": "public/themes/lara-light-blue.css",
                 "bundleName": "lara-light-blue",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/lara-light-indigo.css",
+                "input": "public/themes/lara-light-indigo.css",
                 "bundleName": "lara-light-indigo",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/lara-light-purple.css",
+                "input": "public/themes/lara-light-purple.css",
                 "bundleName": "lara-light-purple",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/lara-light-teal.css",
+                "input": "public/themes/lara-light-teal.css",
                 "bundleName": "lara-light-teal",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/luna-amber.css",
+                "input": "public/themes/luna-amber.css",
                 "bundleName": "luna-amber",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/luna-blue.css",
+                "input": "public/themes/luna-blue.css",
                 "bundleName": "luna-blue",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/luna-green.css",
+                "input": "public/themes/luna-green.css",
                 "bundleName": "luna-green",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/luna-pink.css",
+                "input": "public/themes/luna-pink.css",
                 "bundleName": "luna-pink",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/md-dark-deeppurple.css",
+                "input": "public/themes/md-dark-deeppurple.css",
                 "bundleName": "md-dark-deeppurple",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/md-dark-indigo.css",
+                "input": "public/themes/md-dark-indigo.css",
                 "bundleName": "md-dark-indigo",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/md-light-deeppurple.css",
+                "input": "public/themes/md-light-deeppurple.css",
                 "bundleName": "md-light-deeppurple",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/md-light-indigo.css",
+                "input": "public/themes/md-light-indigo.css",
                 "bundleName": "md-light-indigo",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/mdc-dark-deeppurple.css",
+                "input": "public/themes/mdc-dark-deeppurple.css",
                 "bundleName": "mdc-dark-deeppurple",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/mdc-dark-indigo.css",
+                "input": "public/themes/mdc-dark-indigo.css",
                 "bundleName": "mdc-dark-indigo",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/mdc-light-deeppurple.css",
+                "input": "public/themes/mdc-light-deeppurple.css",
                 "bundleName": "mdc-light-deeppurple",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/mdc-light-indigo.css",
+                "input": "public/themes/mdc-light-indigo.css",
                 "bundleName": "mdc-light-indigo",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/mira.css",
+                "input": "public/themes/mira.css",
                 "bundleName": "mira",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/nano.css",
+                "input": "public/themes/nano.css",
                 "bundleName": "nano",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/nova.css",
+                "input": "public/themes/nova.css",
                 "bundleName": "nova",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/nova-accent.css",
+                "input": "public/themes/nova-accent.css",
                 "bundleName": "nova-accent",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/nova-alt.css",
+                "input": "public/themes/nova-alt.css",
                 "bundleName": "nova-alt",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/rhea.css",
+                "input": "public/themes/rhea.css",
                 "bundleName": "rhea",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/saga-blue.css",
+                "input": "public/themes/saga-blue.css",
                 "bundleName": "saga-blue",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/saga-green.css",
+                "input": "public/themes/saga-green.css",
                 "bundleName": "saga-green",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/saga-orange.css",
+                "input": "public/themes/saga-orange.css",
                 "bundleName": "saga-orange",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/saga-purple.css",
+                "input": "public/themes/saga-purple.css",
                 "bundleName": "saga-purple",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/soho-dark.css",
+                "input": "public/themes/soho-dark.css",
                 "bundleName": "soho-dark",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/soho-light.css",
+                "input": "public/themes/soho-light.css",
                 "bundleName": "soho-light",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/vela-blue.css",
+                "input": "public/themes/vela-blue.css",
                 "bundleName": "vela-blue",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/vela-green.css",
+                "input": "public/themes/vela-green.css",
                 "bundleName": "vela-green",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/vela-orange.css",
+                "input": "public/themes/vela-orange.css",
                 "bundleName": "vela-orange",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/vela-purple.css",
+                "input": "public/themes/vela-purple.css",
                 "bundleName": "vela-purple",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/viva-dark.css",
+                "input": "public/themes/viva-dark.css",
                 "bundleName": "viva-dark",
                 "inject": false
               },
               {
-                "input": "src/assets/themes/viva-light.css",
+                "input": "public/themes/viva-light.css",
                 "bundleName": "viva-light",
                 "inject": false
               },
@@ -276,8 +275,7 @@
               "node_modules/suneditor/dist/css/suneditor.min.css",
               "src/styles.scss"
             ],
-            "scripts": [
-            ],
+            "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "src/assets/styles",
@@ -295,30 +293,21 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "4mb"
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "100kb",
-                  "maximumError": "100kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
                 }
               ],
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -336,22 +325,24 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "powell:build"
-          }
+          "builder": "@angular-devkit/build-angular:extract-i18n"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/env.js",
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -361,8 +352,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }

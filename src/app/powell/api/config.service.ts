@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {Subject, takeUntil} from "rxjs";
 import {NgConfig, NgConfigChangeEvent} from "@powell/models";
@@ -8,10 +8,9 @@ import {PrimeConfig} from "@powell/primeng/api";
 // DON'T provide anywhere. will provide automatically after `initiateNgConfigProvider` call.
 @Injectable()
 export class ConfigService {
-  constructor(private primengConfig: PrimeConfig,
-              private themeService: ThemeService,
-              @Inject(DOCUMENT) private document: Document) {
-  }
+  private document = inject(DOCUMENT);
+  private primengConfig = inject(PrimeConfig);
+  private themeService = inject(ThemeService);
 
   private _config: NgConfig = {
     disableConfigChangeEffect: false,
@@ -55,7 +54,7 @@ export class ConfigService {
       return test.split(/(?=[A-Z])/).join('-').toLowerCase();
     }
     const bodyClasses = this.document.body.classList.value.split(" ");
-    Object.entries(this._config).filter(c => typeof c[1] != 'object').forEach(([key, value]) => {
+    Object.entries(this._config).filter(c => typeof c[1] !== 'object').forEach(([key, value]) => {
       key = toKebabCase(key);
       const foundedClass = bodyClasses.find(c => c.includes(key));
       let newClass;
@@ -64,6 +63,10 @@ export class ConfigService {
           newClass = `ng-${key}`;
         } else {
           this.document.body.classList.remove(`ng-${key}`);
+        }
+      } else if (typeof value === 'function') {
+        if (typeof value() !== 'object') {
+          newClass = `ng-${key}-${value()}`;
         }
       } else {
         newClass = `ng-${key}-${value}`;
@@ -90,7 +93,6 @@ export class ConfigService {
         initializedConfigs.push(key);
       }
     })
-    console.log(this._config)
     Object.entries(this._config).forEach(([key, value]) => {
       let componentKey = this.getComponentConfigKey(key as keyof NgConfig);
       component[componentKey] = value;

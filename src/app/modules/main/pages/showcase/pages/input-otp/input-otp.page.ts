@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {NgFixLabelPosition, NgSize} from "@powell/models";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./input-otp.page.scss']
 })
 export class InputOtpPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -28,7 +30,4 @@ export class InputOtpPage {
   placeholder: string = '';
   inputCount: number = 4;
   numbersOnly: boolean = true;
-
-  constructor(private configService: ConfigService) {
-  }
 }

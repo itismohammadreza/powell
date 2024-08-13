@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgAddon, NgIconPosition, NgLabelPosition, NgSize} from "@powell/models";
 import {ConfigService, MomentService} from "@powell/api";
@@ -9,6 +9,9 @@ import {ConfigService, MomentService} from "@powell/api";
   styleUrls: ['./jalali-datepicker.page.scss']
 })
 export class JalaliDatepickerPage {
+  private configService = inject(ConfigService);
+  private momentService = inject(MomentService);
+
   form = new FormGroup({
     c1: new FormControl(this.momentService.getJalaliMoment('1396/08/25 21:00', 'jYYYY/jMM/jDD hh:mm'), [Validators.required]),
   });
@@ -52,10 +55,4 @@ export class JalaliDatepickerPage {
   view: 'date' | 'month' | 'year' = 'date';
   touchUI: boolean = false;
   showClear: boolean = false;
-
-  constructor(private momentService: MomentService, private configService: ConfigService) {
-  }
-
-  submit() {
-  }
 }

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {ConfigService, OverlayService} from "@powell/api";
 import {NgConfirmDialogOptions} from "@powell/models";
 
@@ -8,6 +8,9 @@ import {NgConfirmDialogOptions} from "@powell/models";
   styleUrls: ['./confirm-dialog.page.scss']
 })
 export class ConfirmDialogPage {
+  private configService = inject(ConfigService);
+  private overlayService = inject(OverlayService);
+
   confirmDialog: NgConfirmDialogOptions = {
     closable: true,
     message: 'Are you sure?',
@@ -31,9 +34,6 @@ export class ConfirmDialogPage {
     buttonFull: false,
     rtl: this.configService.getConfig().rtl,
     style: {width: '400px'}
-  }
-
-  constructor(private overlayService: OverlayService, private configService: ConfigService) {
   }
 
   showConfirmDialog() {

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {NgConfirmPopupOptions} from "@powell/models";
 import {ConfigService, OverlayService} from "@powell/api";
 
@@ -8,6 +8,9 @@ import {ConfigService, OverlayService} from "@powell/api";
   styleUrls: ['./confirm-popup.page.scss']
 })
 export class ConfirmPopupPage {
+  private configService = inject(ConfigService);
+  private overlayService = inject(OverlayService);
+
   confirmPopup: NgConfirmPopupOptions = {
     message: 'Are you sure?',
     icon: 'pi pi-exclamation-triangle',
@@ -25,9 +28,6 @@ export class ConfirmPopupPage {
     buttonFull: false,
     defaultFocus: 'accept',
     rtl: this.configService.getConfig().rtl
-  }
-
-  constructor(private overlayService: OverlayService, private configService: ConfigService) {
   }
 
   showConfirmPopup(event) {

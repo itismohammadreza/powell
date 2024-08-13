@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgFilePickerMode, NgFixLabelPosition} from '@powell/models';
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./file-picker.page.scss'],
 })
 export class FilePickerPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -38,7 +40,4 @@ export class FilePickerPage {
   mode: NgFilePickerMode = 'advanced';
   showUploadButton: boolean = true;
   showCancelButton: boolean = true;
-
-  constructor(private configService: ConfigService) {
-  }
 }

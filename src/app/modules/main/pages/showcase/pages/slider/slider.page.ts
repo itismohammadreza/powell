@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgFixLabelPosition, NgOrientation} from '@powell/models';
 import {ConfigService} from "@powell/api";
@@ -9,6 +9,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./slider.page.scss'],
 })
 export class SliderPage {
+  private configService = inject(ConfigService);
+
   form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
@@ -29,7 +31,4 @@ export class SliderPage {
   orientation: NgOrientation = 'horizontal';
   step: number = 1;
   range: boolean = false;
-
-  constructor(private configService: ConfigService) {
-  }
 }

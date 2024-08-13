@@ -3,7 +3,7 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
-  Inject,
+  inject,
   Input,
   OnChanges,
   Output,
@@ -35,6 +35,9 @@ import {DestroyService} from "@core/utils";
   providers: [DestroyService]
 })
 export class ButtonComponent implements AfterViewInit, OnChanges {
+  private document = inject(DOCUMENT);
+  private destroy$ = inject(DestroyService);
+
   @Input() appearance: NgButtonAppearance;
   @Input() rounded: boolean;
   @Input() raised: boolean;
@@ -78,10 +81,6 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
   _tmpAppearance: NgButtonAppearance;
   _tmpColor: NgColor;
   _tmpSize: NgSize;
-
-  constructor(@Inject(DOCUMENT) private document: Document,
-              private destroy$: DestroyService) {
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.async) {

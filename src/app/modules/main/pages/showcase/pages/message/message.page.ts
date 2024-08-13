@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {NgSeverity} from "@powell/models";
 import {ConfigService} from "@powell/api";
 
@@ -8,6 +8,8 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./message.page.scss']
 })
 export class MessagePage {
+  private configService = inject(ConfigService);
+
   summary: string = 'Some summary';
   detail: string = 'a complete detail';
   icon: string = 'pi pi-info';
@@ -16,7 +18,4 @@ export class MessagePage {
   closable: boolean = false;
   rtl: boolean = this.configService.getConfig().rtl;
   disableConfigChangeEffect: boolean = this.configService.getConfig().disableConfigChangeEffect;
-
-  constructor(private configService: ConfigService) {
-  }
 }

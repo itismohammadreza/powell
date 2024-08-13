@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {NgStatusIcon} from "@powell/models";
 import {ConfigService} from "@powell/api";
 
@@ -8,8 +8,7 @@ import {ConfigService} from "@powell/api";
   styleUrls: ['./status.page.scss']
 })
 export class StatusPage {
-  constructor(private configService: ConfigService) {
-  }
+  private configService = inject(ConfigService);
 
   status: NgStatusIcon = 'info';
   icon: string = '';

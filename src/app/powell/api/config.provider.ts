@@ -1,8 +1,6 @@
-import {DOCUMENT} from "@angular/common";
 import {NgConfig} from "@powell/models";
 import {ConfigService, ThemeService} from "@powell/api";
 import {
-  PrimeConfig,
   PrimeConfirmationService,
   PrimeDialogService,
   PrimeFilterService,
@@ -18,12 +16,11 @@ export function initiateNgConfigProvider(ngConfig?: NgConfig) {
     PrimeFilterService,
     {
       provide: ConfigService,
-      useFactory: (primengConfig: PrimeConfig, themeService: ThemeService, document: Document) => {
-        const configService = new ConfigService(primengConfig, themeService, document);
+      useFactory: () => {
+        const configService = new ConfigService();
         configService.setConfig(ngConfig);
         return configService;
       },
-      deps: [PrimeConfig, ThemeService, DOCUMENT]
     }
   ]
 }
