@@ -6,7 +6,6 @@ import {DropdownComponent} from "@powell/components/dropdown";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {PrimeDropdownModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
-import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [DropdownComponent],
@@ -16,8 +15,7 @@ import {ConfigHandlerModule} from "@powell/directives/config-handler";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    AddonModule,
-    ConfigHandlerModule
+    AddonModule
   ],
 })
 export class DropdownModule {

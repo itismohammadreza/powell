@@ -5,7 +5,6 @@ import {AddonModule} from "@powell/directives/addon";
 import {InputNumberComponent} from "@powell/components/input-number";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {PrimeInputNumberModule} from "@powell/primeng";
-import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [InputNumberComponent],
@@ -15,8 +14,7 @@ import {ConfigHandlerModule} from "@powell/directives/config-handler";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    AddonModule,
-    ConfigHandlerModule
+    AddonModule
   ],
 })
 export class InputNumberModule {

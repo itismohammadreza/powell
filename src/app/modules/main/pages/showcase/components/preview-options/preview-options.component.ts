@@ -14,7 +14,6 @@ import {
   NgButtonAppearance,
   NgColor,
   NgColorFormat,
-  NgConfigChangeEvent,
   NgCurrency,
   NgCurrencyDisplay,
   NgDatepickerSelectionMode,
@@ -819,28 +818,28 @@ export class PreviewOptionsComponent implements OnInit {
         this.createComponent(CheckboxComponent, item, 'secondRow');
       }
     }
-  }
 
-  onConfigChange({modifiedConfig, currentConfig}: NgConfigChangeEvent) {
-    if (this.disableConfigChangeEffect) {
-      return
-    }
-    const equalization = {
-      rtl: 'rtl',
-      fixLabelPos: 'fixLabelPos',
-      labelPos: 'labelPos',
-      filled: 'filled',
-      inputSize: 'selectiveSize',
-      showRequiredStar: 'showRequiredStar',
-      disableConfigChangeEffect: 'disableConfigChangeEffect',
-    }
-    Object.entries(modifiedConfig).forEach(item => {
-      const key = item[0];
-      const value = item[1];
-      const ref = this.cmpRefs.find(({instance}) => instance.key == equalization[key]);
-      if (ref) {
-        ref.instance.value = value;
+    this.configService.configChange$.subscribe(({modifiedConfig, currentConfig}) => {
+      if (this.disableConfigChangeEffect) {
+        return
       }
+      const equalization = {
+        rtl: 'rtl',
+        fixLabelPos: 'fixLabelPos',
+        labelPos: 'labelPos',
+        filled: 'filled',
+        inputSize: 'selectiveSize',
+        showRequiredStar: 'showRequiredStar',
+        disableConfigChangeEffect: 'disableConfigChangeEffect',
+      }
+      Object.entries(modifiedConfig).forEach(item => {
+        const key = item[0];
+        const value = item[1];
+        const ref = this.cmpRefs.find(({instance}) => instance.key == equalization[key]);
+        if (ref) {
+          ref.instance.value = value;
+        }
+      })
     })
   }
 

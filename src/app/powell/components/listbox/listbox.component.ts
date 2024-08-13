@@ -35,6 +35,7 @@ import {
   PrimeScrollerOptions,
   PrimeUniqueComponentId
 } from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-listbox',
@@ -124,6 +125,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -153,6 +155,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

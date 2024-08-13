@@ -43,6 +43,7 @@ import {takeUntil} from "rxjs";
 import {NgAddon, NgFixLabelPosition, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {PrimeUniqueComponentId} from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-map',
@@ -167,6 +168,7 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -196,6 +198,7 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngOnChanges(changes: SimpleChanges) {

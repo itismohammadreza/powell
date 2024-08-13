@@ -17,6 +17,7 @@ import {PrimeBreadcrumbItemClickEvent, PrimeMenuItem} from "@powell/primeng/api"
 import {NgCssObject} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {TemplateDirective} from "@powell/directives/template";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-breadcrumb',
@@ -38,7 +39,11 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
   breadcrumbs$ = this._breadcrumbs$.asObservable();
   templateMap: Record<string, TemplateRef<any>> = {};
 
-  constructor(private router: Router, private destroy$: DestroyService) {
+  constructor(
+    private router: Router,
+    private destroy$: DestroyService,
+    private configService: ConfigService,
+    ) {
   }
 
   ngOnInit() {
@@ -52,6 +57,7 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
       this.addBreadcrumb(root, [], breadcrumbs);
       this._breadcrumbs$.next(breadcrumbs);
     });
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

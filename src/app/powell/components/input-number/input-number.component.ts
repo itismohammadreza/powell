@@ -37,6 +37,7 @@ import {
 import {DestroyService} from "@core/utils";
 import {PrimeInputNumberInputEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-input-number',
@@ -123,6 +124,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -152,6 +154,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

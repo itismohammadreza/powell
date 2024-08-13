@@ -5,7 +5,6 @@ import {AddonModule} from "@powell/directives/addon";
 import {GregorianDatepickerComponent} from "@powell/components/gregorian-datepicker";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {PrimeCalendarModule} from "@powell/primeng";
-import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [GregorianDatepickerComponent],
@@ -15,8 +14,7 @@ import {ConfigHandlerModule} from "@powell/directives/config-handler";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    AddonModule,
-    ConfigHandlerModule
+    AddonModule
   ],
 })
 export class GregorianDatepickerModule {

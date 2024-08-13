@@ -6,7 +6,6 @@ import {LabelStarModule} from "@powell/pipes/label-star";
 import {ListboxComponent} from "@powell/components/listbox";
 import {PrimeListboxModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
-import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [ListboxComponent],
@@ -16,8 +15,7 @@ import {ConfigHandlerModule} from "@powell/directives/config-handler";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    AddonModule,
-    ConfigHandlerModule
+    AddonModule
   ],
 })
 export class ListboxModule {

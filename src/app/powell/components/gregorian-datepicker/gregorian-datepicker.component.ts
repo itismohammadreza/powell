@@ -24,6 +24,7 @@ import {
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@core/utils";
 import {PrimeCalendarMonthChangeEvent, PrimeCalendarYearChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-gregorian-datepicker',
@@ -129,6 +130,7 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -158,6 +160,7 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   _onInput(event: KeyboardEvent) {

@@ -31,7 +31,7 @@ import {
   NgSize,
   NgValidation
 } from '@powell/models';
-import {UtilsService} from "@powell/api";
+import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import {PrimeUniqueComponentId} from "@powell/primeng/api";
 
@@ -99,6 +99,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
               private injector: Injector,
               private el: ElementRef,
               private utilsService: UtilsService,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -128,6 +129,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   _onChange(event: Event) {

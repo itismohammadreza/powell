@@ -31,6 +31,7 @@ import {
   PrimeSelectButtonOptionClickEvent,
   PrimeUniqueComponentId
 } from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-select-button',
@@ -83,6 +84,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -112,6 +114,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

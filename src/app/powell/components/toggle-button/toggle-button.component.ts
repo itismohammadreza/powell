@@ -27,6 +27,7 @@ import {NgCssObject, NgFixLabelPosition, NgIconPosition, NgValidation} from '@po
 import {DestroyService} from "@core/utils";
 import {PrimeToggleButtonChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-toggle-button',
@@ -76,6 +77,7 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -105,6 +107,7 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

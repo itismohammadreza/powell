@@ -13,6 +13,7 @@ import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeUniqueComponentId} from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-knob',
@@ -67,6 +68,7 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -96,6 +98,7 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   _onChange(event: number) {

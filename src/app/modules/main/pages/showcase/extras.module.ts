@@ -5,7 +5,6 @@ import {
 import {PrimeCardModule, PrimeDividerModule, PrimePanelModule} from "@powell/primeng";
 import {CommonModule} from "@angular/common";
 import {TranslateModule} from "@ngx-translate/core";
-import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [
@@ -21,8 +20,7 @@ import {ConfigHandlerModule} from "@powell/directives/config-handler";
   ],
   imports: [
     CommonModule,
-    PrimeDividerModule,
-    ConfigHandlerModule
+    PrimeDividerModule
   ]
 })
 export class ExtrasModule {

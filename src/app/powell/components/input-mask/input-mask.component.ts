@@ -27,6 +27,7 @@ import {NgAddon, NgCssObject, NgIconPosition, NgInputType, NgLabelPosition, NgSi
 import {DestroyService} from "@core/utils";
 import {TemplateDirective} from "@powell/directives/template";
 import {PrimeUniqueComponentId} from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-input-mask',
@@ -98,6 +99,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -127,6 +129,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

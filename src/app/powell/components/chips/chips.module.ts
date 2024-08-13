@@ -6,7 +6,6 @@ import {ChipsComponent} from "@powell/components/chips";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {PrimeChipsModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
-import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [ChipsComponent],
@@ -16,8 +15,7 @@ import {ConfigHandlerModule} from "@powell/directives/config-handler";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    AddonModule,
-    ConfigHandlerModule
+    AddonModule
   ],
 })
 export class ChipsModule {

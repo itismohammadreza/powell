@@ -1,13 +1,14 @@
-import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
+import {AfterContentInit, Component, ContentChildren, Input, OnInit, QueryList, TemplateRef} from '@angular/core';
 import {TemplateDirective} from "@powell/directives/template";
 import {NgCssObject} from "@powell/models";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
 })
-export class MessageComponent implements AfterContentInit {
+export class MessageComponent implements OnInit, AfterContentInit {
   @Input() inlineMessage: string;
   @Input() summary: string;
   @Input() detail: string;
@@ -27,6 +28,13 @@ export class MessageComponent implements AfterContentInit {
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   templateMap: Record<string, TemplateRef<any>> = {};
+
+  constructor(private configService: ConfigService) {
+  }
+
+  ngOnInit() {
+    this.configService.applyConfigToComponent(this);
+  }
 
   ngAfterContentInit() {
     this.templates.forEach(item => {

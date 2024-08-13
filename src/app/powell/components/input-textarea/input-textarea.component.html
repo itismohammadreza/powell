@@ -1,10 +1,4 @@
-<div ngConfigHandler
-     [(disableConfigChangeEffect)]="disableConfigChangeEffect"
-     [(rtl)]="rtl"
-     [(labelPos)]="labelPos"
-     [(filled)]="filled"
-     [(showRequiredStar)]="showRequiredStar"
-     [ngClass]="{
+<div [ngClass]="{
       'rtl': rtl,
       'ltr': !rtl,
       'label-fix-top': labelPos == 'fix-top',

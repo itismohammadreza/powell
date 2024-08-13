@@ -48,6 +48,7 @@ import {
   PrimeTreeSelectNodeExpandEvent,
   PrimeUniqueComponentId
 } from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-tree-select',
@@ -130,6 +131,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -159,6 +161,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

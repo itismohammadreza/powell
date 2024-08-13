@@ -24,6 +24,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgSize, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-input-otp',
@@ -80,6 +81,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private el: ElementRef,
               private destroy$: DestroyService) {
   }
@@ -126,6 +128,7 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
         }
       });
     });
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterViewInit() {

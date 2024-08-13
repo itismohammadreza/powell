@@ -32,6 +32,7 @@ import {
   PrimeChipsRemoveEvent,
   PrimeUniqueComponentId
 } from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-chips',
@@ -98,6 +99,7 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -127,6 +129,7 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

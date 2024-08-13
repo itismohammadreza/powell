@@ -4,7 +4,6 @@ import {FormsModule} from "@angular/forms";
 import {KnobComponent} from "@powell/components/knob";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {PrimeKnobModule} from "@powell/primeng";
-import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [KnobComponent],
@@ -13,8 +12,7 @@ import {ConfigHandlerModule} from "@powell/directives/config-handler";
     PrimeKnobModule,
     CommonModule,
     FormsModule,
-    LabelStarModule,
-    ConfigHandlerModule
+    LabelStarModule
   ],
 })
 export class KnobModule {

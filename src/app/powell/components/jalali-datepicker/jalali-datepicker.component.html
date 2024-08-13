@@ -1,19 +1,12 @@
-<div ngConfigHandler
-     [(disableConfigChangeEffect)]="disableConfigChangeEffect"
-     [(rtl)]="rtl"
-     [(labelPos)]="labelPos"
-     [(filled)]="filled"
-     [(inputSize)]="inputSize"
-     [(showRequiredStar)]="showRequiredStar"
-     [class.inline]="inline"
-     [ngClass]="{
+<div [ngClass]="{
       'rtl': rtl,
       'ltr': !rtl,
       'label-fix-top': labelPos == 'fix-top',
       'label-fix-side': labelPos == 'fix-side',
       'label-float': labelPos == 'float',
       'clearable': showClear,
-      'has-icon': showIcon
+      'has-icon': showIcon,
+      'inline': inline
     }" class="jalali-datepicker-wrapper">
   <div class="field"
        [ngAddon]="addon"

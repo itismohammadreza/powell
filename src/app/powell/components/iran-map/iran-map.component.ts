@@ -24,6 +24,7 @@ import {
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@core/utils";
 import {PrimeUniqueComponentId} from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-iran-map',
@@ -286,6 +287,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private el: ElementRef,
               private destroy$: DestroyService) {
   }
@@ -316,6 +318,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterViewInit() {

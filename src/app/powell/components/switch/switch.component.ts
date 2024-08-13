@@ -13,6 +13,7 @@ import {takeUntil} from "rxjs";
 import {NgAsyncEvent, NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeInputSwitchChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-switch',
@@ -65,6 +66,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -95,6 +97,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
       }
     }
     this.setLabel();
+    this.configService.applyConfigToComponent(this);
   }
 
   setLabel() {

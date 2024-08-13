@@ -5,7 +5,6 @@ import {TreeComponent} from "@powell/components/tree";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {PrimeTreeModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
-import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [TreeComponent],
@@ -14,8 +13,7 @@ import {ConfigHandlerModule} from "@powell/directives/config-handler";
     PrimeTreeModule,
     AddonModule,
     LabelStarModule,
-    CommonModule,
-    ConfigHandlerModule
+    CommonModule
   ],
 })
 export class TreeModule {

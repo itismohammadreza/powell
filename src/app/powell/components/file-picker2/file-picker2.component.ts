@@ -29,7 +29,7 @@ import {
   NgFixLabelPosition,
   NgValidation
 } from '@powell/models';
-import {UtilsService} from "@powell/api";
+import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import {PrimeUniqueComponentId} from "@powell/primeng/api";
 
@@ -87,6 +87,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     private cd: ChangeDetectorRef,
     private injector: Injector,
     private utilsService: UtilsService,
+    private configService: ConfigService,
     private destroy$: DestroyService
   ) {
   }
@@ -119,6 +120,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngOnChanges(changes: SimpleChanges) {

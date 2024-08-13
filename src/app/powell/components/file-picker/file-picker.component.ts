@@ -37,7 +37,7 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {PrimeFileUpload} from "@powell/primeng";
-import {UtilsService} from "@powell/api";
+import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import {
   PrimeFileBeforeUploadEvent,
@@ -136,6 +136,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
               private utilsService: UtilsService,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -165,6 +166,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngOnChanges(changes: SimpleChanges) {

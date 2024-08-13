@@ -48,6 +48,7 @@ import {
   PrimeUniqueComponentId
 } from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-multi-select',
@@ -165,6 +166,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -194,6 +196,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

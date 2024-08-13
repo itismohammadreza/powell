@@ -44,6 +44,7 @@ import {
   PrimeUniqueComponentId
 } from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-dropdown',
@@ -157,6 +158,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -189,6 +191,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
     if (this.autoDisplayFirst) {
       this.onModelChange(this.options[0][this.optionValue])
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

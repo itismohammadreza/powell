@@ -27,6 +27,7 @@ import {NgAsyncEvent, NgCssObject, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeCheckboxChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-checkbox',
@@ -84,6 +85,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -114,6 +116,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
       }
     }
     this.setLabel();
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

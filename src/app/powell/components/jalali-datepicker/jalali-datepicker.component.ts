@@ -26,6 +26,7 @@ import {
 import {DestroyService} from "@core/utils";
 import {AnimationEvent} from "@angular/animations";
 import {PrimeCalendarMonthChangeEvent, PrimeCalendarYearChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-jalali-datepicker',
@@ -131,6 +132,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -160,6 +162,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   _onInput(event: KeyboardEvent) {

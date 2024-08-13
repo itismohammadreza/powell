@@ -4,7 +4,6 @@ import {FormsModule} from "@angular/forms";
 import {TriStateCheckboxComponent} from "@powell/components/tri-state-checkbox";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {PrimeTriStateCheckboxModule} from "@powell/primeng";
-import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [TriStateCheckboxComponent],
@@ -13,8 +12,7 @@ import {ConfigHandlerModule} from "@powell/directives/config-handler";
     PrimeTriStateCheckboxModule,
     CommonModule,
     FormsModule,
-    LabelStarModule,
-    ConfigHandlerModule
+    LabelStarModule
   ],
 })
 export class TriStateCheckboxModule {

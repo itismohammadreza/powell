@@ -21,7 +21,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {NgAddon, NgCssObject, NgIconPosition, NgLabelPosition, NgValidation} from '@powell/models';
-import {UtilsService} from "@powell/api";
+import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import * as events from "events";
 import {PrimeUniqueComponentId} from "@powell/primeng/api";
@@ -83,6 +83,7 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private el: ElementRef,
               private utilsService: UtilsService,
               private destroy$: DestroyService) {
@@ -114,6 +115,7 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   _onResize(event: Event | {}) {

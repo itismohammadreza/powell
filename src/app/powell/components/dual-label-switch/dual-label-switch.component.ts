@@ -13,6 +13,7 @@ import {takeUntil} from "rxjs";
 import {NgAsyncEvent, NgCssObject, NgFixLabelPosition, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {PrimeInputSwitchChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-dual-label-switch',
@@ -65,6 +66,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -94,7 +96,8 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
         });
       }
     }
-    this.setInitValue()
+    this.setInitValue();
+    this.configService.applyConfigToComponent(this);
   }
 
   setInitValue() {

@@ -51,6 +51,7 @@ import {
 import {EditorBaseComponent} from "@powell/components/editor";
 import {DestroyService} from "@core/utils";
 import {PrimeUniqueComponentId} from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-editor',
@@ -132,6 +133,7 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -181,6 +183,7 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngOnChanges(changes: SimpleChanges) {

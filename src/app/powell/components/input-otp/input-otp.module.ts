@@ -4,7 +4,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {InputOtpComponent} from "@powell/components/input-otp";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {PrimeInputTextModule, PrimeKeyFilterModule} from "@powell/primeng";
-import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [InputOtpComponent],
@@ -14,8 +13,7 @@ import {ConfigHandlerModule} from "@powell/directives/config-handler";
     PrimeKeyFilterModule,
     CommonModule,
     ReactiveFormsModule,
-    LabelStarModule,
-    ConfigHandlerModule
+    LabelStarModule
   ],
 })
 export class InputOtpModule {

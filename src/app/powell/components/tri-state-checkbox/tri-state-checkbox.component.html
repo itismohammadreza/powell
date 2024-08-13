@@ -1,10 +1,4 @@
-<div ngConfigHandler
-     [(disableConfigChangeEffect)]="disableConfigChangeEffect"
-     [(rtl)]="rtl"
-     [(filled)]="filled"
-     [(showRequiredStar)]="showRequiredStar"
-     [ngClass]="{ 'rtl': rtl, 'ltr': !rtl }"
-     class="tri-state-checkbox-wrapper">
+<div [ngClass]="{ 'rtl': rtl, 'ltr': !rtl }" class="tri-state-checkbox-wrapper">
   <div class="field">
     <p-triStateCheckbox
       [(ngModel)]="value"

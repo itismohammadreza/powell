@@ -27,6 +27,7 @@ import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
 import {PrimeRatingRateEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-rating',
@@ -78,6 +79,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -107,6 +109,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

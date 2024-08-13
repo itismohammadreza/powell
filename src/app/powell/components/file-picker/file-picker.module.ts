@@ -4,7 +4,6 @@ import {FilePickerComponent} from "@powell/components/file-picker";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {PrimeFileUploadModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
-import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [FilePickerComponent],
@@ -12,8 +11,7 @@ import {ConfigHandlerModule} from "@powell/directives/config-handler";
   imports: [
     PrimeFileUploadModule,
     LabelStarModule,
-    CommonModule,
-    ConfigHandlerModule
+    CommonModule
   ],
 })
 

@@ -6,7 +6,6 @@ import {AutoCompleteComponent} from "@powell/components/auto-complete";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {AddonModule} from "@powell/directives/addon";
 import {TemplateModule} from "@powell/directives/template";
-import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [AutoCompleteComponent],
@@ -16,8 +15,7 @@ import {ConfigHandlerModule} from "@powell/directives/config-handler";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    AddonModule,
-    ConfigHandlerModule
+    AddonModule
   ]
 })
 export class AutoCompleteModule {

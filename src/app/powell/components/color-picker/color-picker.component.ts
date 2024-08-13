@@ -13,6 +13,7 @@ import {takeUntil} from "rxjs";
 import {NgColorFormat, NgCssObject, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeColorPickerChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-color-picker',
@@ -75,6 +76,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -104,6 +106,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   _onChangeColorPicker(event: PrimeColorPickerChangeEvent) {

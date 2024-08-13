@@ -27,6 +27,7 @@ import {NgCssObject, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {PrimeTriStateCheckboxChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-tri-state-checkbox',
@@ -74,6 +75,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -103,6 +105,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

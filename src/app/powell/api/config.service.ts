@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
-import {Subject} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {NgConfig, NgConfigChangeEvent} from "@powell/models";
 import {ThemeService} from "@powell/api";
 import {PrimeConfig} from "@powell/primeng/api";
@@ -18,19 +18,10 @@ export class ConfigService {
     rtl: false,
     fixLabelPos: 'fix-side',
     labelPos: 'fix-side',
-    filled: false,
     inputSize: 'sm',
     showRequiredStar: true,
     theme: 'lara-light-indigo',
-    ripple: true,
-    zIndex: {
-      modal: 1100,
-      overlay: 1000,
-      menu: 1000,
-      tooltip: 1100
-    },
-    translation: {},
-    overlayOptions: {}
+    ...this.primengConfig
   };
   private configChangeSubject = new Subject<NgConfigChangeEvent>();
   configChange$ = this.configChangeSubject.asObservable();
@@ -83,5 +74,39 @@ export class ConfigService {
         this.document.body.classList.add(newClass);
       }
     })
+  }
+
+  applyConfigToComponent<T>(component: any) {
+    const initializedConfigs: string[] = []
+    const checkingConfigs: string[] = [
+      'labelPos',
+      'rtl',
+      'showRequiredStar',
+      'variant',
+      'inputSize'
+    ];
+    checkingConfigs.forEach(key => {
+      if (!['undefined', 'null'].includes(typeof component[key])) {
+        initializedConfigs.push(key);
+      }
+    })
+    console.log(this._config)
+    Object.entries(this._config).forEach(([key, value]) => {
+      let componentKey = this.getComponentConfigKey(key as keyof NgConfig);
+      component[componentKey] = value;
+    })
+    this.configChange$.pipe(takeUntil(component.destroy$)).subscribe(({modifiedConfig}) => {
+      Object.entries(modifiedConfig).forEach(([key, value]) => {
+        let componentKey = this.getComponentConfigKey(key as keyof NgConfig);
+        // component[componentKey] = initializedConfigs.includes(componentKey) ? component[componentKey] : value;
+        component[componentKey] = component.disableConfigChangeEffect ? component[componentKey] : value;
+      })
+    })
+  }
+
+  private getComponentConfigKey(key: keyof NgConfig) {
+    if (key === 'fixLabelPos') return 'labelPos';
+    if (key === 'inputStyle') return 'variant';
+    return key;
   }
 }

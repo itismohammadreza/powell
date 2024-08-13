@@ -50,6 +50,7 @@ import {
   PrimeUniqueComponentId
 } from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-tree',
@@ -134,6 +135,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -161,6 +163,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

@@ -26,7 +26,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgAddon, NgCssObject, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
-import {UtilsService} from "@powell/api";
+import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import {PrimeUniqueComponentId} from "@powell/primeng/api";
 
@@ -100,6 +100,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private el: ElementRef,
               private utilsService: UtilsService,
               private destroy$: DestroyService) {
@@ -131,6 +132,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

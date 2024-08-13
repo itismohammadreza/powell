@@ -34,6 +34,7 @@ import {
   PrimeOverlayOptions,
   PrimeUniqueComponentId
 } from "@powell/primeng/api";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-cascade-select',
@@ -116,6 +117,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -145,6 +147,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

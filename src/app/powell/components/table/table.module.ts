@@ -14,7 +14,6 @@ import {InputNumberModule} from "@powell/components/input-number";
 import {FormsModule} from "@angular/forms";
 import {PrimeTableModule, PrimeTooltipModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
-import {ConfigHandlerModule} from "@powell/directives/config-handler";
 
 @NgModule({
   declarations: [TableComponent],
@@ -33,8 +32,7 @@ import {ConfigHandlerModule} from "@powell/directives/config-handler";
     CheckboxModule,
     ImageModule,
     CommonModule,
-    FormsModule,
-    ConfigHandlerModule
+    FormsModule
   ],
 })
 export class TableModule {

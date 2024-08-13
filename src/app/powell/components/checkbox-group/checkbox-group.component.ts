@@ -27,6 +27,7 @@ import {NgCssObject, NgFixLabelPosition, NgOrientation, NgValidation} from '@pow
 import {DestroyService} from "@core/utils";
 import {PrimeCheckboxChangeEvent, PrimeCheckboxGroupChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-checkbox-group',
@@ -94,6 +95,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -123,6 +125,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

@@ -45,6 +45,7 @@ import {
   PrimeUniqueComponentId
 } from "@powell/primeng/api";
 import {DestroyService} from "@core/utils";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-auto-complete',
@@ -158,6 +159,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
 
   constructor(private cd: ChangeDetectorRef,
               private injector: Injector,
+              private configService: ConfigService,
               private destroy$: DestroyService) {
   }
 
@@ -187,6 +189,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
         });
       }
     }
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {

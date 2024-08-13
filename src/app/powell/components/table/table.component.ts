@@ -54,6 +54,7 @@ import {
   PrimeTableState
 } from "@powell/primeng/api";
 import {PrimeTable} from "@powell/primeng";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-table',
@@ -221,6 +222,9 @@ export class TableComponent implements OnInit, AfterContentInit {
   loading: boolean;
   activeSortField: string;
 
+  constructor(private configService: ConfigService) {
+  }
+
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);
     this.actionsConfig.actions = this.actionsConfig?.actions.filter(action => action.visible ?? true) || [];
@@ -229,7 +233,8 @@ export class TableComponent implements OnInit, AfterContentInit {
       if (conf.filter?.type == 'slider') {
         Object.assign(conf.filter, {sliderValue: conf.filter.range ? [conf.filter.min || 0, conf.filter.max || 100] : conf.filter.max})
       }
-    })
+    });
+    this.configService.applyConfigToComponent(this);
   }
 
   _onSort(event: PrimeTableSortEvent) {

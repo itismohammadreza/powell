@@ -1,5 +1,5 @@
-import {NgFixLabelPosition, NgLabelPosition, NgSize} from "@powell/models";
-import {PrimeOverlayOptions, PrimeTranslation} from "@powell/primeng/api";
+import { NgFixLabelPosition, NgLabelPosition, NgSize } from "@powell/models";
+import { PrimeConfig } from "@powell/primeng/api";
 
 interface NgZIndexOptions {
   modal: number;
@@ -13,7 +13,7 @@ export interface NgConfigChangeEvent {
   modifiedConfig: NgConfig;
 }
 
-export interface NgConfig {
+export interface NgConfig extends Partial<PrimeConfig> {
   disableConfigChangeEffect?: boolean;
   rtl?: boolean;
   labelPos?: NgLabelPosition;
@@ -22,10 +22,6 @@ export interface NgConfig {
   inputSize?: NgSize;
   showRequiredStar?: boolean;
   theme?: NgTheme;
-  zIndex?: NgZIndexOptions,
-  ripple?: boolean;
-  overlayOptions?: PrimeOverlayOptions;
-  translation?: PrimeTranslation;
 }
 
 export type NgTheme =
