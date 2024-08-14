@@ -41,5 +41,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - add rtl to bottomSheet and handle header
 - implement config change (and read from config) in dialog component
 - update navbar (handle backdrop visibility with modal property, like react-powell)
-- remove toPromise() methods
 - add tailwindcss
