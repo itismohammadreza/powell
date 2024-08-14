@@ -1,6 +1,14 @@
 import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {NgAddon, NgChipDisplayMode, NgIconPosition, NgLabelPosition, NgSize, NgTreeSelectionMode} from "@powell/models";
+import {
+  NgAddon,
+  NgChipDisplayMode,
+  NgIconPosition,
+  NgInputVariant,
+  NgLabelPosition,
+  NgSize,
+  NgTreeSelectionMode
+} from "@powell/models";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -17,7 +25,7 @@ export class TreeSelectPage {
   binding;
 
   label: string = 'label';
-  filled: boolean = this.configService.getConfig().filled;
+  variant: NgInputVariant = this.configService.getConfig().inputStyle;
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;

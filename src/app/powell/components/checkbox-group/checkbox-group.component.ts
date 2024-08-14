@@ -24,7 +24,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
+import {NgCssObject, NgFixLabelPosition, NgInputVariant, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeCheckboxChangeEvent, PrimeCheckboxGroupChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
@@ -51,7 +51,6 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
 
   @Input() value: any[];
   @Input() label: string;
-  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;
@@ -86,6 +85,8 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() labelStyleClass: string;
   @Input() checkboxIcon: string;
   @Input() readonly: boolean;
+  @Input() autofocus: boolean = false;
+  @Input() variant: NgInputVariant;
   @Output() onChange = new EventEmitter<PrimeCheckboxGroupChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();

@@ -62,7 +62,6 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() label: string;
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
-  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;

@@ -20,7 +20,15 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgColorFormat, NgCssObject, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {
+  NgColorFormat,
+  NgCssObject,
+  NgIconPosition,
+  NgInputVariant,
+  NgLabelPosition,
+  NgSize,
+  NgValidation
+} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeColorPickerChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 import {ConfigService} from "@powell/api";
@@ -47,7 +55,6 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
 
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;
@@ -61,6 +68,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() maxlength: number = 7;
   @Input() placeholder: string;
   @Input() followConfig: boolean;
+  @Input() variant: NgInputVariant;
   // native properties
   @Input() style: NgCssObject;
   @Input() styleClass: string;

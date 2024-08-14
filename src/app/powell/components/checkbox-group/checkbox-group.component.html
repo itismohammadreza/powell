@@ -4,8 +4,7 @@
       'label-fix-top': labelPos == 'fix-top',
       'label-fix-side': labelPos == 'fix-side',
       'layout-horizontal':orientation == 'horizontal',
-      'layout-vertical':orientation == 'vertical',
-      'p-input-filled': filled
+      'layout-vertical':orientation == 'vertical'
     }" class="checkbox-group-wrapper">
   <div [attr.id]="id" class="field">
     <div *ngFor="let item of options" class="option-item">
@@ -22,6 +21,8 @@
         [labelStyleClass]="labelStyleClass"
         [checkboxIcon]="checkboxIcon"
         [readonly]="readonly"
+        [autofocus]="autofocus"
+        [variant]="variant"
         [name]="groupName"
         [value]="item[optionValue]"
         (onChange)="_onChange($event)"

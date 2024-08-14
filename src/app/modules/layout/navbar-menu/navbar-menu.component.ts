@@ -65,7 +65,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     theme: this.configService.getConfig().theme,
     labelPos: this.configService.getConfig().labelPos,
     fixLabelPos: this.configService.getConfig().fixLabelPos,
-    filled: this.configService.getConfig().filled,
+    inputStyle: this.configService.getConfig().inputStyle,
     showRequiredStar: this.configService.getConfig().showRequiredStar,
     inputSize: this.configService.getConfig().inputSize,
     ripple: this.configService.getConfig().ripple,

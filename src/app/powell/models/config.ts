@@ -13,7 +13,6 @@ export interface NgConfig extends Partial<OmittedPrimeConfig> {
   rtl?: boolean;
   labelPos?: NgLabelPosition;
   fixLabelPos?: NgFixLabelPosition;
-  filled?: boolean;
   inputSize?: NgSize;
   showRequiredStar?: boolean;
   theme?: NgTheme;

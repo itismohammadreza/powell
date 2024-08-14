@@ -1,7 +1,6 @@
 import {HttpHeaders} from '@angular/common/http';
 import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {
-  NgCssObject,
   NgAddon,
   NgAutoCompleteDropdownMode,
   NgButtonAppearance,
@@ -9,6 +8,7 @@ import {
   NgChipDisplayMode,
   NgColor,
   NgColorFormat,
+  NgCssObject,
   NgCurrency,
   NgCurrencyDisplay,
   NgDatepickerDateType,
@@ -25,6 +25,7 @@ import {
   NgIconPosition,
   NgInputMode,
   NgInputType,
+  NgInputVariant,
   NgKeyFilter,
   NgLabelPosition,
   NgLimitZoom,
@@ -760,7 +761,7 @@ export interface NgDialogFormConfig {
   ///////////////////////////////////////// tri-state-checkbox /////////////////////////////////////////
   value?: any;
   label?: string;
-  filled?: boolean;
+  variant?: NgInputVariant;
   hint?: string;
   rtl?: boolean;
   showRequiredStar?: boolean;

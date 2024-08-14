@@ -129,14 +129,15 @@
     [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'}]"
     (onChange)="changeGlobalConfig('fixLabelPos',$event.value)"
   ></ng-dropdown>
-  <ng-switch
-    [label]="'filled' | translate"
+  <ng-dropdown
+    [label]="'inputStyle' | translate"
     labelPos="fix-side"
     [labelWidth]="170"
     class="d-block mb-4"
-    [value]="config.filled"
-    (onChange)="changeGlobalConfig('filled',$event.checked)">
-  </ng-switch>
+    [value]="config.inputStyle"
+    [options]="[{label:'outlined',value:'outlined'},{label:'filled',value:'filled'}]"
+    (onChange)="changeGlobalConfig('inputStyle',$event.value)"
+  ></ng-dropdown>
   <ng-switch
     [label]="'showRequiredStar' | translate"
     labelPos="fix-side"

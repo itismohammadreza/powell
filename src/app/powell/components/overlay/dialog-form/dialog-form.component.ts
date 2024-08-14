@@ -26,7 +26,7 @@ export class DialogFormComponent {
     this._config = value;
     this.form = new FormGroup({});
     for (const config of this._config) {
-      config.filled = config.filled ?? this.configService.getConfig().filled;
+      config.variant = config.variant ?? this.configService.getConfig().inputStyle;
       config.labelPos = config.labelPos ?? this.configService.getConfig().labelPos;
       config.fixLabelPos = config.fixLabelPos ?? this.configService.getConfig().fixLabelPos;
       config.selectiveSize = config.selectiveSize ?? this.configService.getConfig().inputSize;

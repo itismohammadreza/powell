@@ -62,7 +62,6 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
 
   @Input() value: number;
   @Input() label: string;
-  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;

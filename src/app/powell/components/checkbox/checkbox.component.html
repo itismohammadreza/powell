@@ -1,8 +1,4 @@
-<div [ngClass]="{
-       'rtl': rtl,
-       'ltr': !rtl,
-       'p-input-filled': filled
-     }" class="checkbox-wrapper">
+<div [ngClass]="{'rtl': rtl, 'ltr': !rtl}" class="checkbox-wrapper">
   <div class="field">
     <p-checkbox
       [(ngModel)]="value"

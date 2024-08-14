@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ConfigService} from "@powell/api";
+import {NgInputVariant} from "@powell/models";
 
 @Component({
   selector: 'ng-tri-state-checkbox-page',
@@ -16,7 +17,7 @@ export class TriStateCheckboxPage {
   binding;
 
   label: string = 'label';
-  filled: boolean = this.configService.getConfig().filled;
+  variant: NgInputVariant = this.configService.getConfig().inputStyle;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;
   showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;

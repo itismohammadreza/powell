@@ -62,7 +62,6 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
 
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;

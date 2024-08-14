@@ -5,7 +5,7 @@
     <ng-preview-options
       [previewItems]="[
       'label',
-      'filled',
+      'variant',
       'labelWidth',
       'hint',
       'rtl',
@@ -29,7 +29,7 @@
       'showClear',
       ]"
       [(label)]="label"
-      [(filled)]="filled"
+      [(variant)]="variant"
       [(labelWidth)]="labelWidth"
       [(hint)]="hint"
       [(rtl)]="rtl"
@@ -61,7 +61,7 @@
         [addon]="addon"
         [validation]="{ required: 'error' }"
         [label]="label"
-        [filled]="filled"
+        [variant]="variant"
         [labelWidth]="labelWidth"
         [hint]="hint"
         [rtl]="rtl"

@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {NgFixLabelPosition, NgSize} from "@powell/models";
+import {NgFixLabelPosition, NgInputVariant, NgSize} from "@powell/models";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ConfigService} from "@powell/api";
 
@@ -17,7 +17,7 @@ export class InputOtpPage {
   binding;
 
   label: string = 'label';
-  filled: boolean = this.configService.getConfig().filled;
+  variant: NgInputVariant = this.configService.getConfig().inputStyle;
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;

@@ -26,6 +26,7 @@ import {
   NgFixLabelPosition,
   NgIconPosition,
   NgInputType,
+  NgInputVariant,
   NgKeyFilter,
   NgLabelPosition,
   NgLimitZoom,
@@ -49,7 +50,7 @@ import {ConfigService} from "@powell/api";
 
 type PreviewItem =
   | 'label'
-  | 'filled'
+  | 'variant'
   | 'labelWidth'
   | 'hint'
   | 'rtl'
@@ -292,8 +293,8 @@ export class PreviewOptionsComponent implements OnInit {
 
   @Input() label: string;
   @Output() labelChange = new EventEmitter()
-  @Input() filled: boolean;
-  @Output() filledChange = new EventEmitter()
+  @Input() variant: NgInputVariant;
+  @Output() variantChange = new EventEmitter()
   @Input() labelWidth: number;
   @Output() labelWidthChange = new EventEmitter()
   @Input() hint: string;
@@ -807,6 +808,7 @@ export class PreviewOptionsComponent implements OnInit {
       pinchOverflow: ['hidden', 'visible'],
       pinchDisableZoomControl: ['disable', 'never', 'auto'],
       pinchListeners: ['auto', 'mouse and touch'],
+      variant: ['outlined', 'filled'],
     };
     for (const item of this.previewItems) {
       if (Object.keys(dropdownData).includes(item)) {
@@ -827,7 +829,7 @@ export class PreviewOptionsComponent implements OnInit {
         rtl: 'rtl',
         fixLabelPos: 'fixLabelPos',
         labelPos: 'labelPos',
-        filled: 'filled',
+        inputStyle: 'inputStyle',
         inputSize: 'selectiveSize',
         showRequiredStar: 'showRequiredStar',
         followConfig: 'followConfig',
@@ -851,7 +853,7 @@ export class PreviewOptionsComponent implements OnInit {
     cmpRef.instance.value = this[previewItem];
     cmpRef.instance.labelPos = this.configService.getConfig().labelPos;
     cmpRef.instance.rtl = this.configService.getConfig().rtl;
-    cmpRef.instance.filled = this.configService.getConfig().filled;
+    cmpRef.instance.variant = this.configService.getConfig().inputSize;
     cmpRef.instance.inputSize = this.configService.getConfig().inputSize;
     cmpRef.instance.key = previewItem;
     this.translationService.stream(previewItem).pipe(takeUntil(this.destroy$)).subscribe(res => {

@@ -13,8 +13,7 @@
     <div [ngClass]="{
       'p-float-label': label && labelPos == 'float',
       'p-input-icon-left': icon && iconPos == 'left',
-      'p-input-icon-right': icon && iconPos == 'right',
-      'p-input-filled': filled
+      'p-input-icon-right': icon && iconPos == 'right'
     }">
       <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
       <textarea

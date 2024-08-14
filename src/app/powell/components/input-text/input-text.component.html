@@ -16,8 +16,7 @@
       'p-input-icon-left': icon && iconPos == 'left',
       'p-input-icon-right': icon && iconPos == 'right',
       'p-inputtext-sm': inputSize == 'sm',
-      'p-inputtext-lg': inputSize == 'lg',
-      'p-input-filled': filled
+      'p-inputtext-lg': inputSize == 'lg'
     }">
       <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
       <div [class.p-float-label]="label && labelPos == 'float'">

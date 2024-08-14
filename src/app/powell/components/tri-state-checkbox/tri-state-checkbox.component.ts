@@ -51,7 +51,6 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
 
   @Input() value: any;
   @Input() label: string;
-  @Input() filled: boolean;
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;

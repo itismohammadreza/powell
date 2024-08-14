@@ -5,7 +5,7 @@
     <ng-preview-options
       [previewItems]="[
       'label',
-      'filled',
+      'variant',
       'hint',
       'rtl',
       'showRequiredStar',
@@ -14,7 +14,7 @@
       'readonly',
       ]"
       [(label)]="label"
-      [(filled)]="filled"
+      [(variant)]="variant"
       [(hint)]="hint"
       [(rtl)]="rtl"
       [(showRequiredStar)]="showRequiredStar"
@@ -30,7 +30,7 @@
         formControlName="c1"
         [validation]="{ required: 'error' }"
         [label]="label"
-        [filled]="filled"
+        [variant]="variant"
         [hint]="hint"
         [rtl]="rtl"
         [showRequiredStar]="showRequiredStar"

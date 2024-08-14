@@ -5,6 +5,7 @@ import {
   NgCurrency,
   NgCurrencyDisplay,
   NgIconPosition,
+  NgInputVariant,
   NgLabelPosition,
   NgNumberButtonLayout,
   NgNumberMode,
@@ -26,7 +27,7 @@ export class InputNumberPage {
   binding;
 
   label: string = 'label';
-  filled: boolean = this.configService.getConfig().filled;
+  variant: NgInputVariant = this.configService.getConfig().inputStyle;
   labelWidth: number = 100;
   hint: string = '';
   rtl: boolean = this.configService.getConfig().rtl;
