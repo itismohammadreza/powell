@@ -12,6 +12,8 @@ export class ConfigService {
   private primengConfig = inject(PrimeConfig);
   private themeService = inject(ThemeService);
 
+  private configChangeSubject = new Subject<NgConfigChangeEvent>();
+  configChange$ = this.configChangeSubject.asObservable();
   private _config: NgConfig = {
     followConfig: true,
     rtl: false,
@@ -20,23 +22,34 @@ export class ConfigService {
     inputSize: 'sm',
     showRequiredStar: true,
     theme: 'lara-light-indigo',
-    ...this.primengConfig
+    overlayOptions: this.primengConfig.overlayOptions,
+    ripple: this.primengConfig.ripple,
+    translation: this.primengConfig.translation,
+    zIndex: this.primengConfig.zIndex,
+    translationObserver: this.primengConfig.translationObserver,
+    filterMatchModeOptions: this.primengConfig.filterMatchModeOptions,
+    inputStyle: this.primengConfig.inputStyle(),
+    csp: this.primengConfig.csp(),
   };
-  private configChangeSubject = new Subject<NgConfigChangeEvent>();
-  configChange$ = this.configChangeSubject.asObservable();
 
   setConfig(config: NgConfig) {
     this._config = {...this._config, ...config};
     this.primengConfig.zIndex = this._config.zIndex;
     this.primengConfig.ripple = this._config.ripple;
     this.primengConfig.overlayOptions = this._config.overlayOptions;
+    if (this._config.translation) {
+      this.primengConfig.setTranslation(this._config.translation);
+    }
+    if (this._config.csp) {
+      this.primengConfig.csp.set(this._config.csp);
+    }
+    if (this._config.inputStyle) {
+      this.primengConfig.inputStyle.set(this._config.inputStyle);
+    }
     if (this._config.ripple === false) {
       this.document.body.classList.add('p-ripple-disabled');
     } else {
       this.document.body.classList.remove('p-ripple-disabled');
-    }
-    if (this._config.translation) {
-      this.primengConfig.setTranslation(this._config.translation)
     }
     this.document.documentElement.setAttribute('dir', this._config.rtl ? 'rtl' : 'ltr');
     this.themeService.initTheme();
@@ -57,7 +70,7 @@ export class ConfigService {
     Object.entries(this._config).filter(c => typeof c[1] !== 'object').forEach(([key, value]) => {
       key = toKebabCase(key);
       const foundedClass = bodyClasses.find(c => c.includes(key));
-      let newClass;
+      let newClass: string;
       if (typeof value == 'boolean') {
         if (value) {
           newClass = `ng-${key}`;
@@ -80,19 +93,6 @@ export class ConfigService {
   }
 
   applyConfigToComponent<T>(component: any) {
-    const initializedConfigs: string[] = []
-    const checkingConfigs: string[] = [
-      'labelPos',
-      'rtl',
-      'showRequiredStar',
-      'variant',
-      'inputSize'
-    ];
-    checkingConfigs.forEach(key => {
-      if (!['undefined', 'null'].includes(typeof component[key])) {
-        initializedConfigs.push(key);
-      }
-    })
     Object.entries(this._config).forEach(([key, value]) => {
       let componentKey = this.getComponentConfigKey(key as keyof NgConfig);
       component[componentKey] = value;
@@ -100,10 +100,9 @@ export class ConfigService {
     this.configChange$.pipe(takeUntil(component.destroy$)).subscribe(({modifiedConfig}) => {
       Object.entries(modifiedConfig).forEach(([key, value]) => {
         let componentKey = this.getComponentConfigKey(key as keyof NgConfig);
-        // component[componentKey] = initializedConfigs.includes(componentKey) ? component[componentKey] : value;
         component[componentKey] = component.followConfig ? value : component[componentKey];
-      })
-    })
+      });
+    });
   }
 
   private getComponentConfigKey(key: keyof NgConfig) {
