@@ -2,7 +2,7 @@ import {inject, Injectable} from "@angular/core";
 import {DOCUMENT} from "@angular/common";
 import {NgTheme} from "@powell/models";
 
-// DON'T provide anywhere. will provide automatically after `initiateNgConfigProvider` call.
+// DON'T provide anywhere. will provide automatically after `providePowell` call.
 @Injectable()
 export class ThemeService {
   private document = inject(DOCUMENT);

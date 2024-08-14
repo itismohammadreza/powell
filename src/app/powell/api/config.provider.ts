@@ -7,7 +7,7 @@ import {
   PrimeMessageService
 } from "@powell/primeng/api";
 
-export function initiateNgConfigProvider(ngConfig?: NgConfig) {
+export function providePowell(config?: NgConfig) {
   return [
     ThemeService,
     PrimeMessageService,
@@ -18,7 +18,7 @@ export function initiateNgConfigProvider(ngConfig?: NgConfig) {
       provide: ConfigService,
       useFactory: () => {
         const configService = new ConfigService();
-        configService.setConfig(ngConfig);
+        configService.setConfig(config);
         return configService;
       },
     }

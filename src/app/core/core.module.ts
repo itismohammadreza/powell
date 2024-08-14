@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {EnvServiceProvider, TranslationService} from "@core/utils";
-import {initiateNgConfigProvider, MomentService, OverlayService, PersianService, UtilsService} from "@powell/api";
+import {MomentService, OverlayService, PersianService, providePowell, UtilsService} from "@powell/api";
 import {globalConfig} from "@core/config";
 
 export function httpLoaderFactory(http: HttpClient) {
@@ -28,7 +28,10 @@ export function initiateLanguage(translationService: TranslationService) {
   ],
   providers: [
     {provide: APP_INITIALIZER, useFactory: initiateLanguage, deps: [TranslationService], multi: true},
-    initiateNgConfigProvider({rtl: globalConfig.rtl}),
+    providePowell({
+      rtl: globalConfig.rtl,
+      ...globalConfig.powellConfig,
+    }),
     EnvServiceProvider,
     MomentService,
     OverlayService,

@@ -5,7 +5,7 @@ import {NgConfig, NgConfigChangeEvent} from "@powell/models";
 import {ThemeService} from "@powell/api";
 import {PrimeConfig} from "@powell/primeng/api";
 
-// DON'T provide anywhere. will provide automatically after `initiateNgConfigProvider` call.
+// DON'T provide anywhere. will provide automatically after `providePowell` call.
 @Injectable()
 export class ConfigService {
   private document = inject(DOCUMENT);
