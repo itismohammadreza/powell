@@ -271,10 +271,10 @@ export class UtilsService {
   }
 
   // async downloadLink(url: string) {
-  //   const res = await this._customRequest<any>(url, 'get', null, {
+  //   const res = await lastValueFrom(this._customRequest<any>(url, 'get', null, {
   //     observe: 'response',
   //     responseType: 'blob'
-  //   }).toPromise();
+  //   }));
   //   const b64DecodeUnicode = (str: string) => {
   //     return decodeURIComponent(atob(str).split('').map(c =>{
   //       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);

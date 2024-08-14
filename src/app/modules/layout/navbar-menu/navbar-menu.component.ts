@@ -23,6 +23,7 @@ import {TranslateModule} from "@ngx-translate/core";
 import {FormsModule} from "@angular/forms";
 import {LogoComponent} from "@modules/layout/logo/logo.component";
 import {routes} from "@modules/main/pages/showcase/showcase-routing.module";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'ng-navbar-menu',
@@ -136,7 +137,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   async changeLang(event) {
-    await this.translationService.use(event.value).toPromise();
+    await lastValueFrom(this.translationService.use(event.value));
   }
 
   changeSidebarType(event: any, assign: boolean) {
