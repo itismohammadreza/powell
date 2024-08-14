@@ -7,6 +7,7 @@
       [name]="name"
       [ariaLabel]="ariaLabel"
       [ariaLabelledBy]="ariaLabelledBy"
+      [variant]="variant"
       [tabindex]="tabindex"
       [inputId]="inputId"
       [style]="style"
@@ -14,6 +15,7 @@
       [readonly]="readonly"
       [checkboxTrueIcon]="checkboxTrueIcon"
       [checkboxFalseIcon]="checkboxFalseIcon"
+      [autofocus]="autofocus"
       (onChange)="_onChange($event)">
       <ng-container *ngFor="let t of templates">
         <ng-template [pTemplate]="t.getType()" *ngIf="templateMap[t.getType()]">

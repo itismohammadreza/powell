@@ -25,7 +25,15 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAddon, NgCssObject, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {
+  NgAddon,
+  NgCssObject,
+  NgIconPosition,
+  NgInputVariant,
+  NgLabelPosition,
+  NgSize,
+  NgValidation
+} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
@@ -90,6 +98,8 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() autocomplete: string;
   @Input() placeholder: string;
   @Input() showClear: boolean = false;
+  @Input() autofocus: boolean = false;
+  @Input() variant: NgInputVariant;
   @Output() onInput = new EventEmitter<Event>();
   @Output() onChange = new EventEmitter<Event>();
   @Output() onKeyDown = new EventEmitter<KeyboardEvent>();

@@ -21,7 +21,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAddon, NgCssObject, NgIconPosition, NgLabelPosition, NgValidation} from '@powell/models';
+import {NgAddon, NgCssObject, NgIconPosition, NgInputVariant, NgLabelPosition, NgValidation} from '@powell/models';
 import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import {PrimeUniqueComponentId} from "@powell/primeng/api";
@@ -66,6 +66,7 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Input() rows: number;
   @Input() cols: number;
   @Input() autoResize: boolean;
+  @Input() variant: NgInputVariant;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() maxlength: number;

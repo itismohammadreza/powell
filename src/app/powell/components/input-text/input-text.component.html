@@ -38,6 +38,7 @@
           [ngStyle]="inputStyle"
           [class]="inputStyleClass"
           [autocomplete]="autocomplete"
+          [variant]="variant"
           (blur)="_onBlur($event)"
           (change)="_onChange($event)"
           (click)="emitter('onClick', $event)"

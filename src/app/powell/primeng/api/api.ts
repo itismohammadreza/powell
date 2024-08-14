@@ -45,6 +45,7 @@ import {
   FileUploadErrorEvent,
   FileUploadEvent,
   FileUploadHandlerEvent,
+  RemoveUploadedFileEvent,
   UploadEvent
 } from "primeng/fileupload";
 import {InputNumberInputEvent} from "primeng/inputnumber";
@@ -129,6 +130,7 @@ import {EyeIcon} from "primeng/icons/eye";
 import {UndoIcon} from "primeng/icons/undo";
 import {SearchMinusIcon} from "primeng/icons/searchminus";
 import {SearchPlusIcon} from "primeng/icons/searchplus";
+import {InputOtpChangeEvent} from "primeng/inputotp";
 
 interface PrimeMultiSortEvent {
   data: any[];
@@ -194,9 +196,12 @@ export type PrimeFileSelectEvent = FileSelectEvent;
 export type PrimeFileSendEvent = FileSendEvent;
 export type PrimeFileUploadEvent = FileUploadEvent;
 export type PrimeFileUploadHandlerEvent = FileUploadHandlerEvent;
+export type PrimeRemoveUploadedFileEvent = RemoveUploadedFileEvent;
 export type PrimeUploadEvent = UploadEvent;
 
 export type PrimeInputNumberInputEvent = InputNumberInputEvent;
+
+export type PrimeInputOtpChangeEvent = InputOtpChangeEvent;
 
 export type PrimeListboxChangeEvent = ListboxChangeEvent;
 export type PrimeListboxClickEvent = ListboxClickEvent;

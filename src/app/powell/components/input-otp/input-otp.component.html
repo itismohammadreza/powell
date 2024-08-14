@@ -3,35 +3,28 @@
       'ltr': !rtl,
       'label-fix-top': labelPos == 'fix-top',
       'label-fix-side': labelPos == 'fix-side'
-    }" class="input-otp-wrapper"
-     [ngStyle]="style"
-     [class]="styleClass">
+    }" class="input-otp-wrapper">
   <div class="field">
-    <div *ngIf="form?.controls"
-         [ngClass]="{
-          'p-input-filled': filled,
-          'p-inputtext-sm': inputSize == 'sm',
-          'p-inputtext-lg': inputSize == 'lg'
-          }">
-      <input
-        *ngFor="let item of transformKeys(form.controls);let i=index"
-        [formControl]="$any(form.controls[item])"
-        [readonly]="readonly"
-        [attr.disabled]="disabled ? true : null"
-        [placeholder]="placeholder || ''"
-        [ngStyle]="inputStyle"
-        [class]="inputStyleClass"
-        pInputText
-        autocomplete="one-time-code"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-        [pattern]="numbersOnly ? '\\d*' : ''"
-        [attr.inputmode]="numbersOnly ? 'decimal' : 'text'"
-        [pKeyFilter]="getKeyFilter()"
-        (paste)="_onPaste($event)"
-        (keyup)="_onKeyUp($event,i)"
-        (keydown)="_onKeyDown($event)"
-        (blur)="_onBlur($event)">
-    </div>
+    <p-inputOtp
+      [(ngModel)]="value"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+      [invalid]="isInvalid()"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [variant]="variant"
+      [tabindex]="tabindex"
+      [length]="length"
+      [mask]="mask"
+      [integerOnly]="integerOnly"
+      [autofocus]="autofocus"
+      (onChange)="_onChange($event)"
+      (onFocus)="_onFocus($event)"
+      (onBlur)="_onBlur($event)"/>
+    <ng-container *ngFor="let t of templates">
+      <ng-template [pTemplate]="t.getType()" *ngIf="templateMap[t.getType()]">
+        <ng-container *ngTemplateOutlet="templateMap[t.getType()]"></ng-container>
+      </ng-template>
+    </ng-container>
   </div>
   <label
     class="fix-label"

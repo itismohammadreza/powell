@@ -69,6 +69,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   @Input() falseValue: any = false;
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
+  @Input() autofocus: any = false;
   @Output() onChange = new EventEmitter<PrimeInputSwitchChangeEvent>();
   @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<PrimeInputSwitchChangeEvent>>();
 

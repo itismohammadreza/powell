@@ -69,6 +69,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() readonly: boolean = false;
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
+  @Input() autofocus: any = false;
   @Output() onChange = new EventEmitter<PrimeInputSwitchChangeEvent>();
   @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<PrimeInputSwitchChangeEvent>>();
 

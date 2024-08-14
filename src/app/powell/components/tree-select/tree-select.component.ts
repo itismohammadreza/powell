@@ -29,6 +29,7 @@ import {
   NgChipDisplayMode,
   NgCssObject,
   NgIconPosition,
+  NgInputVariant,
   NgLabelPosition,
   NgSize,
   NgTreeFilterMode,
@@ -41,6 +42,7 @@ import {
   PrimeOverlayOnHideEvent,
   PrimeOverlayOnShowEvent,
   PrimeOverlayOptions,
+  PrimeScrollerOptions,
   PrimeTreeNode,
   PrimeTreeNodeSelectEvent,
   PrimeTreeNodeUnSelectEvent,
@@ -89,6 +91,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() scrollHeight: string = '400px';
   @Input() disabled: boolean;
   @Input() metaKeySelection: boolean = false;
+  @Input() variant: NgInputVariant;
   @Input() display: NgChipDisplayMode = 'comma';
   @Input() selectionMode: NgTreeSelectionMode = 'single';
   @Input() tabindex: string;
@@ -115,15 +118,22 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() propagateSelectionUp: boolean = true;
   @Input() showClear: boolean = false;
   @Input() resetFilterOnHide: boolean = true;
+  @Input() virtualScroll: boolean = false;
+  @Input() virtualScrollItemSize: number;
+  @Input() virtualScrollOptions: PrimeScrollerOptions;
+  @Input() autofocus: boolean = false;
   @Input() options: PrimeTreeNode<any>[];
   @Input() showTransitionOptions: string;
   @Input() hideTransitionOptions: string;
+  @Input() loading: boolean = false;
   @Output() onNodeExpand = new EventEmitter<PrimeTreeSelectNodeExpandEvent>();
   @Output() onNodeCollapse = new EventEmitter<PrimeTreeSelectNodeCollapseEvent>();
   @Output() onShow = new EventEmitter<PrimeOverlayOnShowEvent>();
   @Output() onHide = new EventEmitter<PrimeOverlayOnHideEvent>();
   @Output() onClear = new EventEmitter<void>();
   @Output() onFilter = new EventEmitter<PrimeTreeSelectFilterEvent>();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
   @Output() onNodeUnselect = new EventEmitter<PrimeTreeNodeUnSelectEvent>();
   @Output() onNodeSelect = new EventEmitter<PrimeTreeNodeSelectEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
@@ -140,9 +150,9 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-        ControlContainer,
-        null,
-        {optional: true, host: true, skipSelf: true}
+      ControlContainer,
+      null,
+      {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
@@ -184,6 +194,11 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   _onClear() {
     this.onClear.emit();
     this.onModelChange(null);
+  }
+
+  _onBlur(event: Event) {
+    this.onBlur.emit(event);
+    this.onModelTouched();
   }
 
   emitter(name: string, event: any) {

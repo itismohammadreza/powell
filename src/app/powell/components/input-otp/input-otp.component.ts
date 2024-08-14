@@ -1,21 +1,21 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
-  ElementRef,
+  ContentChildren,
   EventEmitter,
   forwardRef,
   inject,
   Injector,
   Input,
   OnInit,
-  Output
+  Output,
+  QueryList,
+  TemplateRef
 } from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  FormControl,
   FormControlName,
   FormGroup,
   FormGroupDirective,
@@ -23,9 +23,11 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgSize, NgValidation} from "@powell/models";
+import {NgFixLabelPosition, NgInputVariant, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
+import {PrimeInputOtpChangeEvent} from "@powell/primeng/api";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-input-otp',
@@ -40,17 +42,13 @@ import {ConfigService} from "@powell/api";
     DestroyService
   ]
 })
-export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class InputOtpComponent implements OnInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
   private injector = inject(Injector);
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
-  private el = inject(ElementRef);
 
-  @Input('value') set value(v: any) {
-    this.setValue(v)
-  };
-
+  @Input() value: number;
   @Input() label: string;
   @Input() filled: boolean;
   @Input() labelWidth: number;
@@ -59,28 +57,23 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() showRequiredStar: boolean;
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize;
   @Input() followConfig: boolean;
-  @Input() readonly: boolean;
-  @Input() disabled: boolean;
-  @Input() placeholder: string;
-  @Input() style: NgCssObject;
-  @Input() styleClass: string;
-  @Input() inputStyle: NgCssObject;
-  @Input() inputStyleClass: string;
-  @Input() inputCount: number = 4;
-  @Input() allowedKeyCodes: string[];
-  @Input() numbersOnly: boolean = true;
-  @Input() autoFocusFirst: boolean;
-  @Output() onChange = new EventEmitter<string>();
-  @Output() onKeyDown = new EventEmitter<KeyboardEvent>();
-  @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
-  @Output() onBlur = new EventEmitter<FocusEvent>();
-  @Output() onFocus = new EventEmitter<FocusEvent>();
-  @Output() onPaste = new EventEmitter<Event>();
+  // native properties
+  @Input() disabled: boolean = false;
+  @Input() readonly: boolean = false;
+  @Input() variant: NgInputVariant;
+  @Input() tabindex: number = null;
+  @Input() length: number = 4;
+  @Input() mask: boolean = false;
+  @Input() integerOnly: boolean = false;
+  @Input() autofocus: boolean = false;
+  @Output() onChange = new EventEmitter<PrimeInputOtpChangeEvent>();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  form: FormGroup;
   ngControl: NgControl;
+  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -112,35 +105,21 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
         });
       }
     }
-    this.form = new FormGroup({});
-    for (let index = 0; index < this.inputCount; index++) {
-      this.form.addControl(this.getControlName(index), new FormControl());
-    }
-    this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.transformKeys(this.form.controls).forEach((k) => {
-        const val = this.form.controls[k].value;
-        if (val && val.length > 1) {
-          if (val.length >= this.inputCount) {
-            this.setValue(val);
-          } else {
-            this.rebuildValue();
-          }
-        }
-      });
-    });
     this.configService.applyConfigToComponent(this);
   }
 
-  ngAfterViewInit() {
-    if (this.autoFocusFirst) {
-      const input = this.getNthInput(0);
-      this.focusInput(input);
-    }
+  _onChange(event: PrimeInputOtpChangeEvent) {
+    this.onChange.emit(event);
+    this.onModelChange(event.value);
   }
 
-  _onBlur(event: FocusEvent) {
+  _onBlur(event: Event) {
     this.onBlur.emit(event)
     this.onModelTouched();
+  }
+
+  _onFocus(event: Event) {
+    this.onFocus.emit(event);
   }
 
   isInvalid() {
@@ -165,171 +144,9 @@ export class InputOtpComponent implements OnInit, AfterViewInit, ControlValueAcc
     return !hasError;
   }
 
-  getControlName(idx: number) {
-    return `ctrl_${idx}`;
-  }
-
-  _onKeyDown(event: KeyboardEvent) {
-    this.onKeyDown.emit(event)
-    if (this.isSpacebar(event)) {
-      event.preventDefault();
-      return false;
-    }
-  }
-
-  _onKeyUp(event: any, index: number) {
-    const nextInputEl = this.getNthInput(index + 1);
-    const prevInputEl = this.getNthInput(index - 1);
-    this.onKeyDown.emit(event);
-
-    if (this.isRightArrow(event)) {
-      event.preventDefault();
-      this.selectInput(nextInputEl);
-      return;
-    }
-    if (this.isLeftArrow(event)) {
-      event.preventDefault();
-      this.selectInput(prevInputEl);
-      return;
-    }
-    if (this.isBackspaceOrDelete(event) && !event.target.value) {
-      this.selectInput(prevInputEl);
-      this.rebuildValue();
-      return;
-    }
-
-    if (!event.target.value) {
-      return;
-    }
-
-    if (this.isValidKeyCode(event)) {
-      this.selectInput(nextInputEl);
-    }
-    this.rebuildValue();
-  }
-
-  isNumber(value: any) {
-    return value && /^\d*\.?\d*$/.test(value);
-  }
-
-  selectInput(input: HTMLInputElement) {
-    if (input) {
-      this.focusInput(input)
-      if (input.setSelectionRange) {
-        setTimeout(() => {
-          input.setSelectionRange(0, 1);
-        }, 0);
-      }
-    }
-  }
-
-  isValidKeyCode(event: any) {
-    const inp = event.key;
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    return (
-      isMobile ||
-      /[a-zA-Z0-9-_]/.test(inp) ||
-      (this.allowedKeyCodes?.includes(event.keyCode))
-    );
-  }
-
-  setValue(value: any) {
-    if (this.numbersOnly && isNaN(value)) {
-      return;
-    }
-    this.form.reset();
-    if (!value) {
-      this.rebuildValue();
-      return;
-    }
-    value = value.toString().replace(/\s/g, '');
-    Array.from(value).forEach((c, idx) => {
-      if (this.form.get(this.getControlName(idx))) {
-        this.form.get(this.getControlName(idx)).setValue(c);
-      }
-    });
-    if (this.autoFocusFirst) {
-      const indexOfElementToFocus = value.length < this.inputCount ? value.length : (this.inputCount - 1);
-      let input = this.getNthInput(indexOfElementToFocus);
-      this.focusInput(input)
-    }
-    this.rebuildValue();
-  }
-
-  rebuildValue() {
-    let value = '';
-    this.transformKeys(this.form.controls).forEach(k => {
-      if (this.form.controls[k].value) {
-        let ctrlVal = this.form.controls[k].value;
-        let isLengthExceed = ctrlVal.length > 1;
-        ctrlVal = ctrlVal[0];
-        value += ctrlVal;
-        if (isLengthExceed) {
-          this.form.controls[k].setValue(ctrlVal);
-        }
-      }
-    });
-    this.onChange.emit(value);
-    this.onModelChange(value);
-  }
-
-  _onPaste(event: any) {
-    let clipboardData = event.clipboardData || window['clipboardData'];
-    let pastedData: string;
-    if (clipboardData) {
-      pastedData = clipboardData.getData('Text');
-    }
-    event.stopPropagation();
-    event.preventDefault();
-    if (!pastedData || (this.numbersOnly && !this.isNumber(pastedData))) {
-      return;
-    }
-    this.setValue(pastedData);
-    this.onPaste.emit(event)
-  }
-
-  transformKeys(value: any) {
-    return Object.keys(value);
-  }
-
-  isBackspaceOrDelete(event: KeyboardEvent) {
-    return this.isKey(event, 'Backspace;Delete;Del');
-  }
-
-  isRightArrow(event: KeyboardEvent) {
-    return this.isKey(event, 'ArrowRight;Right')
-  }
-
-  isLeftArrow(event: KeyboardEvent) {
-    return this.isKey(event, 'ArrowLeft;Left')
-  }
-
-  isSpacebar(event: KeyboardEvent) {
-    return this.isKey(event, 'Spacebar; ')
-  }
-
-  isKey(event: KeyboardEvent, keys: string) {
-    let keysToCheck = keys.split(';');
-    return keysToCheck.some(k => k === event.key);
-  }
-
-  getKeyFilter() {
-    return this.numbersOnly ? 'num' : /.*/g;
-  }
-
-  getNthInput(index: number) {
-    const inputs = this.el.nativeElement.querySelectorAll('input');
-    return inputs[index] as HTMLInputElement;
-  }
-
-  focusInput(input: HTMLInputElement) {
-    if (input) {
-      input.focus();
-    }
-  }
-
   writeValue(value: any) {
-    this.setValue(value);
+    this.value = value;
+    this.cd.markForCheck();
   }
 
   registerOnChange(fn) {

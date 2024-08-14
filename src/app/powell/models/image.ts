@@ -2,6 +2,7 @@ export type NgLimitZoom = number | 'original image size';
 export type NgOverflow = 'hidden' | 'visible';
 export type NgDisableZoomControl = 'disable' | 'never' | 'auto';
 export type NgListener = 'auto' | 'mouse and touch';
+export type NgImageLoading = 'eager' | 'lazy';
 export type NgTouchEventType =
   | 'touchend'
   | 'pan'

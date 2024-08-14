@@ -38,7 +38,7 @@ export class GregorianDatepickerPage {
   showIcon: boolean = false;
   showOnFocus: boolean = true;
   showWeek: boolean = false;
-  datePickerIcon: string = 'pi pi-calendar';
+  datepickerIcon: string = 'pi pi-calendar';
   readonlyInput: boolean = false;
   shortYearCutoff: string = '+10';
   showTime: boolean = false;

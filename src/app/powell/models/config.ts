@@ -1,4 +1,4 @@
-import {NgFixLabelPosition, NgLabelPosition, NgSize} from "@powell/models";
+import {NgFixLabelPosition, NgInputVariant, NgLabelPosition, NgSize} from "@powell/models";
 import {PrimeConfig} from "@powell/primeng/api";
 
 type OmittedPrimeConfig = Omit<PrimeConfig, "setTranslation" | "csp" | "getTranslation" | "inputStyle">;
@@ -17,7 +17,7 @@ export interface NgConfig extends Partial<OmittedPrimeConfig> {
   inputSize?: NgSize;
   showRequiredStar?: boolean;
   theme?: NgTheme;
-  inputStyle?: "outlined" | "filled";
+  inputStyle?: NgInputVariant;
   csp?: {nonce: string};
 }
 

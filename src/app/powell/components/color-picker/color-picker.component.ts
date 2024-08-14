@@ -74,6 +74,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() baseZIndex: number = 0;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
+  @Input() autofocus: boolean = false;
   @Output() onChange = new EventEmitter<PrimeColorPickerChangeEvent>();
   @Output() onShow = new EventEmitter<void>();
   @Output() onHide = new EventEmitter<void>();

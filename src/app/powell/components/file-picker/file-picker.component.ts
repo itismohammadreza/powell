@@ -49,6 +49,7 @@ import {
   PrimeFileUploadErrorEvent,
   PrimeFileUploadEvent,
   PrimeFileUploadHandlerEvent,
+  PrimeRemoveUploadedFileEvent,
   PrimeUniqueComponentId
 } from "@powell/primeng/api";
 
@@ -128,6 +129,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Output() onProgress = new EventEmitter<PrimeFileProgressEvent>();
   @Output() uploadHandler = new EventEmitter<PrimeFileUploadHandlerEvent>();
   @Output() onImageError = new EventEmitter<Event>();
+  @Output() onRemoveUploadedFile = new EventEmitter<PrimeRemoveUploadedFileEvent>();
   @ViewChild(PrimeFileUpload, {static: true}) fileUploadComponent: PrimeFileUpload;
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 

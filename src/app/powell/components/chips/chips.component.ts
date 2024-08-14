@@ -24,7 +24,15 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAddon, NgCssObject, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {
+  NgAddon,
+  NgCssObject,
+  NgIconPosition,
+  NgInputVariant,
+  NgLabelPosition,
+  NgSize,
+  NgValidation
+} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
@@ -88,6 +96,8 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   @Input() addOnBlur: boolean = false;
   @Input() separator: string | RegExp;
   @Input() showClear: boolean = false;
+  @Input() autofocus: boolean = false;
+  @Input() variant: NgInputVariant;
   @Output() onAdd = new EventEmitter<PrimeChipsAddEvent>();
   @Output() onRemove = new EventEmitter<PrimeChipsRemoveEvent>();
   @Output() onFocus = new EventEmitter<Event>();

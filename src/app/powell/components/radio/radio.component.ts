@@ -20,7 +20,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
+import {NgCssObject, NgFixLabelPosition, NgInputVariant, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeRadioButtonClickEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 import {ConfigService} from "@powell/api";
@@ -73,6 +73,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   }
 
   @Input() name: string;
+  @Input() variant: NgInputVariant;
   @Input() tabindex: number;
   @Input() id: string = PrimeUniqueComponentId();
   @Input() ariaLabelledBy: string;
@@ -80,6 +81,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() labelStyleClass: string;
+  @Input() autofocus: boolean = false;
   @Output() onChange = new EventEmitter<PrimeRadioButtonClickEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();

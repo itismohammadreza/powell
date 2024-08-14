@@ -23,7 +23,16 @@ import {
   NgControl,
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAddon, NgCssObject, NgIconPosition, NgInputType, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {
+  NgAddon,
+  NgCssObject,
+  NgIconPosition,
+  NgInputType,
+  NgInputVariant,
+  NgLabelPosition,
+  NgSize,
+  NgValidation
+} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {TemplateDirective} from "@powell/directives/template";
 import {PrimeUniqueComponentId} from "@powell/primeng/api";
@@ -74,6 +83,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @Input() maxlength: number;
   @Input() tabindex: string;
   @Input() title: string;
+  @Input() variant: NgInputVariant;
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() ariaRequired: boolean = false;
@@ -83,6 +93,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @Input() name: string;
   @Input() required: boolean = false;
   @Input() characterPattern: string = '[A-Za-z]';
+  @Input() autofocus: boolean = false;
   @Input() autoFocus: boolean = false;
   @Input() autocomplete: string;
   @Input() keepBuffer: boolean = false;

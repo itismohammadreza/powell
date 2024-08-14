@@ -25,15 +25,22 @@ import {
   NgDatepickerDateType,
   NgDatepickerHourFormat,
   NgDatepickerSelectionMode,
-  NgDatepickerViewMode,
   NgIconPosition,
+  NgInputVariant,
   NgLabelPosition,
   NgSize,
   NgValidation
 } from "@powell/models";
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@core/utils";
-import {PrimeCalendarMonthChangeEvent, PrimeCalendarYearChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
+import {
+  PrimeCalendarMonthChangeEvent,
+  PrimeCalendarResponsiveOptions,
+  PrimeCalendarTypeView,
+  PrimeCalendarYearChangeEvent,
+  PrimeLocaleSettings,
+  PrimeUniqueComponentId
+} from "@powell/primeng/api";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -69,73 +76,87 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
   @Input() followConfig: boolean;
-  @Input() inputId: string = PrimeUniqueComponentId();
   // native properties
-  @Input() defaultDate: Date;
-  @Input() selectionMode: NgDatepickerSelectionMode = 'single';
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() inputStyle: NgCssObject;
+  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() name: string;
   @Input() inputStyleClass: string;
   @Input() placeholder: string;
-  @Input() disabled: boolean;
-  @Input() dateFormat: string = 'mm/dd/yy';
-  @Input() inline: boolean;
+  @Input() ariaLabelledBy: string;
+  @Input() ariaLabel: string;
+  @Input() iconAriaLabel: string;
+  @Input() disabled: boolean = false;
+  @Input() dateFormat: string;
+  @Input() multipleSeparator: string = ',';
+  @Input() rangeSeparator: string = '-';
+  @Input() inline: boolean = false;
   @Input() showOtherMonths: boolean = true;
-  @Input() selectOtherMonths: boolean;
-  @Input() showIcon: boolean;
-  @Input() showOnFocus: boolean = true;
-  @Input() showWeek: boolean;
-  @Input() datePickerIcon: string = 'pi pi-calendar';
+  @Input() selectOtherMonths: boolean = false;
+  @Input() showIcon: boolean = false;
+  @Input() datepickerIcon: string;
   @Input() appendTo: any;
-  @Input() readonlyInput: boolean;
+  @Input() readonlyInput: boolean = false;
   @Input() shortYearCutoff: string = '+10';
-  @Input() minDate: Date;
-  @Input() maxDate: Date;
-  @Input() disabledDates: any[];
-  @Input() disabledDays: any[];
-  @Input() showTime: boolean;
+  @Input() monthNavigator: boolean = false;
+  @Input() yearNavigator: boolean = false;
   @Input() hourFormat: NgDatepickerHourFormat = '24';
-  @Input() timeOnly: boolean;
-  @Input() timeSeparator: string = ':';
-  @Input() dataType: NgDatepickerDateType = 'date';
-  @Input() tabindex: number;
-  @Input() showSeconds: boolean;
+  @Input() timeOnly: boolean = false;
+  @Input() stepYearPicker: number = 10;
   @Input() stepHour: number = 1;
   @Input() stepMinute: number = 1;
   @Input() stepSecond: number = 1;
+  @Input() showSeconds: boolean = false;
+  @Input() required: boolean = false;
+  @Input() showOnFocus: boolean = true;
+  @Input() showWeek: boolean = false;
+  @Input() startWeekFromFirstDayOfYear: boolean = false;
+  @Input() showClear: boolean = false;
+  @Input() dataType: NgDatepickerDateType = 'date';
+  @Input() selectionMode: NgDatepickerSelectionMode = 'single';
   @Input() maxDateCount: number;
-  @Input() showButtonBar: boolean;
-  @Input() todayButtonStyleClass: string = 'p-secondary-button';
-  @Input() clearButtonStyleClass: string = 'p-secondary-button';
-  @Input() baseZIndex: number;
+  @Input() showButtonBar: boolean = false;
+  @Input() todayButtonStyleClass: string = 'p-button-text';
+  @Input() clearButtonStyleClass: string = 'p-button-text';
+  @Input() autofocus: boolean = false;
   @Input() autoZIndex: boolean = true;
+  @Input() baseZIndex: number = 0;
   @Input() panelStyleClass: string;
   @Input() panelStyle: NgCssObject;
-  @Input() keepInvalid: boolean;
+  @Input() keepInvalid: boolean = false;
   @Input() hideOnDateTimeSelect: boolean = true;
-  @Input() numberOfMonths: number = 1;
-  @Input() view: NgDatepickerViewMode = 'date';
-  @Input() multipleSeparator: string = ',';
-  @Input() rangeSeparator: string = '-';
-  @Input() touchUI: boolean;
+  @Input() touchUI: boolean = false;
+  @Input() timeSeparator: string = ':';
   @Input() focusTrap: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
-  @Input() firstDayOfWeek: number = 0;
-  @Input() showClear: boolean;
-  @Output() onSelect = new EventEmitter<Date>();
-  @Output() onBlur = new EventEmitter<Event>();
+  @Input() tabindex: number;
+  @Input() variant: NgInputVariant = 'outlined';
+  @Input() minDate: Date;
+  @Input() maxDate: Date;
+  @Input() disabledDates: Date[];
+  @Input() disabledDays: number[];
+  @Input() yearRange: string;
+  @Input() showTime: boolean;
+  @Input() responsiveOptions: PrimeCalendarResponsiveOptions[];
+  @Input() numberOfMonths: number;
+  @Input() firstDayOfWeek: number;
+  @Input() locale: PrimeLocaleSettings;
+  @Input() view: PrimeCalendarTypeView;
+  @Input() defaultDate: Date;
   @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
   @Output() onClose = new EventEmitter<AnimationEvent>();
-  @Output() onShow = new EventEmitter<AnimationEvent>();
-  @Output() onClickOutside = new EventEmitter<Event>();
+  @Output() onSelect = new EventEmitter<Date>();
+  @Output() onClear = new EventEmitter<void>();
   @Output() onInput = new EventEmitter<KeyboardEvent>();
   @Output() onTodayClick = new EventEmitter<Date>();
   @Output() onClearClick = new EventEmitter<Event>();
   @Output() onMonthChange = new EventEmitter<PrimeCalendarMonthChangeEvent>();
   @Output() onYearChange = new EventEmitter<PrimeCalendarYearChangeEvent>();
-  @Output() onClear = new EventEmitter<void>();
+  @Output() onClickOutside = new EventEmitter<Event>();
+  @Output() onShow = new EventEmitter<AnimationEvent>();
 
   ngControl: NgControl;
   onModelChange: Function = () => {

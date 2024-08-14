@@ -52,7 +52,11 @@
         [panelStyleClass]="panelStyleClass"
         [panelStyle]="panelStyle"
         [overlayOptions]="overlayOptions"
+        [autofocus]="autofocus"
         [showTransitionOptions]="showTransitionOptions"
+        [variant]="variant"
+        [loading]="loading"
+        [loadingIcon]="loadingIcon"
         [hideTransitionOptions]="hideTransitionOptions"
         (onChange)="_onChange($event)"
         (onGroupChange)="emitter('onGroupChange', $event)"
@@ -62,7 +66,7 @@
         (onBeforeShow)="emitter('onBeforeShow', $event)"
         (onBeforeHide)="emitter('onBeforeHide', $event)"
         (onFocus)="emitter('onFocus', $event)"
-        (onBlur)="emitter('onBlur', $event)">
+        (onBlur)="_onBlur($event)">
         <ng-container *ngFor="let t of templates">
           <ng-template [pTemplate]="t.getType()" let-item let-placeholder="placeholder" *ngIf="templateMap[t.getType()]">
             <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item,placeholder}"></ng-container>

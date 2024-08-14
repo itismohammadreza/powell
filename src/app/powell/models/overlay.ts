@@ -460,7 +460,7 @@ export interface NgDialogFormConfig {
   showIcon?: boolean;
   showOnFocus?: boolean;
   showWeek?: boolean;
-  datePickerIcon?: string;
+  datepickerIcon?: string;
   readonlyInput?: boolean;
   shortYearCutoff?: string;
   minDate?: any; // Date | Moment

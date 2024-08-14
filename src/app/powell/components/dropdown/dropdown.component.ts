@@ -30,6 +30,7 @@ import {
   NgCssObject,
   NgFilterMatchMode,
   NgIconPosition,
+  NgInputVariant,
   NgLabelPosition,
   NgPosition,
   NgSize,
@@ -95,15 +96,19 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() appendTo: any;
   @Input() tabindex: number;
   @Input() placeholder: string;
+  @Input() loadingIcon: string;
   @Input() filterPlaceholder: string;
   @Input() filterLocale: string;
+  @Input() variant: NgInputVariant;
   @Input() inputId: string = PrimeUniqueComponentId();
   @Input() dataKey: string;
   @Input() filterBy: string;
   @Input() filterFields: any[];
   @Input() autofocus: boolean = false;
   @Input() resetFilterOnHide: boolean = false;
+  @Input() checkmark: boolean = false;
   @Input() dropdownIcon: string;
+  @Input() loading: boolean;
   @Input() optionLabel: string;
   @Input() optionValue: string;
   @Input() optionDisabled: string;

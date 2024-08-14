@@ -20,6 +20,7 @@
       [inputId]="inputId"
       [tabindex]="tabindex"
       [iconPos]="iconPos"
+      [autofocus]="autofocus"
       (onChange)="_onChange($event)">
       <ng-container *ngFor="let t of templates">
         <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">

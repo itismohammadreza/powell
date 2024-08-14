@@ -24,7 +24,15 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAddon, NgCssObject, NgIconPosition, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {
+  NgAddon,
+  NgCssObject,
+  NgIconPosition,
+  NgInputVariant,
+  NgLabelPosition,
+  NgSize,
+  NgValidation
+} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
@@ -101,7 +109,11 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() panelStyleClass: string;
   @Input() panelStyle: NgCssObject;
   @Input() overlayOptions: PrimeOverlayOptions;
+  @Input() autofocus: boolean = false;
   @Input() showTransitionOptions: string;
+  @Input() variant: NgInputVariant;
+  @Input() loading: false;
+  @Input() loadingIcon: string;
   @Input() hideTransitionOptions: string;
   @Output() onChange = new EventEmitter<any>();
   @Output() onGroupChange = new EventEmitter<Event>();
@@ -160,6 +172,11 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   _onChange(event: any) {
     this.onChange.emit(event);
     this.onModelChange(event.value);
+  }
+
+  _onBlur(event: FocusEvent) {
+    this.onBlur.emit(event);
+    this.onModelTouched();
   }
 
   emitter(name: string, event: any) {

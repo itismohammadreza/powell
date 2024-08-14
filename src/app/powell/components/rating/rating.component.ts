@@ -70,6 +70,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() iconOffStyle: NgCssObject;
   @Input() iconCancelClass: string;
   @Input() iconCancelStyle: NgCssObject;
+  @Input() autofocus: boolean;
   @Output() onRate = new EventEmitter<PrimeRatingRateEvent>();
   @Output() onCancel = new EventEmitter<Event>();
   @Output() onFocus = new EventEmitter<Event>();

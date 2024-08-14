@@ -18,6 +18,7 @@ export type NgNumberLocaleMatcher = 'lookup' | 'best fit';
 export type NgCurrencyDisplay = 'symbol' | 'code' | 'name';
 export type NgValidation = Partial<Record<NgValidationType | string, string>>; // equal to : [validationType in NgValidationType]?: string;
 export type NgTreeFilterMode = 'strict' | 'lenient';
+export type NgInputVariant = 'outlined' | 'filled';
 export type NgFilterMatchMode =
   | 'contains'
   | 'startsWith'

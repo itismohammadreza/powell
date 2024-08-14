@@ -71,6 +71,7 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() inputId: string = PrimeUniqueComponentId();
   @Input() tabindex: number;
   @Input() iconPos: NgIconPosition = 'left';
+  @Input() autofocus: boolean = false;
   @Output() onChange = new EventEmitter<PrimeToggleButtonChangeEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 

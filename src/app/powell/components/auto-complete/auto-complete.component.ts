@@ -30,6 +30,7 @@ import {
   NgCssObject,
   NgIconPosition,
   NgInputType,
+  NgInputVariant,
   NgLabelPosition,
   NgSize,
   NgValidation
@@ -143,6 +144,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() searchLocale: boolean = false;
   @Input() optionDisabled: string;
   @Input() focusOnHover: boolean = false;
+  @Input() variant: NgInputVariant;
   @Output() completeMethod = new EventEmitter<PrimeAutoCompleteCompleteEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();

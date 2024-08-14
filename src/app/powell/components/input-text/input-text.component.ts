@@ -27,6 +27,7 @@ import {
   NgIconPosition,
   NgInputMode,
   NgInputType,
+  NgInputVariant,
   NgKeyFilter,
   NgLabelPosition,
   NgSize,
@@ -87,6 +88,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() inputStyle: NgCssObject;
   @Input() inputStyleClass: string;
   @Input() autocomplete: any;
+  @Input() variant: NgInputVariant;
   @Output() onInput = new EventEmitter<Event>();
   @Output() onClick = new EventEmitter<Event>();
   @Output() onChange = new EventEmitter<Event>();

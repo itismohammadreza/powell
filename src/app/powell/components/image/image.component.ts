@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import {animate, AnimationEvent, style, transition, trigger} from "@angular/animations";
 import {ConfigService} from "@powell/api";
-import {NgCssObject, NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow} from "@powell/models";
+import {NgCssObject, NgDisableZoomControl, NgImageLoading, NgLimitZoom, NgListener, NgOverflow} from "@powell/models";
 import {PrimeDomHandler, PrimeTemplateDirective, PrimeZIndexUtils} from "@powell/primeng/api";
 import {SafeUrl} from "@angular/platform-browser";
 import {DOCUMENT} from "@angular/common";
@@ -59,7 +59,7 @@ export class ImageComponent implements AfterContentInit {
   @Input() alt: string;
   @Input() width: string;
   @Input() height: string;
-  @Input() loading: "eager" | "lazy";
+  @Input() loading: NgImageLoading;
   @Input() appendTo: any;
   @Input() preview: boolean = false;
   @Input() showTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';

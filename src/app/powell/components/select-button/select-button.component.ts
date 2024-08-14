@@ -77,6 +77,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() ariaLabelledBy: string;
   @Input() disabled: boolean;
   @Input() dataKey: string;
+  @Input() autofocus: boolean = false;
   @Output() onChange = new EventEmitter<PrimeSelectButtonChangeEvent>();
   @Output() onOptionClick = new EventEmitter<PrimeSelectButtonOptionClickEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
@@ -93,9 +94,9 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-        ControlContainer,
-        null,
-        {optional: true, host: true, skipSelf: true}
+      ControlContainer,
+      null,
+      {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {

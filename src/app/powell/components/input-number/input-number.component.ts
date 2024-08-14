@@ -28,6 +28,7 @@ import {
   NgAddon,
   NgCssObject,
   NgIconPosition,
+  NgInputVariant,
   NgLabelPosition,
   NgNumberButtonLayout,
   NgNumberLocaleMatcher,
@@ -106,6 +107,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() currency: string;
   @Input() currencyDisplay: string;
   @Input() useGrouping: boolean = true;
+  @Input() variant: NgInputVariant;
   @Input() minFractionDigits: number;
   @Input() maxFractionDigits: number;
   @Input() prefix: string;
@@ -113,6 +115,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() inputStyle: NgCssObject;
   @Input() inputStyleClass: string;
   @Input() showClear: boolean = false;
+  @Input() autofocus: boolean = false;
   @Input() disabled: boolean;
   @Output() onInput = new EventEmitter<PrimeInputNumberInputEvent>();
   @Output() onFocus = new EventEmitter<Event>();

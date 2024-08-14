@@ -67,6 +67,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() tabindex: number;
+  @Input() autofocus: boolean = false;
   @Output() onChange = new EventEmitter<PrimeSliderChangeEvent>();
   @Output() onSlideEnd = new EventEmitter<PrimeSliderSlideEndEvent>();
 
@@ -81,9 +82,9 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-        ControlContainer,
-        null,
-        {optional: true, host: true, skipSelf: true}
+      ControlContainer,
+      null,
+      {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {

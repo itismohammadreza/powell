@@ -6,7 +6,7 @@
     }" class="dual-label-switch-wrapper">
   <div class="field">
     <div class="field-inner">
-      <span class="label-left" [class.text-muted]="disabled">{{labelLeft}}</span>
+      <span class="label-left" [class.text-muted]="disabled">{{ labelLeft }}</span>
       <p-inputSwitch
         [(ngModel)]="value"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
@@ -21,9 +21,10 @@
         [falseValue]="leftValue"
         [ariaLabel]="ariaLabel"
         [ariaLabelledBy]="ariaLabelledBy"
+        [autofocus]="autofocus"
         (onChange)="_onChange($event)"
       ></p-inputSwitch>
-      <span class="label-right" [class.text-muted]="disabled">{{labelRight}}</span>
+      <span class="label-right" [class.text-muted]="disabled">{{ labelRight }}</span>
     </div>
     <p-progressSpinner *ngIf="loading && showAsyncLoading" strokeWidth="4"></p-progressSpinner>
   </div>

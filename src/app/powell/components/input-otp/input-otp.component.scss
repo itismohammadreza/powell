@@ -16,6 +16,10 @@
         }
       }
 
+      .p-inputotp {
+        display: inline-flex;
+      }
+
       &.label-fix-top {
         flex-direction: column-reverse;
         align-items: flex-start;
@@ -34,24 +38,10 @@
         width: auto;
         flex-grow: 1;
         align-self: stretch;
-        display: inline-flex;
 
         > div {
           display: block;
           flex-grow: 1;
-        }
-
-        input {
-          width: 50px;
-          text-align: center;
-        }
-
-        .p-inputtext-sm input {
-          width: 40px
-        }
-
-        .p-inputtext-lg input {
-          width: 60px
         }
       }
 
@@ -60,12 +50,6 @@
 
         .message {
           left: 0;
-        }
-
-        .field {
-          input:not(:last-child) {
-            margin-right: 0.5rem;
-          }
         }
 
         .fix-label {
@@ -80,12 +64,8 @@
           right: 0;
         }
 
-        .field {
+        .p-inputotp {
           flex-direction: row-reverse;
-
-          input:not(:first-child) {
-            margin-right: 0.5rem;
-          }
         }
 
         .fix-label {

@@ -24,7 +24,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAsyncEvent, NgCssObject, NgValidation} from '@powell/models';
+import {NgAsyncEvent, NgCssObject, NgInputVariant, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {PrimeCheckboxChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
@@ -63,7 +63,6 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   @Input() followConfig: boolean;
   // native properties
   @Input() disabled: boolean;
-  @Input() binary: boolean = false;
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
   @Input() tabindex: number;
@@ -73,8 +72,10 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   @Input() labelStyleClass: string;
   @Input() checkboxIcon: string;
   @Input() readonly: boolean = false;
+  @Input() autofocus: boolean = false;
   @Input() trueValue: any = true;
   @Input() falseValue: any = false;
+  @Input() variant: NgInputVariant;
   @Output() onChange = new EventEmitter<PrimeCheckboxChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();

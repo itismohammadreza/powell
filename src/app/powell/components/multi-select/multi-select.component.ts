@@ -30,6 +30,7 @@ import {
   NgCssObject,
   NgFilterMatchMode,
   NgIconPosition,
+  NgInputVariant,
   NgLabelPosition,
   NgPosition,
   NgSize,
@@ -100,6 +101,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() filterLocale: string;
   @Input() overlayVisible: boolean = false;
   @Input() tabindex: number;
+  @Input() variant: NgInputVariant;
   @Input() appendTo: any;
   @Input() dataKey: string;
   @Input() name: string;
@@ -136,6 +138,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() display: NgChipDisplayMode = 'comma';
   @Input() autocomplete: string = 'off';
   @Input() showClear: boolean = false;
+  @Input() autofocus: boolean = false;
   @Input() autoZIndex: boolean;
   @Input() baseZIndex: number;
   @Input() showTransitionOptions: string;

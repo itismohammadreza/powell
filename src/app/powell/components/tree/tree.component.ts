@@ -31,6 +31,7 @@ import {
   NgFixLabelPosition,
   NgOrientation,
   NgTreeFilterMode,
+  NgTreeLoadingMode,
   NgTreeSelectionMode,
   NgValidation
 } from '@powell/models';
@@ -85,6 +86,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() id: string = PrimeUniqueComponentId();
   // native properties
   @Input() selectionMode: NgTreeSelectionMode;
+  @Input() loadingMode: NgTreeLoadingMode = 'mask';
   @Input() selection: any;
   @Input() style: NgCssObject;
   @Input() styleClass: string;
