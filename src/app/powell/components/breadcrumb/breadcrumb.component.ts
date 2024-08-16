@@ -25,6 +25,7 @@ import {ConfigService} from "@powell/api";
   templateUrl: './breadcrumb.component.html',
   styleUrls: ['./breadcrumb.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DestroyService]
 })
 export class BreadcrumbComponent implements OnInit, AfterContentInit {
   private router = inject(Router);
@@ -37,6 +38,7 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
   @Input() home: PrimeMenuItem;
   @Input() homeAriaLabel: string;
   @Input() rtl: boolean;
+  @Input() followConfig: boolean;
   @Output() onItemClick = new EventEmitter<PrimeBreadcrumbItemClickEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
