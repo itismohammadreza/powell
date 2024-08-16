@@ -122,20 +122,9 @@ export class OverlayService {
       ...options,
       styleClass: `${options.styleClass} ${(options.rtl ?? this.configService.getConfig().rtl) ? 'rtl' : 'ltr'}`,
     }
-    instance.key = options.key;
-    instance.autoZIndex = options.autoZIndex ?? true;
-    instance.baseZIndex = options.baseZIndex ?? 0;
-    instance.life = options.life ?? 3000;
-    instance.style = options.style;
-    instance.styleClass = options.styleClass;
-    instance.position = options.position || 'top-right';
-    instance.preventOpenDuplicates = options.preventOpenDuplicates ?? false;
-    instance.preventDuplicates = options.preventDuplicates ?? false;
-    instance.showTransformOptions = options.showTransformOptions ?? 'translateY(100%)';
-    instance.hideTransformOptions = options.hideTransformOptions ?? 'translateY(-100%)';
-    instance.showTransitionOptions = options.showTransitionOptions ?? '300ms ease-out';
-    instance.hideTransitionOptions = options.hideTransitionOptions ?? '250ms ease-in';
-    instance.breakpoints = options.breakpoints;
+    for (const key in options) {
+      instance[key] = options[key];
+    }
     setTimeout(() => {
       this.messageService.add(toast);
     }, 0);
@@ -159,13 +148,9 @@ export class OverlayService {
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
     }
-    instance.key = options.key;
-    instance.defaultFocus = options.defaultFocus ?? 'accept';
-    instance.showTransitionOptions = options.showTransitionOptions ?? '.12s cubic-bezier(0, 0, 0.2, 1)';
-    instance.hideTransitionOptions = options.hideTransitionOptions ?? '.1s linear';
-    instance.autoZIndex = options.autoZIndex ?? true;
-    instance.baseZIndex = options.baseZIndex ?? this.configService.getConfig().zIndex.modal;
-    instance.style = options.style;
+    for (const key in options) {
+      instance[key] = options[key];
+    }
     instance.styleClass = `${options.styleClass} ${(options.rtl ?? this.configService.getConfig().rtl) ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
     return new Promise<boolean>((accept) => {
       const state: NgHistoryState = {component: 'confirmPopup'};
@@ -195,47 +180,13 @@ export class OverlayService {
     const {instance} = this.confirmCmpRef;
     const confirmation: PrimeConfirmation = {
       ...options,
-      acceptVisible: true,
-      rejectVisible: true,
-      closeOnEscape: true,
-      dismissableMask: false,
-      blockScroll: true,
-      defaultFocus: 'accept',
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
     }
-    instance.header = options.header;
-    instance.icon = options.icon;
-    instance.message = options.message;
-    instance.style = options.style;
+    for (const key in options) {
+      instance[key] = options[key];
+    }
     instance.styleClass = `${options.styleClass} ${(options.rtl ?? this.configService.getConfig().rtl) ? 'rtl' : 'ltr'} p-confirm-button-icon-${options.buttonIconPos || 'left'} ${!options.header && !options.closable ? 'dialog-header-less' : ''}`;
-    instance.maskStyleClass = options.maskStyleClass;
-    instance.acceptIcon = options.acceptIcon;
-    instance.acceptLabel = options.acceptLabel;
-    instance.closeAriaLabel = options.closeAriaLabel;
-    instance.acceptAriaLabel = options.acceptAriaLabel;
-    instance.acceptVisible = options.acceptVisible ?? true;
-    instance.rejectIcon = options.rejectIcon;
-    instance.rejectLabel = options.rejectLabel;
-    instance.rejectAriaLabel = options.rejectAriaLabel;
-    instance.rejectVisible = options.rejectVisible ?? true;
-    instance.acceptButtonStyleClass = options.acceptButtonStyleClass;
-    instance.rejectButtonStyleClass = options.rejectButtonStyleClass;
-    instance.closeOnEscape = options.closeOnEscape ?? true;
-    instance.dismissableMask = options.dismissableMask;
-    instance.blockScroll = options.blockScroll ?? true;
-    instance.closable = options.closable ?? true;
-    instance.appendTo = options.appendTo;
-    instance.key = options.key;
-    instance.autoZIndex = options.autoZIndex ?? true;
-    instance.baseZIndex = options.baseZIndex ?? this.configService.getConfig().zIndex.modal;
-    instance.transitionOptions = options.transitionOptions ?? '150ms cubic-bezier(0, 0, 0.2, 1)';
-    instance.focusTrap = options.focusTrap ?? true;
-    instance.defaultFocus = options.defaultFocus ?? 'accept';
-    instance.breakpoints = options.breakpoints;
-    instance.visible = options.visible;
-    instance.position = options.position;
-
     return new Promise<boolean>((accept) => {
       const state: NgHistoryState = {component: 'confirmDialog'};
       this.pushState(state)
@@ -271,27 +222,10 @@ export class OverlayService {
       this.dialogCmpRef = this.addToBody(DialogComponent);
     }
     const {instance} = this.dialogCmpRef;
-    instance.options = {
-      content: '',
-      modal: true,
-      draggable: true,
-      resizable: true,
-      closeOnEscape: true,
-      closable: true,
-      showHeader: true,
-      blockScroll: false,
-      autoZIndex: true,
-      minX: 0,
-      minY: 0,
-      focusOnShow: true,
-      keepInViewport: true,
-      focusTrap: true,
-      transitionOptions: '150ms cubic-bezier(0, 0, 0.2, 1)',
-      closeTabindex: '0',
-      baseZIndex: options.baseZIndex ?? this.configService.getConfig().zIndex.modal,
-      ...options,
-      styleClass: `${options.styleClass} ${(options.rtl ?? this.configService.getConfig().rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`,
-    };
+    for (const key in options) {
+      instance.options[key] = options[key];
+    }
+    instance.options.styleClass = `${options.styleClass} ${(options.rtl ?? this.configService.getConfig().rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`;
     instance.show();
     const state: NgHistoryState = {component: 'dialog'};
     this.pushState(state);
@@ -314,30 +248,13 @@ export class OverlayService {
     }
     const {instance} = this.dialogFormCmpRef;
     instance.config = config;
-    instance.options = {
-      modal: true,
-      closable: true,
-      showHeader: true,
-      autoZIndex: true,
-      transitionOptions: '150ms cubic-bezier(0, 0, 0.2, 1)',
-      closeIcon: 'pi pi-times',
-      minimizeIcon: 'pi pi-window-minimize',
-      maximizeIcon: 'pi pi-window-maximize',
-      style: {width: '400px'},
-      acceptVisible: true,
-      rejectVisible: true,
-      acceptLabel: 'تایید',
-      rejectLabel: 'بستن',
-      rejectAppearance: 'outlined',
-      rejectColor: 'danger',
-      defaultFocus: 'accept',
-      baseZIndex: options.baseZIndex ?? this.configService.getConfig().zIndex.modal,
-      rtl: this.configService.getConfig().rtl,
-      ...options,
-      acceptButtonStyleClass: `${options.acceptButtonStyleClass} p-dialog-form-accept`,
-      rejectButtonStyleClass: `${options.rejectButtonStyleClass} p-dialog-form-reject`,
-      styleClass: `${options.styleClass} p-dialog-form-wrapper ${(options.rtl ?? this.configService.getConfig().rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`,
-    };
+    for (const key in options) {
+      instance.options[key] = options[key];
+    }
+    instance.options.acceptButtonStyleClass = `${options.acceptButtonStyleClass} p-dialog-form-accept`;
+    instance.options.rejectButtonStyleClass = `${options.rejectButtonStyleClass} p-dialog-form-reject`;
+    instance.options.styleClass = `${options.styleClass} p-dialog-form-wrapper ${(options.rtl ?? this.configService.getConfig().rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`;
+    console.log(this.dialogFormCmpRef)
     instance.show();
     const state: NgHistoryState = {component: 'dialogForm'}
     this.pushState(state);

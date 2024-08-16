@@ -321,6 +321,22 @@
       padding: 2rem 1.5rem 2rem 1.5rem;
     }
   }
+
+  &.ltr {
+    direction: ltr;
+  }
+
+  &.rtl {
+    direction: rtl;
+
+    .p-dialog-footer {
+      text-align: left;
+    }
+  }
+
+  .p-dialog-mask {
+    direction: ltr;
+  }
 }
 
 .p-menu-overlay {

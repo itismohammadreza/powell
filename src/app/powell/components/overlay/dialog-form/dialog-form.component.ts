@@ -1,8 +1,9 @@
-import {Component, ElementRef, EventEmitter, inject} from '@angular/core';
+import {Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult, NgValidation} from "@powell/models";
 import {ConfigService} from "@powell/api";
 import {PrimeDomHandler} from "@powell/primeng/api";
+import {PrimeDialog} from "@powell/primeng";
 
 @Component({
   selector: 'ng-dialog-form',
@@ -13,11 +14,13 @@ export class DialogFormComponent {
   private el = inject(ElementRef);
   private configService = inject(ConfigService);
 
+  @ViewChild(PrimeDialog, {static: true}) dialog: PrimeDialog;
+
   form: FormGroup;
   visible: boolean;
   loadingCallback: VoidFunction;
   _config: NgDialogFormConfig[];
-  _options: NgDialogFormOptions;
+  _options: NgDialogFormOptions = {};
   onSubmit = new EventEmitter<NgDialogFormResult>();
   onClose = new EventEmitter<void>();
   disableReject: boolean;
@@ -47,7 +50,7 @@ export class DialogFormComponent {
   }
 
   get options() {
-    return this._options
+    return this._options;
   }
 
   get config() {
@@ -55,6 +58,12 @@ export class DialogFormComponent {
   }
 
   show() {
+    for (const key in this.options) {
+      const option = this.options[key];
+      if (typeof option !== 'function') {
+        this.dialog[key] = this.options[key];
+      }
+    }
     this.visible = true;
   }
 
