@@ -14,7 +14,7 @@
   [closeOnEscape]="closeOnEscape"
   (onShow)="_onShow()"
   (onHide)="_onHide()">
-  <div class="bottom-sheet-wrapper">
+  <div class="bottom-sheet-wrapper" [ngClass]="{'rtl': rtl, 'ltr': !rtl}">
     <div class="header" *ngIf="header || showCloseIcon || templateMap.header" [class.show-close-icon]="showCloseIcon">
       <ng-container *ngIf="templateMap.header;else alternativeTitle">
         <ng-container *ngTemplateOutlet="templateMap.header"></ng-container>

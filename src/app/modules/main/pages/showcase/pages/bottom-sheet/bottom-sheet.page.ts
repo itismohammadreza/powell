@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {OverlayService} from "@powell/api";
+import {ConfigService, OverlayService} from "@powell/api";
 
 @Component({
   selector: 'ng-bottom-sheet-page',
@@ -8,6 +8,7 @@ import {OverlayService} from "@powell/api";
 })
 export class BottomSheetPage {
   private overlayService = inject(OverlayService);
+  private configService = inject(ConfigService);
 
   blockScroll: boolean = false;
   modal: boolean = true;
@@ -15,6 +16,8 @@ export class BottomSheetPage {
   showCloseIcon: boolean = true;
   closeOnEscape: boolean = true;
   header: string = 'BottomSheet Header';
+  rtl: boolean = this.configService.getConfig().rtl;
+  followConfig: boolean = this.configService.getConfig().followConfig;
 
   visible = false;
   visible2 = false;

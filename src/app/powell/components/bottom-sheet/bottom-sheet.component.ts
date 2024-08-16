@@ -12,22 +12,27 @@ import {
   TemplateRef
 } from '@angular/core';
 import {TemplateDirective} from "@powell/directives/template";
-import {OverlayService} from "@powell/api";
+import {ConfigService, OverlayService} from "@powell/api";
 import {NgCssObject, NgHistoryState} from "@powell/models";
 import {Subject, takeUntil} from "rxjs";
 import {PrimeUniqueComponentId} from "@powell/primeng/api";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-bottom-sheet',
   templateUrl: './bottom-sheet.component.html',
   styleUrls: ['./bottom-sheet.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DestroyService]
 })
 export class BottomSheetComponent implements OnInit, AfterContentInit {
   private overlayService = inject(OverlayService);
+  private configService = inject(ConfigService);
+  private destroy$ = inject(DestroyService);
 
   @Input() header: string;
   @Input() gutter: boolean = true;
+  @Input() rtl: boolean;
+  @Input() followConfig: boolean;
   // native properties
   @Input() appendTo: any;
   @Input() blockScroll: boolean;
@@ -47,7 +52,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   @Output() visibleChange = new EventEmitter<boolean>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  destroy$ = new Subject<boolean>();
+  hided$ = new Subject<boolean>();
   templateMap: Record<string, TemplateRef<any>> = {};
   state: NgHistoryState = {
     component: 'bottomSheet',
@@ -57,6 +62,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   ngOnInit() {
     this.style = {height: '50vh', ...this.style};
     this.styleClass = `p-bottom-sheet ${this.styleClass}`;
+    this.configService.applyConfigToComponent(this);
   }
 
   ngAfterContentInit() {
@@ -69,7 +75,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   _onShow() {
     this.visible = true;
     this.visibleChange.emit(this.visible);
-    this.overlayService.stateChange().pipe(takeUntil(this.destroy$)).subscribe(res => {
+    this.overlayService.stateChange().pipe(takeUntil(this.hided$)).subscribe(res => {
       if (this.state.key === res.key) {
         this._onHide()
       }
@@ -80,8 +86,8 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   _onHide() {
     this.visible = false;
     this.visibleChange.emit(this.visible);
-    this.destroy$?.next(true);
-    this.destroy$.complete();
+    this.hided$?.next(true);
+    this.hided$.complete();
     if (!this.overlayService.isPopped(this.state)) {
       this.overlayService.popState()
     }
