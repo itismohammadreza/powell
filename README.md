@@ -14,3 +14,4 @@
 - add tailwindcss
 - fix dialogForm autocomplete issue (prevent opening dialog)
 - pass Inputs to components through ts file in dialogForm (by using ViewChild to each component and pass it's inputs from received config in afterViewInit cycle)
+- rename sizeOn* property in button to responsive property
