@@ -290,8 +290,9 @@ export class OverlayService {
       environmentInjector: this.appRef.injector,
       elementInjector: injector
     })
-    this.appRef.attachView(componentRef.hostView);
     this.document.body.appendChild(componentRef.location.nativeElement);
+    this.appRef.attachView(componentRef.hostView);
+    componentRef.changeDetectorRef.detectChanges();
     return componentRef;
   }
 

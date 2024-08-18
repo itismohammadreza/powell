@@ -16,7 +16,7 @@ export class DialogFormComponent {
 
   @ViewChild(PrimeDialog, {static: true}) dialog: PrimeDialog;
 
-  form: FormGroup;
+  form: FormGroup = new FormGroup({});
   visible: boolean;
   loadingCallback: VoidFunction;
   _config: NgDialogFormConfig[];
@@ -27,7 +27,6 @@ export class DialogFormComponent {
 
   set config(value: NgDialogFormConfig[]) {
     this._config = value;
-    this.form = new FormGroup({});
     for (const config of this._config) {
       config.variant = config.variant ?? this.configService.getConfig().inputStyle;
       config.labelPos = config.labelPos ?? this.configService.getConfig().labelPos;
