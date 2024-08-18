@@ -6,7 +6,7 @@ import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
   declarations: [ButtonComponent],
-  exports: [ButtonComponent],
+  exports: [ButtonComponent, TemplateModule],
   imports: [PrimeButtonModule, CommonModule, TemplateModule],
 })
 export class ButtonModule {

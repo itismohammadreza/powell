@@ -1,4 +1,5 @@
 import {
+  AfterContentInit,
   AfterViewInit,
   Component,
   ContentChildren,
@@ -34,7 +35,7 @@ import {DestroyService} from "@core/utils";
   host: {'[class.full]': 'full'},
   providers: [DestroyService]
 })
-export class ButtonComponent implements AfterViewInit, OnChanges {
+export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChanges {
   private document = inject(DOCUMENT);
   private destroy$ = inject(DestroyService);
 
@@ -110,7 +111,9 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
     fromEvent(this.document.defaultView, 'resize').pipe(takeUntil(this.destroy$)).subscribe(() => {
       getButtonSize();
     })
+  }
 
+  ngAfterContentInit() {
     this.templates.forEach(item => {
       const name = item.getType();
       this.templateMap[name] = item.templateRef;
