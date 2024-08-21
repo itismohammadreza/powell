@@ -46,11 +46,13 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   @Input() full: boolean;
   @Input() badgeColor: NgColor = 'primary';
   @Input() size: NgSize = 'md';
-  @Input() sizeOnXS: NgSize;
-  @Input() sizeOnSM: NgSize;
-  @Input() sizeOnMD: NgSize;
-  @Input() sizeOnLG: NgSize;
-  @Input() sizeOnXL: NgSize;
+  @Input() responsiveSize: {
+    xs: NgSize;
+    sm: NgSize;
+    md: NgSize;
+    lg: NgSize;
+    xl: NgSize;
+  };
   @Input() async: boolean;
   @Input() newLabel: string;
   @Input() newIcon: string;
@@ -91,18 +93,19 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
 
   ngAfterViewInit() {
     this._tmpSize = this.size;
+    const {md, sm, xl, xs, lg} = this.responsiveSize;
     const getButtonSize = () => {
       const windowWidth = this.document.defaultView.innerWidth;
       if (windowWidth <= 575.98) {
-        this.size = this.sizeOnXS ?? this._tmpSize;
+        this.size = xs ?? this._tmpSize;
       } else if (windowWidth <= 767.98) {
-        this.size = this.sizeOnSM ?? this._tmpSize;
+        this.size = sm ?? this._tmpSize;
       } else if (windowWidth <= 991.98) {
-        this.size = this.sizeOnMD ?? this._tmpSize;
+        this.size = md ?? this._tmpSize;
       } else if (windowWidth <= 1199.98) {
-        this.size = this.sizeOnLG ?? this._tmpSize;
+        this.size = lg ?? this._tmpSize;
       } else {
-        this.size = this.sizeOnXL ?? this._tmpSize;
+        this.size = xl ?? this._tmpSize;
       }
     }
 
