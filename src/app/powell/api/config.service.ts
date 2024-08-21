@@ -12,6 +12,11 @@ export class ConfigService {
   private primengConfig = inject(PrimeConfig);
   private themeService = inject(ThemeService);
 
+  constructor() {
+    // set default ripple to true, so 'ink' element will present in rippleable elements.
+    this.primengConfig.ripple = true;
+  }
+
   private configChangeSubject = new Subject<NgConfigChangeEvent>();
   configChange$ = this.configChangeSubject.asObservable();
   private _config: NgConfig = {
@@ -35,7 +40,6 @@ export class ConfigService {
   setConfig(config: NgConfig) {
     this._config = {...this._config, ...config};
     this.primengConfig.zIndex = this._config.zIndex;
-    this.primengConfig.ripple = this._config.ripple;
     this.primengConfig.overlayOptions = this._config.overlayOptions;
     if (this._config.translation) {
       this.primengConfig.setTranslation(this._config.translation);
@@ -76,6 +80,9 @@ export class ConfigService {
           newClass = `ng-${key}`;
         } else {
           this.document.body.classList.remove(`ng-${key}`);
+        }
+        if (key === 'ripple' && value === false) {
+          newClass = 'p-ripple-disabled';
         }
       } else if (typeof value === 'function') {
         if (typeof value() !== 'object') {
