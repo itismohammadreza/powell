@@ -1,5 +1,6 @@
-import {Button, ButtonModule} from "primeng/button";
+import {Button, ButtonModule, ButtonTemplates, ButtonDirective} from "primeng/button";
 
-export const PrimeButtonModule = ButtonModule;
-export const PrimeButton = Button;
-export type PrimeButton = Button;
+export {ButtonModule as PrimeButtonModule};
+export {Button as PrimeButton};
+export {ButtonTemplates as PrimeButtonTemplates};
+export {ButtonDirective as PrimeButtonDirective};

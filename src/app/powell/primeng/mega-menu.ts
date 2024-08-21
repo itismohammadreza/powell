@@ -1,5 +1,5 @@
-import {MegaMenu, MegaMenuModule} from "primeng/megamenu";
+import {MegaMenu, MegaMenuModule, MegaMenuTemplates} from "primeng/megamenu";
 
-export const PrimeMegaMenuModule = MegaMenuModule;
-export const PrimeMegaMenu = MegaMenu;
-export type PrimeMegaMenu = MegaMenu;
+export {MegaMenuModule as PrimeMegaMenuModule};
+export {MegaMenu as PrimeMegaMenu};
+export {MegaMenuTemplates as PrimeMegaMenuTemplates};

@@ -1,5 +1,5 @@
-import {Dialog, DialogModule} from "primeng/dialog";
+import {Dialog, DialogModule,DialogTemplates} from "primeng/dialog";
 
-export const PrimeDialogModule = DialogModule;
-export const PrimeDialog = Dialog;
-export type PrimeDialog = Dialog;
+export {DialogModule as PrimeDialogModule};
+export {Dialog as PrimeDialog};
+export {DialogTemplates as PrimeDialogTemplates};

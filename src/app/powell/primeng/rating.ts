@@ -1,5 +1,6 @@
-import {Rating, RatingModule} from "primeng/rating";
+import {Rating, RatingModule, RatingRateEvent, RatingTemplates} from "primeng/rating";
 
-export const PrimeRatingModule = RatingModule;
-export const PrimeRating = Rating;
-export type PrimeRating = Rating;
+export {RatingModule as PrimeRatingModule};
+export {Rating as PrimeRating};
+export {RatingRateEvent as PrimeRatingRateEvent};
+export {RatingTemplates as PrimeRatingTemplates};

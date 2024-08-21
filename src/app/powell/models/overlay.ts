@@ -45,7 +45,7 @@ import {SunEditorOptions} from "suneditor/src/options";
 import {Core} from "suneditor/src/lib/core";
 import {LatLng, LatLngBounds} from "leaflet";
 import {PrimeContextMenu} from "@powell/primeng";
-import {PrimeScrollerOptions} from "@powell/primeng/api";
+import {PrimeScrollerOptions} from "@powell/primeng";
 import {EventEmitter} from "@angular/core";
 
 export type NgSeverity = 'success' | 'info' | 'warn' | 'error';

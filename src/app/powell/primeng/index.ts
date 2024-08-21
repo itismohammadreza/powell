@@ -1,5 +1,6 @@
 export * from './accordion';
 export * from './animate';
+export * from './api';
 export * from './auto-complete';
 export * from './auto-focus';
 export * from './avatar';
@@ -33,6 +34,7 @@ export * from './image';
 export * from './inplace';
 export * from './input-mask';
 export * from './input-number';
+export * from './input-otp';
 export * from './input-switch';
 export * from './input-text';
 export * from './input-textarea';

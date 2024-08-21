@@ -11,7 +11,7 @@ import {
   PrimeSearchPlusIcon,
   PrimeTimesIcon,
   PrimeUndoIcon
-} from "@powell/primeng/api";
+} from "@powell/primeng";
 
 @NgModule({
   declarations: [ImageComponent],

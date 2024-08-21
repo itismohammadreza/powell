@@ -1,5 +1,5 @@
-import {Card, CardModule} from "primeng/card";
+import {Card, CardModule, CardTemplates} from "primeng/card";
 
-export const PrimeCardModule = CardModule;
-export const PrimeCard = Card;
-export type PrimeCard = Card;
+export {CardModule as PrimeCardModule};
+export {Card as PrimeCard};
+export {CardTemplates as PrimeCardTemplates};

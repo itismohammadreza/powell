@@ -1,5 +1,6 @@
-import {Slider, SliderModule} from "primeng/slider";
+import {Slider, SliderChangeEvent, SliderModule, SliderSlideEndEvent} from "primeng/slider";
 
-export const PrimeSliderModule = SliderModule;
-export const PrimeSlider = Slider;
-export type PrimeSlider = Slider;
+export {SliderModule as PrimeSliderModule};
+export {Slider as PrimeSlider};
+export {SliderChangeEvent as PrimeSliderChangeEvent};
+export {SliderSlideEndEvent as PrimeSliderSlideEndEvent};

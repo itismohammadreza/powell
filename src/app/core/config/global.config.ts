@@ -6,5 +6,7 @@ export const globalConfig: GlobalConfig = {
   rtl: false,
   requestTimeout: 15000,
   routeAnimation: RouteAnimation('fade2'),
-  powellConfig: {}
+  powellConfig: {
+    ripple: false
+  }
 };

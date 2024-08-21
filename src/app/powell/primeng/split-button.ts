@@ -1,5 +1,5 @@
-import {SplitButton, SplitButtonModule} from "primeng/splitbutton";
+import {SplitButton, SplitButtonModule, SplitButtonTemplates} from "primeng/splitbutton";
 
-export const PrimeSplitButtonModule = SplitButtonModule;
-export const PrimeSplitButton = SplitButton;
-export type PrimeSplitButton = SplitButton;
+export {SplitButtonModule as PrimeSplitButtonModule};
+export {SplitButton as PrimeSplitButton};
+export {SplitButtonTemplates as PrimeSplitButtonTemplates};

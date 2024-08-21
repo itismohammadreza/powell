@@ -5,7 +5,7 @@ import {
   PrimeDialogService,
   PrimeFilterService,
   PrimeMessageService
-} from "@powell/primeng/api";
+} from "@powell/primeng";
 
 export function providePowell(config?: NgConfig) {
   return [

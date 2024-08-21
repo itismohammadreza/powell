@@ -36,18 +36,16 @@ import {
   NgValidation
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
+import {PrimeOverlayOptions, PrimeScrollerOptions, PrimeUniqueComponentId} from "@powell/primeng";
+import {DestroyService} from "@core/utils";
+import {ConfigService} from "@powell/api";
 import {
   PrimeAutoCompleteCompleteEvent,
   PrimeAutoCompleteDropdownClickEvent,
   PrimeAutoCompleteLazyLoadEvent,
   PrimeAutoCompleteSelectEvent,
-  PrimeAutoCompleteUnSelectEvent,
-  PrimeOverlayOptions,
-  PrimeScrollerOptions,
-  PrimeUniqueComponentId
-} from "@powell/primeng/api";
-import {DestroyService} from "@core/utils";
-import {ConfigService} from "@powell/api";
+  PrimeAutoCompleteUnselectEvent,
+} from "@powell/primeng";
 
 @Component({
   selector: 'ng-auto-complete',
@@ -149,7 +147,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
   @Output() onSelect = new EventEmitter<PrimeAutoCompleteSelectEvent>();
-  @Output() onUnselect = new EventEmitter<PrimeAutoCompleteUnSelectEvent>();
+  @Output() onUnselect = new EventEmitter<PrimeAutoCompleteUnselectEvent>();
   @Output() onDropdownClick = new EventEmitter<PrimeAutoCompleteDropdownClickEvent>();
   @Output() onClear = new EventEmitter<Event>();
   @Output() onShow = new EventEmitter<Event>();

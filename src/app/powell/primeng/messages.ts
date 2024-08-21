@@ -1,9 +1,8 @@
-import {Messages, MessagesModule} from "primeng/messages";
+import {Messages, MessagesModule, MessagesTemplates} from "primeng/messages";
 import {MessageModule, UIMessage} from "primeng/message";
 
-export const PrimeMessagesModule = MessagesModule;
-export const PrimeMessageModule = MessageModule;
-export const PrimeMessages = Messages;
-export const PrimeMessage = UIMessage;
-export type PrimeMessages = Messages;
-export type PrimeMessage = UIMessage;
+export {MessagesModule as PrimeMessagesModule};
+export {MessageModule as PrimeMessageModule};
+export {Messages as PrimeMessages};
+export {UIMessage as PrimeUIMessage};
+export {MessagesTemplates as PrimeMessagesTemplates};

@@ -1,5 +1,6 @@
-import {Breadcrumb, BreadcrumbModule} from "primeng/breadcrumb";
+import {Breadcrumb, BreadcrumbItemClickEvent, BreadcrumbModule, BreadcumbTemplates} from "primeng/breadcrumb";
 
-export const PrimeBreadcrumbModule = BreadcrumbModule;
-export const PrimeBreadcrumb = Breadcrumb;
-export type PrimeBreadcrumb = Breadcrumb;
+export {BreadcrumbModule as PrimeBreadcrumbModule};
+export {Breadcrumb as PrimeBreadcrumb};
+export {BreadcrumbItemClickEvent as PrimeBreadcrumbItemClickEvent};
+export {BreadcumbTemplates as PrimeBreadcrumbTemplates};

@@ -1,5 +1,5 @@
-import {RadioButton, RadioButtonModule} from "primeng/radiobutton";
+import {RadioButton, RadioButtonClickEvent, RadioButtonModule} from "primeng/radiobutton";
 
-export const PrimeRadioButtonModule = RadioButtonModule;
-export const PrimeRadioButton = RadioButton;
-export type PrimeRadioButton = RadioButton;
+export {RadioButtonModule as PrimeRadioButtonModule};
+export {RadioButton as PrimeRadioButton};
+export {RadioButtonClickEvent as PrimeRadioButtonClickEvent};

@@ -1,5 +1,13 @@
-import {SelectButton, SelectButtonModule} from "primeng/selectbutton";
+import {
+  SelectButton,
+  SelectButtonModule,
+  SelectButtonTemplates,
+  SelectButtonChangeEvent,
+  SelectButtonOptionClickEvent
+} from "primeng/selectbutton";
 
-export const PrimeSelectButtonModule = SelectButtonModule;
-export const PrimeSelectButton = SelectButton;
-export type PrimeSelectButton = SelectButton;
+export {SelectButtonModule as PrimeSelectButtonModule};
+export {SelectButton as PrimeSelectButton};
+export {SelectButtonTemplates as PrimeSelectButtonTemplates};
+export {SelectButtonChangeEvent as PrimeSelectButtonChangeEvent};
+export {SelectButtonOptionClickEvent as PrimeSelectButtonOptionClickEvent};

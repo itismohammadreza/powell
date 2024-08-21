@@ -43,7 +43,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgAddon, NgFixLabelPosition, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
-import {PrimeUniqueComponentId} from "@powell/primeng/api";
+import {PrimeUniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({

@@ -1,5 +1,13 @@
-import {Splitter, SplitterModule} from "primeng/splitter";
+import {
+  Splitter,
+  SplitterModule,
+  SplitterResizeEndEvent,
+  SplitterResizeStartEvent,
+  SplitterTemplates,
+} from "primeng/splitter";
 
-export const PrimeSplitterModule = SplitterModule;
-export const PrimeSplitter = Splitter;
-export type PrimeSplitter = Splitter;
+export {SplitterModule as PrimeSplitterModule};
+export {Splitter as PrimeSplitter};
+export {SplitterTemplates as PrimeSplitterTemplates};
+export {SplitterResizeEndEvent as PrimeSplitterResizeEndEvent};
+export {SplitterResizeStartEvent as PrimeSplitterResizeStartEvent};

@@ -26,8 +26,8 @@ import {takeUntil} from "rxjs";
 import {NgFixLabelPosition, NgInputVariant, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
-import {PrimeInputOtpChangeEvent} from "@powell/primeng/api";
 import {TemplateDirective} from "@powell/directives/template";
+import {PrimeInputOtpChangeEvent} from "@powell/primeng";
 
 @Component({
   selector: 'ng-input-otp',

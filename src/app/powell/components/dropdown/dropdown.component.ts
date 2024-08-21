@@ -44,7 +44,7 @@ import {
   PrimeOverlayOptions,
   PrimeScrollerOptions,
   PrimeUniqueComponentId
-} from "@powell/primeng/api";
+} from "@powell/primeng";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
 

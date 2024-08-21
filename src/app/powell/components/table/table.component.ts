@@ -37,6 +37,7 @@ import {TemplateDirective} from "@powell/directives/template";
 import {
   PrimeScrollerOptions,
   PrimeSortMeta,
+  PrimeTable,
   PrimeTableColResizeEvent,
   PrimeTableColumnReorderEvent,
   PrimeTableContextMenuSelectEvent,
@@ -52,9 +53,8 @@ import {
   PrimeTableRowUnSelectEvent,
   PrimeTableSelectAllChangeEvent,
   PrimeTableSortEvent,
-  PrimeTableState
-} from "@powell/primeng/api";
-import {PrimeTable} from "@powell/primeng";
+  PrimeTableState,
+} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({

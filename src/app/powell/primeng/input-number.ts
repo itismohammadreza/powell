@@ -1,5 +1,6 @@
-import {InputNumber, InputNumberModule} from "primeng/inputnumber";
+import {InputNumber, InputNumberInputEvent, InputNumberModule, InputNumberTemplates} from "primeng/inputnumber";
 
-export const PrimeInputNumberModule = InputNumberModule;
-export const PrimeInputNumber = InputNumber;
-export type PrimeInputNumber = InputNumber;
+export {InputNumberModule as PrimeInputNumberModule};
+export {InputNumber as PrimeInputNumber};
+export {InputNumberTemplates as PrimeInputNumberTemplates};
+export {InputNumberInputEvent as PrimeInputNumberInputEvent};

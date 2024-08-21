@@ -1,5 +1,15 @@
-import {Editor, EditorModule} from "primeng/editor";
+import {
+  Editor,
+  EditorModule,
+  EditorTemplates,
+  EditorInitEvent,
+  EditorSelectionChangeEvent,
+  EditorTextChangeEvent,
+} from "primeng/editor";
 
-export const PrimeEditorModule = EditorModule;
-export const PrimeEditor = Editor;
-export type PrimeEditor = Editor;
+export {EditorModule as PrimeEditorModule};
+export {Editor as PrimeEditor};
+export {EditorTemplates as PrimeEditorTemplates};
+export {EditorInitEvent as PrimeEditorInitEvent};
+export {EditorSelectionChangeEvent as PrimeEditorSelectionChangeEvent};
+export {EditorTextChangeEvent as PrimeEditorTextChangeEvent};

@@ -1,5 +1,5 @@
-import {ColorPicker, ColorPickerModule} from "primeng/colorpicker";
+import {ColorPicker, ColorPickerModule,ColorPickerChangeEvent} from "primeng/colorpicker";
 
-export const PrimeColorPickerModule = ColorPickerModule;
-export const PrimeColorPicker = ColorPicker;
-export type PrimeColorPicker = ColorPicker;
+export {ColorPickerModule as PrimeColorPickerModule};
+export {ColorPicker as PrimeColorPicker};
+export {ColorPickerChangeEvent as PrimeColorPickerChangeEvent};

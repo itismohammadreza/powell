@@ -1,5 +1,5 @@
-import {Timeline, TimelineModule} from "primeng/timeline";
+import {Timeline, TimelineModule, TimelineTemplates} from "primeng/timeline";
 
-export const PrimeTimelineModule = TimelineModule;
-export const PrimeTimeline = Timeline;
-export type PrimeTimeline = Timeline;
+export {TimelineModule as PrimeTimelineModule};
+export {Timeline as PrimeTimeline};
+export {TimelineTemplates as PrimeTimelineTemplates};

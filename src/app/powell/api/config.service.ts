@@ -3,7 +3,7 @@ import {DOCUMENT} from "@angular/common";
 import {Subject, takeUntil} from "rxjs";
 import {NgConfig, NgConfigChangeEvent} from "@powell/models";
 import {ThemeService} from "@powell/api";
-import {PrimeConfig} from "@powell/primeng/api";
+import {PrimeConfig} from "@powell/primeng";
 
 // DON'T provide anywhere. will provide automatically after `providePowell` call.
 @Injectable()

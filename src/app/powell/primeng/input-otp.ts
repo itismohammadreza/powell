@@ -1,5 +1,13 @@
-import {InputOtp, InputOtpModule} from "primeng/inputotp";
+import {
+  InputOtp,
+  InputOtpChangeEvent,
+  InputOtpModule,
+  InputOtpTemplateEvents,
+  InputOtpTemplates
+} from "primeng/inputotp";
 
-export const PrimeInputOtpModule = InputOtpModule;
-export const PrimeInputOtp = InputOtp;
-export type PrimeInputOtp = InputOtp;
+export {InputOtpModule as PrimeInputOtpModule};
+export {InputOtp as PrimeInputOtp};
+export {InputOtpTemplates as PrimeInputOtpTemplates};
+export {InputOtpTemplateEvents as PrimeInputOtpTemplateEvents};
+export {InputOtpChangeEvent as PrimeInputOtpChangeEvent};

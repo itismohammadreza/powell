@@ -17,7 +17,7 @@ import {
 import {animate, AnimationEvent, style, transition, trigger} from "@angular/animations";
 import {ConfigService} from "@powell/api";
 import {NgCssObject, NgDisableZoomControl, NgImageLoading, NgLimitZoom, NgListener, NgOverflow} from "@powell/models";
-import {PrimeDomHandler, PrimeTemplateDirective, PrimeZIndexUtils} from "@powell/primeng/api";
+import {PrimeDomHandler, PrimeTemplateDirective, PrimeZIndexUtils} from "@powell/primeng";
 import {SafeUrl} from "@angular/platform-browser";
 import {DOCUMENT} from "@angular/common";
 

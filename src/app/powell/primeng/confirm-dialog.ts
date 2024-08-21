@@ -1,5 +1,5 @@
-import {ConfirmDialog, ConfirmDialogModule} from "primeng/confirmdialog";
+import {ConfirmDialog, ConfirmDialogModule,ConfirmDialogTemplates} from "primeng/confirmdialog";
 
-export const PrimeConfirmDialogModule = ConfirmDialogModule;
-export const PrimeConfirmDialog = ConfirmDialog;
-export type PrimeConfirmDialog = ConfirmDialog;
+export {ConfirmDialogModule as PrimeConfirmDialogModule};
+export {ConfirmDialog as PrimeConfirmDialog};
+export {ConfirmDialogTemplates as PrimeConfirmDialogTemplates};

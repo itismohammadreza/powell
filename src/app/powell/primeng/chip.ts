@@ -1,5 +1,5 @@
-import {Chip, ChipModule} from "primeng/chip";
+import {Chip, ChipModule, ChipTemplates} from "primeng/chip";
 
-export const PrimeChipModule = ChipModule;
-export const PrimeChip = Chip;
-export type PrimeChip = Chip;
+export {ChipModule as PrimeChipModule};
+export {Chip as PrimeChip};
+export {ChipTemplates as PrimeChipTemplates};

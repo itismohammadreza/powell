@@ -1,5 +1,4 @@
 import {ProgressBar, ProgressBarModule} from "primeng/progressbar";
 
-export const PrimeProgressBarModule = ProgressBarModule;
-export const PrimeProgressBar = ProgressBar;
-export type PrimeProgressBar = ProgressBar;
+export {ProgressBarModule as PrimeProgressBarModule};
+export {ProgressBar as PrimeProgressBar};

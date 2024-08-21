@@ -1,5 +1,5 @@
-import {Menu, MenuModule} from "primeng/menu";
+import {Menu, MenuItemContent, MenuModule} from "primeng/menu";
 
-export const PrimeMenuModule = MenuModule;
-export const PrimeMenu = Menu;
-export type PrimeMenu = Menu;
+export {MenuModule as PrimeMenuModule};
+export {Menu as PrimeMenu};
+export {MenuItemContent as PrimeMenuItemContent};

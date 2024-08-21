@@ -1,5 +1,13 @@
-import {Carousel, CarouselModule} from "primeng/carousel";
+import {
+  Carousel,
+  CarouselModule,
+  CarouselPageEvent,
+  CarouselResponsiveOptions,
+  CarouselTemplates
+} from "primeng/carousel";
 
-export const PrimeCarouselModule = CarouselModule;
-export const PrimeCarousel = Carousel;
-export type PrimeCarousel = Carousel;
+export {CarouselModule as PrimeCarouselModule};
+export {Carousel as PrimeCarousel};
+export {CarouselPageEvent as PrimeCarouselPageEvent};
+export {CarouselTemplates as PrimeCarouselTemplates};
+export {CarouselResponsiveOptions as PrimeCarouselResponsiveOptions};

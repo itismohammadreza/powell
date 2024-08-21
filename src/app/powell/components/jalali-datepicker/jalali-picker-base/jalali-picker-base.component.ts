@@ -34,7 +34,7 @@ import {
   PrimeTemplateDirective,
   PrimeUniqueComponentId,
   PrimeZIndexUtils
-} from "@powell/primeng/api";
+} from "@powell/primeng";
 import {NgCssObject} from "@powell/models";
 
 export interface DateMeta {

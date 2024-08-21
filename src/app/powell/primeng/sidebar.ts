@@ -1,5 +1,5 @@
-import {Sidebar, SidebarModule} from "primeng/sidebar";
+import {Sidebar, SidebarModule, SidebarTemplates } from "primeng/sidebar";
 
-export const PrimeSidebarModule = SidebarModule;
-export const PrimeSidebar = Sidebar;
-export type PrimeSidebar = Sidebar;
+export {SidebarModule as PrimeSidebarModule};
+export {Sidebar as PrimeSidebar};
+export {SidebarTemplates as PrimeSidebarTemplates};

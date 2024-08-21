@@ -1,5 +1,5 @@
-import {SpeedDial, SpeedDialModule} from "primeng/speeddial";
+import {SpeedDial, SpeedDialModule,SpeedDialTemplates} from "primeng/speeddial";
 
-export const PrimeSpeedDialModule = SpeedDialModule;
-export const PrimeSpeedDial = SpeedDial;
-export type PrimeSpeedDial = SpeedDial;
+export {SpeedDialModule as PrimeSpeedDialModule};
+export {SpeedDial as PrimeSpeedDial};
+export {SpeedDialTemplates as PrimeSpeedDialTemplates};

@@ -1,5 +1,7 @@
-import {Panel, PanelModule} from "primeng/panel";
+import {Panel, PanelAfterToggleEvent, PanelBeforeToggleEvent, PanelModule, PanelTemplates} from "primeng/panel";
 
-export const PrimePanelModule = PanelModule;
-export const PrimePanel = Panel;
-export type PrimePanel = Panel;
+export {PanelModule as PrimePanelModule};
+export {Panel as PrimePanel};
+export {PanelTemplates as PrimePanelTemplates};
+export {PanelAfterToggleEvent as PrimePanelAfterToggleEvent};
+export {PanelBeforeToggleEvent as PrimePanelBeforeToggleEvent};

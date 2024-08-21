@@ -1,5 +1,10 @@
-import {Checkbox, CheckboxModule} from "primeng/checkbox";
+import {Checkbox, CheckboxChangeEvent, CheckboxModule, CheckboxTemplates} from "primeng/checkbox";
 
-export const PrimeCheckboxModule = CheckboxModule;
-export const PrimeCheckbox = Checkbox;
-export type PrimeCheckbox = Checkbox;
+export {CheckboxModule as PrimeCheckboxModule};
+export {Checkbox as PrimeCheckbox};
+export {CheckboxTemplates as PrimeCheckboxTemplates};
+export {CheckboxChangeEvent as PrimeCheckboxChangeEvent};
+export type PrimeCheckboxGroupChangeEvent = {
+  originalEvent: Event;
+  value: any[];
+}

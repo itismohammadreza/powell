@@ -1,5 +1,5 @@
-import {PanelMenu, PanelMenuModule} from "primeng/panelmenu";
+import {PanelMenu, PanelMenuModule,PanelMenuTemplates} from "primeng/panelmenu";
 
-export const PrimePanelMenuModule = PanelMenuModule;
-export const PrimePanelMenu = PanelMenu;
-export type PrimePanelMenu = PanelMenu;
+export {PanelMenuModule as PrimePanelMenuModule};
+export {PanelMenu as PrimePanelMenu};
+export {PanelMenuTemplates as PrimePanelMenuTemplates};

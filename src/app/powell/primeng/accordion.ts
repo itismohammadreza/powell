@@ -1,7 +1,15 @@
-import {Accordion, AccordionModule, AccordionTab} from "primeng/accordion";
+import {
+  Accordion,
+  AccordionModule,
+  AccordionTab,
+  AccordionTabCloseEvent,
+  AccordionTabOpenEvent,
+  AccordionTemplates
+} from "primeng/accordion";
 
-export const PrimeAccordionModule = AccordionModule;
-export const PrimeAccordion = Accordion;
-export const PrimeAccordionTab = AccordionTab;
-export type PrimeAccordion = Accordion;
-export type PrimeAccordionTab = AccordionTab;
+export {Accordion as PrimeAccordion};
+export {AccordionModule as PrimeAccordionModule};
+export {AccordionTab as PrimeAccordionTab};
+export {AccordionTabCloseEvent as PrimeAccordionTabCloseEvent};
+export {AccordionTabOpenEvent as PrimeAccordionTabOpenEvent};
+export {AccordionTemplates as PrimeAccordionTemplates};

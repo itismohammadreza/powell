@@ -27,7 +27,7 @@ import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
-import {PrimeRatingRateEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
+import {PrimeRatingRateEvent, PrimeUniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({

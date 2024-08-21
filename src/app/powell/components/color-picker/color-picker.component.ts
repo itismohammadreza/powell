@@ -30,7 +30,7 @@ import {
   NgValidation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeColorPickerChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
+import {PrimeColorPickerChangeEvent, PrimeUniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({

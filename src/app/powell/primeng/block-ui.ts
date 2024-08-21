@@ -1,5 +1,5 @@
-import {BlockUI, BlockUIModule} from "primeng/blockui";
+import {BlockUI, BlockUIModule, BlockUITemplates} from "primeng/blockui";
 
-export const PrimeBlockUiModule = BlockUIModule;
-export const PrimeBlockUI = BlockUI;
-export type PrimeBlockUI = BlockUI;
+export {BlockUIModule as PrimeBlockUIModule};
+export {BlockUI as PrimeBlockUI};
+export {BlockUITemplates as PrimeBlockUITemplates};

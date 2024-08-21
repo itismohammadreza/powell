@@ -1,5 +1,5 @@
-import {Tag, TagModule} from "primeng/tag";
+import {Tag, TagModule,TagTemplates} from "primeng/tag";
 
-export const PrimeTagModule = TagModule;
-export const PrimeTag = Tag;
-export type PrimeTag = Tag;
+export {TagModule as PrimeTagModule};
+export {Tag as PrimeTag};
+export {TagTemplates as PrimeTagTemplates};

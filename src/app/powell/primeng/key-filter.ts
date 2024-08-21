@@ -1,5 +1,5 @@
-import {KeyFilter, KeyFilterModule} from "primeng/keyfilter";
+import {KeyFilter, KeyFilterModule, KeyFilterPattern} from "primeng/keyfilter";
 
-export const PrimeKeyFilterModule = KeyFilterModule;
-export const PrimeKeyFilter = KeyFilter;
-export type PrimeKeyFilter = KeyFilter;
+export {KeyFilterModule as PrimeKeyFilterModule};
+export {KeyFilter as PrimeKeyFilter};
+export {KeyFilterPattern as PrimeKeyFilterPattern};

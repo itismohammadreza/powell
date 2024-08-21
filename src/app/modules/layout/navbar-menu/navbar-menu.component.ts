@@ -5,7 +5,7 @@ import {SidebarType} from '@core/models';
 import {ConfigService, ThemeService} from "@powell/api";
 import {NgConfig} from "@powell/models";
 import {globalConfig} from "@core/config";
-import {PrimeMenuItem} from "@powell/primeng/api";
+import {PrimeMenuItem} from "@powell/primeng";
 import {
   PrimeAvatarModule,
   PrimeDividerModule,

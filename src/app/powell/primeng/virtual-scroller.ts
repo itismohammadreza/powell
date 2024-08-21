@@ -1,5 +1,6 @@
-import {VirtualScroller, VirtualScrollerModule} from "primeng/virtualscroller";
+import {VirtualScroller, VirtualScrollerModule, VirtualScrollerTemplates, VirtualScrollerLazyLoadEvent} from "primeng/virtualscroller";
 
-export const PrimeVirtualScrollerModule = VirtualScrollerModule;
-export const PrimeVirtualScroller = VirtualScroller;
-export type PrimeVirtualScroller = VirtualScroller;
+export {VirtualScrollerModule as PrimeVirtualScrollerModule};
+export {VirtualScroller as PrimeVirtualScroller};
+export {VirtualScrollerTemplates as PrimeVirtualScrollerTemplates};
+export {VirtualScrollerLazyLoadEvent as PrimeVirtualScrollerLazyLoadEvent};

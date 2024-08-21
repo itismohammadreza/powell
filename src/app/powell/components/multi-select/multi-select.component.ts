@@ -38,7 +38,7 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {
-  PrimeMultiSelectAllChangeEvent,
+  PrimeMultiSelectSelectAllChangeEvent,
   PrimeMultiSelectBlurEvent,
   PrimeMultiSelectChangeEvent,
   PrimeMultiSelectFilterEvent,
@@ -48,7 +48,7 @@ import {
   PrimeOverlayOptions,
   PrimeScrollerOptions,
   PrimeUniqueComponentId
-} from "@powell/primeng/api";
+} from "@powell/primeng";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
 
@@ -162,7 +162,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Output() onPanelHide = new EventEmitter<void>();
   @Output() onLazyLoad = new EventEmitter<PrimeMultiSelectLazyLoadEvent>();
   @Output() onRemove = new EventEmitter<PrimeMultiSelectRemoveEvent>();
-  @Output() onSelectAllChange = new EventEmitter<PrimeMultiSelectAllChangeEvent>();
+  @Output() onSelectAllChange = new EventEmitter<PrimeMultiSelectSelectAllChangeEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;

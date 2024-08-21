@@ -1,5 +1,5 @@
-import {InputMask, InputMaskModule} from "primeng/inputmask";
+import {InputMask, InputMaskModule, InputMaskTemplates} from "primeng/inputmask";
 
-export const PrimeInputMaskModule = InputMaskModule;
-export const PrimeInputMask = InputMask;
-export type PrimeInputMask = InputMask;
+export {InputMaskModule as PrimeInputMaskModule};
+export {InputMask as PrimeInputMask};
+export {InputMaskTemplates as PrimeInputMaskTemplates};

@@ -1,5 +1,5 @@
-import {SlideMenu, SlideMenuModule} from "primeng/slidemenu";
+import {SlideMenu, SlideMenuModule, SlideMenuTemplates} from "primeng/slidemenu";
 
-export const PrimeSlideMenuModule = SlideMenuModule;
-export const PrimeSlideMenu = SlideMenu;
-export type PrimeSlideMenu = SlideMenu;
+export {SlideMenuModule as PrimeSlideMenuModule};
+export {SlideMenu as PrimeSlideMenu};
+export {SlideMenuTemplates as PrimeSlideMenuTemplates};

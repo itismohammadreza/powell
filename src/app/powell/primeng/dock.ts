@@ -1,5 +1,5 @@
-import {Dock, DockModule} from "primeng/dock";
+import {Dock, DockModule, DockTemplates} from "primeng/dock";
 
-export const PrimeDockModule = DockModule;
-export const PrimeDock = Dock;
-export type PrimeDock = Dock;
+export {DockModule as PrimeDockModule};
+export {Dock as PrimeDock};
+export {DockTemplates as PrimeDockTemplates};

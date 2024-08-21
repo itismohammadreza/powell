@@ -1,5 +1,8 @@
-import {Chips, ChipsModule} from "primeng/chips";
+import {Chips, ChipsAddEvent, ChipsClickEvent, ChipsModule, ChipsRemoveEvent, ChipsTemplates,} from "primeng/chips";
 
-export const PrimeChipsModule = ChipsModule;
-export const PrimeChips = Chips;
-export type PrimeChips = Chips;
+export {ChipsModule as PrimeChipsModule};
+export {Chips as PrimeChips};
+export {ChipsAddEvent as PrimeChipsAddEvent};
+export {ChipsClickEvent as PrimeChipsClickEvent};
+export {ChipsRemoveEvent as PrimeChipsRemoveEvent};
+export {ChipsTemplates as PrimeChipsTemplates};

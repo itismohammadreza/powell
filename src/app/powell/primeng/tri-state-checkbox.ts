@@ -1,5 +1,11 @@
-import {TriStateCheckbox, TriStateCheckboxModule} from "primeng/tristatecheckbox";
+import {
+  TriStateCheckbox,
+  TriStateCheckboxChangeEvent,
+  TriStateCheckboxModule,
+  TriStateCheckboxTemplates
+} from "primeng/tristatecheckbox";
 
-export const PrimeTriStateCheckboxModule = TriStateCheckboxModule;
-export const PrimeTriStateCheckbox = TriStateCheckbox;
-export type PrimeTriStateCheckbox = TriStateCheckbox;
+export {TriStateCheckboxModule as PrimeTriStateCheckboxModule};
+export {TriStateCheckbox as PrimeTriStateCheckbox};
+export {TriStateCheckboxChangeEvent as PrimeTriStateCheckboxChangeEvent};
+export {TriStateCheckboxTemplates as PrimeTriStateCheckboxTemplates};

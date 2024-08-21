@@ -1,5 +1,5 @@
-import {ScrollTop, ScrollTopModule} from "primeng/scrolltop";
+import {ScrollTop, ScrollTopModule, ScrollTopTemplates} from "primeng/scrolltop";
 
-export const PrimeScrollTopModule = ScrollTopModule;
-export const PrimeScrollTop = ScrollTop;
-export type PrimeScrollTop = ScrollTop;
+export {ScrollTopModule as PrimeScrollTopModule};
+export {ScrollTop as PrimeScrollTop};
+export {ScrollTopTemplates as PrimeScrollTopTemplates};

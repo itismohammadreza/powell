@@ -1,5 +1,5 @@
-import {TieredMenu, TieredMenuModule} from "primeng/tieredmenu";
+import {TieredMenu, TieredMenuModule, TieredMenuTemplates} from "primeng/tieredmenu";
 
-export const PrimeTieredMenuModule = TieredMenuModule;
-export const PrimeTieredMenu = TieredMenu;
-export type PrimeTieredMenu = TieredMenu;
+export {TieredMenuModule as PrimeTieredMenuModule};
+export {TieredMenu as PrimeTieredMenu};
+export {TieredMenuTemplates as PrimeTieredMenuTemplates};

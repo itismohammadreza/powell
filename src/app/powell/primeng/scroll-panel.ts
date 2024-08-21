@@ -1,5 +1,5 @@
-import {ScrollPanel, ScrollPanelModule} from "primeng/scrollpanel";
+import {ScrollPanel, ScrollPanelModule,ScrollPanelTemplates} from "primeng/scrollpanel";
 
-export const PrimeScrollPanelModule = ScrollPanelModule;
-export const PrimeScrollPanel = ScrollPanel;
-export type PrimeScrollPanel = ScrollPanel;
+export {ScrollPanelModule as PrimeScrollPanelModule};
+export {ScrollPanel as PrimeScrollPanel};
+export {ScrollPanelTemplates as PrimeScrollPanelTemplates};

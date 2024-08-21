@@ -1,5 +1,15 @@
-import {OrderList, OrderListModule} from "primeng/orderlist";
+import {
+  OrderList,
+  OrderListFilterEvent,
+  OrderListFilterOptions,
+  OrderListModule,
+  OrderListSelectionChangeEvent,
+  OrderListTemplates
+} from "primeng/orderlist";
 
-export const PrimeOrderListModule = OrderListModule;
-export const PrimeOrderList = OrderList;
-export type PrimeOrderList = OrderList;
+export {OrderListModule as PrimeOrderListModule};
+export {OrderList as PrimeOrderList};
+export {OrderListTemplates as PrimeOrderListTemplates};
+export {OrderListFilterEvent as PrimeOrderListFilterEvent};
+export {OrderListFilterOptions as PrimeOrderListFilterOptions};
+export {OrderListSelectionChangeEvent as PrimeOrderListSelectionChangeEvent};

@@ -15,7 +15,7 @@ import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService, OverlayService} from "@powell/api";
 import {NgCssObject, NgHistoryState} from "@powell/models";
 import {Subject, takeUntil} from "rxjs";
-import {PrimeUniqueComponentId} from "@powell/primeng/api";
+import {PrimeUniqueComponentId} from "@powell/primeng";
 import {DestroyService} from "@core/utils";
 
 @Component({

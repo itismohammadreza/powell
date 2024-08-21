@@ -29,7 +29,7 @@ import {
   PrimeMessage,
   PrimeMessageService,
   PrimeUniqueComponentId
-} from "@powell/primeng/api";
+} from "@powell/primeng";
 
 @Injectable()
 export class OverlayService {

@@ -1,5 +1,6 @@
-import {ToggleButton, ToggleButtonModule} from "primeng/togglebutton";
+import {ToggleButton, ToggleButtonChangeEvent, ToggleButtonModule, ToggleButtonTemplates} from "primeng/togglebutton";
 
-export const PrimeToggleButtonModule = ToggleButtonModule;
-export const PrimeToggleButton = ToggleButton;
-export type PrimeToggleButton = ToggleButton;
+export {ToggleButtonModule as PrimeToggleButtonModule};
+export {ToggleButton as PrimeToggleButton};
+export {ToggleButtonTemplates as PrimeToggleButtonTemplates};
+export {ToggleButtonChangeEvent as PrimeToggleButtonChangeEvent};

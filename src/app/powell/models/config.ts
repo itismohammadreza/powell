@@ -1,5 +1,5 @@
 import {NgFixLabelPosition, NgInputVariant, NgLabelPosition, NgSize} from "@powell/models";
-import {PrimeConfig} from "@powell/primeng/api";
+import {PrimeConfig} from "@powell/primeng";
 
 type OmittedPrimeConfig = Omit<PrimeConfig, "setTranslation" | "csp" | "getTranslation" | "inputStyle">;
 

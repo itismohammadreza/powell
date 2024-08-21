@@ -26,7 +26,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgInputVariant, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeCheckboxChangeEvent, PrimeCheckboxGroupChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
+import {PrimeCheckboxChangeEvent, PrimeCheckboxGroupChangeEvent, PrimeUniqueComponentId} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 

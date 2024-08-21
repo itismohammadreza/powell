@@ -1,5 +1,13 @@
-import {Fieldset, FieldsetModule} from "primeng/fieldset";
+import {
+  Fieldset,
+  FieldsetModule,
+  FieldsetTemplates,
+  FieldsetAfterToggleEvent,
+  FieldsetBeforeToggleEvent,
+} from "primeng/fieldset";
 
-export const PrimeFieldsetModule = FieldsetModule;
-export const PrimeFieldset = Fieldset;
-export type PrimeFieldset = Fieldset;
+export {FieldsetModule as PrimeFieldsetModule};
+export {Fieldset as PrimeFieldset};
+export {FieldsetTemplates as PrimeFieldsetTemplates};
+export {FieldsetAfterToggleEvent as PrimeFieldsetAfterToggleEvent};
+export {FieldsetBeforeToggleEvent as PrimeFieldsetBeforeToggleEvent};

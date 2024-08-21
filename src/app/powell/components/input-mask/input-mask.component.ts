@@ -35,7 +35,7 @@ import {
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {TemplateDirective} from "@powell/directives/template";
-import {PrimeUniqueComponentId} from "@powell/primeng/api";
+import {PrimeUniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({

@@ -1,5 +1,5 @@
-import {TabMenu, TabMenuModule} from "primeng/tabmenu";
+import {TabMenu, TabMenuModule,TabMenuTemplates} from "primeng/tabmenu";
 
-export const PrimeTabMenuModule = TabMenuModule;
-export const PrimeTabMenu = TabMenu;
-export type PrimeTabMenu = TabMenu;
+export {TabMenuModule as PrimeTabMenuModule};
+export {TabMenu as PrimeTabMenu};
+export {TabMenuTemplates as PrimeTabMenuTemplates};

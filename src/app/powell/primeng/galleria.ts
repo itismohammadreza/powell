@@ -1,5 +1,6 @@
-import {Galleria, GalleriaModule} from "primeng/galleria";
+import {Galleria, GalleriaModule, GalleriaResponsiveOptions, GalleriaTemplates,} from "primeng/galleria";
 
-export const PrimeGalleriaModule = GalleriaModule;
-export const PrimeGalleria = Galleria;
-export type PrimeGalleria = Galleria;
+export {GalleriaModule as PrimeGalleriaModule};
+export {Galleria as PrimeGalleria};
+export {GalleriaTemplates as PrimeGalleriaTemplates};
+export {GalleriaResponsiveOptions as PrimeGalleriaResponsiveOptions};

@@ -1,5 +1,5 @@
-import {Toolbar, ToolbarModule} from "primeng/toolbar";
+import {Toolbar, ToolbarModule,ToolbarTemplates } from "primeng/toolbar";
 
-export const PrimeToolbarModule = ToolbarModule;
-export const PrimeToolbar = Toolbar;
-export type PrimeToolbar = Toolbar;
+export {ToolbarModule as PrimeToolbarModule};
+export {Toolbar as PrimeToolbar};
+export {ToolbarTemplates as PrimeToolbarTemplates};

@@ -37,7 +37,7 @@ import {
 import {TemplateDirective} from '@powell/directives/template';
 import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
-import {PrimeUniqueComponentId} from "@powell/primeng/api";
+import {PrimeUniqueComponentId} from "@powell/primeng";
 
 @Component({
   selector: 'ng-input-password',

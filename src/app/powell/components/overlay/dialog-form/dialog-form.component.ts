@@ -2,7 +2,7 @@ import {Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/c
 import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult, NgValidation} from "@powell/models";
 import {ConfigService} from "@powell/api";
-import {PrimeDomHandler} from "@powell/primeng/api";
+import {PrimeDomHandler} from "@powell/primeng";
 import {PrimeDialog} from "@powell/primeng";
 
 @Component({

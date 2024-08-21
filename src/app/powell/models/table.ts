@@ -7,7 +7,7 @@ import {
   NgPosition,
   NgSize
 } from '@powell/models';
-import {PrimeFilterMetadata} from "@powell/primeng/api";
+import {PrimeFilterMetadata} from "@powell/primeng";
 
 export type NgTableRendererType = 'text' | 'image' | 'ng-template';
 export type NgTableFilterDisplay = 'row' | 'menu';

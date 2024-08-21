@@ -1,5 +1,5 @@
-import {InputSwitch, InputSwitchModule} from "primeng/inputswitch";
+import {InputSwitch, InputSwitchChangeEvent, InputSwitchModule} from "primeng/inputswitch";
 
-export const PrimeInputSwitchModule = InputSwitchModule;
-export const PrimeInputSwitch = InputSwitch;
-export type PrimeInputSwitch = InputSwitch;
+export {InputSwitchModule as PrimeInputSwitchModule};
+export {InputSwitch as PrimeInputSwitch};
+export {InputSwitchChangeEvent as PrimeInputSwitchChangeEvent};

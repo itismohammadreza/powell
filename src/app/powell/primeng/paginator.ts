@@ -1,5 +1,5 @@
-import {Paginator, PaginatorModule} from "primeng/paginator";
+import {Paginator, PaginatorModule, PaginatorTemplates} from "primeng/paginator";
 
-export const PrimePaginatorModule = PaginatorModule;
-export const PrimePaginator = Paginator;
-export type PrimePaginator = Paginator;
+export {PaginatorModule as PrimePaginatorModule};
+export {Paginator as PrimePaginator};
+export {PaginatorTemplates as PrimePaginatorTemplates};

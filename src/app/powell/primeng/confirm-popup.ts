@@ -1,5 +1,5 @@
-import {ConfirmPopup, ConfirmPopupModule} from "primeng/confirmpopup";
+import {ConfirmPopup, ConfirmPopupModule,ConfirmPopupTemplates} from "primeng/confirmpopup";
 
-export const PrimeConfirmPopupModule = ConfirmPopupModule;
-export const PrimeConfirmPopup = ConfirmPopup;
-export type PrimeConfirmPopup = ConfirmPopup;
+export {ConfirmPopupModule as PrimeConfirmPopupModule};
+export {ConfirmPopup as PrimeConfirmPopup};
+export {ConfirmPopupTemplates as PrimeConfirmPopupTemplates};

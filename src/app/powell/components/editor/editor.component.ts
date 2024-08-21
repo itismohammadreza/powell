@@ -51,7 +51,7 @@ import {
 } from '@powell/models';
 import {EditorBaseComponent} from "@powell/components/editor";
 import {DestroyService} from "@core/utils";
-import {PrimeUniqueComponentId} from "@powell/primeng/api";
+import {PrimeUniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({

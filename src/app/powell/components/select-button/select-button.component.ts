@@ -31,7 +31,7 @@ import {
   PrimeSelectButtonChangeEvent,
   PrimeSelectButtonOptionClickEvent,
   PrimeUniqueComponentId
-} from "@powell/primeng/api";
+} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({

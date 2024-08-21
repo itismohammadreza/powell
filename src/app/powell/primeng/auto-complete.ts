@@ -1,5 +1,19 @@
-import {AutoComplete, AutoCompleteModule} from "primeng/autocomplete";
+import {
+  AutoComplete,
+  AutoCompleteCompleteEvent,
+  AutoCompleteDropdownClickEvent,
+  AutoCompleteLazyLoadEvent,
+  AutoCompleteModule,
+  AutoCompleteSelectEvent,
+  AutoCompleteTemplates,
+  AutoCompleteUnselectEvent
+} from "primeng/autocomplete";
 
-export const PrimeAutoCompleteModule = AutoCompleteModule;
-export const PrimeAutoComplete = AutoComplete;
-export type PrimeAutoComplete = AutoComplete;
+export {AutoCompleteModule as PrimeAutoCompleteModule};
+export {AutoComplete as PrimeAutoComplete};
+export {AutoCompleteCompleteEvent as PrimeAutoCompleteCompleteEvent};
+export {AutoCompleteDropdownClickEvent as PrimeAutoCompleteDropdownClickEvent};
+export {AutoCompleteLazyLoadEvent as PrimeAutoCompleteLazyLoadEvent};
+export {AutoCompleteSelectEvent as PrimeAutoCompleteSelectEvent};
+export {AutoCompleteUnselectEvent as PrimeAutoCompleteUnselectEvent};
+export {AutoCompleteTemplates as PrimeAutoCompleteTemplates};

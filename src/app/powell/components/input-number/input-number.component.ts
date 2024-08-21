@@ -37,7 +37,7 @@ import {
   NgValidation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeInputNumberInputEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
+import {PrimeInputNumberInputEvent, PrimeUniqueComponentId} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 

@@ -1,5 +1,4 @@
 import {Ripple, RippleModule} from "primeng/ripple";
 
-export const PrimeRippleModule = RippleModule;
-export const PrimeRipple = Ripple;
-export type PrimeRipple = Ripple;
+export {RippleModule as PrimeRippleModule};
+export {Ripple as PrimeRipple};

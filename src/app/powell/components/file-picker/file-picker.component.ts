@@ -51,7 +51,7 @@ import {
   PrimeFileUploadHandlerEvent,
   PrimeRemoveUploadedFileEvent,
   PrimeUniqueComponentId
-} from "@powell/primeng/api";
+} from "@powell/primeng";
 
 @Component({
   selector: 'ng-file-picker',

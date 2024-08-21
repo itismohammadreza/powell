@@ -22,7 +22,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgAsyncEvent, NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeInputSwitchChangeEvent, PrimeUniqueComponentId} from "@powell/primeng/api";
+import {PrimeInputSwitchChangeEvent, PrimeUniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({

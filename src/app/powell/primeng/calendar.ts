@@ -1,5 +1,19 @@
-import {Calendar, CalendarModule} from "primeng/calendar";
+import {
+  Calendar,
+  CalendarModule,
+  CalendarMonthChangeEvent,
+  CalendarResponsiveOptions,
+  CalendarTemplates,
+  CalendarTypeView,
+  CalendarYearChangeEvent,
+  LocaleSettings,
+} from "primeng/calendar";
 
-export const PrimeCalendarModule = CalendarModule;
-export const PrimeCalendar = Calendar;
-export type PrimeCalendar = Calendar;
+export {CalendarModule as PrimeCalendarModule};
+export {Calendar as PrimeCalendar};
+export {CalendarMonthChangeEvent as PrimeCalendarMonthChangeEvent};
+export {CalendarResponsiveOptions as PrimeCalendarResponsiveOptions};
+export {CalendarYearChangeEvent as PrimeCalendarYearChangeEvent};
+export {CalendarTemplates as PrimeCalendarTemplates};
+export {CalendarTypeView as PrimeCalendarTypeView};
+export {LocaleSettings as PrimeLocaleSettings};

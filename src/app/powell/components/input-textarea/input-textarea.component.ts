@@ -24,7 +24,7 @@ import {takeUntil} from "rxjs";
 import {NgAddon, NgCssObject, NgIconPosition, NgInputVariant, NgLabelPosition, NgValidation} from '@powell/models';
 import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
-import {PrimeUniqueComponentId} from "@powell/primeng/api";
+import {PrimeUniqueComponentId} from "@powell/primeng";
 
 @Component({
   selector: 'ng-input-textarea',
