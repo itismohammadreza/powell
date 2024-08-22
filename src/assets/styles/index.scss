@@ -1,4 +1,15 @@
-@layer reset, bootstrap-reboot, primeng, bootstrap-grid, bootstrap-utilities;
+//@layer reset, bootstrap-reboot, primeng, bootstrap-grid, bootstrap-utilities;
+
+@layer reset, tailwind-base, primeng, tailwind-utilities;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
 
 @import "./fonts/fonts";
 @import "./overlays";
