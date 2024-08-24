@@ -93,7 +93,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
 
   ngAfterViewInit() {
     this._tmpSize = this.size;
-    const {md, sm, xl, xs, lg} = this.responsiveSize;
+    const {md, sm, xl, xs, lg} = this.responsiveSize ?? {};
     const getButtonSize = () => {
       const windowWidth = this.document.defaultView.innerWidth;
       if (windowWidth <= 575.98) {
