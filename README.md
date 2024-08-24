@@ -11,7 +11,6 @@
 - add rtl to bottomSheet and handle header
 - implement config change (and read from config) in dialog component
 - update navbar (handle backdrop visibility with modal property, like react-powell)
-- add tailwindcss
 - fix dialogForm autocomplete issue (prevent opening dialog)
 - pass Inputs to components through ts file in dialogForm (by using ViewChild to each component and pass it's inputs from received config in afterViewInit cycle)
 - create container and grid-item components and implement tailwind inside them
