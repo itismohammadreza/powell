@@ -12,7 +12,7 @@ import {DropdownModule} from "@powell/components/dropdown";
 import {MultiSelectModule} from "@powell/components/multi-select";
 import {InputNumberModule} from "@powell/components/input-number";
 import {FormsModule} from "@angular/forms";
-import {PrimeTableModule, PrimeTooltipModule} from "@powell/primeng";
+import {PrimeBarsIcon, PrimeTableModule, PrimeTimesIcon, PrimeTooltipModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
@@ -32,7 +32,9 @@ import {TemplateModule} from "@powell/directives/template";
     CheckboxModule,
     ImageModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    PrimeTimesIcon,
+    PrimeBarsIcon,
   ],
 })
 export class TableModule {

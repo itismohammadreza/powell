@@ -4,7 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {AddonModule} from "@powell/directives/addon";
 import {InputTextComponent} from "@powell/components/input-text";
 import {LabelStarModule} from "@powell/pipes/label-star";
-import {PrimeInputTextModule, PrimeKeyFilterModule} from "@powell/primeng";
+import {PrimeInputTextModule, PrimeKeyFilterModule, PrimeTimesIcon} from "@powell/primeng";
 
 @NgModule({
   declarations: [InputTextComponent],
@@ -15,7 +15,8 @@ import {PrimeInputTextModule, PrimeKeyFilterModule} from "@powell/primeng";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    AddonModule
+    AddonModule,
+    PrimeTimesIcon
   ],
 })
 export class InputTextModule {

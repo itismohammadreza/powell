@@ -128,8 +128,10 @@
               *ngIf="col.sort && activeSortField == col.field"
               appearance="text"
               size="sm"
-              icon="pi pi-sort-alt-slash"
               (onClick)="onResetSort($event)">
+              <ng-template ngTemplate="icon">
+                <TimesIcon/>
+              </ng-template>
             </ng-button>
             <ng-container *ngIf="col.filter as filter">
               <p-columnFilter [field]="col.field"
@@ -140,7 +142,7 @@
                               [showOperator]="false"
                               [showAddButton]="false">
                 <ng-template pTemplate="header">
-                  <div class="filter-header"><span>{{filter.header}}</span></div>
+                  <div class="filter-header"><span>{{ filter.header }}</span></div>
                 </ng-template>
                 <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback" [ngSwitch]="filter.type">
                   <ng-input-text
@@ -182,7 +184,7 @@
                       [range]="filter.range"
                       (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
                     </ng-slider>
-                    <div class="text-center" dir="ltr">{{filter.sliderValue[0]}} - {{filter.sliderValue[1]}}</div>
+                    <div class="text-center" dir="ltr">{{ filter.sliderValue[0] }} - {{ filter.sliderValue[1] }}</div>
                   </ng-container>
 
                   <ng-checkbox
@@ -201,11 +203,11 @@
             </ng-container>
           </th>
           <ng-container *ngIf="actionsConfig?.inSameColumn && actionsConfig?.actions.length">
-            <th class="text-center">{{actionsConfig.header}}</th>
+            <th class="text-center">{{ actionsConfig.header }}</th>
           </ng-container>
           <ng-container *ngIf="!actionsConfig?.inSameColumn && actionsConfig?.actions.length">
             <ng-container *ngFor="let action of actionsConfig?.actions">
-              <th class="text-center" *ngIf="action.visible ?? true">{{action.header}}</th>
+              <th class="text-center" *ngIf="action.visible ?? true">{{ action.header }}</th>
             </ng-container>
           </ng-container>
         </tr>
@@ -224,11 +226,11 @@
             <p-sortIcon *ngIf="col.sort" [field]="col.field"></p-sortIcon>
           </th>
           <ng-container *ngIf="actionsConfig?.inSameColumn && actionsConfig?.actions.length">
-            <th>{{actionsConfig.header}}</th>
+            <th>{{ actionsConfig.header }}</th>
           </ng-container>
           <ng-container *ngIf="!actionsConfig?.inSameColumn && actionsConfig?.actions.length">
             <ng-container *ngFor="let action of actionsConfig?.actions">
-              <th class="text-center" *ngIf="action.visible ?? true">{{action.header}}</th>
+              <th class="text-center" *ngIf="action.visible ?? true">{{ action.header }}</th>
             </ng-container>
           </ng-container>
         </tr>
@@ -245,7 +247,7 @@
                               [showOperator]="false"
                               [showAddButton]="false">
                 <ng-template pTemplate="header">
-                  <div class="filter-header"><span>{{filter.header}}</span></div>
+                  <div class="filter-header"><span>{{ filter.header }}</span></div>
                 </ng-template>
                 <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback" [ngSwitch]="filter.type">
                   <ng-input-text
@@ -287,7 +289,8 @@
                       [range]="filter.range"
                       (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
                     </ng-slider>
-                    <div class="text-center mt-3" dir="ltr">{{filter.sliderValue[0]}} - {{filter.sliderValue[1]}}</div>
+                    <div class="text-center mt-3" dir="ltr">{{ filter.sliderValue[0] }}- {{ filter.sliderValue[1] }}
+                    </div>
                   </ng-container>
 
                   <ng-checkbox
@@ -326,7 +329,7 @@
             [pSelectableRowDisabled]="!selectionMode"
             [pSelectableRowIndex]="index">
           <td *ngIf="reorderableRows">
-            <span class="pi pi-bars"></span>
+            <BarsIcon/>
           </td>
           <td *ngIf="selectionMode == 'radio'">
             <p-tableRadioButton [value]="item"></p-tableRadioButton>
@@ -410,11 +413,10 @@
       </ng-container>
       <ng-template #defaultCaption>
         <div class="caption">
-          <h5>{{header}}</h5>
+          <h5>{{ header }}</h5>
           <ng-input-text
             *ngIf="globalFilter"
             [placeholder]="globalFilterPlaceholder"
-            icon="pi pi-search"
             (onKeyDown)="onGlobalFilterChange($event)">
           </ng-input-text>
         </div>
@@ -427,7 +429,8 @@
                  let-editing="editing"
                  let-frozen="frozen"
                  *ngIf="headerGroupedTemplate">
-      <ng-container *ngTemplateOutlet="headerGroupedTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
+      <ng-container
+        *ngTemplateOutlet="headerGroupedTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
     </ng-template>
     <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
       <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
@@ -447,20 +450,27 @@
     <ng-template pTemplate="summary" *ngIf="summaryTemplate">
       <ng-container *ngTemplateOutlet="summaryTemplate"></ng-container>
     </ng-template>
-    <ng-template pTemplate="rowexpansion" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded" *ngIf="rowExpansionTemplate">
+    <ng-template pTemplate="rowexpansion" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded"
+                 *ngIf="rowExpansionTemplate">
       <ng-container *ngTemplateOutlet="rowExpansionTemplate;context:{rowspan,rowgroup,expanded}"></ng-container>
     </ng-template>
-    <ng-template pTemplate="groupheader" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing" let-frozen="frozen" *ngIf="groupHeaderTemplate">
-      <ng-container *ngTemplateOutlet="groupHeaderTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
+    <ng-template pTemplate="groupheader" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
+                 let-frozen="frozen" *ngIf="groupHeaderTemplate">
+      <ng-container
+        *ngTemplateOutlet="groupHeaderTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
     </ng-template>
-    <ng-template pTemplate="groupfooter" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing" let-frozen="frozen" *ngIf="groupFooterTemplate">
-      <ng-container *ngTemplateOutlet="groupFooterTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
+    <ng-template pTemplate="groupfooter" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
+                 let-frozen="frozen" *ngIf="groupFooterTemplate">
+      <ng-container
+        *ngTemplateOutlet="groupFooterTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
     </ng-template>
     <ng-template pTemplate="frozenheader" *ngIf="frozenHeaderTemplate">
       <ng-container *ngTemplateOutlet="frozenHeaderTemplate"></ng-container>
     </ng-template>
-    <ng-template pTemplate="frozenbody" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing" let-frozen="frozen" *ngIf="frozenBodyTemplate">
-      <ng-container *ngTemplateOutlet="frozenBodyTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
+    <ng-template pTemplate="frozenbody" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
+                 let-frozen="frozen" *ngIf="frozenBodyTemplate">
+      <ng-container
+        *ngTemplateOutlet="frozenBodyTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
     </ng-template>
     <ng-template pTemplate="frozenfooter" *ngIf="frozenFooterTemplate">
       <ng-container *ngTemplateOutlet="frozenFooterTemplate"></ng-container>
@@ -468,7 +478,8 @@
     <ng-template pTemplate="frozencolgroup" *ngIf="frozenColGroupTemplate">
       <ng-container *ngTemplateOutlet="frozenColGroupTemplate"></ng-container>
     </ng-template>
-    <ng-template pTemplate="frozenexpandedrow" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded" *ngIf="frozenColGroupTemplate">
+    <ng-template pTemplate="frozenexpandedrow" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded"
+                 *ngIf="frozenColGroupTemplate">
       <ng-container *ngTemplateOutlet="frozenColGroupTemplate;context:{rowspan,rowgroup,expanded}"></ng-container>
     </ng-template>
     <ng-template pTemplate="paginatorleft" *ngIf="paginatorLeftTemplate">

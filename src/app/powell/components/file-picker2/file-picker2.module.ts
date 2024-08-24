@@ -3,6 +3,7 @@ import {CommonModule} from "@angular/common";
 import {FilePicker2Component} from "@powell/components/file-picker2";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {ButtonModule} from "@powell/components/button";
+import {PrimePlusIcon, PrimeTrashIcon, PrimeUploadIcon} from "@powell/primeng";
 
 @NgModule({
   declarations: [FilePicker2Component],
@@ -10,7 +11,10 @@ import {ButtonModule} from "@powell/components/button";
   imports: [
     ButtonModule,
     LabelStarModule,
-    CommonModule
+    CommonModule,
+    PrimeUploadIcon,
+    PrimePlusIcon,
+    PrimeTrashIcon,
   ],
 })
 export class FilePicker2Module {

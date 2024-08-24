@@ -30,6 +30,7 @@ export * from './fieldset';
 export * from './file-upload';
 export * from './focus-trap';
 export * from './galleria';
+export * from './icons';
 export * from './image';
 export * from './inplace';
 export * from './input-mask';

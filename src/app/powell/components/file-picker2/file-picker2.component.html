@@ -18,8 +18,9 @@
       <div class="preview" [ngSwitch]="getFileType(filesToShow[0]?.display)">
         <div *ngSwitchCase="'image'" class="image-preview"
              [style.backgroundImage]="'url('+(filesToShow[0]?.display)+')'"></div>
-        <i *ngSwitchCase="'file'" class="pi pi-file file-preview"></i>
+        <PlusIcon *ngSwitchCase="'file'" styleClass="file-preview"/>
       </div>
+
       <ng-button
         [full]="true"
         [disabled]="disabled"
@@ -31,14 +32,17 @@
         color="danger"
         size="sm"
         (onClick)="onSingleDelete()"
-        *ngIf="filesToShow.length != 0"
-        icon="pi pi-trash">
+        *ngIf="filesToShow.length != 0">
+        <ng-template ngTemplate="icon">
+          <TrashIcon/>
+        </ng-template>
       </ng-button>
     </div>
 
     <div class="file-picker-multiple-wrapper" *ngIf="multiple">
-      <div *ngIf="!readonly && (fileLimit && filesToEmit.length < fileLimit)" class="picker" (click)="inputFile.click()">
-        <i class="pi pi-paperclip"></i>
+      <div *ngIf="!readonly && (fileLimit && filesToEmit.length < fileLimit)" class="picker"
+           (click)="inputFile.click()">
+        <PlusIcon/>
       </div>
       <div *ngFor="let item of filesToShow; let i = index" class="preview">
         <ng-container [ngSwitch]="getFileType(item.display)">
@@ -47,16 +51,18 @@
                class="image-preview">
           </div>
           <div *ngSwitchCase="'file'" class="file-preview">
-            <i class="pi pi-file"></i>
+            <UploadIcon/>
           </div>
-          <div class="file-name">{{item.name}}</div>
+          <div class="file-name">{{ item.name }}</div>
         </ng-container>
         <ng-button
           color="danger"
           size="sm"
           (onClick)="onMultipleDelete($event, i)"
-          *ngIf="!readonly"
-          icon="pi pi-trash">
+          *ngIf="!readonly">
+          <ng-template ngTemplate="icon">
+            <TrashIcon/>
+          </ng-template>
         </ng-button>
       </div>
     </div>
@@ -81,8 +87,8 @@
     </ng-container>
 
     <ng-container *ngIf="invalidFileSize || invalidFileType">
-      <div *ngIf="invalidFileSize">{{invalidFileSizeMessage}}</div>
-      <div *ngIf="invalidFileType">{{invalidFileTypeMessage}}</div>
+      <div *ngIf="invalidFileSize">{{ invalidFileSizeMessage }}</div>
+      <div *ngIf="invalidFileType">{{ invalidFileTypeMessage }}</div>
     </ng-container>
   </div>
 </div>

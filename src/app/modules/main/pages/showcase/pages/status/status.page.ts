@@ -11,7 +11,6 @@ export class StatusPage {
   private configService = inject(ConfigService);
 
   status: NgStatusIcon = 'info';
-  icon: string = '';
   text: string = '';
   subText: string = '';
   rtl: boolean = this.configService.getConfig().rtl;

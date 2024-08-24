@@ -64,7 +64,7 @@ export {OverlayOnHideEvent as PrimeOverlayOnHideEvent};
 export {OverlayOnShowEvent as PrimeOverlayOnShowEvent};
 export {OverlayOptions as PrimeOverlayOptions};
 export {OverlayService as PrimeOverlayService};
-export {PrimeIcons as PrimePrimeIcons};
+export {PrimeIcons as PrimeIconsPack};
 export {PrimeNGConfig as PrimeConfig};
 export {PrimeTemplate as PrimeTemplateDirective};
 export {ResponsiveOverlayDirectionType as PrimeResponsiveOverlayDirectionType};

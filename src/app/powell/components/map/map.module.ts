@@ -4,19 +4,22 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import {AddonModule} from "@powell/directives/addon";
 import {MapComponent} from "@powell/components/map";
 import {LabelStarModule} from "@powell/pipes/label-star";
-import {PrimeTooltipModule} from "@powell/primeng";
+import {PrimeTooltipModule, PrimeTrashIcon} from "@powell/primeng";
 import {ButtonModule} from "@powell/components/button";
+import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
   declarations: [MapComponent],
-  exports: [MapComponent],
+  exports: [MapComponent, TemplateModule],
   imports: [
     ButtonModule,
     PrimeTooltipModule,
     LeafletModule,
     CommonModule,
     LabelStarModule,
-    AddonModule
+    AddonModule,
+    TemplateModule,
+    PrimeTrashIcon
   ],
 })
 export class MapModule {

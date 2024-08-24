@@ -1,6 +1,8 @@
 import {
+  AfterContentInit,
   ChangeDetectorRef,
   Component,
+  ContentChildren,
   EventEmitter,
   forwardRef,
   inject,
@@ -9,7 +11,9 @@ import {
   OnChanges,
   OnInit,
   Output,
+  QueryList,
   SimpleChanges,
+  TemplateRef,
 } from '@angular/core';
 import {
   CRS,
@@ -45,6 +49,7 @@ import {NgAddon, NgFixLabelPosition, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {PrimeUniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-map',
@@ -59,7 +64,7 @@ import {ConfigService} from "@powell/api";
     DestroyService
   ]
 })
-export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
+export class MapComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnChanges {
   private cd = inject(ChangeDetectorRef);
   private injector = inject(Injector);
   private configService = inject(ConfigService);
@@ -79,7 +84,7 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
   @Input() clearMarkerOnClick: boolean = true;
   @Input() showClear: boolean;
   @Input() clearTooltip: string;
-  @Input() clearIcon: string = 'pi pi-trash';
+  @Input() clearIcon: string;
   @Input() followConfig: boolean;
   @Input() selectionLimit: number;
   @Input() id: string = PrimeUniqueComponentId();
@@ -163,7 +168,9 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
   @Output() onMapZoomStart = new EventEmitter<LeafletEvent>();
   @Output() onMapZoomEnd = new EventEmitter<LeafletEvent>();
   @Output() onClear = new EventEmitter<void>();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
+  templateMap: Record<string, TemplateRef<any>> = {};
   ngControl: NgControl;
   map: Map;
   layers: Layer[] = [];
@@ -199,6 +206,13 @@ export class MapComponent implements OnInit, ControlValueAccessor, OnChanges {
       }
     }
     this.configService.applyConfigToComponent(this);
+  }
+
+  ngAfterContentInit() {
+    this.templates.forEach(item => {
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {

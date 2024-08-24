@@ -15,6 +15,12 @@
         [icon]="clearIcon"
         size="sm"
         (click)="clearMap()">
+        <ng-template ngTemplate="icon">
+          <TrashIcon *ngIf="!clearIcon && !templateMap.clearicon"/>
+          <ng-container *ngIf="!clearIcon && templateMap.clearicon">
+            <ng-template *ngTemplateOutlet="templateMap.clearicon"></ng-template>
+          </ng-container>
+        </ng-template>
       </ng-button>
       <div
         leaflet

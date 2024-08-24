@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {BottomSheetComponent} from "@powell/components/bottom-sheet";
 import {ButtonModule} from "@powell/components/button";
-import {PrimeSidebarModule} from "@powell/primeng";
+import {PrimeSidebarModule, PrimeTimesIcon} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
@@ -11,7 +11,8 @@ import {TemplateModule} from "@powell/directives/template";
   imports: [
     PrimeSidebarModule,
     ButtonModule,
-    CommonModule
+    CommonModule,
+    PrimeTimesIcon
   ],
 })
 export class BottomSheetModule {

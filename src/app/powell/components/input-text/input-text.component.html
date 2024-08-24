@@ -49,10 +49,7 @@
         <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
           {{ label | ngLabelStar:showRequiredStar:ngControl }}
         </label>
-        <i *ngIf="showClear && !disabled && value"
-           class="p-inputtext-clear-icon pi pi-times"
-           (click)="clear()">
-        </i>
+        <TimesIcon styleClass="p-inputtext-clear-icon" *ngIf="showClear && !disabled && value" (click)="clear()"/>
       </div>
     </div>
   </div>

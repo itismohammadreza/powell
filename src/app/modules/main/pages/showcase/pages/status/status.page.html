@@ -5,14 +5,12 @@
     <ng-preview-options
       [previewItems]="[
       'status',
-      'icon',
       'text',
       'subText',
       'rtl',
       'followConfig'
       ]"
       [(status)]="status"
-      [(icon)]="icon"
       [(text)]="text"
       [(subText)]="subText"
       [(rtl)]="rtl"
@@ -23,7 +21,6 @@
   <p-panel [header]="'preview' | translate">
     <ng-status
       [status]="status"
-      [icon]="icon"
       [text]="text"
       [subText]="subText"
       [rtl]="rtl"

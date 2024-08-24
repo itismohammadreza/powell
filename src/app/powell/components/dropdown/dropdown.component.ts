@@ -158,7 +158,6 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
 
   ngControl: NgControl;
   templateMap: Record<string, TemplateRef<any>> = {};
-  _oldIcon: string;
   _oldValue: string;
   _newValue: string;
   onModelChange: Function = () => {
@@ -208,10 +207,9 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   _onChange(event: PrimeDropdownChangeEvent) {
     if (this.async) {
       this.disabled = true;
-      this._oldIcon = this.icon;
       this._oldValue = this.value;
       this._newValue = event.value;
-      this.icon = 'pi pi-spinner pi-spin';
+      this.loading = true;
       this.onChangeAsync.emit({loadingCallback: this.removeLoading, event});
     } else {
       this.value = event.value;
@@ -221,7 +219,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   }
 
   removeLoading = (ok: boolean = true) => {
-    this.icon = this._oldIcon;
+    this.loading = false;
     this.disabled = false;
 
     if (ok) {

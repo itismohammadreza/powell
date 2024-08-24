@@ -25,9 +25,12 @@
       <ng-button
         *ngIf="showCloseIcon"
         [rounded]="true"
+        size="sm"
         appearance="text"
-        icon="pi pi-times"
         (onClick)="_onHide()">
+        <ng-template ngTemplate="icon">
+          <TimesIcon/>
+        </ng-template>
       </ng-button>
     </div>
     <div class="content" [class.has-gutter]="gutter">
