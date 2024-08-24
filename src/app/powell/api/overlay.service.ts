@@ -125,6 +125,7 @@ export class OverlayService {
     for (const key in options) {
       instance[key] = options[key];
     }
+    instance.breakpoints = {'767px': { width: '100%', right: '0', left: '0' },...options.breakpoints};
     setTimeout(() => {
       this.messageService.add(toast);
     }, 0);
