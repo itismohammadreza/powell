@@ -14,6 +14,4 @@
 - add tailwindcss
 - fix dialogForm autocomplete issue (prevent opening dialog)
 - pass Inputs to components through ts file in dialogForm (by using ViewChild to each component and pass it's inputs from received config in afterViewInit cycle)
-- add (breakpoints:{ '767px': { width: '100%', right: '0', left: '0' } }) to toast default options and remove media breakpoint from overlay.css
-- remove primeicons
 - create container and grid-item components and implement tailwind inside them
