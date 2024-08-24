@@ -269,9 +269,6 @@
                 "bundleName": "viva-light",
                 "inject": false
               },
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/leaflet/dist/leaflet.css",
-              "node_modules/suneditor/dist/css/suneditor.min.css",
               "src/styles.scss"
             ],
             "scripts": [],

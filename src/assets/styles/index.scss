@@ -1,16 +1,15 @@
 //@layer reset, bootstrap-reboot, primeng, bootstrap-grid, bootstrap-utilities;
 
-@layer reset, tailwind-base, primeng, tailwind-utilities;
+@layer tailwind-base, primeng, tailwind-components, tailwind-utilities;
 
-@layer tailwind-base {
-  @tailwind base;
-}
+@import "tailwindcss/base.css" layer(tailwind-base);
+@import "tailwindcss/components.css" layer(tailwind-components);
+@import "tailwindcss/utilities.css" layer(tailwind-utilities);
 
-@layer tailwind-utilities {
-  @tailwind components;
-  @tailwind utilities;
-}
-
+@import "primeng/resources/primeng.min.css";
+@import "leaflet/dist/leaflet.css";
+@import "suneditor/dist/css/suneditor.min.css";
 @import "./fonts/fonts";
 @import "./overlays";
 @import "./styles";
+
