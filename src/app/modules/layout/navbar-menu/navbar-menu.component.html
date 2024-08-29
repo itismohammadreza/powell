@@ -60,13 +60,6 @@
              (click)="configSidebarVisible = !configSidebarVisible" icon="pi pi-cog"></ng-button>
 </div>
 
-<p-menu
-  #accountMenu
-  [styleClass]="config.rtl ? 'rtl' : 'ltr'"
-  [popup]="true"
-  [model]="accountItems"
-></p-menu>
-
 <p-sidebar
   position="left"
   [showCloseIcon]="true"

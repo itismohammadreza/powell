@@ -60,29 +60,12 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   @Input() sidebarItems: PrimeMenuItem[];
 
   configSidebarVisible: boolean = false;
-  config: NgConfig = {
-    rtl: this.configService.getConfig().rtl,
-    theme: this.configService.getConfig().theme,
-    labelPos: this.configService.getConfig().labelPos,
-    fixLabelPos: this.configService.getConfig().fixLabelPos,
-    inputStyle: this.configService.getConfig().inputStyle,
-    showRequiredStar: this.configService.getConfig().showRequiredStar,
-    inputSize: this.configService.getConfig().inputSize,
-    ripple: this.configService.getConfig().ripple,
-  }
+  config: NgConfig = this.configService.getConfig();
   lang: string = globalConfig.lang;
   tempSidebarType: SidebarType = 'push-mask';
   themes: PrimeMenuItem[];
   sidebarTypes: PrimeMenuItem[];
   searchValue: string;
-  accountItems: PrimeMenuItem[] = [
-    {
-      label: 'خروج',
-      icon: 'pi pi-sign-out',
-      command: () => {
-      }
-    }
-  ];
 
   @HostListener('window:resize', ['$event'])
   onResize() {
