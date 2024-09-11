@@ -1,4 +1,9 @@
-<div class="loading {{ loading ? 'on' : 'off' }}">
+<div
+  class="w-screen h-screen fixed inset-0 flex items-center justify-center bg-white  transition-all duration-500 z-[100000]"
+  [ngClass]="{
+  'visible opacity-100': loading,
+  'invisible opacity-0': !loading
+  }">
   <svg
     height="200px"
     preserveAspectRatio="xMidYMid"
