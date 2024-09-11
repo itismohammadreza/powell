@@ -18,7 +18,7 @@ export function providePowell(config?: NgConfig) {
       provide: ConfigService,
       useFactory: () => {
         const configService = new ConfigService();
-        configService.setConfig(config);
+        configService.update(config);
         return configService;
       },
     }

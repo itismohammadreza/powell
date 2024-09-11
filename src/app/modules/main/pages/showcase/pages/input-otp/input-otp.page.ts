@@ -17,14 +17,14 @@ export class InputOtpPage {
   binding;
 
   label: string = 'label';
-  variant: NgInputVariant = this.configService.getConfig().inputStyle;
+  variant: NgInputVariant = this.configService.get().inputStyle;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = this.configService.getConfig().rtl;
-  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
-  labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
-  inputSize: NgSize = this.configService.getConfig().inputSize;
-  followConfig: boolean = this.configService.getConfig().followConfig;
+  rtl: boolean = this.configService.get().rtl;
+  showRequiredStar: boolean = this.configService.get().showRequiredStar;
+  labelPos: NgFixLabelPosition = this.configService.get().fixLabelPos;
+  inputSize: NgSize = this.configService.get().inputSize;
+  followConfig: boolean = this.configService.get().followConfig;
   readonly: boolean = false;
   disabled: boolean = false;
   placeholder: string = '';

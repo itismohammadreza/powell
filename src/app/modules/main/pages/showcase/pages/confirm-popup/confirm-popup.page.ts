@@ -27,7 +27,7 @@ export class ConfirmPopupPage {
     rejectAppearance: 'outlined',
     buttonFull: false,
     defaultFocus: 'accept',
-    rtl: this.configService.getConfig().rtl
+    rtl: this.configService.get().rtl
   }
 
   showConfirmPopup(event) {

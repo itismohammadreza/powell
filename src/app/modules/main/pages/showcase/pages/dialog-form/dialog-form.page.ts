@@ -41,7 +41,7 @@ export class DialogFormPage {
     rejectLabel: 'لغو',
     rejectIcon: '',
     defaultFocus: 'accept',
-    rtl: this.configService.getConfig().rtl,
+    rtl: this.configService.get().rtl,
   }
 
   flag = false;

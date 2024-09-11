@@ -32,7 +32,7 @@ export class ConfigService {
     csp: this.primengConfig.csp(),
   };
 
-  setConfig(config: NgConfig) {
+  update(config: NgConfig) {
     this._config = {...this._config, ...config};
     this.primengConfig.zIndex = this._config.zIndex;
     this.primengConfig.overlayOptions = this._config.overlayOptions;
@@ -57,8 +57,21 @@ export class ConfigService {
     this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
   }
 
-  getConfig() {
+  get() {
     return this._config;
+  }
+
+  applyConfigToComponent<T>(component: any) {
+    Object.entries(this._config).forEach(([key, value]) => {
+      let componentKey = this.getComponentConfigKey(key as keyof NgConfig);
+      component[componentKey] = value;
+    })
+    this.configChange$.pipe(takeUntil(component.destroy$)).subscribe(({modifiedConfig}) => {
+      Object.entries(modifiedConfig).forEach(([key, value]) => {
+        let componentKey = this.getComponentConfigKey(key as keyof NgConfig);
+        component[componentKey] = component.followConfig ? value : component[componentKey];
+      });
+    });
   }
 
   private handleBodyClasses() {
@@ -92,19 +105,6 @@ export class ConfigService {
         this.document.body.classList.add(newClass);
       }
     })
-  }
-
-  applyConfigToComponent<T>(component: any) {
-    Object.entries(this._config).forEach(([key, value]) => {
-      let componentKey = this.getComponentConfigKey(key as keyof NgConfig);
-      component[componentKey] = value;
-    })
-    this.configChange$.pipe(takeUntil(component.destroy$)).subscribe(({modifiedConfig}) => {
-      Object.entries(modifiedConfig).forEach(([key, value]) => {
-        let componentKey = this.getComponentConfigKey(key as keyof NgConfig);
-        component[componentKey] = component.followConfig ? value : component[componentKey];
-      });
-    });
   }
 
   private getComponentConfigKey(key: keyof NgConfig) {

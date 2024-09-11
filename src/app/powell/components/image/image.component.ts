@@ -251,7 +251,7 @@ export class ImageComponent implements AfterContentInit {
   }
 
   moveOnTop() {
-    PrimeZIndexUtils.set('modal', this.wrapper, this.configService.getConfig().zIndex.modal);
+    PrimeZIndexUtils.set('modal', this.wrapper, this.configService.get().zIndex.modal);
   }
 
   appendContainer() {
@@ -312,7 +312,7 @@ export class ImageComponent implements AfterContentInit {
   }
 
   getTranslation() {
-    return this.configService.getConfig().translation;
+    return this.configService.get().translation;
   }
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {

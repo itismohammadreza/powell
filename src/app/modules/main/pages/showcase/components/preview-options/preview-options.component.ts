@@ -850,10 +850,10 @@ export class PreviewOptionsComponent implements OnInit {
     cmpRef.instance.label = this.translationService.instant(previewItem);
     cmpRef.instance.labelWidth = 130;
     cmpRef.instance.value = this[previewItem];
-    cmpRef.instance.labelPos = this.configService.getConfig().labelPos;
-    cmpRef.instance.rtl = this.configService.getConfig().rtl;
-    cmpRef.instance.variant = this.configService.getConfig().inputSize;
-    cmpRef.instance.inputSize = this.configService.getConfig().inputSize;
+    cmpRef.instance.labelPos = this.configService.get().labelPos;
+    cmpRef.instance.rtl = this.configService.get().rtl;
+    cmpRef.instance.variant = this.configService.get().inputSize;
+    cmpRef.instance.inputSize = this.configService.get().inputSize;
     cmpRef.instance.key = previewItem;
     this.translationService.stream(previewItem).pipe(takeUntil(this.destroy$)).subscribe(res => {
       cmpRef.instance.label = res;

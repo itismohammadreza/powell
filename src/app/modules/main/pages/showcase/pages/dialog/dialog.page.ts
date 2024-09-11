@@ -30,7 +30,7 @@ export class DialogPage {
     buttonColor: 'primary',
     buttonAppearance: 'basic',
     buttonSize: 'md',
-    rtl: this.configService.getConfig().rtl,
+    rtl: this.configService.get().rtl,
     content: 'Some content inside dialog.',
   }
 

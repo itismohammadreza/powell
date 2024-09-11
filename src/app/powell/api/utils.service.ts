@@ -241,7 +241,7 @@ export class UtilsService {
   setInputDirection(element: any, value: string, rtl: boolean) {
     const rgx = /^[-!$%^&*()_+|~=`{}\[\]:\";'<>?,.\/]*[A-Za-z]/;
     const isAscii = rgx.test(value);
-    const isRtl = rtl ?? this.configService.getConfig().rtl;
+    const isRtl = rtl ?? this.configService.get().rtl;
     if (isAscii) {
       if (value) {
         element.style.direction = 'ltr';

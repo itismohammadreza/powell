@@ -113,7 +113,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
 
   changeGlobalConfig(config: string, value: any) {
     this.config[config] = value;
-    this.configService.setConfig({[config]: value});
+    this.configService.update({[config]: value});
   }
 
   async changeLang(event: PrimeDropdownChangeEvent) {

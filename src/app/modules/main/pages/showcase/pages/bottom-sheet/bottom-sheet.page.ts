@@ -16,8 +16,8 @@ export class BottomSheetPage {
   showCloseIcon: boolean = true;
   closeOnEscape: boolean = true;
   header: string = 'BottomSheet Header';
-  rtl: boolean = this.configService.getConfig().rtl;
-  followConfig: boolean = this.configService.getConfig().followConfig;
+  rtl: boolean = this.configService.get().rtl;
+  followConfig: boolean = this.configService.get().followConfig;
 
   visible = false;
   visible2 = false;

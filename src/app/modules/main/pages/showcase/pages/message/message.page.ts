@@ -16,6 +16,6 @@ export class MessagePage {
   severity: NgSeverity = 'info';
   inlineMessage: string = '';
   closable: boolean = false;
-  rtl: boolean = this.configService.getConfig().rtl;
-  followConfig: boolean = this.configService.getConfig().followConfig;
+  rtl: boolean = this.configService.get().rtl;
+  followConfig: boolean = this.configService.get().followConfig;
 }

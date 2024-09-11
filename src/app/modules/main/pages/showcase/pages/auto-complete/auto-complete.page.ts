@@ -17,17 +17,17 @@ export class AutoCompletePage {
   binding: any;
 
   label: string = 'label';
-  variant: NgInputVariant = this.configService.getConfig().inputStyle;
+  variant: NgInputVariant = this.configService.get().inputStyle;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = this.configService.getConfig().rtl;
-  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  rtl: boolean = this.configService.get().rtl;
+  showRequiredStar: boolean = this.configService.get().showRequiredStar;
   icon: string = '';
-  labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
+  labelPos: NgLabelPosition = this.configService.get().labelPos;
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
-  inputSize: NgSize = this.configService.getConfig().inputSize;
-  followConfig: boolean = this.configService.getConfig().followConfig;
+  inputSize: NgSize = this.configService.get().inputSize;
+  followConfig: boolean = this.configService.get().followConfig;
   // native properties
   scrollHeight: string = '200px';
   dropdown: boolean = false;

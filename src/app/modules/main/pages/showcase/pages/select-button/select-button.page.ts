@@ -19,10 +19,10 @@ export class SelectButtonPage {
   label: string = 'label';
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = this.configService.getConfig().rtl;
-  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
-  labelPos: NgFixLabelPosition = this.configService.getConfig().fixLabelPos;
-  followConfig: boolean = this.configService.getConfig().followConfig;
+  rtl: boolean = this.configService.get().rtl;
+  showRequiredStar: boolean = this.configService.get().showRequiredStar;
+  labelPos: NgFixLabelPosition = this.configService.get().fixLabelPos;
+  followConfig: boolean = this.configService.get().followConfig;
   // native properties
   multiple: boolean = false;
   disabled: boolean = false;

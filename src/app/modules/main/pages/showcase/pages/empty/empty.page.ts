@@ -13,6 +13,6 @@ export class EmptyPage {
   imageType: NgEmptyIcon = 'box1';
   icon: string = '';
   text: string = '';
-  rtl: boolean = this.configService.getConfig().rtl;
-  followConfig: boolean = this.configService.getConfig().followConfig;
+  rtl: boolean = this.configService.get().rtl;
+  followConfig: boolean = this.configService.get().followConfig;
 }

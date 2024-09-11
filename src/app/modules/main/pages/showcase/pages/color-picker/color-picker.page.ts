@@ -17,19 +17,19 @@ export class ColorPickerPage {
   binding;
 
   label: string = 'label';
-  variant: NgInputVariant = this.configService.getConfig().inputStyle;
+  variant: NgInputVariant = this.configService.get().inputStyle;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = this.configService.getConfig().rtl;
-  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  rtl: boolean = this.configService.get().rtl;
+  showRequiredStar: boolean = this.configService.get().showRequiredStar;
   icon: string = '';
-  labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
+  labelPos: NgLabelPosition = this.configService.get().labelPos;
   iconPos: NgIconPosition = 'left';
-  inputSize: NgSize = this.configService.getConfig().inputSize;
+  inputSize: NgSize = this.configService.get().inputSize;
   placeholder: string = '';
   readonly: boolean = false;
   disabled: boolean = false;
-  followConfig: boolean = this.configService.getConfig().followConfig;
+  followConfig: boolean = this.configService.get().followConfig;
   // native properties
   maxlength: number = 7;
   inline: boolean = false;

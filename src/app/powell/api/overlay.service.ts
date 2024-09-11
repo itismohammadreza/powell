@@ -120,7 +120,7 @@ export class OverlayService {
     const toast: PrimeMessage = {
       severity: 'info',
       ...options,
-      styleClass: `${options.styleClass} ${(options.rtl ?? this.configService.getConfig().rtl) ? 'rtl' : 'ltr'}`,
+      styleClass: `${options.styleClass} ${(options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr'}`,
     }
     for (const key in options) {
       instance[key] = options[key];
@@ -152,7 +152,7 @@ export class OverlayService {
     for (const key in options) {
       instance[key] = options[key];
     }
-    instance.styleClass = `${options.styleClass} ${(options.rtl ?? this.configService.getConfig().rtl) ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
+    instance.styleClass = `${options.styleClass} ${(options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr'} p-confirm-popup-button-icon-${options.buttonIconPos || 'left'}`;
     return new Promise<boolean>((accept) => {
       const state: NgHistoryState = {component: 'confirmPopup'};
       this.pushState(state)
@@ -187,7 +187,7 @@ export class OverlayService {
     for (const key in options) {
       instance[key] = options[key];
     }
-    instance.styleClass = `${options.styleClass} ${(options.rtl ?? this.configService.getConfig().rtl) ? 'rtl' : 'ltr'} p-confirm-button-icon-${options.buttonIconPos || 'left'} ${!options.header && !options.closable ? 'dialog-header-less' : ''}`;
+    instance.styleClass = `${options.styleClass} ${(options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr'} p-confirm-button-icon-${options.buttonIconPos || 'left'} ${!options.header && !options.closable ? 'dialog-header-less' : ''}`;
     return new Promise<boolean>((accept) => {
       const state: NgHistoryState = {component: 'confirmDialog'};
       this.pushState(state)
@@ -226,7 +226,7 @@ export class OverlayService {
     for (const key in options) {
       instance.options[key] = options[key];
     }
-    instance.options.styleClass = `${options.styleClass} ${(options.rtl ?? this.configService.getConfig().rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`;
+    instance.options.styleClass = `${options.styleClass} ${(options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`;
     instance.show();
     const state: NgHistoryState = {component: 'dialog'};
     this.pushState(state);
@@ -254,7 +254,7 @@ export class OverlayService {
     }
     instance.options.acceptButtonStyleClass = `${options.acceptButtonStyleClass} p-dialog-form-accept`;
     instance.options.rejectButtonStyleClass = `${options.rejectButtonStyleClass} p-dialog-form-reject`;
-    instance.options.styleClass = `${options.styleClass} p-dialog-form-wrapper ${(options.rtl ?? this.configService.getConfig().rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`;
+    instance.options.styleClass = `${options.styleClass} p-dialog-form-wrapper ${(options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`;
     console.log(this.dialogFormCmpRef)
     instance.show();
     const state: NgHistoryState = {component: 'dialogForm'}

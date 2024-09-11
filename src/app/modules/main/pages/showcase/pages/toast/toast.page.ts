@@ -14,7 +14,7 @@ export class ToastPage {
   toast: NgToastOptions = {
     life: 3000,
     sticky: false,
-    rtl: this.configService.getConfig().rtl,
+    rtl: this.configService.get().rtl,
     summary: 'Some Summary',
     closable: false,
     severity: 'info',

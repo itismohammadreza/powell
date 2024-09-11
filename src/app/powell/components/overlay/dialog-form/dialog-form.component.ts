@@ -28,11 +28,11 @@ export class DialogFormComponent {
   set config(value: NgDialogFormConfig[]) {
     this._config = value;
     for (const config of this._config) {
-      config.variant = config.variant ?? this.configService.getConfig().inputStyle;
-      config.labelPos = config.labelPos ?? this.configService.getConfig().labelPos;
-      config.fixLabelPos = config.fixLabelPos ?? this.configService.getConfig().fixLabelPos;
-      config.selectiveSize = config.selectiveSize ?? this.configService.getConfig().inputSize;
-      config.showRequiredStar = config.showRequiredStar ?? this.configService.getConfig().showRequiredStar;
+      config.variant = config.variant ?? this.configService.get().inputStyle;
+      config.labelPos = config.labelPos ?? this.configService.get().labelPos;
+      config.fixLabelPos = config.fixLabelPos ?? this.configService.get().fixLabelPos;
+      config.selectiveSize = config.selectiveSize ?? this.configService.get().inputSize;
+      config.showRequiredStar = config.showRequiredStar ?? this.configService.get().showRequiredStar;
       if (config.key) {
         this.form.addControl(config.key, new FormControl(null));
         this.handleConfigValue(config);

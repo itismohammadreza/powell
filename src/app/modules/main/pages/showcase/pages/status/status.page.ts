@@ -13,6 +13,6 @@ export class StatusPage {
   status: NgStatusIcon = 'info';
   text: string = '';
   subText: string = '';
-  rtl: boolean = this.configService.getConfig().rtl;
-  followConfig: boolean = this.configService.getConfig().followConfig;
+  rtl: boolean = this.configService.get().rtl;
+  followConfig: boolean = this.configService.get().followConfig;
 }

@@ -32,7 +32,7 @@ export class ConfirmDialogPage {
     defaultFocus: 'accept',
     blockScroll: false,
     buttonFull: false,
-    rtl: this.configService.getConfig().rtl,
+    rtl: this.configService.get().rtl,
     style: {width: '400px'}
   }
 

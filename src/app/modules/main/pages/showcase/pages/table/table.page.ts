@@ -27,10 +27,10 @@ export class TablePage {
   private configService = inject(ConfigService);
   private dataService = inject(DataService);
 
-  rtl: boolean = this.configService.getConfig().rtl;
+  rtl: boolean = this.configService.get().rtl;
   size: NgSize = 'md';
   header: string = 'Customers';
-  followConfig: boolean = this.configService.getConfig().followConfig;
+  followConfig: boolean = this.configService.get().followConfig;
   gridlines: boolean = true;
   striped: boolean = false;
   simpleCustomers = [

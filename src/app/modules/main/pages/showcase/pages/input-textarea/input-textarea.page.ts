@@ -17,16 +17,16 @@ export class InputTextareaPage {
   binding;
 
   label: string = 'label';
-  variant: NgInputVariant = this.configService.getConfig().inputStyle;
+  variant: NgInputVariant = this.configService.get().inputStyle;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = this.configService.getConfig().rtl;
-  showRequiredStar: boolean = this.configService.getConfig().showRequiredStar;
+  rtl: boolean = this.configService.get().rtl;
+  showRequiredStar: boolean = this.configService.get().showRequiredStar;
   icon: string = '';
-  labelPos: NgLabelPosition = this.configService.getConfig().labelPos;
+  labelPos: NgLabelPosition = this.configService.get().labelPos;
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
-  followConfig: boolean = this.configService.getConfig().followConfig;
+  followConfig: boolean = this.configService.get().followConfig;
   // native properties
   readonly: boolean = false;
   disabled: boolean = false;
