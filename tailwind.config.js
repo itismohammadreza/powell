@@ -1,5 +1,3 @@
-/** @type {import('tailwindcss').Config} */
-
 const addPaddingToGridChildren = (props) => {
   props.addComponents({
     '.grid > *': {
@@ -118,6 +116,7 @@ const defineTypography = (props) => {
   })
 }
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
@@ -130,11 +129,11 @@ module.exports = {
       'xl': '1200px',
       '2xl': '1400px',
     },
-    extend: {
-      container: {
-        center: true
-      },
+    container: {
+      center: true,
+      padding: '1rem',
     },
+    extend: {},
   },
   plugins: [
     addPaddingToGridChildren,
