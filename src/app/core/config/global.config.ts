@@ -7,6 +7,13 @@ export const globalConfig: GlobalConfig = {
   requestTimeout: 15000,
   routeAnimation: RouteAnimation('fade2'),
   powellConfig: {
-    ripple: false
+    ripple: true,
+    followConfig: true,
+    fixLabelPos: 'fix-side',
+    labelPos: 'fix-side',
+    inputSize: 'sm',
+    inputStyle: 'outlined',
+    showRequiredStar: true,
+    theme: 'lara-light-indigo',
   }
 };

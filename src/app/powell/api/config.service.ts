@@ -27,12 +27,7 @@ export class ConfigService {
     inputSize: 'sm',
     showRequiredStar: true,
     theme: 'lara-light-indigo',
-    overlayOptions: this.primengConfig.overlayOptions,
-    ripple: this.primengConfig.ripple,
-    translation: this.primengConfig.translation,
-    zIndex: this.primengConfig.zIndex,
-    translationObserver: this.primengConfig.translationObserver,
-    filterMatchModeOptions: this.primengConfig.filterMatchModeOptions,
+    ...this.primengConfig,
     inputStyle: this.primengConfig.inputStyle(),
     csp: this.primengConfig.csp(),
   };
