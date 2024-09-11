@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="InputOtp"
-          subheader="InputOtp renders some text field to enter otp code."></p-card>
+          subheader="InputOtp renders some text field to enter otp code."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -32,8 +32,7 @@
       [(disabled)]="disabled"
       [(placeholder)]="placeholder"
       [(inputCount)]="inputCount"
-      [(numbersOnly)]="numbersOnly"
-    ></ng-preview-options>
+      [(numbersOnly)]="numbersOnly"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -50,8 +49,7 @@
         [labelPos]="labelPos"
         [followConfig]="followConfig"
         [readonly]="readonly"
-        [disabled]="disabled"
-      ></ng-input-otp>
+        [disabled]="disabled"/>
     </form>
   </p-panel>
 </div>

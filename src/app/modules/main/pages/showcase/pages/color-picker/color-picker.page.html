@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="ColorPicker"
-          subheader="ColorPicker is an input component to select a color."></p-card>
+          subheader="ColorPicker is an input component to select a color."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -38,8 +38,7 @@
       [(followConfig)]="followConfig"
       [(maxlength)]="maxlength"
       [(inline)]="inline"
-      [(colorFormat)]="format"
-    ></ng-preview-options>
+      [(colorFormat)]="format"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -63,8 +62,7 @@
         [followConfig]="followConfig"
         [maxlength]="maxlength"
         [inline]="inline"
-        [format]="format"
-      ></ng-color-picker>
+        [format]="format"/>
     </form>
   </p-panel>
 </div>

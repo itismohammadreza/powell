@@ -17,7 +17,7 @@
   <div class="bottom-sheet-wrapper" [ngClass]="{'rtl': rtl, 'ltr': !rtl}">
     <div class="header" *ngIf="header || showCloseIcon || templateMap.header" [class.show-close-icon]="showCloseIcon">
       <ng-container *ngIf="templateMap.header;else alternativeTitle">
-        <ng-container *ngTemplateOutlet="templateMap.header"></ng-container>
+        <ng-container *ngTemplateOutlet="templateMap.header"/>
       </ng-container>
       <ng-template #alternativeTitle>
         <h5>{{ header }}</h5>
@@ -34,10 +34,10 @@
       </ng-button>
     </div>
     <div class="content" [class.has-gutter]="gutter">
-      <ng-content></ng-content>
+      <ng-content/>
     </div>
     <div class="footer" *ngIf="templateMap.footer">
-      <ng-container *ngTemplateOutlet="templateMap.footer"></ng-container>
+      <ng-container *ngTemplateOutlet="templateMap.footer"/>
     </div>
   </div>
 </p-sidebar>

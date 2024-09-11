@@ -103,8 +103,7 @@
           (onMonthChange)="emitter('onMonthChange',$event)"
           (onYearChange)="emitter('onYearChange',$event)"
           (onClickOutside)="emitter('onClickOutside',$event)"
-          (onShow)="emitter('onShow',$event)"
-        ></p-calendar>
+          (onShow)="emitter('onShow',$event)"/>
         <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
           {{ label | ngLabelStar:showRequiredStar:ngControl }}
         </label>
@@ -191,8 +190,7 @@
           (onMonthChange)="emitter('onMonthChange',$event)"
           (onYearChange)="emitter('onYearChange',$event)"
           (onClickOutside)="emitter('onClickOutside',$event)"
-          (onShow)="emitter('onShow',$event)"
-        ></p-calendar>
+          (onShow)="emitter('onShow',$event)"/>
       </ng-container>
     </div>
   </div>

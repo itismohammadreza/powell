@@ -76,8 +76,8 @@
           (@overlayAnimation.done)="onOverlayAnimationDone($event)"
           (click)="onOverlayClick($event)"
           *ngIf="inline || overlayVisible">
-            <ng-content select="p-header"></ng-content>
-            <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+            <ng-content select="p-header"/>
+            <ng-container *ngTemplateOutlet="headerTemplate"/>
             <ng-container *ngIf="!timeOnly">
                     <div class="p-datepicker-group-container">
                         <div class="p-datepicker-group" *ngFor="let month of months; let i = index;">
@@ -157,8 +157,7 @@
                                                       (click)="onDateSelect($event,date)" draggable="false"
                                                       (keydown)="onDateCellKeydown($event,date,i)" pRipple>
                                                         <ng-container *ngIf="!dateTemplate">{{date.day}}</ng-container>
-                                                        <ng-container
-                                                          *ngTemplateOutlet="dateTemplate; context: {$implicit: date}"></ng-container>
+                                                        <ng-container *ngTemplateOutlet="dateTemplate; context: {$implicit: date}"/>
                                                     </span>
                                                 </ng-container>
                                             </td>
@@ -276,7 +275,7 @@
                             (click)="onClearButtonClick($event)" pButton pRipple
                             [ngClass]="[clearButtonStyleClass]"></button>
                 </div>
-            <ng-content select="p-footer"></ng-content>
-            <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+            <ng-content select="p-footer"/>
+            <ng-container *ngTemplateOutlet="footerTemplate"/>
         </div>
 </span>

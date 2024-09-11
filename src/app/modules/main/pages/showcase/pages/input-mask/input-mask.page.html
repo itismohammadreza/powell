@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="InputMask"
-          subheader="InputMask component is used to enter input in a certain format such as numeric, date, currency and phone."></p-card>
+          subheader="InputMask component is used to enter input in a certain format such as numeric, date, currency and phone."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -50,8 +50,7 @@
       [(disabled)]="disabled"
       [(readonly)]="readonly"
       [(characterPattern)]="characterPattern"
-      [(showClear)]="showClear"
-    ></ng-preview-options>
+      [(showClear)]="showClear"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -81,8 +80,7 @@
         [disabled]="disabled"
         [readonly]="readonly"
         [characterPattern]="characterPattern"
-        [showClear]="showClear"
-      ></ng-input-mask>
+        [showClear]="showClear"/>
     </form>
   </p-panel>
 </div>

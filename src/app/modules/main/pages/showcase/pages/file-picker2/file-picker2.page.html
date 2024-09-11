@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="FilePicker"
-          subheader="FilePicker is an advanced uploader with drag and drop support, multi file uploads, auto uploading, progress tracking and validations."></p-card>
+          subheader="FilePicker is an advanced uploader with drag and drop support, multi file uploads, auto uploading, progress tracking and validations."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -32,8 +32,7 @@
       [(accept)]="accept"
       [(color)]="color"
       [(fileLimit)]="fileLimit"
-      [(chooseLabel)]="chooseLabel"
-    ></ng-preview-options>
+      [(chooseLabel)]="chooseLabel"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -54,8 +53,7 @@
         [accept]="accept"
         [color]="color"
         [fileLimit]="fileLimit"
-        [chooseLabel]="chooseLabel"
-      ></ng-file-picker2>
+        [chooseLabel]="chooseLabel"/>
     </form>
   </p-panel>
 </div>

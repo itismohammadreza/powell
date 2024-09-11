@@ -18,7 +18,7 @@
         <ng-template ngTemplate="icon">
           <TrashIcon *ngIf="!clearIcon && !templateMap.clearicon"/>
           <ng-container *ngIf="!clearIcon && templateMap.clearicon">
-            <ng-template *ngTemplateOutlet="templateMap.clearicon"></ng-template>
+            <ng-template *ngTemplateOutlet="templateMap.clearicon"/>
           </ng-container>
         </ng-template>
       </ng-button>

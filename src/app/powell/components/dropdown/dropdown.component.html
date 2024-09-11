@@ -94,7 +94,7 @@
         (onLazyLoad)="emitter('onLazyLoad',$event)">
         <ng-container *ngFor="let t of templates">
           <ng-template [pTemplate]="t.getType()" let-item let-options="options" *ngIf="templateMap[t.getType()]">
-            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item,options}"></ng-container>
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item,options}"/>
           </ng-template>
         </ng-container>
       </p-dropdown>

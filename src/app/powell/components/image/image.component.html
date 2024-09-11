@@ -6,7 +6,7 @@
                     class="p-image-preview-indicator" (click)="onImageClick()" #previewButton
                     [ngStyle]="{ height: height + 'px', width: width + 'px' }" style="border: 'none';">
                 <ng-container *ngIf="indicatorTemplate; else defaultTemplate">
-                    <ng-container *ngTemplateOutlet="indicatorTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="indicatorTemplate"/>
                 </ng-container>
                 <ng-template #defaultTemplate>
                     <EyeIcon [styleClass]="'p-image-preview-icon'"/>
@@ -19,27 +19,27 @@
                     <button class="p-image-action p-link" (click)="rotateRight()" type="button"
                             [attr.aria-label]="rightAriaLabel()">
                         <RefreshIcon *ngIf="!rotateRightIconTemplate"/>
-                        <ng-template *ngTemplateOutlet="rotateRightIconTemplate"></ng-template>
+                        <ng-template *ngTemplateOutlet="rotateRightIconTemplate"/>
                     </button>
                     <button class="p-image-action p-link" (click)="rotateLeft()" type="button"
                             [attr.aria-label]="leftAriaLabel()">
                         <UndoIcon *ngIf="!rotateLeftIconTemplate"/>
-                        <ng-template *ngTemplateOutlet="rotateLeftIconTemplate"></ng-template>
+                        <ng-template *ngTemplateOutlet="rotateLeftIconTemplate"/>
                     </button>
                     <button class="p-image-action p-link" (click)="zoomOut()" type="button"
                             [disabled]="isZoomOutDisabled" [attr.aria-label]="zoomOutAriaLabel()">
                         <SearchMinusIcon *ngIf="!zoomOutIconTemplate"/>
-                        <ng-template *ngTemplateOutlet="zoomOutIconTemplate"></ng-template>
+                        <ng-template *ngTemplateOutlet="zoomOutIconTemplate"/>
                     </button>
                     <button class="p-image-action p-link" (click)="zoomIn()" type="button" [disabled]="isZoomInDisabled"
                             [attr.aria-label]="zoomInAriaLabel()">
                         <SearchPlusIcon *ngIf="!zoomInIconTemplate"/>
-                        <ng-template *ngTemplateOutlet="zoomInIconTemplate"></ng-template>
+                        <ng-template *ngTemplateOutlet="zoomInIconTemplate"/>
                     </button>
                     <button class="p-image-action p-link" type="button" (click)="closePreview()"
                             [attr.aria-label]="closeAriaLabel()" #closeButton>
                         <TimesIcon *ngIf="!closeIconTemplate"/>
-                        <ng-template *ngTemplateOutlet="closeIconTemplate"></ng-template>
+                        <ng-template *ngTemplateOutlet="closeIconTemplate"/>
                     </button>
                 </div>
                 <div

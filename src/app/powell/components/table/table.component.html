@@ -114,14 +114,14 @@
         <tr>
           <th scope="col" style="width: 3rem" *ngIf="reorderableRows"></th>
           <th scope="col" style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
-            <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"></p-tableHeaderCheckbox>
+            <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"/>
           </th>
           <th scope="col" *ngFor="let col of colDef"
               [pSortableColumn]="col.sort && col.field"
               pReorderableColumn
               [pReorderableColumnDisabled]="!reorderableColumns">
             {{ col.header }}
-            <p-sortIcon *ngIf="col.sort" [field]="col.field"></p-sortIcon>
+            <p-sortIcon *ngIf="col.sort" [field]="col.field"/>
             <ng-button
               class="sort-reset"
               [rounded]="true"
@@ -216,14 +216,14 @@
         <tr>
           <th scope="col" style="width: 3rem" *ngIf="reorderableRows"></th>
           <th scope="col" style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
-            <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"></p-tableHeaderCheckbox>
+            <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"/>
           </th>
           <th scope="col" *ngFor="let col of colDef"
               [pSortableColumn]="col.field"
               pReorderableColumn
               [pReorderableColumnDisabled]="!reorderableColumns">
             {{ col.header }}
-            <p-sortIcon *ngIf="col.sort" [field]="col.field"></p-sortIcon>
+            <p-sortIcon *ngIf="col.sort" [field]="col.field"/>
           </th>
           <ng-container *ngIf="actionsConfig?.inSameColumn && actionsConfig?.actions.length">
             <th>{{ actionsConfig.header }}</th>
@@ -320,7 +320,7 @@
 
     <ng-template pTemplate="body" let-item let-frozen="frozen" let-index="rowIndex">
       <ng-container *ngIf="bodyTemplate; else defaultBodyTemplate">
-        <ng-container *ngTemplateOutlet="bodyTemplate;context:{$implicit:item,frozen,index}"></ng-container>
+        <ng-container *ngTemplateOutlet="bodyTemplate;context:{$implicit:item,frozen,index}"/>
       </ng-container>
       <ng-template #defaultBodyTemplate>
         <tr [pReorderableRow]="index"
@@ -332,10 +332,10 @@
             <BarsIcon/>
           </td>
           <td *ngIf="selectionMode == 'radio'">
-            <p-tableRadioButton [value]="item"></p-tableRadioButton>
+            <p-tableRadioButton [value]="item"/>
           </td>
           <td *ngIf="selectionMode == 'checkbox'">
-            <p-tableCheckbox [value]="item"></p-tableCheckbox>
+            <p-tableCheckbox [value]="item"/>
           </td>
           <td *ngFor="let col of colDef"
               [ngClass]="handleCellStyleClass(col.cellStyleClass,item)"
@@ -350,7 +350,7 @@
                 [src]="resolveFieldData(item, col.field)">
               </ng-image>
               <ng-container *ngSwitchCase="'ng-template'">
-                <ng-container *ngTemplateOutlet="cellTemplates[col.field];context:{$implicit:item}"></ng-container>
+                <ng-container *ngTemplateOutlet="cellTemplates[col.field];context:{$implicit:item}"/>
               </ng-container>
               <ng-container *ngSwitchDefault>
                 <span [innerHTML]="handleCellRenderer(col,item)"></span>
@@ -409,7 +409,7 @@
 
     <ng-template pTemplate="caption" *ngIf="captionTemplate || header">
       <ng-container *ngIf="captionTemplate;else defaultCaption">
-        <ng-container *ngTemplateOutlet="captionTemplate"></ng-container>
+        <ng-container *ngTemplateOutlet="captionTemplate"/>
       </ng-container>
       <ng-template #defaultCaption>
         <div class="caption">
@@ -430,104 +430,104 @@
                  let-frozen="frozen"
                  *ngIf="headerGroupedTemplate">
       <ng-container
-        *ngTemplateOutlet="headerGroupedTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
+        *ngTemplateOutlet="headerGroupedTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
     </ng-template>
     <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
-      <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
+      <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"/>
     </ng-template>
     <ng-template pTemplate="loadingbody" let-rowspan="rowspan" let-rowgroup="rowgroup" *ngIf="loadingBodyTemplate">
-      <ng-container *ngTemplateOutlet="loadingBodyTemplate;context:{rowspan,rowgroup}"></ng-container>
+      <ng-container *ngTemplateOutlet="loadingBodyTemplate;context:{rowspan,rowgroup}"/>
     </ng-template>
     <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
-      <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
+      <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"/>
     </ng-template>
     <ng-template pTemplate="footergrouped" let-item *ngIf="footerGroupedTemplate">
-      <ng-container *ngTemplateOutlet="footerGroupedTemplate;context:{$implicit:item}"></ng-container>
+      <ng-container *ngTemplateOutlet="footerGroupedTemplate;context:{$implicit:item}"/>
     </ng-template>
     <ng-template pTemplate="colgroup" let-item *ngIf="colGroupTemplate">
-      <ng-container *ngTemplateOutlet="colGroupTemplate;context:{$implicit:item}"></ng-container>
+      <ng-container *ngTemplateOutlet="colGroupTemplate;context:{$implicit:item}"/>
     </ng-template>
     <ng-template pTemplate="summary" *ngIf="summaryTemplate">
-      <ng-container *ngTemplateOutlet="summaryTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="summaryTemplate"/>
     </ng-template>
     <ng-template pTemplate="rowexpansion" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded"
                  *ngIf="rowExpansionTemplate">
-      <ng-container *ngTemplateOutlet="rowExpansionTemplate;context:{rowspan,rowgroup,expanded}"></ng-container>
+      <ng-container *ngTemplateOutlet="rowExpansionTemplate;context:{rowspan,rowgroup,expanded}"/>
     </ng-template>
     <ng-template pTemplate="groupheader" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
                  let-frozen="frozen" *ngIf="groupHeaderTemplate">
       <ng-container
-        *ngTemplateOutlet="groupHeaderTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
+        *ngTemplateOutlet="groupHeaderTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
     </ng-template>
     <ng-template pTemplate="groupfooter" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
                  let-frozen="frozen" *ngIf="groupFooterTemplate">
       <ng-container
-        *ngTemplateOutlet="groupFooterTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
+        *ngTemplateOutlet="groupFooterTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
     </ng-template>
     <ng-template pTemplate="frozenheader" *ngIf="frozenHeaderTemplate">
-      <ng-container *ngTemplateOutlet="frozenHeaderTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="frozenHeaderTemplate"/>
     </ng-template>
     <ng-template pTemplate="frozenbody" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
                  let-frozen="frozen" *ngIf="frozenBodyTemplate">
       <ng-container
-        *ngTemplateOutlet="frozenBodyTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
+        *ngTemplateOutlet="frozenBodyTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
     </ng-template>
     <ng-template pTemplate="frozenfooter" *ngIf="frozenFooterTemplate">
-      <ng-container *ngTemplateOutlet="frozenFooterTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="frozenFooterTemplate"/>
     </ng-template>
     <ng-template pTemplate="frozencolgroup" *ngIf="frozenColGroupTemplate">
-      <ng-container *ngTemplateOutlet="frozenColGroupTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="frozenColGroupTemplate"/>
     </ng-template>
     <ng-template pTemplate="frozenexpandedrow" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded"
                  *ngIf="frozenColGroupTemplate">
-      <ng-container *ngTemplateOutlet="frozenColGroupTemplate;context:{rowspan,rowgroup,expanded}"></ng-container>
+      <ng-container *ngTemplateOutlet="frozenColGroupTemplate;context:{rowspan,rowgroup,expanded}"/>
     </ng-template>
     <ng-template pTemplate="paginatorleft" *ngIf="paginatorLeftTemplate">
-      <ng-container *ngTemplateOutlet="paginatorLeftTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="paginatorLeftTemplate"/>
     </ng-template>
     <ng-template pTemplate="paginatorright" *ngIf="paginatorRightTemplate">
-      <ng-container *ngTemplateOutlet="paginatorRightTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="paginatorRightTemplate"/>
     </ng-template>
     <ng-template pTemplate="paginatordropdownicon" *ngIf="paginatorDropdownIconTemplate">
-      <ng-container *ngTemplateOutlet="paginatorDropdownIconTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="paginatorDropdownIconTemplate"/>
     </ng-template>
     <ng-template pTemplate="paginatordropdownitem" *ngIf="paginatorDropdownItemTemplate">
-      <ng-container *ngTemplateOutlet="paginatorDropdownItemTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="paginatorDropdownItemTemplate"/>
     </ng-template>
     <ng-template pTemplate="paginatorfirstpagelinkicon" *ngIf="paginatorFirstPageLinkIconTemplate">
-      <ng-container *ngTemplateOutlet="paginatorFirstPageLinkIconTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="paginatorFirstPageLinkIconTemplate"/>
     </ng-template>
     <ng-template pTemplate="paginatorlastpagelinkicon" *ngIf="paginatorLastPageLinkIconTemplate">
-      <ng-container *ngTemplateOutlet="paginatorLastPageLinkIconTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="paginatorLastPageLinkIconTemplate"/>
     </ng-template>
     <ng-template pTemplate="paginatorpreviouspagelinkicon" *ngIf="paginatorPreviousPageLinkIconTemplate">
-      <ng-container *ngTemplateOutlet="paginatorPreviousPageLinkIconTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="paginatorPreviousPageLinkIconTemplate"/>
     </ng-template>
     <ng-template pTemplate="paginatornextpagelinkicon" *ngIf="paginatorNextPageLinkIconTemplate">
-      <ng-container *ngTemplateOutlet="paginatorNextPageLinkIconTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="paginatorNextPageLinkIconTemplate"/>
     </ng-template>
     <ng-template pTemplate="loadingicon" *ngIf="loadingIconTemplate">
-      <ng-container *ngTemplateOutlet="loadingIconTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="loadingIconTemplate"/>
     </ng-template>
     <ng-template pTemplate="reorderindicatorupicon" *ngIf="reorderIndicatorUpIconTemplate">
-      <ng-container *ngTemplateOutlet="reorderIndicatorUpIconTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="reorderIndicatorUpIconTemplate"/>
     </ng-template>
     <ng-template pTemplate="reorderindicatordownicon" *ngIf="reorderIndicatorDownIconTemplate">
-      <ng-container *ngTemplateOutlet="reorderIndicatorDownIconTemplate"></ng-container>
+      <ng-container *ngTemplateOutlet="reorderIndicatorDownIconTemplate"/>
     </ng-template>
     <ng-template pTemplate="sorticon" let-item *ngIf="sortIconTemplate">
-      <ng-container *ngTemplateOutlet="sortIconTemplate;context:{$implicit:item}"></ng-container>
+      <ng-container *ngTemplateOutlet="sortIconTemplate;context:{$implicit:item}"/>
     </ng-template>
     <ng-template pTemplate="checkboxicon" let-item let-partialSelected="partialSelected" *ngIf="checkboxIconTemplate">
-      <ng-container *ngTemplateOutlet="checkboxIconTemplate;context:{$implicit:item,partialSelected}"></ng-container>
+      <ng-container *ngTemplateOutlet="checkboxIconTemplate;context:{$implicit:item,partialSelected}"/>
     </ng-template>
     <ng-template pTemplate="headercheckboxicon" let-item *ngIf="headerCheckboxIconTemplate">
-      <ng-container *ngTemplateOutlet="headerCheckboxIconTemplate;context:{$implicit:item}"></ng-container>
+      <ng-container *ngTemplateOutlet="headerCheckboxIconTemplate;context:{$implicit:item}"/>
     </ng-template>
 
     <ng-template let-columns let-frozen="frozen" pTemplate="emptymessage">
       <ng-container *ngIf="emptyMessageTemplate;else defaultEmptyMessage">
-        <ng-container *ngTemplateOutlet="emptyMessageTemplate;context:{columns,frozen}"></ng-container>
+        <ng-container *ngTemplateOutlet="emptyMessageTemplate;context:{columns,frozen}"/>
       </ng-container>
       <ng-template #defaultEmptyMessage>
         <tr>
@@ -546,4 +546,4 @@
     </ng-template>
   </p-table>
 </div>
-<!--<p-contextMenu #cm [model]="contextMenuItems" appendTo="body"></p-contextMenu>-->
+<!--<p-contextMenu #cm [model]="contextMenuItems" appendTo="body"/>-->

@@ -26,8 +26,7 @@
         [autofocus]="autofocus"
         (onClick)="_onChange($event)"
         (onBlur)="_onBlur($event)"
-        (onFocus)="_onFocus($event)"
-      ></p-radioButton>
+        (onFocus)="_onFocus($event)"/>
       <label [attr.for]="'id' + item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
         {{ item[optionLabel] }}
       </label>

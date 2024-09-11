@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="Editor"
-          subheader="Editor is rich text editor component based on SubEditor."></p-card>
+          subheader="Editor is rich text editor component based on SubEditor."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -22,8 +22,7 @@
       [(fixLabelPos)]="labelPos"
       [(followConfig)]="followConfig"
       [(disabled)]="disabled"
-      [(readonly)]="readonly"
-    ></ng-preview-options>
+      [(readonly)]="readonly"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -39,8 +38,7 @@
         [labelPos]="labelPos"
         [followConfig]="followConfig"
         [disabled]="disabled"
-        [readonly]="readonly"
-      ></ng-editor>
+        [readonly]="readonly"/>
     </form>
   </p-panel>
 </div>

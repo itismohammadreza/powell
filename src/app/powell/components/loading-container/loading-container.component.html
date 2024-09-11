@@ -1,11 +1,11 @@
 <div class="loading-container">
   <ng-container *ngIf="!isEmptyData();else emptyDataPlaceholder">
-    <ng-container *ngTemplateOutlet="templateMap.content"></ng-container>
+    <ng-container *ngTemplateOutlet="templateMap.content"/>
   </ng-container>
 
   <ng-template #emptyDataPlaceholder>
     <ng-container *ngIf="templateMap.loading; else defaultLoadingTemplate">
-      <ng-container *ngTemplateOutlet="templateMap.loading"></ng-container>
+      <ng-container *ngTemplateOutlet="templateMap.loading"/>
     </ng-container>
     <ng-template #defaultLoadingTemplate>
       <div class="loading">

@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="ConfirmDialog"
-          subheader="ConfirmDialog is backed by a service utilizing Observables to display confirmation windows easily that can be shared by multiple actions on the same component."></p-card>
+          subheader="ConfirmDialog is backed by a service utilizing Observables to display confirmation windows easily that can be shared by multiple actions on the same component."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -44,11 +44,10 @@
       [(buttonFull)]="confirmDialog.buttonFull"
       [(defaultFocus)]="confirmDialog.defaultFocus"
       [(blockScroll)]="confirmDialog.blockScroll"
-      [(rtl)]="confirmDialog.rtl"
-    ></ng-preview-options>
+      [(rtl)]="confirmDialog.rtl"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
-    <ng-button (click)="showConfirmDialog()" label="Open Confirm Dialog"></ng-button>
+    <ng-button (click)="showConfirmDialog()" label="Open Confirm Dialog"/>
   </p-panel>
 </div>

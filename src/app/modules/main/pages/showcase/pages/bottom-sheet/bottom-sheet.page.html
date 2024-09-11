@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="BottomSheet"
-          subheader="BottomSheet can be used to open panels to the bottom of the screen."></p-card>
+          subheader="BottomSheet can be used to open panels to the bottom of the screen."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -20,12 +20,11 @@
       [(showCloseIcon)]="showCloseIcon"
       [(closeOnEscape)]="closeOnEscape"
       [(rtl)]="rtl"
-      [(followConfig)]="followConfig"
-    ></ng-preview-options>
+      [(followConfig)]="followConfig"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
-    <ng-button (click)="visible = true" label="Open Bottom Sheet"></ng-button>
+    <ng-button (click)="visible = true" label="Open Bottom Sheet"/>
   </p-panel>
 </div>
 
@@ -55,7 +54,7 @@
     fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
   <ng-template ngTemplate="footer">
     <ng-button (onClick)="visible2=true" appearance="outlined" color="secondary" label="Open Second Bottom Sheet"
-               [full]="true"></ng-button>
+               [full]="true"/>
   </ng-template>
 </ng-bottom-sheet>
 
@@ -80,7 +79,7 @@
     fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
   <ng-template ngTemplate="footer">
     <ng-button (onClick)="visible3=true" appearance="outlined" color="success" label="Open Third Bottom Sheet"
-               [full]="true"></ng-button>
+               [full]="true"/>
   </ng-template>
 </ng-bottom-sheet>
 
@@ -103,7 +102,7 @@
     fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
   <ng-template ngTemplate="footer">
     <ng-button (onClick)="openDialog()" appearance="outlined" color="success" label="Open Dialog"
-               [full]="true"></ng-button>
+               [full]="true"/>
   </ng-template>
 </ng-bottom-sheet>
 

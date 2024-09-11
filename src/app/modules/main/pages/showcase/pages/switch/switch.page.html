@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="InputSwitch"
-          subheader="InputSwitch is used to select a boolean value."></p-card>
+          subheader="InputSwitch is used to select a boolean value."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -24,8 +24,7 @@
       [(followConfig)]="followConfig"
       [(disabled)]="disabled"
       [(readonly)]="readonly"
-      [(async)]="async"
-    ></ng-preview-options>
+      [(async)]="async"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -43,8 +42,7 @@
         [disabled]="disabled"
         [readonly]="readonly"
         [async]="async"
-        (onChangeAsync)="onChangeAsync($event)"
-      ></ng-switch>
+        (onChangeAsync)="onChangeAsync($event)"/>
     </form>
   </p-panel>
 </div>

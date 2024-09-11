@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="Dropdown"
-          subheader="Dropdown is used to select an item from a list of options."></p-card>
+          subheader="Dropdown is used to select an item from a list of options."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -54,8 +54,7 @@
       [(autofocusFilter)]="autofocusFilter"
       [(resetFilterOnHide)]="resetFilterOnHide"
       [(autoDisplayFirst)]="autoDisplayFirst"
-      [(showClear)]="showClear"
-    ></ng-preview-options>
+      [(showClear)]="showClear"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -89,8 +88,7 @@
         [resetFilterOnHide]="resetFilterOnHide"
         [autoDisplayFirst]="autoDisplayFirst"
         [showClear]="showClear"
-        (onChangeAsync)="onChangeAsync($event)"
-      ></ng-dropdown>
+        (onChangeAsync)="onChangeAsync($event)"/>
     </form>
   </p-panel>
 </div>

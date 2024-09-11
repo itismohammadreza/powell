@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="IranMap"
-          subheader="IranMap is used to show a selectable iran map."></p-card>
+          subheader="IranMap is used to show a selectable iran map."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -26,8 +26,7 @@
       [(followConfig)]="followConfig"
       [(selectionLimit)]="selectionLimit"
       [(multiple)]="multiple"
-      [(async)]="async"
-    ></ng-preview-options>
+      [(async)]="async"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -46,8 +45,7 @@
         [selectionLimit]="selectionLimit"
         [multiple]="multiple"
         [async]="async"
-        (onChangeAsync)="onChangeAsync($event)"
-      ></ng-iran-map>
+        (onChangeAsync)="onChangeAsync($event)"/>
     </form>
   </p-panel>
 </div>

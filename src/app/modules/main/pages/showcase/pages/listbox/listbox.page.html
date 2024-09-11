@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="Listbox"
-          subheader="Listbox is used to select one or more values from a list of items."></p-card>
+          subheader="Listbox is used to select one or more values from a list of items."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -38,8 +38,7 @@
       [(multiple)]="multiple"
       [(readonly)]="readonly"
       [(emptyMessage)]="emptyMessage"
-      [(showToggleAll)]="showToggleAll"
-    ></ng-preview-options>
+      [(showToggleAll)]="showToggleAll"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -62,8 +61,7 @@
         [multiple]="multiple"
         [readonly]="readonly"
         [emptyMessage]="emptyMessage"
-        [showToggleAll]="showToggleAll"
-      ></ng-listbox>
+        [showToggleAll]="showToggleAll"/>
     </form>
   </p-panel>
 </div>

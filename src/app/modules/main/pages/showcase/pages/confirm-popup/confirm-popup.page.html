@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="ConfirmPopup"
-          subheader="ConfirmPopup displays a confirmation overlay displayed relatively to its target."></p-card>
+          subheader="ConfirmPopup displays a confirmation overlay displayed relatively to its target."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -34,11 +34,10 @@
       [(rejectAppearance)]="confirmPopup.rejectAppearance"
       [(buttonFull)]="confirmPopup.buttonFull"
       [(defaultFocus)]="confirmPopup.defaultFocus"
-      [(rtl)]="confirmPopup.rtl"
-    ></ng-preview-options>
+      [(rtl)]="confirmPopup.rtl"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
-    <ng-button (click)="showConfirmPopup($event)" label="Open Dialog Popup"></ng-button>
+    <ng-button (click)="showConfirmPopup($event)" label="Open Dialog Popup"/>
   </p-panel>
 </div>

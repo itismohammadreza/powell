@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="Checkbox"
-          subheader="Checkbox is an extension to standard checkbox element with theming."></p-card>
+          subheader="Checkbox is an extension to standard checkbox element with theming."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -22,8 +22,7 @@
       [(followConfig)]="followConfig"
       [(disabled)]="disabled"
       [(readonly)]="readonly"
-      [(async)]="async"
-    ></ng-preview-options>
+      [(async)]="async"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -40,8 +39,7 @@
         [disabled]="disabled"
         [readonly]="readonly"
         [async]="async"
-        (onChangeAsync)="onChangeAsync($event)"
-      ></ng-checkbox>
+        (onChangeAsync)="onChangeAsync($event)"/>
     </form>
   </p-panel>
 </div>

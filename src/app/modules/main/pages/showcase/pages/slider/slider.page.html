@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="Slider"
-          subheader="Slider is an input component to provide a numerical input."></p-card>
+          subheader="Slider is an input component to provide a numerical input."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -32,8 +32,7 @@
       [(max)]="max"
       [(orientation)]="orientation"
       [(step)]="step"
-      [(range)]="range"
-    ></ng-preview-options>
+      [(range)]="range"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -54,8 +53,7 @@
         [max]="max"
         [orientation]="orientation"
         [step]="step"
-        [range]="range"
-      ></ng-slider>
+        [range]="range"/>
     </form>
   </p-panel>
 </div>

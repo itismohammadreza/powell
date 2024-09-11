@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="Status"
-          subheader="Status used to feed back the results of a series of operational tasks."></p-card>
+          subheader="Status used to feed back the results of a series of operational tasks."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -14,8 +14,7 @@
       [(text)]="text"
       [(subText)]="subText"
       [(rtl)]="rtl"
-      [(followConfig)]="followConfig"
-    ></ng-preview-options>
+      [(followConfig)]="followConfig"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -24,7 +23,6 @@
       [text]="text"
       [subText]="subText"
       [rtl]="rtl"
-      [followConfig]="followConfig"
-    ></ng-status>
+      [followConfig]="followConfig"/>
   </p-panel>
 </div>

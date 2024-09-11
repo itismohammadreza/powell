@@ -27,7 +27,7 @@
       (onOptionClick)="_onOptionClick($event)">
       <ng-container *ngFor="let t of templates">
         <ng-template [pTemplate]="t.getType()" *ngIf="templateMap[t.getType()]">
-          <ng-container *ngTemplateOutlet="templateMap[t.getType()]"></ng-container>
+          <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
         </ng-template>
       </ng-container>
     </p-selectButton>

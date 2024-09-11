@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="Dialog"
-          subheader="Dialog is a container to display content in an overlay window."></p-card>
+          subheader="Dialog is a container to display content in an overlay window."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -44,11 +44,10 @@
       [(buttonAppearance)]="dialog.buttonAppearance"
       [(buttonSize)]="dialog.buttonSize"
       [(rtl)]="dialog.rtl"
-      [(content)]="dialog.content"
-    ></ng-preview-options>
+      [(content)]="dialog.content"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
-    <ng-button (click)="showDialog()" label="Open Dialog"></ng-button>
+    <ng-button (click)="showDialog()" label="Open Dialog"/>
   </p-panel>
 </div>

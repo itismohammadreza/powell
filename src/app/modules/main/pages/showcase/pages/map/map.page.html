@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="Map"
-          subheader="Map component provides integration with Leaflet Maps API. This sample demontrates various uses cases like binding, overlays and events. Click the map to add a new item."></p-card>
+          subheader="Map component provides integration with Leaflet Maps API. This sample demontrates various uses cases like binding, overlays and events. Click the map to add a new item."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -30,8 +30,7 @@
       [(multiple)]="multiple"
       [(clearMarkerOnClick)]="clearMarkerOnClick"
       [(showClear)]="showClear"
-      [(followConfig)]="followConfig"
-    ></ng-preview-options>
+      [(followConfig)]="followConfig"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -51,8 +50,7 @@
         [multiple]="multiple"
         [clearMarkerOnClick]="clearMarkerOnClick"
         [showClear]="showClear"
-        [followConfig]="followConfig"
-      ></ng-map>
+        [followConfig]="followConfig"/>
     </form>
   </p-panel>
 </div>

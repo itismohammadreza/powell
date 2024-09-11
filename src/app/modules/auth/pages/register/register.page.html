@@ -1,32 +1,29 @@
-<form class="row justify-content-center" [formGroup]="form">
-  <div class="p-4 box rounded-4 shadow">
-    <ng-logo [disableNavigation]="true" class="text-center mb-2"></ng-logo>
+<form class="flex justify-center" [formGroup]="form">
+  <div class="p-4 box rounded-4 shadow-sm">
+    <ng-logo [disableNavigation]="true" class="text-center mb-2"/>
     <h3 class="text-center">ثبت نام</h3>
     <ng-input-text
       formControlName="email"
       [showRequiredStar]="false"
       icon="pi pi-user"
       placeholder="نام کاربری"
-      [validation]="{'required':'این فیلد الزامیست.','email':'ایمیل نامعتبر است.'}"
-    ></ng-input-text>
+      [validation]="{'required':'این فیلد الزامیست.','email':'ایمیل نامعتبر است.'}"/>
     <ng-input-text
       type="password"
       icon="pi pi-key"
       [showRequiredStar]="false"
       formControlName="password"
       placeholder="رمز عبور"
-      [validation]="{'required': 'این فیلد الزامیست.'}"
-    ></ng-input-text>
+      [validation]="{'required': 'این فیلد الزامیست.'}"/>
     <ng-input-text
       type="password"
       icon="pi pi-key"
       [showRequiredStar]="false"
       formControlName="confirmPassword"
       placeholder="تکرار رمز عبور"
-      [validation]="{'required': 'این فیلد الزامیست.'}"
-    ></ng-input-text>
+      [validation]="{'required': 'این فیلد الزامیست.'}"/>
     <p class="p-error small text-center"
-           *ngIf="form.hasError('notSame') && !form.get('confirmPassword').hasError('required')">
+       *ngIf="form.hasError('notSame') && !form.get('confirmPassword').hasError('required')">
       رمزعبور و تکرار مطابقت ندارند
     </p>
     <ng-button
@@ -34,10 +31,9 @@
       [async]="true"
       type="submit"
       label="ثبت نام"
-      (onClickAsync)="onSubmit($event)"
-    ></ng-button>
-    <small class="text-muted d-flex align-items-center justify-content-center">
-      <ng-button size="sm" appearance="link" routerLink="/auth/login" label="وارد شوید"></ng-button>
+      (onClickAsync)="onSubmit($event)"/>
+    <small class="text-muted flex items-center justify-center">
+      <ng-button size="sm" appearance="link" routerLink="/auth/login" label="وارد شوید"/>
       حساب کاربری دارید؟
     </small>
   </div>

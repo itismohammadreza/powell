@@ -92,8 +92,7 @@
           (onClear)="handleConfigEvent(config,'onClear',$event)"
           (onShow)="handleConfigEvent(config,'onShow',$event)"
           (onHide)="handleConfigEvent(config,'onHide',$event)"
-          (onLazyLoad)="handleConfigEvent(config,'onLazyLoad',$event)"
-        ></ng-auto-complete>
+          (onLazyLoad)="handleConfigEvent(config,'onLazyLoad',$event)"/>
         <ng-button
           *ngSwitchCase="'button'"
           [hidden]="handleConfigVisibility(config)"
@@ -123,8 +122,7 @@
           [styleClass]="config.styleClass"
           (onClick)="handleConfigEvent(config,'onClick',$event)"
           (defaultStateChange)="handleConfigEvent(config,'defaultStateChange',$event)"
-          (onClickAsync)="handleConfigEvent(config,'onClickAsync',$event)"
-        ></ng-button>
+          (onClickAsync)="handleConfigEvent(config,'onClickAsync',$event)"/>
         <ng-cascade-select
           *ngSwitchCase="'cascade-select'"
           [hidden]="handleConfigVisibility(config)"
@@ -163,8 +161,7 @@
           (onBeforeHide)="handleConfigEvent(config,'onBeforeHide',$event)"
           (onShow)="handleConfigEvent(config,'onShow',$event)"
           (onHide)="handleConfigEvent(config,'onHide',$event)"
-          (onClear)="handleConfigEvent(config,'onClear',$event)"
-        ></ng-cascade-select>
+          (onClear)="handleConfigEvent(config,'onClear',$event)"/>
         <ng-checkbox
           *ngSwitchCase="'checkbox'"
           [hidden]="handleConfigVisibility(config)"
@@ -192,8 +189,7 @@
           [trueValue]="config.trueValue ?? true"
           [falseValue]="config.falseValue ?? false"
           (onChange)="handleConfigEvent(config,'onChange',$event)"
-          (onChangeAsync)="handleConfigEvent(config,'onChangeAsync',$event)"
-        ></ng-checkbox>
+          (onChangeAsync)="handleConfigEvent(config,'onChangeAsync',$event)"/>
         <ng-chips
           *ngSwitchCase="'chips'"
           [hidden]="handleConfigVisibility(config)"
@@ -232,8 +228,7 @@
           (onChipClick)="handleConfigEvent(config,'onChipClick',$event)"
           (onFocus)="handleConfigEvent(config,'onFocus',$event)"
           (onBlur)="handleConfigEvent(config,'onBlur',$event)"
-          (onClear)="handleConfigEvent(config,'onClear',$event)"
-        ></ng-chips>
+          (onClear)="handleConfigEvent(config,'onClear',$event)"/>
         <ng-color-picker
           *ngSwitchCase="'color-picker'"
           [hidden]="handleConfigVisibility(config)"
@@ -273,8 +268,7 @@
           (onBlur)="handleConfigEvent(config,'onBlur',$event)"
           (onFocus)="handleConfigEvent(config,'onFocus',$event)"
           (onShow)="handleConfigEvent(config,'onShow',$event)"
-          (onHide)="handleConfigEvent(config,'onHide',$event)"
-        ></ng-color-picker>
+          (onHide)="handleConfigEvent(config,'onHide',$event)"/>
         <ng-dropdown
           *ngSwitchCase="'dropdown'"
           [hidden]="handleConfigVisibility(config)"
@@ -350,8 +344,7 @@
           (onHide)="handleConfigEvent(config,'onHide',$event)"
           (onClear)="handleConfigEvent(config,'onClear',$event)"
           (onLazyLoad)="handleConfigEvent(config,'onLazyLoad',$event)"
-          (onChangeAsync)="handleConfigEvent(config,'onChangeAsync',$event)"
-        ></ng-dropdown>
+          (onChangeAsync)="handleConfigEvent(config,'onChangeAsync',$event)"/>
         <ng-dual-label-switch
           *ngSwitchCase="'dual-label-switch'"
           [hidden]="handleConfigVisibility(config)"
@@ -378,8 +371,7 @@
           [disabled]="handleConfigDisable(config)"
           [readonly]="config.readonly"
           (onChange)="handleConfigEvent(config,'onChange',$event)"
-          (onChangeAsync)="handleConfigEvent(config,'onChangeAsync',$event)"
-        ></ng-dual-label-switch>
+          (onChangeAsync)="handleConfigEvent(config,'onChangeAsync',$event)"/>
         <ng-editor
           *ngSwitchCase="'editor'"
           [hidden]="handleConfigVisibility(config)"
@@ -438,8 +430,7 @@
           (onVideoUpload)="handleConfigEvent(config,'onVideoUpload',$event)"
           (onImageUpload)="handleConfigEvent(config,'onImageUpload',$event)"
           (onCut)="handleConfigEvent(config,'onCut',$event)"
-          (onCopy)="handleConfigEvent(config,'onCopy',$event)"
-        ></ng-editor>
+          (onCopy)="handleConfigEvent(config,'onCopy',$event)"/>
         <ng-file-picker
           *ngSwitchCase="'file-picker'"
           [hidden]="handleConfigVisibility(config)"
@@ -497,8 +488,7 @@
           (onBeforeUpload)="handleConfigEvent(config,'onBeforeUpload',$event)"
           (onUpload)="handleConfigEvent(config,'onUpload',$event)"
           (onSend)="handleConfigEvent(config,'onSend',$event)"
-          (uploadHandler)="handleConfigEvent(config,'uploadHandler',$event)"
-        ></ng-file-picker>
+          (uploadHandler)="handleConfigEvent(config,'uploadHandler',$event)"/>
         <ng-file-picker2
           *ngSwitchCase="'file-picker2'"
           [hidden]="handleConfigVisibility(config)"
@@ -524,8 +514,7 @@
           [chooseLabel]="config.chooseLabel ?? 'انتخاب'"
           [isUnknownImageUrl]="config.isUnknownImageUrl"
           (onSelect)="handleConfigEvent(config,'onSelect',$event)"
-          (onRemove)="handleConfigEvent(config,'onRemove',$event)"
-        ></ng-file-picker2>
+          (onRemove)="handleConfigEvent(config,'onRemove',$event)"/>
         <ng-gregorian-datepicker
           *ngSwitchCase="'gregorian-datepicker'"
           [hidden]="handleConfigVisibility(config)"
@@ -609,8 +598,7 @@
           (onClearClick)="handleConfigEvent(config,'onClearClick',$event)"
           (onMonthChange)="handleConfigEvent(config,'onMonthChange',$event)"
           (onYearChange)="handleConfigEvent(config,'onYearChange',$event)"
-          (onClear)="handleConfigEvent(config,'onClear',$event)"
-        ></ng-gregorian-datepicker>
+          (onClear)="handleConfigEvent(config,'onClear',$event)"/>
         <ng-image
           *ngSwitchCase="'image'"
           [hidden]="handleConfigVisibility(config)"
@@ -652,8 +640,7 @@
           [errorPlaceholderSrc]="config.errorPlaceholderSrc"
           (onShow)="handleConfigEvent(config,'onShow',$event)"
           (onHide)="handleConfigEvent(config,'onHide',$event)"
-          (onImageError)="handleConfigEvent(config,'onImageError',$event)"
-        ></ng-image>
+          (onImageError)="handleConfigEvent(config,'onImageError',$event)"/>
         <ng-input-mask
           *ngSwitchCase="'input-mask'"
           [hidden]="handleConfigVisibility(config)"
@@ -695,8 +682,7 @@
           (onBlur)="handleConfigEvent(config,'onBlur',$event)"
           (onComplete)="handleConfigEvent(config,'onComplete',$event)"
           (onInput)="handleConfigEvent(config,'onInput',$event)"
-          (onClear)="handleConfigEvent(config,'onClear',$event)"
-        ></ng-input-mask>
+          (onClear)="handleConfigEvent(config,'onClear',$event)"/>
         <ng-input-number
           *ngSwitchCase="'input-number'"
           [hidden]="handleConfigVisibility(config)"
@@ -753,8 +739,7 @@
           (onFocus)="handleConfigEvent(config,'onFocus',$event)"
           (onBlur)="handleConfigEvent(config,'onBlur',$event)"
           (onInput)="handleConfigEvent(config,'onInput',$event)"
-          (onClear)="handleConfigEvent(config,'onClear',$event)"
-        ></ng-input-number>
+          (onClear)="handleConfigEvent(config,'onClear',$event)"/>
         <ng-input-otp
           *ngSwitchCase="'input-otp'"
           [hidden]="handleConfigVisibility(config)"
@@ -775,8 +760,7 @@
           [style]="config.style"
           (onChange)="handleConfigEvent(config,'onChange',$event)"
           (onBlur)="handleConfigEvent(config,'onBlur',$event)"
-          (onFocus)="handleConfigEvent(config,'onFocus',$event)"
-        ></ng-input-otp>
+          (onFocus)="handleConfigEvent(config,'onFocus',$event)"/>
         <ng-input-password
           *ngSwitchCase="'input-password'"
           [hidden]="handleConfigVisibility(config)"
@@ -818,8 +802,7 @@
           (onKeyUp)="handleConfigEvent(config,'onKeyUp',$event)"
           (onBlur)="handleConfigEvent(config,'onBlur',$event)"
           (onFocus)="handleConfigEvent(config,'onFocus',$event)"
-          (onClear)="handleConfigEvent(config,'onClear',$event)"
-        ></ng-input-password>
+          (onClear)="handleConfigEvent(config,'onClear',$event)"/>
         <ng-input-text
           *ngSwitchCase="'input-text'"
           [hidden]="handleConfigVisibility(config)"
@@ -858,8 +841,7 @@
           (onKeyUp)="handleConfigEvent(config,'onKeyUp',$event)"
           (onBlur)="handleConfigEvent(config,'onBlur',$event)"
           (onFocus)="handleConfigEvent(config,'onFocus',$event)"
-          (onPaste)="handleConfigEvent(config,'onPaste',$event)"
-        ></ng-input-text>
+          (onPaste)="handleConfigEvent(config,'onPaste',$event)"/>
         <ng-input-textarea
           *ngSwitchCase="'input-textarea'"
           [hidden]="handleConfigVisibility(config)"
@@ -895,8 +877,7 @@
           (onKeyDown)="handleConfigEvent(config,'onKeyDown',$event)"
           (onKeyUp)="handleConfigEvent(config,'onKeyUp',$event)"
           (onBlur)="handleConfigEvent(config,'onBlur',$event)"
-          (onFocus)="handleConfigEvent(config,'onFocus',$event)"
-        ></ng-input-textarea>
+          (onFocus)="handleConfigEvent(config,'onFocus',$event)"/>
         <ng-iran-map
           *ngSwitchCase="'iran-map'"
           [hidden]="handleConfigVisibility(config)"
@@ -919,8 +900,7 @@
           (onClick)="handleConfigEvent(config,'onClick',$event)"
           (onChange)="handleConfigEvent(config,'onChange',$event)"
           (onMapReady)="handleConfigEvent(config,'onMapReady',$event)"
-          (onChangeAsync)="handleConfigEvent(config,'onChangeAsync',$event)">
-        </ng-iran-map>
+          (onChangeAsync)="handleConfigEvent(config,'onChangeAsync',$event)"/>
         <!--        <ng-jalali-datepicker&ndash;&gt;-->
         <!--          *ngSwitchCase="'jalali-datepicker'"&ndash;&gt;-->
         <!--          [hidden]="handleConfigVisibility(config)"&ndash;&gt;-->
@@ -1004,8 +984,7 @@
         <!--          (onClearClick)="handleConfigEvent(config,'onClearClick',$event)"&ndash;&gt;-->
         <!--          (onMonthChange)="handleConfigEvent(config,'onMonthChange',$event)"&ndash;&gt;-->
         <!--          (onYearChange)="handleConfigEvent(config,'onYearChange',$event)"&ndash;&gt;-->
-        <!--          (onClear)="handleConfigEvent(config,'onClear',$event)"&ndash;&gt;-->
-        <!--        ></ng-jalali-datepicker>&ndash;&gt;-->
+        <!--          (onClear)="handleConfigEvent(config,'onClear',$event)"&ndash;&gt;/>-->
         <ng-knob
           *ngSwitchCase="'knob'"
           [hidden]="handleConfigVisibility(config)"
@@ -1034,8 +1013,7 @@
           [valueTemplate]="config.valueTemplate ?? '{value}'"
           [style]="config.style"
           [styleClass]="config.styleClass"
-          (onChange)="handleConfigEvent(config,'onChange',$event)"
-        ></ng-knob>
+          (onChange)="handleConfigEvent(config,'onChange',$event)"/>
         <ng-listbox
           *ngSwitchCase="'listbox'"
           [hidden]="handleConfigVisibility(config)"
@@ -1079,8 +1057,7 @@
           [styleClass]="config.styleClass"
           (onChange)="handleConfigEvent(config,'onChange',$event)"
           (onDblClick)="handleConfigEvent(config,'onDblClick',$event)"
-          (onClick)="handleConfigEvent(config,'onClick',$event)"
-        ></ng-listbox>
+          (onClick)="handleConfigEvent(config,'onClick',$event)"/>
         <ng-map
           *ngSwitchCase="'map'"
           [hidden]="handleConfigVisibility(config)"
@@ -1125,8 +1102,7 @@
           (onMapMoveEnd)="handleConfigEvent(config,'onMapMoveEnd',$event)"
           (onMapZoom)="handleConfigEvent(config,'onMapZoom',$event)"
           (onMapZoomStart)="handleConfigEvent(config,'onMapZoomStart',$event)"
-          (onMapZoomEnd)="handleConfigEvent(config,'onMapZoomEnd',$event)"
-        ></ng-map>
+          (onMapZoomEnd)="handleConfigEvent(config,'onMapZoomEnd',$event)"/>
         <ng-message
           *ngSwitchCase="'message'"
           [hidden]="handleConfigVisibility(config)"
@@ -1138,8 +1114,7 @@
           [severity]="config.severity"
           [closable]="config.closable"
           [rtl]="config.rtl ?? options.rtl"
-          [followConfig]="false"
-        ></ng-message>
+          [followConfig]="false"/>
         <ng-checkbox-group
           *ngSwitchCase="'checkbox-group'"
           [hidden]="handleConfigVisibility(config)"
@@ -1165,8 +1140,7 @@
           [style]="config.style"
           [styleClass]="config.styleClass"
           [checkboxIcon]="config.checkboxIcon"
-          (onChange)="handleConfigEvent(config,'onChange',$event)"
-        ></ng-checkbox-group>
+          (onChange)="handleConfigEvent(config,'onChange',$event)"/>
         <ng-multi-select
           *ngSwitchCase="'multi-select'"
           [hidden]="handleConfigVisibility(config)"
@@ -1245,8 +1219,7 @@
           (onPanelShow)="handleConfigEvent(config,'onPanelShow',$event)"
           (onPanelHide)="handleConfigEvent(config,'onPanelHide',$event)"
           (onClear)="handleConfigEvent(config,'onClear',$event)"
-          (onLazyLoad)="handleConfigEvent(config,'onLazyLoad',$event)"
-        ></ng-multi-select>
+          (onLazyLoad)="handleConfigEvent(config,'onLazyLoad',$event)"/>
         <ng-radio
           *ngSwitchCase="'radio'"
           [hidden]="handleConfigVisibility(config)"
@@ -1272,8 +1245,7 @@
           [styleClass]="config.styleClass"
           (onChange)="handleConfigEvent(config,'onChange',$event)"
           (onFocus)="handleConfigEvent(config,'onFocus',$event)"
-          (onBlur)="handleConfigEvent(config,'onBlur',$event)"
-        ></ng-radio>
+          (onBlur)="handleConfigEvent(config,'onBlur',$event)"/>
         <ng-rating
           *ngSwitchCase="'rating'"
           [hidden]="handleConfigVisibility(config)"
@@ -1299,8 +1271,7 @@
           [iconOffStyle]="config.iconOffStyle"
           [iconCancelStyle]="config.iconCancelStyle"
           (onRate)="handleConfigEvent(config,'onRate',$event)"
-          (onCancel)="handleConfigEvent(config,'onCancel',$event)"
-        ></ng-rating>
+          (onCancel)="handleConfigEvent(config,'onCancel',$event)"/>
         <ng-select-button
           *ngSwitchCase="'select-button'"
           [hidden]="handleConfigVisibility(config)"
@@ -1326,8 +1297,7 @@
           [disabled]="handleConfigDisable(config)"
           [dataKey]="config.dataKey"
           (onChange)="handleConfigEvent(config,'onChange',$event)"
-          (onOptionClick)="handleConfigEvent(config,'onOptionClick',$event)"
-        ></ng-select-button>
+          (onOptionClick)="handleConfigEvent(config,'onOptionClick',$event)"/>
         <ng-slider
           *ngSwitchCase="'slider'"
           [hidden]="handleConfigVisibility(config)"
@@ -1353,8 +1323,7 @@
           [styleClass]="config.styleClass"
           [tabindex]="config.tabindex"
           (onChange)="handleConfigEvent(config,'onChange',$event)"
-          (onSlideEnd)="handleConfigEvent(config,'onSlideEnd',$event)"
-        ></ng-slider>
+          (onSlideEnd)="handleConfigEvent(config,'onSlideEnd',$event)"/>
         <ng-switch
           *ngSwitchCase="'switch'"
           [hidden]="handleConfigVisibility(config)"
@@ -1381,8 +1350,7 @@
           [trueValue]="config.trueValue ?? true"
           [falseValue]="config.falseValue ?? false"
           (onChange)="handleConfigEvent(config,'onChange',$event)"
-          (onChangeAsync)="handleConfigEvent(config,'onChangeAsync',$event)"
-        ></ng-switch>
+          (onChangeAsync)="handleConfigEvent(config,'onChangeAsync',$event)"/>
         <ng-toggle-button
           *ngSwitchCase="'toggle-button'"
           [hidden]="handleConfigVisibility(config)"
@@ -1406,8 +1374,7 @@
           [styleClass]="config.styleClass"
           [disabled]="handleConfigDisable(config)"
           [tabindex]="config.tabindex"
-          (onChange)="handleConfigEvent(config,'onChange',$event)"
-        ></ng-toggle-button>
+          (onChange)="handleConfigEvent(config,'onChange',$event)"/>
         <ng-tree
           *ngSwitchCase="'tree'"
           [hidden]="handleConfigVisibility(config)"
@@ -1462,8 +1429,7 @@
           (onLazyLoad)="handleConfigEvent(config,'onLazyLoad',$event)"
           (onScroll)="handleConfigEvent(config,'onScroll',$event)"
           (onScrollIndexChange)="handleConfigEvent(config,'onScrollIndexChange',$event)"
-          (selectionChange)="handleConfigEvent(config,'selectionChange',$event)"
-        ></ng-tree>
+          (selectionChange)="handleConfigEvent(config,'selectionChange',$event)"/>
         <ng-tree-select
           *ngSwitchCase="'tree-select'"
           [hidden]="handleConfigVisibility(config)"
@@ -1510,8 +1476,7 @@
           (onNodeUnselect)="handleConfigEvent(config,'onNodeUnselect',$event)"
           (onNodeExpand)="handleConfigEvent(config,'onNodeExpand',$event)"
           (onNodeCollapse)="handleConfigEvent(config,'onNodeCollapse',$event)"
-          (onClear)="handleConfigEvent(config,'onClear',$event)"
-        ></ng-tree-select>
+          (onClear)="handleConfigEvent(config,'onClear',$event)"/>
         <ng-tri-state-checkbox
           *ngSwitchCase="'tri-state-checkbox'"
           [hidden]="handleConfigVisibility(config)"
@@ -1531,8 +1496,7 @@
           [styleClass]="config.styleClass"
           [readonly]="config.readonly"
           [checkboxTrueIcon]="config.checkboxTrueIcon"
-          [checkboxFalseIcon]="config.checkboxFalseIcon"
-        ></ng-tri-state-checkbox>
+          [checkboxFalseIcon]="config.checkboxFalseIcon"/>
         <div
           *ngSwitchCase="'template'"
           [hidden]="handleConfigVisibility(config)"
@@ -1559,8 +1523,7 @@
         [size]="options.buttonSize"
         [label]="options.rejectLabel"
         [disabled]="disableReject"
-        (onClick)="close()"
-      ></ng-button>
+        (onClick)="close()"/>
       <ng-button
         *ngIf="options.acceptVisible"
         [styleClass]="options.acceptButtonStyleClass"
@@ -1575,8 +1538,7 @@
         [disabled]="handleSubmitDisable()"
         type="submit"
         [async]="true"
-        (onClickAsync)="onSubmitClick($event)"
-      ></ng-button>
+        (onClickAsync)="onSubmitClick($event)"/>
     </div>
   </ng-template>
 </p-dialog>

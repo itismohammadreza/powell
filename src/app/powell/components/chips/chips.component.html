@@ -49,7 +49,7 @@
         (onClear)="_onClear()">
         <ng-container *ngFor="let t of templates">
           <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
-            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"></ng-container>
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"/>
           </ng-template>
         </ng-container>
       </p-chips>

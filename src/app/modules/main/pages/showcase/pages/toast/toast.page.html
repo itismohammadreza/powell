@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="Toast"
-          subheader="Toast is used to display messages in an overlay."></p-card>
+          subheader="Toast is used to display messages in an overlay."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -24,11 +24,10 @@
       [(icon)]="toast.icon"
       [(detail)]="toast.detail"
       [(preventDuplicates)]="toast.preventDuplicates"
-      [(toastPosition)]="toast.position"
-    ></ng-preview-options>
+      [(toastPosition)]="toast.position"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
-    <ng-button (click)="showToast()" label="Open Toast"></ng-button>
+    <ng-button (click)="showToast()" label="Open Toast"/>
   </p-panel>
 </div>

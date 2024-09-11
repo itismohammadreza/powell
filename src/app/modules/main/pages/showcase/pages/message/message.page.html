@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="Message"
-          subheader="Message is used to display alerts inline."></p-card>
+          subheader="Message is used to display alerts inline."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -20,8 +20,7 @@
       [(inlineMessage)]="inlineMessage"
       [(closable)]="closable"
       [(rtl)]="rtl"
-      [(followConfig)]="followConfig"
-    ></ng-preview-options>
+      [(followConfig)]="followConfig"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -33,7 +32,6 @@
       [inlineMessage]="inlineMessage"
       [closable]="closable"
       [rtl]="rtl"
-      [followConfig]="followConfig"
-    ></ng-message>
+      [followConfig]="followConfig"/>
   </p-panel>
 </div>

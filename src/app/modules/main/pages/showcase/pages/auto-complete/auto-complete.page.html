@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="AutoComplete"
-          subheader="AutoComplete is an input component that provides real-time suggestions when being typed."></p-card>
+          subheader="AutoComplete is an input component that provides real-time suggestions when being typed."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -54,8 +54,7 @@
       [(emptyMessage)]="emptyMessage"
       [(forceSelection)]="forceSelection"
       [(unique)]="unique"
-      [(showClear)]="showClear"
-    ></ng-preview-options>
+      [(showClear)]="showClear"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -90,8 +89,7 @@
         [forceSelection]="forceSelection"
         [unique]="unique"
         [showClear]="showClear"
-        (completeMethod)="filter($event)"
-      ></ng-auto-complete>
+        (completeMethod)="filter($event)"/>
     </form>
   </p-panel>
 </div>

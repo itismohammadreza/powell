@@ -1,6 +1,6 @@
 <div class="container">
   <p-card header="Image"
-          subheader="Image displays an image with preview and transformation options."></p-card>
+          subheader="Image displays an image with preview and transformation options."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -46,8 +46,7 @@
       [(pinchWheel)]="pinchWheel"
       [(pinchAutoHeight)]="pinchAutoHeight"
       [(pinchWheelZoomFactor)]="pinchWheelZoomFactor"
-      [(pinchDraggableImage)]="pinchDraggableImage"
-    ></ng-preview-options>
+      [(pinchDraggableImage)]="pinchDraggableImage"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -73,7 +72,6 @@
       [pinchWheel]="pinchWheel"
       [pinchAutoHeight]="pinchAutoHeight"
       [pinchWheelZoomFactor]="pinchWheelZoomFactor"
-      [pinchDraggableImage]="pinchDraggableImage"
-    ></ng-image>
+      [pinchDraggableImage]="pinchDraggableImage"/>
   </p-panel>
 </div>
