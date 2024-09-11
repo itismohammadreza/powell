@@ -330,7 +330,7 @@ export class TablePage {
         ]
       },
       cellStyleClass: (item) => {
-        return item.status == 'proposal' ? 'bg-danger' : 'bg-warning'
+        return item.status == 'proposal' ? 'bg-green-600' : 'bg-rose-600'
       }
     },
     {
