@@ -1,15 +1,15 @@
-import {AfterContentInit, AfterViewChecked, Component, HostListener, inject, Input, OnInit} from '@angular/core';
+import {AfterContentInit, ChangeDetectionStrategy, Component, HostListener, inject, OnInit} from '@angular/core';
 import {CommonModule, DOCUMENT} from "@angular/common";
 import {LanguageChecker} from '@core/utils';
-import {SidebarType} from '@core/models';
+import {GlobalConfig, SidebarType} from '@core/models';
 import {ConfigService, ThemeService} from "@powell/api";
-import {NgConfig} from "@powell/models";
 import {globalConfig} from "@core/config";
-import {PrimeMenuItem} from "@powell/primeng";
 import {
   PrimeAvatarModule,
   PrimeDividerModule,
+  PrimeDropdownChangeEvent,
   PrimeMenubarModule,
+  PrimeMenuItem,
   PrimeMenuModule,
   PrimePanelMenuModule,
   PrimeSidebarModule
@@ -46,35 +46,28 @@ import {lastValueFrom} from "rxjs";
     FilterModule,
     TranslateModule,
     FormsModule,
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterViewChecked, AfterContentInit {
+export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterContentInit {
   private document = inject(DOCUMENT);
   private themeService = inject(ThemeService);
   private configService = inject(ConfigService);
 
-  @Input() sidebarType: SidebarType = 'push-mask';
-  @Input() sidebarVisible: boolean = false;
-  @Input() sidebarLock: boolean = false; // overrides the sidebarVisible.
-  @Input() responsiveThreshold: number = 768;
-  @Input() sidebarItems: PrimeMenuItem[];
-
-  configSidebarVisible: boolean = false;
-  config: NgConfig = this.configService.getConfig();
-  lang: string = globalConfig.lang;
+  sidebarType: SidebarType = 'push-mask';
+  sidebarTypes: PrimeMenuItem[];
+  sidebarVisible: boolean;
+  configSidebarVisible: boolean;
+  sidebarLock: boolean; // overrides the sidebarVisible.
+  sidebarItems: PrimeMenuItem[];
+  config: GlobalConfig = globalConfig;
   tempSidebarType: SidebarType = 'push-mask';
   themes: PrimeMenuItem[];
-  sidebarTypes: PrimeMenuItem[];
   searchValue: string;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    if (this.document.defaultView.innerWidth < this.responsiveThreshold) {
-      this.changeSidebarType('overlay', false);
-      this.maskEl?.classList.remove('d-none');
-    } else if (this.document.defaultView.innerWidth >= this.responsiveThreshold) {
-      this.changeSidebarType(this.sidebarType, false);
-    }
+    this.handleResize()
   }
 
   ngOnInit() {
@@ -85,14 +78,18 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     }
   }
 
-  ngAfterViewChecked() {
+  ngAfterContentInit() {
     this.toggleSidebar(this.sidebarVisible);
     this.toggleSidebarLock(this.sidebarLock);
   }
 
-  ngAfterContentInit() {
-    if (this.document.defaultView.innerWidth < this.responsiveThreshold) {
+  handleResize() {
+    const responsiveThreshold: number = 768;
+    const windowWidth = this.document.defaultView.innerWidth;
+    if (windowWidth < responsiveThreshold) {
       this.changeSidebarType('overlay', false);
+    } else if (windowWidth >= responsiveThreshold) {
+      this.changeSidebarType(this.sidebarType, false);
     }
   }
 
@@ -107,7 +104,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       routerLinkActiveOptions: item.path ? '' : {exact: true},
       icon: 'pi pi-minus',
       command: () => {
-        if (!this.sidebarLock && this.isModalSidebar) {
+        if (!this.sidebarLock && this.showBackdrop) {
           this.toggleSidebar(false);
         }
       }
@@ -119,16 +116,16 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     this.configService.setConfig({[config]: value});
   }
 
-  async changeLang(event) {
+  async changeLang(event: PrimeDropdownChangeEvent) {
     await lastValueFrom(this.translationService.use(event.value));
   }
 
-  changeSidebarType(event: any, assign: boolean) {
-    this.tempSidebarType = event.value || event;
+  changeSidebarType(event: PrimeDropdownChangeEvent | SidebarType, assign: boolean) {
+    this.tempSidebarType = typeof event === 'string' ? event : event.value;
     if (assign) {
       this.sidebarType = this.tempSidebarType;
     }
-    if (this.tempSidebarType == 'hover') {
+    if (this.tempSidebarType === 'hover') {
       this.toggleSidebar(true);
     } else {
       this.toggleSidebar(false);
@@ -148,50 +145,13 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
 
   toggleSidebar(activate: boolean) {
     this.sidebarVisible = activate;
-    if (['overlay', 'push'].includes(this.tempSidebarType)) {
-      setTimeout(() => {
-        if (this.sidebarVisible) {
-          this.toggleMaskVisibility(false);
-        }
-      }, 0);
-    }
   }
 
   toggleSidebarLock(activate: boolean) {
     this.sidebarLock = activate;
-    if (this.isModalSidebar && this.sidebarVisible) {
-      this.toggleMaskDisplay(!this.sidebarLock);
-    }
   }
 
-  toggleMaskDisplay(activate: boolean) {
-    const body = this.document.body;
-    if (activate) {
-      this.maskEl?.classList.remove('d-none');
-      body.classList.add('p-overflow-hidden');
-    } else {
-      this.maskEl?.classList.add('d-none');
-      body.classList.remove('p-overflow-hidden');
-    }
-  }
-
-  toggleMaskVisibility(activate: boolean) {
-    if (this.maskEl) {
-      if (activate) {
-        this.maskEl.style.transitionDuration = '0.2ms';
-        this.maskEl.style.opacity = '1';
-      } else {
-        this.maskEl.style.transitionDuration = '0ms';
-        this.maskEl.style.opacity = '0';
-      }
-    }
-  }
-
-  get maskEl() {
-    return this.document.querySelector('.p-sidebar-mask') as HTMLDivElement;
-  }
-
-  get isModalSidebar() {
-    return (this.tempSidebarType == 'overlay' || this.tempSidebarType == 'overlay-mask' || this.tempSidebarType == 'push' || this.tempSidebarType == 'push-mask');
+  showBackdrop() {
+   return ['overlay-mask', 'push-mask'].includes(this.tempSidebarType);
   }
 }
