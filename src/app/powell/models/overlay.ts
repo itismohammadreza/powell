@@ -179,7 +179,7 @@ interface NgDialogBase {
   resizable?: boolean;
   positionLeft?: number;
   positionTop?: number;
-  contentStyle?: any;
+  contentStyle?: NgCssObject;
   contentStyleClass?: string;
   modal?: boolean;
   closeOnEscape?: boolean;
@@ -234,7 +234,7 @@ export interface NgDialogOptions extends NgDialogBase {
 
 export interface NgDialogFormOptions extends NgDialogBase {
   containerStyleClass?: string;
-  containerStyle?: any;
+  containerStyle?: NgCssObject;
   defaultFocus?: NgDefaultFocus;
   acceptButtonStyleClass?: string;
   rejectButtonStyleClass?: string;
@@ -255,7 +255,7 @@ export interface NgDialogFormOptions extends NgDialogBase {
     type: string,
     validator: ValidatorFn,
     message: string,
-    style?: any
+    style?: NgCssObject
   };
   rtl?: boolean;
 }
@@ -520,11 +520,11 @@ export interface NgDialogFormConfig {
   pinchAutoHeight?: boolean;
   pinchWheelZoomFactor?: number;
   pinchDraggableImage?: boolean;
-  previewStyle?: any;
+  previewStyle?: NgCssObject;
   previewStyleClass?: string;
-  imageStyle?: any;
+  imageStyle?: NgCssObject;
   imageStyleClass?: string;
-  previewImageStyle?: any;
+  previewImageStyle?: NgCssObject;
   previewImageStyleClass?: string;
   errorPlaceholderSrc?: string;
   onImageError?: (dialogFormEvent?: NgDialogFormEventRes) => void;
@@ -568,7 +568,7 @@ export interface NgDialogFormConfig {
   strongLabel?: string;
   feedback?: boolean;
   toggleMask?: boolean;
-  inputStyle?: any;
+  inputStyle?: NgCssObject;
   inputStyleClass?: string;
   ///////////////////////////////////////// input-text /////////////////////////////////////////
   keyFilter?: NgKeyFilter | RegExp;
@@ -594,7 +594,7 @@ export interface NgDialogFormConfig {
   valueTemplate?: string;
   ///////////////////////////////////////// listbox /////////////////////////////////////////
   checkbox?: boolean;
-  listStyle?: string;
+  listStyle?: NgCssObject;
   listStyleClass?: string;
   onDblClick?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// map /////////////////////////////////////////
@@ -647,7 +647,7 @@ export interface NgDialogFormConfig {
   optionGroupChildren?: any;
   group?: boolean;
   overlayVisible?: boolean;
-  panelStyle?: any;
+  panelStyle?: NgCssObject;
   selectedItemsLabel?: string | 'ellipsis';
   selectionLimit?: number;
   showHeader?: boolean;
@@ -669,9 +669,9 @@ export interface NgDialogFormConfig {
   iconOnClass?: string;
   iconOffClass?: string;
   iconCancelClass?: string;
-  iconOnStyle?: any;
-  iconOffStyle?: any;
-  iconCancelStyle?: any;
+  iconOnStyle?: NgCssObject;
+  iconOffStyle?: NgCssObject;
+  iconCancelStyle?: NgCssObject;
   onRate?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   onCancel?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   ///////////////////////////////////////// select-botton /////////////////////////////////////////
@@ -766,7 +766,7 @@ export interface NgDialogFormConfig {
   showRequiredStar?: boolean;
   disabled?: boolean | ((dialogFormEvent?: NgDialogFormEventRes) => boolean);
   tabindex?: any;
-  style?: any;
+  style?: NgCssObject;
   styleClass?: string;
   readonly?: boolean;
   checkboxTrueIcon?: string;

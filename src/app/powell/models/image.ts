@@ -1,3 +1,5 @@
+import {NgCssObject} from "@powell/models/common";
+
 export type NgLimitZoom = number | 'original image size';
 export type NgOverflow = 'hidden' | 'visible';
 export type NgDisableZoomControl = 'disable' | 'never' | 'auto';
@@ -55,7 +57,7 @@ export interface NgPinchZoomOptions {
   disabled?: boolean;
   overflow?: NgOverflow;
   disableZoomControl?: NgDisableZoomControl;
-  style?: any;
+  style?: NgCssObject;
 }
 
 export interface NgTouchOptions {

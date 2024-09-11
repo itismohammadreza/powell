@@ -1,7 +1,7 @@
 import {
   NgAsyncEvent,
   NgButtonAppearance,
-  NgColor,
+  NgColor, NgCssObject,
   NgFilterMatchMode,
   NgIconPosition,
   NgPosition,
@@ -63,7 +63,7 @@ export interface NgTableColDef<T = any> {
   filter?: NgTableFilter;
   render?: NgTableRender<T>;
   cellStyleClass?: string | ((item: T) => string);
-  cellStyle?: any | ((item: T) => any);
+  cellStyle?: NgCssObject | ((item: T) => any);
   visible?: boolean;
 }
 
