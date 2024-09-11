@@ -21,7 +21,7 @@
 
     <p-divider align="left"><h6 class="mb-0">{{'networkStatus' | translate}}</h6></p-divider>
     <p class="mt-3 border rounded p-1 text-white"
-       [ngClass]="{'bg-success':networkStatus == 'online', 'bg-danger':networkStatus == 'offline'}">
+       [ngClass]="{'bg-green-600':networkStatus == 'online', 'bg-red-600':networkStatus == 'offline'}">
       {{networkStatus}}
     </p>
   </p-panel>
