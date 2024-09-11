@@ -1,10 +1,5 @@
-<div [class.navigation-disabled]="disableNavigation">
-  <img *ngIf="src"
-       [routerLink]="disableNavigation ? null : link"
-       [src]="src"
-       [style.width]="width"
-       alt="logo"/>
-
+<div [ngClass]="{'cursor-pointer':!disableNavigation,'cursor-default':disableNavigation}">
+  <img *ngIf="src" [routerLink]="disableNavigation ? null : link" [src]="src" [style.width]="width" alt="logo"/>
   <div *ngIf="!src" [style.width]="width" [routerLink]="disableNavigation ? null : link">
     <ng-container [ngSwitch]="type">
       <svg *ngSwitchCase="'dark-vertical'" xmlns="http://www.w3.org/2000/svg" width="100%"
