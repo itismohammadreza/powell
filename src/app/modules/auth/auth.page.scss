@@ -4,35 +4,6 @@ $particleSize: 20vmin;
 $animationDuration: 6s;
 $amount: 20;
 
-.container-fluid {
-  overflow: hidden;
-  position: relative;
-  height: 100vh;
-}
-
-.row {
-  background-image: url("/public/images/login-bg.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100%;
-
-  &::before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: linear-gradient(
-        to left,
-        rgba(0, 168, 255, 0.5),
-        rgba(185, 0, 255, 0.5)
-    );
-    pointer-events: none;
-  }
-}
-
 .background {
   width: 100vw;
   height: 100vh;
