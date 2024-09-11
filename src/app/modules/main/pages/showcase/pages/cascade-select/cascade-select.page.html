@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
   <p-card header="CascadeSelect"
           subheader="CascadeSelect displays a nested structure of options."/>
   <p-panel [header]="'options' | translate">
@@ -40,6 +40,7 @@
   <p-panel [header]="'preview' | translate">
     <form [formGroup]="form">
       <ng-cascade-select
+        class="w-[30vw] mx-auto"
         formControlName="c1"
         [addon]="addon"
         [validation]="{ required: 'error' }"
