@@ -2,8 +2,7 @@ import {Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/c
 import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult, NgValidation} from "@powell/models";
 import {ConfigService} from "@powell/api";
-import {PrimeDomHandler} from "@powell/primeng";
-import {PrimeDialog} from "@powell/primeng";
+import {PrimeDialog, PrimeDomHandler} from "@powell/primeng";
 
 @Component({
   selector: 'ng-dialog-form',

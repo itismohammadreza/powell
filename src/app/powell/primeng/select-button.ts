@@ -1,9 +1,9 @@
 import {
   SelectButton,
-  SelectButtonModule,
-  SelectButtonTemplates,
   SelectButtonChangeEvent,
-  SelectButtonOptionClickEvent
+  SelectButtonModule,
+  SelectButtonOptionClickEvent,
+  SelectButtonTemplates
 } from "primeng/selectbutton";
 
 export {SelectButtonModule as PrimeSelectButtonModule};

@@ -4,7 +4,7 @@
       'label-fix-top': labelPos == 'fix-top',
       'label-fix-side': labelPos == 'fix-side'
     }" class="toggle-button-wrapper">
-  <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field">
+  <div class="field">
     <p-toggleButton
       [(ngModel)]="value"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid()}"

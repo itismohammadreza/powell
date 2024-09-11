@@ -73,7 +73,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() inline: boolean = false;
-  @Input() format:NgColorFormat = 'hex';
+  @Input() format: NgColorFormat = 'hex';
   @Input() appendTo: any;
   @Input() disabled: boolean;
   @Input() tabindex: string;

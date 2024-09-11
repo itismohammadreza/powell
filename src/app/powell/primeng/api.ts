@@ -31,6 +31,7 @@ import {
   SharedModule,
   SortEvent,
   SortMeta,
+  TableState,
   TooltipOptions,
   Translation,
   TranslationKeys,
@@ -38,7 +39,6 @@ import {
   TreeNode,
   TreeNodeDragEvent,
   TreeTableNode,
-  TableState,
 } from 'primeng/api';
 import {ObjectUtils, UniqueComponentId, ZIndexUtils} from "primeng/utils";
 import {ConnectedOverlayScrollHandler, DomHandler} from 'primeng/dom';

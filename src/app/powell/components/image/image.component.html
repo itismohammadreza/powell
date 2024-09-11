@@ -70,9 +70,12 @@
                     [style]="previewStyle"
                     [styleClass]="previewStyleClass">
                     <span>
-                                <img [attr.alt]="alt" [attr.src]="previewImageSrc ? previewImageSrc : src"
+                                <img [attr.alt]="alt"
+                                     [attr.src]="previewImageSrc ? previewImageSrc : src"
                                      [attr.srcset]="previewImageSrcSet"
-                                     [attr.sizes]="previewImageSizes" class="p-image-preview" [ngStyle]="imagePreviewStyle()"
+                                     [attr.sizes]="previewImageSizes"
+                                     class="p-image-preview"
+                                     [ngStyle]="imagePreviewStyle()"
                                      (click)="onPreviewImageClick()"/>
                     </span>
                   </ng-pinch-zoom>

@@ -1,16 +1,16 @@
 import {
   Scroller,
-  ScrollerModule,
   ScrollerContentOptions,
   ScrollerItemOptions,
-  ScrollerLoaderOptions,
-  ScrollerLoaderIconOptions,
-  ScrollerToType,
-  ScrollerOrientationType,
-  ScrollerTemplates,
   ScrollerLazyLoadEvent,
+  ScrollerLoaderIconOptions,
+  ScrollerLoaderOptions,
+  ScrollerModule,
+  ScrollerOrientationType,
   ScrollerScrollEvent,
-  ScrollerScrollIndexChangeEvent
+  ScrollerScrollIndexChangeEvent,
+  ScrollerTemplates,
+  ScrollerToType
 } from "primeng/scroller";
 
 export {ScrollerModule as PrimeScrollerModule};

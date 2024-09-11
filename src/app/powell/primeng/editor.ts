@@ -1,9 +1,9 @@
 import {
   Editor,
-  EditorModule,
-  EditorTemplates,
   EditorInitEvent,
+  EditorModule,
   EditorSelectionChangeEvent,
+  EditorTemplates,
   EditorTextChangeEvent,
 } from "primeng/editor";
 

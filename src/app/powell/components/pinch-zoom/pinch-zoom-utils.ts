@@ -589,7 +589,7 @@ export class IvyPinch {
     }
   }
 
-  setZoom(properties: { scale: number, center?: number[] }) {
+  setZoom(properties: {scale: number, center?: number[]}) {
     this.scale = properties.scale;
 
     let xCenter;

@@ -1,18 +1,18 @@
 import {
   PickList,
-  PickListModule,
-  PickListTemplates,
   PickListFilterOptions,
-  PickListSourceFilterEvent,
-  PickListMoveToSourceEvent,
+  PickListModule,
   PickListMoveAllToSourceEvent,
   PickListMoveAllToTargetEvent,
+  PickListMoveToSourceEvent,
   PickListMoveToTargetEvent,
+  PickListSourceFilterEvent,
   PickListSourceReorderEvent,
   PickListSourceSelectEvent,
   PickListTargetFilterEvent,
   PickListTargetReorderEvent,
   PickListTargetSelectEvent,
+  PickListTemplates,
 } from "primeng/picklist";
 
 export {PickListModule as PrimePickListModule};

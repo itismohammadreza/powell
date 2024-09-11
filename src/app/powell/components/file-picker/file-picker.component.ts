@@ -37,21 +37,21 @@ import {
   NgValidation
 } from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
-import {PrimeFileUpload} from "@powell/primeng";
-import {ConfigService, UtilsService} from "@powell/api";
-import {DestroyService} from "@core/utils";
 import {
   PrimeFileBeforeUploadEvent,
   PrimeFileProgressEvent,
   PrimeFileRemoveEvent,
   PrimeFileSelectEvent,
   PrimeFileSendEvent,
+  PrimeFileUpload,
   PrimeFileUploadErrorEvent,
   PrimeFileUploadEvent,
   PrimeFileUploadHandlerEvent,
   PrimeRemoveUploadedFileEvent,
   PrimeUniqueComponentId
 } from "@powell/primeng";
+import {ConfigService, UtilsService} from "@powell/api";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-file-picker',

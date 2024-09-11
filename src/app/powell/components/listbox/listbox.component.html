@@ -63,7 +63,8 @@
         (onBlur)="emitter('onBlur', $event)"
         (onSelectAllChange)="emitter('onSelectAllChange', $event)">
         <ng-container *ngFor="let t of templates">
-          <ng-template [pTemplate]="t.getType()" let-item let-options="options" let-index="index" *ngIf="templateMap[t.getType()]">
+          <ng-template [pTemplate]="t.getType()" let-item let-options="options" let-index="index"
+                       *ngIf="templateMap[t.getType()]">
             <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item,options,index}"/>
           </ng-template>
         </ng-container>

@@ -1,4 +1,4 @@
-import {Button, ButtonModule, ButtonTemplates, ButtonDirective} from "primeng/button";
+import {Button, ButtonDirective, ButtonModule, ButtonTemplates} from "primeng/button";
 
 export {ButtonModule as PrimeButtonModule};
 export {Button as PrimeButton};

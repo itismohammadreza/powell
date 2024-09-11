@@ -1,4 +1,4 @@
-import {Tag, TagModule,TagTemplates} from "primeng/tag";
+import {Tag, TagModule, TagTemplates} from "primeng/tag";
 
 export {TagModule as PrimeTagModule};
 export {Tag as PrimeTag};

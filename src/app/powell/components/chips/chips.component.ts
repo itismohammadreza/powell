@@ -35,12 +35,7 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
-import {
-  PrimeChipsAddEvent,
-  PrimeChipsClickEvent,
-  PrimeChipsRemoveEvent,
-  PrimeUniqueComponentId
-} from "@powell/primeng";
+import {PrimeChipsAddEvent, PrimeChipsClickEvent, PrimeChipsRemoveEvent, PrimeUniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({

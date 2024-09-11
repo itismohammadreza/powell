@@ -99,7 +99,7 @@
                                       *ngIf="currentView === 'date'"
                                       class="p-datepicker-month p-link"
                                       [disabled]="switchViewButtonDisabled()">
-                                        {{getMonthName(month.month)}}
+                                        {{ getMonthName(month.month) }}
                                     </button>
                                     <button
                                       type="button"
@@ -108,13 +108,13 @@
                                       *ngIf="currentView !== 'year'"
                                       class="p-datepicker-year p-link"
                                       [disabled]="switchViewButtonDisabled()">
-                                        {{getYear(month)}}
+                                        {{ getYear(month) }}
                                     </button>
                                     <span class="p-datepicker-decade" *ngIf="currentView === 'year'">
                                         <ng-container *ngIf="!decadeTemplate">
-                                          {{yearPickerValues()[0]}}
+                                          {{ yearPickerValues()[0] }}
                                           -
-                                          {{yearPickerValues()[yearPickerValues().length - 1]}}
+                                          {{ yearPickerValues()[yearPickerValues().length - 1] }}
                                         </ng-container>
                                         <ng-container
                                           *ngTemplateOutlet="decadeTemplate; context: {$implicit: yearPickerValues}">
@@ -138,7 +138,7 @@
                                             </th>
                                             <th scope="col"
                                                 *ngFor="let weekDay of weekDays;let begin = first; let end = last">
-                                                <span>{{weekDay}}</span>
+                                                <span>{{ weekDay }}</span>
                                             </th>
                                         </tr>
                                     </thead>
@@ -146,7 +146,7 @@
                                         <tr *ngFor="let week of month.dates; let j = index;">
                                             <td *ngIf="showWeek" class="p-datepicker-weeknumber">
                                                 <span class="p-disabled">
-                                                    {{month.weekNumbers[j]}}
+                                                    {{ month.weekNumbers[j] }}
                                                 </span>
                                             </td>
                                             <td *ngFor="let date of week"
@@ -156,8 +156,10 @@
                                                       [ngClass]="{'p-highlight':isSelected(date), 'p-disabled': !date.selectable}"
                                                       (click)="onDateSelect($event,date)" draggable="false"
                                                       (keydown)="onDateCellKeydown($event,date,i)" pRipple>
-                                                        <ng-container *ngIf="!dateTemplate">{{date.day}}</ng-container>
-                                                        <ng-container *ngTemplateOutlet="dateTemplate; context: {$implicit: date}"/>
+                                                        <ng-container
+                                                          *ngIf="!dateTemplate">{{ date.day }}</ng-container>
+                                                        <ng-container
+                                                          *ngTemplateOutlet="dateTemplate; context: {$implicit: date}"/>
                                                     </span>
                                                 </ng-container>
                                             </td>
@@ -171,14 +173,14 @@
                         <span *ngFor="let m of monthPickerValues(); let i = index" (click)="onMonthSelect($event, i)"
                               (keydown)="onMonthCellKeydown($event,i)" class="p-monthpicker-month"
                               [ngClass]="{'p-highlight': isMonthSelected(i), 'p-disabled': isMonthDisabled(i)}" pRipple>
-                            {{m}}
+                            {{ m }}
                         </span>
                     </div>
                     <div class="p-yearpicker" *ngIf="currentView === 'year'">
                         <span *ngFor="let y of yearPickerValues()" (click)="onYearSelect($event, y)"
                               (keydown)="onYearCellKeydown($event,y)" class="p-yearpicker-year"
                               [ngClass]="{'p-highlight': isYearSelected(y)}" pRipple>
-                            {{y}}
+                            {{ y }}
                         </span>
                     </div>
                 </ng-container>
@@ -194,7 +196,7 @@
                             <span class="pi pi-chevron-up"></span>
                         </button>
                         <span><ng-container *ngIf="currentHour < 10">0</ng-container>
-                          {{currentHour}}</span>
+                          {{ currentHour }}</span>
                         <button class="p-link" type="button" (keydown)="onContainerButtonKeydown($event)"
                                 (keydown.enter)="decrementHour($event)" (keydown.space)="decrementHour($event)"
                                 (mousedown)="onTimePickerElementMouseDown($event, 0, -1)"
@@ -206,7 +208,7 @@
                         </button>
                     </div>
                     <div class="p-separator">
-                        <span>{{timeSeparator}}</span>
+                        <span>{{ timeSeparator }}</span>
                     </div>
                     <div class="p-minute-picker">
                         <button class="p-link" type="button" (keydown)="onContainerButtonKeydown($event)"
@@ -219,7 +221,7 @@
                             <span class="pi pi-chevron-up"></span>
                         </button>
                         <span><ng-container *ngIf="currentMinute < 10">0</ng-container>
-                          {{currentMinute}}</span>
+                          {{ currentMinute }}</span>
                         <button class="p-link" type="button" (keydown)="onContainerButtonKeydown($event)"
                                 (keydown.enter)="decrementMinute($event)" (keydown.space)="decrementMinute($event)"
                                 (mousedown)="onTimePickerElementMouseDown($event, 1, -1)"
@@ -231,7 +233,7 @@
                         </button>
                     </div>
                     <div class="p-separator" *ngIf="showSeconds">
-                        <span>{{timeSeparator}}</span>
+                        <span>{{ timeSeparator }}</span>
                     </div>
                     <div class="p-second-picker" *ngIf="showSeconds">
                         <button class="p-link" type="button" (keydown)="onContainerButtonKeydown($event)"
@@ -244,7 +246,7 @@
                             <span class="pi pi-chevron-up"></span>
                         </button>
                         <span><ng-container *ngIf="currentSecond < 10">0</ng-container>
-                          {{currentSecond}}</span>
+                          {{ currentSecond }}</span>
                         <button class="p-link" type="button" (keydown)="onContainerButtonKeydown($event)"
                                 (keydown.enter)="decrementSecond($event)" (keydown.space)="decrementSecond($event)"
                                 (mousedown)="onTimePickerElementMouseDown($event, 2, -1)"
@@ -260,7 +262,7 @@
                                 (click)="toggleAMPM($event)" (keydown.enter)="toggleAMPM($event)" pRipple>
                             <span class="pi pi-chevron-up"></span>
                         </button>
-                        <span>{{pm ? 'PM' : 'AM'}}</span>
+                        <span>{{ pm ? 'PM' : 'AM' }}</span>
                         <button class="p-link" type="button" (keydown)="onContainerButtonKeydown($event)"
                                 (click)="toggleAMPM($event)" (keydown.enter)="toggleAMPM($event)" pRipple>
                             <span class="pi pi-chevron-down"></span>

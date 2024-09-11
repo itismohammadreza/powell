@@ -2,27 +2,27 @@
   <p-card header="Utils"
           subheader="Utils is a helper utility service to implement different things. Example below demonstrates how to use methods of it."/>
   <p-panel [header]="'preview' | translate">
-    <p-divider align="left"><h6 class="mb-0">{{'httpRequest' | translate}}</h6></p-divider>
+    <p-divider align="left"><h6 class="mb-0">{{ 'httpRequest' | translate }}</h6></p-divider>
     <ng-button [async]="true" (onClickAsync)="request($event)" label="HTTP Request"/>
 
-    <p-divider align="left"><h6 class="mb-0">{{'customDialog' | translate}}</h6></p-divider>
+    <p-divider align="left"><h6 class="mb-0">{{ 'customDialog' | translate }}</h6></p-divider>
     <ng-button (click)="modal.open()" label="Custom Dialog"/>
 
-    <p-divider align="left"><h6 class="mb-0">{{'customDynamicDialog' | translate}}</h6></p-divider>
+    <p-divider align="left"><h6 class="mb-0">{{ 'customDynamicDialog' | translate }}</h6></p-divider>
     <ng-button (click)="showCustomDynamicDialog()" label="Custom Dynamic Dialog"/>
     <p class="mt-3 border rounded p-1" *ngIf="customDynamicDialogResult">
       <b> Custom Dynamic Dialog Result: </b>
-      {{customDynamicDialogResult}}
+      {{ customDynamicDialogResult }}
     </p>
 
-    <p-divider align="left"><h6 class="mb-0">{{'numberToPersianWord' | translate}}</h6></p-divider>
+    <p-divider align="left"><h6 class="mb-0">{{ 'numberToPersianWord' | translate }}</h6></p-divider>
     <ng-input-number [placeholder]="'typeNumber' | translate" (onInput)="onInputChange($event)"/>
-    <p class="mt-3 border rounded p-1">{{persianWord || '-'}}</p>
+    <p class="mt-3 border rounded p-1">{{ persianWord || '-' }}</p>
 
-    <p-divider align="left"><h6 class="mb-0">{{'networkStatus' | translate}}</h6></p-divider>
+    <p-divider align="left"><h6 class="mb-0">{{ 'networkStatus' | translate }}</h6></p-divider>
     <p class="mt-3 border rounded p-1 text-white"
        [ngClass]="{'bg-green-600':networkStatus == 'online', 'bg-red-600':networkStatus == 'offline'}">
-      {{networkStatus}}
+      {{ networkStatus }}
     </p>
   </p-panel>
 </div>

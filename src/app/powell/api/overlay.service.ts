@@ -11,7 +11,17 @@ import {
   DynamicDialogInjector,
   DynamicDialogRef
 } from "@powell/components/overlay";
-import {PrimeConfirmDialog, PrimeConfirmPopup, PrimeToast} from "@powell/primeng";
+import {
+  PrimeConfirmation,
+  PrimeConfirmationService,
+  PrimeConfirmDialog,
+  PrimeConfirmEventType,
+  PrimeConfirmPopup,
+  PrimeMessage,
+  PrimeMessageService,
+  PrimeToast,
+  PrimeUniqueComponentId
+} from "@powell/primeng";
 import {
   NgConfirmDialogOptions,
   NgConfirmPopupOptions,
@@ -22,14 +32,6 @@ import {
   NgHistoryState,
   NgToastOptions
 } from '@powell/models';
-import {
-  PrimeConfirmation,
-  PrimeConfirmationService,
-  PrimeConfirmEventType,
-  PrimeMessage,
-  PrimeMessageService,
-  PrimeUniqueComponentId
-} from "@powell/primeng";
 
 @Injectable()
 export class OverlayService {
@@ -125,7 +127,7 @@ export class OverlayService {
     for (const key in options) {
       instance[key] = options[key];
     }
-    instance.breakpoints = {'767px': { width: '100%', right: '0', left: '0' },...options.breakpoints};
+    instance.breakpoints = {'767px': {width: '100%', right: '0', left: '0'}, ...options.breakpoints};
     setTimeout(() => {
       this.messageService.add(toast);
     }, 0);
@@ -146,8 +148,8 @@ export class OverlayService {
     const {instance} = this.confirmPopupCmpRef;
     const confirmation: PrimeConfirmation = {
       ...options,
-      acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
-      rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
+      acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
+      rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
     }
     for (const key in options) {
       instance[key] = options[key];
@@ -181,8 +183,8 @@ export class OverlayService {
     const {instance} = this.confirmCmpRef;
     const confirmation: PrimeConfirmation = {
       ...options,
-      acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
-      rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-100' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
+      acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
+      rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
     }
     for (const key in options) {
       instance[key] = options[key];

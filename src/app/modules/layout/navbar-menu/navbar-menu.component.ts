@@ -152,6 +152,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   showBackdrop() {
-   return ['overlay-mask', 'push-mask'].includes(this.tempSidebarType);
+    return ['overlay-mask', 'push-mask'].includes(this.tempSidebarType);
   }
 }

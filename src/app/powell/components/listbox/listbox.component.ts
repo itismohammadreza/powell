@@ -133,9 +133,9 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-        ControlContainer,
-        null,
-        {optional: true, host: true, skipSelf: true}
+      ControlContainer,
+      null,
+      {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {

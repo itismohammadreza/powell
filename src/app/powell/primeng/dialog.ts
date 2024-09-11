@@ -1,4 +1,4 @@
-import {Dialog, DialogModule,DialogTemplates} from "primeng/dialog";
+import {Dialog, DialogModule, DialogTemplates} from "primeng/dialog";
 
 export {DialogModule as PrimeDialogModule};
 export {Dialog as PrimeDialog};

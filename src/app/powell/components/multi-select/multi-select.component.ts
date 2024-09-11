@@ -38,13 +38,13 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {
-  PrimeMultiSelectSelectAllChangeEvent,
   PrimeMultiSelectBlurEvent,
   PrimeMultiSelectChangeEvent,
   PrimeMultiSelectFilterEvent,
   PrimeMultiSelectFocusEvent,
   PrimeMultiSelectLazyLoadEvent,
   PrimeMultiSelectRemoveEvent,
+  PrimeMultiSelectSelectAllChangeEvent,
   PrimeOverlayOptions,
   PrimeScrollerOptions,
   PrimeUniqueComponentId

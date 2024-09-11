@@ -1,6 +1,5 @@
 import {
   AfterContentInit,
-  ChangeDetectionStrategy,
   Component,
   ContentChildren,
   EventEmitter,

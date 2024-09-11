@@ -27,8 +27,8 @@ import {
   NgDatepickerDateType,
   NgDatepickerHourFormat,
   NgDatepickerSelectionMode,
-  NgDatepickerViewMode,
-  NgIconPosition, NgInputVariant,
+  NgIconPosition,
+  NgInputVariant,
   NgLabelPosition,
   NgSize,
   NgValidation
@@ -37,8 +37,10 @@ import {DestroyService} from "@core/utils";
 import {AnimationEvent} from "@angular/animations";
 import {
   PrimeCalendarMonthChangeEvent,
-  PrimeCalendarResponsiveOptions, PrimeCalendarTypeView,
-  PrimeCalendarYearChangeEvent, PrimeLocaleSettings,
+  PrimeCalendarResponsiveOptions,
+  PrimeCalendarTypeView,
+  PrimeCalendarYearChangeEvent,
+  PrimeLocaleSettings,
   PrimeUniqueComponentId
 } from "@powell/primeng";
 import {ConfigService} from "@powell/api";

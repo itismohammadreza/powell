@@ -27,11 +27,7 @@ import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
-import {
-  PrimeSelectButtonChangeEvent,
-  PrimeSelectButtonOptionClickEvent,
-  PrimeUniqueComponentId
-} from "@powell/primeng";
+import {PrimeSelectButtonChangeEvent, PrimeSelectButtonOptionClickEvent, PrimeUniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({

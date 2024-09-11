@@ -1,9 +1,9 @@
 import {
   Fieldset,
-  FieldsetModule,
-  FieldsetTemplates,
   FieldsetAfterToggleEvent,
   FieldsetBeforeToggleEvent,
+  FieldsetModule,
+  FieldsetTemplates,
 } from "primeng/fieldset";
 
 export {FieldsetModule as PrimeFieldsetModule};

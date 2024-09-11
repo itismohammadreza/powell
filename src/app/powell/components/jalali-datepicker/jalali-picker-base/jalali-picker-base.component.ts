@@ -1379,7 +1379,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
       //space
       case 13:
       case 32: {
-        if(event.which == 13){
+        if (event.which == 13) {
           this.onMonthSelect(event, index);
         }
         this.overlayVisible = false;

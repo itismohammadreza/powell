@@ -17,22 +17,22 @@ export type NgEmptyIcon = 'box1' | 'box2' | 'magnifier';
 export type NgPosition = 'left' | 'right' | 'top' | 'bottom';
 export type NgIconPosition = Exclude<NgPosition, 'top' | 'bottom'>;
 export type NgToastPosition =
-    | 'top-right'
-    | 'top-left'
-    | 'bottom-right'
-    | 'bottom-left'
-    | 'top-center'
-    | 'bottom-center'
-    | 'center';
+  | 'top-right'
+  | 'top-left'
+  | 'bottom-right'
+  | 'bottom-left'
+  | 'top-center'
+  | 'bottom-center'
+  | 'center';
 export type NgDialogPosition =
-    | 'top'
-    | 'bottom'
-    | 'left'
-    | 'right'
-    | 'topleft'
-    | 'topright'
-    | 'bottomleft'
-    | 'bottomright'
-    | 'center';
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'topleft'
+  | 'topright'
+  | 'bottomleft'
+  | 'bottomright'
+  | 'center';
 
 export type NgCssObject = Partial<CSSStyleDeclaration>;

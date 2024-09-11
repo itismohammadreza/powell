@@ -1,4 +1,4 @@
-import {ConfirmPopup, ConfirmPopupModule,ConfirmPopupTemplates} from "primeng/confirmpopup";
+import {ConfirmPopup, ConfirmPopupModule, ConfirmPopupTemplates} from "primeng/confirmpopup";
 
 export {ConfirmPopupModule as PrimeConfirmPopupModule};
 export {ConfirmPopup as PrimeConfirmPopup};

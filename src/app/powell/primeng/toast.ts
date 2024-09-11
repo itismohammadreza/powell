@@ -1,7 +1,6 @@
 import {
   Toast,
   ToastCloseEvent,
-  ToastItem,
   ToastItemCloseEvent,
   ToastModule,
   ToastPositionType,

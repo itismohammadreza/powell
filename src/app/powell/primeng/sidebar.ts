@@ -1,4 +1,4 @@
-import {Sidebar, SidebarModule, SidebarTemplates } from "primeng/sidebar";
+import {Sidebar, SidebarModule, SidebarTemplates} from "primeng/sidebar";
 
 export {SidebarModule as PrimeSidebarModule};
 export {Sidebar as PrimeSidebar};

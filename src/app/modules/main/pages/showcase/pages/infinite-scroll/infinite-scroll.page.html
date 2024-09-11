@@ -1,10 +1,11 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4 [&_.p-panel-content]:overflow-scroll [&_.p-panel-content]:max-w-[500px]">
+<div
+  class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4 [&_.p-panel-content]:overflow-scroll [&_.p-panel-content]:max-w-[500px]">
   <p-card header="InfiniteScroll"
           subheader="InfiniteScroll is a container to implement infinitely loading data."/>
   <p-panel [header]="'preview' | translate">
     <ng-infinite-scroll [data]="list" (scrolled)="onScroll($event)">
       <ng-template ngTemplate="content" let-item let-i="index">
-        <p>{{i + 1}} - {{item}}</p>
+        <p>{{ i + 1 }} - {{ item }}</p>
       </ng-template>
       <ng-template ngTemplate="loading">
         <i class="pi pi-spinner pi-spin h3"></i>

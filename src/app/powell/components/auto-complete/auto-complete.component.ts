@@ -36,16 +36,18 @@ import {
   NgValidation
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
-import {PrimeOverlayOptions, PrimeScrollerOptions, PrimeUniqueComponentId} from "@powell/primeng";
-import {DestroyService} from "@core/utils";
-import {ConfigService} from "@powell/api";
 import {
   PrimeAutoCompleteCompleteEvent,
   PrimeAutoCompleteDropdownClickEvent,
   PrimeAutoCompleteLazyLoadEvent,
   PrimeAutoCompleteSelectEvent,
   PrimeAutoCompleteUnselectEvent,
+  PrimeOverlayOptions,
+  PrimeScrollerOptions,
+  PrimeUniqueComponentId
 } from "@powell/primeng";
+import {DestroyService} from "@core/utils";
+import {ConfigService} from "@powell/api";
 
 @Component({
   selector: 'ng-auto-complete',

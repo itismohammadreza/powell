@@ -4,7 +4,8 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
-  forwardRef, inject,
+  forwardRef,
+  inject,
   Injector,
   Input,
   OnInit,
@@ -117,9 +118,9 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
     const controlContainer = this.injector.get(
-        ControlContainer,
-        null,
-        {optional: true, host: true, skipSelf: true}
+      ControlContainer,
+      null,
+      {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
