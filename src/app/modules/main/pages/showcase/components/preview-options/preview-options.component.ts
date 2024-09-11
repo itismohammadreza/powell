@@ -847,7 +847,6 @@ export class PreviewOptionsComponent implements OnInit {
 
   createComponent(cmp: Type<any>, previewItem: PreviewItem, row: 'firstRow' | 'secondRow') {
     const cmpRef = this[row].createComponent(cmp);
-    cmpRef.location.nativeElement.classList.add('col-md-6', 'col-xl-4');
     cmpRef.instance.label = this.translationService.instant(previewItem);
     cmpRef.instance.labelWidth = 130;
     cmpRef.instance.value = this[previewItem];
@@ -861,7 +860,6 @@ export class PreviewOptionsComponent implements OnInit {
     })
     switch (cmp) {
       case DropdownComponent:
-        cmpRef.location.nativeElement.classList.add('mb-4');
         if (previewItem == 'addon') {
           cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
             switch (event.value) {
@@ -896,7 +894,6 @@ export class PreviewOptionsComponent implements OnInit {
         });
         break;
       case InputTextComponent:
-        cmpRef.location.nativeElement.classList.add('mb-4');
         cmpRef.instance.onInput.pipe(takeUntil(this.destroy$)).subscribe(event => {
           this[`${previewItem}Change`].emit(event.target.value);
         });

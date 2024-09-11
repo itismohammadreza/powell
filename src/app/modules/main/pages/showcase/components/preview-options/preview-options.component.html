@@ -1,9 +1,5 @@
-<div class="container-fluid p-0">
-  <div class="row">
-    <ng-container #firstRow/>
-  </div>
-  <p-divider/>
-  <div class="row">
-    <ng-container #secondRow/>
-  </div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+  <ng-container #firstRow/>
+  <p-divider class="md:col-span-2 lg:col-span-3"/>
+  <ng-container #secondRow/>
 </div>
