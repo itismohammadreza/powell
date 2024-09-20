@@ -28,13 +28,13 @@ import {NgAddon, NgCssObject, NgFilterMatchMode, NgFixLabelPosition, NgValidatio
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
-  PrimeListboxChangeEvent,
-  PrimeListboxClickEvent,
-  PrimeListboxDoubleClickEvent,
-  PrimeListboxFilterEvent,
-  PrimeListboxSelectAllChangeEvent,
-  PrimeScrollerOptions,
-  PrimeUniqueComponentId
+  $ListboxChangeEvent,
+  $ListboxClickEvent,
+  $ListboxDoubleClickEvent,
+  $ListboxFilterEvent,
+  $ListboxSelectAllChangeEvent,
+  $ScrollerOptions,
+  $UniqueComponentId
 } from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
@@ -68,7 +68,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   // native properties
-  @Input() id: string = PrimeUniqueComponentId();
+  @Input() id: string = $UniqueComponentId();
   @Input() searchMessage: string;
   @Input() emptySelectionMessage: string;
   @Input() selectionMessage: string;
@@ -81,7 +81,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() lazy: boolean = false;
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: PrimeScrollerOptions;
+  @Input() virtualScrollOptions: $ScrollerOptions;
   @Input() scrollHeight: string = '200px';
   @Input() tabindex: number;
   @Input() multiple: boolean = false;
@@ -112,13 +112,13 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() options: any[];
   @Input() filterValue: string;
   @Input() selectAll: boolean;
-  @Output() onChange = new EventEmitter<PrimeListboxChangeEvent>();
-  @Output() onClick = new EventEmitter<PrimeListboxClickEvent>();
-  @Output() onDblClick = new EventEmitter<PrimeListboxDoubleClickEvent>();
-  @Output() onFilter = new EventEmitter<PrimeListboxFilterEvent>();
+  @Output() onChange = new EventEmitter<$ListboxChangeEvent>();
+  @Output() onClick = new EventEmitter<$ListboxClickEvent>();
+  @Output() onDblClick = new EventEmitter<$ListboxDoubleClickEvent>();
+  @Output() onFilter = new EventEmitter<$ListboxFilterEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
   @Output() onBlur = new EventEmitter<FocusEvent>();
-  @Output() onSelectAllChange = new EventEmitter<PrimeListboxSelectAllChangeEvent>();
+  @Output() onSelectAllChange = new EventEmitter<$ListboxSelectAllChangeEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
@@ -168,17 +168,17 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
     (this[name] as EventEmitter<any>).emit(event);
   }
 
-  _onChange(event: PrimeListboxChangeEvent) {
+  _onChange(event: $ListboxChangeEvent) {
     this.onChange.emit(event);
     this.onModelChange(event.value);
   }
 
-  _onDblClick(event: PrimeListboxDoubleClickEvent) {
+  _onDblClick(event: $ListboxDoubleClickEvent) {
     this.onDblClick.emit(event);
     this.onModelChange(event.value);
   }
 
-  _onClick(event: PrimeListboxClickEvent) {
+  _onClick(event: $ListboxClickEvent) {
     this.onClick.emit(event);
     this.onModelChange(event.value);
   }

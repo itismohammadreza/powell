@@ -1,5 +1,5 @@
 import {Inplace, InplaceModule, InplaceTemplates} from "primeng/inplace";
 
-export {InplaceModule as PrimeInplaceModule};
-export {Inplace as PrimeInplace};
-export {InplaceTemplates as PrimeInplaceTemplates};
+export {InplaceModule as $InplaceModule};
+export {Inplace as $Inplace};
+export {InplaceTemplates as $InplaceTemplates};

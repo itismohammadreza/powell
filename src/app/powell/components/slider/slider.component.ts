@@ -22,7 +22,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeSliderChangeEvent, PrimeSliderSlideEndEvent, PrimeUniqueComponentId} from "@powell/primeng";
+import {$SliderChangeEvent, $SliderSlideEndEvent, $UniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -53,7 +53,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
-  @Input() id: string = PrimeUniqueComponentId();
+  @Input() id: string = $UniqueComponentId();
   // native properties
   @Input() animate: boolean = false;
   @Input() disabled: boolean;
@@ -68,8 +68,8 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   @Input() ariaLabelledBy: string;
   @Input() tabindex: number;
   @Input() autofocus: boolean = false;
-  @Output() onChange = new EventEmitter<PrimeSliderChangeEvent>();
-  @Output() onSlideEnd = new EventEmitter<PrimeSliderSlideEndEvent>();
+  @Output() onChange = new EventEmitter<$SliderChangeEvent>();
+  @Output() onSlideEnd = new EventEmitter<$SliderSlideEndEvent>();
 
   ngControl: NgControl;
   onModelChange: Function = () => {
@@ -106,12 +106,12 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
     this.configService.applyConfigToComponent(this);
   }
 
-  _onChange(event: PrimeSliderChangeEvent) {
+  _onChange(event: $SliderChangeEvent) {
     this.onModelChange(event.value);
     this.onChange.emit(event);
   }
 
-  _onSlideEnd(event: PrimeSliderSlideEndEvent) {
+  _onSlideEnd(event: $SliderSlideEndEvent) {
     this.onModelChange(event.value);
     this.onSlideEnd.emit(event);
   }

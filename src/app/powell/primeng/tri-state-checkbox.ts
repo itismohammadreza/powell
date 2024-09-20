@@ -5,7 +5,7 @@ import {
   TriStateCheckboxTemplates
 } from "primeng/tristatecheckbox";
 
-export {TriStateCheckboxModule as PrimeTriStateCheckboxModule};
-export {TriStateCheckbox as PrimeTriStateCheckbox};
-export {TriStateCheckboxChangeEvent as PrimeTriStateCheckboxChangeEvent};
-export {TriStateCheckboxTemplates as PrimeTriStateCheckboxTemplates};
+export {TriStateCheckboxModule as $TriStateCheckboxModule};
+export {TriStateCheckbox as $TriStateCheckbox};
+export {TriStateCheckboxChangeEvent as $TriStateCheckboxChangeEvent};
+export {TriStateCheckboxTemplates as $TriStateCheckboxTemplates};

@@ -1,4 +1,4 @@
 import {InputTextarea, InputTextareaModule} from "primeng/inputtextarea";
 
-export {InputTextareaModule as PrimeInputTextareaModule};
-export {InputTextarea as PrimeInputTextarea};
+export {InputTextareaModule as $InputTextareaModule};
+export {InputTextarea as $InputTextarea};

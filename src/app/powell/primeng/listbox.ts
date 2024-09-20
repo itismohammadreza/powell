@@ -10,12 +10,12 @@ import {
   ListboxTemplates
 } from "primeng/listbox";
 
-export {ListboxModule as PrimeListboxModule};
-export {Listbox as PrimeListbox};
-export {ListboxChangeEvent as PrimeListboxChangeEvent};
-export {ListboxClickEvent as PrimeListboxClickEvent};
-export {ListboxFilterEvent as PrimeListboxFilterEvent};
-export {ListboxDoubleClickEvent as PrimeListboxDoubleClickEvent};
-export {ListboxFilterOptions as PrimeListboxFilterOptions};
-export {ListboxSelectAllChangeEvent as PrimeListboxSelectAllChangeEvent};
-export {ListboxTemplates as PrimeListboxTemplates};
+export {ListboxModule as $ListboxModule};
+export {Listbox as $Listbox};
+export {ListboxChangeEvent as $ListboxChangeEvent};
+export {ListboxClickEvent as $ListboxClickEvent};
+export {ListboxFilterEvent as $ListboxFilterEvent};
+export {ListboxDoubleClickEvent as $ListboxDoubleClickEvent};
+export {ListboxFilterOptions as $ListboxFilterOptions};
+export {ListboxSelectAllChangeEvent as $ListboxSelectAllChangeEvent};
+export {ListboxTemplates as $ListboxTemplates};

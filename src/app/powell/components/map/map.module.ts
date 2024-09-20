@@ -4,7 +4,7 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import {AddonModule} from "@powell/directives/addon";
 import {MapComponent} from "@powell/components/map";
 import {LabelStarModule} from "@powell/pipes/label-star";
-import {PrimeTooltipModule, PrimeTrashIcon} from "@powell/primeng";
+import {$TooltipModule, $TrashIcon} from "@powell/primeng";
 import {ButtonModule} from "@powell/components/button";
 import {TemplateModule} from "@powell/directives/template";
 
@@ -13,13 +13,13 @@ import {TemplateModule} from "@powell/directives/template";
   exports: [MapComponent, TemplateModule],
   imports: [
     ButtonModule,
-    PrimeTooltipModule,
+    $TooltipModule,
     LeafletModule,
     CommonModule,
     LabelStarModule,
     AddonModule,
     TemplateModule,
-    PrimeTrashIcon
+    $TrashIcon
   ],
 })
 export class MapModule {

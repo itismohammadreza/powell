@@ -14,7 +14,7 @@ import {
 import {BehaviorSubject, takeUntil} from 'rxjs';
 import {ActivatedRouteSnapshot, Data, NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs/operators";
-import {PrimeBreadcrumbItemClickEvent, PrimeMenuItem} from "@powell/primeng";
+import {$BreadcrumbItemClickEvent, $MenuItem} from "@powell/primeng";
 import {NgCssObject} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {TemplateDirective} from "@powell/directives/template";
@@ -32,17 +32,17 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
   private destroy$ = inject(DestroyService);
   private configService = inject(ConfigService);
 
-  @Input() items: PrimeMenuItem[];
+  @Input() items: $MenuItem[];
   @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() home: PrimeMenuItem;
+  @Input() home: $MenuItem;
   @Input() homeAriaLabel: string;
   @Input() rtl: boolean;
   @Input() followConfig: boolean;
-  @Output() onItemClick = new EventEmitter<PrimeBreadcrumbItemClickEvent>();
+  @Output() onItemClick = new EventEmitter<$BreadcrumbItemClickEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  _breadcrumbs$ = new BehaviorSubject<PrimeMenuItem[]>([]);
+  _breadcrumbs$ = new BehaviorSubject<$MenuItem[]>([]);
   breadcrumbs$ = this._breadcrumbs$.asObservable();
   templateMap: Record<string, TemplateRef<any>> = {};
 
@@ -53,7 +53,7 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
     }
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd), takeUntil(this.destroy$)).subscribe(() => {
       const root = this.router.routerState.snapshot.root;
-      const breadcrumbs: PrimeMenuItem[] = [];
+      const breadcrumbs: $MenuItem[] = [];
       this.addBreadcrumb(root, [], breadcrumbs);
       this._breadcrumbs$.next(breadcrumbs);
     });
@@ -67,7 +67,7 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
     });
   }
 
-  addBreadcrumb(route: ActivatedRouteSnapshot, parentUrl: string[], breadcrumbs: PrimeMenuItem[]) {
+  addBreadcrumb(route: ActivatedRouteSnapshot, parentUrl: string[], breadcrumbs: $MenuItem[]) {
     if (route) {
       const routeUrl = parentUrl.concat(route.url.map(url => url.path));
       if (route.data.breadcrumb) {
@@ -85,7 +85,7 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
     return typeof data.breadcrumb === 'function' ? data.breadcrumb(data) : data.breadcrumb;
   }
 
-  _onItemClick(event: PrimeBreadcrumbItemClickEvent) {
+  _onItemClick(event: $BreadcrumbItemClickEvent) {
     this.onItemClick.emit(event)
   }
 }

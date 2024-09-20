@@ -1,5 +1,5 @@
 import {InputMask, InputMaskModule, InputMaskTemplates} from "primeng/inputmask";
 
-export {InputMaskModule as PrimeInputMaskModule};
-export {InputMask as PrimeInputMask};
-export {InputMaskTemplates as PrimeInputMaskTemplates};
+export {InputMaskModule as $InputMaskModule};
+export {InputMask as $InputMask};
+export {InputMaskTemplates as $InputMaskTemplates};

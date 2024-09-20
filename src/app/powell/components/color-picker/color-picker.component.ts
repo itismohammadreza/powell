@@ -30,7 +30,7 @@ import {
   NgValidation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeColorPickerChangeEvent, PrimeUniqueComponentId} from "@powell/primeng";
+import {$ColorPickerChangeEvent, $UniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -77,13 +77,13 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() appendTo: any;
   @Input() disabled: boolean;
   @Input() tabindex: string;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: number = 0;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
   @Input() autofocus: boolean = false;
-  @Output() onChange = new EventEmitter<PrimeColorPickerChangeEvent>();
+  @Output() onChange = new EventEmitter<$ColorPickerChangeEvent>();
   @Output() onShow = new EventEmitter<void>();
   @Output() onHide = new EventEmitter<void>();
   @Output() onInput = new EventEmitter<Event>();
@@ -127,7 +127,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
     this.configService.applyConfigToComponent(this);
   }
 
-  _onChangeColorPicker(event: PrimeColorPickerChangeEvent) {
+  _onChangeColorPicker(event: $ColorPickerChangeEvent) {
     this.onChange.emit(event);
     this.onModelChange(event.value);
   }

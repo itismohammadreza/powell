@@ -34,12 +34,12 @@ import {
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@core/utils";
 import {
-  PrimeCalendarMonthChangeEvent,
-  PrimeCalendarResponsiveOptions,
-  PrimeCalendarTypeView,
-  PrimeCalendarYearChangeEvent,
-  PrimeLocaleSettings,
-  PrimeUniqueComponentId
+  $CalendarMonthChangeEvent,
+  $CalendarResponsiveOptions,
+  $CalendarTypeView,
+  $CalendarYearChangeEvent,
+  $LocaleSettings,
+  $UniqueComponentId
 } from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
@@ -79,7 +79,7 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() inputStyle: NgCssObject;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() name: string;
   @Input() inputStyleClass: string;
   @Input() placeholder: string;
@@ -138,11 +138,11 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Input() disabledDays: number[];
   @Input() yearRange: string;
   @Input() showTime: boolean;
-  @Input() responsiveOptions: PrimeCalendarResponsiveOptions[];
+  @Input() responsiveOptions: $CalendarResponsiveOptions[];
   @Input() numberOfMonths: number;
   @Input() firstDayOfWeek: number;
-  @Input() locale: PrimeLocaleSettings;
-  @Input() view: PrimeCalendarTypeView;
+  @Input() locale: $LocaleSettings;
+  @Input() view: $CalendarTypeView;
   @Input() defaultDate: Date;
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
@@ -152,8 +152,8 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Output() onInput = new EventEmitter<KeyboardEvent>();
   @Output() onTodayClick = new EventEmitter<Date>();
   @Output() onClearClick = new EventEmitter<Event>();
-  @Output() onMonthChange = new EventEmitter<PrimeCalendarMonthChangeEvent>();
-  @Output() onYearChange = new EventEmitter<PrimeCalendarYearChangeEvent>();
+  @Output() onMonthChange = new EventEmitter<$CalendarMonthChangeEvent>();
+  @Output() onYearChange = new EventEmitter<$CalendarYearChangeEvent>();
   @Output() onClickOutside = new EventEmitter<Event>();
   @Output() onShow = new EventEmitter<AnimationEvent>();
 

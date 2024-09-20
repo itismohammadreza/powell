@@ -37,14 +37,14 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {
-  PrimeAutoCompleteCompleteEvent,
-  PrimeAutoCompleteDropdownClickEvent,
-  PrimeAutoCompleteLazyLoadEvent,
-  PrimeAutoCompleteSelectEvent,
-  PrimeAutoCompleteUnselectEvent,
-  PrimeOverlayOptions,
-  PrimeScrollerOptions,
-  PrimeUniqueComponentId
+  $AutoCompleteCompleteEvent,
+  $AutoCompleteDropdownClickEvent,
+  $AutoCompleteLazyLoadEvent,
+  $AutoCompleteSelectEvent,
+  $AutoCompleteUnselectEvent,
+  $OverlayOptions,
+  $ScrollerOptions,
+  $UniqueComponentId
 } from "@powell/primeng";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
@@ -89,7 +89,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() styleClass: string;
   @Input() panelStyleClass: string;
   @Input() inputStyle: NgCssObject;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() inputStyleClass: string;
   @Input() placeholder: string;
   @Input() readonly: boolean = false;
@@ -98,7 +98,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() lazy: boolean = false;
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: PrimeScrollerOptions;
+  @Input() virtualScrollOptions: $ScrollerOptions;
   @Input() maxlength: number;
   @Input() name: string;
   @Input() size: number;
@@ -130,7 +130,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() autocomplete: string = 'off';
   @Input() optionGroupChildren: string = 'items';
   @Input() optionGroupLabel: string = 'label';
-  @Input() overlayOptions: PrimeOverlayOptions;
+  @Input() overlayOptions: $OverlayOptions;
   @Input() suggestions: any[];
   @Input() itemSize: number;
   @Input() optionLabel: string | ((item: any) => string);
@@ -144,17 +144,17 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() optionDisabled: string;
   @Input() focusOnHover: boolean = false;
   @Input() variant: NgInputVariant;
-  @Output() completeMethod = new EventEmitter<PrimeAutoCompleteCompleteEvent>();
+  @Output() completeMethod = new EventEmitter<$AutoCompleteCompleteEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
-  @Output() onSelect = new EventEmitter<PrimeAutoCompleteSelectEvent>();
-  @Output() onUnselect = new EventEmitter<PrimeAutoCompleteUnselectEvent>();
-  @Output() onDropdownClick = new EventEmitter<PrimeAutoCompleteDropdownClickEvent>();
+  @Output() onSelect = new EventEmitter<$AutoCompleteSelectEvent>();
+  @Output() onUnselect = new EventEmitter<$AutoCompleteUnselectEvent>();
+  @Output() onDropdownClick = new EventEmitter<$AutoCompleteDropdownClickEvent>();
   @Output() onClear = new EventEmitter<Event>();
   @Output() onShow = new EventEmitter<Event>();
   @Output() onHide = new EventEmitter<Event>();
-  @Output() onLazyLoad = new EventEmitter<PrimeAutoCompleteLazyLoadEvent>();
+  @Output() onLazyLoad = new EventEmitter<$AutoCompleteLazyLoadEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;

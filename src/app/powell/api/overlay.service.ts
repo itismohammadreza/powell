@@ -12,15 +12,15 @@ import {
   DynamicDialogRef
 } from "@powell/components/overlay";
 import {
-  PrimeConfirmation,
-  PrimeConfirmationService,
-  PrimeConfirmDialog,
-  PrimeConfirmEventType,
-  PrimeConfirmPopup,
-  PrimeMessage,
-  PrimeMessageService,
-  PrimeToast,
-  PrimeUniqueComponentId
+  $Confirmation,
+  $ConfirmationService,
+  $ConfirmDialog,
+  $ConfirmEventType,
+  $ConfirmPopup,
+  $Message,
+  $MessageService,
+  $Toast,
+  $UniqueComponentId
 } from "@powell/primeng";
 import {
   NgConfirmDialogOptions,
@@ -36,17 +36,17 @@ import {
 @Injectable()
 export class OverlayService {
   private document = inject(DOCUMENT);
-  private confirmationService = inject(PrimeConfirmationService);
-  private messageService = inject(PrimeMessageService);
+  private confirmationService = inject($ConfirmationService);
+  private messageService = inject($MessageService);
   private injector = inject(Injector);
   private appRef = inject(ApplicationRef);
   private router = inject(Router);
   private location = inject(LocationStrategy);
   private configService = inject(ConfigService);
 
-  private toastCmpRef: ComponentRef<PrimeToast>;
-  private confirmPopupCmpRef: ComponentRef<PrimeConfirmPopup>;
-  private confirmCmpRef: ComponentRef<PrimeConfirmDialog>;
+  private toastCmpRef: ComponentRef<$Toast>;
+  private confirmPopupCmpRef: ComponentRef<$ConfirmPopup>;
+  private confirmCmpRef: ComponentRef<$ConfirmDialog>;
   private dialogCmpRef: ComponentRef<DialogComponent>;
   private dialogFormCmpRef: ComponentRef<DialogFormComponent>;
   private dynamicDialogCmpRef: ComponentRef<DynamicDialogComponent>;
@@ -116,10 +116,10 @@ export class OverlayService {
 
   showToast(options: NgToastOptions) {
     if (!this.bodyContains(this.toastCmpRef)) {
-      this.toastCmpRef = this.addToBody(PrimeToast);
+      this.toastCmpRef = this.addToBody($Toast);
     }
     const {instance} = this.toastCmpRef;
-    const toast: PrimeMessage = {
+    const toast: $Message = {
       severity: 'info',
       ...options,
       styleClass: `${options.styleClass} ${(options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr'}`,
@@ -143,10 +143,10 @@ export class OverlayService {
 
   showConfirmPopup(options: NgConfirmPopupOptions) {
     if (!this.bodyContains(this.confirmPopupCmpRef)) {
-      this.confirmPopupCmpRef = this.addToBody(PrimeConfirmPopup);
+      this.confirmPopupCmpRef = this.addToBody($ConfirmPopup);
     }
     const {instance} = this.confirmPopupCmpRef;
-    const confirmation: PrimeConfirmation = {
+    const confirmation: $Confirmation = {
       ...options,
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
@@ -178,10 +178,10 @@ export class OverlayService {
 
   showConfirmDialog(options: NgConfirmDialogOptions) {
     if (!this.bodyContains(this.confirmCmpRef)) {
-      this.confirmCmpRef = this.addToBody(PrimeConfirmDialog);
+      this.confirmCmpRef = this.addToBody($ConfirmDialog);
     }
     const {instance} = this.confirmCmpRef;
-    const confirmation: PrimeConfirmation = {
+    const confirmation: $Confirmation = {
       ...options,
       acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
       rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
@@ -201,15 +201,15 @@ export class OverlayService {
             accept(true);
           }, 5)
         },
-        reject: (type: PrimeConfirmEventType) => {
+        reject: (type: $ConfirmEventType) => {
           this.popState();
           switch (type) {
-            case PrimeConfirmEventType.REJECT:
+            case $ConfirmEventType.REJECT:
               setTimeout(() => {
                 accept(false);
               }, 5)
               break;
-            case PrimeConfirmEventType.CANCEL:
+            case $ConfirmEventType.CANCEL:
               setTimeout(() => {
                 accept(null);
               }, 5)
@@ -313,7 +313,7 @@ export class OverlayService {
 
   pushState(state: NgHistoryState) {
     if (!state.key) {
-      state.key = PrimeUniqueComponentId();
+      state.key = $UniqueComponentId();
     }
     this.location.pushState(state, '', this.router.url, '');
     this.states.push(state);

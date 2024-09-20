@@ -27,7 +27,7 @@ import {NgFixLabelPosition, NgInputVariant, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
 import {TemplateDirective} from "@powell/directives/template";
-import {PrimeInputOtpChangeEvent} from "@powell/primeng";
+import {$InputOtpChangeEvent} from "@powell/primeng";
 
 @Component({
   selector: 'ng-input-otp',
@@ -66,7 +66,7 @@ export class InputOtpComponent implements OnInit, ControlValueAccessor {
   @Input() mask: boolean = false;
   @Input() integerOnly: boolean = false;
   @Input() autofocus: boolean = false;
-  @Output() onChange = new EventEmitter<PrimeInputOtpChangeEvent>();
+  @Output() onChange = new EventEmitter<$InputOtpChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
@@ -107,7 +107,7 @@ export class InputOtpComponent implements OnInit, ControlValueAccessor {
     this.configService.applyConfigToComponent(this);
   }
 
-  _onChange(event: PrimeInputOtpChangeEvent) {
+  _onChange(event: $InputOtpChangeEvent) {
     this.onChange.emit(event);
     this.onModelChange(event.value);
   }

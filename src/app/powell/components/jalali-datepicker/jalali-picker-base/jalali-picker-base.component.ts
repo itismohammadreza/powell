@@ -25,15 +25,15 @@ import {Subject, Subscription, takeUntil} from 'rxjs';
 import {Moment} from "jalali-moment";
 import {MomentService} from "@powell/api";
 import {
-  PrimeCalendarMonthChangeEvent,
-  PrimeCalendarYearChangeEvent,
-  PrimeConfig,
-  PrimeConnectedOverlayScrollHandler,
-  PrimeDomHandler,
-  PrimeOverlayService,
-  PrimeTemplateDirective,
-  PrimeUniqueComponentId,
-  PrimeZIndexUtils
+  $CalendarMonthChangeEvent,
+  $CalendarYearChangeEvent,
+  $PrimeNGConfig,
+  $ConnectedOverlayScrollHandler,
+  $DomHandler,
+  $OverlayService,
+  $PrimeTemplate,
+  $UniqueComponentId,
+  $ZIndexUtils
 } from "@powell/primeng";
 import {NgCssObject} from "@powell/models";
 
@@ -111,9 +111,9 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
   public el = inject(ElementRef);
   public renderer = inject(Renderer2);
   public cd = inject(ChangeDetectorRef);
-  public overlayService = inject(PrimeOverlayService);
+  public overlayService = inject($OverlayService);
   private zone = inject(NgZone);
-  private config = inject(PrimeConfig);
+  private config = inject($PrimeNGConfig);
   private momentService = inject(MomentService);
 
   @Input() style: NgCssObject;
@@ -177,11 +177,11 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
   @Output() onInput = new EventEmitter<KeyboardEvent>();
   @Output() onTodayClick = new EventEmitter<Event>();
   @Output() onClearClick = new EventEmitter<Event>();
-  @Output() onMonthChange = new EventEmitter<PrimeCalendarMonthChangeEvent>();
-  @Output() onYearChange = new EventEmitter<PrimeCalendarYearChangeEvent>();
+  @Output() onMonthChange = new EventEmitter<$CalendarMonthChangeEvent>();
+  @Output() onYearChange = new EventEmitter<$CalendarYearChangeEvent>();
   @Output() onClickOutside = new EventEmitter<Event>();
   @Output() onShow = new EventEmitter<AnimationEvent>();
-  @ContentChildren(PrimeTemplateDirective) templates: QueryList<any>;
+  @ContentChildren($PrimeTemplate) templates: QueryList<any>;
   @ViewChild('container', {static: false}) containerViewChild: ElementRef;
   @ViewChild('inputfield', {static: false}) inputfieldViewChild: ElementRef;
 
@@ -394,7 +394,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   ngOnInit() {
-    this.attributeSelector = PrimeUniqueComponentId();
+    this.attributeSelector = $UniqueComponentId();
     const date = this.defaultDate || this.getMoment(this.getMoment());
     this.createResponsiveStyle();
     this.currentMonth = date.jMonth()
@@ -452,7 +452,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
       if (!this.disabled) {
         this.initFocusableCell();
         if (this.numberOfMonths === 1) {
-          this.contentViewChild.nativeElement.style.width = PrimeDomHandler.getOuterWidth(this.containerViewChild.nativeElement) + 'px';
+          this.contentViewChild.nativeElement.style.width = $DomHandler.getOuterWidth(this.containerViewChild.nativeElement) + 'px';
         }
       }
     }
@@ -1201,7 +1201,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
         event.preventDefault();
       }
     } else if (event.keyCode === 9 && this.contentViewChild) {
-      PrimeDomHandler.getFocusableElements(this.contentViewChild.nativeElement).forEach(el => el.tabIndex = '-1');
+      $DomHandler.getFocusableElements(this.contentViewChild.nativeElement).forEach(el => el.tabIndex = '-1');
       if (this.overlayVisible) {
         this.overlayVisible = false;
       }
@@ -1216,11 +1216,11 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
       //down arrow
       case 40: {
         cellContent.tabIndex = '-1';
-        let cellIndex = PrimeDomHandler.index(cell);
+        let cellIndex = $DomHandler.index(cell);
         let nextRow = cell.parentElement.nextElementSibling;
         if (nextRow) {
           let focusCell = nextRow.children[cellIndex].children[0];
-          if (PrimeDomHandler.hasClass(focusCell, 'p-disabled')) {
+          if ($DomHandler.hasClass(focusCell, 'p-disabled')) {
             this.navigationState = {backward: false};
             this.navForward(event);
           } else {
@@ -1238,11 +1238,11 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
       //up arrow
       case 38: {
         cellContent.tabIndex = '-1';
-        let cellIndex = PrimeDomHandler.index(cell);
+        let cellIndex = $DomHandler.index(cell);
         let prevRow = cell.parentElement.previousElementSibling;
         if (prevRow) {
           let focusCell = prevRow.children[cellIndex].children[0];
-          if (PrimeDomHandler.hasClass(focusCell, 'p-disabled')) {
+          if ($DomHandler.hasClass(focusCell, 'p-disabled')) {
             this.navigationState = {backward: true};
             this.navBackward(event);
           } else {
@@ -1263,7 +1263,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
         let prevCell = cell.previousElementSibling;
         if (prevCell) {
           let focusCell = prevCell.children[0];
-          if (PrimeDomHandler.hasClass(focusCell, 'p-disabled') || PrimeDomHandler.hasClass(focusCell.parentElement, 'p-datepicker-weeknumber')) {
+          if ($DomHandler.hasClass(focusCell, 'p-disabled') || $DomHandler.hasClass(focusCell.parentElement, 'p-datepicker-weeknumber')) {
             this.navigateToMonth(true, groupIndex);
           } else {
             focusCell.tabIndex = '0';
@@ -1282,7 +1282,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
         let nextCell = cell.nextElementSibling;
         if (nextCell) {
           let focusCell = nextCell.children[0];
-          if (PrimeDomHandler.hasClass(focusCell, 'p-disabled')) {
+          if ($DomHandler.hasClass(focusCell, 'p-disabled')) {
             this.navigateToMonth(false, groupIndex);
           } else {
             focusCell.tabIndex = '0';
@@ -1333,7 +1333,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
       case 40: {
         cell.tabIndex = '-1';
         var cells = cell.parentElement.children;
-        var cellIndex = PrimeDomHandler.index(cell);
+        var cellIndex = $DomHandler.index(cell);
         let nextCell = cells[event.which === 40 ? cellIndex + 3 : cellIndex - 3];
         if (nextCell) {
           nextCell.tabIndex = '0';
@@ -1418,7 +1418,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
       case 40: {
         cell.tabIndex = '-1';
         var cells = cell.parentElement.children;
-        var cellIndex = PrimeDomHandler.index(cell);
+        var cellIndex = $DomHandler.index(cell);
         let nextCell = cells[event.which === 40 ? cellIndex + 2 : cellIndex - 2];
         if (nextCell) {
           nextCell.tabIndex = '0';
@@ -1495,7 +1495,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
         this.navBackward(event);
       } else {
         let prevMonthContainer = this.contentViewChild.nativeElement.children[groupIndex - 1];
-        let cells = PrimeDomHandler.find(prevMonthContainer, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
+        let cells = $DomHandler.find(prevMonthContainer, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
         let focusCell = cells[cells.length - 1];
         focusCell.tabIndex = '0';
         focusCell.focus();
@@ -1506,7 +1506,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
         this.navForward(event);
       } else {
         let nextMonthContainer = this.contentViewChild.nativeElement.children[groupIndex + 1];
-        let focusCell = PrimeDomHandler.findSingle(nextMonthContainer, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
+        let focusCell = $DomHandler.findSingle(nextMonthContainer, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
         focusCell.tabIndex = '0';
         focusCell.focus();
       }
@@ -1521,19 +1521,19 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
         this.initFocusableCell();
 
         if (this.navigationState.backward)
-          PrimeDomHandler.findSingle(this.contentViewChild.nativeElement, '.p-datepicker-prev').focus();
+          $DomHandler.findSingle(this.contentViewChild.nativeElement, '.p-datepicker-prev').focus();
         else
-          PrimeDomHandler.findSingle(this.contentViewChild.nativeElement, '.p-datepicker-next').focus();
+          $DomHandler.findSingle(this.contentViewChild.nativeElement, '.p-datepicker-next').focus();
       } else {
         if (this.navigationState.backward) {
           let cells;
 
           if (this.currentView === 'month') {
-            cells = PrimeDomHandler.find(this.contentViewChild.nativeElement, '.p-monthpicker .p-monthpicker-month:not(.p-disabled)');
+            cells = $DomHandler.find(this.contentViewChild.nativeElement, '.p-monthpicker .p-monthpicker-month:not(.p-disabled)');
           } else if (this.currentView === 'year') {
-            cells = PrimeDomHandler.find(this.contentViewChild.nativeElement, '.p-yearpicker .p-yearpicker-year:not(.p-disabled)');
+            cells = $DomHandler.find(this.contentViewChild.nativeElement, '.p-yearpicker .p-yearpicker-year:not(.p-disabled)');
           } else {
-            cells = PrimeDomHandler.find(this.contentViewChild.nativeElement, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
+            cells = $DomHandler.find(this.contentViewChild.nativeElement, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
           }
 
           if (cells && cells.length > 0) {
@@ -1541,11 +1541,11 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
           }
         } else {
           if (this.currentView === 'month') {
-            cell = PrimeDomHandler.findSingle(this.contentViewChild.nativeElement, '.p-monthpicker .p-monthpicker-month:not(.p-disabled)');
+            cell = $DomHandler.findSingle(this.contentViewChild.nativeElement, '.p-monthpicker .p-monthpicker-month:not(.p-disabled)');
           } else if (this.currentView === 'year') {
-            cell = PrimeDomHandler.findSingle(this.contentViewChild.nativeElement, '.p-yearpicker .p-yearpicker-year:not(.p-disabled)');
+            cell = $DomHandler.findSingle(this.contentViewChild.nativeElement, '.p-yearpicker .p-yearpicker-year:not(.p-disabled)');
           } else {
-            cell = PrimeDomHandler.findSingle(this.contentViewChild.nativeElement, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
+            cell = $DomHandler.findSingle(this.contentViewChild.nativeElement, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
           }
         }
 
@@ -1565,33 +1565,33 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
     let cell;
 
     if (this.currentView === 'month') {
-      let cells = PrimeDomHandler.find(this.contentViewChild.nativeElement, '.p-monthpicker .p-monthpicker-month:not(.p-disabled)');
-      let selectedCell = PrimeDomHandler.findSingle(this.contentViewChild.nativeElement, '.p-monthpicker .p-monthpicker-month.p-highlight');
+      let cells = $DomHandler.find(this.contentViewChild.nativeElement, '.p-monthpicker .p-monthpicker-month:not(.p-disabled)');
+      let selectedCell = $DomHandler.findSingle(this.contentViewChild.nativeElement, '.p-monthpicker .p-monthpicker-month.p-highlight');
       cells.forEach(cell => cell.tabIndex = -1);
       cell = selectedCell || cells[0];
 
       if (cells.length === 0) {
-        let disabledCells = PrimeDomHandler.find(this.contentViewChild.nativeElement, '.p-monthpicker .p-monthpicker-month.p-disabled[tabindex = "0"]');
+        let disabledCells = $DomHandler.find(this.contentViewChild.nativeElement, '.p-monthpicker .p-monthpicker-month.p-disabled[tabindex = "0"]');
         disabledCells.forEach(cell => cell.tabIndex = -1);
       }
     } else if (this.currentView === 'year') {
-      let cells = PrimeDomHandler.find(this.contentViewChild.nativeElement, '.p-yearpicker .p-yearpicker-year:not(.p-disabled)');
-      let selectedCell = PrimeDomHandler.findSingle(this.contentViewChild.nativeElement, '.p-yearpicker .p-yearpicker-year.p-highlight');
+      let cells = $DomHandler.find(this.contentViewChild.nativeElement, '.p-yearpicker .p-yearpicker-year:not(.p-disabled)');
+      let selectedCell = $DomHandler.findSingle(this.contentViewChild.nativeElement, '.p-yearpicker .p-yearpicker-year.p-highlight');
       cells.forEach(cell => cell.tabIndex = -1);
       cell = selectedCell || cells[0];
 
       if (cells.length === 0) {
-        let disabledCells = PrimeDomHandler.find(this.contentViewChild.nativeElement, '.p-yearpicker .p-yearpicker-year.p-disabled[tabindex = "0"]');
+        let disabledCells = $DomHandler.find(this.contentViewChild.nativeElement, '.p-yearpicker .p-yearpicker-year.p-disabled[tabindex = "0"]');
         disabledCells.forEach(cell => cell.tabIndex = -1);
       }
     } else {
-      cell = PrimeDomHandler.findSingle(this.contentViewChild.nativeElement, 'span.p-highlight');
+      cell = $DomHandler.findSingle(this.contentViewChild.nativeElement, 'span.p-highlight');
       if (!cell) {
-        let todayCell = PrimeDomHandler.findSingle(this.contentViewChild.nativeElement, 'td.p-datepicker-today span:not(.p-disabled):not(.p-ink)');
+        let todayCell = $DomHandler.findSingle(this.contentViewChild.nativeElement, 'td.p-datepicker-today span:not(.p-disabled):not(.p-ink)');
         if (todayCell)
           cell = todayCell;
         else
-          cell = PrimeDomHandler.findSingle(this.contentViewChild.nativeElement, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
+          cell = $DomHandler.findSingle(this.contentViewChild.nativeElement, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
       }
     }
 
@@ -1609,7 +1609,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   trapFocus(event: KeyboardEvent) {
-    let focusableElements = PrimeDomHandler.getFocusableElements(this.contentViewChild.nativeElement);
+    let focusableElements = $DomHandler.getFocusableElements(this.contentViewChild.nativeElement);
 
     if (focusableElements && focusableElements.length > 0) {
       if (!focusableElements[0].ownerDocument.activeElement) {
@@ -2074,9 +2074,9 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
           this.updateFocus();
           if (this.autoZIndex) {
             if (this.touchUI)
-              PrimeZIndexUtils.set('modal', this.overlay, this.baseZIndex || this.config.zIndex.modal);
+              $ZIndexUtils.set('modal', this.overlay, this.baseZIndex || this.config.zIndex.modal);
             else
-              PrimeZIndexUtils.set('overlay', this.overlay, this.baseZIndex || this.config.zIndex.overlay);
+              $ZIndexUtils.set('overlay', this.overlay, this.baseZIndex || this.config.zIndex.overlay);
           }
 
           this.alignOverlay();
@@ -2104,7 +2104,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
 
       case 'void':
         if (this.autoZIndex) {
-          PrimeZIndexUtils.clear(event.element);
+          $ZIndexUtils.clear(event.element);
         }
         break
     }
@@ -2115,7 +2115,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
       if (this.appendTo === 'body')
         document.body.appendChild(this.overlay);
       else
-        PrimeDomHandler.appendChild(this.overlay, this.appendTo);
+        $DomHandler.appendChild(this.overlay, this.appendTo);
     }
   }
 
@@ -2131,15 +2131,15 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
     } else if (this.overlay) {
       if (this.appendTo) {
         if (this.view === 'date') {
-          this.overlay.style.width = PrimeDomHandler.getOuterWidth(this.overlay) + 'px';
-          this.overlay.style.minWidth = PrimeDomHandler.getOuterWidth(this.inputfieldViewChild.nativeElement) + 'px';
+          this.overlay.style.width = $DomHandler.getOuterWidth(this.overlay) + 'px';
+          this.overlay.style.minWidth = $DomHandler.getOuterWidth(this.inputfieldViewChild.nativeElement) + 'px';
         } else {
-          this.overlay.style.width = PrimeDomHandler.getOuterWidth(this.inputfieldViewChild.nativeElement) + 'px';
+          this.overlay.style.width = $DomHandler.getOuterWidth(this.inputfieldViewChild.nativeElement) + 'px';
         }
 
-        PrimeDomHandler.absolutePosition(this.overlay, this.inputfieldViewChild.nativeElement);
+        $DomHandler.absolutePosition(this.overlay, this.inputfieldViewChild.nativeElement);
       } else {
-        PrimeDomHandler.relativePosition(this.overlay, this.inputfieldViewChild.nativeElement);
+        $DomHandler.relativePosition(this.overlay, this.inputfieldViewChild.nativeElement);
       }
     }
   }
@@ -2149,19 +2149,19 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
       this.mask = document.createElement('div');
       this.mask.style.zIndex = String(parseInt(element.style.zIndex) - 1);
       let maskStyleClass = 'p-component-overlay p-datepicker-mask p-datepicker-mask-scrollblocker p-component-overlay p-component-overlay-enter';
-      PrimeDomHandler.addMultipleClasses(this.mask, maskStyleClass);
+      $DomHandler.addMultipleClasses(this.mask, maskStyleClass);
 
       this.maskClickListener = this.renderer.listen(this.mask, 'click', (event: any) => {
         this.disableModality();
       });
       document.body.appendChild(this.mask);
-      PrimeDomHandler.addClass(document.body, 'p-overflow-hidden');
+      $DomHandler.addClass(document.body, 'p-overflow-hidden');
     }
   }
 
   disableModality() {
     if (this.mask) {
-      PrimeDomHandler.addClass(this.mask, 'p-component-overlay-leave');
+      $DomHandler.addClass(this.mask, 'p-component-overlay-leave');
       this.animationEndListener = this.destroyMask.bind(this);
       this.mask.addEventListener('animationend', this.animationEndListener);
     }
@@ -2177,14 +2177,14 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
     let hasBlockerMasks: boolean;
     for (let i = 0; i < bodyChildren.length; i++) {
       let bodyChild = bodyChildren[i];
-      if (PrimeDomHandler.hasClass(bodyChild, 'p-datepicker-mask-scrollblocker')) {
+      if ($DomHandler.hasClass(bodyChild, 'p-datepicker-mask-scrollblocker')) {
         hasBlockerMasks = true;
         break;
       }
     }
 
     if (!hasBlockerMasks) {
-      PrimeDomHandler.removeClass(document.body, 'p-overflow-hidden');
+      $DomHandler.removeClass(document.body, 'p-overflow-hidden');
     }
 
     this.unbindAnimationEndListener();
@@ -2684,7 +2684,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
 
   bindScrollListener() {
     if (!this.scrollHandler) {
-      this.scrollHandler = new PrimeConnectedOverlayScrollHandler(this.containerViewChild.nativeElement, () => {
+      this.scrollHandler = new $ConnectedOverlayScrollHandler(this.containerViewChild.nativeElement, () => {
         if (this.overlayVisible) {
           this.hideOverlay();
         }
@@ -2706,12 +2706,12 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   isNavIconClicked(event: Event) {
-    return (PrimeDomHandler.hasClass(event.target, 'p-datepicker-prev') || PrimeDomHandler.hasClass(event.target, 'p-datepicker-prev-icon')
-      || PrimeDomHandler.hasClass(event.target, 'p-datepicker-next') || PrimeDomHandler.hasClass(event.target, 'p-datepicker-next-icon'));
+    return ($DomHandler.hasClass(event.target, 'p-datepicker-prev') || $DomHandler.hasClass(event.target, 'p-datepicker-prev-icon')
+      || $DomHandler.hasClass(event.target, 'p-datepicker-next') || $DomHandler.hasClass(event.target, 'p-datepicker-next-icon'));
   }
 
   onWindowResize() {
-    if (this.overlayVisible && !PrimeDomHandler.isTouchDevice()) {
+    if (this.overlayVisible && !$DomHandler.isTouchDevice()) {
       this.hideOverlay();
     }
   }
@@ -2738,7 +2738,7 @@ export class JalaliPickerBaseComponent implements OnInit, OnDestroy, AfterViewIn
     }
 
     if (this.overlay && this.autoZIndex) {
-      PrimeZIndexUtils.clear(this.overlay);
+      $ZIndexUtils.clear(this.overlay);
     }
 
     this.destroyResponsiveStyleElement();

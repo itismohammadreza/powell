@@ -1,5 +1,5 @@
 import {ConfirmDialog, ConfirmDialogModule, ConfirmDialogTemplates} from "primeng/confirmdialog";
 
-export {ConfirmDialogModule as PrimeConfirmDialogModule};
-export {ConfirmDialog as PrimeConfirmDialog};
-export {ConfirmDialogTemplates as PrimeConfirmDialogTemplates};
+export {ConfirmDialogModule as $ConfirmDialogModule};
+export {ConfirmDialog as $ConfirmDialog};
+export {ConfirmDialogTemplates as $ConfirmDialogTemplates};

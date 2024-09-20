@@ -35,25 +35,25 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {
-  PrimeScrollerOptions,
-  PrimeSortMeta,
-  PrimeTable,
-  PrimeTableColResizeEvent,
-  PrimeTableColumnReorderEvent,
-  PrimeTableContextMenuSelectEvent,
-  PrimeTableContextMenuSelectionChangeEvent,
-  PrimeTableFilterEvent,
-  PrimeTableHeaderCheckboxToggleEvent,
-  PrimeTableLazyLoadEvent,
-  PrimeTablePageEvent,
-  PrimeTableRowCollapseEvent,
-  PrimeTableRowExpandEvent,
-  PrimeTableRowReorderEvent,
-  PrimeTableRowSelectEvent,
-  PrimeTableRowUnSelectEvent,
-  PrimeTableSelectAllChangeEvent,
-  PrimeTableSortEvent,
-  PrimeTableState,
+  $ScrollerOptions,
+  $SortMeta,
+  $Table,
+  $TableColResizeEvent,
+  $TableColumnReorderEvent,
+  $TableContextMenuSelectEvent,
+  $TableContextMenuSelectionChangeEvent,
+  $TableFilterEvent,
+  $TableHeaderCheckboxToggleEvent,
+  $TableLazyLoadEvent,
+  $TablePageEvent,
+  $TableRowCollapseEvent,
+  $TableRowExpandEvent,
+  $TableRowReorderEvent,
+  $TableRowSelectEvent,
+  $TableRowUnSelectEvent,
+  $TableSelectAllChangeEvent,
+  $TableSortEvent,
+  $TableState,
 } from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
@@ -132,7 +132,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() scrollHeight: string;
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: PrimeScrollerOptions;
+  @Input() virtualScrollOptions: $ScrollerOptions;
   @Input() virtualScrollDelay: number = 250;
   @Input() frozenWidth: string;
   @Input() responsive: boolean;
@@ -160,34 +160,34 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() totalRecords: number;
   @Input() sortField: string;
   @Input() sortOrder: number;
-  @Input() multiSortMeta: PrimeSortMeta[];
+  @Input() multiSortMeta: $SortMeta[];
   @Input() selection: any;
   @Input() selectAll: boolean;
   @Input() virtualRowHeight: number;
   @Output() selectionChange = new EventEmitter<any>();
-  @Output() selectAllChange = new EventEmitter<PrimeTableSelectAllChangeEvent>();
-  @Output() onRowSelect = new EventEmitter<PrimeTableRowSelectEvent>();
-  @Output() onRowUnselect = new EventEmitter<PrimeTableRowUnSelectEvent>();
-  @Output() onSort = new EventEmitter<{multisortmeta: PrimeSortMeta[]} | any>();
-  @Output() onPage = new EventEmitter<PrimeTablePageEvent>();
-  @Output() onFilter = new EventEmitter<PrimeTableFilterEvent>();
-  @Output() onLazyLoad = new EventEmitter<NgAsyncEvent<PrimeTableLazyLoadEvent>>();
-  @Output() onRowExpand = new EventEmitter<PrimeTableRowExpandEvent>();
-  @Output() onRowCollapse = new EventEmitter<PrimeTableRowCollapseEvent>();
-  @Output() onContextMenuSelect = new EventEmitter<PrimeTableContextMenuSelectEvent>();
-  @Output() onColResize = new EventEmitter<PrimeTableColResizeEvent>();
-  @Output() onColReorder = new EventEmitter<PrimeTableColumnReorderEvent>();
-  @Output() onRowReorder = new EventEmitter<PrimeTableRowReorderEvent>();
-  @Output() onHeaderCheckboxToggle = new EventEmitter<PrimeTableHeaderCheckboxToggleEvent>();
+  @Output() selectAllChange = new EventEmitter<$TableSelectAllChangeEvent>();
+  @Output() onRowSelect = new EventEmitter<$TableRowSelectEvent>();
+  @Output() onRowUnselect = new EventEmitter<$TableRowUnSelectEvent>();
+  @Output() onSort = new EventEmitter<{multisortmeta: $SortMeta[]} | any>();
+  @Output() onPage = new EventEmitter<$TablePageEvent>();
+  @Output() onFilter = new EventEmitter<$TableFilterEvent>();
+  @Output() onLazyLoad = new EventEmitter<NgAsyncEvent<$TableLazyLoadEvent>>();
+  @Output() onRowExpand = new EventEmitter<$TableRowExpandEvent>();
+  @Output() onRowCollapse = new EventEmitter<$TableRowCollapseEvent>();
+  @Output() onContextMenuSelect = new EventEmitter<$TableContextMenuSelectEvent>();
+  @Output() onColResize = new EventEmitter<$TableColResizeEvent>();
+  @Output() onColReorder = new EventEmitter<$TableColumnReorderEvent>();
+  @Output() onRowReorder = new EventEmitter<$TableRowReorderEvent>();
+  @Output() onHeaderCheckboxToggle = new EventEmitter<$TableHeaderCheckboxToggleEvent>();
   @Output() sortFunction = new EventEmitter<any>();
   @Output() firstChange = new EventEmitter<number>();
   @Output() rowsChange = new EventEmitter<number>();
-  @Output() onStateSave = new EventEmitter<PrimeTableState>();
-  @Output() onStateRestore = new EventEmitter<PrimeTableState>();
-  @Output() onTableReady = new EventEmitter<PrimeTable>();
-  @Output() contextMenuSelectionChange = new EventEmitter<PrimeTableContextMenuSelectionChangeEvent>();
+  @Output() onStateSave = new EventEmitter<$TableState>();
+  @Output() onStateRestore = new EventEmitter<$TableState>();
+  @Output() onTableReady = new EventEmitter<$Table>();
+  @Output() contextMenuSelectionChange = new EventEmitter<$TableContextMenuSelectionChangeEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
-  @ViewChild('dataTable', {static: true}) dataTable: PrimeTable;
+  @ViewChild('dataTable', {static: true}) dataTable: $Table;
 
   captionTemplate: TemplateRef<any>;
   headerTemplate: TemplateRef<any>;
@@ -237,7 +237,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     this.configService.applyConfigToComponent(this);
   }
 
-  _onSort(event: PrimeTableSortEvent) {
+  _onSort(event: $TableSortEvent) {
     if (this.sortMode == 'multiple') {
       if (event.multisortmeta?.length > 1) {
         this.activeSortField = null;
@@ -401,7 +401,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     (this[name] as EventEmitter<any>).emit(event);
   }
 
-  _onLazyLoad(event: PrimeTableLazyLoadEvent) {
+  _onLazyLoad(event: $TableLazyLoadEvent) {
     this.loading = true;
     this.onLazyLoad.emit({event, loadingCallback: this.removeLoading})
   }
@@ -416,7 +416,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     this.rowsChange.emit(this.rows);
   }
 
-  onSelectAllChange(event: PrimeTableSelectAllChangeEvent) {
+  onSelectAllChange(event: $TableSelectAllChangeEvent) {
     this.selectAll = event.checked;
     this.selectAllChange.emit(event);
   }
@@ -426,7 +426,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     this.selectionChange.emit(this.selection);
   }
 
-  onContextMenuSelectionChange(event: PrimeTableContextMenuSelectionChangeEvent) {
+  onContextMenuSelectionChange(event: $TableContextMenuSelectionChangeEvent) {
     this.contextMenuSelection = event;
     this.contextMenuSelectionChange.emit(this.contextMenuSelection);
   }

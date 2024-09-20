@@ -17,19 +17,19 @@ import {
   TreeTableTemplates,
 } from "primeng/treetable";
 
-export {TreeTableModule as PrimeTreeTableModule};
-export {TreeTable as PrimeTreeTable};
-export {TreeTableColResizeEvent as PrimeTreeTableColResizeEvent};
-export {TreeTableEditEvent as PrimeTreeTableEditEvent};
-export {TreeTableColumnReorderEvent as PrimeTreeTableColumnReorderEvent};
-export {TreeTableContextMenuSelectEvent as PrimeTreeTableContextMenuSelectEvent};
-export {TreeTableFilterEvent as PrimeTreeTableFilterEvent};
-export {TreeTableLazyLoadEvent as PrimeTreeTableLazyLoadEvent};
-export {TreeTableFilterOptions as PrimeTreeTableFilterOptions};
-export {TreeTableHeaderCheckboxToggleEvent as PrimeTreeTableHeaderCheckboxToggleEvent};
-export {TreeTableNodeSelectEvent as PrimeTreeTableNodeSelectEvent};
-export {TreeTableNodeUnSelectEvent as PrimeTreeTableNodeUnSelectEvent};
-export {TreeTableNodeCollapseEvent as PrimeTreeTableNodeCollapseEvent};
-export {TreeTableNodeExpandEvent as PrimeTreeTableNodeExpandEvent};
-export {TreeTableSortEvent as PrimeTreeTableSortEvent};
-export {TreeTableTemplates as PrimeTreeTableTemplates};
+export {TreeTableModule as $TreeTableModule};
+export {TreeTable as $TreeTable};
+export {TreeTableColResizeEvent as $TreeTableColResizeEvent};
+export {TreeTableEditEvent as $TreeTableEditEvent};
+export {TreeTableColumnReorderEvent as $TreeTableColumnReorderEvent};
+export {TreeTableContextMenuSelectEvent as $TreeTableContextMenuSelectEvent};
+export {TreeTableFilterEvent as $TreeTableFilterEvent};
+export {TreeTableLazyLoadEvent as $TreeTableLazyLoadEvent};
+export {TreeTableFilterOptions as $TreeTableFilterOptions};
+export {TreeTableHeaderCheckboxToggleEvent as $TreeTableHeaderCheckboxToggleEvent};
+export {TreeTableNodeSelectEvent as $TreeTableNodeSelectEvent};
+export {TreeTableNodeUnSelectEvent as $TreeTableNodeUnSelectEvent};
+export {TreeTableNodeCollapseEvent as $TreeTableNodeCollapseEvent};
+export {TreeTableNodeExpandEvent as $TreeTableNodeExpandEvent};
+export {TreeTableSortEvent as $TreeTableSortEvent};
+export {TreeTableTemplates as $TreeTableTemplates};

@@ -5,15 +5,15 @@ import {
   TreeSelectNodeExpandEvent,
   TreeSelectTemplates
 } from "primeng/treeselect";
-import {PrimeTreeNode} from "@powell/primeng/api";
+import {$TreeNode} from "@powell/primeng/api";
 
-export {TreeSelectModule as PrimeTreeSelectModule};
-export {TreeSelect as PrimeTreeSelect};
-export {TreeSelectTemplates as PrimeTreeSelectTemplates};
-export {TreeSelectNodeCollapseEvent as PrimeTreeSelectNodeCollapseEvent};
-export {TreeSelectNodeExpandEvent as PrimeTreeSelectNodeExpandEvent};
-export type PrimeTreeSelectionChangeEvent = PrimeTreeNode<any> | PrimeTreeNode<any>[];
-export type PrimeTreeSelectFilterEvent = {
+export {TreeSelectModule as $TreeSelectModule};
+export {TreeSelect as $TreeSelect};
+export {TreeSelectTemplates as $TreeSelectTemplates};
+export {TreeSelectNodeCollapseEvent as $TreeSelectNodeCollapseEvent};
+export {TreeSelectNodeExpandEvent as $TreeSelectNodeExpandEvent};
+export type $TreeSelectionChangeEvent = $TreeNode<any> | $TreeNode<any>[];
+export type $TreeSelectFilterEvent = {
   originalEvent: Event;
   filteredValue: any;
 }

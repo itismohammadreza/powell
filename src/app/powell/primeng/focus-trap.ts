@@ -1,4 +1,4 @@
 import {FocusTrap, FocusTrapModule} from "primeng/focustrap";
 
-export {FocusTrapModule as PrimeFocusTrapModule};
-export {FocusTrap as PrimeFocusTrap};
+export {FocusTrapModule as $FocusTrapModule};
+export {FocusTrap as $FocusTrap};

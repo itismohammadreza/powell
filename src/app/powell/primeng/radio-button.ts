@@ -1,5 +1,5 @@
 import {RadioButton, RadioButtonClickEvent, RadioButtonModule} from "primeng/radiobutton";
 
-export {RadioButtonModule as PrimeRadioButtonModule};
-export {RadioButton as PrimeRadioButton};
-export {RadioButtonClickEvent as PrimeRadioButtonClickEvent};
+export {RadioButtonModule as $RadioButtonModule};
+export {RadioButton as $RadioButton};
+export {RadioButtonClickEvent as $RadioButtonClickEvent};

@@ -1,4 +1,4 @@
 import {OverlayPanel, OverlayPanelModule} from "primeng/overlaypanel";
 
-export {OverlayPanelModule as PrimeOverlayPanelModule};
-export {OverlayPanel as PrimeOverlayPanel};
+export {OverlayPanelModule as $OverlayPanelModule};
+export {OverlayPanel as $OverlayPanel};

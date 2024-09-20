@@ -7,9 +7,9 @@ import {
   ToastTemplates
 } from "primeng/toast";
 
-export {ToastModule as PrimeToastModule};
-export {Toast as PrimeToast};
-export {ToastTemplates as PrimeToastTemplates};
-export {ToastItemCloseEvent as PrimeToastItemCloseEvent};
-export {ToastCloseEvent as PrimeToastCloseEvent};
-export {ToastPositionType as PrimeToastPositionType};
+export {ToastModule as $ToastModule};
+export {Toast as $Toast};
+export {ToastTemplates as $ToastTemplates};
+export {ToastItemCloseEvent as $ToastItemCloseEvent};
+export {ToastCloseEvent as $ToastCloseEvent};
+export {ToastPositionType as $ToastPositionType};

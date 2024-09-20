@@ -13,15 +13,15 @@ import {
   ScrollerToType
 } from "primeng/scroller";
 
-export {ScrollerModule as PrimeScrollerModule};
-export {Scroller as PrimeScroller};
-export {ScrollerContentOptions as PrimeScrollerContentOptions};
-export {ScrollerItemOptions as PrimeScrollerItemOptions};
-export {ScrollerLoaderOptions as PrimeScrollerLoaderOptions};
-export {ScrollerLoaderIconOptions as PrimeScrollerLoaderIconOptions};
-export {ScrollerToType as PrimeScrollerToType};
-export {ScrollerOrientationType as PrimeScrollerOrientationType};
-export {ScrollerTemplates as PrimeScrollerTemplates};
-export {ScrollerLazyLoadEvent as PrimeScrollerLazyLoadEvent};
-export {ScrollerScrollEvent as PrimeScrollerScrollEvent};
-export {ScrollerScrollIndexChangeEvent as PrimeScrollerScrollIndexChangeEvent};
+export {ScrollerModule as $ScrollerModule};
+export {Scroller as $Scroller};
+export {ScrollerContentOptions as $ScrollerContentOptions};
+export {ScrollerItemOptions as $ScrollerItemOptions};
+export {ScrollerLoaderOptions as $ScrollerLoaderOptions};
+export {ScrollerLoaderIconOptions as $ScrollerLoaderIconOptions};
+export {ScrollerToType as $ScrollerToType};
+export {ScrollerOrientationType as $ScrollerOrientationType};
+export {ScrollerTemplates as $ScrollerTemplates};
+export {ScrollerLazyLoadEvent as $ScrollerLazyLoadEvent};
+export {ScrollerScrollEvent as $ScrollerScrollEvent};
+export {ScrollerScrollIndexChangeEvent as $ScrollerScrollIndexChangeEvent};

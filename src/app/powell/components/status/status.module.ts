@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {StatusComponent} from "@powell/components/status";
 import {TemplateModule} from "@powell/directives/template";
-import {PrimeCheckIcon, PrimeExclamationTriangleIcon, PrimeInfoCircleIcon, PrimeTimesCircleIcon} from "@powell/primeng";
+import {$CheckIcon, $ExclamationTriangleIcon, $InfoCircleIcon, $TimesCircleIcon} from "@powell/primeng";
 
 @NgModule({
   declarations: [StatusComponent],
@@ -10,10 +10,10 @@ import {PrimeCheckIcon, PrimeExclamationTriangleIcon, PrimeInfoCircleIcon, Prime
   imports: [
     CommonModule,
     TemplateModule,
-    PrimeCheckIcon,
-    PrimeExclamationTriangleIcon,
-    PrimeInfoCircleIcon,
-    PrimeTimesCircleIcon
+    $CheckIcon,
+    $ExclamationTriangleIcon,
+    $InfoCircleIcon,
+    $TimesCircleIcon
   ],
 })
 export class StatusModule {

@@ -27,7 +27,7 @@ import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
-import {PrimeRatingRateEvent, PrimeUniqueComponentId} from "@powell/primeng";
+import {$RatingRateEvent, $UniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -58,7 +58,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
-  @Input() id: string = PrimeUniqueComponentId();
+  @Input() id: string = $UniqueComponentId();
   // native properties
   @Input() disabled: boolean;
   @Input() readonly: boolean = false;
@@ -71,7 +71,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() iconCancelClass: string;
   @Input() iconCancelStyle: NgCssObject;
   @Input() autofocus: boolean;
-  @Output() onRate = new EventEmitter<PrimeRatingRateEvent>();
+  @Output() onRate = new EventEmitter<$RatingRateEvent>();
   @Output() onCancel = new EventEmitter<Event>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
@@ -120,7 +120,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
     });
   }
 
-  _onRate(event: PrimeRatingRateEvent) {
+  _onRate(event: $RatingRateEvent) {
     this.onRate.emit(event);
     this.onModelChange(event.value);
   }

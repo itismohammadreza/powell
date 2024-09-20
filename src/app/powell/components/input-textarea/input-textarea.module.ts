@@ -4,13 +4,13 @@ import {FormsModule} from "@angular/forms";
 import {AddonModule} from "@powell/directives/addon";
 import {InputTextareaComponent} from "@powell/components/input-textarea";
 import {LabelStarModule} from "@powell/pipes/label-star";
-import {PrimeInputTextareaModule} from "@powell/primeng";
+import {$InputTextareaModule} from "@powell/primeng";
 
 @NgModule({
   declarations: [InputTextareaComponent],
   exports: [InputTextareaComponent],
   imports: [
-    PrimeInputTextareaModule,
+    $InputTextareaModule,
     CommonModule,
     FormsModule,
     LabelStarModule,

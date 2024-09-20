@@ -44,7 +44,7 @@ import {
 import {SunEditorOptions} from "suneditor/src/options";
 import {Core} from "suneditor/src/lib/core";
 import {LatLng, LatLngBounds} from "leaflet";
-import {PrimeContextMenu, PrimeScrollerOptions} from "@powell/primeng";
+import {$ContextMenu, $ScrollerOptions} from "@powell/primeng";
 import {EventEmitter} from "@angular/core";
 
 export type NgSeverity = 'success' | 'info' | 'warn' | 'error';
@@ -704,7 +704,7 @@ export interface NgDialogFormConfig {
   ///////////////////////////////////////// tree /////////////////////////////////////////
   items?: any[];
   selection?: any;
-  contextMenu?: PrimeContextMenu;
+  contextMenu?: $ContextMenu;
   layout?: NgOrientation;
   draggableScope?: string | string[];
   droppableScope?: string | string[];
@@ -715,7 +715,7 @@ export interface NgDialogFormConfig {
   validateDrop?: boolean;
   virtualScroll?: boolean;
   virtualScrollItemSize?: number;
-  virtualScrollOptions?: PrimeScrollerOptions;
+  virtualScrollOptions?: $ScrollerOptions;
   lazy?: boolean;
   trackBy?: Function;
   indentation?: number;

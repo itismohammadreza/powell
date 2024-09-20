@@ -14,16 +14,16 @@ import {
   TreeTemplates
 } from "primeng/tree";
 
-export {TreeModule as PrimeTreeModule};
-export {Tree as PrimeTree};
-export {TreeFilterEvent as PrimeTreeFilterEvent};
-export {TreeLazyLoadEvent as PrimeTreeLazyLoadEvent};
-export {TreeScrollEvent as PrimeTreeScrollEvent};
-export {TreeNodeCollapseEvent as PrimeTreeNodeCollapseEvent};
-export {TreeNodeDropEvent as PrimeTreeNodeDropEvent};
-export {TreeNodeExpandEvent as PrimeTreeNodeExpandEvent};
-export {TreeNodeSelectEvent as PrimeTreeNodeSelectEvent};
-export {TreeNodeContextMenuSelectEvent as PrimeTreeNodeContextMenuSelectEvent};
-export {TreeTemplates as PrimeTreeTemplates};
-export {TreeScrollIndexChangeEvent as PrimeTreeScrollIndexChangeEvent};
-export {TreeNodeUnSelectEvent as PrimeTreeNodeUnSelectEvent};
+export {TreeModule as $TreeModule};
+export {Tree as $Tree};
+export {TreeFilterEvent as $TreeFilterEvent};
+export {TreeLazyLoadEvent as $TreeLazyLoadEvent};
+export {TreeScrollEvent as $TreeScrollEvent};
+export {TreeNodeCollapseEvent as $TreeNodeCollapseEvent};
+export {TreeNodeDropEvent as $TreeNodeDropEvent};
+export {TreeNodeExpandEvent as $TreeNodeExpandEvent};
+export {TreeNodeSelectEvent as $TreeNodeSelectEvent};
+export {TreeNodeContextMenuSelectEvent as $TreeNodeContextMenuSelectEvent};
+export {TreeTemplates as $TreeTemplates};
+export {TreeScrollIndexChangeEvent as $TreeScrollIndexChangeEvent};
+export {TreeNodeUnSelectEvent as $TreeNodeUnSelectEvent};

@@ -1,4 +1,4 @@
 import {Animate, AnimateModule} from "primeng/animate";
 
-export {AnimateModule as PrimeAnimateModule};
-export {Animate as PrimeAnimate};
+export {AnimateModule as $AnimateModule};
+export {Animate as $Animate};

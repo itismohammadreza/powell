@@ -6,8 +6,8 @@ import {
   InputOtpTemplates
 } from "primeng/inputotp";
 
-export {InputOtpModule as PrimeInputOtpModule};
-export {InputOtp as PrimeInputOtp};
-export {InputOtpTemplates as PrimeInputOtpTemplates};
-export {InputOtpTemplateEvents as PrimeInputOtpTemplateEvents};
-export {InputOtpChangeEvent as PrimeInputOtpChangeEvent};
+export {InputOtpModule as $InputOtpModule};
+export {InputOtp as $InputOtp};
+export {InputOtpTemplates as $InputOtpTemplates};
+export {InputOtpTemplateEvents as $InputOtpTemplateEvents};
+export {InputOtpChangeEvent as $InputOtpChangeEvent};

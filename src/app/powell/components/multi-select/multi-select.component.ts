@@ -38,16 +38,16 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {
-  PrimeMultiSelectBlurEvent,
-  PrimeMultiSelectChangeEvent,
-  PrimeMultiSelectFilterEvent,
-  PrimeMultiSelectFocusEvent,
-  PrimeMultiSelectLazyLoadEvent,
-  PrimeMultiSelectRemoveEvent,
-  PrimeMultiSelectSelectAllChangeEvent,
-  PrimeOverlayOptions,
-  PrimeScrollerOptions,
-  PrimeUniqueComponentId
+  $MultiSelectBlurEvent,
+  $MultiSelectChangeEvent,
+  $MultiSelectFilterEvent,
+  $MultiSelectFocusEvent,
+  $MultiSelectLazyLoadEvent,
+  $MultiSelectRemoveEvent,
+  $MultiSelectSelectAllChangeEvent,
+  $OverlayOptions,
+  $ScrollerOptions,
+  $UniqueComponentId
 } from "@powell/primeng";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
@@ -91,7 +91,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() styleClass: string;
   @Input() panelStyle: NgCssObject;
   @Input() panelStyleClass: string;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() disabled: boolean;
   @Input() readonly: boolean = false;
   @Input() group: boolean = false;
@@ -125,8 +125,8 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() lazy: boolean = false;
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: PrimeScrollerOptions;
-  @Input() overlayOptions: PrimeOverlayOptions;
+  @Input() virtualScrollOptions: $ScrollerOptions;
+  @Input() overlayOptions: $OverlayOptions;
   @Input() ariaFilterLabel: string;
   @Input() filterMatchMode: NgFilterMatchMode = 'contains';
   @Input() tooltip: string;
@@ -152,17 +152,17 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() filterFields: any[];
   @Input() selectOnFocus: boolean = false;
   @Input() autoOptionFocus: boolean = true;
-  @Output() onChange = new EventEmitter<PrimeMultiSelectChangeEvent>();
-  @Output() onFilter = new EventEmitter<PrimeMultiSelectFilterEvent>();
-  @Output() onFocus = new EventEmitter<PrimeMultiSelectFocusEvent>();
-  @Output() onBlur = new EventEmitter<PrimeMultiSelectBlurEvent>();
+  @Output() onChange = new EventEmitter<$MultiSelectChangeEvent>();
+  @Output() onFilter = new EventEmitter<$MultiSelectFilterEvent>();
+  @Output() onFocus = new EventEmitter<$MultiSelectFocusEvent>();
+  @Output() onBlur = new EventEmitter<$MultiSelectBlurEvent>();
   @Output() onClick = new EventEmitter<Event>();
   @Output() onClear = new EventEmitter<void>();
   @Output() onPanelShow = new EventEmitter<void>();
   @Output() onPanelHide = new EventEmitter<void>();
-  @Output() onLazyLoad = new EventEmitter<PrimeMultiSelectLazyLoadEvent>();
-  @Output() onRemove = new EventEmitter<PrimeMultiSelectRemoveEvent>();
-  @Output() onSelectAllChange = new EventEmitter<PrimeMultiSelectSelectAllChangeEvent>();
+  @Output() onLazyLoad = new EventEmitter<$MultiSelectLazyLoadEvent>();
+  @Output() onRemove = new EventEmitter<$MultiSelectRemoveEvent>();
+  @Output() onSelectAllChange = new EventEmitter<$MultiSelectSelectAllChangeEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
@@ -208,12 +208,12 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
     });
   }
 
-  _onChange(event: PrimeMultiSelectChangeEvent) {
+  _onChange(event: $MultiSelectChangeEvent) {
     this.onChange.emit(event);
     this.onModelChange(event.value);
   }
 
-  _onBlur(event: PrimeMultiSelectBlurEvent) {
+  _onBlur(event: $MultiSelectBlurEvent) {
     this.onBlur.emit(event);
     this.onModelTouched();
   }

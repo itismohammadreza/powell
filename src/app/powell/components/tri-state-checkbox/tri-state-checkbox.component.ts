@@ -26,7 +26,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgInputVariant, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
-import {PrimeTriStateCheckboxChangeEvent, PrimeUniqueComponentId} from "@powell/primeng";
+import {$TriStateCheckboxChangeEvent, $UniqueComponentId} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 
@@ -63,14 +63,14 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
   @Input() ariaLabelledBy: string;
   @Input() variant: NgInputVariant;
   @Input() tabindex: number;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() readonly: boolean = false;
   @Input() checkboxTrueIcon: string;
   @Input() checkboxFalseIcon: string;
   @Input() autofocus: boolean = false;
-  @Output() onChange = new EventEmitter<PrimeTriStateCheckboxChangeEvent>();
+  @Output() onChange = new EventEmitter<$TriStateCheckboxChangeEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
@@ -117,7 +117,7 @@ export class TriStateCheckboxComponent implements OnInit, AfterContentInit, Cont
   }
 
 
-  _onChange(event: PrimeTriStateCheckboxChangeEvent) {
+  _onChange(event: $TriStateCheckboxChangeEvent) {
     this.onModelChange(event.value);
     this.onChange.emit(event);
   }

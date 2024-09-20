@@ -4,14 +4,14 @@ import {FormsModule} from "@angular/forms";
 import {AddonModule} from "@powell/directives/addon";
 import {DropdownComponent} from "@powell/components/dropdown";
 import {LabelStarModule} from "@powell/pipes/label-star";
-import {PrimeDropdownModule} from "@powell/primeng";
+import {$DropdownModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
   declarations: [DropdownComponent],
   exports: [DropdownComponent, TemplateModule],
   imports: [
-    PrimeDropdownModule,
+    $DropdownModule,
     CommonModule,
     FormsModule,
     LabelStarModule,

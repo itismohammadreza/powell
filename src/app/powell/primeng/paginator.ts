@@ -1,5 +1,5 @@
 import {Paginator, PaginatorModule, PaginatorTemplates} from "primeng/paginator";
 
-export {PaginatorModule as PrimePaginatorModule};
-export {Paginator as PrimePaginator};
-export {PaginatorTemplates as PrimePaginatorTemplates};
+export {PaginatorModule as $PaginatorModule};
+export {Paginator as $Paginator};
+export {PaginatorTemplates as $PaginatorTemplates};

@@ -1,5 +1,5 @@
 import {SlideMenu, SlideMenuModule, SlideMenuTemplates} from "primeng/slidemenu";
 
-export {SlideMenuModule as PrimeSlideMenuModule};
-export {SlideMenu as PrimeSlideMenu};
-export {SlideMenuTemplates as PrimeSlideMenuTemplates};
+export {SlideMenuModule as $SlideMenuModule};
+export {SlideMenu as $SlideMenu};
+export {SlideMenuTemplates as $SlideMenuTemplates};

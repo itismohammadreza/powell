@@ -47,7 +47,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgAddon, NgFixLabelPosition, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
-import {PrimeUniqueComponentId} from "@powell/primeng";
+import {$UniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 import {TemplateDirective} from "@powell/directives/template";
 
@@ -87,7 +87,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Input() clearIcon: string;
   @Input() followConfig: boolean;
   @Input() selectionLimit: number;
-  @Input() id: string = PrimeUniqueComponentId();
+  @Input() id: string = $UniqueComponentId();
   // native properties
   @Input() zoom: number = 10;
   @Input() center: LatLng = latLng(35.68419775656676, 51.38983726501465);

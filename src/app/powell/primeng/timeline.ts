@@ -1,5 +1,5 @@
 import {Timeline, TimelineModule, TimelineTemplates} from "primeng/timeline";
 
-export {TimelineModule as PrimeTimelineModule};
-export {Timeline as PrimeTimeline};
-export {TimelineTemplates as PrimeTimelineTemplates};
+export {TimelineModule as $TimelineModule};
+export {Timeline as $Timeline};
+export {TimelineTemplates as $TimelineTemplates};

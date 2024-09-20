@@ -26,7 +26,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgInputVariant, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeCheckboxChangeEvent, PrimeCheckboxGroupChangeEvent, PrimeUniqueComponentId} from "@powell/primeng";
+import {$CheckboxChangeEvent, $CheckboxGroupChangeEvent, $UniqueComponentId} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 
@@ -63,8 +63,8 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() optionValue: string = 'value';
   @Input() optionDisabled: string = 'disabled';
   @Input() orientation: NgOrientation = 'vertical';
-  @Input() groupName: string = PrimeUniqueComponentId();
-  @Input() id: string = PrimeUniqueComponentId();
+  @Input() groupName: string = $UniqueComponentId();
+  @Input() id: string = $UniqueComponentId();
 
   // native properties
   @Input() set disabled(disabled: boolean) {
@@ -87,7 +87,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() readonly: boolean;
   @Input() autofocus: boolean = false;
   @Input() variant: NgInputVariant;
-  @Output() onChange = new EventEmitter<PrimeCheckboxGroupChangeEvent>();
+  @Output() onChange = new EventEmitter<$CheckboxGroupChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
@@ -136,7 +136,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
     });
   }
 
-  _onChange(event: PrimeCheckboxChangeEvent) {
+  _onChange(event: $CheckboxChangeEvent) {
     this.onChange.emit({originalEvent: event.originalEvent, value: this.value});
     this.onModelChange(this.value);
   }

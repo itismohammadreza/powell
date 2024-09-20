@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {
   PreviewOptionsComponent
 } from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
-import {PrimeCardModule, PrimeDividerModule, PrimePanelModule} from "@powell/primeng";
+import {$CardModule, $DividerModule, $PanelModule} from "@powell/primeng";
 import {CommonModule} from "@angular/common";
 import {TranslateModule} from "@ngx-translate/core";
 
@@ -12,15 +12,15 @@ import {TranslateModule} from "@ngx-translate/core";
   ],
   exports: [
     PreviewOptionsComponent,
-    PrimeCardModule,
-    PrimePanelModule,
-    PrimeDividerModule,
+    $CardModule,
+    $PanelModule,
+    $DividerModule,
     TranslateModule,
     CommonModule
   ],
   imports: [
     CommonModule,
-    PrimeDividerModule
+    $DividerModule
   ]
 })
 export class ExtrasModule {

@@ -22,7 +22,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgInputVariant, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeRadioButtonClickEvent, PrimeUniqueComponentId} from "@powell/primeng";
+import {$RadioButtonClickEvent, $UniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -74,19 +74,19 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Input() name: string;
   @Input() variant: NgInputVariant;
   @Input() tabindex: number;
-  @Input() id: string = PrimeUniqueComponentId();
+  @Input() id: string = $UniqueComponentId();
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() labelStyleClass: string;
   @Input() autofocus: boolean = false;
-  @Output() onChange = new EventEmitter<PrimeRadioButtonClickEvent>();
+  @Output() onChange = new EventEmitter<$RadioButtonClickEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
 
   _disabled: boolean = false;
-  groupName: string = PrimeUniqueComponentId();
+  groupName: string = $UniqueComponentId();
   ngControl: NgControl;
   onModelChange: Function = () => {
   };
@@ -122,7 +122,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
     this.configService.applyConfigToComponent(this);
   }
 
-  _onChange(event: PrimeRadioButtonClickEvent) {
+  _onChange(event: $RadioButtonClickEvent) {
     this.onChange.emit(event);
     this.onModelChange(this.value);
   }

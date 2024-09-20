@@ -24,7 +24,7 @@ import {takeUntil} from "rxjs";
 import {NgAddon, NgCssObject, NgIconPosition, NgInputVariant, NgLabelPosition, NgValidation} from '@powell/models';
 import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
-import {PrimeUniqueComponentId} from "@powell/primeng";
+import {$UniqueComponentId} from "@powell/primeng";
 
 @Component({
   selector: 'ng-input-textarea',
@@ -61,7 +61,7 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() rows: number;
   @Input() cols: number;
   @Input() autoResize: boolean;

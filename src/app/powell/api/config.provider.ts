@@ -1,14 +1,14 @@
 import {NgConfig} from "@powell/models";
 import {ConfigService, ThemeService} from "@powell/api";
-import {PrimeConfirmationService, PrimeDialogService, PrimeFilterService, PrimeMessageService} from "@powell/primeng";
+import {$ConfirmationService, $DialogService, $FilterService, $MessageService} from "@powell/primeng";
 
 export function providePowell(config?: NgConfig) {
   return [
     ThemeService,
-    PrimeMessageService,
-    PrimeDialogService,
-    PrimeConfirmationService,
-    PrimeFilterService,
+    $MessageService,
+    $DialogService,
+    $ConfirmationService,
+    $FilterService,
     {
       provide: ConfigService,
       useFactory: () => {

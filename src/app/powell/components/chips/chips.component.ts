@@ -35,7 +35,7 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
-import {PrimeChipsAddEvent, PrimeChipsClickEvent, PrimeChipsRemoveEvent, PrimeUniqueComponentId} from "@powell/primeng";
+import {$ChipsAddEvent, $ChipsClickEvent, $ChipsRemoveEvent, $UniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -81,7 +81,7 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() tabindex: number;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() allowDuplicate: boolean = true;
   @Input() caseSensitiveDuplication: boolean = true;
   @Input() inputStyle: NgCssObject;
@@ -92,10 +92,10 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
   @Input() showClear: boolean = false;
   @Input() autofocus: boolean = false;
   @Input() variant: NgInputVariant;
-  @Output() onAdd = new EventEmitter<PrimeChipsAddEvent>();
-  @Output() onRemove = new EventEmitter<PrimeChipsRemoveEvent>();
+  @Output() onAdd = new EventEmitter<$ChipsAddEvent>();
+  @Output() onRemove = new EventEmitter<$ChipsRemoveEvent>();
   @Output() onFocus = new EventEmitter<Event>();
-  @Output() onChipClick = new EventEmitter<PrimeChipsClickEvent>();
+  @Output() onChipClick = new EventEmitter<$ChipsClickEvent>();
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onClear = new EventEmitter<void>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
@@ -143,12 +143,12 @@ export class ChipsComponent implements OnInit, AfterContentInit, ControlValueAcc
     });
   }
 
-  _onAdd(event: PrimeChipsAddEvent) {
+  _onAdd(event: $ChipsAddEvent) {
     this.onAdd.emit(event);
     this.onModelChange(this.value);
   }
 
-  _onRemove(event: PrimeChipsRemoveEvent) {
+  _onRemove(event: $ChipsRemoveEvent) {
     this.onRemove.emit(event);
     this.onModelChange(this.value);
   }

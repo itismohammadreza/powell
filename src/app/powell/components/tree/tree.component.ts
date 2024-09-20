@@ -36,20 +36,20 @@ import {
   NgValidation
 } from '@powell/models';
 import {
-  PrimeScrollerOptions,
-  PrimeTreeFilterEvent,
-  PrimeTreeLazyLoadEvent,
-  PrimeTreeNode,
-  PrimeTreeNodeCollapseEvent,
-  PrimeTreeNodeContextMenuSelectEvent,
-  PrimeTreeNodeDropEvent,
-  PrimeTreeNodeExpandEvent,
-  PrimeTreeNodeSelectEvent,
-  PrimeTreeNodeUnSelectEvent,
-  PrimeTreeScrollEvent,
-  PrimeTreeScrollIndexChangeEvent,
-  PrimeTreeSelectionChangeEvent,
-  PrimeUniqueComponentId
+  $ScrollerOptions,
+  $TreeFilterEvent,
+  $TreeLazyLoadEvent,
+  $TreeNode,
+  $TreeNodeCollapseEvent,
+  $TreeNodeContextMenuSelectEvent,
+  $TreeNodeDropEvent,
+  $TreeNodeExpandEvent,
+  $TreeNodeSelectEvent,
+  $TreeNodeUnSelectEvent,
+  $TreeScrollEvent,
+  $TreeScrollIndexChangeEvent,
+  $TreeSelectionChangeEvent,
+  $UniqueComponentId
 } from "@powell/primeng";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
@@ -83,7 +83,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   @Input() items: any[];
-  @Input() id: string = PrimeUniqueComponentId();
+  @Input() id: string = $UniqueComponentId();
   // native properties
   @Input() selectionMode: NgTreeSelectionMode;
   @Input() loadingMode: NgTreeLoadingMode = 'mask';
@@ -110,28 +110,28 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() filterBy: string = 'label';
   @Input() filterMode: NgTreeFilterMode = 'lenient';
   @Input() filterPlaceholder: string;
-  @Input() filteredNodes: PrimeTreeNode<any>[];
+  @Input() filteredNodes: $TreeNode<any>[];
   @Input() filterLocale: string;
   @Input() scrollHeight: string;
   @Input() lazy: boolean = false;
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: PrimeScrollerOptions;
+  @Input() virtualScrollOptions: $ScrollerOptions;
   @Input() indentation: number = 1.5;
   @Input() _templateMap: any;
   @Input() trackBy: Function;
   @Input() virtualNodeHeight: number;
-  @Output() selectionChange = new EventEmitter<PrimeTreeSelectionChangeEvent>();
-  @Output() onNodeSelect = new EventEmitter<PrimeTreeNodeSelectEvent>();
-  @Output() onNodeUnselect = new EventEmitter<PrimeTreeNodeUnSelectEvent>();
-  @Output() onNodeExpand = new EventEmitter<PrimeTreeNodeExpandEvent>();
-  @Output() onNodeCollapse = new EventEmitter<PrimeTreeNodeCollapseEvent>();
-  @Output() onNodeContextMenuSelect = new EventEmitter<PrimeTreeNodeContextMenuSelectEvent>();
-  @Output() onNodeDrop = new EventEmitter<PrimeTreeNodeDropEvent>();
-  @Output() onLazyLoad = new EventEmitter<PrimeTreeLazyLoadEvent>();
-  @Output() onScroll = new EventEmitter<PrimeTreeScrollEvent>();
-  @Output() onScrollIndexChange = new EventEmitter<PrimeTreeScrollIndexChangeEvent>();
-  @Output() onFilter = new EventEmitter<PrimeTreeFilterEvent>();
+  @Output() selectionChange = new EventEmitter<$TreeSelectionChangeEvent>();
+  @Output() onNodeSelect = new EventEmitter<$TreeNodeSelectEvent>();
+  @Output() onNodeUnselect = new EventEmitter<$TreeNodeUnSelectEvent>();
+  @Output() onNodeExpand = new EventEmitter<$TreeNodeExpandEvent>();
+  @Output() onNodeCollapse = new EventEmitter<$TreeNodeCollapseEvent>();
+  @Output() onNodeContextMenuSelect = new EventEmitter<$TreeNodeContextMenuSelectEvent>();
+  @Output() onNodeDrop = new EventEmitter<$TreeNodeDropEvent>();
+  @Output() onLazyLoad = new EventEmitter<$TreeLazyLoadEvent>();
+  @Output() onScroll = new EventEmitter<$TreeScrollEvent>();
+  @Output() onScrollIndexChange = new EventEmitter<$TreeScrollIndexChangeEvent>();
+  @Output() onFilter = new EventEmitter<$TreeFilterEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
@@ -175,7 +175,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
     });
   }
 
-  _onSelectionChange(event: PrimeTreeSelectionChangeEvent) {
+  _onSelectionChange(event: $TreeSelectionChangeEvent) {
     this.selection = event;
     this.selectionChange.emit(this.selection);
     this.onModelChange(this.selection);

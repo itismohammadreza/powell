@@ -1,5 +1,5 @@
 import {MegaMenu, MegaMenuModule, MegaMenuTemplates} from "primeng/megamenu";
 
-export {MegaMenuModule as PrimeMegaMenuModule};
-export {MegaMenu as PrimeMegaMenu};
-export {MegaMenuTemplates as PrimeMegaMenuTemplates};
+export {MegaMenuModule as $MegaMenuModule};
+export {MegaMenu as $MegaMenu};
+export {MegaMenuTemplates as $MegaMenuTemplates};

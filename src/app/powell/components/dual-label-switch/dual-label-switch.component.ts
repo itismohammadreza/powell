@@ -22,7 +22,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgAsyncEvent, NgCssObject, NgFixLabelPosition, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
-import {PrimeInputSwitchChangeEvent, PrimeUniqueComponentId} from "@powell/primeng";
+import {$InputSwitchChangeEvent, $UniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -63,15 +63,15 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() tabindex: number;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() name: string;
   @Input() disabled: boolean;
   @Input() readonly: boolean = false;
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() autofocus: any = false;
-  @Output() onChange = new EventEmitter<PrimeInputSwitchChangeEvent>();
-  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<PrimeInputSwitchChangeEvent>>();
+  @Output() onChange = new EventEmitter<$InputSwitchChangeEvent>();
+  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<$InputSwitchChangeEvent>>();
 
   loading: boolean;
   ngControl: NgControl;
@@ -117,7 +117,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  _onChange(event: PrimeInputSwitchChangeEvent) {
+  _onChange(event: $InputSwitchChangeEvent) {
     if (this.async) {
       this.loading = true;
       this.disabled = true;

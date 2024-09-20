@@ -27,7 +27,7 @@ import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
-import {PrimeSelectButtonChangeEvent, PrimeSelectButtonOptionClickEvent, PrimeUniqueComponentId} from "@powell/primeng";
+import {$SelectButtonChangeEvent, $SelectButtonOptionClickEvent, $UniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -58,7 +58,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
-  @Input() id: string = PrimeUniqueComponentId();
+  @Input() id: string = $UniqueComponentId();
   // native properties
   @Input() options: any[];
   @Input() optionLabel: string;
@@ -74,8 +74,8 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() disabled: boolean;
   @Input() dataKey: string;
   @Input() autofocus: boolean = false;
-  @Output() onChange = new EventEmitter<PrimeSelectButtonChangeEvent>();
-  @Output() onOptionClick = new EventEmitter<PrimeSelectButtonOptionClickEvent>();
+  @Output() onChange = new EventEmitter<$SelectButtonChangeEvent>();
+  @Output() onOptionClick = new EventEmitter<$SelectButtonOptionClickEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
@@ -121,12 +121,12 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
     });
   }
 
-  _onChange(event: PrimeSelectButtonChangeEvent) {
+  _onChange(event: $SelectButtonChangeEvent) {
     this.onModelChange(event.value);
     this.onChange.emit(event);
   }
 
-  _onOptionClick(event: PrimeSelectButtonOptionClickEvent) {
+  _onOptionClick(event: $SelectButtonOptionClickEvent) {
     this.onOptionClick.emit(event);
   }
 

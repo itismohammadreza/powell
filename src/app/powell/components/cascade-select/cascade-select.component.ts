@@ -36,12 +36,12 @@ import {
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
-  PrimeCascadeSelectBeforeHideEvent,
-  PrimeCascadeSelectBeforeShowEvent,
-  PrimeCascadeSelectHideEvent,
-  PrimeCascadeSelectShowEvent,
-  PrimeOverlayOptions,
-  PrimeUniqueComponentId
+  $CascadeSelectBeforeHideEvent,
+  $CascadeSelectBeforeShowEvent,
+  $CascadeSelectHideEvent,
+  $CascadeSelectShowEvent,
+  $OverlayOptions,
+  $UniqueComponentId
 } from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
@@ -97,7 +97,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() optionGroupChildren: string | string[];
   @Input() placeholder: string;
   @Input() dataKey: string;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() tabindex: number;
   @Input() ariaLabelledBy: string;
   @Input() inputLabel: string;
@@ -107,7 +107,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() showClear: boolean = false;
   @Input() panelStyleClass: string;
   @Input() panelStyle: NgCssObject;
-  @Input() overlayOptions: PrimeOverlayOptions;
+  @Input() overlayOptions: $OverlayOptions;
   @Input() autofocus: boolean = false;
   @Input() showTransitionOptions: string;
   @Input() variant: NgInputVariant;
@@ -116,11 +116,11 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() hideTransitionOptions: string;
   @Output() onChange = new EventEmitter<any>();
   @Output() onGroupChange = new EventEmitter<Event>();
-  @Output() onShow = new EventEmitter<PrimeCascadeSelectShowEvent>();
-  @Output() onHide = new EventEmitter<PrimeCascadeSelectHideEvent>();
+  @Output() onShow = new EventEmitter<$CascadeSelectShowEvent>();
+  @Output() onHide = new EventEmitter<$CascadeSelectHideEvent>();
   @Output() onClear = new EventEmitter<void>();
-  @Output() onBeforeShow = new EventEmitter<PrimeCascadeSelectBeforeShowEvent>();
-  @Output() onBeforeHide = new EventEmitter<PrimeCascadeSelectBeforeHideEvent>();
+  @Output() onBeforeShow = new EventEmitter<$CascadeSelectBeforeShowEvent>();
+  @Output() onBeforeHide = new EventEmitter<$CascadeSelectBeforeHideEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;

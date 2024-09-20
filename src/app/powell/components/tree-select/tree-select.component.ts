@@ -39,17 +39,17 @@ import {
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
-  PrimeOverlayOnHideEvent,
-  PrimeOverlayOnShowEvent,
-  PrimeOverlayOptions,
-  PrimeScrollerOptions,
-  PrimeTreeNode,
-  PrimeTreeNodeSelectEvent,
-  PrimeTreeNodeUnSelectEvent,
-  PrimeTreeSelectFilterEvent,
-  PrimeTreeSelectNodeCollapseEvent,
-  PrimeTreeSelectNodeExpandEvent,
-  PrimeUniqueComponentId
+  $OverlayOnHideEvent,
+  $OverlayOnShowEvent,
+  $OverlayOptions,
+  $ScrollerOptions,
+  $TreeNode,
+  $TreeNodeSelectEvent,
+  $TreeNodeUnSelectEvent,
+  $TreeSelectFilterEvent,
+  $TreeSelectNodeCollapseEvent,
+  $TreeSelectNodeExpandEvent,
+  $UniqueComponentId
 } from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
@@ -86,7 +86,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() inputSize: NgSize;
   @Input() followConfig: boolean;
   // native properties
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() scrollHeight: string = '400px';
   @Input() disabled: boolean;
   @Input() metaKeySelection: boolean = false;
@@ -104,7 +104,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() containerStyleClass: string;
   @Input() labelStyle: NgCssObject;
   @Input() labelStyleClass: string;
-  @Input() overlayOptions: PrimeOverlayOptions;
+  @Input() overlayOptions: $OverlayOptions;
   @Input() emptyMessage: string;
   @Input() appendTo: any;
   @Input() filter: boolean = false;
@@ -119,22 +119,22 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() resetFilterOnHide: boolean = true;
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: PrimeScrollerOptions;
+  @Input() virtualScrollOptions: $ScrollerOptions;
   @Input() autofocus: boolean = false;
-  @Input() options: PrimeTreeNode<any>[];
+  @Input() options: $TreeNode<any>[];
   @Input() showTransitionOptions: string;
   @Input() hideTransitionOptions: string;
   @Input() loading: boolean = false;
-  @Output() onNodeExpand = new EventEmitter<PrimeTreeSelectNodeExpandEvent>();
-  @Output() onNodeCollapse = new EventEmitter<PrimeTreeSelectNodeCollapseEvent>();
-  @Output() onShow = new EventEmitter<PrimeOverlayOnShowEvent>();
-  @Output() onHide = new EventEmitter<PrimeOverlayOnHideEvent>();
+  @Output() onNodeExpand = new EventEmitter<$TreeSelectNodeExpandEvent>();
+  @Output() onNodeCollapse = new EventEmitter<$TreeSelectNodeCollapseEvent>();
+  @Output() onShow = new EventEmitter<$OverlayOnShowEvent>();
+  @Output() onHide = new EventEmitter<$OverlayOnHideEvent>();
   @Output() onClear = new EventEmitter<void>();
-  @Output() onFilter = new EventEmitter<PrimeTreeSelectFilterEvent>();
+  @Output() onFilter = new EventEmitter<$TreeSelectFilterEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
-  @Output() onNodeUnselect = new EventEmitter<PrimeTreeNodeUnSelectEvent>();
-  @Output() onNodeSelect = new EventEmitter<PrimeTreeNodeSelectEvent>();
+  @Output() onNodeUnselect = new EventEmitter<$TreeNodeUnSelectEvent>();
+  @Output() onNodeSelect = new EventEmitter<$TreeNodeSelectEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
@@ -180,12 +180,12 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
     });
   }
 
-  _onNodeSelect(event: PrimeTreeNodeSelectEvent) {
+  _onNodeSelect(event: $TreeNodeSelectEvent) {
     this.onNodeSelect.emit(event);
     this.onModelChange(this.value);
   }
 
-  _onNodeUnselect(event: PrimeTreeNodeUnSelectEvent) {
+  _onNodeUnselect(event: $TreeNodeUnSelectEvent) {
     this.onNodeUnselect.emit(event);
     this.onModelChange(this.value);
   }

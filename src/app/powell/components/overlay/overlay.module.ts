@@ -3,11 +3,11 @@ import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {Dialog2Component, DialogComponent, DialogFormComponent, DynamicDialogComponent} from '.';
 import {
-  PrimeConfirmDialogModule,
-  PrimeConfirmPopupModule,
-  PrimeDialogModule,
-  PrimeDynamicDialogModule,
-  PrimeToastModule
+  $ConfirmDialogModule,
+  $ConfirmPopupModule,
+  $DialogModule,
+  $DynamicDialogModule,
+  $ToastModule
 } from "@powell/primeng";
 import {SafeModule} from "@powell/pipes/safe";
 import {ButtonModule} from "@powell/components/button";
@@ -57,10 +57,10 @@ import {TriStateCheckboxModule} from "@powell/components/tri-state-checkbox";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    PrimeConfirmDialogModule,
-    PrimeConfirmPopupModule,
-    PrimeDialogModule,
-    PrimeToastModule,
+    $ConfirmDialogModule,
+    $ConfirmPopupModule,
+    $DialogModule,
+    $ToastModule,
     SafeModule,
     AutoCompleteModule,
     ButtonModule,
@@ -101,8 +101,8 @@ import {TriStateCheckboxModule} from "@powell/components/tri-state-checkbox";
   ],
   exports: [
     Dialog2Component,
-    PrimeDynamicDialogModule,
-    PrimeDialogModule,
+    $DynamicDialogModule,
+    $DialogModule,
   ],
 })
 export class OverlayModule {

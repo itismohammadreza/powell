@@ -38,12 +38,12 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {
-  PrimeDropdownChangeEvent,
-  PrimeDropdownFilterEvent,
-  PrimeDropdownLazyLoadEvent,
-  PrimeOverlayOptions,
-  PrimeScrollerOptions,
-  PrimeUniqueComponentId
+  $DropdownChangeEvent,
+  $DropdownFilterEvent,
+  $DropdownLazyLoadEvent,
+  $OverlayOptions,
+  $ScrollerOptions,
+  $UniqueComponentId
 } from "@powell/primeng";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
@@ -99,7 +99,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() filterPlaceholder: string;
   @Input() filterLocale: string;
   @Input() variant: NgInputVariant;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() dataKey: string;
   @Input() filterBy: string;
   @Input() filterFields: any[];
@@ -121,8 +121,8 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() lazy: boolean = false;
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: PrimeScrollerOptions;
-  @Input() overlayOptions: PrimeOverlayOptions;
+  @Input() virtualScrollOptions: $ScrollerOptions;
+  @Input() overlayOptions: $OverlayOptions;
   @Input() ariaFilterLabel: string;
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
@@ -144,16 +144,16 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
   @Input() hideTransitionOptions: string;
   @Input() filterValue: string;
   @Input() options: any[];
-  @Output() onChange = new EventEmitter<PrimeDropdownChangeEvent>();
-  @Output() onFilter = new EventEmitter<PrimeDropdownFilterEvent>();
+  @Output() onChange = new EventEmitter<$DropdownChangeEvent>();
+  @Output() onFilter = new EventEmitter<$DropdownFilterEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onClick = new EventEmitter<MouseEvent>();
   @Output() onShow = new EventEmitter<AnimationEvent>();
   @Output() onHide = new EventEmitter<AnimationEvent>();
   @Output() onClear = new EventEmitter<void>();
-  @Output() onLazyLoad = new EventEmitter<PrimeDropdownLazyLoadEvent>();
-  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<PrimeDropdownChangeEvent>>();
+  @Output() onLazyLoad = new EventEmitter<$DropdownLazyLoadEvent>();
+  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<$DropdownChangeEvent>>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
@@ -204,7 +204,7 @@ export class DropdownComponent implements OnInit, AfterContentInit, ControlValue
     });
   }
 
-  _onChange(event: PrimeDropdownChangeEvent) {
+  _onChange(event: $DropdownChangeEvent) {
     if (this.async) {
       this.disabled = true;
       this._oldValue = this.value;

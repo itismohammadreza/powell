@@ -17,7 +17,7 @@ import {
 import {animate, AnimationEvent, style, transition, trigger} from "@angular/animations";
 import {ConfigService} from "@powell/api";
 import {NgCssObject, NgDisableZoomControl, NgImageLoading, NgLimitZoom, NgListener, NgOverflow} from "@powell/models";
-import {PrimeDomHandler, PrimeTemplateDirective, PrimeZIndexUtils} from "@powell/primeng";
+import {$DomHandler, $PrimeTemplate, $ZIndexUtils} from "@powell/primeng";
 import {SafeUrl} from "@angular/platform-browser";
 import {DOCUMENT} from "@angular/common";
 
@@ -95,7 +95,7 @@ export class ImageComponent implements AfterContentInit {
   @ViewChild('mask') mask: ElementRef;
   @ViewChild('previewButton') previewButton: ElementRef;
   @ViewChild('closeButton') closeButton: ElementRef;
-  @ContentChildren(PrimeTemplateDirective) templates: QueryList<PrimeTemplateDirective>;
+  @ContentChildren($PrimeTemplate) templates: QueryList<$PrimeTemplate>;
 
   indicatorTemplate: TemplateRef<any> | undefined;
   rotateRightIconTemplate: TemplateRef<any> | undefined;
@@ -163,7 +163,7 @@ export class ImageComponent implements AfterContentInit {
     if (this.preview) {
       this.maskVisible = true;
       this.previewVisible = true;
-      PrimeDomHandler.blockBodyScroll();
+      $DomHandler.blockBodyScroll();
     }
   }
 
@@ -180,7 +180,7 @@ export class ImageComponent implements AfterContentInit {
       case 'Escape':
         this.onMaskClick();
         setTimeout(() => {
-          PrimeDomHandler.focus(this.previewButton.nativeElement);
+          $DomHandler.focus(this.previewButton.nativeElement);
         }, 25);
         event.preventDefault();
 
@@ -224,12 +224,12 @@ export class ImageComponent implements AfterContentInit {
         this.moveOnTop();
 
         setTimeout(() => {
-          PrimeDomHandler.focus(this.closeButton.nativeElement);
+          $DomHandler.focus(this.closeButton.nativeElement);
         }, 25);
         break;
 
       case 'void':
-        PrimeDomHandler.addClass(this.wrapper, 'p-component-overlay-leave');
+        $DomHandler.addClass(this.wrapper, 'p-component-overlay-leave');
         break;
     }
   }
@@ -237,7 +237,7 @@ export class ImageComponent implements AfterContentInit {
   onAnimationEnd(event: AnimationEvent) {
     switch (event.toState) {
       case 'void':
-        PrimeZIndexUtils.clear(this.wrapper);
+        $ZIndexUtils.clear(this.wrapper);
         this.maskVisible = false;
         this.container = null;
         this.wrapper = null;
@@ -251,13 +251,13 @@ export class ImageComponent implements AfterContentInit {
   }
 
   moveOnTop() {
-    PrimeZIndexUtils.set('modal', this.wrapper, this.configService.get().zIndex.modal);
+    $ZIndexUtils.set('modal', this.wrapper, this.configService.get().zIndex.modal);
   }
 
   appendContainer() {
     if (this.appendTo) {
       if (this.appendTo === 'body') this.document.body.appendChild(this.wrapper as HTMLElement);
-      else PrimeDomHandler.appendChild(this.wrapper, this.appendTo);
+      else $DomHandler.appendChild(this.wrapper, this.appendTo);
     }
   }
 
@@ -284,7 +284,7 @@ export class ImageComponent implements AfterContentInit {
     this.previewVisible = false;
     this.rotate = 0;
     this.scale = this.zoomSettings.default;
-    PrimeDomHandler.unblockBodyScroll();
+    $DomHandler.unblockBodyScroll();
   }
 
   imageError(event: Event) {

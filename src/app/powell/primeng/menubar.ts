@@ -1,5 +1,5 @@
 import {Menubar, MenubarModule, MenubarTemplates} from "primeng/menubar";
 
-export {MenubarModule as PrimeMenubarModule};
-export {Menubar as PrimeMenubar};
-export {MenubarTemplates as PrimeMenubarTemplates};
+export {MenubarModule as $MenubarModule};
+export {Menubar as $Menubar};
+export {MenubarTemplates as $MenubarTemplates};

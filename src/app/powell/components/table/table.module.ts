@@ -12,19 +12,19 @@ import {DropdownModule} from "@powell/components/dropdown";
 import {MultiSelectModule} from "@powell/components/multi-select";
 import {InputNumberModule} from "@powell/components/input-number";
 import {FormsModule} from "@angular/forms";
-import {PrimeBarsIcon, PrimeTableModule, PrimeTimesIcon, PrimeTooltipModule} from "@powell/primeng";
+import {$BarsIcon, $TableModule, $TimesIcon, $TooltipModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
   declarations: [TableComponent],
   exports: [TableComponent, TemplateModule],
   imports: [
-    PrimeTableModule,
+    $TableModule,
     EmptyModule,
     InputTextModule,
     MultiSelectModule,
     InputNumberModule,
-    PrimeTooltipModule,
+    $TooltipModule,
     ButtonModule,
     GregorianDatepickerModule,
     SliderModule,
@@ -33,8 +33,8 @@ import {TemplateModule} from "@powell/directives/template";
     ImageModule,
     CommonModule,
     FormsModule,
-    PrimeTimesIcon,
-    PrimeBarsIcon,
+    $TimesIcon,
+    $BarsIcon,
   ],
 })
 export class TableModule {

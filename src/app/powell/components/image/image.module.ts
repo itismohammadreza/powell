@@ -2,14 +2,14 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {ImageComponent} from "@powell/components/image";
 import {
-  PrimeEyeIcon,
-  PrimeFocusTrapModule,
-  PrimeImageModule,
-  PrimeRefreshIcon,
-  PrimeSearchMinusIcon,
-  PrimeSearchPlusIcon,
-  PrimeTimesIcon,
-  PrimeUndoIcon
+  $EyeIcon,
+  $FocusTrapModule,
+  $ImageModule,
+  $RefreshIcon,
+  $SearchMinusIcon,
+  $SearchPlusIcon,
+  $TimesIcon,
+  $UndoIcon
 } from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
 import {PinchZoomModule} from "@powell/components/pinch-zoom";
@@ -18,16 +18,16 @@ import {PinchZoomModule} from "@powell/components/pinch-zoom";
   declarations: [ImageComponent],
   exports: [ImageComponent, TemplateModule],
   imports: [
-    PrimeImageModule,
+    $ImageModule,
     PinchZoomModule,
     CommonModule,
-    PrimeRefreshIcon,
-    PrimeEyeIcon,
-    PrimeUndoIcon,
-    PrimeSearchMinusIcon,
-    PrimeSearchPlusIcon,
-    PrimeTimesIcon,
-    PrimeFocusTrapModule
+    $RefreshIcon,
+    $EyeIcon,
+    $UndoIcon,
+    $SearchMinusIcon,
+    $SearchPlusIcon,
+    $TimesIcon,
+    $FocusTrapModule
   ],
 })
 export class ImageModule {

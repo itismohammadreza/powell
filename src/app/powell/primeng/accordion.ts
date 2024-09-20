@@ -7,9 +7,9 @@ import {
   AccordionTemplates
 } from "primeng/accordion";
 
-export {Accordion as PrimeAccordion};
-export {AccordionModule as PrimeAccordionModule};
-export {AccordionTab as PrimeAccordionTab};
-export {AccordionTabCloseEvent as PrimeAccordionTabCloseEvent};
-export {AccordionTabOpenEvent as PrimeAccordionTabOpenEvent};
-export {AccordionTemplates as PrimeAccordionTemplates};
+export {Accordion as $Accordion};
+export {AccordionModule as $AccordionModule};
+export {AccordionTab as $AccordionTab};
+export {AccordionTabCloseEvent as $AccordionTabCloseEvent};
+export {AccordionTabOpenEvent as $AccordionTabOpenEvent};
+export {AccordionTemplates as $AccordionTemplates};

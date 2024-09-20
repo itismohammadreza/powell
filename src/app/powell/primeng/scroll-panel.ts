@@ -1,5 +1,5 @@
 import {ScrollPanel, ScrollPanelModule, ScrollPanelTemplates} from "primeng/scrollpanel";
 
-export {ScrollPanelModule as PrimeScrollPanelModule};
-export {ScrollPanel as PrimeScrollPanel};
-export {ScrollPanelTemplates as PrimeScrollPanelTemplates};
+export {ScrollPanelModule as $ScrollPanelModule};
+export {ScrollPanel as $ScrollPanel};
+export {ScrollPanelTemplates as $ScrollPanelTemplates};

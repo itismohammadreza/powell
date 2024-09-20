@@ -5,14 +5,14 @@ import {GlobalConfig, SidebarType} from '@core/models';
 import {ConfigService, ThemeService} from "@powell/api";
 import {globalConfig} from "@core/config";
 import {
-  PrimeAvatarModule,
-  PrimeDividerModule,
-  PrimeDropdownChangeEvent,
-  PrimeMenubarModule,
-  PrimeMenuItem,
-  PrimeMenuModule,
-  PrimePanelMenuModule,
-  PrimeSidebarModule
+  $AvatarModule,
+  $DividerModule,
+  $DropdownChangeEvent,
+  $MenubarModule,
+  $MenuItem,
+  $MenuModule,
+  $PanelMenuModule,
+  $SidebarModule
 } from "@powell/primeng";
 import {ButtonModule} from "@powell/components/button";
 import {InputTextModule} from "@powell/components/input-text";
@@ -33,12 +33,12 @@ import {lastValueFrom} from "rxjs";
   imports: [
     CommonModule,
     LogoComponent,
-    PrimeAvatarModule,
-    PrimeMenubarModule,
-    PrimeSidebarModule,
-    PrimePanelMenuModule,
-    PrimeMenuModule,
-    PrimeDividerModule,
+    $AvatarModule,
+    $MenubarModule,
+    $SidebarModule,
+    $PanelMenuModule,
+    $MenuModule,
+    $DividerModule,
     ButtonModule,
     InputTextModule,
     DropdownModule,
@@ -55,14 +55,14 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   private configService = inject(ConfigService);
 
   sidebarType: SidebarType = 'push-mask';
-  sidebarTypes: PrimeMenuItem[];
+  sidebarTypes: $MenuItem[];
   sidebarVisible: boolean;
   configSidebarVisible: boolean;
   sidebarLock: boolean; // overrides the sidebarVisible.
-  sidebarItems: PrimeMenuItem[];
+  sidebarItems: $MenuItem[];
   config: GlobalConfig = globalConfig;
   tempSidebarType: SidebarType = 'push-mask';
-  themes: PrimeMenuItem[];
+  themes: $MenuItem[];
   searchValue: string;
 
   @HostListener('window:resize', ['$event'])
@@ -116,11 +116,11 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     this.configService.update({[config]: value});
   }
 
-  async changeLang(event: PrimeDropdownChangeEvent) {
+  async changeLang(event: $DropdownChangeEvent) {
     await lastValueFrom(this.translationService.use(event.value));
   }
 
-  changeSidebarType(event: PrimeDropdownChangeEvent | SidebarType, assign: boolean) {
+  changeSidebarType(event: $DropdownChangeEvent | SidebarType, assign: boolean) {
     this.tempSidebarType = typeof event === 'string' ? event : event.value;
     if (assign) {
       this.sidebarType = this.tempSidebarType;

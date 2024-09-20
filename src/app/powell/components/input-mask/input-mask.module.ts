@@ -4,13 +4,13 @@ import {FormsModule} from "@angular/forms";
 import {AddonModule} from "@powell/directives/addon";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {InputMaskComponent} from "@powell/components/input-mask";
-import {PrimeInputMaskModule} from "@powell/primeng";
+import {$InputMaskModule} from "@powell/primeng";
 
 @NgModule({
   declarations: [InputMaskComponent],
   exports: [InputMaskComponent],
   imports: [
-    PrimeInputMaskModule,
+    $InputMaskModule,
     CommonModule,
     FormsModule,
     LabelStarModule,

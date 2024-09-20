@@ -1,14 +1,14 @@
 import {NgFixLabelPosition, NgInputVariant, NgLabelPosition, NgSize} from "@powell/models";
-import {PrimeConfig} from "@powell/primeng";
+import {$PrimeNGConfig} from "@powell/primeng";
 
-type OmittedPrimeConfig = Omit<PrimeConfig, "setTranslation" | "csp" | "getTranslation" | "inputStyle">;
+type OmittedConfig = Omit<$PrimeNGConfig, "setTranslation" | "csp" | "getTranslation" | "inputStyle">;
 
 export interface NgConfigChangeEvent {
   currentConfig: NgConfig;
   modifiedConfig: NgConfig;
 }
 
-export interface NgConfig extends Partial<OmittedPrimeConfig> {
+export interface NgConfig extends Partial<OmittedConfig> {
   followConfig?: boolean;
   rtl?: boolean;
   labelPos?: NgLabelPosition;

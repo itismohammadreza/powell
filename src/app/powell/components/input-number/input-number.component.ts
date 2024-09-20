@@ -37,7 +37,7 @@ import {
   NgValidation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeInputNumberInputEvent, PrimeUniqueComponentId} from "@powell/primeng";
+import {$InputNumberInputEvent, $UniqueComponentId} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 
@@ -77,7 +77,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() showButtons: boolean = false;
   @Input() format: boolean = true;
   @Input() buttonLayout: NgNumberButtonLayout = 'stacked';
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() styleClass: string;
   @Input() style: NgCssObject;
   @Input() placeholder: string;
@@ -116,7 +116,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() showClear: boolean = false;
   @Input() autofocus: boolean = false;
   @Input() disabled: boolean;
-  @Output() onInput = new EventEmitter<PrimeInputNumberInputEvent>();
+  @Output() onInput = new EventEmitter<$InputNumberInputEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onKeyDown = new EventEmitter<KeyboardEvent>();

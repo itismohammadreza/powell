@@ -1,6 +1,6 @@
 import {Component, EventEmitter, ViewChild} from '@angular/core';
 import {NgDialogOptions} from '@powell/models';
-import {PrimeDialog} from "@powell/primeng";
+import {$Dialog} from "@powell/primeng";
 
 @Component({
   selector: 'ng-dialog',
@@ -11,7 +11,7 @@ export class DialogComponent {
   onClose = new EventEmitter();
   options: NgDialogOptions = {};
   visible: boolean = true;
-  @ViewChild(PrimeDialog, {static: true}) dialog: PrimeDialog;
+  @ViewChild($Dialog, {static: true}) dialog: $Dialog;
 
   show() {
     for (const key in this.options) {

@@ -1,5 +1,5 @@
 import {InputSwitch, InputSwitchChangeEvent, InputSwitchModule} from "primeng/inputswitch";
 
-export {InputSwitchModule as PrimeInputSwitchModule};
-export {InputSwitch as PrimeInputSwitch};
-export {InputSwitchChangeEvent as PrimeInputSwitchChangeEvent};
+export {InputSwitchModule as $InputSwitchModule};
+export {InputSwitch as $InputSwitch};
+export {InputSwitchChangeEvent as $InputSwitchChangeEvent};

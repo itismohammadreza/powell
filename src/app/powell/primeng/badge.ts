@@ -1,4 +1,4 @@
 import {Badge, BadgeModule} from "primeng/badge";
 
-export {BadgeModule as PrimeBadgeModule};
-export {Badge as PrimeBadge};
+export {BadgeModule as $BadgeModule};
+export {Badge as $Badge};

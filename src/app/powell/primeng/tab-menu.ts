@@ -1,5 +1,5 @@
 import {TabMenu, TabMenuModule, TabMenuTemplates} from "primeng/tabmenu";
 
-export {TabMenuModule as PrimeTabMenuModule};
-export {TabMenu as PrimeTabMenu};
-export {TabMenuTemplates as PrimeTabMenuTemplates};
+export {TabMenuModule as $TabMenuModule};
+export {TabMenu as $TabMenu};
+export {TabMenuTemplates as $TabMenuTemplates};

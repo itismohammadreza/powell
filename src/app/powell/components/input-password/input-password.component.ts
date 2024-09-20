@@ -37,7 +37,7 @@ import {
 import {TemplateDirective} from '@powell/directives/template';
 import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
-import {PrimeUniqueComponentId} from "@powell/primeng";
+import {$UniqueComponentId} from "@powell/primeng";
 
 @Component({
   selector: 'ng-input-password',
@@ -84,7 +84,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() mediumLabel: string;
   @Input() maxLength: number;
   @Input() strongLabel: string;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() feedback: boolean = true;
   @Input() appendTo: any;
   @Input() toggleMask: boolean = false;

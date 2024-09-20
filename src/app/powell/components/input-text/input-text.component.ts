@@ -35,7 +35,7 @@ import {
 } from '@powell/models';
 import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
-import {PrimeUniqueComponentId} from "@powell/primeng";
+import {$UniqueComponentId} from "@powell/primeng";
 
 @Component({
   selector: 'ng-input-text',
@@ -69,7 +69,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() icon: string;
   @Input() labelPos: NgLabelPosition;
   @Input() iconPos: NgIconPosition = 'left';
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;

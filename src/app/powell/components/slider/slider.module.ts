@@ -3,13 +3,13 @@ import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {SliderComponent} from "@powell/components/slider";
 import {LabelStarModule} from "@powell/pipes/label-star";
-import {PrimeSliderModule} from "@powell/primeng";
+import {$SliderModule} from "@powell/primeng";
 
 @NgModule({
   declarations: [SliderComponent],
   exports: [SliderComponent],
   imports: [
-    PrimeSliderModule,
+    $SliderModule,
     CommonModule,
     FormsModule,
     LabelStarModule

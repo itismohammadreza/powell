@@ -6,8 +6,8 @@ import {
   FieldsetTemplates,
 } from "primeng/fieldset";
 
-export {FieldsetModule as PrimeFieldsetModule};
-export {Fieldset as PrimeFieldset};
-export {FieldsetTemplates as PrimeFieldsetTemplates};
-export {FieldsetAfterToggleEvent as PrimeFieldsetAfterToggleEvent};
-export {FieldsetBeforeToggleEvent as PrimeFieldsetBeforeToggleEvent};
+export {FieldsetModule as $FieldsetModule};
+export {Fieldset as $Fieldset};
+export {FieldsetTemplates as $FieldsetTemplates};
+export {FieldsetAfterToggleEvent as $FieldsetAfterToggleEvent};
+export {FieldsetBeforeToggleEvent as $FieldsetBeforeToggleEvent};

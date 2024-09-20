@@ -1,4 +1,4 @@
 import {Terminal, TerminalModule} from "primeng/terminal";
 
-export {TerminalModule as PrimeTerminalModule};
-export {Terminal as PrimeTerminal};
+export {TerminalModule as $TerminalModule};
+export {Terminal as $Terminal};

@@ -9,11 +9,11 @@ import {
   DataViewTemplates
 } from "primeng/dataview";
 
-export {DataViewModule as PrimeDataViewModule};
-export {DataView as PrimeDataView};
-export {DataViewTemplates as PrimeDataViewTemplates};
-export {DataViewLayoutOptions as PrimeDataViewLayoutOptions};
-export {DataViewLayoutChangeEvent as PrimeDataViewLayoutChangeEvent};
-export {DataViewPageEvent as PrimeDataViewPageEvent};
-export {DataViewLazyLoadEvent as PrimeDataViewLazyLoadEvent};
-export {DataViewSortEvent as PrimeDataViewSortEvent};
+export {DataViewModule as $DataViewModule};
+export {DataView as $DataView};
+export {DataViewTemplates as $DataViewTemplates};
+export {DataViewLayoutOptions as $DataViewLayoutOptions};
+export {DataViewLayoutChangeEvent as $DataViewLayoutChangeEvent};
+export {DataViewPageEvent as $DataViewPageEvent};
+export {DataViewLazyLoadEvent as $DataViewLazyLoadEvent};
+export {DataViewSortEvent as $DataViewSortEvent};

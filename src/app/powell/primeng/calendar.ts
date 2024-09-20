@@ -9,11 +9,11 @@ import {
   LocaleSettings,
 } from "primeng/calendar";
 
-export {CalendarModule as PrimeCalendarModule};
-export {Calendar as PrimeCalendar};
-export {CalendarMonthChangeEvent as PrimeCalendarMonthChangeEvent};
-export {CalendarResponsiveOptions as PrimeCalendarResponsiveOptions};
-export {CalendarYearChangeEvent as PrimeCalendarYearChangeEvent};
-export {CalendarTemplates as PrimeCalendarTemplates};
-export {CalendarTypeView as PrimeCalendarTypeView};
-export {LocaleSettings as PrimeLocaleSettings};
+export {CalendarModule as $CalendarModule};
+export {Calendar as $Calendar};
+export {CalendarMonthChangeEvent as $CalendarMonthChangeEvent};
+export {CalendarResponsiveOptions as $CalendarResponsiveOptions};
+export {CalendarYearChangeEvent as $CalendarYearChangeEvent};
+export {CalendarTemplates as $CalendarTemplates};
+export {CalendarTypeView as $CalendarTypeView};
+export {LocaleSettings as $LocaleSettings};

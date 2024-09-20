@@ -2,7 +2,7 @@ import {Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/c
 import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
 import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult, NgValidation} from "@powell/models";
 import {ConfigService} from "@powell/api";
-import {PrimeDialog, PrimeDomHandler} from "@powell/primeng";
+import {$Dialog, $DomHandler} from "@powell/primeng";
 
 @Component({
   selector: 'ng-dialog-form',
@@ -13,7 +13,7 @@ export class DialogFormComponent {
   private el = inject(ElementRef);
   private configService = inject(ConfigService);
 
-  @ViewChild(PrimeDialog, {static: true}) dialog: PrimeDialog;
+  @ViewChild($Dialog, {static: true}) dialog: $Dialog;
 
   form: FormGroup = new FormGroup({});
   visible: boolean;
@@ -182,11 +182,11 @@ export class DialogFormComponent {
     let element: HTMLButtonElement;
     switch (this.options.defaultFocus) {
       case 'reject':
-        element = PrimeDomHandler.findSingle(this.el.nativeElement, '.p-dialog-form-reject');
+        element = $DomHandler.findSingle(this.el.nativeElement, '.p-dialog-form-reject');
         break;
 
       case 'accept':
-        element = PrimeDomHandler.findSingle(this.el.nativeElement, '.p-dialog-form-accept');
+        element = $DomHandler.findSingle(this.el.nativeElement, '.p-dialog-form-accept');
         break;
 
       case undefined:

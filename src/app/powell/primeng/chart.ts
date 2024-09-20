@@ -1,4 +1,4 @@
 import {ChartModule, UIChart} from "primeng/chart";
 
-export {ChartModule as PrimeChartModule};
-export {UIChart as PrimeUIChart};
+export {ChartModule as $ChartModule};
+export {UIChart as $UIChart};

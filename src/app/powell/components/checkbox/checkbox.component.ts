@@ -26,7 +26,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgAsyncEvent, NgCssObject, NgInputVariant, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {PrimeCheckboxChangeEvent, PrimeUniqueComponentId} from "@powell/primeng";
+import {$CheckboxChangeEvent, $UniqueComponentId} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 
@@ -65,7 +65,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
   @Input() tabindex: number;
-  @Input() inputId: string = PrimeUniqueComponentId();
+  @Input() inputId: string = $UniqueComponentId();
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() labelStyleClass: string;
@@ -75,10 +75,10 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   @Input() trueValue: any = true;
   @Input() falseValue: any = false;
   @Input() variant: NgInputVariant;
-  @Output() onChange = new EventEmitter<PrimeCheckboxChangeEvent>();
+  @Output() onChange = new EventEmitter<$CheckboxChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
-  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<PrimeCheckboxChangeEvent>>();
+  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<$CheckboxChangeEvent>>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   loading: boolean;
@@ -136,7 +136,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
     }
   }
 
-  _onChange(event: PrimeCheckboxChangeEvent) {
+  _onChange(event: $CheckboxChangeEvent) {
     if (this.async) {
       this.loading = true;
       this.disabled = true;

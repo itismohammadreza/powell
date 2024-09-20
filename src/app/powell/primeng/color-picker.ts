@@ -1,5 +1,5 @@
 import {ColorPicker, ColorPickerChangeEvent, ColorPickerModule} from "primeng/colorpicker";
 
-export {ColorPickerModule as PrimeColorPickerModule};
-export {ColorPicker as PrimeColorPicker};
-export {ColorPickerChangeEvent as PrimeColorPickerChangeEvent};
+export {ColorPickerModule as $ColorPickerModule};
+export {ColorPicker as $ColorPicker};
+export {ColorPickerChangeEvent as $ColorPickerChangeEvent};

@@ -8,10 +8,10 @@ import {
   DynamicDialogTemplates
 } from "primeng/dynamicdialog";
 
-export {DynamicDialogModule as PrimeDynamicDialogModule};
-export {DynamicDialogComponent as PrimeDynamicDialogComponent};
-export {DynamicDialogConfig as PrimeDynamicDialogConfig};
-export {DialogService as PrimeDialogService};
-export {DynamicDialogInjector as PrimeDynamicDialogInjector};
-export {DynamicDialogRef as PrimeDynamicDialogRef};
-export {DynamicDialogTemplates as PrimeDynamicDialogTemplates};
+export {DynamicDialogModule as $DynamicDialogModule};
+export {DynamicDialogComponent as $DynamicDialogComponent};
+export {DynamicDialogConfig as $DynamicDialogConfig};
+export {DialogService as $DialogService};
+export {DynamicDialogInjector as $DynamicDialogInjector};
+export {DynamicDialogRef as $DynamicDialogRef};
+export {DynamicDialogTemplates as $DynamicDialogTemplates};

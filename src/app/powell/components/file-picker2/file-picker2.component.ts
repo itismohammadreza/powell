@@ -32,7 +32,7 @@ import {
 } from '@powell/models';
 import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
-import {PrimeUniqueComponentId} from "@powell/primeng";
+import {$UniqueComponentId} from "@powell/primeng";
 
 @Component({
   selector: 'ng-file-picker2',
@@ -75,7 +75,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() chooseLabel: string = 'انتخاب';
   @Input() invalidFileSizeMessage: string = 'سایز فایل نامعتبر است.';
   @Input() invalidFileTypeMessage: string = 'فرمت نامعتبر است.';
-  @Input() id: string = PrimeUniqueComponentId();
+  @Input() id: string = $UniqueComponentId();
   @Output() onSelect = new EventEmitter<NgFilePickerSelectEvent>();
   @Output() onRemove = new EventEmitter<NgFilePickerRemoveEvent>();
 

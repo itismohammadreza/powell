@@ -9,11 +9,11 @@ import {
   AutoCompleteUnselectEvent
 } from "primeng/autocomplete";
 
-export {AutoCompleteModule as PrimeAutoCompleteModule};
-export {AutoComplete as PrimeAutoComplete};
-export {AutoCompleteCompleteEvent as PrimeAutoCompleteCompleteEvent};
-export {AutoCompleteDropdownClickEvent as PrimeAutoCompleteDropdownClickEvent};
-export {AutoCompleteLazyLoadEvent as PrimeAutoCompleteLazyLoadEvent};
-export {AutoCompleteSelectEvent as PrimeAutoCompleteSelectEvent};
-export {AutoCompleteUnselectEvent as PrimeAutoCompleteUnselectEvent};
-export {AutoCompleteTemplates as PrimeAutoCompleteTemplates};
+export {AutoCompleteModule as $AutoCompleteModule};
+export {AutoComplete as $AutoComplete};
+export {AutoCompleteCompleteEvent as $AutoCompleteCompleteEvent};
+export {AutoCompleteDropdownClickEvent as $AutoCompleteDropdownClickEvent};
+export {AutoCompleteLazyLoadEvent as $AutoCompleteLazyLoadEvent};
+export {AutoCompleteSelectEvent as $AutoCompleteSelectEvent};
+export {AutoCompleteUnselectEvent as $AutoCompleteUnselectEvent};
+export {AutoCompleteTemplates as $AutoCompleteTemplates};

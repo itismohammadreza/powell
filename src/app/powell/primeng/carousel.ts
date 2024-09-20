@@ -6,8 +6,8 @@ import {
   CarouselTemplates
 } from "primeng/carousel";
 
-export {CarouselModule as PrimeCarouselModule};
-export {Carousel as PrimeCarousel};
-export {CarouselPageEvent as PrimeCarouselPageEvent};
-export {CarouselTemplates as PrimeCarouselTemplates};
-export {CarouselResponsiveOptions as PrimeCarouselResponsiveOptions};
+export {CarouselModule as $CarouselModule};
+export {Carousel as $Carousel};
+export {CarouselPageEvent as $CarouselPageEvent};
+export {CarouselTemplates as $CarouselTemplates};
+export {CarouselResponsiveOptions as $CarouselResponsiveOptions};
