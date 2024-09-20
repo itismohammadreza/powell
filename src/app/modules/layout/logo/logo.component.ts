@@ -7,7 +7,10 @@ import {CommonModule} from "@angular/common";
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss'],
   standalone: true,
-  imports: [RouterModule, CommonModule]
+  imports: [RouterModule, CommonModule],
+  host: {
+    class: 'inline-block',
+  }
 })
 export class LogoComponent {
   @Input() width: string = '100px';
