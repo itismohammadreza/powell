@@ -27,10 +27,10 @@ import {MomentService} from "@powell/api";
 import {
   $CalendarMonthChangeEvent,
   $CalendarYearChangeEvent,
-  $PrimeNGConfig,
   $ConnectedOverlayScrollHandler,
   $DomHandler,
   $OverlayService,
+  $PrimeNGConfig,
   $PrimeTemplate,
   $UniqueComponentId,
   $ZIndexUtils

@@ -1,7 +1,8 @@
 import {
   NgAsyncEvent,
   NgButtonAppearance,
-  NgColor, NgCssObject,
+  NgColor,
+  NgCssObject,
   NgFilterMatchMode,
   NgIconPosition,
   NgPosition,
