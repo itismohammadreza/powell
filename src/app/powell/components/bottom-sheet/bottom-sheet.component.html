@@ -15,29 +15,33 @@
   (onShow)="_onShow()"
   (onHide)="_onHide()">
   <div class="bottom-sheet-wrapper" [ngClass]="{'rtl': rtl, 'ltr': !rtl}">
-    <div class="header" *ngIf="header || showCloseIcon || templateMap.header" [class.show-close-icon]="showCloseIcon">
-      <ng-container *ngIf="templateMap.header;else alternativeTitle">
-        <ng-container *ngTemplateOutlet="templateMap.header"/>
-      </ng-container>
-      <ng-template #alternativeTitle>
-        <h5>{{ header }}</h5>
-      </ng-template>
-      <ng-button
-        *ngIf="showCloseIcon"
-        [rounded]="true"
-        size="sm"
-        appearance="text"
-        (onClick)="_onHide()">
-        <ng-template ngTemplate="icon">
-          <TimesIcon/>
-        </ng-template>
-      </ng-button>
-    </div>
+    @if (header || showCloseIcon || templateMap.header) {
+      <div class="header" [class.show-close-icon]="showCloseIcon">
+        @if (templateMap.header) {
+          <ng-container *ngTemplateOutlet="templateMap.header"/>
+        } @else {
+          <h5>{{ header }}</h5>
+        }
+        @if (showCloseIcon) {
+          <ng-button
+            [rounded]="true"
+            size="sm"
+            appearance="text"
+            (onClick)="_onHide()">
+            <ng-template ngTemplate="icon">
+              <TimesIcon/>
+            </ng-template>
+          </ng-button>
+        }
+      </div>
+    }
     <div class="content" [class.has-gutter]="gutter">
       <ng-content/>
     </div>
-    <div class="footer" *ngIf="templateMap.footer">
-      <ng-container *ngTemplateOutlet="templateMap.footer"/>
-    </div>
+    @if (templateMap.footer) {
+      <div class="footer">
+        <ng-container *ngTemplateOutlet="templateMap.footer"/>
+      </div>
+    }
   </div>
 </p-sidebar>

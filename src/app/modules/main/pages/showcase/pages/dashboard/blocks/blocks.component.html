@@ -3,6 +3,8 @@
     <ng-content/>
   </div>
   <ul class="bg-bubbles">
-    <li *ngFor="let item of bubblesNumber"></li>
+    @for (item of bubblesNumber; track item) {
+      <li></li>
+    }
   </ul>
 </div>

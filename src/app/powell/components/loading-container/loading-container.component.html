@@ -1,13 +1,10 @@
 <div class="loading-container">
-  <ng-container *ngIf="!isEmptyData();else emptyDataPlaceholder">
+  @if (!isEmptyData()) {
     <ng-container *ngTemplateOutlet="templateMap.content"/>
-  </ng-container>
-
-  <ng-template #emptyDataPlaceholder>
-    <ng-container *ngIf="templateMap.loading; else defaultLoadingTemplate">
+  } @else {
+    @if (templateMap.loading) {
       <ng-container *ngTemplateOutlet="templateMap.loading"/>
-    </ng-container>
-    <ng-template #defaultLoadingTemplate>
+    } @else {
       <div class="loading">
         <p-progressSpinner
           [strokeWidth]="spinnerStrokeWidth.toString()"
@@ -15,6 +12,6 @@
           [style]="{width:spinnerWidth,height:spinnerHeight}">
         </p-progressSpinner>
       </div>
-    </ng-template>
-  </ng-template>
+    }
+  }
 </div>

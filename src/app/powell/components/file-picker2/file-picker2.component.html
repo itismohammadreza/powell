@@ -14,81 +14,95 @@
       [disabled]="disabled"
       (change)="_onSelect($event)"/>
 
-    <div class="file-picker-single-wrapper" *ngIf="!multiple">
-      <div class="preview" [ngSwitch]="getFileType(filesToShow[0]?.display)">
-        <div *ngSwitchCase="'image'" class="image-preview"
-             [style.backgroundImage]="'url('+(filesToShow[0]?.display)+')'"></div>
-        <PlusIcon *ngSwitchCase="'file'" styleClass="file-preview"/>
-      </div>
-
-      <ng-button
-        [full]="true"
-        [disabled]="disabled"
-        (onClick)="inputFile.click()"
-        [color]="color"
-        [label]="chooseLabel">
-      </ng-button>
-      <ng-button
-        color="danger"
-        size="sm"
-        (onClick)="onSingleDelete()"
-        *ngIf="filesToShow.length != 0">
-        <ng-template ngTemplate="icon">
-          <TrashIcon/>
-        </ng-template>
-      </ng-button>
-    </div>
-
-    <div class="file-picker-multiple-wrapper" *ngIf="multiple">
-      <div *ngIf="!readonly && (fileLimit && filesToEmit.length < fileLimit)" class="picker"
-           (click)="inputFile.click()">
-        <PlusIcon/>
-      </div>
-      <div *ngFor="let item of filesToShow; let i = index" class="preview">
-        <ng-container [ngSwitch]="getFileType(item.display)">
-          <div *ngSwitchCase="'image'"
-               [style.backgroundImage]="'url(' + item.display + ')'"
-               class="image-preview">
-          </div>
-          <div *ngSwitchCase="'file'" class="file-preview">
-            <UploadIcon/>
-          </div>
-          <div class="file-name">{{ item.name }}</div>
-        </ng-container>
-        <ng-button
-          color="danger"
-          size="sm"
-          (onClick)="onMultipleDelete($event, i)"
-          *ngIf="!readonly">
-          <ng-template ngTemplate="icon">
-            <TrashIcon/>
-          </ng-template>
-        </ng-button>
-      </div>
-    </div>
-  </div>
-  <label
-    class="fix-label"
-    *ngIf="label"
-    [attr.for]="id"
-    [class.p-disabled]="disabled"
-    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
-    [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label | ngLabelStar:showRequiredStar:ngControl }}
-  </label>
-  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
-  <div class="message p-error">
-    <ng-container *ngIf="!invalidFileSize && !invalidFileType">
-      <ng-container *ngFor="let v of validation | keyvalue">
-        <div *ngIf="hasError(v.key)">
-          {{ v.value }}
+    @if (!multiple) {
+      <div class="file-picker-single-wrapper">
+        <div class="preview">
+          @switch (getFileType(filesToShow[0]?.display)) {
+            @case ('image') {
+              <div class="image-preview" [style.backgroundImage]="'url('+(filesToShow[0]?.display)+')'"></div>
+            }
+            @case ('file') {
+              <PlusIcon styleClass="file-preview"/>
+            }
+          }
         </div>
-      </ng-container>
-    </ng-container>
+        <ng-button
+          [full]="true"
+          [disabled]="disabled"
+          (onClick)="inputFile.click()"
+          [color]="color"
+          [label]="chooseLabel">
+        </ng-button>
+        @if (filesToShow.length != 0) {
+          <ng-button color="danger" size="sm" (onClick)="onSingleDelete()">
+            <ng-template ngTemplate="icon">
+              <TrashIcon/>
+            </ng-template>
+          </ng-button>
+        }
+      </div>
+    }
 
-    <ng-container *ngIf="invalidFileSize || invalidFileType">
-      <div *ngIf="invalidFileSize">{{ invalidFileSizeMessage }}</div>
-      <div *ngIf="invalidFileType">{{ invalidFileTypeMessage }}</div>
-    </ng-container>
+    @if (multiple) {
+      <div class="file-picker-multiple-wrapper">
+        @if (!readonly && (fileLimit && filesToEmit.length < fileLimit)) {
+          <div class="picker" (click)="inputFile.click()">
+            <PlusIcon/>
+          </div>
+        }
+        @for (item of filesToShow; track item; let i = $index) {
+          <div class="preview">
+            <ng-container [ngSwitch]="getFileType(item.display)">
+              <div *ngSwitchCase="'image'"
+                   [style.backgroundImage]="'url(' + item.display + ')'"
+                   class="image-preview">
+              </div>
+              <div *ngSwitchCase="'file'" class="file-preview">
+                <UploadIcon/>
+              </div>
+              <div class="file-name">{{ item.name }}</div>
+            </ng-container>
+            @if (!readonly) {
+              <ng-button color="danger" size="sm" (onClick)="onMultipleDelete($event, i)">
+                <ng-template ngTemplate="icon">
+                  <TrashIcon/>
+                </ng-template>
+              </ng-button>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+  @if (label) {
+    <label
+      class="fix-label"
+      [attr.for]="id"
+      [class.p-disabled]="disabled"
+      [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+      [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+      {{ label | ngLabelStar:showRequiredStar:ngControl }}
+    </label>
+  }
+  @if (hint && showHint()) {
+    <div class="message">{{ hint }}</div>
+  }
+  <div class="message p-error">
+    @if (!invalidFileSize && !invalidFileType) {
+      @for (v of validation | keyvalue; track v) {
+        @if (hasError(v.key)) {
+          <div> {{ v.value }}</div>
+        }
+      }
+    }
+
+    @if (invalidFileSize || invalidFileType) {
+      @if (invalidFileSize) {
+        <div>{{ invalidFileSizeMessage }}</div>
+      }
+      @if (invalidFileType) {
+        <div>{{ invalidFileTypeMessage }}</div>
+      }
+    }
   </div>
 </div>

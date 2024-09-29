@@ -12,7 +12,9 @@
       <!--      </ng-template>-->
       <ng-template ngTemplate="content">
         <ul>
-          <li *ngFor="let item of list">item-{{ item }}</li>
+          @for (item of list; track item) {
+            <li>item-{{ item }}</li>
+          }
         </ul>
       </ng-template>
     </ng-loading-container>

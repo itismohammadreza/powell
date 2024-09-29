@@ -21,23 +21,30 @@
       [ariaLabelledBy]="ariaLabelledBy"
       [autofocus]="autofocus"
       (onChange)="_onChange($event)"/>
-    <p-progressSpinner *ngIf="loading && showAsyncLoading" strokeWidth="4"/>
+      @if (loading && showAsyncLoading) {
+        <p-progressSpinner strokeWidth="4"/>
+      }
+    </div>
+    @if (label) {
+      <label
+        class="fix-label"
+        [attr.for]="inputId"
+        [class.p-disabled]="disabled"
+        [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+        [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+        {{ label | ngLabelStar:showRequiredStar:ngControl }}
+      </label>
+    }
+    @if (hint && showHint()) {
+      <div class="message">{{ hint }}</div>
+    }
+    <div class="message p-error">
+      @for (v of validation | keyvalue; track v) {
+        @if (hasError(v.key)) {
+          <div>
+            {{ v.value }}
+          </div>
+        }
+      }
+    </div>
   </div>
-  <label
-    class="fix-label"
-    *ngIf="label"
-    [attr.for]="inputId"
-    [class.p-disabled]="disabled"
-    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
-    [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label | ngLabelStar:showRequiredStar:ngControl }}
-  </label>
-  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
-  <div class="message p-error">
-    <ng-container *ngFor="let v of validation | keyvalue">
-      <div *ngIf="hasError(v.key)">
-        {{ v.value }}
-      </div>
-    </ng-container>
-  </div>
-</div>

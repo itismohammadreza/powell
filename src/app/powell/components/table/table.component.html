@@ -110,259 +110,328 @@
     (onStateRestore)="emitter('onStateRestore',$event)"
     (contextMenuSelectionChange)="onContextMenuSelectionChange($event)">
     <ng-template pTemplate="header">
-      <ng-container *ngIf="filterDisplay == 'menu'">
+      @if (filterDisplay == 'menu') {
         <tr>
-          <th scope="col" style="width: 3rem" *ngIf="reorderableRows"></th>
-          <th scope="col" style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
-            <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"/>
-          </th>
-          <th scope="col" *ngFor="let col of colDef"
-              [pSortableColumn]="col.sort && col.field"
-              pReorderableColumn
-              [pReorderableColumnDisabled]="!reorderableColumns">
-            {{ col.header }}
-            <p-sortIcon *ngIf="col.sort" [field]="col.field"/>
-            <ng-button
-              class="sort-reset"
-              [rounded]="true"
-              *ngIf="col.sort && activeSortField == col.field"
-              appearance="text"
-              size="sm"
-              (onClick)="onResetSort($event)">
-              <ng-template ngTemplate="icon">
-                <TimesIcon/>
-              </ng-template>
-            </ng-button>
-            <ng-container *ngIf="col.filter as filter">
-              <p-columnFilter [field]="col.field"
-                              display="menu"
-                              [matchMode]="filter.matchMode"
-                              [showApplyButton]="false"
-                              [showMatchModes]="false"
-                              [showOperator]="false"
-                              [showAddButton]="false">
-                <ng-template pTemplate="header">
-                  <div class="filter-header"><span>{{ filter.header }}</span></div>
-                </ng-template>
-                <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback" [ngSwitch]="filter.type">
-                  <ng-input-text
-                    *ngSwitchCase="'text'"
-                    [value]="value"
-                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                  </ng-input-text>
-
-                  <ng-input-number
-                    *ngSwitchCase="'numeric'"
-                    (onInput)="onChangeFilterValue($event,filterCallback,col)">
-                  </ng-input-number>
-
-                  <ng-multi-select
-                    *ngSwitchCase="'multi-select'"
-                    [value]="value"
-                    [options]="filter.options"
-                    [optionLabel]="filter.optionLabel"
-                    [optionValue]="filter.optionValue"
-                    [placeholder]="filter.placeholder"
-                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                  </ng-multi-select>
-
-                  <ng-dropdown
-                    *ngSwitchCase="'dropdown'"
-                    [value]="value"
-                    [options]="filter.options"
-                    [optionLabel]="filter.optionLabel"
-                    [optionValue]="filter.optionValue"
-                    [placeholder]="filter.placeholder"
-                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                  </ng-dropdown>
-
-                  <ng-container *ngSwitchCase="'slider'">
-                    <ng-slider
-                      [ngModel]="filter.sliderValue"
-                      [min]="filter.min"
-                      [max]="filter.max"
-                      [range]="filter.range"
-                      (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
-                    </ng-slider>
-                    <div class="text-center" dir="ltr">{{ filter.sliderValue[0] }} - {{ filter.sliderValue[1] }}</div>
-                  </ng-container>
-
-                  <ng-checkbox
-                    *ngSwitchCase="'boolean'"
-                    [ngModel]="value == 'true' ? true : false"
-                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                  </ng-checkbox>
-
-                  <ng-gregorian-datepicker
-                    *ngSwitchCase="'gregorian-datepicker'"
-                    [dateFormat]="filter.dateFormat"
-                    (onSelect)="onChangeFilterValue($event,filterCallback,col)">
-                  </ng-gregorian-datepicker>
-                </ng-template>
-              </p-columnFilter>
-            </ng-container>
-          </th>
-          <ng-container *ngIf="actionsConfig?.inSameColumn && actionsConfig?.actions.length">
+          @if (reorderableRows) {
+            <th scope="col" style="width: 3rem"></th>
+          }
+          @if (selectionMode == 'radio' || selectionMode == 'checkbox') {
+            <th scope="col" style="width: 3rem">
+              @if (selectionMode == 'checkbox') {
+                <p-tableHeaderCheckbox/>
+              }
+            </th>
+          }
+          @for (col of colDef; track col) {
+            <th scope="col"
+                [pSortableColumn]="col.sort && col.field"
+                pReorderableColumn
+                [pReorderableColumnDisabled]="!reorderableColumns">
+              {{ col.header }}
+              @if (col.sort) {
+                <p-sortIcon [field]="col.field"/>
+              }
+              @if (col.sort && activeSortField == col.field) {
+                <ng-button
+                  class="sort-reset"
+                  [rounded]="true"
+                  appearance="text"
+                  size="sm"
+                  (onClick)="onResetSort($event)">
+                  <ng-template ngTemplate="icon">
+                    <TimesIcon/>
+                  </ng-template>
+                </ng-button>
+              }
+              @if (col.filter; as filter) {
+                <p-columnFilter [field]="col.field"
+                                display="menu"
+                                [matchMode]="filter.matchMode"
+                                [showApplyButton]="false"
+                                [showMatchModes]="false"
+                                [showOperator]="false"
+                                [showAddButton]="false">
+                  <ng-template pTemplate="header">
+                    <div class="filter-header"><span>{{ filter.header }}</span></div>
+                  </ng-template>
+                  <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback">
+                    @switch (filter.type) {
+                      @case ('text') {
+                        <ng-input-text
+                          [value]="value"
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                        </ng-input-text>
+                      }
+                      @case ('numeric') {
+                        <ng-input-number
+                          (onInput)="onChangeFilterValue($event,filterCallback,col)">
+                        </ng-input-number>
+                      }
+                      @case ('multi-select') {
+                        <ng-multi-select
+                          [value]="value"
+                          [options]="filter.options"
+                          [optionLabel]="filter.optionLabel"
+                          [optionValue]="filter.optionValue"
+                          [placeholder]="filter.placeholder"
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                        </ng-multi-select>
+                      }
+                      @case ('dropdown') {
+                        <ng-dropdown
+                          [value]="value"
+                          [options]="filter.options"
+                          [optionLabel]="filter.optionLabel"
+                          [optionValue]="filter.optionValue"
+                          [placeholder]="filter.placeholder"
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                        </ng-dropdown>
+                      }
+                      @case ('slider') {
+                        <ng-slider
+                          [ngModel]="filter.sliderValue"
+                          [min]="filter.min"
+                          [max]="filter.max"
+                          [range]="filter.range"
+                          (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
+                        </ng-slider>
+                        <div class="text-center" dir="ltr">{{ filter.sliderValue[0] }}- {{ filter.sliderValue[1] }}
+                        </div>
+                      }
+                      @case ('boolean') {
+                        <ng-checkbox
+                          [ngModel]="value == 'true' ? true : false"
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                        </ng-checkbox>
+                      }
+                      @case ('gregorian-datepicker') {
+                        <ng-gregorian-datepicker
+                          [dateFormat]="filter.dateFormat"
+                          (onSelect)="onChangeFilterValue($event,filterCallback,col)">
+                        </ng-gregorian-datepicker>
+                      }
+                    }
+                  </ng-template>
+                </p-columnFilter>
+              }
+            </th>
+          }
+          @if (actionsConfig?.inSameColumn && actionsConfig?.actions.length) {
             <th class="text-center">{{ actionsConfig.header }}</th>
-          </ng-container>
-          <ng-container *ngIf="!actionsConfig?.inSameColumn && actionsConfig?.actions.length">
-            <ng-container *ngFor="let action of actionsConfig?.actions">
-              <th class="text-center" *ngIf="action.visible ?? true">{{ action.header }}</th>
-            </ng-container>
-          </ng-container>
+          }
+          @if (!actionsConfig?.inSameColumn && actionsConfig?.actions.length) {
+            @for (action of actionsConfig?.actions; track action) {
+              @if (action.visible ?? true) {
+                <th class="text-center">{{ action.header }}</th>
+              }
+            }
+          }
         </tr>
-      </ng-container>
-      <ng-container *ngIf="filterDisplay == 'row'">
+      }
+      @if (filterDisplay == 'row') {
         <tr>
-          <th scope="col" style="width: 3rem" *ngIf="reorderableRows"></th>
-          <th scope="col" style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
-            <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"/>
-          </th>
-          <th scope="col" *ngFor="let col of colDef"
-              [pSortableColumn]="col.field"
-              pReorderableColumn
-              [pReorderableColumnDisabled]="!reorderableColumns">
-            {{ col.header }}
-            <p-sortIcon *ngIf="col.sort" [field]="col.field"/>
-          </th>
-          <ng-container *ngIf="actionsConfig?.inSameColumn && actionsConfig?.actions.length">
+          @if (reorderableRows) {
+            <th scope="col" style="width: 3rem"></th>
+          }
+          @if (selectionMode == 'radio' || selectionMode == 'checkbox') {
+            <th scope="col" style="width: 3rem">
+              @if (selectionMode == 'checkbox') {
+                <p-tableHeaderCheckbox/>
+              }
+            </th>
+          }
+          @for (col of colDef; track col) {
+            <th scope="col"
+                [pSortableColumn]="col.field"
+                pReorderableColumn
+                [pReorderableColumnDisabled]="!reorderableColumns">
+              {{ col.header }}
+              @if (col.sort) {
+                <p-sortIcon [field]="col.field"/>
+              }
+            </th>
+          }
+          @if (actionsConfig?.inSameColumn && actionsConfig?.actions.length) {
             <th>{{ actionsConfig.header }}</th>
-          </ng-container>
-          <ng-container *ngIf="!actionsConfig?.inSameColumn && actionsConfig?.actions.length">
-            <ng-container *ngFor="let action of actionsConfig?.actions">
-              <th class="text-center" *ngIf="action.visible ?? true">{{ action.header }}</th>
-            </ng-container>
-          </ng-container>
+          }
+          @if (!actionsConfig?.inSameColumn && actionsConfig?.actions.length) {
+            @for (action of actionsConfig?.actions; track action) {
+              @if (action.visible ?? true) {
+                <th class="text-center">{{ action.header }}</th>
+              }
+            }
+          }
         </tr>
         <tr>
-          <th scope="col" style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
-          </th>
-          <th scope="col" class="row-filter-wrapper" *ngFor="let col of colDef">
-            <ng-container *ngIf="col.filter as filter">
-              <p-columnFilter [field]="col.field"
-                              [showMenu]="filter.rowFilterShowMenu"
-                              [matchMode]="filter.matchMode"
-                              [showApplyButton]="false"
-                              [showMatchModes]="false"
-                              [showOperator]="false"
-                              [showAddButton]="false">
-                <ng-template pTemplate="header">
-                  <div class="filter-header"><span>{{ filter.header }}</span></div>
-                </ng-template>
-                <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback" [ngSwitch]="filter.type">
-                  <ng-input-text
-                    *ngSwitchCase="'text'"
-                    [value]="value"
-                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                  </ng-input-text>
-
-                  <ng-input-number
-                    *ngSwitchCase="'numeric'"
-                    (onInput)="onChangeFilterValue($event,filterCallback,col)">
-                  </ng-input-number>
-
-                  <ng-multi-select
-                    *ngSwitchCase="'multi-select'"
-                    [value]="value"
-                    [options]="filter.options"
-                    [optionLabel]="filter.optionLabel"
-                    [optionValue]="filter.optionValue"
-                    [placeholder]="filter.placeholder"
-                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                  </ng-multi-select>
-
-                  <ng-dropdown
-                    *ngSwitchCase="'dropdown'"
-                    [value]="value"
-                    [options]="filter.options"
-                    [optionLabel]="filter.optionLabel"
-                    [optionValue]="filter.optionValue"
-                    [placeholder]="filter.placeholder"
-                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                  </ng-dropdown>
-
-                  <ng-container *ngSwitchCase="'slider'">
-                    <ng-slider
-                      [ngModel]="filter.sliderValue"
-                      [min]="filter.min"
-                      [max]="filter.max"
-                      [range]="filter.range"
-                      (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
-                    </ng-slider>
-                    <div class="text-center mt-3" dir="ltr">{{ filter.sliderValue[0] }}- {{ filter.sliderValue[1] }}
-                    </div>
-                  </ng-container>
-
-                  <ng-checkbox
-                    *ngSwitchCase="'boolean'"
-                    [ngModel]="value == 'true' ? true : false"
-                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                  </ng-checkbox>
-
-                  <ng-gregorian-datepicker
-                    *ngSwitchCase="'gregorian-datepicker'"
-                    [dateFormat]="filter.dateFormat"
-                    (onSelect)="onChangeFilterValue($event,filterCallback,col)">
-                  </ng-gregorian-datepicker>
-                </ng-template>
-              </p-columnFilter>
-            </ng-container>
-          </th>
-          <ng-container *ngIf="actionsConfig && actionsConfig.inSameColumn">
+          @if (selectionMode == 'radio' || selectionMode == 'checkbox') {
+            <th scope="col" style="width: 3rem">
+            </th>
+          }
+          @for (col of colDef; track col) {
+            <th scope="col" class="row-filter-wrapper">
+              @if (col.filter; as filter) {
+                <p-columnFilter [field]="col.field"
+                                [showMenu]="filter.rowFilterShowMenu"
+                                [matchMode]="filter.matchMode"
+                                [showApplyButton]="false"
+                                [showMatchModes]="false"
+                                [showOperator]="false"
+                                [showAddButton]="false">
+                  <ng-template pTemplate="header">
+                    <div class="filter-header"><span>{{ filter.header }}</span></div>
+                  </ng-template>
+                  <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback">
+                    @switch (filter.type) {
+                      @case ('text') {
+                        <ng-input-text
+                          [value]="value"
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                        </ng-input-text>
+                      }
+                      @case ('numeric') {
+                        <ng-input-number
+                          (onInput)="onChangeFilterValue($event,filterCallback,col)">
+                        </ng-input-number>
+                      }
+                      @case ('multi-select') {
+                        <ng-multi-select
+                          [value]="value"
+                          [options]="filter.options"
+                          [optionLabel]="filter.optionLabel"
+                          [optionValue]="filter.optionValue"
+                          [placeholder]="filter.placeholder"
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                        </ng-multi-select>
+                      }
+                      @case ('dropdown') {
+                        <ng-dropdown
+                          [value]="value"
+                          [options]="filter.options"
+                          [optionLabel]="filter.optionLabel"
+                          [optionValue]="filter.optionValue"
+                          [placeholder]="filter.placeholder"
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                        </ng-dropdown>
+                      }
+                      @case ('slider') {
+                        <ng-slider
+                          [ngModel]="filter.sliderValue"
+                          [min]="filter.min"
+                          [max]="filter.max"
+                          [range]="filter.range"
+                          (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
+                        </ng-slider>
+                        <div class="text-center mt-3" dir="ltr">{{ filter.sliderValue[0] }}- {{ filter.sliderValue[1] }}
+                        </div>
+                      }
+                      @case ('boolean') {
+                        <ng-checkbox
+                          [ngModel]="value == 'true' ? true : false"
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                        </ng-checkbox>
+                      }
+                      @case ('gregorian-datepicker') {
+                        <ng-gregorian-datepicker
+                          [dateFormat]="filter.dateFormat"
+                          (onSelect)="onChangeFilterValue($event,filterCallback,col)">
+                        </ng-gregorian-datepicker>
+                      }
+                    }
+                  </ng-template>
+                </p-columnFilter>
+              }
+            </th>
+          }
+          @if (actionsConfig && actionsConfig.inSameColumn) {
             <th></th>
-          </ng-container>
-          <ng-container *ngIf="actionsConfig && !actionsConfig.inSameColumn">
-            <th *ngFor="let action of actionsConfig.actions"></th>
-          </ng-container>
+          }
+          @if (actionsConfig && !actionsConfig.inSameColumn) {
+            @for (action of actionsConfig.actions; track action) {
+              <th></th>
+            }
+          }
         </tr>
-      </ng-container>
+      }
     </ng-template>
 
     <ng-template pTemplate="body" let-item let-frozen="frozen" let-index="rowIndex">
-      <ng-container *ngIf="bodyTemplate; else defaultBodyTemplate">
+      @if (bodyTemplate) {
         <ng-container *ngTemplateOutlet="bodyTemplate;context:{$implicit:item,frozen,index}"/>
-      </ng-container>
-      <ng-template #defaultBodyTemplate>
+      } @else {
         <tr [pReorderableRow]="index"
             [pReorderableRowDisabled]="!reorderableRows"
             [pSelectableRow]="item"
             [pSelectableRowDisabled]="!selectionMode"
             [pSelectableRowIndex]="index">
-          <td *ngIf="reorderableRows">
-            <BarsIcon/>
-          </td>
-          <td *ngIf="selectionMode == 'radio'">
-            <p-tableRadioButton [value]="item"/>
-          </td>
-          <td *ngIf="selectionMode == 'checkbox'">
-            <p-tableCheckbox [value]="item"/>
-          </td>
-          <td *ngFor="let col of colDef"
+          @if (reorderableRows) {
+            <td>
+              <BarsIcon/>
+            </td>
+          }
+          @if (selectionMode == 'radio') {
+            <td>
+              <p-tableRadioButton [value]="item"/>
+            </td>
+          }
+          @if (selectionMode == 'checkbox') {
+            <td>
+              <p-tableCheckbox [value]="item"/>
+            </td>
+          }
+          @for (col of colDef; track col) {
+            <td
               [ngClass]="handleCellStyleClass(col.cellStyleClass,item)"
               [ngStyle]="handleCellStyle(col.cellStyle,item)">
-            <ng-container [ngSwitch]="col.render?.as">
-              <ng-image
-                *ngSwitchCase="'image'"
-                imageClass="image-cell"
-                [preview]="col.render.preview"
-                [width]="col.render.width || '100px'"
-                [height]="col.render.height"
-                [src]="resolveFieldData(item, col.field)">
-              </ng-image>
-              <ng-container *ngSwitchCase="'ng-template'">
-                <ng-container *ngTemplateOutlet="cellTemplates[col.field];context:{$implicit:item}"/>
-              </ng-container>
-              <ng-container *ngSwitchDefault>
-                <span [innerHTML]="handleCellRenderer(col,item)"></span>
-              </ng-container>
-            </ng-container>
-          </td>
-          <ng-container *ngIf="actionsConfig && actionsConfig.inSameColumn">
+              @switch (col.render?.as) {
+                @case ('image') {
+                  <ng-image
+                    imageClass="image-cell"
+                    [preview]="col.render.preview"
+                    [width]="col.render.width || '100px'"
+                    [height]="col.render.height"
+                    [src]="resolveFieldData(item, col.field)">
+                  </ng-image>
+                }
+                @case ('ng-template') {
+                  <ng-container *ngTemplateOutlet="cellTemplates[col.field];context:{$implicit:item}"/>
+                }
+                @default {
+                  <span [innerHTML]="handleCellRenderer(col,item)"></span>
+                }
+              }
+            </td>
+          }
+          @if (actionsConfig && actionsConfig.inSameColumn) {
             <td class="same-column-actions-wrapper">
               <div>
-                <ng-container *ngFor="let action of actionsConfig.actions">
+                @for (action of actionsConfig.actions; track action) {
+                  @if (handleActionVisibility(action, item)) {
+                    <ng-button
+                      [icon]="action.icon"
+                      [label]="action.label"
+                      [appearance]="action.appearance"
+                      [iconPos]="action.iconPos"
+                      [rounded]="action.rounded"
+                      [async]="action.async"
+                      [full]="action.full"
+                      [styleClass]="action.styleClass"
+                      [color]="action.color"
+                      [size]="action.size"
+                      [pTooltip]="action.tooltip"
+                      [tooltipPosition]="action.tooltipPosition ?? 'top'"
+                      (onClick)="action.onClick(item,index,$event)"
+                      (onClickAsync)="action.onClickAsync(item,index,$event)">
+                    </ng-button>
+                  }
+                }
+              </div>
+            </td>
+          }
+          @if (actionsConfig && !actionsConfig.inSameColumn) {
+            @for (action of actionsConfig.actions; track action) {
+              <td class="action-wrapper">
+                @if (handleActionVisibility(action, item)) {
                   <ng-button
-                    *ngIf="handleActionVisibility(action,item)"
                     [icon]="action.icon"
                     [label]="action.label"
                     [appearance]="action.appearance"
@@ -378,158 +447,193 @@
                     (onClick)="action.onClick(item,index,$event)"
                     (onClickAsync)="action.onClickAsync(item,index,$event)">
                   </ng-button>
-                </ng-container>
-              </div>
-            </td>
-          </ng-container>
-          <ng-container *ngIf="actionsConfig && !actionsConfig.inSameColumn">
-            <td class="action-wrapper" *ngFor="let action of actionsConfig.actions">
-              <ng-button
-                *ngIf="handleActionVisibility(action,item)"
-                [icon]="action.icon"
-                [label]="action.label"
-                [appearance]="action.appearance"
-                [iconPos]="action.iconPos"
-                [rounded]="action.rounded"
-                [async]="action.async"
-                [full]="action.full"
-                [styleClass]="action.styleClass"
-                [color]="action.color"
-                [size]="action.size"
-                [pTooltip]="action.tooltip"
-                [tooltipPosition]="action.tooltipPosition ?? 'top'"
-                (onClick)="action.onClick(item,index,$event)"
-                (onClickAsync)="action.onClickAsync(item,index,$event)">
-              </ng-button>
-            </td>
-          </ng-container>
+                }
+              </td>
+            }
+          }
         </tr>
-      </ng-template>
+      }
     </ng-template>
 
-    <ng-template pTemplate="caption" *ngIf="captionTemplate || header">
-      <ng-container *ngIf="captionTemplate;else defaultCaption">
-        <ng-container *ngTemplateOutlet="captionTemplate"/>
-      </ng-container>
-      <ng-template #defaultCaption>
-        <div class="caption">
-          <h5>{{ header }}</h5>
-          <ng-input-text
-            *ngIf="globalFilter"
-            [placeholder]="globalFilterPlaceholder"
-            (onKeyDown)="onGlobalFilterChange($event)">
-          </ng-input-text>
-        </div>
+    @if (captionTemplate || header) {
+      <ng-template pTemplate="caption">
+        @if (captionTemplate) {
+          <ng-container *ngTemplateOutlet="captionTemplate"/>
+        } @else {
+          <div class="caption">
+            <h5>{{ header }}</h5>
+            @if (globalFilter) {
+              <ng-input-text
+                [placeholder]="globalFilterPlaceholder"
+                (onKeyDown)="onGlobalFilterChange($event)">
+              </ng-input-text>
+            }
+          </div>
+        }
       </ng-template>
-    </ng-template>
-    <ng-template pTemplate="headergrouped"
-                 let-item
-                 let-rowIndex="rowIndex"
-                 let-columns="columns"
-                 let-editing="editing"
-                 let-frozen="frozen"
-                 *ngIf="headerGroupedTemplate">
-      <ng-container
-        *ngTemplateOutlet="headerGroupedTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
-    </ng-template>
-    <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
-      <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"/>
-    </ng-template>
-    <ng-template pTemplate="loadingbody" let-rowspan="rowspan" let-rowgroup="rowgroup" *ngIf="loadingBodyTemplate">
-      <ng-container *ngTemplateOutlet="loadingBodyTemplate;context:{rowspan,rowgroup}"/>
-    </ng-template>
-    <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
-      <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"/>
-    </ng-template>
-    <ng-template pTemplate="footergrouped" let-item *ngIf="footerGroupedTemplate">
-      <ng-container *ngTemplateOutlet="footerGroupedTemplate;context:{$implicit:item}"/>
-    </ng-template>
-    <ng-template pTemplate="colgroup" let-item *ngIf="colGroupTemplate">
-      <ng-container *ngTemplateOutlet="colGroupTemplate;context:{$implicit:item}"/>
-    </ng-template>
-    <ng-template pTemplate="summary" *ngIf="summaryTemplate">
-      <ng-container *ngTemplateOutlet="summaryTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="rowexpansion" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded"
-                 *ngIf="rowExpansionTemplate">
-      <ng-container *ngTemplateOutlet="rowExpansionTemplate;context:{rowspan,rowgroup,expanded}"/>
-    </ng-template>
-    <ng-template pTemplate="groupheader" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
-                 let-frozen="frozen" *ngIf="groupHeaderTemplate">
-      <ng-container
-        *ngTemplateOutlet="groupHeaderTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
-    </ng-template>
-    <ng-template pTemplate="groupfooter" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
-                 let-frozen="frozen" *ngIf="groupFooterTemplate">
-      <ng-container
-        *ngTemplateOutlet="groupFooterTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
-    </ng-template>
-    <ng-template pTemplate="frozenheader" *ngIf="frozenHeaderTemplate">
-      <ng-container *ngTemplateOutlet="frozenHeaderTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="frozenbody" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
-                 let-frozen="frozen" *ngIf="frozenBodyTemplate">
-      <ng-container
-        *ngTemplateOutlet="frozenBodyTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
-    </ng-template>
-    <ng-template pTemplate="frozenfooter" *ngIf="frozenFooterTemplate">
-      <ng-container *ngTemplateOutlet="frozenFooterTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="frozencolgroup" *ngIf="frozenColGroupTemplate">
-      <ng-container *ngTemplateOutlet="frozenColGroupTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="frozenexpandedrow" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded"
-                 *ngIf="frozenColGroupTemplate">
-      <ng-container *ngTemplateOutlet="frozenColGroupTemplate;context:{rowspan,rowgroup,expanded}"/>
-    </ng-template>
-    <ng-template pTemplate="paginatorleft" *ngIf="paginatorLeftTemplate">
-      <ng-container *ngTemplateOutlet="paginatorLeftTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="paginatorright" *ngIf="paginatorRightTemplate">
-      <ng-container *ngTemplateOutlet="paginatorRightTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="paginatordropdownicon" *ngIf="paginatorDropdownIconTemplate">
-      <ng-container *ngTemplateOutlet="paginatorDropdownIconTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="paginatordropdownitem" *ngIf="paginatorDropdownItemTemplate">
-      <ng-container *ngTemplateOutlet="paginatorDropdownItemTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="paginatorfirstpagelinkicon" *ngIf="paginatorFirstPageLinkIconTemplate">
-      <ng-container *ngTemplateOutlet="paginatorFirstPageLinkIconTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="paginatorlastpagelinkicon" *ngIf="paginatorLastPageLinkIconTemplate">
-      <ng-container *ngTemplateOutlet="paginatorLastPageLinkIconTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="paginatorpreviouspagelinkicon" *ngIf="paginatorPreviousPageLinkIconTemplate">
-      <ng-container *ngTemplateOutlet="paginatorPreviousPageLinkIconTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="paginatornextpagelinkicon" *ngIf="paginatorNextPageLinkIconTemplate">
-      <ng-container *ngTemplateOutlet="paginatorNextPageLinkIconTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="loadingicon" *ngIf="loadingIconTemplate">
-      <ng-container *ngTemplateOutlet="loadingIconTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="reorderindicatorupicon" *ngIf="reorderIndicatorUpIconTemplate">
-      <ng-container *ngTemplateOutlet="reorderIndicatorUpIconTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="reorderindicatordownicon" *ngIf="reorderIndicatorDownIconTemplate">
-      <ng-container *ngTemplateOutlet="reorderIndicatorDownIconTemplate"/>
-    </ng-template>
-    <ng-template pTemplate="sorticon" let-item *ngIf="sortIconTemplate">
-      <ng-container *ngTemplateOutlet="sortIconTemplate;context:{$implicit:item}"/>
-    </ng-template>
-    <ng-template pTemplate="checkboxicon" let-item let-partialSelected="partialSelected" *ngIf="checkboxIconTemplate">
-      <ng-container *ngTemplateOutlet="checkboxIconTemplate;context:{$implicit:item,partialSelected}"/>
-    </ng-template>
-    <ng-template pTemplate="headercheckboxicon" let-item *ngIf="headerCheckboxIconTemplate">
-      <ng-container *ngTemplateOutlet="headerCheckboxIconTemplate;context:{$implicit:item}"/>
-    </ng-template>
+    }
+    @if (headerGroupedTemplate) {
+      <ng-template pTemplate="headergrouped"
+                   let-item
+                   let-rowIndex="rowIndex"
+                   let-columns="columns"
+                   let-editing="editing"
+                   let-frozen="frozen">
+        <ng-container
+          *ngTemplateOutlet="headerGroupedTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
+      </ng-template>
+    }
+    @if (headerTemplate) {
+      <ng-template pTemplate="header" let-item>
+        <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"/>
+      </ng-template>
+    }
+    @if (loadingBodyTemplate) {
+      <ng-template pTemplate="loadingbody" let-rowspan="rowspan" let-rowgroup="rowgroup">
+        <ng-container *ngTemplateOutlet="loadingBodyTemplate;context:{rowspan,rowgroup}"/>
+      </ng-template>
+    }
+    @if (footerTemplate) {
+      <ng-template pTemplate="footer" let-item>
+        <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"/>
+      </ng-template>
+    }
+    @if (footerGroupedTemplate) {
+      <ng-template pTemplate="footergrouped" let-item>
+        <ng-container *ngTemplateOutlet="footerGroupedTemplate;context:{$implicit:item}"/>
+      </ng-template>
+    }
+    @if (colGroupTemplate) {
+      <ng-template pTemplate="colgroup" let-item>
+        <ng-container *ngTemplateOutlet="colGroupTemplate;context:{$implicit:item}"/>
+      </ng-template>
+    }
+    @if (summaryTemplate) {
+      <ng-template pTemplate="summary">
+        <ng-container *ngTemplateOutlet="summaryTemplate"/>
+      </ng-template>
+    }
+    @if (rowExpansionTemplate) {
+      <ng-template pTemplate="rowexpansion" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded">
+        <ng-container *ngTemplateOutlet="rowExpansionTemplate;context:{rowspan,rowgroup,expanded}"/>
+      </ng-template>
+    }
+    @if (groupHeaderTemplate) {
+      <ng-template pTemplate="groupheader" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
+                   let-frozen="frozen">
+        <ng-container
+          *ngTemplateOutlet="groupHeaderTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
+      </ng-template>
+    }
+    @if (groupFooterTemplate) {
+      <ng-template pTemplate="groupfooter" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
+                   let-frozen="frozen">
+        <ng-container
+          *ngTemplateOutlet="groupFooterTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
+      </ng-template>
+    }
+    @if (frozenHeaderTemplate) {
+      <ng-template pTemplate="frozenheader">
+        <ng-container *ngTemplateOutlet="frozenHeaderTemplate"/>
+      </ng-template>
+    }
+    @if (frozenBodyTemplate) {
+      <ng-template pTemplate="frozenbody" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
+                   let-frozen="frozen">
+        <ng-container
+          *ngTemplateOutlet="frozenBodyTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
+      </ng-template>
+    }
+    @if (frozenFooterTemplate) {
+      <ng-template pTemplate="frozenfooter">
+        <ng-container *ngTemplateOutlet="frozenFooterTemplate"/>
+      </ng-template>
+    }
+    @if (frozenColGroupTemplate) {
+      <ng-template pTemplate="frozencolgroup">
+        <ng-container *ngTemplateOutlet="frozenColGroupTemplate"/>
+      </ng-template>
+    }
+    @if (frozenColGroupTemplate) {
+      <ng-template pTemplate="frozenexpandedrow" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded">
+        <ng-container *ngTemplateOutlet="frozenColGroupTemplate;context:{rowspan,rowgroup,expanded}"/>
+      </ng-template>
+    }
+    @if (paginatorLeftTemplate) {
+      <ng-template pTemplate="paginatorleft">
+        <ng-container *ngTemplateOutlet="paginatorLeftTemplate"/>
+      </ng-template>
+    }
+    @if (paginatorRightTemplate) {
+      <ng-template pTemplate="paginatorright">
+        <ng-container *ngTemplateOutlet="paginatorRightTemplate"/>
+      </ng-template>
+    }
+    @if (paginatorDropdownIconTemplate) {
+      <ng-template pTemplate="paginatordropdownicon">
+        <ng-container *ngTemplateOutlet="paginatorDropdownIconTemplate"/>
+      </ng-template>
+    }
+    @if (paginatorDropdownItemTemplate) {
+      <ng-template pTemplate="paginatordropdownitem">
+        <ng-container *ngTemplateOutlet="paginatorDropdownItemTemplate"/>
+      </ng-template>
+    }
+    @if (paginatorFirstPageLinkIconTemplate) {
+      <ng-template pTemplate="paginatorfirstpagelinkicon">
+        <ng-container *ngTemplateOutlet="paginatorFirstPageLinkIconTemplate"/>
+      </ng-template>
+    }
+    @if (paginatorLastPageLinkIconTemplate) {
+      <ng-template pTemplate="paginatorlastpagelinkicon">
+        <ng-container *ngTemplateOutlet="paginatorLastPageLinkIconTemplate"/>
+      </ng-template>
+    }
+    @if (paginatorPreviousPageLinkIconTemplate) {
+      <ng-template pTemplate="paginatorpreviouspagelinkicon">
+        <ng-container *ngTemplateOutlet="paginatorPreviousPageLinkIconTemplate"/>
+      </ng-template>
+    }
+    @if (paginatorNextPageLinkIconTemplate) {
+      <ng-template pTemplate="paginatornextpagelinkicon">
+        <ng-container *ngTemplateOutlet="paginatorNextPageLinkIconTemplate"/>
+      </ng-template>
+    }
+    @if (loadingIconTemplate) {
+      <ng-template pTemplate="loadingicon">
+        <ng-container *ngTemplateOutlet="loadingIconTemplate"/>
+      </ng-template>
+    }
+    @if (reorderIndicatorUpIconTemplate) {
+      <ng-template pTemplate="reorderindicatorupicon">
+        <ng-container *ngTemplateOutlet="reorderIndicatorUpIconTemplate"/>
+      </ng-template>
+    }
+    @if (reorderIndicatorDownIconTemplate) {
+      <ng-template pTemplate="reorderindicatordownicon">
+        <ng-container *ngTemplateOutlet="reorderIndicatorDownIconTemplate"/>
+      </ng-template>
+    }
+    @if (sortIconTemplate) {
+      <ng-template pTemplate="sorticon" let-item>
+        <ng-container *ngTemplateOutlet="sortIconTemplate;context:{$implicit:item}"/>
+      </ng-template>
+    }
+    @if (checkboxIconTemplate) {
+      <ng-template pTemplate="checkboxicon" let-item let-partialSelected="partialSelected">
+        <ng-container *ngTemplateOutlet="checkboxIconTemplate;context:{$implicit:item,partialSelected}"/>
+      </ng-template>
+    }
+    @if (headerCheckboxIconTemplate) {
+      <ng-template pTemplate="headercheckboxicon" let-item>
+        <ng-container *ngTemplateOutlet="headerCheckboxIconTemplate;context:{$implicit:item}"/>
+      </ng-template>
+    }
 
     <ng-template let-columns let-frozen="frozen" pTemplate="emptymessage">
-      <ng-container *ngIf="emptyMessageTemplate;else defaultEmptyMessage">
+      @if (emptyMessageTemplate) {
         <ng-container *ngTemplateOutlet="emptyMessageTemplate;context:{columns,frozen}"/>
-      </ng-container>
-      <ng-template #defaultEmptyMessage>
+      } @else {
         <tr>
           <td class="empty-message-wrapper"
               [attr.colspan]="columns.length +
@@ -542,7 +646,7 @@
             </ng-empty>
           </td>
         </tr>
-      </ng-template>
+      }
     </ng-template>
   </p-table>
 </div>

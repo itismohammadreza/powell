@@ -8,20 +8,23 @@
        [ngAddon]="addon"
        [addonDisabled]="disabled">
     <div>
-      <ng-button
-        *ngIf="!readonly && showClear"
-        class="clear-map-btn"
-        [pTooltip]="clearTooltip"
-        [icon]="clearIcon"
-        size="sm"
-        (click)="clearMap()">
-        <ng-template ngTemplate="icon">
-          <TrashIcon *ngIf="!clearIcon && !templateMap.clearicon"/>
-          <ng-container *ngIf="!clearIcon && templateMap.clearicon">
-            <ng-template *ngTemplateOutlet="templateMap.clearicon"/>
-          </ng-container>
-        </ng-template>
-      </ng-button>
+      @if (!readonly && showClear) {
+        <ng-button
+          class="clear-map-btn"
+          [pTooltip]="clearTooltip"
+          [icon]="clearIcon"
+          size="sm"
+          (click)="clearMap()">
+          <ng-template ngTemplate="icon">
+            @if (!clearIcon && !templateMap.clearicon) {
+              <TrashIcon/>
+            }
+            @if (!clearIcon && templateMap.clearicon) {
+              <ng-template *ngTemplateOutlet="templateMap.clearicon"/>
+            }
+          </ng-template>
+        </ng-button>
+      }
       <div
         leaflet
         [attr.id]="id"
@@ -57,21 +60,26 @@
       ></div>
     </div>
   </div>
-  <label
-    class="fix-label"
-    *ngIf="label"
-    [attr.for]="id"
-    [class.p-disabled]="disabled"
-    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
-    [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label | ngLabelStar:showRequiredStar:ngControl }}
-  </label>
-  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
+  @if (label) {
+    <label
+      class="fix-label"
+      [attr.for]="id"
+      [class.p-disabled]="disabled"
+      [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+      [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+      {{ label | ngLabelStar:showRequiredStar:ngControl }}
+    </label>
+  }
+  @if (hint && showHint()) {
+    <div class="message">{{ hint }}</div>
+  }
   <div class="message p-error">
-    <ng-container *ngFor="let v of validation | keyvalue">
-      <div *ngIf="hasError(v.key)">
-        {{ v.value }}
-      </div>
-    </ng-container>
+    @for (v of validation | keyvalue; track v) {
+      @if (hasError(v.key)) {
+        <div>
+          {{ v.value }}
+        </div>
+      }
+    }
   </div>
 </div>

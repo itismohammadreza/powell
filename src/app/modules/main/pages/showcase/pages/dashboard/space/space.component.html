@@ -3,6 +3,8 @@
     <ng-content/>
   </div>
   <div class="dots-container">
-    <div class="tri" *ngFor="let item of dotNumbers"></div>
+    @for (item of dotNumbers; track item) {
+      <div class="tri"></div>
+    }
   </div>
 </div>

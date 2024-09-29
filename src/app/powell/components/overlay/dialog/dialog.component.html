@@ -11,16 +11,17 @@
     <div [innerHTML]="options.content | ngSafe:'html'"></div>
   </ng-template>
   <ng-template pTemplate="footer">
-    <ng-button
-      *ngIf="options.buttonLabel"
-      [appearance]="options.buttonAppearance"
-      [color]="options.buttonColor"
-      [full]="options.buttonFull"
-      [iconPos]="options.buttonIconPos"
-      [icon]="options.buttonIcon"
-      [label]="options.buttonLabel"
-      [size]="options.buttonSize"
-      [styleClass]="options.buttonStyleClass"
-      (onClick)="onButtonClick()"/>
+    @if (options.buttonLabel) {
+      <ng-button
+        [appearance]="options.buttonAppearance"
+        [color]="options.buttonColor"
+        [full]="options.buttonFull"
+        [iconPos]="options.buttonIconPos"
+        [icon]="options.buttonIcon"
+        [label]="options.buttonLabel"
+        [size]="options.buttonSize"
+        [styleClass]="options.buttonStyleClass"
+        (onClick)="onButtonClick()"/>
+    }
   </ng-template>
 </p-dialog>

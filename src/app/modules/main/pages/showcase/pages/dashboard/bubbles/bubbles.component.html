@@ -2,7 +2,9 @@
   <div class="content">
     <ng-content/>
   </div>
-  <div class="circle-container" *ngFor="let item of bubbleNumbers">
-    <div class="circle"></div>
-  </div>
+  @for (item of bubbleNumbers; track item) {
+    <div class="circle-container">
+      <div class="circle"></div>
+    </div>
+  }
 </div>

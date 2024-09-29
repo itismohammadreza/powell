@@ -17,11 +17,13 @@
       [checkboxFalseIcon]="checkboxFalseIcon"
       [autofocus]="autofocus"
       (onChange)="_onChange($event)">
-      <ng-container *ngFor="let t of templates">
-        <ng-template [pTemplate]="t.getType()" *ngIf="templateMap[t.getType()]">
-          <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
-        </ng-template>
-      </ng-container>
+      @for (t of templates; track t) {
+        @if (templateMap[t.getType()]) {
+          <ng-template [pTemplate]="t.getType()">
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
+          </ng-template>
+        }
+      }
     </p-triStateCheckbox>
     <label
       [attr.for]="inputId"
@@ -29,12 +31,16 @@
       {{ label | ngLabelStar:showRequiredStar:ngControl }}
     </label>
   </div>
-  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
+  @if (hint && showHint()) {
+    <div class="message">{{ hint }}</div>
+  }
   <div class="message p-error">
-    <ng-container *ngFor="let v of validation | keyvalue">
-      <div *ngIf="hasError(v.key)">
-        {{ v.value }}
-      </div>
-    </ng-container>
+    @for (v of validation | keyvalue; track v) {
+      @if (hasError(v.key)) {
+        <div>
+          {{ v.value }}
+        </div>
+      }
+    }
   </div>
 </div>

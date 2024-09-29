@@ -17,7 +17,9 @@
       'p-inputtext-sm': inputSize == 'sm',
       'p-inputtext-lg': inputSize == 'lg'
     }">
-      <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
+      @if (icon) {
+        <i [class.p-disabled]="disabled" [ngClass]="icon"></i>
+      }
       <p-chips
         [(ngModel)]="value"
         [style]="style"
@@ -47,32 +49,41 @@
         (onChipClick)="emitter('onChipClick', $event)"
         (onBlur)="_onBlur($event)"
         (onClear)="_onClear()">
-        <ng-container *ngFor="let t of templates">
-          <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
-            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"/>
-          </ng-template>
-        </ng-container>
+        @for (t of templates; track t) {
+          @if (templateMap[t.getType()]) {
+            <ng-template [pTemplate]="t.getType()" let-item>
+              <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"/>
+            </ng-template>
+          }
+        }
       </p-chips>
-      <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
-        {{ label | ngLabelStar:showRequiredStar:ngControl }}
-      </label>
+      @if (label && labelPos == 'float') {
+        <label [class.p-disabled]="disabled" [attr.for]="inputId">
+          {{ label | ngLabelStar:showRequiredStar:ngControl }}
+        </label>
+      }
     </div>
   </div>
-  <label
-    class="fix-label"
-    *ngIf="label && labelPos != 'float'"
-    [attr.for]="inputId"
-    [class.p-disabled]="disabled"
-    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
-    [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label | ngLabelStar:showRequiredStar:ngControl }}
-  </label>
-  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
+  @if (label && labelPos != 'float') {
+    <label
+      class="fix-label"
+      [attr.for]="inputId"
+      [class.p-disabled]="disabled"
+      [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+      [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+      {{ label | ngLabelStar:showRequiredStar:ngControl }}
+    </label>
+  }
+  @if (hint && showHint()) {
+    <div class="message">{{ hint }}</div>
+  }
   <div class="message p-error">
-    <ng-container *ngFor="let v of validation | keyvalue">
-      <div *ngIf="hasError(v.key)">
-        {{ v.value }}
-      </div>
-    </ng-container>
+    @for (v of validation | keyvalue; track v) {
+      @if (hasError(v.key)) {
+        <div>
+          {{ v.value }}
+        </div>
+      }
+    }
   </div>
 </div>

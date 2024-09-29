@@ -7,46 +7,53 @@
       'layout-vertical':orientation == 'vertical'
     }" class="radio-wrapper">
   <div [attr.id]="id" class="field">
-    <div *ngFor="let item of options" class="option-item">
-      <p-radioButton
-        [(ngModel)]="value"
-        [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
-        [disabled]="item[optionDisabled]"
-        [class]="item.styleClass"
-        [value]="item[optionValue]"
-        [name]="groupName"
-        [variant]="variant"
-        [tabindex]="tabindex"
-        [inputId]="'id' + item[optionValue]"
-        [ariaLabelledBy]="ariaLabelledBy"
-        [ariaLabel]="ariaLabel"
-        [style]="style"
-        [styleClass]="styleClass"
-        [labelStyleClass]="labelStyleClass"
-        [autofocus]="autofocus"
-        (onClick)="_onChange($event)"
-        (onBlur)="_onBlur($event)"
-        (onFocus)="_onFocus($event)"/>
-      <label [attr.for]="'id' + item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
-        {{ item[optionLabel] }}
+    @for (item of options; track item) {
+      <div class="option-item">
+        <p-radioButton
+          [(ngModel)]="value"
+          [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
+          [disabled]="item[optionDisabled]"
+          [class]="item.styleClass"
+          [value]="item[optionValue]"
+          [name]="groupName"
+          [variant]="variant"
+          [tabindex]="tabindex"
+          [inputId]="'id' + item[optionValue]"
+          [ariaLabelledBy]="ariaLabelledBy"
+          [ariaLabel]="ariaLabel"
+          [style]="style"
+          [styleClass]="styleClass"
+          [labelStyleClass]="labelStyleClass"
+          [autofocus]="autofocus"
+          (onClick)="_onChange($event)"
+          (onBlur)="_onBlur($event)"
+          (onFocus)="_onFocus($event)"/>
+          <label [attr.for]="'id' + item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
+            {{ item[optionLabel] }}
+          </label>
+        </div>
+      }
+    </div>
+    @if (label) {
+      <label
+        class="fix-label"
+        [attr.for]="id"
+        [class.p-disabled]="disabled"
+        [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+        [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+        {{ label | ngLabelStar:showRequiredStar:ngControl }}
       </label>
+    }
+    @if (hint && showHint()) {
+      <div class="message">{{ hint }}</div>
+    }
+    <div class="message p-error">
+      @for (v of validation | keyvalue; track v) {
+        @if (hasError(v.key)) {
+          <div>
+            {{ v.value }}
+          </div>
+        }
+      }
     </div>
   </div>
-  <label
-    class="fix-label"
-    *ngIf="label"
-    [attr.for]="id"
-    [class.p-disabled]="disabled"
-    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
-    [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label | ngLabelStar:showRequiredStar:ngControl }}
-  </label>
-  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
-  <div class="message p-error">
-    <ng-container *ngFor="let v of validation | keyvalue">
-      <div *ngIf="hasError(v.key)">
-        {{ v.value }}
-      </div>
-    </ng-container>
-  </div>
-</div>

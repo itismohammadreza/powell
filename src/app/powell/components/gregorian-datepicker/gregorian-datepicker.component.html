@@ -19,8 +19,10 @@
       'p-inputtext-sm': inputSize == 'sm',
       'p-inputtext-lg': inputSize == 'lg'
     }">
-      <ng-container *ngIf="!inline">
-        <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
+      @if (!inline) {
+        @if (icon) {
+          <i [class.p-disabled]="disabled" [ngClass]="icon"></i>
+        }
         <p-calendar
           [(ngModel)]="value"
           [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
@@ -104,111 +106,118 @@
           (onYearChange)="emitter('onYearChange',$event)"
           (onClickOutside)="emitter('onClickOutside',$event)"
           (onShow)="emitter('onShow',$event)"/>
-        <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
+          @if (label && labelPos == 'float') {
+            <label [class.p-disabled]="disabled" [attr.for]="inputId">
+              {{ label | ngLabelStar:showRequiredStar:ngControl }}
+            </label>
+          }
+        }
+        @if (inline) {
+          <p-calendar
+            [(ngModel)]="value"
+            [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+            [style]="style"
+            [styleClass]="styleClass"
+            [inputStyle]="inputStyle"
+            [inputId]="inputId"
+            [name]="name"
+            [inputStyleClass]="inputStyleClass"
+            [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
+            [ariaLabelledBy]="ariaLabelledBy"
+            [ariaLabel]="ariaLabel"
+            [iconAriaLabel]="iconAriaLabel"
+            [disabled]="disabled"
+            [dateFormat]="dateFormat"
+            [multipleSeparator]="multipleSeparator"
+            [rangeSeparator]="rangeSeparator"
+            [inline]="true"
+            [showOtherMonths]="showOtherMonths"
+            [selectOtherMonths]="selectOtherMonths"
+            [showIcon]="showIcon"
+            [icon]="datepickerIcon"
+            [appendTo]="appendTo"
+            [readonlyInput]="readonlyInput"
+            [shortYearCutoff]="shortYearCutoff"
+            [monthNavigator]="monthNavigator"
+            [yearNavigator]="yearNavigator"
+            [hourFormat]="hourFormat"
+            [timeOnly]="timeOnly"
+            [stepYearPicker]="stepYearPicker"
+            [stepHour]="stepHour"
+            [stepMinute]="stepMinute"
+            [stepSecond]="stepSecond"
+            [showSeconds]="showSeconds"
+            [required]="required"
+            [showOnFocus]="showOnFocus"
+            [showWeek]="showWeek"
+            [startWeekFromFirstDayOfYear]="startWeekFromFirstDayOfYear"
+            [showClear]="showClear"
+            [dataType]="dataType"
+            [selectionMode]="selectionMode"
+            [maxDateCount]="maxDateCount"
+            [showButtonBar]="showButtonBar"
+            [todayButtonStyleClass]="todayButtonStyleClass"
+            [clearButtonStyleClass]="clearButtonStyleClass"
+            [autofocus]="autofocus"
+            [autoZIndex]="autoZIndex"
+            [baseZIndex]="baseZIndex"
+            [panelStyleClass]="panelStyleClass"
+            [panelStyle]="panelStyle"
+            [keepInvalid]="keepInvalid"
+            [hideOnDateTimeSelect]="hideOnDateTimeSelect"
+            [touchUI]="touchUI"
+            [timeSeparator]="timeSeparator"
+            [focusTrap]="focusTrap"
+            [showTransitionOptions]="showTransitionOptions"
+            [hideTransitionOptions]="hideTransitionOptions"
+            [tabindex]="tabindex"
+            [variant]="variant"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            [disabledDates]="disabledDates"
+            [disabledDays]="disabledDays"
+            [yearRange]="yearRange"
+            [showTime]="showTime"
+            [responsiveOptions]="responsiveOptions"
+            [numberOfMonths]="numberOfMonths"
+            [firstDayOfWeek]="firstDayOfWeek"
+            [locale]="locale"
+            [view]="view"
+            (onFocus)="emitter('onFocus',$event)"
+            (onBlur)="_onBlur($event)"
+            (onClose)="emitter('onClose',$event)"
+            (onSelect)="_onSelect($event)"
+            (onClear)="_onClear()"
+            (onInput)="_onInput($event)"
+            (onTodayClick)="emitter('onTodayClick',$event)"
+            (onClearClick)="_onClear()"
+            (onMonthChange)="emitter('onMonthChange',$event)"
+            (onYearChange)="emitter('onYearChange',$event)"
+            (onClickOutside)="emitter('onClickOutside',$event)"
+            (onShow)="emitter('onShow',$event)"/>
+          }
+        </div>
+      </div>
+      @if (label && labelPos != 'float') {
+        <label
+          class="fix-label"
+          [attr.for]="inputId"
+          [class.p-disabled]="disabled"
+          [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+          [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
           {{ label | ngLabelStar:showRequiredStar:ngControl }}
         </label>
-      </ng-container>
-      <ng-container *ngIf="inline">
-        <p-calendar
-          [(ngModel)]="value"
-          [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-          [style]="style"
-          [styleClass]="styleClass"
-          [inputStyle]="inputStyle"
-          [inputId]="inputId"
-          [name]="name"
-          [inputStyleClass]="inputStyleClass"
-          [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
-          [ariaLabelledBy]="ariaLabelledBy"
-          [ariaLabel]="ariaLabel"
-          [iconAriaLabel]="iconAriaLabel"
-          [disabled]="disabled"
-          [dateFormat]="dateFormat"
-          [multipleSeparator]="multipleSeparator"
-          [rangeSeparator]="rangeSeparator"
-          [inline]="true"
-          [showOtherMonths]="showOtherMonths"
-          [selectOtherMonths]="selectOtherMonths"
-          [showIcon]="showIcon"
-          [icon]="datepickerIcon"
-          [appendTo]="appendTo"
-          [readonlyInput]="readonlyInput"
-          [shortYearCutoff]="shortYearCutoff"
-          [monthNavigator]="monthNavigator"
-          [yearNavigator]="yearNavigator"
-          [hourFormat]="hourFormat"
-          [timeOnly]="timeOnly"
-          [stepYearPicker]="stepYearPicker"
-          [stepHour]="stepHour"
-          [stepMinute]="stepMinute"
-          [stepSecond]="stepSecond"
-          [showSeconds]="showSeconds"
-          [required]="required"
-          [showOnFocus]="showOnFocus"
-          [showWeek]="showWeek"
-          [startWeekFromFirstDayOfYear]="startWeekFromFirstDayOfYear"
-          [showClear]="showClear"
-          [dataType]="dataType"
-          [selectionMode]="selectionMode"
-          [maxDateCount]="maxDateCount"
-          [showButtonBar]="showButtonBar"
-          [todayButtonStyleClass]="todayButtonStyleClass"
-          [clearButtonStyleClass]="clearButtonStyleClass"
-          [autofocus]="autofocus"
-          [autoZIndex]="autoZIndex"
-          [baseZIndex]="baseZIndex"
-          [panelStyleClass]="panelStyleClass"
-          [panelStyle]="panelStyle"
-          [keepInvalid]="keepInvalid"
-          [hideOnDateTimeSelect]="hideOnDateTimeSelect"
-          [touchUI]="touchUI"
-          [timeSeparator]="timeSeparator"
-          [focusTrap]="focusTrap"
-          [showTransitionOptions]="showTransitionOptions"
-          [hideTransitionOptions]="hideTransitionOptions"
-          [tabindex]="tabindex"
-          [variant]="variant"
-          [minDate]="minDate"
-          [maxDate]="maxDate"
-          [disabledDates]="disabledDates"
-          [disabledDays]="disabledDays"
-          [yearRange]="yearRange"
-          [showTime]="showTime"
-          [responsiveOptions]="responsiveOptions"
-          [numberOfMonths]="numberOfMonths"
-          [firstDayOfWeek]="firstDayOfWeek"
-          [locale]="locale"
-          [view]="view"
-          (onFocus)="emitter('onFocus',$event)"
-          (onBlur)="_onBlur($event)"
-          (onClose)="emitter('onClose',$event)"
-          (onSelect)="_onSelect($event)"
-          (onClear)="_onClear()"
-          (onInput)="_onInput($event)"
-          (onTodayClick)="emitter('onTodayClick',$event)"
-          (onClearClick)="_onClear()"
-          (onMonthChange)="emitter('onMonthChange',$event)"
-          (onYearChange)="emitter('onYearChange',$event)"
-          (onClickOutside)="emitter('onClickOutside',$event)"
-          (onShow)="emitter('onShow',$event)"/>
-      </ng-container>
-    </div>
-  </div>
-  <label
-    class="fix-label"
-    *ngIf="label && labelPos != 'float'"
-    [attr.for]="inputId"
-    [class.p-disabled]="disabled"
-    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
-    [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-    {{ label | ngLabelStar:showRequiredStar:ngControl }}
-  </label>
-  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
-  <div class="message p-error">
-    <ng-container *ngFor="let v of validation | keyvalue">
-      <div *ngIf="hasError(v.key)">
-        {{ v.value }}
+      }
+      @if (hint && showHint()) {
+        <div class="message">{{ hint }}</div>
+      }
+      <div class="message p-error">
+        @for (v of validation | keyvalue; track v) {
+          @if (hasError(v.key)) {
+            <div>
+              {{ v.value }}
+            </div>
+          }
+        }
       </div>
-    </ng-container>
-  </div>
-</div>
+    </div>

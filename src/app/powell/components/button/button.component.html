@@ -20,9 +20,11 @@
   (onClick)="_onClick($event)"
   (onFocus)="emitter('onFocus',$event)"
   (onBlur)="emitter('onBlur',$event)">
-  <ng-container *ngFor="let t of templates">
-    <ng-template [pTemplate]="t.getType()" *ngIf="templateMap[t.getType()]">
-      <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
-    </ng-template>
-  </ng-container>
+  @for (t of templates; track t) {
+    @if (templateMap[t.getType()]) {
+      <ng-template [pTemplate]="t.getType()">
+        <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
+      </ng-template>
+    }
+  }
 </p-button>

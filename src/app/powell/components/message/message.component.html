@@ -1,20 +1,25 @@
-<p-messages
-  *ngIf="!inlineMessage"
-  [class.rtl]="rtl"
-  [enableService]="false"
-  [severity]="severity"
-  [closable]="closable"
+@if (!inlineMessage) {
+  <p-messages
+    [class.rtl]="rtl"
+    [enableService]="false"
+    [severity]="severity"
+    [closable]="closable"
   [value]="[{
     summary:summary,
     detail:detail,
     icon:icon,
     severity:severity
   }]">
-  <ng-container *ngFor="let t of templates">
-    <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
-      <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"/>
-    </ng-template>
-  </ng-container>
-</p-messages>
+    @for (t of templates; track t) {
+      @if (templateMap[t.getType()]) {
+        <ng-template [pTemplate]="t.getType()" let-item>
+          <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"/>
+        </ng-template>
+      }
+    }
+  </p-messages>
+}
 
-<p-message *ngIf="inlineMessage" [class.rtl]="rtl" [severity]="severity" [text]="inlineMessage"/>
+@if (inlineMessage) {
+  <p-message [class.rtl]="rtl" [severity]="severity" [text]="inlineMessage"/>
+}
