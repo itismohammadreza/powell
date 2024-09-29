@@ -20,33 +20,33 @@
       (onChange)="_onChange($event)"
       (onFocus)="_onFocus($event)"
       (onBlur)="_onBlur($event)"/>
-      @for (t of templates; track t) {
-        @if (templateMap[t.getType()]) {
-          <ng-template [pTemplate]="t.getType()">
-            <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
-          </ng-template>
-        }
+    @for (t of templates; track t) {
+      @if (templateMap[t.getType()]) {
+        <ng-template [pTemplate]="t.getType()">
+          <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
+        </ng-template>
       }
-    </div>
-    @if (label) {
-      <label
-        class="fix-label"
-        [class.p-disabled]="disabled"
-        [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
-        [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-        {{ label | ngLabelStar:showRequiredStar:ngControl }}
-      </label>
     }
-    @if (hint && showHint()) {
-      <div class="message">{{ hint }}</div>
-    }
-    <div class="message p-error">
-      @for (v of validation | keyvalue; track v) {
-        @if (hasError(v.key)) {
-          <div>
-            {{ v.value }}
-          </div>
-        }
-      }
-    </div>
   </div>
+  @if (label) {
+    <label
+      class="fix-label"
+      [class.p-disabled]="disabled"
+      [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+      [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+      {{ label | ngLabelStar:showRequiredStar:ngControl }}
+    </label>
+  }
+  @if (hint && showHint()) {
+    <div class="message">{{ hint }}</div>
+  }
+  <div class="message p-error">
+    @for (v of validation | keyvalue; track v) {
+      @if (hasError(v.key)) {
+        <div>
+          {{ v.value }}
+        </div>
+      }
+    }
+  </div>
+</div>

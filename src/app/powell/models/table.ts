@@ -29,7 +29,8 @@ export type NgTableFilterType =
   | 'boolean'
   | 'gregorian-datepicker'
   | 'jalali-datepicker'
-  | 'slider';
+  | 'slider'
+  | 'numeric';
 
 export type NgTableFilters = Record<string, $FilterMetadata | $FilterMetadata[]>;
 

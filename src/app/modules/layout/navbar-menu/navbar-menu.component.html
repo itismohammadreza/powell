@@ -60,114 +60,114 @@
           inputSize="sm"
           [placeholder]="'searchComponents' | translate"
           [(ngModel)]="searchValue"/>
-          @if (!sidebarLock && sidebarType != 'hover') {
-            <ng-button
-              appearance="text"
-              size="sm"
-              [rounded]="true"
-              icon="pi pi-times"
-              (onClick)="toggleSidebarClick()"/>
-          }
-          @if (!showBackdrop()) {
-            <i
-              class="ms-2 hidden md:inline border rounded-full cursor-pointer hover:opacity-70 pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
+        @if (!sidebarLock && sidebarType != 'hover') {
+          <ng-button
+            appearance="text"
+            size="sm"
+            [rounded]="true"
+            icon="pi pi-times"
+            (onClick)="toggleSidebarClick()"/>
+        }
+        @if (!showBackdrop()) {
+          <i
+            class="ms-2 hidden md:inline border rounded-full cursor-pointer hover:opacity-70 pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
             (click)="toggleLockSidebarClick()"></i>
-          }
-        </div>
-      </ng-template>
-      <p-panelMenu
-        styleClass="[&_.p-menuitem-icon]:!m-0 [&_.p-panelmenu-header-action]:gap-2"
-        [multiple]="false"
-        [model]="sidebarItems | ngFilter:searchValue:'label'"/>
-      </p-sidebar>
-    </div>
+        }
+      </div>
+    </ng-template>
+    <p-panelMenu
+      styleClass="[&_.p-menuitem-icon]:!m-0 [&_.p-panelmenu-header-action]:gap-2"
+      [multiple]="false"
+      [model]="sidebarItems | ngFilter:searchValue:'label'"/>
+  </p-sidebar>
+</div>
 
-    <p-sidebar
-      position="left"
-      [showCloseIcon]="true"
-      [(visible)]="configSidebarVisible"
-      styleClass="!w-[30rem] max-w-full">
-      <p-divider align="center">
-        <h5 class="mb-0">{{ 'siteConfigs' | translate }}</h5>
-      </p-divider>
-      <ng-dropdown
-        [label]="'sidebar' | translate"
-        labelPos="fix-side"
-        [labelWidth]="170"
-        class="mb-4"
-        [value]="tempSidebarType"
-        [options]="sidebarTypes"
-        (onChange)="changeSidebarType($event, true)"/>
-        <ng-dropdown
-          [label]="'lang' | translate"
-          labelPos="fix-side"
-          [labelWidth]="170"
-          class="mb-4"
-          [value]="config.lang"
-          [options]="[{label:'EN',value:'en'},{label:'FA',value:'fa'}]"
-          (onChange)="changeLang($event)"/>
-          <p-divider align="center">
-            <h5 class="mb-0">{{ 'componentsGlobalConfigs' | translate }}</h5>
-          </p-divider>
-          <ng-dropdown
-            [label]="'selectiveSize' | translate"
-            labelPos="fix-side"
-            [labelWidth]="170"
-            class="mb-4"
-            [value]="config.powellConfig.inputSize"
-            [options]="[{label:'sm',value:'sm'},{label:'md',value:'md'},{label:'lg',value:'lg'}]"
-            (onChange)="changeGlobalConfig('inputSize',$event.value)"/>
-            <ng-dropdown
-              [label]="'theme' | translate"
-              labelPos="fix-side"
-              [labelWidth]="170"
-              class="mb-4"
-              [value]="config.powellConfig.theme"
-              [options]="themes"
-              (onChange)="changeGlobalConfig('theme',$event.value)"/>
-              <ng-dropdown
-                [label]="'labelPos' | translate"
-                labelPos="fix-side"
-                [labelWidth]="170"
-                class="mb-4"
-                [value]="config.powellConfig.labelPos"
-                [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'},{label:'float',value:'float'}]"
-                (onChange)="changeGlobalConfig('labelPos',$event.value)"/>
-                <ng-dropdown
-                  [label]="'fixLabelPos' | translate"
-                  labelPos="fix-side"
-                  [labelWidth]="170"
-                  class="mb-4"
-                  [value]="config.powellConfig.fixLabelPos"
-                  [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'}]"
-                  (onChange)="changeGlobalConfig('fixLabelPos',$event.value)"/>
-                  <ng-dropdown
-                    [label]="'inputStyle' | translate"
-                    labelPos="fix-side"
-                    [labelWidth]="170"
-                    class="mb-4"
-                    [value]="config.powellConfig.inputStyle"
-                    [options]="[{label:'outlined',value:'outlined'},{label:'filled',value:'filled'}]"
-                    (onChange)="changeGlobalConfig('inputStyle',$event.value)"/>
-                    <ng-switch
-                      [label]="'showRequiredStar' | translate"
-                      labelPos="fix-side"
-                      [labelWidth]="170"
-                      class="mb-4"
-                      [value]="config.powellConfig.showRequiredStar"
-                      (onChange)="changeGlobalConfig('showRequiredStar',$event.checked)"/>
-                      <ng-switch
-                        [label]="'ripple' | translate"
-                        labelPos="fix-side"
-                        [labelWidth]="170"
-                        class="mb-4"
-                        [value]="config.powellConfig.ripple"
-                        (onChange)="changeGlobalConfig('ripple',$event.checked)"/>
-                        <ng-switch
-                          [label]="'rtl' | translate"
-                          labelPos="fix-side"
-                          [labelWidth]="170"
-                          class="mb-4"
-                          [value]="config.rtl"
-                          (onChange)="changeGlobalConfig('rtl',$event.checked)"/>
-                        </p-sidebar>
+<p-sidebar
+  position="left"
+  [showCloseIcon]="true"
+  [(visible)]="configSidebarVisible"
+  styleClass="!w-[30rem] max-w-full">
+  <p-divider align="center">
+    <h5 class="mb-0">{{ 'siteConfigs' | translate }}</h5>
+  </p-divider>
+  <ng-dropdown
+    [label]="'sidebar' | translate"
+    labelPos="fix-side"
+    [labelWidth]="170"
+    class="mb-4"
+    [value]="tempSidebarType"
+    [options]="sidebarTypes"
+    (onChange)="changeSidebarType($event, true)"/>
+  <ng-dropdown
+    [label]="'lang' | translate"
+    labelPos="fix-side"
+    [labelWidth]="170"
+    class="mb-4"
+    [value]="config.lang"
+    [options]="[{label:'EN',value:'en'},{label:'FA',value:'fa'}]"
+    (onChange)="changeLang($event)"/>
+  <p-divider align="center">
+    <h5 class="mb-0">{{ 'componentsGlobalConfigs' | translate }}</h5>
+  </p-divider>
+  <ng-dropdown
+    [label]="'selectiveSize' | translate"
+    labelPos="fix-side"
+    [labelWidth]="170"
+    class="mb-4"
+    [value]="config.powellConfig.inputSize"
+    [options]="[{label:'sm',value:'sm'},{label:'md',value:'md'},{label:'lg',value:'lg'}]"
+    (onChange)="changeGlobalConfig('inputSize',$event.value)"/>
+  <ng-dropdown
+    [label]="'theme' | translate"
+    labelPos="fix-side"
+    [labelWidth]="170"
+    class="mb-4"
+    [value]="config.powellConfig.theme"
+    [options]="themes"
+    (onChange)="changeGlobalConfig('theme',$event.value)"/>
+  <ng-dropdown
+    [label]="'labelPos' | translate"
+    labelPos="fix-side"
+    [labelWidth]="170"
+    class="mb-4"
+    [value]="config.powellConfig.labelPos"
+    [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'},{label:'float',value:'float'}]"
+    (onChange)="changeGlobalConfig('labelPos',$event.value)"/>
+  <ng-dropdown
+    [label]="'fixLabelPos' | translate"
+    labelPos="fix-side"
+    [labelWidth]="170"
+    class="mb-4"
+    [value]="config.powellConfig.fixLabelPos"
+    [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'}]"
+    (onChange)="changeGlobalConfig('fixLabelPos',$event.value)"/>
+  <ng-dropdown
+    [label]="'inputStyle' | translate"
+    labelPos="fix-side"
+    [labelWidth]="170"
+    class="mb-4"
+    [value]="config.powellConfig.inputStyle"
+    [options]="[{label:'outlined',value:'outlined'},{label:'filled',value:'filled'}]"
+    (onChange)="changeGlobalConfig('inputStyle',$event.value)"/>
+  <ng-switch
+    [label]="'showRequiredStar' | translate"
+    labelPos="fix-side"
+    [labelWidth]="170"
+    class="mb-4"
+    [value]="config.powellConfig.showRequiredStar"
+    (onChange)="changeGlobalConfig('showRequiredStar',$event.checked)"/>
+  <ng-switch
+    [label]="'ripple' | translate"
+    labelPos="fix-side"
+    [labelWidth]="170"
+    class="mb-4"
+    [value]="config.powellConfig.ripple"
+    (onChange)="changeGlobalConfig('ripple',$event.checked)"/>
+  <ng-switch
+    [label]="'rtl' | translate"
+    labelPos="fix-side"
+    [labelWidth]="170"
+    class="mb-4"
+    [value]="config.rtl"
+    (onChange)="changeGlobalConfig('rtl',$event.checked)"/>
+</p-sidebar>

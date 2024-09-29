@@ -26,68 +26,68 @@
         (onChange)="_onChangeColorPicker($event)"
         (onShow)="emitter('onShow',$event)"
         (onHide)="emitter('onHide',$event)"/>
-        <ng-input-text
-          [(ngModel)]="value"
-          [label]="labelPos == 'float' ? label : null"
-          [variant]="variant"
-          [rtl]="rtl"
-          [showRequiredStar]="labelPos == 'float' ? showRequiredStar : false"
-          [icon]="icon"
-          [labelPos]="labelPos == 'float' ? 'float' : null"
-          [iconPos]="iconPos"
-          [inputSize]="inputSize"
-          [readonly]="readonly"
-          [disabled]="disabled"
-          [maxlength]="maxlength"
-          [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
-          (onBlur)="_onBlur($event)"
-          (onChange)="_onChangeInput($event)"
-          (onFocus)="emitter('onFocus', $event)"
-          (onInput)="_onInput($event)"
-          (onKeyDown)="_onKeyDown($event)"
-          (onKeyUp)="_onKeyUp($event)"/>
+      <ng-input-text
+        [(ngModel)]="value"
+        [label]="labelPos == 'float' ? label : null"
+        [variant]="variant"
+        [rtl]="rtl"
+        [showRequiredStar]="labelPos == 'float' ? showRequiredStar : false"
+        [icon]="icon"
+        [labelPos]="labelPos == 'float' ? 'float' : null"
+        [iconPos]="iconPos"
+        [inputSize]="inputSize"
+        [readonly]="readonly"
+        [disabled]="disabled"
+        [maxlength]="maxlength"
+        [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
+        (onBlur)="_onBlur($event)"
+        (onChange)="_onChangeInput($event)"
+        (onFocus)="emitter('onFocus', $event)"
+        (onInput)="_onInput($event)"
+        (onKeyDown)="_onKeyDown($event)"
+        (onKeyUp)="_onKeyUp($event)"/>
+    </div>
+  }
+  @if (inline) {
+    <div class="field">
+      <p-colorPicker
+        [(ngModel)]="value"
+        [style]="style"
+        [styleClass]="styleClass"
+        [inline]="true"
+        [format]="format"
+        [appendTo]="appendTo"
+        [disabled]="disabled"
+        [tabindex]="tabindex"
+        [inputId]="inputId"
+        [autoZIndex]="autoZIndex"
+        [baseZIndex]="baseZIndex"
+        [showTransitionOptions]="showTransitionOptions"
+        [hideTransitionOptions]="hideTransitionOptions"
+        (onChange)="_onChangeColorPicker($event)"/>
+    </div>
+  }
+  @if (label && labelPos != 'float') {
+    <label
+      class="fix-label"
+      [attr.for]="inputId"
+      [class.p-disabled]="disabled"
+      [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+      [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+      {{ label | ngLabelStar:showRequiredStar:ngControl }}
+    </label>
+  }
+  @if (hint && showHint()) {
+    <div class="message">{{ hint }}</div>
+  }
+  <div class="message p-error">
+    @for (v of validation | keyvalue; track v) {
+      @if (hasError(v.key)) {
+        <div>
+          {{ v.value }}
         </div>
       }
-      @if (inline) {
-        <div class="field">
-          <p-colorPicker
-            [(ngModel)]="value"
-            [style]="style"
-            [styleClass]="styleClass"
-            [inline]="true"
-            [format]="format"
-            [appendTo]="appendTo"
-            [disabled]="disabled"
-            [tabindex]="tabindex"
-            [inputId]="inputId"
-            [autoZIndex]="autoZIndex"
-            [baseZIndex]="baseZIndex"
-            [showTransitionOptions]="showTransitionOptions"
-            [hideTransitionOptions]="hideTransitionOptions"
-            (onChange)="_onChangeColorPicker($event)"/>
-          </div>
-        }
-        @if (label && labelPos != 'float') {
-          <label
-            class="fix-label"
-            [attr.for]="inputId"
-            [class.p-disabled]="disabled"
-            [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
-            [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-            {{ label | ngLabelStar:showRequiredStar:ngControl }}
-          </label>
-        }
-        @if (hint && showHint()) {
-          <div class="message">{{ hint }}</div>
-        }
-        <div class="message p-error">
-          @for (v of validation | keyvalue; track v) {
-            @if (hasError(v.key)) {
-              <div>
-                {{ v.value }}
-              </div>
-            }
-          }
-        </div>
-      </div>
+    }
+  </div>
+</div>
 

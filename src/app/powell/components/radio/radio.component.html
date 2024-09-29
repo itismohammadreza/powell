@@ -28,32 +28,32 @@
           (onClick)="_onChange($event)"
           (onBlur)="_onBlur($event)"
           (onFocus)="_onFocus($event)"/>
-          <label [attr.for]="'id' + item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
-            {{ item[optionLabel] }}
-          </label>
+        <label [attr.for]="'id' + item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
+          {{ item[optionLabel] }}
+        </label>
+      </div>
+    }
+  </div>
+  @if (label) {
+    <label
+      class="fix-label"
+      [attr.for]="id"
+      [class.p-disabled]="disabled"
+      [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+      [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+      {{ label | ngLabelStar:showRequiredStar:ngControl }}
+    </label>
+  }
+  @if (hint && showHint()) {
+    <div class="message">{{ hint }}</div>
+  }
+  <div class="message p-error">
+    @for (v of validation | keyvalue; track v) {
+      @if (hasError(v.key)) {
+        <div>
+          {{ v.value }}
         </div>
       }
-    </div>
-    @if (label) {
-      <label
-        class="fix-label"
-        [attr.for]="id"
-        [class.p-disabled]="disabled"
-        [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
-        [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-        {{ label | ngLabelStar:showRequiredStar:ngControl }}
-      </label>
     }
-    @if (hint && showHint()) {
-      <div class="message">{{ hint }}</div>
-    }
-    <div class="message p-error">
-      @for (v of validation | keyvalue; track v) {
-        @if (hasError(v.key)) {
-          <div>
-            {{ v.value }}
-          </div>
-        }
-      }
-    </div>
   </div>
+</div>

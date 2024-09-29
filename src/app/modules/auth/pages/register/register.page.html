@@ -9,35 +9,35 @@
     icon="pi pi-user"
     placeholder="نام کاربری"
     [validation]="{'required':'این فیلد الزامیست.','email':'ایمیل نامعتبر است.'}"/>
-    <ng-input-text
-      type="password"
-      icon="pi pi-key"
-      [showRequiredStar]="false"
-      formControlName="password"
-      placeholder="رمز عبور"
-      [validation]="{'required': 'این فیلد الزامیست.'}"/>
-      <ng-input-text
-        type="password"
-        icon="pi pi-key"
-        [showRequiredStar]="false"
-        formControlName="confirmPassword"
-        placeholder="تکرار رمز عبور"
-        [validation]="{'required': 'این فیلد الزامیست.'}"/>
-        @if (form.hasError('notSame') && !form.get('confirmPassword').hasError('required')) {
-          <p class="p-error text-sm text-center"
-            >
-            رمزعبور و تکرار مطابقت ندارند
-          </p>
-        }
-        <ng-button
-          [full]="true"
-          [async]="true"
-          type="submit"
-          label="ثبت نام"
-          (onClickAsync)="onSubmit($event)"/>
-          <small class="flex items-center justify-center gap-2 text-stone-600">
-            <ng-button size="sm" appearance="link" routerLink="/auth/login" label="وارد شوید"/>
-            حساب کاربری دارید؟
-          </small>
-        </form>
+  <ng-input-text
+    type="password"
+    icon="pi pi-key"
+    [showRequiredStar]="false"
+    formControlName="password"
+    placeholder="رمز عبور"
+    [validation]="{'required': 'این فیلد الزامیست.'}"/>
+  <ng-input-text
+    type="password"
+    icon="pi pi-key"
+    [showRequiredStar]="false"
+    formControlName="confirmPassword"
+    placeholder="تکرار رمز عبور"
+    [validation]="{'required': 'این فیلد الزامیست.'}"/>
+  @if (form.hasError('notSame') && !form.get('confirmPassword').hasError('required')) {
+    <p class="p-error text-sm text-center"
+    >
+      رمزعبور و تکرار مطابقت ندارند
+    </p>
+  }
+  <ng-button
+    [full]="true"
+    [async]="true"
+    type="submit"
+    label="ثبت نام"
+    (onClickAsync)="onSubmit($event)"/>
+  <small class="flex items-center justify-center gap-2 text-stone-600">
+    <ng-button size="sm" appearance="link" routerLink="/auth/login" label="وارد شوید"/>
+    حساب کاربری دارید؟
+  </small>
+</form>
 

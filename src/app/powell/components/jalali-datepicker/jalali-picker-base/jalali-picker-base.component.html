@@ -6,8 +6,8 @@
       'p-calendar-disabled':disabled,
       'p-focus': focus
       }"
-  [ngStyle]="style"
-  [class]="styleClass">
+      [ngStyle]="style"
+      [class]="styleClass">
   @if (!inline) {
     <input
       #inputfield
@@ -32,32 +32,32 @@
       [ngClass]="'p-inputtext p-component'"
       autocomplete="off"
       [attr.aria-labelledby]="ariaLabelledBy">
-      @if (showClear && !disabled && value != null) {
-        <i
-          class="p-calendar-clear-icon pi pi-times"
-          (click)="clear()">
+    @if (showClear && !disabled && value != null) {
+      <i
+        class="p-calendar-clear-icon pi pi-times"
+        (click)="clear()">
         </i>
-      }
-      @if (showIcon) {
-        <button
-          type="button"
-          [attr.aria-label]="iconAriaLabel"
-          [icon]="icon"
-          pButton
-          pRipple
-          (click)="onButtonClick($event,inputfield)"
-          class="p-datepicker-trigger"
-          [disabled]="disabled"
-          tabindex="0">
-        </button>
-      }
     }
-    @if (inline || overlayVisible) {
-      <div
-        #contentWrapper
-        [class]="panelStyleClass"
-        [ngStyle]="panelStyle"
-          [ngClass]="{
+    @if (showIcon) {
+      <button
+        type="button"
+        [attr.aria-label]="iconAriaLabel"
+        [icon]="icon"
+        pButton
+        pRipple
+        (click)="onButtonClick($event,inputfield)"
+        class="p-datepicker-trigger"
+        [disabled]="disabled"
+        tabindex="0">
+        </button>
+    }
+  }
+  @if (inline || overlayVisible) {
+    <div
+      #contentWrapper
+      [class]="panelStyleClass"
+      [ngStyle]="panelStyle"
+      [ngClass]="{
           'p-datepicker p-component': true,
           'p-datepicker-inline':inline,
           'p-disabled':disabled,
@@ -66,7 +66,7 @@
           'p-datepicker-monthpicker': (view === 'month'),
           'p-datepicker-touch-ui': touchUI
           }"
-          [@overlayAnimation]="touchUI ?
+      [@overlayAnimation]="touchUI ?
           {
           value: 'visibleTouchUI',
           params: {showTransitionParams: showTransitionOptions, hideTransitionParams: hideTransitionOptions}
@@ -75,15 +75,15 @@
           value: 'visible',
           params: {showTransitionParams: showTransitionOptions, hideTransitionParams: hideTransitionOptions}
           }"
-        [@.disabled]="inline === true"
-        (@overlayAnimation.start)="onOverlayAnimationStart($event)"
-        (@overlayAnimation.done)="onOverlayAnimationDone($event)"
-        (click)="onOverlayClick($event)"
-        >
+      [@.disabled]="inline === true"
+      (@overlayAnimation.start)="onOverlayAnimationStart($event)"
+      (@overlayAnimation.done)="onOverlayAnimationDone($event)"
+      (click)="onOverlayClick($event)"
+    >
         <ng-content select="p-header"/>
         <ng-container *ngTemplateOutlet="headerTemplate"/>
-        @if (!timeOnly) {
-          <div class="p-datepicker-group-container">
+      @if (!timeOnly) {
+        <div class="p-datepicker-group-container">
             @for (month of months; track month; let i = $index) {
               <div class="p-datepicker-group">
                 <div class="p-datepicker-header">
@@ -132,14 +132,14 @@
                     }
                   </div>
                   <button (keydown)="onContainerButtonKeydown($event)"
-                    class="p-datepicker-next p-link"
-                    (click)="onNextButtonClick($event)"
-                    [style.display]="numberOfMonths === 1 ? 'inline-flex' : (i === numberOfMonths -1) ? 'inline-flex' : 'none'"
-                    type="button" pRipple>
+                          class="p-datepicker-next p-link"
+                          (click)="onNextButtonClick($event)"
+                          [style.display]="numberOfMonths === 1 ? 'inline-flex' : (i === numberOfMonths -1) ? 'inline-flex' : 'none'"
+                          type="button" pRipple>
                     <span class="p-datepicker-next-icon pi pi-chevron-right"></span>
                   </button>
                 </div>
-                @if (currentView ==='date') {
+                @if (currentView === 'date') {
                   <div class="p-datepicker-calendar-container">
                     <table class="p-datepicker-calendar">
                       <thead>
@@ -151,7 +151,7 @@
                           }
                           @for (weekDay of weekDays; track weekDay; let begin = $first; let end = $last) {
                             <th scope="col"
-                              >
+                            >
                               <span>{{ weekDay }}</span>
                             </th>
                           }
@@ -181,64 +181,64 @@
                                     <ng-container
                                       *ngTemplateOutlet="dateTemplate; context: {$implicit: date}"/>
                                     </span>
-                                  }
+                                }
                                 </td>
-                              }
+                            }
                             </tr>
-                          }
+                        }
                         </tbody>
                       </table>
                     </div>
-                  }
+                }
                 </div>
-              }
+            }
             </div>
-            @if (currentView === 'month') {
-              <div class="p-monthpicker">
+        @if (currentView === 'month') {
+          <div class="p-monthpicker">
                 @for (m of monthPickerValues(); track m; let i = $index) {
                   <span (click)="onMonthSelect($event, i)"
-                    (keydown)="onMonthCellKeydown($event,i)" class="p-monthpicker-month"
-                    [ngClass]="{'p-highlight': isMonthSelected(i), 'p-disabled': isMonthDisabled(i)}" pRipple>
+                        (keydown)="onMonthCellKeydown($event,i)" class="p-monthpicker-month"
+                        [ngClass]="{'p-highlight': isMonthSelected(i), 'p-disabled': isMonthDisabled(i)}" pRipple>
                     {{ m }}
                   </span>
                 }
               </div>
-            }
-            @if (currentView === 'year') {
-              <div class="p-yearpicker">
+        }
+        @if (currentView === 'year') {
+          <div class="p-yearpicker">
                 @for (y of yearPickerValues(); track y) {
                   <span (click)="onYearSelect($event, y)"
-                    (keydown)="onYearCellKeydown($event,y)" class="p-yearpicker-year"
-                    [ngClass]="{'p-highlight': isYearSelected(y)}" pRipple>
+                        (keydown)="onYearCellKeydown($event,y)" class="p-yearpicker-year"
+                        [ngClass]="{'p-highlight': isYearSelected(y)}" pRipple>
                     {{ y }}
                   </span>
                 }
               </div>
-            }
-          }
-          @if ((showTime||timeOnly) && currentView === 'date') {
-            <div class="p-timepicker">
+        }
+      }
+      @if ((showTime || timeOnly) && currentView === 'date') {
+        <div class="p-timepicker">
               <div class="p-hour-picker">
                 <button class="p-link" type="button" (keydown)="onContainerButtonKeydown($event)"
-                  (keydown.enter)="incrementHour($event)" (keydown.space)="incrementHour($event)"
-                  (mousedown)="onTimePickerElementMouseDown($event, 0, 1)"
-                  (mouseup)="onTimePickerElementMouseUp($event)"
-                  (keyup.enter)="onTimePickerElementMouseUp($event)"
-                  (keyup.space)="onTimePickerElementMouseUp($event)"
-                  (mouseleave)="onTimePickerElementMouseLeave()" pRipple>
+                        (keydown.enter)="incrementHour($event)" (keydown.space)="incrementHour($event)"
+                        (mousedown)="onTimePickerElementMouseDown($event, 0, 1)"
+                        (mouseup)="onTimePickerElementMouseUp($event)"
+                        (keyup.enter)="onTimePickerElementMouseUp($event)"
+                        (keyup.space)="onTimePickerElementMouseUp($event)"
+                        (mouseleave)="onTimePickerElementMouseLeave()" pRipple>
                   <span class="pi pi-chevron-up"></span>
                 </button>
                 <span>@if (currentHour < 10) {
                   0
                 }
-              {{ currentHour }}</span>
+                  {{ currentHour }}</span>
               <button class="p-link" type="button" (keydown)="onContainerButtonKeydown($event)"
-                (keydown.enter)="decrementHour($event)" (keydown.space)="decrementHour($event)"
-                (mousedown)="onTimePickerElementMouseDown($event, 0, -1)"
-                (mouseup)="onTimePickerElementMouseUp($event)"
-                (keyup.enter)="onTimePickerElementMouseUp($event)"
-                (keyup.space)="onTimePickerElementMouseUp($event)"
-                (mouseleave)="onTimePickerElementMouseLeave()" pRipple>
+                      (keydown.enter)="decrementHour($event)" (keydown.space)="decrementHour($event)"
+                      (mousedown)="onTimePickerElementMouseDown($event, 0, -1)"
+                      (mouseup)="onTimePickerElementMouseUp($event)"
+                      (keyup.enter)="onTimePickerElementMouseUp($event)"
+                      (keyup.space)="onTimePickerElementMouseUp($event)"
+                      (mouseleave)="onTimePickerElementMouseLeave()" pRipple>
                 <span class="pi pi-chevron-down"></span>
               </button>
             </div>
@@ -247,25 +247,25 @@
             </div>
             <div class="p-minute-picker">
               <button class="p-link" type="button" (keydown)="onContainerButtonKeydown($event)"
-                (keydown.enter)="incrementMinute($event)" (keydown.space)="incrementMinute($event)"
-                (mousedown)="onTimePickerElementMouseDown($event, 1, 1)"
-                (mouseup)="onTimePickerElementMouseUp($event)"
-                (keyup.enter)="onTimePickerElementMouseUp($event)"
-                (keyup.space)="onTimePickerElementMouseUp($event)"
-                (mouseleave)="onTimePickerElementMouseLeave()" pRipple>
+                      (keydown.enter)="incrementMinute($event)" (keydown.space)="incrementMinute($event)"
+                      (mousedown)="onTimePickerElementMouseDown($event, 1, 1)"
+                      (mouseup)="onTimePickerElementMouseUp($event)"
+                      (keyup.enter)="onTimePickerElementMouseUp($event)"
+                      (keyup.space)="onTimePickerElementMouseUp($event)"
+                      (mouseleave)="onTimePickerElementMouseLeave()" pRipple>
                 <span class="pi pi-chevron-up"></span>
               </button>
               <span>@if (currentMinute < 10) {
                 0
               }
-            {{ currentMinute }}</span>
+                {{ currentMinute }}</span>
             <button class="p-link" type="button" (keydown)="onContainerButtonKeydown($event)"
-              (keydown.enter)="decrementMinute($event)" (keydown.space)="decrementMinute($event)"
-              (mousedown)="onTimePickerElementMouseDown($event, 1, -1)"
-              (mouseup)="onTimePickerElementMouseUp($event)"
-              (keyup.enter)="onTimePickerElementMouseUp($event)"
-              (keyup.space)="onTimePickerElementMouseUp($event)"
-              (mouseleave)="onTimePickerElementMouseLeave()" pRipple>
+                    (keydown.enter)="decrementMinute($event)" (keydown.space)="decrementMinute($event)"
+                    (mousedown)="onTimePickerElementMouseDown($event, 1, -1)"
+                    (mouseup)="onTimePickerElementMouseUp($event)"
+                    (keyup.enter)="onTimePickerElementMouseUp($event)"
+                    (keyup.space)="onTimePickerElementMouseUp($event)"
+                    (mouseleave)="onTimePickerElementMouseLeave()" pRipple>
               <span class="pi pi-chevron-down"></span>
             </button>
           </div>
@@ -277,56 +277,56 @@
           @if (showSeconds) {
             <div class="p-second-picker">
               <button class="p-link" type="button" (keydown)="onContainerButtonKeydown($event)"
-                (keydown.enter)="incrementSecond($event)" (keydown.space)="incrementSecond($event)"
-                (mousedown)="onTimePickerElementMouseDown($event, 2, 1)"
-                (mouseup)="onTimePickerElementMouseUp($event)"
-                (keyup.enter)="onTimePickerElementMouseUp($event)"
-                (keyup.space)="onTimePickerElementMouseUp($event)"
-                (mouseleave)="onTimePickerElementMouseLeave()" pRipple>
+                      (keydown.enter)="incrementSecond($event)" (keydown.space)="incrementSecond($event)"
+                      (mousedown)="onTimePickerElementMouseDown($event, 2, 1)"
+                      (mouseup)="onTimePickerElementMouseUp($event)"
+                      (keyup.enter)="onTimePickerElementMouseUp($event)"
+                      (keyup.space)="onTimePickerElementMouseUp($event)"
+                      (mouseleave)="onTimePickerElementMouseLeave()" pRipple>
                 <span class="pi pi-chevron-up"></span>
               </button>
               <span>@if (currentSecond < 10) {
                 0
               }
-            {{ currentSecond }}</span>
+                {{ currentSecond }}</span>
             <button class="p-link" type="button" (keydown)="onContainerButtonKeydown($event)"
-              (keydown.enter)="decrementSecond($event)" (keydown.space)="decrementSecond($event)"
-              (mousedown)="onTimePickerElementMouseDown($event, 2, -1)"
-              (mouseup)="onTimePickerElementMouseUp($event)"
-              (keyup.enter)="onTimePickerElementMouseUp($event)"
-              (keyup.space)="onTimePickerElementMouseUp($event)"
-              (mouseleave)="onTimePickerElementMouseLeave()" pRipple>
+                    (keydown.enter)="decrementSecond($event)" (keydown.space)="decrementSecond($event)"
+                    (mousedown)="onTimePickerElementMouseDown($event, 2, -1)"
+                    (mouseup)="onTimePickerElementMouseUp($event)"
+                    (keyup.enter)="onTimePickerElementMouseUp($event)"
+                    (keyup.space)="onTimePickerElementMouseUp($event)"
+                    (mouseleave)="onTimePickerElementMouseLeave()" pRipple>
               <span class="pi pi-chevron-down"></span>
             </button>
           </div>
-        }
-        @if (hourFormat=='12') {
-          <div class="p-ampm-picker">
+          }
+          @if (hourFormat == '12') {
+            <div class="p-ampm-picker">
             <button class="p-link" type="button" (keydown)="onContainerButtonKeydown($event)"
-              (click)="toggleAMPM($event)" (keydown.enter)="toggleAMPM($event)" pRipple>
+                    (click)="toggleAMPM($event)" (keydown.enter)="toggleAMPM($event)" pRipple>
               <span class="pi pi-chevron-up"></span>
             </button>
             <span>{{ pm ? 'PM' : 'AM' }}</span>
             <button class="p-link" type="button" (keydown)="onContainerButtonKeydown($event)"
-              (click)="toggleAMPM($event)" (keydown.enter)="toggleAMPM($event)" pRipple>
+                    (click)="toggleAMPM($event)" (keydown.enter)="toggleAMPM($event)" pRipple>
               <span class="pi pi-chevron-down"></span>
             </button>
           </div>
-        }
+          }
       </div>
-    }
-    @if (showButtonBar) {
-      <div class="p-datepicker-buttonbar">
+      }
+      @if (showButtonBar) {
+        <div class="p-datepicker-buttonbar">
         <button type="button" [label]="todayLabel" (keydown)="onContainerButtonKeydown($event)"
-          (click)="onTodayButtonClick($event)" pButton pRipple
-        [ngClass]="[todayButtonStyleClass]"></button>
+                (click)="onTodayButtonClick($event)" pButton pRipple
+                [ngClass]="[todayButtonStyleClass]"></button>
         <button type="button" [label]="clearLabel" (keydown)="onContainerButtonKeydown($event)"
-          (click)="onClearButtonClick($event)" pButton pRipple
-        [ngClass]="[clearButtonStyleClass]"></button>
+                (click)="onClearButtonClick($event)" pButton pRipple
+                [ngClass]="[clearButtonStyleClass]"></button>
       </div>
-    }
-    <ng-content select="p-footer"/>
+      }
+      <ng-content select="p-footer"/>
     <ng-container *ngTemplateOutlet="footerTemplate"/>
   </div>
-}
+  }
 </span>

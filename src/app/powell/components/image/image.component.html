@@ -1,65 +1,65 @@
 <span [ngClass]="containerClass()" [class]="styleClass" [ngStyle]="style">
   <img [attr.src]="src" [attr.srcset]="srcSet" [attr.sizes]="sizes" [attr.alt]="alt" [attr.width]="width"
-    [attr.height]="height" [attr.loading]="loading" [ngStyle]="imageStyle" [class]="imageClass"
-    (error)="imageError($event)"/>
-    @if (preview) {
-      <button [attr.aria-label]="zoomImageAriaLabel" type="button"
-        class="p-image-preview-indicator" (click)="onImageClick()" #previewButton
-        [ngStyle]="{ height: height + 'px', width: width + 'px' }" style="border: 'none';">
+       [attr.height]="height" [attr.loading]="loading" [ngStyle]="imageStyle" [class]="imageClass"
+       (error)="imageError($event)"/>
+  @if (preview) {
+    <button [attr.aria-label]="zoomImageAriaLabel" type="button"
+            class="p-image-preview-indicator" (click)="onImageClick()" #previewButton
+            [ngStyle]="{ height: height + 'px', width: width + 'px' }" style="border: 'none';">
         @if (indicatorTemplate) {
           <ng-container *ngTemplateOutlet="indicatorTemplate"/>
         } @else {
           <EyeIcon [styleClass]="'p-image-preview-icon'"/>
         }
       </button>
-    }
-    @if (maskVisible) {
-      <div #mask class="p-image-mask p-component-overlay p-component-overlay-enter"
-        [attr.aria-modal]="maskVisible" role="dialog" (click)="onMaskClick()" (keydown)="onMaskKeydown($event)"
-        pFocusTrap>
+  }
+  @if (maskVisible) {
+    <div #mask class="p-image-mask p-component-overlay p-component-overlay-enter"
+         [attr.aria-modal]="maskVisible" role="dialog" (click)="onMaskClick()" (keydown)="onMaskKeydown($event)"
+         pFocusTrap>
         <div class="p-image-toolbar" (click)="handleToolbarClick($event)">
           <button class="p-image-action p-link" (click)="rotateRight()" type="button"
-            [attr.aria-label]="rightAriaLabel()">
+                  [attr.aria-label]="rightAriaLabel()">
             @if (!rotateRightIconTemplate) {
               <RefreshIcon/>
             }
             <ng-template *ngTemplateOutlet="rotateRightIconTemplate"/>
           </button>
           <button class="p-image-action p-link" (click)="rotateLeft()" type="button"
-            [attr.aria-label]="leftAriaLabel()">
+                  [attr.aria-label]="leftAriaLabel()">
             @if (!rotateLeftIconTemplate) {
               <UndoIcon/>
             }
             <ng-template *ngTemplateOutlet="rotateLeftIconTemplate"/>
           </button>
           <button class="p-image-action p-link" (click)="zoomOut()" type="button"
-            [disabled]="isZoomOutDisabled" [attr.aria-label]="zoomOutAriaLabel()">
+                  [disabled]="isZoomOutDisabled" [attr.aria-label]="zoomOutAriaLabel()">
             @if (!zoomOutIconTemplate) {
               <SearchMinusIcon/>
             }
             <ng-template *ngTemplateOutlet="zoomOutIconTemplate"/>
           </button>
           <button class="p-image-action p-link" (click)="zoomIn()" type="button" [disabled]="isZoomInDisabled"
-            [attr.aria-label]="zoomInAriaLabel()">
+                  [attr.aria-label]="zoomInAriaLabel()">
             @if (!zoomInIconTemplate) {
               <SearchPlusIcon/>
             }
             <ng-template *ngTemplateOutlet="zoomInIconTemplate"/>
           </button>
           <button class="p-image-action p-link" type="button" (click)="closePreview()"
-            [attr.aria-label]="closeAriaLabel()" #closeButton>
+                  [attr.aria-label]="closeAriaLabel()" #closeButton>
             @if (!closeIconTemplate) {
               <TimesIcon/>
             }
             <ng-template *ngTemplateOutlet="closeIconTemplate"/>
           </button>
         </div>
-        @if (previewVisible) {
-          <div
-            [@animation]="{ value: 'visible', params: { showTransitionParams: showTransitionOptions, hideTransitionParams: hideTransitionOptions } }"
-            (@animation.start)="onAnimationStart($event)"
-            (@animation.done)="onAnimationEnd($event)"
-            >
+      @if (previewVisible) {
+        <div
+          [@animation]="{ value: 'visible', params: { showTransitionParams: showTransitionOptions, hideTransitionParams: hideTransitionOptions } }"
+          (@animation.start)="onAnimationStart($event)"
+          (@animation.done)="onAnimationEnd($event)"
+        >
             <ng-pinch-zoom
               [transitionDuration]="pinchTransitionDuration"
               [doubleTap]="pinchDoubleTap"
@@ -83,18 +83,18 @@
               [styleClass]="previewStyleClass">
               <span>
                 <img [attr.alt]="alt"
-                  [attr.src]="previewImageSrc ? previewImageSrc : src"
-                  [attr.srcset]="previewImageSrcSet"
-                  [attr.sizes]="previewImageSizes"
-                  class="p-image-preview"
-                  [ngStyle]="imagePreviewStyle()"
-                  (click)="onPreviewImageClick()"/>
+                     [attr.src]="previewImageSrc ? previewImageSrc : src"
+                     [attr.srcset]="previewImageSrcSet"
+                     [attr.sizes]="previewImageSizes"
+                     class="p-image-preview"
+                     [ngStyle]="imagePreviewStyle()"
+                     (click)="onPreviewImageClick()"/>
                 </span>
               </ng-pinch-zoom>
             </div>
-          }
-        </div>
       }
+        </div>
+  }
     </span>
 
 

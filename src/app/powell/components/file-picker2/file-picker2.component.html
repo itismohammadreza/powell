@@ -91,7 +91,9 @@
     @if (!invalidFileSize && !invalidFileType) {
       @for (v of validation | keyvalue; track v) {
         @if (hasError(v.key)) {
-          <div> {{ v.value }}</div>
+          <div>
+            {{ v.value }}
+          </div>
         }
       }
     }
