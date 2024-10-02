@@ -7,7 +7,7 @@ import {MomentService, OverlayService, PersianService, providePowell, UtilsServi
 import {globalConfig} from "@core/config";
 
 export function httpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
 export function initiateLanguage(translationService: TranslationService) {
