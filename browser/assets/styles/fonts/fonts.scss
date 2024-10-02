@@ -1,0 +1,23 @@
+:root {
+  --font-family: Roboto, Vazirmatn !important;
+}
+
+// ICON FONT
+@import "font-awesome/font-awesome.scss";
+
+// FARSI FONT
+//@import "iran-sans/farsi-digits/iran-sans";
+//@import "iran-sans/plain/iran-sans";
+
+@import "vazirmatn/farsi-digits/vazirmatn";
+//@import "vazirmatn/farsi-digits-non-latin/vazirmatn";
+//@import "vazirmatn/non-latin/vazirmatn";
+//@import "vazirmatn/plain/vazirmatn";
+
+//@import "vazirmatn-round-dots/farsi-digits/vazirmatn-round-dots";
+//@import "vazirmatn-round-dots/farsi-digits-non-latin/vazirmatn-round-dots";
+//@import "vazirmatn-round-dots/non-latin/vazirmatn-round-dots";
+//@import "vazirmatn-round-dots/plain/vazirmatn-round-dots";
+
+// ENGLISH FONT
+@import "roboto/roboto";

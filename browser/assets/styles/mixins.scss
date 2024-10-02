@@ -1,0 +1,302 @@
+@use "sass:list";
+@use "sass:color";
+@use "sass:map";
+@use "sass:string";
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+// positions: top-right / top-left / top-center / bottom-right / bottom-left / bottom-center /
+//            left-top / left-center / left-bottom / right-top / right-center / right-bottom /
+//            both-y-left / both-y-left / both-y-left / both-x-top / both-x-top / both-x-top
+@mixin add-line(
+  $width: 60px,
+  $height: 2px,
+  $space: 15px,
+  $bg-color: Null,
+  $position: "bottom-right",
+  $hoverable: false
+) {
+  $is-top: str-slice($position, 1, 3) == 'top';
+  $is-bottom: str-slice($position, 1, 6) == 'bottom';
+  $is-left: str-slice($position, 1, 4) == 'left';
+  $is-right: str-slice($position, 1, 5) == 'right';
+  $is-both: str-slice($position, 1, 4) == 'both';
+  $is-both-x: str-slice($position, 1, 6) == 'both-x';
+  $is-both-y: str-slice($position, 1, 6) == 'both-y';
+  position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    width: #{$width};
+    height: #{$height};
+    background: $bg-color;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    background: $bg-color;
+  }
+  @if ($is-top) {
+    margin-top: $space;
+    &:before {
+      top: -#{$space};
+    }
+  }
+  @if ($is-bottom) {
+    margin-bottom: $space;
+    &:before {
+      bottom: -#{$space};
+      top: auto;
+    }
+  }
+  @if ($is-left) {
+    margin-left: $space;
+    &:before {
+      left: -#{$space};
+    }
+  }
+  @if ($is-right) {
+    margin-right: $space;
+    &:before {
+      right: -#{$space};
+      left: auto;
+    }
+  }
+  @if ($is-both-x) {
+    margin-left: $space;
+    margin-right: $space;
+    &:before {
+      left: -#{$space};
+    }
+    &:after {
+      width: #{$width};
+      height: #{$height};
+      background: $bg-color;
+      right: -#{$space};
+      left: auto;
+    }
+  }
+  @if ($is-both-y) {
+    margin-top: $space;
+    margin-bottom: $space;
+    &:before {
+      top: -#{$space};
+    }
+    &:after {
+      width: #{$width};
+      height: #{$height};
+      background: $bg-color;
+      bottom: -#{$space};
+    }
+  }
+  @if ($position == 'top-right' or $position == 'bottom-right') {
+    &:before {
+      right: 0;
+      left: auto;
+    }
+  } @else if ($position == 'top-left' or $position == 'bottom-left') {
+    &:before {
+      left: 0;
+    }
+  } @else if ($position == 'top-center' or $position == 'bottom-center') {
+    &:before {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  } @else if ($position == 'left-top' or $position == 'right-top') {
+    &:before {
+      top: 0;
+    }
+  } @else if ($position == 'left-center' or $position == 'right-center') {
+    &:before {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  } @else if ($position == 'left-bottom' or $position == 'right-bottom') {
+    &:before {
+      bottom: 0;
+      top: auto;
+    }
+  } @else if ($position == 'both-y-left') {
+    &:before, &:after {
+      left: 0;
+    }
+  } @else if ($position == 'both-y-center') {
+    &:before, &:after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  } @else if ($position == 'both-y-right') {
+    &:before, &:after {
+      right: 0;
+      left: auto;
+    }
+  } @else if ($position == 'both-x-top') {
+    &:before, &:after {
+      top: 0;
+    }
+  } @else if ($position == 'both-x-center') {
+    &:before, &:after {
+      top: 50%;
+      transform: translateY(-50%)
+    }
+  } @else if ($position == 'both-x-bottom') {
+    &:before, &:after {
+      bottom: 0;
+      top: auto;
+    }
+  }
+  @if ($hoverable != false) {
+    @if ($is-top or $is-bottom or $is-both-y) {
+      &:before, &:after {
+        width: 0;
+        transition: width 0.4s;
+      }
+      &:hover {
+        &:before {
+          height: $height;
+          width: 100%;
+        }
+      }
+    }
+    @if ($is-left or $is-right or $is-both-x) {
+      &:before, &:after {
+        height: 0;
+        transition: height 0.4s;
+      }
+      &:hover {
+        &:before {
+          width: $width;
+          height: 100%;
+        }
+      }
+    }
+    @if ($is-both-y) {
+      &:hover {
+        &:after {
+          height: $height;
+          width: 100%;
+        }
+      }
+    }
+
+    @if ($is-both-x) {
+      &:hover {
+        &:after {
+          width: $width;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $name);
+  @if not $n {
+    @error "breakpoint `#{$name}` not found in `#{$breakpoints}`";
+  }
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $max: map-get($breakpoints, $name);
+  @return if($max and $max > 0, $max - .02, null);
+}
+
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($lower, $breakpoints);
+  $max: breakpoint-max($upper, $breakpoints);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($lower, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  $next: breakpoint-next($name, $breakpoints);
+  $max: breakpoint-max($next);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($name, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($next, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+@mixin scrollbar($thickness:8px,$radius:10px,$track-color,$thumb-color) {
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: $track-color;
+  }
+
+  ::-webkit-scrollbar {
+    width: $thickness;
+    height: $thickness;
+    background-color: $track-color;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: $thumb-color;
+
+    &:hover {
+      background-color: lighten($thumb-color, 15%);
+    }
+  }
+}

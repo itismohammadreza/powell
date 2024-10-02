@@ -1,0 +1,92 @@
+$baseUrl: "/assets/styles/fonts/vazirmatn/plain";
+
+@font-face {
+  font-family: Vazirmatn;
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+  src: url("#{$baseUrl}/woff2/Vazirmatn-Thin.woff2") format("woff2"),
+  url("#{$baseUrl}/ttf/Vazirmatn-Thin.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+  src: url("#{$baseUrl}/woff2/Vazirmatn-ExtraLight.woff2") format("woff2"),
+  url("#{$baseUrl}/ttf/Vazirmatn-ExtraLight.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("#{$baseUrl}/woff2/Vazirmatn-Light.woff2") format("woff2"),
+  url("#{$baseUrl}/ttf/Vazirmatn-Light.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("#{$baseUrl}/woff2/Vazirmatn-Regular.woff2") format("woff2"),
+  url("#{$baseUrl}/ttf/Vazirmatn-Regular.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
+  unicode-range: U+0600-06FF;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("#{$baseUrl}/woff2/Vazirmatn-Medium.woff2") format("woff2"),
+  url("#{$baseUrl}/ttf/Vazirmatn-Medium.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("#{$baseUrl}/woff2/Vazirmatn-SemiBold.woff2") format("woff2"),
+  url("#{$baseUrl}/ttf/Vazirmatn-SemiBold.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("#{$baseUrl}/woff2/Vazirmatn-Bold.woff2") format("woff2"),
+  url("#{$baseUrl}/ttf/Vazirmatn-Bold.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+  src: url("#{$baseUrl}/woff2/Vazirmatn-ExtraBold.woff2") format("woff2"),
+  url("#{$baseUrl}/ttf/Vazirmatn-ExtraBold.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  src: url("#{$baseUrl}/woff2/Vazirmatn-Black.woff2") format("woff2"),
+  url("#{$baseUrl}/ttf/Vazirmatn-Black.ttf") format("truetype");
+  unicode-range: U+0600-06FF;
+}
