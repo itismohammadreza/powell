@@ -257,7 +257,6 @@ export class OverlayService {
     instance.options.acceptButtonStyleClass = `${options.acceptButtonStyleClass} p-dialog-form-accept`;
     instance.options.rejectButtonStyleClass = `${options.rejectButtonStyleClass} p-dialog-form-reject`;
     instance.options.styleClass = `${options.styleClass} p-dialog-form-wrapper ${(options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr'} ${!options.showHeader ? 'dialog-header-less' : ''}`;
-    console.log(this.dialogFormCmpRef)
     instance.show();
     const state: NgHistoryState = {component: 'dialogForm'}
     this.pushState(state);
