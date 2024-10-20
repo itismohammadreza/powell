@@ -5,9 +5,6 @@
     <p-divider align="left"><h6 class="mb-0">{{ 'httpRequest' | translate }}</h6></p-divider>
     <ng-button [async]="true" (onClickAsync)="request($event)" label="HTTP Request"/>
 
-    <p-divider align="left"><h6 class="mb-0">{{ 'customDialog' | translate }}</h6></p-divider>
-    <ng-button (click)="modal.open()" label="Custom Dialog"/>
-
     <p-divider align="left"><h6 class="mb-0">{{ 'customDynamicDialog' | translate }}</h6></p-divider>
     <ng-button (click)="showCustomDynamicDialog()" label="Custom Dynamic Dialog"/>
     @if (customDynamicDialogResult) {
@@ -28,6 +25,3 @@
     </p>
   </p-panel>
 </div>
-<ng-dialog2 #modal>
-  Custom Modal Content
-</ng-dialog2>
