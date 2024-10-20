@@ -50,7 +50,7 @@ import {TriStateCheckboxModule} from "@powell/components/tri-state-checkbox";
 @NgModule({
   declarations: [
     DialogComponent,
-    // DialogFormComponent,
+    DialogFormComponent,
     DynamicDialogComponent
   ],
   imports: [
