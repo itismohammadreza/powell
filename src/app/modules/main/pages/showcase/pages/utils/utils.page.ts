@@ -6,12 +6,25 @@ import {
 } from "@modules/main/pages/showcase/pages/utils/dynamic-dialog-sample/dynamic-dialog-sample.component";
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@core/utils";
+import {ButtonModule} from "@powell/components/button";
+import {InputNumberModule} from "@powell/components/input-number";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-utils-page',
   templateUrl: './utils.page.html',
   styleUrls: ['./utils.page.scss'],
-  providers: [DestroyService]
+  providers: [DestroyService],
+  standalone: true,
+  imports: [
+    ButtonModule,
+    InputNumberModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class UtilsPage implements OnInit {
   private dataService = inject(DataService);

@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgAddon, NgFixLabelPosition} from '@powell/models';
 import {ConfigService} from "@powell/api";
+import {ListboxModule} from "@powell/components/listbox";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-listbox-page',
   templateUrl: './listbox.page.html',
   styleUrls: ['./listbox.page.scss'],
+  standalone: true,
+  imports: [
+    ListboxModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class ListboxPage {
   private configService = inject(ConfigService);

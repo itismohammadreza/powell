@@ -1,9 +1,20 @@
 import {Component, OnInit} from '@angular/core';
+import {InfiniteScrollModule} from "@powell/components/infinite-scroll";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-infinite-scroll-page',
   templateUrl: './infinite-scroll.page.html',
-  styleUrls: ['./infinite-scroll.page.scss']
+  styleUrls: ['./infinite-scroll.page.scss'],
+  standalone: true,
+  imports: [
+    InfiniteScrollModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class InfiniteScrollPage implements OnInit {
   list: any[] = []

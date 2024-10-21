@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgAddon, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from '@powell/models';
 import {ConfigService} from "@powell/api";
+import {AutoCompleteModule} from "@powell/components/auto-complete";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-auto-complete-page',
   templateUrl: './auto-complete.page.html',
-  styleUrls: ['./auto-complete.page.scss']
+  styleUrls: ['./auto-complete.page.scss'],
+  standalone: true,
+  imports: [
+    AutoCompleteModule,
+    ExtrasModule,
+    PreviewOptionsComponent,
+    ReactiveFormsModule,
+  ]
 })
 export class AutoCompletePage {
   private configService = inject(ConfigService);

@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgFixLabelPosition, NgInputVariant, NgOrientation} from '@powell/models';
 import {ConfigService} from "@powell/api";
+import {RadioModule} from "@powell/components/radio";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-radio-page',
   templateUrl: './radio.page.html',
   styleUrls: ['./radio.page.scss'],
+  standalone: true,
+  imports: [
+    RadioModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class RadioPage {
   private configService = inject(ConfigService);

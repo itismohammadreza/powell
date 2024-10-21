@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {
   NgAddon,
   NgChipDisplayMode,
@@ -10,11 +10,23 @@ import {
   NgTreeSelectionMode
 } from "@powell/models";
 import {ConfigService} from "@powell/api";
+import {TreeSelectModule} from "@powell/components/tree-select";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-tree-select-page',
   templateUrl: './tree-select.page.html',
-  styleUrls: ['./tree-select.page.scss']
+  styleUrls: ['./tree-select.page.scss'],
+  standalone: true,
+  imports: [
+    TreeSelectModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class TreeSelectPage {
   private configService = inject(ConfigService);

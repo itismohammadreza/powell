@@ -1,10 +1,23 @@
 import {Component, inject} from '@angular/core';
 import {ConfigService, OverlayService} from "@powell/api";
+import {BottomSheetModule} from "@powell/components/bottom-sheet";
+import {ButtonModule} from "@powell/components/button";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-bottom-sheet-page',
   templateUrl: './bottom-sheet.page.html',
-  styleUrls: ['./bottom-sheet.page.scss']
+  styleUrls: ['./bottom-sheet.page.scss'],
+  standalone: true,
+  imports: [
+    BottomSheetModule,
+    ButtonModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class BottomSheetPage {
   private overlayService = inject(OverlayService);

@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgFixLabelPosition} from "@powell/models";
 import {ConfigService} from "@powell/api";
+import {SwitchModule} from "@powell/components/switch";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-switch-page',
   templateUrl: './switch.page.html',
   styleUrls: ['./switch.page.scss'],
+  standalone: true,
+  imports: [
+    SwitchModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class SwitchPage {
   private configService = inject(ConfigService);

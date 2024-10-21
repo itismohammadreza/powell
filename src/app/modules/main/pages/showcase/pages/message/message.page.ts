@@ -1,11 +1,22 @@
 import {Component, inject} from '@angular/core';
 import {NgSeverity} from "@powell/models";
 import {ConfigService} from "@powell/api";
+import {MessageModule} from "@powell/components/message";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-message-page',
   templateUrl: './message.page.html',
-  styleUrls: ['./message.page.scss']
+  styleUrls: ['./message.page.scss'],
+  standalone: true,
+  imports: [
+    MessageModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class MessagePage {
   private configService = inject(ConfigService);

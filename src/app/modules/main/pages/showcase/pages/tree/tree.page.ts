@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgAddon, NgFixLabelPosition, NgOrientation, NgTreeSelectionMode} from '@powell/models';
 import {ConfigService} from "@powell/api";
+import {TreeModule} from "@powell/components/tree";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-tree-page',
   templateUrl: './tree.page.html',
   styleUrls: ['./tree.page.scss'],
+  standalone: true,
+  imports: [
+    TreeModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class TreePage {
   private configService = inject(ConfigService);

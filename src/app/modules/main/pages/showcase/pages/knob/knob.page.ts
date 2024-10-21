@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgFixLabelPosition} from '@powell/models';
 import {ConfigService} from "@powell/api";
+import {KnobModule} from "@powell/components/knob";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-knob-page',
   templateUrl: './knob.page.html',
   styleUrls: ['./knob.page.scss'],
+  standalone: true,
+  imports: [
+    KnobModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class KnobPage {
   private configService = inject(ConfigService);

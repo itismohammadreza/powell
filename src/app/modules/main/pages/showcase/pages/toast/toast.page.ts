@@ -1,11 +1,22 @@
 import {Component, inject} from '@angular/core';
 import {NgToastOptions} from "@powell/models";
 import {ConfigService, OverlayService} from "@powell/api";
+import {ButtonModule} from "@powell/components/button";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-toast-page',
   templateUrl: './toast.page.html',
-  styleUrls: ['./toast.page.scss']
+  styleUrls: ['./toast.page.scss'],
+  standalone: true,
+  imports: [
+    ButtonModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class ToastPage {
   private configService = inject(ConfigService);

@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgAddon, NgIconPosition, NgInputVariant, NgLabelPosition} from '@powell/models';
 import {ConfigService} from "@powell/api";
+import {InputTextareaModule} from "@powell/components/input-textarea";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-input-textarea-page',
   templateUrl: './input-textarea.page.html',
   styleUrls: ['./input-textarea.page.scss'],
+  standalone: true,
+  imports: [
+    InputTextareaModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class InputTextareaPage {
   private configService = inject(ConfigService);

@@ -119,7 +119,8 @@ class App {
 @Component({
   selector: 'ng-smoke',
   templateUrl: './smoke.component.html',
-  styleUrls: ['./smoke.component.scss']
+  styleUrls: ['./smoke.component.scss'],
+  standalone: true
 })
 export class SmokeComponent implements OnInit {
   ngOnInit() {

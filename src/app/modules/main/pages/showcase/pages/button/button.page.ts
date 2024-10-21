@@ -1,10 +1,21 @@
 import {Component} from '@angular/core';
 import {NgButtonAppearance, NgColor, NgIconPosition, NgSize} from '@powell/models';
+import {ButtonModule} from "@powell/components/button";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-button-page',
   templateUrl: './button.page.html',
-  styleUrls: ['./button.page.scss']
+  styleUrls: ['./button.page.scss'],
+  standalone: true,
+  imports: [
+    ButtonModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class ButtonPage {
   label: string = 'Sample';

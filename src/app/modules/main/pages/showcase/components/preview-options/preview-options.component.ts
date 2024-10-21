@@ -284,7 +284,8 @@ type PreviewItem =
   selector: 'ng-preview-options',
   templateUrl: './preview-options.component.html',
   styleUrls: ['./preview-options.component.scss'],
-  providers: [DestroyService]
+  providers: [DestroyService],
+  standalone: true
 })
 export class PreviewOptionsComponent implements OnInit {
   private translationService = inject(TranslationService);

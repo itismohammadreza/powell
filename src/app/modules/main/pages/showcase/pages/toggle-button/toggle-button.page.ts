@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgFixLabelPosition, NgIconPosition} from "@powell/models";
 import {ConfigService} from "@powell/api";
+import {ToggleButtonModule} from "@powell/components/toggle-button";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-toggle-button-page',
   templateUrl: './toggle-button.page.html',
   styleUrls: ['./toggle-button.page.scss'],
+  standalone: true,
+  imports: [
+    ToggleButtonModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class ToggleButtonPage {
   private configService = inject(ConfigService);

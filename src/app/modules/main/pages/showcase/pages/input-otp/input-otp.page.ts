@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
 import {NgFixLabelPosition, NgInputVariant, NgSize} from "@powell/models";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ConfigService} from "@powell/api";
+import {InputOtpModule} from "@powell/components/input-otp";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-input-otp-page',
   templateUrl: './input-otp.page.html',
-  styleUrls: ['./input-otp.page.scss']
+  styleUrls: ['./input-otp.page.scss'],
+  standalone: true,
+  imports: [
+    InputOtpModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class InputOtpPage {
   private configService = inject(ConfigService);

@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgAddon, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from '@powell/models';
 import {ConfigService} from "@powell/api";
+import {CascadeSelectModule} from "@powell/components/cascade-select";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-cascade-select-page',
   templateUrl: './cascade-select.page.html',
-  styleUrls: ['./cascade-select.page.scss']
+  styleUrls: ['./cascade-select.page.scss'],
+  standalone: true,
+  imports: [
+    CascadeSelectModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class CascadeSelectPage {
   private configService = inject(ConfigService);

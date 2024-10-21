@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {
   NgAddon,
   NgCurrency,
@@ -12,11 +12,23 @@ import {
   NgSize
 } from '@powell/models';
 import {ConfigService} from "@powell/api";
+import {InputNumberModule} from "@powell/components/input-number";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-input-number-page',
   templateUrl: './input-number.page.html',
-  styleUrls: ['./input-number.page.scss']
+  styleUrls: ['./input-number.page.scss'],
+  standalone: true,
+  imports: [
+    InputNumberModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class InputNumberPage {
   private configService = inject(ConfigService);
