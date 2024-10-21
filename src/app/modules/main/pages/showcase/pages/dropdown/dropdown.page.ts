@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgAddon, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from '@powell/models';
 import {ConfigService} from "@powell/api";
+import {DropdownModule} from "@powell/components/dropdown";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-dropdown-page',
   templateUrl: './dropdown.page.html',
   styleUrls: ['./dropdown.page.scss'],
+  standalone: true,
+  imports: [
+    DropdownModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class DropdownPage {
   private configService = inject(ConfigService);

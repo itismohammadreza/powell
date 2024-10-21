@@ -1,12 +1,25 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgAddon, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from "@powell/models";
 import {ConfigService} from "@powell/api";
+import {GregorianDatepickerModule} from "@powell/components/gregorian-datepicker";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-gregorian-datepicker-page',
   templateUrl: './gregorian-datepicker.page.html',
-  styleUrls: ['./gregorian-datepicker.page.scss']
+  styleUrls: ['./gregorian-datepicker.page.scss'],
+  standalone: true,
+  imports: [
+    GregorianDatepickerModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent,
+    // DatePickerBaseModule,
+  ]
 })
 export class GregorianDatepickerPage {
   private configService = inject(ConfigService);

@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgAddon, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from "@powell/models";
 import {ConfigService, MomentService} from "@powell/api";
+import {JalaliDatepickerModule} from "@powell/components/jalali-datepicker";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-jalali-datepicker-page',
   templateUrl: './jalali-datepicker.page.html',
-  styleUrls: ['./jalali-datepicker.page.scss']
+  styleUrls: ['./jalali-datepicker.page.scss'],
+  standalone: true,
+  imports: [
+    JalaliDatepickerModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class JalaliDatepickerPage {
   private configService = inject(ConfigService);

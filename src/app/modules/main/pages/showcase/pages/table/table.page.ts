@@ -2,6 +2,13 @@ import {Component, inject} from '@angular/core';
 import {NgSize, NgTableActionsConfig, NgTableColDef} from '@powell/models';
 import {ConfigService} from "@powell/api";
 import {DataService} from "@core/http";
+import {TableModule} from "@powell/components/table";
+import {MultiSelectModule} from "@powell/components/multi-select";
+import {FormsModule} from "@angular/forms";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 interface Customer {
   id: any,
@@ -22,6 +29,14 @@ interface Customer {
   selector: 'ng-table-page',
   templateUrl: './table.page.html',
   styleUrls: ['./table.page.scss'],
+  standalone: true,
+  imports: [
+    TableModule,
+    MultiSelectModule,
+    FormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class TablePage {
   private configService = inject(ConfigService);

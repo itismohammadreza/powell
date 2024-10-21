@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgFixLabelPosition} from "@powell/models";
 import {ConfigService} from "@powell/api";
+import {IranMapModule} from "@powell/components/iran-map";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-iran-map-page',
   templateUrl: './iran-map.page.html',
-  styleUrls: ['./iran-map.page.scss']
+  styleUrls: ['./iran-map.page.scss'],
+  standalone: true,
+  imports: [
+    IranMapModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class IranMapPage {
   private configService = inject(ConfigService);

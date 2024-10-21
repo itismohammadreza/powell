@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgFixLabelPosition} from "@powell/models";
 import {ConfigService} from "@powell/api";
+import {SelectButtonModule} from "@powell/components/select-button";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-select-button-page',
   templateUrl: './select-button.page.html',
   styleUrls: ['./select-button.page.scss'],
+  standalone: true,
+  imports: [
+    SelectButtonModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class SelectButtonPage {
   private configService = inject(ConfigService);

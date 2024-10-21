@@ -1,10 +1,21 @@
 import {Component} from '@angular/core';
 import {NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow} from "@powell/models";
+import {ImageModule} from "@powell/components/image";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-image-page',
   templateUrl: './image.page.html',
-  styleUrls: ['./image.page.scss']
+  styleUrls: ['./image.page.scss'],
+  standalone: true,
+  imports: [
+    ImageModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class ImagePage {
   width: string = '200';

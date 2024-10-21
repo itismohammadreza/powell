@@ -1,11 +1,22 @@
 import {Component, inject} from '@angular/core';
 import {NgConfirmPopupOptions} from "@powell/models";
 import {ConfigService, OverlayService} from "@powell/api";
+import {ButtonModule} from "@powell/components/button";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-confirm-popup-page',
   templateUrl: './confirm-popup.page.html',
-  styleUrls: ['./confirm-popup.page.scss']
+  styleUrls: ['./confirm-popup.page.scss'],
+  standalone: true,
+  imports: [
+    ButtonModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class ConfirmPopupPage {
   private configService = inject(ConfigService);

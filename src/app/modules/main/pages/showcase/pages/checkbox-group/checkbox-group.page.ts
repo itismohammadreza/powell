@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgFixLabelPosition, NgInputVariant, NgOrientation} from '@powell/models';
 import {ConfigService} from "@powell/api";
+import {CheckboxGroupModule} from "@powell/components/checkbox-group";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-checkbox-group-page',
   templateUrl: './checkbox-group.page.html',
   styleUrls: ['./checkbox-group.page.scss'],
+  standalone: true,
+  imports: [
+    CheckboxGroupModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class CheckboxGroupPage {
   private configService = inject(ConfigService);

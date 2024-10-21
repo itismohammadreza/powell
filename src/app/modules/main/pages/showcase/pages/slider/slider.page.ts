@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgFixLabelPosition, NgOrientation} from '@powell/models';
 import {ConfigService} from "@powell/api";
+import {SliderModule} from "@powell/components/slider";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-slider-page',
   templateUrl: './slider.page.html',
   styleUrls: ['./slider.page.scss'],
+  standalone: true,
+  imports: [
+    SliderModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class SliderPage {
   private configService = inject(ConfigService);

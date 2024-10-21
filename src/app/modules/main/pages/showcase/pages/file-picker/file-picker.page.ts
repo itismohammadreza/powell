@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgFilePickerMode, NgFixLabelPosition} from '@powell/models';
 import {ConfigService} from "@powell/api";
+import {FilePickerModule} from "@powell/components/file-picker";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-file-picker-page',
   templateUrl: './file-picker.page.html',
   styleUrls: ['./file-picker.page.scss'],
+  standalone: true,
+  imports: [
+    FilePickerModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class FilePickerPage {
   private configService = inject(ConfigService);

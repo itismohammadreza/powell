@@ -4,12 +4,23 @@ import {NgDialogFormOptions} from "@powell/models";
 import {FormControl, Validators} from "@angular/forms";
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@core/utils";
+import {ButtonModule} from "@powell/components/button";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-dialog-form-page',
   templateUrl: './dialog-form.page.html',
   styleUrls: ['./dialog-form.page.scss'],
-  providers: [DestroyService]
+  providers: [DestroyService],
+  standalone: true,
+  imports: [
+    ButtonModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class DialogFormPage {
   private overlayService = inject(OverlayService);

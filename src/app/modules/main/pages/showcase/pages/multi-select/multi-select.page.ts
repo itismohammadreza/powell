@@ -1,12 +1,24 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgAddon, NgChipDisplayMode, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from '@powell/models';
 import {ConfigService} from "@powell/api";
+import {MultiSelectModule} from "@powell/components/multi-select";
+import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {
+  PreviewOptionsComponent
+} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-multi-select-page',
   templateUrl: './multi-select.page.html',
   styleUrls: ['./multi-select.page.scss'],
+  standalone: true,
+  imports: [
+    MultiSelectModule,
+    ReactiveFormsModule,
+    ExtrasModule,
+    PreviewOptionsComponent
+  ]
 })
 export class MultiSelectPage {
   private configService = inject(ConfigService);
