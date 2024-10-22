@@ -6,7 +6,7 @@
         'sidebar-open' : sidebarVisible
      }">
   <nav
-    class="shadow-sm w-full h-[68px] fixed top-0 flex items-center justify-between px-4 z-20 bg-[--surface-50] border-b border-[--surface-border] transition-all duration-200">
+    class="shadow-sm w-full !bg-transparent backdrop-blur-md h-[68px] fixed top-0 flex items-center justify-between px-4 z-20 border-b border-[--surface-border] transition-all duration-200">
     @if (!sidebarLock && tempSidebarType != 'hover') {
       <ng-button
         icon="pi pi-bars"
@@ -43,7 +43,7 @@
   }
 
   <p-sidebar
-    class="w-[20rem]"
+    styleClass="w-[20rem]"
     [dismissible]="showBackdrop()"
     [showCloseIcon]="false"
     [modal]="showBackdrop()"
@@ -84,9 +84,10 @@
 
 <p-sidebar
   position="left"
+  [modal]="false"
   [showCloseIcon]="true"
   [(visible)]="configSidebarVisible"
-  styleClass="!w-[30rem] max-w-full">
+  styleClass="!w-[30rem] max-w-full !bg-transparent backdrop-blur-md">
   <p-divider align="center">
     <h5 class="mb-0">{{ 'siteConfigs' | translate }}</h5>
   </p-divider>
