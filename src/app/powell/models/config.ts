@@ -25,6 +25,26 @@ export type NgTheme =
   'arya-green' |
   'arya-orange' |
   'arya-purple' |
+  'aura-dark-amber' |
+  'aura-dark-blue' |
+  'aura-dark-cyan' |
+  'aura-dark-green' |
+  'aura-dark-indigo' |
+  'aura-dark-lime' |
+  'aura-dark-noir' |
+  'aura-dark-pink' |
+  'aura-dark-teal' |
+  'aura-dark-purple' |
+  'aura-light-amber' |
+  'aura-light-blue' |
+  'aura-light-cyan' |
+  'aura-light-green' |
+  'aura-light-indigo' |
+  'aura-light-lime' |
+  'aura-light-noir' |
+  'aura-light-pink' |
+  'aura-light-teal' |
+  'aura-light-purple' |
   'bootstrap4-dark-blue' |
   'bootstrap4-dark-purple' |
   'bootstrap4-light-blue' |

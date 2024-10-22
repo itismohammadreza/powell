@@ -47,6 +47,7 @@ import {CheckboxComponent} from '@powell/components/checkbox';
 import {DestroyService, TranslationService} from "@core/utils";
 import {takeUntil} from "rxjs";
 import {ConfigService} from "@powell/api";
+import {$DividerModule} from "@powell/primeng";
 
 type PreviewItem =
   | 'label'
@@ -285,6 +286,7 @@ type PreviewItem =
   templateUrl: './preview-options.component.html',
   styleUrls: ['./preview-options.component.scss'],
   providers: [DestroyService],
+  imports: [$DividerModule],
   standalone: true
 })
 export class PreviewOptionsComponent implements OnInit {
