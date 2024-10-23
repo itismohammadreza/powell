@@ -4,13 +4,13 @@ import {FormsModule} from "@angular/forms";
 import {AddonModule} from "@powell/directives/addon";
 import {GregorianDatepickerComponent} from "@powell/components/gregorian-datepicker";
 import {LabelStarModule} from "@powell/pipes/label-star";
-import {$CalendarModule} from "@powell/primeng";
+import {DatepickerModule} from "@powell/components/datepicker";
 
 @NgModule({
   declarations: [GregorianDatepickerComponent],
   exports: [GregorianDatepickerComponent],
   imports: [
-    $CalendarModule,
+    DatepickerModule,
     CommonModule,
     FormsModule,
     LabelStarModule,

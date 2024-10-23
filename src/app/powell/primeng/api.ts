@@ -42,6 +42,7 @@ import {
 } from 'primeng/api';
 import {ObjectUtils, UniqueComponentId, ZIndexUtils} from "primeng/utils";
 import {ConnectedOverlayScrollHandler, DomHandler} from 'primeng/dom';
+import {Nullable, VoidListener} from 'primeng/ts-helpers';
 
 export {Confirmation as $Confirmation};
 export {ConfirmationService as $ConfirmationService};
@@ -88,3 +89,5 @@ export {UniqueComponentId as $UniqueComponentId};
 export {ZIndexUtils as $ZIndexUtils};
 export {ConnectedOverlayScrollHandler as $ConnectedOverlayScrollHandler};
 export {DomHandler as $DomHandler};
+export {Nullable as $Nullable};
+export {VoidListener as $VoidListener};

@@ -42,6 +42,7 @@ import {
   $UniqueComponentId
 } from "@powell/primeng";
 import {ConfigService} from "@powell/api";
+import {Moment} from "jalali-moment";
 
 @Component({
   selector: 'ng-gregorian-datepicker',
@@ -143,14 +144,14 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Input() firstDayOfWeek: number;
   @Input() locale: $LocaleSettings;
   @Input() view: $CalendarTypeView;
-  @Input() defaultDate: Date;
+  @Input() defaultDate: Date | Moment;
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onClose = new EventEmitter<AnimationEvent>();
-  @Output() onSelect = new EventEmitter<Date>();
+  @Output() onSelect = new EventEmitter<Date | Moment | (Date | Moment)[]>();
   @Output() onClear = new EventEmitter<void>();
   @Output() onInput = new EventEmitter<KeyboardEvent>();
-  @Output() onTodayClick = new EventEmitter<Date>();
+  @Output() onTodayClick = new EventEmitter<Date | Moment>();
   @Output() onClearClick = new EventEmitter<Event>();
   @Output() onMonthChange = new EventEmitter<$CalendarMonthChangeEvent>();
   @Output() onYearChange = new EventEmitter<$CalendarYearChangeEvent>();
@@ -197,7 +198,7 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
     this.onModelChange(this.value);
   }
 
-  _onSelect(event: Date) {
+  _onSelect(event: Date | Moment | (Date | Moment)[]) {
     this.onSelect.emit(event);
     this.onModelChange(event);
   }
