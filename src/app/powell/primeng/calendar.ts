@@ -7,6 +7,8 @@ import {
   CalendarTypeView,
   CalendarYearChangeEvent,
   LocaleSettings,
+  Month,
+  NavigationState
 } from "primeng/calendar";
 
 export {CalendarModule as $CalendarModule};
@@ -17,3 +19,5 @@ export {CalendarYearChangeEvent as $CalendarYearChangeEvent};
 export {CalendarTemplates as $CalendarTemplates};
 export {CalendarTypeView as $CalendarTypeView};
 export {LocaleSettings as $LocaleSettings};
+export {Month as $Month};
+export {NavigationState as $NavigationState};

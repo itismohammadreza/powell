@@ -23,7 +23,7 @@
         @if (icon) {
           <i [class.p-disabled]="disabled" [ngClass]="icon"></i>
         }
-        <p-calendar
+        <ng-datepicker
           [(ngModel)]="value"
           [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
           [style]="style"
@@ -113,7 +113,7 @@
         }
       }
       @if (inline) {
-        <p-calendar
+        <ng-datepicker
           [(ngModel)]="value"
           [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
           [style]="style"

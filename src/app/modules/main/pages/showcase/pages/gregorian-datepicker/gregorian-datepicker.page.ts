@@ -7,6 +7,7 @@ import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {
   PreviewOptionsComponent
 } from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {DatepickerModule} from "@powell/components/datepicker";
 
 @Component({
   selector: 'ng-gregorian-datepicker-page',
@@ -18,7 +19,7 @@ import {
     ReactiveFormsModule,
     ExtrasModule,
     PreviewOptionsComponent,
-    // DatePickerBaseModule,
+    DatepickerModule
   ]
 })
 export class GregorianDatepickerPage {
