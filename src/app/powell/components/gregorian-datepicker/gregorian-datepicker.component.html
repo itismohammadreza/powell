@@ -26,6 +26,8 @@
         <ng-datepicker
           [(ngModel)]="value"
           [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+          [isJalali]="isJalali"
+          [iconDisplay]="iconDisplay"
           [style]="style"
           [styleClass]="styleClass"
           [inputStyle]="inputStyle"

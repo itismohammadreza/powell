@@ -79,6 +79,8 @@
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
+    {{binding | json}}
+    <ng-gregorian-datepicker selectionMode="multiple" [(ngModel)]="binding"/>
     <form [formGroup]="form">
       <ng-gregorian-datepicker
         formControlName="c1"
@@ -97,6 +99,7 @@
         [followConfig]="followConfig"
         [selectionMode]="selectionMode"
         [placeholder]="placeholder"
+        [isJalali]="isJalali"
         [disabled]="disabled"
         [inline]="inline"
         [showOtherMonths]="showOtherMonths"

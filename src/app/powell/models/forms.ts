@@ -10,6 +10,7 @@ export type NgChipDisplayMode = 'comma' | 'chip';
 export type NgDatepickerViewMode = 'date' | 'month' | 'year';
 export type NgDatepickerSelectionMode = 'single' | 'multiple' | 'range';
 export type NgDatepickerHourFormat = '12' | '24';
+export type NgDatepickerIconDisplay = 'input' | 'button';
 export type NgDatepickerDateType = 'date' | 'string';
 export type NgColorFormat = 'hex' | 'rgb' | 'hsb';
 export type NgNumberMode = 'decimal' | 'currency';
