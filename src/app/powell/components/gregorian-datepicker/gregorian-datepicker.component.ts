@@ -24,6 +24,7 @@ import {
   NgCssObject,
   NgDatepickerDateType,
   NgDatepickerHourFormat,
+  NgDatepickerIconDisplay,
   NgDatepickerSelectionMode,
   NgIconPosition,
   NgInputVariant,
@@ -77,6 +78,8 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Input() inputSize: NgSize;
   @Input() followConfig: boolean;
   // native properties
+  @Input() isJalali: boolean;
+  @Input() iconDisplay: NgDatepickerIconDisplay = 'button';
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() inputStyle: NgCssObject;
@@ -87,63 +90,63 @@ export class GregorianDatepickerComponent implements OnInit, ControlValueAccesso
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
   @Input() iconAriaLabel: string;
-  @Input() disabled: boolean = false;
+  @Input() disabled: boolean;
   @Input() dateFormat: string;
   @Input() multipleSeparator: string = ',';
   @Input() rangeSeparator: string = '-';
-  @Input() inline: boolean = false;
+  @Input() inline: boolean;
   @Input() showOtherMonths: boolean = true;
-  @Input() selectOtherMonths: boolean = false;
-  @Input() showIcon: boolean = false;
+  @Input() selectOtherMonths: boolean;
+  @Input() showIcon: boolean;
   @Input() datepickerIcon: string;
   @Input() appendTo: any;
-  @Input() readonlyInput: boolean = false;
+  @Input() readonlyInput: boolean;
   @Input() shortYearCutoff: string = '+10';
-  @Input() monthNavigator: boolean = false;
-  @Input() yearNavigator: boolean = false;
+  @Input() monthNavigator: boolean;
+  @Input() yearNavigator: boolean;
   @Input() hourFormat: NgDatepickerHourFormat = '24';
-  @Input() timeOnly: boolean = false;
+  @Input() timeOnly: boolean;
   @Input() stepYearPicker: number = 10;
   @Input() stepHour: number = 1;
   @Input() stepMinute: number = 1;
   @Input() stepSecond: number = 1;
-  @Input() showSeconds: boolean = false;
-  @Input() required: boolean = false;
+  @Input() showSeconds: boolean;
+  @Input() required: boolean;
   @Input() showOnFocus: boolean = true;
-  @Input() showWeek: boolean = false;
-  @Input() startWeekFromFirstDayOfYear: boolean = false;
-  @Input() showClear: boolean = false;
+  @Input() showWeek: boolean;
+  @Input() startWeekFromFirstDayOfYear: boolean;
+  @Input() showClear: boolean;
   @Input() dataType: NgDatepickerDateType = 'date';
   @Input() selectionMode: NgDatepickerSelectionMode = 'single';
   @Input() maxDateCount: number;
-  @Input() showButtonBar: boolean = false;
+  @Input() showButtonBar: boolean;
   @Input() todayButtonStyleClass: string = 'p-button-text';
   @Input() clearButtonStyleClass: string = 'p-button-text';
-  @Input() autofocus: boolean = false;
+  @Input() autofocus: boolean;
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: number = 0;
   @Input() panelStyleClass: string;
   @Input() panelStyle: NgCssObject;
-  @Input() keepInvalid: boolean = false;
+  @Input() keepInvalid: boolean;
   @Input() hideOnDateTimeSelect: boolean = true;
-  @Input() touchUI: boolean = false;
+  @Input() touchUI: boolean;
   @Input() timeSeparator: string = ':';
   @Input() focusTrap: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
   @Input() tabindex: number;
   @Input() variant: NgInputVariant = 'outlined';
-  @Input() minDate: Date;
-  @Input() maxDate: Date;
-  @Input() disabledDates: Date[];
+  @Input() minDate: Date | Moment;
+  @Input() maxDate: Date | Moment;
+  @Input() disabledDates: (Date | Moment)[];
   @Input() disabledDays: number[];
   @Input() yearRange: string;
   @Input() showTime: boolean;
   @Input() responsiveOptions: $CalendarResponsiveOptions[];
-  @Input() numberOfMonths: number;
+  @Input() numberOfMonths: number = 1;
   @Input() firstDayOfWeek: number;
   @Input() locale: $LocaleSettings;
-  @Input() view: $CalendarTypeView;
+  @Input() view: $CalendarTypeView = 'date';
   @Input() defaultDate: Date | Moment;
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();

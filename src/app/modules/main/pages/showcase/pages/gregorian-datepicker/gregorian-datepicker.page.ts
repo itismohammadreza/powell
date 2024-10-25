@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgAddon, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from "@powell/models";
 import {ConfigService} from "@powell/api";
 import {GregorianDatepickerModule} from "@powell/components/gregorian-datepicker";
@@ -8,6 +8,7 @@ import {
   PreviewOptionsComponent
 } from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 import {DatepickerModule} from "@powell/components/datepicker";
+import {$CalendarModule} from "@powell/primeng";
 
 @Component({
   selector: 'ng-gregorian-datepicker-page',
@@ -19,7 +20,9 @@ import {DatepickerModule} from "@powell/components/datepicker";
     ReactiveFormsModule,
     ExtrasModule,
     PreviewOptionsComponent,
-    DatepickerModule
+    DatepickerModule,
+    $CalendarModule,
+    FormsModule
   ]
 })
 export class GregorianDatepickerPage {
@@ -43,8 +46,9 @@ export class GregorianDatepickerPage {
   inputSize: NgSize = this.configService.get().inputSize;
   followConfig: boolean = this.configService.get().followConfig;
   // native properties
-  selectionMode: "single" | "multiple" | "range" = 'single';
+  selectionMode: "single" | "multiple" | "range" = 'multiple';
   placeholder: string;
+  isJalali: boolean = false;
   disabled: boolean = false;
   inline: boolean = false;
   showOtherMonths: boolean = true;
@@ -63,7 +67,7 @@ export class GregorianDatepickerPage {
   stepMinute: number = 1;
   stepSecond: number = 1;
   showButtonBar: boolean = false;
-  hideOnDateTimeSelect: boolean = true;
+  hideOnDateTimeSelect: boolean = false;
   numberOfMonths: number = 1;
   view: 'date' | 'month' | 'year' = 'date';
   touchUI: boolean = false;
