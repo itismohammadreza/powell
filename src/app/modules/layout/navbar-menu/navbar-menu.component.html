@@ -88,7 +88,7 @@
   [showCloseIcon]="true"
   [(visible)]="configSidebarVisible"
   styleClass="!w-[30rem] max-w-full !bg-transparent backdrop-blur-md">
-  <p-divider align="center">
+  <p-divider class="[&_.p-divider-content]:rounded-xl" align="center">
     <h5 class="mb-0">{{ 'siteConfigs' | translate }}</h5>
   </p-divider>
   <ng-dropdown
@@ -107,7 +107,7 @@
     [value]="config.lang"
     [options]="[{label:'EN',value:'en'},{label:'FA',value:'fa'}]"
     (onChange)="changeLang($event)"/>
-  <p-divider align="center">
+  <p-divider class="[&_.p-divider-content]:rounded-xl" align="center">
     <h5 class="mb-0">{{ 'componentsGlobalConfigs' | translate }}</h5>
   </p-divider>
   <ng-dropdown
