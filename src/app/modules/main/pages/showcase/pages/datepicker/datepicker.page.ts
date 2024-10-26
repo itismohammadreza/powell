@@ -44,9 +44,9 @@ export class DatepickerPage {
   inputSize: NgSize = this.configService.get().inputSize;
   followConfig: boolean = this.configService.get().followConfig;
   // native properties
-  selectionMode: "single" | "multiple" | "range" = 'multiple';
+  selectionMode: "single" | "multiple" | "range" = 'single';
   placeholder: string;
-  isJalali: boolean = true;
+  isJalali: boolean = false;
   disabled: boolean = false;
   inline: boolean = false;
   showOtherMonths: boolean = true;
@@ -67,7 +67,7 @@ export class DatepickerPage {
   showButtonBar: boolean = false;
   hideOnDateTimeSelect: boolean = false;
   numberOfMonths: number = 1;
-  view: 'date' | 'month' | 'year' = 'date';
+  view: 'date' | 'month' | 'year' = 'year';
   touchUI: boolean = false;
   showClear: boolean = false;
 }

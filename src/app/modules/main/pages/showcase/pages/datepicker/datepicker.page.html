@@ -53,6 +53,7 @@
       [(iconPos)]="iconPos"
       [(selectiveSize)]="inputSize"
       [(followConfig)]="followConfig"
+      [(datepickerSelectionMode)]="selectionMode"
       [(addon)]="addon"
       [(placeholder)]="placeholder"
       [(disabled)]="disabled"
@@ -66,6 +67,7 @@
       [(readonlyInput)]="readonlyInput"
       [(shortYearCutoff)]="shortYearCutoff"
       [(showTime)]="showTime"
+      [(hourFormat)]="hourFormat"
       [(timeOnly)]="timeOnly"
       [(showSeconds)]="showSeconds"
       [(stepHour)]="stepHour"
@@ -74,11 +76,17 @@
       [(showButtonBar)]="showButtonBar"
       [(hideOnDateTimeSelect)]="hideOnDateTimeSelect"
       [(numberOfMonths)]="numberOfMonths"
+      [(view)]="view"
       [(touchUI)]="touchUI"
       [(showClear)]="showClear"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
+    <ng-datepicker
+      [(ngModel)]="binding"
+      view="year"
+      [isJalali]="true"
+      dateFormat="yy"/>
     <form [formGroup]="form">
       <ng-datepicker
         formControlName="c1"
