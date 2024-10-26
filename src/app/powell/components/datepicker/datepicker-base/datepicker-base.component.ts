@@ -1179,8 +1179,8 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     if (!this.isComparable()) return false;
     if (this.isMultipleSelection()) return false;
 
-    let value = this.isRangeSelection() ? this.value[0] : this.value;
-    return value ? value.getFullYear() === year : false;
+    let value: Date | Moment = this.isRangeSelection() ? this.value[0] : this.value;
+    return value ? value[this.getEqualProp('getFullYear')]() === year : false;
   }
 
   isDateEquals(value: Date | Moment, dateMeta: DateMeta) {
