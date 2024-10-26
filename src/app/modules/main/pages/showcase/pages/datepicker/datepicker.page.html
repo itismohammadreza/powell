@@ -82,6 +82,11 @@
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
+    <ng-datepicker
+      [(ngModel)]="binding"
+      view="year"
+      [isJalali]="true"
+      dateFormat="yy"/>
     <form [formGroup]="form">
       <ng-datepicker
         formControlName="c1"
