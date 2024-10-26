@@ -318,7 +318,7 @@ export class TablePage {
       field: 'date',
       sort: true,
       filter: {
-        type: 'gregorian-datepicker',
+        type: 'datepicker',
       },
     },
     {

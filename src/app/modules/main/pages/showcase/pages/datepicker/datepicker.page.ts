@@ -2,7 +2,6 @@ import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgAddon, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from "@powell/models";
 import {ConfigService} from "@powell/api";
-import {GregorianDatepickerModule} from "@powell/components/gregorian-datepicker";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
 import {
   PreviewOptionsComponent
@@ -11,12 +10,11 @@ import {DatepickerModule} from "@powell/components/datepicker";
 import {$CalendarModule} from "@powell/primeng";
 
 @Component({
-  selector: 'ng-gregorian-datepicker-page',
-  templateUrl: './gregorian-datepicker.page.html',
-  styleUrls: ['./gregorian-datepicker.page.scss'],
+  selector: 'ng-datepicker-page',
+  templateUrl: './datepicker.page.html',
+  styleUrls: ['./datepicker.page.scss'],
   standalone: true,
   imports: [
-    GregorianDatepickerModule,
     ReactiveFormsModule,
     ExtrasModule,
     PreviewOptionsComponent,
@@ -25,7 +23,7 @@ import {$CalendarModule} from "@powell/primeng";
     FormsModule
   ]
 })
-export class GregorianDatepickerPage {
+export class DatepickerPage {
   private configService = inject(ConfigService);
 
   form = new FormGroup({
@@ -48,7 +46,7 @@ export class GregorianDatepickerPage {
   // native properties
   selectionMode: "single" | "multiple" | "range" = 'multiple';
   placeholder: string;
-  isJalali: boolean = false;
+  isJalali: boolean = true;
   disabled: boolean = false;
   inline: boolean = false;
   showOtherMonths: boolean = true;

@@ -27,8 +27,7 @@ export type NgTableFilterType =
   | 'multi-select'
   | 'dropdown'
   | 'boolean'
-  | 'gregorian-datepicker'
-  | 'jalali-datepicker'
+  | 'datepicker'
   | 'slider'
   | 'numeric';
 

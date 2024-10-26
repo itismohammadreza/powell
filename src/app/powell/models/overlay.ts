@@ -293,7 +293,7 @@ export type NgDialogFormComponent =
   | 'editor'
   | 'file-picker'
   | 'file-picker2'
-  | 'gregorian-datepicker'
+  | 'datepicker'
   | 'image'
   | 'input-mask'
   | 'input-number'
@@ -302,7 +302,6 @@ export type NgDialogFormComponent =
   | 'input-text'
   | 'input-textarea'
   | 'iran-map'
-  | 'jalali-datepicker'
   | 'knob'
   | 'listbox'
   | 'map'
@@ -450,8 +449,7 @@ export interface NgDialogFormConfig {
   chooseLabel?: string;
   onRemove?: (dialogFormEvent?: NgDialogFormEventRes) => void;
   isUnknownImageUrl?: boolean;
-  ///////////////////////////////////////// gregorian-datepicker /////////////////////////////////////////
-  ///////////////////////////////////////// jalali-datepicker /////////////////////////////////////////
+  ///////////////////////////////////////// datepicker /////////////////////////////////////////
   defaultDate?: any; // Date | Moment
   dateFormat?: string;
   inline?: boolean;
