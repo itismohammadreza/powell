@@ -1,30 +1,20 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {$CalendarModule} from "@powell/primeng";
+import {AddonModule} from "@powell/directives/addon";
+import {LabelStarModule} from "@powell/pipes/label-star";
+import {DatepickerBaseModule} from "@powell/components/datepicker/datepicker-base";
 import {DatepickerComponent} from "@powell/components/datepicker/datepicker.component";
-import {
-  $ChevronLeftIcon,
-  $ChevronRightIcon,
-  $ChevronUpIcon,
-  $ChevronDownIcon,
-  $TimesIcon,
-  $CalendarIcon,
-} from '@powell/primeng/icons';
 
 @NgModule({
   declarations: [DatepickerComponent],
   exports: [DatepickerComponent],
   imports: [
-    $CalendarModule,
+    DatepickerBaseModule,
     CommonModule,
     FormsModule,
-    $ChevronLeftIcon,
-    $ChevronRightIcon,
-    $ChevronUpIcon,
-    $ChevronDownIcon,
-    $TimesIcon,
-    $CalendarIcon,
+    LabelStarModule,
+    AddonModule
   ],
 })
 export class DatepickerModule {

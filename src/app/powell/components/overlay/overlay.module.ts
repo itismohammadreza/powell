@@ -21,7 +21,7 @@ import {DualLabelSwitchModule} from "@powell/components/dual-label-switch";
 import {EditorModule} from "@powell/components/editor";
 import {FilePickerModule} from "@powell/components/file-picker";
 import {FilePicker2Module} from "@powell/components/file-picker2";
-import {GregorianDatepickerModule} from "@powell/components/gregorian-datepicker";
+import {DatepickerModule} from "@powell/components/datepicker";
 import {ImageModule} from "@powell/components/image";
 import {InputMaskModule} from "@powell/components/input-mask";
 import {InputNumberModule} from "@powell/components/input-number";
@@ -30,7 +30,6 @@ import {InputPasswordModule} from "@powell/components/input-password";
 import {InputTextModule} from "@powell/components/input-text";
 import {InputTextareaModule} from "@powell/components/input-textarea";
 import {IranMapModule} from "@powell/components/iran-map";
-import {JalaliDatepickerModule} from "@powell/components/jalali-datepicker";
 import {KnobModule} from "@powell/components/knob";
 import {ListboxModule} from "@powell/components/listbox";
 import {MapModule} from "@powell/components/map";
@@ -72,7 +71,7 @@ import {TriStateCheckboxModule} from "@powell/components/tri-state-checkbox";
     EditorModule,
     FilePickerModule,
     FilePicker2Module,
-    GregorianDatepickerModule,
+    DatepickerModule,
     ImageModule,
     InputMaskModule,
     InputNumberModule,
@@ -81,7 +80,6 @@ import {TriStateCheckboxModule} from "@powell/components/tri-state-checkbox";
     InputTextModule,
     InputTextareaModule,
     IranMapModule,
-    JalaliDatepickerModule,
     KnobModule,
     ListboxModule,
     MapModule,

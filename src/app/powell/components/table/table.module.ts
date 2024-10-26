@@ -5,7 +5,7 @@ import {EmptyModule} from "@powell/components/empty";
 import {InputTextModule} from "@powell/components/input-text";
 import {ButtonModule} from "@powell/components/button";
 import {ImageModule} from "@powell/components/image";
-import {GregorianDatepickerModule} from "@powell/components/gregorian-datepicker";
+import {DatepickerModule} from "@powell/components/datepicker";
 import {CheckboxModule} from "@powell/components/checkbox";
 import {SliderModule} from "@powell/components/slider";
 import {DropdownModule} from "@powell/components/dropdown";
@@ -26,7 +26,7 @@ import {TemplateModule} from "@powell/directives/template";
     InputNumberModule,
     $TooltipModule,
     ButtonModule,
-    GregorianDatepickerModule,
+    DatepickerModule,
     SliderModule,
     DropdownModule,
     CheckboxModule,

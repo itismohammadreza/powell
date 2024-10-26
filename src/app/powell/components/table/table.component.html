@@ -204,11 +204,11 @@
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
                         </ng-checkbox>
                       }
-                      @case ('gregorian-datepicker') {
-                        <ng-gregorian-datepicker
+                      @case ('datepicker') {
+                        <ng-datepicker
                           [dateFormat]="filter.dateFormat"
                           (onSelect)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-gregorian-datepicker>
+                        </ng-datepicker>
                       }
                     }
                   </ng-template>
@@ -330,11 +330,11 @@
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
                         </ng-checkbox>
                       }
-                      @case ('gregorian-datepicker') {
-                        <ng-gregorian-datepicker
+                      @case ('datepicker') {
+                        <ng-datepicker
                           [dateFormat]="filter.dateFormat"
                           (onSelect)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-gregorian-datepicker>
+                        </ng-datepicker>
                       }
                     }
                   </ng-template>

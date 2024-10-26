@@ -62,6 +62,11 @@ export const routes: Routes = [
     title: 'Confirm Popup'
   },
   {
+    path: 'datepicker',
+    loadComponent: () => import('./pages/datepicker').then(m => m.DatepickerPage),
+    title: 'Datepicker'
+  },
+  {
     path: 'dialog',
     loadComponent: () => import('./pages/dialog').then(m => m.DialogPage),
     canDeactivate: [openDialogGuard],
@@ -102,11 +107,6 @@ export const routes: Routes = [
     path: 'file-picker2',
     loadComponent: () => import('./pages/file-picker2').then(m => m.FilePicker2Page),
     title: 'File Picker2'
-  },
-  {
-    path: 'gregorian-datepicker',
-    loadComponent: () => import('./pages/gregorian-datepicker').then(m => m.GregorianDatepickerPage),
-    title: 'Gregorian Datepicker'
   },
   {
     path: 'image',
@@ -152,11 +152,6 @@ export const routes: Routes = [
     path: 'iran-map',
     loadComponent: () => import('./pages/iran-map').then(m => m.IranMapPage),
     title: 'Iran Map'
-  },
-  {
-    path: 'jalali-datepicker',
-    loadComponent: () => import('./pages/jalali-datepicker').then(m => m.JalaliDatepickerPage),
-    title: 'Jalali Datepicker'
   },
   {
     path: 'knob',

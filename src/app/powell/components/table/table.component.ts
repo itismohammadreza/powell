@@ -460,7 +460,7 @@ export class TableComponent implements OnInit, AfterContentInit {
       case 'slider':
         filterValue = event.values;
         break;
-      case 'gregorian-datepicker':
+      case 'datepicker':
         filterValue = new Date(event);
         break;
     }
