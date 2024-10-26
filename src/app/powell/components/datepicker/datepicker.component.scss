@@ -87,6 +87,13 @@
         text-align: center;
       }
 
+      &.is-jalali {
+        .p-datepicker-title,
+        .p-datepicker-calendar-container {
+          direction: rtl;
+        }
+      }
+
       &.ltr {
         direction: ltr;
 
