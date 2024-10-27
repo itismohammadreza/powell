@@ -67,7 +67,7 @@ export class DatepickerPage {
   showButtonBar: boolean = false;
   hideOnDateTimeSelect: boolean = false;
   numberOfMonths: number = 1;
-  view: 'date' | 'month' | 'year' = 'year';
+  view: 'date' | 'month' | 'year' = 'date';
   touchUI: boolean = false;
   showClear: boolean = false;
 }
