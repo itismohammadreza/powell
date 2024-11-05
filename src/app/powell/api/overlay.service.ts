@@ -128,14 +128,16 @@ export class OverlayService {
       instance[key] = options[key];
     }
     instance.breakpoints = {'767px': {width: '100%', right: '0', left: '0'}, ...options.breakpoints};
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       this.messageService.add(toast);
+      clearTimeout(timeout);
     }, 0);
     return new Promise((accept) => {
       const subscription = instance.onClose.subscribe(() => {
         subscription.unsubscribe();
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
           accept(true);
+          clearTimeout(timeout);
         }, 5)
       });
     });
@@ -162,14 +164,18 @@ export class OverlayService {
         ...confirmation,
         accept: () => {
           this.popState();
-          setTimeout(() => {
+          this.removeFromBody(this.confirmPopupCmpRef);
+          const timeout = setTimeout(() => {
             accept(true);
+            clearTimeout(timeout);
           }, 5)
         },
         reject: () => {
           this.popState();
-          setTimeout(() => {
+          this.removeFromBody(this.confirmPopupCmpRef);
+          const timeout = setTimeout(() => {
             accept(false);
+            clearTimeout(timeout);
           }, 5)
         },
       });
@@ -192,26 +198,33 @@ export class OverlayService {
     instance.styleClass = `${options.styleClass} ${(options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr'} p-confirm-button-icon-${options.buttonIconPos || 'left'} ${!options.header && !options.closable ? 'dialog-header-less' : ''}`;
     return new Promise<boolean>((accept) => {
       const state: NgHistoryState = {component: 'confirmDialog'};
+      let timeout: any;
       this.pushState(state)
       this.confirmationService.confirm({
         ...confirmation,
         accept: () => {
           this.popState();
-          setTimeout(() => {
+          this.removeFromBody(this.confirmCmpRef);
+          timeout = setTimeout(() => {
             accept(true);
+            clearTimeout(timeout);
           }, 5)
         },
         reject: (type: $ConfirmEventType) => {
           this.popState();
           switch (type) {
             case $ConfirmEventType.REJECT:
-              setTimeout(() => {
+              this.removeFromBody(this.confirmCmpRef);
+              timeout = setTimeout(() => {
                 accept(false);
+                clearTimeout(timeout);
               }, 5)
               break;
             case $ConfirmEventType.CANCEL:
-              setTimeout(() => {
+              this.removeFromBody(this.confirmCmpRef);
+              timeout = setTimeout(() => {
                 accept(null);
+                clearTimeout(timeout);
               }, 5)
               break;
           }
@@ -238,8 +251,10 @@ export class OverlayService {
           this.popState()
         }
         subscription.unsubscribe();
-        setTimeout(() => {
+        this.removeFromBody(this.dialogCmpRef);
+        const timeout = setTimeout(() => {
           accept();
+          clearTimeout(timeout);
         }, 5)
       });
     });
@@ -270,6 +285,7 @@ export class OverlayService {
         }
         submitSubscription.unsubscribe();
         closeSubscription.unsubscribe();
+        this.removeFromBody(this.dialogFormCmpRef);
         resolve.next(null);
       })
     })
@@ -302,8 +318,11 @@ export class OverlayService {
     if (!component) {
       return;
     }
-    this.appRef.detachView(component.hostView);
-    component.destroy();
+    const timeout = setTimeout(() => {
+      this.appRef.detachView(component.hostView);
+      component.destroy();
+      clearTimeout(timeout);
+    }, 300)
   }
 
   private bodyContains(componentRef: ComponentRef<any>) {

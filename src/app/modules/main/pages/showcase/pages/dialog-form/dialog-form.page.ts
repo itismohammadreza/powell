@@ -61,15 +61,6 @@ export class DialogFormPage {
     this.overlayService.showDialogForm(
       [
         {
-          component: 'datepicker',
-          key: 'birthdate',
-          className: 'col-12',
-          label: 'birthdate',
-          labelWidth: 150,
-          touchUI: true,
-          showTime: true,
-        },
-        {
           component: 'input-text',
           key: 'name',
           className: 'col-12',
@@ -101,6 +92,15 @@ export class DialogFormPage {
             // }
           },
           hidden: false
+        },
+        {
+          component: 'datepicker',
+          key: 'birthdate',
+          className: 'col-12',
+          label: 'birthdate',
+          labelWidth: 150,
+          touchUI: false,
+          showTime: true,
         },
         {
           component: 'multi-select',
