@@ -1,19 +1,98 @@
 import {Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
-import {NgDialogFormConfig, NgDialogFormOptions, NgDialogFormResult, NgValidation} from "@powell/models";
-import {ConfigService} from "@powell/api";
+import {
+  NgAsyncEvent,
+  NgDialogFormComponent,
+  NgDialogFormConfig,
+  NgDialogFormOptions,
+  NgDialogFormResult,
+  NgValidation
+} from "@powell/models";
 import {$Dialog, $DomHandler} from "@powell/primeng";
+import {InputTextComponent} from "@powell/components/input-text";
+import {AutoCompleteComponent} from "@powell/components/auto-complete";
+import {ButtonComponent} from "@powell/components/button";
+import {CascadeSelectComponent} from "@powell/components/cascade-select";
+import {CheckboxComponent} from "@powell/components/checkbox";
+import {CheckboxGroupComponent} from "@powell/components/checkbox-group";
+import {ChipsComponent} from "@powell/components/chips";
+import {ColorPickerComponent} from "@powell/components/color-picker";
+import {DropdownComponent} from "@powell/components/dropdown";
+import {DualLabelSwitchComponent} from "@powell/components/dual-label-switch";
+import {FilePickerComponent} from "@powell/components/file-picker";
+import {FilePicker2Component} from "@powell/components/file-picker2";
+import {DatepickerComponent} from "@powell/components/datepicker";
+import {ImageComponent} from "@powell/components/image";
+import {InputMaskComponent} from "@powell/components/input-mask";
+import {InputNumberComponent} from "@powell/components/input-number";
+import {InputOtpComponent} from "@powell/components/input-otp";
+import {InputPasswordComponent} from "@powell/components/input-password";
+import {InputTextareaComponent} from "@powell/components/input-textarea";
+import {IranMapComponent} from "@powell/components/iran-map";
+import {KnobComponent} from "@powell/components/knob";
+import {ListboxComponent} from "@powell/components/listbox";
+import {MapComponent} from "@powell/components/map";
+import {MessageComponent} from "@powell/components/message";
+import {MultiSelectComponent} from "@powell/components/multi-select";
+import {RadioComponent} from "@powell/components/radio";
+import {RatingComponent} from "@powell/components/rating";
+import {SelectButtonComponent} from "@powell/components/select-button";
+import {SliderComponent} from "@powell/components/slider";
+import {SwitchComponent} from "@powell/components/switch";
+import {ToggleButtonComponent} from "@powell/components/toggle-button";
+import {TreeComponent} from "@powell/components/tree";
+import {TreeSelectComponent} from "@powell/components/tree-select";
+import {TriStateCheckboxComponent} from "@powell/components/tri-state-checkbox";
+import {EditorComponent} from "@powell/components/editor";
+import {takeUntil} from "rxjs";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-dialog-form',
   templateUrl: './dialog-form.component.html',
   styleUrls: ['./dialog-form.component.scss'],
+  providers: [DestroyService],
 })
 export class DialogFormComponent {
   private el = inject(ElementRef);
-  private configService = inject(ConfigService);
+  private destroy$ = inject(DestroyService);
 
   @ViewChild($Dialog, {static: true}) dialog: $Dialog;
+  @ViewChild(AutoCompleteComponent) autoCompleteComponent: AutoCompleteComponent;
+  @ViewChild(ButtonComponent) buttonComponent: ButtonComponent;
+  @ViewChild(CascadeSelectComponent) cascadeSelectComponent: CascadeSelectComponent;
+  @ViewChild(CheckboxComponent) checkboxComponent: CheckboxComponent;
+  @ViewChild(CheckboxGroupComponent) checkboxGroupComponent: CheckboxGroupComponent;
+  @ViewChild(ChipsComponent) chipsComponent: ChipsComponent;
+  @ViewChild(ColorPickerComponent) colorPickerComponent: ColorPickerComponent;
+  @ViewChild(DropdownComponent) dropdownComponent: DropdownComponent;
+  @ViewChild(DualLabelSwitchComponent) dualLabelSwitchComponent: DualLabelSwitchComponent;
+  @ViewChild(EditorComponent) editorComponent: EditorComponent;
+  @ViewChild(FilePickerComponent) filePickerComponent: FilePickerComponent;
+  @ViewChild(FilePicker2Component) filePicker2Component: FilePicker2Component;
+  @ViewChild(DatepickerComponent) datepickerComponent: DatepickerComponent;
+  @ViewChild(ImageComponent) imageComponent: ImageComponent;
+  @ViewChild(InputMaskComponent) inputMaskComponent: InputMaskComponent;
+  @ViewChild(InputNumberComponent) inputNumberComponent: InputNumberComponent;
+  @ViewChild(InputOtpComponent) inputOtpComponent: InputOtpComponent;
+  @ViewChild(InputPasswordComponent) inputPasswordComponent: InputPasswordComponent;
+  @ViewChild(InputTextComponent) inputTextComponent: InputTextComponent;
+  @ViewChild(InputTextareaComponent) inputTextareaComponent: InputTextareaComponent;
+  @ViewChild(IranMapComponent) iranMapComponent: IranMapComponent;
+  @ViewChild(KnobComponent) knobComponent: KnobComponent;
+  @ViewChild(ListboxComponent) listboxComponent: ListboxComponent;
+  @ViewChild(MapComponent) mapComponent: MapComponent;
+  @ViewChild(MessageComponent) messageComponent: MessageComponent;
+  @ViewChild(MultiSelectComponent) multiSelectComponent: MultiSelectComponent;
+  @ViewChild(RadioComponent) radioComponent: RadioComponent;
+  @ViewChild(RatingComponent) ratingComponent: RatingComponent;
+  @ViewChild(SelectButtonComponent) selectButtonComponent: SelectButtonComponent;
+  @ViewChild(SliderComponent) sliderComponent: SliderComponent;
+  @ViewChild(SwitchComponent) switchComponent: SwitchComponent;
+  @ViewChild(ToggleButtonComponent) toggleButtonComponent: ToggleButtonComponent;
+  @ViewChild(TreeComponent) treeComponent: TreeComponent;
+  @ViewChild(TreeSelectComponent) treeSelectComponent: TreeSelectComponent;
+  @ViewChild(TriStateCheckboxComponent) triStateCheckboxComponent: TriStateCheckboxComponent;
 
   form: FormGroup = new FormGroup({});
   visible: boolean;
@@ -23,20 +102,17 @@ export class DialogFormComponent {
   onSubmit = new EventEmitter<NgDialogFormResult>();
   onClose = new EventEmitter<void>();
   disableReject: boolean;
+  configTimeout: any;
 
   set config(value: NgDialogFormConfig[]) {
     this._config = value;
     for (const config of this._config) {
-      config.variant = config.variant ?? this.configService.get().inputStyle;
-      config.labelPos = config.labelPos ?? this.configService.get().labelPos;
-      config.fixLabelPos = config.fixLabelPos ?? this.configService.get().fixLabelPos;
-      config.selectiveSize = config.selectiveSize ?? this.configService.get().inputSize;
-      config.showRequiredStar = config.showRequiredStar ?? this.configService.get().showRequiredStar;
       if (config.key) {
-        this.form.addControl(config.key, new FormControl(null));
-        this.handleConfigValue(config);
-        this.handleConfigValidations(config);
+        this.form.addControl(config.key, new FormControl(config.value ?? null, config.validations?.map(v => v.validator) ?? []));
       }
+      this.configTimeout = setTimeout(() => {
+        this.applyConfigToComponent(config);
+      })
     }
   }
 
@@ -72,13 +148,8 @@ export class DialogFormComponent {
     }
     this.onClose.emit();
     this.handleEvent('onHide');
-  }
-
-  handleConfigValue(config: NgDialogFormConfig) {
-    const control = this.form.get(config.key);
-    if (config.value != null) {
-      control.setValue(config.value);
-    }
+    clearTimeout(this.configTimeout);
+    this.destroy$.next();
   }
 
   convertToComponentValidation(config: NgDialogFormConfig) {
@@ -103,12 +174,6 @@ export class DialogFormComponent {
     this.disableReject = false;
     if (!visible) {
       this.close()
-    }
-  }
-
-  handleConfigEvent(config: NgDialogFormConfig, eventKey: string, eventObj: any) {
-    if (config[eventKey]) {
-      config[eventKey]({event: eventObj, form: this.form, currentConfig: config, allConfig: this.config});
     }
   }
 
@@ -200,7 +265,7 @@ export class DialogFormComponent {
     this.handleEvent('onShow');
   }
 
-  onSubmitClick(loadingCallback: any) {
+  onSubmitClick({loadingCallback}: NgAsyncEvent<MouseEvent>) {
     this.form.markAllAsTouched();
     if (this.form.invalid) {
       loadingCallback();
@@ -213,5 +278,66 @@ export class DialogFormComponent {
 
   handleEvent(event: string, args?: any) {
     this.options[event]?.(args);
+  }
+
+  applyConfigToComponent(config: NgDialogFormConfig) {
+    const componentsMap: Partial<Record<NgDialogFormComponent, any>> = {
+      'auto-complete': this.autoCompleteComponent,
+      'button': this.buttonComponent,
+      'cascade-select': this.cascadeSelectComponent,
+      'checkbox': this.checkboxComponent,
+      'checkbox-group': this.checkboxGroupComponent,
+      'chips': this.chipsComponent,
+      'color-picker': this.colorPickerComponent,
+      'dropdown': this.dropdownComponent,
+      'dual-label-switch': this.dualLabelSwitchComponent,
+      'editor': this.editorComponent,
+      'file-picker': this.filePickerComponent,
+      'file-picker2': this.filePicker2Component,
+      'datepicker': this.datepickerComponent,
+      'image': this.imageComponent,
+      'input-mask': this.inputMaskComponent,
+      'input-number': this.inputNumberComponent,
+      'input-otp': this.inputOtpComponent,
+      'input-password': this.inputPasswordComponent,
+      'input-text': this.inputTextComponent,
+      'input-textarea': this.inputTextareaComponent,
+      'iran-map': this.iranMapComponent,
+      'knob': this.knobComponent,
+      'listbox': this.listboxComponent,
+      'map': this.mapComponent,
+      'message': this.messageComponent,
+      'multi-select': this.multiSelectComponent,
+      'radio': this.radioComponent,
+      'rating': this.ratingComponent,
+      'select-button': this.selectButtonComponent,
+      'slider': this.sliderComponent,
+      'switch': this.switchComponent,
+      'toggle-button': this.toggleButtonComponent,
+      'tree': this.treeComponent,
+      'tree-select': this.treeSelectComponent,
+      'tri-state-checkbox': this.triStateCheckboxComponent,
+    }
+    const component = componentsMap[config.component];
+    for (const key in config) {
+      if (config[key] == undefined) {
+        return;
+      }
+      if (component[key] instanceof EventEmitter) {
+        component[key].pipe(takeUntil(this.destroy$)).subscribe((event) => {
+          config[key]({
+            event,
+            form: this.form,
+            currentConfig: config,
+            allConfig: this.config
+          })
+        });
+      } else {
+        if (Object.hasOwn(component, 'appendTo') && !config.appendTo) {
+          component['appendTo'] = this.dialog;
+        }
+        component[key] = config[key];
+      }
+    }
   }
 }
