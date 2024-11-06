@@ -24,7 +24,6 @@ import {
 })
 export class DialogFormPage {
   private overlayService = inject(OverlayService);
-  private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
   dialogForm: NgDialogFormOptions = {
@@ -52,7 +51,7 @@ export class DialogFormPage {
     rejectLabel: 'لغو',
     rejectIcon: '',
     defaultFocus: 'accept',
-    rtl: this.configService.get().rtl,
+    buttonIconPosition: 'left'
   }
 
   flag = false;
@@ -63,7 +62,6 @@ export class DialogFormPage {
         {
           component: 'input-text',
           key: 'name',
-          className: 'col-12',
           label: 'first name',
           labelWidth: 150,
           validations: [
@@ -96,7 +94,6 @@ export class DialogFormPage {
         {
           component: 'datepicker',
           key: 'birthdate',
-          className: 'col-12',
           label: 'birthdate',
           labelWidth: 150,
           touchUI: false,
@@ -105,7 +102,6 @@ export class DialogFormPage {
         {
           component: 'multi-select',
           key: 'book',
-          className: 'col-12',
           label: 'book',
           labelWidth: 150,
           validations: [
@@ -120,33 +116,8 @@ export class DialogFormPage {
         }
       ],
       {
-        header: this.dialogForm.header,
-        draggable: this.dialogForm.draggable,
-        resizable: this.dialogForm.resizable,
-        modal: this.dialogForm.modal,
-        position: this.dialogForm.position,
-        blockScroll: this.dialogForm.blockScroll,
-        closeOnEscape: this.dialogForm.closeOnEscape,
-        dismissableMask: this.dialogForm.dismissableMask,
-        closable: this.dialogForm.closable,
-        showHeader: this.dialogForm.showHeader,
-        maximizable: this.dialogForm.maximizable,
-        buttonFull: this.dialogForm.buttonFull,
-        buttonSize: this.dialogForm.buttonSize,
-        acceptAppearance: this.dialogForm.acceptAppearance,
-        acceptColor: this.dialogForm.acceptColor,
-        acceptVisible: this.dialogForm.acceptVisible,
-        acceptLabel: this.dialogForm.acceptLabel,
-        acceptIcon: this.dialogForm.acceptIcon,
-        rejectAppearance: this.dialogForm.rejectAppearance,
-        rejectColor: this.dialogForm.rejectColor,
-        rejectVisible: this.dialogForm.rejectVisible,
-        rejectLabel: this.dialogForm.rejectLabel,
-        rejectIcon: this.dialogForm.rejectIcon,
-        rtl: this.dialogForm.rtl,
+        ...this.dialogForm,
         style: {width: '800px'},
-        defaultFocus: this.dialogForm.defaultFocus,
-        containerStyleClass: 'row',
         submitDisabled: ({form}) => form.invalid,
         formValidator: {
           validator: (group) => {
