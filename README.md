@@ -8,4 +8,3 @@
 - replace css colors with variables and make theme colors configurable
 - move themes and style files inside powell directory
 - implement config change (and read from config) in dialog component
-- fix multiselect issue
