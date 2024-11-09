@@ -56,7 +56,7 @@ export class MultiSelectPage {
   resetFilterOnHide: boolean = false;
   scrollHeight: string = '200px';
   selectedItemsLabel: string | 'ellipsis' = 'ellipsis';
-  selectionLimit: number = 0;
+  selectionLimit: number;
   showHeader: boolean = true;
   showToggleAll: boolean = true;
   showClear: boolean = true;
