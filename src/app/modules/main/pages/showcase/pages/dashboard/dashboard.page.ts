@@ -13,12 +13,12 @@ import {SmokeComponent} from "@modules/main/pages/showcase/pages/dashboard/smoke
   styleUrls: ['./dashboard.page.scss'],
   imports: [
     CommonModule,
-    WelcomeComponent,
     EmojiComponent,
     BlocksComponent,
-    SpaceComponent,
-    BubblesComponent,
-    SmokeComponent,
+    // WelcomeComponent,
+    // SpaceComponent,
+    // BubblesComponent,
+    // SmokeComponent,
   ]
 })
 export class DashboardPage {

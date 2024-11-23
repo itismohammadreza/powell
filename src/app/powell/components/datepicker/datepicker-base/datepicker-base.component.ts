@@ -68,13 +68,10 @@ export interface DateMeta {
   styleUrl: './datepicker-base.component.scss',
   animations: [
     trigger('overlayAnimation', [
-      state(
-        'visibleTouchUI',
-        style({
-          transform: 'translate(-50%,-50%)',
-          opacity: 1
-        })
-      ),
+      state('visibleTouchUI', style({
+        transform: 'translate(-50%,-50%)',
+        opacity: 1
+      })),
       transition('void => visible', [style({
         opacity: 0,
         transform: 'scaleY(0.8)'
@@ -85,13 +82,10 @@ export interface DateMeta {
         transform: 'translate3d(-50%, -40%, 0) scale(0.9)'
       }), animate('{{showTransitionParams}}')]),
       transition('visibleTouchUI => void', [
-        animate(
-          '{{hideTransitionParams}}',
-          style({
-            opacity: 0,
-            transform: 'translate3d(-50%, -40%, 0) scale(0.9)'
-          })
-        )
+        animate('{{hideTransitionParams}}', style({
+          opacity: 0,
+          transform: 'translate3d(-50%, -40%, 0) scale(0.9)'
+        }))
       ])
     ])
   ],

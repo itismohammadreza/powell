@@ -21,7 +21,6 @@ import {
   NgFilePickerMode,
   NgFileResultType,
   NgFilterMatchMode,
-  NgFixLabelPosition,
   NgIconPosition,
   NgInputMode,
   NgInputType,
