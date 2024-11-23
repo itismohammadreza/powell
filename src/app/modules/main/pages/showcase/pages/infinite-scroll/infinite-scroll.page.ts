@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {InfiniteScrollModule} from "@powell/components/infinite-scroll";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 
 @Component({
   selector: 'ng-infinite-scroll-page',
@@ -12,7 +9,6 @@ import {
   imports: [
     InfiniteScrollModule,
     ExtrasModule,
-    PreviewOptionsComponent
   ]
 })
 export class InfiniteScrollPage implements OnInit {

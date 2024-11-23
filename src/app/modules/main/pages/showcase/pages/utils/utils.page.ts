@@ -22,7 +22,6 @@ import {
     ButtonModule,
     InputNumberModule,
     ExtrasModule,
-    PreviewOptionsComponent
   ]
 })
 export class UtilsPage implements OnInit {
