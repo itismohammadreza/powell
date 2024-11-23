@@ -39,10 +39,10 @@ $time: 10s;
 }
 
 @for $i from 1 through $total {
-  $size: random(50) * 1px;
-  $rotate: random(360) * 1deg;
+  $size: math.random(50) * 1px;
+  $rotate: math.random(360) * 1deg;
   .tri:nth-child(#{$i}) {
-    border-top: $size solid hsla(random(360), 100%, 50%, 1);
+    border-top: $size solid hsla(math.random(360), 100%, 50%, 1);
     border-right: $size solid transparent;
     border-left: $size solid transparent;
     margin-left: math.div(-$size, 2);
@@ -58,7 +58,7 @@ $time: 10s;
   @keyframes anim#{$i} {
     0% {
       opacity: 1;
-      transform: rotate($rotate * 1.5) translate3d(random(1000) * 1px, random(1000) * 1px, 1000px) scale(1);
+      transform: rotate($rotate * 1.5) translate3d(math.random(1000) * 1px, math.random(1000) * 1px, 1000px) scale(1);
     }
   }
 }

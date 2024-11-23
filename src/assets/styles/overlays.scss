@@ -1,4 +1,4 @@
-@import "mixins";
+@use "mixins";
 
 .p-confirm-popup {
   .p-confirm-popup-message {
@@ -94,7 +94,7 @@
     }
   }
 
-  @include media-breakpoint-down(md) {
+  @include mixins.media-breakpoint-down(md) {
     width: 90%;
     max-width: 90%;
   }

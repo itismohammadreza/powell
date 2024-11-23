@@ -23,13 +23,13 @@ $grid-breakpoints: (
   $position: "bottom-right",
   $hoverable: false
 ) {
-  $is-top: str-slice($position, 1, 3) == 'top';
-  $is-bottom: str-slice($position, 1, 6) == 'bottom';
-  $is-left: str-slice($position, 1, 4) == 'left';
-  $is-right: str-slice($position, 1, 5) == 'right';
-  $is-both: str-slice($position, 1, 4) == 'both';
-  $is-both-x: str-slice($position, 1, 6) == 'both-x';
-  $is-both-y: str-slice($position, 1, 6) == 'both-y';
+  $is-top: string.slice($position, 1, 3) == 'top';
+  $is-bottom: string.slice($position, 1, 6) == 'bottom';
+  $is-left: string.slice($position, 1, 4) == 'left';
+  $is-right: string.slice($position, 1, 5) == 'right';
+  $is-both: string.slice($position, 1, 4) == 'both';
+  $is-both-x: string.slice($position, 1, 6) == 'both-x';
+  $is-both-y: string.slice($position, 1, 6) == 'both-y';
   position: relative;
   &:before {
     content: "";
@@ -198,21 +198,21 @@ $grid-breakpoints: (
   }
 }
 
-@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
-  $n: index($breakpoint-names, $name);
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map.keys($breakpoints)) {
+  $n: list.index($breakpoint-names, $name);
   @if not $n {
     @error "breakpoint `#{$name}` not found in `#{$breakpoints}`";
   }
-  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+  @return if($n < list.length($breakpoint-names), list.nth($breakpoint-names, $n + 1), null);
 }
 
 @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
-  $min: map-get($breakpoints, $name);
+  $min: map.get($breakpoints, $name);
   @return if($min != 0, $min, null);
 }
 
 @function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
-  $max: map-get($breakpoints, $name);
+  $max: map.get($breakpoints, $name);
   @return if($max and $max > 0, $max - .02, null);
 }
 
@@ -296,7 +296,7 @@ $grid-breakpoints: (
     background-color: $thumb-color;
 
     &:hover {
-      background-color: lighten($thumb-color, 15%);
+      background-color: color.adjust($thumb-color, $lightness: 15%);
     }
   }
 }
