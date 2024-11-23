@@ -12,7 +12,6 @@ import {
   selector: 'ng-listbox-page',
   templateUrl: './listbox.page.html',
   styleUrls: ['./listbox.page.scss'],
-  standalone: true,
   imports: [
     ListboxModule,
     ReactiveFormsModule,

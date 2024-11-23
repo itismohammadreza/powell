@@ -29,7 +29,6 @@ import {lastValueFrom} from "rxjs";
   selector: 'ng-navbar-menu',
   templateUrl: './navbar-menu.component.html',
   styleUrls: ['./navbar-menu.component.scss'],
-  standalone: true,
   imports: [
     CommonModule,
     LogoComponent,

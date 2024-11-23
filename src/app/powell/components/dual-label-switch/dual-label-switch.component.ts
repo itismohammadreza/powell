@@ -36,7 +36,8 @@ import {ConfigService} from "@powell/api";
       multi: true
     },
     DestroyService
-  ]
+  ],
+  standalone: false
 })
 export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);

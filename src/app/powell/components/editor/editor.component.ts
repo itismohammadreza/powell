@@ -66,6 +66,7 @@ import {ConfigService} from "@powell/api";
     },
     DestroyService
   ],
+  standalone: false
 })
 export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);

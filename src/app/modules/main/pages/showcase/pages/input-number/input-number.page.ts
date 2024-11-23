@@ -22,7 +22,6 @@ import {
   selector: 'ng-input-number-page',
   templateUrl: './input-number.page.html',
   styleUrls: ['./input-number.page.scss'],
-  standalone: true,
   imports: [
     InputNumberModule,
     ReactiveFormsModule,

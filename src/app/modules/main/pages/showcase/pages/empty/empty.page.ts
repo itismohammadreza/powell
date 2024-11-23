@@ -11,7 +11,6 @@ import {
   selector: 'ng-empty-page',
   templateUrl: './empty.page.html',
   styleUrls: ['./empty.page.scss'],
-  standalone: true,
   imports: [
     EmptyModule,
     ExtrasModule,

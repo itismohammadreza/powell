@@ -6,6 +6,7 @@ import {ConfigService} from "@powell/api";
   selector: 'ng-empty',
   templateUrl: './empty.component.html',
   styleUrls: ['./empty.component.scss'],
+  standalone: false
 })
 export class EmptyComponent implements OnInit {
   private configService = inject(ConfigService);

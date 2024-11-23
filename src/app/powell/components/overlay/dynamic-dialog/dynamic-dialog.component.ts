@@ -5,7 +5,8 @@ import {DynamicDialogRef} from './dynamic-dialog-ref';
 @Component({
   selector: 'ng-dynamic-dialog',
   templateUrl: './dynamic-dialog.component.html',
-  styleUrls: ['./dynamic-dialog.component.scss']
+  styleUrls: ['./dynamic-dialog.component.scss'],
+  standalone: false
 })
 export class DynamicDialogComponent implements OnDestroy {
   private dialogRef = inject(DynamicDialogRef);

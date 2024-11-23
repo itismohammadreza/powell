@@ -6,6 +6,7 @@ import {$Dialog} from "@powell/primeng";
   selector: 'ng-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
+  standalone: false
 })
 export class DialogComponent {
   onClose = new EventEmitter();

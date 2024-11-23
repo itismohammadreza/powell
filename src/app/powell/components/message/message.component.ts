@@ -16,6 +16,7 @@ import {ConfigService} from "@powell/api";
   selector: 'ng-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
+  standalone: false
 })
 export class MessageComponent implements OnInit, AfterContentInit {
   private configService = inject(ConfigService);

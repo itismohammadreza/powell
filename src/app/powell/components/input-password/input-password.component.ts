@@ -50,7 +50,8 @@ import {$UniqueComponentId} from "@powell/primeng";
       multi: true
     },
     DestroyService
-  ]
+  ],
+  standalone: false
 })
 export class InputPasswordComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);

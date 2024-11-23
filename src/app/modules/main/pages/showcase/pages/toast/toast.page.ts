@@ -11,7 +11,6 @@ import {
   selector: 'ng-toast-page',
   templateUrl: './toast.page.html',
   styleUrls: ['./toast.page.scss'],
-  standalone: true,
   imports: [
     ButtonModule,
     ExtrasModule,

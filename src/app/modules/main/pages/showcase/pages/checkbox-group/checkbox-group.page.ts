@@ -12,7 +12,6 @@ import {
   selector: 'ng-checkbox-group-page',
   templateUrl: './checkbox-group.page.html',
   styleUrls: ['./checkbox-group.page.scss'],
-  standalone: true,
   imports: [
     CheckboxGroupModule,
     ReactiveFormsModule,

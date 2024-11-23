@@ -5,6 +5,7 @@ import {TemplateDirective} from "@powell/directives/template";
   selector: 'ng-loading-container',
   templateUrl: './loading-container.component.html',
   styleUrls: ['./loading-container.component.scss'],
+  standalone: false
 })
 export class LoadingContainerComponent implements AfterContentInit {
   @Input() data: any;

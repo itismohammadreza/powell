@@ -11,7 +11,6 @@ import {
   selector: 'ng-dialog-page',
   templateUrl: './dialog.page.html',
   styleUrls: ['./dialog.page.scss'],
-  standalone: true,
   imports: [
     ButtonModule,
     ExtrasModule,

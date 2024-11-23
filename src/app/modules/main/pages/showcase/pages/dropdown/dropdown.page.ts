@@ -12,7 +12,6 @@ import {
   selector: 'ng-dropdown-page',
   templateUrl: './dropdown.page.html',
   styleUrls: ['./dropdown.page.scss'],
-  standalone: true,
   imports: [
     DropdownModule,
     ReactiveFormsModule,

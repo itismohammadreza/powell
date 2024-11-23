@@ -21,7 +21,8 @@ import {DestroyService} from "@core/utils";
   selector: 'ng-bottom-sheet',
   templateUrl: './bottom-sheet.component.html',
   styleUrls: ['./bottom-sheet.component.scss'],
-  providers: [DestroyService]
+  providers: [DestroyService],
+  standalone: false
 })
 export class BottomSheetComponent implements OnInit, AfterContentInit {
   private overlayService = inject(OverlayService);

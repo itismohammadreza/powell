@@ -20,7 +20,6 @@ import {
   selector: 'ng-input-text-page',
   templateUrl: './input-text.page.html',
   styleUrls: ['./input-text.page.scss'],
-  standalone: true,
   imports: [
     InputTextModule,
     ReactiveFormsModule,

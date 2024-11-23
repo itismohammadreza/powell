@@ -8,6 +8,7 @@ import {samePasswordsValidator} from "@core/utils";
   selector: 'ng-register-page',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
+  standalone: false
 })
 export class RegisterPage {
   private authService = inject(AuthService);

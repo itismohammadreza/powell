@@ -11,7 +11,6 @@ import {
   selector: 'ng-confirm-dialog-page',
   templateUrl: './confirm-dialog.page.html',
   styleUrls: ['./confirm-dialog.page.scss'],
-  standalone: true,
   imports: [
     ButtonModule,
     ExtrasModule,

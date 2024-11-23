@@ -12,7 +12,6 @@ import {
   selector: 'ng-switch-page',
   templateUrl: './switch.page.html',
   styleUrls: ['./switch.page.scss'],
-  standalone: true,
   imports: [
     SwitchModule,
     ReactiveFormsModule,

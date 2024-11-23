@@ -38,7 +38,8 @@ import {ConfigService} from "@powell/api";
       multi: true
     },
     DestroyService
-  ]
+  ],
+  standalone: false
 })
 export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);

@@ -12,7 +12,6 @@ import {
   selector: 'ng-checkbox-page',
   templateUrl: './checkbox.page.html',
   styleUrls: ['./checkbox.page.scss'],
-  standalone: true,
   imports: [
     CheckboxModule,
     ReactiveFormsModule,

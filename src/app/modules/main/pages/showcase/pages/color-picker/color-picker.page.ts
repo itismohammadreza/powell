@@ -12,7 +12,6 @@ import {
   selector: 'ng-color-picker-page',
   templateUrl: './color-picker.page.html',
   styleUrls: ['./color-picker.page.scss'],
-  standalone: true,
   imports: [
     ColorPickerModule,
     ReactiveFormsModule,

@@ -12,7 +12,6 @@ import {
   selector: 'ng-toggle-button-page',
   templateUrl: './toggle-button.page.html',
   styleUrls: ['./toggle-button.page.scss'],
-  standalone: true,
   imports: [
     ToggleButtonModule,
     ReactiveFormsModule,

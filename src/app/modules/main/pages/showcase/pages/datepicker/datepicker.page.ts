@@ -13,7 +13,6 @@ import {$CalendarModule} from "@powell/primeng";
   selector: 'ng-datepicker-page',
   templateUrl: './datepicker.page.html',
   styleUrls: ['./datepicker.page.scss'],
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     ExtrasModule,

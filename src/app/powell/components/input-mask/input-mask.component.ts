@@ -49,7 +49,8 @@ import {ConfigService} from "@powell/api";
       useExisting: forwardRef(() => InputMaskComponent),
       multi: true
     }
-  ]
+  ],
+  standalone: false
 })
 export class InputMaskComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);

@@ -12,7 +12,6 @@ import {
   selector: 'ng-slider-page',
   templateUrl: './slider.page.html',
   styleUrls: ['./slider.page.scss'],
-  standalone: true,
   imports: [
     SliderModule,
     ReactiveFormsModule,

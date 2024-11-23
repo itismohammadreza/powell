@@ -12,7 +12,6 @@ import {
   selector: 'ng-tree-page',
   templateUrl: './tree.page.html',
   styleUrls: ['./tree.page.scss'],
-  standalone: true,
   imports: [
     TreeModule,
     ReactiveFormsModule,

@@ -9,7 +9,6 @@ import {
   selector: 'ng-loading-container-page',
   templateUrl: './loading-container.page.html',
   styleUrls: ['./loading-container.page.scss'],
-  standalone: true,
   imports: [
     LoadingContainerModule,
     ExtrasModule,

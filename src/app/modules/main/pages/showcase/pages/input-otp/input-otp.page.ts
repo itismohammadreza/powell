@@ -12,7 +12,6 @@ import {
   selector: 'ng-input-otp-page',
   templateUrl: './input-otp.page.html',
   styleUrls: ['./input-otp.page.scss'],
-  standalone: true,
   imports: [
     InputOtpModule,
     ReactiveFormsModule,

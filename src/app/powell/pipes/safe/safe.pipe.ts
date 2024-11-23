@@ -4,7 +4,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 type TrustType = 'html' | 'style' | 'script' | 'url' | 'resourceUrl';
 
 @Pipe({
-  name: 'ngSafe'
+  name: 'ngSafe',
+  standalone: false
 })
 export class SafePipe implements PipeTransform {
   protected sanitizer = inject(DomSanitizer);

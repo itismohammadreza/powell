@@ -62,7 +62,8 @@ import {TemplateDirective} from "@powell/directives/template";
       multi: true
     },
     DestroyService
-  ]
+  ],
+  standalone: false
 })
 export class MapComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnChanges {
   private cd = inject(ChangeDetectorRef);

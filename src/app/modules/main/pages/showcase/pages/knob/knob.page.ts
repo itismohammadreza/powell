@@ -12,7 +12,6 @@ import {
   selector: 'ng-knob-page',
   templateUrl: './knob.page.html',
   styleUrls: ['./knob.page.scss'],
-  standalone: true,
   imports: [
     KnobModule,
     ReactiveFormsModule,

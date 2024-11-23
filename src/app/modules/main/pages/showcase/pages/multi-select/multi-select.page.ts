@@ -12,7 +12,6 @@ import {
   selector: 'ng-multi-select-page',
   templateUrl: './multi-select.page.html',
   styleUrls: ['./multi-select.page.scss'],
-  standalone: true,
   imports: [
     MultiSelectModule,
     ReactiveFormsModule,

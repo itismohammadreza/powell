@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
   selector: 'ng-login-page',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
+  standalone: false
 })
 export class LoginPage {
   private authService = inject(AuthService);

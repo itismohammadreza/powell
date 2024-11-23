@@ -45,7 +45,8 @@ import {$UniqueComponentId} from "@powell/primeng";
       multi: true
     },
     DestroyService
-  ]
+  ],
+  standalone: false
 })
 export class FilePicker2Component implements OnInit, OnChanges, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);

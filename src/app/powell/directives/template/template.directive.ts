@@ -1,7 +1,8 @@
 import {Directive, Input, TemplateRef} from '@angular/core';
 
 @Directive({
-  selector: '[ngTemplate]'
+  selector: '[ngTemplate]',
+  standalone: false
 })
 export class TemplateDirective {
   @Input('ngTemplate') templateName: string;

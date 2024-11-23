@@ -12,7 +12,6 @@ import {
   selector: 'ng-dual-label-switch-page',
   templateUrl: './dual-label-switch.page.html',
   styleUrls: ['./dual-label-switch.page.scss'],
-  standalone: true,
   imports: [
     DualLabelSwitchModule,
     ReactiveFormsModule,
