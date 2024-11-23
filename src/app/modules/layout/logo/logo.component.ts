@@ -6,7 +6,6 @@ import {CommonModule} from "@angular/common";
   selector: 'ng-logo',
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss'],
-  standalone: true,
   imports: [RouterModule, CommonModule],
   host: {
     class: 'inline-block',

@@ -11,7 +11,6 @@ import {
   selector: 'ng-status-page',
   templateUrl: './status.page.html',
   styleUrls: ['./status.page.scss'],
-  standalone: true,
   imports: [
     StatusModule,
     ExtrasModule,

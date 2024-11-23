@@ -9,7 +9,6 @@ import {
   selector: 'ng-infinite-scroll-page',
   templateUrl: './infinite-scroll.page.html',
   styleUrls: ['./infinite-scroll.page.scss'],
-  standalone: true,
   imports: [
     InfiniteScrollModule,
     ExtrasModule,

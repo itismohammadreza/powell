@@ -64,7 +64,8 @@ import {DestroyService} from "@core/utils";
       multi: true
     },
     DestroyService
-  ]
+  ],
+  standalone: false
 })
 export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);

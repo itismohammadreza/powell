@@ -48,7 +48,8 @@ import {$UniqueComponentId} from "@powell/primeng";
       multi: true
     },
     DestroyService
-  ]
+  ],
+  standalone: false
 })
 export class InputTextComponent implements OnInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);

@@ -18,7 +18,6 @@ import {
   templateUrl: './utils.page.html',
   styleUrls: ['./utils.page.scss'],
   providers: [DestroyService],
-  standalone: true,
   imports: [
     ButtonModule,
     InputNumberModule,

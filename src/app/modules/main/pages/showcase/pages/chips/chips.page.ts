@@ -12,7 +12,6 @@ import {
   selector: 'ng-chips-page',
   templateUrl: './chips.page.html',
   styleUrls: ['./chips.page.scss'],
-  standalone: true,
   imports: [
     ChipsModule,
     ReactiveFormsModule,

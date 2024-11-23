@@ -38,7 +38,8 @@ import {DOCUMENT} from "@angular/common";
   ],
   host: {
     class: 'p-element'
-  }
+  },
+  standalone: false
 })
 export class ImageComponent implements AfterContentInit {
   private document = inject(DOCUMENT);

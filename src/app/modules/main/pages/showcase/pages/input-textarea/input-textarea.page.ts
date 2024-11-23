@@ -12,7 +12,6 @@ import {
   selector: 'ng-input-textarea-page',
   templateUrl: './input-textarea.page.html',
   styleUrls: ['./input-textarea.page.scss'],
-  standalone: true,
   imports: [
     InputTextareaModule,
     ReactiveFormsModule,

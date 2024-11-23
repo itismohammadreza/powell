@@ -12,7 +12,6 @@ import {
   selector: 'ng-editor-page',
   templateUrl: './editor.page.html',
   styleUrls: ['./editor.page.scss'],
-  standalone: true,
   imports: [
     EditorModule,
     ReactiveFormsModule,

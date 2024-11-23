@@ -10,7 +10,6 @@ import {
   selector: 'ng-button-page',
   templateUrl: './button.page.html',
   styleUrls: ['./button.page.scss'],
-  standalone: true,
   imports: [
     ButtonModule,
     ExtrasModule,

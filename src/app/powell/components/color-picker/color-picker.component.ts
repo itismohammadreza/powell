@@ -44,7 +44,8 @@ import {ConfigService} from "@powell/api";
       multi: true
     },
     DestroyService
-  ]
+  ],
+  standalone: false
 })
 
 export class ColorPickerComponent implements OnInit, ControlValueAccessor {

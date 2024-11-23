@@ -12,7 +12,6 @@ import {
   selector: 'ng-auto-complete-page',
   templateUrl: './auto-complete.page.html',
   styleUrls: ['./auto-complete.page.scss'],
-  standalone: true,
   imports: [
     AutoCompleteModule,
     ExtrasModule,

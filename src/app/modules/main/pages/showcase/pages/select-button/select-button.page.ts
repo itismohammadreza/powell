@@ -12,7 +12,6 @@ import {
   selector: 'ng-select-button-page',
   templateUrl: './select-button.page.html',
   styleUrls: ['./select-button.page.scss'],
-  standalone: true,
   imports: [
     SelectButtonModule,
     ReactiveFormsModule,

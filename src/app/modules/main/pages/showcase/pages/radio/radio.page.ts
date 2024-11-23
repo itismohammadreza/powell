@@ -12,7 +12,6 @@ import {
   selector: 'ng-radio-page',
   templateUrl: './radio.page.html',
   styleUrls: ['./radio.page.scss'],
-  standalone: true,
   imports: [
     RadioModule,
     ReactiveFormsModule,

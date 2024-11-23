@@ -15,7 +15,6 @@ import {
   templateUrl: './dialog-form.page.html',
   styleUrls: ['./dialog-form.page.scss'],
   providers: [DestroyService],
-  standalone: true,
   imports: [
     ButtonModule,
     ExtrasModule,

@@ -11,7 +11,6 @@ import {
   selector: 'ng-confirm-popup-page',
   templateUrl: './confirm-popup.page.html',
   styleUrls: ['./confirm-popup.page.scss'],
-  standalone: true,
   imports: [
     ButtonModule,
     ExtrasModule,

@@ -52,6 +52,7 @@ import {DestroyService} from "@core/utils";
   templateUrl: './dialog-form.component.html',
   styleUrls: ['./dialog-form.component.scss'],
   providers: [DestroyService],
+  standalone: false
 })
 export class DialogFormComponent {
   private el = inject(ElementRef);

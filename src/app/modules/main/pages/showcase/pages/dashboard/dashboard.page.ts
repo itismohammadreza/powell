@@ -11,7 +11,6 @@ import {SmokeComponent} from "@modules/main/pages/showcase/pages/dashboard/smoke
   selector: 'ng-dashboard-page',
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
-  standalone: true,
   imports: [
     CommonModule,
     WelcomeComponent,

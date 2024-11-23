@@ -11,7 +11,6 @@ import {
   selector: 'ng-message-page',
   templateUrl: './message.page.html',
   styleUrls: ['./message.page.scss'],
-  standalone: true,
   imports: [
     MessageModule,
     ExtrasModule,

@@ -33,7 +33,8 @@ import {DestroyService} from "@core/utils";
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   host: {'[class.full]': 'full'},
-  providers: [DestroyService]
+  providers: [DestroyService],
+  standalone: false
 })
 export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChanges {
   private document = inject(DOCUMENT);

@@ -12,7 +12,6 @@ import {
   selector: 'ng-rating-page',
   templateUrl: './rating.page.html',
   styleUrls: ['./rating.page.scss'],
-  standalone: true,
   imports: [
     RatingModule,
     ReactiveFormsModule,

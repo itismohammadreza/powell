@@ -12,7 +12,6 @@ import {
   selector: 'ng-tri-state-checkbox-page',
   templateUrl: './tri-state-checkbox.page.html',
   styleUrls: ['./tri-state-checkbox.page.scss'],
-  standalone: true,
   imports: [
     TriStateCheckboxModule,
     ReactiveFormsModule,

@@ -65,7 +65,8 @@ import {ConfigService} from "@powell/api";
       multi: true
     },
     DestroyService
-  ]
+  ],
+  standalone: false
 })
 export class TreeComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);

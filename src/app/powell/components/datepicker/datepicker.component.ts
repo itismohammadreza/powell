@@ -57,6 +57,7 @@ import {Moment} from "jalali-moment";
     },
     DestroyService
   ],
+  standalone: false
 })
 export class DatepickerComponent implements OnInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);

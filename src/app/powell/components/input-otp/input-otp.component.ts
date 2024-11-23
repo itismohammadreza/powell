@@ -40,7 +40,8 @@ import {$InputOtpChangeEvent} from "@powell/primeng";
       multi: true
     },
     DestroyService
-  ]
+  ],
+  standalone: false
 })
 export class InputOtpComponent implements OnInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);

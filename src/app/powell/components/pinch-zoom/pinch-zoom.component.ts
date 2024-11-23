@@ -24,6 +24,7 @@ import {defaultProperties, IvyPinch} from "@powell/components/pinch-zoom";
   templateUrl: './pinch-zoom.component.html',
   styleUrls: ['./pinch-zoom.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 
 export class PinchZoomComponent implements OnInit, OnChanges, OnDestroy {

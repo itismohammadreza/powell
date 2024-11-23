@@ -60,6 +60,7 @@ import {ConfigService} from "@powell/api";
     },
     DestroyService
   ],
+  standalone: false
 })
 export class DropdownComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);

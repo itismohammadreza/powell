@@ -12,7 +12,6 @@ import {
   selector: 'ng-cascade-select-page',
   templateUrl: './cascade-select.page.html',
   styleUrls: ['./cascade-select.page.scss'],
-  standalone: true,
   imports: [
     CascadeSelectModule,
     ReactiveFormsModule,

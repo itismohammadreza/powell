@@ -12,7 +12,6 @@ import {
   selector: 'ng-iran-map-page',
   templateUrl: './iran-map.page.html',
   styleUrls: ['./iran-map.page.scss'],
-  standalone: true,
   imports: [
     IranMapModule,
     ReactiveFormsModule,

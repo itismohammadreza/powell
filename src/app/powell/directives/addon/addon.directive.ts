@@ -2,7 +2,8 @@ import {Directive, ElementRef, inject, Input, OnChanges, Renderer2, SimpleChange
 import {NgAddon, NgAddonConfig, NgSize} from '@powell/models';
 
 @Directive({
-  selector: '[ngAddon]'
+  selector: '[ngAddon]',
+  standalone: false
 })
 export class AddonDirective implements OnChanges {
   private renderer = inject(Renderer2);

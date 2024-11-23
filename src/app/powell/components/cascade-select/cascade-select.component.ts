@@ -56,7 +56,8 @@ import {ConfigService} from "@powell/api";
       multi: true
     },
     DestroyService
-  ]
+  ],
+  standalone: false
 })
 export class CascadeSelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);

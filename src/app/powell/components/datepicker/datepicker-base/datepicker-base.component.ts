@@ -107,6 +107,7 @@ export interface DateMeta {
     multi: true
   }],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterContentInit, OnDestroy, ControlValueAccessor {
   // CHANGE

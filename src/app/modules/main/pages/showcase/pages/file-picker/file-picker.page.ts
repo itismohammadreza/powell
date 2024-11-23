@@ -12,7 +12,6 @@ import {
   selector: 'ng-file-picker-page',
   templateUrl: './file-picker.page.html',
   styleUrls: ['./file-picker.page.scss'],
-  standalone: true,
   imports: [
     FilePickerModule,
     ReactiveFormsModule,

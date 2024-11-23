@@ -5,7 +5,8 @@ import {globalConfig} from "@core/config";
   selector: 'ng-main-page',
   styleUrls: ['main.page.scss'],
   templateUrl: './main.page.html',
-  animations: [globalConfig.routeAnimation]
+  animations: [globalConfig.routeAnimation],
+  standalone: false
 })
 export class MainPage {
 }

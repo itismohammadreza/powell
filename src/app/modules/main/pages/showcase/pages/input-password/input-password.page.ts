@@ -12,7 +12,6 @@ import {
   selector: 'ng-input-password-page',
   templateUrl: './input-password.page.html',
   styleUrls: ['./input-password.page.scss'],
-  standalone: true,
   imports: [
     InputPasswordModule,
     ReactiveFormsModule,

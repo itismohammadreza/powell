@@ -286,8 +286,7 @@ type PreviewItem =
   templateUrl: './preview-options.component.html',
   styleUrls: ['./preview-options.component.scss'],
   providers: [DestroyService],
-  imports: [$DividerModule],
-  standalone: true
+  imports: [$DividerModule]
 })
 export class PreviewOptionsComponent implements OnInit {
   private translationService = inject(TranslationService);

@@ -29,7 +29,6 @@ interface Customer {
   selector: 'ng-table-page',
   templateUrl: './table.page.html',
   styleUrls: ['./table.page.scss'],
-  standalone: true,
   imports: [
     TableModule,
     MultiSelectModule,

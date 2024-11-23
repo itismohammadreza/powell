@@ -12,7 +12,6 @@ import {
   selector: 'ng-input-mask-page',
   templateUrl: './input-mask.page.html',
   styleUrls: ['./input-mask.page.scss'],
-  standalone: true,
   imports: [
     InputMaskModule,
     ReactiveFormsModule,

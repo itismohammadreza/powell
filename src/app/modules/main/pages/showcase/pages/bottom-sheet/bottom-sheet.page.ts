@@ -11,7 +11,6 @@ import {
   selector: 'ng-bottom-sheet-page',
   templateUrl: './bottom-sheet.page.html',
   styleUrls: ['./bottom-sheet.page.scss'],
-  standalone: true,
   imports: [
     BottomSheetModule,
     ButtonModule,

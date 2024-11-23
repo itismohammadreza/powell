@@ -12,7 +12,6 @@ import {
   selector: 'ng-map-page',
   templateUrl: './map.page.html',
   styleUrls: ['./map.page.scss'],
-  standalone: true,
   imports: [
     MapModule,
     ReactiveFormsModule,

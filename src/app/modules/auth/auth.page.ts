@@ -4,6 +4,7 @@ import {Component} from '@angular/core';
   selector: 'ng-auth-page',
   styleUrls: ['auth.page.scss'],
   templateUrl: './auth.page.html',
+  standalone: false
 })
 export class AuthPage {
 }
