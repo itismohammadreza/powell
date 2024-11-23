@@ -1,3 +1,5 @@
+@use "sass:color";
+
 :host {
   display: block;
 
@@ -68,7 +70,7 @@
             fill: #C3E0E6;
 
             &:not(.active):hover {
-              fill: lighten(#87c0cd, 10%) !important;
+              fill: color.adjust(#87c0cd, $lightness: 10%) !important;
               cursor: pointer
             }
 

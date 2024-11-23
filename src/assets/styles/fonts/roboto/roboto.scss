@@ -1,4 +1,6 @@
-﻿$baseUrl: "/assets/styles/fonts/roboto";
+﻿@use "../vazirmatn/farsi-digits/vazirmatn";
+
+$baseUrl: "/assets/styles/fonts/roboto";
 
 @font-face {
   font-family: Roboto;

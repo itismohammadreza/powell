@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "sass:list";
 
 $particleSize: 20vmin;
 $animationDuration: 6s;
@@ -23,12 +24,12 @@ $amount: 20;
     $colors: (#583c87, #e45a84, #ffacac);
     @for $i from 1 through $amount {
       &:nth-child(#{$i}) {
-        color: nth($colors, random(length($colors)));
-        top: random(100) * 1%;
-        left: random(100) * 1%;
-        transform-origin: (random(50) - 25) * 1vw (random(50) - 25) * 1vh;
-        $blurRadius: (random() + 0.5) * $particleSize * 0.5;
-        $x: if(random() > 0.5, -1, 1);
+        color: list.nth($colors, math.random(list.length($colors)));
+        top: math.random(100) * 1%;
+        left: math.random(100) * 1%;
+        transform-origin: (math.random(50) - 25) * 1vw (math.random(50) - 25) * 1vh;
+        $blurRadius: (math.random() + 0.5) * $particleSize * 0.5;
+        $x: if(math.random() > 0.5, -1, 1);
         box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
       }
     }
