@@ -29,7 +29,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
 
   const showFailureToast = (message: string) => {
     overlayService.showToast({
-      severity: 'error',
+      severity: 'danger',
       detail: message ?? 'خطایی رخ داده است'
     });
   }

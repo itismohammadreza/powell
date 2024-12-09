@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgColor, NgFixLabelPosition} from '@powell/models';
+import {NgSeverity, NgFixLabelPosition} from '@powell/models';
 import {ConfigService} from "@powell/api";
 import {FilePicker2Module} from "@powell/components/file-picker2";
 import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
@@ -39,7 +39,7 @@ export class FilePicker2Page {
   readonly: boolean = false;
   multiple: boolean = true;
   accept: string = '';
-  color: NgColor = 'primary';
+  severity: NgSeverity = 'primary';
   fileLimit: number = 20000;
   chooseLabel: string = 'انتخاب';
 }

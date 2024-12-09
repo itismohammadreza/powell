@@ -10,13 +10,13 @@
     @if (!sidebarLock && tempSidebarType != 'hover') {
       <ng-button
         icon="pi pi-bars"
-        color="primary"
+        severity="primary"
         appearance="text"
         (click)="toggleSidebarClick()"/>
     }
     <ng-logo/>
     <a target="_blank" href="https://github.com/mohammadreza99/powell">
-      <ng-button appearance="text" color="secondary" icon="pi pi-github"/>
+      <ng-button appearance="text" severity="secondary" icon="pi pi-github"/>
     </a>
   </nav>
 
@@ -37,7 +37,7 @@
   @if (!sidebarVisible || sidebarType === 'hover') {
     <ng-button
       class="config-btn fixed z-[900000] top-[30%] -translate-y-1/2 left-0 transition-all duration-150 ease-[cubic-bezier(0,0,0.2,1)] [&_button]:!rounded-l-none [&.active]:left-[30rem]"
-      color="secondary"
+      severity="secondary"
       [class.active]="configSidebarVisible"
       (click)="configSidebarVisible = !configSidebarVisible" icon="pi pi-cog"/>
   }

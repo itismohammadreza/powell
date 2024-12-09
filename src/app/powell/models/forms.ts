@@ -1,4 +1,4 @@
-import {NgButtonAppearance, NgColor, NgIconPosition} from '@powell/models';
+import {NgButtonAppearance, NgSeverity, NgIconPosition} from '@powell/models';
 
 export type NgFilePickerMode = 'basic' | 'advanced';
 export type NgFilePickerMethod = 'post' | 'put';
@@ -260,7 +260,7 @@ export type NgCurrency =
 export interface NgAddonConfig {
   type: 'button' | 'icon' | 'text';
   label?: string;
-  color?: NgColor;
+  severity?: NgSeverity;
   appearance?: NgButtonAppearance;
   icon?: string;
   iconPos?: NgIconPosition;

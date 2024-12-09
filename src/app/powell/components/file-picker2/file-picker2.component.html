@@ -30,11 +30,11 @@
           [full]="true"
           [disabled]="disabled"
           (onClick)="inputFile.click()"
-          [color]="color"
+          [severity]="severity"
           [label]="chooseLabel">
         </ng-button>
         @if (filesToShow.length != 0) {
-          <ng-button color="danger" size="sm" (onClick)="onSingleDelete()">
+          <ng-button severity="danger" size="sm" (onClick)="onSingleDelete()">
             <ng-template ngTemplate="icon">
               <TrashIcon/>
             </ng-template>
@@ -63,7 +63,7 @@
               <div class="file-name">{{ item.name }}</div>
             </ng-container>
             @if (!readonly) {
-              <ng-button color="danger" size="sm" (onClick)="onMultipleDelete($event, i)">
+              <ng-button severity="danger" size="sm" (onClick)="onMultipleDelete($event, i)">
                 <ng-template ngTemplate="icon">
                   <TrashIcon/>
                 </ng-template>

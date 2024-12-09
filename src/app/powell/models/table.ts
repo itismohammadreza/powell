@@ -1,7 +1,7 @@
 import {
   NgAsyncEvent,
   NgButtonAppearance,
-  NgColor,
+  NgSeverity,
   NgCssObject,
   NgFilterMatchMode,
   NgIconPosition,
@@ -80,7 +80,7 @@ export interface NgTableAction<T = any> {
   tooltipPosition?: NgPosition;
   icon?: string;
   label?: string;
-  color?: NgColor;
+  severity?: NgSeverity;
   styleClass?: string;
   appearance?: NgButtonAppearance;
   iconPos?: NgIconPosition;

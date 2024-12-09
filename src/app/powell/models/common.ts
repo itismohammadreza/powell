@@ -1,11 +1,12 @@
-export type NgColor =
+export type NgSeverity =
+  | 'primary'
   | 'secondary'
   | 'success'
   | 'info'
   | 'warning'
-  | 'danger'
   | 'help'
-  | 'primary';
+  | 'danger'
+  | 'contrast';
 export type NgDirection = 'rtl' | 'ltr';
 export type NgSize = 'sm' | 'md' | 'lg';
 export type NgOrientation = 'horizontal' | 'vertical';

@@ -6,7 +6,7 @@ import {
   NgButtonAppearance,
   NgButtonType,
   NgChipDisplayMode,
-  NgColor,
+  NgSeverity,
   NgColorFormat,
   NgCssObject,
   NgCurrency,
@@ -46,7 +46,6 @@ import {LatLng, LatLngBounds} from "leaflet";
 import {$ContextMenu, $ScrollerOptions} from "@powell/primeng";
 import {EventEmitter} from "@angular/core";
 
-export type NgSeverity = 'success' | 'info' | 'warn' | 'error';
 export type NgDefaultFocus = 'accept' | 'reject';
 export type NgHistoricComponent = 'confirmDialog' | 'confirmPopup' | 'dialog' | 'dialogForm' | 'bottomSheet';
 
@@ -120,9 +119,9 @@ export interface NgConfirmPopupOptions {
   rejectEvent?: EventEmitter<any>;
 
   buttonFull?: boolean;
-  acceptColor?: NgColor;
+  acceptSeverity?: NgSeverity;
   acceptAppearance?: NgButtonAppearance;
-  rejectColor?: NgColor;
+  rejectSeverity?: NgSeverity;
   rejectAppearance?: NgButtonAppearance;
   buttonSize?: NgSize;
   buttonIconPos?: NgIconPosition;
@@ -163,9 +162,9 @@ export interface NgConfirmDialogOptions {
   position?: string;
 
   buttonFull?: boolean
-  acceptColor?: NgColor;
+  acceptSeverity?: NgSeverity;
   acceptAppearance?: NgButtonAppearance;
-  rejectColor?: NgColor;
+  rejectSeverity?: NgSeverity;
   rejectAppearance?: NgButtonAppearance;
   buttonSize?: NgSize;
   buttonIconPos?: NgIconPosition;
@@ -225,7 +224,7 @@ export interface NgDialogOptions extends NgDialogBase {
   buttonIconPos?: NgIconPosition;
   buttonFull?: boolean;
   buttonLabel?: string;
-  buttonColor?: NgColor;
+  buttonSeverity?: NgSeverity;
   buttonAppearance?: NgButtonAppearance;
   buttonSize?: NgSize;
   content?: string;
@@ -239,12 +238,12 @@ export interface NgDialogFormOptions extends NgDialogBase {
   rejectButtonStyleClass?: string;
   acceptVisible?: boolean;
   acceptIcon?: string;
-  acceptColor?: NgColor;
+  acceptSeverity?: NgSeverity;
   acceptLabel?: string;
   acceptAppearance?: NgButtonAppearance;
   rejectVisible?: boolean;
   rejectIcon?: string;
-  rejectColor?: NgColor;
+  rejectSeverity?: NgSeverity;
   rejectLabel?: string;
   rejectAppearance?: NgButtonAppearance;
   buttonFull?: boolean;
@@ -336,13 +335,12 @@ export interface NgDialogFormConfig {
   appearance?: NgButtonAppearance;
   rounded?: boolean;
   raised?: boolean;
-  color?: NgColor;
   full?: boolean;
-  badgeColor?: NgColor;
+  badgeSeverity?: NgSeverity;
   newLabel?: string;
   newIcon?: string;
   newAppearance?: NgButtonAppearance;
-  newColor?: NgColor;
+  newSeverity?: NgSeverity;
   defaultState?: 1 | 2;
   badge?: string;
   badgeClass?: string;

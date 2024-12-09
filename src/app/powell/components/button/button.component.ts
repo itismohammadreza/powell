@@ -17,7 +17,7 @@ import {
   NgButtonAppearance,
   NgButtonState,
   NgButtonType,
-  NgColor,
+  NgSeverity,
   NgCssObject,
   NgIconPosition,
   NgSize
@@ -41,12 +41,8 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   private destroy$ = inject(DestroyService);
 
   @Input() appearance: NgButtonAppearance;
-  @Input() rounded: boolean;
-  @Input() raised: boolean;
-  @Input() color: NgColor = 'primary';
   @Input() full: boolean;
-  @Input() badgeColor: NgColor = 'primary';
-  @Input() size: NgSize = 'md';
+  @Input() badgeSeverity: NgSeverity = 'primary';
   @Input() responsiveSize: {
     xs: NgSize;
     sm: NgSize;
@@ -58,7 +54,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   @Input() newLabel: string;
   @Input() newIcon: string;
   @Input() newAppearance: NgButtonAppearance;
-  @Input() newColor: NgColor = 'primary';
+  @Input() newSeverity: NgSeverity = 'primary';
   @Input() defaultState: NgButtonState = 1;
   // native properties
   @Input() type: NgButtonType = 'button';
@@ -67,10 +63,18 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   @Input() badge: string;
   @Input() label: string;
   @Input() disabled: boolean;
-  @Input() badgeClass: string;
   @Input() loadingIcon: string;
+  @Input() raised: boolean;
+  @Input() rounded: boolean;
+  @Input() plain: boolean;
+  @Input() severity: NgSeverity = 'primary';
+  @Input() tabindex: number;
+  @Input() size: NgSize = 'md';
   @Input() style: NgCssObject;
   @Input() styleClass: string;
+  @Input() badgeClass: string;
+  @Input() ariaLabel: string;
+  @Input() autofocus: boolean;
   @Output() onClick = new EventEmitter<MouseEvent>();
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
@@ -83,7 +87,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   _tmpLabel: string;
   _tmpIcon: string;
   _tmpAppearance: NgButtonAppearance;
-  _tmpColor: NgColor;
+  _tmpSeverity: NgSeverity;
   _tmpSize: NgSize;
 
   ngOnChanges(changes: SimpleChanges) {
@@ -151,13 +155,13 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
       this._tmpLabel = defaultState === 1 ? this.label : this.newLabel || this.label;
       this._tmpIcon = defaultState === 1 ? this.icon : this.newIcon || this.icon;
       this._tmpAppearance = defaultState === 1 ? this.appearance : this.newAppearance || this.appearance;
-      this._tmpColor = defaultState === 1 ? this.color : this.newColor || this.color;
+      this._tmpSeverity = defaultState === 1 ? this.severity : this.newSeverity || this.severity;
     } else {
       this.defaultState = 1;
       this._tmpLabel = this.label;
       this._tmpIcon = this.icon;
       this._tmpAppearance = this.appearance;
-      this._tmpColor = this.color;
+      this._tmpSeverity = this.severity;
     }
   }
 }

@@ -13,7 +13,6 @@ import {
 import {
   NgAddon,
   NgButtonAppearance,
-  NgColor,
   NgColorFormat,
   NgCurrency,
   NgCurrencyDisplay,
@@ -74,12 +73,13 @@ type PreviewItem =
   | 'full'
   | 'badge'
   | 'rounded'
+  | 'plain'
   | 'raised'
   | 'appearance'
-  | 'color'
+  | 'severity'
   | 'newLabel'
-  | 'newColor'
-  | 'badgeColor'
+  | 'newSeverity'
+  | 'badgeSeverity'
   | 'max'
   | 'allowDuplicate'
   | 'addOnTab'
@@ -234,10 +234,10 @@ type PreviewItem =
   | 'rejectIcon'
   | 'acceptVisible'
   | 'rejectVisible'
-  | 'acceptColor'
+  | 'acceptSeverity'
   | 'acceptAppearance'
   | 'buttonSize'
-  | 'rejectColor'
+  | 'rejectSeverity'
   | 'rejectAppearance'
   | 'closeOnEscape'
   | 'dismissableMask'
@@ -253,11 +253,10 @@ type PreviewItem =
   | 'buttonIconPos'
   | 'buttonFull'
   | 'buttonLabel'
-  | 'buttonColor'
+  | 'buttonSeverity'
   | 'buttonAppearance'
   | 'content'
   | 'inlineMessage'
-  | 'severity'
   | 'life'
   | 'sticky'
   | 'summary'
@@ -341,18 +340,20 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() badgeChange = new EventEmitter()
   @Input() rounded: boolean;
   @Output() roundedChange = new EventEmitter()
+  @Input() plain: boolean;
+  @Output() plainChange = new EventEmitter()
   @Input() raised: boolean;
   @Output() raisedChange = new EventEmitter()
   @Input() appearance: NgButtonAppearance;
   @Output() appearanceChange = new EventEmitter()
-  @Input() color: NgColor;
-  @Output() colorChange = new EventEmitter()
+  @Input() severity: NgSeverity;
+  @Output() severityChange = new EventEmitter()
   @Input() newLabel: string;
   @Output() newLabelChange = new EventEmitter()
-  @Input() newColor: NgColor;
-  @Output() newColorChange = new EventEmitter()
-  @Input() badgeColor: NgColor;
-  @Output() badgeColorChange = new EventEmitter()
+  @Input() newSeverity: NgSeverity;
+  @Output() newSeverityChange = new EventEmitter()
+  @Input() badgeSeverity: NgSeverity;
+  @Output() badgeSeverityChange = new EventEmitter()
   @Input() max: number;
   @Output() maxChange = new EventEmitter()
   @Input() allowDuplicate: boolean;
@@ -661,14 +662,14 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() acceptVisibleChange = new EventEmitter()
   @Input() rejectVisible: boolean;
   @Output() rejectVisibleChange = new EventEmitter()
-  @Input() acceptColor: NgColor;
-  @Output() acceptColorChange = new EventEmitter()
+  @Input() acceptSeverity: NgSeverity;
+  @Output() acceptSeverityChange = new EventEmitter()
   @Input() acceptAppearance: NgButtonAppearance;
   @Output() acceptAppearanceChange = new EventEmitter()
   @Input() buttonSize: NgSize;
   @Output() buttonSizeChange = new EventEmitter()
-  @Input() rejectColor: NgColor;
-  @Output() rejectColorChange = new EventEmitter()
+  @Input() rejectSeverity: NgSeverity;
+  @Output() rejectSeverityChange = new EventEmitter()
   @Input() rejectAppearance: NgButtonAppearance;
   @Output() rejectAppearanceChange = new EventEmitter()
   @Input() closeOnEscape: boolean;
@@ -695,16 +696,14 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() buttonFullChange = new EventEmitter()
   @Input() buttonLabel: string;
   @Output() buttonLabelChange = new EventEmitter()
-  @Input() buttonColor: NgColor;
-  @Output() buttonColorChange = new EventEmitter()
+  @Input() buttonSeverity: NgSeverity;
+  @Output() buttonSeverityChange = new EventEmitter()
   @Input() buttonAppearance: NgButtonAppearance;
   @Output() buttonAppearanceChange = new EventEmitter()
   @Input() content: string;
   @Output() contentChange = new EventEmitter()
   @Input() inlineMessage: string;
   @Output() inlineMessageChange = new EventEmitter()
-  @Input() severity: NgSeverity;
-  @Output() severityChange = new EventEmitter()
   @Input() life: number;
   @Output() lifeChange = new EventEmitter()
   @Input() sticky: boolean;
@@ -780,9 +779,9 @@ export class PreviewOptionsComponent implements OnInit {
       orientation: ['horizontal', 'vertical'],
       layout: ['horizontal', 'vertical'],
       dropdownMode: ['blank', 'current'],
-      color: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
-      newColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
-      badgeColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
+      severity: ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'help', 'contrast'],
+      newSeverity: ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'help', 'contrast'],
+      badgeSeverity: ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'help', 'contrast'],
       hourFormat: ['12', '24'],
       view: ['date', 'month', 'year'],
       status: ['none', 'success', 'info', 'warning', 'error', '403', '404', '500'],
@@ -794,18 +793,17 @@ export class PreviewOptionsComponent implements OnInit {
       datepickerSelectionMode: ['single', 'multiple', 'range'],
       numberMode: ['decimal', 'currency'],
       fixLabelPos: ['fix-side', 'fix-top'],
-      acceptColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
+      acceptSeverity: ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'help', 'contrast'],
       acceptAppearance: ['basic', 'text', 'outlined', 'link'],
       buttonSize: ['sm', 'md', 'lg'],
-      rejectColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
+      rejectSeverity: ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'help', 'contrast'],
       rejectAppearance: ['basic', 'text', 'outlined', 'link'],
       defaultFocus: ['none', 'accept', 'reject'],
       toastPosition: ['top-right', 'top-left', 'bottom-right', 'bottom-left', 'top-center', 'bottom-center', 'center'],
       dialogPosition: ['top', 'bottom', 'left', 'right', 'topleft', 'topright', 'bottomleft', 'bottomright', 'center'],
       buttonIconPos: ['left', 'right'],
-      buttonColor: ['secondary', 'success', 'info', 'warning', 'danger', 'help', 'primary'],
+      buttonSeverity: ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'help', 'contrast'],
       buttonAppearance: ['basic', 'text', 'outlined', 'link'],
-      severity: ['success', 'error', 'info', 'warn'],
       pinchLimitZoom: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 'original image size'],
       pinchOverflow: ['hidden', 'visible'],
       pinchDisableZoomControl: ['disable', 'never', 'auto'],
