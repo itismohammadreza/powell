@@ -258,6 +258,7 @@ type PreviewItem =
   | 'content'
   | 'inlineMessage'
   | 'life'
+  | 'toastSeverity'
   | 'sticky'
   | 'summary'
   | 'detail'
@@ -706,6 +707,8 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() inlineMessageChange = new EventEmitter()
   @Input() life: number;
   @Output() lifeChange = new EventEmitter()
+  @Input() toastSeverity: Exclude<NgSeverity, 'secondary' | 'warning' | 'help' | 'danger'> | 'warn' | 'error';
+  @Output() toastSeverityChange = new EventEmitter()
   @Input() sticky: boolean;
   @Output() stickyChange = new EventEmitter()
   @Input() summary: string;
@@ -800,6 +803,7 @@ export class PreviewOptionsComponent implements OnInit {
       rejectAppearance: ['basic', 'text', 'outlined', 'link'],
       defaultFocus: ['none', 'accept', 'reject'],
       toastPosition: ['top-right', 'top-left', 'bottom-right', 'bottom-left', 'top-center', 'bottom-center', 'center'],
+      toastSeverity: ["secondary", "success", "info", "warn", "error", "contrast"],
       dialogPosition: ['top', 'bottom', 'left', 'right', 'topleft', 'topright', 'bottomleft', 'bottomright', 'center'],
       buttonIconPos: ['left', 'right'],
       buttonSeverity: ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'help', 'contrast'],
