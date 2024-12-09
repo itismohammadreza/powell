@@ -6,7 +6,6 @@ import {
   NgButtonAppearance,
   NgButtonType,
   NgChipDisplayMode,
-  NgSeverity,
   NgColorFormat,
   NgCssObject,
   NgCurrency,
@@ -34,6 +33,7 @@ import {
   NgOrientation,
   NgOverflow,
   NgPosition,
+  NgSeverity,
   NgSize,
   NgToastPosition,
   NgTreeFilterMode,
@@ -66,7 +66,7 @@ export interface NgToastOptions {
   showTransitionOptions?: string;
   hideTransitionOptions?: string;
   breakpoints?: any;
-  severity?: NgSeverity;
+  severity?: Exclude<NgSeverity, 'secondary' | 'warning' | 'help' | 'danger'> | 'warn' | 'error';
   summary?: string;
   detail?: string;
   id?: any;
