@@ -1,22 +1,25 @@
 <p-button
   [type]="type"
-  [label]="async ? _tmpLabel : label"
-  [icon]="async ? _tmpIcon : icon"
   [iconPos]="iconPos"
+  [icon]="async ? _tmpIcon : icon"
   [badge]="badge"
+  [label]="async ? _tmpLabel : label"
+  [disabled]="disabled"
   [loading]="loading"
   [loadingIcon]="loadingIcon"
-  [disabled]="disabled"
+  [raised]="raised"
+  [rounded]="rounded"
+  [text]="async ? _tmpAppearance === 'text' : appearance === 'text'"
+  [plain]="plain"
+  [severity]="async ? _tmpSeverity : severity"
+  [outlined]="async ? _tmpAppearance === 'outlined' : appearance === 'outlined'"
+  [link]="async ? _tmpAppearance === 'link' : appearance === 'link'"
+  [tabindex]="tabindex"
   [style]="style"
-  badgeClass="{{badgeClass}} p-badge-{{ badgeColor }}"
-  styleClass="
-  {{styleClass}}
-  {{defaultState == 1 ? 'default-state' : 'new-state'}}
-  p-button-{{ async ? _tmpAppearance : appearance }}
-  p-button-{{ async ? _tmpColor : color }}
-  p-button-{{ size }}
-  p-button-{{ rounded ? 'rounded' : '' }}
-  p-button-{{ raised ? 'raised' : '' }}"
+  styleClass="{{styleClass}} {{defaultState == 1 ? 'default-state' : 'new-state'}} p-button-{{ size }}"
+  badgeClass="{{badgeClass}} p-badge-{{ badgeSeverity }}"
+  [ariaLabel]="ariaLabel"
+  [autofocus]="autofocus"
   (onClick)="_onClick($event)"
   (onFocus)="emitter('onFocus',$event)"
   (onBlur)="emitter('onBlur',$event)">

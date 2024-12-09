@@ -150,8 +150,8 @@ export class OverlayService {
     const {instance} = this.confirmPopupCmpRef;
     const confirmation: $Confirmation = {
       ...options,
-      acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
-      rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
+      acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.acceptSeverity} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
+      rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.rejectSeverity} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
     }
     for (const key in options) {
       instance[key] = options[key];
@@ -189,8 +189,8 @@ export class OverlayService {
     const {instance} = this.confirmCmpRef;
     const confirmation: $Confirmation = {
       ...options,
-      acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.acceptColor} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
-      rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.rejectColor} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
+      acceptButtonStyleClass: `${options.acceptButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.acceptSeverity} p-button-${options.acceptAppearance} p-button-${options.buttonSize}`,
+      rejectButtonStyleClass: `${options.rejectButtonStyleClass} ${options.buttonFull ? 'w-full' : ''} p-button-${options.rejectSeverity} p-button-${options.rejectAppearance || 'outlined'} p-button-${options.buttonSize}`,
     }
     for (const key in options) {
       instance[key] = options[key];

@@ -4,56 +4,59 @@
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
-      'label',
-      'icon',
-      'full',
-      'badge',
-      'rounded',
-      'raised',
       'appearance',
-      'disabled',
-      'iconPos',
-      'color',
-      'badgeColor',
-      'selectiveSize',
+      'full',
+      'badgeSeverity',
       'async',
       'newLabel',
-      'newColor',
+      'newSeverity',
+      'iconPos',
+      'icon',
+      'badge',
+      'label',
+      'disabled',
+      'raised',
+      'rounded',
+      'plain',
+      'severity',
+      'selectiveSize',
       ]"
-      [(label)]="label"
-      [(icon)]="icon"
-      [(full)]="full"
-      [(badge)]="badge"
-      [(rounded)]="rounded"
-      [(raised)]="raised"
       [(appearance)]="appearance"
-      [(disabled)]="disabled"
-      [(iconPos)]="iconPos"
-      [(color)]="color"
-      [(badgeColor)]="badgeColor"
-      [(selectiveSize)]="size"
+      [(full)]="full"
+      [(badgeSeverity)]="badgeSeverity"
       [(async)]="async"
       [(newLabel)]="newLabel"
-      [(newColor)]="newColor"/>
+      [(newSeverity)]="newSeverity"
+      [(iconPos)]="iconPos"
+      [(icon)]="icon"
+      [(badge)]="badge"
+      [(label)]="label"
+      [(disabled)]="disabled"
+      [(raised)]="raised"
+      [(rounded)]="rounded"
+      [(plain)]="plain"
+      [(severity)]="severity"
+      [(selectiveSize)]="size"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
     <ng-button
-      [label]="label"
-      [icon]="icon"
-      [full]="full"
-      [badge]="badge"
-      [rounded]="rounded"
-      [raised]="raised"
       [appearance]="appearance"
-      [disabled]="disabled"
-      [iconPos]="iconPos"
-      [color]="color"
-      [badgeColor]="badgeColor"
-      [size]="size"
+      [full]="full"
+      [badgeSeverity]="badgeSeverity"
       [async]="async"
       [newLabel]="newLabel"
-      [newColor]="newColor"
+      [newSeverity]="newSeverity"
+      [iconPos]="iconPos"
+      [icon]="icon"
+      [badge]="badge"
+      [label]="label"
+      [disabled]="disabled"
+      [raised]="raised"
+      [rounded]="rounded"
+      [plain]="plain"
+      [severity]="severity"
+      [size]="size"
       (onClickAsync)="onClickAsync($event)">
     </ng-button>
   </p-panel>

@@ -32,7 +32,7 @@ export class AddonDirective implements OnChanges {
   }
 
   applyButton(config: NgAddonConfig, side: string) {
-    const _btnColor = config.color;
+    const _btnSeverity = config.severity;
     const _btnAppearance = config.appearance;
     const _btnIcon = config.icon;
     const _btnLabel = config.label;
@@ -41,7 +41,7 @@ export class AddonDirective implements OnChanges {
     this.renderer.setAttribute(BTN, 'type', 'button');
     this.renderer.addClass(BTN, 'p-button');
     this.renderer.addClass(BTN, 'p-component');
-    this.renderer.addClass(BTN, `p-button-${_btnColor}`);
+    this.renderer.addClass(BTN, `p-button-${_btnSeverity}`);
     this.renderer.addClass(BTN, `p-button-${_btnAppearance}`);
     this.renderer.addClass(BTN, `p-button-${this.addonSize}`);
     this.renderer.setStyle(BTN, 'white-space', 'nowrap');

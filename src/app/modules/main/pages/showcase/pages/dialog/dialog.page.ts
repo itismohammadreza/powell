@@ -37,7 +37,7 @@ export class DialogPage {
     buttonIconPos: 'right',
     buttonFull: false,
     buttonLabel: 'Ok',
-    buttonColor: 'primary',
+    buttonSeverity: 'primary',
     buttonAppearance: 'basic',
     buttonSize: 'md',
     rtl: this.configService.get().rtl,

@@ -387,7 +387,7 @@ export class TablePage {
       {
         header: 'info',
         icon: 'pi pi-info',
-        color: 'info',
+        severity: 'info',
         onClick: (item) => {
           alert(`Info : ${item.name}`)
         }

@@ -23,7 +23,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgColor,
+  NgSeverity,
   NgFilePickerRemoveEvent,
   NgFilePickerSelectEvent,
   NgFileResultType,
@@ -69,7 +69,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() multiple: boolean = true;
   @Input() isUnknownImageUrl: boolean = false;
   @Input() accept: string;
-  @Input() color: NgColor = 'primary';
+  @Input() severity: NgSeverity = 'primary';
   @Input() maxFileSize: number;
   @Input() fileLimit: number;
   @Input() resultType: NgFileResultType = 'file';
