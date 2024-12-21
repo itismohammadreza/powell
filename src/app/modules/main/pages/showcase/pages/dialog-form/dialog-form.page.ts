@@ -53,7 +53,7 @@ export class DialogFormPage {
     buttonIconPosition: 'left'
   }
 
-  flag = false;
+  flag = true;
 
   showDialogForm() {
     this.overlayService.showDialogForm(
@@ -130,11 +130,11 @@ export class DialogFormPage {
       if (!res) {
         return
       }
-      const {formValue, changeDialogVisibilityTo} = res;
+      const {formValue, finalizeSubmit} = res;
       this.flag = !this.flag;
       console.log('Do what ever with form value: ', formValue)
       setTimeout(() => {
-        changeDialogVisibilityTo(this.flag)
+        finalizeSubmit(this.flag)
       }, 2000)
     })
   }

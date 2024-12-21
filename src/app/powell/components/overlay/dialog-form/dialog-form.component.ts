@@ -169,11 +169,11 @@ export class DialogFormComponent {
     return errObj as NgValidation;
   }
 
-  changeDialogVisibilityTo = (visible: boolean) => {
+  finalizeSubmit = (hide: boolean) => {
     this.loadingCallback();
-    this.visible = visible;
+    this.visible = !hide;
     this.disableReject = false;
-    if (!visible) {
+    if (hide) {
       this.close()
     }
   }
@@ -274,7 +274,7 @@ export class DialogFormComponent {
     }
     this.disableReject = true;
     this.loadingCallback = loadingCallback;
-    this.onSubmit.emit({formValue: this.form.value, changeDialogVisibilityTo: this.changeDialogVisibilityTo})
+    this.onSubmit.emit({formValue: this.form.value, finalizeSubmit: this.finalizeSubmit})
   }
 
   handleEvent(event: string, args?: any) {
