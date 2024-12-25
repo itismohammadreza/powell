@@ -30,7 +30,6 @@ export class ButtonPage {
   disabled: boolean = false;
   raised: boolean = false;
   rounded: boolean = false;
-  plain: boolean = false;
   severity: NgSeverity = 'primary';
   size: NgSize = 'md';
 

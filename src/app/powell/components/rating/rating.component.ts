@@ -64,13 +64,10 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() disabled: boolean;
   @Input() readonly: boolean = false;
   @Input() stars: number = 5;
-  @Input() cancel: boolean = true;
   @Input() iconOnClass: string;
   @Input() iconOnStyle: NgCssObject;
   @Input() iconOffClass: string;
   @Input() iconOffStyle: NgCssObject;
-  @Input() iconCancelClass: string;
-  @Input() iconCancelStyle: NgCssObject;
   @Input() autofocus: boolean;
   @Output() onRate = new EventEmitter<$RatingRateEvent>();
   @Output() onCancel = new EventEmitter<Event>();

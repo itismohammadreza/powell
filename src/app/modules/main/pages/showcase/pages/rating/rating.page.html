@@ -12,7 +12,6 @@
       'fixLabelPos',
       'followConfig',
       'stars',
-      'cancel',
       'disabled',
       'readonly',
       'iconOnClass',
@@ -27,12 +26,10 @@
       [(fixLabelPos)]="labelPos"
       [(followConfig)]="followConfig"
       [(stars)]="stars"
-      [(cancel)]="cancel"
       [(disabled)]="disabled"
       [(readonly)]="readonly"
       [(iconOnClass)]="iconOnClass"
-      [(iconOffClass)]="iconOffClass"
-      [(iconCancelClass)]="iconCancelClass"/>
+      [(iconOffClass)]="iconOffClass"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
@@ -48,12 +45,10 @@
         [labelPos]="labelPos"
         [followConfig]="followConfig"
         [stars]="stars"
-        [cancel]="cancel"
         [disabled]="disabled"
         [readonly]="readonly"
         [iconOnClass]="iconOnClass"
-        [iconOffClass]="iconOffClass"
-        [iconCancelClass]="iconCancelClass"/>
+        [iconOffClass]="iconOffClass"/>
     </form>
   </p-panel>
 </div>

@@ -1,6 +1,6 @@
 <div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="CascadeSelect"
-          subheader="CascadeSelect displays a nested structure of options."/>
+  <p-card header="Select"
+          subheader="Select is used to select an item from a list of options."/>
   <p-panel [header]="'options' | translate">
     <ng-preview-options
       [previewItems]="[
@@ -15,9 +15,19 @@
       'iconPos',
       'addon',
       'selectiveSize',
+      'async',
       'followConfig',
+      'filter',
       'disabled',
+      'readonly',
+      'emptyMessage',
+      'emptyFilterMessage',
+      'editable',
+      'maxlength',
       'placeholder',
+      'autofocusFilter',
+      'resetFilterOnHide',
+      'autoDisplayFirst',
       'showClear',
       ]"
       [(label)]="label"
@@ -30,23 +40,30 @@
       [(labelPos)]="labelPos"
       [(iconPos)]="iconPos"
       [(selectiveSize)]="inputSize"
+      [(async)]="async"
       [(followConfig)]="followConfig"
       [(addon)]="addon"
+      [(filter)]="filter"
       [(disabled)]="disabled"
+      [(readonly)]="readonly"
+      [(emptyMessage)]="emptyMessage"
+      [(emptyFilterMessage)]="emptyFilterMessage"
+      [(editable)]="editable"
+      [(maxlength)]="maxlength"
       [(placeholder)]="placeholder"
+      [(autofocusFilter)]="autofocusFilter"
+      [(resetFilterOnHide)]="resetFilterOnHide"
+      [(autoDisplayFirst)]="autoDisplayFirst"
       [(showClear)]="showClear"/>
   </p-panel>
 
   <p-panel [header]="'preview' | translate">
     <form [formGroup]="form">
-      <ng-cascade-select
-        class="w-[30vw] mx-auto"
+      <ng-select
         formControlName="c1"
         [addon]="addon"
         [validation]="{ required: 'error' }"
         [options]="options"
-        [optionGroupChildren]="'states, cities'"
-        optionGroupLabel="name"
         [label]="label"
         [variant]="variant"
         [labelWidth]="labelWidth"
@@ -57,10 +74,21 @@
         [labelPos]="labelPos"
         [iconPos]="iconPos"
         [inputSize]="inputSize"
+        [async]="async"
         [followConfig]="followConfig"
+        [filter]="filter"
         [disabled]="disabled"
+        [readonly]="readonly"
+        [emptyMessage]="emptyMessage"
+        [emptyFilterMessage]="emptyFilterMessage"
+        [editable]="editable"
+        [maxlength]="maxlength"
         [placeholder]="placeholder"
-        [showClear]="showClear"/>
+        [autofocusFilter]="autofocusFilter"
+        [resetFilterOnHide]="resetFilterOnHide"
+        [autoDisplayFirst]="autoDisplayFirst"
+        [showClear]="showClear"
+        (onChangeAsync)="onChangeAsync($event)"/>
     </form>
   </p-panel>
 </div>

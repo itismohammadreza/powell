@@ -3,7 +3,7 @@ export type NgSeverity =
   | 'secondary'
   | 'success'
   | 'info'
-  | 'warning'
+  | 'warn'
   | 'help'
   | 'danger'
   | 'contrast';

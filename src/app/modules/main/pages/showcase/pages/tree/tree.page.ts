@@ -37,7 +37,6 @@ export class TreePage {
   followConfig: boolean = this.configService.get().followConfig;
   // native properties
   selectionMode: NgTreeSelectionMode;
-  layout: NgOrientation = 'vertical';
   propagateSelectionUp: boolean = true;
   propagateSelectionDown: boolean = true;
   emptyMessage: string;

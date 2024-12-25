@@ -1,7 +1,9 @@
-import {NgFixLabelPosition, NgInputVariant, NgLabelPosition, NgSize} from "@powell/models";
-import {$PrimeNGConfig} from "@powell/primeng";
+import {NgFixLabelPosition, NgLabelPosition, NgSize} from "@powell/models";
+import {$PrimeNG, $PrimeNGConfigType} from "@powell/primeng";
 
-type OmittedConfig = Omit<$PrimeNGConfig, "setTranslation" | "csp" | "getTranslation" | "inputStyle">;
+type OmittedConfig =
+  Omit<$PrimeNG, "setTranslation" | "csp" | "getTranslation" | "inputStyle" | "ripple" | "theme">
+  & $PrimeNGConfigType;
 
 export interface NgConfigChangeEvent {
   currentConfig: NgConfig;
@@ -13,11 +15,8 @@ export interface NgConfig extends Partial<OmittedConfig> {
   rtl?: boolean;
   labelPos?: NgLabelPosition;
   fixLabelPos?: NgFixLabelPosition;
-  inputSize?: NgSize;
   showRequiredStar?: boolean;
-  theme?: NgTheme;
-  inputStyle?: NgInputVariant;
-  csp?: {nonce: string};
+  inputSize?: NgSize;
 }
 
 export type NgTheme =

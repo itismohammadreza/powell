@@ -80,7 +80,6 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Input() ariaLabel: string;
   @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() labelStyleClass: string;
   @Input() autofocus: boolean = false;
   @Output() onChange = new EventEmitter<$RadioButtonClickEvent>();
   @Output() onFocus = new EventEmitter<Event>();

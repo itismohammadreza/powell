@@ -82,7 +82,6 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() styleClass: string;
   @Input() style: NgCssObject;
   @Input() placeholder: string;
-  @Input() size: number;
   @Input() maxlength: number;
   @Input() tabindex: number;
   @Input() title: string;

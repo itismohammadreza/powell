@@ -25,7 +25,7 @@ export type NgTableStateStorage = 'session' | 'local';
 export type NgTableFilterType =
   | 'text'
   | 'multi-select'
-  | 'dropdown'
+  | 'select'
   | 'boolean'
   | 'datepicker'
   | 'slider'

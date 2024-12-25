@@ -1,15 +1,17 @@
 import {
   Accordion,
+  AccordionContent,
+  AccordionHeader,
   AccordionModule,
-  AccordionTab,
+  AccordionPanel,
   AccordionTabCloseEvent,
   AccordionTabOpenEvent,
-  AccordionTemplates
 } from "primeng/accordion";
 
 export {Accordion as $Accordion};
 export {AccordionModule as $AccordionModule};
-export {AccordionTab as $AccordionTab};
+export {AccordionHeader as $AccordionHeader};
+export {AccordionContent as $AccordionContent};
+export {AccordionPanel as $AccordionPanel};
 export {AccordionTabCloseEvent as $AccordionTabCloseEvent};
 export {AccordionTabOpenEvent as $AccordionTabOpenEvent};
-export {AccordionTemplates as $AccordionTemplates};

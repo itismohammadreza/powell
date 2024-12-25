@@ -83,7 +83,6 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() ariaLabel: string;
   @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() labelStyleClass: string;
   @Input() checkboxIcon: string;
   @Input() readonly: boolean;
   @Input() autofocus: boolean = false;

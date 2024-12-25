@@ -35,10 +35,10 @@ import {
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@core/utils";
 import {
-  $CalendarMonthChangeEvent,
-  $CalendarResponsiveOptions,
-  $CalendarTypeView,
-  $CalendarYearChangeEvent,
+  $DatePickerMonthChangeEvent,
+  $DatePickerResponsiveOptions,
+  $DatePickerTypeView,
+  $DatePickerYearChangeEvent,
   $LocaleSettings,
   $UniqueComponentId
 } from "@powell/primeng";
@@ -143,11 +143,11 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() disabledDays: number[];
   @Input() yearRange: string;
   @Input() showTime: boolean;
-  @Input() responsiveOptions: $CalendarResponsiveOptions[];
+  @Input() responsiveOptions: $DatePickerResponsiveOptions[];
   @Input() numberOfMonths: number = 1;
   @Input() firstDayOfWeek: number;
   @Input() locale: $LocaleSettings;
-  @Input() view: $CalendarTypeView = 'date';
+  @Input() view: $DatePickerTypeView = 'date';
   @Input() defaultDate: Date | Moment;
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
@@ -157,8 +157,8 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
   @Output() onInput = new EventEmitter<KeyboardEvent>();
   @Output() onTodayClick = new EventEmitter<Date | Moment>();
   @Output() onClearClick = new EventEmitter<Event>();
-  @Output() onMonthChange = new EventEmitter<$CalendarMonthChangeEvent>();
-  @Output() onYearChange = new EventEmitter<$CalendarYearChangeEvent>();
+  @Output() onMonthChange = new EventEmitter<$DatePickerMonthChangeEvent>();
+  @Output() onYearChange = new EventEmitter<$DatePickerYearChangeEvent>();
   @Output() onClickOutside = new EventEmitter<Event>();
   @Output() onShow = new EventEmitter<AnimationEvent>();
 

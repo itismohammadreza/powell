@@ -119,7 +119,7 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
     });
   }
 
-  _onChange(event: $ToggleButtonChangeEvent) {
+  _onChange(event: any) {
     this.onModelChange(event.checked);
     this.onChange.emit(event);
     this.value = event.checked;

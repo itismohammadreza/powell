@@ -1,6 +1,6 @@
 import {NgConfig} from "@powell/models";
 import {ConfigService, ThemeService} from "@powell/api";
-import {$ConfirmationService, $DialogService, $FilterService, $MessageService} from "@powell/primeng";
+import {$ConfirmationService, $DialogService, $FilterService, $MessageService, $providePrimeNG} from "@powell/primeng";
 
 export function providePowell(config?: NgConfig) {
   return [
@@ -9,6 +9,7 @@ export function providePowell(config?: NgConfig) {
     $DialogService,
     $ConfirmationService,
     $FilterService,
+    $providePrimeNG(config),
     {
       provide: ConfigService,
       useFactory: () => {

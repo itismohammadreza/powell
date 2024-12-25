@@ -17,7 +17,7 @@ import {
   $ConfirmDialog,
   $ConfirmEventType,
   $ConfirmPopup,
-  $Message,
+  $ToastMessageOptions,
   $MessageService,
   $Toast,
   $UniqueComponentId
@@ -119,7 +119,7 @@ export class OverlayService {
       this.toastCmpRef = this.addToBody($Toast);
     }
     const {instance} = this.toastCmpRef;
-    const toast: $Message = {
+    const toast: $ToastMessageOptions = {
       severity: 'info',
       ...options,
       styleClass: `${options.styleClass} ${(options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr'}`,

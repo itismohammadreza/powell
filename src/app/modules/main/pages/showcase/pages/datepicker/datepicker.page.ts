@@ -7,7 +7,7 @@ import {
   PreviewOptionsComponent
 } from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
 import {DatepickerModule} from "@powell/components/datepicker";
-import {$CalendarModule} from "@powell/primeng";
+import {$DatePickerModule} from "@powell/primeng";
 
 @Component({
   selector: 'ng-datepicker-page',
@@ -18,7 +18,7 @@ import {$CalendarModule} from "@powell/primeng";
     ExtrasModule,
     PreviewOptionsComponent,
     DatepickerModule,
-    $CalendarModule,
+    $DatePickerModule,
     FormsModule
   ]
 })

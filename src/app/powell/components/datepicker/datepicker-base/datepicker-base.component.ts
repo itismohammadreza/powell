@@ -1,18 +1,16 @@
 import {animate, AnimationEvent, state, style, transition, trigger} from '@angular/animations';
-import {DOCUMENT} from '@angular/common';
 import {
   AfterContentInit,
   AfterViewInit,
   booleanAttribute,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
+  ContentChild,
   ContentChildren,
   ElementRef,
   EventEmitter,
   forwardRef,
   inject,
-  Inject,
   Input,
   NgZone,
   numberAttribute,
@@ -20,34 +18,47 @@ import {
   OnInit,
   Output,
   QueryList,
-  Renderer2,
   TemplateRef,
   ViewChild
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {
+  $absolutePosition,
+  $addClass,
+  $addStyle,
+  $appendChild,
+  $BaseComponent,
+  $blockBodyScroll,
   $ConnectedOverlayScrollHandler,
-  $DomHandler,
-  $Nullable,
-  $ObjectUtils,
-  $OverlayService,
-  $PrimeNGConfig,
-  $PrimeTemplate,
-  $TranslationKeys,
-  $UniqueComponentId,
-  $VoidListener,
-  $ZIndexUtils
-} from '@powell/primeng/api';
-import {
-  $CalendarMonthChangeEvent,
-  $CalendarResponsiveOptions,
-  $CalendarTypeView,
-  $CalendarYearChangeEvent,
+  $DatePickerMonthChangeEvent,
+  $DatePickerResponsiveOptions,
+  $DatePickerStyle,
+  $DatePickerTypeView,
+  $DatePickerYearChangeEvent,
+  $find,
+  $findSingle,
+  $getFocusableElements,
+  $getIndex,
+  $getOuterWidth,
+  $hasClass,
+  $isDate,
+  $isNotEmpty,
+  $isTouchDevice,
   $LocaleSettings,
   $Month,
-  $NavigationState
-} from '@powell/primeng/calendar';
+  $NavigationState,
+  $Nullable,
+  $OverlayService,
+  $PrimeTemplate,
+  $relativePosition,
+  $setAttribute,
+  $TranslationKeys,
+  $unblockBodyScroll,
+  $uuid,
+  $VoidListener,
+  $ZIndexUtils
+} from '@powell/primeng';
 import {Moment} from "jalali-moment";
 import {MomentService} from "@powell/api";
 
@@ -62,9 +73,7 @@ export interface DateMeta {
 
 @Component({
   selector: 'ng-datepicker-base',
-  // CHANGES
   templateUrl: './datepicker-base.component.html',
-  // CHANGES
   styleUrl: './datepicker-base.component.scss',
   animations: [
     trigger('overlayAnimation', [
@@ -99,13 +108,52 @@ export interface DateMeta {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => DatepickerBaseComponent),
     multi: true
-  }],
+  }, $DatePickerStyle],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false
 })
-export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterContentInit, OnDestroy, ControlValueAccessor {
-  // CHANGE
+export class DatepickerBaseComponent extends $BaseComponent implements OnInit, AfterViewInit, AfterContentInit, OnDestroy, ControlValueAccessor {
+  // CHANGES
   @Input() isJalali: boolean | undefined;
+  private momentService = inject(MomentService);
+
+  getEqualProp(key: keyof Date) {
+    const result = {
+      getFullYear: 'jYear',
+      setFullYear: 'jYear',
+      getMonth: 'jMonth',
+      setMonth: 'jMonth',
+      getDate: 'jDate',
+      setDate: 'jDate',
+      getDay: 'jDay',
+      getHours: 'hours',
+      getMinutes: 'minutes',
+      getSeconds: 'seconds',
+      setHours: 'hours',
+      setMinutes: 'minutes',
+      setSeconds: 'seconds',
+      getTime: 'unix',
+      toDateString: 'toString'
+    } as Partial<Record<keyof Date, keyof Moment>>
+    return this.isJalali ? result[key] : key;
+  }
+
+  getEqualDateObj(input?: string | number | any[], format?: string) {
+    if (this.isJalali) {
+      return this.momentService.getJalaliMoment(input, format)
+    } else {
+      if (input) {
+        if (Array.isArray(input)) {
+          return new Date(input[0], input[1], input[2]);
+        } else {
+          return new Date(input as any)
+        }
+      } else {
+        return new Date();
+      }
+    }
+  }
+
   @Input() iconDisplay: 'input' | 'button' = 'button';
   @Input() style: {[klass: string]: any} | null | undefined;
   @Input() styleClass: string | undefined;
@@ -125,6 +173,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
   @Input({transform: booleanAttribute}) showOtherMonths: boolean = true;
   @Input({transform: booleanAttribute}) selectOtherMonths: boolean | undefined;
   @Input({transform: booleanAttribute}) showIcon: boolean | undefined;
+  @Input({transform: booleanAttribute}) fluid: boolean | undefined;
   @Input() icon: string | undefined;
   @Input() appendTo: HTMLElement | ElementRef | TemplateRef<any> | string | null | undefined | any;
   @Input({transform: booleanAttribute}) readonlyInput: boolean | undefined;
@@ -133,7 +182,6 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
   @Input({transform: booleanAttribute}) yearNavigator: boolean | undefined;
   @Input() hourFormat: string = '24';
   @Input({transform: booleanAttribute}) timeOnly: boolean | undefined;
-  @Input({transform: numberAttribute}) stepYearPicker: number = 10;
   @Input({transform: numberAttribute}) stepHour: number = 1;
   @Input({transform: numberAttribute}) stepMinute: number = 1;
   @Input({transform: numberAttribute}) stepSecond: number = 1;
@@ -145,10 +193,10 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
   @Input({transform: booleanAttribute}) showClear: boolean = false;
   @Input() dataType: string = 'date';
   @Input() selectionMode: 'single' | 'multiple' | 'range' | undefined = 'single';
-  @Input() maxDateCount: number | undefined;
+  @Input({transform: numberAttribute}) maxDateCount: number | undefined;
   @Input({transform: booleanAttribute}) showButtonBar: boolean | undefined;
-  @Input() todayButtonStyleClass: string = 'p-button-text';
-  @Input() clearButtonStyleClass: string = 'p-button-text';
+  @Input() todayButtonStyleClass: string | undefined;
+  @Input() clearButtonStyleClass: string | undefined;
   @Input({transform: booleanAttribute}) autofocus: boolean | undefined;
   @Input({transform: booleanAttribute}) autoZIndex: boolean = true;
   @Input({transform: numberAttribute}) baseZIndex: number = 0;
@@ -162,7 +210,8 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
   @Input({transform: numberAttribute}) tabindex: number | undefined;
-  @Input() variant: 'filled' | 'outlined' = 'outlined';
+  @Input() variant: 'filled' | 'outlined';
+  @Input() size: 'large' | 'small';
 
   @Input() get minDate(): Date | Moment | undefined | null {
     return this._minDate;
@@ -240,11 +289,11 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     this.updateInputfield();
   }
 
-  @Input() get responsiveOptions(): $CalendarResponsiveOptions[] {
+  @Input() get responsiveOptions(): $DatePickerResponsiveOptions[] {
     return this._responsiveOptions;
   }
 
-  set responsiveOptions(responsiveOptions: $CalendarResponsiveOptions[]) {
+  set responsiveOptions(responsiveOptions: $DatePickerResponsiveOptions[]) {
     this._responsiveOptions = responsiveOptions;
 
     this.destroyResponsiveStyleElement();
@@ -276,11 +325,11 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     console.warn('Locale property has no effect, use new i18n API instead.');
   }
 
-  @Input() get view(): $CalendarTypeView {
+  @Input() get view(): $DatePickerTypeView {
     return this._view;
   }
 
-  set view(view: $CalendarTypeView) {
+  set view(view: $DatePickerTypeView) {
     this._view = view;
     this.currentView = this._view;
   }
@@ -301,13 +350,6 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     }
   }
 
-  get inputClass() {
-    return {
-      'p-inputtext p-component': true,
-      'p-variant-filled': this.variant === 'filled' || this.config.inputStyle() === 'filled'
-    };
-  }
-
   @Output() onFocus: EventEmitter<Event> = new EventEmitter<Event>();
   @Output() onBlur: EventEmitter<Event> = new EventEmitter<Event>();
   @Output() onClose: EventEmitter<AnimationEvent> = new EventEmitter<AnimationEvent>();
@@ -316,11 +358,10 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
   @Output() onInput: EventEmitter<any> = new EventEmitter<any>();
   @Output() onTodayClick: EventEmitter<Date | Moment> = new EventEmitter<Date | Moment>();
   @Output() onClearClick: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onMonthChange: EventEmitter<$CalendarMonthChangeEvent> = new EventEmitter<$CalendarMonthChangeEvent>();
-  @Output() onYearChange: EventEmitter<$CalendarYearChangeEvent> = new EventEmitter<$CalendarYearChangeEvent>();
+  @Output() onMonthChange: EventEmitter<$DatePickerMonthChangeEvent> = new EventEmitter<$DatePickerMonthChangeEvent>();
+  @Output() onYearChange: EventEmitter<$DatePickerYearChangeEvent> = new EventEmitter<$DatePickerYearChangeEvent>();
   @Output() onClickOutside: EventEmitter<any> = new EventEmitter<any>();
   @Output() onShow: EventEmitter<any> = new EventEmitter<any>();
-  @ContentChildren($PrimeTemplate) templates!: QueryList<$PrimeTemplate>;
   @ViewChild('container', {static: false}) containerViewChild: $Nullable<ElementRef>;
   @ViewChild('inputfield', {static: false}) inputfieldViewChild: $Nullable<ElementRef>;
 
@@ -339,6 +380,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     }
   }
 
+  _componentStyle = inject($DatePickerStyle);
   contentViewChild!: ElementRef;
   value: Date | Moment;
   months!: $Month[];
@@ -371,18 +413,36 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
   _maxDate?: Date | Moment | null;
   _showTime!: boolean;
   _yearRange!: string;
-  dateTemplate: $Nullable<TemplateRef<any>>;
-  headerTemplate: $Nullable<TemplateRef<any>>;
-  footerTemplate: $Nullable<TemplateRef<any>>;
-  disabledDateTemplate: $Nullable<TemplateRef<any>>;
-  decadeTemplate: $Nullable<TemplateRef<any>>;
-  previousIconTemplate: $Nullable<TemplateRef<any>>;
-  nextIconTemplate: $Nullable<TemplateRef<any>>;
-  triggerIconTemplate: $Nullable<TemplateRef<any>>;
-  clearIconTemplate: $Nullable<TemplateRef<any>>;
-  decrementIconTemplate: $Nullable<TemplateRef<any>>;
-  incrementIconTemplate: $Nullable<TemplateRef<any>>;
-  inputIconTemplate: $Nullable<TemplateRef<any>>;
+
+  dayClass(date) {
+    return this._componentStyle.classes.day({instance: this, date: date});
+  }
+
+  @ContentChild('date', {descendants: false}) dateTemplate: $Nullable<TemplateRef<any>>;
+  @ContentChild('header', {descendants: false}) headerTemplate: $Nullable<TemplateRef<any>>;
+  @ContentChild('footer', {descendants: false}) footerTemplate: $Nullable<TemplateRef<any>>;
+  @ContentChild('disabledDate', {descendants: false}) disabledDateTemplate: $Nullable<TemplateRef<any>>;
+  @ContentChild('decade', {descendants: false}) decadeTemplate: $Nullable<TemplateRef<any>>;
+  @ContentChild('previousicon', {descendants: false}) previousIconTemplate: $Nullable<TemplateRef<any>>;
+  @ContentChild('nexticon', {descendants: false}) nextIconTemplate: $Nullable<TemplateRef<any>>;
+  @ContentChild('triggericon', {descendants: false}) triggerIconTemplate: $Nullable<TemplateRef<any>>;
+  @ContentChild('clearicon', {descendants: false}) clearIconTemplate: $Nullable<TemplateRef<any>>;
+  @ContentChild('decrementicon', {descendants: false}) decrementIconTemplate: $Nullable<TemplateRef<any>>;
+  @ContentChild('incrementicon', {descendants: false}) incrementIconTemplate: $Nullable<TemplateRef<any>>;
+  @ContentChild('inputicon', {descendants: false}) inputIconTemplate: $Nullable<TemplateRef<any>>;
+
+  _dateTemplate: TemplateRef<any> | undefined;
+  _headerTemplate: TemplateRef<any> | undefined;
+  _footerTemplate: TemplateRef<any> | undefined;
+  _disabledDateTemplate: TemplateRef<any> | undefined;
+  _decadeTemplate: TemplateRef<any> | undefined;
+  _previousIconTemplate: TemplateRef<any> | undefined;
+  _nextIconTemplate: TemplateRef<any> | undefined;
+  _triggerIconTemplate: TemplateRef<any> | undefined;
+  _clearIconTemplate: TemplateRef<any> | undefined;
+  _decrementIconTemplate: TemplateRef<any> | undefined;
+  _incrementIconTemplate: TemplateRef<any> | undefined;
+  _inputIconTemplate: TemplateRef<any> | undefined;
   _disabledDates!: Array<Date | Moment>;
   _disabledDays!: Array<number>;
   scrollHandler: $Nullable<$ConnectedOverlayScrollHandler>;
@@ -392,13 +452,13 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
   initialized: $Nullable<boolean>;
   translationSubscription: $Nullable<Subscription>;
   _locale!: $LocaleSettings;
-  _responsiveOptions!: $CalendarResponsiveOptions[];
+  _responsiveOptions!: $DatePickerResponsiveOptions[];
   currentView: $Nullable<string>;
   attributeSelector: $Nullable<string>;
   panelId: $Nullable<string>;
   _numberOfMonths: number = 1;
   _firstDayOfWeek!: number;
-  _view: $CalendarTypeView = 'date';
+  _view: $DatePickerTypeView = 'date';
   preventFocus: $Nullable<boolean>;
   _defaultDate!: Date | Moment;
   _focusKey: $Nullable<string> = null;
@@ -420,60 +480,31 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     return this.currentView === 'year' ? this.getTranslation('nextDecade') : this.currentView === 'month' ? this.getTranslation('nextYear') : this.getTranslation('nextMonth');
   }
 
+  get rootClass() {
+    return this._componentStyle.classes.root({instance: this});
+  }
+
+  get panelClass() {
+    return this._componentStyle.classes.panel({instance: this});
+  }
+
+  get hasFluid() {
+    const nativeElement = this.el.nativeElement;
+    const fluidComponent = nativeElement.closest('p-fluid');
+    return this.fluid || !!fluidComponent;
+  }
+
   constructor(
-    @Inject(DOCUMENT) private document: Document,
-    public el: ElementRef,
-    public renderer: Renderer2,
-    public cd: ChangeDetectorRef,
     private zone: NgZone,
-    private config: $PrimeNGConfig,
     public overlayService: $OverlayService
   ) {
+    super();
     this.window = this.document.defaultView as Window;
   }
 
-  // CHANGES
-  private momentService = inject(MomentService);
-
-  getEqualProp(key: keyof Date) {
-    const result = {
-      getFullYear: 'jYear',
-      setFullYear: 'jYear',
-      getMonth: 'jMonth',
-      setMonth: 'jMonth',
-      getDate: 'jDate',
-      setDate: 'jDate',
-      getDay: 'jDay',
-      getHours: 'hours',
-      getMinutes: 'minutes',
-      getSeconds: 'seconds',
-      setHours: 'hours',
-      setMinutes: 'minutes',
-      setSeconds: 'seconds',
-      getTime: 'unix',
-      toDateString: 'toString'
-    } as Partial<Record<keyof Date, keyof Moment>>
-    return this.isJalali ? result[key] : key;
-  }
-
-  getEqualDateObj(input?: string | number | any[], format?: string) {
-    if (this.isJalali) {
-      return this.momentService.getJalaliMoment(input, format)
-    } else {
-      if (input) {
-        if (Array.isArray(input)) {
-          return new Date(input[0], input[1], input[2]);
-        } else {
-          return new Date(input as any)
-        }
-      } else {
-        return new Date();
-      }
-    }
-  }
-
-  ngOnInit() {
-    // CHANGE
+  override ngOnInit() {
+    super.ngOnInit();
+    // CHANGES
     if (this.isJalali) {
       this.config.setTranslation({
         dayNames: ['شنبه', 'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'],
@@ -483,7 +514,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
         monthNamesShort: ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'],
       })
     }
-    this.attributeSelector = $UniqueComponentId();
+    this.attributeSelector = $uuid('pn_id_');
     this.panelId = this.attributeSelector + '_panel';
     const date = this.defaultDate || this.getEqualDateObj();
     this.createResponsiveStyle();
@@ -507,65 +538,8 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     this.initialized = true;
   }
 
-  ngAfterContentInit() {
-    this.templates.forEach((item) => {
-      switch (item.getType()) {
-        case 'date':
-          this.dateTemplate = item.template;
-          break;
-
-        case 'decade':
-          this.decadeTemplate = item.template;
-          break;
-
-        case 'disabledDate':
-          this.disabledDateTemplate = item.template;
-          break;
-
-        case 'header':
-          this.headerTemplate = item.template;
-          break;
-
-        case 'inputicon':
-          this.inputIconTemplate = item.template;
-          break;
-
-        case 'previousicon':
-          this.previousIconTemplate = item.template;
-          break;
-
-        case 'nexticon':
-          this.nextIconTemplate = item.template;
-          break;
-
-        case 'triggericon':
-          this.triggerIconTemplate = item.template;
-          break;
-
-        case 'clearicon':
-          this.clearIconTemplate = item.template;
-          break;
-
-        case 'decrementicon':
-          this.decrementIconTemplate = item.template;
-          break;
-
-        case 'incrementicon':
-          this.incrementIconTemplate = item.template;
-          break;
-
-        case 'footer':
-          this.footerTemplate = item.template;
-          break;
-
-        default:
-          this.dateTemplate = item.template;
-          break;
-      }
-    });
-  }
-
-  ngAfterViewInit() {
+  override ngAfterViewInit() {
+    super.ngAfterViewInit();
     if (this.inline) {
       this.contentViewChild && this.contentViewChild.nativeElement.setAttribute(this.attributeSelector, '');
 
@@ -573,11 +547,71 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
         this.initFocusableCell();
         if (this.numberOfMonths === 1) {
           if (this.contentViewChild && this.contentViewChild.nativeElement) {
-            this.contentViewChild.nativeElement.style.width = $DomHandler.getOuterWidth(this.containerViewChild?.nativeElement) + 'px';
+            this.contentViewChild.nativeElement.style.width = $getOuterWidth(this.containerViewChild?.nativeElement) + 'px';
           }
         }
       }
     }
+  }
+
+  @ContentChildren($PrimeTemplate) templates!: QueryList<$PrimeTemplate>;
+
+  ngAfterContentInit() {
+    this.templates.forEach((item) => {
+      switch (item.getType()) {
+        case 'date':
+          this._dateTemplate = item.template;
+          break;
+
+        case 'decade':
+          this._decadeTemplate = item.template;
+          break;
+
+        case 'disabledDate':
+          this._disabledDateTemplate = item.template;
+          break;
+
+        case 'header':
+          this._headerTemplate = item.template;
+          break;
+
+        case 'inputicon':
+          this._inputIconTemplate = item.template;
+          break;
+
+        case 'previousicon':
+          this._previousIconTemplate = item.template;
+          break;
+
+        case 'nexticon':
+          this._nextIconTemplate = item.template;
+          break;
+
+        case 'triggericon':
+          this._triggerIconTemplate = item.template;
+          break;
+
+        case 'clearicon':
+          this._clearIconTemplate = item.template;
+          break;
+
+        case 'decrementicon':
+          this._decrementIconTemplate = item.template;
+          break;
+
+        case 'incrementicon':
+          this._incrementIconTemplate = item.template;
+          break;
+
+        case 'footer':
+          this._footerTemplate = item.template;
+          break;
+
+        default:
+          this._dateTemplate = item.template;
+          break;
+      }
+    });
   }
 
   getTranslation(option: string) {
@@ -613,8 +647,8 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
 
   yearPickerValues() {
     let yearPickerValues = [];
-    let base = <number>this.currentYear - (<number>this.currentYear % this.stepYearPicker);
-    for (let i = 0; i < this.stepYearPicker; i++) {
+    let base = <number>this.currentYear - (<number>this.currentYear % 10);
+    for (let i = 0; i < 10; i++) {
       yearPickerValues.push(base + i);
     }
 
@@ -754,7 +788,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
         this.updateFocus();
       }, 1);
     } else if (this.currentView === 'year') {
-      this.decrementYearPickerStep();
+      this.decrementDecade();
       setTimeout(() => {
         this.updateFocus();
       }, 1);
@@ -785,7 +819,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
         this.updateFocus();
       }, 1);
     } else if (this.currentView === 'year') {
-      this.incrementYearPickerStep();
+      this.incrementDecade();
       setTimeout(() => {
         this.updateFocus();
       }, 1);
@@ -812,12 +846,12 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     }
   }
 
-  decrementYearPickerStep() {
-    this.currentYear = this.currentYear - this.stepYearPicker;
+  decrementDecade() {
+    this.currentYear = this.currentYear - 10;
   }
 
-  incrementYearPickerStep() {
-    this.currentYear = this.currentYear + this.stepYearPicker;
+  incrementDecade() {
+    this.currentYear = this.currentYear + 10;
   }
 
   incrementYear() {
@@ -860,7 +894,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
       }
     }
 
-    if (this.hideOnDateTimeSelect && (this.isSingleSelection() || (this.isRangeSelection() && this.value[1]))) {
+    if ((this.isSingleSelection() && this.hideOnDateTimeSelect) || (this.isRangeSelection() && this.value[1])) {
       setTimeout(() => {
         event.preventDefault();
         this.hideOverlay();
@@ -983,13 +1017,13 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     }
   }
 
-  setCurrentView(currentView: $CalendarTypeView) {
+  setCurrentView(currentView: $DatePickerTypeView) {
     this.currentView = currentView;
     this.cd.detectChanges();
     this.alignOverlay();
   }
 
-  selectDate(dateMeta: any) {
+  selectDate(dateMeta: DateMeta) {
     let date = this.formatDateMetaToDate(dateMeta);
     if (this.showTime) {
       if (this.hourFormat == '12') {
@@ -1171,11 +1205,12 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
   }
 
   isYearSelected(year: number) {
-    if (!this.isComparable()) return false;
-    if (this.isMultipleSelection()) return false;
+    if (this.isComparable()) {
+      let value = this.isRangeSelection() ? this.value[0] : this.value;
 
-    let value: Date | Moment = this.isRangeSelection() ? this.value[0] : this.value;
-    return value ? value[this.getEqualProp('getFullYear')]() === year : false;
+      return !this.isMultipleSelection() ? value[this.getEqualProp('getFullYear')]() === year : false;
+    }
+    return false;
   }
 
   isDateEquals(value: Date | Moment, dateMeta: DateMeta) {
@@ -1355,7 +1390,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
           this.trapFocus(event);
         }
         if (this.inline) {
-          const headerElements = $DomHandler.findSingle(this.containerViewChild?.nativeElement, '.p-datepicker-header');
+          const headerElements = $findSingle(this.containerViewChild?.nativeElement, '.p-datepicker-header');
           const element = event.target;
           if (this.timeOnly) {
             return;
@@ -1396,7 +1431,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
         event.preventDefault();
       }
     } else if (event.keyCode === 9 && this.contentViewChild) {
-      $DomHandler.getFocusableElements(this.contentViewChild.nativeElement).forEach((el) => (el.tabIndex = '-1'));
+      $getFocusableElements(this.contentViewChild.nativeElement).forEach((el: any) => (el.tabIndex = '-1'));
       if (this.overlayVisible) {
         this.overlayVisible = false;
       }
@@ -1411,11 +1446,11 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
       //down arrow
       case 40: {
         cellContent.tabIndex = '-1';
-        let cellIndex = $DomHandler.index(cell);
+        let cellIndex = $getIndex(cell);
         let nextRow = cell.parentElement.nextElementSibling;
         if (nextRow) {
           let focusCell = nextRow.children[cellIndex].children[0];
-          if ($DomHandler.hasClass(focusCell, 'p-disabled')) {
+          if ($hasClass(focusCell, 'p-disabled')) {
             this.navigationState = {backward: false};
             this.navForward(event);
           } else {
@@ -1433,11 +1468,11 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
       //up arrow
       case 38: {
         cellContent.tabIndex = '-1';
-        let cellIndex = $DomHandler.index(cell);
+        let cellIndex = $getIndex(cell);
         let prevRow = cell.parentElement.previousElementSibling;
         if (prevRow) {
           let focusCell = prevRow.children[cellIndex].children[0];
-          if ($DomHandler.hasClass(focusCell, 'p-disabled')) {
+          if ($hasClass(focusCell, 'p-disabled')) {
             this.navigationState = {backward: true};
             this.navBackward(event);
           } else {
@@ -1458,7 +1493,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
         let prevCell = cell.previousElementSibling;
         if (prevCell) {
           let focusCell = prevCell.children[0];
-          if ($DomHandler.hasClass(focusCell, 'p-disabled') || $DomHandler.hasClass(focusCell.parentElement, 'p-datepicker-weeknumber')) {
+          if ($hasClass(focusCell, 'p-disabled') || $hasClass(focusCell.parentElement, 'p-datepicker-weeknumber')) {
             this.navigateToMonth(true, groupIndex);
           } else {
             focusCell.tabIndex = '0';
@@ -1477,7 +1512,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
         let nextCell = cell.nextElementSibling;
         if (nextCell) {
           let focusCell = nextCell.children[0];
-          if ($DomHandler.hasClass(focusCell, 'p-disabled')) {
+          if ($hasClass(focusCell, 'p-disabled')) {
             this.navigateToMonth(false, groupIndex);
           } else {
             focusCell.tabIndex = '0';
@@ -1540,7 +1575,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
         cellContent.tabIndex = '-1';
         const firstDayDate = this.getEqualDateObj([currentDate[this.getEqualProp('getFullYear')](), currentDate[this.getEqualProp('getMonth')](), 1]);
         const firstDayDateKey = this.formatDateKey(firstDayDate);
-        const firstDayCell = $DomHandler.findSingle(cellContent.offsetParent, `span[data-date='${firstDayDateKey}']:not(.p-disabled):not(.p-ink)`);
+        const firstDayCell = <any>$findSingle(cellContent.offsetParent, `span[data-date='${firstDayDateKey}']:not(.p-disabled):not(.p-ink)`);
         if (firstDayCell) {
           firstDayCell.tabIndex = '0';
           firstDayCell.focus();
@@ -1553,7 +1588,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
         cellContent.tabIndex = '-1';
         const lastDayDate = this.getEqualDateObj([currentDate[this.getEqualProp('getFullYear')](), currentDate[this.getEqualProp('getMonth')]() + 1, 0]);
         const lastDayDateKey = this.formatDateKey(lastDayDate);
-        const lastDayCell = $DomHandler.findSingle(cellContent.offsetParent, `span[data-date='${lastDayDateKey}']:not(.p-disabled):not(.p-ink)`);
+        const lastDayCell = <any>$findSingle(cellContent.offsetParent, `span[data-date='${lastDayDateKey}']:not(.p-disabled):not(.p-ink)`);
         if (lastDayDate) {
           lastDayCell.tabIndex = '0';
           lastDayCell.focus();
@@ -1575,7 +1610,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
       case 40: {
         cell.tabIndex = '-1';
         var cells = cell.parentElement.children;
-        var cellIndex = $DomHandler.index(cell);
+        var cellIndex = $getIndex(cell);
         let nextCell = cells[event.which === 40 ? cellIndex + 3 : cellIndex - 3];
         if (nextCell) {
           nextCell.tabIndex = '0';
@@ -1657,7 +1692,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
       case 40: {
         cell.tabIndex = '-1';
         var cells = cell.parentElement.children;
-        var cellIndex = $DomHandler.index(cell);
+        var cellIndex = $getIndex(cell);
         let nextCell = cells[event.which === 40 ? cellIndex + 2 : cellIndex - 2];
         if (nextCell) {
           nextCell.tabIndex = '0';
@@ -1737,11 +1772,11 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
       } else {
         let prevMonthContainer = this.contentViewChild.nativeElement.children[groupIndex - 1];
         if (focusKey) {
-          const firstDayCell = $DomHandler.findSingle(prevMonthContainer, focusKey);
+          const firstDayCell = <any>$findSingle(prevMonthContainer, focusKey);
           firstDayCell.tabIndex = '0';
           firstDayCell.focus();
         } else {
-          let cells = $DomHandler.find(prevMonthContainer, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
+          let cells = <any>$find(prevMonthContainer, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
           let focusCell = cells[cells.length - 1];
           focusCell.tabIndex = '0';
           focusCell.focus();
@@ -1755,11 +1790,11 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
       } else {
         let nextMonthContainer = this.contentViewChild.nativeElement.children[groupIndex + 1];
         if (focusKey) {
-          const firstDayCell = $DomHandler.findSingle(nextMonthContainer, focusKey);
+          const firstDayCell = <any>$findSingle(nextMonthContainer, focusKey);
           firstDayCell.tabIndex = '0';
           firstDayCell.focus();
         } else {
-          let focusCell = $DomHandler.findSingle(nextMonthContainer, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
+          let focusCell = <any>$findSingle(nextMonthContainer, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
           focusCell.tabIndex = '0';
           focusCell.focus();
         }
@@ -1774,18 +1809,18 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
       if (this.navigationState.button) {
         this.initFocusableCell();
 
-        if (this.navigationState.backward) $DomHandler.findSingle(this.contentViewChild.nativeElement, '.p-datepicker-prev').focus();
-        else $DomHandler.findSingle(this.contentViewChild.nativeElement, '.p-datepicker-next')?.focus();
+        if (this.navigationState.backward) ($findSingle(this.contentViewChild.nativeElement, '.p-datepicker-prev-button') as any).focus();
+        else ($findSingle(this.contentViewChild.nativeElement, '.p-datepicker-next-button') as any).focus();
       } else {
         if (this.navigationState.backward) {
           let cells;
 
           if (this.currentView === 'month') {
-            cells = $DomHandler.find(this.contentViewChild.nativeElement, '.p-monthpicker .p-monthpicker-month:not(.p-disabled)');
+            cells = $find(this.contentViewChild.nativeElement, '.p-monthpicker .p-monthpicker-month:not(.p-disabled)');
           } else if (this.currentView === 'year') {
-            cells = $DomHandler.find(this.contentViewChild.nativeElement, '.p-yearpicker .p-yearpicker-year:not(.p-disabled)');
+            cells = $find(this.contentViewChild.nativeElement, '.p-yearpicker .p-yearpicker-year:not(.p-disabled)');
           } else {
-            cells = $DomHandler.find(this.contentViewChild.nativeElement, this._focusKey || '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
+            cells = $find(this.contentViewChild.nativeElement, this._focusKey || '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
           }
 
           if (cells && cells.length > 0) {
@@ -1793,11 +1828,11 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
           }
         } else {
           if (this.currentView === 'month') {
-            cell = $DomHandler.findSingle(this.contentViewChild.nativeElement, '.p-monthpicker .p-monthpicker-month:not(.p-disabled)');
+            cell = $findSingle(this.contentViewChild.nativeElement, '.p-monthpicker .p-monthpicker-month:not(.p-disabled)');
           } else if (this.currentView === 'year') {
-            cell = $DomHandler.findSingle(this.contentViewChild.nativeElement, '.p-yearpicker .p-yearpicker-year:not(.p-disabled)');
+            cell = $findSingle(this.contentViewChild.nativeElement, '.p-yearpicker .p-yearpicker-year:not(.p-disabled)');
           } else {
-            cell = $DomHandler.findSingle(this.contentViewChild.nativeElement, this._focusKey || '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
+            cell = $findSingle(this.contentViewChild.nativeElement, this._focusKey || '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
           }
         }
 
@@ -1812,7 +1847,6 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     } else {
       this.initFocusableCell();
     }
-    this.alignOverlay();
   }
 
   initFocusableCell() {
@@ -1820,31 +1854,31 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     let cell!: any;
 
     if (this.currentView === 'month') {
-      let cells = $DomHandler.find(contentEl, '.p-monthpicker .p-monthpicker-month:not(.p-disabled)');
-      let selectedCell = $DomHandler.findSingle(contentEl, '.p-monthpicker .p-monthpicker-month.p-highlight');
-      cells.forEach((cell) => (cell.tabIndex = -1));
+      let cells = $find(contentEl, '.p-monthpicker .p-monthpicker-month:not(.p-disabled)');
+      let selectedCell = <any>$findSingle(contentEl, '.p-monthpicker .p-monthpicker-month.p-highlight');
+      cells.forEach((cell: any) => (cell.tabIndex = -1));
       cell = selectedCell || cells[0];
 
       if (cells.length === 0) {
-        let disabledCells = $DomHandler.find(contentEl, '.p-monthpicker .p-monthpicker-month.p-disabled[tabindex = "0"]');
-        disabledCells.forEach((cell) => (cell.tabIndex = -1));
+        let disabledCells = $find(contentEl, '.p-monthpicker .p-monthpicker-month.p-disabled[tabindex = "0"]');
+        disabledCells.forEach((cell: any) => (cell.tabIndex = -1));
       }
     } else if (this.currentView === 'year') {
-      let cells = $DomHandler.find(contentEl, '.p-yearpicker .p-yearpicker-year:not(.p-disabled)');
-      let selectedCell = $DomHandler.findSingle(contentEl, '.p-yearpicker .p-yearpicker-year.p-highlight');
-      cells.forEach((cell) => (cell.tabIndex = -1));
+      let cells = $find(contentEl, '.p-yearpicker .p-yearpicker-year:not(.p-disabled)');
+      let selectedCell = $findSingle(contentEl, '.p-yearpicker .p-yearpicker-year.p-highlight');
+      cells.forEach((cell: any) => (cell.tabIndex = -1));
       cell = selectedCell || cells[0];
 
       if (cells.length === 0) {
-        let disabledCells = $DomHandler.find(contentEl, '.p-yearpicker .p-yearpicker-year.p-disabled[tabindex = "0"]');
-        disabledCells.forEach((cell) => (cell.tabIndex = -1));
+        let disabledCells = $find(contentEl, '.p-yearpicker .p-yearpicker-year.p-disabled[tabindex = "0"]');
+        disabledCells.forEach((cell: any) => (cell.tabIndex = -1));
       }
     } else {
-      cell = $DomHandler.findSingle(contentEl, 'span.p-highlight');
+      cell = $findSingle(contentEl, 'span.p-highlight');
       if (!cell) {
-        let todayCell = $DomHandler.findSingle(contentEl, 'td.p-datepicker-today span:not(.p-disabled):not(.p-ink)');
+        let todayCell = $findSingle(contentEl, 'td.p-datepicker-today span:not(.p-disabled):not(.p-ink)');
         if (todayCell) cell = todayCell;
-        else cell = $DomHandler.findSingle(contentEl, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
+        else cell = $findSingle(contentEl, '.p-datepicker-calendar td span:not(.p-disabled):not(.p-ink)');
       }
     }
 
@@ -1864,7 +1898,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
   }
 
   trapFocus(event: any) {
-    let focusableElements = $DomHandler.getFocusableElements(this.contentViewChild.nativeElement);
+    let focusableElements = <any>$getFocusableElements(this.contentViewChild.nativeElement);
 
     if (focusableElements && focusableElements.length > 0) {
       if (!focusableElements[0].ownerDocument.activeElement) {
@@ -2042,10 +2076,6 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
 
   toggleAMPMIfNotMinDate(newPM: boolean) {
     let value = this.value;
-
-    if ((this.selectionMode == 'range' || this.selectionMode == 'multiple') && Array.isArray(value) && value.length > 0) {
-      value = value[value.length - 1];
-    }
     const valueDateString = value ? value[this.getEqualProp('toDateString')]() : null;
     let isMinDate = this.minDate && valueDateString && this.minDate[this.getEqualProp('toDateString')]() === valueDateString;
     if (isMinDate && this.minDate[this.getEqualProp('getHours')]() >= 12) {
@@ -2184,7 +2214,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     }
 
     this.updateModel(value);
-    this.onSelect.emit(value as any);
+    this.onSelect.emit(value);
     this.updateInputfield();
   }
 
@@ -2295,13 +2325,13 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
   }
 
   isValidDate(date: any) {
-    return (this.isJalali ? (this.getEqualDateObj(date) as Moment).isValid() : $ObjectUtils.isDate(date)) && $ObjectUtils.isNotEmpty(date);
+    return (this.isJalali ? (this.getEqualDateObj(date) as Moment).isValid() : $isDate(date)) && $isNotEmpty(date);
   }
 
   updateUI() {
     let propValue = this.value;
     if (Array.isArray(propValue)) {
-      propValue = propValue[1] || propValue[0];
+      propValue = propValue.length === 2 ? propValue[1] : propValue[0];
     }
 
     let val: Date | Moment = this.defaultDate && this.isValidDate(this.defaultDate) && !this.value ? this.defaultDate : propValue && this.isValidDate(propValue) ? propValue : this.getEqualDateObj();
@@ -2359,6 +2389,10 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
         if (!this.inline) {
           this.overlay = event.element;
           this.overlay?.setAttribute(this.attributeSelector as string, '');
+
+          const styles = !this.inline ? {position: 'absolute', top: '0', left: '0'} : undefined;
+          $addStyle(this.overlay, styles);
+
           this.appendOverlay();
           this.updateFocus();
           if (this.autoZIndex) {
@@ -2400,7 +2434,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
   appendOverlay() {
     if (this.appendTo) {
       if (this.appendTo === 'body') this.document.body.appendChild(<HTMLElement>this.overlay);
-      else $DomHandler.appendChild(this.overlay, this.appendTo);
+      else $appendChild(this.appendTo, this.overlay);
     }
   }
 
@@ -2417,20 +2451,19 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
       if (this.appendTo) {
         if (this.view === 'date') {
           if (!this.overlay.style.width) {
-            this.overlay.style.width = $DomHandler.getOuterWidth(this.overlay) + 'px';
+            this.overlay.style.width = $getOuterWidth(this.overlay) + 'px';
           }
           if (!this.overlay.style.minWidth) {
-            this.overlay.style.minWidth = $DomHandler.getOuterWidth(this.inputfieldViewChild?.nativeElement) + 'px';
+            this.overlay.style.minWidth = $getOuterWidth(this.inputfieldViewChild?.nativeElement) + 'px';
           }
         } else {
           if (!this.overlay.style.width) {
-            this.overlay.style.width = $DomHandler.getOuterWidth(this.inputfieldViewChild?.nativeElement) + 'px';
+            this.overlay.style.width = $getOuterWidth(this.inputfieldViewChild?.nativeElement) + 'px';
           }
         }
-
-        $DomHandler.absolutePosition(this.overlay, this.inputfieldViewChild?.nativeElement);
+        $absolutePosition(this.overlay, this.inputfieldViewChild?.nativeElement);
       } else {
-        $DomHandler.relativePosition(this.overlay, this.inputfieldViewChild?.nativeElement);
+        $relativePosition(this.overlay, this.inputfieldViewChild?.nativeElement);
       }
     }
   }
@@ -2439,21 +2472,21 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     if (!this.mask && this.touchUI) {
       this.mask = this.renderer.createElement('div');
       this.renderer.setStyle(this.mask, 'zIndex', String(parseInt(element.style.zIndex) - 1));
-      let maskStyleClass = 'p-component-overlay p-datepicker-mask p-datepicker-mask-scrollblocker p-component-overlay p-component-overlay-enter';
-      $DomHandler.addMultipleClasses(this.mask, maskStyleClass);
+      let maskStyleClass = 'p-overlay-mask p-datepicker-mask p-datepicker-mask-scrollblocker p-overlay-mask p-overlay-mask-enter';
+      $addClass(this.mask, maskStyleClass);
 
       this.maskClickListener = this.renderer.listen(this.mask, 'click', (event: any) => {
         this.disableModality();
         this.overlayVisible = false;
       });
       this.renderer.appendChild(this.document.body, this.mask);
-      $DomHandler.blockBodyScroll();
+      $blockBodyScroll();
     }
   }
 
   disableModality() {
     if (this.mask) {
-      $DomHandler.addClass(this.mask, 'p-component-overlay-leave');
+      $addClass(this.mask, 'p-overlay-mask-leave');
       if (!this.animationEndListener) {
         this.animationEndListener = this.renderer.listen(this.mask, 'animationend', this.destroyMask.bind(this));
       }
@@ -2469,14 +2502,14 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     let hasBlockerMasks!: boolean;
     for (let i = 0; i < bodyChildren.length; i++) {
       let bodyChild = bodyChildren[i];
-      if ($DomHandler.hasClass(bodyChild, 'p-datepicker-mask-scrollblocker')) {
+      if ($hasClass(bodyChild, 'p-datepicker-mask-scrollblocker')) {
         hasBlockerMasks = true;
         break;
       }
     }
 
     if (!hasBlockerMasks) {
-      $DomHandler.unblockBodyScroll();
+      $unblockBodyScroll();
     }
 
     this.unbindAnimationEndListener();
@@ -2867,7 +2900,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     if (this.keepInvalid) {
       return true; // If we are keeping invalid dates, we don't need to check for time constraints
     }
-    return (!this.minDate || selectedDate[this.getEqualProp('getTime')]() >= this.minDate[this.getEqualProp('getTime')]()) && (!this.maxDate || selectedDate[this.getEqualProp('getTime')]() <= this.maxDate[this.getEqualProp('getTime')]());
+    return (!this.minDate || (this.isJalali ? ((this.minDate as Moment).isBefore(selectedDate)) : (selectedDate >= this.minDate))) && (!this.maxDate || (this.isJalali ? ((this.maxDate as Moment).isAfter(selectedDate)) : (selectedDate <= this.maxDate)));
   }
 
   onTodayButtonClick(event: any) {
@@ -2898,7 +2931,6 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
       if (!this.responsiveStyleElement) {
         this.responsiveStyleElement = this.renderer.createElement('style');
         (<HTMLStyleElement>this.responsiveStyleElement).type = 'text/css';
-        $DomHandler.setAttribute(this.responsiveStyleElement, 'nonce', this.config?.csp()?.nonce);
         this.renderer.appendChild(this.document.body, this.responsiveStyleElement);
       }
 
@@ -2931,6 +2963,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
       }
 
       (<HTMLStyleElement>this.responsiveStyleElement).innerHTML = innerHTML;
+      $setAttribute(this.responsiveStyleElement, 'nonce', this.config?.csp()?.nonce);
     }
   }
 
@@ -3002,14 +3035,12 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     return !(this.el.nativeElement.isSameNode(event.target) || this.isNavIconClicked(event) || this.el.nativeElement.contains(event.target) || (this.overlay && this.overlay.contains(<Node>event.target)));
   }
 
-  isNavIconClicked(event: Event) {
-    return (
-      $DomHandler.hasClass(event.target, 'p-datepicker-prev') || $DomHandler.hasClass(event.target, 'p-datepicker-prev-icon') || $DomHandler.hasClass(event.target, 'p-datepicker-next') || $DomHandler.hasClass(event.target, 'p-datepicker-next-icon')
-    );
+  isNavIconClicked(event: any) {
+    return $hasClass(event.target, 'p-datepicker-prev-button') || $hasClass(event.target, 'p-datepicker-prev-icon') || $hasClass(event.target, 'p-datepicker-next-button') || $hasClass(event.target, 'p-datepicker-next-icon');
   }
 
   onWindowResize() {
-    if (this.overlayVisible && !$DomHandler.isTouchDevice()) {
+    if (this.overlayVisible && !$isTouchDevice()) {
       this.hideOverlay();
     }
   }
@@ -3027,7 +3058,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     this.overlay = null;
   }
 
-  ngOnDestroy() {
+  override ngOnDestroy() {
     if (this.scrollHandler) {
       this.scrollHandler.destroy();
       this.scrollHandler = null;
@@ -3045,5 +3076,7 @@ export class DatepickerBaseComponent implements OnInit, AfterViewInit, AfterCont
     this.clearTimePickerTimer();
     this.restoreOverlayAppend();
     this.onOverlayHide();
+
+    super.ngOnDestroy();
   }
 }

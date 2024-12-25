@@ -6,7 +6,7 @@ import {
   $ConfirmDialogModule,
   $ConfirmPopupModule,
   $DialogModule,
-  $DynamicDialogModule,
+  $DynamicDialog,
   $ToastModule
 } from "@powell/primeng";
 import {SafeModule} from "@powell/pipes/safe";
@@ -14,9 +14,8 @@ import {ButtonModule} from "@powell/components/button";
 import {AutoCompleteModule} from "@powell/components/auto-complete";
 import {CascadeSelectModule} from "@powell/components/cascade-select";
 import {CheckboxModule} from "@powell/components/checkbox";
-import {ChipsModule} from "@powell/components/chips";
 import {ColorPickerModule} from "@powell/components/color-picker";
-import {DropdownModule} from "@powell/components/dropdown";
+import {SelectModule} from "@powell/components/select";
 import {DualLabelSwitchModule} from "@powell/components/dual-label-switch";
 import {EditorModule} from "@powell/components/editor";
 import {FilePickerModule} from "@powell/components/file-picker";
@@ -44,7 +43,6 @@ import {SwitchModule} from "@powell/components/switch";
 import {ToggleButtonModule} from "@powell/components/toggle-button";
 import {TreeModule} from "@powell/components/tree";
 import {TreeSelectModule} from "@powell/components/tree-select";
-import {TriStateCheckboxModule} from "@powell/components/tri-state-checkbox";
 
 @NgModule({
   declarations: [
@@ -64,9 +62,8 @@ import {TriStateCheckboxModule} from "@powell/components/tri-state-checkbox";
     ButtonModule,
     CascadeSelectModule,
     CheckboxModule,
-    ChipsModule,
     ColorPickerModule,
-    DropdownModule,
+    SelectModule,
     DualLabelSwitchModule,
     EditorModule,
     FilePickerModule,
@@ -94,10 +91,9 @@ import {TriStateCheckboxModule} from "@powell/components/tri-state-checkbox";
     ToggleButtonModule,
     TreeModule,
     TreeSelectModule,
-    TriStateCheckboxModule
   ],
   exports: [
-    $DynamicDialogModule,
+    $DynamicDialog,
     $DialogModule,
   ],
 })

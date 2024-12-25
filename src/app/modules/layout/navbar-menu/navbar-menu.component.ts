@@ -7,7 +7,7 @@ import {globalConfig} from "@core/config";
 import {
   $AvatarModule,
   $DividerModule,
-  $DropdownChangeEvent,
+  $SelectChangeEvent,
   $MenubarModule,
   $MenuItem,
   $MenuModule,
@@ -16,7 +16,7 @@ import {
 } from "@powell/primeng";
 import {ButtonModule} from "@powell/components/button";
 import {InputTextModule} from "@powell/components/input-text";
-import {DropdownModule} from "@powell/components/dropdown";
+import {SelectModule} from "@powell/components/select";
 import {SwitchModule} from "@powell/components/switch";
 import {FilterModule} from "@powell/pipes/filter";
 import {TranslateModule} from "@ngx-translate/core";
@@ -24,6 +24,7 @@ import {FormsModule} from "@angular/forms";
 import {LogoComponent} from "@modules/layout/logo/logo.component";
 import {routes} from "@modules/main/pages/showcase/showcase-routing.module";
 import {lastValueFrom} from "rxjs";
+import {NgConfig} from "@powell/models";
 
 @Component({
   selector: 'ng-navbar-menu',
@@ -40,7 +41,7 @@ import {lastValueFrom} from "rxjs";
     $DividerModule,
     ButtonModule,
     InputTextModule,
-    DropdownModule,
+    SelectModule,
     SwitchModule,
     FilterModule,
     TranslateModule,
@@ -115,11 +116,11 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     this.configService.update({[config]: value});
   }
 
-  async changeLang(event: $DropdownChangeEvent) {
+  async changeLang(event: $SelectChangeEvent) {
     await lastValueFrom(this.translationService.use(event.value));
   }
 
-  changeSidebarType(event: $DropdownChangeEvent | SidebarType, assign: boolean) {
+  changeSidebarType(event: $SelectChangeEvent | SidebarType, assign: boolean) {
     this.tempSidebarType = typeof event === 'string' ? event : event.value;
     if (assign) {
       this.sidebarType = this.tempSidebarType;

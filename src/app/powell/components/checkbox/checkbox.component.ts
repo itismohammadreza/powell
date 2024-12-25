@@ -69,7 +69,6 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   @Input() inputId: string = $UniqueComponentId();
   @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() labelStyleClass: string;
   @Input() checkboxIcon: string;
   @Input() readonly: boolean = false;
   @Input() autofocus: boolean = false;

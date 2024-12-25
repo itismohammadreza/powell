@@ -3,18 +3,18 @@ import {DOCUMENT} from "@angular/common";
 import {Subject, takeUntil} from "rxjs";
 import {NgConfig, NgConfigChangeEvent} from "@powell/models";
 import {ThemeService} from "@powell/api";
-import {$PrimeNGConfig} from "@powell/primeng";
+import {$Aura, $PrimeNG} from "@powell/primeng";
 
 // DON'T provide anywhere. will provide automatically after `providePowell` call.
 @Injectable()
 export class ConfigService {
   private document = inject(DOCUMENT);
-  private primengConfig = inject($PrimeNGConfig);
+  private primeNG = inject($PrimeNG);
   private themeService = inject(ThemeService);
 
   constructor() {
     // set default ripple to true, so 'ink' element will present in rippleable elements.
-    this.primengConfig.ripple = true;
+    this.primeNG.ripple.set(true);
   }
 
   private configChangeSubject = new Subject<NgConfigChangeEvent>();
@@ -26,24 +26,38 @@ export class ConfigService {
     labelPos: 'fix-side',
     inputSize: 'sm',
     showRequiredStar: true,
-    theme: 'lara-light-indigo',
-    ...this.primengConfig,
-    inputStyle: this.primengConfig.inputStyle(),
-    csp: this.primengConfig.csp(),
+    ...this.primeNG,
+    theme: {
+      preset: $Aura,
+      options: {
+        options: {
+          cssLayer: {
+            name: 'primeng',
+            order: 'tailwind-base, primeng, tailwind-components, tailwind-utilities'
+          }
+        }
+      }
+    },
+    ripple: this.primeNG.ripple(),
+    inputStyle: this.primeNG.inputStyle(),
+    csp: this.primeNG.csp(),
   };
 
   update(config: NgConfig) {
     this._config = {...this._config, ...config};
-    this.primengConfig.zIndex = this._config.zIndex;
-    this.primengConfig.overlayOptions = this._config.overlayOptions;
+    this.primeNG.zIndex = this._config.zIndex;
+    this.primeNG.overlayOptions = this._config.overlayOptions;
     if (this._config.translation) {
-      this.primengConfig.setTranslation(this._config.translation);
+      this.primeNG.setTranslation(this._config.translation);
+    }
+    if (this._config.theme) {
+      this.primeNG.theme.set(this._config.theme);
     }
     if (this._config.csp) {
-      this.primengConfig.csp.set(this._config.csp);
+      this.primeNG.csp.set(this._config.csp);
     }
     if (this._config.inputStyle) {
-      this.primengConfig.inputStyle.set(this._config.inputStyle);
+      this.primeNG.inputStyle.set(this._config.inputStyle);
     }
     if (this._config.ripple === false) {
       this.document.body.classList.add('p-ripple-disabled');
@@ -52,7 +66,7 @@ export class ConfigService {
     }
     this.document.documentElement.setAttribute('dir', this._config.rtl ? 'rtl' : 'ltr');
     this.themeService.initTheme();
-    this.themeService.changeTheme(this._config.theme);
+    // this.themeService.changeTheme(this._config.theme);
     this.handleBodyClasses();
     this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
   }

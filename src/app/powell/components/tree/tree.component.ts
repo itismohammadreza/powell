@@ -92,7 +92,6 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() contextMenu: any;
-  @Input() layout: NgOrientation = 'vertical';
   @Input() draggableScope: any;
   @Input() droppableScope: any;
   @Input() draggableNodes: boolean = false;

@@ -40,11 +40,6 @@ export const routes: Routes = [
     title: 'Checkbox Group'
   },
   {
-    path: 'chips',
-    loadComponent: () => import('./pages/chips').then(m => m.ChipsPage),
-    title: 'Chips'
-  },
-  {
     path: 'color-picker',
     loadComponent: () => import('./pages/color-picker').then(m => m.ColorPickerPage),
     title: 'Color Picker'
@@ -77,11 +72,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/dialog-form').then(m => m.DialogFormPage),
     canDeactivate: [openDialogGuard],
     title: 'Dialog Form'
-  },
-  {
-    path: 'dropdown',
-    loadComponent: () => import('./pages/dropdown').then(m => m.DropdownPage),
-    title: 'Dropdown'
   },
   {
     path: 'dual-label-switch',
@@ -194,6 +184,11 @@ export const routes: Routes = [
     title: 'Rating'
   },
   {
+    path: 'select',
+    loadComponent: () => import('./pages/select').then(m => m.SelectPage),
+    title: 'Select'
+  },
+  {
     path: 'select-button',
     loadComponent: () => import('./pages/select-button').then(m => m.SelectButtonPage),
     title: 'Select Button'
@@ -238,11 +233,6 @@ export const routes: Routes = [
     path: 'tree-select',
     loadComponent: () => import('./pages/tree-select').then(m => m.TreeSelectPage),
     title: 'Tree Select'
-  },
-  {
-    path: 'tri-state-checkbox',
-    loadComponent: () => import('./pages/tri-state-checkbox').then(m => m.TriStateCheckboxPage),
-    title: 'Tri State Checkbox'
   },
   {
     path: 'utils',

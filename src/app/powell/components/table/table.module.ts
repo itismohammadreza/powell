@@ -8,7 +8,7 @@ import {ImageModule} from "@powell/components/image";
 import {DatepickerModule} from "@powell/components/datepicker";
 import {CheckboxModule} from "@powell/components/checkbox";
 import {SliderModule} from "@powell/components/slider";
-import {DropdownModule} from "@powell/components/dropdown";
+import {SelectModule} from "@powell/components/select";
 import {MultiSelectModule} from "@powell/components/multi-select";
 import {InputNumberModule} from "@powell/components/input-number";
 import {FormsModule} from "@angular/forms";
@@ -28,7 +28,7 @@ import {TemplateModule} from "@powell/directives/template";
     ButtonModule,
     DatepickerModule,
     SliderModule,
-    DropdownModule,
+    SelectModule,
     CheckboxModule,
     ImageModule,
     CommonModule,
