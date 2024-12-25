@@ -2,20 +2,21 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {AddonModule} from "@powell/directives/addon";
-import {InputTextareaComponent} from "@powell/components/input-textarea";
+import {SelectComponent} from "@powell/components/select";
 import {LabelStarModule} from "@powell/pipes/label-star";
-import {$TextareaModule} from "@powell/primeng";
+import {$SelectModule} from "@powell/primeng";
+import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
-  declarations: [InputTextareaComponent],
-  exports: [InputTextareaComponent],
+  declarations: [SelectComponent],
+  exports: [SelectComponent, TemplateModule],
   imports: [
-    $TextareaModule,
+    $SelectModule,
     CommonModule,
     FormsModule,
     LabelStarModule,
     AddonModule
   ],
 })
-export class InputTextareaModule {
+export class SelectModule {
 }

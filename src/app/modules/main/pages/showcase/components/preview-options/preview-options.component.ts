@@ -40,7 +40,7 @@ import {
   NgToastPosition,
   NgTreeSelectionMode
 } from '@powell/models';
-import {DropdownComponent} from '@powell/components/dropdown';
+import {SelectComponent} from '@powell/components/select';
 import {InputTextComponent} from '@powell/components/input-text';
 import {CheckboxComponent} from '@powell/components/checkbox';
 import {DestroyService, TranslationService} from "@core/utils";
@@ -73,7 +73,6 @@ type PreviewItem =
   | 'full'
   | 'badge'
   | 'rounded'
-  | 'plain'
   | 'raised'
   | 'appearance'
   | 'severity'
@@ -200,7 +199,6 @@ type PreviewItem =
   | 'propagateSelectionUp'
   | 'propagateSelectionDown'
   | 'indentation'
-  | 'layout'
   | 'status'
   | 'text'
   | 'subText'
@@ -341,8 +339,6 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() badgeChange = new EventEmitter()
   @Input() rounded: boolean;
   @Output() roundedChange = new EventEmitter()
-  @Input() plain: boolean;
-  @Output() plainChange = new EventEmitter()
   @Input() raised: boolean;
   @Output() raisedChange = new EventEmitter()
   @Input() appearance: NgButtonAppearance;
@@ -527,8 +523,6 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() clearMarkerOnClickChange = new EventEmitter()
   @Input() stars: number;
   @Output() starsChange = new EventEmitter()
-  @Input() cancel: boolean;
-  @Output() cancelChange = new EventEmitter()
   @Input() iconOnClass: string;
   @Output() iconOnClassChange = new EventEmitter()
   @Input() iconOffClass: string;
@@ -780,7 +774,6 @@ export class PreviewOptionsComponent implements OnInit {
       labelPos: ['fix-side', 'fix-top', 'float'],
       selectionMode: ['none', 'single', 'multiple', 'checkbox'],
       orientation: ['horizontal', 'vertical'],
-      layout: ['horizontal', 'vertical'],
       dropdownMode: ['blank', 'current'],
       severity: ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'help', 'contrast'],
       newSeverity: ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'help', 'contrast'],
@@ -816,7 +809,7 @@ export class PreviewOptionsComponent implements OnInit {
     };
     for (const item of this.previewItems) {
       if (Object.keys(dropdownData).includes(item)) {
-        const cmpRef = this.createComponent(DropdownComponent, item, 'firstRow');
+        const cmpRef = this.createComponent(SelectComponent, item, 'firstRow');
         cmpRef.instance.options = dropdownData[item].map(v => ({label: v, value: v}));
       } else if (typeof this[item] === 'string' || typeof this[item] === 'number') {
         this.createComponent(InputTextComponent, item, 'firstRow');
@@ -863,7 +856,7 @@ export class PreviewOptionsComponent implements OnInit {
       cmpRef.instance.label = res;
     })
     switch (cmp) {
-      case DropdownComponent:
+      case SelectComponent:
         if (previewItem == 'addon') {
           cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
             switch (event.value) {

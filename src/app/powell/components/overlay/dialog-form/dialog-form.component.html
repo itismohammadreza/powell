@@ -49,14 +49,6 @@
             [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
-        @case ('chips') {
-          <ng-chips
-            [formControlName]="config.key"
-            [ngClass]="config.className"
-            [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
-            [disabled]="handleConfigDisable(config)"/>
-        }
         @case ('color-picker') {
           <ng-color-picker
             [formControlName]="config.key"
@@ -65,8 +57,8 @@
             [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
-        @case ('dropdown') {
-          <ng-dropdown
+        @case ('select') {
+          <ng-select
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
@@ -279,14 +271,6 @@
         }
         @case ('tree-select') {
           <ng-tree-select
-            [formControlName]="config.key"
-            [ngClass]="config.className"
-            [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
-            [disabled]="handleConfigDisable(config)"/>
-        }
-        @case ('tri-state-checkbox') {
-          <ng-tri-state-checkbox
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"

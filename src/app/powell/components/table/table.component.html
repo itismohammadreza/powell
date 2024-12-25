@@ -177,15 +177,15 @@
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
                         </ng-multi-select>
                       }
-                      @case ('dropdown') {
-                        <ng-dropdown
+                      @case ('select') {
+                        <ng-select
                           [value]="value"
                           [options]="filter.options"
                           [optionLabel]="filter.optionLabel"
                           [optionValue]="filter.optionValue"
                           [placeholder]="filter.placeholder"
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-dropdown>
+                        </ng-select>
                       }
                       @case ('slider') {
                         <ng-slider
@@ -303,15 +303,15 @@
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
                         </ng-multi-select>
                       }
-                      @case ('dropdown') {
-                        <ng-dropdown
+                      @case ('select') {
+                        <ng-select
                           [value]="value"
                           [options]="filter.options"
                           [optionLabel]="filter.optionLabel"
                           [optionValue]="filter.optionValue"
                           [placeholder]="filter.placeholder"
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-dropdown>
+                        </ng-select>
                       }
                       @case ('slider') {
                         <ng-slider

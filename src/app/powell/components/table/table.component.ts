@@ -452,7 +452,7 @@ export class TableComponent implements OnInit, AfterContentInit {
         filterValue = inputElement.value;
         break;
       case 'multi-select':
-      case 'dropdown':
+      case 'select':
         filterValue = event.value;
         break;
       case 'boolean':

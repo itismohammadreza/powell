@@ -14,6 +14,5 @@ export const globalConfig: GlobalConfig = {
     inputSize: 'sm',
     inputStyle: 'outlined',
     showRequiredStar: true,
-    theme: 'aura-light-blue',
   }
 };

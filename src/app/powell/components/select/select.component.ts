@@ -26,40 +26,43 @@ import {
 import {takeUntil} from "rxjs";
 import {
   NgAddon,
+  NgAsyncEvent,
   NgCssObject,
+  NgFilterMatchMode,
   NgIconPosition,
   NgInputVariant,
   NgLabelPosition,
+  NgPosition,
   NgSize,
   NgValidation
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
-import {DestroyService} from "@core/utils";
 import {
-  $CascadeSelectBeforeHideEvent,
-  $CascadeSelectBeforeShowEvent,
-  $CascadeSelectHideEvent,
-  $CascadeSelectShowEvent,
+  $SelectChangeEvent,
+  $SelectFilterEvent,
+  $SelectLazyLoadEvent,
   $OverlayOptions,
+  $ScrollerOptions,
   $UniqueComponentId
 } from "@powell/primeng";
+import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-cascade-select',
-  templateUrl: './cascade-select.component.html',
-  styleUrls: ['./cascade-select.component.scss'],
+  selector: 'ng-select',
+  templateUrl: './select.component.html',
+  styleUrls: ['./select.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CascadeSelectComponent),
-      multi: true
+      useExisting: forwardRef(() => SelectComponent),
+      multi: true,
     },
     DestroyService
   ],
   standalone: false
 })
-export class CascadeSelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
+export class SelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
   private injector = inject(Injector);
   private configService = inject(ConfigService);
@@ -77,57 +80,87 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() inputSize: NgSize;
+  @Input() async: boolean;
   @Input() followConfig: boolean;
   // native properties
   @Input() id: string;
-  @Input() selectOnFocus: boolean = false;
-  @Input() searchMessage: string;
-  @Input() emptyMessage: string;
-  @Input() selectionMessage: string;
-  @Input() emptySearchMessage: string;
-  @Input() emptySelectionMessage: string;
-  @Input() searchLocale: string;
-  @Input() optionDisabled: any;
-  @Input() autoOptionFocus: boolean = true;
-  @Input() styleClass: string;
+  @Input() scrollHeight: string = '200px';
+  @Input() filter: boolean = false;
+  @Input() name: string;
   @Input() style: NgCssObject;
-  @Input() options: any[];
+  @Input() panelStyle: NgCssObject;
+  @Input() styleClass: string;
+  @Input() panelStyleClass: string;
+  @Input() readonly: boolean = false;
+  @Input() editable: boolean = false;
+  @Input() appendTo: any;
+  @Input() tabindex: number;
+  @Input() placeholder: string;
+  @Input() loadingIcon: string;
+  @Input() filterPlaceholder: string;
+  @Input() filterLocale: string;
+  @Input() variant: NgInputVariant;
+  @Input() inputId: string = $UniqueComponentId();
+  @Input() dataKey: string;
+  @Input() filterBy: string;
+  @Input() filterFields: any[];
+  @Input() autofocus: boolean = false;
+  @Input() resetFilterOnHide: boolean = false;
+  @Input() checkmark: boolean = false;
+  @Input() dropdownIcon: string;
+  @Input() loading: boolean;
   @Input() optionLabel: string;
   @Input() optionValue: string;
-  @Input() optionGroupLabel: string;
-  @Input() optionGroupChildren: string;
-  @Input() placeholder: string;
-  @Input() dataKey: string;
-  @Input() inputId: string = $UniqueComponentId();
-  @Input() tabindex: number;
-  @Input() ariaLabelledBy: string;
-  @Input() inputLabel: string;
-  @Input() ariaLabel: string;
-  @Input() appendTo: any;
-  @Input() disabled: boolean;
+  @Input() optionDisabled: string;
+  @Input() optionGroupLabel: string = 'label';
+  @Input() optionGroupChildren: string = 'items';
+  @Input() autoDisplayFirst: boolean = true;
+  @Input() group: boolean = false;
   @Input() showClear: boolean = false;
-  @Input() panelStyleClass: string;
-  @Input() panelStyle: NgCssObject;
+  @Input() emptyFilterMessage: string;
+  @Input() emptyMessage: string;
+  @Input() lazy: boolean = false;
+  @Input() virtualScroll: boolean = false;
+  @Input() virtualScrollItemSize: number;
+  @Input() virtualScrollOptions: $ScrollerOptions;
   @Input() overlayOptions: $OverlayOptions;
-  @Input() autofocus: boolean = false;
+  @Input() ariaFilterLabel: string;
+  @Input() ariaLabel: string;
+  @Input() ariaLabelledBy: string;
+  @Input() filterMatchMode: NgFilterMatchMode = 'contains';
+  @Input() maxlength: number;
+  @Input() tooltip: string;
+  @Input() tooltipPosition: NgPosition = 'right';
+  @Input() tooltipPositionStyle: string = 'absolute';
+  @Input() tooltipStyleClass: string;
+  @Input() focusOnHover: boolean = false;
+  @Input() selectOnFocus: boolean = false;
+  @Input() autoOptionFocus: boolean = true;
+  @Input() autofocusFilter: boolean = true;
+  @Input() disabled: boolean;
+  @Input() itemSize: number;
+  @Input() autoZIndex: boolean;
+  @Input() baseZIndex: number;
   @Input() showTransitionOptions: string;
-  @Input() variant: NgInputVariant;
-  @Input() loading: false;
-  @Input() loadingIcon: string;
   @Input() hideTransitionOptions: string;
-  @Output() onChange = new EventEmitter<any>();
-  @Output() onGroupChange = new EventEmitter<Event>();
-  @Output() onShow = new EventEmitter<$CascadeSelectShowEvent>();
-  @Output() onHide = new EventEmitter<$CascadeSelectHideEvent>();
+  @Input() filterValue: string;
+  @Input() options: any[];
+  @Output() onChange = new EventEmitter<$SelectChangeEvent>();
+  @Output() onFilter = new EventEmitter<$SelectFilterEvent>();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
+  @Output() onClick = new EventEmitter<MouseEvent>();
+  @Output() onShow = new EventEmitter<AnimationEvent>();
+  @Output() onHide = new EventEmitter<AnimationEvent>();
   @Output() onClear = new EventEmitter<void>();
-  @Output() onBeforeShow = new EventEmitter<$CascadeSelectBeforeShowEvent>();
-  @Output() onBeforeHide = new EventEmitter<$CascadeSelectBeforeHideEvent>();
-  @Output() onFocus = new EventEmitter<FocusEvent>();
-  @Output() onBlur = new EventEmitter<FocusEvent>();
+  @Output() onLazyLoad = new EventEmitter<$SelectLazyLoadEvent>();
+  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<$SelectChangeEvent>>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;
   templateMap: Record<string, TemplateRef<any>> = {};
+  _oldValue: string;
+  _newValue: string;
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -159,6 +192,9 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
         });
       }
     }
+    if (this.autoDisplayFirst) {
+      this.onModelChange(this.options[0][this.optionValue])
+    }
     this.configService.applyConfigToComponent(this);
   }
 
@@ -169,23 +205,49 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
     });
   }
 
-  _onChange(event: any) {
-    this.onChange.emit(event);
-    this.onModelChange(event.value);
+  _onChange(event: $SelectChangeEvent) {
+    if (this.async) {
+      this.disabled = true;
+      this._oldValue = this.value;
+      this._newValue = event.value;
+      this.loading = true;
+      this.onChangeAsync.emit({loadingCallback: this.removeLoading, event});
+    } else {
+      this.value = event.value;
+      this.onChange.emit(event);
+      this.onModelChange(event.value);
+    }
   }
 
-  _onBlur(event: FocusEvent) {
+  removeLoading = (ok: boolean = true) => {
+    this.loading = false;
+    this.disabled = false;
+
+    if (ok) {
+      this.value = this._newValue;
+      this.onModelChange(this.value);
+    } else {
+      this.value = null;
+      setTimeout(() => {
+        this.value = this._oldValue + '';
+        this.onModelChange(this.value);
+      }, 0)
+    }
+    this.cd.detectChanges()
+  }
+
+  _onBlur(event: Event) {
     this.onBlur.emit(event);
     this.onModelTouched();
-  }
-
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
   }
 
   _onClear() {
     this.onClear.emit();
     this.onModelChange(null);
+  }
+
+  emitter(name: string, event: any) {
+    (this[name] as EventEmitter<any>).emit(event);
   }
 
   isInvalid() {

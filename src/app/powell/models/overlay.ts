@@ -284,9 +284,7 @@ export type NgDialogFormComponent =
   | 'cascade-select'
   | 'checkbox'
   | 'checkbox-group'
-  | 'chips'
   | 'color-picker'
-  | 'dropdown'
   | 'dual-label-switch'
   | 'editor'
   | 'file-picker'
@@ -307,13 +305,13 @@ export type NgDialogFormComponent =
   | 'multi-select'
   | 'radio'
   | 'rating'
+  | 'select'
   | 'select-button'
   | 'slider'
   | 'switch'
   | 'toggle-button'
   | 'tree'
   | 'tree-select'
-  | 'tri-state-checkbox'
 
 export interface NgDialogFormConfig {
   ///////////////////////////////////////// auto-complete /////////////////////////////////////////
@@ -363,7 +361,7 @@ export interface NgDialogFormConfig {
   onAdd?: (dialogFormEvent?: NgDialogFormEvent) => void;
   onChipClick?: (dialogFormEvent?: NgDialogFormEvent) => void;
   ///////////////////////////////////////// color-picker /////////////////////////////////////////
-  ///////////////////////////////////////// dropdown /////////////////////////////////////////
+  ///////////////////////////////////////// select /////////////////////////////////////////
   editable?: boolean;
   autofocus?: boolean;
   autoDisplayFirst?: boolean;
@@ -749,7 +747,6 @@ export interface NgDialogFormConfig {
   onNodeExpand?: (dialogFormEvent?: NgDialogFormEvent) => void;
   onNodeCollapse?: (dialogFormEvent?: NgDialogFormEvent) => void;
   onClear?: (dialogFormEvent?: NgDialogFormEvent) => void;
-  ///////////////////////////////////////// tri-state-checkbox /////////////////////////////////////////
   value?: any;
   label?: string;
   variant?: NgInputVariant;

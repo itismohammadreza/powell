@@ -15,9 +15,8 @@ import {ButtonComponent} from "@powell/components/button";
 import {CascadeSelectComponent} from "@powell/components/cascade-select";
 import {CheckboxComponent} from "@powell/components/checkbox";
 import {CheckboxGroupComponent} from "@powell/components/checkbox-group";
-import {ChipsComponent} from "@powell/components/chips";
 import {ColorPickerComponent} from "@powell/components/color-picker";
-import {DropdownComponent} from "@powell/components/dropdown";
+import {SelectComponent} from "@powell/components/select";
 import {DualLabelSwitchComponent} from "@powell/components/dual-label-switch";
 import {FilePickerComponent} from "@powell/components/file-picker";
 import {FilePicker2Component} from "@powell/components/file-picker2";
@@ -42,7 +41,6 @@ import {SwitchComponent} from "@powell/components/switch";
 import {ToggleButtonComponent} from "@powell/components/toggle-button";
 import {TreeComponent} from "@powell/components/tree";
 import {TreeSelectComponent} from "@powell/components/tree-select";
-import {TriStateCheckboxComponent} from "@powell/components/tri-state-checkbox";
 import {EditorComponent} from "@powell/components/editor";
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@core/utils";
@@ -64,9 +62,8 @@ export class DialogFormComponent {
   @ViewChild(CascadeSelectComponent) cascadeSelectComponent: CascadeSelectComponent;
   @ViewChild(CheckboxComponent) checkboxComponent: CheckboxComponent;
   @ViewChild(CheckboxGroupComponent) checkboxGroupComponent: CheckboxGroupComponent;
-  @ViewChild(ChipsComponent) chipsComponent: ChipsComponent;
   @ViewChild(ColorPickerComponent) colorPickerComponent: ColorPickerComponent;
-  @ViewChild(DropdownComponent) dropdownComponent: DropdownComponent;
+  @ViewChild(SelectComponent) dropdownComponent: SelectComponent;
   @ViewChild(DualLabelSwitchComponent) dualLabelSwitchComponent: DualLabelSwitchComponent;
   @ViewChild(EditorComponent) editorComponent: EditorComponent;
   @ViewChild(FilePickerComponent) filePickerComponent: FilePickerComponent;
@@ -93,7 +90,6 @@ export class DialogFormComponent {
   @ViewChild(ToggleButtonComponent) toggleButtonComponent: ToggleButtonComponent;
   @ViewChild(TreeComponent) treeComponent: TreeComponent;
   @ViewChild(TreeSelectComponent) treeSelectComponent: TreeSelectComponent;
-  @ViewChild(TriStateCheckboxComponent) triStateCheckboxComponent: TriStateCheckboxComponent;
 
   form: FormGroup = new FormGroup({});
   visible: boolean;
@@ -288,9 +284,8 @@ export class DialogFormComponent {
       'cascade-select': this.cascadeSelectComponent,
       'checkbox': this.checkboxComponent,
       'checkbox-group': this.checkboxGroupComponent,
-      'chips': this.chipsComponent,
       'color-picker': this.colorPickerComponent,
-      'dropdown': this.dropdownComponent,
+      'select': this.dropdownComponent,
       'dual-label-switch': this.dualLabelSwitchComponent,
       'editor': this.editorComponent,
       'file-picker': this.filePickerComponent,
@@ -317,7 +312,6 @@ export class DialogFormComponent {
       'toggle-button': this.toggleButtonComponent,
       'tree': this.treeComponent,
       'tree-select': this.treeSelectComponent,
-      'tri-state-checkbox': this.triStateCheckboxComponent,
     }
     const component = componentsMap[config.component];
     for (const key in config) {

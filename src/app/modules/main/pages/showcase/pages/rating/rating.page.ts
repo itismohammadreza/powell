@@ -36,7 +36,6 @@ export class RatingPage {
   followConfig: boolean = this.configService.get().followConfig;
   // native properties
   stars: number = 5;
-  cancel: boolean = true;
   disabled: boolean = false;
   readonly: boolean = false;
   iconOnClass: string = 'pi pi-star-fill';

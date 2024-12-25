@@ -333,7 +333,7 @@ export class TablePage {
       field: 'status',
       sort: true,
       filter: {
-        type: 'dropdown',
+        type: 'select',
         options: [
           {label: 'Unqualified', value: 'unqualified'},
           {label: 'Qualified', value: 'qualified'},

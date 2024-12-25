@@ -102,7 +102,6 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() virtualScrollOptions: $ScrollerOptions;
   @Input() maxlength: number;
   @Input() name: string;
-  @Input() size: number;
   @Input() appendTo: any;
   @Input() autoHighlight: boolean = false;
   @Input() forceSelection: boolean = false;
