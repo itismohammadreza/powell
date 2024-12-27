@@ -42,10 +42,10 @@
       (click)="configSidebarVisible = !configSidebarVisible" icon="pi pi-cog"/>
   }
 
-  <p-sidebar
+  <p-drawer
     styleClass="w-[20rem]"
     [dismissible]="showBackdrop()"
-    [showCloseIcon]="false"
+    [closable]="false"
     [modal]="showBackdrop()"
     [visible]="sidebarVisible"
     [closeOnEscape]="false"
@@ -79,13 +79,13 @@
       styleClass="[&_.p-menuitem-icon]:!m-0 [&_.p-panelmenu-header-action]:gap-2"
       [multiple]="false"
       [model]="sidebarItems | ngFilter:searchValue:'label'"/>
-  </p-sidebar>
+  </p-drawer>
 </div>
 
-<p-sidebar
+<p-drawer
   position="left"
   [modal]="false"
-  [showCloseIcon]="true"
+  [closable]="true"
   [(visible)]="configSidebarVisible"
   styleClass="!w-[30rem] max-w-full !bg-transparent backdrop-blur-md">
   <p-divider class="[&_.p-divider-content]:rounded-xl" align="center">
@@ -150,25 +150,25 @@
     [value]="config.powellConfig.inputStyle"
     [options]="[{label:'outlined',value:'outlined'},{label:'filled',value:'filled'}]"
     (onChange)="changeGlobalConfig('inputStyle',$event.value)"/>
-  <ng-switch
+  <ng-toggle-switch
     [label]="'showRequiredStar' | translate"
     labelPos="fix-side"
     [labelWidth]="170"
     class="mb-4"
     [value]="config.powellConfig.showRequiredStar"
     (onChange)="changeGlobalConfig('showRequiredStar',$event.checked)"/>
-  <ng-switch
+  <ng-toggle-switch
     [label]="'ripple' | translate"
     labelPos="fix-side"
     [labelWidth]="170"
     class="mb-4"
     [value]="config.powellConfig.ripple"
     (onChange)="changeGlobalConfig('ripple',$event.checked)"/>
-  <ng-switch
+  <ng-toggle-switch
     [label]="'rtl' | translate"
     labelPos="fix-side"
     [labelWidth]="170"
     class="mb-4"
     [value]="config.rtl"
     (onChange)="changeGlobalConfig('rtl',$event.checked)"/>
-</p-sidebar>
+</p-drawer>

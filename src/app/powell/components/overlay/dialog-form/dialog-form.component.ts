@@ -37,7 +37,7 @@ import {RadioComponent} from "@powell/components/radio";
 import {RatingComponent} from "@powell/components/rating";
 import {SelectButtonComponent} from "@powell/components/select-button";
 import {SliderComponent} from "@powell/components/slider";
-import {SwitchComponent} from "@powell/components/switch";
+import {ToggleSwitchComponent} from "@powell/components/toggle-switch";
 import {ToggleButtonComponent} from "@powell/components/toggle-button";
 import {TreeComponent} from "@powell/components/tree";
 import {TreeSelectComponent} from "@powell/components/tree-select";
@@ -86,7 +86,7 @@ export class DialogFormComponent {
   @ViewChild(RatingComponent) ratingComponent: RatingComponent;
   @ViewChild(SelectButtonComponent) selectButtonComponent: SelectButtonComponent;
   @ViewChild(SliderComponent) sliderComponent: SliderComponent;
-  @ViewChild(SwitchComponent) switchComponent: SwitchComponent;
+  @ViewChild(ToggleSwitchComponent) toggleSwitchComponent: ToggleSwitchComponent;
   @ViewChild(ToggleButtonComponent) toggleButtonComponent: ToggleButtonComponent;
   @ViewChild(TreeComponent) treeComponent: TreeComponent;
   @ViewChild(TreeSelectComponent) treeSelectComponent: TreeSelectComponent;
@@ -308,7 +308,7 @@ export class DialogFormComponent {
       'rating': this.ratingComponent,
       'select-button': this.selectButtonComponent,
       'slider': this.sliderComponent,
-      'switch': this.switchComponent,
+      'toggle-switch': this.toggleSwitchComponent,
       'toggle-button': this.toggleButtonComponent,
       'tree': this.treeComponent,
       'tree-select': this.treeSelectComponent,

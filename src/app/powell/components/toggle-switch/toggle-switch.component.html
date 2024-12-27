@@ -3,9 +3,9 @@
       'ltr': !rtl,
       'label-fix-top': labelPos == 'fix-top',
       'label-fix-side': labelPos == 'fix-side'
-    }" class="switch-wrapper">
+    }" class="toggle-switch-wrapper">
   <div class="field">
-    <p-inputSwitch
+    <p-toggleswitch
       [(ngModel)]="value"
       [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
       [style]="style"

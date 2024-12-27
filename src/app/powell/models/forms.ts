@@ -1,4 +1,4 @@
-import {NgButtonAppearance, NgSeverity, NgIconPosition} from '@powell/models';
+import {NgButtonAppearance, NgIconPosition, NgSeverity} from '@powell/models';
 
 export type NgFilePickerMode = 'basic' | 'advanced';
 export type NgFilePickerMethod = 'post' | 'put';
@@ -279,4 +279,9 @@ export interface NgProvince {
   selected: boolean;
   disabled: boolean;
   d: string;
+}
+
+export interface CheckboxGroupChangeEvent {
+  originalEvent: Event;
+  value: any[];
 }

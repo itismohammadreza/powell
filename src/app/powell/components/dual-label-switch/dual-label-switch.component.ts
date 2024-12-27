@@ -22,7 +22,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgAsyncEvent, NgCssObject, NgFixLabelPosition, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
-import {$InputSwitchChangeEvent, $UniqueComponentId} from "@powell/primeng";
+import {$ToggleSwitchChangeEvent, $UniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -71,8 +71,8 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() autofocus: any = false;
-  @Output() onChange = new EventEmitter<$InputSwitchChangeEvent>();
-  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<$InputSwitchChangeEvent>>();
+  @Output() onChange = new EventEmitter<$ToggleSwitchChangeEvent>();
+  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<$ToggleSwitchChangeEvent>>();
 
   loading: boolean;
   ngControl: NgControl;
@@ -118,7 +118,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  _onChange(event: $InputSwitchChangeEvent) {
+  _onChange(event: $ToggleSwitchChangeEvent) {
     if (this.async) {
       this.loading = true;
       this.disabled = true;

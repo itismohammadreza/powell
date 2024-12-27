@@ -245,8 +245,8 @@
             [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
-        @case ('switch') {
-          <ng-switch
+        @case ('toggle-switch') {
+          <ng-toggle-switch
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"

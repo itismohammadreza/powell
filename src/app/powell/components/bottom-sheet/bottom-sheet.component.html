@@ -1,4 +1,4 @@
-<p-sidebar
+<p-drawer
   position="bottom"
   [appendTo]="appendTo"
   [visible]="visible"
@@ -9,20 +9,20 @@
   [autoZIndex]="autoZIndex"
   [modal]="modal"
   [dismissible]="dismissible"
-  [showCloseIcon]="false"
+  [closable]="false"
   [transitionOptions]="transitionOptions"
   [closeOnEscape]="closeOnEscape"
   (onShow)="_onShow()"
   (onHide)="_onHide()">
   <div class="bottom-sheet-wrapper" [ngClass]="{'rtl': rtl, 'ltr': !rtl}">
-    @if (header || showCloseIcon || templateMap.header) {
-      <div class="header" [class.show-close-icon]="showCloseIcon">
+    @if (header || closable || templateMap.header) {
+      <div class="header" [class.show-close-icon]="closable">
         @if (templateMap.header) {
           <ng-container *ngTemplateOutlet="templateMap.header"/>
         } @else {
           <h5>{{ header }}</h5>
         }
-        @if (showCloseIcon) {
+        @if (closable) {
           <ng-button
             [rounded]="true"
             size="sm"
@@ -44,4 +44,4 @@
       </div>
     }
   </div>
-</p-sidebar>
+</p-drawer>
