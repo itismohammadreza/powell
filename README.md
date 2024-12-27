@@ -6,3 +6,6 @@
 ### Feature
 - 
 - implement config change (and read from config) in dialog component
+- implement missing inputs from website
+- implement ifta label and input group base on new syntax
+- remove extra styles for rtl (it supports built in)
