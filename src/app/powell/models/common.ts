@@ -8,7 +8,7 @@ export type NgSeverity =
   | 'danger'
   | 'contrast';
 export type NgDirection = 'rtl' | 'ltr';
-export type NgSize = 'sm' | 'md' | 'lg';
+export type NgSize = 'small' | 'large';
 export type NgOrientation = 'horizontal' | 'vertical';
 export type NgTableSelectionMode = 'single' | 'multiple' | 'checkbox' | 'radio';
 export type NgTreeSelectionMode = Exclude<NgTableSelectionMode, 'radio'>;

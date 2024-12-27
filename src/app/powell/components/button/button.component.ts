@@ -68,7 +68,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   @Input() rounded: boolean;
   @Input() severity: NgSeverity = 'primary';
   @Input() tabindex: number;
-  @Input() size: NgSize = 'md';
+  @Input() size: NgSize;
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() badgeClass: string;

@@ -14,9 +14,7 @@
        [addonSize]="inputSize">
     <div [ngClass]="{
       'p-input-icon-left': icon && iconPos == 'left',
-      'p-input-icon-right': icon && iconPos == 'right',
-      'p-inputtext-sm': inputSize == 'sm',
-      'p-inputtext-lg': inputSize == 'lg'
+      'p-input-icon-right': icon && iconPos == 'right'
     }">
       @if (icon) {
         <i [class.p-disabled]="disabled" [ngClass]="icon"></i>

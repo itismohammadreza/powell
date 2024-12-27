@@ -38,7 +38,7 @@ export class DialogFormPage {
     showHeader: true,
     maximizable: true,
     buttonFull: false,
-    buttonSize: 'md',
+    buttonSize: 'small',
     acceptAppearance: 'basic',
     acceptSeverity: 'primary',
     acceptVisible: true,

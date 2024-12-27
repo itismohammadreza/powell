@@ -42,7 +42,7 @@ export class TablePage {
   private dataService = inject(DataService);
 
   rtl: boolean = this.configService.get().rtl;
-  size: NgSize = 'md';
+  size: NgSize = 'large';
   header: string = 'Customers';
   followConfig: boolean = this.configService.get().followConfig;
   gridlines: boolean = true;

@@ -11,7 +11,7 @@ export class AddonDirective implements OnChanges {
 
   @Input() ngAddon: NgAddon;
   @Input() addonDisabled: boolean;
-  @Input() addonSize: NgSize = 'md';
+  @Input() addonSize: NgSize;
 
   ngOnChanges(changes: SimpleChanges) {
     this.destroy();
