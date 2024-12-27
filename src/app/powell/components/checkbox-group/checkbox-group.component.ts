@@ -24,9 +24,16 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgInputVariant, NgOrientation, NgValidation} from '@powell/models';
+import {
+  CheckboxGroupChangeEvent,
+  NgCssObject,
+  NgFixLabelPosition,
+  NgInputVariant,
+  NgOrientation,
+  NgValidation
+} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {$CheckboxChangeEvent, $CheckboxGroupChangeEvent, $UniqueComponentId} from "@powell/primeng";
+import {$CheckboxChangeEvent, $UniqueComponentId} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 
@@ -87,7 +94,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() readonly: boolean;
   @Input() autofocus: boolean = false;
   @Input() variant: NgInputVariant;
-  @Output() onChange = new EventEmitter<$CheckboxGroupChangeEvent>();
+  @Output() onChange = new EventEmitter<CheckboxGroupChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;

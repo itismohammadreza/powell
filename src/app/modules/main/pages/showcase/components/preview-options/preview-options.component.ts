@@ -263,7 +263,6 @@ type PreviewItem =
   | 'preventDuplicates'
   | 'async'
   | 'dismissible'
-  | 'showCloseIcon'
   | 'inputCount'
   | 'numbersOnly'
   | 'followConfig'
@@ -715,8 +714,6 @@ export class PreviewOptionsComponent implements OnInit {
   @Output() asyncChange = new EventEmitter();
   @Input() dismissible: boolean;
   @Output() dismissibleChange = new EventEmitter()
-  @Input() showCloseIcon: boolean;
-  @Output() showCloseIconChange = new EventEmitter()
   @Input() addon: NgAddon;
   @Output() addonChange = new EventEmitter()
   @Input() inputCount: number;

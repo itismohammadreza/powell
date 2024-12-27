@@ -25,7 +25,7 @@ export class BottomSheetPage {
   blockScroll: boolean = false;
   modal: boolean = true;
   dismissible: boolean = true;
-  showCloseIcon: boolean = true;
+  closable: boolean = true;
   closeOnEscape: boolean = true;
   header: string = 'BottomSheet Header';
   rtl: boolean = this.configService.get().rtl;

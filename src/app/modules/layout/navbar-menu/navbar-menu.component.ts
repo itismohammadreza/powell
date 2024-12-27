@@ -12,12 +12,12 @@ import {
   $MenuItem,
   $MenuModule,
   $PanelMenuModule,
-  $SidebarModule
+  $DrawerModule
 } from "@powell/primeng";
 import {ButtonModule} from "@powell/components/button";
 import {InputTextModule} from "@powell/components/input-text";
 import {SelectModule} from "@powell/components/select";
-import {SwitchModule} from "@powell/components/switch";
+import {ToggleSwitchModule} from "@powell/components/toggle-switch";
 import {FilterModule} from "@powell/pipes/filter";
 import {TranslateModule} from "@ngx-translate/core";
 import {FormsModule} from "@angular/forms";
@@ -35,14 +35,14 @@ import {NgConfig} from "@powell/models";
     LogoComponent,
     $AvatarModule,
     $MenubarModule,
-    $SidebarModule,
+    $DrawerModule,
     $PanelMenuModule,
     $MenuModule,
     $DividerModule,
     ButtonModule,
     InputTextModule,
     SelectModule,
-    SwitchModule,
+    ToggleSwitchModule,
     FilterModule,
     TranslateModule,
     FormsModule,

@@ -22,24 +22,24 @@ import {
 import {takeUntil} from "rxjs";
 import {NgAsyncEvent, NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {$InputSwitchChangeEvent, $UniqueComponentId} from "@powell/primeng";
+import {$ToggleSwitchChangeEvent, $UniqueComponentId} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-switch',
-  templateUrl: './switch.component.html',
-  styleUrls: ['./switch.component.scss'],
+  selector: 'ng-toggle-switch',
+  templateUrl: './toggle-switch.component.html',
+  styleUrls: ['./toggle-switch.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SwitchComponent),
+      useExisting: forwardRef(() => ToggleSwitchComponent),
       multi: true
     },
     DestroyService
   ],
   standalone: false
 })
-export class SwitchComponent implements OnInit, ControlValueAccessor {
+export class ToggleSwitchComponent implements OnInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
   private injector = inject(Injector);
   private configService = inject(ConfigService);
@@ -71,8 +71,8 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() autofocus: any = false;
-  @Output() onChange = new EventEmitter<$InputSwitchChangeEvent>();
-  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<$InputSwitchChangeEvent>>();
+  @Output() onChange = new EventEmitter<$ToggleSwitchChangeEvent>();
+  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<$ToggleSwitchChangeEvent>>();
 
   loading: boolean;
   ngControl: NgControl;
@@ -121,7 +121,7 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  _onChange(event: $InputSwitchChangeEvent) {
+  _onChange(event: $ToggleSwitchChangeEvent) {
     if (this.async) {
       this.loading = true;
       this.disabled = true;

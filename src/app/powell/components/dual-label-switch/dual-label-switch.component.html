@@ -7,7 +7,7 @@
   <div class="field">
     <div class="field-inner">
       <span class="label-left" [class.text-muted]="disabled">{{ labelLeft }}</span>
-      <p-inputSwitch
+      <p-toggleswitch
         [(ngModel)]="value"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
         [style]="style"

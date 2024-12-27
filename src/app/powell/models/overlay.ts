@@ -308,7 +308,7 @@ export type NgDialogFormComponent =
   | 'select'
   | 'select-button'
   | 'slider'
-  | 'switch'
+  | 'toggle-switch'
   | 'toggle-button'
   | 'tree'
   | 'tree-select'
@@ -682,7 +682,7 @@ export interface NgDialogFormConfig {
   step?: number;
   range?: boolean;
   onSlideEnd?: (dialogFormEvent?: NgDialogFormEvent) => void;
-  ///////////////////////////////////////// switch /////////////////////////////////////////
+  ///////////////////////////////////////// toggle-switch /////////////////////////////////////////
   async?: boolean;
   showAsyncLoading?: boolean;
   trueValue?: any;

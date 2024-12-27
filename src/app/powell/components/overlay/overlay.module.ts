@@ -39,7 +39,7 @@ import {RadioModule} from "@powell/components/radio";
 import {RatingModule} from "@powell/components/rating";
 import {SelectButtonModule} from "@powell/components/select-button";
 import {SliderModule} from "@powell/components/slider";
-import {SwitchModule} from "@powell/components/switch";
+import {ToggleSwitchModule} from "@powell/components/toggle-switch";
 import {ToggleButtonModule} from "@powell/components/toggle-button";
 import {TreeModule} from "@powell/components/tree";
 import {TreeSelectModule} from "@powell/components/tree-select";
@@ -87,7 +87,7 @@ import {TreeSelectModule} from "@powell/components/tree-select";
     RatingModule,
     SelectButtonModule,
     SliderModule,
-    SwitchModule,
+    ToggleSwitchModule,
     ToggleButtonModule,
     TreeModule,
     TreeSelectModule,
