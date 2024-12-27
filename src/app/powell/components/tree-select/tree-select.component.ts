@@ -49,7 +49,7 @@ import {
   $TreeSelectFilterEvent,
   $TreeSelectNodeCollapseEvent,
   $TreeSelectNodeExpandEvent,
-  $UniqueComponentId
+  $uuid
 } from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
@@ -87,7 +87,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() inputSize: NgSize;
   @Input() followConfig: boolean;
   // native properties
-  @Input() inputId: string = $UniqueComponentId();
+  @Input() inputId: string = $uuid();
   @Input() scrollHeight: string = '400px';
   @Input() disabled: boolean;
   @Input() metaKeySelection: boolean = false;

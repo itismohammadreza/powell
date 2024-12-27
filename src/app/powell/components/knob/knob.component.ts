@@ -22,7 +22,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {$UniqueComponentId} from "@powell/primeng";
+import {$uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -54,7 +54,7 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
-  @Input() id: string = $UniqueComponentId();
+  @Input() id: string = $uuid();
   // native properties
   @Input() styleClass: string;
   @Input() style: NgCssObject;

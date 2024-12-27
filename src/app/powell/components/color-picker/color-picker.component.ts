@@ -30,7 +30,7 @@ import {
   NgValidation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {$ColorPickerChangeEvent, $UniqueComponentId} from "@powell/primeng";
+import {$ColorPickerChangeEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -78,7 +78,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() appendTo: any;
   @Input() disabled: boolean;
   @Input() tabindex: string;
-  @Input() inputId: string = $UniqueComponentId();
+  @Input() inputId: string = $uuid();
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: number = 0;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';

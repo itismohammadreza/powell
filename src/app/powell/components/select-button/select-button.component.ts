@@ -27,7 +27,7 @@ import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
-import {$SelectButtonChangeEvent, $SelectButtonOptionClickEvent, $UniqueComponentId} from "@powell/primeng";
+import {$SelectButtonChangeEvent, $SelectButtonOptionClickEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -59,7 +59,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
-  @Input() id: string = $UniqueComponentId();
+  @Input() id: string = $uuid();
   // native properties
   @Input() options: any[];
   @Input() optionLabel: string;

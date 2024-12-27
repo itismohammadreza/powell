@@ -20,7 +20,7 @@ import {
   $ToastMessageOptions,
   $MessageService,
   $Toast,
-  $UniqueComponentId
+  $uuid
 } from "@powell/primeng";
 import {
   NgConfirmDialogOptions,
@@ -331,7 +331,7 @@ export class OverlayService {
 
   pushState(state: NgHistoryState) {
     if (!state.key) {
-      state.key = $UniqueComponentId();
+      state.key = $uuid();
     }
     this.location.pushState(state, '', this.router.url, '');
     this.states.push(state);

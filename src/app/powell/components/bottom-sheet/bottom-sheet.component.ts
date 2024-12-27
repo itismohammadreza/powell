@@ -14,7 +14,7 @@ import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService, OverlayService} from "@powell/api";
 import {NgCssObject, NgHistoryState} from "@powell/models";
 import {Subject, takeUntil} from "rxjs";
-import {$UniqueComponentId} from "@powell/primeng";
+import {$uuid} from "@powell/primeng";
 import {DestroyService} from "@core/utils";
 
 @Component({
@@ -56,7 +56,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit {
   templateMap: Record<string, TemplateRef<any>> = {};
   state: NgHistoryState = {
     component: 'bottomSheet',
-    key: $UniqueComponentId()
+    key: $uuid()
   }
 
   ngOnInit() {

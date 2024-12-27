@@ -49,7 +49,7 @@ import {
   $TreeScrollEvent,
   $TreeScrollIndexChangeEvent,
   $TreeSelectionChangeEvent,
-  $UniqueComponentId
+  $uuid
 } from "@powell/primeng";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
@@ -84,7 +84,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   @Input() items: any[];
-  @Input() id: string = $UniqueComponentId();
+  @Input() id: string = $uuid();
   // native properties
   @Input() selectionMode: NgTreeSelectionMode;
   @Input() loadingMode: NgTreeLoadingMode = 'mask';

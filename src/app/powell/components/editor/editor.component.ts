@@ -51,7 +51,7 @@ import {
 } from '@powell/models';
 import {EditorBaseComponent} from "@powell/components/editor";
 import {DestroyService} from "@core/utils";
-import {$UniqueComponentId} from "@powell/primeng";
+import {$uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -85,7 +85,7 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   @Input() disabled: boolean;
   @Input() readonly: boolean;
   @Input() followConfig: boolean;
-  @Input() inputId: string = $UniqueComponentId();
+  @Input() inputId: string = $uuid();
   // native properties
   @Input() options: SunEditorOptions;
   @Input() onDrop_param: boolean = true;

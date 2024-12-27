@@ -34,7 +34,7 @@ import {
   $ListboxFilterEvent,
   $ListboxSelectAllChangeEvent,
   $ScrollerOptions,
-  $UniqueComponentId
+  $uuid
 } from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
@@ -69,7 +69,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   // native properties
-  @Input() id: string = $UniqueComponentId();
+  @Input() id: string = $uuid();
   @Input() searchMessage: string;
   @Input() emptySelectionMessage: string;
   @Input() selectionMessage: string;

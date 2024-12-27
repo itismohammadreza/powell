@@ -41,7 +41,7 @@ import {
   $CascadeSelectHideEvent,
   $CascadeSelectShowEvent,
   $OverlayOptions,
-  $UniqueComponentId
+  $uuid
 } from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
@@ -98,7 +98,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() optionGroupChildren: string;
   @Input() placeholder: string;
   @Input() dataKey: string;
-  @Input() inputId: string = $UniqueComponentId();
+  @Input() inputId: string = $uuid();
   @Input() tabindex: number;
   @Input() ariaLabelledBy: string;
   @Input() inputLabel: string;

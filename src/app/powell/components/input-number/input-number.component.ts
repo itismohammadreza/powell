@@ -37,7 +37,7 @@ import {
   NgValidation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {$InputNumberInputEvent, $UniqueComponentId} from "@powell/primeng";
+import {$InputNumberInputEvent, $uuid} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 
@@ -78,7 +78,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() showButtons: boolean = false;
   @Input() format: boolean = true;
   @Input() buttonLayout: NgNumberButtonLayout = 'stacked';
-  @Input() inputId: string = $UniqueComponentId();
+  @Input() inputId: string = $uuid();
   @Input() styleClass: string;
   @Input() style: NgCssObject;
   @Input() placeholder: string;

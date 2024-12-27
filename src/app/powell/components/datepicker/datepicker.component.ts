@@ -40,7 +40,7 @@ import {
   $DatePickerTypeView,
   $DatePickerYearChangeEvent,
   $LocaleSettings,
-  $UniqueComponentId
+  $uuid
 } from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 import {Moment} from "jalali-moment";
@@ -84,7 +84,7 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() inputStyle: NgCssObject;
-  @Input() inputId: string = $UniqueComponentId();
+  @Input() inputId: string = $uuid();
   @Input() name: string;
   @Input() inputStyleClass: string;
   @Input() placeholder: string;

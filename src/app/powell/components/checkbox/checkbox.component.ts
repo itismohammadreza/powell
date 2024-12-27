@@ -26,7 +26,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgAsyncEvent, NgCssObject, NgInputVariant, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {$CheckboxChangeEvent, $UniqueComponentId} from "@powell/primeng";
+import {$CheckboxChangeEvent, $uuid} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 
@@ -66,7 +66,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
   @Input() tabindex: number;
-  @Input() inputId: string = $UniqueComponentId();
+  @Input() inputId: string = $uuid();
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() checkboxIcon: string;

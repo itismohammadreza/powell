@@ -44,7 +44,7 @@ import {
   $AutoCompleteUnselectEvent,
   $OverlayOptions,
   $ScrollerOptions,
-  $UniqueComponentId
+  $uuid
 } from "@powell/primeng";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
@@ -90,7 +90,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() styleClass: string;
   @Input() panelStyleClass: string;
   @Input() inputStyle: NgCssObject;
-  @Input() inputId: string = $UniqueComponentId();
+  @Input() inputId: string = $uuid();
   @Input() inputStyleClass: string;
   @Input() placeholder: string;
   @Input() readonly: boolean = false;
