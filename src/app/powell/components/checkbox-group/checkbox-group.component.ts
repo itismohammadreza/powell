@@ -33,7 +33,7 @@ import {
   NgValidation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {$CheckboxChangeEvent, $UniqueComponentId} from "@powell/primeng";
+import {$CheckboxChangeEvent, $uuid} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 
@@ -71,8 +71,8 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() optionValue: string = 'value';
   @Input() optionDisabled: string = 'disabled';
   @Input() orientation: NgOrientation = 'vertical';
-  @Input() groupName: string = $UniqueComponentId();
-  @Input() id: string = $UniqueComponentId();
+  @Input() groupName: string = $uuid();
+  @Input() id: string = $uuid();
 
   // native properties
   @Input() set disabled(disabled: boolean) {

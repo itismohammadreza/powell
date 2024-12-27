@@ -27,7 +27,7 @@ import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
-import {$RatingRateEvent, $UniqueComponentId} from "@powell/primeng";
+import {$RatingRateEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -59,7 +59,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
-  @Input() id: string = $UniqueComponentId();
+  @Input() id: string = $uuid();
   // native properties
   @Input() disabled: boolean;
   @Input() readonly: boolean = false;

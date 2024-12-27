@@ -24,7 +24,7 @@ import {
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@core/utils";
-import {$UniqueComponentId} from "@powell/primeng";
+import {$uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -53,7 +53,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   @Input() labelWidth: number;
   @Input() hint: string;
   @Input() rtl: boolean;
-  @Input() id: string = $UniqueComponentId();
+  @Input() id: string = $uuid();
   @Input() showRequiredStar: boolean;
   @Input() labelPos: NgFixLabelPosition;
   @Input() disabled: boolean;

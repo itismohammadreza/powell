@@ -22,7 +22,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgAsyncEvent, NgCssObject, NgFixLabelPosition, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
-import {$ToggleSwitchChangeEvent, $UniqueComponentId} from "@powell/primeng";
+import {$ToggleSwitchChangeEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -64,7 +64,7 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() tabindex: number;
-  @Input() inputId: string = $UniqueComponentId();
+  @Input() inputId: string = $uuid();
   @Input() name: string;
   @Input() disabled: boolean;
   @Input() readonly: boolean = false;

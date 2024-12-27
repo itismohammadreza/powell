@@ -36,7 +36,7 @@ import {
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {TemplateDirective} from "@powell/directives/template";
-import {$UniqueComponentId} from "@powell/primeng";
+import {$uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -77,7 +77,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @Input() autoClear: boolean = true;
   @Input() showClear: boolean = false;
   @Input() style: NgCssObject;
-  @Input() inputId: string = $UniqueComponentId();
+  @Input() inputId: string = $uuid();
   @Input() styleClass: string;
   @Input() placeholder: string;
   @Input() size: number;

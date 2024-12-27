@@ -22,7 +22,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgInputVariant, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {$RadioButtonClickEvent, $UniqueComponentId} from "@powell/primeng";
+import {$RadioButtonClickEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -75,7 +75,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Input() name: string;
   @Input() variant: NgInputVariant;
   @Input() tabindex: number;
-  @Input() id: string = $UniqueComponentId();
+  @Input() id: string = $uuid();
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
   @Input() style: NgCssObject;
@@ -86,7 +86,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Output() onBlur = new EventEmitter<Event>();
 
   _disabled: boolean = false;
-  groupName: string = $UniqueComponentId();
+  groupName: string = $uuid();
   ngControl: NgControl;
   onModelChange: Function = () => {
   };

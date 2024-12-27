@@ -43,7 +43,7 @@ import {
   $SelectLazyLoadEvent,
   $OverlayOptions,
   $ScrollerOptions,
-  $UniqueComponentId
+  $uuid
 } from "@powell/primeng";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
@@ -100,7 +100,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() filterPlaceholder: string;
   @Input() filterLocale: string;
   @Input() variant: NgInputVariant;
-  @Input() inputId: string = $UniqueComponentId();
+  @Input() inputId: string = $uuid();
   @Input() dataKey: string;
   @Input() filterBy: string;
   @Input() filterFields: any[];

@@ -22,7 +22,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {$SliderChangeEvent, $SliderSlideEndEvent, $UniqueComponentId} from "@powell/primeng";
+import {$SliderChangeEvent, $SliderSlideEndEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -54,7 +54,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   @Input() labelPos: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
-  @Input() id: string = $UniqueComponentId();
+  @Input() id: string = $uuid();
   // native properties
   @Input() animate: boolean = false;
   @Input() disabled: boolean;

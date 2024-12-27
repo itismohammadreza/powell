@@ -47,7 +47,7 @@ import {
   $MultiSelectSelectAllChangeEvent,
   $OverlayOptions,
   $ScrollerOptions,
-  $UniqueComponentId
+  $uuid
 } from "@powell/primeng";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
@@ -92,7 +92,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() styleClass: string;
   @Input() panelStyle: NgCssObject;
   @Input() panelStyleClass: string;
-  @Input() inputId: string = $UniqueComponentId();
+  @Input() inputId: string = $uuid();
   @Input() disabled: boolean;
   @Input() readonly: boolean;
   @Input() group: boolean;

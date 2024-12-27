@@ -26,7 +26,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgIconPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {$ToggleButtonChangeEvent, $UniqueComponentId} from "@powell/primeng";
+import {$ToggleButtonChangeEvent, $uuid} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 
@@ -69,7 +69,7 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() disabled: boolean;
   @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() inputId: string = $UniqueComponentId();
+  @Input() inputId: string = $uuid();
   @Input() tabindex: number;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() autofocus: boolean = false;

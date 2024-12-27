@@ -48,7 +48,7 @@ import {
   $FileUploadEvent,
   $FileUploadHandlerEvent,
   $RemoveUploadedFileEvent,
-  $UniqueComponentId
+  $uuid
 } from "@powell/primeng";
 import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
@@ -84,7 +84,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Input() validation: NgValidation;
   @Input() resultType: NgFileResultType = 'file';
   @Input() followConfig: boolean;
-  @Input() id: string = $UniqueComponentId();
+  @Input() id: string = $uuid();
   // native properties
   @Input() name: string;
   @Input() url: string;
