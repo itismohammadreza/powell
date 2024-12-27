@@ -39,7 +39,7 @@ export class DialogPage {
     buttonLabel: 'Ok',
     buttonSeverity: 'primary',
     buttonAppearance: 'basic',
-    buttonSize: 'md',
+    buttonSize: 'small',
     rtl: this.configService.get().rtl,
     content: 'Some content inside dialog.',
   }

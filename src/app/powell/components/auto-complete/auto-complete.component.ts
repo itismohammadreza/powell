@@ -80,7 +80,6 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize;
   @Input() followConfig: boolean;
   // native properties
   @Input() minLength: number = 1;
@@ -102,6 +101,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() virtualScrollOptions: $ScrollerOptions;
   @Input() maxlength: number;
   @Input() name: string;
+  @Input() size: NgSize;
   @Input() appendTo: any;
   @Input() autoHighlight: boolean = false;
   @Input() forceSelection: boolean = false;
@@ -116,7 +116,6 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() group: boolean = false;
   @Input() completeOnFocus: boolean = false;
   @Input() showClear: boolean = false;
-  @Input() field: string;
   @Input() dropdown: boolean = false;
   @Input() showEmptyMessage: boolean = true;
   @Input() dropdownMode: NgAutoCompleteDropdownMode = 'blank';
@@ -132,8 +131,8 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() optionGroupLabel: string = 'label';
   @Input() overlayOptions: $OverlayOptions;
   @Input() suggestions: any[];
-  @Input() itemSize: number;
   @Input() optionLabel: string | ((item: any) => string);
+  @Input() optionValue: string | ((item: any) => string);
   @Input() id: string;
   @Input() searchMessage: string;
   @Input() emptySelectionMessage: string;
@@ -144,14 +143,15 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() optionDisabled: string;
   @Input() focusOnHover: boolean = false;
   @Input() variant: NgInputVariant;
+  @Input() fluid: boolean = false;
   @Output() completeMethod = new EventEmitter<$AutoCompleteCompleteEvent>();
-  @Output() onFocus = new EventEmitter<Event>();
-  @Output() onBlur = new EventEmitter<Event>();
-  @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
   @Output() onSelect = new EventEmitter<$AutoCompleteSelectEvent>();
   @Output() onUnselect = new EventEmitter<$AutoCompleteUnselectEvent>();
+  @Output() onFocus = new EventEmitter<Event>();
+  @Output() onBlur = new EventEmitter<Event>();
   @Output() onDropdownClick = new EventEmitter<$AutoCompleteDropdownClickEvent>();
   @Output() onClear = new EventEmitter<Event>();
+  @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
   @Output() onShow = new EventEmitter<Event>();
   @Output() onHide = new EventEmitter<Event>();
   @Output() onLazyLoad = new EventEmitter<$AutoCompleteLazyLoadEvent>();

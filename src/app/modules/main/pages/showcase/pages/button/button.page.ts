@@ -31,7 +31,7 @@ export class ButtonPage {
   raised: boolean = false;
   rounded: boolean = false;
   severity: NgSeverity = 'primary';
-  size: NgSize = 'md';
+  size: NgSize = 'small';
 
   onClickAsync({loadingCallback}) {
     setTimeout(() => {

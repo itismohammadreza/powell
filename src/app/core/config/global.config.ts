@@ -11,7 +11,7 @@ export const globalConfig: GlobalConfig = {
     followConfig: true,
     fixLabelPos: 'fix-side',
     labelPos: 'fix-side',
-    inputSize: 'sm',
+    inputSize: 'small',
     inputStyle: 'outlined',
     showRequiredStar: true,
   }

@@ -57,13 +57,13 @@
         <ng-input-text
           [rtl]="config.rtl"
           class="grow"
-          inputSize="sm"
+          inputSize="small"
           [placeholder]="'searchComponents' | translate"
           [(ngModel)]="searchValue"/>
         @if (!sidebarLock && sidebarType != 'hover') {
           <ng-button
             appearance="text"
-            size="sm"
+            size="small"
             [rounded]="true"
             icon="pi pi-times"
             (onClick)="toggleSidebarClick()"/>

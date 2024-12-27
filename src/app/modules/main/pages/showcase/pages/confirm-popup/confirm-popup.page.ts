@@ -32,7 +32,7 @@ export class ConfirmPopupPage {
     rejectVisible: true,
     acceptSeverity: 'primary',
     acceptAppearance: 'basic',
-    buttonSize: 'md',
+    buttonSize: 'small',
     rejectSeverity: 'primary',
     rejectAppearance: 'outlined',
     buttonFull: false,

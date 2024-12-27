@@ -34,7 +34,7 @@ export class ConfirmDialogPage {
     rejectVisible: true,
     acceptSeverity: 'primary',
     acceptAppearance: 'basic',
-    buttonSize: 'md',
+    buttonSize: 'small',
     rejectSeverity: 'primary',
     rejectAppearance: 'outlined',
     closeOnEscape: false,

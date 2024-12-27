@@ -24,7 +24,6 @@ export class ConfigService {
     rtl: false,
     fixLabelPos: 'fix-side',
     labelPos: 'fix-side',
-    inputSize: 'sm',
     showRequiredStar: true,
     ...this.primeNG,
     theme: {

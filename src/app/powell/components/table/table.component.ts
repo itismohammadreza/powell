@@ -80,7 +80,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() header: string;
   @Input() globalFilter: boolean;
   @Input() globalFilterPlaceholder: string;
-  @Input() size: NgSize = 'sm';
+  @Input() size: NgSize;
   @Input() gridlines: boolean = true;
   @Input() striped: boolean;
   @Input() followConfig: boolean;
