@@ -7,9 +7,9 @@ import {
   EditorTextChangeEvent,
 } from "primeng/editor";
 
-export {EditorModule as $EditorModule};
-export {Editor as $Editor};
-export {EditorTemplates as $EditorTemplates};
-export {EditorInitEvent as $EditorInitEvent};
-export {EditorSelectionChangeEvent as $EditorSelectionChangeEvent};
-export {EditorTextChangeEvent as $EditorTextChangeEvent};
+export {EditorModule as $EditorModule}
+export {Editor as $Editor}
+export {EditorTemplates as $EditorTemplates}
+export {EditorInitEvent as $EditorInitEvent}
+export {EditorSelectionChangeEvent as $EditorSelectionChangeEvent}
+export {EditorTextChangeEvent as $EditorTextChangeEvent}

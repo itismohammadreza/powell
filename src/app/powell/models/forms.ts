@@ -281,7 +281,7 @@ export interface NgProvince {
   d: string;
 }
 
-export interface CheckboxGroupChangeEvent {
+export interface NgCheckboxGroupChangeEvent {
   originalEvent: Event;
   value: any[];
 }

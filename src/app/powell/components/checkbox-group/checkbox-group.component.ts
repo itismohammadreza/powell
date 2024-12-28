@@ -25,7 +25,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  CheckboxGroupChangeEvent,
+  NgCheckboxGroupChangeEvent,
   NgCssObject,
   NgFixLabelPosition,
   NgInputVariant,
@@ -94,7 +94,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() readonly: boolean;
   @Input() autofocus: boolean = false;
   @Input() variant: NgInputVariant;
-  @Output() onChange = new EventEmitter<CheckboxGroupChangeEvent>();
+  @Output() onChange = new EventEmitter<NgCheckboxGroupChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
