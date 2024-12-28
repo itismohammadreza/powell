@@ -53,8 +53,12 @@
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
     fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
   <ng-template ngTemplate="footer">
-    <ng-button (onClick)="visible2=true" appearance="outlined" severity="secondary" label="Open Second Bottom Sheet"
-               [full]="true"/>
+    <ng-button
+      (onClick)="visible2=true"
+      appearance="outlined"
+      severity="secondary"
+      label="Open Second Bottom Sheet"
+      [fluid]="true"/>
   </ng-template>
 </ng-bottom-sheet>
 
@@ -79,7 +83,7 @@
     fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
   <ng-template ngTemplate="footer">
     <ng-button (onClick)="visible3=true" appearance="outlined" severity="success" label="Open Third Bottom Sheet"
-               [full]="true"/>
+               [fluid]="true"/>
   </ng-template>
 </ng-bottom-sheet>
 
@@ -102,7 +106,7 @@
     fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis voluptas?</p>
   <ng-template ngTemplate="footer">
     <ng-button (onClick)="openDialog()" appearance="outlined" severity="success" label="Open Dialog"
-               [full]="true"/>
+               [fluid]="true"/>
   </ng-template>
 </ng-bottom-sheet>
 
