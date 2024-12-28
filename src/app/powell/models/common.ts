@@ -1,3 +1,6 @@
+import {$ButtonProps} from "@powell/primeng";
+import {NgButtonAppearance, NgButtonState} from "@powell/models/button";
+
 export type NgSeverity =
   | 'primary'
   | 'secondary'
@@ -17,6 +20,21 @@ export type NgStatusIcon = 'success' | 'info' | 'warning' | 'error' | '403' | '4
 export type NgEmptyIcon = 'box1' | 'box2' | 'magnifier';
 export type NgPosition = 'left' | 'right' | 'top' | 'bottom';
 export type NgIconPosition = Exclude<NgPosition, 'top' | 'bottom'>;
+export type NgCssObject = Partial<CSSStyleDeclaration>;
+export type NgButtonProps = Omit<$ButtonProps, 'link' | 'outlined' | 'text' | 'plain'> & {
+  appearance: NgButtonAppearance;
+  fluid: boolean;
+  responsiveSize: NgButtonResponsiveSize;
+};
+
+export interface NgButtonResponsiveSize {
+  xs: NgSize;
+  sm: NgSize;
+  md: NgSize;
+  lg: NgSize;
+  xl: NgSize;
+}
+
 export type NgToastPosition =
   | 'top-right'
   | 'top-left'
@@ -35,5 +53,3 @@ export type NgDialogPosition =
   | 'bottomleft'
   | 'bottomright'
   | 'center';
-
-export type NgCssObject = Partial<CSSStyleDeclaration>;

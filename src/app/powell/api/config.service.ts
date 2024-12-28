@@ -29,11 +29,9 @@ export class ConfigService {
     theme: {
       preset: $Aura,
       options: {
-        options: {
-          cssLayer: {
-            name: 'primeng',
-            order: 'tailwind-base, primeng, tailwind-components, tailwind-utilities'
-          }
+        cssLayer: {
+          name: 'primeng',
+          order: 'tailwind-base, primeng, tailwind-components, tailwind-utilities'
         }
       }
     },
