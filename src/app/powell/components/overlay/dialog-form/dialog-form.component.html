@@ -13,9 +13,9 @@
       @switch (config.component) {
         @case ('hidden') {
           <input
-            [hidden]="handleConfigVisibility(config)"
-            [ngClass]="config.className"
             [formControlName]="config.key"
+            [ngClass]="config.className"
+            [hidden]="handleConfigVisibility(config)"
             type="hidden"
           />
         }
@@ -301,7 +301,7 @@
           [appearance]="options.rejectAppearance"
           [severity]="options.rejectSeverity"
           [iconPos]="options.buttonIconPosition"
-          [full]="options.buttonFull"
+          [fluid]="options.buttonFull"
           [icon]="options.rejectIcon"
           [size]="options.buttonSize"
           [label]="options.rejectLabel"
@@ -315,7 +315,7 @@
           [severity]="options.acceptSeverity"
           [newSeverity]="options.acceptSeverity"
           [iconPos]="options.buttonIconPosition"
-          [full]="options.buttonFull"
+          [fluid]="options.buttonFull"
           [icon]="options.acceptIcon"
           [size]="options.buttonSize"
           [label]="options.acceptLabel"

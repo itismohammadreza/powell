@@ -15,11 +15,13 @@ import {
 import {
   NgAsyncEvent,
   NgButtonAppearance,
+  NgButtonProps,
+  NgButtonResponsiveSize,
   NgButtonState,
   NgButtonType,
-  NgSeverity,
   NgCssObject,
   NgIconPosition,
+  NgSeverity,
   NgSize
 } from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
@@ -32,7 +34,7 @@ import {DestroyService} from "@core/utils";
   selector: 'ng-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
-  host: {'[class.full]': 'full'},
+  host: {'[class.full]': 'fluid'},
   providers: [DestroyService],
   standalone: false
 })
@@ -42,14 +44,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
 
   @Input() appearance: NgButtonAppearance;
   @Input() full: boolean;
-  @Input() badgeSeverity: NgSeverity = 'primary';
-  @Input() responsiveSize: {
-    xs: NgSize;
-    sm: NgSize;
-    md: NgSize;
-    lg: NgSize;
-    xl: NgSize;
-  };
+  @Input() responsiveSize: NgButtonResponsiveSize;
   @Input() async: boolean;
   @Input() newLabel: string;
   @Input() newIcon: string;
@@ -71,9 +66,11 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   @Input() size: NgSize;
   @Input() style: NgCssObject;
   @Input() styleClass: string;
-  @Input() badgeClass: string;
+  @Input() badgeSeverity: NgSeverity = 'primary';
   @Input() ariaLabel: string;
   @Input() autofocus: boolean;
+  @Input() fluid: boolean;
+  @Input() buttonProps: NgButtonProps;
   @Output() onClick = new EventEmitter<MouseEvent>();
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
@@ -90,6 +87,14 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   _tmpSize: NgSize;
 
   ngOnChanges(changes: SimpleChanges) {
+    const {buttonProps} = changes;
+    if (buttonProps) {
+      const props = buttonProps.currentValue;
+      for (const property in props) {
+        this[property] = props[property];
+      }
+    }
+
     if (this.async) {
       this.toggleState(this.defaultState);
     }
