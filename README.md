@@ -6,7 +6,6 @@
 ### Feature
 - 
 - implement config change (and read from config) in dialog component
-- implement missing inputs from website
 - remove extra styles for rtl (it supports built in). also in overlay.scss file.
 - add [dir="rtl"] attribute instead of rtl class in components (and apply it using a directive)
 - implement live theme changing
