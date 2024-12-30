@@ -1,5 +1,5 @@
 import {$ButtonProps} from "@powell/primeng";
-import {NgButtonAppearance, NgButtonState} from "@powell/models/button";
+import {NgButtonAppearance} from "@powell/models/button";
 
 export type NgSeverity =
   | 'primary'
@@ -13,7 +13,7 @@ export type NgSeverity =
 export type NgDirection = 'rtl' | 'ltr';
 export type NgSize = 'small' | 'large';
 export type NgOrientation = 'horizontal' | 'vertical';
-export type NgTableSelectionMode = 'single' | 'multiple' | 'checkbox' | 'radio';
+export type NgTableSelectionMode = 'single' | 'multiple';
 export type NgTreeSelectionMode = Exclude<NgTableSelectionMode, 'radio'>;
 export type NgTreeLoadingMode = 'mask' | 'icon';
 export type NgStatusIcon = 'success' | 'info' | 'warning' | 'error' | '403' | '404' | '500';

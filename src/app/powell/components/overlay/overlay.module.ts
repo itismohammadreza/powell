@@ -32,7 +32,6 @@ import {IranMapModule} from "@powell/components/iran-map";
 import {KnobModule} from "@powell/components/knob";
 import {ListboxModule} from "@powell/components/listbox";
 import {MapModule} from "@powell/components/map";
-import {MessageModule} from "@powell/components/message";
 import {CheckboxGroupModule} from "src/app/powell/components/checkbox-group";
 import {MultiSelectModule} from "@powell/components/multi-select";
 import {RadioModule} from "@powell/components/radio";
@@ -80,7 +79,6 @@ import {TreeSelectModule} from "@powell/components/tree-select";
     KnobModule,
     ListboxModule,
     MapModule,
-    MessageModule,
     CheckboxGroupModule,
     MultiSelectModule,
     RadioModule,
