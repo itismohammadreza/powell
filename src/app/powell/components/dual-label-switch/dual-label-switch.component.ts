@@ -1,13 +1,14 @@
 import {
+  AfterContentInit,
   ChangeDetectorRef,
-  Component,
+  Component, ContentChildren,
   EventEmitter,
   forwardRef,
   inject,
   Injector,
   Input,
   OnInit,
-  Output
+  Output, QueryList, TemplateRef
 } from '@angular/core';
 import {
   AbstractControl,
@@ -24,6 +25,7 @@ import {NgAsyncEvent, NgCssObject, NgFixLabelPosition, NgValidation} from "@powe
 import {DestroyService} from "@core/utils";
 import {$ToggleSwitchChangeEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-dual-label-switch',
@@ -39,7 +41,7 @@ import {ConfigService} from "@powell/api";
   ],
   standalone: false
 })
-export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
+export class DualLabelSwitchComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
   private injector = inject(Injector);
   private configService = inject(ConfigService);
@@ -73,8 +75,10 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
   @Input() autofocus: any = false;
   @Output() onChange = new EventEmitter<$ToggleSwitchChangeEvent>();
   @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<$ToggleSwitchChangeEvent>>();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   loading: boolean;
+  templateMap: Record<string, TemplateRef<any>> = {};
   ngControl: NgControl;
   onModelChange: Function = () => {
   };
@@ -110,6 +114,14 @@ export class DualLabelSwitchComponent implements OnInit, ControlValueAccessor {
     this.setInitValue();
     this.configService.applyConfigToComponent(this);
   }
+
+  ngAfterContentInit() {
+    this.templates.forEach(item => {
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
+    });
+  }
+
 
   setInitValue() {
     if (!this.value) {

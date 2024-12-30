@@ -17,10 +17,11 @@
       [disabled]="disabled"
       [style]="style"
       [styleClass]="styleClass"
-      [inputId]="inputId"
       [tabindex]="tabindex"
+      [size]="size"
       [iconPos]="iconPos"
       [autofocus]="autofocus"
+      [allowEmpty]="allowEmpty"
       (onChange)="_onChange($event)">
       @for (t of templates; track t) {
         @if (templateMap[t.getType()]) {

@@ -29,7 +29,7 @@ import {
   NgCssObject,
   NgFixLabelPosition,
   NgInputVariant,
-  NgOrientation,
+  NgOrientation, NgSize,
   NgValidation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
@@ -73,7 +73,6 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() orientation: NgOrientation = 'vertical';
   @Input() groupName: string = $uuid();
   @Input() id: string = $uuid();
-
   // native properties
   @Input() set disabled(disabled: boolean) {
     this._disabled = disabled;
@@ -89,7 +88,10 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
   @Input() style: NgCssObject;
+  @Input() inputStyle: NgCssObject;
   @Input() styleClass: string;
+  @Input() inputClass: string;
+  @Input() size: NgSize;
   @Input() checkboxIcon: string;
   @Input() readonly: boolean;
   @Input() autofocus: boolean = false;

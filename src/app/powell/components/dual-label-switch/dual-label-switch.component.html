@@ -7,7 +7,7 @@
   <div class="field">
     <div class="field-inner">
       <span class="label-left" [class.text-muted]="disabled">{{ labelLeft }}</span>
-      <p-toggleswitch
+      <p-toggleSwitch
         [(ngModel)]="value"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
         [style]="style"
@@ -22,7 +22,15 @@
         [ariaLabel]="ariaLabel"
         [ariaLabelledBy]="ariaLabelledBy"
         [autofocus]="autofocus"
-        (onChange)="_onChange($event)"/>
+        (onChange)="_onChange($event)">
+        @for (t of templates; track t) {
+          @if (templateMap[t.getType()]) {
+            <ng-template [pTemplate]="t.getType()">
+              <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
+            </ng-template>
+          }
+        }
+      </p-toggleSwitch>
       <span class="label-right" [class.text-muted]="disabled">{{ labelRight }}</span>
     </div>
     @if (loading && showAsyncLoading) {

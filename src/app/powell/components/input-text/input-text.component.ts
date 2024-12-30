@@ -73,7 +73,6 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() inputId: string = $uuid();
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize;
   @Input() followConfig: boolean;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
@@ -88,7 +87,10 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() inputStyle: NgCssObject;
   @Input() inputStyleClass: string;
   @Input() autocomplete: any;
+  // native properties
   @Input() variant: NgInputVariant;
+  @Input() fluid: boolean = false;
+  @Input() size: NgSize;
   @Output() onInput = new EventEmitter<Event>();
   @Output() onClick = new EventEmitter<Event>();
   @Output() onChange = new EventEmitter<Event>();

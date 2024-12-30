@@ -20,7 +20,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgInputVariant, NgOrientation, NgValidation} from '@powell/models';
+import {NgCssObject, NgFixLabelPosition, NgInputVariant, NgOrientation, NgSize, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {$RadioButtonClickEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
@@ -61,6 +61,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Input() optionDisabled: string = 'disabled';
 
   // native properties
+  @Input() name: string = $uuid();
   @Input() set disabled(disabled: boolean) {
     this._disabled = disabled;
     this.options.forEach(option => {
@@ -72,8 +73,8 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
     return this._disabled;
   }
 
-  @Input() name: string;
   @Input() variant: NgInputVariant;
+  @Input() size: NgSize;
   @Input() tabindex: number;
   @Input() id: string = $uuid();
   @Input() ariaLabelledBy: string;
@@ -81,12 +82,12 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() autofocus: boolean = false;
+  @Input() binary: boolean = false;
   @Output() onChange = new EventEmitter<$RadioButtonClickEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
 
   _disabled: boolean = false;
-  groupName: string = $uuid();
   ngControl: NgControl;
   onModelChange: Function = () => {
   };

@@ -1,52 +1,27 @@
 import {
   AfterContentInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChildren,
   ElementRef,
   EventEmitter,
-  HostListener,
-  inject,
   Input,
   Output,
   QueryList,
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import {animate, AnimationEvent, style, transition, trigger} from "@angular/animations";
-import {ConfigService} from "@powell/api";
+import {AnimationEvent} from "@angular/animations";
 import {NgCssObject, NgDisableZoomControl, NgImageLoading, NgLimitZoom, NgListener, NgOverflow} from "@powell/models";
-import {$DomHandler, $PrimeTemplate, $ZIndexUtils} from "@powell/primeng";
 import {SafeUrl} from "@angular/platform-browser";
-import {DOCUMENT} from "@angular/common";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-image',
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('animation', [
-      transition('void => visible', [
-        style({transform: 'scale(0.7)', opacity: 0}), animate('{{showTransitionParams}}')
-      ]),
-      transition('visible => void', [
-        animate('{{hideTransitionParams}}', style({transform: 'scale(0.7)', opacity: 0}))
-      ])
-    ])
-  ],
-  host: {
-    class: 'p-element'
-  },
   standalone: false
 })
 export class ImageComponent implements AfterContentInit {
-  private document = inject(DOCUMENT);
-  private configService = inject(ConfigService);
-  private cd = inject(ChangeDetectorRef);
-  public el = inject(ElementRef);
-
   @Input() imageClass: string;
   @Input() imageStyle: NgCssObject;
   @Input() styleClass: string;
@@ -96,229 +71,14 @@ export class ImageComponent implements AfterContentInit {
   @ViewChild('mask') mask: ElementRef;
   @ViewChild('previewButton') previewButton: ElementRef;
   @ViewChild('closeButton') closeButton: ElementRef;
-  @ContentChildren($PrimeTemplate) templates: QueryList<$PrimeTemplate>;
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  indicatorTemplate: TemplateRef<any> | undefined;
-  rotateRightIconTemplate: TemplateRef<any> | undefined;
-  rotateLeftIconTemplate: TemplateRef<any> | undefined;
-  zoomOutIconTemplate: TemplateRef<any> | undefined;
-  zoomInIconTemplate: TemplateRef<any> | undefined;
-  closeIconTemplate: TemplateRef<any> | undefined;
-  maskVisible: boolean = false;
-  previewVisible: boolean = false;
-  rotate: number = 0;
-  scale: number = 1;
-  previewClick: boolean = false;
-  container: HTMLElement;
-  wrapper: HTMLElement;
-  zoomSettings = {
-    default: 1,
-    step: 0.1,
-    max: 1.5,
-    min: 0.5
-  };
-
-  get isZoomOutDisabled(): boolean {
-    return this.scale - this.zoomSettings.step <= this.zoomSettings.min;
-  }
-
-  get isZoomInDisabled(): boolean {
-    return this.scale + this.zoomSettings.step >= this.zoomSettings.max;
-  }
+  templateMap: Record<string, TemplateRef<any>> = {};
 
   ngAfterContentInit() {
-    this.templates?.forEach((item) => {
-      switch (item.getType()) {
-        case 'indicator':
-          this.indicatorTemplate = item.template;
-          break;
-
-        case 'rotaterighticon':
-          this.rotateRightIconTemplate = item.template;
-          break;
-
-        case 'rotatelefticon':
-          this.rotateLeftIconTemplate = item.template;
-          break;
-
-        case 'zoomouticon':
-          this.zoomOutIconTemplate = item.template;
-          break;
-
-        case 'zoominicon':
-          this.zoomInIconTemplate = item.template;
-          break;
-
-        case 'closeicon':
-          this.closeIconTemplate = item.template;
-          break;
-
-        default:
-          this.indicatorTemplate = item.template;
-          break;
-      }
+    this.templates.forEach(item => {
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
     });
-  }
-
-  onImageClick() {
-    if (this.preview) {
-      this.maskVisible = true;
-      this.previewVisible = true;
-      $DomHandler.blockBodyScroll();
-    }
-  }
-
-  onMaskClick() {
-    if (!this.previewClick) {
-      this.closePreview();
-    }
-
-    this.previewClick = false;
-  }
-
-  onMaskKeydown(event) {
-    switch (event.code) {
-      case 'Escape':
-        this.onMaskClick();
-        setTimeout(() => {
-          $DomHandler.focus(this.previewButton.nativeElement);
-        }, 25);
-        event.preventDefault();
-
-        break;
-
-      default:
-        break;
-    }
-  }
-
-  onPreviewImageClick() {
-    this.previewClick = true;
-  }
-
-  rotateRight() {
-    this.rotate += 90;
-    this.previewClick = true;
-  }
-
-  rotateLeft() {
-    this.rotate -= 90;
-    this.previewClick = true;
-  }
-
-  zoomIn() {
-    this.scale = this.scale + this.zoomSettings.step;
-    this.previewClick = true;
-  }
-
-  zoomOut() {
-    this.scale = this.scale - this.zoomSettings.step;
-    this.previewClick = true;
-  }
-
-  onAnimationStart(event: AnimationEvent) {
-    switch (event.toState) {
-      case 'visible':
-        this.container = event.element;
-        this.wrapper = this.container?.parentElement;
-        this.appendContainer();
-        this.moveOnTop();
-
-        setTimeout(() => {
-          $DomHandler.focus(this.closeButton.nativeElement);
-        }, 25);
-        break;
-
-      case 'void':
-        $DomHandler.addClass(this.wrapper, 'p-component-overlay-leave');
-        break;
-    }
-  }
-
-  onAnimationEnd(event: AnimationEvent) {
-    switch (event.toState) {
-      case 'void':
-        $ZIndexUtils.clear(this.wrapper);
-        this.maskVisible = false;
-        this.container = null;
-        this.wrapper = null;
-        this.cd.markForCheck();
-        this.onHide.emit(event);
-        break;
-      case 'visible':
-        this.onShow.emit(event);
-        break;
-    }
-  }
-
-  moveOnTop() {
-    $ZIndexUtils.set('modal', this.wrapper, this.configService.get().zIndex.modal);
-  }
-
-  appendContainer() {
-    if (this.appendTo) {
-      if (this.appendTo === 'body') this.document.body.appendChild(this.wrapper as HTMLElement);
-      else $DomHandler.appendChild(this.wrapper, this.appendTo);
-    }
-  }
-
-  imagePreviewStyle() {
-    return {transform: 'rotate(' + this.rotate + 'deg) scale(' + this.scale + ')'};
-  }
-
-  get zoomImageAriaLabel() {
-    return this.getTranslation().aria ? this.getTranslation().aria.zoomImage : undefined;
-  }
-
-  containerClass() {
-    return {
-      'p-image p-component': true,
-      'p-image-preview-container': this.preview
-    };
-  }
-
-  handleToolbarClick(event: MouseEvent): void {
-    event.stopPropagation();
-  }
-
-  closePreview(): void {
-    this.previewVisible = false;
-    this.rotate = 0;
-    this.scale = this.zoomSettings.default;
-    $DomHandler.unblockBodyScroll();
-  }
-
-  imageError(event: Event) {
-    this.onImageError.emit(event);
-  }
-
-  rightAriaLabel() {
-    return this.getTranslation().aria ? this.getTranslation().aria.rotateRight : undefined;
-  }
-
-  leftAriaLabel() {
-    return this.getTranslation().aria ? this.getTranslation().aria.rotateLeft : undefined;
-  }
-
-  zoomInAriaLabel() {
-    return this.getTranslation().aria ? this.getTranslation().aria.zoomIn : undefined;
-  }
-
-  zoomOutAriaLabel() {
-    return this.getTranslation().aria ? this.getTranslation().aria.zoomOut : undefined;
-  }
-
-  closeAriaLabel() {
-    return this.getTranslation().aria ? this.getTranslation().aria.close : undefined;
-  }
-
-  getTranslation() {
-    return this.configService.get().translation;
-  }
-
-  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
-    if (this.previewVisible) {
-      this.closePreview();
-    }
   }
 }

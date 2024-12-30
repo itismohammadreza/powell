@@ -64,7 +64,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() labelPos: NgLabelPosition;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize;
+  @Input() size: NgSize;
   @Input() readonly: boolean;
   @Input() maxlength: number = 7;
   @Input() placeholder: string;

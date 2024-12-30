@@ -79,7 +79,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize;
   @Input() async: boolean;
   @Input() followConfig: boolean;
   // native properties
@@ -92,6 +91,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() styleClass: string;
   @Input() panelStyleClass: string;
   @Input() readonly: boolean = false;
+  @Input() required: boolean = false;
   @Input() editable: boolean = false;
   @Input() appendTo: any;
   @Input() tabindex: number;
@@ -114,7 +114,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() optionDisabled: string;
   @Input() optionGroupLabel: string = 'label';
   @Input() optionGroupChildren: string = 'items';
-  @Input() autoDisplayFirst: boolean = true;
   @Input() group: boolean = false;
   @Input() showClear: boolean = false;
   @Input() emptyFilterMessage: string;
@@ -137,12 +136,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() selectOnFocus: boolean = false;
   @Input() autoOptionFocus: boolean = true;
   @Input() autofocusFilter: boolean = true;
+  @Input() fluid: boolean;
   @Input() disabled: boolean;
-  @Input() itemSize: number;
-  @Input() autoZIndex: boolean;
-  @Input() baseZIndex: number;
-  @Input() showTransitionOptions: string;
-  @Input() hideTransitionOptions: string;
   @Input() filterValue: string;
   @Input() options: any[];
   @Output() onChange = new EventEmitter<$SelectChangeEvent>();
@@ -191,9 +186,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
           }
         });
       }
-    }
-    if (this.autoDisplayFirst) {
-      this.onModelChange(this.options[0][this.optionValue])
     }
     this.configService.applyConfigToComponent(this);
   }

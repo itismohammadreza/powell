@@ -22,7 +22,7 @@ import {
 import {takeUntil} from "rxjs";
 import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
-import {$uuid} from "@powell/primeng";
+import {$dt, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
@@ -61,9 +61,9 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() tabindex: number;
-  @Input() valueColor: string = 'var(--primary-color, Black)';
-  @Input() rangeColor: string = 'var(--surface-border, LightGray)';
-  @Input() textColor: string = 'var(--text-color-secondary, Black)';
+  @Input() valueColor: string = $dt('knob.value.background').variable;
+  @Input() rangeColor: string = $dt('knob.range.background').variable;
+  @Input() textColor: string = $dt('knob.text.color').variable;
   @Input() valueTemplate: string = '{value}';
   @Input() name: string;
   @Input() size: number = 100;

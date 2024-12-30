@@ -24,7 +24,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {NgCssObject, NgFixLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
 import {$SelectButtonChangeEvent, $SelectButtonOptionClickEvent, $uuid} from "@powell/primeng";
@@ -72,11 +72,12 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() ariaLabelledBy: string;
+  @Input() size: NgSize;
   @Input() disabled: boolean;
   @Input() dataKey: string;
   @Input() autofocus: boolean = false;
-  @Output() onChange = new EventEmitter<$SelectButtonChangeEvent>();
   @Output() onOptionClick = new EventEmitter<$SelectButtonOptionClickEvent>();
+  @Output() onChange = new EventEmitter<$SelectButtonChangeEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;

@@ -12,7 +12,7 @@
   <div class="field"
        [ngAddon]="addon"
        [addonDisabled]="disabled"
-       [addonSize]="inputSize">
+       [addonSize]="size">
     <div [ngClass]="{
       'p-float-label': label && labelPos == 'float',
       'p-input-icon-left': icon && iconPos == 'left',
@@ -31,6 +31,7 @@
         [styleClass]="styleClass"
         [style]="style"
         [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
+        [size]="size"
         [maxlength]="maxlength"
         [tabindex]="tabindex"
         [title]="title"
@@ -65,11 +66,12 @@
         [showClear]="showClear"
         [autofocus]="autofocus"
         [disabled]="disabled"
+        [fluid]="fluid"
         (onInput)="_onInput($event)"
         (onFocus)="_onFocus($event)"
         (onBlur)="_onBlur($event)"
-        (onClear)="_onClear()"
-        (onKeyDown)="_onKeyDown($event)">
+        (onKeyDown)="_onKeyDown($event)"
+        (onClear)="_onClear()">
         @for (t of templates; track t) {
           @if (templateMap[t.getType()]) {
             <ng-template [pTemplate]="t.getType()">

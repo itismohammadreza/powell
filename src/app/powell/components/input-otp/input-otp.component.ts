@@ -23,7 +23,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgFixLabelPosition, NgInputVariant, NgValidation} from "@powell/models";
+import {NgFixLabelPosition, NgInputVariant, NgSize, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
 import {TemplateDirective} from "@powell/directives/template";
@@ -64,9 +64,11 @@ export class InputOtpComponent implements OnInit, ControlValueAccessor {
   @Input() variant: NgInputVariant;
   @Input() tabindex: number = null;
   @Input() length: number = 4;
+  @Input() styleClass: string
   @Input() mask: boolean = false;
   @Input() integerOnly: boolean = false;
   @Input() autofocus: boolean = false;
+  @Input() size: NgSize;
   @Output() onChange = new EventEmitter<$InputOtpChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();

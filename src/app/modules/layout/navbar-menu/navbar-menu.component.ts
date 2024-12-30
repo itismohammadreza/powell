@@ -7,12 +7,12 @@ import {globalConfig} from "@core/config";
 import {
   $AvatarModule,
   $DividerModule,
-  $SelectChangeEvent,
+  $DrawerModule,
   $MenubarModule,
   $MenuItem,
   $MenuModule,
   $PanelMenuModule,
-  $DrawerModule
+  $SelectChangeEvent
 } from "@powell/primeng";
 import {ButtonModule} from "@powell/components/button";
 import {InputTextModule} from "@powell/components/input-text";
@@ -24,7 +24,6 @@ import {FormsModule} from "@angular/forms";
 import {LogoComponent} from "@modules/layout/logo/logo.component";
 import {routes} from "@modules/main/pages/showcase/showcase-routing.module";
 import {lastValueFrom} from "rxjs";
-import {NgConfig} from "@powell/models";
 
 @Component({
   selector: 'ng-navbar-menu',

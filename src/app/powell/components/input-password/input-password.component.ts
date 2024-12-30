@@ -72,10 +72,10 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize;
   @Input() followConfig: boolean;
   // native properties
   @Input() ariaLabel: string;
+  @Input() fluid: boolean;
   @Input() ariaLabelledBy: string;
   @Input() disabled: boolean;
   @Input() promptLabel: string;
@@ -89,6 +89,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() feedback: boolean = true;
   @Input() appendTo: any;
   @Input() toggleMask: boolean = false;
+  @Input() size: NgSize;
   @Input() inputStyleClass: string;
   @Input() styleClass: string;
   @Input() style: NgCssObject;

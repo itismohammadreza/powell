@@ -4,11 +4,7 @@
     [frozenColumns]="frozenColumns"
     [frozenValue]="frozenValue"
     [style]="style"
-    styleClass="
-           {{styleClass}}
-           p-datatable-{{size}}
-           p-datatable-{{gridlines ? 'gridlines' : null}}
-           p-datatable-{{striped ? 'striped' : null}}"
+    [styleClass]="styleClass"
     [tableStyle]="tableStyle"
     [tableStyleClass]="tableStyleClass"
     [paginator]="paginator"
@@ -28,7 +24,7 @@
     [defaultSortOrder]="defaultSortOrder"
     [sortMode]="sortMode"
     [resetPageOnSort]="resetPageOnSort"
-    [selectionMode]="$any(selectionMode)"
+    [selectionMode]="selectionMode"
     [selectionPageOnly]="selectionPageOnly"
     [contextMenuSelection]="contextMenuSelection"
     [contextMenuSelectionMode]="contextMenuSelectionMode"
@@ -48,7 +44,6 @@
     [expandedRowKeys]="expandedRowKeys"
     [rowExpandMode]="rowExpandMode"
     [scrollable]="scrollable"
-    [scrollDirection]="scrollDirection"
     [rowGroupMode]="rowGroupMode"
     [scrollHeight]="scrollHeight"
     [virtualScroll]="virtualScroll"
@@ -56,12 +51,10 @@
     [virtualScrollOptions]="virtualScrollOptions"
     [virtualScrollDelay]="virtualScrollDelay"
     [frozenWidth]="frozenWidth"
-    [responsive]="responsive"
     [contextMenu]="contextMenu"
     [resizableColumns]="resizableColumns"
     [columnResizeMode]="columnResizeMode"
     [reorderableColumns]="reorderableColumns"
-    [loading]="loading"
     [loadingIcon]="loadingIcon"
     [showLoader]="showLoader"
     [rowHover]="rowHover"
@@ -73,12 +66,13 @@
     [stateKey]="stateKey"
     [stateStorage]="stateStorage"
     [groupRowsBy]="groupRowsBy"
+    [size]="size"
+    [showGridlines]="showGridlines"
+    [stripedRows]="stripedRows"
     [groupRowsByOrder]="groupRowsByOrder"
     [responsiveLayout]="responsiveLayout"
     [breakpoint]="breakpoint"
     [paginatorLocale]="paginatorLocale"
-    [value]="items"
-    [columns]="colDef"
     [first]="first"
     [rows]="rows"
     [totalRecords]="totalRecords"
@@ -87,9 +81,9 @@
     [multiSortMeta]="multiSortMeta"
     [selection]="selection"
     [selectAll]="selectAll"
-    [virtualRowHeight]="virtualRowHeight"
-    (selectionChange)="onSelectionChange($event)"
+    (contextMenuSelectionChange)="onContextMenuSelectionChange($event)"
     (selectAllChange)="onSelectAllChange($event)"
+    (selectionChange)="onSelectionChange($event)"
     (onRowSelect)="emitter('onRowSelect',$event)"
     (onRowUnselect)="emitter('onRowUnselect',$event)"
     (onSort)="_onSort($event)"
@@ -107,8 +101,14 @@
     (firstChange)="onFirstChange($event)"
     (rowsChange)="onRowsChange($event)"
     (onStateSave)="emitter('onStateSave',$event)"
-    (onStateRestore)="emitter('onStateRestore',$event)"
-    (contextMenuSelectionChange)="onContextMenuSelectionChange($event)">
+    (onStateRestore)="emitter('onStateRestore',$event)">
+    @for (t of templates; track t) {
+      @if (templateMap[t.getType()]) {
+        <ng-template [pTemplate]="t.getType()">
+          <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
+        </ng-template>
+      }
+    }
     <ng-template pTemplate="header">
       @if (filterDisplay == 'menu') {
         <tr>
@@ -472,163 +472,6 @@
         }
       </ng-template>
     }
-    @if (headerGroupedTemplate) {
-      <ng-template pTemplate="headergrouped"
-                   let-item
-                   let-rowIndex="rowIndex"
-                   let-columns="columns"
-                   let-editing="editing"
-                   let-frozen="frozen">
-        <ng-container
-          *ngTemplateOutlet="headerGroupedTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
-      </ng-template>
-    }
-    @if (headerTemplate) {
-      <ng-template pTemplate="header" let-item>
-        <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"/>
-      </ng-template>
-    }
-    @if (loadingBodyTemplate) {
-      <ng-template pTemplate="loadingbody" let-rowspan="rowspan" let-rowgroup="rowgroup">
-        <ng-container *ngTemplateOutlet="loadingBodyTemplate;context:{rowspan,rowgroup}"/>
-      </ng-template>
-    }
-    @if (footerTemplate) {
-      <ng-template pTemplate="footer" let-item>
-        <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"/>
-      </ng-template>
-    }
-    @if (footerGroupedTemplate) {
-      <ng-template pTemplate="footergrouped" let-item>
-        <ng-container *ngTemplateOutlet="footerGroupedTemplate;context:{$implicit:item}"/>
-      </ng-template>
-    }
-    @if (colGroupTemplate) {
-      <ng-template pTemplate="colgroup" let-item>
-        <ng-container *ngTemplateOutlet="colGroupTemplate;context:{$implicit:item}"/>
-      </ng-template>
-    }
-    @if (summaryTemplate) {
-      <ng-template pTemplate="summary">
-        <ng-container *ngTemplateOutlet="summaryTemplate"/>
-      </ng-template>
-    }
-    @if (rowExpansionTemplate) {
-      <ng-template pTemplate="rowexpansion" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded">
-        <ng-container *ngTemplateOutlet="rowExpansionTemplate;context:{rowspan,rowgroup,expanded}"/>
-      </ng-template>
-    }
-    @if (groupHeaderTemplate) {
-      <ng-template pTemplate="groupheader" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
-                   let-frozen="frozen">
-        <ng-container
-          *ngTemplateOutlet="groupHeaderTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
-      </ng-template>
-    }
-    @if (groupFooterTemplate) {
-      <ng-template pTemplate="groupfooter" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
-                   let-frozen="frozen">
-        <ng-container
-          *ngTemplateOutlet="groupFooterTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
-      </ng-template>
-    }
-    @if (frozenHeaderTemplate) {
-      <ng-template pTemplate="frozenheader">
-        <ng-container *ngTemplateOutlet="frozenHeaderTemplate"/>
-      </ng-template>
-    }
-    @if (frozenBodyTemplate) {
-      <ng-template pTemplate="frozenbody" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing"
-                   let-frozen="frozen">
-        <ng-container
-          *ngTemplateOutlet="frozenBodyTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"/>
-      </ng-template>
-    }
-    @if (frozenFooterTemplate) {
-      <ng-template pTemplate="frozenfooter">
-        <ng-container *ngTemplateOutlet="frozenFooterTemplate"/>
-      </ng-template>
-    }
-    @if (frozenColGroupTemplate) {
-      <ng-template pTemplate="frozencolgroup">
-        <ng-container *ngTemplateOutlet="frozenColGroupTemplate"/>
-      </ng-template>
-    }
-    @if (frozenColGroupTemplate) {
-      <ng-template pTemplate="frozenexpandedrow" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded">
-        <ng-container *ngTemplateOutlet="frozenColGroupTemplate;context:{rowspan,rowgroup,expanded}"/>
-      </ng-template>
-    }
-    @if (paginatorLeftTemplate) {
-      <ng-template pTemplate="paginatorleft">
-        <ng-container *ngTemplateOutlet="paginatorLeftTemplate"/>
-      </ng-template>
-    }
-    @if (paginatorRightTemplate) {
-      <ng-template pTemplate="paginatorright">
-        <ng-container *ngTemplateOutlet="paginatorRightTemplate"/>
-      </ng-template>
-    }
-    @if (paginatorDropdownIconTemplate) {
-      <ng-template pTemplate="paginatordropdownicon">
-        <ng-container *ngTemplateOutlet="paginatorDropdownIconTemplate"/>
-      </ng-template>
-    }
-    @if (paginatorDropdownItemTemplate) {
-      <ng-template pTemplate="paginatordropdownitem">
-        <ng-container *ngTemplateOutlet="paginatorDropdownItemTemplate"/>
-      </ng-template>
-    }
-    @if (paginatorFirstPageLinkIconTemplate) {
-      <ng-template pTemplate="paginatorfirstpagelinkicon">
-        <ng-container *ngTemplateOutlet="paginatorFirstPageLinkIconTemplate"/>
-      </ng-template>
-    }
-    @if (paginatorLastPageLinkIconTemplate) {
-      <ng-template pTemplate="paginatorlastpagelinkicon">
-        <ng-container *ngTemplateOutlet="paginatorLastPageLinkIconTemplate"/>
-      </ng-template>
-    }
-    @if (paginatorPreviousPageLinkIconTemplate) {
-      <ng-template pTemplate="paginatorpreviouspagelinkicon">
-        <ng-container *ngTemplateOutlet="paginatorPreviousPageLinkIconTemplate"/>
-      </ng-template>
-    }
-    @if (paginatorNextPageLinkIconTemplate) {
-      <ng-template pTemplate="paginatornextpagelinkicon">
-        <ng-container *ngTemplateOutlet="paginatorNextPageLinkIconTemplate"/>
-      </ng-template>
-    }
-    @if (loadingIconTemplate) {
-      <ng-template pTemplate="loadingicon">
-        <ng-container *ngTemplateOutlet="loadingIconTemplate"/>
-      </ng-template>
-    }
-    @if (reorderIndicatorUpIconTemplate) {
-      <ng-template pTemplate="reorderindicatorupicon">
-        <ng-container *ngTemplateOutlet="reorderIndicatorUpIconTemplate"/>
-      </ng-template>
-    }
-    @if (reorderIndicatorDownIconTemplate) {
-      <ng-template pTemplate="reorderindicatordownicon">
-        <ng-container *ngTemplateOutlet="reorderIndicatorDownIconTemplate"/>
-      </ng-template>
-    }
-    @if (sortIconTemplate) {
-      <ng-template pTemplate="sorticon" let-item>
-        <ng-container *ngTemplateOutlet="sortIconTemplate;context:{$implicit:item}"/>
-      </ng-template>
-    }
-    @if (checkboxIconTemplate) {
-      <ng-template pTemplate="checkboxicon" let-item let-partialSelected="partialSelected">
-        <ng-container *ngTemplateOutlet="checkboxIconTemplate;context:{$implicit:item,partialSelected}"/>
-      </ng-template>
-    }
-    @if (headerCheckboxIconTemplate) {
-      <ng-template pTemplate="headercheckboxicon" let-item>
-        <ng-container *ngTemplateOutlet="headerCheckboxIconTemplate;context:{$implicit:item}"/>
-      </ng-template>
-    }
 
     <ng-template let-columns let-frozen="frozen" pTemplate="emptymessage">
       @if (emptyMessageTemplate) {
@@ -650,4 +493,3 @@
     </ng-template>
   </p-table>
 </div>
-<!--<p-contextMenu #cm [model]="contextMenuItems" appendTo="body"/>-->

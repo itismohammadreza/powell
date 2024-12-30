@@ -72,7 +72,6 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize;
   @Input() followConfig: boolean;
   // native properties
   @Input() showButtons: boolean = false;
@@ -82,6 +81,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() styleClass: string;
   @Input() style: NgCssObject;
   @Input() placeholder: string;
+  @Input() size: NgSize;
   @Input() maxlength: number;
   @Input() tabindex: number;
   @Input() title: string;
@@ -116,6 +116,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() showClear: boolean = false;
   @Input() autofocus: boolean = false;
   @Input() disabled: boolean;
+  @Input() fluid: boolean;
   @Output() onInput = new EventEmitter<$InputNumberInputEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();

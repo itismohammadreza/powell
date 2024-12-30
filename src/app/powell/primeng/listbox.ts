@@ -7,7 +7,7 @@ import {
   ListboxFilterOptions,
   ListboxModule,
   ListboxSelectAllChangeEvent,
-  ListboxTemplates
+  ListboxTemplates,
 } from "primeng/listbox";
 
 export {ListboxModule as $ListboxModule}

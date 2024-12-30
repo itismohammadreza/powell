@@ -16,6 +16,7 @@
         [emptySelectionMessage]="emptySelectionMessage"
         [selectionMessage]="selectionMessage"
         [autoOptionFocus]="autoOptionFocus"
+        [ariaLabel]="ariaLabel"
         [selectOnFocus]="selectOnFocus"
         [searchLocale]="searchLocale"
         [focusOnHover]="focusOnHover"
@@ -55,13 +56,17 @@
         [options]="options"
         [filterValue]="filterValue"
         [selectAll]="selectAll"
+        [striped]="striped"
+        [highlightOnSelect]="highlightOnSelect"
+        [checkmark]="checkmark"
         (onChange)="_onChange($event)"
         (onClick)="_onClick($event)"
         (onDblClick)="_onDblClick($event)"
         (onFilter)="emitter('onFilter', $event)"
         (onFocus)="emitter('onFocus', $event)"
         (onBlur)="emitter('onBlur', $event)"
-        (onSelectAllChange)="emitter('onSelectAllChange', $event)">
+        (onSelectAllChange)="emitter('onSelectAllChange', $event)"
+        (onLazyLoad)="emitter('onLazyLoad', $event)">
         @for (t of templates; track t) {
           @if (templateMap[t.getType()]) {
             <ng-template [pTemplate]="t.getType()" let-item let-options="options" let-index="index">

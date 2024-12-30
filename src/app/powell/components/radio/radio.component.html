@@ -12,11 +12,12 @@
         <p-radioButton
           [(ngModel)]="value"
           [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
-          [disabled]="item[optionDisabled]"
           [class]="item.styleClass"
           [value]="item[optionValue]"
-          [name]="groupName"
+          [name]="name"
+          [disabled]="item[optionDisabled]"
           [variant]="variant"
+          [size]="size"
           [tabindex]="tabindex"
           [inputId]="'id' + item[optionValue]"
           [ariaLabelledBy]="ariaLabelledBy"
@@ -24,9 +25,10 @@
           [style]="style"
           [styleClass]="styleClass"
           [autofocus]="autofocus"
+          [binary]="binary"
           (onClick)="_onChange($event)"
-          (onBlur)="_onBlur($event)"
-          (onFocus)="_onFocus($event)"/>
+          (onFocus)="_onFocus($event)"
+          (onBlur)="_onBlur($event)"/>
         <label [attr.for]="'id' + item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
           {{ item[optionLabel] }}
         </label>

@@ -301,7 +301,6 @@ export type NgDialogFormComponent =
   | 'knob'
   | 'listbox'
   | 'map'
-  | 'message'
   | 'multi-select'
   | 'radio'
   | 'rating'

@@ -84,7 +84,6 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize;
   @Input() followConfig: boolean;
   // native properties
   @Input() inputId: string = $uuid();
@@ -100,6 +99,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() placeholder: string;
   @Input() panelClass: string;
   @Input() panelStyle: NgCssObject;
+  @Input() fluid: boolean;
   @Input() panelStyleClass: string;
   @Input() containerStyle: NgCssObject;
   @Input() containerStyleClass: string;
@@ -120,11 +120,10 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() resetFilterOnHide: boolean = true;
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
+  @Input() size: NgSize;
   @Input() virtualScrollOptions: $ScrollerOptions;
   @Input() autofocus: boolean = false;
   @Input() options: $TreeNode<any>[];
-  @Input() showTransitionOptions: string;
-  @Input() hideTransitionOptions: string;
   @Input() loading: boolean = false;
   @Output() onNodeExpand = new EventEmitter<$TreeSelectNodeExpandEvent>();
   @Output() onNodeCollapse = new EventEmitter<$TreeSelectNodeCollapseEvent>();

@@ -32,7 +32,7 @@ import {
   $ListboxClickEvent,
   $ListboxDoubleClickEvent,
   $ListboxFilterEvent,
-  $ListboxSelectAllChangeEvent,
+  $ListboxSelectAllChangeEvent, $ScrollerLazyLoadEvent,
   $ScrollerOptions,
   $uuid
 } from "@powell/primeng";
@@ -70,10 +70,11 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() followConfig: boolean;
   // native properties
   @Input() id: string = $uuid();
-  @Input() searchMessage: string;
-  @Input() emptySelectionMessage: string;
-  @Input() selectionMessage: string;
+  @Input() searchMessage: string = '{0} results are available';
+  @Input() emptySelectionMessage: string = 'No selected item';
+  @Input() selectionMessage: string = '{0} items selected';
   @Input() autoOptionFocus: boolean = true;
+  @Input() ariaLabel: string;
   @Input() selectOnFocus: boolean = false;
   @Input() searchLocale: boolean = false;
   @Input() focusOnHover: boolean = false;
@@ -83,7 +84,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
   @Input() virtualScrollOptions: $ScrollerOptions;
-  @Input() scrollHeight: string = '200px';
+  @Input() scrollHeight: string = '14rem';
   @Input() tabindex: number;
   @Input() multiple: boolean = false;
   @Input() style: NgCssObject;
@@ -113,6 +114,9 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() options: any[];
   @Input() filterValue: string;
   @Input() selectAll: boolean;
+  @Input() striped: boolean = false;
+  @Input() highlightOnSelect: boolean = true;
+  @Input() checkmark: boolean = false;
   @Output() onChange = new EventEmitter<$ListboxChangeEvent>();
   @Output() onClick = new EventEmitter<$ListboxClickEvent>();
   @Output() onDblClick = new EventEmitter<$ListboxDoubleClickEvent>();
@@ -120,6 +124,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Output() onFocus = new EventEmitter<FocusEvent>();
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onSelectAllChange = new EventEmitter<$ListboxSelectAllChangeEvent>();
+  @Output() onLazyLoad = new EventEmitter<$ScrollerLazyLoadEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;

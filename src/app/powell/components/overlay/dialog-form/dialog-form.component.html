@@ -192,11 +192,6 @@
             [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
-        @case ('message') {
-          <ng-message
-            [ngClass]="config.className"
-            [hidden]="handleConfigVisibility(config)"/>
-        }
         @case ('checkbox-group') {
           <ng-checkbox-group
             [formControlName]="config.key"

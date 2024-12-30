@@ -76,11 +76,10 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize;
   @Input() followConfig: boolean;
-  // native properties
   @Input() isJalali: boolean;
   @Input() iconDisplay: NgDatepickerIconDisplay = 'button';
+  // native properties
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() inputStyle: NgCssObject;
@@ -99,15 +98,13 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() showOtherMonths: boolean = true;
   @Input() selectOtherMonths: boolean;
   @Input() showIcon: boolean;
+  @Input() fluid: boolean;
   @Input() datepickerIcon: string;
   @Input() appendTo: any;
   @Input() readonlyInput: boolean;
   @Input() shortYearCutoff: string = '+10';
-  @Input() monthNavigator: boolean;
-  @Input() yearNavigator: boolean;
   @Input() hourFormat: NgDatepickerHourFormat = '24';
   @Input() timeOnly: boolean;
-  @Input() stepYearPicker: number = 10;
   @Input() stepHour: number = 1;
   @Input() stepMinute: number = 1;
   @Input() stepSecond: number = 1;
@@ -137,16 +134,15 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() hideTransitionOptions: string = '.1s linear';
   @Input() tabindex: number;
   @Input() variant: NgInputVariant = 'outlined';
+  @Input() size: NgSize;
   @Input() minDate: Date | Moment;
   @Input() maxDate: Date | Moment;
   @Input() disabledDates: (Date | Moment)[];
   @Input() disabledDays: number[];
-  @Input() yearRange: string;
   @Input() showTime: boolean;
   @Input() responsiveOptions: $DatePickerResponsiveOptions[];
   @Input() numberOfMonths: number = 1;
   @Input() firstDayOfWeek: number;
-  @Input() locale: $LocaleSettings;
   @Input() view: $DatePickerTypeView = 'date';
   @Input() defaultDate: Date | Moment;
   @Output() onFocus = new EventEmitter<Event>();

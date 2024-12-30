@@ -83,7 +83,6 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize;
   @Input() followConfig: boolean;
   // native properties
   @Input() id: string;
@@ -94,6 +93,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() panelStyleClass: string;
   @Input() inputId: string = $uuid();
   @Input() disabled: boolean;
+  @Input() fluid: boolean;
   @Input() readonly: boolean;
   @Input() group: boolean;
   @Input() filter: boolean = true;
@@ -115,6 +115,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() emptyMessage: string;
   @Input() resetFilterOnHide: boolean;
   @Input() dropdownIcon: string;
+  @Input() chipIcon: string;
   @Input() optionLabel: string;
   @Input() optionValue: string;
   @Input() optionDisabled: string;
@@ -125,7 +126,9 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() scrollHeight: string = '200px';
   @Input() lazy: boolean;
   @Input() virtualScroll: boolean;
+  @Input() loading: boolean;
   @Input() virtualScrollItemSize: number;
+  @Input() loadingIcon: string;
   @Input() virtualScrollOptions: $ScrollerOptions;
   @Input() overlayOptions: $OverlayOptions;
   @Input() ariaFilterLabel: string;
@@ -137,17 +140,12 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() autofocusFilter: boolean = true;
   @Input() display: NgChipDisplayMode = 'comma';
   @Input() autocomplete: string = 'off';
+  @Input() size: NgSize;
   @Input() showClear: boolean;
   @Input() autofocus: boolean;
-  @Input() autoZIndex: boolean;
-  @Input() baseZIndex: number;
-  @Input() showTransitionOptions: string;
-  @Input() hideTransitionOptions: string;
-  @Input() defaultLabel: string;
   @Input() placeholder: string;
   @Input() options: any[];
   @Input() filterValue: string;
-  @Input() itemSize: number;
   @Input() selectAll: boolean = null; // should have explicitly the 'null' value to work properly
   @Input() focusOnHover: boolean;
   @Input() filterFields: any[];
