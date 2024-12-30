@@ -31,7 +31,6 @@ import {IranMapComponent} from "@powell/components/iran-map";
 import {KnobComponent} from "@powell/components/knob";
 import {ListboxComponent} from "@powell/components/listbox";
 import {MapComponent} from "@powell/components/map";
-import {MessageComponent} from "@powell/components/message";
 import {MultiSelectComponent} from "@powell/components/multi-select";
 import {RadioComponent} from "@powell/components/radio";
 import {RatingComponent} from "@powell/components/rating";
@@ -80,7 +79,6 @@ export class DialogFormComponent {
   @ViewChild(KnobComponent) knobComponent: KnobComponent;
   @ViewChild(ListboxComponent) listboxComponent: ListboxComponent;
   @ViewChild(MapComponent) mapComponent: MapComponent;
-  @ViewChild(MessageComponent) messageComponent: MessageComponent;
   @ViewChild(MultiSelectComponent) multiSelectComponent: MultiSelectComponent;
   @ViewChild(RadioComponent) radioComponent: RadioComponent;
   @ViewChild(RatingComponent) ratingComponent: RatingComponent;
@@ -302,7 +300,6 @@ export class DialogFormComponent {
       'knob': this.knobComponent,
       'listbox': this.listboxComponent,
       'map': this.mapComponent,
-      'message': this.messageComponent,
       'multi-select': this.multiSelectComponent,
       'radio': this.radioComponent,
       'rating': this.ratingComponent,

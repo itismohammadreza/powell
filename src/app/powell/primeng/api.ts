@@ -64,6 +64,7 @@ import {
   unblockBodyScroll,
   uuid
 } from '@primeuix/utils';
+import {$dt as primeNGDt, $t as primeNGt} from '@primeng/themes';
 import Aura from '@primeng/themes/aura';
 import Lara from '@primeng/themes/lara';
 import Material from '@primeng/themes/material';
@@ -73,6 +74,8 @@ export {Aura as $Aura}
 export {Lara as $Lara}
 export {Material as $Material}
 export {Nora as $Nora}
+export {primeNGDt as $dt}
+export {primeNGt as $t}
 export {absolutePosition as $absolutePosition}
 export {addClass as $addClass}
 export {addStyle as $addStyle}

@@ -164,11 +164,6 @@ export const routes: Routes = [
     title: 'Map'
   },
   {
-    path: 'message',
-    loadComponent: () => import('./pages/message').then(m => m.MessagePage),
-    title: 'Message'
-  },
-  {
     path: 'multi-select',
     loadComponent: () => import('./pages/multi-select').then(m => m.MultiSelectPage),
     title: 'Multi Select'

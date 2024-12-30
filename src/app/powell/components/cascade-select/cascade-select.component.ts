@@ -76,16 +76,15 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize;
   @Input() followConfig: boolean;
   // native properties
   @Input() id: string;
   @Input() selectOnFocus: boolean = false;
-  @Input() searchMessage: string;
+  @Input() searchMessage: string = '{0} results are available';
   @Input() emptyMessage: string;
-  @Input() selectionMessage: string;
-  @Input() emptySearchMessage: string;
-  @Input() emptySelectionMessage: string;
+  @Input() selectionMessage: string = '{0} items selected';
+  @Input() emptySearchMessage: string = 'No available options';
+  @Input() emptySelectionMessage: string = 'No selected item';
   @Input() searchLocale: string;
   @Input() optionDisabled: any;
   @Input() autoOptionFocus: boolean = true;
@@ -99,6 +98,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() placeholder: string;
   @Input() dataKey: string;
   @Input() inputId: string = $uuid();
+  @Input() size: NgSize;
   @Input() tabindex: number;
   @Input() ariaLabelledBy: string;
   @Input() inputLabel: string;
@@ -110,11 +110,11 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() panelStyle: NgCssObject;
   @Input() overlayOptions: $OverlayOptions;
   @Input() autofocus: boolean = false;
-  @Input() showTransitionOptions: string;
   @Input() variant: NgInputVariant;
   @Input() loading: false;
   @Input() loadingIcon: string;
-  @Input() hideTransitionOptions: string;
+  @Input() fluid: boolean;
+  @Input() breakpoint: string = '960px';
   @Output() onChange = new EventEmitter<any>();
   @Output() onGroupChange = new EventEmitter<Event>();
   @Output() onShow = new EventEmitter<$CascadeSelectShowEvent>();

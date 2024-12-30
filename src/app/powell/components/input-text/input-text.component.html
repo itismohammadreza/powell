@@ -11,7 +11,7 @@
   <div class="field"
        [ngAddon]="addon"
        [addonDisabled]="disabled"
-       [addonSize]="inputSize">
+       [addonSize]="size">
     <div [ngClass]="{
       'p-input-icon-left': icon && iconPos == 'left',
       'p-input-icon-right': icon && iconPos == 'right'
@@ -38,6 +38,8 @@
           [class]="inputStyleClass"
           [autocomplete]="autocomplete"
           [variant]="variant"
+          [fluid]="fluid"
+          [size]="size"
           (blur)="_onBlur($event)"
           (change)="_onChange($event)"
           (click)="emitter('onClick', $event)"

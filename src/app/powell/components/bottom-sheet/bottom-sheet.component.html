@@ -1,47 +1,59 @@
 <p-drawer
   position="bottom"
   [appendTo]="appendTo"
-  [visible]="visible"
+  [blockScroll]="blockScroll"
   [style]="style"
   [styleClass]="styleClass"
-  [blockScroll]="blockScroll"
-  [baseZIndex]="baseZIndex"
+  [ariaCloseLabel]="ariaCloseLabel"
   [autoZIndex]="autoZIndex"
+  [baseZIndex]="baseZIndex"
   [modal]="modal"
+  [closeButtonProps]="closeButtonProps"
   [dismissible]="dismissible"
-  [closable]="false"
-  [transitionOptions]="transitionOptions"
   [closeOnEscape]="closeOnEscape"
+  [transitionOptions]="transitionOptions"
+  [visible]="visible"
+  [fullScreen]="fullScreen"
+  [header]="header"
+  [maskStyle]="maskStyle"
+  [closable]="closable"
   (onShow)="_onShow()"
   (onHide)="_onHide()">
-  <div class="bottom-sheet-wrapper" [ngClass]="{'rtl': rtl, 'ltr': !rtl}">
-    @if (header || closable || templateMap.header) {
-      <div class="header" [class.show-close-icon]="closable">
-        @if (templateMap.header) {
-          <ng-container *ngTemplateOutlet="templateMap.header"/>
-        } @else {
-          <h5>{{ header }}</h5>
-        }
-        @if (closable) {
-          <ng-button
-            [rounded]="true"
-            size="small"
-            appearance="text"
-            (onClick)="_onHide()">
-            <ng-template ngTemplate="icon">
-              <TimesIcon/>
-            </ng-template>
-          </ng-button>
-        }
-      </div>
+  @for (t of templates; track t) {
+    @if (templateMap[t.getType()]) {
+      <ng-template [pTemplate]="t.getType()">
+        <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
+      </ng-template>
     }
-    <div class="content" [class.has-gutter]="gutter">
-      <ng-content/>
-    </div>
-    @if (templateMap.footer) {
-      <div class="footer">
-        <ng-container *ngTemplateOutlet="templateMap.footer"/>
-      </div>
-    }
-  </div>
+  }
+<!--  <div class="bottom-sheet-wrapper" [ngClass]="{'rtl': rtl, 'ltr': !rtl}">-->
+<!--    @if (header || closable || templateMap.header) {-->
+<!--      <div class="header" [class.show-close-icon]="closable">-->
+<!--        @if (templateMap.header) {-->
+<!--          <ng-container *ngTemplateOutlet="templateMap.header"/>-->
+<!--        } @else {-->
+<!--          <h5>{{ header }}</h5>-->
+<!--        }-->
+<!--        @if (closable) {-->
+<!--          <ng-button-->
+<!--            [rounded]="true"-->
+<!--            size="small"-->
+<!--            appearance="text"-->
+<!--            (onClick)="_onHide()">-->
+<!--            <ng-template ngTemplate="icon">-->
+<!--              <TimesIcon/>-->
+<!--            </ng-template>-->
+<!--          </ng-button>-->
+<!--        }-->
+<!--      </div>-->
+<!--    }-->
+<!--    <div class="content">-->
+<!--      <ng-content/>-->
+<!--    </div>-->
+<!--    @if (templateMap.footer) {-->
+<!--      <div class="footer">-->
+<!--        <ng-container *ngTemplateOutlet="templateMap.footer"/>-->
+<!--      </div>-->
+<!--    }-->
+<!--  </div>-->
 </p-drawer>

@@ -30,7 +30,7 @@
           [fluid]="true"
           [disabled]="disabled"
           (onClick)="inputFile.click()"
-          [severity]="severity"
+          [buttonProps]="chooseButtonProps"
           [label]="chooseLabel">
         </ng-button>
         @if (filesToShow.length != 0) {

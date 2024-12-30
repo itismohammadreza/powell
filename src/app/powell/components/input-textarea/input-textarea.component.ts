@@ -21,7 +21,15 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAddon, NgCssObject, NgIconPosition, NgInputVariant, NgLabelPosition, NgValidation} from '@powell/models';
+import {
+  NgAddon,
+  NgCssObject,
+  NgIconPosition,
+  NgInputVariant,
+  NgLabelPosition,
+  NgSize,
+  NgValidation
+} from '@powell/models';
 import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import {$uuid} from "@powell/primeng";
@@ -65,8 +73,6 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Input() inputId: string = $uuid();
   @Input() rows: number;
   @Input() cols: number;
-  @Input() autoResize: boolean;
-  @Input() variant: NgInputVariant;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() maxlength: number;
@@ -75,6 +81,11 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Input() styleClass: string;
   @Input() inputStyle: NgCssObject;
   @Input() inputStyleClass: string;
+  // native properties
+  @Input() autoResize: boolean = false;
+  @Input() variant: NgInputVariant;
+  @Input() fluid: boolean = false;
+  @Input() size: NgSize;
   @Output() onResize = new EventEmitter<Event | {}>();
   @Output() onInput = new EventEmitter<Event>();
   @Output() onChange = new EventEmitter<Event>();

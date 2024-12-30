@@ -83,9 +83,9 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
-  @Input() items: any[];
   @Input() id: string = $uuid();
   // native properties
+  @Input() items: any[];
   @Input() selectionMode: NgTreeSelectionMode;
   @Input() loadingMode: NgTreeLoadingMode = 'mask';
   @Input() selection: any;
@@ -120,7 +120,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() indentation: number = 1.5;
   @Input() _templateMap: any;
   @Input() trackBy: Function;
-  @Input() virtualNodeHeight: number;
+  @Input() highlightOnSelect: boolean;
   @Output() selectionChange = new EventEmitter<$TreeSelectionChangeEvent>();
   @Output() onNodeSelect = new EventEmitter<$TreeNodeSelectEvent>();
   @Output() onNodeUnselect = new EventEmitter<$TreeNodeUnSelectEvent>();

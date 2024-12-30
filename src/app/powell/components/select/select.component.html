@@ -9,7 +9,7 @@
   <div class="field"
        [ngAddon]="addon"
        [addonDisabled]="disabled"
-       [addonSize]="inputSize">
+       [addonSize]="size">
     <div [ngClass]="{
       'p-float-label': label && labelPos == 'float',
       'p-input-icon-left': icon && iconPos == 'left',
@@ -30,6 +30,7 @@
         [styleClass]="styleClass"
         [panelStyleClass]="panelStyleClass"
         [readonly]="readonly"
+        [required]="required"
         [editable]="editable"
         [appendTo]="appendTo"
         [tabindex]="tabindex"
@@ -52,7 +53,6 @@
         [optionDisabled]="optionDisabled"
         [optionGroupLabel]="optionGroupLabel"
         [optionGroupChildren]="optionGroupChildren"
-        [autoDisplayFirst]="autoDisplayFirst"
         [group]="group"
         [showClear]="showClear"
         [emptyFilterMessage]="emptyFilterMessage"
@@ -75,12 +75,8 @@
         [selectOnFocus]="selectOnFocus"
         [autoOptionFocus]="autoOptionFocus"
         [autofocusFilter]="autofocusFilter"
+        [fluid]="fluid"
         [disabled]="disabled"
-        [itemSize]="itemSize"
-        [autoZIndex]="autoZIndex"
-        [baseZIndex]="baseZIndex"
-        [showTransitionOptions]="showTransitionOptions"
-        [hideTransitionOptions]="hideTransitionOptions"
         [filterValue]="filterValue"
         [options]="options"
         (onChange)="_onChange($event)"

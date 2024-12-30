@@ -32,13 +32,14 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
   private destroy$ = inject(DestroyService);
   private configService = inject(ConfigService);
 
+  @Input() rtl: boolean;
+  @Input() followConfig: boolean;
+  // native properties
   @Input() items: $MenuItem[];
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() home: $MenuItem;
   @Input() homeAriaLabel: string;
-  @Input() rtl: boolean;
-  @Input() followConfig: boolean;
   @Output() onItemClick = new EventEmitter<$BreadcrumbItemClickEvent>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 

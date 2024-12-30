@@ -9,7 +9,7 @@
   <div class="field"
        [ngAddon]="addon"
        [addonDisabled]="disabled"
-       [addonSize]="inputSize">
+       [addonSize]="size">
     <div [ngClass]="{
       'p-float-label': label && labelPos == 'float',
       'p-input-icon-left': icon && iconPos == 'left',
@@ -29,6 +29,7 @@
         [panelStyleClass]="panelStyleClass"
         [inputId]="inputId"
         [disabled]="disabled"
+        [fluid]="fluid"
         [readonly]="readonly"
         [group]="group"
         [filter]="filter"
@@ -50,6 +51,7 @@
         [emptyMessage]="emptyMessage"
         [resetFilterOnHide]="resetFilterOnHide"
         [dropdownIcon]="dropdownIcon"
+        [chipIcon]="chipIcon"
         [optionLabel]="optionLabel"
         [optionValue]="optionValue"
         [optionDisabled]="optionDisabled"
@@ -60,7 +62,9 @@
         [scrollHeight]="scrollHeight"
         [lazy]="lazy"
         [virtualScroll]="virtualScroll"
+        [loading]="loading"
         [virtualScrollItemSize]="virtualScrollItemSize"
+        [loadingIcon]="loadingIcon"
         [virtualScrollOptions]="virtualScrollOptions"
         [overlayOptions]="overlayOptions"
         [ariaFilterLabel]="ariaFilterLabel"
@@ -72,17 +76,12 @@
         [autofocusFilter]="autofocusFilter"
         [display]="display"
         [autocomplete]="autocomplete"
+        [size]="size"
         [showClear]="showClear"
         [autofocus]="autofocus"
-        [autoZIndex]="autoZIndex"
-        [baseZIndex]="baseZIndex"
-        [showTransitionOptions]="showTransitionOptions"
-        [hideTransitionOptions]="hideTransitionOptions"
-        [defaultLabel]="defaultLabel"
         [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
         [options]="options"
         [filterValue]="filterValue"
-        [itemSize]="itemSize"
         [selectAll]="selectAll"
         [focusOnHover]="focusOnHover"
         [filterFields]="filterFields"

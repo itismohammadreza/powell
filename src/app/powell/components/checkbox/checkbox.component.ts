@@ -24,7 +24,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAsyncEvent, NgCssObject, NgInputVariant, NgValidation} from '@powell/models';
+import {NgAsyncEvent, NgCssObject, NgInputVariant, NgSize, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {$CheckboxChangeEvent, $uuid} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
@@ -62,13 +62,18 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   @Input() showAsyncLoading: boolean = true;
   @Input() followConfig: boolean;
   // native properties
+  @Input() name: string;
   @Input() disabled: boolean;
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
   @Input() tabindex: number;
   @Input() inputId: string = $uuid();
   @Input() style: NgCssObject;
+  @Input() inputStyle: NgCssObject;
   @Input() styleClass: string;
+  @Input() inputClass: string;
+  @Input() indeterminate: boolean;
+  @Input() size: NgSize;
   @Input() checkboxIcon: string;
   @Input() readonly: boolean = false;
   @Input() autofocus: boolean = false;

@@ -155,11 +155,11 @@ export class UtilsService {
     return blob as File;
   }
 
-  getTypeClass(fileType: string) {
+  private getTypeClass(fileType: string) {
     return fileType.substring(0, fileType.indexOf('/'));
   }
 
-  isWildcard(fileType: string) {
+  private isWildcard(fileType: string) {
     return fileType.indexOf('*') !== -1;
   }
 

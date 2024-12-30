@@ -23,11 +23,12 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgSeverity,
+  NgButtonProps,
   NgFilePickerRemoveEvent,
   NgFilePickerSelectEvent,
   NgFileResultType,
   NgFixLabelPosition,
+  NgSeverity,
   NgValidation
 } from '@powell/models';
 import {ConfigService, UtilsService} from "@powell/api";
@@ -69,11 +70,11 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() multiple: boolean = true;
   @Input() isUnknownImageUrl: boolean = false;
   @Input() accept: string;
-  @Input() severity: NgSeverity = 'primary';
   @Input() maxFileSize: number;
   @Input() fileLimit: number;
   @Input() resultType: NgFileResultType = 'file';
   @Input() chooseLabel: string = 'انتخاب';
+  @Input() chooseButtonProps: NgButtonProps;
   @Input() invalidFileSizeMessage: string = 'سایز فایل نامعتبر است.';
   @Input() invalidFileTypeMessage: string = 'فرمت نامعتبر است.';
   @Input() id: string = $uuid();
@@ -92,7 +93,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   };
 
   ngOnInit() {
-    //store user defined label for single selection mode
+    // store user defined label for single selection mode
     this._chooseLabel = this.chooseLabel;
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;

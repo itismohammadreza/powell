@@ -69,7 +69,6 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize;
   @Input() followConfig: boolean;
   // native properties
   @Input() type: NgInputType = 'text';
@@ -80,7 +79,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @Input() inputId: string = $uuid();
   @Input() styleClass: string;
   @Input() placeholder: string;
-  @Input() size: number;
+  @Input() size: NgSize;
   @Input() maxlength: number;
   @Input() tabindex: string;
   @Input() title: string;
@@ -95,7 +94,6 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @Input() required: boolean = false;
   @Input() characterPattern: string = '[A-Za-z]';
   @Input() autofocus: boolean = false;
-  @Input() autoFocus: boolean = false;
   @Input() autocomplete: string;
   @Input() keepBuffer: boolean = false;
   @Input() mask: string;

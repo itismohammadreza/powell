@@ -29,6 +29,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
+  NgButtonProps,
   NgCssObject,
   NgFilePickerMethod,
   NgFilePickerMode,
@@ -95,12 +96,12 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Input() auto: boolean = false;
   @Input() withCredentials: boolean = false;
   @Input() maxFileSize: number;
-  @Input() invalidFileSizeMessageSummary: string = '{0} - سایز فایل نامعتبر است.';
-  @Input() invalidFileSizeMessageDetail: string = 'حداکثر سایز فایل {0} است.';
-  @Input() invalidFileTypeMessageSummary: string = '{0} - نوع فایل نامعتبر است.';
-  @Input() invalidFileTypeMessageDetail: string = 'فرمت مجاز : {0}';
-  @Input() invalidFileLimitMessageDetail: string = 'حداکثر مجاز به انتخاب {0} فایل هستید.';
-  @Input() invalidFileLimitMessageSummary: string = 'مجاز به انتخاب فایل بیشتری نیستید.';
+  @Input() invalidFileSizeMessageSummary: string = '{0}: Invalid file size';
+  @Input() invalidFileSizeMessageDetail: string = 'maximum upload size is {0}';
+  @Input() invalidFileTypeMessageSummary: string = '{0}: Invalid file type';
+  @Input() invalidFileTypeMessageDetail: string = 'allowed file types: {0}';
+  @Input() invalidFileLimitMessageDetail: string = 'limit is {0} at most';
+  @Input() invalidFileLimitMessageSummary: string = 'Maximum number of files exceeded';
   @Input() style: NgCssObject;
   @Input() styleClass: string;
   @Input() previewWidth: number = 50;
@@ -120,11 +121,14 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Input() cancelStyleClass: string;
   @Input() removeStyleClass: string;
   @Input() chooseStyleClass: string;
+  @Input() chooseButtonProps: NgButtonProps;
+  @Input() uploadButtonProps: NgButtonProps;
+  @Input() cancelButtonProps: NgButtonProps;
   @Output() onBeforeUpload = new EventEmitter<$FileBeforeUploadEvent>();
   @Output() onSend = new EventEmitter<$FileSendEvent>();
   @Output() onUpload = new EventEmitter<$FileUploadEvent>();
   @Output() onError = new EventEmitter<$FileUploadErrorEvent>();
-  @Output() onClear = new EventEmitter<void>();
+  @Output() onClear = new EventEmitter<Event>();
   @Output() onRemove = new EventEmitter<$FileRemoveEvent>();
   @Output() onSelect = new EventEmitter<$FileSelectEvent>();
   @Output() onProgress = new EventEmitter<$FileProgressEvent>();
@@ -175,6 +179,20 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   ngOnChanges(changes: SimpleChanges) {
     if (this.utilsService.isImage(this.value)) {
       this.init(this.value);
+    }
+
+    const {chooseButtonProps, uploadButtonProps, cancelButtonProps} = changes;
+    if (chooseButtonProps) {
+      const props = chooseButtonProps.currentValue;
+      this.chooseButtonProps = this.mapToButtonProps(props);
+    }
+    if (uploadButtonProps) {
+      const props = uploadButtonProps.currentValue;
+      this.chooseButtonProps = this.mapToButtonProps(props);
+    }
+    if (cancelButtonProps) {
+      const props = cancelButtonProps.currentValue;
+      this.chooseButtonProps = this.mapToButtonProps(props);
     }
   }
 
@@ -364,5 +382,14 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
 
   clear() {
     this.fileUploadComponent.clear();
+  }
+
+  mapToButtonProps(props: NgButtonProps) {
+    return {
+      ...props,
+      link: props.appearance === 'link',
+      outlined: props.appearance === 'outlined',
+      text: props.appearance === 'text',
+    } as any;
   }
 }
