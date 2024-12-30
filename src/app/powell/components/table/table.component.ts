@@ -80,6 +80,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() globalFilter: boolean;
   @Input() globalFilterPlaceholder: string;
   @Input() followConfig: boolean;
+  @Input() showSelectionIndicator: boolean;
   // native properties
   @Input() frozenColumns: any[];
   @Input() frozenValue: any[];

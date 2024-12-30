@@ -122,6 +122,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
   @Input() virtualScrollOptions: $ScrollerOptions;
+  @Input() size: NgSize;
   @Input() overlayOptions: $OverlayOptions;
   @Input() ariaFilterLabel: string;
   @Input() ariaLabel: string;

@@ -115,11 +115,9 @@
           @if (reorderableRows) {
             <th scope="col" style="width: 3rem"></th>
           }
-          @if (selectionMode == 'radio' || selectionMode == 'checkbox') {
+          @if (selectionMode == 'multiple' && showSelectionIndicator) {
             <th scope="col" style="width: 3rem">
-              @if (selectionMode == 'checkbox') {
-                <p-tableHeaderCheckbox/>
-              }
+              <p-tableHeaderCheckbox/>
             </th>
           }
           @for (col of colDef; track col) {
@@ -233,11 +231,9 @@
           @if (reorderableRows) {
             <th scope="col" style="width: 3rem"></th>
           }
-          @if (selectionMode == 'radio' || selectionMode == 'checkbox') {
+          @if (selectionMode == 'multiple' && showSelectionIndicator) {
             <th scope="col" style="width: 3rem">
-              @if (selectionMode == 'checkbox') {
-                <p-tableHeaderCheckbox/>
-              }
+              <p-tableHeaderCheckbox/>
             </th>
           }
           @for (col of colDef; track col) {
@@ -263,7 +259,7 @@
           }
         </tr>
         <tr>
-          @if (selectionMode == 'radio' || selectionMode == 'checkbox') {
+          @if (showSelectionIndicator) {
             <th scope="col" style="width: 3rem">
             </th>
           }
@@ -368,12 +364,12 @@
               <BarsIcon/>
             </td>
           }
-          @if (selectionMode == 'radio') {
+          @if (selectionMode == 'single' && showSelectionIndicator) {
             <td>
               <p-tableRadioButton [value]="item"/>
             </td>
           }
-          @if (selectionMode == 'checkbox') {
+          @if (selectionMode == 'multiple' && showSelectionIndicator) {
             <td>
               <p-tableCheckbox [value]="item"/>
             </td>
@@ -481,7 +477,7 @@
           <td class="empty-message-wrapper"
               [attr.colspan]="columns.length +
               (actionsConfig?.inSameColumn ? 1 : actionsConfig?.actions?.length) +
-              (selectableRows && (selectionMode == 'checkbox' || selectionMode == 'radio') ? 1 : 0)">
+              (selectableRows && showSelectionIndicator ? 1 : 0)">
             <ng-empty [title]="emptyMessage"
                       [icon]="emptyIcon"
                       [imageSrc]="emptyImageSrc"

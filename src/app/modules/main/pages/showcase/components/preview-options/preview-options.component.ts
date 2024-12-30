@@ -756,6 +756,7 @@ export class PreviewOptionsComponent implements OnInit {
   @ViewChild('secondRow', {static: true, read: ViewContainerRef}) secondRow: ViewContainerRef;
 
   @Input() previewItems: PreviewItem[]
+  @Output() optionChange = new EventEmitter<{field: string; value: any}>()
 
   cmpRefs: ComponentRef<any>[] = [];
 
