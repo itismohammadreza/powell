@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgFixLabelPosition, NgInputVariant, NgOrientation} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {CheckboxGroupModule} from "@powell/components/checkbox-group";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {CheckboxGroupComponent, CheckboxGroupModule} from "@powell/components/checkbox-group";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-checkbox-group-page',
@@ -15,30 +10,30 @@ import {
   imports: [
     CheckboxGroupModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class CheckboxGroupPage {
-  private configService = inject(ConfigService);
+export class CheckboxGroupPage extends PreviewBase {
+  @ViewChild(CheckboxGroupComponent, {static: true}) declare cmpRef: CheckboxGroupComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  variant: NgInputVariant = this.configService.get().inputStyle;
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  labelPos: NgFixLabelPosition = this.configService.get().fixLabelPos;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  orientation: NgOrientation = 'vertical';
-  disabled: boolean = false;
-  readonly: boolean = false;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'icon', value: ''},
+    {field: 'labelPos', value: this.config.labelPos},
+    {field: 'iconPos', value: 'left'},
+    {field: 'addon', value: ''},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'orientation', value: 'vertical'},
+    {field: 'async', value: false},
+    {field: 'disabled', value: false},
+    {field: 'size', value: this.config.inputSize},
+    {field: 'readonly', value: false},
+    {field: 'variant', value: this.config.inputStyle},
+  ];
 
   options: any[] = [
     {label: 'Australia', value: 'AU'},

@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ConfigService} from "@powell/api";
-import {NgInputVariant} from "@powell/models";
-import {CheckboxModule} from "@powell/components/checkbox";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {CheckboxComponent, CheckboxModule} from "@powell/components/checkbox";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-checkbox-page',
@@ -15,36 +10,31 @@ import {
   imports: [
     CheckboxModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class CheckboxPage {
-  private configService = inject(ConfigService);
+export class CheckboxPage extends PreviewBase {
+  @ViewChild(CheckboxComponent, {static: true}) declare cmpRef: CheckboxComponent;
 
-  form = new FormGroup({
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'icon', value: ''},
+    {field: 'labelPos', value: this.config.labelPos},
+    {field: 'iconPos', value: 'left'},
+    {field: 'addon', value: '',},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'async', value: false},
+    {field: 'disabled', value: false},
+    {field: 'size', value: this.config.inputSize},
+    {field: 'readonly', value: false},
+    {field: 'variant', value: this.config.inputStyle},
+  ];
+
+  override form = new FormGroup({
     c1: new FormControl(null, [Validators.requiredTrue]),
   });
-  binding;
-
-  label: string = 'label';
-  variant: NgInputVariant = this.configService.get().inputStyle;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  disabled: boolean = false;
-  readonly: boolean = false;
-  async: boolean = false;
-
-  asyncFlag = false;
-
-
-  onChangeAsync({loadingCallback}) {
-    this.asyncFlag = !this.asyncFlag;
-    setTimeout(() => {
-      loadingCallback(this.asyncFlag)
-    }, 3000)
-  }
 }

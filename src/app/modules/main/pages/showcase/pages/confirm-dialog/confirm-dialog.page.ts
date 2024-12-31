@@ -1,11 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {ConfigService, OverlayService} from "@powell/api";
+import {Component} from '@angular/core';
 import {NgConfirmDialogOptions} from "@powell/models";
 import {ButtonModule} from "@powell/components/button";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-confirm-dialog-page',
@@ -13,13 +9,33 @@ import {
   styleUrls: ['./confirm-dialog.page.scss'],
   imports: [
     ButtonModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class ConfirmDialogPage {
-  private configService = inject(ConfigService);
-  private overlayService = inject(OverlayService);
+export class ConfirmDialogPage extends PreviewBase {
+  override previewOptions: PreviewOption[] = [
+    {field: 'closable', value: true},
+    {field: 'message', value: 'Are you sure?'},
+    {field: 'icon', value: ''},
+    {field: 'header', value: 'Confirmation'},
+    {field: 'acceptLabel', value: 'Yes'},
+    {field: 'rejectLabel', value: 'No'},
+    {field: 'acceptIcon', value: ''},
+    {field: 'rejectIcon', value: ''},
+    {field: 'acceptVisible', value: true},
+    {field: 'rejectVisible', value: true},
+    {field: 'acceptSeverity', value: 'primary'},
+    {field: 'acceptAppearance', value: 'basic'},
+    {field: 'buttonSize', value: 'small'},
+    {field: 'rejectSeverity', value: 'primary'},
+    {field: 'rejectAppearance', value: 'outlined'},
+    {field: 'closeOnEscape', value: false},
+    {field: 'dismissableMask', value: false},
+    {field: 'defaultFocus', value: 'accept'},
+    {field: 'blockScroll', value: false},
+    {field: 'buttonFull', value: false},
+    {field: 'rtl', value: this.config.rtl},
+  ];
 
   confirmDialog: NgConfirmDialogOptions = {
     closable: true,
@@ -42,8 +58,12 @@ export class ConfirmDialogPage {
     defaultFocus: 'accept',
     blockScroll: false,
     buttonFull: false,
-    rtl: this.configService.get().rtl,
+    rtl: this.config.rtl,
     style: {width: '400px'}
+  }
+
+  override onOptionChange(event: any) {
+    this.confirmDialog[event.field] = event.value;
   }
 
   showConfirmDialog() {

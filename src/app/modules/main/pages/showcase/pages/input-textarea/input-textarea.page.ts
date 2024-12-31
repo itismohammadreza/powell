@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgAddon, NgIconPosition, NgInputVariant, NgLabelPosition} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {InputTextareaModule} from "@powell/components/input-textarea";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {InputTextareaComponent, InputTextareaModule} from "@powell/components/input-textarea";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-input-textarea-page',
@@ -15,35 +10,32 @@ import {
   imports: [
     InputTextareaModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class InputTextareaPage {
-  private configService = inject(ConfigService);
+export class InputTextareaPage extends PreviewBase {
+  @ViewChild(InputTextareaComponent, {static: true}) declare cmpRef: InputTextareaComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  variant: NgInputVariant = this.configService.get().inputStyle;
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  icon: string = '';
-  labelPos: NgLabelPosition = this.configService.get().labelPos;
-  iconPos: NgIconPosition = 'left';
-  addon: NgAddon;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  readonly: boolean = false;
-  disabled: boolean = false;
-  maxlength: number = 100;
-  placeholder: string = '';
-  rows: number = 7;
-  cols: number = 100;
-  autoResize: boolean = false;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'icon', value: ''},
+    {field: 'labelPos', value: this.config.labelPos},
+    {field: 'iconPos', value: 'left'},
+    {field: 'addon', value: ''},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'rows', value: 7},
+    {field: 'cols', value: 100},
+    {field: 'readonly', value: false},
+    {field: 'disabled', value: false},
+    {field: 'maxlength', value: 100},
+    {field: 'placeholder', value: ''},
+    {field: 'autoResize', value: false},
+    {field: 'variant', value: this.config.inputStyle},
+    {field: 'fluid', value: false},
+    {field: 'size', value: ''}
+  ]
 }

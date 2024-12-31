@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgFixLabelPosition} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {KnobModule} from "@powell/components/knob";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {KnobComponent, KnobModule} from "@powell/components/knob";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-knob-page',
@@ -15,36 +10,28 @@ import {
   imports: [
     KnobModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class KnobPage {
-  private configService = inject(ConfigService);
+export class KnobPage extends PreviewBase {
+  @ViewChild(KnobComponent, {static: true}) declare cmpRef: KnobComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  labelPos: NgFixLabelPosition = this.configService.get().fixLabelPos;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  size: number = 100;
-  disabled: boolean = false;
-  readonly: boolean = false;
-  step: number = 1;
-  min: number = 0;
-  max: number = 100;
-  valueColor: string = "var(--primary-color, Black)";
-  rangeColor: string = "var(--surface-border, LightGray)";
-  textColor: string = "var(--text-color-secondary, Black)";
-  strokeWidth: number = 14;
-  showValue: boolean = true;
-  valueTemplate: string = '{value}';
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'valueTemplate', value: '{value}'},
+    {field: 'size', value: 100},
+    {field: 'step', value: 1},
+    {field: 'min', value: 0},
+    {field: 'max', value: 100},
+    {field: 'strokeWidth', value: 14},
+    {field: 'disabled', value: false},
+    {field: 'readonly', value: false},
+    {field: 'showValue', value: true},
+  ];
 }

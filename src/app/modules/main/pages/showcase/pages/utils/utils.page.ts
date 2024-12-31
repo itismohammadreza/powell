@@ -1,41 +1,35 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {OverlayService, PersianService, UtilsService} from "@powell/api";
+import {PersianService, UtilsService} from "@powell/api";
 import {DataService} from "@core/http";
-import {
-  DynamicDialogSampleComponent
-} from "@modules/main/pages/showcase/pages/utils/dynamic-dialog-sample/dynamic-dialog-sample.component";
+import {DynamicDialogSampleComponent} from "@modules/main/pages/showcase/pages/utils";
 import {takeUntil} from "rxjs";
-import {DestroyService} from "@core/utils";
 import {ButtonModule} from "@powell/components/button";
 import {InputNumberModule} from "@powell/components/input-number";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {PreviewBase, PreviewComponent} from "@modules/main/pages/showcase/components";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-utils-page',
   templateUrl: './utils.page.html',
   styleUrls: ['./utils.page.scss'],
-  providers: [DestroyService],
   imports: [
     ButtonModule,
     InputNumberModule,
-    ExtrasModule,
-  ]
+    PreviewComponent
+  ],
+  providers: [DestroyService],
 })
-export class UtilsPage implements OnInit {
+export class UtilsPage extends PreviewBase implements OnInit {
+  private destroy$ = inject(DestroyService);
   private dataService = inject(DataService);
-  private overlayService = inject(OverlayService);
   private persianService = inject(PersianService);
   private utilsService = inject(UtilsService);
-  private destroy$ = inject(DestroyService);
 
   customDynamicDialogResult: any;
   persianWord: string;
   networkStatus: string;
 
-  ngOnInit() {
+  override ngOnInit() {
     this.utilsService.checkOnlineState().subscribe(res => {
       this.networkStatus = res ? 'online' : 'offline';
     })

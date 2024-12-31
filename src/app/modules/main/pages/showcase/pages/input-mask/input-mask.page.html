@@ -1,85 +1,9 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="InputMask"
-          subheader="InputMask component is used to enter input in a certain format such as numeric, date, currency and phone."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'label',
-      'variant',
-      'labelWidth',
-      'hint',
-      'rtl',
-      'showRequiredStar',
-      'icon',
-      'labelPos',
-      'iconPos',
-      'addon',
-      'selectiveSize',
-      'followConfig',
-      'mask',
-      'slotChar',
-      'autoClear',
-      'unmask',
-      'placeholder',
-      'numericSize',
-      'maxlength',
-      'disabled',
-      'readonly',
-      'characterPattern',
-      'showClear',
-      ]"
-      [(label)]="label"
-      [(variant)]="variant"
-      [(labelWidth)]="labelWidth"
-      [(hint)]="hint"
-      [(rtl)]="rtl"
-      [(showRequiredStar)]="showRequiredStar"
-      [(icon)]="icon"
-      [(labelPos)]="labelPos"
-      [(iconPos)]="iconPos"
-      [(selectiveSize)]="inputSize"
-      [(followConfig)]="followConfig"
-      [(addon)]="addon"
-      [(mask)]="mask"
-      [(slotChar)]="slotChar"
-      [(autoClear)]="autoClear"
-      [(unmask)]="unmask"
-      [(placeholder)]="placeholder"
-      [(numericSize)]="size"
-      [(maxlength)]="maxlength"
-      [(disabled)]="disabled"
-      [(readonly)]="readonly"
-      [(characterPattern)]="characterPattern"
-      [(showClear)]="showClear"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <form [formGroup]="form">
-      <ng-input-mask
-        formControlName="c1"
-        [addon]="addon"
-        [validation]="{ required: 'error' }"
-        [label]="label"
-        [variant]="variant"
-        [labelWidth]="labelWidth"
-        [hint]="hint"
-        [rtl]="rtl"
-        [showRequiredStar]="showRequiredStar"
-        [icon]="icon"
-        [labelPos]="labelPos"
-        [iconPos]="iconPos"
-        [size]="inputSize"
-        [followConfig]="followConfig"
-        [mask]="mask"
-        [slotChar]="slotChar"
-        [autoClear]="autoClear"
-        [unmask]="unmask"
-        [placeholder]="placeholder"
-        [maxlength]="maxlength"
-        [disabled]="disabled"
-        [readonly]="readonly"
-        [characterPattern]="characterPattern"
-        [showClear]="showClear"/>
-    </form>
-  </p-panel>
-</div>
+<ng-preview
+  header="InputMask"
+  subheader="InputMask component is used to enter input in a certain format such as numeric, date, currency and phone."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <form [formGroup]="form">
+    <ng-input-mask formControlName="c1" [validation]="{ required: 'error' }"/>
+  </form>
+</ng-preview>

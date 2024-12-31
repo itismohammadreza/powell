@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {NgFixLabelPosition} from "@powell/models";
-import {ConfigService} from "@powell/api";
-import {IranMapModule} from "@powell/components/iran-map";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from "@angular/forms";
+import {IranMapComponent, IranMapModule} from "@powell/components/iran-map";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-iran-map-page',
@@ -15,33 +10,23 @@ import {
   imports: [
     IranMapModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class IranMapPage {
-  private configService = inject(ConfigService);
+export class IranMapPage extends PreviewBase {
+  @ViewChild(IranMapComponent, {static: true}) declare cmpRef: IranMapComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  labelPos: NgFixLabelPosition = this.configService.get().fixLabelPos;
-  disabled: boolean = false;
-  followConfig: boolean = this.configService.get().followConfig;
-  selectionLimit: number = 31;
-  multiple: boolean = false;
-  async: boolean = false;
-
-  onChangeAsync({loadingCallback}) {
-    setTimeout(() => {
-      loadingCallback()
-    }, 3000)
-  }
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'disabled', value: false},
+    {field: 'multiple', value: false},
+    {field: 'selectionLimit', value: 31},
+    {field: 'async', value: false},
+  ];
 }

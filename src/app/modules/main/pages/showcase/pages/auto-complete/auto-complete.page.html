@@ -1,95 +1,14 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="AutoComplete"
-          subheader="AutoComplete is an input component that provides real-time suggestions when being typed."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'label',
-      'variant',
-      'labelWidth',
-      'hint',
-      'rtl',
-      'showRequiredStar',
-      'icon',
-      'labelPos',
-      'iconPos',
-      'addon',
-      'selectiveSize',
-      'followConfig',
-      'scrollHeight',
-      'dropdown',
-      'multiple',
-      'minlength',
-      'placeholder',
-      'readonly',
-      'disabled',
-      'maxlength',
-      'showEmptyMessage',
-      'emptyMessage',
-      'forceSelection',
-      'unique',
-      'showClear',
-      ]"
-      [(label)]="label"
-      [(variant)]="variant"
-      [(labelWidth)]="labelWidth"
-      [(hint)]="hint"
-      [(rtl)]="rtl"
-      [(showRequiredStar)]="showRequiredStar"
-      [(icon)]="icon"
-      [(labelPos)]="labelPos"
-      [(iconPos)]="iconPos"
-      [(selectiveSize)]="inputSize"
-      [(followConfig)]="followConfig"
-      [(addon)]="addon"
-      [(scrollHeight)]="scrollHeight"
-      [(dropdown)]="dropdown"
-      [(multiple)]="multiple"
-      [(minlength)]="minlength"
-      [(placeholder)]="placeholder"
-      [(readonly)]="readonly"
-      [(disabled)]="disabled"
-      [(maxlength)]="maxlength"
-      [(showEmptyMessage)]="showEmptyMessage"
-      [(emptyMessage)]="emptyMessage"
-      [(forceSelection)]="forceSelection"
-      [(unique)]="unique"
-      [(showClear)]="showClear"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <form [formGroup]="form">
-      <ng-auto-complete
-        formControlName="c1"
-        [addon]="addon"
-        [validation]="{ required: 'error' }"
-        field="name"
-        [suggestions]="filteredSuggestions"
-        [label]="label"
-        [variant]="variant"
-        [labelWidth]="labelWidth"
-        [hint]="hint"
-        [rtl]="rtl"
-        [showRequiredStar]="showRequiredStar"
-        [icon]="icon"
-        [labelPos]="labelPos"
-        [iconPos]="iconPos"
-        [size]="inputSize"
-        [followConfig]="followConfig"
-        [scrollHeight]="scrollHeight"
-        [dropdown]="dropdown"
-        [multiple]="multiple"
-        [minlength]="minlength"
-        [placeholder]="placeholder"
-        [readonly]="readonly"
-        [disabled]="disabled"
-        [maxlength]="maxlength"
-        [showEmptyMessage]="showEmptyMessage"
-        [emptyMessage]="emptyMessage"
-        [forceSelection]="forceSelection"
-        [unique]="unique"
-        [showClear]="showClear"
-        (completeMethod)="filter($event)"/>
-    </form>
-  </p-panel>
-</div>
+<ng-preview
+  header="AutoComplete"
+  subheader="AutoComplete is an input component that provides real-time suggestions when being typed."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <form [formGroup]="form">
+    <ng-auto-complete
+      formControlName="c1"
+      [validation]="{ required: 'error' }"
+      [suggestions]="filteredSuggestions"
+      optionLabel="name"
+      (completeMethod)="filter($event)"/>
+  </form>
+</ng-preview>

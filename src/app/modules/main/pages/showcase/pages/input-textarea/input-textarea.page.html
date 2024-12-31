@@ -1,71 +1,9 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="InputTextarea"
-          subheader="InputTextarea is a multi-line text input element."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'label',
-      'variant',
-      'labelWidth',
-      'hint',
-      'rtl',
-      'showRequiredStar',
-      'icon',
-      'labelPos',
-      'iconPos',
-      'addon',
-      'followConfig',
-      'readonly',
-      'disabled',
-      'maxlength',
-      'placeholder',
-      'rows',
-      'cols',
-      'autoResize',
-      ]"
-      [(label)]="label"
-      [(variant)]="variant"
-      [(labelWidth)]="labelWidth"
-      [(hint)]="hint"
-      [(rtl)]="rtl"
-      [(showRequiredStar)]="showRequiredStar"
-      [(icon)]="icon"
-      [(labelPos)]="labelPos"
-      [(iconPos)]="iconPos"
-      [(addon)]="addon"
-      [(followConfig)]="followConfig"
-      [(readonly)]="readonly"
-      [(disabled)]="disabled"
-      [(maxlength)]="maxlength"
-      [(placeholder)]="placeholder"
-      [(rows)]="rows"
-      [(cols)]="cols"
-      [(autoResize)]="autoResize"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <form [formGroup]="form">
-      <ng-input-textarea
-        formControlName="c1"
-        [addon]="addon"
-        [validation]="{ required: 'error' }"
-        [label]="label"
-        [variant]="variant"
-        [labelWidth]="labelWidth"
-        [hint]="hint"
-        [rtl]="rtl"
-        [showRequiredStar]="showRequiredStar"
-        [icon]="icon"
-        [labelPos]="labelPos"
-        [iconPos]="iconPos"
-        [followConfig]="followConfig"
-        [readonly]="readonly"
-        [disabled]="disabled"
-        [maxlength]="maxlength"
-        [placeholder]="placeholder"
-        [rows]="rows"
-        [cols]="cols"
-        [autoResize]="autoResize"/>
-    </form>
-  </p-panel>
-</div>
+<ng-preview
+  header="InputTextarea"
+  subheader="InputTextarea is a multi-line text input element."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <form [formGroup]="form">
+    <ng-input-textarea formControlName="c1" [validation]="{ required: 'error' }"/>
+  </form>
+</ng-preview>

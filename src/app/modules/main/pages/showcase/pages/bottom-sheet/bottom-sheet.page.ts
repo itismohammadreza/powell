@@ -1,11 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {ConfigService, OverlayService} from "@powell/api";
-import {BottomSheetModule} from "@powell/components/bottom-sheet";
+import {Component, QueryList, ViewChildren} from '@angular/core';
+import {BottomSheetComponent, BottomSheetModule} from "@powell/components/bottom-sheet";
 import {ButtonModule} from "@powell/components/button";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-bottom-sheet-page',
@@ -14,30 +10,37 @@ import {
   imports: [
     BottomSheetModule,
     ButtonModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class BottomSheetPage {
-  private overlayService = inject(OverlayService);
-  private configService = inject(ConfigService);
+export class BottomSheetPage extends PreviewBase {
+  @ViewChildren(BottomSheetComponent) cmpRefs: QueryList<BottomSheetComponent>;
 
-  blockScroll: boolean = false;
-  modal: boolean = true;
-  dismissible: boolean = true;
-  closable: boolean = true;
-  closeOnEscape: boolean = true;
-  header: string = 'BottomSheet Header';
-  rtl: boolean = this.configService.get().rtl;
-  followConfig: boolean = this.configService.get().followConfig;
+  override previewOptions: PreviewOption[] = [
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'blockScroll', value: false},
+    {field: 'modal', value: true},
+    {field: 'dismissible', value: true},
+    {field: 'closeOnEscape', value: true},
+    {field: 'fullScreen', value: true},
+    {field: 'header', value: 'BottomSheet Header'},
+    {field: 'closable', value: true},
+  ];
 
   visible = false;
   visible2 = false;
   visible3 = false;
   visible4 = false;
 
+  override onOptionChange(event: any) {
+    this.cmpRefs.forEach(cmp => {
+      cmp[event.field] = event.value;
+    })
+  }
+
   async openDialog() {
-    await this.overlayService.showConfirmDialog({message: 'asdsad'})
-    this.visible4 = true
+    await this.overlayService.showConfirmDialog({message: 'Show another?'})
+    this.visible4 = true;
   }
 }
