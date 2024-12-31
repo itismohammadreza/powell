@@ -2,6 +2,10 @@
   display: block;
 
   ::ng-deep {
+    p-checkbox {
+      display: inherit;
+    }
+
     .checkbox-group-wrapper {
       display: flex;
       position: relative;
