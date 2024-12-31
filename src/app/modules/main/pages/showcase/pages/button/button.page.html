@@ -1,60 +1,7 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="Button"
-          subheader="Button is an extension to standard button element with icons and theming."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'appearance',
-      'full',
-      'badgeSeverity',
-      'async',
-      'newLabel',
-      'newSeverity',
-      'iconPos',
-      'icon',
-      'badge',
-      'label',
-      'disabled',
-      'raised',
-      'rounded',
-      'severity',
-      'selectiveSize',
-      ]"
-      [(appearance)]="appearance"
-      [(full)]="full"
-      [(badgeSeverity)]="badgeSeverity"
-      [(async)]="async"
-      [(newLabel)]="newLabel"
-      [(newSeverity)]="newSeverity"
-      [(iconPos)]="iconPos"
-      [(icon)]="icon"
-      [(badge)]="badge"
-      [(label)]="label"
-      [(disabled)]="disabled"
-      [(raised)]="raised"
-      [(rounded)]="rounded"
-      [(severity)]="severity"
-      [(selectiveSize)]="size"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <ng-button
-      [appearance]="appearance"
-      [fluid]="full"
-      [badgeSeverity]="badgeSeverity"
-      [async]="async"
-      [newLabel]="newLabel"
-      [newSeverity]="newSeverity"
-      [iconPos]="iconPos"
-      [icon]="icon"
-      [badge]="badge"
-      [label]="label"
-      [disabled]="disabled"
-      [raised]="raised"
-      [rounded]="rounded"
-      [severity]="severity"
-      [size]="size"
-      (onClickAsync)="onClickAsync($event)">
-    </ng-button>
-  </p-panel>
-</div>
+<ng-preview
+  header="Button"
+  subheader="Button is an extension to standard button element with icons and theming."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <ng-button (onClickAsync)="onChangeAsync($event)"/>
+</ng-preview>

@@ -1,93 +1,13 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="Select"
-          subheader="Select is used to select an item from a list of options."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'label',
-      'variant',
-      'labelWidth',
-      'hint',
-      'rtl',
-      'showRequiredStar',
-      'icon',
-      'labelPos',
-      'iconPos',
-      'addon',
-      'selectiveSize',
-      'async',
-      'followConfig',
-      'filter',
-      'disabled',
-      'readonly',
-      'emptyMessage',
-      'emptyFilterMessage',
-      'editable',
-      'maxlength',
-      'placeholder',
-      'autofocusFilter',
-      'resetFilterOnHide',
-      'autoDisplayFirst',
-      'showClear',
-      ]"
-      [(label)]="label"
-      [(variant)]="variant"
-      [(labelWidth)]="labelWidth"
-      [(hint)]="hint"
-      [(rtl)]="rtl"
-      [(showRequiredStar)]="showRequiredStar"
-      [(icon)]="icon"
-      [(labelPos)]="labelPos"
-      [(iconPos)]="iconPos"
-      [(selectiveSize)]="inputSize"
-      [(async)]="async"
-      [(followConfig)]="followConfig"
-      [(addon)]="addon"
-      [(filter)]="filter"
-      [(disabled)]="disabled"
-      [(readonly)]="readonly"
-      [(emptyMessage)]="emptyMessage"
-      [(emptyFilterMessage)]="emptyFilterMessage"
-      [(editable)]="editable"
-      [(maxlength)]="maxlength"
-      [(placeholder)]="placeholder"
-      [(autofocusFilter)]="autofocusFilter"
-      [(resetFilterOnHide)]="resetFilterOnHide"
-      [(autoDisplayFirst)]="autoDisplayFirst"
-      [(showClear)]="showClear"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <form [formGroup]="form">
-      <ng-select
-        formControlName="c1"
-        [addon]="addon"
-        [validation]="{ required: 'error' }"
-        [options]="options"
-        [label]="label"
-        [variant]="variant"
-        [labelWidth]="labelWidth"
-        [hint]="hint"
-        [rtl]="rtl"
-        [showRequiredStar]="showRequiredStar"
-        [icon]="icon"
-        [labelPos]="labelPos"
-        [iconPos]="iconPos"
-        [size]="inputSize"
-        [async]="async"
-        [followConfig]="followConfig"
-        [filter]="filter"
-        [disabled]="disabled"
-        [readonly]="readonly"
-        [emptyMessage]="emptyMessage"
-        [emptyFilterMessage]="emptyFilterMessage"
-        [editable]="editable"
-        [maxlength]="maxlength"
-        [placeholder]="placeholder"
-        [autofocusFilter]="autofocusFilter"
-        [resetFilterOnHide]="resetFilterOnHide"
-        [showClear]="showClear"
-        (onChangeAsync)="onChangeAsync($event)"/>
-    </form>
-  </p-panel>
-</div>
+<ng-preview
+  header="Select"
+  subheader="Select is used to select an item from a list of options."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <form [formGroup]="form">
+    <ng-select
+      formControlName="c1"
+      [validation]="{ required: 'error' }"
+      [options]="options"
+      (onChangeAsync)="onChangeAsync($event)"/>
+  </form>
+</ng-preview>

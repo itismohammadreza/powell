@@ -1,56 +1,9 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="FilePicker"
-          subheader="FilePicker is an advanced uploader with drag and drop support, multi file uploads, auto uploading, progress tracking and validations."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'label',
-      'labelWidth',
-      'hint',
-      'rtl',
-      'showRequiredStar',
-      'fixLabelPos',
-      'followConfig',
-      'disabled',
-      'readonly',
-      'multiple',
-      'accept',
-      'fileLimit',
-      'chooseLabel',
-      ]"
-      [(label)]="label"
-      [(labelWidth)]="labelWidth"
-      [(hint)]="hint"
-      [(rtl)]="rtl"
-      [(showRequiredStar)]="showRequiredStar"
-      [(fixLabelPos)]="labelPos"
-      [(followConfig)]="followConfig"
-      [(disabled)]="disabled"
-      [(readonly)]="readonly"
-      [(multiple)]="multiple"
-      [(accept)]="accept"
-      [(fileLimit)]="fileLimit"
-      [(chooseLabel)]="chooseLabel"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <form [formGroup]="form">
-      <ng-file-picker2
-        formControlName="c1"
-        [validation]="{ required: 'error' }"
-        [label]="label"
-        [labelWidth]="labelWidth"
-        [hint]="hint"
-        [rtl]="rtl"
-        [showRequiredStar]="showRequiredStar"
-        [labelPos]="labelPos"
-        [followConfig]="followConfig"
-        [disabled]="disabled"
-        [readonly]="readonly"
-        [multiple]="multiple"
-        [accept]="accept"
-        [fileLimit]="fileLimit"
-        [chooseLabel]="chooseLabel"/>
-    </form>
-  </p-panel>
-</div>
+<ng-preview
+  header="FilePicker"
+  subheader="FilePicker is an advanced uploader with drag and drop support, multi file uploads, auto uploading, progress tracking and validations."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <form [formGroup]="form">
+    <ng-file-picker2 formControlName="c1" [validation]="{ required: 'error' }"/>
+  </form>
+</ng-preview>

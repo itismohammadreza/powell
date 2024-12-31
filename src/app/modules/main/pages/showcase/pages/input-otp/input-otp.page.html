@@ -1,55 +1,9 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="InputOtp"
-          subheader="InputOtp renders some text field to enter otp code."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'label',
-      'variant',
-      'labelWidth',
-      'hint',
-      'rtl',
-      'showRequiredStar',
-      'fixLabelPos',
-      'selectiveSize',
-      'followConfig',
-      'readonly',
-      'disabled',
-      'placeholder',
-      'inputCount',
-      'numbersOnly'
-      ]"
-      [(label)]="label"
-      [(variant)]="variant"
-      [(labelWidth)]="labelWidth"
-      [(hint)]="hint"
-      [(rtl)]="rtl"
-      [(showRequiredStar)]="showRequiredStar"
-      [(fixLabelPos)]="labelPos"
-      [(selectiveSize)]="inputSize"
-      [(followConfig)]="followConfig"
-      [(readonly)]="readonly"
-      [(disabled)]="disabled"
-      [(placeholder)]="placeholder"
-      [(inputCount)]="inputCount"
-      [(numbersOnly)]="numbersOnly"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <form [formGroup]="form">
-      <ng-input-otp
-        formControlName="c1"
-        [validation]="{ required: 'error'}"
-        [label]="label"
-        [variant]="variant"
-        [labelWidth]="labelWidth"
-        [hint]="hint"
-        [rtl]="rtl"
-        [showRequiredStar]="showRequiredStar"
-        [labelPos]="labelPos"
-        [followConfig]="followConfig"
-        [readonly]="readonly"
-        [disabled]="disabled"/>
-    </form>
-  </p-panel>
-</div>
+<ng-preview
+  header="InputOtp"
+  subheader="InputOtp renders some text field to enter otp code."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <form [formGroup]="form">
+    <ng-input-otp formControlName="c1" [validation]="{ required: 'error'}"/>
+  </form>
+</ng-preview>

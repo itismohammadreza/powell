@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {InfiniteScrollModule} from "@powell/components/infinite-scroll";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {PreviewComponent} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-infinite-scroll-page',
@@ -8,7 +8,7 @@ import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
   styleUrls: ['./infinite-scroll.page.scss'],
   imports: [
     InfiniteScrollModule,
-    ExtrasModule,
+    PreviewComponent
   ]
 })
 export class InfiniteScrollPage implements OnInit {

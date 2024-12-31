@@ -1,45 +1,12 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="Checkbox"
-          subheader="Checkbox is an extension to standard checkbox element with theming."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'label',
-      'variant',
-      'hint',
-      'rtl',
-      'showRequiredStar',
-      'followConfig',
-      'disabled',
-      'readonly',
-      'async',
-      ]"
-      [(label)]="label"
-      [(variant)]="variant"
-      [(hint)]="hint"
-      [(rtl)]="rtl"
-      [(showRequiredStar)]="showRequiredStar"
-      [(followConfig)]="followConfig"
-      [(disabled)]="disabled"
-      [(readonly)]="readonly"
-      [(async)]="async"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <form [formGroup]="form">
-      <ng-checkbox
-        formControlName="c1"
-        [validation]="{ required: 'error' }"
-        [label]="label"
-        [variant]="variant"
-        [hint]="hint"
-        [rtl]="rtl"
-        [showRequiredStar]="showRequiredStar"
-        [followConfig]="followConfig"
-        [disabled]="disabled"
-        [readonly]="readonly"
-        [async]="async"
-        (onChangeAsync)="onChangeAsync($event)"/>
-    </form>
-  </p-panel>
-</div>
+<ng-preview
+  header="Checkbox"
+  subheader="Checkbox is an extension to standard checkbox element with theming."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <form [formGroup]="form">
+    <ng-checkbox
+      formControlName="c1"
+      [validation]="{ required: 'error' }"
+      (onChangeAsync)="onChangeAsync($event)"/>
+  </form>
+</ng-preview>

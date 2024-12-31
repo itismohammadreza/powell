@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {NgAddon, NgFixLabelPosition} from "@powell/models";
-import {ConfigService} from "@powell/api";
-import {MapModule} from "@powell/components/map";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from "@angular/forms";
+import {MapComponent, MapModule} from "@powell/components/map";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-map-page',
@@ -15,30 +10,25 @@ import {
   imports: [
     MapModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class MapPage {
-  private configService = inject(ConfigService);
+export class MapPage extends PreviewBase {
+  @ViewChild(MapComponent, {static: true}) declare cmpRef: MapComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  labelPos: NgFixLabelPosition = this.configService.get().fixLabelPos;
-  addon: NgAddon;
-  disabled: boolean = false;
-  multiple: boolean = false;
-  clearMarkerOnClick: boolean = true;
-  showClear: boolean = true;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  readonly: boolean = false;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'addon', value: ''},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'disabled', value: false},
+    {field: 'multiple', value: false},
+    {field: 'clearMarkerOnClick', value: true},
+    {field: 'showClear', value: true},
+    {field: 'readonly', value: false},
+  ];
 }

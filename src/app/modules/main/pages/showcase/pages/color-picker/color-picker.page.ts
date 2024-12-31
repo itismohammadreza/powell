@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgColorFormat, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {ColorPickerModule} from "@powell/components/color-picker";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {ColorPickerComponent, ColorPickerModule} from "@powell/components/color-picker";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-color-picker-page',
@@ -15,34 +10,27 @@ import {
   imports: [
     ColorPickerModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class ColorPickerPage {
-  private configService = inject(ConfigService);
+export class ColorPickerPage extends PreviewBase {
+  @ViewChild(ColorPickerComponent, {static: true}) declare cmpRef: ColorPickerComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  variant: NgInputVariant = this.configService.get().inputStyle;
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  icon: string = '';
-  labelPos: NgLabelPosition = this.configService.get().labelPos;
-  iconPos: NgIconPosition = 'left';
-  inputSize: NgSize = this.configService.get().inputSize;
-  placeholder: string = '';
-  readonly: boolean = false;
-  disabled: boolean = false;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  maxlength: number = 7;
-  inline: boolean = false;
-  format: NgColorFormat = 'hex';
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'icon', value: ''},
+    {field: 'labelPos', value: this.config.labelPos},
+    {field: 'iconPos', value: 'left'},
+    {field: 'size', value: this.config.inputSize},
+    {field: 'readonly', value: false},
+    {field: 'placeholder', value: ''},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'variant', value: this.config.inputStyle},
+    {field: 'inline', value: false},
+    {field: 'disabled', value: false},
+  ];
 }

@@ -1,53 +1,7 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="ConfirmDialog"
-          subheader="ConfirmDialog is backed by a service utilizing Observables to display confirmation windows easily that can be shared by multiple actions on the same component."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'closable',
-      'icon',
-      'header',
-      'acceptLabel',
-      'rejectLabel',
-      'acceptIcon',
-      'rejectIcon',
-      'acceptVisible',
-      'rejectVisible',
-      'acceptSeverity',
-      'acceptAppearance',
-      'buttonSize',
-      'rejectSeverity',
-      'rejectAppearance',
-      'closeOnEscape',
-      'dismissableMask',
-      'buttonFull',
-      'defaultFocus',
-      'blockScroll',
-      'rtl'
-      ]"
-      [(closable)]="confirmDialog.closable"
-      [(icon)]="confirmDialog.icon"
-      [(header)]="confirmDialog.header"
-      [(acceptLabel)]="confirmDialog.acceptLabel"
-      [(rejectLabel)]="confirmDialog.rejectLabel"
-      [(acceptIcon)]="confirmDialog.acceptIcon"
-      [(rejectIcon)]="confirmDialog.rejectIcon"
-      [(acceptVisible)]="confirmDialog.acceptVisible"
-      [(rejectVisible)]="confirmDialog.rejectVisible"
-      [(acceptSeverity)]="confirmDialog.acceptSeverity"
-      [(acceptAppearance)]="confirmDialog.acceptAppearance"
-      [(buttonSize)]="confirmDialog.buttonSize"
-      [(rejectSeverity)]="confirmDialog.rejectSeverity"
-      [(rejectAppearance)]="confirmDialog.rejectAppearance"
-      [(closeOnEscape)]="confirmDialog.closeOnEscape"
-      [(dismissableMask)]="confirmDialog.dismissableMask"
-      [(buttonFull)]="confirmDialog.buttonFull"
-      [(defaultFocus)]="confirmDialog.defaultFocus"
-      [(blockScroll)]="confirmDialog.blockScroll"
-      [(rtl)]="confirmDialog.rtl"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <ng-button (click)="showConfirmDialog()" label="Open Confirm Dialog"/>
-  </p-panel>
-</div>
+<ng-preview
+  header="ConfirmDialog"
+  subheader="ConfirmDialog is backed by a service utilizing Observables to display confirmation windows easily that can be shared by multiple actions on the same component."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <ng-button (click)="showConfirmDialog()" label="Open Confirm Dialog"/>
+</ng-preview>

@@ -1,11 +1,7 @@
-import {Component, inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgConfirmPopupOptions} from "@powell/models";
-import {ConfigService, OverlayService} from "@powell/api";
 import {ButtonModule} from "@powell/components/button";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-confirm-popup-page',
@@ -13,13 +9,28 @@ import {
   styleUrls: ['./confirm-popup.page.scss'],
   imports: [
     ButtonModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class ConfirmPopupPage {
-  private configService = inject(ConfigService);
-  private overlayService = inject(OverlayService);
+export class ConfirmPopupPage extends PreviewBase {
+  override previewOptions: PreviewOption[] = [
+    {field: 'message', value: 'Are you sure?'},
+    {field: 'icon', value: 'pi pi-exclamation-triangle'},
+    {field: 'acceptLabel', value: 'Yes'},
+    {field: 'rejectLabel', value: 'No'},
+    {field: 'acceptIcon', value: ''},
+    {field: 'rejectIcon', value: ''},
+    {field: 'acceptVisible', value: true},
+    {field: 'rejectVisible', value: true},
+    {field: 'acceptSeverity', value: 'primary'},
+    {field: 'acceptAppearance', value: 'basic'},
+    {field: 'buttonSize', value: 'small'},
+    {field: 'rejectSeverity', value: 'primary'},
+    {field: 'rejectAppearance', value: 'outlined'},
+    {field: 'buttonFull', value: false},
+    {field: 'defaultFocus', value: 'accept'},
+    {field: 'rtl', value: this.config.rtl},
+  ];
 
   confirmPopup: NgConfirmPopupOptions = {
     message: 'Are you sure?',
@@ -37,7 +48,11 @@ export class ConfirmPopupPage {
     rejectAppearance: 'outlined',
     buttonFull: false,
     defaultFocus: 'accept',
-    rtl: this.configService.get().rtl
+    rtl: this.config.rtl
+  }
+
+  override onOptionChange(event: any) {
+    this.confirmPopup[event.field] = event.value;
   }
 
   showConfirmPopup(event) {

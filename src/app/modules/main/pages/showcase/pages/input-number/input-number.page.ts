@@ -1,22 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {
-  NgAddon,
-  NgCurrency,
-  NgCurrencyDisplay,
-  NgIconPosition,
-  NgInputVariant,
-  NgLabelPosition,
-  NgNumberButtonLayout,
-  NgNumberMode,
-  NgSize
-} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {InputNumberModule} from "@powell/components/input-number";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {InputNumberComponent, InputNumberModule} from "@powell/components/input-number";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-input-number-page',
@@ -25,48 +10,40 @@ import {
   imports: [
     InputNumberModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class InputNumberPage {
-  private configService = inject(ConfigService);
+export class InputNumberPage extends PreviewBase {
+  @ViewChild(InputNumberComponent, {static: true}) declare cmpRef: InputNumberComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  variant: NgInputVariant = this.configService.get().inputStyle;
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  icon: string = '';
-  labelPos: NgLabelPosition = this.configService.get().labelPos;
-  iconPos: NgIconPosition = 'left';
-  addon: NgAddon;
-  inputSize: NgSize = this.configService.get().inputSize;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  format: boolean = true;
-  showButtons: boolean = true;
-  buttonLayout: NgNumberButtonLayout = 'stacked';
-  mode: NgNumberMode = 'decimal';
-  prefix: string = '';
-  suffix: string = '';
-  currency: NgCurrency;
-  currencyDisplay: NgCurrencyDisplay = 'symbol';
-  useGrouping: boolean = true;
-  min: number = 0;
-  max: number = 100;
-  step: number = 1;
-  allowEmpty: boolean = true;
-  placeholder: string = '';
-  size: number = 100;
-  maxlength: number;
-  disabled: boolean = false;
-  readonly: boolean = false;
-  showClear: boolean = true;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'icon', value: ''},
+    {field: 'labelPos', value: this.config.labelPos},
+    {field: 'iconPos', value: 'left'},
+    {field: 'addon', value: ''},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'showButtons', value: true},
+    {field: 'format', value: true},
+    {field: 'buttonLayout', value: 'stacked'},
+    {field: 'placeholder', value: ''},
+    {field: 'size', value: this.config.inputSize},
+    {field: 'maxlength', value: ''},
+    {field: 'min', value: 0},
+    {field: 'max', value: 100},
+    {field: 'readonly', value: false},
+    {field: 'step', value: 1},
+    {field: 'allowEmpty', value: true},
+    {field: 'useGrouping', value: true},
+    {field: 'variant', value: this.config.inputStyle},
+    {field: 'prefix', value: ''},
+    {field: 'suffix', value: ''},
+    {field: 'showClear', value: true},
+    {field: 'disabled', value: false},
+    {field: 'fluid', value: false},
+  ];
 }

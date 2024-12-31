@@ -1,45 +1,12 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="SelectButton"
-          subheader="SelectButton is a form component to choose a value from a list of options using button elements."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'label',
-      'labelWidth',
-      'hint',
-      'rtl',
-      'showRequiredStar',
-      'fixLabelPos',
-      'followConfig',
-      'multiple',
-      'disabled',
-      ]"
-      [(label)]="label"
-      [(labelWidth)]="labelWidth"
-      [(hint)]="hint"
-      [(rtl)]="rtl"
-      [(showRequiredStar)]="showRequiredStar"
-      [(fixLabelPos)]="labelPos"
-      [(followConfig)]="followConfig"
-      [(multiple)]="multiple"
-      [(disabled)]="disabled"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <form [formGroup]="form">
-      <ng-select-button
-        formControlName="c1"
-        [validation]="{ required: 'error' }"
-        [options]="options"
-        [label]="label"
-        [labelWidth]="labelWidth"
-        [hint]="hint"
-        [rtl]="rtl"
-        [showRequiredStar]="showRequiredStar"
-        [labelPos]="labelPos"
-        [followConfig]="followConfig"
-        [multiple]="multiple"
-        [disabled]="disabled"/>
-    </form>
-  </p-panel>
-</div>
+<ng-preview
+  header="SelectButton"
+  subheader="SelectButton is a form component to choose a value from a list of options using button elements."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <form [formGroup]="form">
+    <ng-select-button
+      formControlName="c1"
+      [validation]="{ required: 'error' }"
+      [options]="options"/>
+  </form>
+</ng-preview>

@@ -1,14 +1,8 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, ViewChild} from '@angular/core';
 import {NgSize, NgTableActionsConfig, NgTableColDef} from '@powell/models';
-import {ConfigService} from "@powell/api";
 import {DataService} from "@core/http";
-import {TableModule} from "@powell/components/table";
-import {MultiSelectModule} from "@powell/components/multi-select";
-import {FormsModule} from "@angular/forms";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {TableComponent, TableModule} from "@powell/components/table";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 interface Customer {
   id: any,
@@ -31,20 +25,20 @@ interface Customer {
   styleUrls: ['./table.page.scss'],
   imports: [
     TableModule,
-    MultiSelectModule,
-    FormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class TablePage {
-  private configService = inject(ConfigService);
+export class TablePage extends PreviewBase {
+  @ViewChild(TableComponent, {static: true}) declare cmpRef: TableComponent;
+
   private dataService = inject(DataService);
 
-  rtl: boolean = this.configService.get().rtl;
+  override previewOptions: PreviewOption[] = [];
+
+  rtl: boolean = this.config.rtl;
   size: NgSize = 'large';
   header: string = 'Customers';
-  followConfig: boolean = this.configService.get().followConfig;
+  followConfig: boolean = this.config.followConfig;
   gridlines: boolean = true;
   striped: boolean = false;
   simpleCustomers = [

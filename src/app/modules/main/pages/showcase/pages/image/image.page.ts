@@ -1,10 +1,6 @@
-import {Component} from '@angular/core';
-import {NgDisableZoomControl, NgLimitZoom, NgListener, NgOverflow} from "@powell/models";
-import {ImageModule} from "@powell/components/image";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ImageComponent, ImageModule} from "@powell/components/image";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-image-page',
@@ -12,30 +8,32 @@ import {
   styleUrls: ['./image.page.scss'],
   imports: [
     ImageModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class ImagePage {
-  width: string = '200';
-  height: string = '200';
-  preview: boolean = true;
-  pinchTransitionDuration: number = 200;
-  pinchDoubleTap: boolean = true;
-  pinchDoubleTapScale: number = 2;
-  pinchAutoZoomOut: boolean = false;
-  pinchLimitZoom: NgLimitZoom = 'original image size';
-  pinchDisabled: boolean = false;
-  pinchDisablePan: boolean = false;
-  pinchOverflow: NgOverflow = 'hidden';
-  pinchZoomControlScale: number = 1;
-  pinchDisableZoomControl: NgDisableZoomControl = 'auto';
-  pinchLimitPan: boolean = false;
-  pinchMinPanScale: number = 1.0001;
-  pinchMinScale: number = 0;
-  pinchListeners: NgListener = 'mouse and touch';
-  pinchWheel: boolean = true;
-  pinchAutoHeight: boolean = false;
-  pinchWheelZoomFactor: number = 0.2;
-  pinchDraggableImage: boolean = false;
+export class ImagePage extends PreviewBase {
+  @ViewChild(ImageComponent, {static: true}) declare cmpRef: ImageComponent;
+
+  override previewOptions: PreviewOption[] = [
+    {field: 'width', value: '200'},
+    {field: 'height', value: '200'},
+    {field: 'preview', value: true},
+    {field: 'pinchTransitionDuration', value: 200},
+    {field: 'pinchDoubleTap', value: true},
+    {field: 'pinchDoubleTapScale', value: 2},
+    {field: 'pinchAutoZoomOut', value: false},
+    {field: 'pinchLimitZoom', value: 'original image size'},
+    {field: 'pinchDisabled', value: false},
+    {field: 'pinchDisablePan', value: false},
+    {field: 'pinchOverflow', value: 'hidden'},
+    {field: 'pinchZoomControlScale', value: 1},
+    {field: 'pinchDisableZoomControl', value: 'auto'},
+    {field: 'pinchLimitPan', value: false},
+    {field: 'pinchMinPanScale', value: 1.0001},
+    {field: 'pinchMinScale', value: 0},
+    {field: 'pinchWheel', value: true},
+    {field: 'pinchAutoHeight', value: false},
+    {field: 'pinchWheelZoomFactor', value: 0.2},
+    {field: 'pinchDraggableImage', value: false},
+  ];
 }

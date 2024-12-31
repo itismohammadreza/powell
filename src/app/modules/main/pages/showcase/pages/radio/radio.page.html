@@ -1,48 +1,12 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="RadioButton"
-          subheader="RadioButton is an extension to standard radio button element with theming."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'label',
-      'variant',
-      'labelWidth',
-      'hint',
-      'rtl',
-      'showRequiredStar',
-      'fixLabelPos',
-      'followConfig',
-      'orientation',
-      'disabled',
-      ]"
-      [(label)]="label"
-      [(variant)]="variant"
-      [(labelWidth)]="labelWidth"
-      [(hint)]="hint"
-      [(rtl)]="rtl"
-      [(showRequiredStar)]="showRequiredStar"
-      [(fixLabelPos)]="labelPos"
-      [(followConfig)]="followConfig"
-      [(orientation)]="orientation"
-      [(disabled)]="disabled"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <form [formGroup]="form">
-      <ng-radio
-        formControlName="c1"
-        [validation]="{ required: 'error' }"
-        [options]="options"
-        [label]="label"
-        [variant]="variant"
-        [labelWidth]="labelWidth"
-        [hint]="hint"
-        [rtl]="rtl"
-        [showRequiredStar]="showRequiredStar"
-        [labelPos]="labelPos"
-        [followConfig]="followConfig"
-        [orientation]="orientation"
-        [disabled]="disabled"/>
-    </form>
-  </p-panel>
-</div>
+<ng-preview
+  header="RadioButton"
+  subheader="RadioButton is an extension to standard radio button element with theming."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <form [formGroup]="form">
+    <ng-radio
+      formControlName="c1"
+      [validation]="{ required: 'error' }"
+      [options]="options"/>
+  </form>
+</ng-preview>

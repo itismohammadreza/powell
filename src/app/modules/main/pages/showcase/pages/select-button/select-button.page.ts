@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgFixLabelPosition} from "@powell/models";
-import {ConfigService} from "@powell/api";
-import {SelectButtonModule} from "@powell/components/select-button";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SelectButtonComponent, SelectButtonModule} from "@powell/components/select-button";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-select-button-page',
@@ -15,28 +10,25 @@ import {
   imports: [
     SelectButtonModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class SelectButtonPage {
-  private configService = inject(ConfigService);
+export class SelectButtonPage extends PreviewBase {
+  @ViewChild(SelectButtonComponent, {static: true}) declare cmpRef: SelectButtonComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  labelPos: NgFixLabelPosition = this.configService.get().fixLabelPos;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  multiple: boolean = false;
-  disabled: boolean = false;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'unselectable', value: false},
+    {field: 'multiple', value: false},
+    {field: 'size', value: ''},
+    {field: 'disabled', value: false},
+  ];
 
   options: any[] = [
     {label: 'Australia', value: 'AU'},
