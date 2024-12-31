@@ -43,7 +43,6 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   private destroy$ = inject(DestroyService);
 
   @Input() appearance: NgButtonAppearance;
-  @Input() full: boolean;
   @Input() responsiveSize: NgButtonResponsiveSize;
   @Input() async: boolean;
   @Input() newLabel: string;
