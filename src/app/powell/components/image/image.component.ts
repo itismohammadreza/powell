@@ -22,6 +22,7 @@ import {TemplateDirective} from "@powell/directives/template";
   standalone: false
 })
 export class ImageComponent implements AfterContentInit {
+  // native properties
   @Input() imageClass: string;
   @Input() imageStyle: NgCssObject;
   @Input() styleClass: string;
