@@ -16,7 +16,7 @@ import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService, OverlayService} from "@powell/api";
 import {NgButtonProps, NgCssObject, NgHistoryState} from "@powell/models";
 import {Subject, takeUntil} from "rxjs";
-import {$ButtonProps, $uuid} from "@powell/primeng";
+import {$uuid} from "@powell/primeng";
 import {DestroyService} from "@core/utils";
 
 @Component({
@@ -65,7 +65,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   }
 
   ngOnInit() {
-    this.style = {height: 'auto', maxHeight: '50vh', ...this.style};
+    this.style = {...(!this.fullScreen && {maxHeight: '50vh', height: 'auto'}), ...this.style};
     this.styleClass = `p-bottom-sheet ${this.styleClass}`;
     this.configService.applyConfigToComponent(this);
   }
