@@ -57,6 +57,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   @Output() visibleChange = new EventEmitter<boolean>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
+  computedStyle: NgCssObject = {};
   hided$ = new Subject<boolean>();
   templateMap: Record<string, TemplateRef<any>> = {};
   state: NgHistoryState = {
@@ -65,12 +66,15 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   }
 
   ngOnInit() {
-    this.style = {...(!this.fullScreen && {maxHeight: '50vh', height: 'auto'}), ...this.style};
+    this.updateStyle();
     this.styleClass = `p-bottom-sheet ${this.styleClass}`;
     this.configService.applyConfigToComponent(this);
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes['style'] || changes['fullScreen']) {
+      this.updateStyle();
+    }
     const {closeButtonProps} = changes;
     if (closeButtonProps) {
       const props = closeButtonProps.currentValue;
@@ -86,6 +90,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   }
 
   _onShow() {
+    this.updateStyle()
     this.visible = true;
     this.visibleChange.emit(this.visible);
     this.overlayService.stateChange().pipe(takeUntil(this.hided$)).subscribe(res => {
@@ -113,5 +118,19 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
       outlined: props.appearance === 'outlined',
       text: props.appearance === 'text',
     } as any;
+  }
+
+  updateStyle() {
+    if (this.fullScreen) {
+      this.computedStyle = {...this.style};
+      this.computedStyle['maxHeight'] = 'auto';
+      this.computedStyle['height'] = 'auto';
+    } else {
+      this.computedStyle = {
+        ...this.style,
+        maxHeight: '50vh',
+        height: 'auto',
+      };
+    }
   }
 }
