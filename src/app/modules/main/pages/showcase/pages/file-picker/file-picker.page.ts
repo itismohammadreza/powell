@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgFilePickerMode, NgFixLabelPosition} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {FilePickerModule} from "@powell/components/file-picker";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {FilePickerComponent, FilePickerModule} from "@powell/components/file-picker";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-file-picker-page',
@@ -15,40 +10,34 @@ import {
   imports: [
     FilePickerModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class FilePickerPage {
-  private configService = inject(ConfigService);
+export class FilePickerPage extends PreviewBase {
+  @ViewChild(FilePickerComponent, {static: true}) declare cmpRef: FilePickerComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  labelPos: NgFixLabelPosition = this.configService.get().fixLabelPos;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  multiple: boolean = true;
-  accept: string = 'image/*';
-  disabled: boolean = false;
-  auto: boolean = false;
-  maxFileSize: number = 1000000;
-  fileLimit: number = 0;
-  previewWidth: number = 50;
-  chooseLabel: string = 'انتخاب';
-  uploadLabel: string = 'آپلود';
-  cancelLabel: string = 'انصراف';
-  chooseIcon: string = 'pi pi-plus';
-  uploadIcon: string = 'pi pi-upload';
-  cancelIcon: string = 'pi pi-times';
-  mode: NgFilePickerMode = 'advanced';
-  showUploadButton: boolean = true;
-  showCancelButton: boolean = true;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'multiple', value: true},
+    {field: 'accept', value: 'image/*'},
+    {field: 'disabled', value: false},
+    {field: 'maxFileSize', value: 1000000},
+    {field: 'fileLimit', value: 0},
+    {field: 'previewWidth', value: 50},
+    {field: 'chooseLabel', value: 'انتخاب'},
+    {field: 'uploadLabel', value: 'آپلود'},
+    {field: 'cancelLabel', value: 'انصراف'},
+    {field: 'chooseIcon', value: 'pi pi-plus'},
+    {field: 'uploadIcon', value: 'pi pi-upload'},
+    {field: 'cancelIcon', value: 'pi pi-times'},
+    {field: 'showUploadButton', value: true},
+    {field: 'showCancelButton', value: true},
+    {field: 'mode', value: 'advanced'},
+  ];
 }

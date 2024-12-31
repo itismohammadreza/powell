@@ -1,29 +1,51 @@
 import {Component, inject} from '@angular/core';
-import {OverlayService} from "@powell/api";
 import {NgDialogFormOptions} from "@powell/models";
 import {FormControl, Validators} from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {DestroyService} from "@core/utils";
 import {ButtonModule} from "@powell/components/button";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
+import {DestroyService} from "@core/utils";
 
 @Component({
   selector: 'ng-dialog-form-page',
   templateUrl: './dialog-form.page.html',
   styleUrls: ['./dialog-form.page.scss'],
-  providers: [DestroyService],
   imports: [
     ButtonModule,
-    ExtrasModule,
-    PreviewOptionsComponent
-  ]
+    PreviewComponent
+  ],
+  providers: [DestroyService],
 })
-export class DialogFormPage {
-  private overlayService = inject(OverlayService);
+export class DialogFormPage extends PreviewBase {
   private destroy$ = inject(DestroyService);
+
+  override previewOptions: PreviewOption[] = [
+    {field: 'header', value: 'Dialog'},
+    {field: 'draggable', value: false},
+    {field: 'resizable', value: false},
+    {field: 'modal', value: true},
+    {field: 'position', value: 'center'},
+    {field: 'blockScroll', value: false},
+    {field: 'closeOnEscape', value: false},
+    {field: 'dismissableMask', value: false},
+    {field: 'closable', value: true},
+    {field: 'showHeader', value: true},
+    {field: 'maximizable', value: true},
+    {field: 'buttonFull', value: false},
+    {field: 'buttonSize', value: 'small'},
+    {field: 'acceptAppearance', value: 'basic'},
+    {field: 'acceptSeverity', value: 'primary'},
+    {field: 'acceptVisible', value: true},
+    {field: 'acceptLabel', value: 'تایید'},
+    {field: 'acceptIcon', value: ''},
+    {field: 'rejectAppearance', value: 'outlined'},
+    {field: 'rejectSeverity', value: 'danger'},
+    {field: 'rejectVisible', value: true},
+    {field: 'rejectLabel', value: 'لغو'},
+    {field: 'rejectIcon', value: ''},
+    {field: 'defaultFocus', value: 'accept'},
+    {field: 'buttonIconPosition', value: 'left'},
+  ];
 
   dialogForm: NgDialogFormOptions = {
     header: 'Dialog',
@@ -54,6 +76,10 @@ export class DialogFormPage {
   }
 
   flag = true;
+
+  override onOptionChange(event: any) {
+    this.dialogForm[event.field] = event.value;
+  }
 
   showDialogForm() {
     this.overlayService.showDialogForm(

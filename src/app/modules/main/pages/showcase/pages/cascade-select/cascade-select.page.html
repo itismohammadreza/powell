@@ -1,66 +1,15 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="CascadeSelect"
-          subheader="CascadeSelect displays a nested structure of options."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'label',
-      'variant',
-      'labelWidth',
-      'hint',
-      'rtl',
-      'showRequiredStar',
-      'icon',
-      'labelPos',
-      'iconPos',
-      'addon',
-      'selectiveSize',
-      'followConfig',
-      'disabled',
-      'placeholder',
-      'showClear',
-      ]"
-      [(label)]="label"
-      [(variant)]="variant"
-      [(labelWidth)]="labelWidth"
-      [(hint)]="hint"
-      [(rtl)]="rtl"
-      [(showRequiredStar)]="showRequiredStar"
-      [(icon)]="icon"
-      [(labelPos)]="labelPos"
-      [(iconPos)]="iconPos"
-      [(selectiveSize)]="inputSize"
-      [(followConfig)]="followConfig"
-      [(addon)]="addon"
-      [(disabled)]="disabled"
-      [(placeholder)]="placeholder"
-      [(showClear)]="showClear"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <form [formGroup]="form">
-      <ng-cascade-select
-        class="w-[30vw] mx-auto"
-        formControlName="c1"
-        [addon]="addon"
-        [validation]="{ required: 'error' }"
-        [options]="options"
-        [optionGroupChildren]="'states, cities'"
-        optionGroupLabel="name"
-        [label]="label"
-        [variant]="variant"
-        [labelWidth]="labelWidth"
-        [hint]="hint"
-        [rtl]="rtl"
-        [showRequiredStar]="showRequiredStar"
-        [icon]="icon"
-        [labelPos]="labelPos"
-        [iconPos]="iconPos"
-        [size]="inputSize"
-        [followConfig]="followConfig"
-        [disabled]="disabled"
-        [placeholder]="placeholder"
-        [showClear]="showClear"/>
-    </form>
-  </p-panel>
-</div>
+<ng-preview
+  header="CascadeSelect"
+  subheader="CascadeSelect displays a nested structure of options."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <form [formGroup]="form">
+    <ng-cascade-select
+      class="w-[30vw] mx-auto"
+      formControlName="c1"
+      [validation]="{ required: 'error' }"
+      [optionGroupChildren]="'states, cities'"
+      [options]="options"
+      optionGroupLabel="name"/>
+  </form>
+</ng-preview>

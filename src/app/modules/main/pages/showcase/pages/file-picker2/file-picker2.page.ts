@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgSeverity, NgFixLabelPosition} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {FilePicker2Module} from "@powell/components/file-picker2";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {FilePicker2Component, FilePicker2Module} from "@powell/components/file-picker2";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-file-picker2-page',
@@ -15,31 +10,26 @@ import {
   imports: [
     FilePicker2Module,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class FilePicker2Page {
-  private configService = inject(ConfigService);
+export class FilePicker2Page extends PreviewBase {
+  @ViewChild(FilePicker2Component, {static: true}) declare cmpRef: FilePicker2Component;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  labelPos: NgFixLabelPosition = this.configService.get().fixLabelPos;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  disabled: boolean = false;
-  readonly: boolean = false;
-  multiple: boolean = true;
-  accept: string = '';
-  severity: NgSeverity = 'primary';
-  fileLimit: number = 20000;
-  chooseLabel: string = 'انتخاب';
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'disabled', value: false},
+    {field: 'readonly', value: false},
+    {field: 'multiple', value: true},
+    {field: 'accept', value: ''},
+    {field: 'maxFileSize', value: 100000},
+    {field: 'fileLimit', value: 20000},
+    {field: 'chooseLabel', value: 'انتخاب'},
+  ];
 }

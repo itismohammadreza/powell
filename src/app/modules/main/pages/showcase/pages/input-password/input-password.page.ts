@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgAddon, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {InputPasswordModule} from "@powell/components/input-password";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {InputPasswordComponent, InputPasswordModule} from "@powell/components/input-password";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-input-password-page',
@@ -15,38 +10,34 @@ import {
   imports: [
     InputPasswordModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class InputPasswordPage {
-  private configService = inject(ConfigService);
+export class InputPasswordPage extends PreviewBase {
+  @ViewChild(InputPasswordComponent, {static: true}) declare cmpRef: InputPasswordComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  variant: NgInputVariant = this.configService.get().inputStyle;
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  icon: string = '';
-  labelPos: NgLabelPosition = this.configService.get().labelPos;
-  iconPos: NgIconPosition = 'left';
-  addon: NgAddon;
-  inputSize: NgSize = this.configService.get().inputSize;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  promptLabel: string = 'لطفا رمز عبور را وارد کنید';
-  weakLabel: string = 'ضعیف';
-  mediumLabel: string = 'متوسط';
-  strongLabel: string = 'قوی';
-  feedback: boolean = true;
-  toggleMask: boolean = false;
-  disabled: boolean = false;
-  placeholder: string = '';
-  showClear: boolean = true;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'icon', value: ''},
+    {field: 'labelPos', value: this.config.labelPos},
+    {field: 'iconPos', value: 'left'},
+    {field: 'addon', value: ''},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'fluid', value: false},
+    {field: 'disabled', value: false},
+    {field: 'promptLabel', value: 'لطفا رمز عبور را وارد کنید'},
+    {field: 'weakLabel', value: 'ضعیف'},
+    {field: 'mediumLabel', value: 'متوسط'},
+    {field: 'strongLabel', value: 'قوی'},
+    {field: 'feedback', value: true},
+    {field: 'toggleMask', value: false},
+    {field: 'size', value: this.config.inputSize},
+    {field: 'placeholder', value: ''},
+    {field: 'showClear', value: true},
+    {field: 'variant', value: this.config.inputStyle},
+  ];
 }

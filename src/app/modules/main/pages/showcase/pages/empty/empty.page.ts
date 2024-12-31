@@ -1,11 +1,6 @@
-import {Component, inject} from '@angular/core';
-import {NgEmptyIcon} from "@powell/models";
-import {ConfigService} from "@powell/api";
-import {EmptyModule} from "@powell/components/empty";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {EmptyComponent, EmptyModule} from "@powell/components/empty";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-empty-page',
@@ -13,16 +8,17 @@ import {
   styleUrls: ['./empty.page.scss'],
   imports: [
     EmptyModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class EmptyPage {
-  private configService = inject(ConfigService);
+export class EmptyPage extends PreviewBase {
+  @ViewChild(EmptyComponent, {static: true}) declare cmpRef: EmptyComponent;
 
-  imageType: NgEmptyIcon = 'box1';
-  icon: string = '';
-  text: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  followConfig: boolean = this.configService.get().followConfig;
+  override previewOptions: PreviewOption[] = [
+    {field: 'imageType', value: 'box1'},
+    {field: 'icon', value: ''},
+    {field: 'text', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'followConfig', value: this.config.followConfig},
+  ];
 }

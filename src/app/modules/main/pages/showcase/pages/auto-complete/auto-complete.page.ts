@@ -1,12 +1,8 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
 import {NgAddon, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {AutoCompleteModule} from "@powell/components/auto-complete";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {AutoCompleteComponent, AutoCompleteModule} from "@powell/components/auto-complete";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-auto-complete-page',
@@ -14,46 +10,40 @@ import {
   styleUrls: ['./auto-complete.page.scss'],
   imports: [
     AutoCompleteModule,
-    ExtrasModule,
-    PreviewOptionsComponent,
+    PreviewComponent,
     ReactiveFormsModule,
   ]
 })
-export class AutoCompletePage {
-  private configService = inject(ConfigService);
+export class AutoCompletePage extends PreviewBase {
+  @ViewChild(AutoCompleteComponent, {static: true}) declare cmpRef: AutoCompleteComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding: any;
+  override previewOptions: PreviewOption[] = [
+    {field: '', value: ''},
+  ];
 
   label: string = 'label';
-  variant: NgInputVariant = this.configService.get().inputStyle;
   labelWidth: number = 100;
   hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
+  rtl: boolean = this.config.rtl;
+  showRequiredStar: boolean = this.config.showRequiredStar;
   icon: string = '';
-  labelPos: NgLabelPosition = this.configService.get().labelPos;
+  labelPos: NgLabelPosition = this.config.labelPos;
   iconPos: NgIconPosition = 'left';
   addon: NgAddon;
-  inputSize: NgSize = this.configService.get().inputSize;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  scrollHeight: string = '200px';
-  dropdown: boolean = false;
-  multiple: boolean = false;
-  minlength: number = 1;
+  followConfig: boolean = this.config.followConfig;
   placeholder: string = '';
   readonly: boolean = false;
   disabled: boolean = false;
   maxlength: number = 100;
-  showEmptyMessage: boolean = false;
-  emptyMessage: string = '';
-  forceSelection: boolean = true;
+  size: NgSize = this.config.inputSize;
   unique: boolean = true;
   showClear: boolean = true;
+  dropdown: boolean = false;
+  multiple: boolean = false;
+  emptyMessage: string = '';
+  variant: NgInputVariant = this.config.inputStyle;
 
+  filteredSuggestions: any[] = [];
   suggestions = [
     {name: 'Afghanistan', code: 'AF'},
     {name: 'Albania', code: 'AL'},
@@ -116,7 +106,6 @@ export class AutoCompletePage {
     {name: 'Djibouti', code: 'DJ'},
     {name: 'Dominica', code: 'DM'}
   ];
-  filteredSuggestions: any[] = [];
 
   filter(event) {
     const filtered: any[] = [];

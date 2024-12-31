@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgAddon, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {SelectModule} from "@powell/components/select";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SelectComponent, SelectModule} from "@powell/components/select";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-select-page',
@@ -15,44 +10,40 @@ import {
   imports: [
     SelectModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class SelectPage {
-  private configService = inject(ConfigService);
+export class SelectPage extends PreviewBase {
+  @ViewChild(SelectComponent, {static: true}) declare cmpRef: SelectComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  variant: NgInputVariant = this.configService.get().inputStyle;
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  icon: string = '';
-  labelPos: NgLabelPosition = this.configService.get().labelPos;
-  iconPos: NgIconPosition = 'left';
-  addon: NgAddon;
-  inputSize: NgSize = this.configService.get().inputSize;
-  async: boolean = false;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  filter: boolean = false;
-  disabled: boolean = false;
-  readonly: boolean = false;
-  emptyMessage: string = '';
-  emptyFilterMessage: string = '';
-  editable: boolean = false;
-  maxlength: number = 100;
-  placeholder: string = '';
-  autofocusFilter: boolean = false;
-  resetFilterOnHide: boolean = false;
-  autoDisplayFirst: boolean = false;
-  showClear: boolean = true;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'icon', value: ''},
+    {field: 'labelPos', value: this.config.labelPos},
+    {field: 'iconPos', value: 'left'},
+    {field: 'addon', value: ''},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'async', value: false},
+    {field: 'filter', value: false},
+    {field: 'readonly', value: false},
+    {field: 'editable', value: false},
+    {field: 'placeholder', value: ''},
+    {field: 'variant', value: this.config.inputStyle},
+    {field: 'resetFilterOnHide', value: false},
+    {field: 'checkmark', value: false},
+    {field: 'dropdownIcon', value: ''},
+    {field: 'showClear', value: true},
+    {field: 'size', value: this.config.inputSize},
+    {field: 'maxlength', value: 100},
+    {field: 'focusOnHover', value: false},
+    {field: 'autofocusFilter', value: false},
+    {field: 'fluid', value: false},
+    {field: 'disabled', value: false},
+  ];
 
   options: any[] = [
     {label: 'Australia', value: 'AU'},
@@ -66,12 +57,4 @@ export class SelectPage {
     {label: 'Spain', value: 'ES'},
     {label: 'United States', value: 'US'}
   ];
-  asyncFlag = false;
-
-  onChangeAsync({loadingCallback}) {
-    this.asyncFlag = !this.asyncFlag;
-    setTimeout(() => {
-      loadingCallback(this.asyncFlag)
-    }, 1000)
-  }
 }

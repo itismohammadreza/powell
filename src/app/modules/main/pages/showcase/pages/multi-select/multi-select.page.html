@@ -1,114 +1,13 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="MultiSelect"
-          subheader="MultiSelect is used to multiple values from a list of options."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'label',
-      'variant',
-      'labelWidth',
-      'hint',
-      'rtl',
-      'showRequiredStar',
-      'icon',
-      'labelPos',
-      'iconPos',
-      'addon',
-      'selectiveSize',
-      'followConfig',
-      'autofocusFilter',
-      'defaultLabel',
-      'disabled',
-      'displaySelectedLabel',
-      'emptyFilterMessage',
-      'filter',
-      'filterPlaceHolder',
-      'maxSelectedLabels',
-      'overlayVisible',
-      'placeholder',
-      'readonly',
-      'emptyMessage',
-      'resetFilterOnHide',
-      'scrollHeight',
-      'selectedItemsLabel',
-      'selectionLimit',
-      'showHeader',
-      'showToggleAll',
-      'showClear',
-      'display',
-      ]"
-      [(label)]="label"
-      [(variant)]="variant"
-      [(labelWidth)]="labelWidth"
-      [(hint)]="hint"
-      [(rtl)]="rtl"
-      [(showRequiredStar)]="showRequiredStar"
-      [(icon)]="icon"
-      [(labelPos)]="labelPos"
-      [(iconPos)]="iconPos"
-      [(selectiveSize)]="inputSize"
-      [(followConfig)]="followConfig"
-      [(addon)]="addon"
-      [(autofocusFilter)]="autofocusFilter"
-      [(defaultLabel)]="defaultLabel"
-      [(disabled)]="disabled"
-      [(displaySelectedLabel)]="displaySelectedLabel"
-      [(emptyFilterMessage)]="emptyFilterMessage"
-      [(filter)]="filter"
-      [(filterPlaceHolder)]="filterPlaceHolder"
-      [(maxSelectedLabels)]="maxSelectedLabels"
-      [(overlayVisible)]="overlayVisible"
-      [(placeholder)]="placeholder"
-      [(readonly)]="readonly"
-      [(emptyMessage)]="emptyMessage"
-      [(resetFilterOnHide)]="resetFilterOnHide"
-      [(scrollHeight)]="scrollHeight"
-      [(selectedItemsLabel)]="selectedItemsLabel"
-      [(selectionLimit)]="selectionLimit"
-      [(showHeader)]="showHeader"
-      [(showToggleAll)]="showToggleAll"
-      [(showClear)]="showClear"
-      [(display)]="display"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <form [formGroup]="form">
-      <ng-multi-select
-        formControlName="c1"
-        [addon]="addon"
-        [validation]="{ required: 'error' }"
-        [options]="options"
-        [label]="label"
-        [variant]="variant"
-        [labelWidth]="labelWidth"
-        [hint]="hint"
-        [rtl]="rtl"
-        [showRequiredStar]="showRequiredStar"
-        [icon]="icon"
-        [labelPos]="labelPos"
-        [iconPos]="iconPos"
-        [size]="inputSize"
-        [followConfig]="followConfig"
-        [autofocusFilter]="autofocusFilter"
-        [disabled]="disabled"
-        [displaySelectedLabel]="displaySelectedLabel"
-        [emptyFilterMessage]="emptyFilterMessage"
-        [filter]="filter"
-        [filterPlaceHolder]="filterPlaceHolder"
-        [maxSelectedLabels]="maxSelectedLabels"
-        [overlayVisible]="overlayVisible"
-        [placeholder]="placeholder"
-        [readonly]="readonly"
-        [emptyMessage]="emptyMessage"
-        [resetFilterOnHide]="resetFilterOnHide"
-        [scrollHeight]="scrollHeight"
-        [selectedItemsLabel]="selectedItemsLabel"
-        [selectionLimit]="selectionLimit"
-        [showHeader]="showHeader"
-        [showToggleAll]="showToggleAll"
-        [showClear]="showClear"
-        optionLabel="label"
-        [display]="display"/>
-    </form>
-  </p-panel>
-</div>
+<ng-preview
+  header="MultiSelect"
+  subheader="MultiSelect is used to multiple values from a list of options."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <form [formGroup]="form">
+    <ng-multi-select
+      formControlName="c1"
+      [validation]="{ required: 'error' }"
+      [options]="options"
+      optionLabel="label"/>
+  </form>
+</ng-preview>

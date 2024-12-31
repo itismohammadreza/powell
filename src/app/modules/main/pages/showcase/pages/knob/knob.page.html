@@ -1,72 +1,9 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="Knob"
-          subheader="Knob is a form component to define number inputs with a dial."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'label',
-      'labelWidth',
-      'hint',
-      'rtl',
-      'showRequiredStar',
-      'fixLabelPos',
-      'followConfig',
-      'numericSize',
-      'disabled',
-      'readonly',
-      'step',
-      'min',
-      'max',
-      'valueColor',
-      'rangeColor',
-      'textColor',
-      'strokeWidth',
-      'showValue',
-      'valueTemplate',
-      ]"
-      [(label)]="label"
-      [(labelWidth)]="labelWidth"
-      [(hint)]="hint"
-      [(rtl)]="rtl"
-      [(showRequiredStar)]="showRequiredStar"
-      [(fixLabelPos)]="labelPos"
-      [(followConfig)]="followConfig"
-      [(numericSize)]="size"
-      [(disabled)]="disabled"
-      [(readonly)]="readonly"
-      [(step)]="step"
-      [(min)]="min"
-      [(max)]="max"
-      [(valueColor)]="valueColor"
-      [(rangeColor)]="rangeColor"
-      [(textColor)]="textColor"
-      [(strokeWidth)]="strokeWidth"
-      [(showValue)]="showValue"
-      [(valueTemplate)]="valueTemplate"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <form [formGroup]="form">
-      <ng-knob
-        formControlName="c1"
-        [validation]="{ required: 'error' }"
-        [label]="label"
-        [labelWidth]="labelWidth"
-        [hint]="hint"
-        [rtl]="rtl"
-        [labelPos]="labelPos"
-        [size]="size"
-        [disabled]="disabled"
-        [readonly]="readonly"
-        [step]="step"
-        [min]="min"
-        [max]="max"
-        [valueColor]="valueColor"
-        [rangeColor]="rangeColor"
-        [textColor]="textColor"
-        [strokeWidth]="strokeWidth"
-        [showValue]="showValue"
-        [valueTemplate]="valueTemplate"/>
-    </form>
-  </p-panel>
-</div>
+<ng-preview
+  header="Knob"
+  subheader="Knob is a form component to define number inputs with a dial."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <form [formGroup]="form">
+    <ng-knob formControlName="c1" [validation]="{ required: 'error' }"/>
+  </form>
+</ng-preview>

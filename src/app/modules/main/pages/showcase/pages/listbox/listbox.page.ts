@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgAddon, NgFixLabelPosition} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {ListboxModule} from "@powell/components/listbox";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {ListboxComponent, ListboxModule} from "@powell/components/listbox";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-listbox-page',
@@ -15,36 +10,31 @@ import {
   imports: [
     ListboxModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class ListboxPage {
-  private configService = inject(ConfigService);
+export class ListboxPage extends PreviewBase {
+  @ViewChild(ListboxComponent, {static: true}) declare cmpRef: ListboxComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  labelPos: NgFixLabelPosition = this.configService.get().fixLabelPos;
-  addon: NgAddon;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  checkbox: boolean = false;
-  disabled: boolean = false;
-  filter: boolean = false;
-  filterPlaceHolder: string = '';
-  emptyFilterMessage: string = '';
-  multiple: boolean = false;
-  readonly: boolean = false;
-  emptyMessage: string = '';
-  showToggleAll: boolean = true;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'addon', value: ''},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'multiple', value: false},
+    {field: 'readonly', value: false},
+    {field: 'disabled', value: false},
+    {field: 'checkbox', value: false},
+    {field: 'filter', value: false},
+    {field: 'showToggleAll', value: true},
+    {field: 'filterPlaceHolder', value: ''},
+    {field: 'striped', value: true},
+    {field: 'checkmark', value: true},
+  ];
 
   options: any[] = [
     {label: 'Australia', value: 'AU'},

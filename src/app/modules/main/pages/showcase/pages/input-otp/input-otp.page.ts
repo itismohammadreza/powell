@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {NgFixLabelPosition, NgInputVariant, NgSize} from "@powell/models";
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ConfigService} from "@powell/api";
-import {InputOtpModule} from "@powell/components/input-otp";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from "@angular/forms";
+import {InputOtpComponent, InputOtpModule} from "@powell/components/input-otp";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-input-otp-page',
@@ -15,30 +10,26 @@ import {
   imports: [
     InputOtpModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class InputOtpPage {
-  private configService = inject(ConfigService);
+export class InputOtpPage extends PreviewBase {
+  @ViewChild(InputOtpComponent, {static: true}) declare cmpRef: InputOtpComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  variant: NgInputVariant = this.configService.get().inputStyle;
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  labelPos: NgFixLabelPosition = this.configService.get().fixLabelPos;
-  inputSize: NgSize = this.configService.get().inputSize;
-  followConfig: boolean = this.configService.get().followConfig;
-  readonly: boolean = false;
-  disabled: boolean = false;
-  placeholder: string = '';
-  inputCount: number = 4;
-  numbersOnly: boolean = true;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'disabled', value: false},
+    {field: 'readonly', value: false},
+    {field: 'variant', value: this.config.inputStyle},
+    {field: 'length', value: 4},
+    {field: 'mask', value: false},
+    {field: 'numbersOnly', value: true},
+    {field: 'size', value: this.config.inputSize},
+  ];
 }

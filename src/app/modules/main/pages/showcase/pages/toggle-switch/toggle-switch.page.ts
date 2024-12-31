@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgFixLabelPosition} from "@powell/models";
-import {ConfigService} from "@powell/api";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
-import {ToggleSwitchModule} from "@powell/components/toggle-switch";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
+import {ToggleSwitchComponent, ToggleSwitchModule} from "@powell/components/toggle-switch";
 
 @Component({
   selector: 'ng-toggle-switch-page',
@@ -15,36 +10,27 @@ import {ToggleSwitchModule} from "@powell/components/toggle-switch";
   imports: [
     ToggleSwitchModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class ToggleSwitchPage {
-  private configService = inject(ConfigService);
+export class ToggleSwitchPage extends PreviewBase {
+  @ViewChild(ToggleSwitchComponent, {static: true}) declare cmpRef: ToggleSwitchComponent;
 
-  form = new FormGroup({
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'async', value: false},
+    {field: 'disabled', value: false},
+    {field: 'readonly', value: false},
+  ];
+
+  override form = new FormGroup({
     c1: new FormControl(null, [Validators.requiredTrue]),
   });
-  binding;
 
-  label: string = 'label';
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  labelPos: NgFixLabelPosition = this.configService.get().fixLabelPos;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  disabled: boolean = false;
-  readonly: boolean = false;
-  async: boolean = false;
-
-  asyncFlag = false;
-
-  onChangeAsync({loadingCallback}) {
-    this.asyncFlag = !this.asyncFlag;
-    setTimeout(() => {
-      loadingCallback(this.asyncFlag)
-    }, 3000)
-  }
 }
