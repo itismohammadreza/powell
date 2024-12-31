@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgAddon, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {CascadeSelectModule} from "@powell/components/cascade-select";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {CascadeSelectComponent, CascadeSelectModule} from "@powell/components/cascade-select";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-cascade-select-page',
@@ -15,34 +10,30 @@ import {
   imports: [
     CascadeSelectModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class CascadeSelectPage {
-  private configService = inject(ConfigService);
+export class CascadeSelectPage extends PreviewBase {
+  @ViewChild(CascadeSelectComponent, {static: true}) declare cmpRef: CascadeSelectComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding: any;
-
-  label: string = 'label';
-  variant: NgInputVariant = this.configService.get().inputStyle;
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  icon: string = '';
-  labelPos: NgLabelPosition = this.configService.get().labelPos;
-  iconPos: NgIconPosition = 'left';
-  addon: NgAddon;
-  inputSize: NgSize = this.configService.get().inputSize;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  disabled: boolean = false;
-  placeholder: string = '';
-  showClear: boolean = true;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'icon', value: ''},
+    {field: 'labelPos', value: this.config.labelPos},
+    {field: 'iconPos', value: 'left'},
+    {field: 'addon', value: ''},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'size', value: this.config.inputSize},
+    {field: 'disabled', value: false},
+    {field: 'placeholder', value: ''},
+    {field: 'showClear', value: true},
+    {field: 'variant', value: this.config.inputStyle},
+    {field: 'fluid', value: true},
+  ];
 
   options: any[] = [
     {

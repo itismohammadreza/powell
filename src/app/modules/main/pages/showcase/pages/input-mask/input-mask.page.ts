@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgAddon, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {InputMaskModule} from "@powell/components/input-mask";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {InputMaskComponent, InputMaskModule} from "@powell/components/input-mask";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-input-mask-page',
@@ -15,40 +10,33 @@ import {
   imports: [
     InputMaskModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class InputMaskPage {
-  private configService = inject(ConfigService);
+export class InputMaskPage extends PreviewBase {
+  @ViewChild(InputMaskComponent, {static: true}) declare cmpRef: InputMaskComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  variant: NgInputVariant = this.configService.get().inputStyle;
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  icon: string = '';
-  labelPos: NgLabelPosition = this.configService.get().labelPos;
-  iconPos: NgIconPosition = 'left';
-  addon: NgAddon;
-  inputSize: NgSize = this.configService.get().inputSize;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  mask: string = '99-999999';
-  slotChar: string = '_';
-  autoClear: boolean = true;
-  unmask: boolean = false;
-  placeholder: string = '';
-  size: number = 100;
-  maxlength: number = 100;
-  disabled: boolean = false;
-  readonly: boolean = false;
-  characterPattern: string = '[A-Za-z]';
-  showClear: boolean = true;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'icon', value: ''},
+    {field: 'labelPos', value: this.config.labelPos},
+    {field: 'iconPos', value: 'left'},
+    {field: 'addon', value: ''},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'slotChar', value: '_'},
+    {field: 'autoClear', value: true},
+    {field: 'showClear', value: true},
+    {field: 'placeholder', value: ''},
+    {field: 'size', value: this.config.inputSize},
+    {field: 'maxlength', value: 100},
+    {field: 'variant', value: this.config.inputStyle},
+    {field: 'disabled', value: false},
+    {field: 'readonly', value: false},
+    {field: 'unmask', value: false},
+    {field: 'mask', value: '99-999999'},
+  ];
 }

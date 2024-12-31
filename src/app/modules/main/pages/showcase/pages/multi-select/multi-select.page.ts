@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgAddon, NgChipDisplayMode, NgIconPosition, NgInputVariant, NgLabelPosition, NgSize} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {MultiSelectModule} from "@powell/components/multi-select";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MultiSelectComponent, MultiSelectModule} from "@powell/components/multi-select";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-multi-select-page',
@@ -15,51 +10,42 @@ import {
   imports: [
     MultiSelectModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class MultiSelectPage {
-  private configService = inject(ConfigService);
+export class MultiSelectPage extends PreviewBase {
+  @ViewChild(MultiSelectComponent, {static: true}) declare cmpRef: MultiSelectComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  variant: NgInputVariant = this.configService.get().inputStyle;
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  icon: string = '';
-  labelPos: NgLabelPosition = this.configService.get().labelPos;
-  iconPos: NgIconPosition = 'left';
-  addon: NgAddon;
-  inputSize: NgSize = this.configService.get().inputSize;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  autofocusFilter: boolean = false;
-  defaultLabel: string = '';
-  disabled: boolean = false;
-  displaySelectedLabel: boolean = true;
-  emptyFilterMessage: string = '';
-  filter: boolean = true;
-  filterPlaceHolder: string = '';
-  maxSelectedLabels: number = 3;
-  overlayVisible: boolean = false;
-  placeholder: string = '';
-  readonly: boolean = false;
-  emptyMessage: string = '';
-  resetFilterOnHide: boolean = false;
-  scrollHeight: string = '200px';
-  selectedItemsLabel: string | 'ellipsis' = 'ellipsis';
-  selectionLimit: number;
-  showHeader: boolean = true;
-  showToggleAll: boolean = true;
-  showClear: boolean = true;
-  display: NgChipDisplayMode = 'comma';
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'icon', value: ''},
+    {field: 'labelPos', value: this.config.labelPos},
+    {field: 'iconPos', value: 'left'},
+    {field: 'addon', value: ''},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'disabled', value: false},
+    {field: 'fluid', value: false},
+    {field: 'readonly', value: false},
+    {field: 'variant', value: this.config.inputStyle},
+    {field: 'displaySelectedLabel', value: true},
+    {field: 'maxSelectedLabels', value: 3},
+    {field: 'selectionLimit', value: ''},
+    {field: 'selectedItemsLabel', value: 'ellipsis'},
+    {field: 'showToggleAll', value: true},
+    {field: 'resetFilterOnHide', value: false},
+    {field: 'showHeader', value: true},
+    {field: 'autofocusFilter', value: false},
+    {field: 'filter', value: true},
+    {field: 'overlayVisible', value: false},
+    {field: 'display', value: 'comma'},
+    {field: 'size', value: this.config.inputSize},
+    {field: 'showClear', value: true},
+    {field: 'placeholder', value: ''},
+  ];
 
   options: any[] = [
     {label: 'Australia', value: 'AU'},

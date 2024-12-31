@@ -1,20 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {
-  NgAddon,
-  NgChipDisplayMode,
-  NgIconPosition,
-  NgInputVariant,
-  NgLabelPosition,
-  NgSize,
-  NgTreeSelectionMode
-} from "@powell/models";
-import {ConfigService} from "@powell/api";
-import {TreeSelectModule} from "@powell/components/tree-select";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from "@angular/forms";
+import {TreeSelectComponent, TreeSelectModule} from "@powell/components/tree-select";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-tree-select-page',
@@ -23,43 +10,36 @@ import {
   imports: [
     TreeSelectModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class TreeSelectPage {
-  private configService = inject(ConfigService);
+export class TreeSelectPage extends PreviewBase {
+  @ViewChild(TreeSelectComponent, {static: true}) declare cmpRef: TreeSelectComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  variant: NgInputVariant = this.configService.get().inputStyle;
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  icon: string = '';
-  labelPos: NgLabelPosition = this.configService.get().labelPos;
-  iconPos: NgIconPosition = 'left';
-  addon: NgAddon;
-  inputSize: NgSize = this.configService.get().inputSize;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  scrollHeight: string = '400px';
-  placeholder: string;
-  disabled: boolean;
-  selectionMode: NgTreeSelectionMode = 'single';
-  emptyMessage: string = '';
-  display: NgChipDisplayMode = 'comma';
-  propagateSelectionUp: boolean = true;
-  propagateSelectionDown: boolean = true;
-  filter: boolean = false;
-  filterPlaceHolder: string;
-  resetFilterOnHide: boolean = true;
-  showClear: boolean = false;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'icon', value: ''},
+    {field: 'labelPos', value: this.config.labelPos},
+    {field: 'iconPos', value: 'left'},
+    {field: 'addon', value: ''},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'disabled', value: ''},
+    {field: 'variant', value: this.config.inputStyle},
+    {field: 'display', value: 'comma'},
+    {field: 'selectionMode', value: 'single'},
+    {field: 'placeholder', value: ''},
+    {field: 'fluid', value: ''},
+    {field: 'filter', value: false},
+    {field: 'propagateSelectionDown', value: true},
+    {field: 'propagateSelectionUp', value: true},
+    {field: 'showClear', value: false},
+    {field: 'resetFilterOnHide', value: true},
+    {field: 'size', value: this.config.inputSize},
+  ];
 
   options: any[] = [
     {

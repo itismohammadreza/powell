@@ -1,43 +1,12 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="BottomSheet"
-          subheader="BottomSheet can be used to open panels to the bottom of the screen."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'blockScroll',
-      'modal',
-      'header',
-      'dismissible',
-      'closable',
-      'closeOnEscape',
-      'rtl',
-      'followConfig'
-      ]"
-      [(blockScroll)]="blockScroll"
-      [(modal)]="modal"
-      [(header)]="header"
-      [(dismissible)]="dismissible"
-      [(closable)]="closable"
-      [(closeOnEscape)]="closeOnEscape"
-      [(rtl)]="rtl"
-      [(followConfig)]="followConfig"/>
-  </p-panel>
+<ng-preview
+  header="BottomSheet"
+  subheader="BottomSheet can be used to open panels to the bottom of the screen."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <ng-button (click)="visible = true" label="Open Bottom Sheet"/>
+</ng-preview>
 
-  <p-panel [header]="'preview' | translate">
-    <ng-button (click)="visible = true" label="Open Bottom Sheet"/>
-  </p-panel>
-</div>
-
-<ng-bottom-sheet
-  [(visible)]="visible"
-  [blockScroll]="blockScroll"
-  [modal]="modal"
-  [header]="header"
-  [dismissible]="dismissible"
-  [closable]="closable"
-  [closeOnEscape]="closeOnEscape"
-  [rtl]="rtl"
-  [followConfig]="followConfig">
+<ng-bottom-sheet [(visible)]="visible">
   <ng-template ngTemplate="content">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
@@ -71,16 +40,7 @@
   </ng-template>
 </ng-bottom-sheet>
 
-<ng-bottom-sheet
-  [(visible)]="visible2"
-  [blockScroll]="blockScroll"
-  [modal]="modal"
-  [header]="header"
-  [dismissible]="dismissible"
-  [closable]="closable"
-  [closeOnEscape]="closeOnEscape"
-  [rtl]="rtl"
-  [followConfig]="followConfig">
+<ng-bottom-sheet [(visible)]="visible2">
   <ng-template ngTemplate="content">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
@@ -101,16 +61,7 @@
   </ng-template>
 </ng-bottom-sheet>
 
-<ng-bottom-sheet
-  [(visible)]="visible3"
-  [blockScroll]="blockScroll"
-  [modal]="modal"
-  [header]="header"
-  [dismissible]="dismissible"
-  [closable]="closable"
-  [closeOnEscape]="closeOnEscape"
-  [rtl]="rtl"
-  [followConfig]="followConfig">
+<ng-bottom-sheet [(visible)]="visible3">
   <ng-template ngTemplate="content">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
@@ -128,16 +79,7 @@
   </ng-template>
 </ng-bottom-sheet>
 
-<ng-bottom-sheet
-  [(visible)]="visible4"
-  [blockScroll]="blockScroll"
-  [modal]="modal"
-  [header]="header"
-  [dismissible]="dismissible"
-  [closable]="closable"
-  [closeOnEscape]="closeOnEscape"
-  [rtl]="rtl"
-  [followConfig]="followConfig">
+<ng-bottom-sheet [(visible)]="visible4">
   <ng-template ngTemplate="content">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis

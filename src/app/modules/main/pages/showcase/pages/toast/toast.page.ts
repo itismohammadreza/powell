@@ -1,11 +1,7 @@
-import {Component, inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgToastOptions} from "@powell/models";
-import {ConfigService, OverlayService} from "@powell/api";
 import {ButtonModule} from "@powell/components/button";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-toast-page',
@@ -13,18 +9,27 @@ import {
   styleUrls: ['./toast.page.scss'],
   imports: [
     ButtonModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class ToastPage {
-  private configService = inject(ConfigService);
-  private overlayService = inject(OverlayService);
+export class ToastPage extends PreviewBase {
+  override previewOptions: PreviewOption[] = [
+    {field: 'life', value: 3000},
+    {field: 'sticky', value: false},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'summary', value: 'Some Summary'},
+    {field: 'closable', value: false},
+    {field: 'severity', value: 'info'},
+    {field: 'icon', value: 'pi pi-info'},
+    {field: 'detail', value: 'Some Detail'},
+    {field: 'preventDuplicates', value: false},
+    {field: 'position', value: 'top-right'},
+  ];
 
   toast: NgToastOptions = {
     life: 3000,
     sticky: false,
-    rtl: this.configService.get().rtl,
+    rtl: this.config.rtl,
     summary: 'Some Summary',
     closable: false,
     severity: 'info',
@@ -32,6 +37,10 @@ export class ToastPage {
     detail: 'Some Detail',
     preventDuplicates: false,
     position: 'top-right'
+  }
+
+  override onOptionChange(event: any) {
+    this.toast[event.field] = event.value;
   }
 
   showToast() {

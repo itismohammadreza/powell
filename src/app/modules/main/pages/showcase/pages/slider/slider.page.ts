@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgFixLabelPosition, NgOrientation} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {SliderModule} from "@powell/components/slider";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SliderComponent, SliderModule} from "@powell/components/slider";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-slider-page',
@@ -15,31 +10,26 @@ import {
   imports: [
     SliderModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class SliderPage {
-  private configService = inject(ConfigService);
+export class SliderPage extends PreviewBase {
+  @ViewChild(SliderComponent, {static: true}) declare cmpRef: SliderComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  labelPos: NgFixLabelPosition = this.configService.get().fixLabelPos;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  animate: boolean = true;
-  disabled: boolean = false;
-  min: number = 0;
-  max: number = 100;
-  orientation: NgOrientation = 'horizontal';
-  step: number = 1;
-  range: boolean = false;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'animate', value: true},
+    {field: 'disabled', value: false},
+    {field: 'min', value: 0},
+    {field: 'max', value: 100},
+    {field: 'orientation', value: 'horizontal'},
+    {field: 'step', value: 1},
+    {field: 'range', value: false},
+  ];
 }

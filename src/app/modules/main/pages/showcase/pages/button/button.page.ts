@@ -1,10 +1,6 @@
-import {Component} from '@angular/core';
-import {NgButtonAppearance, NgIconPosition, NgSeverity, NgSize} from '@powell/models';
-import {ButtonModule} from "@powell/components/button";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ButtonComponent, ButtonModule} from "@powell/components/button";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-button-page',
@@ -12,30 +8,28 @@ import {
   styleUrls: ['./button.page.scss'],
   imports: [
     ButtonModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class ButtonPage {
-  appearance: NgButtonAppearance = 'basic';
-  full: boolean = false;
-  badgeSeverity: NgSeverity = 'secondary';
-  async: boolean = false;
-  newLabel: string = 'New Label';
-  newSeverity: NgSeverity = 'secondary';
-  iconPos: NgIconPosition = 'left';
-  icon: string = 'pi pi-user';
-  badge: string = '2';
-  label: string = 'Sample';
-  disabled: boolean = false;
-  raised: boolean = false;
-  rounded: boolean = false;
-  severity: NgSeverity = 'primary';
-  size: NgSize = 'small';
+export class ButtonPage extends PreviewBase {
+  @ViewChild(ButtonComponent, {static: true}) declare cmpRef: ButtonComponent;
 
-  onClickAsync({loadingCallback}) {
-    setTimeout(() => {
-      loadingCallback(true)
-    }, 3000)
-  }
+  override previewOptions: PreviewOption[] = [
+    {field: 'appearance', value: 'basic'},
+    {field: 'async', value: false},
+    {field: 'newLabel', value: 'New Label'},
+    {field: 'newAppearance', value: ''},
+    {field: 'newSeverity', value: 'secondary'},
+    {field: 'iconPos', value: 'left'},
+    {field: 'icon', value: 'pi pi-user'},
+    {field: 'badge', value: '2'},
+    {field: 'label', value: 'Sample'},
+    {field: 'disabled', value: false},
+    {field: 'raised', value: false},
+    {field: 'rounded', value: false},
+    {field: 'severity', value: 'primary'},
+    {field: 'size', value: 'small'},
+    {field: 'badgeSeverity', value: 'secondary'},
+    {field: 'fluid', value: false}
+  ];
 }

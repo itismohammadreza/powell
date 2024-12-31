@@ -1,56 +1,9 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="Map"
-          subheader="Map component provides integration with Leaflet Maps API. This sample demontrates various uses cases like binding, overlays and events. Click the map to add a new item."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'label',
-      'labelWidth',
-      'hint',
-      'rtl',
-      'showRequiredStar',
-      'fixLabelPos',
-      'addon',
-      'disabled',
-      'readonly',
-      'multiple',
-      'clearMarkerOnClick',
-      'showClear',
-      'followConfig',
-      ]"
-      [(label)]="label"
-      [(labelWidth)]="labelWidth"
-      [(hint)]="hint"
-      [(rtl)]="rtl"
-      [(showRequiredStar)]="showRequiredStar"
-      [(fixLabelPos)]="labelPos"
-      [(addon)]="addon"
-      [(disabled)]="disabled"
-      [(readonly)]="readonly"
-      [(multiple)]="multiple"
-      [(clearMarkerOnClick)]="clearMarkerOnClick"
-      [(showClear)]="showClear"
-      [(followConfig)]="followConfig"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <form [formGroup]="form">
-      <ng-map
-        formControlName="c1"
-        [validation]="{ required: 'error' }"
-        [label]="label"
-        [labelWidth]="labelWidth"
-        [hint]="hint"
-        [rtl]="rtl"
-        [showRequiredStar]="showRequiredStar"
-        [labelPos]="labelPos"
-        [addon]="addon"
-        [disabled]="disabled"
-        [readonly]="readonly"
-        [multiple]="multiple"
-        [clearMarkerOnClick]="clearMarkerOnClick"
-        [showClear]="showClear"
-        [followConfig]="followConfig"/>
-    </form>
-  </p-panel>
-</div>
+<ng-preview
+  header="Map"
+  subheader="Map component provides integration with Leaflet Maps API. This sample demontrates various uses cases like binding, overlays and events. Click the map to add a new item."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <form [formGroup]="form">
+    <ng-map formControlName="c1" [validation]="{ required: 'error' }"/>
+  </form>
+</ng-preview>

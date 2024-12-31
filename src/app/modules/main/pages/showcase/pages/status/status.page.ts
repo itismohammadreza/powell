@@ -1,11 +1,6 @@
-import {Component, inject} from '@angular/core';
-import {NgStatusIcon} from "@powell/models";
-import {ConfigService} from "@powell/api";
-import {StatusModule} from "@powell/components/status";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {StatusComponent, StatusModule} from "@powell/components/status";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-status-page',
@@ -13,16 +8,17 @@ import {
   styleUrls: ['./status.page.scss'],
   imports: [
     StatusModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class StatusPage {
-  private configService = inject(ConfigService);
+export class StatusPage extends PreviewBase {
+  @ViewChild(StatusComponent, {static: true}) declare cmpRef: StatusComponent;
 
-  status: NgStatusIcon = 'info';
-  text: string = '';
-  subText: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  followConfig: boolean = this.configService.get().followConfig;
+  override previewOptions: PreviewOption[] = [
+    {field: 'status', value: 'info'},
+    {field: 'text', value: ''},
+    {field: 'subText', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'followConfig', value: this.config.followConfig},
+  ];
 }

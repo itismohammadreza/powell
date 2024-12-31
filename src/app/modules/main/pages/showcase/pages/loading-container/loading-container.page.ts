@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoadingContainerModule} from "@powell/components/loading-container";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
+import {PreviewComponent} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-loading-container-page',
@@ -8,7 +8,7 @@ import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
   styleUrls: ['./loading-container.page.scss'],
   imports: [
     LoadingContainerModule,
-    ExtrasModule,
+    PreviewComponent
   ]
 })
 export class LoadingContainerPage implements OnInit {

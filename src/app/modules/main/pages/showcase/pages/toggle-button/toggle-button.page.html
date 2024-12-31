@@ -1,56 +1,9 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="ToggleButton"
-          subheader="ToggleButton is used to select a boolean value using a button."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'label',
-      'labelWidth',
-      'hint',
-      'rtl',
-      'showRequiredStar',
-      'fixLabelPos',
-      'followConfig',
-      'onLabel',
-      'offLabel',
-      'onIcon',
-      'offIcon',
-      'iconPos',
-      'disabled',
-      ]"
-      [(label)]="label"
-      [(labelWidth)]="labelWidth"
-      [(hint)]="hint"
-      [(rtl)]="rtl"
-      [(showRequiredStar)]="showRequiredStar"
-      [(fixLabelPos)]="labelPos"
-      [(followConfig)]="followConfig"
-      [(onLabel)]="onLabel"
-      [(offLabel)]="offLabel"
-      [(onIcon)]="onIcon"
-      [(offIcon)]="offIcon"
-      [(iconPos)]="iconPos"
-      [(disabled)]="disabled"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <form [formGroup]="form">
-      <ng-toggle-button
-        formControlName="c1"
-        [validation]="{ required: 'error' }"
-        [label]="label"
-        [labelWidth]="labelWidth"
-        [hint]="hint"
-        [rtl]="rtl"
-        [showRequiredStar]="showRequiredStar"
-        [labelPos]="labelPos"
-        [followConfig]="followConfig"
-        [onLabel]="onLabel"
-        [offLabel]="offLabel"
-        [onIcon]="onIcon"
-        [offIcon]="offIcon"
-        [iconPos]="iconPos"
-        [disabled]="disabled"/>
-    </form>
-  </p-panel>
-</div>
+<ng-preview
+  header="ToggleButton"
+  subheader="ToggleButton is used to select a boolean value using a button."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <form [formGroup]="form">
+    <ng-toggle-button formControlName="c1" [validation]="{ required: 'error' }"/>
+  </form>
+</ng-preview>

@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgAddon, NgFixLabelPosition, NgOrientation, NgTreeSelectionMode} from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {TreeModule} from "@powell/components/tree";
-import {ExtrasModule} from "@modules/main/pages/showcase/extras.module";
-import {
-  PreviewOptionsComponent
-} from "@modules/main/pages/showcase/components/preview-options/preview-options.component";
+import {Component, ViewChild} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {TreeComponent, TreeModule} from "@powell/components/tree";
+import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
   selector: 'ng-tree-page',
@@ -15,35 +10,27 @@ import {
   imports: [
     TreeModule,
     ReactiveFormsModule,
-    ExtrasModule,
-    PreviewOptionsComponent
+    PreviewComponent
   ]
 })
-export class TreePage {
-  private configService = inject(ConfigService);
+export class TreePage extends PreviewBase {
+  @ViewChild(TreeComponent, {static: true}) declare cmpRef: TreeComponent;
 
-  form = new FormGroup({
-    c1: new FormControl(null, [Validators.required]),
-  });
-  binding;
-
-  label: string = 'label';
-  labelWidth: number = 100;
-  hint: string = '';
-  rtl: boolean = this.configService.get().rtl;
-  showRequiredStar: boolean = this.configService.get().showRequiredStar;
-  labelPos: NgFixLabelPosition = this.configService.get().fixLabelPos;
-  addon: NgAddon;
-  followConfig: boolean = this.configService.get().followConfig;
-  // native properties
-  selectionMode: NgTreeSelectionMode;
-  propagateSelectionUp: boolean = true;
-  propagateSelectionDown: boolean = true;
-  emptyMessage: string;
-  filter: boolean = false;
-  filterPlaceHolder: string;
-  scrollHeight: string;
-  indentation: number = 1.5;
+  override previewOptions: PreviewOption[] = [
+    {field: 'label', value: 'label'},
+    {field: 'labelWidth', value: 100},
+    {field: 'hint', value: ''},
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'showRequiredStar', value: this.config.showRequiredStar},
+    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'addon', options: 'addons', value: 'none'},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'selectionMode', value: ''},
+    {field: 'propagateSelectionUp', value: true},
+    {field: 'propagateSelectionDown', value: true},
+    {field: 'filter', value: false},
+    {field: 'indentation', value: 1.5},
+  ];
 
   items: any[] = [
     {

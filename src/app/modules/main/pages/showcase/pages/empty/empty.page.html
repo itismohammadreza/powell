@@ -1,28 +1,7 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="Empty"
-          subheader="Empty is a empty state placeholder."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'imageType',
-      'icon',
-      'text',
-      'rtl',
-      'followConfig',
-      ]"
-      [(imageType)]="imageType"
-      [(icon)]="icon"
-      [(text)]="text"
-      [(rtl)]="rtl"
-      [(followConfig)]="followConfig"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <ng-empty
-      [imageType]="imageType"
-      [icon]="icon"
-      [text]="text"
-      [rtl]="rtl"
-      [followConfig]="followConfig"/>
-  </p-panel>
-</div>
+<ng-preview
+  header="Empty"
+  subheader="Empty is a empty state placeholder."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <ng-empty/>
+</ng-preview>

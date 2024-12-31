@@ -1,63 +1,7 @@
-<div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card header="DialogForm"
-          subheader="DialogForm is a container to display form in an overlay window."/>
-  <p-panel [header]="'options' | translate">
-    <ng-preview-options
-      [previewItems]="[
-      'header',
-      'draggable',
-      'resizable',
-      'modal',
-      'dialogPosition',
-      'blockScroll',
-      'closeOnEscape',
-      'dismissableMask',
-      'closable',
-      'showHeader',
-      'maximizable',
-      'buttonFull',
-      'buttonSize',
-      'acceptAppearance',
-      'acceptSeverity',
-      'acceptVisible',
-      'acceptLabel',
-      'acceptIcon',
-      'rejectAppearance',
-      'rejectSeverity',
-      'rejectVisible',
-      'rejectLabel',
-      'rejectIcon',
-      'defaultFocus',
-      'rtl',
-      ]"
-      [(header)]="dialogForm.header"
-      [(draggable)]="dialogForm.draggable"
-      [(resizable)]="dialogForm.resizable"
-      [(modal)]="dialogForm.modal"
-      [(dialogPosition)]="dialogForm.position"
-      [(blockScroll)]="dialogForm.blockScroll"
-      [(closeOnEscape)]="dialogForm.closeOnEscape"
-      [(dismissableMask)]="dialogForm.dismissableMask"
-      [(closable)]="dialogForm.closable"
-      [(showHeader)]="dialogForm.showHeader"
-      [(maximizable)]="dialogForm.maximizable"
-      [(buttonFull)]="dialogForm.buttonFull"
-      [(buttonSize)]="dialogForm.buttonSize"
-      [(acceptAppearance)]="dialogForm.acceptAppearance"
-      [(acceptSeverity)]="dialogForm.acceptSeverity"
-      [(acceptVisible)]="dialogForm.acceptVisible"
-      [(acceptLabel)]="dialogForm.acceptLabel"
-      [(acceptIcon)]="dialogForm.acceptIcon"
-      [(rejectAppearance)]="dialogForm.rejectAppearance"
-      [(rejectSeverity)]="dialogForm.rejectSeverity"
-      [(rejectVisible)]="dialogForm.rejectVisible"
-      [(rejectLabel)]="dialogForm.rejectLabel"
-      [(rejectIcon)]="dialogForm.rejectIcon"
-      [(defaultFocus)]="dialogForm.defaultFocus"
-      [(rtl)]="dialogForm.rtl"/>
-  </p-panel>
-
-  <p-panel [header]="'preview' | translate">
-    <ng-button label="Open Dialog Form" (click)="showDialogForm()"/>
-  </p-panel>
-</div>
+<ng-preview
+  header="DialogForm"
+  subheader="DialogForm is a container to display form in an overlay window."
+  [previewOptions]="previewOptions"
+  (onOptionChange)="onOptionChange($event)">
+  <ng-button label="Open Dialog Form" (click)="showDialogForm()"/>
+</ng-preview>
