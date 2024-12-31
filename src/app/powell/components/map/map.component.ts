@@ -80,13 +80,13 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Input() labelPos: NgFixLabelPosition;
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
+  @Input() followConfig: boolean;
   @Input() disabled: boolean;
   @Input() multiple: boolean = true;
   @Input() clearMarkerOnClick: boolean = true;
   @Input() showClear: boolean;
   @Input() clearTooltip: string;
   @Input() clearIcon: string;
-  @Input() followConfig: boolean;
   @Input() selectionLimit: number;
   @Input() id: string = $uuid();
   // native properties

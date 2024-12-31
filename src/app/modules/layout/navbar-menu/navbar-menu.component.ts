@@ -93,9 +93,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   loadData() {
-    const themes: string[] = this.themeService.getAllThemes();
     const sidebarTypes: SidebarType[] = ['overlay', 'overlay-mask', 'push', 'push-mask', 'hover', 'static', 'horizontal'];
-    this.themes = themes.map(t => ({label: t, value: t}));
     this.sidebarTypes = sidebarTypes.map(t => ({label: t, value: t}));
     this.sidebarItems = routes.map(item => ({
       label: item.title as string,

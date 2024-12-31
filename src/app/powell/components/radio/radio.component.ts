@@ -59,7 +59,6 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';
   @Input() optionDisabled: string = 'disabled';
-
   // native properties
   @Input() name: string = $uuid();
   @Input() set disabled(disabled: boolean) {
