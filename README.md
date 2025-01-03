@@ -9,7 +9,6 @@
 - remove extra styles for rtl (it supports built in). also in overlay.scss file.
 - add [dir="rtl"] attribute instead of rtl class in components (and apply it using a directive)
 - implement live theme changing
-- move remaining input props in dialog-form component elements into ts file (all except formControlName)
 - fix bottomsheet fullscreen issue
 - implement ifta label and input group base on new syntax (use this template):
 <ng-container *ngIf="useFloatLabel">
