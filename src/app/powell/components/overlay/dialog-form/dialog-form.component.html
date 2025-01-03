@@ -15,7 +15,6 @@
           <input
             [formControlName]="config.key"
             [ngClass]="config.className"
-            [hidden]="handleConfigVisibility(config)"
             type="hidden"
           />
         }
@@ -24,7 +23,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('button') {
@@ -38,7 +36,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('checkbox') {
@@ -46,7 +43,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('color-picker') {
@@ -54,7 +50,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('select') {
@@ -62,7 +57,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('dual-label-switch') {
@@ -70,7 +64,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('editor') {
@@ -78,7 +71,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('file-picker') {
@@ -86,7 +78,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('file-picker2') {
@@ -94,7 +85,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('datepicker') {
@@ -102,7 +92,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('image') {
@@ -117,7 +106,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('input-number') {
@@ -125,7 +113,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('input-otp') {
@@ -133,7 +120,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('input-password') {
@@ -141,7 +127,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('input-text') {
@@ -149,7 +134,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('input-textarea') {
@@ -157,7 +141,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('iran-map') {
@@ -165,7 +148,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('knob') {
@@ -173,7 +155,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('listbox') {
@@ -181,7 +162,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('map') {
@@ -189,7 +169,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('checkbox-group') {
@@ -197,7 +176,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('multi-select') {
@@ -205,7 +183,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('radio') {
@@ -213,7 +190,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('rating') {
@@ -221,7 +197,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('select-button') {
@@ -229,7 +204,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('slider') {
@@ -237,7 +211,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('toggle-switch') {
@@ -245,7 +218,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('toggle-button') {
@@ -253,7 +225,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('tree') {
@@ -261,7 +232,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('tree-select') {
@@ -269,7 +239,6 @@
             [formControlName]="config.key"
             [ngClass]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [validation]="convertToComponentValidation(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('template') {
