@@ -328,6 +328,9 @@ export class DialogFormComponent {
         if (Object.hasOwn(component, 'appendTo') && !config.appendTo) {
           component['appendTo'] = this.dialog;
         }
+        if (key === 'validations') {
+          component['validation'] = this.convertToComponentValidation(config);
+        }
         component[key] = config[key];
       }
     }
