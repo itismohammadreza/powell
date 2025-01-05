@@ -238,29 +238,6 @@ export class UtilsService {
     return (res !== null)
   };
 
-  setInputDirection(element: any, value: string, rtl: boolean) {
-    const rgx = /^[-!$%^&*()_+|~=`{}\[\]:\";'<>?,.\/]*[A-Za-z]/;
-    const isAscii = rgx.test(value);
-    const isRtl = rtl ?? this.configService.get().rtl;
-    if (isAscii) {
-      if (value) {
-        element.style.direction = 'ltr';
-        element.style.textAlign = 'left';
-      } else {
-        element.style.direction = isRtl ? 'rtl' : 'ltr';
-        element.style.textAlign = isRtl ? 'right' : 'left';
-      }
-    } else {
-      if (value) {
-        element.style.direction = 'rtl';
-        element.style.textAlign = 'right';
-      } else {
-        element.style.direction = isRtl ? 'rtl' : 'ltr';
-        element.style.textAlign = isRtl ? 'right' : 'left';
-      }
-    }
-  }
-
   joinArraysWithoutDuplicates(array1: any[], array2: any[], field: string) {
     const set1 = new Set(array1.map(x => x[field]));
     return [...array1, ...array2.filter(x => !set1.has(x[field]))]

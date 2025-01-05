@@ -58,8 +58,6 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   private injector = inject(Injector);
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
-  private el = inject(ElementRef);
-  private utilsService = inject(UtilsService);
 
   @Input() value: any;
   @Input() label: string;
@@ -163,7 +161,6 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
     const inputElement = event.target as HTMLInputElement;
     this.onInput.emit(event);
     this.onModelChange(inputElement.value);
-    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
   }
 
   _onBlur(event: Event) {
@@ -186,7 +183,6 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   _onClear() {
     this.onClear.emit();
     this.onModelChange(null);
-    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
   }
 
   _onFocus(event: Event) {
@@ -217,7 +213,6 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
 
   writeValue(value: any) {
     this.value = value;
-    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
     this.cd.markForCheck();
   }
 

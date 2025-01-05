@@ -56,8 +56,6 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   private injector = inject(Injector);
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
-  private el = inject(ElementRef);
-  private utilsService = inject(UtilsService);
 
   @Input() value: any;
   @Input() label: string;
@@ -146,7 +144,6 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
     const inputElement = event.target as HTMLInputElement;
     this.onInput.emit(event);
     this.onModelChange(inputElement.value);
-    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
   }
 
   _onBlur(event: FocusEvent) {
@@ -157,7 +154,6 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   clear() {
     this.value = null;
     this.onModelChange(this.value);
-    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
     this.onClear.emit();
   }
 
@@ -201,7 +197,6 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
 
   writeValue(value: any) {
     this.value = value;
-    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('input'), this.value, this.rtl);
     this.cd.markForCheck();
   }
 
