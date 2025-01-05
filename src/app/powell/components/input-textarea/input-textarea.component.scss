@@ -2,6 +2,10 @@
   display: block;
 
   ::ng-deep {
+    textarea {
+      unicode-bidi: plaintext;
+    }
+
     .input-textarea-wrapper {
       display: flex;
       position: relative;

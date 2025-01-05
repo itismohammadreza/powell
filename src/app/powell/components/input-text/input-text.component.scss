@@ -2,6 +2,14 @@
   display: block;
 
   ::ng-deep {
+    input:not([type="file"]),
+    input:not([type="image"]),
+    input:not([type="checkbox"]),
+    input:not([type="radio"]),
+    input:not([type="password"]) {
+      unicode-bidi: plaintext;
+    }
+
     .input-text-wrapper {
       display: flex;
       position: relative;

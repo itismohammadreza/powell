@@ -53,8 +53,6 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   private injector = inject(Injector);
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
-  private el = inject(ElementRef);
-  private utilsService = inject(UtilsService);
 
   @Input() value: any;
   @Input() label: string;
@@ -143,7 +141,6 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
     const inputElement = event.target as HTMLTextAreaElement;
     this.onInput.emit(event);
     this.onModelChange(inputElement.value);
-    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('textarea'), this.value, this.rtl);
   }
 
   _onBlur(event: FocusEvent) {
@@ -191,7 +188,6 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
 
   writeValue(value: any) {
     this.value = value;
-    this.utilsService.setInputDirection(this.el.nativeElement.querySelector('textarea'), this.value, this.rtl);
     this.cd.markForCheck();
   }
 
