@@ -56,7 +56,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPos: NgFixLabelPosition;
+  @Input() labelPosition: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   @Input() id: string = $uuid();

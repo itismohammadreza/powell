@@ -22,9 +22,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgAddon,
   NgCssObject,
-  NgIconPosition,
   NgInputMode,
   NgInputType,
   NgInputVariant,
@@ -65,9 +63,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() icon: string;
-  @Input() labelPos: NgLabelPosition;
-  @Input() iconPos: NgIconPosition = 'left';
+  @Input() labelPosition: NgLabelPosition;
   @Input() inputId: string = $uuid();
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;

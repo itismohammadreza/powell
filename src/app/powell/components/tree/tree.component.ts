@@ -79,7 +79,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPos: NgFixLabelPosition;
+  @Input() labelPosition: NgFixLabelPosition;
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;

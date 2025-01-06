@@ -2,185 +2,47 @@
   display: block;
 
   ::ng-deep {
-    input:not([type="file"]),
-    input:not([type="image"]),
-    input:not([type="checkbox"]),
-    input:not([type="radio"]),
-    input:not([type="password"]) {
-      unicode-bidi: plaintext;
-    }
-
     .input-text-wrapper {
-      display: flex;
-      position: relative;
-
-      .p-inputtext {
-        width: 100%;
-      }
-
-      i {
-        z-index: 200;
-      }
-
-      .message {
-        position: absolute;
-        top: calc(100% + 0.25rem);
-        font-size: 0.875em;
-
-        &:not(.p-error) {
-          color: #6c757d;
-        }
-      }
-
-      &.label-fix-top {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-      }
-
-      &.label-fix-side {
-        flex-direction: row-reverse;
-        align-items: center;
-
-        .fix-label {
-          margin-bottom: 0;
-        }
-      }
-
       .field {
-        width: auto;
-        flex-grow: 1;
-        align-self: stretch;
-        display: inline-flex;
-
-        > div {
-          display: block;
-          flex-grow: 1;
-
-          &.p-input-icon-right .p-inputtext {
-            padding-right: 2.25rem;
-          }
-
-          &.p-input-icon-left .p-inputtext {
-            padding-left: 2.25rem;
-          }
-
-          > div {
-            position: relative;
-          }
-        }
-
-        &.has-before .p-inputtext {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-        }
-
-        &.has-after .p-inputtext {
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-        }
+        position: relative;
       }
 
-      .p-inputtext-clear-icon {
+      input:not([type="file"]),
+      input:not([type="image"]),
+      input:not([type="checkbox"]),
+      input:not([type="radio"]),
+      input:not([type="password"]) {
+        unicode-bidi: plaintext;
+      }
+
+      .clear-icon {
         position: absolute;
         top: 50%;
-        margin-top: -.5rem;
+        margin-top: -0.5rem;
+        color: var(--p-select-clear-icon-color);
+        inset-inline-end: var(--p-form-field-padding-x);
         cursor: pointer;
+        z-index: 50;
       }
 
-      &.ltr {
-        direction: ltr;
-
-        .message {
-          left: 0;
+      &.clearable {
+        input {
+          padding-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
         }
 
-        .fix-label {
-          margin-right: 1rem;
-        }
+        &.icon-end {
+          input {
+            padding-inline-end: calc(calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size)) * 1.5);
+          }
 
-        .p-input-icon-left {
-          .p-float-label {
-            label {
-              left: 2.25rem;
-            }
+          .clear-icon {
+            inset-inline-end: calc(var(--p-form-field-padding-x) * 3);
           }
         }
 
-
-        &.clearable {
-          .p-inputtext-clear-icon {
-            left: auto;
-            right: 0.75rem;
-          }
-
-          .p-inputtext {
-            padding-left: 0.75rem;
-            padding-right: 2.25rem;
-          }
-
-          .p-input-icon-right {
-            .p-inputtext-clear-icon {
-              right: 2.25rem;
-              left: auto;
-            }
-
-            .p-inputtext {
-              padding-right: 3.75rem;
-            }
-          }
-        }
-      }
-
-      &.rtl {
-        direction: rtl;
-
-        .message {
-          right: 0;
-        }
-
-        .field {
-          flex-direction: row-reverse;
-        }
-
-        .fix-label {
-          margin-left: 1rem;
-        }
-
-        .p-float-label {
-          label {
-            right: 0.75rem;
-            left: auto;
-          }
-        }
-
-        .p-input-icon-right {
-          .p-float-label {
-            label {
-              right: 2.25rem;
-            }
-          }
-        }
-
-        &.clearable {
-          .p-inputtext {
-            padding-right: 0.75rem;
-            padding-left: 2.25rem;
-          }
-
-          .p-inputtext-clear-icon {
-            right: auto;
-            left: 0.75rem;
-          }
-
-          .p-input-icon-left {
-            .p-inputtext-clear-icon {
-              left: 2.25rem;
-              right: auto;
-            }
-
-            .p-inputtext {
-              padding-left: 3.75rem;
-            }
+        &.addon-end {
+          .clear-icon {
+            inset-inline-end: calc(var(--p-form-field-padding-x) * 4);
           }
         }
       }

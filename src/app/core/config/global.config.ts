@@ -10,8 +10,7 @@ export const globalConfig: GlobalConfig = {
     ripple: true,
     followConfig: true,
     fixLabelPos: 'fix-side',
-    labelPos: 'fix-side',
-    inputSize: 'small',
+    labelPosition: 'fix-side',
     inputStyle: 'outlined',
     showRequiredStar: true,
   }

@@ -1,8 +1,8 @@
 <div [ngClass]="{
       'rtl': rtl,
       'ltr': !rtl,
-      'label-fix-top': labelPos == 'fix-top',
-      'label-fix-side': labelPos == 'fix-side',
+      'label-fix-top': labelPosition == 'fix-top',
+      'label-fix-side': labelPosition == 'fix-side',
       'layout-horizontal':orientation == 'horizontal',
       'layout-vertical':orientation == 'vertical'
     }" class="checkbox-group-wrapper">
@@ -51,8 +51,8 @@
       class="fix-label"
       [attr.for]="id"
       [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
+      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
       {{ label | ngLabelStar:showRequiredStar:ngControl }}
     </label>
   }

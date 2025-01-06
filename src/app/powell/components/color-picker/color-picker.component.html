@@ -1,9 +1,9 @@
 <div [ngClass]="{
       'rtl': rtl,
       'ltr': !rtl,
-      'label-fix-top': labelPos == 'fix-top',
-      'label-fix-side': labelPos == 'fix-side',
-      'label-float': labelPos == 'float',
+      'label-fix-top': labelPosition == 'fix-top',
+      'label-fix-side': labelPosition == 'fix-side',
+      'label-float': labelPosition == 'float',
       'inline': inline
     }" class="color-picker-wrapper">
   @if (!inline) {
@@ -28,13 +28,11 @@
         (onHide)="emitter('onHide',$event)"/>
       <ng-input-text
         [(ngModel)]="value"
-        [label]="labelPos == 'float' ? label : null"
+        [label]="labelPosition == 'float' ? label : null"
         [variant]="variant"
         [rtl]="rtl"
-        [showRequiredStar]="labelPos == 'float' ? showRequiredStar : false"
-        [icon]="icon"
-        [labelPos]="labelPos == 'float' ? 'float' : null"
-        [iconPos]="iconPos"
+        [showRequiredStar]="labelPosition == 'float' ? showRequiredStar : false"
+        [labelPosition]="labelPosition == 'float' ? 'float' : null"
         [size]="size"
         [readonly]="readonly"
         [disabled]="disabled"
@@ -67,13 +65,13 @@
         (onChange)="_onChangeColorPicker($event)"/>
     </div>
   }
-  @if (label && labelPos != 'float') {
+  @if (label && labelPosition != 'float') {
     <label
       class="fix-label"
       [attr.for]="inputId"
       [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
+      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
       {{ label | ngLabelStar:showRequiredStar:ngControl }}
     </label>
   }

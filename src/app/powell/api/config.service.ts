@@ -23,7 +23,7 @@ export class ConfigService {
     followConfig: true,
     rtl: false,
     fixLabelPos: 'fix-side',
-    labelPos: 'fix-side',
+    labelPosition: 'fix-side',
     showRequiredStar: true,
     ...this.primeNG,
     theme: {
@@ -119,7 +119,7 @@ export class ConfigService {
   }
 
   private getComponentConfigKey(key: keyof NgConfig) {
-    if (key === 'fixLabelPos') return 'labelPos';
+    if (key === 'fixLabelPos') return 'labelPosition';
     if (key === 'inputStyle') return 'variant';
     return key;
   }

@@ -56,7 +56,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPos: NgFixLabelPosition;
+  @Input() labelPosition: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   @Input() id: string = $uuid();

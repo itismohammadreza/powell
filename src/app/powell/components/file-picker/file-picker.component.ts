@@ -81,7 +81,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPos: NgFixLabelPosition;
+  @Input() labelPosition: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() resultType: NgFileResultType = 'file';
   @Input() followConfig: boolean;
