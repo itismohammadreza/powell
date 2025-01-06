@@ -63,7 +63,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPos: NgFixLabelPosition;
+  @Input() labelPosition: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   @Input() options: any[];

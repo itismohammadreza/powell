@@ -764,7 +764,7 @@ export interface NgDialogFormConfig {
   format?: NgColorFormat | boolean;
   mode?: NgFilePickerMode | NgNumberMode;
   selectionMode?: NgDatepickerSelectionMode | NgTreeSelectionMode;
-  labelPos?: NgLabelPosition;
+  labelPosition?: NgLabelPosition;
   options?: SunEditorOptions | any[];
 
   // out of components

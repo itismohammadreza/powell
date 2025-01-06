@@ -1,9 +1,9 @@
 <div [ngClass]="{
       'rtl': rtl,
       'ltr': !rtl,
-      'label-fix-top': labelPos == 'fix-top',
-      'label-fix-side': labelPos == 'fix-side',
-      'label-float': labelPos == 'float',
+      'label-fix-top': labelPosition == 'fix-top',
+      'label-fix-side': labelPosition == 'fix-side',
+      'label-float': labelPosition == 'float',
       'clearable': showClear
     }" class="cascade-select-wrapper">
   <div class="field"
@@ -11,7 +11,7 @@
        [addonDisabled]="disabled"
        [addonSize]="size">
     <div [ngClass]="{
-      'p-float-label': label && labelPos == 'float',
+      'p-float-label': label && labelPosition == 'float',
       'p-input-icon-left': icon && iconPos == 'left',
       'p-input-icon-right': icon && iconPos == 'right'
     }">
@@ -75,20 +75,20 @@
           }
         }
       </p-cascadeSelect>
-      @if (label && labelPos == 'float') {
+      @if (label && labelPosition == 'float') {
         <label [class.p-disabled]="disabled" [attr.for]="inputId">
           {{ label | ngLabelStar:showRequiredStar:ngControl }}
         </label>
       }
     </div>
   </div>
-  @if (label && labelPos != 'float') {
+  @if (label && labelPosition != 'float') {
     <label
       class="fix-label"
       [attr.for]="inputId"
       [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
+      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
       {{ label | ngLabelStar:showRequiredStar:ngControl }}
     </label>
   }

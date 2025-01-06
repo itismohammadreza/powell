@@ -68,7 +68,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition;
+  @Input() labelPosition: NgLabelPosition;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;

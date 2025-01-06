@@ -13,7 +13,7 @@ export interface NgConfigChangeEvent {
 export interface NgConfig extends Partial<OmittedConfig> {
   followConfig?: boolean;
   rtl?: boolean;
-  labelPos?: NgLabelPosition;
+  labelPosition?: NgLabelPosition;
   fixLabelPos?: NgFixLabelPosition;
   showRequiredStar?: boolean;
   inputSize?: NgSize;

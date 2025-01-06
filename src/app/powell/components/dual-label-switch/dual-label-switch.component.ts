@@ -57,7 +57,7 @@ export class DualLabelSwitchComponent implements OnInit, AfterContentInit, Contr
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPos: NgFixLabelPosition;
+  @Input() labelPosition: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() async: boolean;
   @Input() showAsyncLoading: boolean = true;

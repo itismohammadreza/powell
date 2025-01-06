@@ -51,7 +51,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPos: NgFixLabelPosition;
+  @Input() labelPosition: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   @Input() orientation: NgOrientation = 'vertical';
