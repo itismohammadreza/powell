@@ -253,7 +253,7 @@
     }
     @if (options.formValidator && form.hasError(options.formValidator.type)) {
       <div>
-        <div class="p-error" [ngStyle]="options.formValidator.style" [innerHTML]="options.formValidator.message"></div>
+        <div class="validation" [ngStyle]="options.formValidator.style" [innerHTML]="options.formValidator.message"></div>
       </div>
     }
   </form>

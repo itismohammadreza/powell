@@ -48,7 +48,7 @@
   @if (hint && showHint()) {
     <div class="message">{{ hint }}</div>
   }
-  <div class="message p-error">
+  <div class="message validation">
     @for (v of validation | keyvalue; track v) {
       @if (hasError(v.key)) {
         <div>

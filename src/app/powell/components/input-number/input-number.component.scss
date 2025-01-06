@@ -21,7 +21,7 @@
         top: calc(100% + 0.25rem);
         font-size: 0.875em;
 
-        &:not(.p-error) {
+        &:not(.validation) {
           color: #6c757d;
         }
       }
