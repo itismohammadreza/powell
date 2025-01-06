@@ -132,12 +132,7 @@ export class DialogFormPage extends PreviewBase {
           validations: [
             {type: 'required', validator: Validators.required, message: 'is required'},
           ],
-          options: [
-            {label: 'book1', value: 'book1'},
-            {label: 'book2', value: 'book2'},
-            {label: 'book3', value: 'book3'},
-            {label: 'book4', value: 'book4'},
-          ]
+          options: this.options
         }
       ],
       {

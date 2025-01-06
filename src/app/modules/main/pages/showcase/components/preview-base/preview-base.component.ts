@@ -15,10 +15,21 @@ export abstract class PreviewBase implements OnInit {
   protected cmpRef: any;
   protected config = this.configService.get();
   protected asyncFlag = false;
-
-  form = new FormGroup({
+  protected form = new FormGroup({
     c1: new FormControl(null, [Validators.required]),
   });
+  protected options: any[] = [
+    {label: 'Australia', value: 'AU'},
+    {label: 'Brazil', value: 'BR'},
+    {label: 'China', value: 'CN'},
+    {label: 'Egypt', value: 'EG'},
+    {label: 'France', value: 'FR'},
+    {label: 'Germany', value: 'DE'},
+    {label: 'India', value: 'IN'},
+    {label: 'Japan', value: 'JP'},
+    {label: 'Spain', value: 'ES'},
+    {label: 'United States', value: 'US'}
+  ];
 
   ngOnInit() {
     if (this.cmpRef) {
