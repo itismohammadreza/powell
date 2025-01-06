@@ -22,14 +22,14 @@ export class InputOtpPage extends PreviewBase {
     {field: 'hint', value: ''},
     {field: 'rtl', value: this.config.rtl},
     {field: 'showRequiredStar', value: this.config.showRequiredStar},
-    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'labelPosition', options: 'fixLabelPositions', value: this.config.fixLabelPosition},
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'disabled', value: false},
     {field: 'readonly', value: false},
-    {field: 'variant', value: this.config.inputStyle},
+    {field: 'variant', options: 'variants', value: this.config.inputStyle},
     {field: 'length', value: 4},
     {field: 'mask', value: false},
     {field: 'numbersOnly', value: true},
-    {field: 'size', value: this.config.inputSize},
+    {field: 'size', options: 'sizes', value: this.config.inputSize},
   ];
 }

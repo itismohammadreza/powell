@@ -16,7 +16,6 @@ export class ConfirmDialogPage extends PreviewBase {
   override previewOptions: PreviewOption[] = [
     {field: 'closable', value: true},
     {field: 'message', value: 'Are you sure?'},
-    {field: 'icon', value: ''},
     {field: 'header', value: 'Confirmation'},
     {field: 'acceptLabel', value: 'Yes'},
     {field: 'rejectLabel', value: 'No'},

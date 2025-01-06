@@ -16,7 +16,6 @@ export class EmptyPage extends PreviewBase {
 
   override previewOptions: PreviewOption[] = [
     {field: 'imageType', value: 'box1'},
-    {field: 'icon', value: ''},
     {field: 'text', value: ''},
     {field: 'rtl', value: this.config.rtl},
     {field: 'followConfig', value: this.config.followConfig},

@@ -22,7 +22,7 @@ export class RatingPage extends PreviewBase {
     {field: 'hint', value: ''},
     {field: 'rtl', value: this.config.rtl},
     {field: 'showRequiredStar', value: this.config.showRequiredStar},
-    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'labelPosition', options: 'fixLabelPositions', value: this.config.fixLabelPosition},
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'disabled', value: false},
     {field: 'readonly', value: false},
