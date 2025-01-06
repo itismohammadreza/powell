@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {InputTextComponent, InputTextModule} from "@powell/components/input-text";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
@@ -13,7 +13,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
     PreviewComponent
   ]
 })
-export class InputTextPage extends PreviewBase implements OnInit {
+export class InputTextPage extends PreviewBase {
   @ViewChild(InputTextComponent, {static: true}) declare cmpRef: InputTextComponent;
 
   override previewOptions: PreviewOption[] = [
@@ -22,10 +22,9 @@ export class InputTextPage extends PreviewBase implements OnInit {
     {field: 'hint', value: ''},
     {field: 'rtl', value: this.config.rtl},
     {field: 'showRequiredStar', value: this.config.showRequiredStar},
-    {field: 'icon', value: ''},
-    {field: 'labelPos', value: this.config.labelPos},
+    {field: 'labelPosition', options: 'labelPositions', value: this.config.labelPosition},
     {field: 'iconPos', options: 'iconPositions', value: 'left'},
-    {field: 'addon', options: 'addons', value: 'none'},
+    {field: 'additions', options: 'additions', value: 'none'},
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'readonly', value: false},
     {field: 'disabled', value: false},
@@ -34,7 +33,7 @@ export class InputTextPage extends PreviewBase implements OnInit {
     {field: 'keyFilter', options: 'keyFilters', value: /.*/g},
     {field: 'showClear', value: true},
     {field: 'variant', options: 'variants', value: this.config.inputStyle},
-    {field: 'size', value: this.config.inputSize},
+    {field: 'size', options: 'sizes', value: this.config.inputSize},
     {field: 'fluid', value: false},
   ]
 

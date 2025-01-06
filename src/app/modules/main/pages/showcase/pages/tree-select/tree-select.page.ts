@@ -22,13 +22,11 @@ export class TreeSelectPage extends PreviewBase {
     {field: 'hint', value: ''},
     {field: 'rtl', value: this.config.rtl},
     {field: 'showRequiredStar', value: this.config.showRequiredStar},
-    {field: 'icon', value: ''},
-    {field: 'labelPos', value: this.config.labelPos},
-    {field: 'iconPos', value: 'left'},
-    {field: 'addon', value: ''},
+    {field: 'labelPosition', options: 'labelPositions', value: this.config.labelPosition},
+    {field: 'additions', options: 'additions', value: 'none'},
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'disabled', value: ''},
-    {field: 'variant', value: this.config.inputStyle},
+    {field: 'variant', options: 'variants', value: this.config.inputStyle},
     {field: 'display', value: 'comma'},
     {field: 'selectionMode', value: 'single'},
     {field: 'placeholder', value: ''},
@@ -38,7 +36,7 @@ export class TreeSelectPage extends PreviewBase {
     {field: 'propagateSelectionUp', value: true},
     {field: 'showClear', value: false},
     {field: 'resetFilterOnHide', value: true},
-    {field: 'size', value: this.config.inputSize},
+    {field: 'size', options: 'sizes', value: this.config.inputSize},
   ];
 
   override options: any[] = [

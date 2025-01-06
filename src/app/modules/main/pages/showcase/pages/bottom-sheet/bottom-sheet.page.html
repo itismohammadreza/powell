@@ -6,7 +6,17 @@
   <ng-button (click)="visible = true" label="Open Bottom Sheet"/>
 </ng-preview>
 
-<ng-bottom-sheet [(visible)]="visible">
+<ng-bottom-sheet
+  [rtl]="getOption('rtl')"
+  [followConfig]="getOption('followConfig')"
+  [blockScroll]="getOption('blockScroll')"
+  [modal]="getOption('modal')"
+  [dismissible]="getOption('dismissible')"
+  [closeOnEscape]="getOption('closeOnEscape')"
+  [fullScreen]="getOption('fullScreen')"
+  [header]="getOption('header')"
+  [closable]="getOption('closable')"
+  [(visible)]="visible">
   <ng-template ngTemplate="content">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
@@ -40,7 +50,17 @@
   </ng-template>
 </ng-bottom-sheet>
 
-<ng-bottom-sheet [(visible)]="visible2">
+<ng-bottom-sheet
+  [rtl]="getOption('rtl')"
+  [followConfig]="getOption('followConfig')"
+  [blockScroll]="getOption('blockScroll')"
+  [modal]="getOption('modal')"
+  [dismissible]="getOption('dismissible')"
+  [closeOnEscape]="getOption('closeOnEscape')"
+  [fullScreen]="getOption('fullScreen')"
+  [header]="getOption('header')"
+  [closable]="getOption('closable')"
+  [(visible)]="visible2">
   <ng-template ngTemplate="content">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
@@ -61,7 +81,17 @@
   </ng-template>
 </ng-bottom-sheet>
 
-<ng-bottom-sheet [(visible)]="visible3">
+<ng-bottom-sheet
+  [rtl]="getOption('rtl')"
+  [followConfig]="getOption('followConfig')"
+  [blockScroll]="getOption('blockScroll')"
+  [modal]="getOption('modal')"
+  [dismissible]="getOption('dismissible')"
+  [closeOnEscape]="getOption('closeOnEscape')"
+  [fullScreen]="getOption('fullScreen')"
+  [header]="getOption('header')"
+  [closable]="getOption('closable')"
+  [(visible)]="visible3">
   <ng-template ngTemplate="content">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
@@ -79,7 +109,17 @@
   </ng-template>
 </ng-bottom-sheet>
 
-<ng-bottom-sheet [(visible)]="visible4">
+<ng-bottom-sheet
+  [rtl]="getOption('rtl')"
+  [followConfig]="getOption('followConfig')"
+  [blockScroll]="getOption('blockScroll')"
+  [modal]="getOption('modal')"
+  [dismissible]="getOption('dismissible')"
+  [closeOnEscape]="getOption('closeOnEscape')"
+  [fullScreen]="getOption('fullScreen')"
+  [header]="getOption('header')"
+  [closable]="getOption('closable')"
+  [(visible)]="visible4">
   <ng-template ngTemplate="content">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis

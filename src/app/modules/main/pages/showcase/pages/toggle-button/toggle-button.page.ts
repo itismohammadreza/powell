@@ -22,15 +22,14 @@ export class ToggleButtonPage extends PreviewBase {
     {field: 'hint', value: ''},
     {field: 'rtl', value: this.config.rtl},
     {field: 'showRequiredStar', value: this.config.showRequiredStar},
-    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'labelPosition', options: 'fixLabelPositions', value: this.config.fixLabelPosition},
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'onLabel', value: ''},
     {field: 'offLabel', value: ''},
     {field: 'onIcon', value: 'pi pi-check'},
     {field: 'offIcon', value: 'pi pi-times'},
     {field: 'disabled', value: false},
-    {field: 'size', value: ''},
-    {field: 'iconPos', value: 'left'},
+    {field: 'size', options: 'sizes', value: this.config.inputSize},
   ];
 
   override form = new FormGroup({

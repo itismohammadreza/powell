@@ -22,11 +22,11 @@ export class SelectButtonPage extends PreviewBase {
     {field: 'hint', value: ''},
     {field: 'rtl', value: this.config.rtl},
     {field: 'showRequiredStar', value: this.config.showRequiredStar},
-    {field: 'labelPos', value: this.config.fixLabelPos},
+    {field: 'labelPosition', options: 'fixLabelPositions', value: this.config.fixLabelPosition},
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'unselectable', value: false},
     {field: 'multiple', value: false},
-    {field: 'size', value: ''},
+    {field: 'size', options: 'sizes', value: this.config.inputSize},
     {field: 'disabled', value: false},
   ];
 }

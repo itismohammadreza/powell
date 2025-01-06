@@ -23,7 +23,7 @@ export class BottomSheetPage extends PreviewBase {
     {field: 'modal', value: true},
     {field: 'dismissible', value: true},
     {field: 'closeOnEscape', value: true},
-    {field: 'fullScreen', value: true},
+    {field: 'fullScreen', value: false},
     {field: 'header', value: 'BottomSheet Header'},
     {field: 'closable', value: true},
   ];

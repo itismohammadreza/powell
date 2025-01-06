@@ -28,7 +28,7 @@ export class ButtonPage extends PreviewBase {
     {field: 'raised', value: false},
     {field: 'rounded', value: false},
     {field: 'severity', value: 'primary'},
-    {field: 'size', value: 'small'},
+    {field: 'size', options: 'sizes', value: 'none'},
     {field: 'badgeSeverity', value: 'secondary'},
     {field: 'fluid', value: false}
   ];
