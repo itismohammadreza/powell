@@ -1,9 +1,10 @@
 import {NgButtonAppearance, NgIconPosition, NgSeverity} from '@powell/models';
 
+export type NgElementAdditionTemplate = 'element' | 'addonStart' | 'addonEnd' | 'iconStart' | 'iconEnd';
 export type NgFilePickerMode = 'basic' | 'advanced';
 export type NgFilePickerMethod = 'post' | 'put';
 export type NgFileResultType = 'base64' | 'file' | 'none';
-export type NgLabelPosition = 'fix-side' | 'fix-top' | 'float';
+export type NgLabelPosition = 'ifta' | 'float-in' | 'float-on' | 'float-over' | 'fix-side' | 'fix-top' | 'float';
 export type NgFixLabelPosition = Exclude<NgLabelPosition, 'float'>;
 export type NgAutoCompleteDropdownMode = 'blank' | 'current';
 export type NgChipDisplayMode = 'comma' | 'chip';

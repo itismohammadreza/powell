@@ -1,0 +1,32 @@
+::ng-deep {
+  .element-additions-wrapper {
+    &, .p-inputtext {
+      width: auto;
+    }
+
+    &.fluid {
+      &, .p-inputtext, & > * {
+        width: 100%;
+      }
+    }
+
+    .field {
+      flex: 1;
+    }
+
+    p-inputicon {
+      z-index: 50;
+    }
+
+    .label-side {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .label-top {
+      display: inline-flex;
+      flex-direction: column;
+    }
+  }
+}
