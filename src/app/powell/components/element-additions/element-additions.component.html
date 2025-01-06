@@ -1,0 +1,136 @@
+<div class="element-additions-wrapper" [class.fluid]="fluid">
+  @switch (labelPosition) {
+    @case ("fix-top") {
+      <div class="label-top">
+        <label class="fix-label" [attr.for]="inputId" [class.p-disabled]="disabled">
+          {{ label }}
+        </label>
+        <div class="field">
+          @if (templateMap.addonStart || templateMap.addonEnd) {
+            <ng-container *ngTemplateOutlet="inputGroup"/>
+          } @else if (templateMap.iconStart || templateMap.iconEnd) {
+            <ng-container *ngTemplateOutlet="elementWidthIcon"/>
+          } @else {
+            <ng-container *ngTemplateOutlet="element"/>
+          }
+        </div>
+      </div>
+    }
+    @case ("fix-side") {
+      <div class="label-side">
+        <label
+          [style.minWidth.px]="labelWidth"
+          [style.maxWidth.px]="labelWidth"
+          [attr.for]="inputId"
+          [class.p-disabled]="disabled">
+          {{ label }}
+        </label>
+        <div class="field">
+          @if (templateMap.addonStart || templateMap.addonEnd) {
+            <ng-container *ngTemplateOutlet="inputGroup"/>
+          } @else if (templateMap.iconStart || templateMap.iconEnd) {
+            <ng-container *ngTemplateOutlet="elementWidthIcon"/>
+          } @else {
+            <ng-container *ngTemplateOutlet="element"/>
+          }
+        </div>
+      </div>
+    }
+    @case ("ifta") {
+      <ng-container *ngTemplateOutlet="templateMap.addonStart || templateMap.addonEnd ? inputGroup : ifta"/>
+    }
+    @case ("float-in") {
+      <ng-container *ngTemplateOutlet="templateMap.addonStart || templateMap.addonEnd ? inputGroup : floatIn"/>
+    }
+    @case ("float-on") {
+      <ng-container *ngTemplateOutlet="templateMap.addonStart || templateMap.addonEnd ? inputGroup : floatOn"/>
+    }
+    @case ("float-over") {
+      <ng-container *ngTemplateOutlet="templateMap.addonStart || templateMap.addonEnd ? inputGroup : floatOver"/>
+    }
+  }
+</div>
+
+<ng-template #element>
+  <ng-container *ngTemplateOutlet="templateMap.element"/>
+</ng-template>
+
+<ng-template #ifta>
+  <p-iftaLabel>
+    <ng-container *ngTemplateOutlet="templateMap.iconStart || templateMap.iconEnd ? elementWidthIcon : element"/>
+    <label>{{ label }}</label>
+  </p-iftaLabel>
+</ng-template>
+
+<ng-template #floatIn>
+  <p-floatLabel variant="in">
+    <ng-container *ngTemplateOutlet="templateMap.iconStart || templateMap.iconEnd ? elementWidthIcon : element"/>
+    <label>{{ label }}</label>
+  </p-floatLabel>
+</ng-template>
+
+<ng-template #floatOn>
+  <p-floatLabel variant="on">
+    <ng-container *ngTemplateOutlet="templateMap.iconStart || templateMap.iconEnd ? elementWidthIcon : element"/>
+    <label>{{ label }}</label>
+  </p-floatLabel>
+</ng-template>
+
+<ng-template #floatOver>
+  <p-floatLabel variant="over">
+    <ng-container *ngTemplateOutlet="templateMap.iconStart || templateMap.iconEnd ? elementWidthIcon : element"/>
+    <label>{{ label }}</label>
+  </p-floatLabel>
+</ng-template>
+
+<ng-template #elementWidthIcon>
+  <p-iconField>
+    @if (templateMap.iconStart) {
+      <p-inputIcon>
+        <ng-container *ngTemplateOutlet="templateMap.iconStart"/>
+      </p-inputIcon>
+    }
+    <ng-container *ngTemplateOutlet="element"/>
+    @if (templateMap.iconEnd) {
+      <p-inputIcon>
+        <ng-container *ngTemplateOutlet="templateMap.iconEnd"/>
+      </p-inputIcon>
+    }
+  </p-iconField>
+</ng-template>
+
+<ng-template #inputGroup>
+  <p-inputGroup>
+    @if (templateMap.addonStart) {
+      <p-inputgroup-addon>
+        <ng-container *ngTemplateOutlet="templateMap.addonStart"/>
+      </p-inputgroup-addon>
+    }
+    @switch (labelPosition) {
+      @case ("fix-top") {
+        <ng-container *ngTemplateOutlet="element"/>
+      }
+      @case ("fix-side") {
+        <ng-container *ngTemplateOutlet="element"/>
+      }
+      @case ("ifta") {
+        <ng-container *ngTemplateOutlet="ifta"/>
+      }
+      @case ("float-in") {
+        <ng-container *ngTemplateOutlet="floatIn"/>
+      }
+      @case ("float-on") {
+        <ng-container *ngTemplateOutlet="floatOn"/>
+      }
+      @case ("float-over") {
+        <ng-container *ngTemplateOutlet="floatOver"/>
+      }
+    }
+    @if (templateMap.addonEnd) {
+      <p-inputgroup-addon>
+        <ng-container *ngTemplateOutlet="templateMap.addonEnd"/>
+      </p-inputgroup-addon>
+    }
+  </p-inputGroup>
+</ng-template>
+
