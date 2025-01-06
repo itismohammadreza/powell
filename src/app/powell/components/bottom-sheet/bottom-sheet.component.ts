@@ -66,15 +66,11 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   }
 
   ngOnInit() {
-    this.updateStyle();
     this.styleClass = `p-bottom-sheet ${this.styleClass}`;
     this.configService.applyConfigToComponent(this);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['style'] || changes['fullScreen']) {
-      this.updateStyle();
-    }
     const {closeButtonProps} = changes;
     if (closeButtonProps) {
       const props = closeButtonProps.currentValue;
@@ -90,7 +86,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   }
 
   _onShow() {
-    this.updateStyle()
+    this.updateStyle();
     this.visible = true;
     this.visibleChange.emit(this.visible);
     this.overlayService.stateChange().pipe(takeUntil(this.hided$)).subscribe(res => {
@@ -123,8 +119,8 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   updateStyle() {
     if (this.fullScreen) {
       this.computedStyle = {...this.style};
-      this.computedStyle['maxHeight'] = 'auto';
-      this.computedStyle['height'] = 'auto';
+      delete this.computedStyle['maxHeight'];
+      delete this.computedStyle['height'];
     } else {
       this.computedStyle = {
         ...this.style,
