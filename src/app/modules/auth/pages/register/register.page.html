@@ -24,7 +24,7 @@
     placeholder="تکرار رمز عبور"
     [validation]="{'required': 'این فیلد الزامیست.'}"/>
   @if (form.hasError('notSame') && !form.get('confirmPassword').hasError('required')) {
-    <p class="p-error text-sm text-center"
+    <p class="validation text-sm text-center"
     >
       رمزعبور و تکرار مطابقت ندارند
     </p>
