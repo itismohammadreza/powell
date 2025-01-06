@@ -14,7 +14,7 @@ export interface NgConfig extends Partial<OmittedConfig> {
   followConfig?: boolean;
   rtl?: boolean;
   labelPosition?: NgLabelPosition;
-  fixLabelPos?: NgFixLabelPosition;
+  fixLabelPosition?: NgFixLabelPosition;
   showRequiredStar?: boolean;
   inputSize?: NgSize;
 }
