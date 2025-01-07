@@ -29,7 +29,7 @@ interface Customer {
   ]
 })
 export class TablePage extends PreviewBase {
-  @ViewChild(TableComponent, {static: true}) declare cmpRef: TableComponent;
+  @ViewChild(TableComponent) declare cmpRef: TableComponent;
 
   private dataService = inject(DataService);
 

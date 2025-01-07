@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class MapPage extends PreviewBase {
-  @ViewChild(MapComponent, {static: true}) declare cmpRef: MapComponent;
+  @ViewChild(MapComponent) declare cmpRef: MapComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

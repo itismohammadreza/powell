@@ -23,12 +23,11 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgButtonProps,
+  NgButtonProps, NgCssObject,
   NgFilePickerRemoveEvent,
   NgFilePickerSelectEvent,
   NgFileResultType,
   NgFixLabelPosition,
-  NgSeverity,
   NgValidation
 } from '@powell/models';
 import {ConfigService, UtilsService} from "@powell/api";
@@ -78,6 +77,8 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() invalidFileSizeMessage: string = 'سایز فایل نامعتبر است.';
   @Input() invalidFileTypeMessage: string = 'فرمت نامعتبر است.';
   @Input() id: string = $uuid();
+  @Input() style: NgCssObject;
+  @Input() styleClass: string;
   @Output() onSelect = new EventEmitter<NgFilePickerSelectEvent>();
   @Output() onRemove = new EventEmitter<NgFilePickerRemoveEvent>();
 

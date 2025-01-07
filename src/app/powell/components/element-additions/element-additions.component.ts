@@ -15,6 +15,7 @@ export class ElementAdditionsComponent implements AfterContentInit {
   @Input() disabled: boolean;
   @Input() labelPosition: NgLabelPosition;
   @Input() fluid: boolean;
+  @Input() reverseLabel: boolean;
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   templateMap: Partial<Record<NgElementAdditionTemplate, TemplateRef<any>>> = {};

@@ -1,50 +1,49 @@
-<div [ngClass]="{
-      'rtl': rtl,
-      'ltr': !rtl,
-      'label-fix-top': labelPosition == 'fix-top',
-      'label-fix-side': labelPosition == 'fix-side',
+<div class="radio-wrapper"
+     [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [ngStyle]="style"
+     [class]="styleClass"
+     [ngClass]="{
       'layout-horizontal':orientation == 'horizontal',
       'layout-vertical':orientation == 'vertical'
-    }" class="radio-wrapper">
-  <div [attr.id]="id" class="field">
-    @for (item of options; track item) {
-      <div class="option-item">
-        <p-radioButton
-          [(ngModel)]="value"
-          [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
-          [class]="item.styleClass"
-          [value]="item[optionValue]"
-          [name]="name"
-          [disabled]="item[optionDisabled]"
-          [variant]="variant"
-          [size]="size"
-          [tabindex]="tabindex"
-          [inputId]="'id' + item[optionValue]"
-          [ariaLabelledBy]="ariaLabelledBy"
-          [ariaLabel]="ariaLabel"
-          [style]="style"
-          [styleClass]="styleClass"
-          [autofocus]="autofocus"
-          [binary]="binary"
-          (onClick)="_onChange($event)"
-          (onFocus)="_onFocus($event)"
-          (onBlur)="_onBlur($event)"/>
-        <label [attr.for]="'id' + item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
-          {{ item[optionLabel] }}
-        </label>
-      </div>
-    }
-  </div>
-  @if (label) {
-    <label
-      class="fix-label"
-      [attr.for]="id"
-      [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
-      {{ label | ngLabelStar:showRequiredStar:ngControl }}
-    </label>
-  }
+      }">
+  <ng-element-additions
+    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [labelWidth]="labelWidth"
+    [labelPosition]="labelPosition"
+    [inputId]="id"
+    [disabled]="disabled"
+    [fluid]="true">
+    <ng-template ngTemplate="element">
+      @for (item of options; track item) {
+        <div class="option-item">
+          <p-radioButton
+            [(ngModel)]="value"
+            [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
+            [class]="item.styleClass"
+            [value]="item[optionValue]"
+            [name]="name"
+            [disabled]="item[optionDisabled]"
+            [variant]="variant"
+            [size]="size"
+            [tabindex]="tabindex"
+            [inputId]="'id' + item[optionValue]"
+            [ariaLabelledBy]="ariaLabelledBy"
+            [ariaLabel]="ariaLabel"
+            [style]="style"
+            [styleClass]="styleClass"
+            [autofocus]="autofocus"
+            [binary]="binary"
+            (onClick)="_onChange($event)"
+            (onFocus)="_onFocus($event)"
+            (onBlur)="_onBlur($event)"/>
+          <label [attr.for]="'id' + item[optionValue]" [class.p-disabled]="item[optionDisabled]">
+            {{ item[optionLabel] }}
+          </label>
+        </div>
+      }
+    </ng-template>
+  </ng-element-additions>
+
   @if (hint && showHint()) {
     <div class="message">{{ hint }}</div>
   }

@@ -29,7 +29,7 @@ export class UtilsPage extends PreviewBase implements OnInit {
   persianWord: string;
   networkStatus: string;
 
-  override ngOnInit() {
+  ngOnInit() {
     this.utilsService.checkOnlineState().subscribe(res => {
       this.networkStatus = res ? 'online' : 'offline';
     })

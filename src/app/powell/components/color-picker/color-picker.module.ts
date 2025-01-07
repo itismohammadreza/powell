@@ -1,11 +1,11 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {AddonModule} from "@powell/directives/addon";
 import {ColorPickerComponent} from "@powell/components/color-picker";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {InputTextModule} from "@powell/components/input-text";
 import {$ColorPickerModule} from "@powell/primeng";
+import {ElementAdditionsModule} from "@powell/components/element-additions";
 
 @NgModule({
   declarations: [ColorPickerComponent],
@@ -16,7 +16,7 @@ import {$ColorPickerModule} from "@powell/primeng";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    AddonModule
+    ElementAdditionsModule,
   ],
 })
 export class ColorPickerModule {

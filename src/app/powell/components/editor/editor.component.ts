@@ -26,6 +26,7 @@ import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
 import {
+  NgCssObject,
   NgEditorEvent,
   NgEditorOnAudioUpload,
   NgEditorOnAudioUploadBefore,
@@ -86,6 +87,8 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   @Input() readonly: boolean;
   @Input() followConfig: boolean;
   @Input() inputId: string = $uuid();
+  @Input() style: NgCssObject;
+  @Input() styleClass: string;
   // native properties
   @Input() options: SunEditorOptions;
   @Input() onDrop_param: boolean = true;

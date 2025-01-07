@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class SelectPage extends PreviewBase {
-  @ViewChild(SelectComponent, {static: true}) declare cmpRef: SelectComponent;
+  @ViewChild(SelectComponent) declare cmpRef: SelectComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

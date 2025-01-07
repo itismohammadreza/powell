@@ -1,40 +1,37 @@
-<div [ngClass]="{
-      'rtl': rtl,
-      'ltr': !rtl,
-      'label-fix-top': labelPosition == 'fix-top',
-      'label-fix-side': labelPosition == 'fix-side'
-    }" class="slider-wrapper">
-  <div class="field">
-    <p-slider
-      [(ngModel)]="value"
-      [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
-      [attr.id]="id"
-      [animate]="animate"
-      [disabled]="disabled"
-      [min]="min"
-      [max]="max"
-      [orientation]="orientation"
-      [step]="step"
-      [range]="range"
-      [style]="style"
-      [styleClass]="styleClass"
-      [ariaLabel]="ariaLabel"
-      [ariaLabelledBy]="ariaLabelledBy"
-      [tabindex]="tabindex"
-      [autofocus]="autofocus"
-      (onChange)="_onChange($event)"
-      (onSlideEnd)="_onSlideEnd($event)"/>
-  </div>
-  @if (label) {
-    <label
-      class="fix-label"
-      [attr.for]="id"
-      [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
-      {{ label | ngLabelStar:showRequiredStar:ngControl }}
-    </label>
-  }
+<div class="slider-wrapper"
+     [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [ngStyle]="style"
+     [class]="styleClass">
+  <ng-element-additions
+    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [labelWidth]="labelWidth"
+    [labelPosition]="labelPosition"
+    [inputId]="id"
+    [disabled]="disabled"
+    [fluid]="true">
+    <ng-template ngTemplate="element">
+      <p-slider
+        [(ngModel)]="value"
+        [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
+        [attr.id]="id"
+        [animate]="animate"
+        [disabled]="disabled"
+        [min]="min"
+        [max]="max"
+        [orientation]="orientation"
+        [step]="step"
+        [range]="range"
+        [style]="style"
+        [styleClass]="styleClass"
+        [ariaLabel]="ariaLabel"
+        [ariaLabelledBy]="ariaLabelledBy"
+        [tabindex]="tabindex"
+        [autofocus]="autofocus"
+        (onChange)="_onChange($event)"
+        (onSlideEnd)="_onSlideEnd($event)"/>
+    </ng-template>
+  </ng-element-additions>
+
   @if (hint && showHint()) {
     <div class="message">{{ hint }}</div>
   }

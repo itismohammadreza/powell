@@ -12,7 +12,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class ImagePage extends PreviewBase {
-  @ViewChild(ImageComponent, {static: true}) declare cmpRef: ImageComponent;
+  @ViewChild(ImageComponent) declare cmpRef: ImageComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'width', value: '200'},

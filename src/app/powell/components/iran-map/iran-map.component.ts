@@ -11,7 +11,14 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import {NgAsyncEvent, NgFixLabelPosition, NgMapChangeEvent, NgProvince, NgValidation} from "@powell/models";
+import {
+  NgAsyncEvent,
+  NgCssObject,
+  NgFixLabelPosition,
+  NgMapChangeEvent,
+  NgProvince,
+  NgValidation
+} from "@powell/models";
 import {
   AbstractControl,
   ControlContainer,
@@ -63,6 +70,8 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   @Input() disabledProvinces: number | number[];
   @Input() selectionLimit: number;
   @Input() async: boolean;
+  @Input() style: NgCssObject;
+  @Input() styleClass: string;
   @Output() onClick = new EventEmitter<MouseEvent>();
   @Output() onChange = new EventEmitter<NgMapChangeEvent>();
   @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<NgMapChangeEvent>>();

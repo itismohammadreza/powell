@@ -14,7 +14,7 @@ import {ToggleSwitchComponent, ToggleSwitchModule} from "@powell/components/togg
   ]
 })
 export class ToggleSwitchPage extends PreviewBase {
-  @ViewChild(ToggleSwitchComponent, {static: true}) declare cmpRef: ToggleSwitchComponent;
+  @ViewChild(ToggleSwitchComponent) declare cmpRef: ToggleSwitchComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

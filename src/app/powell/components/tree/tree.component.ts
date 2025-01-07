@@ -26,10 +26,8 @@ import {
 import {takeUntil} from "rxjs";
 import {TemplateDirective} from '@powell/directives/template';
 import {
-  NgAddon,
   NgCssObject,
   NgFixLabelPosition,
-  NgOrientation,
   NgTreeFilterMode,
   NgTreeLoadingMode,
   NgTreeSelectionMode,
@@ -80,7 +78,6 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
   @Input() labelPosition: NgFixLabelPosition;
-  @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   @Input() id: string = $uuid();

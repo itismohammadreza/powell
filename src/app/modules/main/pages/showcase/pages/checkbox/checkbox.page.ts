@@ -10,11 +10,11 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   imports: [
     CheckboxModule,
     ReactiveFormsModule,
-    PreviewComponent
+    PreviewComponent,
   ]
 })
 export class CheckboxPage extends PreviewBase {
-  @ViewChild(CheckboxComponent, {static: true}) declare cmpRef: CheckboxComponent;
+  @ViewChild(CheckboxComponent) declare cmpRef: CheckboxComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

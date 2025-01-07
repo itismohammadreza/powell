@@ -1,5 +1,3 @@
-import {NgButtonAppearance, NgIconPosition, NgSeverity} from '@powell/models';
-
 export type NgElementAdditionTemplate = 'element' | 'addonStart' | 'addonEnd' | 'iconStart' | 'iconEnd';
 export type NgFilePickerMode = 'basic' | 'advanced';
 export type NgFilePickerMethod = 'post' | 'put';
@@ -257,22 +255,6 @@ export type NgCurrency =
   | 'XPD'
   | 'XPT'
   | 'XAG';
-
-export interface NgAddonConfig {
-  type: 'button' | 'icon' | 'text';
-  label?: string;
-  severity?: NgSeverity;
-  appearance?: NgButtonAppearance;
-  icon?: string;
-  iconPos?: NgIconPosition;
-  text?: string;
-  onClick?: (event) => any;
-}
-
-export interface NgAddon {
-  before?: NgAddonConfig;
-  after?: NgAddonConfig;
-}
 
 export interface NgProvince {
   id: number;

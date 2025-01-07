@@ -1,67 +1,59 @@
-<div [ngClass]="{
-      'rtl': rtl,
-      'ltr': !rtl,
-      'label-fix-top': labelPos == 'fix-top',
-      'label-fix-side': labelPos == 'fix-side',
-      'label-float': labelPos == 'float'
-    }" class="input-textarea-wrapper"
+<div class="input-textarea-wrapper"
+     [attr.dir]="rtl ? 'rtl' : 'ltr'"
      [ngStyle]="style"
-     [class]="styleClass">
-  <div class="field"
-       [ngAddon]="addon"
-       [addonDisabled]="disabled">
-    <div [ngClass]="{
-      'p-float-label': label && labelPos == 'float',
-      'p-input-icon-left': icon && iconPos == 'left',
-      'p-input-icon-right': icon && iconPos == 'right'
+     [class]="styleClass"
+     [ngClass]="{
+     'icon-start': templateMap.iconStart,
+     'icon-end': templateMap.iconEnd,
+     'addon-start': templateMap.addonStart,
+     'addon-end': templateMap.addonEnd,
+     'fluid': fluid
     }">
-      @if (icon) {
-        <i [class.p-disabled]="disabled" [ngClass]="icon"></i>
+  <ng-element-additions
+    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [labelWidth]="labelWidth"
+    [labelPosition]="labelPosition"
+    [inputId]="inputId"
+    [disabled]="disabled"
+    [fluid]="fluid">
+    <ng-template ngTemplate="element">
+       <textarea
+         pTextarea
+         [(ngModel)]="value"
+         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+         [attr.id]="inputId"
+         [attr.aria-label]="ariaLabel"
+         [attr.aria-labelledBy]="ariaLabelledBy"
+         [attr.maxlength]="maxlength"
+         [attr.placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
+         [cols]="cols"
+         [disabled]="disabled"
+         [readonly]="readonly"
+         [rows]="rows"
+         [ngStyle]="inputStyle"
+         [class]="inputStyleClass"
+         [autoResize]="autoResize"
+         [variant]="variant"
+         [fluid]="fluid"
+         [pSize]="size"
+         (blur)="_onBlur($event)"
+         (change)="_onChange($event)"
+         (focus)="_onFocus($event)"
+         (input)="_onInput($event)"
+         (keydown)="_onKeyDown($event)"
+         (keyup)="_onKeyUp($event)"
+         (onResize)="_onResize($event)"
+       ></textarea>
+    </ng-template>
+    @for (item of ['addonStart', 'addonEnd', 'iconStart', 'iconEnd']; track item) {
+      @if (templateMap[item]) {
+        <ng-template [ngTemplate]="item">
+          <ng-container *ngTemplateOutlet="templateMap[item]"/>
+        </ng-template>
       }
-      <textarea
-        pTextarea
-        [(ngModel)]="value"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-        [attr.id]="inputId"
-        [attr.aria-label]="ariaLabel"
-        [attr.aria-labelledBy]="ariaLabelledBy"
-        [attr.maxlength]="maxlength"
-        [attr.placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
-        [cols]="cols"
-        [disabled]="disabled"
-        [readonly]="readonly"
-        [rows]="rows"
-        [ngStyle]="inputStyle"
-        [class]="inputStyleClass"
-        [autoResize]="autoResize"
-        [variant]="variant"
-        [fluid]="fluid"
-        [pSize]="size"
-        (blur)="_onBlur($event)"
-        (change)="_onChange($event)"
-        (focus)="_onFocus($event)"
-        (input)="_onInput($event)"
-        (keydown)="_onKeyDown($event)"
-        (keyup)="_onKeyUp($event)"
-        (onResize)="_onResize($event)"
-      ></textarea>
-      @if (label && labelPos == 'float') {
-        <label [attr.for]="inputId">
-          {{ label | ngLabelStar:showRequiredStar:ngControl }}
-        </label>
-      }
-    </div>
-  </div>
-  @if (label && labelPos != 'float') {
-    <label
-      class="fix-label"
-      [attr.for]="inputId"
-      [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
-      {{ label | ngLabelStar:showRequiredStar:ngControl }}
-    </label>
-  }
+    }
+  </ng-element-additions>
+
   @if (hint && showHint()) {
     <div class="message">{{ hint }}</div>
   }

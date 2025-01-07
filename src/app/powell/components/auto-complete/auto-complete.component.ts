@@ -25,10 +25,8 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgAddon,
   NgAutoCompleteDropdownMode,
   NgCssObject,
-  NgIconPosition,
   NgInputType,
   NgInputVariant,
   NgLabelPosition,
@@ -75,10 +73,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() icon: string;
   @Input() labelPosition: NgLabelPosition;
-  @Input() iconPos: NgIconPosition = 'left';
-  @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   // native properties

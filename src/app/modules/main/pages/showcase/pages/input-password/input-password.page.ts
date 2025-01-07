@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class InputPasswordPage extends PreviewBase {
-  @ViewChild(InputPasswordComponent, {static: true}) declare cmpRef: InputPasswordComponent;
+  @ViewChild(InputPasswordComponent) declare cmpRef: InputPasswordComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

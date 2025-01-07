@@ -24,16 +24,7 @@ import {
   NgControl,
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {
-  NgAddon,
-  NgCssObject,
-  NgIconPosition,
-  NgInputType,
-  NgInputVariant,
-  NgLabelPosition,
-  NgSize,
-  NgValidation
-} from '@powell/models';
+import {NgCssObject, NgInputType, NgInputVariant, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {TemplateDirective} from "@powell/directives/template";
 import {$uuid} from "@powell/primeng";
@@ -64,12 +55,10 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() icon: string;
   @Input() labelPosition: NgLabelPosition;
-  @Input() iconPos: NgIconPosition = 'left';
-  @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
+  @Input() fluid: boolean;
   // native properties
   @Input() type: NgInputType = 'text';
   @Input() slotChar: string = '_';

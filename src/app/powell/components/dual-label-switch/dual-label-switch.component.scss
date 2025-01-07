@@ -6,50 +6,11 @@
       display: flex;
       position: relative;
 
-      .message {
-        position: absolute;
-        top: calc(100% + 0.25rem);
-        font-size: 0.875em;
-
-        &:not(.validation) {
-          color: #6c757d;
-        }
-      }
-
-      &.label-fix-top {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-      }
-
-      &.label-fix-side {
-        flex-direction: row-reverse;
-        align-items: center;
-
-        .fix-label {
-          margin-bottom: 0;
-        }
-      }
-
-      .field {
-        flex-grow: 1;
-        align-self: stretch;
+      .field-inner {
+        direction: ltr;
         display: inline-flex;
-        align-items: center;
-        justify-content: flex-start;
-
-        > .field-inner {
-          direction: ltr;
-          display: inline-flex;
-          align-items: flex-end;
-
-          .label-left {
-            margin-right: 1rem;
-          }
-
-          .label-right {
-            margin-left: 1rem;
-          }
-        }
+        align-items: flex-end;
+        gap: 0.75rem;
       }
 
       p-progressSpinner {
@@ -60,38 +21,6 @@
         .p-progress-spinner {
           width: 25px;
           height: 25px;
-        }
-      }
-
-      p-inputswitch {
-        display: inline-flex;
-
-        .p-inputswitch-slider {
-          background-color: var(--primary-color) !important;
-        }
-      }
-
-      &.ltr {
-        direction: ltr;
-
-        .message {
-          left: 0;
-        }
-
-        .fix-label {
-          margin-right: 1rem;
-        }
-      }
-
-      &.rtl {
-        direction: rtl;
-
-        .message {
-          right: 0;
-        }
-
-        .fix-label {
-          margin-left: 1rem;
         }
       }
     }

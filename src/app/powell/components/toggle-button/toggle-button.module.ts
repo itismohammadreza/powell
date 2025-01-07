@@ -4,6 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {ToggleButtonComponent} from "@powell/components/toggle-button";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$ToggleButtonModule} from "@powell/primeng";
+import {ElementAdditionsModule} from "@powell/components/element-additions";
 
 @NgModule({
   declarations: [ToggleButtonComponent],
@@ -12,7 +13,8 @@ import {$ToggleButtonModule} from "@powell/primeng";
     $ToggleButtonModule,
     CommonModule,
     FormsModule,
-    LabelStarModule
+    LabelStarModule,
+    ElementAdditionsModule
   ],
 })
 

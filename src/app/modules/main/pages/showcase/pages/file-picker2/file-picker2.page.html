@@ -4,6 +4,8 @@
   [previewOptions]="previewOptions"
   (onOptionChange)="onOptionChange($event)">
   <form [formGroup]="form">
+    @if (render) {
     <ng-file-picker2 formControlName="c1" [validation]="{ required: 'error' }"/>
+    }
   </form>
 </ng-preview>

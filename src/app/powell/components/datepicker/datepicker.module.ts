@@ -1,10 +1,10 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {AddonModule} from "@powell/directives/addon";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {DatepickerBaseModule} from "@powell/components/datepicker/datepicker-base";
 import {DatepickerComponent} from "@powell/components/datepicker/datepicker.component";
+import {ElementAdditionsModule} from "@powell/components/element-additions";
 
 @NgModule({
   declarations: [DatepickerComponent],
@@ -14,7 +14,7 @@ import {DatepickerComponent} from "@powell/components/datepicker/datepicker.comp
     CommonModule,
     FormsModule,
     LabelStarModule,
-    AddonModule
+    ElementAdditionsModule,
   ],
 })
 export class DatepickerModule {

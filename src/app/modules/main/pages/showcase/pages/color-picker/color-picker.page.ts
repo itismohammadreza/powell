@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class ColorPickerPage extends PreviewBase {
-  @ViewChild(ColorPickerComponent, {static: true}) declare cmpRef: ColorPickerComponent;
+  @ViewChild(ColorPickerComponent) declare cmpRef: ColorPickerComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

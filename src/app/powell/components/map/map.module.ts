@@ -1,12 +1,12 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
-import {AddonModule} from "@powell/directives/addon";
 import {MapComponent} from "@powell/components/map";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$TooltipModule, $TrashIcon} from "@powell/primeng";
 import {ButtonModule} from "@powell/components/button";
 import {TemplateModule} from "@powell/directives/template";
+import {ElementAdditionsModule} from "@powell/components/element-additions";
 
 @NgModule({
   declarations: [MapComponent],
@@ -17,9 +17,9 @@ import {TemplateModule} from "@powell/directives/template";
     LeafletModule,
     CommonModule,
     LabelStarModule,
-    AddonModule,
     TemplateModule,
-    $TrashIcon
+    $TrashIcon,
+    ElementAdditionsModule
   ],
 })
 export class MapModule {

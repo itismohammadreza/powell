@@ -1,52 +1,49 @@
-<div [ngClass]="{
-      'rtl': rtl,
-      'ltr': !rtl,
-      'label-fix-top': labelPosition == 'fix-top',
-      'label-fix-side': labelPosition == 'fix-side'
-    }" class="dual-label-switch-wrapper">
-  <div class="field">
-    <div class="field-inner">
-      <span class="label-left" [class.text-muted]="disabled">{{ labelLeft }}</span>
-      <p-toggleSwitch
-        [(ngModel)]="value"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-        [style]="style"
-        [styleClass]="styleClass"
-        [tabindex]="tabindex"
-        [inputId]="inputId"
-        [name]="name"
-        [disabled]="disabled"
-        [readonly]="readonly"
-        [trueValue]="rightValue"
-        [falseValue]="leftValue"
-        [ariaLabel]="ariaLabel"
-        [ariaLabelledBy]="ariaLabelledBy"
-        [autofocus]="autofocus"
-        (onChange)="_onChange($event)">
-        @for (t of templates; track t) {
-          @if (templateMap[t.getType()]) {
-            <ng-template [pTemplate]="t.getType()">
-              <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
-            </ng-template>
+<div class="dual-label-switch-wrapper"
+     [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [ngStyle]="style"
+     [class]="styleClass">
+  <ng-element-additions
+    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [labelWidth]="labelWidth"
+    [labelPosition]="labelPosition"
+    [inputId]="inputId"
+    [disabled]="disabled"
+    [fluid]="true">
+    <ng-template ngTemplate="element">
+      <div class="field-inner">
+        <span class="label-left" [class.text-muted]="disabled">{{ labelLeft }}</span>
+        <p-toggleSwitch
+          [(ngModel)]="value"
+          [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+          [style]="style"
+          [styleClass]="styleClass"
+          [tabindex]="tabindex"
+          [inputId]="inputId"
+          [name]="name"
+          [disabled]="disabled"
+          [readonly]="readonly"
+          [trueValue]="rightValue"
+          [falseValue]="leftValue"
+          [ariaLabel]="ariaLabel"
+          [ariaLabelledBy]="ariaLabelledBy"
+          [autofocus]="autofocus"
+          (onChange)="_onChange($event)">
+          @for (t of templates; track t) {
+            @if (templateMap[t.getType()]) {
+              <ng-template [pTemplate]="t.getType()">
+                <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
+              </ng-template>
+            }
           }
-        }
-      </p-toggleSwitch>
-      <span class="label-right" [class.text-muted]="disabled">{{ labelRight }}</span>
-    </div>
-    @if (loading && showAsyncLoading) {
-      <p-progressSpinner strokeWidth="4"/>
-    }
-  </div>
-  @if (label) {
-    <label
-      class="fix-label"
-      [attr.for]="inputId"
-      [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
-      {{ label | ngLabelStar:showRequiredStar:ngControl }}
-    </label>
-  }
+        </p-toggleSwitch>
+        <span class="label-right" [class.text-muted]="disabled">{{ labelRight }}</span>
+      </div>
+      @if (loading && showAsyncLoading) {
+        <p-progressSpinner strokeWidth="4"/>
+      }
+    </ng-template>
+  </ng-element-additions>
+
   @if (hint && showHint()) {
     <div class="message">{{ hint }}</div>
   }

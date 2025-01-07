@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class MultiSelectPage extends PreviewBase {
-  @ViewChild(MultiSelectComponent, {static: true}) declare cmpRef: MultiSelectComponent;
+  @ViewChild(MultiSelectComponent) declare cmpRef: MultiSelectComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

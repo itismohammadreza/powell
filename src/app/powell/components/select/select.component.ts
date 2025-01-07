@@ -25,11 +25,9 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgAddon,
   NgAsyncEvent,
   NgCssObject,
   NgFilterMatchMode,
-  NgIconPosition,
   NgInputVariant,
   NgLabelPosition,
   NgPosition,
@@ -38,11 +36,11 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {
+  $OverlayOptions,
+  $ScrollerOptions,
   $SelectChangeEvent,
   $SelectFilterEvent,
   $SelectLazyLoadEvent,
-  $OverlayOptions,
-  $ScrollerOptions,
   $uuid
 } from "@powell/primeng";
 import {DestroyService} from "@core/utils";
@@ -74,10 +72,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() icon: string;
   @Input() labelPosition: NgLabelPosition;
-  @Input() iconPos: NgIconPosition = 'left';
-  @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() async: boolean;
   @Input() followConfig: boolean;

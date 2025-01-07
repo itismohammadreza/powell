@@ -1,61 +1,59 @@
-<div [ngClass]="{
-      'rtl': rtl,
-      'ltr': !rtl,
-      'label-fix-top': labelPosition == 'fix-top',
-      'label-fix-side': labelPosition == 'fix-side',
+<div class="checkbox-group-wrapper"
+     [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [ngStyle]="style"
+     [class]="styleClass"
+     [ngClass]="{
       'layout-horizontal':orientation == 'horizontal',
       'layout-vertical':orientation == 'vertical'
-    }" class="checkbox-group-wrapper">
-  <div [attr.id]="id" class="field">
-    @for (item of options; track item) {
-      <div class="option-item">
-        <p-checkbox
-          [(ngModel)]="value"
-          [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-          [class]="item.styleClass"
-          [value]="item[optionValue]"
-          [name]="groupName"
-          [disabled]="item[optionDisabled]"
-          [binary]="true"
-          [ariaLabelledBy]="ariaLabelledBy"
-          [ariaLabel]="ariaLabel"
-          [inputId]="'id'+item[optionValue]"
-          [style]="style"
-          [inputStyle]="inputStyle"
-          [styleClass]="styleClass"
-          [inputClass]="inputClass"
-          [size]="size"
-          [checkboxIcon]="checkboxIcon"
-          [readonly]="readonly"
-          [autofocus]="autofocus"
-          [variant]="variant"
-          (onChange)="_onChange($event)"
-          (onFocus)="_onFocus($event)"
-          (onBlur)="_onBlur($event)">
-          @for (t of templates; track t) {
-            @if (templateMap[t.getType()]) {
-              <ng-template [pTemplate]="t.getType()">
-                <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
-              </ng-template>
+    }">
+  <ng-element-additions
+    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [labelWidth]="labelWidth"
+    [labelPosition]="labelPosition"
+    [inputId]="id"
+    [disabled]="disabled"
+    [fluid]="true">
+    <ng-template ngTemplate="element">
+      @for (item of options; track item) {
+        <div class="option-item">
+          <p-checkbox
+            [(ngModel)]="value"
+            [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+            [class]="item.styleClass"
+            [value]="item[optionValue]"
+            [name]="groupName"
+            [disabled]="item[optionDisabled]"
+            [ariaLabelledBy]="ariaLabelledBy"
+            [ariaLabel]="ariaLabel"
+            [inputId]="'id'+item[optionValue]"
+            [style]="style"
+            [inputStyle]="inputStyle"
+            [styleClass]="styleClass"
+            [inputClass]="inputClass"
+            [size]="size"
+            [checkboxIcon]="checkboxIcon"
+            [readonly]="readonly"
+            [autofocus]="autofocus"
+            [variant]="variant"
+            (onChange)="_onChange($event)"
+            (onFocus)="_onFocus($event)"
+            (onBlur)="_onBlur($event)">
+            @for (t of templates; track t) {
+              @if (templateMap[t.getType()]) {
+                <ng-template [pTemplate]="t.getType()">
+                  <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
+                </ng-template>
+              }
             }
-          }
-        </p-checkbox>
-        <label [attr.for]="'id'+item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
-          {{ item[optionLabel] }}
-        </label>
-      </div>
-    }
-  </div>
-  @if (label) {
-    <label
-      class="fix-label"
-      [attr.for]="id"
-      [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
-      {{ label | ngLabelStar:showRequiredStar:ngControl }}
-    </label>
-  }
+          </p-checkbox>
+          <label [attr.for]="'id'+item[optionValue]" [class.p-disabled]="item[optionDisabled]">
+            {{ item[optionLabel] }}
+          </label>
+        </div>
+      }
+    </ng-template>
+  </ng-element-additions>
+
   @if (hint && showHint()) {
     <div class="message">{{ hint }}</div>
   }

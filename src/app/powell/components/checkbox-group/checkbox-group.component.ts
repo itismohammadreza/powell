@@ -29,7 +29,8 @@ import {
   NgCssObject,
   NgFixLabelPosition,
   NgInputVariant,
-  NgOrientation, NgSize,
+  NgOrientation,
+  NgSize,
   NgValidation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
@@ -73,6 +74,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() orientation: NgOrientation = 'vertical';
   @Input() groupName: string = $uuid();
   @Input() id: string = $uuid();
+
   // native properties
   @Input() set disabled(disabled: boolean) {
     this._disabled = disabled;
@@ -101,9 +103,9 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Output() onBlur = new EventEmitter<Event>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
+  templateMap: Record<string, TemplateRef<any>> = {};
   _disabled: boolean = false;
   ngControl: NgControl;
-  templateMap: Record<string, TemplateRef<any>> = {};
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
@@ -146,6 +148,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   }
 
   _onChange(event: $CheckboxChangeEvent) {
+    this.value = event.checked;
     this.onChange.emit({originalEvent: event.originalEvent, value: this.value});
     this.onModelChange(this.value);
   }

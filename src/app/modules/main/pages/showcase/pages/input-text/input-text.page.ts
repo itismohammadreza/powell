@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class InputTextPage extends PreviewBase {
-  @ViewChild(InputTextComponent, {static: true}) declare cmpRef: InputTextComponent;
+  @ViewChild(InputTextComponent) declare cmpRef: InputTextComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},
@@ -23,7 +23,6 @@ export class InputTextPage extends PreviewBase {
     {field: 'rtl', value: this.config.rtl},
     {field: 'showRequiredStar', value: this.config.showRequiredStar},
     {field: 'labelPosition', options: 'labelPositions', value: this.config.labelPosition},
-    {field: 'iconPos', options: 'iconPositions', value: 'left'},
     {field: 'additions', options: 'additions', value: 'none'},
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'readonly', value: false},

@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class KnobPage extends PreviewBase {
-  @ViewChild(KnobComponent, {static: true}) declare cmpRef: KnobComponent;
+  @ViewChild(KnobComponent) declare cmpRef: KnobComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

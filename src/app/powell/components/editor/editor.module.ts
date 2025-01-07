@@ -2,13 +2,15 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {EditorBaseComponent, EditorComponent} from "@powell/components/editor";
 import {LabelStarModule} from "@powell/pipes/label-star";
+import {ElementAdditionsModule} from "@powell/components/element-additions";
 
 @NgModule({
   declarations: [EditorComponent, EditorBaseComponent],
   exports: [EditorComponent],
   imports: [
     LabelStarModule,
-    CommonModule
+    CommonModule,
+    ElementAdditionsModule
   ],
 })
 export class EditorModule {

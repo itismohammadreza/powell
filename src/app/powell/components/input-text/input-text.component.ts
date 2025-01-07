@@ -1,14 +1,17 @@
 import {
+  AfterContentInit,
   ChangeDetectorRef,
   Component,
-  ElementRef,
+  ContentChildren,
   EventEmitter,
   forwardRef,
   inject,
   Injector,
   Input,
   OnInit,
-  Output
+  Output,
+  QueryList,
+  TemplateRef
 } from '@angular/core';
 import {
   AbstractControl,
@@ -31,9 +34,10 @@ import {
   NgSize,
   NgValidation
 } from '@powell/models';
-import {ConfigService, UtilsService} from "@powell/api";
+import {ConfigService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import {$uuid} from "@powell/primeng";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-input-text',
@@ -49,7 +53,7 @@ import {$uuid} from "@powell/primeng";
   ],
   standalone: false
 })
-export class InputTextComponent implements OnInit, ControlValueAccessor {
+export class InputTextComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
   private injector = inject(Injector);
   private configService = inject(ConfigService);
@@ -65,7 +69,6 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() showRequiredStar: boolean;
   @Input() labelPosition: NgLabelPosition;
   @Input() inputId: string = $uuid();
-  @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   @Input() readonly: boolean;
@@ -94,7 +97,9 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Output() onFocus = new EventEmitter<FocusEvent>();
   @Output() onClear = new EventEmitter<void>();
   @Output() onPaste = new EventEmitter<Event>();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
+  templateMap: Record<string, TemplateRef<any>> = {};
   ngControl: NgControl;
   onModelChange: Function = () => {
   };
@@ -128,6 +133,13 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
       }
     }
     this.configService.applyConfigToComponent(this);
+  }
+
+  ngAfterContentInit() {
+    this.templates.forEach(item => {
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
+    });
   }
 
   _onChange(event: Event) {

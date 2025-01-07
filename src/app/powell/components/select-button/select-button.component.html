@@ -1,50 +1,47 @@
-<div [ngClass]="{
-      'rtl': rtl,
-      'ltr': !rtl,
-      'label-fix-top': labelPosition == 'fix-top',
-      'label-fix-side': labelPosition == 'fix-side'
-    }" class="select-button-wrapper">
-  <div class="field">
-    <p-selectButton
-      [(ngModel)]="value"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [attr.id]="id"
-      [options]="options"
-      [optionLabel]="optionLabel"
-      [optionValue]="optionValue"
-      [optionDisabled]="optionDisabled"
-      [unselectable]="unselectable"
-      [tabindex]="tabindex"
-      [multiple]="multiple"
-      [allowEmpty]="allowEmpty"
-      [style]="style"
-      [styleClass]="styleClass"
-      [ariaLabelledBy]="ariaLabelledBy"
-      [size]="size"
-      [disabled]="disabled"
-      [dataKey]="dataKey"
-      [autofocus]="autofocus"
-      (onChange)="_onChange($event)"
-      (onOptionClick)="_onOptionClick($event)">
-      @for (t of templates; track t) {
-        @if (templateMap[t.getType()]) {
-          <ng-template [pTemplate]="t.getType()">
-            <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
-          </ng-template>
+<div class="select-button-wrapper"
+     [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [ngStyle]="style"
+     [class]="styleClass">
+  <ng-element-additions
+    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [labelWidth]="labelWidth"
+    [labelPosition]="labelPosition"
+    [inputId]="id"
+    [disabled]="disabled"
+    [fluid]="true">
+    <ng-template ngTemplate="element">
+      <p-selectButton
+        [(ngModel)]="value"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [attr.id]="id"
+        [options]="options"
+        [optionLabel]="optionLabel"
+        [optionValue]="optionValue"
+        [optionDisabled]="optionDisabled"
+        [unselectable]="unselectable"
+        [tabindex]="tabindex"
+        [multiple]="multiple"
+        [allowEmpty]="allowEmpty"
+        [style]="style"
+        [styleClass]="styleClass"
+        [ariaLabelledBy]="ariaLabelledBy"
+        [size]="size"
+        [disabled]="disabled"
+        [dataKey]="dataKey"
+        [autofocus]="autofocus"
+        (onChange)="_onChange($event)"
+        (onOptionClick)="_onOptionClick($event)">
+        @for (t of templates; track t) {
+          @if (templateMap[t.getType()]) {
+            <ng-template [pTemplate]="t.getType()">
+              <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
+            </ng-template>
+          }
         }
-      }
-    </p-selectButton>
-  </div>
-  @if (label) {
-    <label
-      class="fix-label"
-      [attr.for]="id"
-      [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
-      {{ label | ngLabelStar:showRequiredStar:ngControl }}
-    </label>
-  }
+      </p-selectButton>
+    </ng-template>
+  </ng-element-additions>
+
   @if (hint && showHint()) {
     <div class="message">{{ hint }}</div>
   }

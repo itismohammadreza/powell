@@ -4,9 +4,6 @@
   [previewOptions]="previewOptions"
   (onOptionChange)="onOptionChange($event)">
   <form [formGroup]="form">
-    <ng-radio
-      formControlName="c1"
-      [validation]="{ required: 'error' }"
-      [options]="options"/>
+    <ng-radio formControlName="c1" [validation]="{ required: 'error' }" [options]="options"/>
   </form>
 </ng-preview>

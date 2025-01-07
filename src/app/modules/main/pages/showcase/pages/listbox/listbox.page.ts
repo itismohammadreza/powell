@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class ListboxPage extends PreviewBase {
-  @ViewChild(ListboxComponent, {static: true}) declare cmpRef: ListboxComponent;
+  @ViewChild(ListboxComponent) declare cmpRef: ListboxComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

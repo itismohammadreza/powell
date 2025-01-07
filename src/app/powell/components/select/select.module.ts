@@ -1,11 +1,11 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {AddonModule} from "@powell/directives/addon";
 import {SelectComponent} from "@powell/components/select";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$SelectModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
+import {ElementAdditionsModule} from "@powell/components/element-additions";
 
 @NgModule({
   declarations: [SelectComponent],
@@ -15,7 +15,7 @@ import {TemplateModule} from "@powell/directives/template";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    AddonModule
+    ElementAdditionsModule,
   ],
 })
 export class SelectModule {

@@ -19,8 +19,7 @@ import {
   NgButtonResponsiveSize,
   NgButtonState,
   NgButtonType,
-  NgCssObject,
-  NgIconPosition,
+  NgCssObject, NgPosition,
   NgSeverity,
   NgSize
 } from '@powell/models';
@@ -52,7 +51,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   @Input() defaultState: NgButtonState = 1;
   // native properties
   @Input() type: NgButtonType = 'button';
-  @Input() iconPos: NgIconPosition = 'left';
+  @Input() iconPos: NgPosition = 'left';
   @Input() icon: string;
   @Input() badge: string;
   @Input() label: string;

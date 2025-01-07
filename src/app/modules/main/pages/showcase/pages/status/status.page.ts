@@ -12,7 +12,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class StatusPage extends PreviewBase {
-  @ViewChild(StatusComponent, {static: true}) declare cmpRef: StatusComponent;
+  @ViewChild(StatusComponent) declare cmpRef: StatusComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'status', value: 'info'},

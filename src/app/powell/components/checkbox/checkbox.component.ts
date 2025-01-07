@@ -64,6 +64,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   // native properties
   @Input() name: string;
   @Input() disabled: boolean;
+  @Input() binary: boolean = true;
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
   @Input() tabindex: number;
@@ -142,6 +143,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   }
 
   _onChange(event: $CheckboxChangeEvent) {
+    this.value = event.checked;
     if (this.async) {
       this.loading = true;
       this.disabled = true;
