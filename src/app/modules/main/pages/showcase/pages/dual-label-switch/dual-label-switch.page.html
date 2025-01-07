@@ -4,11 +4,13 @@
   [previewOptions]="previewOptions"
   (onOptionChange)="onOptionChange($event)">
   <form [formGroup]="form">
+    @if (render) {
     <ng-dual-label-switch
       formControlName="c1"
       [validation]="{ required: 'error' }"
       labelLeft="Left"
       labelRight="Right"
       (onChangeAsync)="onChangeAsync($event)"/>
+    }
   </form>
 </ng-preview>

@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class TreeSelectPage extends PreviewBase {
-  @ViewChild(TreeSelectComponent, {static: true}) declare cmpRef: TreeSelectComponent;
+  @ViewChild(TreeSelectComponent) declare cmpRef: TreeSelectComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

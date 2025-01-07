@@ -24,7 +24,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAddon, NgCssObject, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {NgCssObject, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
@@ -32,7 +32,8 @@ import {
   $ListboxClickEvent,
   $ListboxDoubleClickEvent,
   $ListboxFilterEvent,
-  $ListboxSelectAllChangeEvent, $ScrollerLazyLoadEvent,
+  $ListboxSelectAllChangeEvent,
+  $ScrollerLazyLoadEvent,
   $ScrollerOptions,
   $uuid
 } from "@powell/primeng";
@@ -65,7 +66,6 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
   @Input() labelPosition: NgFixLabelPosition;
-  @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   // native properties

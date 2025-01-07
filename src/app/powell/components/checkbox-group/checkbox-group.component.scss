@@ -7,108 +7,36 @@
     }
 
     .checkbox-group-wrapper {
-      display: flex;
-      position: relative;
-
-      .message {
-        position: absolute;
-        top: calc(100% + 0.25rem);
-        font-size: 0.875em;
-
-        &:not(.validation) {
-          color: #6c757d;
-        }
-      }
-
-      &.label-fix-top {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-      }
-
-      &.label-fix-side {
-        flex-direction: row-reverse;
-        align-items: center;
-
-        .fix-label {
-          margin-bottom: 0;
-          align-self: start;
-        }
-      }
-
       .field {
-        width: auto;
-        flex-grow: 1;
-        align-self: stretch;
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      &.layout-horizontal {
-        .field {
-          flex-direction: row;
-        }
-      }
-
-      &.layout-vertical {
-        .field {
-          flex-direction: column;
-
-          .option-item:not(:last-child) {
-            margin-bottom: 0.5rem;
-          }
-        }
+        display: inline-flex;
+        gap: 0.25rem;
       }
 
       .option-item {
-        display: flex;
+        display: inline-flex;
         align-items: center;
+        gap: 0.75rem;
 
         label {
           margin-bottom: 0;
         }
       }
 
-      &.ltr {
-        direction: ltr;
-
-        .message {
-          left: 0;
+      &.layout-horizontal {
+        .option-item {
+          gap: 0.5rem;
         }
 
-        .fix-label {
-          margin-right: 1rem;
-        }
-
-        .option-item label {
-          margin-left: 0.5rem;
-        }
-
-        &.layout-horizontal {
-          .option-item:not(:last-of-type) {
-            margin-right: 1.5rem;
-          }
+        .field {
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 1rem;
         }
       }
 
-      &.rtl {
-        direction: rtl;
-
-        .message {
-          right: 0;
-        }
-
-        .fix-label {
-          margin-left: 1rem;
-        }
-
-        .option-item label {
-          margin-right: 0.5rem;
-        }
-
-        &.layout-horizontal {
-          .option-item:not(:last-of-type) {
-            margin-left: 1.5rem;
-          }
+      &.layout-vertical {
+        .field {
+          flex-direction: column;
         }
       }
     }

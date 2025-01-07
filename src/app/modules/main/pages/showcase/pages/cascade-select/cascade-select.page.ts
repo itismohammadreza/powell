@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class CascadeSelectPage extends PreviewBase {
-  @ViewChild(CascadeSelectComponent, {static: true}) declare cmpRef: CascadeSelectComponent;
+  @ViewChild(CascadeSelectComponent) declare cmpRef: CascadeSelectComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

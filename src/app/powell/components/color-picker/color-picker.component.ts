@@ -20,15 +20,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {
-  NgColorFormat,
-  NgCssObject,
-  NgIconPosition,
-  NgInputVariant,
-  NgLabelPosition,
-  NgSize,
-  NgValidation
-} from '@powell/models';
+import {NgColorFormat, NgCssObject, NgLabelPosition, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {$ColorPickerChangeEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
@@ -62,12 +54,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() showRequiredStar: boolean;
   @Input() labelPosition: NgLabelPosition;
   @Input() validation: NgValidation;
-  @Input() size: NgSize;
-  @Input() readonly: boolean;
-  @Input() maxlength: number = 7;
-  @Input() placeholder: string;
   @Input() followConfig: boolean;
-  @Input() variant: NgInputVariant;
   // native properties
   @Input() style: NgCssObject;
   @Input() styleClass: string;
@@ -129,35 +116,6 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   _onChangeColorPicker(event: $ColorPickerChangeEvent) {
     this.onChange.emit(event);
     this.onModelChange(event.value);
-  }
-
-  _onChangeInput(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    this.onChange.emit({originalEvent: event, value: inputElement.value});
-    this.onModelChange(inputElement.value);
-  }
-
-  _onInput(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    this.onInput.emit(event);
-    this.onModelChange(inputElement.value);
-  }
-
-  _onBlur(event: FocusEvent) {
-    this.onBlur.emit(event);
-    this.onModelTouched();
-  }
-
-  _onKeyDown(event: KeyboardEvent) {
-    const inputElement = event.target as HTMLInputElement;
-    this.onKeyDown.emit(event);
-    this.onModelChange(inputElement.value);
-  }
-
-  _onKeyUp(event: KeyboardEvent) {
-    const inputElement = event.target as HTMLInputElement;
-    this.onKeyUp.emit(event);
-    this.onModelChange(inputElement.value);
   }
 
   emitter(name: string, event: any) {

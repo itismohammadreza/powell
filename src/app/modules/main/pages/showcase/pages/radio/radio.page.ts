@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class RadioPage extends PreviewBase {
-  @ViewChild(RadioComponent, {static: true}) declare cmpRef: RadioComponent;
+  @ViewChild(RadioComponent) declare cmpRef: RadioComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},
@@ -24,7 +24,7 @@ export class RadioPage extends PreviewBase {
     {field: 'showRequiredStar', value: this.config.showRequiredStar},
     {field: 'labelPosition', options: 'fixLabelPositions', value: this.config.fixLabelPosition},
     {field: 'followConfig', value: this.config.followConfig},
-    {field: 'orientation', value: 'vertical'},
+    {field: 'orientation', options: 'orientations', value: 'vertical'},
     {field: 'disabled', value: false},
     {field: 'variant', options: 'variants', value: this.config.inputStyle},
     {field: 'size', options: 'sizes', value: this.config.inputSize}

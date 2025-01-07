@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class InputTextareaPage extends PreviewBase {
-  @ViewChild(InputTextareaComponent, {static: true}) declare cmpRef: InputTextareaComponent;
+  @ViewChild(InputTextareaComponent) declare cmpRef: InputTextareaComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

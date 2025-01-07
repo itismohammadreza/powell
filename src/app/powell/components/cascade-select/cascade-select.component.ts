@@ -24,15 +24,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {
-  NgAddon,
-  NgCssObject,
-  NgIconPosition,
-  NgInputVariant,
-  NgLabelPosition,
-  NgSize,
-  NgValidation
-} from '@powell/models';
+import {NgCssObject, NgInputVariant, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
@@ -71,10 +63,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() icon: string;
   @Input() labelPosition: NgLabelPosition;
-  @Input() iconPos: NgIconPosition = 'left';
-  @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   // native properties

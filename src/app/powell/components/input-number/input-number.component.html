@@ -1,26 +1,23 @@
-<div [ngClass]="{
-      'rtl': rtl,
-      'ltr': !rtl,
-      'label-fix-top': labelPosition == 'fix-top',
-      'label-fix-side': labelPosition == 'fix-side',
-      'label-float': labelPosition == 'float',
-      'clearable': showClear,
-      'buttons-stacked': showButtons && buttonLayout == 'stacked',
-      'buttons-horizontal': showButtons && buttonLayout == 'horizontal',
-      'buttons-vertical': showButtons && buttonLayout == 'vertical'
-    }" class="input-number-wrapper">
-  <div class="field"
-       [ngAddon]="addon"
-       [addonDisabled]="disabled"
-       [addonSize]="size">
-    <div [ngClass]="{
-      'p-float-label': label && labelPosition == 'float',
-      'p-input-icon-left': icon && iconPos == 'left',
-      'p-input-icon-right': icon && iconPos == 'right'
+<div class="input-number-wrapper"
+     [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [ngStyle]="style"
+     [class]="styleClass"
+     [ngClass]="{
+     'icon-start': templateMap.iconStart,
+     'icon-end': templateMap.iconEnd,
+     'addon-start': templateMap.addonStart,
+     'addon-end': templateMap.addonEnd,
+     'fluid': fluid,
+     'clearable': showClear
     }">
-      @if (icon) {
-        <i [class.p-disabled]="disabled" [ngClass]="icon"></i>
-      }
+  <ng-element-additions
+    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [labelWidth]="labelWidth"
+    [labelPosition]="labelPosition"
+    [inputId]="inputId"
+    [disabled]="disabled"
+    [fluid]="fluid">
+    <ng-template ngTemplate="element">
       <p-inputNumber
         [(ngModel)]="value"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
@@ -80,23 +77,16 @@
           }
         }
       </p-inputNumber>
-      @if (label && labelPosition == 'float') {
-        <label [class.p-disabled]="disabled" [attr.for]="inputId">
-          {{ label | ngLabelStar:showRequiredStar:ngControl }}
-        </label>
+    </ng-template>
+    @for (item of ['addonStart', 'addonEnd', 'iconStart', 'iconEnd']; track item) {
+      @if (templateMap[item]) {
+        <ng-template [ngTemplate]="item">
+          <ng-container *ngTemplateOutlet="templateMap[item]"/>
+        </ng-template>
       }
-    </div>
-  </div>
-  @if (label && labelPosition != 'float') {
-    <label
-      class="fix-label"
-      [attr.for]="inputId"
-      [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
-      {{ label | ngLabelStar:showRequiredStar:ngControl }}
-    </label>
-  }
+    }
+  </ng-element-additions>
+
   @if (hint && showHint()) {
     <div class="message">{{ hint }}</div>
   }

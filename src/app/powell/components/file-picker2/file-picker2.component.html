@@ -1,89 +1,86 @@
-<div [ngClass]="{
-      'rtl': rtl,
-      'ltr': !rtl,
-      'label-fix-top': labelPosition == 'fix-top',
-      'label-fix-side': labelPosition == 'fix-side'
-    }" class="file-picker-wrapper">
-  <div [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }" class="field">
-    <input
-      #inputFile
-      type="file"
-      onclick="this.value = null"
-      [accept]="accept"
-      [attr.id]="id"
-      [disabled]="disabled"
-      (change)="_onSelect($event)"/>
+<div class="file-picker2-wrapper"
+     [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [ngStyle]="style"
+     [class]="styleClass">
+  <ng-element-additions
+    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [labelWidth]="labelWidth"
+    [labelPosition]="labelPosition"
+    [inputId]="id"
+    [disabled]="disabled"
+    [fluid]="true">
+    <ng-template ngTemplate="element">
+      <input
+        #inputFile
+        type="file"
+        onclick="this.value = null"
+        [accept]="accept"
+        [attr.id]="id"
+        [disabled]="disabled"
+        (change)="_onSelect($event)"/>
 
-    @if (!multiple) {
-      <div class="file-picker-single-wrapper">
-        <div class="preview">
-          @switch (getFileType(filesToShow[0]?.display)) {
-            @case ('image') {
-              <div class="image-preview" [style.backgroundImage]="'url('+(filesToShow[0]?.display)+')'"></div>
+      @if (!multiple) {
+        <div class="file-picker-single-wrapper">
+          <div class="preview">
+            @switch (getFileType(filesToShow[0]?.display)) {
+              @case ('image') {
+                <div class="image-preview" [style.backgroundImage]="'url('+(filesToShow[0]?.display)+')'"></div>
+              }
+              @case ('file') {
+                <PlusIcon styleClass="file-preview"/>
+              }
             }
-            @case ('file') {
-              <PlusIcon styleClass="file-preview"/>
-            }
+          </div>
+          <ng-button
+            [fluid]="true"
+            [disabled]="disabled"
+            (onClick)="inputFile.click()"
+            [buttonProps]="chooseButtonProps"
+            [label]="chooseLabel">
+          </ng-button>
+          @if (filesToShow.length != 0) {
+            <ng-button severity="danger" size="small" (onClick)="onSingleDelete()">
+              <ng-template ngTemplate="icon">
+                <TrashIcon/>
+              </ng-template>
+            </ng-button>
           }
         </div>
-        <ng-button
-          [fluid]="true"
-          [disabled]="disabled"
-          (onClick)="inputFile.click()"
-          [buttonProps]="chooseButtonProps"
-          [label]="chooseLabel">
-        </ng-button>
-        @if (filesToShow.length != 0) {
-          <ng-button severity="danger" size="small" (onClick)="onSingleDelete()">
-            <ng-template ngTemplate="icon">
-              <TrashIcon/>
-            </ng-template>
-          </ng-button>
-        }
-      </div>
-    }
+      }
 
-    @if (multiple) {
-      <div class="file-picker-multiple-wrapper">
-        @if (!readonly && (fileLimit && filesToEmit.length < fileLimit)) {
-          <div class="picker" (click)="inputFile.click()">
-            <PlusIcon/>
-          </div>
-        }
-        @for (item of filesToShow; track item; let i = $index) {
-          <div class="preview">
-            <ng-container [ngSwitch]="getFileType(item.display)">
-              <div *ngSwitchCase="'image'"
-                   [style.backgroundImage]="'url(' + item.display + ')'"
-                   class="image-preview">
-              </div>
-              <div *ngSwitchCase="'file'" class="file-preview">
-                <UploadIcon/>
-              </div>
-              <div class="file-name">{{ item.name }}</div>
-            </ng-container>
-            @if (!readonly) {
-              <ng-button severity="danger" size="small" (onClick)="onMultipleDelete($event, i)">
-                <ng-template ngTemplate="icon">
-                  <TrashIcon/>
-                </ng-template>
-              </ng-button>
-            }
-          </div>
-        }
-      </div>
-    }
-  </div>
-  @if (label) {
-    <label
-      class="fix-label"
-      [attr.for]="id"
-      [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
-      {{ label | ngLabelStar:showRequiredStar:ngControl }}
-    </label>
-  }
+      @if (multiple) {
+        <div class="file-picker-multiple-wrapper">
+          @if (!readonly && (fileLimit && filesToEmit.length < fileLimit)) {
+            <div class="picker" (click)="inputFile.click()">
+              <PlusIcon/>
+            </div>
+          }
+          @for (item of filesToShow; track item; let i = $index) {
+            <div class="preview">
+              <ng-container [ngSwitch]="getFileType(item.display)">
+                <div *ngSwitchCase="'image'"
+                     [style.backgroundImage]="'url(' + item.display + ')'"
+                     class="image-preview">
+                </div>
+                <div *ngSwitchCase="'file'" class="file-preview">
+                  <UploadIcon/>
+                </div>
+                <div class="file-name">{{ item.name }}</div>
+              </ng-container>
+              @if (!readonly) {
+                <ng-button severity="danger" size="small" (onClick)="onMultipleDelete($event, i)">
+                  <ng-template ngTemplate="icon">
+                    <TrashIcon/>
+                  </ng-template>
+                </ng-button>
+              }
+            </div>
+          }
+        </div>
+      }
+    </ng-template>
+  </ng-element-additions>
+
   @if (hint && showHint()) {
     <div class="message">{{ hint }}</div>
   }

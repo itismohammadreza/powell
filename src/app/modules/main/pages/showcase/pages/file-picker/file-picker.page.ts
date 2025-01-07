@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class FilePickerPage extends PreviewBase {
-  @ViewChild(FilePickerComponent, {static: true}) declare cmpRef: FilePickerComponent;
+  @ViewChild(FilePickerComponent) declare cmpRef: FilePickerComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

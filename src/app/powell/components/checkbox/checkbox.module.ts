@@ -4,7 +4,8 @@ import {FormsModule} from "@angular/forms";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {CheckboxComponent} from "@powell/components/checkbox";
 import {$CheckboxModule, $ProgressSpinnerModule} from "@powell/primeng";
-import {AddonModule} from "@powell/directives/addon";
+import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
   declarations: [CheckboxComponent],
@@ -15,7 +16,8 @@ import {AddonModule} from "@powell/directives/addon";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    AddonModule
+    ElementAdditionsModule,
+    TemplateModule,
   ],
 })
 export class CheckboxModule {

@@ -1,18 +1,23 @@
-<div [ngClass]="{
-      'rtl': rtl,
-      'ltr': !rtl,
-      'label-fix-top': labelPosition == 'fix-top',
-      'label-fix-side': labelPosition == 'fix-side',
-      'label-float': labelPosition == 'float',
-      'inline': inline
-    }" class="color-picker-wrapper">
-  @if (!inline) {
-    <div class="field">
+<div class="color-picker-wrapper"
+     [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [ngStyle]="style"
+     [class]="styleClass"
+     [ngClass]="{
+     'inline': inline
+    }">
+  <ng-element-additions
+    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [labelWidth]="labelWidth"
+    [labelPosition]="labelPosition"
+    [inputId]="inputId"
+    [disabled]="disabled"
+    [fluid]="true">
+    <ng-template ngTemplate="element">
       <p-colorPicker
         [(ngModel)]="value"
         [style]="style"
         [styleClass]="styleClass"
-        [inline]="false"
+        [inline]="inline"
         [format]="format"
         [appendTo]="appendTo"
         [disabled]="disabled"
@@ -26,55 +31,9 @@
         (onChange)="_onChangeColorPicker($event)"
         (onShow)="emitter('onShow',$event)"
         (onHide)="emitter('onHide',$event)"/>
-      <ng-input-text
-        [(ngModel)]="value"
-        [label]="labelPosition == 'float' ? label : null"
-        [variant]="variant"
-        [rtl]="rtl"
-        [showRequiredStar]="labelPosition == 'float' ? showRequiredStar : false"
-        [labelPosition]="labelPosition == 'float' ? 'float' : null"
-        [size]="size"
-        [readonly]="readonly"
-        [disabled]="disabled"
-        [maxlength]="maxlength"
-        [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
-        (onBlur)="_onBlur($event)"
-        (onChange)="_onChangeInput($event)"
-        (onFocus)="emitter('onFocus', $event)"
-        (onInput)="_onInput($event)"
-        (onKeyDown)="_onKeyDown($event)"
-        (onKeyUp)="_onKeyUp($event)"/>
-    </div>
-  }
-  @if (inline) {
-    <div class="field">
-      <p-colorPicker
-        [(ngModel)]="value"
-        [style]="style"
-        [styleClass]="styleClass"
-        [inline]="true"
-        [format]="format"
-        [appendTo]="appendTo"
-        [disabled]="disabled"
-        [tabindex]="tabindex"
-        [inputId]="inputId"
-        [autoZIndex]="autoZIndex"
-        [baseZIndex]="baseZIndex"
-        [showTransitionOptions]="showTransitionOptions"
-        [hideTransitionOptions]="hideTransitionOptions"
-        (onChange)="_onChangeColorPicker($event)"/>
-    </div>
-  }
-  @if (label && labelPosition != 'float') {
-    <label
-      class="fix-label"
-      [attr.for]="inputId"
-      [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
-      {{ label | ngLabelStar:showRequiredStar:ngControl }}
-    </label>
-  }
+    </ng-template>
+  </ng-element-additions>
+
   @if (hint && showHint()) {
     <div class="message">{{ hint }}</div>
   }
@@ -88,4 +47,3 @@
     }
   </div>
 </div>
-

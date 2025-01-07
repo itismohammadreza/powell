@@ -4,9 +4,15 @@
   [previewOptions]="previewOptions"
   (onOptionChange)="onOptionChange($event)">
   <form [formGroup]="form">
-    <ng-select-button
-      formControlName="c1"
-      [validation]="{ required: 'error' }"
-      [options]="options"/>
+    @if (render) {
+      <ng-select-button formControlName="c1" [validation]="{ required: 'error' }" [options]="options">
+        @if (additions.addonStart) {
+          <ng-template ngTemplate="addonStart"><i class="pi pi-prime"></i></ng-template>
+        }
+        @if (additions.addonEnd) {
+          <ng-template ngTemplate="addonEnd"><i class="pi pi-prime"></i></ng-template>
+        }
+      </ng-select-button>
+    }
   </form>
 </ng-preview>

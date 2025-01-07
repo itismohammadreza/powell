@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class SliderPage extends PreviewBase {
-  @ViewChild(SliderComponent, {static: true}) declare cmpRef: SliderComponent;
+  @ViewChild(SliderComponent) declare cmpRef: SliderComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},
@@ -28,7 +28,7 @@ export class SliderPage extends PreviewBase {
     {field: 'disabled', value: false},
     {field: 'min', value: 0},
     {field: 'max', value: 100},
-    {field: 'orientation', value: 'horizontal'},
+    {field: 'orientation', options: 'orientations', value: 'horizontal'},
     {field: 'step', value: 1},
     {field: 'range', value: false},
   ];

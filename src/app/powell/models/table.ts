@@ -1,11 +1,10 @@
 import {
   NgAsyncEvent,
   NgButtonAppearance,
-  NgSeverity,
   NgCssObject,
   NgFilterMatchMode,
-  NgIconPosition,
   NgPosition,
+  NgSeverity,
   NgSize
 } from '@powell/models';
 import {$FilterMetadata} from "@powell/primeng";
@@ -83,7 +82,7 @@ export interface NgTableAction<T = any> {
   severity?: NgSeverity;
   styleClass?: string;
   appearance?: NgButtonAppearance;
-  iconPos?: NgIconPosition;
+  iconPos?: NgPosition;
   rounded?: boolean;
   full?: boolean;
   async?: boolean;

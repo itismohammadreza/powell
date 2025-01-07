@@ -1,7 +1,6 @@
 import {HttpHeaders} from '@angular/common/http';
 import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {
-  NgAddon,
   NgAutoCompleteDropdownMode,
   NgButtonAppearance,
   NgButtonType,
@@ -20,7 +19,6 @@ import {
   NgFilePickerMode,
   NgFileResultType,
   NgFilterMatchMode,
-  NgIconPosition,
   NgInputMode,
   NgInputType,
   NgInputVariant,
@@ -124,7 +122,7 @@ export interface NgConfirmPopupOptions {
   rejectSeverity?: NgSeverity;
   rejectAppearance?: NgButtonAppearance;
   buttonSize?: NgSize;
-  buttonIconPos?: NgIconPosition;
+  buttonIconPos?: NgPosition;
   rtl?: boolean;
 }
 
@@ -167,7 +165,7 @@ export interface NgConfirmDialogOptions {
   rejectSeverity?: NgSeverity;
   rejectAppearance?: NgButtonAppearance;
   buttonSize?: NgSize;
-  buttonIconPos?: NgIconPosition;
+  buttonIconPos?: NgPosition;
   rtl?: boolean;
 }
 
@@ -221,7 +219,7 @@ interface NgDialogBase {
 export interface NgDialogOptions extends NgDialogBase {
   buttonStyleClass?: string;
   buttonIcon?: string;
-  buttonIconPos?: NgIconPosition;
+  buttonIconPos?: NgPosition;
   buttonFull?: boolean;
   buttonLabel?: string;
   buttonSeverity?: NgSeverity;
@@ -248,7 +246,7 @@ export interface NgDialogFormOptions extends NgDialogBase {
   rejectAppearance?: NgButtonAppearance;
   buttonFull?: boolean;
   buttonSize?: NgSize;
-  buttonIconPosition?: NgIconPosition;
+  buttonIconPos?: NgPosition;
   submitDisabled?: boolean | ((dialogFormEvent?: NgDialogFormEvent) => boolean);
   formValidator?: {
     type: string,
@@ -720,8 +718,7 @@ export interface NgDialogFormConfig {
   ///////////////////////////////////////// tree-select /////////////////////////////////////////
   labelWidth?: number;
   icon?: string;
-  iconPos?: NgIconPosition;
-  addon?: NgAddon;
+  iconPos?: NgPosition;
   scrollHeight?: string;
   placeholder?: string;
   panelClass?: string;

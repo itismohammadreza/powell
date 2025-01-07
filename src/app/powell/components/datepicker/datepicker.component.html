@@ -1,211 +1,118 @@
-<div [ngClass]="{
-      'rtl': rtl,
-      'ltr': !rtl,
-      'label-fix-top': labelPosition == 'fix-top',
-      'label-fix-side': labelPosition == 'fix-side',
-      'label-float': labelPosition == 'float',
-      'clearable': showClear,
-      'has-icon': showIcon,
-      'inline': inline,
-      'is-jalali': isJalali,
-    }" class="datepicker-wrapper">
-  <div class="field"
-       [ngAddon]="addon"
-       [addonDisabled]="disabled"
-       [addonSize]="size">
-    <div [ngClass]="{
-      'p-float-label': label && labelPosition == 'float',
-      'p-input-icon-left': icon && iconPos == 'left',
-      'p-input-icon-right': icon && iconPos == 'right'
+<div class="date-picker-wrapper"
+     [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [ngStyle]="style"
+     [class]="styleClass"
+     [ngClass]="{
+     'icon-start': templateMap.iconStart,
+     'icon-end': templateMap.iconEnd,
+     'addon-start': templateMap.addonStart,
+     'addon-end': templateMap.addonEnd,
+     'fluid': fluid,
+     'clearable': showClear,
+     'has-icon': showIcon,
+     'inline': inline,
+     'is-jalali': isJalali,
     }">
-      @if (!inline) {
-        @if (icon) {
-          <i [class.p-disabled]="disabled" [ngClass]="icon"></i>
-        }
-        <ng-datepicker-base
-          [(ngModel)]="value"
-          [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-          [isJalali]="isJalali"
-          [iconDisplay]="iconDisplay"
-          [style]="style"
-          [styleClass]="styleClass"
-          [inputStyle]="inputStyle"
-          [inputId]="inputId"
-          [name]="name"
-          [inputStyleClass]="inputStyleClass"
-          [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
-          [ariaLabelledBy]="ariaLabelledBy"
-          [ariaLabel]="ariaLabel"
-          [iconAriaLabel]="iconAriaLabel"
-          [disabled]="disabled"
-          [dateFormat]="dateFormat"
-          [multipleSeparator]="multipleSeparator"
-          [rangeSeparator]="rangeSeparator"
-          [inline]="false"
-          [showOtherMonths]="showOtherMonths"
-          [selectOtherMonths]="selectOtherMonths"
-          [showIcon]="showIcon"
-          [fluid]="fluid"
-          [icon]="datepickerIcon"
-          [appendTo]="appendTo"
-          [readonlyInput]="readonlyInput"
-          [shortYearCutoff]="shortYearCutoff"
-          [hourFormat]="hourFormat"
-          [timeOnly]="timeOnly"
-          [stepHour]="stepHour"
-          [stepMinute]="stepMinute"
-          [stepSecond]="stepSecond"
-          [showSeconds]="showSeconds"
-          [required]="required"
-          [showOnFocus]="showOnFocus"
-          [showWeek]="showWeek"
-          [startWeekFromFirstDayOfYear]="startWeekFromFirstDayOfYear"
-          [showClear]="showClear"
-          [dataType]="dataType"
-          [selectionMode]="selectionMode"
-          [maxDateCount]="maxDateCount"
-          [showButtonBar]="showButtonBar"
-          [todayButtonStyleClass]="todayButtonStyleClass"
-          [clearButtonStyleClass]="clearButtonStyleClass"
-          [autofocus]="autofocus"
-          [autoZIndex]="autoZIndex"
-          [baseZIndex]="baseZIndex"
-          [panelStyleClass]="panelStyleClass"
-          [panelStyle]="panelStyle"
-          [keepInvalid]="keepInvalid"
-          [hideOnDateTimeSelect]="hideOnDateTimeSelect"
-          [touchUI]="touchUI"
-          [timeSeparator]="timeSeparator"
-          [focusTrap]="focusTrap"
-          [showTransitionOptions]="showTransitionOptions"
-          [hideTransitionOptions]="hideTransitionOptions"
-          [tabindex]="tabindex"
-          [variant]="variant"
-          [size]="size"
-          [minDate]="minDate"
-          [maxDate]="maxDate"
-          [disabledDates]="disabledDates"
-          [disabledDays]="disabledDays"
-          [showTime]="showTime"
-          [responsiveOptions]="responsiveOptions"
-          [numberOfMonths]="numberOfMonths"
-          [firstDayOfWeek]="firstDayOfWeek"
-          [view]="view"
-          [defaultDate]="defaultDate"
-          (onFocus)="emitter('onFocus',$event)"
-          (onBlur)="_onBlur($event)"
-          (onClose)="emitter('onClose',$event)"
-          (onSelect)="_onSelect($event)"
-          (onClear)="_onClear()"
-          (onInput)="_onInput($event)"
-          (onTodayClick)="emitter('onTodayClick',$event)"
-          (onClearClick)="_onClear()"
-          (onMonthChange)="emitter('onMonthChange',$event)"
-          (onYearChange)="emitter('onYearChange',$event)"
-          (onClickOutside)="emitter('onClickOutside',$event)"
-          (onShow)="emitter('onShow',$event)"/>
-        @if (label && labelPosition == 'float') {
-          <label [class.p-disabled]="disabled" [attr.for]="inputId">
-            {{ label | ngLabelStar:showRequiredStar:ngControl }}
-          </label>
-        }
+  <ng-element-additions
+    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [labelWidth]="labelWidth"
+    [labelPosition]="labelPosition"
+    [inputId]="inputId"
+    [disabled]="disabled"
+    [fluid]="fluid">
+    <ng-template ngTemplate="element">
+      <ng-datepicker-base
+        [(ngModel)]="value"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [isJalali]="isJalali"
+        [iconDisplay]="iconDisplay"
+        [style]="style"
+        [styleClass]="styleClass"
+        [inputStyle]="inputStyle"
+        [inputId]="inputId"
+        [name]="name"
+        [inputStyleClass]="inputStyleClass"
+        [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
+        [ariaLabelledBy]="ariaLabelledBy"
+        [ariaLabel]="ariaLabel"
+        [iconAriaLabel]="iconAriaLabel"
+        [disabled]="disabled"
+        [dateFormat]="dateFormat"
+        [multipleSeparator]="multipleSeparator"
+        [rangeSeparator]="rangeSeparator"
+        [inline]="true"
+        [showOtherMonths]="showOtherMonths"
+        [selectOtherMonths]="selectOtherMonths"
+        [showIcon]="showIcon"
+        [fluid]="fluid"
+        [icon]="datepickerIcon"
+        [appendTo]="appendTo"
+        [readonlyInput]="readonlyInput"
+        [shortYearCutoff]="shortYearCutoff"
+        [hourFormat]="hourFormat"
+        [timeOnly]="timeOnly"
+        [stepHour]="stepHour"
+        [stepMinute]="stepMinute"
+        [stepSecond]="stepSecond"
+        [showSeconds]="showSeconds"
+        [required]="required"
+        [showOnFocus]="showOnFocus"
+        [showWeek]="showWeek"
+        [startWeekFromFirstDayOfYear]="startWeekFromFirstDayOfYear"
+        [showClear]="showClear"
+        [dataType]="dataType"
+        [selectionMode]="selectionMode"
+        [maxDateCount]="maxDateCount"
+        [showButtonBar]="showButtonBar"
+        [todayButtonStyleClass]="todayButtonStyleClass"
+        [clearButtonStyleClass]="clearButtonStyleClass"
+        [autofocus]="autofocus"
+        [autoZIndex]="autoZIndex"
+        [baseZIndex]="baseZIndex"
+        [panelStyleClass]="panelStyleClass"
+        [panelStyle]="panelStyle"
+        [keepInvalid]="keepInvalid"
+        [hideOnDateTimeSelect]="hideOnDateTimeSelect"
+        [touchUI]="touchUI"
+        [timeSeparator]="timeSeparator"
+        [focusTrap]="focusTrap"
+        [showTransitionOptions]="showTransitionOptions"
+        [hideTransitionOptions]="hideTransitionOptions"
+        [tabindex]="tabindex"
+        [variant]="variant"
+        [size]="size"
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+        [disabledDates]="disabledDates"
+        [disabledDays]="disabledDays"
+        [showTime]="showTime"
+        [responsiveOptions]="responsiveOptions"
+        [numberOfMonths]="numberOfMonths"
+        [firstDayOfWeek]="firstDayOfWeek"
+        [view]="view"
+        [defaultDate]="defaultDate"
+        (onFocus)="emitter('onFocus',$event)"
+        (onBlur)="_onBlur($event)"
+        (onClose)="emitter('onClose',$event)"
+        (onSelect)="_onSelect($event)"
+        (onClear)="_onClear()"
+        (onInput)="_onInput($event)"
+        (onTodayClick)="emitter('onTodayClick',$event)"
+        (onClearClick)="_onClear()"
+        (onMonthChange)="emitter('onMonthChange',$event)"
+        (onYearChange)="emitter('onYearChange',$event)"
+        (onClickOutside)="emitter('onClickOutside',$event)"
+        (onShow)="emitter('onShow',$event)"/>
+    </ng-template>
+    @for (item of ['addonStart', 'addonEnd', 'iconStart', 'iconEnd']; track item) {
+      @if (templateMap[item]) {
+        <ng-template [ngTemplate]="item">
+          <ng-container *ngTemplateOutlet="templateMap[item]"/>
+        </ng-template>
       }
-      @if (inline) {
-        <ng-datepicker-base
-          [(ngModel)]="value"
-          [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-          [isJalali]="isJalali"
-          [iconDisplay]="iconDisplay"
-          [style]="style"
-          [styleClass]="styleClass"
-          [inputStyle]="inputStyle"
-          [inputId]="inputId"
-          [name]="name"
-          [inputStyleClass]="inputStyleClass"
-          [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
-          [ariaLabelledBy]="ariaLabelledBy"
-          [ariaLabel]="ariaLabel"
-          [iconAriaLabel]="iconAriaLabel"
-          [disabled]="disabled"
-          [dateFormat]="dateFormat"
-          [multipleSeparator]="multipleSeparator"
-          [rangeSeparator]="rangeSeparator"
-          [inline]="true"
-          [showOtherMonths]="showOtherMonths"
-          [selectOtherMonths]="selectOtherMonths"
-          [showIcon]="showIcon"
-          [fluid]="fluid"
-          [icon]="datepickerIcon"
-          [appendTo]="appendTo"
-          [readonlyInput]="readonlyInput"
-          [shortYearCutoff]="shortYearCutoff"
-          [hourFormat]="hourFormat"
-          [timeOnly]="timeOnly"
-          [stepHour]="stepHour"
-          [stepMinute]="stepMinute"
-          [stepSecond]="stepSecond"
-          [showSeconds]="showSeconds"
-          [required]="required"
-          [showOnFocus]="showOnFocus"
-          [showWeek]="showWeek"
-          [startWeekFromFirstDayOfYear]="startWeekFromFirstDayOfYear"
-          [showClear]="showClear"
-          [dataType]="dataType"
-          [selectionMode]="selectionMode"
-          [maxDateCount]="maxDateCount"
-          [showButtonBar]="showButtonBar"
-          [todayButtonStyleClass]="todayButtonStyleClass"
-          [clearButtonStyleClass]="clearButtonStyleClass"
-          [autofocus]="autofocus"
-          [autoZIndex]="autoZIndex"
-          [baseZIndex]="baseZIndex"
-          [panelStyleClass]="panelStyleClass"
-          [panelStyle]="panelStyle"
-          [keepInvalid]="keepInvalid"
-          [hideOnDateTimeSelect]="hideOnDateTimeSelect"
-          [touchUI]="touchUI"
-          [timeSeparator]="timeSeparator"
-          [focusTrap]="focusTrap"
-          [showTransitionOptions]="showTransitionOptions"
-          [hideTransitionOptions]="hideTransitionOptions"
-          [tabindex]="tabindex"
-          [variant]="variant"
-          [size]="size"
-          [minDate]="minDate"
-          [maxDate]="maxDate"
-          [disabledDates]="disabledDates"
-          [disabledDays]="disabledDays"
-          [showTime]="showTime"
-          [responsiveOptions]="responsiveOptions"
-          [numberOfMonths]="numberOfMonths"
-          [firstDayOfWeek]="firstDayOfWeek"
-          [view]="view"
-          [defaultDate]="defaultDate"
-          (onFocus)="emitter('onFocus',$event)"
-          (onBlur)="_onBlur($event)"
-          (onClose)="emitter('onClose',$event)"
-          (onSelect)="_onSelect($event)"
-          (onClear)="_onClear()"
-          (onInput)="_onInput($event)"
-          (onTodayClick)="emitter('onTodayClick',$event)"
-          (onClearClick)="_onClear()"
-          (onMonthChange)="emitter('onMonthChange',$event)"
-          (onYearChange)="emitter('onYearChange',$event)"
-          (onClickOutside)="emitter('onClickOutside',$event)"
-          (onShow)="emitter('onShow',$event)"/>
-      }
-    </div>
-  </div>
-  @if (label && labelPosition != 'float') {
-    <label
-      class="fix-label"
-      [attr.for]="inputId"
-      [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
-      {{ label | ngLabelStar:showRequiredStar:ngControl }}
-    </label>
-  }
+    }
+  </ng-element-additions>
+
   @if (hint && showHint()) {
     <div class="message">{{ hint }}</div>
   }

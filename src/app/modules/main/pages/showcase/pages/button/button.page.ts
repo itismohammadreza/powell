@@ -12,7 +12,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class ButtonPage extends PreviewBase {
-  @ViewChild(ButtonComponent, {static: true}) declare cmpRef: ButtonComponent;
+  @ViewChild(ButtonComponent) declare cmpRef: ButtonComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'appearance', value: 'basic'},

@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class AutoCompletePage extends PreviewBase {
-  @ViewChild(AutoCompleteComponent, {static: true}) declare cmpRef: AutoCompleteComponent;
+  @ViewChild(AutoCompleteComponent) declare cmpRef: AutoCompleteComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

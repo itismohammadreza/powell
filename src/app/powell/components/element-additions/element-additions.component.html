@@ -1,8 +1,12 @@
-<div class="element-additions-wrapper" [class.fluid]="fluid">
+<div class="element-additions-wrapper"
+     [ngClass]="{
+      'fluid': fluid,
+      'disabled': disabled
+     }">
   @switch (labelPosition) {
     @case ("fix-top") {
       <div class="label-top">
-        <label class="fix-label" [attr.for]="inputId" [class.p-disabled]="disabled">
+        <label class="fix-label" [attr.for]="inputId">
           {{ label }}
         </label>
         <div class="field">
@@ -17,12 +21,11 @@
       </div>
     }
     @case ("fix-side") {
-      <div class="label-side">
+      <div class="label-side" [class.revers]="reverseLabel">
         <label
           [style.minWidth.px]="labelWidth"
           [style.maxWidth.px]="labelWidth"
-          [attr.for]="inputId"
-          [class.p-disabled]="disabled">
+          [attr.for]="inputId">
           {{ label }}
         </label>
         <div class="field">
@@ -102,9 +105,9 @@
 <ng-template #inputGroup>
   <p-inputGroup>
     @if (templateMap.addonStart) {
-      <p-inputgroup-addon>
+      <p-inputGroupAddon>
         <ng-container *ngTemplateOutlet="templateMap.addonStart"/>
-      </p-inputgroup-addon>
+      </p-inputGroupAddon>
     }
     @switch (labelPosition) {
       @case ("fix-top") {

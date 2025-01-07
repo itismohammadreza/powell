@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class EditorPage extends PreviewBase {
-  @ViewChild(EditorComponent, {static: true}) declare cmpRef: EditorComponent;
+  @ViewChild(EditorComponent) declare cmpRef: EditorComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class DualLabelSwitchPage extends PreviewBase {
-  @ViewChild(DualLabelSwitchComponent, {static: true}) declare cmpRef: DualLabelSwitchComponent;
+  @ViewChild(DualLabelSwitchComponent) declare cmpRef: DualLabelSwitchComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

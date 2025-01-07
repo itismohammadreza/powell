@@ -24,7 +24,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgIconPosition, NgSize, NgValidation} from '@powell/models';
+import {NgCssObject, NgFixLabelPosition, NgPosition, NgSize, NgValidation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {$ToggleButtonChangeEvent, $uuid} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
@@ -72,7 +72,7 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() inputId: string = $uuid();
   @Input() tabindex: number;
   @Input() size: NgSize;
-  @Input() iconPos: NgIconPosition = 'left';
+  @Input() iconPos: Exclude<NgPosition, 'top' | 'bottom'> = 'left';
   @Input() autofocus: boolean = false;
   @Input() allowEmpty: boolean = false;
   @Output() onChange = new EventEmitter<$ToggleButtonChangeEvent>();

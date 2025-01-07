@@ -4,6 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {CheckboxGroupComponent} from "src/app/powell/components/checkbox-group";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$CheckboxModule} from "@powell/primeng";
+import {ElementAdditionsModule} from "@powell/components/element-additions";
 
 @NgModule({
   declarations: [CheckboxGroupComponent],
@@ -12,7 +13,8 @@ import {$CheckboxModule} from "@powell/primeng";
     $CheckboxModule,
     CommonModule,
     FormsModule,
-    LabelStarModule
+    LabelStarModule,
+    ElementAdditionsModule
   ],
 })
 export class CheckboxGroupModule {

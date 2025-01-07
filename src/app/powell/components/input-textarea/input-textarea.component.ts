@@ -1,14 +1,17 @@
 import {
+  AfterContentInit,
   ChangeDetectorRef,
   Component,
-  ElementRef,
+  ContentChildren,
   EventEmitter,
   forwardRef,
   inject,
   Injector,
   Input,
   OnInit,
-  Output
+  Output,
+  QueryList,
+  TemplateRef
 } from '@angular/core';
 import {
   AbstractControl,
@@ -21,18 +24,11 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {
-  NgAddon,
-  NgCssObject,
-  NgIconPosition,
-  NgInputVariant,
-  NgLabelPosition,
-  NgSize,
-  NgValidation
-} from '@powell/models';
-import {ConfigService, UtilsService} from "@powell/api";
+import {NgCssObject, NgInputVariant, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {ConfigService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import {$uuid} from "@powell/primeng";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-input-textarea',
@@ -48,7 +44,7 @@ import {$uuid} from "@powell/primeng";
   ],
   standalone: false
 })
-export class InputTextareaComponent implements OnInit, ControlValueAccessor {
+export class InputTextareaComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
   private injector = inject(Injector);
   private configService = inject(ConfigService);
@@ -62,10 +58,7 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() icon: string;
   @Input() labelPosition: NgLabelPosition;
-  @Input() iconPos: NgIconPosition = 'left';
-  @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   @Input() inputId: string = $uuid();
@@ -91,7 +84,9 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
   @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
+  templateMap: Record<string, TemplateRef<any>> = {};
   ngControl: NgControl;
   onModelChange: Function = () => {
   };
@@ -125,6 +120,13 @@ export class InputTextareaComponent implements OnInit, ControlValueAccessor {
       }
     }
     this.configService.applyConfigToComponent(this);
+  }
+
+  ngAfterContentInit() {
+    this.templates.forEach(item => {
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
+    });
   }
 
   _onResize(event: Event | {}) {

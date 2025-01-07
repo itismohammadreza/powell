@@ -23,7 +23,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgFixLabelPosition, NgInputVariant, NgSize, NgValidation} from "@powell/models";
+import {NgCssObject, NgFixLabelPosition, NgInputVariant, NgSize, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
 import {TemplateDirective} from "@powell/directives/template";
@@ -58,6 +58,7 @@ export class InputOtpComponent implements OnInit, ControlValueAccessor {
   @Input() labelPosition: NgFixLabelPosition;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
+  @Input() style: NgCssObject;
   // native properties
   @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;

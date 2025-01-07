@@ -4,6 +4,16 @@
       width: auto;
     }
 
+    &.disabled {
+      cursor: default;
+      pointer-events: none;
+      user-select: none;
+
+      label {
+        opacity: 0.6;
+      }
+    }
+
     &.fluid {
       &, .p-inputtext, & > * {
         width: 100%;
@@ -22,6 +32,10 @@
       display: inline-flex;
       align-items: center;
       gap: 0.75rem;
+
+      &.revers {
+        flex-direction: row-reverse;
+      }
     }
 
     .label-top {

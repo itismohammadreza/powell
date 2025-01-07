@@ -5,40 +5,7 @@
 
   ::ng-deep {
     .iran-map-wrapper {
-      display: flex;
-      position: relative;
-
-      .message {
-        position: absolute;
-        top: calc(100% + 0.25rem);
-        font-size: 0.875em;
-
-        &:not(.validation) {
-          color: #6c757d;
-        }
-      }
-
-      &.label-fix-top {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-      }
-
-      &.label-fix-side {
-        flex-direction: row-reverse;
-        align-items: center;
-
-        .fix-label {
-          margin-bottom: 0;
-          align-self: start;
-        }
-      }
-
       .field {
-        width: auto;
-        flex-grow: 1;
-        align-self: stretch;
-        display: inline-flex;
-
         .map {
           display: inline-flex;
           flex-grow: 1;
@@ -84,30 +51,6 @@
             pointer-events: none !important;
             fill: #6c757d !important;
           }
-        }
-      }
-
-      &.ltr {
-        direction: ltr;
-
-        .message {
-          left: 0;
-        }
-
-        .fix-label {
-          margin-right: 1rem;
-        }
-      }
-
-      &.rtl {
-        direction: rtl;
-
-        .message {
-          right: 0;
-        }
-
-        .fix-label {
-          margin-left: 1rem;
         }
       }
     }

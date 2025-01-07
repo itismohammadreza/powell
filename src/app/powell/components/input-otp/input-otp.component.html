@@ -1,44 +1,34 @@
-<div [ngClass]="{
-      'rtl': rtl,
-      'ltr': !rtl,
-      'label-fix-top': labelPosition == 'fix-top',
-      'label-fix-side': labelPosition == 'fix-side'
-    }" class="input-otp-wrapper">
-  <div class="field">
-    <p-inputOtp
-      [(ngModel)]="value"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [invalid]="isInvalid()"
-      [disabled]="disabled"
-      [readonly]="readonly"
-      [variant]="variant"
-      [tabindex]="tabindex"
-      [length]="length"
-      [styleClass]="styleClass"
-      [mask]="mask"
-      [integerOnly]="integerOnly"
-      [autofocus]="autofocus"
-      [size]="size"
-      (onChange)="_onChange($event)"
-      (onFocus)="_onFocus($event)"
-      (onBlur)="_onBlur($event)"/>
-    @for (t of templates; track t) {
-      @if (templateMap[t.getType()]) {
-        <ng-template [pTemplate]="t.getType()">
-          <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
-        </ng-template>
-      }
-    }
-  </div>
-  @if (label) {
-    <label
-      class="fix-label"
-      [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
-      {{ label | ngLabelStar:showRequiredStar:ngControl }}
-    </label>
-  }
+<div class="input-otp-wrapper"
+     [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [ngStyle]="style"
+     [class]="styleClass">
+  <ng-element-additions
+    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [labelWidth]="labelWidth"
+    [labelPosition]="labelPosition"
+    [disabled]="disabled"
+    [fluid]="true">
+    <ng-template ngTemplate="element">
+      <p-inputOtp
+        [(ngModel)]="value"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [invalid]="isInvalid()"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [variant]="variant"
+        [tabindex]="tabindex"
+        [length]="length"
+        [styleClass]="styleClass"
+        [mask]="mask"
+        [integerOnly]="integerOnly"
+        [autofocus]="autofocus"
+        [size]="size"
+        (onChange)="_onChange($event)"
+        (onFocus)="_onFocus($event)"
+        (onBlur)="_onBlur($event)"/>
+    </ng-template>
+  </ng-element-additions>
+
   @if (hint && showHint()) {
     <div class="message">{{ hint }}</div>
   }

@@ -4,6 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {SliderComponent} from "@powell/components/slider";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$SliderModule} from "@powell/primeng";
+import {ElementAdditionsModule} from "@powell/components/element-additions";
 
 @NgModule({
   declarations: [SliderComponent],
@@ -12,7 +13,8 @@ import {$SliderModule} from "@powell/primeng";
     $SliderModule,
     CommonModule,
     FormsModule,
-    LabelStarModule
+    LabelStarModule,
+    ElementAdditionsModule
   ],
 })
 export class SliderModule {

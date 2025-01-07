@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class InputMaskPage extends PreviewBase {
-  @ViewChild(InputMaskComponent, {static: true}) declare cmpRef: InputMaskComponent;
+  @ViewChild(InputMaskComponent) declare cmpRef: InputMaskComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

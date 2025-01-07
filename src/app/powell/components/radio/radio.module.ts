@@ -4,6 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {RadioComponent} from "@powell/components/radio";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$RadioButtonModule} from "@powell/primeng";
+import {ElementAdditionsModule} from "@powell/components/element-additions";
 
 @NgModule({
   declarations: [RadioComponent],
@@ -12,7 +13,8 @@ import {$RadioButtonModule} from "@powell/primeng";
     $RadioButtonModule,
     CommonModule,
     FormsModule,
-    LabelStarModule
+    LabelStarModule,
+    ElementAdditionsModule
   ],
 })
 export class RadioModule {

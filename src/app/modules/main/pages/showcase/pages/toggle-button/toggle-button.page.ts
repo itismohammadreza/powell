@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class ToggleButtonPage extends PreviewBase {
-  @ViewChild(ToggleButtonComponent, {static: true}) declare cmpRef: ToggleButtonComponent;
+  @ViewChild(ToggleButtonComponent) declare cmpRef: ToggleButtonComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

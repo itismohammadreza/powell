@@ -4,11 +4,26 @@
   [previewOptions]="previewOptions"
   (onOptionChange)="onOptionChange($event)">
   <form [formGroup]="form">
-    <ng-auto-complete
-      formControlName="c1"
-      [validation]="{ required: 'error' }"
-      [suggestions]="filteredSuggestions"
-      optionLabel="name"
-      (completeMethod)="filter($event)"/>
+    @if (render) {
+      <ng-auto-complete
+        formControlName="c1"
+        [validation]="{ required: 'error' }"
+        [suggestions]="filteredSuggestions"
+        optionLabel="name"
+        (completeMethod)="filter($event)">
+        @if (additions.addonStart) {
+          <ng-template ngTemplate="addonStart"><i class="pi pi-prime"></i></ng-template>
+        }
+        @if (additions.addonEnd) {
+          <ng-template ngTemplate="addonEnd"><i class="pi pi-prime"></i></ng-template>
+        }
+        @if (additions.iconStart) {
+          <ng-template ngTemplate="iconStart"><i class="pi pi-prime"></i></ng-template>
+        }
+        @if (additions.iconEnd) {
+          <ng-template ngTemplate="iconEnd"><i class="pi pi-prime"></i></ng-template>
+        }
+      </ng-auto-complete>
+    }
   </form>
 </ng-preview>

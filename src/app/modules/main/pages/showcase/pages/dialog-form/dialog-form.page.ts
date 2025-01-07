@@ -44,7 +44,7 @@ export class DialogFormPage extends PreviewBase {
     {field: 'rejectLabel', value: 'لغو'},
     {field: 'rejectIcon', value: ''},
     {field: 'defaultFocus', value: 'accept'},
-    {field: 'buttonIconPosition', value: 'left'},
+    {field: 'buttonIconPos', value: 'left'},
   ];
 
   dialogForm: NgDialogFormOptions = {
@@ -72,7 +72,7 @@ export class DialogFormPage extends PreviewBase {
     rejectLabel: 'لغو',
     rejectIcon: '',
     defaultFocus: 'accept',
-    buttonIconPosition: 'left'
+    buttonIconPos: 'left'
   }
 
   flag = true;

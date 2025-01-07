@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class InputOtpPage extends PreviewBase {
-  @ViewChild(InputOtpComponent, {static: true}) declare cmpRef: InputOtpComponent;
+  @ViewChild(InputOtpComponent) declare cmpRef: InputOtpComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

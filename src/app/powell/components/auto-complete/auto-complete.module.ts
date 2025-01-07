@@ -4,8 +4,10 @@ import {FormsModule} from "@angular/forms";
 import {$AutoCompleteModule} from "@powell/primeng";
 import {AutoCompleteComponent} from "@powell/components/auto-complete";
 import {LabelStarModule} from "@powell/pipes/label-star";
-import {AddonModule} from "@powell/directives/addon";
 import {TemplateModule} from "@powell/directives/template";
+import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {InputText} from "primeng/inputtext";
+import {TimesIcon} from "primeng/icons";
 
 @NgModule({
   declarations: [AutoCompleteComponent],
@@ -15,7 +17,9 @@ import {TemplateModule} from "@powell/directives/template";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    AddonModule
+    ElementAdditionsModule,
+    InputText,
+    TimesIcon,
   ]
 })
 export class AutoCompleteModule {

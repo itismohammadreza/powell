@@ -60,6 +60,8 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   @Input() id: string = $uuid();
+  @Input() style: NgCssObject;
+  @Input() styleClass: string;
   // native properties
   @Input() disabled: boolean;
   @Input() readonly: boolean = false;

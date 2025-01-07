@@ -12,7 +12,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class EmptyPage extends PreviewBase {
-  @ViewChild(EmptyComponent, {static: true}) declare cmpRef: EmptyComponent;
+  @ViewChild(EmptyComponent) declare cmpRef: EmptyComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'imageType', value: 'box1'},

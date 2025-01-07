@@ -17,10 +17,9 @@ import {DestroyService, TranslationService} from "@core/utils";
 import {takeUntil} from "rxjs";
 import {ConfigService} from "@powell/api";
 import {$DividerModule} from "@powell/primeng";
-import {NgAddon} from "@powell/models";
 
 export type OptionType =
-  'iconPositions'
+  'positions'
   | 'displayTypes'
   | 'appearances'
   | 'buttonLayouts'
@@ -35,7 +34,7 @@ export type OptionType =
   | 'views'
   | 'statuses'
   | 'imageTypes'
-  | 'addons'
+  | 'additions'
   | 'sizes'
   | 'colorFormats'
   | 'modes'
@@ -55,7 +54,7 @@ export type OptionType =
 
 export interface PreviewOption {
   field: string;
-  value: boolean | string | number | RegExp | NgAddon;
+  value: boolean | string | number | RegExp;
   options?: OptionType;
 }
 
@@ -80,14 +79,14 @@ export class PreviewOptionsComponent implements OnInit {
 
   ngOnInit() {
     const dropdownOptionsMap: Record<OptionType, any[]> = {
-      iconPositions: ['left', 'right'],
+      positions: ['top', 'bottom', 'left', 'right'],
       displayTypes: ['comma', 'chip'],
       appearances: ['basic', 'text', 'outlined', 'link'],
       buttonLayouts: ['stacked', 'horizontal', 'vertical'],
       keyFilters: [/.*/g, 'pint', 'int', 'pnum', 'num', 'hex', 'email', 'alpha', 'alphanum'],
       currencies: ['USD', 'EUR', 'IRR'],
       currencyDisplays: ['symbol', 'code', 'name'],
-      labelPositions: ['fix-side', 'fix-top', 'float'],
+      labelPositions: ['ifta', 'float-in', 'float-on', 'float-over', 'fix-side', 'fix-top'],
       orientations: ['horizontal', 'vertical'],
       dropdownModes: ['blank', 'current'],
       severities: ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'help', 'contrast'],
@@ -95,7 +94,7 @@ export class PreviewOptionsComponent implements OnInit {
       views: ['date', 'month', 'year'],
       statuses: ['none', 'success', 'info', 'warning', 'error', '403', '404', '500'],
       imageTypes: ['none', 'box1', 'box2', 'magnifier'],
-      addons: ['none', 'before', 'after', 'both'],
+      additions: ['none', 'iconStart', 'iconEnd', 'iconBoth', 'addonStart', 'addonEnd', 'addonBoth'],
       sizes: ['none', 'small', 'large'],
       colorFormats: ['hex', 'rgb', 'hsb'],
       modes: ['basic', 'advanced'],
@@ -145,8 +144,9 @@ export class PreviewOptionsComponent implements OnInit {
     const cmpRef = this[row].createComponent(cmp);
     cmpRef.instance.label = this.translationService.instant(field);
     cmpRef.instance.labelWidth = 130;
+    cmpRef.instance.fluid = true;
     cmpRef.instance.value = value;
-    cmpRef.instance.labelPos = globalConfig.labelPos;
+    cmpRef.instance.labelPosition = globalConfig.labelPosition;
     cmpRef.instance.rtl = globalConfig.rtl;
     cmpRef.instance.variant = globalConfig.inputStyle;
     cmpRef.instance.size = globalConfig.inputSize;
@@ -155,50 +155,6 @@ export class PreviewOptionsComponent implements OnInit {
     })
     switch (cmp) {
       case SelectComponent:
-        if (field === 'addon') {
-          cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
-            switch (event.value) {
-              case 'none':
-                this.optionChange.emit({field: 'addon', value: null})
-                break;
-              case 'before':
-                this.optionChange.emit({
-                  field: 'addon',
-                  value: {
-                    before: {
-                      type: 'icon',
-                      icon: 'pi pi-home',
-                      onClick: () => alert('icon clicked!')
-                    }
-                  }
-                })
-                break;
-              case 'after':
-                this.optionChange.emit({
-                  field: 'addon',
-                  value: {
-                    after: {
-                      type: 'button',
-                      label: 'home',
-                      onClick: () => alert('button clicked!')
-                    }
-                  }
-                })
-                break;
-              case 'both':
-                this.optionChange.emit({
-                  field: 'addon',
-                  value: {
-                    before: {type: 'icon', icon: 'pi pi-home', onClick: () => alert('icon clicked!')},
-                    after: {type: 'button', label: 'home', onClick: () => alert('button clicked!')},
-                  }
-                })
-                break;
-            }
-          });
-          cmpRef.instance.value = 'none';
-          break;
-        }
         cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
           this.optionChange.emit({field, value: event.value == 'none' ? null : event.value});
         });

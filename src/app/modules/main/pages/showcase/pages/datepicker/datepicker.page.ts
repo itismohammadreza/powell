@@ -16,7 +16,7 @@ import {$DatePickerModule} from "@powell/primeng";
   ]
 })
 export class DatepickerPage extends PreviewBase {
-  @ViewChild(DatepickerComponent, {static: true}) declare cmpRef: DatepickerComponent;
+  @ViewChild(DatepickerComponent) declare cmpRef: DatepickerComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

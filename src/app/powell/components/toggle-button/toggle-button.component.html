@@ -1,47 +1,44 @@
-<div [ngClass]="{
-      'rtl': rtl,
-      'ltr': !rtl,
-      'label-fix-top': labelPosition == 'fix-top',
-      'label-fix-side': labelPosition == 'fix-side'
-    }" class="toggle-button-wrapper">
-  <div class="field">
-    <p-toggleButton
-      [(ngModel)]="value"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid()}"
-      [onLabel]="onLabel"
-      [offLabel]="offLabel"
-      [onIcon]="onIcon"
-      [offIcon]="offIcon"
-      [ariaLabel]="ariaLabel"
-      [ariaLabelledBy]="ariaLabelledBy"
-      [disabled]="disabled"
-      [style]="style"
-      [styleClass]="styleClass"
-      [tabindex]="tabindex"
-      [size]="size"
-      [iconPos]="iconPos"
-      [autofocus]="autofocus"
-      [allowEmpty]="allowEmpty"
-      (onChange)="_onChange($event)">
-      @for (t of templates; track t) {
-        @if (templateMap[t.getType()]) {
-          <ng-template [pTemplate]="t.getType()" let-item>
-            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"/>
-          </ng-template>
+<div class="toggle-button-wrapper"
+     [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [ngStyle]="style"
+     [class]="styleClass">
+  <ng-element-additions
+    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [labelWidth]="labelWidth"
+    [labelPosition]="labelPosition"
+    [inputId]="inputId"
+    [disabled]="disabled"
+    [fluid]="true">
+    <ng-template ngTemplate="element">
+      <p-toggleButton
+        [(ngModel)]="value"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid()}"
+        [onLabel]="onLabel"
+        [offLabel]="offLabel"
+        [onIcon]="onIcon"
+        [offIcon]="offIcon"
+        [ariaLabel]="ariaLabel"
+        [ariaLabelledBy]="ariaLabelledBy"
+        [disabled]="disabled"
+        [style]="style"
+        [styleClass]="styleClass"
+        [tabindex]="tabindex"
+        [size]="size"
+        [iconPos]="iconPos"
+        [autofocus]="autofocus"
+        [allowEmpty]="allowEmpty"
+        (onChange)="_onChange($event)">
+        @for (t of templates; track t) {
+          @if (templateMap[t.getType()]) {
+            <ng-template [pTemplate]="t.getType()" let-item>
+              <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"/>
+            </ng-template>
+          }
         }
-      }
-    </p-toggleButton>
-  </div>
-  @if (label) {
-    <label
-      class="fix-label"
-      [attr.for]="inputId"
-      [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
-      {{ label | ngLabelStar:showRequiredStar:ngControl }}
-    </label>
-  }
+      </p-toggleButton>
+    </ng-template>
+  </ng-element-additions>
+
   @if (hint && showHint()) {
     <div class="message">{{ hint }}</div>
   }

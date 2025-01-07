@@ -1,80 +1,77 @@
-<div [ngClass]="{
-      'rtl': rtl,
-      'ltr': !rtl,
-      'label-fix-top': labelPosition == 'fix-top',
-      'label-fix-side': labelPosition == 'fix-side'
-    }" class="file-picker-wrapper">
-  <div class="field">
-    <p-fileUpload
-      [attr.id]="id"
-      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-      [name]="name"
-      [url]="url"
-      [method]="method"
-      [multiple]="multiple"
-      [accept]="accept"
-      [disabled]="disabled"
-      [auto]="auto"
-      [withCredentials]="withCredentials"
-      [maxFileSize]="maxFileSize"
-      [invalidFileSizeMessageSummary]="invalidFileSizeMessageSummary"
-      [invalidFileSizeMessageDetail]="invalidFileSizeMessageDetail"
-      [invalidFileTypeMessageSummary]="invalidFileTypeMessageSummary"
-      [invalidFileTypeMessageDetail]="invalidFileTypeMessageDetail"
-      [invalidFileLimitMessageDetail]="invalidFileLimitMessageDetail"
-      [invalidFileLimitMessageSummary]="invalidFileLimitMessageSummary"
-      [style]="style"
-      [styleClass]="styleClass"
-      [previewWidth]="previewWidth"
-      [chooseLabel]="chooseLabel"
-      [uploadLabel]="uploadLabel"
-      [cancelLabel]="cancelLabel"
-      [chooseIcon]="chooseIcon"
-      [uploadIcon]="uploadIcon"
-      [cancelIcon]="cancelIcon"
-      [showUploadButton]="showUploadButton"
-      [showCancelButton]="showCancelButton"
-      [mode]="mode"
-      [headers]="headers"
-      [customUpload]="customUpload"
-      [fileLimit]="fileLimit"
-      [uploadStyleClass]="uploadStyleClass"
-      [cancelStyleClass]="cancelStyleClass"
-      [removeStyleClass]="removeStyleClass"
-      [chooseStyleClass]="chooseStyleClass"
-      [chooseButtonProps]="chooseButtonProps"
-      [uploadButtonProps]="uploadButtonProps"
-      [cancelButtonProps]="cancelButtonProps"
-      (onBeforeUpload)="emitter('onBeforeUpload',$event)"
-      (onSend)="emitter('onSend',$event)"
-      (onUpload)="emitter('onUpload',$event)"
-      (onError)="emitter('onError',$event)"
-      (onClear)="_onClear()"
-      (onRemove)="_onRemove($event)"
-      (onSelect)="_onSelect($event)"
-      (onProgress)="emitter('onProgress',$event)"
-      (uploadHandler)="emitter('uploadHandler',$event)"
-      (onImageError)="emitter('onImageError',$event)"
-      (onRemoveUploadedFile)="emitter('onRemoveUploadedFile',$event)">
-      @for (t of templates; track t) {
-        @if (templateMap[t.getType()]) {
-          <ng-template [pTemplate]="t.getType()" let-item>
-            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"/>
-          </ng-template>
+<div class="file-picker-wrapper"
+     [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [ngStyle]="style"
+     [class]="styleClass">
+  <ng-element-additions
+    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [labelWidth]="labelWidth"
+    [labelPosition]="labelPosition"
+    [inputId]="id"
+    [disabled]="disabled"
+    [fluid]="true">
+    <ng-template ngTemplate="element">
+      <p-fileUpload
+        [attr.id]="id"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [name]="name"
+        [url]="url"
+        [method]="method"
+        [multiple]="multiple"
+        [accept]="accept"
+        [disabled]="disabled"
+        [auto]="auto"
+        [withCredentials]="withCredentials"
+        [maxFileSize]="maxFileSize"
+        [invalidFileSizeMessageSummary]="invalidFileSizeMessageSummary"
+        [invalidFileSizeMessageDetail]="invalidFileSizeMessageDetail"
+        [invalidFileTypeMessageSummary]="invalidFileTypeMessageSummary"
+        [invalidFileTypeMessageDetail]="invalidFileTypeMessageDetail"
+        [invalidFileLimitMessageDetail]="invalidFileLimitMessageDetail"
+        [invalidFileLimitMessageSummary]="invalidFileLimitMessageSummary"
+        [style]="style"
+        [styleClass]="styleClass"
+        [previewWidth]="previewWidth"
+        [chooseLabel]="chooseLabel"
+        [uploadLabel]="uploadLabel"
+        [cancelLabel]="cancelLabel"
+        [chooseIcon]="chooseIcon"
+        [uploadIcon]="uploadIcon"
+        [cancelIcon]="cancelIcon"
+        [showUploadButton]="showUploadButton"
+        [showCancelButton]="showCancelButton"
+        [mode]="mode"
+        [headers]="headers"
+        [customUpload]="customUpload"
+        [fileLimit]="fileLimit"
+        [uploadStyleClass]="uploadStyleClass"
+        [cancelStyleClass]="cancelStyleClass"
+        [removeStyleClass]="removeStyleClass"
+        [chooseStyleClass]="chooseStyleClass"
+        [chooseButtonProps]="chooseButtonProps"
+        [uploadButtonProps]="uploadButtonProps"
+        [cancelButtonProps]="cancelButtonProps"
+        (onBeforeUpload)="emitter('onBeforeUpload',$event)"
+        (onSend)="emitter('onSend',$event)"
+        (onUpload)="emitter('onUpload',$event)"
+        (onError)="emitter('onError',$event)"
+        (onClear)="_onClear()"
+        (onRemove)="_onRemove($event)"
+        (onSelect)="_onSelect($event)"
+        (onProgress)="emitter('onProgress',$event)"
+        (uploadHandler)="emitter('uploadHandler',$event)"
+        (onImageError)="emitter('onImageError',$event)"
+        (onRemoveUploadedFile)="emitter('onRemoveUploadedFile',$event)">
+        @for (t of templates; track t) {
+          @if (templateMap[t.getType()]) {
+            <ng-template [pTemplate]="t.getType()" let-item>
+              <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"/>
+            </ng-template>
+          }
         }
-      }
-    </p-fileUpload>
-  </div>
-  @if (label) {
-    <label
-      class="fix-label"
-      [attr.for]="id"
-      [class.p-disabled]="disabled"
-      [style.minWidth.px]="labelPosition == 'fix-side' ? labelWidth : null"
-      [style.maxWidth.px]="labelPosition == 'fix-side' ? labelWidth : null">
-      {{ label | ngLabelStar:showRequiredStar:ngControl }}
-    </label>
-  }
+      </p-fileUpload>
+    </ng-template>
+  </ng-element-additions>
+
   @if (hint && showHint()) {
     <div class="message">{{ hint }}</div>
   }

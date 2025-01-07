@@ -1,13 +1,14 @@
 import {
+  AfterContentInit,
   ChangeDetectorRef,
-  Component,
+  Component, ContentChildren,
   EventEmitter,
   forwardRef,
   inject,
   Injector,
   Input,
   OnInit,
-  Output
+  Output, QueryList, TemplateRef
 } from '@angular/core';
 import {
   AbstractControl,
@@ -20,13 +21,11 @@ import {
   NgControl
 } from "@angular/forms";
 import {
-  NgAddon,
   NgCssObject,
   NgDatepickerDateType,
   NgDatepickerHourFormat,
   NgDatepickerIconDisplay,
   NgDatepickerSelectionMode,
-  NgIconPosition,
   NgInputVariant,
   NgLabelPosition,
   NgSize,
@@ -39,11 +38,11 @@ import {
   $DatePickerResponsiveOptions,
   $DatePickerTypeView,
   $DatePickerYearChangeEvent,
-  $LocaleSettings,
   $uuid
 } from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 import {Moment} from "jalali-moment";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'ng-datepicker',
@@ -59,7 +58,7 @@ import {Moment} from "jalali-moment";
   ],
   standalone: false
 })
-export class DatepickerComponent implements OnInit, ControlValueAccessor {
+export class DatepickerComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
   private injector = inject(Injector);
   private configService = inject(ConfigService);
@@ -71,10 +70,7 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() icon: string;
   @Input() labelPosition: NgLabelPosition;
-  @Input() iconPos: NgIconPosition = 'left';
-  @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   @Input() isJalali: boolean;
@@ -157,7 +153,9 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
   @Output() onYearChange = new EventEmitter<$DatePickerYearChangeEvent>();
   @Output() onClickOutside = new EventEmitter<Event>();
   @Output() onShow = new EventEmitter<AnimationEvent>();
+  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
+  templateMap: Record<string, TemplateRef<any>> = {};
   ngControl: NgControl;
   onModelChange: Function = () => {
   };
@@ -191,6 +189,13 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
       }
     }
     this.configService.applyConfigToComponent(this);
+  }
+
+  ngAfterContentInit() {
+    this.templates.forEach(item => {
+      const name = item.getType();
+      this.templateMap[name] = item.templateRef;
+    });
   }
 
   _onInput(event: KeyboardEvent) {

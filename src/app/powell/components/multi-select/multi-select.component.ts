@@ -25,11 +25,9 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgAddon,
   NgChipDisplayMode,
   NgCssObject,
   NgFilterMatchMode,
-  NgIconPosition,
   NgInputVariant,
   NgLabelPosition,
   NgPosition,
@@ -78,10 +76,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() icon: string;
   @Input() labelPosition: NgLabelPosition;
-  @Input() iconPos: NgIconPosition = 'left';
-  @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   // native properties

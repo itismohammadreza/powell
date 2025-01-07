@@ -10,11 +10,11 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   imports: [
     CheckboxGroupModule,
     ReactiveFormsModule,
-    PreviewComponent
+    PreviewComponent,
   ]
 })
 export class CheckboxGroupPage extends PreviewBase {
-  @ViewChild(CheckboxGroupComponent, {static: true}) declare cmpRef: CheckboxGroupComponent;
+  @ViewChild(CheckboxGroupComponent) declare cmpRef: CheckboxGroupComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},
@@ -25,7 +25,7 @@ export class CheckboxGroupPage extends PreviewBase {
     {field: 'labelPosition', options: 'labelPositions', value: this.config.labelPosition},
     {field: 'additions', options: 'additions', value: 'none'},
     {field: 'followConfig', value: this.config.followConfig},
-    {field: 'orientation', value: 'vertical'},
+    {field: 'orientation', options: 'orientations', value: 'vertical'},
     {field: 'async', value: false},
     {field: 'disabled', value: false},
     {field: 'size', options: 'sizes', value: this.config.inputSize},

@@ -19,7 +19,6 @@ export type NgTreeLoadingMode = 'mask' | 'icon';
 export type NgStatusIcon = 'success' | 'info' | 'warning' | 'error' | '403' | '404' | '500';
 export type NgEmptyIcon = 'box1' | 'box2' | 'magnifier';
 export type NgPosition = 'left' | 'right' | 'top' | 'bottom';
-export type NgIconPosition = Exclude<NgPosition, 'top' | 'bottom'>;
 export type NgCssObject = Partial<CSSStyleDeclaration>;
 export type NgButtonProps = Omit<$ButtonProps, 'link' | 'outlined' | 'text' | 'plain'> & {
   appearance: NgButtonAppearance;

@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
   ]
 })
 export class RatingPage extends PreviewBase {
-  @ViewChild(RatingComponent, {static: true}) declare cmpRef: RatingComponent;
+  @ViewChild(RatingComponent) declare cmpRef: RatingComponent;
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},

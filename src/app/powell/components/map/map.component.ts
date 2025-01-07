@@ -45,7 +45,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgAddon, NgFixLabelPosition, NgValidation} from "@powell/models";
+import {NgCssObject, NgFixLabelPosition, NgValidation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {$uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
@@ -78,7 +78,6 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
   @Input() labelPosition: NgFixLabelPosition;
-  @Input() addon: NgAddon;
   @Input() validation: NgValidation;
   @Input() followConfig: boolean;
   @Input() disabled: boolean;
@@ -89,6 +88,8 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Input() clearIcon: string;
   @Input() selectionLimit: number;
   @Input() id: string = $uuid();
+  @Input() style: NgCssObject;
+  @Input() styleClass: string;
   // native properties
   @Input() zoom: number = 10;
   @Input() center: LatLng = latLng(35.68419775656676, 51.38983726501465);
