@@ -75,7 +75,7 @@ export class InputTextareaComponent implements OnInit, AfterContentInit, Control
   // native properties
   @Input() autoResize: boolean = false;
   @Input() variant: NgInputVariant;
-  @Input() fluid: boolean = false;
+  @Input() fluid: boolean;
   @Input() size: NgSize;
   @Output() onResize = new EventEmitter<Event | {}>();
   @Output() onInput = new EventEmitter<Event>();

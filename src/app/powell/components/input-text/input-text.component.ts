@@ -86,7 +86,7 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
   @Input() autocomplete: any;
   // native properties
   @Input() variant: NgInputVariant;
-  @Input() fluid: boolean = false;
+  @Input() fluid: boolean;
   @Input() size: NgSize;
   @Output() onInput = new EventEmitter<Event>();
   @Output() onClick = new EventEmitter<Event>();

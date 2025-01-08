@@ -36,6 +36,7 @@ export class AutoCompletePage extends PreviewBase {
     {field: 'multiple', value: false},
     {field: 'emptyMessage', value: ''},
     {field: 'variant', options: 'variants', value: this.config.inputStyle},
+    {field: 'fluid', value: false},
   ];
 
   filteredSuggestions: any[] = [];
