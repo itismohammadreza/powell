@@ -25,6 +25,7 @@ export class InputMaskPage extends PreviewBase {
     {field: 'labelPosition', options: 'labelPositions', value: this.config.labelPosition},
     {field: 'additions', options: 'additions', value: 'none'},
     {field: 'followConfig', value: this.config.followConfig},
+    {field: 'fluid', value: false},
     {field: 'slotChar', value: '_'},
     {field: 'autoClear', value: true},
     {field: 'showClear', value: true},
