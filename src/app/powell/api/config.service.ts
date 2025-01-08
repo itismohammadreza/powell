@@ -22,8 +22,8 @@ export class ConfigService {
   private _config: NgConfig = {
     followConfig: true,
     rtl: false,
-    fixLabelPosition: 'fix-side',
-    labelPosition: 'fix-side',
+    fixLabelPosition: 'side',
+    labelPosition: 'side',
     showRequiredStar: true,
     ...this.primeNG,
     theme: {

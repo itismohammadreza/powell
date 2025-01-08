@@ -133,7 +133,11 @@ module.exports = {
       center: true,
       padding: '1rem',
     },
-    extend: {},
+    extend: {
+      lineHeight: {
+        DEFAULT: 'normal',
+      },
+    },
   },
   plugins: [
     addPaddingToGridChildren,

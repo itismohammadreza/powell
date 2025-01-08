@@ -86,7 +86,7 @@ export class PreviewOptionsComponent implements OnInit {
       keyFilters: [/.*/g, 'pint', 'int', 'pnum', 'num', 'hex', 'email', 'alpha', 'alphanum'],
       currencies: ['USD', 'EUR', 'IRR'],
       currencyDisplays: ['symbol', 'code', 'name'],
-      labelPositions: ['ifta', 'float-in', 'float-on', 'float-over', 'fix-side', 'fix-top'],
+      labelPositions: ['ifta', 'float-in', 'float-on', 'float-over', 'side', 'top'],
       orientations: ['horizontal', 'vertical'],
       dropdownModes: ['blank', 'current'],
       severities: ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'help', 'contrast'],
@@ -101,7 +101,7 @@ export class PreviewOptionsComponent implements OnInit {
       selectionModes: ['none', 'single', 'multiple', 'checkbox'],
       datepickerSelectionModes: ['single', 'multiple', 'range'],
       numberModes: ['decimal', 'currency'],
-      fixLabelPositions: ['fix-side', 'fix-top'],
+      fixLabelPositions: ['side', 'top'],
       defaultFocusTypes: ['none', 'accept', 'reject'],
       toastPositions: ['top-right', 'top-left', 'bottom-right', 'bottom-left', 'top-center', 'bottom-center', 'center'],
       toastSeverities: ["secondary", "success", "info", "warn", "error", "contrast"],
@@ -158,6 +158,9 @@ export class PreviewOptionsComponent implements OnInit {
         cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
           this.optionChange.emit({field, value: event.value == 'none' ? null : event.value});
         });
+        if (value === undefined || value === null) {
+          cmpRef.instance.value = 'none';
+        }
         break;
       case InputTextComponent:
         cmpRef.instance.onInput.pipe(takeUntil(this.destroy$)).subscribe(event => {
