@@ -3,8 +3,7 @@
 @layer reset {
   html,
   body {
-    background-color: var(--surface-0);
-    color: var(--text-color);
+    line-height: normal;
 
     &,
     .p-component,
@@ -13,13 +12,5 @@
     }
 
     @include mixins.scrollbar($thickness: 10px, $radius: 10px, $track-color: #f5f5f5, $thumb-color: #949494);
-  }
-
-  .ng-rtl {
-    direction: rtl;
-  }
-
-  .ng-ltr {
-    direction: ltr;
   }
 }

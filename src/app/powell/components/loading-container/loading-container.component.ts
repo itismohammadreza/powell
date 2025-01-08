@@ -12,7 +12,7 @@ export class LoadingContainerComponent implements AfterContentInit {
   @Input() considerEmptyArrayAsFilled: boolean = true;
   @Input() considerEmptyObjectAsFilled: boolean = true;
   @Input() spinnerStrokeWidth: number = 4;
-  @Input() spinnerFill: string = 'var(--surface-ground)';
+  @Input() spinnerFill: string;
   @Input() spinnerWidth: string = '70px';
   @Input() spinnerHeight: string = '70px';
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;

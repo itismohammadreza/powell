@@ -1,12 +1,12 @@
-<div class="element-additions-wrapper"
+<div class="element-additions-wrapper label-{{labelPosition}}"
      [ngClass]="{
       'fluid': fluid,
       'disabled': disabled
      }">
   @switch (labelPosition) {
-    @case ("fix-top") {
-      <div class="label-top">
-        <label class="fix-label" [attr.for]="inputId">
+    @case ("top") {
+      <div class="field-wrapper">
+        <label [attr.for]="inputId">
           {{ label }}
         </label>
         <div class="field">
@@ -20,8 +20,8 @@
         </div>
       </div>
     }
-    @case ("fix-side") {
-      <div class="label-side" [class.revers]="reverseLabel">
+    @case ("side") {
+      <div class="field-wrapper" [class.revers]="reverseLabel">
         <label
           [style.minWidth.px]="labelWidth"
           [style.maxWidth.px]="labelWidth"
@@ -110,10 +110,10 @@
       </p-inputGroupAddon>
     }
     @switch (labelPosition) {
-      @case ("fix-top") {
+      @case ("top") {
         <ng-container *ngTemplateOutlet="element"/>
       }
-      @case ("fix-side") {
+      @case ("side") {
         <ng-container *ngTemplateOutlet="element"/>
       }
       @case ("ifta") {

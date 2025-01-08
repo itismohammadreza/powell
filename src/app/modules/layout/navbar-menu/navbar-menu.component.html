@@ -6,7 +6,7 @@
         'sidebar-open' : sidebarVisible
      }">
   <nav
-    class="shadow-sm w-full !bg-transparent backdrop-blur-md h-[68px] fixed top-0 flex items-center justify-between px-4 z-20 border-b border-[--surface-border] transition-all duration-200">
+    class="shadow-sm w-full !bg-transparent backdrop-blur-md h-[68px] fixed top-0 flex items-center justify-between px-4 z-20 border-b transition-all duration-200">
     @if (!sidebarLock && tempSidebarType != 'hover') {
       <ng-button
         icon="pi pi-bars"
@@ -93,7 +93,7 @@
   </p-divider>
   <ng-select
     [label]="'sidebar' | translate"
-    labelPosition="fix-side"
+    labelPosition="side"
     [labelWidth]="170"
     class="mb-4"
     [value]="tempSidebarType"
@@ -101,7 +101,7 @@
     (onChange)="changeSidebarType($event, true)"/>
   <ng-select
     [label]="'lang' | translate"
-    labelPosition="fix-side"
+    labelPosition="side"
     [labelWidth]="170"
     class="mb-4"
     [value]="config.lang"
@@ -112,7 +112,7 @@
   </p-divider>
   <ng-select
     [label]="'selectiveSize' | translate"
-    labelPosition="fix-side"
+    labelPosition="side"
     [labelWidth]="170"
     class="mb-4"
     [value]="config.powellConfig.inputSize"
@@ -120,7 +120,7 @@
     (onChange)="changeGlobalConfig('inputSize',$event.value)"/>
   <ng-select
     [label]="'theme' | translate"
-    labelPosition="fix-side"
+    labelPosition="side"
     [labelWidth]="170"
     class="mb-4"
     [value]="config.powellConfig.theme"
@@ -128,23 +128,23 @@
     (onChange)="changeGlobalConfig('theme',$event.value)"/>
   <ng-select
     [label]="'labelPosition' | translate"
-    labelPosition="fix-side"
+    labelPosition="side"
     [labelWidth]="170"
     class="mb-4"
     [value]="config.powellConfig.labelPosition"
-    [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'},{label:'float',value:'float'}]"
+    [options]="[{label:'side',value:'side'},{label:'top',value:'top'},{label:'float',value:'float'}]"
     (onChange)="changeGlobalConfig('labelPosition',$event.value)"/>
   <ng-select
     [label]="'fixLabelPosition' | translate"
-    labelPosition="fix-side"
+    labelPosition="side"
     [labelWidth]="170"
     class="mb-4"
     [value]="config.powellConfig.fixLabelPosition"
-    [options]="[{label:'fix-side',value:'fix-side'},{label:'fix-top',value:'fix-top'}]"
+    [options]="[{label:'side',value:'side'},{label:'top',value:'top'}]"
     (onChange)="changeGlobalConfig('fixLabelPosition',$event.value)"/>
   <ng-select
     [label]="'inputStyle' | translate"
-    labelPosition="fix-side"
+    labelPosition="side"
     [labelWidth]="170"
     class="mb-4"
     [value]="config.powellConfig.inputStyle"
@@ -152,21 +152,21 @@
     (onChange)="changeGlobalConfig('inputStyle',$event.value)"/>
   <ng-toggle-switch
     [label]="'showRequiredStar' | translate"
-    labelPosition="fix-side"
+    labelPosition="side"
     [labelWidth]="170"
     class="mb-4"
     [value]="config.powellConfig.showRequiredStar"
     (onChange)="changeGlobalConfig('showRequiredStar',$event.checked)"/>
   <ng-toggle-switch
     [label]="'ripple' | translate"
-    labelPosition="fix-side"
+    labelPosition="side"
     [labelWidth]="170"
     class="mb-4"
     [value]="config.powellConfig.ripple"
     (onChange)="changeGlobalConfig('ripple',$event.checked)"/>
   <ng-toggle-switch
     [label]="'rtl' | translate"
-    labelPosition="fix-side"
+    labelPosition="side"
     [labelWidth]="170"
     class="mb-4"
     [value]="config.rtl"

@@ -3,14 +3,14 @@
      [ngStyle]="style"
      [class]="styleClass">
   <ng-element-additions
-    labelPosition="fix-side"
+    labelPosition="side"
     [label]="label | ngLabelStar:showRequiredStar:ngControl"
     [inputId]="inputId"
     [disabled]="disabled"
     [reverseLabel]="true">
     <ng-template ngTemplate="element">
       <p-checkbox
-        [value]="value"
+        [(ngModel)]="value"
         [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
         [name]="name"
         [disabled]="disabled"

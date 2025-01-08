@@ -9,8 +9,8 @@ export const globalConfig: GlobalConfig = {
   powellConfig: {
     ripple: true,
     followConfig: true,
-    fixLabelPosition: 'fix-side',
-    labelPosition: 'fix-side',
+    fixLabelPosition: 'side',
+    labelPosition: 'side',
     inputStyle: 'outlined',
     showRequiredStar: true,
   }
