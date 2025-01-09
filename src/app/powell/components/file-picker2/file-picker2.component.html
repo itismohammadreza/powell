@@ -82,25 +82,23 @@
   </ng-element-additions>
 
   @if (hint && showHint()) {
-    <div class="message">{{ hint }}</div>
+    <small class="message">{{ hint }}</small>
   }
   <div class="message validation">
     @if (!invalidFileSize && !invalidFileType) {
       @for (v of validation | keyvalue; track v) {
         @if (hasError(v.key)) {
-          <div>
-            {{ v.value }}
-          </div>
+          <small class="message">{{ v.value }}</small>
         }
       }
     }
 
     @if (invalidFileSize || invalidFileType) {
       @if (invalidFileSize) {
-        <div>{{ invalidFileSizeMessage }}</div>
+        <small>{{ invalidFileSizeMessage }}</small>
       }
       @if (invalidFileType) {
-        <div>{{ invalidFileTypeMessage }}</div>
+        <small>{{ invalidFileTypeMessage }}</small>
       }
     }
   </div>
