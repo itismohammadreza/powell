@@ -44,14 +44,12 @@
   </ng-element-additions>
 
   @if (hint && showHint()) {
-    <div class="message">{{ hint }}</div>
+    <small class="message">{{ hint }}</small>
   }
   <div class="message validation">
     @for (v of validation | keyvalue; track v) {
       @if (hasError(v.key)) {
-        <div>
-          {{ v.value }}
-        </div>
+        <small class="message">{{ v.value }}</small>
       }
     }
   </div>
