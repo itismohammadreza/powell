@@ -4,7 +4,7 @@ import {FilePickerComponent} from "@powell/components/file-picker";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$FileUploadModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 
 @NgModule({
   declarations: [FilePickerComponent],
@@ -13,7 +13,7 @@ import {ElementAdditionsModule} from "@powell/components/element-additions";
     $FileUploadModule,
     LabelStarModule,
     CommonModule,
-    ElementAdditionsModule
+    FormFieldModule
   ],
 })
 

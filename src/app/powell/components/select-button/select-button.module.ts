@@ -4,7 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {SelectButtonComponent} from "@powell/components/select-button";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$SelectButtonModule} from "@powell/primeng";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 
 @NgModule({
   declarations: [SelectButtonComponent],
@@ -14,7 +14,7 @@ import {ElementAdditionsModule} from "@powell/components/element-additions";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    ElementAdditionsModule
+    FormFieldModule
   ],
 })
 export class SelectButtonModule {

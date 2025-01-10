@@ -2,7 +2,7 @@
      [attr.dir]="rtl ? 'rtl' : 'ltr'"
      [ngStyle]="style"
      [class]="styleClass">
-  <ng-element-additions
+  <ng-form-field
     labelPosition="side"
     [label]="label | ngLabelStar:showRequiredStar:ngControl"
     [inputId]="inputId"
@@ -46,7 +46,7 @@
         <p-progressSpinner strokeWidth="4"/>
       }
     </ng-template>
-  </ng-element-additions>
+  </ng-form-field>
 
   @if (hint && showHint()) {
     <small class="message">{{ hint }}</small>

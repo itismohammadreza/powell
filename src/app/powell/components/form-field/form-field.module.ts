@@ -7,13 +7,13 @@ import {
   $InputGroupModule,
   $InputIconModule
 } from "@powell/primeng";
-import {ElementAdditionsComponent} from "@powell/components/element-additions/element-additions.component";
+import {FormFieldComponent} from "@powell/components/form-field/form-field.component";
 import {CommonModule} from "@angular/common";
 import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
-  declarations: [ElementAdditionsComponent],
-  exports: [ElementAdditionsComponent, TemplateModule],
+  declarations: [FormFieldComponent],
+  exports: [FormFieldComponent, TemplateModule],
   imports: [
     CommonModule,
     $IftaLabelModule,
@@ -25,5 +25,5 @@ import {TemplateModule} from "@powell/directives/template";
     TemplateModule
   ],
 })
-export class ElementAdditionsModule {
+export class FormFieldModule {
 }

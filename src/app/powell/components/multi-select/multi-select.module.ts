@@ -5,7 +5,7 @@ import {MultiSelectComponent} from "@powell/components/multi-select";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$MultiSelectModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 
 @NgModule({
   declarations: [MultiSelectComponent],
@@ -15,7 +15,7 @@ import {ElementAdditionsModule} from "@powell/components/element-additions";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    ElementAdditionsModule,
+    FormFieldModule,
   ],
 })
 export class MultiSelectModule {

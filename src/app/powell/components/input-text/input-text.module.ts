@@ -4,7 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {InputTextComponent} from "@powell/components/input-text";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$FloatLabelModule, $InputTextModule, $KeyFilterModule, $TimesIcon} from "@powell/primeng";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
@@ -18,7 +18,7 @@ import {TemplateModule} from "@powell/directives/template";
     LabelStarModule,
     $TimesIcon,
     $FloatLabelModule,
-    ElementAdditionsModule,
+    FormFieldModule,
     TemplateModule
   ],
 })

@@ -2,7 +2,7 @@
      [attr.dir]="rtl ? 'rtl' : 'ltr'"
      [ngStyle]="style"
      [class]="styleClass">
-  <ng-element-additions
+  <ng-form-field
     [label]="label | ngLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
@@ -40,7 +40,7 @@
         }
       </p-selectButton>
     </ng-template>
-  </ng-element-additions>
+  </ng-form-field>
 
   @if (hint && showHint()) {
     <small class="message">{{ hint }}</small>
