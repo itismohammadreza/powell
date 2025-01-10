@@ -19,11 +19,13 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
+  NgControl,
+  ValidatorFn
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgButtonProps, NgCssObject,
+  NgButtonProps,
+  NgCssObject,
   NgFilePickerRemoveEvent,
   NgFilePickerSelectEvent,
   NgFileResultType,
@@ -86,14 +88,20 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   filesToShow: {display: string | ArrayBuffer, name: string}[] = [];
   filesToEmit: (string | ArrayBuffer | File)[] = [];
   _chooseLabel: string;
+  _validation: NgValidation = {};
   invalidFileSize: boolean;
   invalidFileType: boolean;
+  typeValidator: ValidatorFn = () => ({invalidType: this.invalidFileTypeMessage});
+  sizeValidator: ValidatorFn = () => ({invalidSize: this.invalidFileSizeMessage});
   onModelChange: Function = () => {
   };
   onModelTouched: Function = () => {
   };
 
   ngOnInit() {
+    if (this.validation) {
+      this._validation = {...this.validation}
+    }
     // store user defined label for single selection mode
     this._chooseLabel = this.chooseLabel;
     let parentForm: FormGroup;
@@ -132,8 +140,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
 
   _onSelect(event: any) {
     const file: File = event.target.files[0];
-    this.invalidFileType = false;
-    this.invalidFileSize = false;
+    this.clearValidators();
     if (!this.isValidFile(file)) {
       return;
     }
@@ -179,14 +186,42 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
 
   isValidFile(file: File) {
     if (this.accept && !this.utilsService.isFileTypeValid(file, this.accept)) {
-      this.invalidFileType = true;
+      if (this.ngControl) {
+        this.applyValidator(this.typeValidator);
+      } else {
+        this.invalidFileType = true;
+      }
       return false;
     }
     if (this.maxFileSize && file.size > this.maxFileSize) {
-      this.invalidFileSize = true;
+      if (this.ngControl) {
+        this.applyValidator(this.sizeValidator);
+      } else {
+        this.invalidFileSize = true;
+      }
       return false;
     }
     return true;
+  }
+
+  clearValidators() {
+    if (this.ngControl) {
+      this.ngControl.control.removeValidators(this.typeValidator);
+      this.ngControl.control.removeValidators(this.sizeValidator);
+      this.ngControl.control.updateValueAndValidity();
+      delete this._validation.invalidSize;
+      delete this._validation.invalidType;
+    } else {
+      this.invalidFileType = false;
+      this.invalidFileSize = false;
+    }
+  }
+
+  applyValidator(validator: ValidatorFn) {
+    this.ngControl.control.addValidators(validator);
+    this.ngControl.control.updateValueAndValidity();
+    this.ngControl.control.markAsTouched();
+    this._validation = {...this.validation, ...validator(null)}
   }
 
   async handleFile(item: File) {

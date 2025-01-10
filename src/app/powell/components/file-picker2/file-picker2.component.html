@@ -1,4 +1,4 @@
-<div class="file-picker2-wrapper"
+<div class="file-picker-wrapper"
      [attr.dir]="rtl ? 'rtl' : 'ltr'"
      [ngStyle]="style"
      [class]="styleClass">
@@ -85,21 +85,17 @@
     <small class="message">{{ hint }}</small>
   }
   <div class="message validation">
-    @if (!invalidFileSize && !invalidFileType) {
-      @for (v of validation | keyvalue; track v) {
-        @if (hasError(v.key)) {
-          <small class="message">{{ v.value }}</small>
-        }
-      }
-    }
-
-    @if (invalidFileSize || invalidFileType) {
-      @if (invalidFileSize) {
-        <small>{{ invalidFileSizeMessage }}</small>
-      }
-      @if (invalidFileType) {
-        <small>{{ invalidFileTypeMessage }}</small>
+    @for (v of _validation | keyvalue; track v) {
+      @if (hasError(v.key)) {
+        <small class="message">{{ v.value }}</small>
       }
     }
   </div>
+  <!-- show only if no validation and ngControl provided -->
+  @if (invalidFileSize) {
+    <small>{{ invalidFileSizeMessage }}</small>
+  }
+  @if (invalidFileType) {
+    <small>{{ invalidFileTypeMessage }}</small>
+  }
 </div>
