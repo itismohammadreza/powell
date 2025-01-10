@@ -9,7 +9,7 @@
         class="w-[30vw] mx-auto"
         formControlName="c1"
         [validation]="{ required: 'error' }"
-        [optionGroupChildren]="$any(['states, cities'])"
+        [optionGroupChildren]="['states, cities']"
         [options]="options"
         optionGroupLabel="name">
         @if (additions.addonStart) {
