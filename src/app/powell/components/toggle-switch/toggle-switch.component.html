@@ -3,12 +3,15 @@
      [ngStyle]="style"
      [class]="styleClass">
   <ng-form-field
+    [ngControl]="ngControl"
+    [validation]="validation"
+    [hint]="hint"
     [label]="label | ngLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="inputId"
     [disabled]="disabled">
-    <ng-template ngTemplate="element">
+    <ng-template ngTemplate="element" let-isInvalid="isInvalid">
       <p-toggleSwitch
         [(ngModel)]="value"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
@@ -38,15 +41,4 @@
       }
     </ng-template>
   </ng-form-field>
-
-  @if (hint && showHint()) {
-    <small class="message">{{ hint }}</small>
-  }
-  <div class="message validation">
-    @for (v of validation | keyvalue; track v) {
-      @if (hasError(v.key)) {
-        <small class="message">{{ v.value }}</small>
-      }
-    }
-  </div>
 </div>

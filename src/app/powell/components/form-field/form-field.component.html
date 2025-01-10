@@ -1,4 +1,4 @@
-<div class="element-additions-wrapper label-{{labelPosition}}"
+<div class="form-field-wrapper label-{{labelPosition}}"
      [ngClass]="{
       'fluid': fluid,
       'disabled': disabled
@@ -52,10 +52,21 @@
       <ng-container *ngTemplateOutlet="templateMap.addonStart || templateMap.addonEnd ? inputGroup : floatOver"/>
     }
   }
+
+  <div class="field-footer">
+    @if (hint && showHint()) {
+      <small class="message">{{ hint }}</small>
+    }
+    @for (v of validation | keyvalue; track v) {
+      @if (hasError(v.key)) {
+        <small class="message validation">{{ v.value }}</small>
+      }
+    }
+  </div>
 </div>
 
 <ng-template #element>
-  <ng-container *ngTemplateOutlet="templateMap.element"/>
+  <ng-container *ngTemplateOutlet="templateMap.element;context:{isInvalid: isInvalid}"/>
 </ng-template>
 
 <ng-template #ifta>

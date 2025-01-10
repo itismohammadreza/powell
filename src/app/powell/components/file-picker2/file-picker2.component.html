@@ -3,13 +3,16 @@
      [ngStyle]="style"
      [class]="styleClass">
   <ng-form-field
+    [ngControl]="ngControl"
+    [validation]="validation"
+    [hint]="hint"
     [label]="label | ngLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
     [disabled]="disabled"
     [fluid]="fluid">
-    <ng-template ngTemplate="element">
+    <ng-template ngTemplate="element" let-isInvalid="isInvalid">
       <input
         #inputFile
         type="file"
@@ -81,16 +84,6 @@
     </ng-template>
   </ng-form-field>
 
-  @if (hint && showHint()) {
-    <small class="message">{{ hint }}</small>
-  }
-  <div class="message validation">
-    @for (v of _validation | keyvalue; track v) {
-      @if (hasError(v.key)) {
-        <small class="message">{{ v.value }}</small>
-      }
-    }
-  </div>
   <!-- show only if no validation and ngControl provided -->
   @if (invalidFileSize) {
     <small>{{ invalidFileSizeMessage }}</small>
