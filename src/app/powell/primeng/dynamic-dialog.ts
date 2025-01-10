@@ -3,12 +3,12 @@ import {
   DynamicDialogComponent,
   DynamicDialogConfig,
   DynamicDialogInjector,
-  DynamicDialog,
+  DynamicDialogModule,
   DynamicDialogRef,
   DynamicDialogTemplates
 } from "primeng/dynamicdialog";
 
-export {DynamicDialog as $DynamicDialog}
+export {DynamicDialogModule as $DynamicDialogModule}
 export {DynamicDialogComponent as $DynamicDialogComponent}
 export {DynamicDialogConfig as $DynamicDialogConfig}
 export {DialogService as $DialogService}
