@@ -81,6 +81,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() id: string = $uuid();
   @Input() style: NgCssObject;
   @Input() styleClass: string;
+  @Input() fluid: boolean;
   @Output() onSelect = new EventEmitter<NgFilePickerSelectEvent>();
   @Output() onRemove = new EventEmitter<NgFilePickerRemoveEvent>();
 
