@@ -36,72 +36,72 @@ export class CascadeSelectPage extends PreviewBase {
   override options: any[] = [
     {
       name: 'Australia',
-      value: 'AU',
+      code: 'AU',
       states: [
         {
           name: 'New South Wales',
           cities: [
-            {label: 'Sydney', value: 'A-SY'},
-            {label: 'Newcastle', value: 'A-NE'},
-            {label: 'Wollongong', value: 'A-WO'}
+            { cname: 'Sydney', code: 'A-SY' },
+            { cname: 'Newcastle', code: 'A-NE' },
+            { cname: 'Wollongong', code: 'A-WO' }
           ]
         },
         {
           name: 'Queensland',
           cities: [
-            {label: 'Brisbane', value: 'A-BR'},
-            {label: 'Townsville', value: 'A-TO'}
+            { cname: 'Brisbane', code: 'A-BR' },
+            { cname: 'Townsville', code: 'A-TO' }
           ]
         }
       ]
     },
     {
       name: 'Canada',
-      value: 'CA',
+      code: 'CA',
       states: [
         {
           name: 'Quebec',
           cities: [
-            {label: 'Montreal', value: 'C-MO'},
-            {label: 'Quebec City', value: 'C-QU'}
+            { cname: 'Montreal', code: 'C-MO' },
+            { cname: 'Quebec City', code: 'C-QU' }
           ]
         },
         {
           name: 'Ontario',
           cities: [
-            {label: 'Ottawa', value: 'C-OT'},
-            {label: 'Toronto', value: 'C-TO'}
+            { cname: 'Ottawa', code: 'C-OT' },
+            { cname: 'Toronto', code: 'C-TO' }
           ]
         }
       ]
     },
     {
       name: 'United States',
-      value: 'US',
+      code: 'US',
       states: [
         {
           name: 'California',
           cities: [
-            {label: 'Los Angeles', value: 'US-LA'},
-            {label: 'San Diego', value: 'US-SD'},
-            {label: 'San Francisco', value: 'US-SF'}
+            { cname: 'Los Angeles', code: 'US-LA' },
+            { cname: 'San Diego', code: 'US-SD' },
+            { cname: 'San Francisco', code: 'US-SF' }
           ]
         },
         {
           name: 'Florida',
           cities: [
-            {label: 'Jacksonville', value: 'US-JA'},
-            {label: 'Miami', value: 'US-MI'},
-            {label: 'Tampa', value: 'US-TA'},
-            {label: 'Orlando', value: 'US-OR'}
+            { cname: 'Jacksonville', code: 'US-JA' },
+            { cname: 'Miami', code: 'US-MI' },
+            { cname: 'Tampa', code: 'US-TA' },
+            { cname: 'Orlando', code: 'US-OR' }
           ]
         },
         {
           name: 'Texas',
           cities: [
-            {label: 'Austin', value: 'US-AU'},
-            {label: 'Dallas', value: 'US-DA'},
-            {label: 'Houston', value: 'US-HO'}
+            { cname: 'Austin', code: 'US-AU' },
+            { cname: 'Dallas', code: 'US-DA' },
+            { cname: 'Houston', code: 'US-HO' }
           ]
         }
       ]
