@@ -83,7 +83,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() optionLabel: string;
   @Input() optionValue: string;
   @Input() optionGroupLabel: string;
-  @Input() optionGroupChildren: string;
+  @Input() optionGroupChildren: string[] | string;
   @Input() placeholder: string;
   @Input() dataKey: string;
   @Input() inputId: string = $uuid();

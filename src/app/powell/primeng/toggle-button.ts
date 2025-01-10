@@ -1,8 +1,5 @@
-import {ToggleButton, ToggleButtonModule} from "primeng/togglebutton";
+import {ToggleButton, ToggleButtonChangeEvent, ToggleButtonModule} from "primeng/togglebutton";
 
-export {ToggleButtonModule as $ToggleButtonModule}
 export {ToggleButton as $ToggleButton}
-
-// export {ToggleButtonChangeEvent as $ToggleButtonChangeEvent}
-export interface $ToggleButtonChangeEvent {
-}
+export {ToggleButtonChangeEvent as $ToggleButtonChangeEvent}
+export {ToggleButtonModule as $ToggleButtonModule}
