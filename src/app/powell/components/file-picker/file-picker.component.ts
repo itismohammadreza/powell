@@ -339,28 +339,6 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     (this[name] as EventEmitter<any>).emit(event);
   }
 
-  isInvalid() {
-    if (this.ngControl) {
-      const control = this.ngControl.control;
-      return (!this.disabled && (control.touched || control.dirty) && control.invalid);
-    }
-    return false
-  }
-
-  hasError(type: string) {
-    return this.isInvalid() && this.ngControl.control.hasError(type);
-  }
-
-  showHint() {
-    let hasError = false;
-    for (const errorKey in this.validation) {
-      if (this.hasError(errorKey)) {
-        hasError = true;
-      }
-    }
-    return !hasError;
-  }
-
   writeValue(value: any) {
     if (value && this.utilsService.isImage(value)) {
       this.init(value);

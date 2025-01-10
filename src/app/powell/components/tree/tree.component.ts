@@ -182,28 +182,6 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
     (this[name] as EventEmitter<any>).emit(event);
   }
 
-  isInvalid() {
-    if (this.ngControl) {
-      const control = this.ngControl.control;
-      return (control.touched || control.dirty) && control.invalid;
-    }
-    return false
-  }
-
-  hasError(type: string) {
-    return this.isInvalid() && this.ngControl.control.hasError(type);
-  }
-
-  showHint() {
-    let hasError = false;
-    for (const errorKey in this.validation) {
-      if (this.hasError(errorKey)) {
-        hasError = true;
-      }
-    }
-    return !hasError;
-  }
-
   writeValue(value: any) {
     this.selection = value;
     this.cd.markForCheck();

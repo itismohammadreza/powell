@@ -1,6 +1,7 @@
 import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
-import {NgElementAdditionTemplate, NgLabelPosition} from "@powell/models";
+import {NgElementAdditionTemplate, NgLabelPosition, NgValidation} from "@powell/models";
 import {TemplateDirective} from "@powell/directives/template";
+import {NgControl} from "@angular/forms";
 
 @Component({
   selector: 'ng-form-field',
@@ -9,6 +10,9 @@ import {TemplateDirective} from "@powell/directives/template";
   styleUrl: './form-field.component.scss'
 })
 export class FormFieldComponent implements AfterContentInit {
+  @Input() ngControl: NgControl;
+  @Input() validation: NgValidation;
+  @Input() hint: string;
   @Input() label: string;
   @Input() inputId: string;
   @Input() labelWidth: number;
@@ -32,5 +36,27 @@ export class FormFieldComponent implements AfterContentInit {
     if (hasAddon && hasIcon) {
       console.warn('Both icon and addon detected. Priority is with the addon');
     }
+  }
+
+  isInvalid = () => {
+    if (this.ngControl) {
+      const control = this.ngControl.control;
+      return (!this.disabled && (control.touched || control.dirty) && control.invalid);
+    }
+    return false
+  }
+
+  hasError(type: string) {
+    return this.isInvalid() && this.ngControl.control.hasError(type);
+  }
+
+  showHint() {
+    let hasError = false;
+    for (const errorKey in this.validation) {
+      if (this.hasError(errorKey)) {
+        hasError = true;
+      }
+    }
+    return !hasError;
   }
 }

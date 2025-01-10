@@ -3,13 +3,16 @@
      [ngStyle]="style"
      [class]="styleClass">
   <ng-form-field
+    [ngControl]="ngControl"
+    [validation]="validation"
+    [hint]="hint"
     [label]="label | ngLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
     [disabled]="disabled"
     [fluid]="true">
-    <ng-template ngTemplate="element">
+    <ng-template ngTemplate="element" let-isInvalid="isInvalid">
       <div class="map" [attr.id]="id">
         <span class="title"></span>
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0"
@@ -77,15 +80,4 @@
       </div>
     </ng-template>
   </ng-form-field>
-
-  @if (hint && showHint()) {
-    <small class="message">{{ hint }}</small>
-  }
-  <div class="message validation">
-    @for (v of validation | keyvalue; track v) {
-      @if (hasError(v.key)) {
-        <small class="message">{{ v.value }}</small>
-      }
-    }
-  </div>
 </div>
