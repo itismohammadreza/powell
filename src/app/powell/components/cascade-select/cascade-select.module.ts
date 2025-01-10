@@ -5,7 +5,7 @@ import {CascadeSelectComponent} from "@powell/components/cascade-select";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$CascadeSelectModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 
 @NgModule({
   declarations: [CascadeSelectComponent],
@@ -15,7 +15,7 @@ import {ElementAdditionsModule} from "@powell/components/element-additions";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    ElementAdditionsModule,
+    FormFieldModule,
   ],
 })
 export class CascadeSelectModule {

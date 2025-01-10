@@ -5,7 +5,7 @@ import {LabelStarModule} from "@powell/pipes/label-star";
 import {ListboxComponent} from "@powell/components/listbox";
 import {$ListboxModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 
 @NgModule({
   declarations: [ListboxComponent],
@@ -15,7 +15,7 @@ import {ElementAdditionsModule} from "@powell/components/element-additions";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    ElementAdditionsModule,
+    FormFieldModule,
   ],
 })
 export class ListboxModule {

@@ -11,7 +11,7 @@
      'clearable': showClear,
      'has-dropdown': dropdown
     }">
-  <ng-element-additions
+  <ng-form-field
     [label]="label | ngLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
@@ -111,7 +111,7 @@
         </ng-template>
       }
     }
-  </ng-element-additions>
+  </ng-form-field>
 
   @if (hint && showHint()) {
     <small class="message">{{ hint }}</small>

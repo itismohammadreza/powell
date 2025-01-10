@@ -4,7 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {DatepickerBaseModule} from "@powell/components/datepicker/datepicker-base";
 import {DatepickerComponent} from "@powell/components/datepicker/datepicker.component";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 
 @NgModule({
   declarations: [DatepickerComponent],
@@ -14,7 +14,7 @@ import {ElementAdditionsModule} from "@powell/components/element-additions";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    ElementAdditionsModule,
+    FormFieldModule,
   ],
 })
 export class DatepickerModule {

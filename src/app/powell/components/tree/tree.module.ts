@@ -4,7 +4,7 @@ import {TreeComponent} from "@powell/components/tree";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$TreeModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 
 @NgModule({
   declarations: [TreeComponent],
@@ -13,7 +13,7 @@ import {ElementAdditionsModule} from "@powell/components/element-additions";
     $TreeModule,
     LabelStarModule,
     CommonModule,
-    ElementAdditionsModule
+    FormFieldModule
   ],
 })
 export class TreeModule {

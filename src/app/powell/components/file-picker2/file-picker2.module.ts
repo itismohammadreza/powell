@@ -4,7 +4,7 @@ import {FilePicker2Component} from "@powell/components/file-picker2";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {ButtonModule} from "@powell/components/button";
 import {$PlusIcon, $TrashIcon, $UploadIcon} from "@powell/primeng";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 
 @NgModule({
   declarations: [FilePicker2Component],
@@ -16,7 +16,7 @@ import {ElementAdditionsModule} from "@powell/components/element-additions";
     $UploadIcon,
     $PlusIcon,
     $TrashIcon,
-    ElementAdditionsModule,
+    FormFieldModule,
   ],
 })
 export class FilePicker2Module {

@@ -4,7 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {InputOtpComponent} from "@powell/components/input-otp";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$InputOtpModule} from "@powell/primeng/input-otp";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 
 @NgModule({
   declarations: [InputOtpComponent],
@@ -14,7 +14,7 @@ import {ElementAdditionsModule} from "@powell/components/element-additions";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    ElementAdditionsModule
+    FormFieldModule
   ],
 })
 export class InputOtpModule {

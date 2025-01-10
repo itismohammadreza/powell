@@ -5,7 +5,7 @@ import {DualLabelSwitchComponent} from "@powell/components/dual-label-switch";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$ProgressSpinnerModule, $ToggleSwitchModule} from "@powell/primeng";
 import {TemplateModule} from "@powell/directives/template";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 
 @NgModule({
   declarations: [DualLabelSwitchComponent],
@@ -17,7 +17,7 @@ import {ElementAdditionsModule} from "@powell/components/element-additions";
     FormsModule,
     LabelStarModule,
     TemplateModule,
-    ElementAdditionsModule
+    FormFieldModule
   ],
 })
 export class DualLabelSwitchModule {

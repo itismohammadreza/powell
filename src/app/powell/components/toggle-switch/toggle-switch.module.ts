@@ -4,7 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {ToggleSwitchComponent} from "@powell/components/toggle-switch";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$ProgressSpinnerModule, $ToggleSwitchModule} from "@powell/primeng";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 
 @NgModule({
   declarations: [ToggleSwitchComponent],
@@ -15,7 +15,7 @@ import {ElementAdditionsModule} from "@powell/components/element-additions";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    ElementAdditionsModule
+    FormFieldModule
   ],
 })
 export class ToggleSwitchModule {

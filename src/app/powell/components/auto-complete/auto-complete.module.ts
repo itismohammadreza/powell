@@ -5,7 +5,7 @@ import {$AutoCompleteModule} from "@powell/primeng";
 import {AutoCompleteComponent} from "@powell/components/auto-complete";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {TemplateModule} from "@powell/directives/template";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 import {InputText} from "primeng/inputtext";
 import {TimesIcon} from "primeng/icons";
 
@@ -17,7 +17,7 @@ import {TimesIcon} from "primeng/icons";
     CommonModule,
     FormsModule,
     LabelStarModule,
-    ElementAdditionsModule,
+    FormFieldModule,
     InputText,
     TimesIcon,
   ]

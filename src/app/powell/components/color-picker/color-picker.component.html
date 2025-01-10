@@ -5,7 +5,7 @@
      [ngClass]="{
      'inline': inline
     }">
-  <ng-element-additions
+  <ng-form-field
     [label]="label | ngLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
@@ -31,7 +31,7 @@
         (onShow)="emitter('onShow',$event)"
         (onHide)="emitter('onHide',$event)"/>
     </ng-template>
-  </ng-element-additions>
+  </ng-form-field>
 
   @if (hint && showHint()) {
     <small class="message">{{ hint }}</small>

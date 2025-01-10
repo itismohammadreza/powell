@@ -3,12 +3,12 @@ import {NgElementAdditionTemplate, NgLabelPosition} from "@powell/models";
 import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
-  selector: 'ng-element-additions',
+  selector: 'ng-form-field',
   standalone: false,
-  templateUrl: './element-additions.component.html',
-  styleUrl: './element-additions.component.scss'
+  templateUrl: './form-field.component.html',
+  styleUrl: './form-field.component.scss'
 })
-export class ElementAdditionsComponent implements AfterContentInit {
+export class FormFieldComponent implements AfterContentInit {
   @Input() label: string;
   @Input() inputId: string;
   @Input() labelWidth: number;

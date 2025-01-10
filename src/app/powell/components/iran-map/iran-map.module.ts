@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {IranMapComponent} from "@powell/components/iran-map";
 import {LabelStarModule} from "@powell/pipes/label-star";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 
 @NgModule({
   declarations: [IranMapComponent],
@@ -10,7 +10,7 @@ import {ElementAdditionsModule} from "@powell/components/element-additions";
   imports: [
     LabelStarModule,
     CommonModule,
-    ElementAdditionsModule,
+    FormFieldModule,
   ],
 })
 export class IranMapModule {

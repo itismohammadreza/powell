@@ -6,7 +6,7 @@ import {LabelStarModule} from "@powell/pipes/label-star";
 import {$TooltipModule, $TrashIcon} from "@powell/primeng";
 import {ButtonModule} from "@powell/components/button";
 import {TemplateModule} from "@powell/directives/template";
-import {ElementAdditionsModule} from "@powell/components/element-additions";
+import {FormFieldModule} from "@powell/components/form-field";
 
 @NgModule({
   declarations: [MapComponent],
@@ -19,7 +19,7 @@ import {ElementAdditionsModule} from "@powell/components/element-additions";
     LabelStarModule,
     TemplateModule,
     $TrashIcon,
-    ElementAdditionsModule
+    FormFieldModule
   ],
 })
 export class MapModule {
