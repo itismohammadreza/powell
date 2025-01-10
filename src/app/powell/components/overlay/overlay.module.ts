@@ -2,7 +2,13 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {DialogComponent, DialogFormComponent, DynamicDialogComponent} from '.';
-import {$ConfirmDialogModule, $ConfirmPopupModule, $DialogModule, $DynamicDialog, $ToastModule} from "@powell/primeng";
+import {
+  $ConfirmDialogModule,
+  $ConfirmPopupModule,
+  $DialogModule,
+  $DynamicDialogModule,
+  $ToastModule
+} from "@powell/primeng";
 import {SafeModule} from "@powell/pipes/safe";
 import {ButtonModule} from "@powell/components/button";
 import {AutoCompleteModule} from "@powell/components/auto-complete";
@@ -85,7 +91,7 @@ import {TreeSelectModule} from "@powell/components/tree-select";
     TreeSelectModule,
   ],
   exports: [
-    $DynamicDialog,
+    $DynamicDialogModule,
     $DialogModule,
   ],
 })
