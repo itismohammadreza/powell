@@ -7,9 +7,11 @@
   @switch (labelPosition) {
     @case ("top") {
       <div class="field-wrapper">
-        <label [attr.for]="inputId">
-          {{ label }}
-        </label>
+        @if (label) {
+          <label [attr.for]="inputId">
+            {{ label }}
+          </label>
+        }
         <div class="field">
           @if (templateMap.addonStart || templateMap.addonEnd) {
             <ng-container *ngTemplateOutlet="inputGroup"/>
@@ -23,12 +25,14 @@
     }
     @case ("side") {
       <div class="field-wrapper" [class.revers]="reverseLabel">
-        <label
-          [style.minWidth.px]="labelWidth"
-          [style.maxWidth.px]="labelWidth"
-          [attr.for]="inputId">
-          {{ label }}
-        </label>
+        @if (label) {
+          <label
+            [style.minWidth.px]="labelWidth"
+            [style.maxWidth.px]="labelWidth"
+            [attr.for]="inputId">
+            {{ label }}
+          </label>
+        }
         <div class="field">
           @if (templateMap.addonStart || templateMap.addonEnd) {
             <ng-container *ngTemplateOutlet="inputGroup"/>

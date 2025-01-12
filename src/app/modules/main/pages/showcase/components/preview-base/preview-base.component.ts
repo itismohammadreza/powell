@@ -54,6 +54,8 @@ export abstract class PreviewBase implements AfterViewInit {
   }
 
   onOptionChange(event: any) {
+    this.form.get('c1').markAsPristine();
+    this.form.get('c1').markAsUntouched();
     const {field, value} = event;
     if (field === 'additions') {
       this.additions = {
@@ -88,7 +90,7 @@ export abstract class PreviewBase implements AfterViewInit {
       this.render = false;
       setTimeout(() => {
         this.render = true;
-      }, 0)
+      }, 5)
       return
     }
     if (this.cmpRef) {
