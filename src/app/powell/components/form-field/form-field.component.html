@@ -1,7 +1,8 @@
 <div class="form-field-wrapper label-{{labelPosition}}"
      [ngClass]="{
       'fluid': fluid,
-      'disabled': disabled
+      'disabled': disabled,
+      'is-invalid': isInvalid()
      }">
   @switch (labelPosition) {
     @case ("top") {
