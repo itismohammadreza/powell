@@ -134,8 +134,6 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   _onClick(event: MouseEvent) {
     if (this.async) {
       this.loading = true;
-      this.state = this.state === 1 ? 2 : 1;
-      this.stateChange.emit(this.state);
       this.onClickAsync.emit({event, loadingCallback: this.removeLoading});
     } else {
       this.onClick.emit(event);
@@ -149,6 +147,8 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   removeLoading = (toggle: boolean = false) => {
     this.loading = false;
     if (toggle) {
+      this.state = this.state === 1 ? 2 : 1;
+      this.stateChange.emit(this.state);
       this.toggleState(this.state);
     }
   }
