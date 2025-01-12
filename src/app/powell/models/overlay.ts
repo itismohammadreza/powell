@@ -3,6 +3,7 @@ import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {
   NgAutoCompleteDropdownMode,
   NgButtonAppearance,
+  NgButtonState,
   NgButtonType,
   NgChipDisplayMode,
   NgColorFormat,
@@ -336,7 +337,7 @@ export interface NgDialogFormConfig {
   newIcon?: string;
   newAppearance?: NgButtonAppearance;
   newSeverity?: NgSeverity;
-  defaultState?: 1 | 2;
+  state?: NgButtonState;
   badge?: string;
   badgeClass?: string;
   defaultStateChange?: (dialogFormEvent?: NgDialogFormEvent) => void;

@@ -8,7 +8,7 @@ import {
 } from "suneditor/src/lib/core";
 import {Context} from "suneditor/src/lib/context";
 
-export type NgLoadingCallback = (ok?: boolean) => any;
+export type NgLoadingCallback = (toggle?: boolean) => any;
 export type NgFilePickerSelectEvent = (string | ArrayBuffer | File) | (string | ArrayBuffer | File)[];
 export type NgFilePickerRemoveEvent = (string | ArrayBuffer | File) | void;
 
