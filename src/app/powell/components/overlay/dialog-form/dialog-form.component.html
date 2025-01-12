@@ -261,28 +261,13 @@
     <div class="footer">
       @if (options.rejectVisible) {
         <ng-button
-          [styleClass]="options.rejectButtonStyleClass"
-          [appearance]="options.rejectAppearance"
-          [severity]="options.rejectSeverity"
-          [iconPos]="options.buttonIconPos"
-          [fluid]="options.buttonFull"
-          [icon]="options.rejectIcon"
-          [size]="options.buttonSize"
-          [label]="options.rejectLabel"
+          [buttonProps]="options.rejectButtonProps"
           [disabled]="disableReject"
           (onClick)="close()"/>
       }
       @if (options.acceptVisible) {
         <ng-button
-          [styleClass]="options.acceptButtonStyleClass"
-          [appearance]="options.acceptAppearance"
-          [severity]="options.acceptSeverity"
-          [newSeverity]="options.acceptSeverity"
-          [iconPos]="options.buttonIconPos"
-          [fluid]="options.buttonFull"
-          [icon]="options.acceptIcon"
-          [size]="options.buttonSize"
-          [label]="options.acceptLabel"
+          [buttonProps]="options.acceptButtonProps"
           [disabled]="handleSubmitDisable()"
           type="submit"
           [async]="true"

@@ -58,7 +58,7 @@
         }
       }
 
-      &.ltr {
+      &:dir(ltr) {
         direction: ltr;
 
         .same-column-actions-wrapper {
@@ -72,7 +72,7 @@
         }
       }
 
-      &.rtl {
+      &:dir(rtl) {
         direction: rtl;
 
         .p-datatable-thead > tr > th,

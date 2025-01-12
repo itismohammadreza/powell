@@ -1,4 +1,4 @@
-<div [ngClass]="{rtl: rtl, ltr:!rtl}" class="empty-wrapper">
+<div [attr.dir]="rtl ? 'rtl' : 'ltr'" class="empty-wrapper">
   <div class="empty-icon">
     @switch (imageType) {
       @case ('box1') {

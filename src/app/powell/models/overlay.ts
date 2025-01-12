@@ -3,6 +3,7 @@ import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {
   NgAutoCompleteDropdownMode,
   NgButtonAppearance,
+  NgButtonProps,
   NgButtonState,
   NgButtonType,
   NgChipDisplayMode,
@@ -34,7 +35,6 @@ import {
   NgPosition,
   NgSeverity,
   NgSize,
-  NgToastPosition,
   NgTreeFilterMode,
   NgTreeSelectionMode,
   NgValidationType
@@ -42,8 +42,8 @@ import {
 import {SunEditorOptions} from "suneditor/src/options";
 import {Core} from "suneditor/src/lib/core";
 import {LatLng, LatLngBounds} from "leaflet";
-import {$ContextMenu, $ScrollerOptions} from "@powell/primeng";
-import {EventEmitter} from "@angular/core";
+import {$Confirmation, $ContextMenu, $ScrollerOptions, $ToastMessageOptions, $ToastPositionType} from "@powell/primeng";
+import {TemplateRef} from "@angular/core";
 
 export type NgDefaultFocus = 'accept' | 'reject';
 export type NgHistoricComponent = 'confirmDialog' | 'confirmPopup' | 'dialog' | 'dialogForm' | 'bottomSheet';
@@ -53,120 +53,24 @@ export interface NgHistoryState {
   component: NgHistoricComponent;
 }
 
-export interface NgToastOptions {
-  autoZIndex?: boolean;
-  baseZIndex?: number;
-  style?: NgCssObject;
-  position?: NgToastPosition;
-  preventOpenDuplicates?: boolean;
+export interface NgToastOptions extends $ToastMessageOptions {
+  position?: $ToastPositionType;
   preventDuplicates?: boolean;
+  breakpoints?: Object;
   showTransformOptions?: string;
+  showTransitionOptions?: string;
   hideTransformOptions?: string;
-  showTransitionOptions?: string;
   hideTransitionOptions?: string;
-  breakpoints?: any;
-  severity?: Exclude<NgSeverity, 'secondary' | 'warning' | 'help' | 'danger'> | 'warn' | 'error';
-  summary?: string;
-  detail?: string;
-  id?: any;
-  key?: string;
-  life?: number;
-  sticky?: boolean;
-  closable?: boolean;
-  data?: any;
-  icon?: string;
-  contentStyleClass?: string;
-  styleClass?: string;
-  closeIcon?: string;
-
   rtl?: boolean;
 }
 
-export interface NgMessageOptions {
-  summary?: string;
-  detail?: string;
-  icon?: string;
-}
-
-export interface NgConfirmPopupOptions {
-  showTransitionOptions?: string;
-  hideTransitionOptions?: string;
-  autoZIndex?: boolean;
-  baseZIndex?: number;
+export interface NgConfirmOptions extends $Confirmation {
+  defaultFocus?: NgDefaultFocus;
+  acceptButtonProps?: NgButtonProps;
+  rejectButtonProps?: NgButtonProps;
+  closeButtonProps?: NgButtonProps;
   style?: NgCssObject;
   styleClass?: string;
-  message?: string;
-  key?: string;
-  icon?: string;
-  header?: string;
-  accept?: Function;
-  reject?: Function;
-  acceptLabel?: string;
-  rejectLabel?: string;
-  acceptIcon?: string;
-  rejectIcon?: string;
-  acceptVisible?: boolean;
-  rejectVisible?: boolean;
-  blockScroll?: boolean;
-  closeOnEscape?: boolean;
-  dismissableMask?: boolean;
-  defaultFocus?: NgDefaultFocus;
-  acceptButtonStyleClass?: string;
-  rejectButtonStyleClass?: string;
-  target?: EventTarget;
-  acceptEvent?: EventEmitter<any>;
-  rejectEvent?: EventEmitter<any>;
-
-  buttonFull?: boolean;
-  acceptSeverity?: NgSeverity;
-  acceptAppearance?: NgButtonAppearance;
-  rejectSeverity?: NgSeverity;
-  rejectAppearance?: NgButtonAppearance;
-  buttonSize?: NgSize;
-  buttonIconPos?: NgPosition;
-  rtl?: boolean;
-}
-
-export interface NgConfirmDialogOptions {
-  header?: string;
-  icon?: string;
-  message?: string;
-  style?: NgCssObject;
-  styleClass?: string;
-  maskStyleClass?: string;
-  acceptIcon?: string;
-  acceptLabel?: string;
-  closeAriaLabel?: string;
-  acceptAriaLabel?: string;
-  acceptVisible?: boolean;
-  rejectIcon?: string;
-  rejectLabel?: string;
-  rejectAriaLabel?: string;
-  rejectVisible?: boolean;
-  acceptButtonStyleClass?: string;
-  rejectButtonStyleClass?: string;
-  closeOnEscape?: boolean;
-  dismissableMask?: boolean;
-  blockScroll?: boolean;
-  closable?: boolean;
-  appendTo?: any;
-  key?: string;
-  autoZIndex?: boolean;
-  baseZIndex?: number;
-  transitionOptions?: string;
-  focusTrap?: boolean;
-  defaultFocus?: NgDefaultFocus;
-  breakpoints?: any;
-  visible?: any;
-  position?: string;
-
-  buttonFull?: boolean
-  acceptSeverity?: NgSeverity;
-  acceptAppearance?: NgButtonAppearance;
-  rejectSeverity?: NgSeverity;
-  rejectAppearance?: NgButtonAppearance;
-  buttonSize?: NgSize;
-  buttonIconPos?: NgPosition;
   rtl?: boolean;
 }
 
@@ -206,8 +110,18 @@ interface NgDialogBase {
   closeTabindex?: string;
   minimizeIcon?: string;
   maximizeIcon?: string;
-  style?: NgCssObject;
+  closeButtonProps?: NgButtonProps;
+  maximizeButtonProps?: NgButtonProps;
+  visible?: boolean;
+  style?: any;
   position?: NgDialogPosition;
+  headerTemplate?: TemplateRef<any>;
+  contentTemplate?: TemplateRef<any>;
+  footerTemplate?: TemplateRef<any>;
+  closeIconTemplate?: TemplateRef<any>;
+  maximizeIconTemplate?: TemplateRef<any>;
+  minimizeIconTemplate?: TemplateRef<any>;
+  headlessTemplate?: TemplateRef<any>;
   onShow?: () => any;
   onHide?: () => any;
   visibleChange?: (event: any) => any;
@@ -218,14 +132,7 @@ interface NgDialogBase {
 }
 
 export interface NgDialogOptions extends NgDialogBase {
-  buttonStyleClass?: string;
-  buttonIcon?: string;
-  buttonIconPos?: NgPosition;
-  buttonFull?: boolean;
-  buttonLabel?: string;
-  buttonSeverity?: NgSeverity;
-  buttonAppearance?: NgButtonAppearance;
-  buttonSize?: NgSize;
+  buttonProps?: NgButtonProps;
   content?: string;
 }
 
@@ -233,21 +140,10 @@ export interface NgDialogFormOptions extends NgDialogBase {
   containerStyleClass?: string;
   containerStyle?: NgCssObject;
   defaultFocus?: NgDefaultFocus;
-  acceptButtonStyleClass?: string;
-  rejectButtonStyleClass?: string;
   acceptVisible?: boolean;
-  acceptIcon?: string;
-  acceptSeverity?: NgSeverity;
-  acceptLabel?: string;
-  acceptAppearance?: NgButtonAppearance;
   rejectVisible?: boolean;
-  rejectIcon?: string;
-  rejectSeverity?: NgSeverity;
-  rejectLabel?: string;
-  rejectAppearance?: NgButtonAppearance;
-  buttonFull?: boolean;
-  buttonSize?: NgSize;
-  buttonIconPos?: NgPosition;
+  acceptButtonProps?: NgButtonProps;
+  rejectButtonProps?: NgButtonProps;
   submitDisabled?: boolean | ((dialogFormEvent?: NgDialogFormEvent) => boolean);
   formValidator?: {
     type: string,

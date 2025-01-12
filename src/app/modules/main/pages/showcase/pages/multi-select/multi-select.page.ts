@@ -39,7 +39,7 @@ export class MultiSelectPage extends PreviewBase {
     {field: 'autofocusFilter', value: false},
     {field: 'filter', value: true},
     {field: 'overlayVisible', value: false},
-    {field: 'display', value: 'comma'},
+    {field: 'display', options: 'displayTypes', value: 'comma'},
     {field: 'size', options: 'sizes', value: this.config.inputSize},
     {field: 'showClear', value: true},
     {field: 'placeholder', value: ''},

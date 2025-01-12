@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NgConfirmPopupOptions} from "@powell/models";
+import {NgConfirmOptions} from "@powell/models";
 import {ButtonModule} from "@powell/components/button";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
@@ -22,17 +22,11 @@ export class ConfirmPopupPage extends PreviewBase {
     {field: 'rejectIcon', value: ''},
     {field: 'acceptVisible', value: true},
     {field: 'rejectVisible', value: true},
-    {field: 'acceptSeverity', value: 'primary'},
-    {field: 'acceptAppearance', value: 'basic'},
-    {field: 'buttonSize', value: 'small'},
-    {field: 'rejectSeverity', value: 'primary'},
-    {field: 'rejectAppearance', value: 'outlined'},
-    {field: 'buttonFull', value: false},
     {field: 'defaultFocus', value: 'accept'},
     {field: 'rtl', value: this.config.rtl},
   ];
 
-  confirmPopup: NgConfirmPopupOptions = {
+  confirmPopup: NgConfirmOptions = {
     message: 'Are you sure?',
     icon: 'pi pi-exclamation-triangle',
     acceptLabel: 'Yes',
@@ -41,12 +35,6 @@ export class ConfirmPopupPage extends PreviewBase {
     rejectIcon: '',
     acceptVisible: true,
     rejectVisible: true,
-    acceptSeverity: 'primary',
-    acceptAppearance: 'basic',
-    buttonSize: 'small',
-    rejectSeverity: 'primary',
-    rejectAppearance: 'outlined',
-    buttonFull: false,
     defaultFocus: 'accept',
     rtl: this.config.rtl
   }

@@ -15,21 +15,21 @@ export class ButtonPage extends PreviewBase {
   @ViewChild(ButtonComponent) declare cmpRef: ButtonComponent;
 
   override previewOptions: PreviewOption[] = [
-    {field: 'appearance', value: 'basic'},
+    {field: 'appearance', options: 'appearances', value: 'basic'},
     {field: 'async', value: false},
     {field: 'newLabel', value: 'new label'},
-    {field: 'newAppearance', value: 'outlined'},
-    {field: 'newSeverity', value: 'secondary'},
-    {field: 'iconPos', value: 'left'},
+    {field: 'newAppearance', options: 'appearances', value: 'outlined'},
+    {field: 'newSeverity', options: 'severities', value: 'secondary'},
+    {field: 'iconPos', options: 'positions', value: 'left'},
     {field: 'icon', value: 'pi pi-user'},
     {field: 'badge', value: '2'},
     {field: 'label', value: 'label'},
     {field: 'disabled', value: false},
     {field: 'raised', value: false},
     {field: 'rounded', value: false},
-    {field: 'severity', value: 'primary'},
+    {field: 'severity', options: 'severities', value: 'primary'},
     {field: 'size', options: 'sizes', value: 'none'},
-    {field: 'badgeSeverity', value: 'secondary'},
+    {field: 'badgeSeverity', options: 'severities', value: 'secondary'},
     {field: 'fluid', value: false}
   ];
 }
