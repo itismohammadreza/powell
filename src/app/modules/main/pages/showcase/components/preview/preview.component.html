@@ -1,5 +1,8 @@
 <div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
-  <p-card [header]="header" [subheader]="subheader"/>
+  <p-card [subheader]="description">
+    <ng-template #title> {{ component }}</ng-template>
+    <ng-template #subtitle> {{ description }}</ng-template>
+  </p-card>
   <p-panel [header]="'options' | translate">
     <ng-preview-options [options]="previewOptions" (optionChange)="onOptionChange.emit($event)"/>
   </p-panel>
