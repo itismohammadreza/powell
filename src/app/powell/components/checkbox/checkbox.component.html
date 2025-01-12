@@ -10,6 +10,7 @@
     [label]="label | ngLabelStar:showRequiredStar:ngControl"
     [inputId]="inputId"
     [disabled]="disabled"
+    [readonly]="readonly"
     [reverseLabel]="true">
     <ng-template ngTemplate="element" let-isInvalid="isInvalid">
       <p-checkbox

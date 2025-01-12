@@ -10,7 +10,8 @@
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
-    [disabled]="disabled">
+    [disabled]="disabled"
+    [readonly]="readonly">
     <ng-template ngTemplate="element" let-isInvalid="isInvalid">
       <p-knob
         [(ngModel)]="value"

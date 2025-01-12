@@ -17,6 +17,7 @@ export class FormFieldComponent implements AfterContentInit {
   @Input() inputId: string;
   @Input() labelWidth: number;
   @Input() disabled: boolean;
+  @Input() readonly: boolean;
   @Input() labelPosition: NgLabelPosition;
   @Input() fluid: boolean;
   @Input() reverseLabel: boolean;
@@ -41,7 +42,7 @@ export class FormFieldComponent implements AfterContentInit {
   isInvalid = () => {
     if (this.ngControl) {
       const control = this.ngControl.control;
-      return (!this.disabled && (control.touched || control.dirty) && control.invalid);
+      return (!this.disabled && !this.readonly && (control.touched || control.dirty) && control.invalid);
     }
     return false
   }

@@ -10,7 +10,8 @@
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="inputId"
-    [disabled]="disabled">
+    [disabled]="disabled"
+    [readonly]="readonly">
     <ng-template ngTemplate="element" let-isInvalid="isInvalid">
       <div class="field-inner">
         <span class="label-left" [class.text-muted]="disabled">{{ labelLeft }}</span>
