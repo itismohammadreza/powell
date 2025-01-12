@@ -17,7 +17,7 @@ import {TranslateModule} from "@ngx-translate/core";
 })
 export class PreviewComponent {
   @Input() previewOptions: PreviewOption[] = [];
-  @Input() header: string;
-  @Input() subheader: string;
+  @Input() component: string;
+  @Input() description: string;
   @Output() onOptionChange = new EventEmitter<PreviewOption>();
 }
