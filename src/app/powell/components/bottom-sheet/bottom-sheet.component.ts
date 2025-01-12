@@ -108,6 +108,9 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   }
 
   mapToButtonProps(props: NgButtonProps) {
+    if (!props) {
+      return {};
+    }
     return {
       ...props,
       link: props.appearance === 'link',
