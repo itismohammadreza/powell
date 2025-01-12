@@ -90,7 +90,10 @@ export abstract class PreviewBase implements AfterViewInit {
       this.render = false;
       setTimeout(() => {
         this.render = true;
-      }, 5)
+        setTimeout(() => {
+          this.ngAfterViewInit();
+        });
+      }, 5);
       return
     }
     if (this.cmpRef) {

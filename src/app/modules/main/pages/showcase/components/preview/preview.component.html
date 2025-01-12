@@ -7,7 +7,7 @@
     <ng-preview-options [options]="previewOptions" (optionChange)="onOptionChange.emit($event)"/>
   </p-panel>
 
-  <p-panel [header]="'preview' | translate">
+  <p-panel [style]="{minHeight:'110px'}" [header]="'preview' | translate">
     <ng-content></ng-content>
   </p-panel>
 </div>

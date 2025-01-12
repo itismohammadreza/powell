@@ -26,17 +26,10 @@
 
       .message {
         color: #64748b;
+        margin-top: 0.5rem;
 
         &.validation {
           color: #dc2626;
-        }
-
-        &:first-child {
-          margin-top: 0.5rem;
-
-          ~ .message {
-            margin-top: 0.25rem;
-          }
         }
       }
     }
