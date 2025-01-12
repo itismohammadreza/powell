@@ -19,7 +19,8 @@ import {
   NgButtonResponsiveSize,
   NgButtonState,
   NgButtonType,
-  NgCssObject, NgPosition,
+  NgCssObject,
+  NgPosition,
   NgSeverity,
   NgSize
 } from '@powell/models';
@@ -48,7 +49,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   @Input() newIcon: string;
   @Input() newAppearance: NgButtonAppearance;
   @Input() newSeverity: NgSeverity = 'primary';
-  @Input() defaultState: NgButtonState = 1;
+  @Input() state: NgButtonState = 1;
   // native properties
   @Input() type: NgButtonType = 'button';
   @Input() iconPos: NgPosition = 'left';
@@ -72,7 +73,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   @Output() onClick = new EventEmitter<MouseEvent>();
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
-  @Output() defaultStateChange = new EventEmitter<NgButtonState>();
+  @Output() stateChange = new EventEmitter<NgButtonState>();
   @Output() onClickAsync = new EventEmitter<NgAsyncEvent<MouseEvent>>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
@@ -94,7 +95,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
     }
 
     if (this.async) {
-      this.toggleState(this.defaultState);
+      this.toggleState(this.state);
     }
   }
 
@@ -133,8 +134,8 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   _onClick(event: MouseEvent) {
     if (this.async) {
       this.loading = true;
-      this.defaultState = this.defaultState === 1 ? 2 : 1;
-      this.defaultStateChange.emit(this.defaultState);
+      this.state = this.state === 1 ? 2 : 1;
+      this.stateChange.emit(this.state);
       this.onClickAsync.emit({event, loadingCallback: this.removeLoading});
     } else {
       this.onClick.emit(event);
@@ -145,10 +146,10 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
     (this[name] as EventEmitter<any>).emit(event);
   }
 
-  removeLoading = (ok: boolean = false) => {
+  removeLoading = (toggle: boolean = false) => {
     this.loading = false;
-    if (ok) {
-      this.toggleState(this.defaultState);
+    if (toggle) {
+      this.toggleState(this.state);
     }
   }
 
@@ -159,7 +160,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
       this._tmpAppearance = defaultState === 1 ? this.appearance : this.newAppearance || this.appearance;
       this._tmpSeverity = defaultState === 1 ? this.severity : this.newSeverity || this.severity;
     } else {
-      this.defaultState = 1;
+      this.state = 1;
       this._tmpLabel = this.label;
       this._tmpIcon = this.icon;
       this._tmpAppearance = this.appearance;

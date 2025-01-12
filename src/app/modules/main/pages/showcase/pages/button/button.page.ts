@@ -18,7 +18,7 @@ export class ButtonPage extends PreviewBase {
     {field: 'appearance', value: 'basic'},
     {field: 'async', value: false},
     {field: 'newLabel', value: 'New Label'},
-    {field: 'newAppearance', value: ''},
+    {field: 'newAppearance', value: 'outlined'},
     {field: 'newSeverity', value: 'secondary'},
     {field: 'iconPos', value: 'left'},
     {field: 'icon', value: 'pi pi-user'},
