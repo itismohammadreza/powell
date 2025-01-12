@@ -15,7 +15,6 @@
     <ng-template ngTemplate="element" let-isInvalid="isInvalid">
       <p-checkbox
         [(ngModel)]="value"
-        [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
         [name]="name"
         [disabled]="disabled"
         [binary]="binary"
@@ -25,7 +24,7 @@
         [inputId]="inputId"
         [style]="style"
         [inputStyle]="inputStyle"
-        [styleClass]="styleClass"
+        styleClass="{{styleClass}} {{isInvalid() && 'ng-invalid ng-dirty'}}"
         [inputClass]="inputClass"
         [indeterminate]="indeterminate"
         [size]="size"
