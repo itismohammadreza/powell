@@ -15,7 +15,7 @@ export class EmptyPage extends PreviewBase {
   @ViewChild(EmptyComponent) declare cmpRef: EmptyComponent;
 
   override previewOptions: PreviewOption[] = [
-    {field: 'imageType', value: 'box1'},
+    {field: 'imageType', options: 'imageTypes', value: 'box1'},
     {field: 'text', value: ''},
     {field: 'rtl', value: this.config.rtl},
     {field: 'followConfig', value: this.config.followConfig},

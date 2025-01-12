@@ -15,7 +15,7 @@ export class StatusPage extends PreviewBase {
   @ViewChild(StatusComponent) declare cmpRef: StatusComponent;
 
   override previewOptions: PreviewOption[] = [
-    {field: 'status', value: 'info'},
+    {field: 'status', options: 'statuses', value: 'info'},
     {field: 'text', value: ''},
     {field: 'subText', value: ''},
     {field: 'rtl', value: this.config.rtl},

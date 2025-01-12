@@ -1,10 +1,9 @@
-<div [ngClass]="{'rtl': rtl, 'ltr': !rtl}">
-  <p-breadcrumb
-    [model]="breadcrumbs$ | async"
-    [style]="style"
-    [styleClass]="styleClass"
-    [home]="home"
-    [homeAriaLabel]="homeAriaLabel"
-    (onItemClick)="_onItemClick($event)">
-  </p-breadcrumb>
-</div>
+<p-breadcrumb
+  [attr.dir]="rtl ? 'rtl' : 'ltr'"
+  [model]="breadcrumbs$ | async"
+  [style]="style"
+  [styleClass]="styleClass"
+  [home]="home"
+  [homeAriaLabel]="homeAriaLabel"
+  (onItemClick)="_onItemClick($event)">
+</p-breadcrumb>

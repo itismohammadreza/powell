@@ -30,7 +30,7 @@ export class FilePicker2Page extends PreviewBase {
     {field: 'accept', value: ''},
     {field: 'maxFileSize', value: 100000},
     {field: 'fileLimit', value: 20000},
-    {field: 'chooseLabel', value: 'انتخاب'},
+    {field: 'chooseLabel', value: 'choose'},
     {field: 'fluid', value: false},
   ];
 }

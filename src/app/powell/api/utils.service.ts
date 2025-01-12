@@ -3,12 +3,10 @@ import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms
 import {DOCUMENT} from '@angular/common';
 import {fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {ConfigService} from "@powell/api";
 
 @Injectable()
 export class UtilsService {
   private document = inject(DOCUMENT);
-  private configService = inject(ConfigService);
 
   checkOnlineState() {
     return merge(

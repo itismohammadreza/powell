@@ -1,5 +1,6 @@
 <p-drawer
   position="bottom"
+  [attr.dir]="rtl ? 'rtl' : 'ltr'"
   [appendTo]="appendTo"
   [blockScroll]="blockScroll"
   [style]="computedStyle"
@@ -26,34 +27,4 @@
       </ng-template>
     }
   }
-<!--  <div class="bottom-sheet-wrapper" [ngClass]="{'rtl': rtl, 'ltr': !rtl}">-->
-<!--    @if (header || closable || templateMap.header) {-->
-<!--      <div class="header" [class.show-close-icon]="closable">-->
-<!--        @if (templateMap.header) {-->
-<!--          <ng-container *ngTemplateOutlet="templateMap.header"/>-->
-<!--        } @else {-->
-<!--          <h5>{{ header }}</h5>-->
-<!--        }-->
-<!--        @if (closable) {-->
-<!--          <ng-button-->
-<!--            [rounded]="true"-->
-<!--            size="small"-->
-<!--            appearance="text"-->
-<!--            (onClick)="_onHide()">-->
-<!--            <ng-template ngTemplate="icon">-->
-<!--              <TimesIcon/>-->
-<!--            </ng-template>-->
-<!--          </ng-button>-->
-<!--        }-->
-<!--      </div>-->
-<!--    }-->
-<!--    <div class="content">-->
-<!--      <ng-content/>-->
-<!--    </div>-->
-<!--    @if (templateMap.footer) {-->
-<!--      <div class="footer">-->
-<!--        <ng-container *ngTemplateOutlet="templateMap.footer"/>-->
-<!--      </div>-->
-<!--    }-->
-<!--  </div>-->
 </p-drawer>

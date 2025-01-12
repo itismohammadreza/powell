@@ -27,7 +27,7 @@ export class InputNumberPage extends PreviewBase {
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'showButtons', value: true},
     {field: 'format', value: true},
-    {field: 'buttonLayout', value: 'stacked'},
+    {field: 'buttonLayout', options: 'buttonLayouts', value: 'stacked'},
     {field: 'placeholder', value: ''},
     {field: 'size', options: 'sizes', value: this.config.inputSize},
     {field: 'maxlength', value: ''},

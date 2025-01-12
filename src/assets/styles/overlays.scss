@@ -11,7 +11,7 @@
     justify-content: flex-end;
   }
 
-  &.ltr {
+  &:dir(ltr) {
     direction: ltr;
 
     .p-confirm-popup-icon ~ .p-confirm-popup-message {
@@ -19,7 +19,7 @@
     }
   }
 
-  &.rtl {
+  &:dir(rtl) {
     direction: rtl;
 
     .p-confirm-popup-icon ~ .p-confirm-popup-message {
@@ -49,7 +49,7 @@
     justify-content: flex-end;
   }
 
-  &.ltr {
+  &:dir(ltr) {
     direction: ltr;
 
     .p-confirm-dialog-icon ~ .p-confirm-dialog-message {
@@ -57,7 +57,7 @@
     }
   }
 
-  &.rtl {
+  &:dir(rtl) {
     direction: rtl;
 
     .p-confirm-dialog-icon ~ .p-confirm-dialog-message {
@@ -80,11 +80,11 @@
 
 .p-toast {
   .p-toast-message {
-    &.ltr {
+    &:dir(ltr) {
       direction: ltr;
     }
 
-    &.rtl {
+    &:dir(rtl) {
       direction: rtl;
       border-width: 0 6px 0 0 !important;
 
@@ -118,11 +118,11 @@
     height: 100%;
     overflow: hidden;
 
-    &.ltr {
+    &:dir(ltr) {
       direction: ltr;
     }
 
-    &.rtl {
+    &:dir(rtl) {
       direction: rtl;
     }
 
@@ -185,20 +185,20 @@
       }
     }
 
-    &.ltr {
+    &:dir(ltr) {
       direction: ltr;
     }
 
-    &.rtl {
+    &:dir(rtl) {
       direction: rtl;
     }
   }
 
-  &.ltr {
+  &:dir(ltr) {
     direction: ltr;
   }
 
-  &.rtl {
+  &:dir(rtl) {
     direction: rtl;
 
     .p-cascadeselect-panel {
@@ -322,11 +322,11 @@
     }
   }
 
-  &.ltr {
+  &:dir(ltr) {
     direction: ltr;
   }
 
-  &.rtl {
+  &:dir(rtl) {
     direction: rtl;
 
     .p-dialog-footer {
@@ -340,7 +340,7 @@
 }
 
 .p-menu-overlay {
-  &.rtl {
+  &:dir(rtl) {
     .p-menuitem-link .p-menuitem-icon {
       margin-left: 0.5rem;
       margin-right: 0;

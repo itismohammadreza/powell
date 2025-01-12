@@ -1,4 +1,4 @@
-<div [ngClass]="{rtl: rtl, ltr:!rtl}" class="status-wrapper">
+<div [attr.dir]="rtl ? 'rtl' : 'ltr'" class="status-wrapper">
   <div class="status-icon">
     @if (status && !templateMap.icon) {
       @switch (status) {

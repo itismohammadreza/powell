@@ -24,13 +24,13 @@
         }
       }
 
-      &.rtl {
+      &:dir(rtl) {
         .empty-title {
           direction: rtl;
         }
       }
 
-      &.ltr {
+      &:dir(ltr) {
         .empty-title {
           direction: ltr;
         }
