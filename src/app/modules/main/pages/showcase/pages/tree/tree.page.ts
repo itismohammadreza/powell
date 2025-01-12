@@ -25,7 +25,7 @@ export class TreePage extends PreviewBase {
     {field: 'labelPosition', options: 'fixLabelPositions', value: this.config.fixLabelPosition},
     {field: 'addon', options: 'additions', value: 'none'},
     {field: 'followConfig', value: this.config.followConfig},
-    {field: 'selectionMode', value: ''},
+    {field: 'selectionMode', options: 'selectionModes', value: 'single'},
     {field: 'propagateSelectionUp', value: true},
     {field: 'propagateSelectionDown', value: true},
     {field: 'filter', value: false},

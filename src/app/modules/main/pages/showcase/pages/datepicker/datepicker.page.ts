@@ -28,7 +28,7 @@ export class DatepickerPage extends PreviewBase {
     {field: 'additions', options: 'additions', value: 'none'},
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'isJalali', value: false},
-    {field: 'iconDisplay', value: ''},
+    {field: 'iconDisplay', options: 'iconDisplayTypes', value: 'button'},
     {field: 'placeholder', value: ''},
     {field: 'inline', value: false},
     {field: 'showOtherMonths', value: true},
