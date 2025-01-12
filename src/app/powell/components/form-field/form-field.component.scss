@@ -69,5 +69,11 @@
         flex-direction: column;
       }
     }
+
+    &.is-invalid {
+      .field-wrapper label {
+        color: #dc2626;
+      }
+    }
   }
 }
