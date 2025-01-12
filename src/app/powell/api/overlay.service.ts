@@ -347,6 +347,9 @@ export class OverlayService {
   }
 
   private mapToButtonProps(props: NgButtonProps) {
+    if (!props) {
+      return {};
+    }
     return {
       ...props,
       link: props.appearance === 'link',

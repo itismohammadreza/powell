@@ -363,6 +363,9 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   }
 
   mapToButtonProps(props: NgButtonProps) {
+    if (!props) {
+      return {};
+    }
     return {
       ...props,
       link: props.appearance === 'link',
