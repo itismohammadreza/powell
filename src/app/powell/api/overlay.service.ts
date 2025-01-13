@@ -164,7 +164,6 @@ export class OverlayService {
     for (const key in options) {
       instance[key] = options[key];
     }
-    instance.style = options.style;
     instance.styleClass = `confirm-popup-wrapper ${options.styleClass}`;
     this.confirmPopupCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr')
     return new Promise<boolean>((accept) => {
@@ -206,9 +205,10 @@ export class OverlayService {
     for (const key in options) {
       instance[key] = options[key];
     }
-    instance.style = options.style;
+    instance.appendTo = null;
+    instance.el.nativeElement.setAttribute('dir', (options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr');
     instance.styleClass = `confirm-dialog-wrapper ${options.styleClass} ${!options.header && !options.closable ? 'dialog-header-less' : ''}`;
-    this.confirmCmpRef.location.nativeElement.setAttribute((options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr');
+    this.confirmCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr');
     return new Promise<boolean>((accept) => {
       const state: NgHistoryState = {component: 'confirmDialog'};
       let timeout: any;

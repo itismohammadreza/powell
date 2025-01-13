@@ -33,6 +33,7 @@ export class DialogFormPage extends PreviewBase {
     {field: 'maximizable', value: true},
     {field: 'acceptVisible', value: true},
     {field: 'rejectVisible', value: true},
+    {field: 'rtl', value: this.config.rtl},
     {field: 'defaultFocus', options: 'defaultFocusTypes', value: 'accept'},
   ];
 
@@ -51,6 +52,7 @@ export class DialogFormPage extends PreviewBase {
     acceptVisible: true,
     rejectVisible: true,
     defaultFocus: 'accept',
+    rtl: this.config.rtl
   }
 
   flag = true;
