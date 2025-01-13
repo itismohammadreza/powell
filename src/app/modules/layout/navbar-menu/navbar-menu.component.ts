@@ -24,6 +24,9 @@ import {FormsModule} from "@angular/forms";
 import {LogoComponent} from "@modules/layout/logo/logo.component";
 import {routes} from "@modules/main/pages/showcase/showcase-routing.module";
 import {lastValueFrom} from "rxjs";
+import {AppConfiguratorComponent} from "@modules/main/pages/showcase/components/designer/app.configurator.component";
+import {StyleClassModule} from "primeng/styleclass";
+import {AppDesignerComponent} from "@modules/main/pages/showcase/components/designer/app.designer.component";
 
 @Component({
   selector: 'ng-navbar-menu',
@@ -45,6 +48,9 @@ import {lastValueFrom} from "rxjs";
     FilterModule,
     TranslateModule,
     FormsModule,
+    AppConfiguratorComponent,
+    StyleClassModule,
+    AppDesignerComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -63,10 +69,15 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   tempSidebarType: SidebarType = 'push-mask';
   themes: $MenuItem[];
   searchValue: string;
+  showDesigner: boolean;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.handleResize()
+  }
+
+  toggleDesigner() {
+    this.showDesigner = !this.showDesigner;
   }
 
   ngOnInit() {
