@@ -11,17 +11,8 @@
     <div [innerHTML]="options.content | ngSafe:'html'"></div>
   </ng-template>
   <ng-template pTemplate="footer">
-    @if (options.buttonLabel) {
-      <ng-button
-        [appearance]="options.buttonAppearance"
-        [severity]="options.buttonSeverity"
-        [fluid]="options.buttonFull"
-        [iconPos]="options.buttonIconPos"
-        [icon]="options.buttonIcon"
-        [label]="options.buttonLabel"
-        [size]="options.buttonSize"
-        [styleClass]="options.buttonStyleClass"
-        (onClick)="onButtonClick()"/>
+    @if (options.buttonProps) {
+      <ng-button [buttonProps]="options.buttonProps" (onClick)="onButtonClick()"/>
     }
   </ng-template>
 </p-dialog>
