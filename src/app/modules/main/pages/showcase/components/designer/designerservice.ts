@@ -1,19 +1,17 @@
-import { Injectable, signal } from '@angular/core';
-import { Subject } from 'rxjs';
+import {Injectable, signal} from '@angular/core';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class DesignerService {
-    preset = signal({ primitive: null, semantic: null });
+  preset = signal({primitive: null, semantic: null});
+  acTokens = signal([]);
 
-    acTokens = signal([]);
+  setPreset(preset) {
+    this.preset.set(preset);
+  }
 
-    setPreset(preset) {
-        this.preset.set(preset);
-    }
-
-    setAcTokens(token) {
-        this.acTokens.set(token);
-    }
+  setAcTokens(token) {
+    this.acTokens.set(token);
+  }
 }

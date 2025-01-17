@@ -20,6 +20,12 @@
       }
     }
 
+    label {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
     .field-footer {
       display: flex;
       flex-direction: column;
@@ -44,12 +50,12 @@
 
     .field-wrapper {
       display: inline-flex;
-      gap: 0.75rem;
     }
 
     &.label-side {
       .field-wrapper {
         align-items: center;
+        gap: 0.75rem;
 
         &.revers {
           flex-direction: row-reverse;
@@ -59,6 +65,7 @@
 
     &.label-top {
       .field-wrapper {
+        gap: 0.25rem;
         flex-direction: column;
       }
     }

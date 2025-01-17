@@ -5,3 +5,4 @@
 - fix bottomSheet fullscreen issue
 - fix cascadeSelect issue
 - implement dialog header-less and footer-less styles
+- implement accept label template

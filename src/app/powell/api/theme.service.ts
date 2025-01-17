@@ -1,12 +1,18 @@
 import {inject, Injectable} from "@angular/core";
 import {DOCUMENT} from "@angular/common";
+import {$Aura, $Lara, $Material, $Nora} from "@powell/primeng";
 
 // DON'T provide anywhere. will provide automatically after `providePowell` call.
 @Injectable()
 export class ThemeService {
   private document = inject(DOCUMENT);
-
   private initialized: boolean = false;
+  private presets = {
+    Aura: $Aura,
+    Material: $Material,
+    Lara: $Lara,
+    Nora: $Nora
+  };
 
   initTheme() {
     if (this.initialized) {
@@ -21,6 +27,7 @@ export class ThemeService {
     this.initialized = true;
   }
 
-  getAllThemes() {
+  getPresets() {
+    return this.presets;
   }
 }
