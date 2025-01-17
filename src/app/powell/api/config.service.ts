@@ -75,7 +75,9 @@ export class ConfigService {
   applyConfigToComponent<T>(component: any) {
     Object.entries(this._config).forEach(([key, value]) => {
       let componentKey = this.getComponentConfigKey(key as keyof NgConfig);
-      component[componentKey] = value;
+      if (!component[componentKey]) {
+        component[componentKey] = value;
+      }
     })
     this.configChange$.pipe(takeUntil(component.destroy$)).subscribe(({modifiedConfig}) => {
       Object.entries(modifiedConfig).forEach(([key, value]) => {

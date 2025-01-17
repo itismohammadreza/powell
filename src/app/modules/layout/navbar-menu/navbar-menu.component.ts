@@ -48,7 +48,6 @@ import {AppDesignerComponent} from "@modules/main/pages/showcase/components/desi
     FilterModule,
     TranslateModule,
     FormsModule,
-    AppConfiguratorComponent,
     StyleClassModule,
     AppDesignerComponent
   ],
@@ -74,10 +73,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.handleResize()
-  }
-
-  toggleDesigner() {
-    this.showDesigner = !this.showDesigner;
   }
 
   ngOnInit() {

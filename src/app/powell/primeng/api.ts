@@ -64,7 +64,25 @@ import {
   unblockBodyScroll,
   uuid
 } from '@primeuix/utils';
-import {$dt as primeNGDt, $t as primeNGt} from '@primeng/themes';
+import {
+  $dt as primeNGDt,
+  $t as primeNGt,
+  definePreset,
+  merge,
+  mix,
+  palette,
+  setProperty,
+  shade,
+  Theme,
+  ThemeService,
+  ThemeUtils,
+  tint,
+  updatePreset,
+  updatePrimaryPalette,
+  updateSurfacePalette,
+  usePreset,
+  useTheme,
+} from '@primeng/themes';
 import Aura from '@primeng/themes/aura';
 import Lara from '@primeng/themes/lara';
 import Material from '@primeng/themes/material';
@@ -76,6 +94,21 @@ export {Material as $Material}
 export {Nora as $Nora}
 export {primeNGDt as $dt}
 export {primeNGt as $t}
+export {updatePreset as $updatePreset}
+export {usePreset as $usePreset}
+export {updatePrimaryPalette as $updatePrimaryPalette}
+export {updateSurfacePalette as $updateSurfacePalette}
+export {useTheme as $useTheme}
+export {palette as $palette}
+export {ThemeService as $ThemeService}
+export {setProperty as $setProperty}
+export {ThemeUtils as $ThemeUtils}
+export {tint as $tint}
+export {definePreset as $definePreset}
+export {merge as $merge}
+export {mix as $mix}
+export {Theme as $Theme}
+export {shade as $shade}
 export {absolutePosition as $absolutePosition}
 export {addClass as $addClass}
 export {addStyle as $addStyle}
