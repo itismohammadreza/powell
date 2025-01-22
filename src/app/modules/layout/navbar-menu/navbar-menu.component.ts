@@ -2,7 +2,7 @@ import {AfterContentInit, ChangeDetectionStrategy, Component, HostListener, inje
 import {CommonModule, DOCUMENT} from "@angular/common";
 import {LanguageChecker} from '@core/utils';
 import {GlobalConfig, SidebarType} from '@core/models';
-import {ConfigService, ThemeService} from "@powell/api";
+import {ConfigService} from "@powell/api";
 import {globalConfig} from "@core/config";
 import {
   $AvatarModule,
@@ -24,7 +24,6 @@ import {FormsModule} from "@angular/forms";
 import {LogoComponent} from "@modules/layout/logo/logo.component";
 import {routes} from "@modules/main/pages/showcase/showcase-routing.module";
 import {lastValueFrom} from "rxjs";
-import {AppConfiguratorComponent} from "@modules/main/pages/showcase/components/designer/app.configurator.component";
 import {StyleClassModule} from "primeng/styleclass";
 import {AppDesignerComponent} from "@modules/main/pages/showcase/components/designer/app.designer.component";
 
@@ -68,10 +67,35 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   themes: $MenuItem[];
   searchValue: string;
   showDesigner: boolean;
+  isDarkMode = false;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.handleResize()
+  }
+
+  handleDarkModeTransition(): void {
+    if ((document as any).startViewTransition) {
+      this.startViewTransition();
+    } else {
+      this.toggleDarkMode();
+    }
+  }
+
+  startViewTransition(): void {
+    (document as any).startViewTransition(() => {
+      this.toggleDarkMode();
+    });
+  }
+
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+    const htmlElement = document.querySelector('html');
+    if (this.isDarkMode) {
+      htmlElement?.classList.add('ng-dark');
+    } else {
+      htmlElement?.classList.remove('ng-dark');
+    }
   }
 
   ngOnInit() {
