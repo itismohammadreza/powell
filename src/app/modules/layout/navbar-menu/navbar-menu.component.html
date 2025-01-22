@@ -17,7 +17,9 @@
     <ng-logo/>
 
     <ng-button icon="pi pi-palette" (click)="showDesigner = !showDesigner"/>
-
+    <button type="button" class="topbar-item" (click)="handleDarkModeTransition()">
+      <i class="pi" [ngClass]="{ 'pi-moon': isDarkMode, 'pi-sun': !isDarkMode }"></i>
+    </button>
     <a target="_blank" href="https://github.com/mohammadreza99/powell">
       <ng-button appearance="text" severity="secondary" icon="pi pi-github"/>
     </a>
@@ -84,7 +86,7 @@
       [model]="sidebarItems | ngFilter:searchValue:'label'"/>
   </p-drawer>
 </div>
-<app-designer [showDesigner]="showDesigner" />
+<app-designer [showDesigner]="showDesigner"/>
 <p-drawer
   position="left"
   [modal]="false"
