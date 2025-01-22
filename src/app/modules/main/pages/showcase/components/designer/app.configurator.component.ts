@@ -1,37 +1,16 @@
 import {AppConfigService} from './appconfigservice';
-import {CommonModule, isPlatformBrowser} from '@angular/common';
-import {Component, computed, inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Component, inject} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {$PrimeNG, $t, $updatePreset, $updateSurfacePalette} from '@powell/primeng/api';
+import {$Preset} from '@powell/primeng/api';
 import {ToggleSwitchModule} from '@powell/components/toggle-switch';
 import {ButtonModule} from "@powell/components/button";
 import {RadioModule} from "@powell/components/radio";
-import {ThemeService} from "@powell/api";
+import {ConfigService, ThemeService} from "@powell/api";
 
 @Component({
   selector: 'app-configurator',
   styles: `
-    :host {
-      width: 18rem;
-      padding: .75rem;
-      background-color: var(--overlay-background);
-      border-radius: 6px;
-      border: 1px solid var(--border-color);
-    }
-
-    .config-panel-content {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem
-    }
-
-    .config-panel-label {
-      font-size: .875rem;
-      color: var(--text-secondary-color);
-      font-weight: 600;
-      line-height: 1
-    }
-
     .config-panel-colors > div {
       justify-content: flex-start;
       padding-top: .5rem;
@@ -56,30 +35,23 @@ import {ThemeService} from "@powell/api";
     .config-panel-colors > div button.active-color {
       outline-color: var(--primary-color)
     }
-
-    .config-panel-settings {
-      display: flex;
-      flex-direction: column;
-      gap: .5rem
-    }
   `,
   template: `
     <div class="config-panel-content">
       <div class="config-panel-colors">
         <span class="config-panel-label">Primary</span>
         <div>
-          @for (primaryColor of primaryColors(); track primaryColor.name) {
+          @for (primaryColor of primaryColors; track primaryColor.name) {
             <button
               type="button"
               [title]="primaryColor.name"
               (click)="updateColors($event, 'primary', primaryColor)"
-              [class.active-color]="primaryColor.name === selectedPrimaryColor()"
+              [class.active-color]="primaryColor.name === selectedPrimaryColor"
               [style.backgroundColor]="primaryColor.name === 'noir' ? 'var(--text-color)' : primaryColor?.palette['500']"
             ></button>
           }
         </div>
       </div>
-
       <div class="config-panel-colors">
         <span class="config-panel-label">Surface</span>
         <div>
@@ -88,27 +60,15 @@ import {ThemeService} from "@powell/api";
               type="button"
               [title]="surface.name"
               (click)="updateColors($event, 'surface', surface)"
-              [class.active-color]="selectedSurfaceColor() ? selectedSurfaceColor() === surface.name : configService.appState().darkTheme ? surface.name === 'zinc' : surface.name === 'slate'"
+              [class.active-color]="selectedSurfaceColor ? selectedSurfaceColor === surface.name : appConfigService.appState().darkTheme ? surface.name === 'zinc' : surface.name === 'slate'"
               [style.backgroundColor]="surface.name === 'noir' ? 'var(--text-color)' : surface?.palette['500']"
             ></button>
           }
         </div>
       </div>
 
-      <div class="flex">
-        <div class="flex-1">
-          <div class="config-panel-settings">
-            <span class="config-panel-label">Ripple</span>
-            <ng-toggle-switch [(ngModel)]="ripple"/>
-          </div>
-        </div>
-        <div class="flex-1">
-          <div class="config-panel-settings items-end">
-            <span class="config-panel-label">RTL</span>
-            <ng-toggle-switch [ngModel]="isRTL" (ngModelChange)="onRTLChange($event)"/>
-          </div>
-        </div>
-      </div>
+      <ng-toggle-switch label="Ripple" [ngModel]="config.ripple" (ngModelChange)="onRippleChange($event)"/>
+      <ng-toggle-switch label="RTL" [ngModel]="config.rtl" (ngModelChange)="onRTLChange($event)"/>
     </div>
   `,
   imports: [
@@ -119,11 +79,11 @@ import {ThemeService} from "@powell/api";
     ToggleSwitchModule
   ]
 })
-export class AppConfiguratorComponent implements OnInit {
-  config = inject($PrimeNG);
+export class AppConfiguratorComponent {
+  configService = inject(ConfigService);
   themeService = inject(ThemeService);
-  configService: AppConfigService = inject(AppConfigService);
-  platformId = inject(PLATFORM_ID);
+  appConfigService = inject(AppConfigService);
+  config = this.configService.get();
   surfaces = [
     {
       name: 'slate',
@@ -262,38 +222,34 @@ export class AppConfiguratorComponent implements OnInit {
       }
     }
   ];
-  selectedPrimaryColor = computed(() => {
-    return this.configService.appState().primary;
-  });
-  selectedSurfaceColor = computed(() => this.configService.appState().surface);
-  primaryColors = computed(() => {
-    const presetPalette = this.themeService.getPresets()[this.configService.appState().preset].primitive;
-    const colors = ['emerald', 'green', 'lime', 'orange', 'amber', 'yellow', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose'];
-    const palettes = [{name: 'noir', palette: {}}];
-    colors.forEach((color) => {
-      palettes.push({
-        name: color,
-        palette: presetPalette[color]
-      });
-    });
+  selectedPrimaryColor: string = 'noir';
+  selectedSurfaceColor: string;
+  primaryColors: any[] = [
+    {name: 'noir', palette: {}},
+    {name: 'amber', palette: this.themeService.currentPreset.primitive['amber']},
+    {name: 'blue', palette: this.themeService.currentPreset.primitive['blue']},
+    {name: 'cyan', palette: this.themeService.currentPreset.primitive['cyan']},
+    {name: 'emerald', palette: this.themeService.currentPreset.primitive['emerald']},
+    {name: 'fuchsia', palette: this.themeService.currentPreset.primitive['fuchsia']},
+    {name: 'green', palette: this.themeService.currentPreset.primitive['green']},
+    {name: 'indigo', palette: this.themeService.currentPreset.primitive['indigo']},
+    {name: 'lime', palette: this.themeService.currentPreset.primitive['lime']},
+    {name: 'orange', palette: this.themeService.currentPreset.primitive['orange']},
+    {name: 'pink', palette: this.themeService.currentPreset.primitive['pink']},
+    {name: 'purple', palette: this.themeService.currentPreset.primitive['purple']},
+    {name: 'rose', palette: this.themeService.currentPreset.primitive['rose']},
+    {name: 'sky', palette: this.themeService.currentPreset.primitive['sky']},
+    {name: 'teal', palette: this.themeService.currentPreset.primitive['teal']},
+    {name: 'violet', palette: this.themeService.currentPreset.primitive['violet']},
+    {name: 'yellow', palette: this.themeService.currentPreset.primitive['yellow']},
+  ];
 
-    return palettes;
-  });
-
-  get ripple() {
-    return this.config.ripple();
-  }
-
-  set ripple(value: boolean) {
-    this.config.ripple.set(value);
-  }
-
-  get isRTL() {
-    return this.configService.appState().RTL;
+  onRippleChange(value: boolean) {
+    this.configService.update({ripple: value});
   }
 
   onRTLChange(value: boolean) {
-    this.configService.appState.update((state) => ({...state, RTL: value}));
+    this.configService.update({rtl: value});
     if (!(document as any).startViewTransition) {
       this.toggleRTL(value);
       return;
@@ -306,19 +262,12 @@ export class AppConfiguratorComponent implements OnInit {
     if (value) {
       htmlElement.setAttribute('dir', 'rtl');
     } else {
-      htmlElement.removeAttribute('dir');
+      htmlElement.setAttribute('dir', 'ltr');
     }
   }
 
-  ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.onPresetChange(this.configService.appState().preset);
-      this.toggleRTL(this.configService.appState().RTL);
-    }
-  }
-
-  getPresetExt() {
-    const color = this.primaryColors().find((c) => c.name === this.selectedPrimaryColor());
+  getPresetExt(): $Preset<any> {
+    const color = this.primaryColors.find((c) => c.name === this.selectedPrimaryColor);
     if (color.name === 'noir') {
       return {
         semantic: {
@@ -368,7 +317,7 @@ export class AppConfiguratorComponent implements OnInit {
         }
       };
     } else {
-      if (this.configService.appState().preset === 'Nora') {
+      if (this.themeService.currentPreset.name === 'Nora') {
         return {
           semantic: {
             primary: color.palette,
@@ -404,7 +353,7 @@ export class AppConfiguratorComponent implements OnInit {
             }
           }
         };
-      } else if (this.configService.appState().preset === 'Material') {
+      } else if (this.themeService.currentPreset.name === 'Material') {
         return {
           semantic: {
             primary: color.palette,
@@ -482,33 +431,15 @@ export class AppConfiguratorComponent implements OnInit {
 
   updateColors(event: any, type: string, color: any) {
     if (type === 'primary') {
-      this.configService.appState.update((state) => ({...state, primary: color.name}));
+      this.selectedPrimaryColor = color.name;
     } else if (type === 'surface') {
-      this.configService.appState.update((state) => ({...state, surface: color.name}));
+      this.selectedSurfaceColor = color.name;
     }
-    this.applyTheme(type, color);
-    event.stopPropagation();
-  }
-
-  applyTheme(type: string, color: any) {
     if (type === 'primary') {
-      $updatePreset(this.getPresetExt());
+      this.configService.update({theme: {preset: this.getPresetExt()}})
     } else if (type === 'surface') {
-      $updateSurfacePalette(color.palette);
+      this.themeService.updateSurfacePalette(color.palette);
     }
-  }
-
-  onPresetChange(event: any) {
-    this.configService.appState.update((state) => ({...state, preset: event}));
-    const preset = this.themeService.getPresets()[event];
-    const surfacePalette = this.surfaces.find((s) => s.name === this.selectedSurfaceColor())?.palette;
-    if (this.configService.appState().preset === 'Material') {
-      document.body.classList.add('material');
-      this.config.ripple.set(true);
-    } else {
-      document.body.classList.remove('material');
-      this.config.ripple.set(false);
-    }
-    $t().preset(preset).preset(this.getPresetExt()).surfacePalette(surfacePalette).use({useDefaultOptions: true});
+    event.stopPropagation();
   }
 }

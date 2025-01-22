@@ -13,5 +13,11 @@ export const globalConfig: GlobalConfig = {
     labelPosition: 'side',
     inputStyle: 'outlined',
     showRequiredStar: true,
+    theme: {
+      preset: 'Aura',
+      options: {
+        darkModeSelector: '.ng-dark'
+      }
+    }
   }
 };
