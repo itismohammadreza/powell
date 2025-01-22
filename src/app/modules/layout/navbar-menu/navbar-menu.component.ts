@@ -55,7 +55,6 @@ import {AppDesignerComponent} from "@modules/main/pages/showcase/components/desi
 })
 export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterContentInit {
   private document = inject(DOCUMENT);
-  private themeService = inject(ThemeService);
   private configService = inject(ConfigService);
 
   sidebarType: SidebarType = 'push-mask';

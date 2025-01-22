@@ -1,9 +1,8 @@
-import {Component, computed, inject, Input, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AppConfigService} from './appconfigservice';
 import {DesignerService} from './designerservice';
 import {FormsModule} from '@angular/forms';
-import {$dt, $PrimeNG, $updatePreset, $usePreset} from '@powell/primeng/api';
+import {$dt, $Preset} from '@powell/primeng/api';
 import {DesignBorderRadius} from './primitive/designborderradius';
 import {DesignColors} from './primitive/designcolors';
 import {DesignGeneral} from './semantic/designgeneral';
@@ -18,11 +17,12 @@ import {$TabsModule} from '@powell/primeng/tabs';
 import {$DividerModule} from '@powell/primeng/divider';
 import {$TagModule} from '@powell/primeng/tag';
 import {$SkeletonModule} from '@powell/primeng/skeleton';
-import {OverlayService, ThemeService} from "@powell/api";
+import {ConfigService, OverlayService, ThemeService} from "@powell/api";
 import {SelectButtonModule} from "@powell/components/select-button";
 import {ButtonModule} from "@powell/components/button";
 import {$AccordionModule} from "@powell/primeng";
 import {FileUploadModule} from "primeng/fileupload";
+import {NgPresetName} from "@powell/models";
 
 @Component({
   selector: 'app-designer',
@@ -75,7 +75,7 @@ import {FileUploadModule} from "primeng/fileupload";
                   <span class="font-semibold">Base Theme</span>
                   <span class="text-muted-color">Variety of built-in themes with distinct characteristics.</span>
                   <ng-select-button
-                    [ngModel]="selectedPreset()"
+                    [ngModel]="selectedPreset"
                     (ngModelChange)="onPresetChange($event)"
                     [options]="presetOptions"
                     optionLabel="label"
@@ -87,8 +87,10 @@ import {FileUploadModule} from "primeng/fileupload";
                   class="flex flex-col gap-4 border border-surface-200 dark:border-surface-700 rounded-md p-4 items-start">
                   <span class="font-semibold">Load Theme</span>
                   <span class="text-muted-color">Continue editing the theme files stored locally.</span>
-                  <ng-button label="Restore from local storage" styleClass="!px-3 !py-2" severity="secondary"
-                             (click)="loadFromLocalStorage()"/>
+                  <ng-button
+                    label="Restore from local storage"
+                    severity="secondary"
+                    (click)="loadFromLocalStorage()"/>
                 </div>
               </div>
             </p-tabpanel>
@@ -214,74 +216,54 @@ import {FileUploadModule} from "primeng/fileupload";
 export class AppDesignerComponent implements OnInit {
   @Input() showDesigner: boolean;
 
-  private configService = inject(AppConfigService);
   public designerService = inject(DesignerService);
   private overlayService = inject(OverlayService)
   private themeService = inject(ThemeService);
-  config = inject($PrimeNG);
-  selectedPreset = computed(() => this.configService.appState().preset);
-  preset;
+  configService = inject(ConfigService);
+  selectedPreset = this.themeService.currentPreset.name;
+  preset: $Preset<any> = this.themeService.currentPreset;
   customTokens = [];
   acTokens = [];
   activeTab = '0';
-  presetOptions = Object.keys(this.themeService.getPresets()).map(p => ({label: p, value: p}))
+  presetOptions = Object.keys(this.themeService.presets).map(p => ({label: p, value: p}))
 
   ngOnInit() {
-    this.preset = {
-      primitive: this.themeService.getPresets()['Aura'].primitive,
-      semantic: this.themeService.getPresets()['Aura'].semantic
-    };
     this.generateACTokens(null, this.preset);
     this.replaceColorPalette();
     this.designerService.setPreset(this.preset);
     this.designerService.setAcTokens(this.acTokens);
   }
 
-
   apply() {
     this.saveTheme();
-    $updatePreset(this.preset);
     this.designerService.preset.update((state) => ({...state, ...this.preset}));
-    this.configService.appState.update((state) => ({...state}));
   }
 
   saveTheme() {
     const localState = {
       themes: {
         defaultTheme: {
-          name: this.selectedPreset(),
+          name: this.selectedPreset,
           preset: this.preset,
           customTokens: this.customTokens
         }
       }
     };
-    localStorage.setItem(this.configService.appState().designerKey, JSON.stringify(localState));
+    localStorage.setItem('primeng-designer-theme', JSON.stringify(localState));
   }
 
-  onPresetChange(value: any) {
-    this.configService.appState.update((state) => ({...state, preset: value}));
-    const newPreset = this.themeService.getPresets()[value];
-    if (this.configService.appState().preset === 'Material') {
-      document.body.classList.add('material');
-      this.config.ripple.set(true);
-    } else {
-      document.body.classList.remove('material');
-      this.config.ripple.set(false);
-    }
-    this.preset = {
-      ...newPreset,
-      primitive: newPreset.primitive,
-      semantic: newPreset.semantic
-    };
+  onPresetChange(value: NgPresetName) {
+    this.preset = this.themeService.presets[value];
     this.preset.semantic.primary = this.preset.primitive.emerald;
     this.preset.semantic.colorScheme.light.surface = {...{0: '#ffffff'}, ...this.preset.primitive.slate};
     this.preset.semantic.colorScheme.dark.surface = {...{0: '#ffffff'}, ...this.preset.primitive.zinc};
-    $usePreset(this.preset);
+    this.selectedPreset = value;
+    this.configService.update({theme: {preset: value}})
     this.designerService.setPreset(this.preset);
   }
 
   loadFromLocalStorage() {
-    const localState = localStorage.getItem(this.configService.appState().designerKey);
+    const localState = localStorage.getItem('primeng-designer-theme');
     if (localState) {
       const parsedLocalState = JSON.parse(localState);
       if (parsedLocalState?.themes?.defaultTheme) {
@@ -290,11 +272,9 @@ export class AppDesignerComponent implements OnInit {
           this.preset = defaultTheme.preset;
           const mergedPreset = {
             ...this.preset,
-            components: {...this.themeService.getPresets()[defaultTheme.name].components}
+            components: {...this.themeService.presets[defaultTheme.name].components}
           };
-          this.configService.appState.update((state) => ({...state, preset: defaultTheme.name}));
-          $usePreset(mergedPreset);
-          this.designerService.setPreset(mergedPreset);
+          this.configService.update({theme: {preset: mergedPreset}});
         }
         if (defaultTheme.customTokens) {
           this.customTokens = defaultTheme.customTokens;
@@ -393,7 +373,7 @@ export class AppDesignerComponent implements OnInit {
   }
 
   download() {
-    const basePreset = this.configService.appState().preset;
+    const basePreset = this.themeService.currentPreset.name;
     const theme = JSON.stringify(this.preset, null, 4).replace(/"([^"]+)":/g, '$1:');
     const textContent = `
         import { ApplicationConfig } from '@angular/core';

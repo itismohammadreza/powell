@@ -9,7 +9,6 @@ export function providePowell(config?: NgConfig) {
     $DialogService,
     $ConfirmationService,
     $FilterService,
-    $providePrimeNG(config),
     {
       provide: ConfigService,
       useFactory: () => {

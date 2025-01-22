@@ -87,7 +87,9 @@ import Aura from '@primeng/themes/aura';
 import Lara from '@primeng/themes/lara';
 import Material from '@primeng/themes/material';
 import Nora from '@primeng/themes/nora';
+import {Preset} from '@primeng/themes/types';
 
+export {Preset as $Preset}
 export {Aura as $Aura}
 export {Lara as $Lara}
 export {Material as $Material}

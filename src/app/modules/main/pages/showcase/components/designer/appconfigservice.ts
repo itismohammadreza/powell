@@ -1,27 +1,28 @@
 import {DOCUMENT, isPlatformBrowser} from '@angular/common';
-import {computed, effect, inject, Injectable, PLATFORM_ID, signal} from '@angular/core';
+import {effect, inject, Injectable, PLATFORM_ID, signal} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppConfigService {
+  appState = signal<{
+    darkTheme: boolean,
+  }>(null);
+
   private readonly STORAGE_KEY = 'appConfigState';
-  appState = signal<any>(null);
-  document = inject(DOCUMENT);
-  platformId = inject(PLATFORM_ID);
-  theme = computed(() => (this.appState()?.darkTheme ? 'dark' : 'light'));
+  private document = inject(DOCUMENT);
+  private platformId = inject(PLATFORM_ID);
   private initialized = false;
 
   constructor() {
-    this.appState.set({...this.loadAppState()});
+    this.appState.set(this.loadAppState());
     effect(() => {
       const state = this.appState();
-
       if (!this.initialized || !state) {
         this.initialized = true;
         return;
       }
-      this.saveAppState(state);
+      this.saveAppStateToLocalStorage(state);
       this.handleDarkModeTransition(state);
     });
   }
@@ -57,17 +58,11 @@ export class AppConfigService {
       }
     }
     return {
-      preset: 'Aura',
-      primary: 'noir',
-      surface: null,
       darkTheme: false,
-      menuActive: false,
-      designerKey: 'primeng-designer-theme',
-      RTL: false
     };
   }
 
-  private saveAppState(state: any): void {
+  private saveAppStateToLocalStorage(state: any): void {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(state));
     }
