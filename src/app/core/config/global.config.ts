@@ -14,10 +14,8 @@ export const globalConfig: GlobalConfig = {
     inputStyle: 'outlined',
     showRequiredStar: true,
     theme: {
-      preset: 'Aura',
-      options: {
-        darkModeSelector: '.ng-dark'
-      }
+      name: 'Aura',
+      mode: 'light'
     }
   }
 };

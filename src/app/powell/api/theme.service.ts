@@ -11,20 +11,22 @@ import {
   $updateSurfacePalette,
   $usePreset
 } from "@powell/primeng";
-import {NgConfig, NgPresetName, Preset} from "@powell/models";
+import {NgConfig, NgPresetName, NgTheme, NgThemeMode} from "@powell/models";
 
 // DON'T provide anywhere. will provide automatically after `providePowell` call.
 @Injectable()
 export class ThemeService {
   private document = inject(DOCUMENT);
   private _initialized: boolean = false;
-  private _presets: Record<NgPresetName, $Preset<any>> = {
+  private _presets: Partial<Record<NgPresetName, $Preset<any>>> = {
     Aura: $Aura,
     Material: $Material,
     Lara: $Lara,
-    Nora: $Nora
+    Nora: $Nora,
   };
-  private _currentPreset: Preset = {...this.presets.Aura, name: 'Aura'};
+  private _currentPreset: NgTheme = {preset: this.presets.Aura, name: 'Aura', mode: 'system'};
+  private _darkModeIdentifier: string = 'ng-dark';
+  private _darkModeSelector: string = `.${this._darkModeIdentifier}`;
 
   init(preset: $Preset<any>) {
     if (this._initialized) {
@@ -38,19 +40,37 @@ export class ThemeService {
     $updateSurfacePalette(palette);
   }
 
-  usePreset(name: NgPresetName) {
-    let preset: $Preset<any> = this.presets[name];
-    if (!this._initialized) {
-      this.init(preset);
-    } else {
-      $usePreset(preset);
-    }
-    this._currentPreset = {...this.presets[name], name};
+  updateMode(mode: NgThemeMode) {
+    this._currentPreset.mode = mode;
+    this.handleDarkModeTransition();
   }
 
-  updatePreset(preset: $Preset<any>) {
+  usePreset(theme: NgTheme) {
+    const {name, preset, mode} = theme;
+    if (preset && !name) {
+      // if theme is only preset, it will update preset palette
+      this.updatePreset(preset);
+      return
+    }
+    // otherwise it change the preset
+    if (name || preset) {
+      let presetObj: $Preset<any> = preset ?? this.presets[name];
+      if (!this._initialized) {
+        this.init(presetObj);
+      } else {
+        $usePreset(presetObj);
+      }
+      this._currentPreset = {preset: presetObj, name};
+    }
+    if (mode) {
+      this.updateMode(mode);
+      this._currentPreset.mode = mode;
+    }
+  }
+
+  private updatePreset(preset: $Preset<any>) {
     $updatePreset(preset);
-    this._currentPreset = {...this._currentPreset, ...preset}
+    this._currentPreset = {preset, name: this._currentPreset.name};
   }
 
   applyConfigToDom(config: NgConfig) {
@@ -69,6 +89,29 @@ export class ThemeService {
 
   get presets() {
     return this._presets;
+  }
+
+  get darkModeSelector() {
+    return this._darkModeSelector;
+  }
+
+  private handleDarkModeTransition() {
+    const doc = this.document as any;
+    if (doc.startViewTransition) {
+      doc.startViewTransition(() => this.toggleDarkMode());
+    } else {
+      this.toggleDarkMode();
+    }
+  }
+
+  private toggleDarkMode() {
+    const htmlElement = this.document.querySelector('html');
+    const systemIsDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (this._currentPreset.mode === 'dark' || (this._currentPreset.mode === 'system' && systemIsDark)) {
+      htmlElement?.classList.add(this._darkModeIdentifier);
+    } else {
+      htmlElement?.classList.remove(this._darkModeIdentifier);
+    }
   }
 
   private handleBodyClasses(config: NgConfig) {

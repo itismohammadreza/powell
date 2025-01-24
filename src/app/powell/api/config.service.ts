@@ -1,6 +1,6 @@
 import {inject, Injectable, isSignal, Signal} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {NgConfig, NgConfigChangeEvent, NgTheme, NgThemeObject} from "@powell/models";
+import {NgConfig, NgConfigChangeEvent, NgInitialConfig} from "@powell/models";
 import {ThemeService} from "@powell/api";
 import {$PrimeNG} from "@powell/primeng";
 
@@ -34,30 +34,50 @@ export class ConfigService {
       fixLabelPosition: 'side',
       labelPosition: 'side',
       showRequiredStar: true,
-      theme: {
-        preset: this.themeService.currentPreset.name
+      theme: this.themeService.currentPreset
+    }
+  }
+
+  init(config: NgInitialConfig) {
+    if (this.initialized) {
+      return;
+    }
+    this._config = {...this._config, ...config};
+    config = {...this._config, ...config};
+    this.applyConfig(config);
+    this.initialized = true;
+  }
+
+  private applyConfig(config: NgInitialConfig) {
+    for (const key in config) {
+      if (key in this.primeNG && isSignal(this.primeNG[key] as Signal<any>)) {
+        if (key === 'theme') {
+          const theme = config.theme;
+          if (!this.initialized) {
+            const convertedTheme = {
+              preset: theme.name ? this.themeService.presets[theme.name] : theme.preset,
+              options: {
+                ...config.themeOptions,
+                darkModeSelector: this.themeService.darkModeSelector
+              }
+            }
+            this.primeNG.theme.set(convertedTheme);
+          }
+          this.themeService.usePreset(theme);
+        } else if (key === 'translation') {
+          this.primeNG.setTranslation(config.translation);
+        } else {
+          this.primeNG[key].set(config[key]);
+        }
+      } else if (key in this.primeNG) {
+        this.primeNG[key] = config[key];
       }
     }
   }
 
   update(config: NgConfig) {
     this._config = {...this._config, ...config};
-    if (!this.initialized) {
-      config = {...this._config, ...config}
-    }
-    for (const key in config) {
-      if (key in this.primeNG && isSignal(this.primeNG[key] as Signal<any>)) {
-        if (key === 'theme') {
-          this.setThemePreset(config.theme);
-        } else {
-          this.primeNG[key].set(config[key]);
-        }
-      } else if ('transition' in config) {
-        this.primeNG.setTranslation(config.translation);
-      } else if (key in this.primeNG) {
-        this.primeNG[key] = config[key];
-      }
-    }
+    this.applyConfig(config);
     this.themeService.applyConfigToDom(config);
     this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
     this.initialized = true;
@@ -80,28 +100,6 @@ export class ConfigService {
         component[componentKey] = component.followConfig ? value : component[componentKey];
       });
     });
-  }
-
-  private setThemePreset(theme: NgTheme) {
-    let themeObj: any;
-    if (typeof theme === 'object') {
-      themeObj = {} as NgThemeObject;
-      // if theme is an object, it will update preset palette
-      if (typeof theme.preset === 'object') {
-        themeObj.preset = theme.preset;
-        this.themeService.updatePreset(themeObj.preset);
-      // otherwise it change the preset
-      } else {
-        themeObj.preset = this.themeService.presets[theme.preset];
-        this.themeService.usePreset(theme.preset);
-      }
-      themeObj.options = theme.options;
-    } else {
-      themeObj = theme;
-    }
-    if (!this.initialized) {
-      this.primeNG.theme.set(themeObj);
-    }
   }
 
   private getComponentConfigKey(key: keyof NgConfig) {

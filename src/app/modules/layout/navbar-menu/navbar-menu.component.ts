@@ -67,7 +67,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   themes: $MenuItem[];
   searchValue: string;
   showDesigner: boolean;
-  isDarkMode = false;
+  isDarkMode = this.configService.get().theme.mode === 'dark';
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -75,27 +75,8 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   handleDarkModeTransition(): void {
-    if ((document as any).startViewTransition) {
-      this.startViewTransition();
-    } else {
-      this.toggleDarkMode();
-    }
-  }
-
-  startViewTransition(): void {
-    (document as any).startViewTransition(() => {
-      this.toggleDarkMode();
-    });
-  }
-
-  toggleDarkMode() {
+    this.configService.update({theme: {mode: this.isDarkMode ? 'dark' : 'light'}});
     this.isDarkMode = !this.isDarkMode;
-    const htmlElement = document.querySelector('html');
-    if (this.isDarkMode) {
-      htmlElement?.classList.add('ng-dark');
-    } else {
-      htmlElement?.classList.remove('ng-dark');
-    }
   }
 
   ngOnInit() {
