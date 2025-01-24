@@ -13,7 +13,7 @@ export function providePowell(config?: NgInitialConfig) {
       provide: ConfigService,
       useFactory: () => {
         const configService = new ConfigService();
-        configService.init(config);
+        configService.update(config);
         return configService;
       },
     }
