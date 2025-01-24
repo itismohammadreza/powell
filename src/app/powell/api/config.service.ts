@@ -38,17 +38,8 @@ export class ConfigService {
     }
   }
 
-  init(config: NgInitialConfig) {
-    if (this.initialized) {
-      return;
-    }
-    this._config = {...this._config, ...config};
-    config = {...this._config, ...config};
-    this.applyConfig(config);
-    this.initialized = true;
-  }
-
   private applyConfig(config: NgInitialConfig) {
+    this._config = {...this._config, ...config};
     for (const key in config) {
       if (key in this.primeNG && isSignal(this.primeNG[key] as Signal<any>)) {
         if (key === 'theme') {
@@ -77,7 +68,6 @@ export class ConfigService {
   }
 
   update(config: NgConfig) {
-    this._config = {...this._config, ...config};
     this.applyConfig(config);
     this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
     this.initialized = true;
