@@ -2,7 +2,7 @@ import {Component, inject, Input, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {DesignerService} from './designerservice';
 import {FormsModule} from '@angular/forms';
-import {$dt, $Preset} from '@powell/primeng/api';
+import {$dt} from '@powell/primeng/api';
 import {DesignBorderRadius} from './primitive/designborderradius';
 import {DesignColors} from './primitive/designcolors';
 import {DesignGeneral} from './semantic/designgeneral';
@@ -221,7 +221,7 @@ export class AppDesignerComponent implements OnInit {
   private themeService = inject(ThemeService);
   configService = inject(ConfigService);
   selectedPreset = this.themeService.currentPreset.name;
-  preset: $Preset<any> = this.themeService.currentPreset;
+  preset = this.themeService.currentPreset.preset;
   customTokens = [];
   acTokens = [];
   activeTab = '0';
@@ -258,7 +258,7 @@ export class AppDesignerComponent implements OnInit {
     this.preset.semantic.colorScheme.light.surface = {...{0: '#ffffff'}, ...this.preset.primitive.slate};
     this.preset.semantic.colorScheme.dark.surface = {...{0: '#ffffff'}, ...this.preset.primitive.zinc};
     this.selectedPreset = value;
-    this.configService.update({theme: {preset: value}})
+    this.configService.update({theme: {name: value, preset: this.preset}})
     this.designerService.setPreset(this.preset);
   }
 

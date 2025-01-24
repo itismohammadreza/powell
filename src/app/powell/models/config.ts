@@ -1,16 +1,23 @@
-import {NgFixLabelPosition, NgLabelPosition, NgPresetName, NgSize} from "@powell/models";
+import {NgFixLabelPosition, NgLabelPosition, NgSize} from "@powell/models";
 import {$Preset, $PrimeNG, $PrimeNGConfigType} from "@powell/primeng";
 
 type OmittedSignalsConfig =
   Omit<$PrimeNG, "setTranslation" | "csp" | "getTranslation" | "inputStyle" | "ripple" | "theme">
-  & Exclude<$PrimeNGConfigType, "theme">;
+  & Omit<$PrimeNGConfigType, "theme">;
 
-export interface NgThemeObject {
-  preset?: NgPresetName | $Preset<any>;
-  options?: any;
+export type NgPresetName = 'Aura' | 'Lara' | 'Material' | 'Nora' | 'none';
+
+export interface NgThemeOptions {
+  prefix?: string;
+  cssLayer?: {
+    name?: string;
+    order?: string;
+  }
 }
 
-export type NgTheme = NgThemeObject | 'none' | boolean;
+export type NgThemeMode = 'dark' | 'light' | 'system';
+
+export type NgTheme = {name?: NgPresetName, preset?: $Preset<any>, mode?: NgThemeMode};
 
 export interface NgConfigChangeEvent {
   currentConfig: NgConfig;
@@ -25,4 +32,8 @@ export interface NgConfig extends Partial<OmittedSignalsConfig> {
   showRequiredStar?: boolean;
   inputSize?: NgSize;
   theme?: NgTheme;
+}
+
+export interface NgInitialConfig extends NgConfig {
+  themeOptions?: NgThemeOptions;
 }
