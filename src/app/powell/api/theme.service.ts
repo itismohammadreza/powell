@@ -54,7 +54,7 @@ export class ThemeService {
     }
     // otherwise it change the preset
     if (name || preset) {
-      let presetObj: $Preset<any> = preset ?? this.presets[name];
+      let presetObj = preset ?? this.presets[name];
       if (!this._initialized) {
         this.init(presetObj);
       } else {
