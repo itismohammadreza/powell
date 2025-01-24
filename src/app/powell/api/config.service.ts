@@ -73,12 +73,12 @@ export class ConfigService {
         this.primeNG[key] = config[key];
       }
     }
+    this.themeService.applyConfigToDom(config);
   }
 
   update(config: NgConfig) {
     this._config = {...this._config, ...config};
     this.applyConfig(config);
-    this.themeService.applyConfigToDom(config);
     this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
     this.initialized = true;
   }
