@@ -23,7 +23,7 @@ import {TranslateModule} from "@ngx-translate/core";
 import {FormsModule} from "@angular/forms";
 import {LogoComponent} from "@modules/layout/logo/logo.component";
 import {routes} from "@modules/main/pages/showcase/showcase-routing.module";
-import {AppDesignerComponent} from "@modules/main/pages/showcase/components";
+import {DesignerComponent} from "@modules/main/pages/showcase/components";
 import {RadioModule} from "@powell/components/radio";
 
 @Component({
@@ -48,7 +48,7 @@ import {RadioModule} from "@powell/components/radio";
     FormsModule,
     $PopoverModule,
     RadioModule,
-    AppDesignerComponent
+    DesignerComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

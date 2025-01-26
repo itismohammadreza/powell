@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 
 @Component({
-  selector: 'design-color-palette',
+  selector: 'ng-color-palette',
   template: `
     <div class="flex border border-surface rounded-l-lg rounded-r-lg overflow-hidden">
       @for (value of objectValues(value); track value) {
@@ -10,7 +10,7 @@ import {Component, Input} from '@angular/core';
     </div>
   `
 })
-export class DesignColorPalette {
+export class ColorPaletteComponent {
   @Input() value: any;
 
   objectValues = Object.values;
