@@ -60,7 +60,7 @@ export class ThemeService {
       } else {
         $usePreset(presetObj);
       }
-      this._currentPreset = {preset: presetObj, name};
+      this._currentPreset = {...this._currentPreset, preset: presetObj, name};
     }
     if (mode) {
       this.updateMode(mode);
@@ -70,16 +70,13 @@ export class ThemeService {
 
   private updatePreset(preset: $Preset<any>) {
     $updatePreset(preset);
-    this._currentPreset = {preset, name: this._currentPreset.name};
+    this._currentPreset = {...this._currentPreset, preset};
   }
 
   applyConfigToDom(config: NgConfig) {
-    if (config.ripple === false) {
-      this.document.body.classList.add('p-ripple-disabled');
-    } else {
-      this.document.body.classList.remove('p-ripple-disabled');
+    if ('rtl' in config) {
+      this.document.documentElement.setAttribute('dir', config.rtl ? 'rtl' : 'ltr');
     }
-    this.document.documentElement.setAttribute('dir', config.rtl ? 'rtl' : 'ltr');
     this.handleBodyClasses(config);
   }
 
@@ -140,7 +137,8 @@ export class ThemeService {
         newClass = `ng-${key}-${value}`;
       }
       if (foundedClass) {
-        this.document.body.classList.replace(foundedClass, newClass);
+        this.document.body.classList.remove(foundedClass);
+        this.document.body.classList.add(newClass);
       } else if (newClass) {
         this.document.body.classList.add(newClass);
       }
