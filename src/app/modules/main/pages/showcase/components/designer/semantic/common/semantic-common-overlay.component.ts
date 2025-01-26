@@ -1,24 +1,23 @@
 import {Component, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {DesignTokenField} from '../app.designtokenfield.component';
 import {$FieldsetModule} from '@powell/primeng/fieldset';
 import {FormsModule} from '@angular/forms';
-import {DesignerService} from "@modules/main/pages/showcase/components/designer/designerservice";
+import {DesignerService, TokenFieldComponent} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'design-overlay',
+  selector: 'ng-semantic-common-overlay',
   standalone: true,
-  imports: [CommonModule, DesignTokenField, FormsModule, $FieldsetModule],
+  imports: [CommonModule, TokenFieldComponent, FormsModule, $FieldsetModule],
   template: `
     <p-fieldset legend="Overlay" [toggleable]="true">
       <div class="text-sm mb-1 font-semibold text-surface-950 dark:text-surface-0">Select</div>
       <section class="grid grid-cols-4 mb-3 gap-2">
         <div class="flex flex-col gap-1">
-          <design-token-field [(value)]="designerService.preset().semantic.overlay.select.borderRadius"
-                              label="Border Radius"/>
+          <ng-token-field [(value)]="designerService.preset().semantic.overlay.select.borderRadius"
+                          label="Border Radius"/>
         </div>
         <div class="flex flex-col gap-1">
-          <design-token-field [(value)]="designerService.preset().semantic.overlay.select.shadow" label="Shadow"/>
+          <ng-token-field [(value)]="designerService.preset().semantic.overlay.select.shadow" label="Shadow"/>
         </div>
         <div class="flex flex-col gap-1"></div>
         <div class="flex flex-col gap-1"></div>
@@ -27,14 +26,14 @@ import {DesignerService} from "@modules/main/pages/showcase/components/designer/
       <div class="text-sm mb-1 font-semibold text-surface-950 dark:text-surface-0">Popover</div>
       <section class="grid grid-cols-4 mb-3 gap-2">
         <div class="flex flex-col gap-1">
-          <design-token-field [(value)]="designerService.preset().semantic.overlay.popover.borderRadius"
-                              label="Border Radius"/>
+          <ng-token-field [(value)]="designerService.preset().semantic.overlay.popover.borderRadius"
+                          label="Border Radius"/>
         </div>
         <div class="flex flex-col gap-1">
-          <design-token-field [(value)]="designerService.preset().semantic.overlay.popover.padding" label="Padding"/>
+          <ng-token-field [(value)]="designerService.preset().semantic.overlay.popover.padding" label="Padding"/>
         </div>
         <div class="flex flex-col gap-1">
-          <design-token-field [(value)]="designerService.preset().semantic.overlay.popover.shadow" label="Shadow"/>
+          <ng-token-field [(value)]="designerService.preset().semantic.overlay.popover.shadow" label="Shadow"/>
         </div>
         <div class="flex flex-col gap-1"></div>
       </section>
@@ -42,14 +41,14 @@ import {DesignerService} from "@modules/main/pages/showcase/components/designer/
       <div class="text-sm mb-1 font-semibold text-surface-950 dark:text-surface-0">Modal</div>
       <section class="grid grid-cols-4 mb-3 gap-2">
         <div class="flex flex-col gap-1">
-          <design-token-field [(value)]="designerService.preset().semantic.overlay.modal.borderRadius"
-                              label="Border Radius"/>
+          <ng-token-field [(value)]="designerService.preset().semantic.overlay.modal.borderRadius"
+                          label="Border Radius"/>
         </div>
         <div class="flex flex-col gap-1">
-          <design-token-field [(value)]="designerService.preset().semantic.overlay.modal.padding" label="Padding"/>
+          <ng-token-field [(value)]="designerService.preset().semantic.overlay.modal.padding" label="Padding"/>
         </div>
         <div class="flex flex-col gap-1">
-          <design-token-field [(value)]="designerService.preset().semantic.overlay.modal.shadow" label="Shadow"/>
+          <ng-token-field [(value)]="designerService.preset().semantic.overlay.modal.shadow" label="Shadow"/>
         </div>
         <div class="flex flex-col gap-1"></div>
       </section>
@@ -57,7 +56,7 @@ import {DesignerService} from "@modules/main/pages/showcase/components/designer/
       <div class="text-sm mb-1 font-semibold text-surface-950 dark:text-surface-0">Navigation</div>
       <section class="grid grid-cols-4 gap-2">
         <div class="flex flex-col gap-1">
-          <design-token-field [(value)]="designerService.preset().semantic.overlay.navigation.shadow" label="Shadow"/>
+          <ng-token-field [(value)]="designerService.preset().semantic.overlay.navigation.shadow" label="Shadow"/>
         </div>
         <div class="flex flex-col gap-1"></div>
         <div class="flex flex-col gap-1"></div>
@@ -66,6 +65,6 @@ import {DesignerService} from "@modules/main/pages/showcase/components/designer/
     </p-fieldset>
   `
 })
-export class DesignOverlay {
+export class SemanticCommonOverlayComponent {
   designerService = inject(DesignerService);
 }

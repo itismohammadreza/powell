@@ -2,10 +2,10 @@ import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {AutoCompleteModule} from "@powell/components/auto-complete";
 import {$dt, $TooltipModule} from "@powell/primeng";
-import {DesignerService} from './designerservice';
+import {DesignerService} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'design-token-field',
+  selector: 'ng-token-field',
   imports: [
     FormsModule,
     $TooltipModule,
@@ -47,7 +47,7 @@ import {DesignerService} from './designerservice';
     </div>
   `
 })
-export class DesignTokenField {
+export class TokenFieldComponent {
   @Input() label: string | undefined;
   @Input() type: string | undefined;
   @Input() value: any;

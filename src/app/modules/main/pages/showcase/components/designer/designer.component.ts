@@ -1,16 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {DesignerService} from './designerservice';
 import {FormsModule} from '@angular/forms';
 import {$dt, $Preset} from '@powell/primeng/api';
-import {DesignBorderRadius} from './primitive/designborderradius';
-import {DesignColors} from './primitive/designcolors';
-import {DesignGeneral} from './semantic/designgeneral';
-import {DesignFormField} from './semantic/designformfield';
-import {DesignList} from './semantic/designlist';
-import {DesignNavigation} from './semantic/designnavigation';
-import {DesignOverlay} from './semantic/designoverlay';
-import {DesignCS} from './semantic/colorscheme/designcs';
 import {$DrawerModule} from '@powell/primeng/drawer';
 import {$TabsModule} from '@powell/primeng/tabs';
 import {$DividerModule} from '@powell/primeng/divider';
@@ -28,9 +19,20 @@ import {ToggleSwitchModule} from "@powell/components/toggle-switch";
 import {TranslateModule} from "@ngx-translate/core";
 import {lastValueFrom} from "rxjs";
 import {TranslationService} from "@core/utils";
+import {
+  DesignerService,
+  PrimitiveBorderRadiusComponent,
+  PrimitiveColorsComponent,
+  SemanticCommonFormFieldComponent,
+  SemanticCommonGeneralComponent,
+  SemanticCommonListComponent,
+  SemanticCommonNavigationComponent,
+  SemanticCommonOverlayComponent,
+  SemanticCsComponent
+} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'app-designer',
+  selector: 'ng-designer',
   standalone: true,
   imports: [
     CommonModule,
@@ -44,14 +46,14 @@ import {TranslationService} from "@core/utils";
     $SkeletonModule,
     $AccordionModule,
     FormsModule,
-    DesignBorderRadius,
-    DesignColors,
-    DesignGeneral,
-    DesignFormField,
-    DesignList,
-    DesignNavigation,
-    DesignOverlay,
-    DesignCS,
+    PrimitiveBorderRadiusComponent,
+    PrimitiveColorsComponent,
+    SemanticCommonGeneralComponent,
+    SemanticCommonFormFieldComponent,
+    SemanticCommonListComponent,
+    SemanticCommonNavigationComponent,
+    SemanticCommonOverlayComponent,
+    SemanticCsComponent,
     SelectModule,
     ToggleSwitchModule,
     TranslateModule,
@@ -190,8 +192,8 @@ import {TranslationService} from "@core/utils";
         @defer (when activeTab == '1') {
           <p-tabpanel value="1">
             <form (keydown)="onKeyDown($event)" class="flex flex-col gap-3">
-              <design-border-radius/>
-              <design-colors/>
+              <ng-primitive-border-radius/>
+              <ng-primitive-colors/>
             </form>
           </p-tabpanel>
         } @loading {
@@ -206,11 +208,11 @@ import {TranslationService} from "@core/utils";
                 <p-accordion-content>
                   <div class="flex flex-col gap-3">
                     <form (keydown)="onKeyDown($event)" class="flex flex-col gap-3">
-                      <design-general/>
-                      <design-form-field/>
-                      <design-list/>
-                      <design-navigation/>
-                      <design-overlay/>
+                      <ng-semantic-common-general/>
+                      <ng-semantic-common-form-field/>
+                      <ng-semantic-common-list/>
+                      <ng-semantic-common-navigation/>
+                      <ng-semantic-common-overlay/>
                     </form>
                   </div>
                 </p-accordion-content>
@@ -227,12 +229,12 @@ import {TranslationService} from "@core/utils";
                     <p-tabpanels class="!px-0">
                       <p-tabpanel value="cs-0">
                         <form (keydown)="onKeyDown($event)">
-                          <design-cs [value]="designerService.preset().semantic.colorScheme.light"/>
+                          <ng-semantic-cs [value]="designerService.preset().semantic.colorScheme.light"/>
                         </form>
                       </p-tabpanel>
                       <p-tabpanel value="cs-1">
                         <form (keydown)="onKeyDown($event)">
-                          <design-cs [value]="designerService.preset().semantic.colorScheme.dark"/>
+                          <ng-semantic-cs [value]="designerService.preset().semantic.colorScheme.dark"/>
                         </form>
                       </p-tabpanel>
                     </p-tabpanels>
@@ -293,7 +295,7 @@ import {TranslationService} from "@core/utils";
     </ng-template>
   `,
 })
-export class AppDesignerComponent implements OnInit {
+export class DesignerComponent implements OnInit {
   public designerService = inject(DesignerService);
   private overlayService = inject(OverlayService)
   private themeService = inject(ThemeService);

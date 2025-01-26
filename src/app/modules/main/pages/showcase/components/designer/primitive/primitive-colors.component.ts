@@ -2,13 +2,13 @@ import {Component, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {$FieldsetModule} from '@powell/primeng/fieldset';
 import {FormsModule} from '@angular/forms';
-import {DesignerService} from "@modules/main/pages/showcase/components/designer/designerservice";
 import {$palette} from "@powell/primeng";
-import {DesignColorPalette} from '../app.designcolorpalette.component';
+import {ColorPaletteComponent} from "@modules/main/pages/showcase/components/designer/color-palette.component";
+import {DesignerService} from "@modules/main/pages/showcase/components/designer/designer.service";
 
 @Component({
-  selector: 'design-colors',
-  imports: [CommonModule, $FieldsetModule, FormsModule, DesignColorPalette],
+  selector: 'ng-primitive-colors',
+  imports: [CommonModule, $FieldsetModule, FormsModule, ColorPaletteComponent],
   template: `
     <p-fieldset legend="Colors" [toggleable]="true">
       @for (key of objectKeys(designerService.preset()?.primitive); track key) {
@@ -21,14 +21,14 @@ import {DesignColorPalette} from '../app.designcolorpalette.component';
                 (input)="onColorChange($event, key)"
                 type="color"/>
             </div>
-            <design-color-palette [value]="designerService.preset()?.primitive[key]"/>
+            <ng-color-palette [value]="designerService.preset()?.primitive[key]"/>
           </section>
         }
       }
     </p-fieldset>
   `
 })
-export class DesignColors {
+export class PrimitiveColorsComponent {
   designerService = inject(DesignerService);
   objectKeys = Object.keys;
 
