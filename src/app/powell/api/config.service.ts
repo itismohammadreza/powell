@@ -78,19 +78,26 @@ export class ConfigService {
   }
 
   configureComponent(component: any, isFixLabel?: boolean) {
-    this.syncComponentWithConfig(component, isFixLabel, this._config);
+    this.syncComponentWithConfig(component, isFixLabel, this._config, false);
     this.configChange$.pipe(takeUntil(component.destroy$)).subscribe(({modifiedConfig}) => {
       if (component.followConfig) {
-        this.syncComponentWithConfig(component, isFixLabel, modifiedConfig);
+        this.syncComponentWithConfig(component, isFixLabel, modifiedConfig, true);
       }
     });
   }
 
-  syncComponentWithConfig(component: any, isFixLabel: boolean, config: Partial<NgConfig>) {
+  private syncComponentWithConfig(component: any, isFixLabel: boolean, config: Partial<NgConfig>, forceApply: boolean) {
     Object.entries(config).forEach(([key, value]: [key: keyof NgConfig, value: any]) => {
       let componentKey = this.getComponentConfigKey(key);
-      if (componentKey in component && typeof component[componentKey] == 'undefined') {
+      if (!(componentKey in component)) {
+        return
+      }
+      if (forceApply) {
         component[componentKey] = value;
+      } else {
+        if (typeof component[componentKey] == 'undefined') {
+          component[componentKey] = value;
+        }
       }
     })
   }
