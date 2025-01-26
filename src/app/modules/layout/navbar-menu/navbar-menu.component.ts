@@ -2,7 +2,6 @@ import {AfterContentInit, ChangeDetectionStrategy, Component, HostListener, inje
 import {CommonModule, DOCUMENT} from "@angular/common";
 import {LanguageChecker} from '@core/utils';
 import {GlobalConfig, SidebarType} from '@core/models';
-import {ConfigService} from "@powell/api";
 import {globalConfig} from "@core/config";
 import {
   $AvatarModule,
@@ -12,6 +11,7 @@ import {
   $MenuItem,
   $MenuModule,
   $PanelMenuModule,
+  $PopoverModule,
   $SelectChangeEvent
 } from "@powell/primeng";
 import {ButtonModule} from "@powell/components/button";
@@ -23,9 +23,8 @@ import {TranslateModule} from "@ngx-translate/core";
 import {FormsModule} from "@angular/forms";
 import {LogoComponent} from "@modules/layout/logo/logo.component";
 import {routes} from "@modules/main/pages/showcase/showcase-routing.module";
-import {lastValueFrom} from "rxjs";
-import {StyleClassModule} from "primeng/styleclass";
-import {AppDesignerComponent} from "@modules/main/pages/showcase/components/designer/app.designer.component";
+import {AppDesignerComponent} from "@modules/main/pages/showcase/components";
+import {RadioModule} from "@powell/components/radio";
 
 @Component({
   selector: 'ng-navbar-menu',
@@ -47,14 +46,14 @@ import {AppDesignerComponent} from "@modules/main/pages/showcase/components/desi
     FilterModule,
     TranslateModule,
     FormsModule,
-    StyleClassModule,
+    $PopoverModule,
+    RadioModule,
     AppDesignerComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterContentInit {
   private document = inject(DOCUMENT);
-  private configService = inject(ConfigService);
 
   sidebarType: SidebarType = 'push-mask';
   sidebarTypes: $MenuItem[];
@@ -64,19 +63,11 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   sidebarItems: $MenuItem[];
   config: GlobalConfig = globalConfig;
   tempSidebarType: SidebarType = 'push-mask';
-  themes: $MenuItem[];
   searchValue: string;
-  showDesigner: boolean;
-  isDarkMode = this.configService.get().theme.mode === 'dark';
 
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.handleResize()
-  }
-
-  handleDarkModeTransition(): void {
-    this.configService.update({theme: {mode: this.isDarkMode ? 'dark' : 'light'}});
-    this.isDarkMode = !this.isDarkMode;
   }
 
   ngOnInit() {
@@ -116,15 +107,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
         }
       }
     }));
-  }
-
-  changeGlobalConfig(config: string, value: any) {
-    this.config[config] = value;
-    this.configService.update({[config]: value});
-  }
-
-  async changeLang(event: $SelectChangeEvent) {
-    await lastValueFrom(this.translationService.use(event.value));
   }
 
   changeSidebarType(event: $SelectChangeEvent | SidebarType, assign: boolean) {

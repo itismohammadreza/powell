@@ -1,7 +1,5 @@
 <div class="main-content flex flex-col h-full menu-{{tempSidebarType}}"
      [ngClass]="{
-        'rtl' : config.rtl,
-        'ltr' : !config.rtl,
         'sidebar-lock' : sidebarLock,
         'sidebar-open' : sidebarVisible
      }">
@@ -16,20 +14,20 @@
     }
     <ng-logo/>
 
-    <ng-button icon="pi pi-palette" (click)="showDesigner = !showDesigner"/>
-    <button type="button" class="topbar-item" (click)="handleDarkModeTransition()">
-      <i class="pi" [ngClass]="{ 'pi-moon': isDarkMode, 'pi-sun': !isDarkMode }"></i>
-    </button>
-    <a target="_blank" href="https://github.com/mohammadreza99/powell">
-      <ng-button appearance="text" severity="secondary" icon="pi pi-github"/>
-    </a>
+    <div class="flex items-center gap-3">
+      <ng-button (onClick)="op.toggle($event)" icon="pi pi-sparkles"/>
+      <a target="_blank" href="https://github.com/mohammadreza99/powell">
+        <ng-button appearance="text" severity="secondary" icon="pi pi-github"/>
+      </a>
+      <p-popover #op>
+        <ng-radio [value]="tempSidebarType" (onChange)="changeSidebarType($event, true)" [options]="sidebarTypes"/>
+      </p-popover>
+    </div>
   </nav>
 
   <main class="transition-all duration-200 grow">
     @if (tempSidebarType === 'horizontal') {
-      <p-menubar
-        styleClass="overflow-auto [&_ul]:!flex-nowrap [&_ul]:!whitespace-nowrap"
-        [model]="sidebarItems">
+      <p-menubar styleClass="overflow-auto [&_ul]:!flex-nowrap [&_ul]:!whitespace-nowrap" [model]="sidebarItems">
         <ng-template pTemplate="start">
           <ng-logo/>
         </ng-template>
@@ -41,7 +39,7 @@
 
   @if (!sidebarVisible || sidebarType === 'hover') {
     <ng-button
-      class="config-btn fixed z-[900000] top-[30%] -translate-y-1/2 left-0 transition-all duration-150 ease-[cubic-bezier(0,0,0.2,1)] [&_button]:!rounded-l-none [&.active]:left-[30rem]"
+      class="fixed z-[900000] top-[30%] -translate-y-1/2 left-0 transition-all duration-150 ease-[cubic-bezier(0,0,0.2,1)] [&_button]:!rounded-l-none [&.active]:left-[48rem]"
       severity="secondary"
       [class.active]="configSidebarVisible"
       (click)="configSidebarVisible = !configSidebarVisible" icon="pi pi-cog"/>
@@ -86,94 +84,12 @@
       [model]="sidebarItems | ngFilter:searchValue:'label'"/>
   </p-drawer>
 </div>
-<app-designer [showDesigner]="showDesigner"/>
+
 <p-drawer
   position="left"
   [modal]="false"
   [closable]="true"
   [(visible)]="configSidebarVisible"
-  styleClass="!w-[30rem] max-w-full !bg-transparent backdrop-blur-md">
-  <p-divider class="[&_.p-divider-content]:rounded-xl" align="center">
-    <h5 class="mb-0">{{ 'siteConfigs' | translate }}</h5>
-  </p-divider>
-  <ng-select
-    [label]="'sidebar' | translate"
-    labelPosition="side"
-    [labelWidth]="170"
-    class="mb-4"
-    [value]="tempSidebarType"
-    [options]="sidebarTypes"
-    (onChange)="changeSidebarType($event, true)"/>
-  <ng-select
-    [label]="'lang' | translate"
-    labelPosition="side"
-    [labelWidth]="170"
-    class="mb-4"
-    [value]="config.lang"
-    [options]="[{label:'EN',value:'en'},{label:'FA',value:'fa'}]"
-    (onChange)="changeLang($event)"/>
-  <p-divider class="[&_.p-divider-content]:rounded-xl" align="center">
-    <h5 class="mb-0">{{ 'componentsGlobalConfigs' | translate }}</h5>
-  </p-divider>
-  <ng-select
-    [label]="'selectiveSize' | translate"
-    labelPosition="side"
-    [labelWidth]="170"
-    class="mb-4"
-    [value]="config.powellConfig.inputSize"
-    [options]="[{label:'sm',value:'sm'},{label:'md',value:'md'},{label:'lg',value:'lg'}]"
-    (onChange)="changeGlobalConfig('inputSize',$event.value)"/>
-  <ng-select
-    [label]="'theme' | translate"
-    labelPosition="side"
-    [labelWidth]="170"
-    class="mb-4"
-    [value]="config.powellConfig.theme"
-    [options]="themes"
-    (onChange)="changeGlobalConfig('theme',$event.value)"/>
-  <ng-select
-    [label]="'labelPosition' | translate"
-    labelPosition="side"
-    [labelWidth]="170"
-    class="mb-4"
-    [value]="config.powellConfig.labelPosition"
-    [options]="[{label:'side',value:'side'},{label:'top',value:'top'},{label:'float',value:'float'}]"
-    (onChange)="changeGlobalConfig('labelPosition',$event.value)"/>
-  <ng-select
-    [label]="'fixLabelPosition' | translate"
-    labelPosition="side"
-    [labelWidth]="170"
-    class="mb-4"
-    [value]="config.powellConfig.fixLabelPosition"
-    [options]="[{label:'side',value:'side'},{label:'top',value:'top'}]"
-    (onChange)="changeGlobalConfig('fixLabelPosition',$event.value)"/>
-  <ng-select
-    [label]="'inputStyle' | translate"
-    labelPosition="side"
-    [labelWidth]="170"
-    class="mb-4"
-    [value]="config.powellConfig.inputStyle"
-    [options]="[{label:'outlined',value:'outlined'},{label:'filled',value:'filled'}]"
-    (onChange)="changeGlobalConfig('inputStyle',$event.value)"/>
-  <ng-toggle-switch
-    [label]="'showRequiredStar' | translate"
-    labelPosition="side"
-    [labelWidth]="170"
-    class="mb-4"
-    [value]="config.powellConfig.showRequiredStar"
-    (onChange)="changeGlobalConfig('showRequiredStar',$event.checked)"/>
-  <ng-toggle-switch
-    [label]="'ripple' | translate"
-    labelPosition="side"
-    [labelWidth]="170"
-    class="mb-4"
-    [value]="config.powellConfig.ripple"
-    (onChange)="changeGlobalConfig('ripple',$event.checked)"/>
-  <ng-toggle-switch
-    [label]="'rtl' | translate"
-    labelPosition="side"
-    [labelWidth]="170"
-    class="mb-4"
-    [value]="config.rtl"
-    (onChange)="changeGlobalConfig('rtl',$event.checked)"/>
+  styleClass="!w-[48rem] max-w-full">
+  <app-designer/>
 </p-drawer>
