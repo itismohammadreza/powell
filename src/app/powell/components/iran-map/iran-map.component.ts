@@ -328,7 +328,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   ngAfterViewInit() {

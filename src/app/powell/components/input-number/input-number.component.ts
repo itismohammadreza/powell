@@ -152,7 +152,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this);
   }
 
   ngAfterContentInit() {

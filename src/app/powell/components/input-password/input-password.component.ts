@@ -129,7 +129,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this);
   }
 
   ngAfterContentInit() {

@@ -207,7 +207,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   ngAfterContentInit() {

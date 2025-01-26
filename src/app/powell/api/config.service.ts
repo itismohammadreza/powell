@@ -77,19 +77,22 @@ export class ConfigService {
     return this._config;
   }
 
-  applyConfigToComponent(component: any) {
-    Object.entries(this._config).forEach(([key, value]) => {
-      let componentKey = this.getComponentConfigKey(key as keyof NgConfig);
-      if (typeof component[componentKey] == 'undefined') {
+  configureComponent(component: any, isFixLabel?: boolean) {
+    this.syncComponentWithConfig(component, isFixLabel, this._config);
+    this.configChange$.pipe(takeUntil(component.destroy$)).subscribe(({modifiedConfig}) => {
+      if (component.followConfig) {
+        this.syncComponentWithConfig(component, isFixLabel, modifiedConfig);
+      }
+    });
+  }
+
+  syncComponentWithConfig(component: any, isFixLabel: boolean, config: Partial<NgConfig>) {
+    Object.entries(config).forEach(([key, value]: [key: keyof NgConfig, value: any]) => {
+      let componentKey = this.getComponentConfigKey(key);
+      if (componentKey in component && typeof component[componentKey] == 'undefined') {
         component[componentKey] = value;
       }
     })
-    this.configChange$.pipe(takeUntil(component.destroy$)).subscribe(({modifiedConfig}) => {
-      Object.entries(modifiedConfig).forEach(([key, value]) => {
-        let componentKey = this.getComponentConfigKey(key as keyof NgConfig);
-        component[componentKey] = component.followConfig ? value : component[componentKey];
-      });
-    });
   }
 
   private getComponentConfigKey(key: keyof NgConfig) {

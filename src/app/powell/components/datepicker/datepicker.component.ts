@@ -188,7 +188,7 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this);
   }
 
   ngAfterContentInit() {

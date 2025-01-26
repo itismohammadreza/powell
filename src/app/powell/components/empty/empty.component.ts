@@ -19,6 +19,6 @@ export class EmptyComponent implements OnInit {
   @Input() followConfig: boolean;
 
   ngOnInit() {
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 }

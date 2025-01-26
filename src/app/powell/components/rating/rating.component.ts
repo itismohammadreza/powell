@@ -110,7 +110,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   ngAfterContentInit() {

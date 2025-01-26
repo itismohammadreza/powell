@@ -137,7 +137,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   ngAfterContentInit() {

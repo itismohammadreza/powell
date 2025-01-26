@@ -115,7 +115,7 @@ export class DualLabelSwitchComponent implements OnInit, AfterContentInit, Contr
       }
     }
     this.setInitValue();
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   ngAfterContentInit() {

@@ -110,7 +110,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   _onChangeColorPicker(event: $ColorPickerChangeEvent) {

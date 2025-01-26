@@ -67,7 +67,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
 
   ngOnInit() {
     this.styleClass = `p-bottom-sheet ${this.styleClass}`;
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this);
   }
 
   ngOnChanges(changes: SimpleChanges) {

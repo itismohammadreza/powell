@@ -160,7 +160,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   ngAfterContentInit() {

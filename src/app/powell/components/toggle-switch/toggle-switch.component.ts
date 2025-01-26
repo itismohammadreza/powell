@@ -115,7 +115,7 @@ export class ToggleSwitchComponent implements OnInit, AfterContentInit, ControlV
       }
     }
     this.setLabel();
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   ngAfterContentInit() {

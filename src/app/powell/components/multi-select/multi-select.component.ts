@@ -192,7 +192,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this);
   }
 
   ngAfterContentInit() {

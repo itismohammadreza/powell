@@ -187,7 +187,7 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   ngOnChanges(changes: SimpleChanges) {
