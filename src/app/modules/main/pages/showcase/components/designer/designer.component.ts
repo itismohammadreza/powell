@@ -117,39 +117,41 @@ import {
               <ng-select
                 [label]="'lang' | translate"
                 labelPosition="float-in"
-                [followConfig]="false"
                 [fluid]="true"
                 [value]="config.lang"
                 [options]="[{label:'EN',value:'en'},{label:'FA',value:'fa'}]"
                 (onChange)="changeLang($event)"/>
               <ng-select
-                [label]="'selectiveSize' | translate"
-                labelPosition="float-in"
-                [followConfig]="false"
-                [fluid]="true"
-                [value]="config.powellConfig.inputSize"
-                [options]="[{label:'sm',value:'sm'},{label:'md',value:'md'},{label:'lg',value:'lg'}]"
-                (onChange)="changeGlobalConfig('inputSize',$event.value)"/>
-              <ng-select
-                [label]="'labelPosition' | translate"
-                [followConfig]="false"
+                [label]="'mode' | translate"
                 labelPosition="float-in"
                 [fluid]="true"
-                [value]="config.powellConfig.labelPosition"
-                [options]="[{label:'side',value:'side'},{label:'top',value:'top'},{label:'float',value:'float'}]"
-                (onChange)="changeGlobalConfig('labelPosition',$event.value)"/>
+                [value]="config.powellConfig.theme.mode"
+                [options]="[{label:'dark',value:'dark'},{label:'light',value:'light'},{label:'system',value:'system'}]"
+                (onChange)="changeGlobalConfig('theme',{mode:$event.value})"/>
               <ng-select
                 [label]="'fixLabelPosition' | translate"
                 labelPosition="float-in"
-                [followConfig]="false"
                 [fluid]="true"
                 [value]="config.powellConfig.fixLabelPosition"
                 [options]="[{label:'side',value:'side'},{label:'top',value:'top'}]"
                 (onChange)="changeGlobalConfig('fixLabelPosition',$event.value)"/>
               <ng-select
+                [label]="'labelPosition' | translate"
+                labelPosition="float-in"
+                [fluid]="true"
+                [value]="config.powellConfig.labelPosition"
+                [options]="[{label:'side',value:'side'},{label:'top',value:'top'},{label:'ifta',value:'ifta'},{label:'float-in',value:'float-in'},{label:'float-on',value:'float-on'},{label:'float-over',value:'float-over'}]"
+                (onChange)="changeGlobalConfig('labelPosition',$event.value)"/>
+              <ng-select
+                [label]="'size' | translate"
+                labelPosition="float-in"
+                [fluid]="true"
+                [value]="config.powellConfig.inputSize ?? 'medium'"
+                [options]="[{label:'small',value:'small'},{label:'medium',value:'medium'},{label:'large',value:'large'}]"
+                (onChange)="changeGlobalConfig('inputSize',$event.value)"/>
+              <ng-select
                 [label]="'inputStyle' | translate"
                 labelPosition="float-in"
-                [followConfig]="false"
                 [fluid]="true"
                 [value]="config.powellConfig.inputStyle"
                 [options]="[{label:'outlined',value:'outlined'},{label:'filled',value:'filled'}]"
@@ -160,21 +162,18 @@ import {
                 [label]="'showRequiredStar' | translate"
                 labelPosition="side"
                 [labelWidth]="170"
-                [followConfig]="false"
                 [value]="config.powellConfig.showRequiredStar"
                 (onChange)="changeGlobalConfig('showRequiredStar',$event.checked)"/>
               <ng-toggle-switch
                 [label]="'ripple' | translate"
                 labelPosition="side"
                 [labelWidth]="170"
-                [followConfig]="false"
                 [value]="config.powellConfig.ripple"
                 (onChange)="changeGlobalConfig('ripple',$event.checked)"/>
               <ng-toggle-switch
                 [label]="'rtl' | translate"
                 labelPosition="side"
                 [labelWidth]="170"
-                [followConfig]="false"
                 [value]="config.rtl"
                 (onChange)="changeGlobalConfig('rtl',$event.checked)"/>
             </div>
@@ -446,7 +445,7 @@ export class DesignerComponent implements OnInit {
       }
     }
   ];
-  selectedPrimaryColor: string = 'noir';
+  selectedPrimaryColor: string;
   selectedSurfaceColor: string;
   primaryColors: any[] = [
     {name: 'noir', palette: {}},
@@ -675,7 +674,9 @@ export class DesignerComponent implements OnInit {
     this.preset.semantic.colorScheme.light.surface = {...{0: '#ffffff'}, ...this.preset.primitive.slate};
     this.preset.semantic.colorScheme.dark.surface = {...{0: '#ffffff'}, ...this.preset.primitive.zinc};
     this.selectedPreset = value;
-    this.configService.update({theme: {name: value, preset: this.preset}})
+    this.configService.update({theme: {name: value}});
+    this.selectedPrimaryColor = null;
+    this.selectedSurfaceColor = null;
     this.designerService.setPreset(this.preset);
   }
 
