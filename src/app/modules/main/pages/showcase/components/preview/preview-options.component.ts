@@ -61,8 +61,13 @@ export interface PreviewOption {
 
 @Component({
   selector: 'ng-preview-options',
-  templateUrl: './preview-options.component.html',
-  styleUrls: ['./preview-options.component.scss'],
+  template: `
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+      <ng-container #firstRow/>
+      <p-divider class="md:col-span-2 lg:col-span-3"/>
+      <ng-container #secondRow/>
+    </div>
+  `,
   providers: [DestroyService],
   imports: [$DividerModule]
 })
@@ -127,7 +132,7 @@ export class PreviewOptionsComponent implements OnInit {
     }
 
     this.configService.configChange$.subscribe(({modifiedConfig, currentConfig}) => {
-      const followConfig = this.options.find(item => item.field === 'followConfig').value;
+      const followConfig = this.options.find(item => item.field === 'followConfig')?.value;
       if (!followConfig) {
         return
       }

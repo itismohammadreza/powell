@@ -1,7 +1,5 @@
 @use "sass:meta";
 
-@layer tailwind-base, primeng, tailwind-components, tailwind-utilities;
-
 @import "tailwindcss/base.css" layer(tailwind-base);
 @import "tailwindcss/components.css" layer(tailwind-components);
 @import "tailwindcss/utilities.css" layer(tailwind-utilities);

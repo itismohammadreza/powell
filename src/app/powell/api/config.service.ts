@@ -80,7 +80,7 @@ export class ConfigService {
   applyConfigToComponent(component: any) {
     Object.entries(this._config).forEach(([key, value]) => {
       let componentKey = this.getComponentConfigKey(key as keyof NgConfig);
-      if (!component[componentKey]) {
+      if (typeof component[componentKey] == 'undefined') {
         component[componentKey] = value;
       }
     })
