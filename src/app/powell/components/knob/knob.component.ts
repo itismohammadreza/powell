@@ -108,7 +108,7 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   _onChange(event: number) {

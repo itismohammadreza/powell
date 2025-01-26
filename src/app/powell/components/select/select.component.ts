@@ -183,7 +183,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this);
   }
 
   ngAfterContentInit() {

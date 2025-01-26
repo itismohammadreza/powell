@@ -132,7 +132,7 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this);
   }
 
   ngAfterContentInit() {

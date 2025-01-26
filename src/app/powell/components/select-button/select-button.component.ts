@@ -113,7 +113,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   ngAfterContentInit() {

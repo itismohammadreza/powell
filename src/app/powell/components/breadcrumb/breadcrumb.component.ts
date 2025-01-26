@@ -58,7 +58,7 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
       this.addBreadcrumb(root, [], breadcrumbs);
       this._breadcrumbs$.next(breadcrumbs);
     });
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this);
   }
 
   ngAfterContentInit() {

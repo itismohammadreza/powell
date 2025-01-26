@@ -122,7 +122,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
       }
     }
     this.setLabel();
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   ngAfterContentInit() {

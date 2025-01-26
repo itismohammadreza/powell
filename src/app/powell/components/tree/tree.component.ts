@@ -162,7 +162,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   ngAfterContentInit() {

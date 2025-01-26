@@ -130,7 +130,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   ngOnChanges(changes: SimpleChanges) {

@@ -127,7 +127,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this);
   }
 
   ngAfterContentInit() {

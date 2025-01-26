@@ -234,7 +234,7 @@ export class TableComponent implements OnInit, AfterContentInit {
         Object.assign(conf.filter, {sliderValue: conf.filter.range ? [conf.filter.min || 0, conf.filter.max || 100] : conf.filter.max})
       }
     });
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this, true);
   }
 
   _onSort(event: $TableSortEvent) {

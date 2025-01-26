@@ -167,7 +167,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
         });
       }
     }
-    this.configService.applyConfigToComponent(this);
+    this.configService.configureComponent(this);
   }
 
   ngAfterContentInit() {
