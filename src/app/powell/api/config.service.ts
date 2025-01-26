@@ -38,37 +38,8 @@ export class ConfigService {
     }
   }
 
-  private applyConfig(config: NgInitialConfig) {
-    this._config = {...this._config, ...config};
-    for (const key in config) {
-      if (key in this.primeNG && isSignal(this.primeNG[key] as Signal<any>)) {
-        if (key === 'theme') {
-          const theme = config.theme;
-          if (!this.initialized) {
-            const convertedTheme = {
-              preset: theme.name ? this.themeService.presets[theme.name] : theme.preset,
-              options: {
-                ...config.themeOptions,
-                darkModeSelector: this.themeService.darkModeSelector
-              }
-            }
-            this.primeNG.theme.set(convertedTheme);
-          }
-          this.themeService.usePreset(theme);
-        } else if (key === 'translation') {
-          this.primeNG.setTranslation(config.translation);
-        } else {
-          this.primeNG[key].set(config[key]);
-        }
-      } else if (key in this.primeNG) {
-        this.primeNG[key] = config[key];
-      }
-    }
-    this.themeService.applyConfigToDom(config);
-  }
-
   update(config: NgConfig) {
-    this.applyConfig(config);
+    this.handleConfigChanges(config);
     this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
     this.initialized = true;
   }
@@ -100,6 +71,35 @@ export class ConfigService {
         }
       }
     })
+  }
+
+  private handleConfigChanges(config: NgInitialConfig) {
+    this._config = {...this._config, ...config};
+    for (const key in config) {
+      if (key in this.primeNG && isSignal(this.primeNG[key] as Signal<any>)) {
+        if (key === 'theme') {
+          const theme = config.theme;
+          if (!this.initialized) {
+            const convertedTheme = {
+              preset: theme.name ? this.themeService.presets[theme.name] : theme.preset,
+              options: {
+                ...config.themeOptions,
+                darkModeSelector: this.themeService.darkModeSelector
+              }
+            }
+            this.primeNG.theme.set(convertedTheme);
+          }
+          this.themeService.usePreset(theme);
+        } else if (key === 'translation') {
+          this.primeNG.setTranslation(config.translation);
+        } else {
+          this.primeNG[key].set(config[key]);
+        }
+      } else if (key in this.primeNG) {
+        this.primeNG[key] = config[key];
+      }
+    }
+    this.themeService.applyConfigToDom(config);
   }
 
   private getComponentConfigKey(key: keyof NgConfig) {
