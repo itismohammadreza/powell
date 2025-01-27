@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {PreviewOption, PreviewOptionsComponent} from "@modules/main/pages/showcase/components";
+import {PreviewOption, PreviewOptionsComponent} from "@modules/main/pages/showcase/components/index";
 import {$CardModule, $DividerModule, $PanelModule} from "@powell/primeng";
 import {TranslateModule} from "@ngx-translate/core";
 
