@@ -12,32 +12,20 @@ export class ConfigService {
   private _config: Partial<NgConfig> = {};
   private configChangeSubject = new Subject<NgConfigChangeEvent>();
   private initialized: boolean = false;
+  private registeredComponents: {component: any; isFixLabel: boolean}[] = [];
   configChange$ = this.configChangeSubject.asObservable();
 
   constructor() {
-    // set default ripple to true, so 'ink' element will present in rippleable elements.
-    this.primeNG.ripple.set(true);
+    this.initializeDefaultConfig();
 
-    // add default primeng config to our config object
-    for (const key in this.primeNG) {
-      if (isSignal(this.primeNG[key])) {
-        this._config[key] = this.primeNG[key]();
-      } else {
-        this._config[key] = this.primeNG[key];
-      }
-    }
-    // and add other default config of our app
-    this._config = {
-      ...this._config,
-      followConfig: true,
-      rtl: false,
-      fixLabelPosition: 'side',
-      labelPosition: 'side',
-      showRequiredStar: true,
-      theme: this.themeService.currentPreset
-    }
+    this.configChange$.subscribe(({modifiedConfig}) => {
+      this.registeredComponents.forEach(({component, isFixLabel}) => {
+        if (component.followConfig) {
+          this.syncComponentWithConfig(component, isFixLabel, modifiedConfig, true);
+        }
+      });
+    });
   }
-
 
   update(config: NgConfig) {
     this.handleConfigChanges(config);
@@ -50,12 +38,12 @@ export class ConfigService {
   }
 
   configureComponent(component: any, isFixLabel?: boolean) {
+    this.registeredComponents.push({component, isFixLabel});
     this.syncComponentWithConfig(component, isFixLabel, this._config, false);
-    this.configChange$.pipe(takeUntil(component.destroy$)).subscribe(({modifiedConfig}) => {
-      if (component.followConfig) {
-        this.syncComponentWithConfig(component, isFixLabel, modifiedConfig, true);
-      }
-    });
+    const destroySubscription = component.destroy$?.subscribe(() => {
+      this.unregisterComponent(component)
+      destroySubscription?.unsubscribe();
+    })
   }
 
   private syncComponentWithConfig(component: any, isFixLabel: boolean, config: Partial<NgConfig>, forceApply: boolean) {
@@ -115,5 +103,33 @@ export class ConfigService {
     if (key === 'fixLabelPosition') return 'labelPosition';
     if (key === 'inputStyle') return 'variant';
     return key;
+  }
+
+  private unregisterComponent(component: any) {
+    this.registeredComponents = this.registeredComponents.filter(item => item.component !== component);
+  }
+
+  private initializeDefaultConfig() {
+    // set default ripple to true, so 'ink' element will present in rippleable elements.
+    this.primeNG.ripple.set(true);
+
+    // add default primeng config to our config object
+    for (const key in this.primeNG) {
+      if (isSignal(this.primeNG[key])) {
+        this._config[key] = this.primeNG[key]();
+      } else {
+        this._config[key] = this.primeNG[key];
+      }
+    }
+    // and add other default config of our app
+    this._config = {
+      ...this._config,
+      followConfig: true,
+      rtl: false,
+      fixLabelPosition: 'side',
+      labelPosition: 'side',
+      showRequiredStar: true,
+      theme: this.themeService.currentPreset
+    }
   }
 }
