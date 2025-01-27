@@ -87,19 +87,23 @@ export abstract class PreviewBase implements AfterViewInit {
           this.additions[value] = true
           break;
       }
-      this.render = false;
-      setTimeout(() => {
-        this.render = true;
-        setTimeout(() => {
-          this.ngAfterViewInit();
-        });
-      }, 5);
+      this.reRenderComponent();
       return
     }
     if (this.cmpRef) {
       this.cmpRef[field] = value;
     }
     this.previewOptions.find(option => option.field === field).value = value;
+  }
+
+  reRenderComponent() {
+    this.render = false;
+    setTimeout(() => {
+      this.render = true;
+      setTimeout(() => {
+        this.ngAfterViewInit();
+      });
+    }, 5);
   }
 
   getOption(key: string): any {
