@@ -38,6 +38,7 @@ export class ConfigService {
     }
   }
 
+
   update(config: NgConfig) {
     this.handleConfigChanges(config);
     this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
@@ -61,14 +62,22 @@ export class ConfigService {
     Object.entries(config).forEach(([key, value]: [key: keyof NgConfig, value: any]) => {
       let componentKey = this.getComponentConfigKey(key);
       if (!(componentKey in component)) {
-        return
+        return;
       }
-      if (forceApply) {
-        component[componentKey] = value;
-      } else {
-        if (typeof component[componentKey] == 'undefined') {
+      if (!forceApply && typeof component[componentKey] != 'undefined') {
+        return;
+      }
+
+      if (key === 'fixLabelPosition') {
+        if (isFixLabel) {
           component[componentKey] = value;
         }
+      } else if (key === 'labelPosition') {
+        if (!isFixLabel) {
+          component[componentKey] = value;
+        }
+      } else {
+        component[componentKey] = value;
       }
     })
   }
