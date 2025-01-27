@@ -37,7 +37,6 @@ export class SelectPage extends PreviewBase {
     {field: 'showClear', value: true},
     {field: 'size', options: 'sizes', value: this.config.inputSize},
     {field: 'maxlength', value: 100},
-    {field: 'focusOnHover', value: false},
     {field: 'autofocusFilter', value: false},
     {field: 'fluid', value: false},
     {field: 'disabled', value: false},

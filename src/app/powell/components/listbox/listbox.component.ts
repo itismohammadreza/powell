@@ -77,7 +77,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() ariaLabel: string;
   @Input() selectOnFocus: boolean = false;
   @Input() searchLocale: boolean = false;
-  @Input() focusOnHover: boolean = false;
+  @Input() focusOnHover: boolean = true;
   @Input() filterMessage: string;
   @Input() filterFields: any[];
   @Input() lazy: boolean = false;

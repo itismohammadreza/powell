@@ -11,9 +11,12 @@ import {TranslateModule} from "@ngx-translate/core";
         <ng-template #title> {{ component }}</ng-template>
         <ng-template #subtitle> {{ description }}</ng-template>
       </p-card>
-      <p-panel [header]="'options' | translate">
-        <ng-preview-options [options]="previewOptions" (optionChange)="onOptionChange.emit($event)"/>
-      </p-panel>
+
+      @if (previewOptions?.length) {
+        <p-panel [header]="'options' | translate">
+          <ng-preview-options [options]="previewOptions" (optionChange)="onOptionChange.emit($event)"/>
+        </p-panel>
+      }
 
       <p-panel [style]="{minHeight:'110px'}" [header]="'preview' | translate">
         <ng-content></ng-content>

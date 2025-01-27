@@ -7,6 +7,9 @@ import {ButtonModule} from "@powell/components/button";
 import {InputNumberModule} from "@powell/components/input-number";
 import {PreviewBase, PreviewComponent} from "@modules/main/pages/showcase/components";
 import {DestroyService} from "@core/utils";
+import {$DividerModule} from "@powell/primeng";
+import {TranslateModule} from "@ngx-translate/core";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'ng-utils-page',
@@ -15,7 +18,10 @@ import {DestroyService} from "@core/utils";
   imports: [
     ButtonModule,
     InputNumberModule,
-    PreviewComponent
+    PreviewComponent,
+    $DividerModule,
+    TranslateModule,
+    CommonModule
   ],
   providers: [DestroyService],
 })
