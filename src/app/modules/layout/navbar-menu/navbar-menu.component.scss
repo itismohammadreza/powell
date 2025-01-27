@@ -41,53 +41,7 @@
       &.sidebar-open {
         main, nav {
           width: calc(100% - 20rem);
-        }
-
-        &:dir(ltr) {
-          main, nav {
-            margin-left: 20rem;
-          }
-        }
-
-        &:dir(rtl) {
-          main, nav {
-            margin-right: 20rem;
-          }
-        }
-      }
-    }
-
-    &.menu-hover {
-      .p-panelmenu-header-link {
-        flex-direction: row-reverse;
-        justify-content: space-between;
-      }
-
-      &:dir(ltr) {
-        main, nav {
-          margin-left: 5rem;
-        }
-
-        .p-sidebar {
-          transform: translateX(calc(-100% + 5rem));
-
-          &:hover {
-            transform: translateX(0);
-          }
-        }
-      }
-
-      &:dir(rtl) {
-        main, nav {
-          margin-right: 5rem;
-        }
-
-        .p-sidebar {
-          transform: translateX(calc(100% - 5rem));
-
-          &:hover {
-            transform: translateX(0);
-          }
+          margin-inline-start: 20rem;
         }
       }
     }

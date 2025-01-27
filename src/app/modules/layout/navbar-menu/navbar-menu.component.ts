@@ -58,7 +58,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   sidebarType: SidebarType = 'push-mask';
   sidebarTypes: $MenuItem[];
   sidebarVisible: boolean;
-  configSidebarVisible: boolean;
+  designerSidebarVisible: boolean;
   sidebarLock: boolean; // overrides the sidebarVisible.
   sidebarItems: $MenuItem[];
   config: GlobalConfig = globalConfig;
@@ -94,7 +94,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   loadData() {
-    const sidebarTypes: SidebarType[] = ['overlay', 'overlay-mask', 'push', 'push-mask', 'hover', 'static', 'horizontal'];
+    const sidebarTypes: SidebarType[] = ['overlay', 'overlay-mask', 'push', 'push-mask', 'static', 'horizontal'];
     this.sidebarTypes = sidebarTypes.map(t => ({label: t, value: t}));
     this.sidebarItems = routes.map(item => ({
       label: item.title as string,
@@ -114,11 +114,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     if (assign) {
       this.sidebarType = this.tempSidebarType;
     }
-    if (this.tempSidebarType === 'hover') {
-      this.toggleSidebar(true);
-    } else {
-      this.toggleSidebar(false);
-    }
+    this.toggleSidebar(false);
     this.toggleSidebarLock(false);
   }
 
