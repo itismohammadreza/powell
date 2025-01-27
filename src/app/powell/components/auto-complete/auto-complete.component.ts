@@ -136,7 +136,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() selectOnFocus: boolean = false;
   @Input() searchLocale: boolean = false;
   @Input() optionDisabled: string;
-  @Input() focusOnHover: boolean = false;
+  @Input() focusOnHover: boolean = true;
   @Input() variant: NgInputVariant;
   @Input() fluid: boolean;
   @Output() completeMethod = new EventEmitter<$AutoCompleteCompleteEvent>();

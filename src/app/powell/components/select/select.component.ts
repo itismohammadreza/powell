@@ -128,7 +128,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() tooltipPosition: NgPosition = 'right';
   @Input() tooltipPositionStyle: string = 'absolute';
   @Input() tooltipStyleClass: string;
-  @Input() focusOnHover: boolean = false;
+  @Input() focusOnHover: boolean = true;
   @Input() selectOnFocus: boolean = false;
   @Input() autoOptionFocus: boolean = true;
   @Input() autofocusFilter: boolean = true;

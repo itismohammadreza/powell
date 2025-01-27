@@ -142,7 +142,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() options: any[];
   @Input() filterValue: string;
   @Input() selectAll: boolean = null; // should have explicitly the 'null' value to work properly
-  @Input() focusOnHover: boolean;
+  @Input() focusOnHover: boolean = true;
   @Input() filterFields: any[];
   @Input() selectOnFocus: boolean;
   @Input() autoOptionFocus: boolean = true;

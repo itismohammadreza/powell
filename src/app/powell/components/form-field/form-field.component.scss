@@ -14,9 +14,17 @@
       }
     }
 
+    p-iconfield {
+      display: inline-block;
+    }
+
     &.fluid {
       &, .p-inputtext, & > * {
         width: 100%;
+      }
+
+      p-iconfield {
+        display: block;
       }
     }
 

@@ -29,7 +29,7 @@ import {DestroyService} from "@core/utils";
 export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges {
   private overlayService = inject(OverlayService);
   private configService = inject(ConfigService);
-  // used in `applyConfigToComponent` method
+  // used in `configureComponent` method
   private destroy$ = inject(DestroyService);
 
   @Input() rtl: boolean;
