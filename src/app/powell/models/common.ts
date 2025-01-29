@@ -21,9 +21,9 @@ export type NgEmptyIcon = 'box1' | 'box2' | 'magnifier';
 export type NgPosition = 'left' | 'right' | 'top' | 'bottom';
 export type NgCssObject = Partial<CSSStyleDeclaration>;
 export type NgButtonProps = Omit<$ButtonProps, 'link' | 'outlined' | 'text' | 'plain'> & {
-  appearance: NgButtonAppearance;
-  fluid: boolean;
-  responsiveSize: NgButtonResponsiveSize;
+  appearance?: NgButtonAppearance;
+  fluid?: boolean;
+  responsiveSize?: NgButtonResponsiveSize;
 };
 
 export interface NgButtonResponsiveSize {

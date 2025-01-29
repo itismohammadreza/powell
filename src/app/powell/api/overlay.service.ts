@@ -12,6 +12,7 @@ import {
   DynamicDialogRef
 } from "@powell/components/overlay";
 import {
+  $ButtonProps,
   $Confirmation,
   $ConfirmationService,
   $ConfirmDialog,
@@ -119,7 +120,7 @@ export class OverlayService {
       this.toastCmpRef = this.addToBody($Toast);
     }
     const {instance} = this.toastCmpRef;
-    this.toastCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr');
+    this.toastCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr');
     const toast: $ToastMessageOptions = {
       severity: 'info',
       ...options,
@@ -127,7 +128,7 @@ export class OverlayService {
     for (const key in options) {
       instance[key] = options[key];
     }
-    instance.styleClass = `toast-wrapper ${options.styleClass}`;
+    instance.styleClass = `toast-wrapper ${options.styleClass ?? ''}`;
     instance.breakpoints = {'767px': {width: '100%', right: '0', left: '0'}, ...options.breakpoints};
     instance.position = options.position;
     instance.showTransformOptions = options.showTransformOptions ?? 'translateY(100%)';
@@ -164,8 +165,8 @@ export class OverlayService {
     for (const key in options) {
       instance[key] = options[key];
     }
-    instance.styleClass = `confirm-popup-wrapper ${options.styleClass}`;
-    this.confirmPopupCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr')
+    instance.styleClass = `confirm-popup-wrapper ${options.styleClass ?? ''}`;
+    this.confirmPopupCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr')
     return new Promise<boolean>((accept) => {
       const state: NgHistoryState = {component: 'confirmPopup'};
       this.pushState(state)
@@ -206,9 +207,9 @@ export class OverlayService {
       instance[key] = options[key];
     }
     instance.appendTo = null;
-    instance.el.nativeElement.setAttribute('dir', (options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr');
-    instance.styleClass = `confirm-dialog-wrapper ${options.styleClass} ${!options.header && !options.closable ? 'dialog-header-less' : ''}`;
-    this.confirmCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr');
+    instance.el.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr');
+    instance.styleClass = `confirm-dialog-wrapper ${options.styleClass ?? ''} ${!options.header && !options.closable ? 'dialog-header-less' : ''}`;
+    this.confirmCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr');
     return new Promise<boolean>((accept) => {
       const state: NgHistoryState = {component: 'confirmDialog'};
       let timeout: any;
@@ -251,11 +252,13 @@ export class OverlayService {
       this.dialogCmpRef = this.addToBody(DialogComponent);
     }
     const {instance} = this.dialogCmpRef;
-    for (const key in options) {
-      instance.options[key] = options[key];
+    instance.options = {
+      ...options,
+      styleClass: `dialog-wrapper ${options.styleClass ?? ''} ${!options.showHeader ? 'dialog-header-less' : ''}`,
+      closeButtonProps: this.mapToButtonProps(options.closeButtonProps),
+      maximizeButtonProps: this.mapToButtonProps(options.maximizeButtonProps),
     }
-    this.dialogCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr');
-    instance.options.styleClass = `dialog-wrapper ${options.styleClass} ${!options.showHeader ? 'dialog-header-less' : ''}`;
+    this.dialogCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr');
     instance.show();
     const state: NgHistoryState = {component: 'dialog'};
     this.pushState(state);
@@ -280,15 +283,25 @@ export class OverlayService {
     }
     const {instance} = this.dialogFormCmpRef;
     instance.config = config;
-    for (const key in options) {
-      instance.options[key] = options[key];
-    }
-    this.dialogFormCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.configService.get().rtl) ? 'rtl' : 'ltr');
-    instance.options.styleClass = `dialog-form-wrapper ${options.styleClass} ${!options.showHeader ? 'dialog-header-less' : ''}`;
-    instance.options.acceptButtonProps = this.mapToButtonProps(options.acceptButtonProps);
-    instance.options.closeButtonProps = this.mapToButtonProps(options.closeButtonProps);
-    instance.options.maximizeButtonProps = this.mapToButtonProps(options.maximizeButtonProps);
-    instance.options.rejectButtonProps = this.mapToButtonProps(options.rejectButtonProps);
+    instance.options = {
+      ...options,
+      styleClass: `dialog-form-wrapper ${options.styleClass ?? ''} ${!options.showHeader ? 'dialog-header-less' : ''}`,
+      closeButtonProps: this.mapToButtonProps(options.closeButtonProps),
+      maximizeButtonProps: this.mapToButtonProps(options.maximizeButtonProps),
+      acceptButtonProps: this.mapToButtonProps({
+        appearance: 'basic',
+        severity: 'success',
+        rounded: false,
+        ...options.acceptButtonProps
+      }),
+      rejectButtonProps: this.mapToButtonProps({
+        appearance: 'outlined',
+        severity: 'danger',
+        rounded: false,
+        ...options.rejectButtonProps
+      })
+    };
+    this.dialogFormCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr');
     instance.show();
     const state: NgHistoryState = {component: 'dialogForm'}
     this.pushState(state);
@@ -320,6 +333,10 @@ export class OverlayService {
     })
   }
 
+  private get config() {
+    return this.configService.get();
+  }
+
   private addToBody<T>(component: Type<T>, injector: Injector = this.injector) {
     const componentRef = createComponent(component, {
       environmentInjector: this.appRef.injector,
@@ -346,16 +363,15 @@ export class OverlayService {
     return this.document.body.contains(componentRef?.location.nativeElement);
   }
 
-  private mapToButtonProps(props: NgButtonProps) {
-    if (!props) {
-      return {};
-    }
+  private mapToButtonProps(props: NgButtonProps = {}) {
     return {
       ...props,
+      severity: props.severity ?? 'secondary',
+      rounded: props.rounded ?? true,
       link: props.appearance === 'link',
       outlined: props.appearance === 'outlined',
-      text: props.appearance === 'text',
-    } as any;
+      text: props.appearance ? props.appearance === 'text' : true,
+    } as $ButtonProps;
   }
 
   pushState(state: NgHistoryState) {

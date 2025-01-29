@@ -18,7 +18,7 @@ export class DialogComponent {
     for (const key in this.options) {
       const option = this.options[key];
       if (typeof option !== 'function') {
-        this.dialog[key] = this.options[key];
+        this.dialog[key] = option;
       }
     }
     this.visible = true;

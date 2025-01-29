@@ -118,6 +118,8 @@ export class DialogFormPage extends PreviewBase {
       {
         ...this.dialogForm,
         style: {width: '800px'},
+        acceptButtonProps: {label: 'Accept'},
+        rejectButtonProps: {label: 'Close'},
         submitDisabled: ({form}) => form.invalid,
         formValidator: {
           validator: (group) => {
