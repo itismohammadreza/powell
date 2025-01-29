@@ -63,10 +63,10 @@
         (onScrollIndexChange)="emitter('onScrollIndexChange', $event)"
         (onFilter)="emitter('onFilter', $event)">
         @for (t of templates; track t) {
-          @if (templateMap[t.getType()]) {
-            <ng-template [pTemplate]="t.getType()" let-item let-options="options" let-partialSelected="partialSelected">
+          @if (templateMap[t.type]) {
+            <ng-template [pTemplate]="t.type" let-item let-options="options" let-partialSelected="partialSelected">
               <ng-container
-                *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item,options,partialSelected}"/>
+                *ngTemplateOutlet="templateMap[t.type];context:{$implicit:item,options,partialSelected}"/>
             </ng-template>
           }
         }
