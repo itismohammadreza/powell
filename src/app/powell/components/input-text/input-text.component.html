@@ -25,7 +25,7 @@
       <input
         pInputText
         [(ngModel)]="value"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
         [attr.id]="inputId"
         [attr.maxlength]="maxlength"
         [attr.placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"

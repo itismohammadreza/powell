@@ -2,7 +2,7 @@
      [ngClass]="{
       'fluid': fluid,
       'disabled': disabled,
-      'is-invalid': isInvalid()
+      'is-invalid': isInvalid
      }">
   @switch (labelPosition) {
     @case ("top") {
@@ -59,7 +59,7 @@
   }
 
   <div class="field-footer">
-    @if (hint && showHint()) {
+    @if (hint && showHint) {
       <small class="message">{{ hint }}</small>
     }
     @for (v of validation | keyvalue; track v) {

@@ -14,7 +14,7 @@
     <ng-template ngTemplate="element" let-isInvalid="isInvalid">
       <p-tree
         [attr.id]="id"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
         [value]="items"
         [selectionMode]="selectionMode"
         [loadingMode]="loadingMode"

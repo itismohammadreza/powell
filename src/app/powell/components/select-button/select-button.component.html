@@ -15,7 +15,7 @@
     <ng-template ngTemplate="element" let-isInvalid="isInvalid">
       <p-selectButton
         [(ngModel)]="value"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
         [attr.id]="id"
         [options]="options"
         [optionLabel]="optionLabel"
