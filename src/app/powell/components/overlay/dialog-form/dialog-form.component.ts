@@ -225,7 +225,7 @@ export class DialogFormComponent {
     return disabled;
   }
 
-  handleSubmitDisable() {
+  get handleSubmitDisable() {
     let disabled = false;
     if (this.options.submitDisabled == undefined) {
       return disabled;

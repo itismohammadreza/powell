@@ -132,7 +132,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      const name = item.getType();
+      const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
   }

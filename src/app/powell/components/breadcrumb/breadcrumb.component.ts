@@ -63,7 +63,7 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      const name = item.getType();
+      const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
   }

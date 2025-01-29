@@ -136,7 +136,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     this.sidebarLock = activate;
   }
 
-  showBackdrop() {
+  get showBackdrop() {
     return ['overlay-mask', 'push-mask'].includes(this.tempSidebarType);
   }
 }
