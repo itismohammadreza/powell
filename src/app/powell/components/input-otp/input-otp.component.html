@@ -15,8 +15,8 @@
     <ng-template ngTemplate="element" let-isInvalid="isInvalid">
       <p-inputOtp
         [(ngModel)]="value"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
-        [invalid]="isInvalid()"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
+        [invalid]="isInvalid"
         [disabled]="disabled"
         [readonly]="readonly"
         [variant]="variant"

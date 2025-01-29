@@ -1,4 +1,12 @@
-import {AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef} from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  Input,
+  QueryList,
+  TemplateRef
+} from '@angular/core';
 import {NgElementAdditionTemplate, NgLabelPosition, NgValidation} from "@powell/models";
 import {TemplateDirective} from "@powell/directives/template";
 import {NgControl} from "@angular/forms";
@@ -7,7 +15,8 @@ import {NgControl} from "@angular/forms";
   selector: 'ng-form-field',
   standalone: false,
   templateUrl: './form-field.component.html',
-  styleUrl: './form-field.component.scss'
+  styleUrl: './form-field.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormFieldComponent implements AfterContentInit {
   @Input() ngControl: NgControl;
@@ -39,7 +48,7 @@ export class FormFieldComponent implements AfterContentInit {
     }
   }
 
-  isInvalid = () => {
+  get isInvalid() {
     if (this.ngControl) {
       const control = this.ngControl.control;
       return (!this.disabled && !this.readonly && (control.touched || control.dirty) && control.invalid);
@@ -48,10 +57,10 @@ export class FormFieldComponent implements AfterContentInit {
   }
 
   hasError(type: string) {
-    return this.isInvalid() && this.ngControl.control.hasError(type);
+    return this.isInvalid && this.ngControl.control.hasError(type);
   }
 
-  showHint() {
+  get showHint() {
     let hasError = false;
     for (const errorKey in this.validation) {
       if (this.hasError(errorKey)) {
