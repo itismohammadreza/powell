@@ -10,7 +10,7 @@ export const globalConfig: GlobalConfig = {
     ripple: true,
     followConfig: true,
     fixLabelPosition: 'side',
-    labelPosition: 'side',
+    labelPosition: 'ifta',
     inputStyle: 'outlined',
     showRequiredStar: true,
     theme: {
