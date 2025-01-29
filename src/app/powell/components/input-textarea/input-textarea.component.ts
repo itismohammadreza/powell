@@ -124,7 +124,7 @@ export class InputTextareaComponent implements OnInit, AfterContentInit, Control
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      const name = item.getType();
+      const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
   }

@@ -21,7 +21,6 @@
     [disabled]="disabled"
     [fluid]="fluid">
     <ng-template ngTemplate="element" let-isInvalid="isInvalid">
-      <h1>{{isInvalid}}</h1>
       <p-cascadeSelect
         [(ngModel)]="value"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"

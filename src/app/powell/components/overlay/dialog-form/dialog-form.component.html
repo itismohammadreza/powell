@@ -268,7 +268,7 @@
       @if (options.acceptVisible) {
         <ng-button
           [buttonProps]="options.acceptButtonProps"
-          [disabled]="handleSubmitDisable()"
+          [disabled]="handleSubmitDisable"
           type="submit"
           [async]="true"
           (onClickAsync)="onSubmitClick($event)"/>

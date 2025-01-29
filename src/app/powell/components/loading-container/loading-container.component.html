@@ -1,5 +1,5 @@
 <div class="loading-container">
-  @if (!isEmptyData()) {
+  @if (!isEmptyData) {
     <ng-container *ngTemplateOutlet="templateMap.content"/>
   } @else {
     @if (templateMap.loading) {

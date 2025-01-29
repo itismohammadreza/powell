@@ -172,7 +172,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      const name = item.getType();
+      const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
   }

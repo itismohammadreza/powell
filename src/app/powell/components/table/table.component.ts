@@ -261,7 +261,7 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit() {
     this.templates.forEach(item => {
-      const name = item.getType();
+      const name = item.type;
       const templates = [
         'caption',
         'headergrouped',
