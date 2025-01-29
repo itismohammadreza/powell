@@ -311,6 +311,7 @@ export class DialogFormComponent {
       'tree-select': this.treeSelectComponent,
     }
     const component = componentsMap[config.component];
+    component.rtl = config.rtl ?? this.options.rtl;
     for (const key in config) {
       if (config[key] == undefined) {
         return;
