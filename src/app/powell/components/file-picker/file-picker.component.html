@@ -65,9 +65,9 @@
         (onImageError)="emitter('onImageError',$event)"
         (onRemoveUploadedFile)="emitter('onRemoveUploadedFile',$event)">
         @for (t of templates; track t) {
-          @if (templateMap[t.getType()]) {
-            <ng-template [pTemplate]="t.getType()" let-item>
-              <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"/>
+          @if (templateMap[t.type]) {
+            <ng-template [pTemplate]="t.type" let-item>
+              <ng-container *ngTemplateOutlet="templateMap[t.type];context:{$implicit:item}"/>
             </ng-template>
           }
         }

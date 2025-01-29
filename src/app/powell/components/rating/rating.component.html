@@ -29,9 +29,9 @@
         (onFocus)="emitter('onFocus',$event)"
         (onBlur)="emitter('onBlur',$event)">
         @for (t of templates; track t) {
-          @if (templateMap[t.getType()]) {
-            <ng-template [pTemplate]="t.getType()">
-              <ng-container *ngTemplateOutlet="templateMap[t.getType()]"/>
+          @if (templateMap[t.type]) {
+            <ng-template [pTemplate]="t.type">
+              <ng-container *ngTemplateOutlet="templateMap[t.type]"/>
             </ng-template>
           }
         }
