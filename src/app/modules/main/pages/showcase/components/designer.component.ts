@@ -45,7 +45,7 @@ import {TranslationService} from "@core/utils";
             [title]="primaryColor.name"
             (click)="updateColors($event, 'primary', primaryColor)"
             [class.!outline-black]="primaryColor.name === selectedPrimaryColor"
-            [style.backgroundColor]="primaryColor.name === 'noir' ? 'var(--text-color)' : primaryColor?.palette['500']"
+            [style.backgroundColor]="primaryColor.name === 'noir' ? 'var(--p-text-color)' : primaryColor?.palette['500']"
           ></button>
         }
       </div>
@@ -60,7 +60,7 @@ import {TranslationService} from "@core/utils";
             [title]="surface.name"
             (click)="updateColors($event, 'surface', surface)"
             [class.!outline-black]="selectedSurfaceColor ? selectedSurfaceColor === surface.name : config.powellConfig.theme.mode === 'dark' ? surface.name === 'zinc' : surface.name === 'slate'"
-            [style.backgroundColor]="surface.name === 'noir' ? 'var(--text-color)' : surface?.palette['500']"
+            [style.backgroundColor]="surface.name === 'noir' ? 'var(--p-text-color)' : surface?.palette['500']"
           ></button>
         }
       </div>
@@ -68,42 +68,36 @@ import {TranslationService} from "@core/utils";
     <div class="mb-4 grid gap-3 md:grid-cols-2">
       <ng-select
         [label]="'lang' | translate"
-        labelPosition="float-in"
         [fluid]="true"
         [value]="config.lang"
         [options]="[{label:'EN',value:'en'},{label:'FA',value:'fa'}]"
         (onChange)="changeLang($event)"/>
       <ng-select
         [label]="'mode' | translate"
-        labelPosition="float-in"
         [fluid]="true"
         [value]="config.powellConfig.theme.mode"
         [options]="[{label:'dark',value:'dark'},{label:'light',value:'light'},{label:'system',value:'system'}]"
         (onChange)="changeGlobalConfig('theme',{mode:$event.value})"/>
       <ng-select
         [label]="'fixLabelPosition' | translate"
-        labelPosition="float-in"
         [fluid]="true"
         [value]="config.powellConfig.fixLabelPosition"
         [options]="[{label:'side',value:'side'},{label:'top',value:'top'}]"
         (onChange)="changeGlobalConfig('fixLabelPosition',$event.value)"/>
       <ng-select
         [label]="'labelPosition' | translate"
-        labelPosition="float-in"
         [fluid]="true"
         [value]="config.powellConfig.labelPosition"
         [options]="[{label:'side',value:'side'},{label:'top',value:'top'},{label:'ifta',value:'ifta'},{label:'float-in',value:'float-in'},{label:'float-on',value:'float-on'},{label:'float-over',value:'float-over'}]"
         (onChange)="changeGlobalConfig('labelPosition',$event.value)"/>
       <ng-select
         [label]="'size' | translate"
-        labelPosition="float-in"
         [fluid]="true"
         [value]="config.powellConfig.inputSize ?? 'medium'"
         [options]="[{label:'small',value:'small'},{label:'medium',value:'medium'},{label:'large',value:'large'}]"
-        (onChange)="changeGlobalConfig('inputSize',$event.value)"/>
+        (onChange)="changeGlobalConfig('size',$event.value)"/>
       <ng-select
         [label]="'inputStyle' | translate"
-        labelPosition="float-in"
         [fluid]="true"
         [value]="config.powellConfig.inputStyle"
         [options]="[{label:'outlined',value:'outlined'},{label:'filled',value:'filled'}]"

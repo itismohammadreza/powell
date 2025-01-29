@@ -9,9 +9,11 @@
         class="w-[30vw] mx-auto"
         formControlName="c1"
         [validation]="{ required: 'error' }"
-        [optionGroupChildren]="['states, cities']"
         [options]="options"
-        optionGroupLabel="name">
+        optionLabel="cname"
+        optionGroupLabel="name"
+        [optionGroupChildren]="['states', 'cities']"
+        placeholder="Select a City">
         @if (additions.addonStart) {
           <ng-template ngTemplate="addonStart"><i class="pi pi-prime"></i></ng-template>
         }

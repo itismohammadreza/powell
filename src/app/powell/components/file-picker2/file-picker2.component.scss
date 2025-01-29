@@ -42,8 +42,8 @@
           text-align: center;
           border: 1px solid #ced4da;
           padding: 1rem;
-          border-top-left-radius: var(--border-radius);
-          border-top-right-radius: var(--border-radius);
+          border-top-left-radius: var(--p-border-radius);
+          border-top-right-radius: var(--p-border-radius);
 
           .image-preview {
             padding: clamp(50%, 100%, 50%) 0
