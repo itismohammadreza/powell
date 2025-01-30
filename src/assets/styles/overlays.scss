@@ -9,8 +9,6 @@
 
 .dialog-form-wrapper {
   form {
-    padding-top: 1rem;
-
     > *:not(:last-child) {
       margin-bottom: 1.75rem;
     }
@@ -27,10 +25,12 @@
   }
 }
 
-.p-dialog {
-  &.dialog-header-less {
-    .p-dialog-header {
-      display: none;
-    }
+.header-less {
+  .p-dialog-header {
+    display: none;
+  }
+
+  .p-dialog-content {
+    padding-top: var(--p-overlay-modal-padding);
   }
 }

@@ -208,7 +208,7 @@ export class OverlayService {
     }
     instance.appendTo = null;
     instance.el.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr');
-    instance.styleClass = `confirm-dialog-wrapper ${options.styleClass ?? ''} ${!options.header && !options.closable ? 'dialog-header-less' : ''}`;
+    instance.styleClass = `confirm-dialog-wrapper ${options.styleClass ?? ''} ${!options.header && !options.closable ? 'header-less' : ''}`;
     this.confirmCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr');
     return new Promise<boolean>((accept) => {
       const state: NgHistoryState = {component: 'confirmDialog'};
@@ -254,7 +254,7 @@ export class OverlayService {
     const {instance} = this.dialogCmpRef;
     instance.options = {
       ...options,
-      styleClass: `dialog-wrapper ${options.styleClass ?? ''} ${!options.showHeader ? 'dialog-header-less' : ''}`,
+      styleClass: `dialog-wrapper ${options.styleClass ?? ''} ${!options.showHeader || (!options.header && !options.closable && !options.maximizable) ? 'header-less' : ''}`,
       closeButtonProps: this.mapToButtonProps(options.closeButtonProps),
       maximizeButtonProps: this.mapToButtonProps(options.maximizeButtonProps),
     }
@@ -285,7 +285,7 @@ export class OverlayService {
     instance.config = config;
     instance.options = {
       ...options,
-      styleClass: `dialog-form-wrapper ${options.styleClass ?? ''} ${!options.showHeader ? 'dialog-header-less' : ''}`,
+      styleClass: `dialog-form-wrapper ${options.styleClass ?? ''} ${!options.showHeader || (!options.header && !options.closable && !options.maximizable) ? 'header-less' : ''}`,
       closeButtonProps: this.mapToButtonProps(options.closeButtonProps),
       maximizeButtonProps: this.mapToButtonProps(options.maximizeButtonProps),
       acceptButtonProps: this.mapToButtonProps({
