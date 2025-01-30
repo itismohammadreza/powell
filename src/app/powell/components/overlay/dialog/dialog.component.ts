@@ -1,4 +1,4 @@
-import {Component, EventEmitter, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/core';
 import {NgDialogOptions} from '@powell/models';
 import {$Dialog} from "@powell/primeng";
 
@@ -9,12 +9,20 @@ import {$Dialog} from "@powell/primeng";
   standalone: false
 })
 export class DialogComponent {
+  private el = inject(ElementRef);
   onClose = new EventEmitter();
   options: NgDialogOptions = {};
   visible: boolean = true;
   @ViewChild($Dialog, {static: true}) dialog: $Dialog;
 
   show() {
+    const footerEl = this.el.nativeElement.querySelector('.p-dialog-footer');
+    if (footerEl) {
+      const allChildrenAreComment = [...footerEl.childNodes].every(node => node.nodeType === Node.COMMENT_NODE);
+      if (allChildrenAreComment) {
+        footerEl.style.display = 'none';
+      }
+    }
     for (const key in this.options) {
       const option = this.options[key];
       if (typeof option !== 'function') {
