@@ -33,18 +33,21 @@ jobs:
         run: npm install -g @angular/cli
         
       - name: Build Angular app
-        run: ng build --output-path dist --base-href "/powell/"
+        run: ng build --output-path dist/powell/browser --base-href "/powell/"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: dist
+          path: dist/powell/browser
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
@@ -56,3 +59,5 @@ jobs:
         with:
           branch: gh-pages
           folder: dist
+          clean: true
+          token: ${{ secrets.GITHUB_TOKEN }} 
