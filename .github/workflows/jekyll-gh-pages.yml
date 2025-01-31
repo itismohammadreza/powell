@@ -33,7 +33,7 @@ jobs:
         run: npm install -g @angular/cli
         
       - name: Build Angular app
-        run: ng build --output-path dist/powell/browser --base-href "/powell/"
+        run: ng build --output-path dist --base-href "/powell/"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
