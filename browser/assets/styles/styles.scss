@@ -1,0 +1,17 @@
+@use "mixins";
+
+@layer reset {
+  html,
+  body {
+    line-height: normal;
+    height: 100%;
+
+    &,
+    .p-component,
+    .p-inputtext {
+      font-family: var(--font-family);
+    }
+
+    @include mixins.scrollbar($thickness: 10px, $radius: 10px, $track-color: #f5f5f5, $thumb-color: #949494);
+  }
+}
