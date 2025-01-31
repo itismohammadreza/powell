@@ -31,7 +31,10 @@ jobs:
 
       - name: Install Angular CLI
         run: npm install -g @angular/cli
-        
+
+      - name: Clean old build
+        run: rm -rf dist
+  
       - name: Build Angular app
         run: ng build --output-path dist/powell/browser --base-href "/powell/"
 
@@ -58,6 +61,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist
+          folder: dist/powell/browser
           clean: true
           token: ${{ secrets.GITHUB_TOKEN }}
