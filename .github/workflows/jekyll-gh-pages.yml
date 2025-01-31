@@ -2,7 +2,7 @@ name: Deploy Angular to GitHub Pages
 
 on:
   push:
-    branches: ["main"]  # Change "main" if your default branch is different
+    branches: ["master"]
   workflow_dispatch:
 
 permissions:
@@ -30,7 +30,7 @@ jobs:
         run: npm install
 
       - name: Build Angular app
-        run: ng build --output-path dist --base-href "/REPO_NAME/"
+        run: ng build --output-path dist --base-href "/powell/"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -51,5 +51,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # Deploy to the "gh-pages" branch
-          folder: dist  # Angular build output folder
+          branch: gh-pages
+          folder: dist
