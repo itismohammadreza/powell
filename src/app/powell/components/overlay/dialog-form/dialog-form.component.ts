@@ -91,7 +91,6 @@ export class DialogFormComponent {
 
   form: FormGroup = new FormGroup({});
   visible: boolean;
-  loadingCallback: VoidFunction;
   _config: NgDialogFormConfig[];
   _options: NgDialogFormOptions = {};
   onSubmit = new EventEmitter<NgDialogFormResult>();
@@ -138,9 +137,6 @@ export class DialogFormComponent {
 
   close() {
     this.visible = false;
-    if (this.loadingCallback) {
-      this.loadingCallback()
-    }
     this.onClose.emit();
     this.handleEvent('onHide');
     clearTimeout(this.configTimeout);
@@ -161,15 +157,6 @@ export class DialogFormComponent {
       }
     }
     return errObj as NgValidation;
-  }
-
-  finalizeSubmit = (hide: boolean) => {
-    this.loadingCallback();
-    this.visible = !hide;
-    this.disableReject = false;
-    if (hide) {
-      this.close()
-    }
   }
 
   handleConfigValidations(config: NgDialogFormConfig) {
@@ -267,8 +254,16 @@ export class DialogFormComponent {
       return;
     }
     this.disableReject = true;
-    this.loadingCallback = loadingCallback;
-    this.onSubmit.emit({formValue: this.form.value, finalizeSubmit: this.finalizeSubmit})
+
+    const finalizeSubmit = (hide: boolean) => {
+      loadingCallback();
+      this.visible = !hide;
+      this.disableReject = false;
+      if (hide) {
+        this.close()
+      }
+    }
+    this.onSubmit.emit({formValue: this.form.value, finalizeSubmit});
   }
 
   handleEvent(event: string, args?: any) {
