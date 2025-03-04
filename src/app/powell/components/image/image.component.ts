@@ -11,9 +11,17 @@ import {
   ViewChild
 } from '@angular/core';
 import {AnimationEvent} from "@angular/animations";
-import {NgCssObject, NgDisableZoomControl, NgImageLoading, NgLimitZoom, NgListener, NgOverflow} from "@powell/models";
+import {
+  NgCssObject,
+  NgPinchDisableZoomControl,
+  NgImageLoading,
+  NgPinchLimitZoom,
+  NgPinchListener,
+  NgOverflow
+} from "@powell/models";
 import {SafeUrl} from "@angular/platform-browser";
 import {TemplateDirective} from "@powell/directives/template";
+import {PinchZoomComponentProperties} from "@powell/components/pinch-zoom/interfaces";
 
 @Component({
   selector: 'ng-image',
@@ -42,30 +50,24 @@ export class ImageComponent implements AfterContentInit {
   @Input() showTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
   // pinch-zoom properties
-  @Input() pinchTransitionDuration: number;
-  @Input() pinchDoubleTap: boolean
-  @Input() pinchDoubleTapScale: number;
-  @Input() pinchAutoZoomOut: boolean;
-  @Input() pinchLimitZoom: NgLimitZoom;
-  @Input() pinchDisabled: boolean;
-  @Input() pinchDisablePan: boolean;
-  @Input() pinchOverflow: NgOverflow;
-  @Input() pinchZoomControlScale: number;
-  @Input() pinchDisableZoomControl: NgDisableZoomControl;
-  @Input() pinchLimitPan: boolean;
-  @Input() pinchMinPanScale: number;
-  @Input() pinchMinScale: number;
-  @Input() pinchListeners: NgListener;
-  @Input() pinchWheel: boolean;
-  @Input() pinchAutoHeight: boolean;
-  @Input() pinchWheelZoomFactor: number;
-  @Input() pinchDraggableImage: boolean;
-  @Input() previewStyle: NgCssObject;
-  @Input() previewStyleClass: string;
-  @Input() imageStyleClass: string;
-  @Input() previewImageStyle: NgCssObject;
-  @Input() previewImageStyleClass: string;
-  @Input() errorPlaceholderSrc: string;
+  @Input() pinchProperties: PinchZoomComponentProperties = {
+    transitionDuration: 200,
+    doubleTap: true,
+    doubleTapScale: 2,
+    autoZoomOut: false,
+    disabled: false,
+    disablePan: false,
+    overflow: 'visible',
+    zoomControlScale: 1,
+    disableZoomControl: 'auto',
+    limitPan: false,
+    minPanScale: 1.0001,
+    minScale: 0,
+    wheel: true,
+    autoHeight: false,
+    wheelZoomFactor: 0.2,
+    draggableImage: true,
+  };
   @Output() onShow = new EventEmitter<AnimationEvent>();
   @Output() onHide = new EventEmitter<AnimationEvent>();
   @Output() onImageError = new EventEmitter<Event>();

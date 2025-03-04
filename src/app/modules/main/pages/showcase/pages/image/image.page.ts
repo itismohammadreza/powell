@@ -16,24 +16,23 @@ export class ImagePage extends PreviewBase {
 
   override previewOptions: PreviewOption[] = [
     {field: 'width', value: '200'},
-    {field: 'height', value: '200'},
+    {field: 'height', value: 'auto'},
     {field: 'preview', value: true},
     {field: 'pinchTransitionDuration', value: 200},
     {field: 'pinchDoubleTap', value: true},
     {field: 'pinchDoubleTapScale', value: 2},
     {field: 'pinchAutoZoomOut', value: false},
-    {field: 'pinchLimitZoom', value: 'original image size'},
     {field: 'pinchDisabled', value: false},
     {field: 'pinchDisablePan', value: false},
-    {field: 'pinchOverflow', value: 'hidden'},
+    {field: 'pinchOverflow', options: 'pinchOverflows', value: 'visible'},
     {field: 'pinchZoomControlScale', value: 1},
-    {field: 'pinchDisableZoomControl', value: 'auto'},
+    {field: 'pinchDisableZoomControl', options: 'pinchDisableZoomControls', value: 'auto'},
     {field: 'pinchLimitPan', value: false},
     {field: 'pinchMinPanScale', value: 1.0001},
     {field: 'pinchMinScale', value: 0},
     {field: 'pinchWheel', value: true},
     {field: 'pinchAutoHeight', value: false},
     {field: 'pinchWheelZoomFactor', value: 0.2},
-    {field: 'pinchDraggableImage', value: false},
+    {field: 'pinchDraggableImage', value: true},
   ];
 }
