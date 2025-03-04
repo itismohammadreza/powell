@@ -16,7 +16,7 @@ import {
   NgDatepickerSelectionMode,
   NgDatepickerViewMode,
   NgDialogPosition,
-  NgDisableZoomControl,
+  NgPinchDisableZoomControl,
   NgFilePickerMethod,
   NgFilePickerMode,
   NgFileResultType,
@@ -26,8 +26,8 @@ import {
   NgInputVariant,
   NgKeyFilter,
   NgLabelPosition,
-  NgLimitZoom,
-  NgListener,
+  NgPinchLimitZoom,
+  NgPinchListener,
   NgNumberButtonLayout,
   NgNumberMode,
   NgOrientation,
@@ -393,16 +393,16 @@ export interface NgDialogFormConfig {
   pinchDoubleTap?: boolean;
   pinchDoubleTapScale?: number;
   pinchAutoZoomOut?: boolean;
-  pinchLimitZoom?: NgLimitZoom;
+  pinchLimitZoom?: NgPinchLimitZoom;
   pinchDisabled?: boolean;
   pinchDisablePan?: boolean;
   pinchOverflow?: NgOverflow;
   pinchZoomControlScale?: number;
-  pinchDisableZoomControl?: NgDisableZoomControl;
+  pinchDisableZoomControl?: NgPinchDisableZoomControl;
   pinchLimitPan?: boolean;
   pinchMinPanScale?: number;
   pinchMinScale?: number;
-  pinchListeners?: NgListener;
+  pinchListeners?: NgPinchListener;
   pinchWheel?: boolean;
   pinchAutoHeight?: boolean;
   pinchWheelZoomFactor?: number;
