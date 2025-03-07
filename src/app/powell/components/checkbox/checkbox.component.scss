@@ -1,3 +1,18 @@
 :host {
   display: block;
+
+  ::ng-deep {
+    .checkbox-inner-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      p-progressSpinner {
+        &, .p-progressspinner {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+  }
 }

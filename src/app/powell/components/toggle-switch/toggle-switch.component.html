@@ -13,33 +13,35 @@
     [disabled]="disabled"
     [readonly]="readonly">
     <ng-template ngTemplate="element" let-isInvalid="isInvalid">
-      <p-toggleSwitch
-        [(ngModel)]="value"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
-        [style]="style"
-        [styleClass]="styleClass"
-        [tabindex]="tabindex"
-        [inputId]="inputId"
-        [name]="name"
-        [disabled]="disabled"
-        [readonly]="readonly"
-        [trueValue]="trueValue"
-        [falseValue]="falseValue"
-        [ariaLabel]="ariaLabel"
-        [ariaLabelledBy]="ariaLabelledBy"
-        [autofocus]="autofocus"
-        (onChange)="_onChange($event)">
-        @for (t of templates; track t) {
-          @if (templateMap[t.type]) {
-            <ng-template [pTemplate]="t.type">
-              <ng-container *ngTemplateOutlet="templateMap[t.type]"/>
-            </ng-template>
+      <div class="toggle-switch-inner-wrapper">
+        <p-toggleSwitch
+          [(ngModel)]="value"
+          [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
+          [style]="style"
+          [styleClass]="styleClass"
+          [tabindex]="tabindex"
+          [inputId]="inputId"
+          [name]="name"
+          [disabled]="disabled"
+          [readonly]="readonly"
+          [trueValue]="trueValue"
+          [falseValue]="falseValue"
+          [ariaLabel]="ariaLabel"
+          [ariaLabelledBy]="ariaLabelledBy"
+          [autofocus]="autofocus"
+          (onChange)="_onChange($event)">
+          @for (t of templates; track t) {
+            @if (templateMap[t.type]) {
+              <ng-template [pTemplate]="t.type">
+                <ng-container *ngTemplateOutlet="templateMap[t.type]"/>
+              </ng-template>
+            }
           }
+        </p-toggleSwitch>
+        @if (loading && showAsyncLoading) {
+          <p-progressSpinner strokeWidth="4"/>
         }
-      </p-toggleSwitch>
-      @if (loading && showAsyncLoading) {
-        <p-progressSpinner strokeWidth="4"/>
-      }
+      </div>
     </ng-template>
   </ng-form-field>
 </div>
