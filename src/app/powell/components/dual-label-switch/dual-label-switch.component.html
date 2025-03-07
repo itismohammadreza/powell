@@ -13,37 +13,39 @@
     [disabled]="disabled"
     [readonly]="readonly">
     <ng-template ngTemplate="element" let-isInvalid="isInvalid">
-      <div class="field-inner">
-        <span class="label-left" [class.text-muted]="disabled">{{ labelLeft }}</span>
-        <p-toggleSwitch
-          [(ngModel)]="value"
-          [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
-          [style]="style"
-          [styleClass]="styleClass"
-          [tabindex]="tabindex"
-          [inputId]="inputId"
-          [name]="name"
-          [disabled]="disabled"
-          [readonly]="readonly"
-          [trueValue]="rightValue"
-          [falseValue]="leftValue"
-          [ariaLabel]="ariaLabel"
-          [ariaLabelledBy]="ariaLabelledBy"
-          [autofocus]="autofocus"
-          (onChange)="_onChange($event)">
-          @for (t of templates; track t) {
-            @if (templateMap[t.type]) {
-              <ng-template [pTemplate]="t.type">
-                <ng-container *ngTemplateOutlet="templateMap[t.type]"/>
-              </ng-template>
+      <div class="dual-label-switch-inner-wrapper">
+        <div class="dual-label-switch-inner">
+          <span class="label-left" [class.text-muted]="disabled">{{ labelLeft }}</span>
+          <p-toggleSwitch
+            [(ngModel)]="value"
+            [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
+            [style]="style"
+            [styleClass]="styleClass"
+            [tabindex]="tabindex"
+            [inputId]="inputId"
+            [name]="name"
+            [disabled]="disabled"
+            [readonly]="readonly"
+            [trueValue]="rightValue"
+            [falseValue]="leftValue"
+            [ariaLabel]="ariaLabel"
+            [ariaLabelledBy]="ariaLabelledBy"
+            [autofocus]="autofocus"
+            (onChange)="_onChange($event)">
+            @for (t of templates; track t) {
+              @if (templateMap[t.type]) {
+                <ng-template [pTemplate]="t.type">
+                  <ng-container *ngTemplateOutlet="templateMap[t.type]"/>
+                </ng-template>
+              }
             }
-          }
-        </p-toggleSwitch>
-        <span class="label-right" [class.text-muted]="disabled">{{ labelRight }}</span>
+          </p-toggleSwitch>
+          <span class="label-right" [class.text-muted]="disabled">{{ labelRight }}</span>
+        </div>
+        @if (loading && showAsyncLoading) {
+          <p-progressSpinner strokeWidth="4"/>
+        }
       </div>
-      @if (loading && showAsyncLoading) {
-        <p-progressSpinner strokeWidth="4"/>
-      }
     </ng-template>
   </ng-form-field>
 </div>

@@ -2,13 +2,16 @@
   display: block;
 
   ::ng-deep {
-    p-progressSpinner {
-      display: inline-flex;
-      margin: 0 0.5rem;
+    .toggle-switch-inner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
 
-      .p-progressspinner {
-        width: 25px;
-        height: 25px;
+      p-progressSpinner {
+        &, .p-progressspinner {
+          width: 25px;
+          height: 25px;
+        }
       }
     }
   }

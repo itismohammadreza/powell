@@ -13,41 +13,44 @@
     [readonly]="readonly"
     [reverseLabel]="true">
     <ng-template ngTemplate="element" let-isInvalid="isInvalid">
-      <p-checkbox
-        [(ngModel)]="value"
-        [name]="name"
-        [disabled]="disabled"
-        [binary]="binary"
-        [ariaLabelledBy]="ariaLabelledBy"
-        [ariaLabel]="ariaLabel"
-        [tabindex]="tabindex"
-        [inputId]="inputId"
-        [style]="style"
-        [inputStyle]="inputStyle"
-        styleClass="{{styleClass}} {{isInvalid && 'ng-invalid ng-dirty'}}"
-        [inputClass]="inputClass"
-        [indeterminate]="indeterminate"
-        [size]="size"
-        [checkboxIcon]="checkboxIcon"
-        [readonly]="readonly"
-        [autofocus]="autofocus"
-        [trueValue]="trueValue"
-        [falseValue]="falseValue"
-        [variant]="variant"
-        (onChange)="_onChange($event)"
-        (onFocus)="_onFocus($event)"
-        (onBlur)="_onBlur($event)">
-        @for (t of templates; track t) {
-          @if (templateMap[t.type]) {
-            <ng-template [pTemplate]="t.type">
-              <ng-container *ngTemplateOutlet="templateMap[t.type]"/>
-            </ng-template>
+      <div class="checkbox-inner-wrapper">
+        <p-checkbox
+          [(ngModel)]="value"
+          [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
+          [name]="name"
+          [disabled]="disabled"
+          [binary]="binary"
+          [ariaLabelledBy]="ariaLabelledBy"
+          [ariaLabel]="ariaLabel"
+          [tabindex]="tabindex"
+          [inputId]="inputId"
+          [style]="style"
+          [inputStyle]="inputStyle"
+          [styleClass]="styleClass"
+          [inputClass]="inputClass"
+          [indeterminate]="indeterminate"
+          [size]="size"
+          [checkboxIcon]="checkboxIcon"
+          [readonly]="readonly"
+          [autofocus]="autofocus"
+          [trueValue]="trueValue"
+          [falseValue]="falseValue"
+          [variant]="variant"
+          (onChange)="_onChange($event)"
+          (onFocus)="_onFocus($event)"
+          (onBlur)="_onBlur($event)">
+          @for (t of templates; track t) {
+            @if (templateMap[t.type]) {
+              <ng-template [pTemplate]="t.type">
+                <ng-container *ngTemplateOutlet="templateMap[t.type]"/>
+              </ng-template>
+            }
           }
+        </p-checkbox>
+        @if (loading && showAsyncLoading) {
+          <p-progressSpinner strokeWidth="4"/>
         }
-      </p-checkbox>
-      @if (loading && showAsyncLoading) {
-        <p-progressSpinner strokeWidth="4"/>
-      }
+      </div>
     </ng-template>
   </ng-form-field>
 </div>

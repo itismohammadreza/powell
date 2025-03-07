@@ -6,21 +6,23 @@
       display: flex;
       position: relative;
 
-      .field-inner {
+      .dual-label-switch-inner-wrapper {
         direction: ltr;
         display: inline-flex;
         align-items: flex-end;
         gap: 0.75rem;
-      }
 
-      p-progressSpinner {
-        display: inline-flex;
-        margin: 0 0.5rem;
-        vertical-align: sub;
+        .dual-label-switch-inner {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
 
-        .p-progress-spinner {
-          width: 25px;
-          height: 25px;
+          p-progressSpinner {
+            &, .p-progressspinner {
+              width: 25px;
+              height: 25px;
+            }
+          }
         }
       }
     }
