@@ -18,12 +18,9 @@ export class CheckboxPage extends PreviewBase {
 
   override previewOptions: PreviewOption[] = [
     {field: 'label', value: 'label'},
-    {field: 'labelWidth', value: 100},
     {field: 'hint', value: ''},
     {field: 'rtl', value: this.config.rtl},
     {field: 'showRequiredStar', value: this.config.showRequiredStar},
-    {field: 'labelPosition', options: 'labelPositions', value: this.config.labelPosition},
-    {field: 'additions', options: 'additions', value: 'none'},
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'async', value: false},
     {field: 'disabled', value: false},

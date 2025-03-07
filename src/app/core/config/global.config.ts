@@ -15,7 +15,7 @@ export const globalConfig: GlobalConfig = {
     showRequiredStar: true,
     theme: {
       name: 'Aura',
-      mode: 'light'
+      mode: 'dark'
     }
   }
 };

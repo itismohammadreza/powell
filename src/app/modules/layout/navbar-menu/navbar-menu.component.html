@@ -1,7 +1,7 @@
 <div class="main-content flex flex-col h-full menu-{{tempSidebarType}}"
      [ngClass]="{ 'sidebar-lock': sidebarLock, 'sidebar-open': sidebarVisible }">
   <nav
-    class="shadow-sm w-full !bg-transparent backdrop-blur-md h-[68px] fixed top-0 flex items-center justify-between px-4 z-20 border-b transition-all duration-200">
+    class="shadow-sm w-full !bg-transparent backdrop-blur-md h-[68px] fixed top-0 flex items-center justify-between px-4 z-20 border-b border-[--p-primary-color] transition-all duration-200">
     @if (!sidebarLock) {
       <ng-button icon="pi pi-bars" appearance="text" (click)="toggleSidebarClick()"/>
     }
@@ -55,7 +55,9 @@
         <ng-input-text
           class="grow"
           [fluid]="true"
+          labelPosition="top"
           size="small"
+          [followConfig]="false"
           [placeholder]="'searchComponents' | translate"
           [(ngModel)]="searchValue"/>
         @if (!sidebarLock) {
