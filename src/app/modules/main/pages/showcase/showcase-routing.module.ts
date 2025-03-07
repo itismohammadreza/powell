@@ -4,7 +4,7 @@ import {openDialogGuard} from "@core/guard";
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     loadComponent: () => import('./pages/dashboard').then(m => m.DashboardPage),
     title: 'Home'
   },
@@ -234,6 +234,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/utils').then(m => m.UtilsPage),
     title: 'Utils'
   },
+  {
+    path: '',
+    redirectTo: 'auto-complete',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

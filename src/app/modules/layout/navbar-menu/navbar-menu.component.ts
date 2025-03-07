@@ -55,14 +55,14 @@ import {RadioModule} from "@powell/components/radio";
 export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterContentInit {
   private document = inject(DOCUMENT);
 
-  sidebarType: SidebarType = 'push-mask';
+  sidebarType: SidebarType = 'static';
   sidebarTypes: $MenuItem[];
-  sidebarVisible: boolean;
+  sidebarVisible: boolean = true;
   designerSidebarVisible: boolean;
   sidebarLock: boolean; // overrides the sidebarVisible.
   sidebarItems: $MenuItem[];
   config: GlobalConfig = globalConfig;
-  tempSidebarType: SidebarType = 'push-mask';
+  tempSidebarType: SidebarType = this.sidebarType;
   searchValue: string;
 
   @HostListener('window:resize', ['$event'])
@@ -96,13 +96,13 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   loadData() {
     const sidebarTypes: SidebarType[] = ['overlay', 'overlay-mask', 'push', 'push-mask', 'static', 'horizontal'];
     this.sidebarTypes = sidebarTypes.map(t => ({label: t, value: t}));
-    this.sidebarItems = routes.map(item => ({
+    this.sidebarItems = routes.filter(item => !item.redirectTo).map(item => ({
       label: item.title as string,
       routerLink: `showcase/${item.path}`,
       routerLinkActiveOptions: item.path ? '' : {exact: true},
       icon: 'pi pi-minus',
       command: () => {
-        if (!this.sidebarLock && this.showBackdrop) {
+        if ((!this.sidebarLock && this.showBackdrop) || item.path === 'home') {
           this.toggleSidebar(false);
         }
       }

@@ -57,7 +57,7 @@ export class DialogFormPage extends PreviewBase {
 
   flag = true;
 
-  override onOptionChange(event: any) {
+  override onOptionChange(event: PreviewOption) {
     this.dialogForm[event.field] = event.value;
   }
 

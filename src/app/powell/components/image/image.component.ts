@@ -11,14 +11,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {AnimationEvent} from "@angular/animations";
-import {
-  NgCssObject,
-  NgPinchDisableZoomControl,
-  NgImageLoading,
-  NgPinchLimitZoom,
-  NgPinchListener,
-  NgOverflow
-} from "@powell/models";
+import {NgCssObject, NgImageLoading} from "@powell/models";
 import {SafeUrl} from "@angular/platform-browser";
 import {TemplateDirective} from "@powell/directives/template";
 import {PinchZoomComponentProperties} from "@powell/components/pinch-zoom/interfaces";
@@ -51,22 +44,21 @@ export class ImageComponent implements AfterContentInit {
   @Input() hideTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
   // pinch-zoom properties
   @Input() pinchProperties: PinchZoomComponentProperties = {
-    transitionDuration: 200,
+    autoZoomOut: false,
+    backgroundColor: "rgba(0,0,0,0.85)",
+    disableZoomControl: "auto",
     doubleTap: true,
     doubleTapScale: 2,
-    autoZoomOut: false,
-    disabled: false,
-    disablePan: false,
-    overflow: 'visible',
-    zoomControlScale: 1,
-    disableZoomControl: 'auto',
-    limitPan: false,
+    draggableImage: false,
+    limitZoom: "original image size",
+    listeners: "mouse and touch",
     minPanScale: 1.0001,
     minScale: 0,
+    overflow: "visible",
+    transitionDuration: 200,
     wheel: true,
-    autoHeight: false,
     wheelZoomFactor: 0.2,
-    draggableImage: true,
+    zoomControlScale: 1,
   };
   @Output() onShow = new EventEmitter<AnimationEvent>();
   @Output() onHide = new EventEmitter<AnimationEvent>();

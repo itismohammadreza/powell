@@ -390,7 +390,7 @@ export class TablePage extends PreviewBase {
   }
   selectedCustomers: any[];
   totalRecords: number;
-  selectAll: boolean = false;
+  selectAll: boolean = null;
   customers: Customer[];
 
   onRowSelect(event: any) {

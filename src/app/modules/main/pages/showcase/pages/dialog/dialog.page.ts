@@ -45,7 +45,7 @@ export class DialogPage extends PreviewBase {
     content: 'Some content inside dialog.',
   }
 
-  override onOptionChange(event: any) {
+  override onOptionChange(event: PreviewOption) {
     this.dialog[event.field] = event.value;
   }
 

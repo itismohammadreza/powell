@@ -39,7 +39,7 @@ export class ToastPage extends PreviewBase {
     position: 'top-right'
   }
 
-  override onOptionChange(event: any) {
+  override onOptionChange(event: PreviewOption) {
     this.toast[event.field] = event.value;
   }
 

@@ -2,7 +2,11 @@
   display: block;
 
   ::ng-deep {
-    .toggle-switch-inner {
+    p-toggleSwitch {
+      display: flex;
+    }
+
+    .toggle-switch-inner-wrapper {
       display: flex;
       align-items: center;
       gap: 1rem;

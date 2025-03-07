@@ -23,16 +23,17 @@ export class ConfirmDialogPage extends PreviewBase {
     {field: 'rejectIcon', value: ''},
     {field: 'acceptVisible', value: true},
     {field: 'rejectVisible', value: true},
-    {field: 'acceptSeverity', value: 'primary'},
-    {field: 'acceptAppearance', value: 'basic'},
-    {field: 'buttonSize', value: 'small'},
-    {field: 'rejectSeverity', value: 'primary'},
-    {field: 'rejectAppearance', value: 'outlined'},
+    {field: 'acceptSeverity', options: 'severities', value: 'primary'},
+    {field: 'acceptAppearance', options: 'appearances', value: 'basic'},
+    {field: 'buttonSize', options: 'sizes', value: 'small'},
+    {field: 'rejectSeverity', options: 'severities', value: 'danger'},
+    {field: 'rejectAppearance', options: 'appearances', value: 'outlined'},
     {field: 'closeOnEscape', value: false},
     {field: 'dismissableMask', value: false},
-    {field: 'defaultFocus', value: 'accept'},
+    {field: 'defaultFocus', options: 'defaultFocusTypes', value: 'accept'},
     {field: 'blockScroll', value: false},
     {field: 'buttonFull', value: false},
+    {field: 'position', options: 'dialogPositions', value: 'center'},
     {field: 'rtl', value: this.config.rtl},
   ];
 
@@ -52,10 +53,33 @@ export class ConfirmDialogPage extends PreviewBase {
     defaultFocus: 'accept',
     blockScroll: false,
     rtl: this.config.rtl,
-    style: {width: '400px'}
+    style: {width: '400px'},
+    acceptButtonProps: {
+      severity: this.getOption('acceptSeverity'),
+      appearance: this.getOption('acceptAppearance')
+    },
+    rejectButtonProps: {
+      severity: this.getOption('rejectSeverity'),
+      appearance: this.getOption('rejectAppearance')
+    }
   }
 
-  override onOptionChange(event: any) {
+  override onOptionChange(event: PreviewOption) {
+    switch (event.field) {
+      case 'acceptSeverity':
+        this.confirmDialog.acceptButtonProps.severity = event.value;
+        break;
+      case 'acceptAppearance':
+        this.confirmDialog.acceptButtonProps.appearance = event.value;
+        break;
+
+      case 'rejectSeverity':
+        this.confirmDialog.rejectButtonProps.appearance = event.value;
+        break;
+      case 'rejectAppearance':
+        this.confirmDialog.rejectButtonProps.appearance = event.value;
+        break;
+    }
     this.confirmDialog[event.field] = event.value;
   }
 

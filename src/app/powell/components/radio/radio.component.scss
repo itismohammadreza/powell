@@ -3,6 +3,10 @@
 
   ::ng-deep {
     .radio-wrapper {
+      .form-field-wrapper .field-wrapper {
+        align-items: flex-start;
+      }
+
       .field {
         display: inline-flex;
         gap: 0.25rem;

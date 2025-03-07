@@ -113,7 +113,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() group: boolean = false;
   @Input() options: any[];
   @Input() filterValue: string;
-  @Input() selectAll: boolean;
+  @Input() selectAll: boolean = null;
   @Input() striped: boolean = false;
   @Input() highlightOnSelect: boolean = true;
   @Input() checkmark: boolean = false;

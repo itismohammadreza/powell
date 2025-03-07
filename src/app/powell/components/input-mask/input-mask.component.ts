@@ -39,7 +39,8 @@ import {ConfigService} from "@powell/api";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputMaskComponent),
       multi: true
-    }
+    },
+    DestroyService
   ],
   standalone: false
 })
@@ -85,7 +86,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @Input() autofocus: boolean = false;
   @Input() autocomplete: string;
   @Input() keepBuffer: boolean = false;
-  @Input() mask: string;
+  @Input() mask: string = '9999-9999';
   @Output() onComplete = new EventEmitter<void>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();

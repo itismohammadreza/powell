@@ -33,7 +33,7 @@ export class BottomSheetPage extends PreviewBase {
   visible3 = false;
   visible4 = false;
 
-  override onOptionChange(event: any) {
+  override onOptionChange(event: PreviewOption) {
     this.cmpRefs.forEach(cmp => {
       cmp[event.field] = event.value;
     })

@@ -32,7 +32,7 @@ export class ListboxPage extends PreviewBase {
     {field: 'filter', value: false},
     {field: 'showToggleAll', value: true},
     {field: 'filterPlaceHolder', value: ''},
-    {field: 'striped', value: true},
+    {field: 'striped', value: false},
     {field: 'checkmark', value: true},
   ];
 }

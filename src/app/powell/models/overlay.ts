@@ -16,7 +16,6 @@ import {
   NgDatepickerSelectionMode,
   NgDatepickerViewMode,
   NgDialogPosition,
-  NgPinchDisableZoomControl,
   NgFilePickerMethod,
   NgFilePickerMode,
   NgFileResultType,
@@ -26,12 +25,14 @@ import {
   NgInputVariant,
   NgKeyFilter,
   NgLabelPosition,
-  NgPinchLimitZoom,
-  NgPinchListener,
   NgNumberButtonLayout,
+  NgNumberLocaleMatcher,
   NgNumberMode,
   NgOrientation,
   NgOverflow,
+  NgPinchDisableZoomControl,
+  NgPinchLimitZoom,
+  NgPinchListener,
   NgPosition,
   NgSeverity,
   NgSize,
@@ -44,6 +45,7 @@ import {Core} from "suneditor/src/lib/core";
 import {LatLng, LatLngBounds} from "leaflet";
 import {$Confirmation, $ContextMenu, $ScrollerOptions, $ToastMessageOptions, $ToastPositionType} from "@powell/primeng";
 import {TemplateRef} from "@angular/core";
+import {Moment} from "jalali-moment";
 
 export type NgDefaultFocus = 'accept' | 'reject';
 export type NgHistoricComponent = 'confirmDialog' | 'confirmPopup' | 'dialog' | 'dialogForm' | 'bottomSheet';
@@ -69,6 +71,7 @@ export interface NgConfirmOptions extends $Confirmation {
   acceptButtonProps?: NgButtonProps;
   rejectButtonProps?: NgButtonProps;
   closeButtonProps?: NgButtonProps;
+  position?: NgDialogPosition;
   style?: NgCssObject;
   styleClass?: string;
   rtl?: boolean;
@@ -339,7 +342,7 @@ export interface NgDialogFormConfig {
   onRemove?: (dialogFormEvent?: NgDialogFormEvent) => void;
   isUnknownImageUrl?: boolean;
   ///////////////////////////////////////// datepicker /////////////////////////////////////////
-  defaultDate?: any; // Date | Moment
+  defaultDate?: Date | Moment;
   dateFormat?: string;
   inline?: boolean;
   showOtherMonths?: boolean;
@@ -350,8 +353,8 @@ export interface NgDialogFormConfig {
   datepickerIcon?: string;
   readonlyInput?: boolean;
   shortYearCutoff?: string;
-  minDate?: any; // Date | Moment
-  maxDate?: any; // Date | Moment
+  minDate?: Date | Moment;
+  maxDate?: Date | Moment;
   disabledDates?: any[];
   disabledDays?: any[];
   showTime?: boolean;
@@ -431,7 +434,7 @@ export interface NgDialogFormConfig {
   incrementButtonIcon?: string;
   decrementButtonIcon?: string;
   locale?: string;
-  localeMatcher?: 'lookup' | 'best fit';
+  localeMatcher?: NgNumberLocaleMatcher;
   prefix?: string;
   suffix?: string;
   currency?: NgCurrency;
@@ -561,7 +564,7 @@ export interface NgDialogFormConfig {
   iconCancelStyle?: NgCssObject;
   onRate?: (dialogFormEvent?: NgDialogFormEvent) => void;
   onCancel?: (dialogFormEvent?: NgDialogFormEvent) => void;
-  ///////////////////////////////////////// select-botton /////////////////////////////////////////
+  ///////////////////////////////////////// select-button /////////////////////////////////////////
   optionLabel?: string;
   optionValue?: string;
   optionDisabled?: string;
