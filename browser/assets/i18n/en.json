@@ -245,5 +245,6 @@
   "customDynamicDialog": "Custom Dynamic Dialog",
   "networkStatus": "Network Status",
   "online": "Online",
-  "offline": "Offline"
+  "offline": "Offline",
+  "designSystem": "Design System"
 }
