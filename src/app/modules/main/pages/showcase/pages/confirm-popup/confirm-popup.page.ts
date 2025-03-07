@@ -22,7 +22,15 @@ export class ConfirmPopupPage extends PreviewBase {
     {field: 'rejectIcon', value: ''},
     {field: 'acceptVisible', value: true},
     {field: 'rejectVisible', value: true},
-    {field: 'defaultFocus', value: 'accept'},
+    {field: 'acceptSeverity', options: 'severities', value: 'primary'},
+    {field: 'acceptAppearance', options: 'appearances', value: 'basic'},
+    {field: 'buttonSize', options: 'sizes', value: 'small'},
+    {field: 'rejectSeverity', options: 'severities', value: 'danger'},
+    {field: 'rejectAppearance', options: 'appearances', value: 'outlined'},
+    {field: 'closeOnEscape', value: false},
+    {field: 'defaultFocus', options: 'defaultFocusTypes', value: 'accept'},
+    {field: 'blockScroll', value: false},
+    {field: 'buttonFull', value: false},
     {field: 'rtl', value: this.config.rtl},
   ];
 
@@ -35,15 +43,40 @@ export class ConfirmPopupPage extends PreviewBase {
     rejectIcon: '',
     acceptVisible: true,
     rejectVisible: true,
+    closeOnEscape: false,
     defaultFocus: 'accept',
-    rtl: this.config.rtl
+    blockScroll: false,
+    rtl: this.config.rtl,
+    acceptButtonProps: {
+      severity: this.getOption('acceptSeverity'),
+      appearance: this.getOption('acceptAppearance')
+    },
+    rejectButtonProps: {
+      severity: this.getOption('rejectSeverity'),
+      appearance: this.getOption('rejectAppearance')
+    }
   }
 
-  override onOptionChange(event: any) {
+  override onOptionChange(event: PreviewOption) {
+    switch (event.field) {
+      case 'acceptSeverity':
+        this.confirmPopup.acceptButtonProps.severity = event.value;
+        break;
+      case 'acceptAppearance':
+        this.confirmPopup.acceptButtonProps.appearance = event.value;
+        break;
+
+      case 'rejectSeverity':
+        this.confirmPopup.rejectButtonProps.appearance = event.value;
+        break;
+      case 'rejectAppearance':
+        this.confirmPopup.rejectButtonProps.appearance = event.value;
+        break;
+    }
     this.confirmPopup[event.field] = event.value;
   }
 
-  showConfirmPopup(event) {
+  showConfirmPopup(event: MouseEvent) {
     this.overlayService.showConfirmPopup({...this.confirmPopup, target: event.target})
   }
 }

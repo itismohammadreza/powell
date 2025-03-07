@@ -3,6 +3,10 @@
 
   ::ng-deep {
     .checkbox-group-wrapper {
+      .form-field-wrapper .field-wrapper {
+        align-items: flex-start;
+      }
+
       .field {
         display: inline-flex;
         gap: 0.25rem;

@@ -22,12 +22,8 @@ export class ColorPickerPage extends PreviewBase {
     {field: 'hint', value: ''},
     {field: 'rtl', value: this.config.rtl},
     {field: 'showRequiredStar', value: this.config.showRequiredStar},
-    {field: 'labelPosition', options: 'labelPositions', value: this.config.labelPosition},
-    {field: 'size', options: 'sizes', value: this.config.inputSize},
-    {field: 'readonly', value: false},
-    {field: 'placeholder', value: ''},
+    {field: 'labelPosition', options: 'fixLabelPositions', value: this.config.fixLabelPosition},
     {field: 'followConfig', value: this.config.followConfig},
-    {field: 'variant', options: 'variants', value: this.config.inputStyle},
     {field: 'inline', value: false},
     {field: 'disabled', value: false},
   ];

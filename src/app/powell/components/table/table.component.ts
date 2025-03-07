@@ -161,7 +161,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() sortOrder: number;
   @Input() multiSortMeta: $SortMeta[];
   @Input() selection: any;
-  @Input() selectAll: boolean;
+  @Input() selectAll: boolean = null;
   @Output() contextMenuSelectionChange = new EventEmitter<$TableContextMenuSelectionChangeEvent>();
   @Output() selectAllChange = new EventEmitter<$TableSelectAllChangeEvent>();
   @Output() selectionChange = new EventEmitter<any>();

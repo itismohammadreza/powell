@@ -140,11 +140,11 @@ export class OverlayService {
       this.messageService.add(toast);
       clearTimeout(timeout);
     }, 0);
-    return new Promise((accept) => {
+    return new Promise((resolve) => {
       const subscription = instance.onClose.subscribe(() => {
         subscription.unsubscribe();
         const timeout = setTimeout(() => {
-          accept(true);
+          resolve(true);
           clearTimeout(timeout);
         }, 5)
       });
@@ -167,7 +167,7 @@ export class OverlayService {
     }
     instance.styleClass = `confirm-popup-wrapper ${options.styleClass ?? ''}`;
     this.confirmPopupCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr')
-    return new Promise<boolean>((accept) => {
+    return new Promise<boolean>((resolve) => {
       const state: NgHistoryState = {component: 'confirmPopup'};
       this.pushState(state)
       this.confirmationService.confirm({
@@ -176,7 +176,7 @@ export class OverlayService {
           this.popState();
           this.removeFromBody(this.confirmPopupCmpRef);
           const timeout = setTimeout(() => {
-            accept(true);
+            resolve(true);
             clearTimeout(timeout);
           }, 5)
         },
@@ -184,7 +184,7 @@ export class OverlayService {
           this.popState();
           this.removeFromBody(this.confirmPopupCmpRef);
           const timeout = setTimeout(() => {
-            accept(false);
+            resolve(false);
             clearTimeout(timeout);
           }, 5)
         },
@@ -206,11 +206,11 @@ export class OverlayService {
     for (const key in options) {
       instance[key] = options[key];
     }
+    instance.position = options.position;
     instance.appendTo = null;
     instance.el.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr');
     instance.styleClass = `confirm-dialog-wrapper ${options.styleClass ?? ''} ${!options.header && !options.closable ? 'header-less' : ''}`;
-    this.confirmCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr');
-    return new Promise<boolean>((accept) => {
+    return new Promise<boolean>((resolve) => {
       const state: NgHistoryState = {component: 'confirmDialog'};
       let timeout: any;
       this.pushState(state)
@@ -220,7 +220,7 @@ export class OverlayService {
           this.popState();
           this.removeFromBody(this.confirmCmpRef);
           timeout = setTimeout(() => {
-            accept(true);
+            resolve(true);
             clearTimeout(timeout);
           }, 5)
         },
@@ -230,14 +230,14 @@ export class OverlayService {
             case $ConfirmEventType.REJECT:
               this.removeFromBody(this.confirmCmpRef);
               timeout = setTimeout(() => {
-                accept(false);
+                resolve(false);
                 clearTimeout(timeout);
               }, 5)
               break;
             case $ConfirmEventType.CANCEL:
               this.removeFromBody(this.confirmCmpRef);
               timeout = setTimeout(() => {
-                accept(null);
+                resolve(null);
                 clearTimeout(timeout);
               }, 5)
               break;
@@ -262,7 +262,7 @@ export class OverlayService {
     instance.show();
     const state: NgHistoryState = {component: 'dialog'};
     this.pushState(state);
-    return new Promise<void>((accept) => {
+    return new Promise<void>((resolve) => {
       const subscription = instance.onClose.subscribe(() => {
         if (!this.isPopped(state)) {
           this.popState()
@@ -270,7 +270,7 @@ export class OverlayService {
         subscription.unsubscribe();
         this.removeFromBody(this.dialogCmpRef);
         const timeout = setTimeout(() => {
-          accept();
+          resolve();
           clearTimeout(timeout);
         }, 5)
       });

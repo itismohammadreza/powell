@@ -8,6 +8,10 @@
     <ng-logo/>
 
     <div class="flex items-center gap-3">
+      <ng-button
+        severity="secondary"
+        (click)="designerSidebarVisible = !designerSidebarVisible"
+        icon="pi pi-cog animate-[spin_5s_linear_infinite]"/>
       <ng-button (onClick)="op.toggle($event)" icon="pi pi-sparkles"/>
       <a target="_blank" href="https://github.com/mohammadreza99/powell">
         <ng-button appearance="text" severity="secondary" icon="pi pi-github"/>
@@ -31,14 +35,6 @@
 
     <ng-content/>
   </main>
-
-  @if (!sidebarVisible) {
-    <ng-button
-      class="fixed z-[900000] top-[30%] -translate-y-1/2 left-0 transition-all duration-150 ease-[cubic-bezier(0,0,0.2,1)] [&_button]:!rounded-l-none"
-      severity="secondary"
-      [class.left-[48rem]]="designerSidebarVisible"
-      (click)="designerSidebarVisible = !designerSidebarVisible" icon="pi pi-cog"/>
-  }
 
   <p-drawer
     styleClass="w-[20rem]"
@@ -81,8 +77,9 @@
 
 <p-drawer
   position="left"
+  [header]="'designSystem' | translate"
   [modal]="false"
-  [closable]="false"
+  [closable]="true"
   [(visible)]="designerSidebarVisible"
   styleClass="!w-[48rem] max-w-full">
   <ng-designer/>

@@ -3,5 +3,24 @@
   description="Image displays an image with preview and transformation options."
   [previewOptions]="previewOptions"
   (onOptionChange)="onOptionChange($event)">
-  <ng-image src="images/tiger.jpg"/>
+  <ng-image
+    [width]="getOption('width')"
+    [preview]="getOption('preview')"
+    [pinchProperties]="{
+      doubleTap: getOption('doubleTap'),
+      doubleTapScale: getOption('doubleTapScale'),
+      autoZoomOut: getOption('autoZoomOut'),
+      disableZoomControl: getOption('disableZoomControl'),
+      draggableImage: getOption('draggableImage'),
+      overflow: getOption('overflow'),
+      wheel: getOption('wheel'),
+      wheelZoomFactor: getOption('wheelZoomFactor'),
+      zoomControlScale: getOption('zoomControlScale'),
+      limitZoom: 'original image size',
+      listeners: 'mouse and touch',
+      minPanScale: 1.0001,
+      minScale: 0,
+      transitionDuration: 200,
+    }"
+    src="images/tiger.jpg"/>
 </ng-preview>

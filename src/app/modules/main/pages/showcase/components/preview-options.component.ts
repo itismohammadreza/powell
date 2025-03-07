@@ -55,7 +55,7 @@ export type OptionType =
 
 export interface PreviewOption {
   field: string;
-  value: boolean | string | number | RegExp;
+  value: any;
   options?: OptionType;
 }
 
@@ -109,7 +109,7 @@ export class PreviewOptionsComponent implements OnInit {
       datepickerSelectionModes: ['single', 'multiple', 'range'],
       numberModes: ['decimal', 'currency'],
       fixLabelPositions: ['side', 'top'],
-      defaultFocusTypes: ['none', 'accept', 'reject'],
+      defaultFocusTypes: ['none', 'accept', 'reject', 'close'],
       toastPositions: ['top-right', 'top-left', 'bottom-right', 'bottom-left', 'top-center', 'bottom-center', 'center'],
       toastSeverities: ["secondary", "success", "info", "warn", "error", "contrast"],
       dialogPositions: ['top', 'bottom', 'left', 'right', 'topleft', 'topright', 'bottomleft', 'bottomright', 'center'],
