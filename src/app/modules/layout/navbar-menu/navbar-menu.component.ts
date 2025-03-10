@@ -76,6 +76,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     if (this.sidebarLock && !this.sidebarVisible) {
       this.sidebarVisible = true;
     }
+    this.handleResize()
   }
 
   ngAfterContentInit() {
