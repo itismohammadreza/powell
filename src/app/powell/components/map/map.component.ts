@@ -218,7 +218,10 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.handleDisabledState()
+    if (!this.map) {
+      return;
+    }
+    this.handleDisabledState();
   }
 
   writeValue(value: any) {
@@ -258,6 +261,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
 
   onMapReady(event: Map) {
     this.map = event;
+    this.handleDisabledState();
   }
 
   onZoomChange(event: number) {
