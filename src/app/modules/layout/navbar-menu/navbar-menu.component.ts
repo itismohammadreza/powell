@@ -88,6 +88,9 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     const responsiveThreshold: number = 768;
     const windowWidth = this.document.defaultView.innerWidth;
     if (windowWidth < responsiveThreshold) {
+      if (this.sidebarLock) {
+        this.toggleSidebarLock(false)
+      }
       this.changeSidebarType('overlay', false);
     } else if (windowWidth >= responsiveThreshold) {
       this.changeSidebarType(this.sidebarType, false);
@@ -115,8 +118,6 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     if (assign) {
       this.sidebarType = this.tempSidebarType;
     }
-    this.toggleSidebar(false);
-    this.toggleSidebarLock(false);
   }
 
   toggleSidebarClick() {
