@@ -1,5 +1,5 @@
 <div class="main-content flex flex-col h-full menu-{{tempSidebarType}}"
-     [ngClass]="{ 'sidebar-lock': sidebarLock, 'sidebar-open': sidebarVisible }">
+     [ngClass]="{ 'sidebar-lock': sidebarLock, 'sidebar-open': sidebarVisible, 'overflow-hidden': sidebarVisible && !sidebarLock && (sidebarType === 'push' || sidebarType === 'push-mask') }">
   <nav
     class="shadow-sm w-full !bg-transparent backdrop-blur-md h-[68px] fixed top-0 flex items-center justify-between px-4 z-20 border-b border-[--p-primary-color] transition-all duration-200">
     @if (!sidebarLock) {
