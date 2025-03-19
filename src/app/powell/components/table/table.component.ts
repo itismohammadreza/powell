@@ -166,7 +166,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Output() selectAllChange = new EventEmitter<$TableSelectAllChangeEvent>();
   @Output() selectionChange = new EventEmitter<any>();
   @Output() onRowSelect = new EventEmitter<$TableRowSelectEvent>();
-  @Output() onRowUnselect = new EventEmitter<$TableRowUnSelectEvent>();
+  @Output() onRowUnselect = new EventEmitter<$TableRowUnSelectEvent<any>>();
   @Output() onPage = new EventEmitter<$TablePageEvent>();
   @Output() onSort = new EventEmitter<{multisortmeta: $SortMeta[]} | any>();
   @Output() onFilter = new EventEmitter<$TableFilterEvent>();
