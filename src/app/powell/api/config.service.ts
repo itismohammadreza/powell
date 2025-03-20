@@ -1,5 +1,5 @@
 import {inject, Injectable, isSignal, Signal} from '@angular/core';
-import {Subject, takeUntil} from "rxjs";
+import {Subject} from "rxjs";
 import {NgConfig, NgConfigChangeEvent, NgInitialConfig} from "@powell/models";
 import {ThemeService} from "@powell/api";
 import {$PrimeNG} from "@powell/primeng";
