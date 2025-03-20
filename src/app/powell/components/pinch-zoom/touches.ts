@@ -1,8 +1,11 @@
 import {
   MouseHandler,
-  MouseListeners, OtherHandler, OtherListeners,
+  MouseListeners,
+  OtherHandler,
+  OtherListeners,
   PinchEventType,
-  TouchesProperties, TouchHandler,
+  TouchesProperties,
+  TouchHandler,
   TouchListeners
 } from "@powell/components/pinch-zoom/interfaces";
 

@@ -1,14 +1,17 @@
 import {
   AfterContentInit,
   ChangeDetectorRef,
-  Component, ContentChildren,
+  Component,
+  ContentChildren,
   EventEmitter,
   forwardRef,
   inject,
   Injector,
   Input,
   OnInit,
-  Output, QueryList, TemplateRef
+  Output,
+  QueryList,
+  TemplateRef
 } from '@angular/core';
 import {
   AbstractControl,

@@ -1,6 +1,7 @@
 import {
   Component,
-  ElementRef, EventEmitter,
+  ElementRef,
+  EventEmitter,
   HostBinding,
   Input,
   OnChanges,

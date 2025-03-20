@@ -1,4 +1,4 @@
-import {$ButtonProps, $Preset} from "@powell/primeng";
+import {$ButtonProps} from "@powell/primeng";
 import {NgButtonAppearance} from "@powell/models/button";
 
 export type NgSeverity =

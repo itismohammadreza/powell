@@ -1,5 +1,5 @@
 import {Touches} from './touches';
-import {PinchZoomOptions, PinchEventType} from './interfaces';
+import {PinchEventType, PinchZoomOptions} from './interfaces';
 import {defaultProperties} from './properties';
 
 export class IvyPinch {
