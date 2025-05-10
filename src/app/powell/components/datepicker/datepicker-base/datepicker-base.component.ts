@@ -213,7 +213,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
   @Input() variant: 'filled' | 'outlined';
   @Input() size: 'large' | 'small';
 
-  @Input() get minDate(): Date | Moment | undefined | null {
+  @Input() get minDate() {
     return this._minDate;
   }
 
@@ -225,7 +225,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     }
   }
 
-  @Input() get maxDate(): Date | Moment | undefined | null {
+  @Input() get maxDate() {
     return this._maxDate;
   }
 
@@ -237,7 +237,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     }
   }
 
-  @Input() get disabledDates(): (Date | Moment)[] {
+  @Input() get disabledDates() {
     return this._disabledDates;
   }
 
@@ -248,7 +248,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     }
   }
 
-  @Input() get disabledDays(): number[] {
+  @Input() get disabledDays() {
     return this._disabledDays;
   }
 
@@ -260,7 +260,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     }
   }
 
-  @Input() get yearRange(): string {
+  @Input() get yearRange() {
     return this._yearRange;
   }
 
@@ -276,7 +276,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     }
   }
 
-  @Input() get showTime(): boolean {
+  @Input() get showTime() {
     return this._showTime;
   }
 
@@ -289,7 +289,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     this.updateInputfield();
   }
 
-  @Input() get responsiveOptions(): $DatePickerResponsiveOptions[] {
+  @Input() get responsiveOptions() {
     return this._responsiveOptions;
   }
 
@@ -300,7 +300,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     this.createResponsiveStyle();
   }
 
-  @Input() get numberOfMonths(): number {
+  @Input() get numberOfMonths() {
     return this._numberOfMonths;
   }
 
@@ -311,7 +311,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     this.createResponsiveStyle();
   }
 
-  @Input() get firstDayOfWeek(): number {
+  @Input() get firstDayOfWeek() {
     return this._firstDayOfWeek;
   }
 
@@ -325,7 +325,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     console.warn('Locale property has no effect, use new i18n API instead.');
   }
 
-  @Input() get view(): $DatePickerTypeView {
+  @Input() get view() {
     return this._view;
   }
 
@@ -334,7 +334,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     this.currentView = this._view;
   }
 
-  @Input() get defaultDate(): Date | Moment {
+  @Input() get defaultDate() {
     return this._defaultDate;
   }
 
@@ -683,7 +683,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     return Math.floor(Math.round((time - checkDate[this.getEqualProp('getTime')]()) / 86400000) / 7) + 1;
   }
 
-  createMonth(month: number, year: number): $Month {
+  createMonth(month: number, year: number) {
     let dates = [];
     let firstDay = this.getFirstDayOfMonthIndex(month, year);
     let daysLength = this.getDaysCountInMonth(month, year);
@@ -992,7 +992,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     return formattedValue;
   }
 
-  formatDateMetaToDate(dateMeta: DateMeta): Date | Moment {
+  formatDateMetaToDate(dateMeta: DateMeta) {
     if (this.isJalali) {
       return this.momentService.convertToGregorian(`${dateMeta.year}/${dateMeta.month + 1}/${dateMeta.day}`, 'YYYY/MM/DD')
     } else {
@@ -1000,7 +1000,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     }
   }
 
-  formatDateKey(date: Date | Moment): string {
+  formatDateKey(date: Date | Moment) {
     return `${date[this.getEqualProp('getFullYear')]()}-${date[this.getEqualProp('getMonth')]()}-${date[this.getEqualProp('getDate')]()}`;
   }
 
@@ -1151,7 +1151,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     return firstDayOfWeek > 0 ? 7 - firstDayOfWeek : 0;
   }
 
-  isSelected(dateMeta: DateMeta): boolean | undefined {
+  isSelected(dateMeta: DateMeta) {
     if (this.value) {
       if (this.isSingleSelection()) {
         return this.isDateEquals(this.value, dateMeta);
@@ -1228,23 +1228,23 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     return between;
   }
 
-  isSingleSelection(): boolean {
+  isSingleSelection() {
     return this.selectionMode === 'single';
   }
 
-  isRangeSelection(): boolean {
+  isRangeSelection() {
     return this.selectionMode === 'range';
   }
 
-  isMultipleSelection(): boolean {
+  isMultipleSelection() {
     return this.selectionMode === 'multiple';
   }
 
-  isToday(today: Date | Moment, day: number, month: number, year: number): boolean {
+  isToday(today: Date | Moment, day: number, month: number, year: number) {
     return today[this.getEqualProp('getDate')]() === day && today[this.getEqualProp('getMonth')]() === month && today[this.getEqualProp('getFullYear')]() === year;
   }
 
-  isSelectable(day: any, month: any, year: any, otherMonth: any): boolean {
+  isSelectable(day: any, month: any, year: any, otherMonth: any) {
     let validMin = true;
     let validMax = true;
     let validDate = true;
@@ -1293,7 +1293,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     return validMin && validMax && validDate && validDay;
   }
 
-  isDateDisabled(day: number, month: number, year: number): boolean {
+  isDateDisabled(day: number, month: number, year: number) {
     if (this.disabledDates) {
       for (let disabledDate of this.disabledDates) {
         if (disabledDate[this.getEqualProp('getFullYear')]() === year && disabledDate[this.getEqualProp('getMonth')]() === month && disabledDate[this.getEqualProp('getDate')]() === day) {
@@ -1305,7 +1305,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     return false;
   }
 
-  isDayDisabled(day: number, month: number, year: number): boolean {
+  isDayDisabled(day: number, month: number, year: number) {
     if (this.disabledDays) {
       let weekday = this.getEqualDateObj([year, month, day]);
       let weekdayNumber = weekday[this.getEqualProp('getDay')]();
@@ -2252,7 +2252,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     this.onInput.emit(event);
   }
 
-  isValidSelection(value: any): boolean {
+  isValidSelection(value: any) {
     if (this.isSingleSelection()) {
       return this.isSelectable(value.getDate(), value.getMonth(), value.getFullYear(), false);
     }
@@ -2263,7 +2263,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     return isValid;
   }
 
-  parseValueFromString(text: string): Date | Date[] | Moment | Moment[] | null {
+  parseValueFromString(text: string) {
     if (!text || text.trim().length === 0) {
       return null;
     }
@@ -2289,7 +2289,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     return value;
   }
 
-  parseDateTime(text: any): Date | Moment {
+  parseDateTime(text: any) {
     let date: Date | Moment;
     let parts: string[] = text.split(' ');
 
@@ -2531,7 +2531,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     }
   }
 
-  writeValue(value: any): void {
+  writeValue(value: any) {
     this.value = value;
     if (this.value && typeof this.value === 'string') {
       try {
@@ -2548,15 +2548,15 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn: Function): void {
+  registerOnChange(fn: Function) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn: Function): void {
+  registerOnTouched(fn: Function) {
     this.onModelTouched = fn;
   }
 
-  setDisabledState(val: boolean): void {
+  setDisabledState(val: boolean) {
     this.disabled = val;
     this.cd.markForCheck();
   }

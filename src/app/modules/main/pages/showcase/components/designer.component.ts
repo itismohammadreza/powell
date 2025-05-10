@@ -292,7 +292,7 @@ export class DesignerComponent {
   selectedPrimaryColor: string;
   selectedSurfaceColor: string;
 
-  getPresetExt(): $Preset<any> {
+  getPresetExt() {
     const color = this.primaryColors.find((c) => c.name === this.selectedPrimaryColor);
     if (color.name === 'noir') {
       return {
