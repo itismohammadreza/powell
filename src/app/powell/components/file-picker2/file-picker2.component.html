@@ -70,8 +70,8 @@
                     <UploadIcon/>
                   </div>
                 }
-                <div class="file-name">{{ item.name }}</div>
               }
+              <div class="file-name">{{ item.name }}</div>
               @if (!readonly) {
                 <ng-button severity="danger" size="small" (onClick)="onMultipleDelete($event, i)">
                   <ng-template ngTemplate="icon">

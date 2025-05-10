@@ -106,7 +106,7 @@ export abstract class PreviewBase implements AfterViewInit {
     }, 5);
   }
 
-  getOption(key: string): any {
+  getOption(key: string) {
     return this.previewOptions.find(option => option.field === key).value;
   }
 }

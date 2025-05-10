@@ -1,6 +1,8 @@
 import {$ButtonProps} from "@powell/primeng";
 import {NgButtonAppearance} from "@powell/models/button";
 
+export type SafeAny = any;
+
 export type NgSeverity =
   | 'primary'
   | 'secondary'

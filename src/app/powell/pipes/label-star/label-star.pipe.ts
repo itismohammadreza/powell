@@ -20,7 +20,7 @@ export class LabelStarPipe implements PipeTransform {
     return value.concat(' *');
   }
 
-  isControlRequired(ngControl: NgControl): boolean {
+  isControlRequired(ngControl: NgControl) {
     if (ngControl) {
       const control = ngControl.control;
       if (control.validator) {
