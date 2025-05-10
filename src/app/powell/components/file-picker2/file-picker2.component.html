@@ -61,16 +61,17 @@
           }
           @for (item of filesToShow; track item; let i = $index) {
             <div class="preview">
-              <ng-container [ngSwitch]="getFileType(item.display)">
-                <div *ngSwitchCase="'image'"
-                     [style.backgroundImage]="'url(' + item.display + ')'"
-                     class="image-preview">
-                </div>
-                <div *ngSwitchCase="'file'" class="file-preview">
-                  <UploadIcon/>
-                </div>
+              @switch (getFileType(item.display)) {
+                @case ('image') {
+                  <div [style.backgroundImage]="'url(' + item.display + ')'" class="image-preview"></div>
+                }
+                @case ('file') {
+                  <div class="file-preview">
+                    <UploadIcon/>
+                  </div>
+                }
                 <div class="file-name">{{ item.name }}</div>
-              </ng-container>
+              }
               @if (!readonly) {
                 <ng-button severity="danger" size="small" (onClick)="onMultipleDelete($event, i)">
                   <ng-template ngTemplate="icon">
