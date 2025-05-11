@@ -1,6 +1,5 @@
 import {Component, inject} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {$Preset} from '@powell/primeng/api';
 import {ConfigService, ThemeService} from "@powell/api";
 import {SelectButtonModule} from "@powell/components/select-button";
 import {ButtonModule} from "@powell/components/button";
