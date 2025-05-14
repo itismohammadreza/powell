@@ -26,18 +26,6 @@
           color: #6c757d;
         }
       }
-
-      &:dir(rtl) {
-        .empty-title {
-          direction: rtl;
-        }
-      }
-
-      &:dir(ltr) {
-        .empty-title {
-          direction: ltr;
-        }
-      }
     }
   }
 }

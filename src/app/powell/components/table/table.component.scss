@@ -59,8 +59,6 @@
       }
 
       &:dir(ltr) {
-        direction: ltr;
-
         .same-column-actions-wrapper {
           ng-button:not(:last-child) {
             margin-right: 0.5rem;
@@ -73,8 +71,6 @@
       }
 
       &:dir(rtl) {
-        direction: rtl;
-
         .p-datatable-thead > tr > th,
         .p-datatable-tbody > tr > td {
           text-align: right;
