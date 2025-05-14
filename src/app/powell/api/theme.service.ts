@@ -74,10 +74,12 @@ export class ThemeService {
   }
 
   applyConfigToDom(config: NgConfig) {
-    if ('rtl' in config) {
-      this.document.documentElement.setAttribute('dir', config.rtl ? 'rtl' : 'ltr');
-    }
     this.handleBodyClasses(config);
+    if ('rtl' in config && config.injectDirectionToRoot) {
+      this.document.documentElement.setAttribute('dir', config.rtl ? 'rtl' : 'ltr');
+    } else {
+      this.document.documentElement.removeAttribute('dir');
+    }
   }
 
   get currentPreset() {

@@ -32,6 +32,7 @@ export interface NgConfig extends Partial<OmittedSignalsConfig> {
   showRequiredStar?: boolean;
   inputSize?: NgSize;
   theme?: NgTheme;
+  injectDirectionToRoot?: boolean;
 }
 
 export interface NgInitialConfig extends NgConfig {

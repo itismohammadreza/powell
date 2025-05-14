@@ -13,6 +13,7 @@ export const globalConfig: GlobalConfig = {
     labelPosition: 'ifta',
     inputStyle: 'outlined',
     showRequiredStar: true,
+    injectDirectionToRoot: true,
     theme: {
       name: 'Aura',
       mode: 'dark'
