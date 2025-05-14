@@ -45,18 +45,6 @@
         font-size: 14px;
         line-height: 1.6;
       }
-
-      &:dir(rtl) {
-        .status-content {
-          direction: rtl;
-        }
-      }
-
-      &:dir(ltr) {
-        .status-content {
-          direction: ltr;
-        }
-      }
     }
   }
 }
