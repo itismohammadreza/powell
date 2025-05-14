@@ -121,6 +121,12 @@ import {TranslationService} from "@core/utils";
         [labelWidth]="170"
         [value]="config.rtl"
         (onChange)="changeGlobalConfig('rtl',$event.checked)"/>
+      <ng-toggle-switch
+        [label]="'injectDirectionToRoot' | translate"
+        labelPosition="side"
+        [labelWidth]="170"
+        [value]="config.powellConfig.injectDirectionToRoot"
+        (onChange)="changeGlobalConfig('injectDirectionToRoot',$event.checked)"/>
     </div>
   `,
 })

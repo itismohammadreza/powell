@@ -96,7 +96,7 @@ export class ConfigService {
         this.primeNG[key] = config[key];
       }
     }
-    this.themeService.applyConfigToDom(config);
+    this.themeService.applyConfigToDom({...config, injectDirectionToRoot: this._config.injectDirectionToRoot});
   }
 
   private getComponentConfigKey(key: keyof NgConfig) {
