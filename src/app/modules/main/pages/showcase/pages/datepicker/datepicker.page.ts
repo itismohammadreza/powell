@@ -36,7 +36,7 @@ export class DatepickerPage extends PreviewBase {
     {field: 'fluid', value: false},
     {field: 'datepickerIcon', value: 'pi pi-calendar'},
     {field: 'readonlyInput', value: false},
-    {field: 'hourFormat', value: '24'},
+    {field: 'hourFormat', selectOptions: 'hourFormats', value: '24'},
     {field: 'timeOnly', value: false},
     {field: 'stepHour', value: 1},
     {field: 'stepMinute', value: 1},
