@@ -53,6 +53,6 @@ export class DatepickerPage extends PreviewBase {
     {field: 'size', selectOptions: 'sizes', value: this.config.inputSize},
     {field: 'showTime', value: false},
     {field: 'numberOfMonths', value: 1},
-    {field: 'view', value: 'date'},
+    {field: 'view', selectOptions: 'views', value: 'date'},
   ];
 }
