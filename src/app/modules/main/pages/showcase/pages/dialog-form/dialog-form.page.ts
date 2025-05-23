@@ -125,7 +125,7 @@ export class DialogFormPage extends PreviewBase {
             return group.get('name').invalid ? {invalidGr: true} : null
           },
           type: 'invalidGr',
-          message: 'فرم نامعتبر است',
+          message: 'form is not valid',
           style: {textAlign: 'center'}
         },
       }).pipe(takeUntil(this.destroy$)).subscribe(res => {

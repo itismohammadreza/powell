@@ -29,12 +29,11 @@ export class ConfirmPopupPage extends PreviewBase {
     {field: 'closeOnEscape', value: false},
     {field: 'defaultFocus', selectOptions: 'defaultFocusTypes', value: 'accept'},
     {field: 'blockScroll', value: false},
-    {field: 'buttonFull', value: false},
     {field: 'rtl', value: this.config.rtl},
   ];
 
   confirmPopup: NgConfirmOptions = {
-    message: 'Are you sure?',
+    message: 'Are you sure you want to proceed?',
     icon: 'pi pi-exclamation-triangle',
     acceptLabel: 'Yes',
     rejectLabel: 'No',

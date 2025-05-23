@@ -31,14 +31,13 @@ export class ConfirmDialogPage extends PreviewBase {
     {field: 'dismissableMask', value: false},
     {field: 'defaultFocus', selectOptions: 'defaultFocusTypes', value: 'accept'},
     {field: 'blockScroll', value: false},
-    {field: 'buttonFull', value: false},
     {field: 'position', selectOptions: 'dialogPositions', value: 'center'},
     {field: 'rtl', value: this.config.rtl},
   ];
 
   confirmDialog: NgConfirmOptions = {
     closable: true,
-    message: 'Are you sure?',
+    message: 'Are you sure you want to proceed?',
     icon: '',
     header: 'Confirmation',
     acceptLabel: 'Yes',

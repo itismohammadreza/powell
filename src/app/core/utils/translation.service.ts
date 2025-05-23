@@ -28,10 +28,10 @@ export class TranslationService {
 
   storeLang(currentLang: string, prevLang?: string) {
     const body = this.document.body;
-    body.classList.remove(`ng-lang-${prevLang}`);
-    body.classList.add(`ng-lang-${currentLang}`);
+    body.classList.remove(`app-lang-${prevLang}`);
+    body.classList.add(`app-lang-${currentLang}`);
     this.document.documentElement.setAttribute('lang', currentLang);
-    localStorage.setItem('ng-lang', currentLang);
+    localStorage.setItem('app-lang', currentLang);
   }
 
   get en() {

@@ -120,7 +120,6 @@ export class OverlayService {
       this.toastCmpRef = this.addToBody($Toast);
     }
     const {instance} = this.toastCmpRef;
-    this.toastCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr');
     const toast: $ToastMessageOptions = {
       severity: 'info',
       ...options,
@@ -128,7 +127,7 @@ export class OverlayService {
     for (const key in options) {
       instance[key] = options[key];
     }
-    instance.styleClass = `toast-wrapper ${options.styleClass ?? ''}`;
+    instance.styleClass = `toast-wrapper ${options.styleClass ?? ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`;
     instance.breakpoints = {'767px': {width: '100%', right: '0', left: '0'}, ...options.breakpoints};
     instance.position = options.position;
     instance.showTransformOptions = options.showTransformOptions ?? 'translateY(100%)';
@@ -165,8 +164,7 @@ export class OverlayService {
     for (const key in options) {
       instance[key] = options[key];
     }
-    instance.styleClass = `confirm-popup-wrapper ${options.styleClass ?? ''}`;
-    this.confirmPopupCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr')
+    instance.styleClass = `confirm-popup-wrapper ${options.styleClass ?? ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`;
     return new Promise<boolean>((resolve) => {
       const state: NgHistoryState = {component: 'confirmPopup'};
       this.pushState(state)
@@ -208,8 +206,7 @@ export class OverlayService {
     }
     instance.position = options.position;
     instance.appendTo = null;
-    instance.el.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr');
-    instance.styleClass = `confirm-dialog-wrapper ${options.styleClass ?? ''} ${!options.header && !options.closable ? 'header-less' : ''}`;
+    instance.styleClass = `confirm-dialog-wrapper ${options.styleClass ?? ''} ${!options.header && !options.closable ? 'header-less' : ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`;
     return new Promise<boolean>((resolve) => {
       const state: NgHistoryState = {component: 'confirmDialog'};
       let timeout: any;
@@ -254,11 +251,10 @@ export class OverlayService {
     const {instance} = this.dialogCmpRef;
     instance.options = {
       ...options,
-      styleClass: `dialog-wrapper ${options.styleClass ?? ''} ${!options.showHeader || (!options.header && !options.closable && !options.maximizable) ? 'header-less' : ''}`,
+      styleClass: `dialog-wrapper ${options.styleClass ?? ''} ${!options.showHeader || (!options.header && !options.closable && !options.maximizable) ? 'header-less' : ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`,
       closeButtonProps: this.mapToButtonProps(options.closeButtonProps),
       maximizeButtonProps: this.mapToButtonProps(options.maximizeButtonProps),
     }
-    this.dialogCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr');
     instance.show();
     const state: NgHistoryState = {component: 'dialog'};
     this.pushState(state);
@@ -285,7 +281,7 @@ export class OverlayService {
     instance.config = config;
     instance.options = {
       ...options,
-      styleClass: `dialog-form-wrapper ${options.styleClass ?? ''} ${!options.showHeader || (!options.header && !options.closable && !options.maximizable) ? 'header-less' : ''}`,
+      styleClass: `dialog-form-wrapper ${options.styleClass ?? ''} ${!options.showHeader || (!options.header && !options.closable && !options.maximizable) ? 'header-less' : ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`,
       closeButtonProps: this.mapToButtonProps(options.closeButtonProps),
       maximizeButtonProps: this.mapToButtonProps(options.maximizeButtonProps),
       acceptButtonProps: this.mapToButtonProps({
@@ -301,7 +297,6 @@ export class OverlayService {
         ...options.rejectButtonProps
       })
     };
-    this.dialogFormCmpRef.location.nativeElement.setAttribute('dir', (options.rtl ?? this.config.rtl) ? 'rtl' : 'ltr');
     instance.show();
     const state: NgHistoryState = {component: 'dialogForm'}
     this.pushState(state);
