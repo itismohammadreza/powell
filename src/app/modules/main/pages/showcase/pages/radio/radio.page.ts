@@ -21,11 +21,11 @@ export class RadioPage extends PreviewBase {
     {field: 'hint', value: ''},
     {field: 'rtl', value: this.config.rtl},
     {field: 'showRequiredStar', value: this.config.showRequiredStar},
-    {field: 'labelPosition', options: 'fixLabelPositions', value: this.config.fixLabelPosition},
+    {field: 'labelPosition', selectOptions: 'fixLabelPositions', value: this.config.fixLabelPosition},
     {field: 'followConfig', value: this.config.followConfig},
-    {field: 'orientation', options: 'orientations', value: 'vertical'},
+    {field: 'orientation', selectOptions: 'orientations', value: 'vertical'},
     {field: 'disabled', value: false},
-    {field: 'variant', options: 'variants', value: this.config.inputStyle},
-    {field: 'size', options: 'sizes', value: this.config.inputSize}
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
+    {field: 'size', selectOptions: 'sizes', value: this.config.inputSize}
   ]
 }
