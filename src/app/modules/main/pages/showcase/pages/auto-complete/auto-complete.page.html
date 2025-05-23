@@ -8,9 +8,8 @@
       <ng-auto-complete
         formControlName="c1"
         [validation]="{ required: 'error' }"
-        [suggestions]="filteredSuggestions"
-        optionLabel="name"
-        (completeMethod)="filter($event)">
+        [suggestions]="items"
+        (completeMethod)="search($event)" >
         @if (additions.addonStart) {
           <ng-template ngTemplate="addonStart"><i class="pi pi-prime"></i></ng-template>
         }
