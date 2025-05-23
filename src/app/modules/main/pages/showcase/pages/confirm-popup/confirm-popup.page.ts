@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-confirm-popup-page',
   templateUrl: './confirm-popup.page.html',
-  styleUrls: ['./confirm-popup.page.scss'],
   imports: [
     ButtonModule,
     PreviewComponent

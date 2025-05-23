@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-iran-map-page',
   templateUrl: './iran-map.page.html',
-  styleUrls: ['./iran-map.page.scss'],
   imports: [
     IranMapModule,
     ReactiveFormsModule,

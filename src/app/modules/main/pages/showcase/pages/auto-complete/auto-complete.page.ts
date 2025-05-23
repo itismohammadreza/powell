@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-auto-complete-page',
   templateUrl: './auto-complete.page.html',
-  styleUrls: ['./auto-complete.page.scss'],
   imports: [
     AutoCompleteModule,
     PreviewComponent,

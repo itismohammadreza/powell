@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-toast-page',
   templateUrl: './toast.page.html',
-  styleUrls: ['./toast.page.scss'],
   imports: [
     ButtonModule,
     PreviewComponent

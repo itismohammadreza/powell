@@ -58,7 +58,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-editor',
   templateUrl: './editor.component.html',
-  styleUrls: ['./editor.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

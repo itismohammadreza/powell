@@ -54,7 +54,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-tree-select',
   templateUrl: './tree-select.component.html',
-  styleUrls: ['./tree-select.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

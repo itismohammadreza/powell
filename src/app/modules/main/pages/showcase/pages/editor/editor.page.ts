@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-editor-page',
   templateUrl: './editor.page.html',
-  styleUrls: ['./editor.page.scss'],
   imports: [
     EditorModule,
     ReactiveFormsModule,

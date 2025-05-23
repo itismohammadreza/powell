@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-cascade-select-page',
   templateUrl: './cascade-select.page.html',
-  styleUrls: ['./cascade-select.page.scss'],
   imports: [
     CascadeSelectModule,
     ReactiveFormsModule,

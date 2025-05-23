@@ -22,7 +22,6 @@ interface Customer {
 @Component({
   selector: 'ng-table-page',
   templateUrl: './table.page.html',
-  styleUrls: ['./table.page.scss'],
   imports: [
     TableModule,
     PreviewComponent

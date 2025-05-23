@@ -5,7 +5,6 @@ import {TemplateDirective} from "@powell/directives/template";
 @Component({
   selector: 'ng-status',
   templateUrl: './status.component.html',
-  styleUrls: ['./status.component.scss'],
   standalone: false
 })
 export class StatusComponent implements AfterContentInit {

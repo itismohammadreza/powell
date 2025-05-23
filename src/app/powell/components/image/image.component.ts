@@ -19,7 +19,6 @@ import {PinchZoomComponentProperties} from "@powell/components/pinch-zoom/interf
 @Component({
   selector: 'ng-image',
   templateUrl: './image.component.html',
-  styleUrls: ['./image.component.scss'],
   standalone: false
 })
 export class ImageComponent implements AfterContentInit {

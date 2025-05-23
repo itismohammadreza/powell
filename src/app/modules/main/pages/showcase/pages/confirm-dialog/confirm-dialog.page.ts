@@ -6,7 +6,6 @@ import {NgConfirmOptions} from "@powell/models";
 @Component({
   selector: 'ng-confirm-dialog-page',
   templateUrl: './confirm-dialog.page.html',
-  styleUrls: ['./confirm-dialog.page.scss'],
   imports: [
     ButtonModule,
     PreviewComponent

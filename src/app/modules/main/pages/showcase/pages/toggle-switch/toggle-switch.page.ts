@@ -6,7 +6,6 @@ import {ToggleSwitchComponent, ToggleSwitchModule} from "@powell/components/togg
 @Component({
   selector: 'ng-toggle-switch-page',
   templateUrl: './toggle-switch.page.html',
-  styleUrls: ['./toggle-switch.page.scss'],
   imports: [
     ToggleSwitchModule,
     ReactiveFormsModule,

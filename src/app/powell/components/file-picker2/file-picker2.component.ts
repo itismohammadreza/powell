@@ -39,7 +39,6 @@ import {$uuid} from "@powell/primeng";
 @Component({
   selector: 'ng-file-picker2',
   templateUrl: './file-picker2.component.html',
-  styleUrls: ['./file-picker2.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-listbox-page',
   templateUrl: './listbox.page.html',
-  styleUrls: ['./listbox.page.scss'],
   imports: [
     ListboxModule,
     ReactiveFormsModule,

@@ -49,7 +49,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-select',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

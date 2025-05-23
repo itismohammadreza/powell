@@ -33,7 +33,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-rating',
   templateUrl: './rating.component.html',
-  styleUrls: ['./rating.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

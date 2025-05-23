@@ -28,7 +28,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-slider',
   templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

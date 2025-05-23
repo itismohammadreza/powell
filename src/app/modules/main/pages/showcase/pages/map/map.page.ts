@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-map-page',
   templateUrl: './map.page.html',
-  styleUrls: ['./map.page.scss'],
   imports: [
     MapModule,
     ReactiveFormsModule,

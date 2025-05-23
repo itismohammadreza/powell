@@ -5,7 +5,6 @@ import {$Dialog} from "@powell/primeng";
 @Component({
   selector: 'ng-dialog',
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss'],
   standalone: false
 })
 export class DialogComponent {

@@ -59,7 +59,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
   standalone: false
 })
 export class TableComponent implements OnInit, AfterContentInit {

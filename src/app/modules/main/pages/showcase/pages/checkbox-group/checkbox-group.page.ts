@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-checkbox-group-page',
   templateUrl: './checkbox-group.page.html',
-  styleUrls: ['./checkbox-group.page.scss'],
   imports: [
     CheckboxGroupModule,
     ReactiveFormsModule,

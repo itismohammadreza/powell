@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-input-number-page',
   templateUrl: './input-number.page.html',
-  styleUrls: ['./input-number.page.scss'],
   imports: [
     InputNumberModule,
     ReactiveFormsModule,

@@ -33,7 +33,6 @@ import {TemplateDirective} from "@powell/directives/template";
 @Component({
   selector: 'ng-input-textarea',
   templateUrl: './input-textarea.component.html',
-  styleUrls: ['./input-textarea.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

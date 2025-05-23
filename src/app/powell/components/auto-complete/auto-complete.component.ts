@@ -50,7 +50,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-auto-complete',
   templateUrl: './auto-complete.component.html',
-  styleUrls: ['./auto-complete.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

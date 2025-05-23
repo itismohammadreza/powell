@@ -5,7 +5,6 @@ import {PreviewComponent} from "@modules/main/pages/showcase/components";
 @Component({
   selector: 'ng-loading-container-page',
   templateUrl: './loading-container.page.html',
-  styleUrls: ['./loading-container.page.scss'],
   imports: [
     LoadingContainerModule,
     PreviewComponent

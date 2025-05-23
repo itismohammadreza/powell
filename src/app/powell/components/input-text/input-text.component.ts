@@ -42,7 +42,6 @@ import {TemplateDirective} from "@powell/directives/template";
 @Component({
   selector: 'ng-input-text',
   templateUrl: './input-text.component.html',
-  styleUrls: ['./input-text.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

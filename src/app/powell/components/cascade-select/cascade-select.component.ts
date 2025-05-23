@@ -40,7 +40,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-cascade-select',
   templateUrl: './cascade-select.component.html',
-  styleUrls: ['./cascade-select.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

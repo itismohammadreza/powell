@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-rating-page',
   templateUrl: './rating.page.html',
-  styleUrls: ['./rating.page.scss'],
   imports: [
     RatingModule,
     ReactiveFormsModule,

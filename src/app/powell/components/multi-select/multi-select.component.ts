@@ -53,7 +53,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-multi-select',
   templateUrl: './multi-select.component.html',
-  styleUrls: ['./multi-select.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

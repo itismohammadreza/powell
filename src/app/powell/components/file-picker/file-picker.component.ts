@@ -57,7 +57,6 @@ import {DestroyService} from "@core/utils";
 @Component({
   selector: 'ng-file-picker',
   templateUrl: './file-picker.component.html',
-  styleUrls: ['./file-picker.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

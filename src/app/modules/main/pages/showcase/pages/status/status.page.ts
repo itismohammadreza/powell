@@ -5,7 +5,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-status-page',
   templateUrl: './status.page.html',
-  styleUrls: ['./status.page.scss'],
   imports: [
     StatusModule,
     PreviewComponent

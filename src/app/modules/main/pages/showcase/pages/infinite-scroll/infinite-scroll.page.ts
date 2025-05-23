@@ -5,7 +5,6 @@ import {PreviewComponent} from "@modules/main/pages/showcase/components";
 @Component({
   selector: 'ng-infinite-scroll-page',
   templateUrl: './infinite-scroll.page.html',
-  styleUrls: ['./infinite-scroll.page.scss'],
   imports: [
     InfiniteScrollModule,
     PreviewComponent

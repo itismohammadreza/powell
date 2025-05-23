@@ -28,7 +28,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-knob',
   templateUrl: './knob.component.html',
-  styleUrls: ['./knob.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

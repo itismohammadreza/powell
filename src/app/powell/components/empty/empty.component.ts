@@ -5,7 +5,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-empty',
   templateUrl: './empty.component.html',
-  styleUrls: ['./empty.component.scss'],
   standalone: false
 })
 export class EmptyComponent implements OnInit {

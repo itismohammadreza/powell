@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-input-mask-page',
   templateUrl: './input-mask.page.html',
-  styleUrls: ['./input-mask.page.scss'],
   imports: [
     InputMaskModule,
     ReactiveFormsModule,

@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-toggle-button-page',
   templateUrl: './toggle-button.page.html',
-  styleUrls: ['./toggle-button.page.scss'],
   imports: [
     ToggleButtonModule,
     ReactiveFormsModule,
