@@ -23,7 +23,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-breadcrumb',
   templateUrl: './breadcrumb.component.html',
-  styleUrls: ['./breadcrumb.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DestroyService]
 })

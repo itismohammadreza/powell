@@ -42,7 +42,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-input-number',
   templateUrl: './input-number.component.html',
-  styleUrls: ['./input-number.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

@@ -5,7 +5,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-button-page',
   templateUrl: './button.page.html',
-  styleUrls: ['./button.page.scss'],
   imports: [
     ButtonModule,
     PreviewComponent

@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-input-text-page',
   templateUrl: './input-text.page.html',
-  styleUrls: ['./input-text.page.scss'],
   imports: [
     InputTextModule,
     ReactiveFormsModule,

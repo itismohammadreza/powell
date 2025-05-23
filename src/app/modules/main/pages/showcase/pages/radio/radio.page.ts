@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-radio-page',
   templateUrl: './radio.page.html',
-  styleUrls: ['./radio.page.scss'],
   imports: [
     RadioModule,
     ReactiveFormsModule,

@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-input-password-page',
   templateUrl: './input-password.page.html',
-  styleUrls: ['./input-password.page.scss'],
   imports: [
     InputPasswordModule,
     ReactiveFormsModule,

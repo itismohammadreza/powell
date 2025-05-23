@@ -5,7 +5,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-empty-page',
   templateUrl: './empty.page.html',
-  styleUrls: ['./empty.page.scss'],
   imports: [
     EmptyModule,
     PreviewComponent

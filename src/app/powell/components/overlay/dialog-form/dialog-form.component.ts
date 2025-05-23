@@ -47,7 +47,6 @@ import {DestroyService} from "@core/utils";
 @Component({
   selector: 'ng-dialog-form',
   templateUrl: './dialog-form.component.html',
-  styleUrls: ['./dialog-form.component.scss'],
   providers: [DestroyService],
   standalone: false
 })

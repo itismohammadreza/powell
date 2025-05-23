@@ -23,7 +23,6 @@ export const _defaultComponentProperties: PinchZoomComponentProperties = {
 @Component({
   selector: 'ng-pinch-zoom',
   templateUrl: './pinch-zoom.component.html',
-  styleUrls: ['./pinch-zoom.component.scss'],
   standalone: false,
 })
 export class PinchZoomComponent implements OnInit, OnDestroy, OnChanges {

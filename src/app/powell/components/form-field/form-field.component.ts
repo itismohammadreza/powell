@@ -15,7 +15,6 @@ import {NgControl} from "@angular/forms";
   selector: 'ng-form-field',
   standalone: false,
   templateUrl: './form-field.component.html',
-  styleUrl: './form-field.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormFieldComponent implements AfterContentInit {

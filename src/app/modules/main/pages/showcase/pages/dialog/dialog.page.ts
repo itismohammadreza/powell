@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-dialog-page',
   templateUrl: './dialog.page.html',
-  styleUrls: ['./dialog.page.scss'],
   imports: [
     ButtonModule,
     PreviewComponent

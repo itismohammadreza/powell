@@ -14,7 +14,6 @@ import {CommonModule} from "@angular/common";
 @Component({
   selector: 'ng-utils-page',
   templateUrl: './utils.page.html',
-  styleUrls: ['./utils.page.scss'],
   imports: [
     ButtonModule,
     InputNumberModule,

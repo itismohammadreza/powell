@@ -15,7 +15,6 @@ import SunEditor, {
 @Component({
   selector: 'ng-editor-base',
   templateUrl: './editor-base.component.html',
-  styleUrls: ['./editor-base.component.scss'],
   standalone: false
 })
 export class EditorBaseComponent implements AfterViewInit {

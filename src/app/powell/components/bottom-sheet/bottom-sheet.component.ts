@@ -22,7 +22,6 @@ import {DestroyService} from "@core/utils";
 @Component({
   selector: 'ng-bottom-sheet',
   templateUrl: './bottom-sheet.component.html',
-  styleUrls: ['./bottom-sheet.component.scss'],
   providers: [DestroyService],
   standalone: false
 })

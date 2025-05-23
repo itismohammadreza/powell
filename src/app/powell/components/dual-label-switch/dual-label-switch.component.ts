@@ -33,7 +33,6 @@ import {TemplateDirective} from "@powell/directives/template";
 @Component({
   selector: 'ng-dual-label-switch',
   templateUrl: './dual-label-switch.component.html',
-  styleUrls: ['./dual-label-switch.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

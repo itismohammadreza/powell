@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-color-picker-page',
   templateUrl: './color-picker.page.html',
-  styleUrls: ['./color-picker.page.scss'],
   imports: [
     ColorPickerModule,
     ReactiveFormsModule,

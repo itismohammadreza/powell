@@ -50,7 +50,6 @@ import {TemplateDirective} from "@powell/directives/template";
 @Component({
   selector: 'ng-datepicker',
   templateUrl: './datepicker.component.html',
-  styleUrls: ['./datepicker.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

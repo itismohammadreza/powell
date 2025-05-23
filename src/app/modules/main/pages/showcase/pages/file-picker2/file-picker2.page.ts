@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-file-picker2-page',
   templateUrl: './file-picker2.page.html',
-  styleUrls: ['./file-picker2.page.scss'],
   imports: [
     FilePicker2Module,
     ReactiveFormsModule,

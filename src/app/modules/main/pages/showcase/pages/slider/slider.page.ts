@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-slider-page',
   templateUrl: './slider.page.html',
-  styleUrls: ['./slider.page.scss'],
   imports: [
     SliderModule,
     ReactiveFormsModule,

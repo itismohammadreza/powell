@@ -28,7 +28,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-radio',
   templateUrl: './radio.component.html',
-  styleUrls: ['./radio.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

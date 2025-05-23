@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-multi-select-page',
   templateUrl: './multi-select.page.html',
-  styleUrls: ['./multi-select.page.scss'],
   imports: [
     MultiSelectModule,
     ReactiveFormsModule,

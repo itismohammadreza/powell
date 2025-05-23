@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-tree-page',
   templateUrl: './tree.page.html',
-  styleUrls: ['./tree.page.scss'],
   imports: [
     TreeModule,
     ReactiveFormsModule,

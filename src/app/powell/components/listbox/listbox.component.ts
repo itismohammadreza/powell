@@ -42,7 +42,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-listbox',
   templateUrl: './listbox.component.html',
-  styleUrls: ['./listbox.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

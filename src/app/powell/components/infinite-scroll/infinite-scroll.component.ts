@@ -17,7 +17,6 @@ import {TemplateDirective} from "@powell/directives/template";
 @Component({
   selector: 'ng-infinite-scroll',
   templateUrl: './infinite-scroll.component.html',
-  styleUrls: ['./infinite-scroll.component.scss'],
   standalone: false
 })
 export class InfiniteScrollComponent implements AfterContentInit, OnDestroy {

@@ -33,7 +33,6 @@ import {$uuid} from "@powell/primeng";
 @Component({
   selector: 'ng-input-password',
   templateUrl: './input-password.component.html',
-  styleUrls: ['./input-password.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

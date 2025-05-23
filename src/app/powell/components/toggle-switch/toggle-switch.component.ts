@@ -33,7 +33,6 @@ import {TemplateDirective} from "@powell/directives/template";
 @Component({
   selector: 'ng-toggle-switch',
   templateUrl: './toggle-switch.component.html',
-  styleUrls: ['./toggle-switch.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

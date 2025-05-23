@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-bottom-sheet-page',
   templateUrl: './bottom-sheet.page.html',
-  styleUrls: ['./bottom-sheet.page.scss'],
   imports: [
     BottomSheetModule,
     ButtonModule,

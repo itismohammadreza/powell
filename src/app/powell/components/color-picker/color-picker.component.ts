@@ -28,7 +28,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-color-picker',
   templateUrl: './color-picker.component.html',
-  styleUrls: ['./color-picker.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

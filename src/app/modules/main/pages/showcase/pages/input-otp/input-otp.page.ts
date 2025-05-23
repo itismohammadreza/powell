@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-input-otp-page',
   templateUrl: './input-otp.page.html',
-  styleUrls: ['./input-otp.page.scss'],
   imports: [
     InputOtpModule,
     ReactiveFormsModule,

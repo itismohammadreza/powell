@@ -5,7 +5,31 @@ import {DynamicDialogRef} from './dynamic-dialog-ref';
 @Component({
   selector: 'ng-dynamic-dialog',
   templateUrl: './dynamic-dialog.component.html',
-  styleUrls: ['./dynamic-dialog.component.scss'],
+  styles: `
+    .overlay {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      align-items: center;
+      justify-content: center;
+      z-index: 25000;
+    }
+
+    .dialog {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      background-color: white;
+      width: 50%;
+      height: 50%;
+      display: flex;
+      flex-direction: column;
+      padding: 8px;
+    }
+  `,
   standalone: false
 })
 export class DynamicDialogComponent implements OnDestroy {

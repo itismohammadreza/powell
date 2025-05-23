@@ -33,7 +33,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-input-mask',
   templateUrl: './input-mask.component.html',
-  styleUrls: ['./input-mask.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

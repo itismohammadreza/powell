@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-tree-select-page',
   templateUrl: './tree-select.page.html',
-  styleUrls: ['./tree-select.page.scss'],
   imports: [
     TreeSelectModule,
     ReactiveFormsModule,

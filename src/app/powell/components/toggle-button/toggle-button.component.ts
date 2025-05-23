@@ -33,7 +33,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-toggle-button',
   templateUrl: './toggle-button.component.html',
-  styleUrls: ['./toggle-button.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

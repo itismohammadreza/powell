@@ -33,7 +33,6 @@ import {DestroyService} from "@core/utils";
 @Component({
   selector: 'ng-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss'],
   host: {'[class.full]': 'fluid'},
   providers: [DestroyService],
   standalone: false

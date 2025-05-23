@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-knob-page',
   templateUrl: './knob.page.html',
-  styleUrls: ['./knob.page.scss'],
   imports: [
     KnobModule,
     ReactiveFormsModule,

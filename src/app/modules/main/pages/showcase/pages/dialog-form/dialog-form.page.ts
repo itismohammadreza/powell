@@ -9,7 +9,6 @@ import {DestroyService} from "@core/utils";
 @Component({
   selector: 'ng-dialog-form-page',
   templateUrl: './dialog-form.page.html',
-  styleUrls: ['./dialog-form.page.scss'],
   imports: [
     ButtonModule,
     PreviewComponent

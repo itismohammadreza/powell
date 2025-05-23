@@ -32,7 +32,6 @@ import {$InputOtpChangeEvent} from "@powell/primeng";
 @Component({
   selector: 'ng-input-otp',
   templateUrl: './input-otp.component.html',
-  styleUrls: ['./input-otp.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

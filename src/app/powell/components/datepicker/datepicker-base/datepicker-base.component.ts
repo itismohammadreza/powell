@@ -74,7 +74,6 @@ export interface DateMeta {
 @Component({
   selector: 'ng-datepicker-base',
   templateUrl: './datepicker-base.component.html',
-  styleUrl: './datepicker-base.component.scss',
   animations: [
     trigger('overlayAnimation', [
       state('visibleTouchUI', style({

@@ -6,7 +6,6 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 @Component({
   selector: 'ng-select-button-page',
   templateUrl: './select-button.page.html',
-  styleUrls: ['./select-button.page.scss'],
   imports: [
     SelectButtonModule,
     ReactiveFormsModule,

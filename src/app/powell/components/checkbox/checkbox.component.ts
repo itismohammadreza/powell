@@ -33,7 +33,6 @@ import {ConfigService} from "@powell/api";
 @Component({
   selector: 'ng-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
