@@ -54,7 +54,7 @@
         <TimesIcon class="clear-icon" (click)="clear()"/>
       }
     </ng-template>
-    @for (item of ['addonStart', 'addonEnd', 'iconStart', 'iconEnd']; track item) {
+    @for (item of ['addonStart', 'addonEnd', 'iconStart', 'iconEnd', 'label']; track item) {
       @if (templateMap[item]) {
         <ng-template [ngTemplate]="item">
           <ng-container *ngTemplateOutlet="templateMap[item]"/>

@@ -7,11 +7,8 @@
   @switch (labelPosition) {
     @case ("top") {
       <div class="field-wrapper">
-        @if (label) {
-          <label [attr.for]="inputId">
-            {{ label }}
-          </label>
-        }
+        <ng-container *ngTemplateOutlet="labelTemplate"/>
+
         <div class="field">
           @if (templateMap.addonStart || templateMap.addonEnd) {
             <ng-container *ngTemplateOutlet="inputGroup"/>
@@ -25,14 +22,8 @@
     }
     @case ("side") {
       <div class="field-wrapper" [class.revers]="reverseLabel">
-        @if (label) {
-          <label
-            [style.minWidth.px]="labelWidth"
-            [style.maxWidth.px]="labelWidth"
-            [attr.for]="inputId">
-            {{ label }}
-          </label>
-        }
+        <ng-container *ngTemplateOutlet="labelTemplate"/>
+
         <div class="field">
           @if (templateMap.addonStart || templateMap.addonEnd) {
             <ng-container *ngTemplateOutlet="inputGroup"/>
@@ -77,28 +68,28 @@
 <ng-template #ifta>
   <p-iftaLabel>
     <ng-container *ngTemplateOutlet="templateMap.iconStart || templateMap.iconEnd ? elementWidthIcon : element"/>
-    <label>{{ label }}</label>
+    <ng-container *ngTemplateOutlet="labelTemplate"/>
   </p-iftaLabel>
 </ng-template>
 
 <ng-template #floatIn>
   <p-floatLabel variant="in">
     <ng-container *ngTemplateOutlet="templateMap.iconStart || templateMap.iconEnd ? elementWidthIcon : element"/>
-    <label>{{ label }}</label>
+    <ng-container *ngTemplateOutlet="labelTemplate"/>
   </p-floatLabel>
 </ng-template>
 
 <ng-template #floatOn>
   <p-floatLabel variant="on">
     <ng-container *ngTemplateOutlet="templateMap.iconStart || templateMap.iconEnd ? elementWidthIcon : element"/>
-    <label>{{ label }}</label>
+    <ng-container *ngTemplateOutlet="labelTemplate"/>
   </p-floatLabel>
 </ng-template>
 
 <ng-template #floatOver>
   <p-floatLabel variant="over">
     <ng-container *ngTemplateOutlet="templateMap.iconStart || templateMap.iconEnd ? elementWidthIcon : element"/>
-    <label>{{ label }}</label>
+    <ng-container *ngTemplateOutlet="labelTemplate"/>
   </p-floatLabel>
 </ng-template>
 
@@ -153,3 +144,24 @@
   </p-inputGroup>
 </ng-template>
 
+<ng-template #labelTemplate>
+  @if (label || templateMap.label) {
+    @if (labelPosition === 'side') {
+      <label [style.minWidth.px]="labelWidth" [style.maxWidth.px]="labelWidth" [attr.for]="inputId">
+        @if (templateMap.label) {
+          <ng-container *ngTemplateOutlet="templateMap.label"/>
+        } @else {
+          {{ label }}
+        }
+      </label>
+    } @else {
+      <label [attr.for]="inputId">
+        @if (templateMap.label) {
+          <ng-container *ngTemplateOutlet="templateMap.label"/>
+        } @else {
+          {{ label }}
+        }
+      </label>
+    }
+  }
+</ng-template>

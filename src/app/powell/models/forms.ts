@@ -1,4 +1,4 @@
-export type NgElementAdditionTemplate = 'element' | 'addonStart' | 'addonEnd' | 'iconStart' | 'iconEnd';
+export type NgElementAdditionTemplate = 'element' | 'addonStart' | 'addonEnd' | 'iconStart' | 'iconEnd' | 'label';
 export type NgFilePickerMode = 'basic' | 'advanced';
 export type NgFilePickerMethod = 'post' | 'put';
 export type NgFileResultType = 'base64' | 'file' | 'none';
