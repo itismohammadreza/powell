@@ -24,7 +24,7 @@ import {TranslationService} from "@core/utils";
     TranslateModule,
   ],
   template: `
-    <div class="mb-4 space-y-2">
+    <div class="mb-4 space-y-2 [&>*]:block">
       <div>Base Theme</div>
       <ng-select-button
         [ngModel]="config.powellConfig.theme.name"
@@ -102,7 +102,7 @@ import {TranslationService} from "@core/utils";
         [options]="[{label:'outlined',value:'outlined'},{label:'filled',value:'filled'}]"
         (onChange)="changeGlobalConfig('inputStyle',$event.value)"/>
     </div>
-    <div class="space-y-3">
+    <div class="space-y-3 [&>*]:block">
       <ng-toggle-switch
         [label]="'showRequiredStar' | translate"
         labelPosition="side"
