@@ -13,6 +13,11 @@ import {
 } from "@powell/primeng";
 import {NgConfig, NgPresetName, NgTheme, NgThemeMode} from "@powell/models";
 
+type BodyClassRule = {
+  condition: (value: any) => boolean;
+  className: string;
+};
+
 // DON'T provide anywhere. will provide automatically after `providePowell` call.
 @Injectable()
 export class ThemeService {
@@ -113,37 +118,47 @@ export class ThemeService {
     }
   }
 
+  private kebabCase(str: string) {
+    return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+  }
+
   private handleBodyClasses(config: NgConfig) {
-    const toKebabCase = (test: string) => {
-      return test.split(/(?=[A-Z])/).join('-').toLowerCase();
-    }
-    const bodyClasses = this.document.body.classList.value.split(" ");
-    Object.entries(config).filter(c => typeof c[1] !== 'object').forEach(([key, value]) => {
-      key = toKebabCase(key);
-      const foundedClass = bodyClasses.find(c => c.includes(key));
-      let newClass: string;
-      if (typeof value == 'boolean') {
-        if (value) {
-          newClass = `ng-${key}`;
-        } else {
-          this.document.body.classList.remove(`ng-${key}`);
-        }
-        if (key === 'ripple' && value === false) {
-          newClass = 'p-ripple-disabled';
-        }
-      } else if (typeof value === 'function') {
-        if (typeof value() !== 'object') {
-          newClass = `ng-${key}-${value()}`;
+    const specialBodyClassRules: Partial<Record<keyof NgConfig, BodyClassRule[]>> = {
+      ripple: [
+        {
+          condition: (v) => v === false,
+          className: 'p-ripple-disabled',
+        },
+      ],
+      inputStyle: [
+        {
+          condition: (v) => v === 'filled',
+          className: 'p-input-filled',
+        },
+      ],
+    };
+
+    for (const key in config) {
+      const value = key == 'theme' ? config.theme.name : config[key as keyof NgConfig];
+      if (value === undefined || typeof value === 'object') continue;
+
+      const rules = specialBodyClassRules[key as keyof NgConfig];
+
+      if (rules && rules.length) {
+        for (const rule of rules) {
+          const shouldApply = rule.condition(value);
+          this.document.body.classList.toggle(rule.className, shouldApply);
         }
       } else {
-        newClass = `ng-${key}-${value}`;
+        const prefix = `powell-${this.kebabCase(key)}-`;
+        this.document.body.classList.forEach((cls) => {
+          if (cls.startsWith(prefix)) {
+            this.document.body.classList.remove(cls);
+          }
+        });
+        const finalValue = typeof value === 'boolean' ? (value ? 'enabled' : 'disabled') : value;
+        this.document.body.classList.add(`${prefix}${finalValue}`);
       }
-      if (foundedClass) {
-        this.document.body.classList.remove(foundedClass);
-        this.document.body.classList.add(newClass);
-      } else if (newClass) {
-        this.document.body.classList.add(newClass);
-      }
-    })
+    }
   }
 }
