@@ -5,7 +5,7 @@
   (onOptionChange)="onOptionChange($event)">
   <form [formGroup]="form">
     @if (render) {
-      <ng-datepicker formControlName="c1" [validation]="{ required: 'error' }">
+      <ng-datepicker formControlName="c1" [validation]="{ required: 'error' }" [isJalali]="getOption('isJalali')">
         @if (additions.addonStart) {
           <ng-template ngTemplate="addonStart"><i class="pi pi-prime"></i></ng-template>
         }
