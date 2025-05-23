@@ -18,6 +18,7 @@ import {
   OnInit,
   Output,
   QueryList,
+  SimpleChange,
   TemplateRef,
   ViewChild
 } from '@angular/core';
@@ -512,6 +513,14 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
         monthNames: ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'],
         monthNamesShort: ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'],
       })
+    } else {
+      this.config.setTranslation({
+        dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+        dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      })
     }
     this.attributeSelector = $uuid('pn_id_');
     this.panelId = this.attributeSelector + '_panel';
@@ -529,12 +538,20 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
       this.ticksTo1970 = ((1970 - 1) * 365 + Math.floor(1970 / 4) - Math.floor(1970 / 100) + Math.floor(1970 / 400)) * 24 * 60 * 60 * 10000000;
     }
 
+    this.translationSubscription?.unsubscribe();
     this.translationSubscription = this.config.translationObserver.subscribe(() => {
       this.createWeekDays();
       this.cd.markForCheck();
     });
 
     this.initialized = true;
+  }
+
+  override ngOnChanges(changes: SimpleChange) {
+    if (changes.isJalali) {
+      this.initialized = false;
+      this.ngOnInit()
+    }
   }
 
   override ngAfterViewInit() {
