@@ -548,6 +548,8 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
 
   override ngOnChanges(changes: any) {
     if (changes.isJalali) {
+      this.value = null;
+      this.inputFieldValue = null;
       this.initialized = false;
       this.ngOnInit()
     }
