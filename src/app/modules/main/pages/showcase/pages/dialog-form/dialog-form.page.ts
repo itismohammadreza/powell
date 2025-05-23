@@ -23,7 +23,7 @@ export class DialogFormPage extends PreviewBase {
     {field: 'draggable', value: false},
     {field: 'resizable', value: false},
     {field: 'modal', value: true},
-    {field: 'position', options: 'dialogPositions', value: 'center'},
+    {field: 'position', selectOptions: 'dialogPositions', value: 'center'},
     {field: 'blockScroll', value: false},
     {field: 'closeOnEscape', value: false},
     {field: 'dismissableMask', value: false},
@@ -33,7 +33,7 @@ export class DialogFormPage extends PreviewBase {
     {field: 'acceptVisible', value: true},
     {field: 'rejectVisible', value: true},
     {field: 'rtl', value: this.config.rtl},
-    {field: 'defaultFocus', options: 'defaultFocusTypes', value: 'accept'},
+    {field: 'defaultFocus', selectOptions: 'defaultFocusTypes', value: 'accept'},
   ];
 
   dialogForm: NgDialogFormOptions = {

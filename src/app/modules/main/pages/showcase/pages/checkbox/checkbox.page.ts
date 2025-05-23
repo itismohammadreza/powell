@@ -23,9 +23,9 @@ export class CheckboxPage extends PreviewBase {
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'async', value: false},
     {field: 'disabled', value: false},
-    {field: 'size', options: 'sizes', value: this.config.inputSize},
+    {field: 'size', selectOptions: 'sizes', value: this.config.inputSize},
     {field: 'readonly', value: false},
-    {field: 'variant', options: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
   ];
 
   override form = new FormGroup({

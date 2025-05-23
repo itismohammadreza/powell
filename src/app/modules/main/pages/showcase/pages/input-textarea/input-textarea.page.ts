@@ -21,8 +21,8 @@ export class InputTextareaPage extends PreviewBase {
     {field: 'hint', value: ''},
     {field: 'rtl', value: this.config.rtl},
     {field: 'showRequiredStar', value: this.config.showRequiredStar},
-    {field: 'labelPosition', options: 'labelPositions', value: this.config.labelPosition},
-    {field: 'additions', options: 'additions', value: 'none'},
+    {field: 'labelPosition', selectOptions: 'labelPositions', value: this.config.labelPosition},
+    {field: 'additions', selectOptions: 'additions', value: 'none'},
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'rows', value: 7},
     {field: 'cols', value: 100},
@@ -31,8 +31,8 @@ export class InputTextareaPage extends PreviewBase {
     {field: 'maxlength', value: 100},
     {field: 'placeholder', value: ''},
     {field: 'autoResize', value: false},
-    {field: 'variant', options: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
     {field: 'fluid', value: false},
-    {field: 'size', options: 'sizes', value: this.config.inputSize}
+    {field: 'size', selectOptions: 'sizes', value: this.config.inputSize}
   ]
 }

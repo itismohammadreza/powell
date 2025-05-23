@@ -56,7 +56,7 @@ export type OptionType =
 export interface PreviewOption {
   field: string;
   value: any;
-  options?: OptionType;
+  selectOptions?: OptionType;
 }
 
 @Component({
@@ -120,10 +120,10 @@ export class PreviewOptionsComponent implements OnInit {
       variants: ['outlined', 'filled'],
     }
     for (const item of this.options) {
-      const {options, value} = item;
-      if (options) {
+      const {selectOptions, value} = item;
+      if (selectOptions) {
         const cmpRef = this.createComponent(SelectComponent, item, 'firstRow');
-        cmpRef.instance.options = dropdownOptionsMap[options].map(v => ({label: v, value: v}));
+        cmpRef.instance.options = dropdownOptionsMap[selectOptions].map(v => ({label: v, value: v}));
       } else if (typeof value === 'string' || typeof value === 'number') {
         this.createComponent(InputTextComponent, item, 'firstRow');
       } else if (typeof value === 'boolean') {

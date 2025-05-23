@@ -18,11 +18,11 @@ export class ToastPage extends PreviewBase {
     {field: 'rtl', value: this.config.rtl},
     {field: 'summary', value: 'some summary'},
     {field: 'closable', value: false},
-    {field: 'severity', options: 'toastSeverities', value: 'info'},
+    {field: 'severity', selectOptions: 'toastSeverities', value: 'info'},
     {field: 'icon', value: 'pi pi-info'},
     {field: 'detail', value: 'some detail'},
     {field: 'preventDuplicates', value: false},
-    {field: 'position', options: 'toastPositions', value: 'top-right'},
+    {field: 'position', selectOptions: 'toastPositions', value: 'top-right'},
   ];
 
   toast: NgToastOptions = {

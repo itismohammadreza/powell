@@ -21,7 +21,7 @@ export class ToggleSwitchPage extends PreviewBase {
     {field: 'hint', value: ''},
     {field: 'rtl', value: this.config.rtl},
     {field: 'showRequiredStar', value: this.config.showRequiredStar},
-    {field: 'labelPosition', options: 'fixLabelPositions', value: this.config.fixLabelPosition},
+    {field: 'labelPosition', selectOptions: 'fixLabelPositions', value: this.config.fixLabelPosition},
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'async', value: false},
     {field: 'disabled', value: false},

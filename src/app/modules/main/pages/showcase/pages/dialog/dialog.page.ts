@@ -17,7 +17,7 @@ export class DialogPage extends PreviewBase {
     {field: 'draggable', value: false},
     {field: 'resizable', value: false},
     {field: 'modal', value: true},
-    {field: 'position', options: 'dialogPositions', value: 'center'},
+    {field: 'position', selectOptions: 'dialogPositions', value: 'center'},
     {field: 'blockScroll', value: false},
     {field: 'closeOnEscape', value: false},
     {field: 'dismissableMask', value: false},
