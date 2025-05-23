@@ -18,7 +18,6 @@ import {
   OnInit,
   Output,
   QueryList,
-  SimpleChange,
   TemplateRef,
   ViewChild
 } from '@angular/core';
@@ -547,7 +546,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
     this.initialized = true;
   }
 
-  override ngOnChanges(changes: SimpleChange) {
+  override ngOnChanges(changes: any) {
     if (changes.isJalali) {
       this.initialized = false;
       this.ngOnInit()
