@@ -485,7 +485,7 @@ ng-iran-map {
           fill: #C3E0E6;
 
           &:not(.active):hover {
-            fill: lighten(#87c0cd, 10%) !important;
+            fill: #93c6d2 !important;
             cursor: pointer
           }
 
@@ -929,6 +929,20 @@ ng-dialog-form {
 
   .p-dialog-content {
     padding-top: var(--p-overlay-modal-padding);
+  }
+}
+
+.toast-wrapper,
+.confirm-popup-wrapper,
+.confirm-dialog-wrapper,
+.dialog-wrapper,
+.dialog-form-wrapper {
+  &.is-rtl {
+    direction: rtl;
+  }
+
+  &.is-ltr {
+    direction: ltr;
   }
 }
 
