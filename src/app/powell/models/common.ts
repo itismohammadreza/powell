@@ -1,5 +1,5 @@
 import {$ButtonProps} from "@powell/primeng";
-import {NgButtonAppearance} from "@powell/models/button";
+import {NgButtonAppearance} from "@powell/models";
 
 export type SafeAny = any;
 
