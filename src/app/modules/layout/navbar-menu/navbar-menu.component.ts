@@ -12,7 +12,8 @@ import {
   $MenuModule,
   $PanelMenuModule,
   $PopoverModule,
-  $SelectChangeEvent
+  $SelectChangeEvent,
+  $TooltipModule
 } from "@powell/primeng";
 import {ButtonModule} from "@powell/components/button";
 import {InputTextModule} from "@powell/components/input-text";
@@ -48,7 +49,8 @@ import {RadioModule} from "@powell/components/radio";
     FormsModule,
     $PopoverModule,
     RadioModule,
-    DesignerComponent
+    DesignerComponent,
+    $TooltipModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
