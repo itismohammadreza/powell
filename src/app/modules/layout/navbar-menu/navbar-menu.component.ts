@@ -1,5 +1,5 @@
 import {AfterContentInit, ChangeDetectionStrategy, Component, HostListener, inject, OnInit} from '@angular/core';
-import {CommonModule, DOCUMENT} from "@angular/common";
+import { CommonModule, DOCUMENT } from "@angular/common";
 import {LanguageChecker} from '@core/utils';
 import {GlobalConfig, SidebarType} from '@core/models';
 import {globalConfig} from "@core/config";
