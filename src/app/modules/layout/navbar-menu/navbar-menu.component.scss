@@ -1,3 +1,5 @@
+$sidebarWidth: 20rem;
+
 :host ::ng-deep {
   .main-content {
     @apply h-full;
@@ -40,13 +42,14 @@
       }
 
       .inner-wrapper {
-        width: calc(100% - 20rem);
+        width: calc(100% - $sidebarWidth);
+        margin-inline-start: auto;
       }
     }
 
     &:is(.menu-push, .menu-push-mask, .menu-static).sidebar-open {
       .inner-wrapper {
-        margin-inline-start: 20rem;
+        margin-inline-start: $sidebarWidth;
       }
     }
 
