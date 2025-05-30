@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {CommonModule} from "@angular/common";
+
 import {EmojiComponent} from "@modules/main/pages/showcase/pages/home/emoji/emoji.component";
 import {BlocksComponent} from "@modules/main/pages/showcase/pages/home/blocks/blocks.component";
 import {WelcomeComponent} from "@modules/main/pages/showcase/pages/home/welcome/welcome.component";
@@ -8,17 +8,16 @@ import {BubblesComponent} from "@modules/main/pages/showcase/pages/home/bubbles/
 import {SmokeComponent} from "@modules/main/pages/showcase/pages/home/smoke/smoke.component";
 
 @Component({
-  selector: 'ng-dashboard-page',
-  templateUrl: './dashboard.page.html',
+  selector: 'ng-home-page',
+  templateUrl: './home.page.html',
   imports: [
-    CommonModule,
     EmojiComponent,
     BlocksComponent,
     WelcomeComponent,
     SpaceComponent,
     BubblesComponent,
-    SmokeComponent,
-  ]
+    SmokeComponent
+]
 })
 export class HomePage {
 }
