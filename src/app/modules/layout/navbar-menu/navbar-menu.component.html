@@ -1,25 +1,26 @@
 <div class="main-content flex flex-col h-full menu-{{tempSidebarType}}"
      [ngClass]="{ 'sidebar-lock': sidebarLock, 'sidebar-open': sidebarVisible, 'overflow-hidden': sidebarVisible && !sidebarLock && (sidebarType === 'push' || sidebarType === 'push-mask') }">
   <nav
-    class="shadow-sm w-full !bg-transparent backdrop-blur-md h-[68px] fixed top-0 flex items-center justify-between px-4 z-20 border-b border-[--p-primary-color] transition-all duration-200">
-    @if (!sidebarLock) {
-      <ng-button icon="pi pi-bars" appearance="text" (click)="toggleSidebarClick()"/>
-    }
-    <ng-logo/>
+    class="shadow-sm w-full !bg-transparent backdrop-blur-md h-[68px] fixed top-0 z-20 border-b border-[--p-primary-color] transition-all duration-200">
+    <div class="container flex items-center justify-between h-full">
+      @if (!sidebarLock) {
+        <ng-button icon="pi pi-bars" appearance="text" (click)="toggleSidebarClick()"/>
+      }
 
-    <div class="flex items-center gap-3">
-      <ng-button
-        severity="secondary"
-        (click)="designerSidebarVisible = !designerSidebarVisible"
-        icon="pi pi-cog animate-[spin_5s_linear_infinite]"/>
-      <ng-button (onClick)="op.toggle($event)" icon="pi pi-sparkles"/>
-      <a target="_blank" href="https://github.com/mohammadreza99/powell">
-        <ng-button appearance="text" severity="secondary" icon="pi pi-github"/>
-      </a>
-      <p-popover #op>
-        <ng-radio [value]="tempSidebarType" (onChange)="changeSidebarType($event, true);op?.hide()"
-                  [options]="sidebarTypes"/>
-      </p-popover>
+      <ng-logo/>
+
+      <div class="flex items-center gap-3">
+        <ng-button
+          pTooltip="Design"
+          tooltipPosition="bottom"
+          severity="secondary"
+          (click)="designerSidebarVisible = !designerSidebarVisible"
+          icon="pi pi-cog animate-[spin_5s_linear_infinite]"/>
+        <ng-button (onClick)="op.toggle($event)" icon="pi pi-sparkles" pTooltip="Overlay Types" tooltipPosition="bottom"/>
+        <a target="_blank" href="https://github.com/mohammadreza99/powell" pTooltip="Github" tooltipPosition="bottom">
+          <ng-button appearance="text" severity="secondary" icon="pi pi-github"/>
+        </a>
+      </div>
     </div>
   </nav>
 
@@ -37,7 +38,7 @@
   </main>
 
   <p-drawer
-    styleClass="w-[20rem]"
+    [styleClass]="!showBackdrop ? '!bg-transparent backdrop-blur-lg' : ''"
     [dismissible]="showBackdrop"
     [closable]="false"
     [modal]="showBackdrop"
@@ -71,7 +72,8 @@
         }
       </div>
     </ng-template>
-    <p-panelMenu [multiple]="false" [model]="sidebarItems | ngFilter:searchValue:'label'"/>
+    <p-panelMenu [class]="!showBackdrop ? '[&_.p-panelmenu-panel]:!bg-transparent' : ''" [multiple]="false"
+                 [model]="sidebarItems | ngFilter:searchValue:'label'"/>
   </p-drawer>
 </div>
 
@@ -81,10 +83,15 @@
   [modal]="false"
   [closable]="true"
   [(visible)]="designerSidebarVisible"
-  styleClass="!w-[48rem] max-w-full">
+  styleClass="!w-[48rem] max-w-full !bg-transparent backdrop-blur-lg">
   <ng-designer/>
 </p-drawer>
 
 <p-popover #op>
   <ng-radio [value]="tempSidebarType" (onChange)="changeSidebarType($event, true)" [options]="sidebarTypes"/>
+</p-popover>
+
+<p-popover #op>
+  <ng-radio [value]="tempSidebarType" (onChange)="changeSidebarType($event, true);op?.hide()"
+            [options]="sidebarTypes"/>
 </p-popover>
