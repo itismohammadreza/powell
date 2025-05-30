@@ -1,81 +1,93 @@
-<div class="main-content flex flex-col h-full menu-{{tempSidebarType}}"
-     [ngClass]="{ 'sidebar-lock': sidebarLock, 'sidebar-open': sidebarVisible, 'overflow-hidden': sidebarVisible && !sidebarLock && (sidebarType === 'push' || sidebarType === 'push-mask') }">
-  <nav
-    class="shadow-sm w-full !bg-transparent backdrop-blur-md h-[68px] fixed top-0 z-20 border-b border-[--p-primary-color] transition-all duration-200">
-    <div class="container flex items-center justify-between h-full">
-      @if (!sidebarLock) {
-        <ng-button icon="pi pi-bars" appearance="text" (click)="toggleSidebarClick()"/>
+<div class="main-content menu-{{tempSidebarType}}"
+     [ngClass]="{
+     'sidebar-lock': sidebarLock,
+     'sidebar-open': sidebarVisible,
+     'overflow-hidden': ['push', 'push-mask'].includes(sidebarType) && sidebarVisible && !sidebarLock }">
+
+  <div class="inner-wrapper">
+    <nav>
+      <div>
+        @if (!sidebarLock) {
+          <ng-button icon="pi pi-bars" appearance="text" (click)="toggleSidebarClick()"/>
+        }
+
+        <ng-logo/>
+
+        <div>
+          <ng-button
+            pTooltip="Design"
+            tooltipPosition="bottom"
+            severity="secondary"
+            (click)="designerSidebarVisible = !designerSidebarVisible"
+            icon="pi pi-cog animate-[spin_5s_linear_infinite]"/>
+          <ng-button
+            icon="pi pi-sparkles"
+            pTooltip="Overlay Types"
+            tooltipPosition="bottom"
+            (onClick)="op.toggle($event)"/>
+          <a target="_blank" href="https://github.com/mohammadreza99/powell" pTooltip="Github" tooltipPosition="bottom">
+            <ng-button appearance="text" severity="secondary" icon="pi pi-github"/>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      @if (tempSidebarType === 'horizontal') {
+        <p-menubar styleClass="overflow-auto [&_ul]:!flex-nowrap [&_ul]:!whitespace-nowrap" [model]="sidebarItems">
+          <ng-template pTemplate="start">
+            <ng-button class="me-2" (onClick)="op.toggle($event)" icon="pi pi-sparkles"/>
+            <ng-logo/>
+          </ng-template>
+        </p-menubar>
       }
 
-      <ng-logo/>
+      <ng-content/>
+    </main>
+  </div>
 
-      <div class="flex items-center gap-3">
-        <ng-button
-          pTooltip="Design"
-          tooltipPosition="bottom"
-          severity="secondary"
-          (click)="designerSidebarVisible = !designerSidebarVisible"
-          icon="pi pi-cog animate-[spin_5s_linear_infinite]"/>
-        <ng-button (onClick)="op.toggle($event)" icon="pi pi-sparkles" pTooltip="Overlay Types" tooltipPosition="bottom"/>
-        <a target="_blank" href="https://github.com/mohammadreza99/powell" pTooltip="Github" tooltipPosition="bottom">
-          <ng-button appearance="text" severity="secondary" icon="pi pi-github"/>
-        </a>
-      </div>
-    </div>
-  </nav>
-
-  <main class="transition-all duration-200 grow">
-    @if (tempSidebarType === 'horizontal') {
-      <p-menubar styleClass="overflow-auto [&_ul]:!flex-nowrap [&_ul]:!whitespace-nowrap" [model]="sidebarItems">
-        <ng-template pTemplate="start">
-          <ng-button class="me-2" (onClick)="op.toggle($event)" icon="pi pi-sparkles"/>
-          <ng-logo/>
-        </ng-template>
-      </p-menubar>
-    }
-
-    <ng-content/>
-  </main>
-
-  <p-drawer
-    [styleClass]="!showBackdrop ? '!bg-transparent backdrop-blur-lg' : ''"
-    [dismissible]="showBackdrop"
-    [closable]="false"
-    [modal]="showBackdrop"
-    [visible]="sidebarVisible"
-    [closeOnEscape]="false"
-    [blockScroll]="showBackdrop"
-    [position]="config.rtl ? 'right' : 'left'"
-    (visibleChange)="toggleSidebar($event)">
-    <ng-template pTemplate="header">
-      <div class="flex items-center w-full gap-2">
-        <ng-input-text
-          class="grow"
-          [fluid]="true"
-          labelPosition="top"
-          size="small"
-          [followConfig]="false"
-          [placeholder]="'searchComponents' | translate"
-          [(ngModel)]="searchValue"/>
-        @if (!sidebarLock) {
-          <ng-button
-            appearance="text"
-            size="small"
-            [rounded]="true"
-            icon="pi pi-times"
-            (onClick)="toggleSidebarClick()"/>
-        }
-        @if (!showBackdrop) {
-          <i
-            class="ms-2 !hidden md:!inline border rounded-full cursor-pointer hover:opacity-70 pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
-            (click)="toggleLockSidebarClick()"></i>
-        }
-      </div>
-    </ng-template>
-    <p-panelMenu [class]="!showBackdrop ? '[&_.p-panelmenu-panel]:!bg-transparent' : ''" [multiple]="false"
-                 [model]="sidebarItems | ngFilter:searchValue:'label'"/>
-  </p-drawer>
 </div>
+
+<p-drawer
+  [styleClass]="!showBackdrop ? '!bg-transparent backdrop-blur-lg' : ''"
+  [dismissible]="showBackdrop"
+  [closable]="false"
+  [modal]="showBackdrop"
+  [visible]="sidebarVisible"
+  [closeOnEscape]="false"
+  [blockScroll]="showBackdrop"
+  [position]="config.rtl ? 'right' : 'left'"
+  (visibleChange)="toggleSidebar($event)">
+  <ng-template pTemplate="header">
+    <div class="flex items-center w-full gap-2">
+      <ng-input-text
+        class="grow"
+        [fluid]="true"
+        labelPosition="top"
+        size="small"
+        [followConfig]="false"
+        [placeholder]="'searchComponents' | translate"
+        [(ngModel)]="searchValue"/>
+      @if (!sidebarLock) {
+        <ng-button
+          appearance="text"
+          size="small"
+          [rounded]="true"
+          icon="pi pi-times"
+          (onClick)="toggleSidebarClick()"/>
+      }
+      @if (!showBackdrop) {
+        <i
+          class="ms-2 !hidden md:!inline border rounded-full cursor-pointer hover:opacity-70 pi pi-circle{{ sidebarLock ? '-fill' : '' }}"
+          (click)="toggleLockSidebarClick()"></i>
+      }
+    </div>
+  </ng-template>
+  <p-panelMenu
+    [class]="!showBackdrop ? '[&_.p-panelmenu-panel]:!bg-transparent' : ''"
+    [multiple]="false"
+    [model]="sidebarItems | ngFilter:searchValue:'label'"/>
+</p-drawer>
 
 <p-drawer
   position="left"
@@ -88,10 +100,9 @@
 </p-drawer>
 
 <p-popover #op>
-  <ng-radio [value]="tempSidebarType" (onChange)="changeSidebarType($event, true)" [options]="sidebarTypes"/>
+  <ng-radio [value]="tempSidebarType" [options]="sidebarTypes" (onChange)="changeSidebarType($event, true)"/>
 </p-popover>
 
 <p-popover #op>
-  <ng-radio [value]="tempSidebarType" (onChange)="changeSidebarType($event, true);op?.hide()"
-            [options]="sidebarTypes"/>
+  <ng-radio [value]="tempSidebarType" [options]="sidebarTypes" (onChange)="changeSidebarType($event, true);op?.hide()"/>
 </p-popover>

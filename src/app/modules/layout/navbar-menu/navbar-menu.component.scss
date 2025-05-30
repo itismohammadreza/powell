@@ -1,7 +1,30 @@
 :host ::ng-deep {
   .main-content {
+    @apply h-full;
+
+    .inner-wrapper {
+      @apply flex flex-col transition-all duration-200 relative h-full;
+    }
+
+    nav {
+      @apply shadow-sm w-full !bg-transparent backdrop-blur-md h-[68px] absolute inset-0 z-20 border-b border-[--p-primary-color];
+
+      > div {
+        @apply container flex items-center justify-between h-full;
+        > div {
+          @apply flex items-center gap-3;
+        }
+      }
+    }
+
+    main {
+      @apply grow;
+    }
+
     &:not(.menu-horizontal) {
-      padding-top: 68px;
+      .inner-wrapper {
+        padding-top: 68px;
+      }
     }
 
     &.menu-horizontal {
@@ -11,38 +34,25 @@
     }
 
     &.sidebar-lock {
-      .p-sidebar, main, nav {
+      .inner-wrapper,
+      .p-sidebar {
         transform: translateX(0);
       }
 
-      main, nav {
+      .inner-wrapper {
         width: calc(100% - 20rem);
-        margin: 0;
       }
     }
 
-    &.menu-push, &.menu-push-mask {
-      &.sidebar-open {
-        &:dir(ltr) {
-          main, nav {
-            transform: translateX(20rem);
-          }
-        }
-
-        &:dir(rtl) {
-          main, nav {
-            transform: translateX(-20rem);
-          }
-        }
+    &:is(.menu-push, .menu-push-mask, .menu-static).sidebar-open {
+      .inner-wrapper {
+        margin-inline-start: 20rem;
       }
     }
 
-    &.menu-static {
-      &.sidebar-open {
-        main, nav {
-          width: calc(100% - 20rem);
-          margin-inline-start: 20rem;
-        }
+    &:is(.menu-push, .menu-push-mask).sidebar-open {
+      .inner-wrapper {
+        width: 100%;
       }
     }
   }
