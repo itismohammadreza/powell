@@ -1,0 +1,10 @@
+<div class="space-wrapper">
+  <div class="content">
+    <ng-content/>
+  </div>
+  <div class="dots-container">
+    @for (item of dotNumbers; track item) {
+      <div class="tri"></div>
+    }
+  </div>
+</div>
