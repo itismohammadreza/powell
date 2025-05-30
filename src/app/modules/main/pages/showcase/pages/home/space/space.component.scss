@@ -1,0 +1,64 @@
+@use "sass:math";
+
+$total: 200;
+$time: 10s;
+
+.space-wrapper,
+.dots-container {
+  height: 100%;
+}
+
+.space-wrapper {
+  background: black radial-gradient(
+      circle at center,
+      white 0%,
+      #222 10%,
+      black 60%
+  );
+  overflow: hidden;
+
+  .content {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.dots-container {
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+.tri {
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+@for $i from 1 through $total {
+  $size: math.random(50) * 1px;
+  $rotate: math.random(360) * 1deg;
+  .tri:nth-child(#{$i}) {
+    border-top: $size solid hsla(math.random(360), 100%, 50%, 1);
+    border-right: $size solid transparent;
+    border-left: $size solid transparent;
+    margin-left: math.div(-$size, 2);
+    margin-top: math.div(-$size, 2);
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+    transform: rotate($rotate) translate3d(0, 0, -1500px) scale(0);
+    animation: anim#{$i} $time infinite linear;
+    animation-delay: $i * math.div($time,$total);
+    opacity: 0;
+  }
+
+  @keyframes anim#{$i} {
+    0% {
+      opacity: 1;
+      transform: rotate($rotate * 1.5) translate3d(math.random(1000) * 1px, math.random(1000) * 1px, 1000px) scale(1);
+    }
+  }
+}

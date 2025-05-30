@@ -1,0 +1,10 @@
+<div class="bubbles-wrapper">
+  <div class="content">
+    <ng-content/>
+  </div>
+  @for (item of bubbleNumbers; track item) {
+    <div class="circle-container">
+      <div class="circle"></div>
+    </div>
+  }
+</div>
