@@ -4,11 +4,6 @@ import {openDialogGuard} from "@core/guard";
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./pages/dashboard').then(m => m.DashboardPage),
-    title: 'Home'
-  },
-  {
     path: 'auto-complete',
     loadComponent: () => import('./pages/auto-complete').then(m => m.AutoCompletePage),
     title: 'Auto Complete'
