@@ -26,6 +26,7 @@ $sidebarWidth: 20rem;
     .p-panelmenu-item-link-active {
       background-color: var(--p-panelmenu-item-focus-background);
       color: var(--p-panelmenu-item-focus-color);
+      border-radius: var(--p-panelmenu-item-border-radius);
     }
 
     &:not(.menu-horizontal) {
