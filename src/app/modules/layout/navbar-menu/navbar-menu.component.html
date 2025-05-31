@@ -1,4 +1,4 @@
-<div class="main-content menu-{{tempSidebarType}}"
+<div #mainContent class="main-content menu-{{tempSidebarType}}"
      [ngClass]="{
      'sidebar-lock': sidebarLock,
      'sidebar-open': sidebarVisible,
@@ -57,6 +57,7 @@
   [closeOnEscape]="false"
   [blockScroll]="showBackdrop"
   [position]="config.rtl ? 'right' : 'left'"
+  [appendTo]="mainContent"
   (visibleChange)="toggleSidebar($event)">
   <ng-template pTemplate="header">
     <div class="flex items-center w-full gap-2">
