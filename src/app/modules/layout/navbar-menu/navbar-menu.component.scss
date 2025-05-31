@@ -23,6 +23,11 @@ $sidebarWidth: 20rem;
       @apply grow;
     }
 
+    .p-panelmenu-item-link-active {
+      background-color: var(--p-panelmenu-item-focus-background);
+      color: var(--p-panelmenu-item-focus-color);
+    }
+
     &:not(.menu-horizontal) {
       .inner-wrapper {
         padding-top: 68px;
