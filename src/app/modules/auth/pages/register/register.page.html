@@ -1,31 +1,45 @@
-<form [formGroup]="form" class="[&>*:not(small)]:mb-8">
+<form [formGroup]="form" class="[&>*:not(small)]:block [&>*:not(small)]:mb-4">
   <div class="text-center">
     <ng-logo [disableNavigation]="true"/>
   </div>
   <h3 class="text-center">ثبت نام</h3>
   <ng-input-text
     formControlName="email"
+    [fluid]="true"
+    labelPosition="side"
     [showRequiredStar]="false"
-    icon="pi pi-user"
     placeholder="نام کاربری"
-    [validation]="{'required':'این فیلد الزامیست.','email':'ایمیل نامعتبر است.'}"/>
+    [validation]="{'required':'این فیلد الزامیست.','email':'ایمیل نامعتبر است.'}">
+    <ng-template ngTemplate="iconStart">
+      <i class="pi pi-user"></i>
+    </ng-template>
+  </ng-input-text>
   <ng-input-text
     type="password"
-    icon="pi pi-key"
+    [fluid]="true"
+    labelPosition="side"
     [showRequiredStar]="false"
     formControlName="password"
     placeholder="رمز عبور"
-    [validation]="{'required': 'این فیلد الزامیست.'}"/>
+    [validation]="{'required': 'این فیلد الزامیست.'}">
+    <ng-template ngTemplate="iconStart">
+      <i class="pi pi-key"></i>
+    </ng-template>
+  </ng-input-text>
   <ng-input-text
     type="password"
-    icon="pi pi-key"
+    [fluid]="true"
+    labelPosition="side"
     [showRequiredStar]="false"
     formControlName="confirmPassword"
     placeholder="تکرار رمز عبور"
-    [validation]="{'required': 'این فیلد الزامیست.'}"/>
+    [validation]="{'required': 'این فیلد الزامیست.'}">
+    <ng-template ngTemplate="iconStart">
+      <i class="pi pi-key"></i>
+    </ng-template>
+  </ng-input-text>
   @if (form.hasError('notSame') && !form.get('confirmPassword').hasError('required')) {
-    <p class="validation text-sm text-center"
-    >
+    <p class="validation text-sm text-center">
       رمزعبور و تکرار مطابقت ندارند
     </p>
   }

@@ -1,19 +1,17 @@
 <div class="overflow-hidden h-screen relative">
   <div class="bg-cover bg-center h-full bg-[url('../../public/images/login-bg.jpg')]
-  before:content-['']
-  before:block
-  before:absolute
-  before:size-full
-  before:top-0
-  before:bg-gradient-to-l
-  before:from-[rgba(0,168,255,0.5)]
-  before:to-[rgba(185,0,255,0.5)]
-  before:pointer-events-none">
+    before:content-['']
+    before:block
+    before:absolute
+    before:size-full
+    before:top-0
+    before:bg-gradient-to-l
+    before:from-[rgba(0,168,255,0.5)]
+    before:to-[rgba(185,0,255,0.5)]
+    before:pointer-events-none">
     <div class="grid items-center sm:justify-center relative z-10 h-full">
-      <div class="w-full sm:w-[400px]">
-        <div class="border rounded-xl p-4 shadow-lg">
-          <router-outlet></router-outlet>
-        </div>
+      <div class="w-full rounded-xl sm:w-[400px] bg-[--p-primary-contrast-color] p-4 shadow-xl">
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>
