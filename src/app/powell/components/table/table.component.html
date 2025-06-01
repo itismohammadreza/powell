@@ -203,7 +203,7 @@
                           [range]="filter.range"
                           (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
                         </ng-slider>
-                        <div class="text-center" dir="ltr">{{ filter.sliderValue[0] }}- {{ filter.sliderValue[1] }}
+                        <div dir="ltr">{{ filter.sliderValue[0] }}- {{ filter.sliderValue[1] }}
                         </div>
                       }
                       @case ('boolean') {
@@ -227,12 +227,12 @@
             </th>
           }
           @if (actionsConfig?.inSameColumn && actionsConfig?.actions.length) {
-            <th class="text-center">{{ actionsConfig.header }}</th>
+            <th class="action-header">{{ actionsConfig.header }}</th>
           }
           @if (!actionsConfig?.inSameColumn && actionsConfig?.actions.length) {
             @for (action of actionsConfig?.actions; track action) {
               @if (action.visible ?? true) {
-                <th class="text-center">{{ action.header }}</th>
+                <th class="action-header">{{ action.header }}</th>
               }
             }
           }
@@ -265,7 +265,7 @@
           @if (!actionsConfig?.inSameColumn && actionsConfig?.actions.length) {
             @for (action of actionsConfig?.actions; track action) {
               @if (action.visible ?? true) {
-                <th class="text-center">{{ action.header }}</th>
+                <th class="action-header">{{ action.header }}</th>
               }
             }
           }

@@ -1665,6 +1665,10 @@ ng-table {
           gap: 0.5rem;
         }
       }
+
+      .action-wrapper, .action-header {
+        text-align: center;
+      }
     }
 
     &:dir(rtl) {
