@@ -19,7 +19,7 @@ export * from './confirm-dialog';
 export * from './confirm-popup';
 export * from './context-menu';
 export * from './data-view';
-export * from './date-picker';
+export * from './datepicker';
 export * from './dialog';
 export * from './divider';
 export * from './dock';

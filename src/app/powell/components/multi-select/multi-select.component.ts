@@ -103,7 +103,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() displaySelectedLabel: boolean = true;
   @Input() maxSelectedLabels: number = 3;
   @Input() selectionLimit: number;
-  @Input() selectedItemsLabel: string | 'ellipsis';
+  @Input() selectedItemsLabel: string;
   @Input() showToggleAll: boolean = true;
   @Input() emptyFilterMessage: string;
   @Input() emptyMessage: string;

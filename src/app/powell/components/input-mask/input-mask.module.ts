@@ -5,10 +5,11 @@ import {LabelStarModule} from "@powell/pipes/label-star";
 import {InputMaskComponent} from "@powell/components/input-mask";
 import {$InputMaskModule} from "@powell/primeng";
 import {FormFieldModule} from "@powell/components/form-field";
+import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
   declarations: [InputMaskComponent],
-  exports: [InputMaskComponent],
+  exports: [InputMaskComponent, TemplateModule],
   imports: [
     $InputMaskModule,
     CommonModule,

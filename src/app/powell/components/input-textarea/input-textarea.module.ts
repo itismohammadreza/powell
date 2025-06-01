@@ -9,7 +9,7 @@ import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
   declarations: [InputTextareaComponent],
-  exports: [InputTextareaComponent],
+  exports: [InputTextareaComponent, TemplateModule],
   imports: [
     $TextareaModule,
     CommonModule,

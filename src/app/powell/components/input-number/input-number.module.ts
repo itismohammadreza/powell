@@ -5,10 +5,11 @@ import {InputNumberComponent} from "@powell/components/input-number";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$InputNumberModule} from "@powell/primeng";
 import {FormFieldModule} from "@powell/components/form-field";
+import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
   declarations: [InputNumberComponent],
-  exports: [InputNumberComponent],
+  exports: [InputNumberComponent, TemplateModule],
   imports: [
     $InputNumberModule,
     CommonModule,

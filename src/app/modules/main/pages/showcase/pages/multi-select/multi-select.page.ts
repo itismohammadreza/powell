@@ -31,7 +31,7 @@ export class MultiSelectPage extends PreviewBase {
     {field: 'displaySelectedLabel', value: true},
     {field: 'maxSelectedLabels', value: 3},
     {field: 'selectionLimit', value: ''},
-    {field: 'selectedItemsLabel', value: 'ellipsis'},
+    {field: 'selectedItemsLabel', value: ''},
     {field: 'showToggleAll', value: true},
     {field: 'resetFilterOnHide', value: false},
     {field: 'showHeader', value: true},

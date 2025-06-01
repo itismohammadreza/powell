@@ -25,7 +25,7 @@ export class InputTextareaPage extends PreviewBase {
     {field: 'additions', selectOptions: 'additions', value: 'none'},
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'rows', value: 7},
-    {field: 'cols', value: 100},
+    {field: 'cols', value: 50},
     {field: 'readonly', value: false},
     {field: 'disabled', value: false},
     {field: 'maxlength', value: 100},
