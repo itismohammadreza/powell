@@ -1649,63 +1649,22 @@ ng-table {
     }
 
     .p-datatable {
-      &.p-datatable-sm {
-        .image-cell {
-          max-width: 60px;
-        }
-      }
-
       .p-datatable-thead > tr > th {
         white-space: nowrap;
 
         &.row-filter-wrapper {
           min-width: 200px;
-
-          .filter-header {
-            padding: 1rem 1rem 0;
-          }
-        }
-
-        p-columnFilter {
-          vertical-align: middle;
-        }
-
-        .sort-reset {
-          vertical-align: middle;
         }
       }
 
       .p-datatable-tbody > tr > td {
-        &.empty-message-wrapper {
-          padding-top: 3rem;
-          padding-bottom: 3rem;
-        }
-
         &.same-column-actions-wrapper div {
           display: flex;
           align-items: center;
           flex-wrap: nowrap;
-        }
-
-        .image-cell {
-          box-shadow: 0 1px 10px #0000001f, 0 4px 5px #00000024, 0 2px 4px -1px #0003;
+          gap: 0.5rem;
         }
       }
-    }
-
-    .same-column-actions-wrapper {
-      ng-button:not(:last-child) {
-        margin-inline-end: 0.5rem;
-      }
-    }
-
-    .sort-reset {
-      margin-inline-start: 0.25rem;
-    }
-
-    .p-datatable-thead > tr > th,
-    .p-datatable-tbody > tr > td {
-      text-align: start;
     }
 
     &:dir(rtl) {
@@ -1728,31 +1687,6 @@ ng-table {
               border-width: 0 1px 1px 1px;
             }
           }
-        }
-      }
-
-      .p-sortable-column .p-sortable-column-icon {
-        margin-right: 0.5rem;
-        margin-left: 0;
-      }
-
-      .same-column-actions-wrapper {
-        ng-button:not(:last-child) {
-          margin-left: 0.5rem;
-        }
-      }
-
-      p-paginator {
-        .p-paginator-first,
-        .p-paginator-prev,
-        .p-paginator-next,
-        .p-paginator-last {
-          transform: rotate(180deg);
-        }
-
-        .p-dropdown .p-dropdown-label {
-          padding-right: 0.75rem;
-          padding-left: 0;
         }
       }
     }
