@@ -189,11 +189,6 @@ export const routes: Routes = [
     title: 'Slider'
   },
   {
-    path: 'status',
-    loadComponent: () => import('./pages/status').then(m => m.StatusPage),
-    title: 'Status'
-  },
-  {
     path: 'toggle-switch',
     loadComponent: () => import('./pages/toggle-switch').then(m => m.ToggleSwitchPage),
     title: 'ToggleSwitch'
