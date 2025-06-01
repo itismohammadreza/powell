@@ -463,6 +463,7 @@
             <h5>{{ header }}</h5>
             @if (globalFilter) {
               <ng-input-text
+                labelPosition="side"
                 [placeholder]="globalFilterPlaceholder"
                 (onKeyDown)="onGlobalFilterChange($event)">
               </ng-input-text>
@@ -481,11 +482,11 @@
               [attr.colspan]="columns.length +
               (actionsConfig?.inSameColumn ? 1 : actionsConfig?.actions?.length) +
               (selectableRows && showSelectionIndicator ? 1 : 0)">
-            <ng-empty [title]="emptyMessage"
-                      [icon]="emptyIcon"
-                      [imageSrc]="emptyImageSrc"
-                      [imageType]="emptyImageType">
-            </ng-empty>
+            <ng-empty
+              [title]="emptyMessage"
+              [icon]="emptyIcon"
+              [imageSrc]="emptyImageSrc"
+              [imageType]="emptyImageType"/>
           </td>
         </tr>
       }
