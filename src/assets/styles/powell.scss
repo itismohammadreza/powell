@@ -2,6 +2,152 @@
 @import "leaflet/dist/leaflet.css";
 @import "suneditor/dist/css/suneditor.min.css";
 
+@mixin radius-all($value) {
+  @include radius-start($value);
+  @include radius-end($value);
+}
+
+@mixin radius-start($value) {
+  border-start-start-radius: $value;
+  border-end-start-radius: $value;
+}
+
+@mixin radius-end($value) {
+  border-start-end-radius: $value;
+  border-end-end-radius: $value;
+}
+
+@mixin field-padding($icon-start: false, $icon-end: false, $has-clear: false, $extra-end-padding: 0px, $extra-start-padding: 0px) {
+  $start-padding: var(--p-form-field-padding-x);
+  $end-padding: var(--p-form-field-padding-x);
+
+  @if $icon-start {
+    $start-padding: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
+  }
+
+  @if $icon-end {
+    $end-padding: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
+  }
+
+  @if $has-clear {
+    @if $icon-end {
+      $end-padding: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + var(--p-icon-size));
+    } @else {
+      $end-padding: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
+    }
+  }
+
+  padding-inline-start: calc($start-padding + $extra-start-padding);
+  padding-inline-end: calc($end-padding + $extra-end-padding);
+}
+
+ng-auto-complete {
+  .auto-complete-wrapper {
+    &.icon-start {
+      .p-inputtext {
+        @include field-padding($icon-start: true, $icon-end: false, $has-clear: false);
+      }
+    }
+
+    &.icon-end {
+      .p-inputtext {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.icon-both {
+      .p-inputtext {
+        @include field-padding($icon-start: true, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.addon-start {
+      .p-inputtext {
+        @include radius-start(0)
+      }
+    }
+
+    &.addon-end {
+      .p-inputtext {
+        @include radius-end(0)
+      }
+    }
+
+    &.addon-both {
+      .p-inputtext {
+        @include radius-all(0)
+      }
+    }
+
+    &.clearable {
+      .p-autocomplete-clear-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        right: auto;
+        inset-inline-end: var(--p-form-field-padding-x);
+      }
+
+      .p-inputtext {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+
+      &.icon-start {
+        .p-inputtext {
+          @include field-padding($icon-start: true, $icon-end: false, $has-clear: true);
+        }
+      }
+
+      &.icon-end {
+        .p-inputtext {
+          @include field-padding($icon-start: false, $icon-end: true, $has-clear: true);
+        }
+
+        .p-autocomplete-clear-icon {
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
+        }
+      }
+
+      &.icon-both {
+        .p-inputtext {
+          @include field-padding($icon-start: true, $icon-end: true, $has-clear: true);
+        }
+
+        .p-autocomplete-clear-icon {
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
+        }
+      }
+    }
+
+    &.has-dropdown {
+      .p-autocomplete-clear-icon {
+        inset-inline-end: calc(var(--p-form-field-padding-x) + 2.5rem);
+      }
+
+      &.icon-end,
+      &.icon-both {
+        .p-iconfield .p-inputicon:last-of-type {
+          inset-inline-end: calc(var(--p-form-field-padding-x) + 2.5rem);
+        }
+
+        &.clearable {
+          .p-autocomplete-clear-icon {
+            inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2.5rem);
+          }
+        }
+      }
+
+      &.addon-end,
+      &.addon-both {
+        .p-autocomplete-dropdown {
+          @include radius-end(0)
+        }
+      }
+    }
+  }
+}
+
 ng-button {
   display: inline-block;
 
@@ -30,6 +176,92 @@ ng-button {
       &.p-button-lg {
         width: 4rem;
         height: 4rem;
+      }
+    }
+  }
+}
+
+ng-cascade-select {
+  .cascade-select-wrapper {
+    &.icon-start {
+      .p-cascadeselect-label {
+        @include field-padding($icon-start: true, $icon-end: false, $has-clear: false);
+      }
+    }
+
+    &.icon-end {
+      .p-cascadeselect-label {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.icon-both {
+      .p-cascadeselect-label {
+        @include field-padding($icon-start: true, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.addon-start {
+      .p-cascadeselect {
+        @include radius-start(0)
+      }
+    }
+
+    &.addon-end {
+      .p-cascadeselect {
+        @include radius-end(0)
+      }
+    }
+
+    &.addon-both {
+      .p-cascadeselect {
+        @include radius-all(0)
+      }
+    }
+
+    &.icon-end,
+    &.icon-both {
+      .p-iconfield .p-inputicon:last-of-type {
+        inset-inline-end: calc(var(--p-form-field-padding-x) + 2rem);
+      }
+    }
+
+    &.clearable {
+      .p-cascadeselect-clear-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+      }
+
+      .p-cascadeselect-label {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+
+      &.icon-start {
+        .p-cascadeselect-label {
+          @include field-padding($icon-start: true, $icon-end: false, $has-clear: true);
+        }
+      }
+
+      &.icon-end {
+        .p-cascadeselect-label {
+          @include field-padding($icon-start: false, $icon-end: true, $has-clear: true);
+        }
+
+        .p-cascadeselect-clear-icon {
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2rem);
+        }
+      }
+
+      &.icon-both {
+        .p-cascadeselect-label {
+          @include field-padding($icon-start: true, $icon-end: true, $has-clear: true);
+        }
+
+        .p-cascadeselect-clear-icon {
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2rem);
+        }
       }
     }
   }
@@ -96,6 +328,114 @@ ng-color-picker {
     &.inline {
       .form-field-wrapper .field-wrapper {
         align-items: flex-start;
+      }
+    }
+  }
+}
+
+ng-datepicker {
+  .datepicker-wrapper {
+    &.icon-start {
+      .p-inputtext {
+        @include field-padding($icon-start: true, $icon-end: false, $has-clear: false);
+      }
+    }
+
+    &.icon-end {
+      .p-inputtext {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.icon-both {
+      .p-inputtext {
+        @include field-padding($icon-start: true, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.addon-start {
+      .p-inputtext {
+        @include radius-start(0)
+      }
+    }
+
+    &.addon-end {
+      .p-inputtext {
+        @include radius-end(0)
+      }
+    }
+
+    &.addon-both {
+      .p-inputtext {
+        @include radius-all(0)
+      }
+    }
+
+    &.icon-end,
+    &.icon-both {
+      .p-iconfield .p-inputicon:last-of-type {
+        inset-inline-end: calc(var(--p-form-field-padding-x));
+      }
+    }
+
+    &.clearable {
+      .p-datepicker-clear-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+      }
+
+      .p-inputtext {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+
+      &.icon-start {
+        .p-inputtext {
+          @include field-padding($icon-start: true, $icon-end: false, $has-clear: true);
+        }
+      }
+
+      &.icon-end {
+        .p-inputtext {
+          @include field-padding($icon-start: false, $icon-end: true, $has-clear: true);
+        }
+
+        .p-datepicker-clear-icon {
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
+        }
+      }
+
+      &.icon-both {
+        .p-inputtext {
+          @include field-padding($icon-start: true, $icon-end: true, $has-clear: true);
+        }
+
+        .p-datepicker-clear-icon {
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
+        }
+      }
+    }
+
+    &.has-icon {
+      &.icon-end,
+      &.icon-both {
+        .p-iconfield .p-inputicon:last-of-type {
+          inset-inline-end: calc(var(--p-form-field-padding-x) + 2.5rem);
+        }
+
+        &.clearable {
+          .p-datepicker-clear-icon {
+            inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2.5rem);
+          }
+        }
+      }
+
+      &.addon-end,
+      &.addon-both {
+        .p-datepicker-icon {
+          @include radius-end(0)
+        }
       }
     }
   }
@@ -391,6 +731,370 @@ ng-infinite-scroll {
   }
 }
 
+ng-input-mask {
+  .input-mask-wrapper {
+    &.icon-start {
+      .p-inputtext {
+        @include field-padding($icon-start: true, $icon-end: false, $has-clear: false);
+      }
+    }
+
+    &.icon-end {
+      .p-inputtext {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.icon-both {
+      .p-inputtext {
+        @include field-padding($icon-start: true, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.addon-start {
+      .p-inputtext {
+        @include radius-start(0)
+      }
+    }
+
+    &.addon-end {
+      .p-inputtext {
+        @include radius-end(0)
+      }
+    }
+
+    &.addon-both {
+      .p-inputtext {
+        @include radius-all(0)
+      }
+    }
+  }
+}
+
+ng-input-number {
+  .input-number-wrapper {
+    &.icon-start {
+      .p-inputtext {
+        @include field-padding($icon-start: true, $icon-end: false, $has-clear: false);
+      }
+    }
+
+    &.icon-end {
+      .p-inputtext {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.icon-both {
+      .p-inputtext {
+        @include field-padding($icon-start: true, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.addon-start {
+      .p-inputtext {
+        @include radius-start(0)
+      }
+    }
+
+    &.addon-end {
+      .p-inputtext {
+        @include radius-end(0)
+      }
+    }
+
+    &.addon-both {
+      .p-inputtext {
+        @include radius-all(0)
+      }
+    }
+
+    &.clearable {
+      .p-inputnumber-clear-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        right: auto;
+        inset-inline-end: var(--p-form-field-padding-x);
+      }
+
+      .p-inputtext {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+
+      &.icon-start {
+        .p-inputtext {
+          @include field-padding($icon-start: true, $icon-end: false, $has-clear: true);
+        }
+      }
+
+      &.icon-end {
+        .p-inputtext {
+          @include field-padding($icon-start: false, $icon-end: true, $has-clear: true);
+        }
+
+        .p-inputnumber-clear-icon {
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
+        }
+      }
+
+      &.icon-both {
+        .p-inputtext {
+          @include field-padding($icon-start: true, $icon-end: true, $has-clear: true);
+        }
+
+        .p-inputnumber-clear-icon {
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
+        }
+      }
+    }
+
+    &.button-stacked {
+      &.icon-start {
+        .p-inputtext {
+          @include field-padding($icon-start: true, $icon-end: false, $has-clear: false);
+        }
+      }
+
+      &.icon-end {
+        .p-inputtext {
+          @include field-padding($icon-start: false, $icon-end: true, $has-clear: false, $extra-end-padding: 2rem);
+        }
+      }
+
+      &.icon-both {
+        .p-inputtext {
+          @include field-padding($icon-start: true, $icon-end: true, $has-clear: false, $extra-end-padding: 2rem);
+        }
+      }
+
+      &.clearable {
+        .p-inputnumber-clear-icon {
+          inset-inline-end: calc(var(--p-form-field-padding-x) + 2rem);
+        }
+
+        .p-inputtext {
+          @include field-padding($icon-start: false, $icon-end: false, $has-clear: true, $extra-end-padding: 2rem);
+        }
+
+        &.icon-start {
+          .p-inputtext {
+            @include field-padding($icon-start: true, $icon-end: false, $has-clear: true, $extra-end-padding: 2rem);
+          }
+        }
+
+        &.icon-end {
+          .p-inputnumber-clear-icon {
+            inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2rem);
+          }
+
+          .p-inputtext {
+            @include field-padding($icon-start: false, $icon-end: true, $has-clear: true, $extra-end-padding: 2rem);
+          }
+        }
+
+        &.icon-both {
+          .p-inputnumber-clear-icon {
+            inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2rem);
+          }
+
+          .p-inputtext {
+            @include field-padding($icon-start: true, $icon-end: true, $has-clear: true, $extra-end-padding: 2rem);
+          }
+        }
+      }
+
+      &.icon-end,
+      &.icon-both {
+        .p-iconfield .p-inputicon:last-of-type {
+          inset-inline-end: calc(var(--p-form-field-padding-x) + 2rem);
+        }
+      }
+    }
+
+    &.button-horizontal {
+      .label-ifta {
+        label {
+          padding-inline-start: 2.5rem;
+        }
+      }
+
+      &.icon-start,
+      &.icon-both {
+        .p-iconfield .p-inputicon:first-of-type {
+          inset-inline-start: calc(var(--p-form-field-padding-x) + 2.5rem);
+        }
+      }
+
+      &.clearable {
+        .p-inputnumber-clear-icon {
+          inset-inline-end: calc(var(--p-form-field-padding-x) + 2rem);
+        }
+
+        &.icon-end {
+          .p-inputnumber-clear-icon {
+            inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2rem);
+          }
+        }
+
+        &.icon-both {
+          .p-inputnumber-clear-icon {
+            inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2rem);
+          }
+        }
+      }
+
+      &.icon-end,
+      &.icon-both {
+        .p-iconfield .p-inputicon:last-of-type {
+          inset-inline-end: calc(var(--p-form-field-padding-x) + 2.5rem);
+        }
+      }
+    }
+
+    &.button-vertical {
+      .p-inputtext {
+        padding-inline-start: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size)) !important;
+        padding-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size)) !important;
+      }
+
+      .p-iconfield .p-inputicon {
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+      }
+    }
+  }
+}
+
+ng-input-password {
+  .input-password-wrapper {
+    &.icon-start {
+      .p-inputtext {
+        @include field-padding($icon-start: true, $icon-end: false, $has-clear: false);
+      }
+    }
+
+    &.icon-end {
+      .p-inputtext {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.icon-both {
+      .p-inputtext {
+        @include field-padding($icon-start: true, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.addon-start {
+      .p-inputtext {
+        @include radius-start(0)
+      }
+    }
+
+    &.addon-end {
+      .p-inputtext {
+        @include radius-end(0)
+      }
+    }
+
+    &.addon-both {
+      .p-inputtext {
+        @include radius-all(0)
+      }
+    }
+
+    &.clearable {
+      .p-password-clear-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        right: auto;
+        inset-inline-end: var(--p-form-field-padding-x);
+        padding: 0;
+      }
+
+      .p-inputtext {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+
+      &.icon-start {
+        .p-inputtext {
+          @include field-padding($icon-start: true, $icon-end: false, $has-clear: true);
+        }
+      }
+
+      &.icon-end {
+        .p-inputtext {
+          @include field-padding($icon-start: false, $icon-end: true, $has-clear: true);
+        }
+
+        .p-password-clear-icon {
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
+        }
+      }
+
+      &.icon-both {
+        .p-inputtext {
+          @include field-padding($icon-start: true, $icon-end: true, $has-clear: true);
+        }
+
+        .p-password-clear-icon {
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
+        }
+      }
+    }
+
+    &.has-toggler {
+      &.icon-end,
+      &.icon-both {
+        .p-iconfield .p-inputicon:last-of-type {
+          inset-inline-end: calc(var(--p-form-field-padding-x) + 2rem);
+        }
+      }
+
+      &.clearable {
+        .p-password-clear-icon {
+          inset-inline-end: calc(var(--p-form-field-padding-x) + 2rem);
+        }
+
+        .p-inputtext {
+          @include field-padding($icon-start: false, $icon-end: true, $has-clear: true);
+        }
+
+        &.icon-start {
+          .p-inputtext {
+            @include field-padding($icon-start: true, $icon-end: false, $has-clear: true);
+          }
+        }
+
+        &.icon-end {
+          .p-password-clear-icon {
+            inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2rem);
+          }
+
+          .p-inputtext {
+            @include field-padding($icon-start: false, $icon-end: true, $has-clear: true, $extra-end-padding: 2rem);
+          }
+        }
+
+        &.icon-both {
+          .p-password-clear-icon {
+            inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2rem);
+          }
+
+          .p-inputtext {
+            @include field-padding($icon-start: true, $icon-end: true, $has-clear: true, $extra-end-padding: 2rem);
+          }
+        }
+      }
+    }
+  }
+}
+
 ng-input-text {
   .input-text-wrapper {
     .field {
@@ -408,31 +1112,42 @@ ng-input-text {
     .clear-icon {
       position: absolute;
       top: 50%;
-      margin-top: -0.5rem;
-      color: var(--p-select-clear-icon-color);
+      margin: 0;
+      transform: translateY(-50%);
+      color: var(--p-form-field-icon-color);
       inset-inline-end: var(--p-form-field-padding-x);
       cursor: pointer;
       z-index: 50;
     }
 
     &.clearable {
-      input {
-        padding-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
+      .p-inputtext {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+
+      &.icon-start {
+        .p-inputtext {
+          @include field-padding($icon-start: true, $icon-end: false, $has-clear: true);
+        }
       }
 
       &.icon-end {
-        input {
-          padding-inline-end: calc(calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size)) * 1.5);
+        .p-inputtext {
+          @include field-padding($icon-start: false, $icon-end: true, $has-clear: true);
         }
 
         .clear-icon {
-          inset-inline-end: calc(var(--p-form-field-padding-x) * 3);
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
         }
       }
 
-      &.addon-end {
+      &.icon-both {
+        .p-inputtext {
+          @include field-padding($icon-start: true, $icon-end: true, $has-clear: true);
+        }
+
         .clear-icon {
-          inset-inline-end: calc(var(--p-form-field-padding-x) * 4);
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
         }
       }
     }
@@ -441,12 +1156,26 @@ ng-input-text {
 
 ng-input-textarea {
   .input-textarea-wrapper {
-    .field {
-      position: relative;
-    }
-
     textarea {
       unicode-bidi: plaintext;
+    }
+
+    &.icon-start {
+      .p-textarea {
+        @include field-padding($icon-start: true, $icon-end: false, $has-clear: false);
+      }
+    }
+
+    &.icon-end {
+      .p-textarea {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.icon-both {
+      .p-textarea {
+        @include field-padding($icon-start: true, $icon-end: true, $has-clear: false);
+      }
     }
   }
 }
@@ -533,6 +1262,81 @@ ng-map {
           top: 0.5rem;
           right: 0.5rem;
           z-index: 20000;
+        }
+      }
+    }
+  }
+}
+
+ng-multi-select {
+  .multi-select-wrapper {
+    &.icon-start {
+      .p-multiselect-label {
+        @include field-padding($icon-start: true, $icon-end: false, $has-clear: false);
+      }
+    }
+
+    &.icon-end {
+      .p-multiselect-label {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.icon-both {
+      .p-multiselect-label {
+        @include field-padding($icon-start: true, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.addon-start {
+      .p-multiselect {
+        @include radius-start(0)
+      }
+    }
+
+    &.addon-end {
+      .p-multiselect {
+        @include radius-end(0)
+      }
+    }
+
+    &.addon-both {
+      .p-multiselect {
+        @include radius-all(0)
+      }
+    }
+
+    &.icon-end,
+    &.icon-both {
+      .p-iconfield .p-inputicon:last-of-type {
+        inset-inline-end: calc(var(--p-form-field-padding-x) + 2rem);
+      }
+    }
+
+    &.clearable {
+      &.icon-start {
+        .p-multiselect-label {
+          @include field-padding($icon-start: true, $icon-end: false, $has-clear: false);
+        }
+      }
+
+      &.icon-end {
+        .p-multiselect-label {
+          @include field-padding($icon-start: false, $icon-end: false, $has-clear: false);
+        }
+
+        .p-multiselect-clear-icon {
+          margin-inline-end: 2rem;
+        }
+      }
+
+      &.icon-both {
+        .p-multiselect-label {
+          @include field-padding($icon-start: true, $icon-end: false, $has-clear: false);
+        }
+
+        .p-multiselect-clear-icon {
+          margin-inline-end: 2rem;
         }
       }
     }
@@ -698,6 +1502,93 @@ ng-radio {
   }
 }
 
+ng-select {
+  .select-wrapper {
+    &.icon-start {
+      .p-select-label {
+        @include field-padding($icon-start: true, $icon-end: false, $has-clear: false);
+      }
+    }
+
+    &.icon-end {
+      .p-select-label {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.icon-both {
+      .p-select-label {
+        @include field-padding($icon-start: true, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.addon-start {
+      .p-select {
+        @include radius-start(0)
+      }
+    }
+
+    &.addon-end {
+      .p-select {
+        @include radius-end(0)
+      }
+    }
+
+    &.addon-both {
+      .p-select {
+        @include radius-all(0)
+      }
+    }
+
+    &.icon-end,
+    &.icon-both {
+      .p-iconfield .p-inputicon:last-of-type {
+        inset-inline-end: calc(var(--p-form-field-padding-x) + 2rem);
+      }
+    }
+
+    &.clearable {
+      .p-select-clear-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
+      }
+
+      .p-select-label {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+
+      &.icon-start {
+        .p-select-label {
+          @include field-padding($icon-start: true, $icon-end: false, $has-clear: true);
+        }
+      }
+
+      &.icon-end {
+        .p-select-label {
+          @include field-padding($icon-start: false, $icon-end: true, $has-clear: true);
+        }
+
+        .p-select-clear-icon {
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2rem);
+        }
+      }
+
+      &.icon-both {
+        .p-select-label {
+          @include field-padding($icon-start: true, $icon-end: true, $has-clear: true);
+        }
+
+        .p-select-clear-icon {
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2rem);
+        }
+      }
+    }
+  }
+}
+
 ng-status {
   .status-wrapper {
     text-align: center;
@@ -802,28 +1693,22 @@ ng-table {
       }
     }
 
-    &:dir(ltr) {
-      .same-column-actions-wrapper {
-        ng-button:not(:last-child) {
-          margin-right: 0.5rem;
-        }
-      }
-
-      .sort-reset {
-        margin-left: 0.25rem;
+    .same-column-actions-wrapper {
+      ng-button:not(:last-child) {
+        margin-inline-end: 0.5rem;
       }
     }
 
+    .sort-reset {
+      margin-inline-start: 0.25rem;
+    }
+
+    .p-datatable-thead > tr > th,
+    .p-datatable-tbody > tr > td {
+      text-align: start;
+    }
+
     &:dir(rtl) {
-      .p-datatable-thead > tr > th,
-      .p-datatable-tbody > tr > td {
-        text-align: right;
-      }
-
-      .sort-reset {
-        margin-right: 0.25rem;
-      }
-
       .p-datatable-gridlines:has(.p-datatable-thead):has(.p-datatable-tbody) {
         .p-datatable-thead > tr {
           > th {
@@ -895,6 +1780,93 @@ ng-toggle-switch {
   }
 }
 
+ng-tree-select {
+  .tree-select-wrapper {
+    &.icon-start {
+      .p-treeselect-label {
+        @include field-padding($icon-start: true, $icon-end: false, $has-clear: false);
+      }
+    }
+
+    &.icon-end {
+      .p-treeselect-label {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.icon-both {
+      .p-treeselect-label {
+        @include field-padding($icon-start: true, $icon-end: true, $has-clear: false);
+      }
+    }
+
+    &.addon-start {
+      .p-treeselect {
+        @include radius-start(0)
+      }
+    }
+
+    &.addon-end {
+      .p-treeselect {
+        @include radius-end(0)
+      }
+    }
+
+    &.addon-both {
+      .p-treeselect {
+        @include radius-all(0)
+      }
+    }
+
+    &.icon-end,
+    &.icon-both {
+      .p-iconfield .p-inputicon:last-of-type {
+        inset-inline-end: calc(var(--p-form-field-padding-x) + 2rem);
+      }
+    }
+
+    &.clearable {
+      .p-treeselect-clear-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
+      }
+
+      .p-treeselect-label {
+        @include field-padding($icon-start: false, $icon-end: true, $has-clear: false);
+      }
+
+      &.icon-start {
+        .p-treeselect-label {
+          @include field-padding($icon-start: true, $icon-end: false, $has-clear: true);
+        }
+      }
+
+      &.icon-end {
+        .p-treeselect-label {
+          @include field-padding($icon-start: false, $icon-end: true, $has-clear: true);
+        }
+
+        .p-treeselect-clear-icon {
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2rem);
+        }
+      }
+
+      &.icon-both {
+        .p-treeselect-label {
+          @include field-padding($icon-start: true, $icon-end: true, $has-clear: true);
+        }
+
+        .p-treeselect-clear-icon {
+          inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2rem);
+        }
+      }
+    }
+  }
+}
+
 ng-dialog-form {
   .dialog-form-wrapper {
     form {
@@ -946,3 +1918,14 @@ ng-dialog-form {
   }
 }
 
+.p-floatlabel, .p-iftalabel {
+  display: inline-block;
+
+  label {
+    z-index: 500;
+  }
+}
+
+p-inputgroup.p-inputgroup :is(.p-floatlabel,.p-iftalabel,.p-inputwrapper) {
+  width: auto;
+}
