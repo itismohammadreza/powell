@@ -24,7 +24,8 @@ import {ConfigService} from "@powell/api";
   selector: 'ng-breadcrumb',
   templateUrl: './breadcrumb.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DestroyService]
+  providers: [DestroyService],
+  standalone: false
 })
 export class BreadcrumbComponent implements OnInit, AfterContentInit {
   private router = inject(Router);

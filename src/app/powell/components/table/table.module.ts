@@ -4,7 +4,6 @@ import {TableComponent} from "@powell/components/table";
 import {EmptyModule} from "@powell/components/empty";
 import {InputTextModule} from "@powell/components/input-text";
 import {ButtonModule} from "@powell/components/button";
-import {ImageModule} from "@powell/components/image";
 import {DatepickerModule} from "@powell/components/datepicker";
 import {CheckboxModule} from "@powell/components/checkbox";
 import {SliderModule} from "@powell/components/slider";
@@ -30,7 +29,6 @@ import {TemplateModule} from "@powell/directives/template";
     SliderModule,
     SelectModule,
     CheckboxModule,
-    ImageModule,
     NgTemplateOutlet,
     NgStyle,
     NgClass,

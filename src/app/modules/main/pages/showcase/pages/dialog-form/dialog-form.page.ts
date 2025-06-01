@@ -134,7 +134,7 @@ export class DialogFormPage extends PreviewBase {
       }
       const {formValue, finalizeSubmit} = res;
       this.flag = !this.flag;
-      console.log('Do what ever with form value: ', formValue)
+      alert(formValue);
       setTimeout(() => {
         finalizeSubmit(this.flag)
       }, 2000)

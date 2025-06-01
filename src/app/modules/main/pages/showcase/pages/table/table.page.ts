@@ -6,18 +6,16 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 import {$TableSelectAllChangeEvent} from "@powell/primeng";
 
 interface Customer {
-  id: any,
-  name: string,
-  country: any,
-  company: string,
-  date: string,
-  status: string,
-  verified: boolean,
-  activity: number,
-  representative: any,
-  balance: number,
-  image: string,
-  bool: boolean,
+  id: any;
+  name: string;
+  country: any;
+  company: string;
+  date: string;
+  status: string;
+  verified: boolean;
+  activity: number;
+  representative: any;
+  balance: number;
 }
 
 @Component({
@@ -47,11 +45,6 @@ export class TablePage extends PreviewBase {
       header: 'name',
       field: 'name',
       sort: true,
-      filter: {
-        type: 'slider',
-        range: true,
-        rowFilterShowMenu: true
-      },
     },
     {
       header: 'country',
@@ -71,18 +64,18 @@ export class TablePage extends PreviewBase {
       filter: {
         type: 'multi-select',
         options: [
-          {name: 'Amy Elsner', image: 'amyelsner.png'},
-          {name: 'Anna Fali', image: 'annafali.png'},
-          {name: 'Asiya Javayant', image: 'asiyajavayant.png'},
-          {name: 'Bernardo Dominic', image: 'bernardodominic.png'},
-          {name: 'Elwin Sharvill', image: 'elwinsharvill.png'},
-          {name: 'Ioni Bowcher', image: 'ionibowcher.png'},
-          {name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png'},
-          {name: 'Onyama Limba', image: 'onyamalimba.png'},
-          {name: 'Stephen Shaw', image: 'stephenshaw.png'},
-          {name: 'XuXue Feng', image: 'xuxuefeng.png'},
+          {name: 'Amy Elsner'},
+          {name: 'Anna Fali'},
+          {name: 'Asiya Javayant'},
+          {name: 'Bernardo Dominic'},
+          {name: 'Elwin Sharvill'},
+          {name: 'Ioni Bowcher'},
+          {name: 'Ivan Magalhaes'},
+          {name: 'Onyama Limba'},
+          {name: 'Stephen Shaw'},
+          {name: 'XuXue Feng'},
         ],
-        placeholder: 'any',
+        placeholder: 'representative type',
         optionLabel: 'name',
         optionValue: 'name',
       },
@@ -100,7 +93,10 @@ export class TablePage extends PreviewBase {
       field: 'balance',
       sort: true,
       filter: {
-        type: 'text',
+        type: 'slider',
+        range: true,
+        min: 0,
+        max: 100000
       },
     },
     {
@@ -134,17 +130,6 @@ export class TablePage extends PreviewBase {
         min: 0,
         max: 100,
       },
-    },
-    {
-      header: 'image',
-      field: 'image',
-      sort: false,
-    },
-    {
-      header: 'bool',
-      field: 'bool',
-      sort: true,
-      filter: {type: 'boolean'},
     },
   ];
 

@@ -158,17 +158,23 @@
                     @switch (filter.type) {
                       @case ('text') {
                         <ng-input-text
+                          labelPosition="side"
+                          [fluid]="true"
                           [value]="value"
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
                         </ng-input-text>
                       }
                       @case ('numeric') {
                         <ng-input-number
+                          labelPosition="side"
+                          [fluid]="true"
                           (onInput)="onChangeFilterValue($event,filterCallback,col)">
                         </ng-input-number>
                       }
                       @case ('multi-select') {
                         <ng-multi-select
+                          labelPosition="side"
+                          [fluid]="true"
                           [value]="value"
                           [options]="filter.options"
                           [optionLabel]="filter.optionLabel"
@@ -179,6 +185,8 @@
                       }
                       @case ('select') {
                         <ng-select
+                          labelPosition="side"
+                          [fluid]="true"
                           [value]="value"
                           [options]="filter.options"
                           [optionLabel]="filter.optionLabel"
@@ -206,6 +214,8 @@
                       }
                       @case ('datepicker') {
                         <ng-datepicker
+                          labelPosition="side"
+                          [fluid]="true"
                           [dateFormat]="filter.dateFormat"
                           (onSelect)="onChangeFilterValue($event,filterCallback,col)">
                         </ng-datepicker>
