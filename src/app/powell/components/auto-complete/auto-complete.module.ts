@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from "@angular/common";
+import {NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {$AutoCompleteModule} from "@powell/primeng";
 import {AutoCompleteComponent} from "@powell/components/auto-complete";
@@ -14,7 +14,9 @@ import {TimesIcon} from "primeng/icons";
   exports: [AutoCompleteComponent, TemplateModule],
   imports: [
     $AutoCompleteModule,
-    CommonModule,
+    NgClass,
+    NgStyle,
+    NgTemplateOutlet,
     FormsModule,
     LabelStarModule,
     FormFieldModule,

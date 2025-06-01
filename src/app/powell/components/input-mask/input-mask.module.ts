@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {InputMaskComponent} from "@powell/components/input-mask";
@@ -12,7 +12,9 @@ import {TemplateModule} from "@powell/directives/template";
   exports: [InputMaskComponent, TemplateModule],
   imports: [
     $InputMaskModule,
-    CommonModule,
+    NgClass,
+    NgStyle,
+    NgTemplateOutlet,
     FormsModule,
     LabelStarModule,
     FormFieldModule,

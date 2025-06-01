@@ -8,14 +8,16 @@ import {
   $InputIconModule
 } from "@powell/primeng";
 import {FormFieldComponent} from "@powell/components/form-field/form-field.component";
-import {CommonModule} from "@angular/common";
+import {KeyValuePipe, NgClass, NgTemplateOutlet} from "@angular/common";
 import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
   declarations: [FormFieldComponent],
   exports: [FormFieldComponent, TemplateModule],
   imports: [
-    CommonModule,
+    KeyValuePipe,
+    NgTemplateOutlet,
+    NgClass,
     $IftaLabelModule,
     $FloatLabelModule,
     $IconFieldModule,

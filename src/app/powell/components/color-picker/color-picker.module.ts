@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {NgClass, NgStyle} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {ColorPickerComponent} from "@powell/components/color-picker";
 import {LabelStarModule} from "@powell/pipes/label-star";
@@ -13,7 +13,8 @@ import {FormFieldModule} from "@powell/components/form-field";
   imports: [
     $ColorPickerModule,
     InputTextModule,
-    CommonModule,
+    NgClass,
+    NgStyle,
     FormsModule,
     LabelStarModule,
     FormFieldModule,

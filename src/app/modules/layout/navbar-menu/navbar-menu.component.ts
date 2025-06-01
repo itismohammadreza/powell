@@ -1,5 +1,5 @@
 import {AfterContentInit, ChangeDetectionStrategy, Component, HostListener, inject, OnInit} from '@angular/core';
-import {CommonModule, DOCUMENT} from "@angular/common";
+import {DOCUMENT, NgClass} from "@angular/common";
 import {LanguageChecker} from '@core/utils';
 import {GlobalConfig, SidebarType} from '@core/models';
 import {globalConfig} from "@core/config";
@@ -32,7 +32,7 @@ import {RadioModule} from "@powell/components/radio";
   templateUrl: './navbar-menu.component.html',
   styleUrls: ['./navbar-menu.component.scss'],
   imports: [
-    CommonModule,
+    NgClass,
     LogoComponent,
     $AvatarModule,
     $MenubarModule,

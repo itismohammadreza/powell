@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {InputPasswordComponent} from "@powell/components/input-password";
@@ -12,7 +12,9 @@ import {FormFieldModule} from "@powell/components/form-field";
   exports: [InputPasswordComponent, TemplateModule],
   imports: [
     $PasswordModule,
-    CommonModule,
+    NgClass,
+    NgStyle,
+    NgTemplateOutlet,
     FormsModule,
     LabelStarModule,
     FormFieldModule,

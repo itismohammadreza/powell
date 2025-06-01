@@ -1,5 +1,4 @@
 import {Type} from '@angular/core';
-import {CommonModule} from "@angular/common";
 import {MainPage} from "@modules/main/main.page";
 import {MainRoutingModule} from "@modules/main/main-routing.module";
 import {$ScrollTopModule} from "@powell/primeng";
@@ -12,7 +11,6 @@ export const DECLARATIONS: Type<any>[] = [
 ];
 
 export const IMPORTS: Type<any>[] = [
-  CommonModule,
   LoadingComponent,
   LogoComponent,
   NavbarMenuComponent,

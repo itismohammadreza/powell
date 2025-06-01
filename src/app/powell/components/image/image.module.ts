@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {NgStyle, NgTemplateOutlet} from "@angular/common";
 import {ImageComponent} from "@powell/components/image";
 import {
   $EyeIcon,
@@ -20,7 +20,8 @@ import {PinchZoomModule} from "@powell/components/pinch-zoom";
   imports: [
     $ImageModule,
     PinchZoomModule,
-    CommonModule,
+    NgStyle,
+    NgTemplateOutlet,
     $RefreshIcon,
     $EyeIcon,
     $UndoIcon,

@@ -7,7 +7,6 @@ import {InputTextModule} from "@powell/components/input-text";
 import {ButtonModule} from "@powell/components/button";
 import {CheckboxModule} from "@powell/components/checkbox";
 import {ReactiveFormsModule} from "@angular/forms";
-import {CommonModule} from "@angular/common";
 import {LogoComponent} from "@modules/layout/logo/logo.component";
 
 export const DECLARATIONS: Type<any>[] = [
@@ -22,6 +21,5 @@ export const IMPORTS: Type<any>[] = [
   InputTextModule,
   ButtonModule,
   CheckboxModule,
-  CommonModule,
   LogoComponent,
 ];

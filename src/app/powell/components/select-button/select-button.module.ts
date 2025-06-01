@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {SelectButtonComponent} from "@powell/components/select-button";
 import {LabelStarModule} from "@powell/pipes/label-star";
@@ -11,7 +11,9 @@ import {FormFieldModule} from "@powell/components/form-field";
   exports: [SelectButtonComponent],
   imports: [
     $SelectButtonModule,
-    CommonModule,
+    NgClass,
+    NgStyle,
+    NgTemplateOutlet,
     FormsModule,
     LabelStarModule,
     FormFieldModule

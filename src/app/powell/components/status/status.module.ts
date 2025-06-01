@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {NgTemplateOutlet} from "@angular/common";
 import {StatusComponent} from "@powell/components/status";
 import {TemplateModule} from "@powell/directives/template";
 import {$CheckIcon, $ExclamationTriangleIcon, $InfoCircleIcon, $TimesCircleIcon} from "@powell/primeng";
@@ -8,7 +8,7 @@ import {$CheckIcon, $ExclamationTriangleIcon, $InfoCircleIcon, $TimesCircleIcon}
   declarations: [StatusComponent],
   exports: [StatusComponent, TemplateModule],
   imports: [
-    CommonModule,
+    NgTemplateOutlet,
     TemplateModule,
     $CheckIcon,
     $ExclamationTriangleIcon,

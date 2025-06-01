@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
 import {FilePickerComponent} from "@powell/components/file-picker";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$FileUploadModule} from "@powell/primeng";
@@ -12,7 +12,9 @@ import {FormFieldModule} from "@powell/components/form-field";
   imports: [
     $FileUploadModule,
     LabelStarModule,
-    CommonModule,
+    NgClass,
+    NgStyle,
+    NgTemplateOutlet,
     FormFieldModule
   ],
 })

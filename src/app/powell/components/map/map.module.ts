@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {NgClass, NgStyle} from "@angular/common";
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import {MapComponent} from "@powell/components/map";
 import {LabelStarModule} from "@powell/pipes/label-star";
@@ -15,7 +15,8 @@ import {FormFieldModule} from "@powell/components/form-field";
     ButtonModule,
     $TooltipModule,
     LeafletModule,
-    CommonModule,
+    NgStyle,
+    NgClass,
     LabelStarModule,
     TemplateModule,
     $TrashIcon,

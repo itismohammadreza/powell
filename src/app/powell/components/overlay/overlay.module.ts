@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from "@angular/common";
+import {NgClass, NgStyle} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {DialogComponent, DialogFormComponent, DynamicDialogComponent} from '.';
 import {
@@ -50,7 +50,8 @@ import {TreeSelectModule} from "@powell/components/tree-select";
     DynamicDialogComponent
   ],
   imports: [
-    CommonModule,
+    NgClass,
+    NgStyle,
     ReactiveFormsModule,
     $ConfirmDialogModule,
     $ConfirmPopupModule,

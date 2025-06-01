@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {NgClass, NgStyle} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {CheckboxComponent} from "@powell/components/checkbox";
@@ -13,7 +13,8 @@ import {TemplateModule} from "@powell/directives/template";
   imports: [
     $CheckboxModule,
     $ProgressSpinnerModule,
-    CommonModule,
+    NgStyle,
+    NgClass,
     FormsModule,
     LabelStarModule,
     FormFieldModule,

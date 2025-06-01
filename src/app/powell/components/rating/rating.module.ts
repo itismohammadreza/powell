@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {NgStyle, NgTemplateOutlet} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {RatingComponent} from "@powell/components/rating";
 import {LabelStarModule} from "@powell/pipes/label-star";
@@ -11,7 +11,8 @@ import {FormFieldModule} from "@powell/components/form-field";
   exports: [RatingComponent],
   imports: [
     $RatingModule,
-    CommonModule,
+    NgStyle,
+    NgTemplateOutlet,
     FormsModule,
     LabelStarModule,
     FormFieldModule

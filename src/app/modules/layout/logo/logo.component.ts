@@ -1,12 +1,12 @@
 import {Component, Input} from '@angular/core';
 import {RouterModule} from "@angular/router";
-import {CommonModule} from "@angular/common";
+import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'ng-logo',
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss'],
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, NgClass],
   host: {
     class: 'inline-block',
   }

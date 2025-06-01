@@ -9,7 +9,7 @@ import {PreviewBase, PreviewComponent} from "@modules/main/pages/showcase/compon
 import {DestroyService} from "@core/utils";
 import {$DividerModule} from "@powell/primeng";
 import {TranslateModule} from "@ngx-translate/core";
-import {CommonModule} from "@angular/common";
+import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'ng-utils-page',
@@ -20,7 +20,7 @@ import {CommonModule} from "@angular/common";
     PreviewComponent,
     $DividerModule,
     TranslateModule,
-    CommonModule
+    NgClass
   ],
   providers: [DestroyService],
 })

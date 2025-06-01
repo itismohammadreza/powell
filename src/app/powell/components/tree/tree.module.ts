@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
 import {TreeComponent} from "@powell/components/tree";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {$TreeModule} from "@powell/primeng";
@@ -12,7 +12,9 @@ import {FormFieldModule} from "@powell/components/form-field";
   imports: [
     $TreeModule,
     LabelStarModule,
-    CommonModule,
+    NgStyle,
+    NgClass,
+    NgTemplateOutlet,
     FormFieldModule
   ],
 })
