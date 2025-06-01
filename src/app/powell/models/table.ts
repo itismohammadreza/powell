@@ -9,7 +9,7 @@ import {
 } from '@powell/models';
 import {$FilterMetadata} from "@powell/primeng";
 
-export type NgTableRendererType = 'text' | 'image' | 'ng-template';
+export type NgTableRendererType = 'text' | 'ng-template';
 export type NgTableFilterDisplay = 'row' | 'menu';
 export type NgTableResponsiveLayout = 'stack' | 'scroll';
 export type NgTablePaginationPosition = 'bottom' | 'top' | 'both';
@@ -48,20 +48,13 @@ export interface NgTableFilter {
   rowFilterShowMenu?: boolean;
 }
 
-export interface NgTableRender<T = any> {
-  as?: NgTableRendererType | ((item: T) => string)
-  width?: string;
-  preview?: boolean;// use in image renderer type
-  height?: string;// use in image renderer type
-}
-
 export interface NgTableColDef<T = any> {
   header?: string;
   field?: string;
   width?: string;
   sort?: boolean;
   filter?: NgTableFilter;
-  render?: NgTableRender<T>;
+  render?: NgTableRendererType | ((item: T) => string);
   cellStyleClass?: string | ((item: T) => string);
   cellStyle?: NgCssObject | ((item: T) => any);
   visible?: boolean;

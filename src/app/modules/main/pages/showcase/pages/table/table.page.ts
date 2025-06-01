@@ -1,8 +1,9 @@
 import {Component, inject, ViewChild} from '@angular/core';
-import {NgSize, NgTableActionsConfig, NgTableColDef} from '@powell/models';
+import {NgTableActionsConfig, NgTableColDef} from '@powell/models';
 import {DataService} from "@core/http";
 import {TableComponent, TableModule} from "@powell/components/table";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
+import {$TableSelectAllChangeEvent} from "@powell/primeng";
 
 interface Customer {
   id: any,
@@ -32,232 +33,15 @@ export class TablePage extends PreviewBase {
 
   private dataService = inject(DataService);
 
-  override previewOptions: PreviewOption[] = [];
+  override previewOptions: PreviewOption[] = [
+    {field: 'rtl', value: this.config.rtl},
+    {field: 'size', selectOptions: 'sizes', value: 'large'},
+    {field: 'followConfig', value: this.config.followConfig},
+    {field: 'gridlines', value: true},
+    {field: 'striped', value: false},
+  ];
 
-  rtl: boolean = this.config.rtl;
-  size: NgSize = 'large';
-  header: string = 'Customers';
-  followConfig: boolean = this.config.followConfig;
-  gridlines: boolean = true;
-  striped: boolean = false;
-  simpleCustomers = [
-    {
-      "id": 1000,
-      "name": "James Butt",
-      "country": {
-        "name": "Algeria",
-        "code": "dz"
-      },
-      "company": "Benton, John B Jr",
-      "date": "2015-09-13",
-      "status": "unqualified",
-      "verified": true,
-      "activity": 17,
-      "representative": {
-        "name": "Ioni Bowcher",
-        "image": "ionibowcher.png"
-      },
-      "balance": 70663,
-      "image": 'https://via.placeholder.com/150x150',
-      "bool": false,
-    },
-    {
-      "id": 1001,
-      "name": "Josephine Darakjy",
-      "country": {
-        "name": "Egypt",
-        "code": "eg"
-      },
-      "company": "Chanay, Jeffrey A Esq",
-      "date": "2019-02-09",
-      "status": "proposal",
-      "verified": true,
-      "activity": 0,
-      "representative": {
-        "name": "Amy Elsner",
-        "image": "amyelsner.png"
-      },
-      "balance": 82429,
-      "image": 'https://via.placeholder.com/150x150',
-      "bool": false,
-    },
-    {
-      "id": 1002,
-      "name": "Art Venere",
-      "country": {
-        "name": "Panama",
-        "code": "pa"
-      },
-      "company": "Chemel, James L Cpa",
-      "date": "2017-05-13",
-      "status": "qualified",
-      "verified": false,
-      "activity": 63,
-      "representative": {
-        "name": "Asiya Javayant",
-        "image": "asiyajavayant.png"
-      },
-      "balance": 28334,
-      "image": 'https://via.placeholder.com/150x150',
-      "bool": false,
-    },
-    {
-      "id": 1003,
-      "name": "Lenna Paprocki",
-      "country": {
-        "name": "Slovenia",
-        "code": "si"
-      },
-      "company": "Feltz Printing Service",
-      "date": "2020-09-15",
-      "status": "new",
-      "verified": false,
-      "activity": 37,
-      "representative": {
-        "name": "Xuxue Feng",
-        "image": "xuxuefeng.png"
-      },
-      "balance": 88521,
-      "image": 'https://via.placeholder.com/150x150',
-      "bool": false,
-    },
-    {
-      "id": 1004,
-      "name": "Donette Foller",
-      "country": {
-        "name": "South Africa",
-        "code": "za"
-      },
-      "company": "Printing Dimensions",
-      "date": "2016-05-20",
-      "status": "proposal",
-      "verified": true,
-      "activity": 33,
-      "representative": {
-        "name": "Asiya Javayant",
-        "image": "asiyajavayant.png"
-      },
-      "balance": 93905,
-      "image": 'https://via.placeholder.com/150x150',
-      "bool": false,
-    },
-    {
-      "id": 1005,
-      "name": "Simona Morasca",
-      "country": {
-        "name": "Egypt",
-        "code": "eg"
-      },
-      "company": "Chapman, Ross E Esq",
-      "date": "2018-02-16",
-      "status": "qualified",
-      "verified": false,
-      "activity": 68,
-      "representative": {
-        "name": "Ivan Magalhaes",
-        "image": "ivanmagalhaes.png"
-      },
-      "balance": 50041,
-      "image": 'https://via.placeholder.com/150x150',
-      "bool": false,
-    },
-    {
-      "id": 1006,
-      "name": "Mitsue Tollner",
-      "country": {
-        "name": "Paraguay",
-        "code": "py"
-      },
-      "company": "Morlong Associates",
-      "date": "2018-02-19",
-      "status": "renewal",
-      "verified": true,
-      "activity": 54,
-      "representative": {
-        "name": "Ivan Magalhaes",
-        "image": "ivanmagalhaes.png"
-      },
-      "balance": 58706,
-      "image": 'https://via.placeholder.com/150x150',
-      "bool": false,
-    },
-  ]
-  lazyColDef: NgTableColDef<Customer>[] = [
-    {
-      header: 'name',
-      field: 'name',
-      sort: true,
-      filter: {
-        type: 'slider',
-        range: true,
-        rowFilterShowMenu: true
-      },
-    },
-    {
-      header: 'country',
-      field: 'country.name',
-      sort: true,
-      render: {
-        as: (item) => {
-          return 'Render By Function :' + item.country.name
-        }
-      },
-      filter: {
-        type: 'text',
-      },
-    },
-    {
-      header: 'company',
-      field: 'company',
-      sort: true,
-      filter: {
-        type: 'slider',
-        range: true,
-        rowFilterShowMenu: true
-      },
-    },
-    {
-      header: 'representative',
-      field: 'representative.name',
-      sort: true,
-      filter: {
-        type: 'multi-select',
-        options: [
-          {name: 'Amy Elsner', image: 'amyelsner.png'},
-          {name: 'Anna Fali', image: 'annafali.png'},
-          {name: 'Asiya Javayant', image: 'asiyajavayant.png'},
-          {name: 'Bernardo Dominic', image: 'bernardodominic.png'},
-          {name: 'Elwin Sharvill', image: 'elwinsharvill.png'},
-          {name: 'Ioni Bowcher', image: 'ionibowcher.png'},
-          {name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png'},
-          {name: 'Onyama Limba', image: 'onyamalimba.png'},
-          {name: 'Stephen Shaw', image: 'stephenshaw.png'},
-          {name: 'XuXue Feng', image: 'xuxuefeng.png'},
-        ],
-        placeholder: 'any',
-        optionLabel: 'name',
-        optionValue: 'name',
-      },
-    },
-  ]
-  paginatorColDef: NgTableColDef<Customer>[] = [
-    {
-      header: 'name',
-      field: 'name',
-    },
-    {
-      header: 'country',
-      field: 'country.name',
-    },
-    {
-      header: 'company',
-      field: 'company',
-    },
-    {
-      header: 'representative',
-      field: 'representative.name',
-    },
-  ]
+  simpleCustomers = this.dataService.getData().slice(0, 5)
   simpleColDef: NgTableColDef<Customer>[] = [
     {
       header: 'name',
@@ -273,10 +57,8 @@ export class TablePage extends PreviewBase {
       header: 'country',
       field: 'country.name',
       sort: true,
-      render: {
-        as: (item) => {
-          return 'Render By Function :' + item.country.name
-        }
+      render: (item) => {
+        return 'Render By Function :' + item.country.name
       },
       filter: {
         type: 'text',
@@ -343,7 +125,7 @@ export class TablePage extends PreviewBase {
     {
       header: 'activity',
       field: 'activity',
-      render: {as: 'ng-template'},
+      render: 'ng-template',
       sort: true,
       filter: {
         type: 'slider',
@@ -356,7 +138,6 @@ export class TablePage extends PreviewBase {
     {
       header: 'image',
       field: 'image',
-      render: {as: 'image'},
       sort: false,
     },
     {
@@ -364,6 +145,84 @@ export class TablePage extends PreviewBase {
       field: 'bool',
       sort: true,
       filter: {type: 'boolean'},
+    },
+  ];
+
+  lazyCustomers: Customer[];
+  lazyColDef: NgTableColDef<Customer>[] = [
+    {
+      header: 'name',
+      field: 'name',
+      sort: true,
+      filter: {
+        type: 'slider',
+        range: true,
+        rowFilterShowMenu: true
+      },
+    },
+    {
+      header: 'country',
+      field: 'country.name',
+      sort: true,
+      render: (item) => {
+        return 'Render By Function :' + item.country.name
+      },
+      filter: {
+        type: 'text',
+      },
+    },
+    {
+      header: 'company',
+      field: 'company',
+      sort: true,
+      filter: {
+        type: 'slider',
+        range: true,
+        rowFilterShowMenu: true
+      },
+    },
+    {
+      header: 'representative',
+      field: 'representative.name',
+      sort: true,
+      filter: {
+        type: 'multi-select',
+        options: [
+          {name: 'Amy Elsner', image: 'amyelsner.png'},
+          {name: 'Anna Fali', image: 'annafali.png'},
+          {name: 'Asiya Javayant', image: 'asiyajavayant.png'},
+          {name: 'Bernardo Dominic', image: 'bernardodominic.png'},
+          {name: 'Elwin Sharvill', image: 'elwinsharvill.png'},
+          {name: 'Ioni Bowcher', image: 'ionibowcher.png'},
+          {name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png'},
+          {name: 'Onyama Limba', image: 'onyamalimba.png'},
+          {name: 'Stephen Shaw', image: 'stephenshaw.png'},
+          {name: 'XuXue Feng', image: 'xuxuefeng.png'},
+        ],
+        placeholder: 'any',
+        optionLabel: 'name',
+        optionValue: 'name',
+      },
+    },
+  ]
+
+  paginationCustomers = this.dataService.getData()
+  paginatorColDef: NgTableColDef<Customer>[] = [
+    {
+      header: 'name',
+      field: 'name',
+    },
+    {
+      header: 'country',
+      field: 'country.name',
+    },
+    {
+      header: 'company',
+      field: 'company',
+    },
+    {
+      header: 'representative',
+      field: 'representative.name',
     },
   ];
   actionsConfig: NgTableActionsConfig<Customer> = {
@@ -387,17 +246,9 @@ export class TablePage extends PreviewBase {
       }
     ]
   }
-  selectedCustomers: any[];
   totalRecords: number;
   selectAll: boolean = null;
-  customers: Customer[];
-
-  onRowSelect(event: any) {
-  }
-
-  rowSelectable(data, index) {
-    return data.index == 0 || data.index == 1;
-  }
+  selectedCustomers: any[];
 
   loadCustomers({event, loadingCallback}) {
     const filters = {
@@ -414,7 +265,7 @@ export class TablePage extends PreviewBase {
     }
     setTimeout(() => {
       this.dataService.getCustomers({lazyEvent: JSON.stringify(filters)}).then(res => {
-        this.customers = res.customers;
+        this.lazyCustomers = res.customers;
         this.totalRecords = res.totalRecords;
         loadingCallback()
       })
@@ -426,9 +277,8 @@ export class TablePage extends PreviewBase {
     this.selectedCustomers = value;
   }
 
-  onSelectAllChange(event) {
+  onSelectAllChange(event: $TableSelectAllChangeEvent) {
     const checked = event.checked;
-
     if (checked) {
       this.dataService.getCustomers().then(res => {
         this.selectedCustomers = res.customers;

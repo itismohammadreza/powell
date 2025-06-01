@@ -3,57 +3,60 @@
   description="Table displays data in tabular format."
   [previewOptions]="previewOptions"
   (onOptionChange)="onOptionChange($event)">
-
+  <ng-table
+    [items]="simpleCustomers"
+    [colDef]="simpleColDef"
+    [actionsConfig]="actionsConfig"
+    header="Simple"
+    [rtl]="getOption('rtl')"
+    [size]="getOption('size')"
+    [followConfig]="getOption('followConfig')"
+    [showGridlines]="getOption('gridlines')"
+    [stripedRows]="getOption('striped')">
+    <ng-template ngTemplate="activity" let-item>
+      <span>Rendered by template: {{ item.activity }}</span>
+    </ng-template>
+  </ng-table>
+  <hr class="my-4">
+  <ng-table
+    [items]="paginationCustomers"
+    [colDef]="paginatorColDef"
+    header="Local Pagination"
+    [rtl]="getOption('rtl')"
+    [size]="getOption('size')"
+    [followConfig]="getOption('followConfig')"
+    [showGridlines]="getOption('gridlines')"
+    [stripedRows]="getOption('striped')"
+    [actionsConfig]="actionsConfig"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[5,10,50]">
+  </ng-table>
+  <hr class="my-4">
+  <ng-table
+    [items]="lazyCustomers"
+    [colDef]="lazyColDef"
+    header="Lazy"
+    [rtl]="getOption('rtl')"
+    [size]="getOption('size')"
+    [followConfig]="getOption('followConfig')"
+    [showGridlines]="getOption('gridlines')"
+    [stripedRows]="getOption('striped')"
+    [actionsConfig]="actionsConfig"
+    [lazy]="true"
+    responsiveLayout="scroll"
+    dataKey="id"
+    [selection]="selectedCustomers"
+    [selectAll]="selectAll"
+    [paginator]="true"
+    [rows]="10"
+    [totalRecords]="totalRecords"
+    [globalFilter]="true"
+    [globalFilterFields]="['name','country.name', 'company', 'representative.name']"
+    (onLazyLoad)="loadCustomers($event)"
+    (selectionChange)="onSelectionChange($event)"
+    (selectAllChange)="onSelectAllChange($event)">
+  </ng-table>
 </ng-preview>
-<!--  <p-panel header="Simple">-->
-<ng-table
-  [items]="simpleCustomers"
-  [colDef]="simpleColDef"
-  [actionsConfig]="actionsConfig"
-  [rtl]="rtl"
-  [size]="size"
-  [header]="header"
-  [followConfig]="followConfig"
-  [showGridlines]="gridlines"
-  [stripedRows]="striped">
-  <ng-template ngTemplate="activity" let-item>
-    <span>Rendered by template: {{ item.activity }}</span>
-  </ng-template>
-</ng-table>
-<!--  <p-panel header="Local Paginator">-->
-<ng-table
-  [items]="simpleCustomers"
-  [colDef]="paginatorColDef"
-  [size]="size"
-  [rtl]="rtl"
-  [actionsConfig]="actionsConfig"
-  [header]="header"
-  [paginator]="true"
-  [rows]="10"
-  [showCurrentPageReport]="true"
-  responsiveLayout="scroll"
-  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-  [rowsPerPageOptions]="[10,25,50]">
-</ng-table>
-<!--  <p-panel header="Lazy">-->
-<ng-table
-  [items]="customers"
-  [colDef]="lazyColDef"
-  [size]="size"
-  [rtl]="rtl"
-  [actionsConfig]="actionsConfig"
-  [header]="header"
-  [lazy]="true"
-  responsiveLayout="scroll"
-  dataKey="id"
-  [selection]="selectedCustomers"
-  [selectAll]="selectAll"
-  [paginator]="true"
-  [rows]="10"
-  [totalRecords]="totalRecords"
-  [globalFilter]="true"
-  [globalFilterFields]="['name','country.name', 'company', 'representative.name']"
-  (onLazyLoad)="loadCustomers($event)"
-  (selectionChange)="onSelectionChange($event)"
-  (selectAllChange)="onSelectAllChange($event)">
-</ng-table>

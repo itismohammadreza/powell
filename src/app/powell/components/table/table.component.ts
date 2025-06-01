@@ -153,7 +153,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() responsiveLayout: NgTableResponsiveLayout = 'scroll';
   @Input() breakpoint: string = '640px';
   @Input() paginatorLocale: string;
-  @Input() first: number;
+  @Input() first: number = 0;
   @Input() rows: number;
   @Input() totalRecords: number;
   @Input() sortField: string;
@@ -186,38 +186,6 @@ export class TableComponent implements OnInit, AfterContentInit {
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
   @ViewChild('dataTable', {static: true}) dataTable: $Table;
 
-  captionTemplate: TemplateRef<any>;
-  headerTemplate: TemplateRef<any>;
-  headerGroupedTemplate: TemplateRef<any>;
-  bodyTemplate: TemplateRef<any>;
-  loadingBodyTemplate: TemplateRef<any>;
-  footerTemplate: TemplateRef<any>;
-  footerGroupedTemplate: TemplateRef<any>;
-  summaryTemplate: TemplateRef<any>;
-  colGroupTemplate: TemplateRef<any>;
-  rowExpansionTemplate: TemplateRef<any>;
-  groupHeaderTemplate: TemplateRef<any>;
-  groupFooterTemplate: TemplateRef<any>;
-  frozenHeaderTemplate: TemplateRef<any>;
-  frozenBodyTemplate: TemplateRef<any>;
-  frozenFooterTemplate: TemplateRef<any>;
-  frozenColGroupTemplate: TemplateRef<any>;
-  frozenExpandedRowTemplate: TemplateRef<any>;
-  emptyMessageTemplate: TemplateRef<any>;
-  paginatorLeftTemplate: TemplateRef<any>;
-  paginatorRightTemplate: TemplateRef<any>;
-  paginatorDropdownIconTemplate: TemplateRef<any>;
-  paginatorDropdownItemTemplate: TemplateRef<any>;
-  paginatorFirstPageLinkIconTemplate: TemplateRef<any>;
-  paginatorLastPageLinkIconTemplate: TemplateRef<any>;
-  paginatorPreviousPageLinkIconTemplate: TemplateRef<any>;
-  paginatorNextPageLinkIconTemplate: TemplateRef<any>;
-  loadingIconTemplate: TemplateRef<any>;
-  reorderIndicatorUpIconTemplate: TemplateRef<any>;
-  reorderIndicatorDownIconTemplate: TemplateRef<any>;
-  sortIconTemplate: TemplateRef<any>;
-  checkboxIconTemplate: TemplateRef<any>;
-  headerCheckboxIconTemplate: TemplateRef<any>;
   cellTemplates: Record<string, TemplateRef<any>> = {}
 
   loading: boolean;
@@ -302,144 +270,6 @@ export class TableComponent implements OnInit, AfterContentInit {
       }
     });
   }
-
-  // ngAfterContentInit() {
-  //   this.templates.forEach(item => {
-  //     switch (item.getType()) {
-  //       case 'caption':
-  //         this.captionTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'header':
-  //         this.headerTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'headergrouped':
-  //         this.headerGroupedTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'body':
-  //         this.bodyTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'loadingbody':
-  //         this.loadingBodyTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'footer':
-  //         this.footerTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'footergrouped':
-  //         this.footerGroupedTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'summary':
-  //         this.summaryTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'colgroup':
-  //         this.colGroupTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'rowexpansion':
-  //         this.rowExpansionTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'groupheader':
-  //         this.groupHeaderTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'groupfooter':
-  //         this.groupFooterTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'frozenheader':
-  //         this.frozenHeaderTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'frozenbody':
-  //         this.frozenBodyTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'frozenfooter':
-  //         this.frozenFooterTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'frozencolgroup':
-  //         this.frozenColGroupTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'frozenrowexpansion':
-  //         this.frozenExpandedRowTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'emptymessage':
-  //         this.emptyMessageTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'paginatorleft':
-  //         this.paginatorLeftTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'paginatorright':
-  //         this.paginatorRightTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'paginatordropdownicon':
-  //         this.paginatorDropdownIconTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'paginatordropdownitem':
-  //         this.paginatorDropdownItemTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'paginatorfirstpagelinkicon':
-  //         this.paginatorFirstPageLinkIconTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'paginatorlastpagelinkicon':
-  //         this.paginatorLastPageLinkIconTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'paginatorpreviouspagelinkicon':
-  //         this.paginatorPreviousPageLinkIconTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'paginatornextpagelinkicon':
-  //         this.paginatorNextPageLinkIconTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'loadingicon':
-  //         this.loadingIconTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'reorderindicatorupicon':
-  //         this.reorderIndicatorUpIconTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'reorderindicatordownicon':
-  //         this.reorderIndicatorDownIconTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'sorticon':
-  //         this.sortIconTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'checkboxicon':
-  //         this.checkboxIconTemplate = item.templateRef;
-  //         break;
-  //
-  //       case 'headercheckboxicon':
-  //         this.headerCheckboxIconTemplate = item.templateRef;
-  //         break;
-  //
-  //       default:
-  //         this.cellTemplates[item.getType()] = item.templateRef
-  //         break;
-  //     }
-  //   })
-  // }
 
   emitter(name: string, event: any) {
     (this[name] as EventEmitter<any>).emit(event);
@@ -532,8 +362,8 @@ export class TableComponent implements OnInit, AfterContentInit {
   }
 
   handleCellRenderer(col: NgTableColDef, item: any) {
-    if (col.render && typeof col.render.as == 'function')
-      return col.render.as(item);
+    if (col.render && typeof col.render == 'function')
+      return col.render(item);
     else {
       return this.resolveFieldData(item, col.field)
     }

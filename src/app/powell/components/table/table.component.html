@@ -1,6 +1,8 @@
 <div [attr.dir]="rtl ? 'rtl' : 'ltr'" class="table-wrapper">
   <p-table
     #dataTable
+    [value]="items"
+    [columns]="colDef"
     [frozenColumns]="frozenColumns"
     [frozenValue]="frozenValue"
     [style]="style"
@@ -198,7 +200,7 @@
                       }
                       @case ('boolean') {
                         <ng-checkbox
-                          [ngModel]="value == 'true' ? true : false"
+                          [ngModel]="value == 'true'"
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
                         </ng-checkbox>
                       }
@@ -322,7 +324,7 @@
                       }
                       @case ('boolean') {
                         <ng-checkbox
-                          [ngModel]="value == 'true' ? true : false"
+                          [ngModel]="value == 'true'"
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
                         </ng-checkbox>
                       }
@@ -351,8 +353,8 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-item let-frozen="frozen" let-index="rowIndex">
-      @if (bodyTemplate) {
-        <ng-container *ngTemplateOutlet="bodyTemplate;context:{$implicit:item,frozen,index}"/>
+      @if (templateMap.body) {
+        <ng-container *ngTemplateOutlet="templateMap.body;context:{$implicit:item,frozen,index}"/>
       } @else {
         <tr [pReorderableRow]="index"
             [pReorderableRowDisabled]="!reorderableRows"
@@ -374,20 +376,11 @@
               <p-tableCheckbox [value]="item"/>
             </td>
           }
-          @for (col of colDef; track col) {
+          @for (col of colDef; track col.header) {
             <td
               [ngClass]="handleCellStyleClass(col.cellStyleClass,item)"
               [ngStyle]="handleCellStyle(col.cellStyle,item)">
-              @switch (col.render?.as) {
-                @case ('image') {
-                  <ng-image
-                    imageClass="image-cell"
-                    [preview]="col.render.preview"
-                    [width]="col.render.width || '100px'"
-                    [height]="col.render.height"
-                    [src]="resolveFieldData(item, col.field)">
-                  </ng-image>
-                }
+              @switch (col.render) {
                 @case ('ng-template') {
                   <ng-container *ngTemplateOutlet="cellTemplates[col.field];context:{$implicit:item}"/>
                 }
@@ -451,10 +444,10 @@
       }
     </ng-template>
 
-    @if (captionTemplate || header) {
+    @if (templateMap.caption || header) {
       <ng-template pTemplate="caption">
-        @if (captionTemplate) {
-          <ng-container *ngTemplateOutlet="captionTemplate"/>
+        @if (templateMap.caption) {
+          <ng-container *ngTemplateOutlet="templateMap.caption"/>
         } @else {
           <div class="caption">
             <h5>{{ header }}</h5>
@@ -470,8 +463,8 @@
     }
 
     <ng-template let-columns let-frozen="frozen" pTemplate="emptymessage">
-      @if (emptyMessageTemplate) {
-        <ng-container *ngTemplateOutlet="emptyMessageTemplate;context:{columns,frozen}"/>
+      @if (templateMap.emptymessage) {
+        <ng-container *ngTemplateOutlet="templateMap.emptymessage;context:{columns,frozen}"/>
       } @else {
         <tr>
           <td class="empty-message-wrapper"
