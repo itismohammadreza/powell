@@ -15,6 +15,7 @@ import {DOCUMENT, isPlatformBrowser} from '@angular/common';
 
 @Directive({
   selector: '[ngClickOutside]',
+  standalone: false
 })
 export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
   private document = inject(DOCUMENT);
