@@ -1809,7 +1809,8 @@ pw-dialog-form {
   .dialog-form-wrapper {
     form {
       > *:not(:last-child) {
-        margin-bottom: 1.75rem;
+        display: block;
+        margin-bottom: 0.75rem;
       }
     }
 

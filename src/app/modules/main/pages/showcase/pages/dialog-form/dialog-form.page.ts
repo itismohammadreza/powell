@@ -66,8 +66,9 @@ export class DialogFormPage extends PreviewBase {
         {
           component: 'input-text',
           key: 'name',
-          label: 'first name',
+          label: 'Firstname',
           labelWidth: 150,
+          fluid: true,
           validations: [
             {type: 'required', validator: Validators.required, message: 'is required'},
             {
@@ -79,7 +80,7 @@ export class DialogFormPage extends PreviewBase {
             },
             {type: 'akbarDenied', validator: this.akbarValidator, message: 'akbar denied'}
           ],
-          value: '33333',
+          value: 'Default value',
           onInput: (eventObj) => {
             // const {event, form, currentConfig, allConfig} = eventObj;
             // allConfig.find(x => x.key == 'book').options = []
@@ -98,15 +99,17 @@ export class DialogFormPage extends PreviewBase {
         {
           component: 'datepicker',
           key: 'birthdate',
-          label: 'birthdate',
+          label: 'Birthdate',
           labelWidth: 150,
           touchUI: false,
+          fluid: true,
           showTime: true,
         },
         {
           component: 'multi-select',
           key: 'book',
-          label: 'book',
+          label: 'Book',
+          fluid: true,
           labelWidth: 150,
           validations: [
             {type: 'required', validator: Validators.required, message: 'is required'},
@@ -117,6 +120,7 @@ export class DialogFormPage extends PreviewBase {
       {
         ...this.dialogForm,
         style: {width: '800px'},
+        containerStyleClass: 'grid gap-x-3 grid-cols-2',
         acceptButtonProps: {label: 'Accept'},
         rejectButtonProps: {label: 'Close'},
         submitDisabled: ({form}) => form.invalid,
@@ -125,7 +129,7 @@ export class DialogFormPage extends PreviewBase {
             return group.get('name').invalid ? {invalidGr: true} : null
           },
           type: 'invalidGr',
-          message: 'form is not valid',
+          message: 'Form is not valid',
           style: {textAlign: 'center'}
         },
       }).pipe(takeUntil(this.destroy$)).subscribe(res => {

@@ -224,6 +224,7 @@ export interface DialogFormConfig {
   ///////////////////////////////////////// auto-complete /////////////////////////////////////////
   suggestions?: any[];
   dropdown?: boolean;
+  fluid?: boolean;
   minlength?: number;
   delay?: number;
   completeOnFocus?: boolean;
