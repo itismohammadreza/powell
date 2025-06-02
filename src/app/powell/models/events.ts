@@ -8,100 +8,100 @@ import {
 } from "suneditor/src/lib/core";
 import {Context} from "suneditor/src/lib/context";
 
-export type NgLoadingCallback = (toggle?: boolean) => any;
-export type NgFilePickerSelectEvent = (string | ArrayBuffer | File) | (string | ArrayBuffer | File)[];
-export type NgFilePickerRemoveEvent = (string | ArrayBuffer | File) | void;
+export type LoadingCallback = (toggle?: boolean) => any;
+export type FilePickerSelectEvent = (string | ArrayBuffer | File) | (string | ArrayBuffer | File)[];
+export type FilePickerRemoveEvent = (string | ArrayBuffer | File) | void;
 
-export interface NgAsyncEvent<T = void> {
+export interface AsyncEvent<T = void> {
   event: T;
-  loadingCallback: NgLoadingCallback;
+  loadingCallback: LoadingCallback;
 }
 
-export interface NgEditorOnResizeEditor {
+export interface EditorOnResizeEditor {
   height: number;
   prevHeight: number;
   core: Core;
 }
 
-export interface NgMapChangeEvent {
+export interface MapChangeEvent {
   originalEvent: MouseEvent;
   value: number | number[];
 }
 
-export interface NgEditorOnAudioUploadBefore {
+export interface EditorOnAudioUploadBefore {
   files: any[];
   info: audioInputInformation;
   core: Core;
   uploadHandler: Function;
 }
 
-export interface NgEditorOnVideoUploadError {
+export interface EditorOnVideoUploadError {
   errorMessage: string;
   result: any;
   core: Core;
 }
 
-export interface NgEditorOnVideoUploadBefore {
+export interface EditorOnVideoUploadBefore {
   files: any[];
   info: videoInputInformation;
   core: Core;
   uploadHandler: Function;
 }
 
-export interface NgEditorOnImageUploadError {
+export interface EditorOnImageUploadError {
   errorMessage: string;
   result: any;
   core: Core;
 }
 
-export interface NgEditorOnImageUploadBefore {
+export interface EditorOnImageUploadBefore {
   files: any[];
   info: imageInputInformation;
   core: Core;
   uploadHandler: Function;
 }
 
-export interface NgEditorOnAudioUploadError {
+export interface EditorOnAudioUploadError {
   errorMessage: string;
   result: any;
   core: Core;
 }
 
-export interface NgEditorOnDrop {
+export interface EditorOnDrop {
   e: Event;
   cleanData: string;
   maxCharCount: number;
   core: Core;
 }
 
-export interface NgEditorOnChange {
+export interface EditorOnChange {
   content: string;
   core: Core;
 }
 
-export interface NgEditorShowController {
+export interface EditorShowController {
   name: String;
   controllers: Controllers;
   core: Core;
 }
 
-export interface NgEditorToggleFullScreen {
+export interface EditorToggleFullScreen {
   isFullScreen: boolean;
   core: Core;
 }
 
-export interface NgEditorToggleCodeView {
+export interface EditorToggleCodeView {
   isCodeView: boolean;
   core: Core;
 }
 
-export interface NgEditorShowInline {
+export interface EditorShowInline {
   toolbar: Element;
   context: Context;
   core: Core;
 }
 
-export interface NgEditorOnAudioUpload {
+export interface EditorOnAudioUpload {
   targetElement: HTMLAudioElement;
   index: number;
   state: string;
@@ -110,7 +110,7 @@ export interface NgEditorOnAudioUpload {
   core: Core;
 }
 
-export interface NgEditorOnVideoUpload {
+export interface EditorOnVideoUpload {
   targetElement: HTMLIFrameElement | HTMLVideoElement;
   index: number;
   state: string;
@@ -119,7 +119,7 @@ export interface NgEditorOnVideoUpload {
   core: Core;
 }
 
-export interface NgEditorOnImageUpload {
+export interface EditorOnImageUpload {
   targetElement: HTMLImageElement;
   index: number;
   state: string;
@@ -128,24 +128,24 @@ export interface NgEditorOnImageUpload {
   core: Core;
 }
 
-export interface NgEditorOnCut {
+export interface EditorOnCut {
   e: Event;
   clipboardData: any;
   core: Core;
 }
 
-export interface NgEditorOnCopy {
+export interface EditorOnCopy {
   e: Event;
   clipboardData: any;
   core: Core;
 }
 
-export interface NgEditorEvent {
+export interface EditorEvent {
   e: Event;
   core: Core
 }
 
-export interface NgEditorOnLoadEvent {
+export interface EditorOnLoadEvent {
   core: Core;
   reload: boolean
 }

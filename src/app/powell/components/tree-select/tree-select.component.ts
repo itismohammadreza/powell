@@ -25,14 +25,14 @@ import {
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
 import {
-  NgChipDisplayMode,
-  NgCssObject,
-  NgInputVariant,
-  NgLabelPosition,
-  NgSize,
-  NgTreeFilterMode,
-  NgTreeSelectionMode,
-  NgValidation
+  ChipDisplayMode,
+  CssObject,
+  InputVariant,
+  LabelPosition,
+  Size,
+  TreeFilterMode,
+  TreeSelectionMode,
+  Validation
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
@@ -52,7 +52,7 @@ import {
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-tree-select',
+  selector: 'pw-tree-select',
   templateUrl: './tree-select.component.html',
   providers: [
     {
@@ -76,37 +76,37 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: LabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   // native properties
   @Input() inputId: string = $uuid();
   @Input() scrollHeight: string = '400px';
   @Input() disabled: boolean;
   @Input() metaKeySelection: boolean = false;
-  @Input() variant: NgInputVariant;
-  @Input() display: NgChipDisplayMode = 'comma';
-  @Input() selectionMode: NgTreeSelectionMode = 'single';
+  @Input() variant: InputVariant;
+  @Input() display: ChipDisplayMode = 'comma';
+  @Input() selectionMode: TreeSelectionMode = 'single';
   @Input() tabindex: string;
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() placeholder: string;
   @Input() panelClass: string;
-  @Input() panelStyle: NgCssObject;
+  @Input() panelStyle: CssObject;
   @Input() fluid: boolean;
   @Input() panelStyleClass: string;
-  @Input() containerStyle: NgCssObject;
+  @Input() containerStyle: CssObject;
   @Input() containerStyleClass: string;
-  @Input() labelStyle: NgCssObject;
+  @Input() labelStyle: CssObject;
   @Input() labelStyleClass: string;
   @Input() overlayOptions: $OverlayOptions;
   @Input() emptyMessage: string;
   @Input() appendTo: any;
   @Input() filter: boolean = false;
   @Input() filterBy: string = 'label';
-  @Input() filterMode: NgTreeFilterMode = 'lenient';
+  @Input() filterMode: TreeFilterMode = 'lenient';
   @Input() filterPlaceholder: string;
   @Input() filterLocale: string;
   @Input() filterInputAutoFocus: boolean = true;
@@ -116,7 +116,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() resetFilterOnHide: boolean = true;
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Input() virtualScrollOptions: $ScrollerOptions;
   @Input() autofocus: boolean = false;
   @Input() options: $TreeNode<any>[];

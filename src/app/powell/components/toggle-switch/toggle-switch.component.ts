@@ -24,14 +24,14 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAsyncEvent, NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {AsyncEvent, CssObject, FixLabelPosition, Validation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {$ToggleSwitchChangeEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
-  selector: 'ng-toggle-switch',
+  selector: 'pw-toggle-switch',
   templateUrl: './toggle-switch.component.html',
   providers: [
     {
@@ -55,15 +55,15 @@ export class ToggleSwitchComponent implements OnInit, AfterContentInit, ControlV
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
   @Input() onLabel: string;
   @Input() offLabel: string;
   @Input() async: boolean;
   @Input() showAsyncLoading: boolean = true;
   @Input() followConfig: boolean;
   // native properties
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   @Input() tabindex: number;
   @Input() inputId: string = $uuid();
@@ -76,7 +76,7 @@ export class ToggleSwitchComponent implements OnInit, AfterContentInit, ControlV
   @Input() ariaLabelledBy: string;
   @Input() autofocus: any = false;
   @Output() onChange = new EventEmitter<$ToggleSwitchChangeEvent>();
-  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<$ToggleSwitchChangeEvent>>();
+  @Output() onChangeAsync = new EventEmitter<AsyncEvent<$ToggleSwitchChangeEvent>>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   loading: boolean;

@@ -15,18 +15,18 @@
      'button-vertical': showButtons && buttonLayout === 'vertical',
      'button-horizontal': showButtons && buttonLayout === 'horizontal',
     }">
-  <ng-form-field
+  <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="inputId"
     [disabled]="disabled"
     [readonly]="readonly"
     [fluid]="fluid">
-    <ng-template ngTemplate="element" let-isInvalid="isInvalid">
+    <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-inputNumber
         [(ngModel)]="value"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
@@ -36,7 +36,7 @@
         [inputId]="inputId"
         [styleClass]="styleClass"
         [style]="style"
-        [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
+        [placeholder]="placeholder | pwLabelStar:showRequiredStar:ngControl"
         [size]="size"
         [maxlength]="maxlength"
         [tabindex]="tabindex"
@@ -89,10 +89,10 @@
     </ng-template>
     @for (item of ['addonStart', 'addonEnd', 'iconStart', 'iconEnd', 'label']; track item) {
       @if (templateMap[item]) {
-        <ng-template [ngTemplate]="item">
+        <ng-template [pwTemplate]="item">
           <ng-container *ngTemplateOutlet="templateMap[item]"/>
         </ng-template>
       }
     }
-  </ng-form-field>
+  </pw-form-field>
 </div>

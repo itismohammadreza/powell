@@ -132,16 +132,16 @@
                 <p-sortIcon [field]="col.field"/>
               }
               @if (col.sort && activeSortField == col.field) {
-                <ng-button
+                <pw-button
                   class="sort-reset"
                   [rounded]="true"
                   appearance="text"
                   size="small"
                   (onClick)="onResetSort($event)">
-                  <ng-template ngTemplate="icon">
+                  <ng-template pwTemplate="icon">
                     <TimesIcon/>
                   </ng-template>
-                </ng-button>
+                </pw-button>
               }
               @if (col.filter; as filter) {
                 <p-columnFilter [field]="col.field"
@@ -157,22 +157,22 @@
                   <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback">
                     @switch (filter.type) {
                       @case ('text') {
-                        <ng-input-text
+                        <pw-input-text
                           labelPosition="side"
                           [fluid]="true"
                           [value]="value"
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-input-text>
+                        </pw-input-text>
                       }
                       @case ('numeric') {
-                        <ng-input-number
+                        <pw-input-number
                           labelPosition="side"
                           [fluid]="true"
                           (onInput)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-input-number>
+                        </pw-input-number>
                       }
                       @case ('multi-select') {
-                        <ng-multi-select
+                        <pw-multi-select
                           labelPosition="side"
                           [fluid]="true"
                           [value]="value"
@@ -181,10 +181,10 @@
                           [optionValue]="filter.optionValue"
                           [placeholder]="filter.placeholder"
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-multi-select>
+                        </pw-multi-select>
                       }
                       @case ('select') {
-                        <ng-select
+                        <pw-select
                           labelPosition="side"
                           [fluid]="true"
                           [value]="value"
@@ -193,32 +193,32 @@
                           [optionValue]="filter.optionValue"
                           [placeholder]="filter.placeholder"
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-select>
+                        </pw-select>
                       }
                       @case ('slider') {
-                        <ng-slider
+                        <pw-slider
                           [ngModel]="filter.sliderValue"
                           [min]="filter.min"
                           [max]="filter.max"
                           [range]="filter.range"
                           (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-slider>
+                        </pw-slider>
                         <div dir="ltr">{{ filter.sliderValue[0] }}- {{ filter.sliderValue[1] }}
                         </div>
                       }
                       @case ('boolean') {
-                        <ng-checkbox
+                        <pw-checkbox
                           [ngModel]="value == 'true'"
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-checkbox>
+                        </pw-checkbox>
                       }
                       @case ('datepicker') {
-                        <ng-datepicker
+                        <pw-datepicker
                           labelPosition="side"
                           [fluid]="true"
                           [dateFormat]="filter.dateFormat"
                           (onSelect)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-datepicker>
+                        </pw-datepicker>
                       }
                     }
                   </ng-template>
@@ -291,58 +291,58 @@
                   <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback">
                     @switch (filter.type) {
                       @case ('text') {
-                        <ng-input-text
+                        <pw-input-text
                           [value]="value"
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-input-text>
+                        </pw-input-text>
                       }
                       @case ('numeric') {
-                        <ng-input-number
+                        <pw-input-number
                           (onInput)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-input-number>
+                        </pw-input-number>
                       }
                       @case ('multi-select') {
-                        <ng-multi-select
+                        <pw-multi-select
                           [value]="value"
                           [options]="filter.options"
                           [optionLabel]="filter.optionLabel"
                           [optionValue]="filter.optionValue"
                           [placeholder]="filter.placeholder"
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-multi-select>
+                        </pw-multi-select>
                       }
                       @case ('select') {
-                        <ng-select
+                        <pw-select
                           [value]="value"
                           [options]="filter.options"
                           [optionLabel]="filter.optionLabel"
                           [optionValue]="filter.optionValue"
                           [placeholder]="filter.placeholder"
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-select>
+                        </pw-select>
                       }
                       @case ('slider') {
-                        <ng-slider
+                        <pw-slider
                           [ngModel]="filter.sliderValue"
                           [min]="filter.min"
                           [max]="filter.max"
                           [range]="filter.range"
                           (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-slider>
+                        </pw-slider>
                         <div class="text-center mt-3" dir="ltr">{{ filter.sliderValue[0] }}- {{ filter.sliderValue[1] }}
                         </div>
                       }
                       @case ('boolean') {
-                        <ng-checkbox
+                        <pw-checkbox
                           [ngModel]="value == 'true'"
                           (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-checkbox>
+                        </pw-checkbox>
                       }
                       @case ('datepicker') {
-                        <ng-datepicker
+                        <pw-datepicker
                           [dateFormat]="filter.dateFormat"
                           (onSelect)="onChangeFilterValue($event,filterCallback,col)">
-                        </ng-datepicker>
+                        </pw-datepicker>
                       }
                     }
                   </ng-template>
@@ -405,7 +405,7 @@
               <div>
                 @for (action of actionsConfig.actions; track action) {
                   @if (handleActionVisibility(action, item)) {
-                    <ng-button
+                    <pw-button
                       [icon]="action.icon"
                       [label]="action.label"
                       [appearance]="action.appearance"
@@ -420,7 +420,7 @@
                       [tooltipPosition]="action.tooltipPosition ?? 'top'"
                       (onClick)="action.onClick(item,index,$event)"
                       (onClickAsync)="action.onClickAsync(item,index,$event)">
-                    </ng-button>
+                    </pw-button>
                   }
                 }
               </div>
@@ -430,7 +430,7 @@
             @for (action of actionsConfig.actions; track action) {
               <td class="action-wrapper">
                 @if (handleActionVisibility(action, item)) {
-                  <ng-button
+                  <pw-button
                     [icon]="action.icon"
                     [label]="action.label"
                     [appearance]="action.appearance"
@@ -445,7 +445,7 @@
                     [tooltipPosition]="action.tooltipPosition ?? 'top'"
                     (onClick)="action.onClick(item,index,$event)"
                     (onClickAsync)="action.onClickAsync(item,index,$event)">
-                  </ng-button>
+                  </pw-button>
                 }
               </td>
             }
@@ -462,11 +462,11 @@
           <div class="caption">
             <h5>{{ header }}</h5>
             @if (globalFilter) {
-              <ng-input-text
+              <pw-input-text
                 labelPosition="side"
                 [placeholder]="globalFilterPlaceholder"
                 (onKeyDown)="onGlobalFilterChange($event)">
-              </ng-input-text>
+              </pw-input-text>
             }
           </div>
         }
@@ -482,7 +482,7 @@
               [attr.colspan]="columns.length +
               (actionsConfig?.inSameColumn ? 1 : actionsConfig?.actions?.length) +
               (selectableRows && showSelectionIndicator ? 1 : 0)">
-            <ng-empty
+            <pw-empty
               [title]="emptyMessage"
               [icon]="emptyIcon"
               [imageSrc]="emptyImageSrc"

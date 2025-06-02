@@ -29,13 +29,13 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgButtonProps,
-  NgCssObject,
-  NgFilePickerMethod,
-  NgFilePickerMode,
-  NgFileResultType,
-  NgFixLabelPosition,
-  NgValidation
+  ButtonProps,
+  CssObject,
+  FilePickerMethod,
+  FilePickerMode,
+  FileResultType,
+  FixLabelPosition,
+  Validation
 } from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {
@@ -55,7 +55,7 @@ import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 
 @Component({
-  selector: 'ng-file-picker',
+  selector: 'pw-file-picker',
   templateUrl: './file-picker.component.html',
   providers: [
     {
@@ -80,15 +80,15 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
-  @Input() resultType: NgFileResultType = 'file';
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
+  @Input() resultType: FileResultType = 'file';
   @Input() followConfig: boolean;
   @Input() id: string = $uuid();
   // native properties
   @Input() name: string;
   @Input() url: string;
-  @Input() method: NgFilePickerMethod = 'post';
+  @Input() method: FilePickerMethod = 'post';
   @Input() multiple: boolean = false;
   @Input() accept: string;
   @Input() disabled: boolean;
@@ -101,7 +101,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Input() invalidFileTypeMessageDetail: string = 'allowed file types: {0}';
   @Input() invalidFileLimitMessageDetail: string = 'limit is {0} at most';
   @Input() invalidFileLimitMessageSummary: string = 'Maximum number of files exceeded';
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   @Input() previewWidth: number = 50;
   @Input() chooseLabel: string;
@@ -112,7 +112,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Input() cancelIcon: string;
   @Input() showUploadButton: boolean = true;
   @Input() showCancelButton: boolean = true;
-  @Input() mode: NgFilePickerMode = 'advanced';
+  @Input() mode: FilePickerMode = 'advanced';
   @Input() headers: HttpHeaders;
   @Input() customUpload: boolean = false;
   @Input() fileLimit: number;
@@ -120,9 +120,9 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Input() cancelStyleClass: string;
   @Input() removeStyleClass: string;
   @Input() chooseStyleClass: string;
-  @Input() chooseButtonProps: NgButtonProps;
-  @Input() uploadButtonProps: NgButtonProps;
-  @Input() cancelButtonProps: NgButtonProps;
+  @Input() chooseButtonProps: ButtonProps;
+  @Input() uploadButtonProps: ButtonProps;
+  @Input() cancelButtonProps: ButtonProps;
   @Output() onBeforeUpload = new EventEmitter<$FileBeforeUploadEvent>();
   @Output() onSend = new EventEmitter<$FileSendEvent>();
   @Output() onUpload = new EventEmitter<$FileUploadEvent>();
@@ -361,7 +361,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     this.fileUploadComponent.clear();
   }
 
-  mapToButtonProps(props: NgButtonProps) {
+  mapToButtonProps(props: ButtonProps) {
     if (!props) {
       return {};
     }

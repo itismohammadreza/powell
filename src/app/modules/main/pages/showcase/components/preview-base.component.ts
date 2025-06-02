@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, inject} from '@angular/core';
 import {ConfigService, OverlayService} from "@powell/api";
 import {PreviewOption} from "@modules/main/pages/showcase/components/index";
-import {NgAsyncEvent} from "@powell/models";
+import {AsyncEvent} from "@powell/models";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -46,7 +46,7 @@ export abstract class PreviewBase implements AfterViewInit {
     }
   }
 
-  onChangeAsync({loadingCallback}: NgAsyncEvent<any>) {
+  onChangeAsync({loadingCallback}: AsyncEvent<any>) {
     this.asyncFlag = !this.asyncFlag;
     setTimeout(() => {
       loadingCallback(this.asyncFlag)

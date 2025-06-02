@@ -14,7 +14,7 @@ import {
 import {DOCUMENT, isPlatformBrowser} from '@angular/common';
 
 @Directive({
-  selector: '[ngClickOutside]',
+  selector: '[pwClickOutside]',
   standalone: false
 })
 export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
@@ -27,7 +27,7 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
   @Input() exclude: string = '';
   @Input() excludeBeforeClick: boolean = false;
   @Input() clickOutsideEvents: string = '';
-  @Output() ngClickOutside: EventEmitter<Event> = new EventEmitter<Event>();
+  @Output() pwClickOutside: EventEmitter<Event> = new EventEmitter<Event>();
 
   _nodesExcluded: Array<HTMLElement> = [];
   _events: Array<string> = ['click'];
@@ -97,7 +97,7 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
           this._nodesExcluded = nodes;
         }
       } catch (err) {
-        console.error('[ng-click-outside] Check your exclude selector syntax.', err);
+        console.error('[pw-click-outside] Check your exclude selector syntax.', err);
       }
     }
   }
@@ -108,7 +108,7 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
     }
 
     if (!this._el.nativeElement.contains(ev.target) && !this._shouldExclude(ev.target)) {
-      this.ngClickOutside.emit(ev);
+      this.pwClickOutside.emit(ev);
 
       if (this.attachOutsideOnClick) {
         this._events.forEach(e => this.document.body.removeEventListener(e, this._onClickBody));

@@ -2,18 +2,18 @@
      [attr.dir]="rtl ? 'rtl' : 'ltr'"
      [ngStyle]="style"
      [class]="styleClass">
-  <ng-form-field
+  <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
     [disabled]="disabled"
     [readonly]="readonly"
     [fluid]="fluid">
-    <ng-template ngTemplate="element" let-isInvalid="isInvalid">
+    <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <input
         #inputFile
         type="file"
@@ -35,19 +35,19 @@
               }
             }
           </div>
-          <ng-button
+          <pw-button
             [fluid]="true"
             [disabled]="disabled"
             (onClick)="inputFile.click()"
             [buttonProps]="chooseButtonProps"
             [label]="chooseLabel">
-          </ng-button>
+          </pw-button>
           @if (filesToShow.length != 0) {
-            <ng-button severity="danger" size="small" (onClick)="onSingleDelete()">
-              <ng-template ngTemplate="icon">
+            <pw-button severity="danger" size="small" (onClick)="onSingleDelete()">
+              <ng-template pwTemplate="icon">
                 <TrashIcon/>
               </ng-template>
-            </ng-button>
+            </pw-button>
           }
         </div>
       }
@@ -73,18 +73,18 @@
               }
               <div class="file-name">{{ item.name }}</div>
               @if (!readonly) {
-                <ng-button severity="danger" size="small" (onClick)="onMultipleDelete($event, i)">
-                  <ng-template ngTemplate="icon">
+                <pw-button severity="danger" size="small" (onClick)="onMultipleDelete($event, i)">
+                  <ng-template pwTemplate="icon">
                     <TrashIcon/>
                   </ng-template>
-                </ng-button>
+                </pw-button>
               }
             </div>
           }
         </div>
       }
     </ng-template>
-  </ng-form-field>
+  </pw-form-field>
 
   <!-- show only if no validation and ngControl provided -->
   @if (invalidFileSize) {

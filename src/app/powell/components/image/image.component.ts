@@ -11,22 +11,22 @@ import {
   ViewChild
 } from '@angular/core';
 import {AnimationEvent} from "@angular/animations";
-import {NgCssObject, NgImageLoading} from "@powell/models";
+import {CssObject, ImageLoading} from "@powell/models";
 import {SafeUrl} from "@angular/platform-browser";
 import {TemplateDirective} from "@powell/directives/template";
 import {PinchZoomComponentProperties} from "@powell/components/pinch-zoom/interfaces";
 
 @Component({
-  selector: 'ng-image',
+  selector: 'pw-image',
   templateUrl: './image.component.html',
   standalone: false
 })
 export class ImageComponent implements AfterContentInit {
   // native properties
   @Input() imageClass: string;
-  @Input() imageStyle: NgCssObject;
+  @Input() imageStyle: CssObject;
   @Input() styleClass: string;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() src: string | SafeUrl;
   @Input() srcSet: string | SafeUrl;
   @Input() sizes: string;
@@ -36,7 +36,7 @@ export class ImageComponent implements AfterContentInit {
   @Input() alt: string;
   @Input() width: string;
   @Input() height: string;
-  @Input() loading: NgImageLoading;
+  @Input() loading: ImageLoading;
   @Input() appendTo: any;
   @Input() preview: boolean = false;
   @Input() showTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';

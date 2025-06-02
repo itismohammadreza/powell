@@ -3,7 +3,7 @@ import {Subject} from 'rxjs';
 import {DynamicDialogRef} from './dynamic-dialog-ref';
 
 @Component({
-  selector: 'ng-dynamic-dialog',
+  selector: 'pw-dynamic-dialog',
   templateUrl: './dynamic-dialog.component.html',
   styles: `
     .overlay {

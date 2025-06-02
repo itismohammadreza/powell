@@ -13,7 +13,7 @@ import SunEditor, {
 } from 'suneditor/src/lib/core';
 
 @Component({
-  selector: 'ng-editor-base',
+  selector: 'pw-editor-base',
   templateUrl: './editor-base.component.html',
   standalone: false
 })

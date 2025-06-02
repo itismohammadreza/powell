@@ -2,19 +2,19 @@
      [attr.dir]="rtl ? 'rtl' : 'ltr'"
      [ngStyle]="style"
      [class]="styleClass">
-  <ng-form-field
+  <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="inputId"
     [disabled]="disabled"
     [readonly]="readonly"
     [fluid]="true">
-    <ng-template ngTemplate="element">
-      <ng-editor-base
+    <ng-template pwTemplate="element">
+      <pw-editor-base
         [options]="options"
         [editorID]="inputId"
         [content]="value"
@@ -61,5 +61,5 @@
         (onCut)="emitter('onCut',$event)"
         (onCopy)="emitter('onCopy',$event)"/>
     </ng-template>
-  </ng-form-field>
+  </pw-form-field>
 </div>

@@ -1,15 +1,15 @@
 import {Directive, HostListener, Input} from '@angular/core';
 
 @Directive({
-  selector: '[ngNumberOnly]',
+  selector: '[pwNumberOnly]',
   standalone: false
 })
 export class NumberOnlyDirective {
-  @Input() ngNumberOnly: boolean;
+  @Input() pwNumberOnly: boolean;
 
   @HostListener('keydown', ['$event'])
   onKeyDown(e: KeyboardEvent) {
-    if (this.ngNumberOnly) {
+    if (this.pwNumberOnly) {
       if (
         [46, 8, 9, 27, 13, 110, 190].indexOf(e.keyCode) !== -1 ||
         // Allow: Ctrl+A

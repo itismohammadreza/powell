@@ -24,14 +24,14 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgInputVariant, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {CssObject, InputVariant, LabelPosition, Size, Validation} from '@powell/models';
 import {ConfigService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import {$uuid} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
-  selector: 'ng-input-textarea',
+  selector: 'pw-input-textarea',
   templateUrl: './input-textarea.component.html',
   providers: [
     {
@@ -57,8 +57,8 @@ export class InputTextareaComponent implements OnInit, AfterContentInit, Control
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: LabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   @Input() inputId: string = $uuid();
   @Input() rows: number;
@@ -67,15 +67,15 @@ export class InputTextareaComponent implements OnInit, AfterContentInit, Control
   @Input() disabled: boolean;
   @Input() maxlength: number;
   @Input() placeholder: string;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
-  @Input() inputStyle: NgCssObject;
+  @Input() inputStyle: CssObject;
   @Input() inputStyleClass: string;
   // native properties
   @Input() autoResize: boolean = false;
-  @Input() variant: NgInputVariant;
+  @Input() variant: InputVariant;
   @Input() fluid: boolean;
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Output() onResize = new EventEmitter<Event | {}>();
   @Output() onInput = new EventEmitter<Event>();
   @Output() onChange = new EventEmitter<Event>();

@@ -4,7 +4,7 @@
   [previewOptions]="previewOptions"
   (onOptionChange)="onOptionChange($event)">
   <form [formGroup]="form">
-    <ng-iran-map
+    <pw-iran-map
       formControlName="c1"
       [validation]="{ required: 'error' }"
       (onChangeAsync)="onChangeAsync($event)"/>

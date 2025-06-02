@@ -24,14 +24,14 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgInputVariant, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {CssObject, InputVariant, LabelPosition, Size, Validation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {ConfigService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import {$uuid} from "@powell/primeng";
 
 @Component({
-  selector: 'ng-input-password',
+  selector: 'pw-input-password',
   templateUrl: './input-password.component.html',
   providers: [
     {
@@ -55,8 +55,8 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: LabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   // native properties
   @Input() ariaLabel: string;
@@ -74,18 +74,18 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() feedback: boolean = true;
   @Input() appendTo: any;
   @Input() toggleMask: boolean = false;
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Input() inputStyleClass: string;
   @Input() styleClass: string;
-  @Input() style: NgCssObject;
-  @Input() inputStyle: NgCssObject;
+  @Input() style: CssObject;
+  @Input() inputStyle: CssObject;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
   @Input() autocomplete: string;
   @Input() placeholder: string;
   @Input() showClear: boolean = false;
   @Input() autofocus: boolean = false;
-  @Input() variant: NgInputVariant;
+  @Input() variant: InputVariant;
   @Output() onInput = new EventEmitter<Event>();
   @Output() onChange = new EventEmitter<Event>();
   @Output() onKeyDown = new EventEmitter<KeyboardEvent>();

@@ -7,31 +7,31 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import {NgElementAdditionTemplate, NgLabelPosition, NgValidation} from "@powell/models";
+import {ElementAdditionTemplate, LabelPosition, Validation} from "@powell/models";
 import {TemplateDirective} from "@powell/directives/template";
 import {NgControl} from "@angular/forms";
 
 @Component({
-  selector: 'ng-form-field',
+  selector: 'pw-form-field',
   standalone: false,
   templateUrl: './form-field.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormFieldComponent implements AfterContentInit {
   @Input() ngControl: NgControl;
-  @Input() validation: NgValidation;
+  @Input() validation: Validation;
   @Input() hint: string;
   @Input() label: string;
   @Input() inputId: string;
   @Input() labelWidth: number;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
-  @Input() labelPosition: NgLabelPosition;
+  @Input() labelPosition: LabelPosition;
   @Input() fluid: boolean;
   @Input() reverseLabel: boolean;
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  templateMap: Partial<Record<NgElementAdditionTemplate, TemplateRef<any>>> = {};
+  templateMap: Partial<Record<ElementAdditionTemplate, TemplateRef<any>>> = {};
 
   ngAfterContentInit() {
     this.templates.forEach(item => {

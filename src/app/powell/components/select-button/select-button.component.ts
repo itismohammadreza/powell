@@ -24,14 +24,14 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {CssObject, FixLabelPosition, Size, Validation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
 import {$SelectButtonChangeEvent, $SelectButtonOptionClickEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-select-button',
+  selector: 'pw-select-button',
   templateUrl: './select-button.component.html',
   providers: [
     {
@@ -55,8 +55,8 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   @Input() id: string = $uuid();
   // native properties
@@ -68,10 +68,10 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() tabindex: number;
   @Input() multiple: boolean = false;
   @Input() allowEmpty: boolean = true;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   @Input() ariaLabelledBy: string;
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Input() disabled: boolean;
   @Input() dataKey: string;
   @Input() autofocus: boolean = false;

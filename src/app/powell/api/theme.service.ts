@@ -11,7 +11,7 @@ import {
   $updateSurfacePalette,
   $usePreset
 } from "@powell/primeng";
-import {NgConfig, NgPresetName, NgTheme, NgThemeMode} from "@powell/models";
+import {Config, PresetName, Theme, ThemeMode} from "@powell/models";
 
 type BodyClassRule = {
   condition: (value: any) => boolean;
@@ -23,14 +23,14 @@ type BodyClassRule = {
 export class ThemeService {
   private document = inject(DOCUMENT);
   private _initialized: boolean = false;
-  private _presets: Partial<Record<NgPresetName, $Preset<any>>> = {
+  private _presets: Partial<Record<PresetName, $Preset<any>>> = {
     Aura: $Aura,
     Material: $Material,
     Lara: $Lara,
     Nora: $Nora,
   };
-  private _currentPreset: NgTheme = {preset: this.presets.Aura, name: 'Aura', mode: 'system'};
-  private _darkModeIdentifier: string = 'ng-dark';
+  private _currentPreset: Theme = {preset: this.presets.Aura, name: 'Aura', mode: 'system'};
+  private _darkModeIdentifier: string = 'pw-dark';
   private _darkModeSelector: string = `.${this._darkModeIdentifier}`;
 
   init(preset: $Preset<any>) {
@@ -45,12 +45,12 @@ export class ThemeService {
     $updateSurfacePalette(palette);
   }
 
-  updateMode(mode: NgThemeMode) {
+  updateMode(mode: ThemeMode) {
     this._currentPreset.mode = mode;
     this.handleDarkModeTransition();
   }
 
-  usePreset(theme: NgTheme) {
+  usePreset(theme: Theme) {
     const {name, preset, mode} = theme;
     if (preset && !name) {
       // if theme is only preset, it will update preset palette
@@ -78,7 +78,7 @@ export class ThemeService {
     this._currentPreset = {...this._currentPreset, preset};
   }
 
-  applyConfigToDom(config: NgConfig) {
+  applyConfigToDom(config: Config) {
     this.handleBodyClasses(config);
     if ('rtl' in config && config.injectDirectionToRoot) {
       this.document.documentElement.setAttribute('dir', config.rtl ? 'rtl' : 'ltr');
@@ -122,8 +122,8 @@ export class ThemeService {
     return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
   }
 
-  private handleBodyClasses(config: NgConfig) {
-    const specialBodyClassRules: Partial<Record<keyof NgConfig, BodyClassRule[]>> = {
+  private handleBodyClasses(config: Config) {
+    const specialBodyClassRules: Partial<Record<keyof Config, BodyClassRule[]>> = {
       ripple: [
         {
           condition: (v) => v === false,
@@ -139,10 +139,10 @@ export class ThemeService {
     };
 
     for (const key in config) {
-      const value = key == 'theme' ? config.theme.name : config[key as keyof NgConfig];
+      const value = key == 'theme' ? config.theme.name : config[key as keyof Config];
       if (value === undefined || typeof value === 'object') continue;
 
-      const rules = specialBodyClassRules[key as keyof NgConfig];
+      const rules = specialBodyClassRules[key as keyof Config];
 
       if (rules && rules.length) {
         for (const rule of rules) {

@@ -12,12 +12,12 @@ import {
   Output
 } from '@angular/core';
 import {
-  NgAsyncEvent,
-  NgCssObject,
-  NgFixLabelPosition,
-  NgMapChangeEvent,
-  NgProvince,
-  NgValidation
+  AsyncEvent,
+  CssObject,
+  FixLabelPosition,
+  MapChangeEvent,
+  Province,
+  Validation
 } from "@powell/models";
 import {
   AbstractControl,
@@ -35,7 +35,7 @@ import {$uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-iran-map',
+  selector: 'pw-iran-map',
   templateUrl: './iran-map.component.html',
   providers: [
     {
@@ -61,22 +61,22 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   @Input() rtl: boolean;
   @Input() id: string = $uuid();
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
+  @Input() labelPosition: FixLabelPosition;
   @Input() followConfig: boolean;
   @Input() disabled: boolean;
   @Input() multiple: boolean = true;
-  @Input() validation: NgValidation;
+  @Input() validation: Validation;
   @Input() disabledProvinces: number | number[];
   @Input() selectionLimit: number;
   @Input() async: boolean;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   @Output() onClick = new EventEmitter<MouseEvent>();
-  @Output() onChange = new EventEmitter<NgMapChangeEvent>();
-  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<NgMapChangeEvent>>();
-  @Output() onMapReady = new EventEmitter<NgProvince[]>();
+  @Output() onChange = new EventEmitter<MapChangeEvent>();
+  @Output() onChangeAsync = new EventEmitter<AsyncEvent<MapChangeEvent>>();
+  @Output() onMapReady = new EventEmitter<Province[]>();
 
-  _provinces: NgProvince[] = [
+  _provinces: Province[] = [
     {
       id: 3,
       name: "آذربایجان شرقی",
@@ -441,7 +441,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
     this.onMapReady.emit(this._provinces)
   }
 
-  onProvinceClick(event: MouseEvent, province: NgProvince) {
+  onProvinceClick(event: MouseEvent, province: Province) {
     const target = event.target as HTMLElement;
     const selectedIds = this._provinces.filter(p => p.selected).map(p => p.id);
     if (this.multiple) {

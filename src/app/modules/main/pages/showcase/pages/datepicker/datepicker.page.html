@@ -5,20 +5,20 @@
   (onOptionChange)="onOptionChange($event)">
   <form [formGroup]="form">
     @if (render) {
-      <ng-datepicker formControlName="c1" [validation]="{ required: 'error' }" [isJalali]="getOption('isJalali')">
+      <pw-datepicker formControlName="c1" [validation]="{ required: 'error' }" [isJalali]="getOption('isJalali')">
         @if (additions.addonStart) {
-          <ng-template ngTemplate="addonStart"><i class="pi pi-prime"></i></ng-template>
+          <ng-template pwTemplate="addonStart"><i class="pi pi-prime"></i></ng-template>
         }
         @if (additions.addonEnd) {
-          <ng-template ngTemplate="addonEnd"><i class="pi pi-prime"></i></ng-template>
+          <ng-template pwTemplate="addonEnd"><i class="pi pi-prime"></i></ng-template>
         }
         @if (additions.iconStart) {
-          <ng-template ngTemplate="iconStart"><i class="pi pi-prime"></i></ng-template>
+          <ng-template pwTemplate="iconStart"><i class="pi pi-prime"></i></ng-template>
         }
         @if (additions.iconEnd) {
-          <ng-template ngTemplate="iconEnd"><i class="pi pi-prime"></i></ng-template>
+          <ng-template pwTemplate="iconEnd"><i class="pi pi-prime"></i></ng-template>
         }
-      </ng-datepicker>
+      </pw-datepicker>
     }
   </form>
 </preview>

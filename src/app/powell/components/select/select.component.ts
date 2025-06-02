@@ -25,14 +25,14 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgAsyncEvent,
-  NgCssObject,
-  NgFilterMatchMode,
-  NgInputVariant,
-  NgLabelPosition,
-  NgPosition,
-  NgSize,
-  NgValidation
+  AsyncEvent,
+  CssObject,
+  FilterMatchMode,
+  InputVariant,
+  LabelPosition,
+  Position,
+  Size,
+  Validation
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {
@@ -47,7 +47,7 @@ import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-select',
+  selector: 'pw-select',
   templateUrl: './select.component.html',
   providers: [
     {
@@ -71,8 +71,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: LabelPosition;
+  @Input() validation: Validation;
   @Input() async: boolean;
   @Input() followConfig: boolean;
   // native properties
@@ -80,8 +80,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() scrollHeight: string = '200px';
   @Input() filter: boolean = false;
   @Input() name: string;
-  @Input() style: NgCssObject;
-  @Input() panelStyle: NgCssObject;
+  @Input() style: CssObject;
+  @Input() panelStyle: CssObject;
   @Input() styleClass: string;
   @Input() panelStyleClass: string;
   @Input() readonly: boolean = false;
@@ -93,7 +93,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() loadingIcon: string;
   @Input() filterPlaceholder: string;
   @Input() filterLocale: string;
-  @Input() variant: NgInputVariant;
+  @Input() variant: InputVariant;
   @Input() inputId: string = $uuid();
   @Input() dataKey: string;
   @Input() filterBy: string;
@@ -116,15 +116,15 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
   @Input() virtualScrollOptions: $ScrollerOptions;
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Input() overlayOptions: $OverlayOptions;
   @Input() ariaFilterLabel: string;
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
-  @Input() filterMatchMode: NgFilterMatchMode = 'contains';
+  @Input() filterMatchMode: FilterMatchMode = 'contains';
   @Input() maxlength: number;
   @Input() tooltip: string;
-  @Input() tooltipPosition: NgPosition = 'right';
+  @Input() tooltipPosition: Position = 'right';
   @Input() tooltipPositionStyle: string = 'absolute';
   @Input() tooltipStyleClass: string;
   @Input() focusOnHover: boolean = true;
@@ -144,7 +144,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Output() onHide = new EventEmitter<AnimationEvent>();
   @Output() onClear = new EventEmitter<void>();
   @Output() onLazyLoad = new EventEmitter<$SelectLazyLoadEvent>();
-  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<$SelectChangeEvent>>();
+  @Output() onChangeAsync = new EventEmitter<AsyncEvent<$SelectChangeEvent>>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   ngControl: NgControl;

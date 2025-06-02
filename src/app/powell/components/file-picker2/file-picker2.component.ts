@@ -24,20 +24,20 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgButtonProps,
-  NgCssObject,
-  NgFilePickerRemoveEvent,
-  NgFilePickerSelectEvent,
-  NgFileResultType,
-  NgFixLabelPosition,
-  NgValidation
+  ButtonProps,
+  CssObject,
+  FilePickerRemoveEvent,
+  FilePickerSelectEvent,
+  FileResultType,
+  FixLabelPosition,
+  Validation
 } from '@powell/models';
 import {ConfigService, UtilsService} from "@powell/api";
 import {DestroyService} from "@core/utils";
 import {$uuid} from "@powell/primeng";
 
 @Component({
-  selector: 'ng-file-picker2',
+  selector: 'pw-file-picker2',
   templateUrl: './file-picker2.component.html',
   providers: [
     {
@@ -62,8 +62,8 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
@@ -72,23 +72,23 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() accept: string;
   @Input() maxFileSize: number;
   @Input() fileLimit: number;
-  @Input() resultType: NgFileResultType = 'file';
+  @Input() resultType: FileResultType = 'file';
   @Input() chooseLabel: string = 'انتخاب';
-  @Input() chooseButtonProps: NgButtonProps;
+  @Input() chooseButtonProps: ButtonProps;
   @Input() invalidFileSizeMessage: string = 'سایز فایل نامعتبر است.';
   @Input() invalidFileTypeMessage: string = 'فرمت نامعتبر است.';
   @Input() id: string = $uuid();
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   @Input() fluid: boolean;
-  @Output() onSelect = new EventEmitter<NgFilePickerSelectEvent>();
-  @Output() onRemove = new EventEmitter<NgFilePickerRemoveEvent>();
+  @Output() onSelect = new EventEmitter<FilePickerSelectEvent>();
+  @Output() onRemove = new EventEmitter<FilePickerRemoveEvent>();
 
   ngControl: NgControl;
   filesToShow: {display: string | ArrayBuffer, name: string}[] = [];
   filesToEmit: (string | ArrayBuffer | File)[] = [];
   _chooseLabel: string;
-  _validation: NgValidation = {};
+  _validation: Validation = {};
   invalidFileSize: boolean;
   invalidFileType: boolean;
   typeValidator: ValidatorFn = () => ({invalidType: this.invalidFileTypeMessage});

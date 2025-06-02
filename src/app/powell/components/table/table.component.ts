@@ -12,25 +12,25 @@ import {
   ViewChild
 } from '@angular/core';
 import {
-  NgAsyncEvent,
-  NgCssObject,
-  NgEmptyIcon,
-  NgSize,
-  NgTableAction,
-  NgTableActionsConfig,
-  NgTableColDef,
-  NgTableColumnResizeMode,
-  NgTableCompareSelectionBy,
-  NgTableContextMenuSelectionMode,
-  NgTableFilterDisplay,
-  NgTableFilters,
-  NgTablePaginationPosition,
-  NgTableResponsiveLayout,
-  NgTableRowExpandMode,
-  NgTableRowGroupMode,
-  NgTableSelectionMode,
-  NgTableSortMode,
-  NgTableStateStorage
+  AsyncEvent,
+  CssObject,
+  EmptyIcon,
+  Size,
+  TableAction,
+  TableActionsConfig,
+  TableColDef,
+  TableColumnResizeMode,
+  TableCompareSelectionBy,
+  TableContextMenuSelectionMode,
+  TableFilterDisplay,
+  TableFilters,
+  TablePaginationPosition,
+  TableResponsiveLayout,
+  TableRowExpandMode,
+  TableRowGroupMode,
+  TableSelectionMode,
+  TableSortMode,
+  TableStateStorage
 } from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {
@@ -57,7 +57,7 @@ import {
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-table',
+  selector: 'pw-table',
   templateUrl: './table.component.html',
   standalone: false
 })
@@ -65,16 +65,16 @@ export class TableComponent implements OnInit, AfterContentInit {
   private configService = inject(ConfigService);
 
   @Input({required: true}) items: any[];
-  @Input() filterDisplay: NgTableFilterDisplay = 'menu';
-  @Input({required: true}) colDef: NgTableColDef[];
+  @Input() filterDisplay: TableFilterDisplay = 'menu';
+  @Input({required: true}) colDef: TableColDef[];
   @Input() reorderableRows: boolean;
   @Input() selectableRows: boolean;
-  @Input() actionsConfig: NgTableActionsConfig;
+  @Input() actionsConfig: TableActionsConfig;
   @Input() rtl: boolean;
   @Input() emptyMessage: string;
   @Input() emptyIcon: string;
   @Input() emptyImageSrc: string;
-  @Input() emptyImageType: NgEmptyIcon = 'box1';
+  @Input() emptyImageType: EmptyIcon = 'box1';
   @Input() header: string;
   @Input() globalFilter: boolean;
   @Input() globalFilterPlaceholder: string;
@@ -83,15 +83,15 @@ export class TableComponent implements OnInit, AfterContentInit {
   // native properties
   @Input() frozenColumns: any[];
   @Input() frozenValue: any[];
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
-  @Input() tableStyle: NgCssObject;
+  @Input() tableStyle: CssObject;
   @Input() tableStyleClass: string;
   @Input() paginator: boolean = false;
   @Input() pageLinks: number = 5;
   @Input() rowsPerPageOptions: any[];
   @Input() alwaysShowPaginator: boolean = true;
-  @Input() paginatorPosition: NgTablePaginationPosition = 'bottom';
+  @Input() paginatorPosition: TablePaginationPosition = 'bottom';
   @Input() paginatorStyleClass: string;
   @Input() paginatorDropdownAppendTo: any;
   @Input() paginatorDropdownScrollHeight: string = '200px';
@@ -102,29 +102,29 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() showFirstLastIcon: boolean = true;
   @Input() showPageLinks: boolean = true;
   @Input() defaultSortOrder: number = 1;
-  @Input() sortMode: NgTableSortMode = 'single';
+  @Input() sortMode: TableSortMode = 'single';
   @Input() resetPageOnSort: boolean = true;
-  @Input() selectionMode: NgTableSelectionMode;
+  @Input() selectionMode: TableSelectionMode;
   @Input() selectionPageOnly: boolean = false;
   @Input() contextMenuSelection: any;
-  @Input() contextMenuSelectionMode: NgTableContextMenuSelectionMode = 'separate';
+  @Input() contextMenuSelectionMode: TableContextMenuSelectionMode = 'separate';
   @Input() dataKey: string;
   @Input() metaKeySelection: boolean = false;
   @Input() rowSelectable: any;
   @Input() rowTrackBy: Function;
   @Input() lazy: boolean = false;
   @Input() lazyLoadOnInit: boolean = true;
-  @Input() compareSelectionBy: NgTableCompareSelectionBy = 'deepEquals';
+  @Input() compareSelectionBy: TableCompareSelectionBy = 'deepEquals';
   @Input() csvSeparator: string = ',';
   @Input() exportFilename: string = 'download';
-  @Input() filters: NgTableFilters = {};
+  @Input() filters: TableFilters = {};
   @Input() globalFilterFields: string[];
   @Input() filterDelay: number = 300;
   @Input() filterLocale: string;
   @Input() expandedRowKeys: Record<string, boolean> = {};
-  @Input() rowExpandMode: NgTableRowExpandMode = 'multiple';
+  @Input() rowExpandMode: TableRowExpandMode = 'multiple';
   @Input() scrollable: boolean = false;
-  @Input() rowGroupMode: NgTableRowGroupMode;
+  @Input() rowGroupMode: TableRowGroupMode;
   @Input() scrollHeight: string;
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: number;
@@ -133,7 +133,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() frozenWidth: string;
   @Input() contextMenu: any;
   @Input() resizableColumns: boolean = false;
-  @Input() columnResizeMode: NgTableColumnResizeMode = 'fit';
+  @Input() columnResizeMode: TableColumnResizeMode = 'fit';
   @Input() reorderableColumns: boolean = false;
   @Input() loadingIcon: string;
   @Input() showLoader: boolean = true;
@@ -144,13 +144,13 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() exportFunction: Function;
   @Input() exportHeader: string;
   @Input() stateKey: string;
-  @Input() stateStorage: NgTableStateStorage = 'session';
+  @Input() stateStorage: TableStateStorage = 'session';
   @Input() groupRowsBy: any;
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Input() showGridlines: boolean = true;
   @Input() stripedRows: boolean;
   @Input() groupRowsByOrder: number = 1;
-  @Input() responsiveLayout: NgTableResponsiveLayout = 'scroll';
+  @Input() responsiveLayout: TableResponsiveLayout = 'scroll';
   @Input() breakpoint: string = '640px';
   @Input() paginatorLocale: string;
   @Input() first: number = 0;
@@ -169,7 +169,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Output() onPage = new EventEmitter<$TablePageEvent>();
   @Output() onSort = new EventEmitter<{multisortmeta: $SortMeta[]} | any>();
   @Output() onFilter = new EventEmitter<$TableFilterEvent>();
-  @Output() onLazyLoad = new EventEmitter<NgAsyncEvent<$TableLazyLoadEvent>>();
+  @Output() onLazyLoad = new EventEmitter<AsyncEvent<$TableLazyLoadEvent>>();
   @Output() onRowExpand = new EventEmitter<$TableRowExpandEvent>();
   @Output() onRowCollapse = new EventEmitter<$TableRowCollapseEvent>();
   @Output() onContextMenuSelect = new EventEmitter<$TableContextMenuSelectEvent>();
@@ -317,7 +317,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  onChangeFilterValue(event: any, filterCallback: Function, col: NgTableColDef) {
+  onChangeFilterValue(event: any, filterCallback: Function, col: TableColDef) {
     let filterValue;
     switch (col.filter.type) {
       case 'text':
@@ -353,7 +353,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  handleCellStyle(cellStyle: Function | NgCssObject, item: any) {
+  handleCellStyle(cellStyle: Function | CssObject, item: any) {
     if (typeof cellStyle == 'function')
       return cellStyle(item);
     else {
@@ -361,7 +361,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  handleCellRenderer(col: NgTableColDef, item: any) {
+  handleCellRenderer(col: TableColDef, item: any) {
     if (col.render && typeof col.render == 'function')
       return col.render(item);
     else {
@@ -369,7 +369,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  handleActionVisibility(action: NgTableAction, item: any) {
+  handleActionVisibility(action: TableAction, item: any) {
     if (typeof action.visible == 'function')
       return action.visible(item);
     else {

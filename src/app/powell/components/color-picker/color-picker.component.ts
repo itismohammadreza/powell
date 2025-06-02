@@ -20,13 +20,13 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgColorFormat, NgCssObject, NgLabelPosition, NgValidation} from '@powell/models';
+import {ColorFormat, CssObject, LabelPosition, Validation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {$ColorPickerChangeEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-color-picker',
+  selector: 'pw-color-picker',
   templateUrl: './color-picker.component.html',
   providers: [
     {
@@ -51,14 +51,14 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: LabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   // native properties
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   @Input() inline: boolean = false;
-  @Input() format: NgColorFormat = 'hex';
+  @Input() format: ColorFormat = 'hex';
   @Input() appendTo: any;
   @Input() disabled: boolean;
   @Input() tabindex: string;

@@ -1,13 +1,13 @@
-import {NgFixLabelPosition, NgLabelPosition, NgSize} from "@powell/models";
+import {FixLabelPosition, LabelPosition, Size} from "@powell/models";
 import {$Preset, $PrimeNG, $PrimeNGConfigType} from "@powell/primeng";
 
 type OmittedSignalsConfig =
   Omit<$PrimeNG, "setTranslation" | "csp" | "getTranslation" | "inputStyle" | "ripple" | "theme">
   & Omit<$PrimeNGConfigType, "theme">;
 
-export type NgPresetName = 'Aura' | 'Lara' | 'Material' | 'Nora' | 'none';
+export type PresetName = 'Aura' | 'Lara' | 'Material' | 'Nora' | 'none';
 
-export interface NgThemeOptions {
+export interface ThemeOptions {
   prefix?: string;
   cssLayer?: {
     name?: string;
@@ -15,26 +15,26 @@ export interface NgThemeOptions {
   }
 }
 
-export type NgThemeMode = 'dark' | 'light' | 'system';
+export type ThemeMode = 'dark' | 'light' | 'system';
 
-export type NgTheme = {name?: NgPresetName, preset?: $Preset<any>, mode?: NgThemeMode};
+export type Theme = {name?: PresetName, preset?: $Preset<any>, mode?: ThemeMode};
 
-export interface NgConfigChangeEvent {
-  currentConfig: NgConfig;
-  modifiedConfig: NgConfig;
+export interface ConfigChangeEvent {
+  currentConfig: Config;
+  modifiedConfig: Config;
 }
 
-export interface NgConfig extends Partial<OmittedSignalsConfig> {
+export interface Config extends Partial<OmittedSignalsConfig> {
   followConfig?: boolean;
   rtl?: boolean;
-  labelPosition?: NgLabelPosition;
-  fixLabelPosition?: NgFixLabelPosition;
+  labelPosition?: LabelPosition;
+  fixLabelPosition?: FixLabelPosition;
   showRequiredStar?: boolean;
-  inputSize?: NgSize;
-  theme?: NgTheme;
+  inputSize?: Size;
+  theme?: Theme;
   injectDirectionToRoot?: boolean;
 }
 
-export interface NgInitialConfig extends NgConfig {
-  themeOptions?: NgThemeOptions;
+export interface InitialConfig extends Config {
+  themeOptions?: ThemeOptions;
 }

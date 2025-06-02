@@ -8,25 +8,25 @@
     <nav>
       <div>
         @if (!sidebarLock) {
-          <ng-button icon="pi pi-bars" appearance="text" (click)="toggleSidebarClick()"/>
+          <pw-button icon="pi pi-bars" appearance="text" (click)="toggleSidebarClick()"/>
         }
 
         <logo/>
 
         <div>
-          <ng-button
+          <pw-button
             pTooltip="Design"
             tooltipPosition="bottom"
             severity="secondary"
             (click)="designerSidebarVisible = !designerSidebarVisible"
             icon="pi pi-cog animate-[spin_5s_linear_infinite]"/>
-          <ng-button
+          <pw-button
             icon="pi pi-sparkles"
             pTooltip="Overlay Types"
             tooltipPosition="bottom"
             (onClick)="op.toggle($event)"/>
           <a target="_blank" href="https://github.com/mohammadreza99/powell" pTooltip="Github" tooltipPosition="bottom">
-            <ng-button appearance="text" severity="secondary" icon="pi pi-github"/>
+            <pw-button appearance="text" severity="secondary" icon="pi pi-github"/>
           </a>
         </div>
       </div>
@@ -36,7 +36,7 @@
       @if (tempSidebarType === 'horizontal') {
         <p-menubar styleClass="overflow-auto [&_ul]:!flex-nowrap [&_ul]:!whitespace-nowrap" [model]="sidebarItems">
           <ng-template pTemplate="start">
-            <ng-button class="me-2" (onClick)="op.toggle($event)" icon="pi pi-sparkles"/>
+            <pw-button class="me-2" (onClick)="op.toggle($event)" icon="pi pi-sparkles"/>
             <logo/>
           </ng-template>
         </p-menubar>
@@ -61,7 +61,7 @@
   (visibleChange)="toggleSidebar($event)">
   <ng-template pTemplate="header">
     <div class="flex items-center w-full gap-2">
-      <ng-input-text
+      <pw-input-text
         class="grow"
         [fluid]="true"
         labelPosition="top"
@@ -70,7 +70,7 @@
         [placeholder]="'searchComponents' | translate"
         [(ngModel)]="searchValue"/>
       @if (!sidebarLock) {
-        <ng-button
+        <pw-button
           appearance="text"
           size="small"
           [rounded]="true"
@@ -87,7 +87,7 @@
   <p-panelMenu
     [class]="!showBackdrop ? '[&_.p-panelmenu-panel]:!bg-transparent' : ''"
     [multiple]="false"
-    [model]="sidebarItems | ngFilter:searchValue:'label'"/>
+    [model]="sidebarItems | pwFilter:searchValue:'label'"/>
 </p-drawer>
 
 <p-drawer
@@ -101,9 +101,9 @@
 </p-drawer>
 
 <p-popover #op>
-  <ng-radio [value]="tempSidebarType" [options]="sidebarTypes" (onChange)="changeSidebarType($event, true)"/>
+  <pw-radio [value]="tempSidebarType" [options]="sidebarTypes" (onChange)="changeSidebarType($event, true)"/>
 </p-popover>
 
 <p-popover #op>
-  <ng-radio [value]="tempSidebarType" [options]="sidebarTypes" (onChange)="changeSidebarType($event, true);op?.hide()"/>
+  <pw-radio [value]="tempSidebarType" [options]="sidebarTypes" (onChange)="changeSidebarType($event, true);op?.hide()"/>
 </p-popover>

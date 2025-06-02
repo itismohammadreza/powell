@@ -23,14 +23,14 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgInputVariant, NgSize, NgValidation} from "@powell/models";
+import {CssObject, FixLabelPosition, InputVariant, Size, Validation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
 import {TemplateDirective} from "@powell/directives/template";
 import {$InputOtpChangeEvent} from "@powell/primeng";
 
 @Component({
-  selector: 'ng-input-otp',
+  selector: 'pw-input-otp',
   templateUrl: './input-otp.component.html',
   providers: [
     {
@@ -54,21 +54,21 @@ export class InputOtpComponent implements OnInit, ControlValueAccessor {
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   // native properties
   @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;
-  @Input() variant: NgInputVariant;
+  @Input() variant: InputVariant;
   @Input() tabindex: number = null;
   @Input() length: number = 4;
   @Input() styleClass: string
   @Input() mask: boolean = false;
   @Input() integerOnly: boolean = false;
   @Input() autofocus: boolean = false;
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Output() onChange = new EventEmitter<$InputOtpChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();

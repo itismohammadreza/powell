@@ -2,18 +2,18 @@
      [attr.dir]="rtl ? 'rtl' : 'ltr'"
      [ngStyle]="style"
      [class]="styleClass">
-  <ng-form-field
+  <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
     [disabled]="disabled"
     [readonly]="readonly"
     [fluid]="true">
-    <ng-template ngTemplate="element" let-isInvalid="isInvalid">
+    <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-listbox
         [(ngModel)]="value"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
@@ -82,5 +82,5 @@
         }
       </p-listbox>
     </ng-template>
-  </ng-form-field>
+  </pw-form-field>
 </div>

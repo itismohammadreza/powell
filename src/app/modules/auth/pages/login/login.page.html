@@ -3,7 +3,7 @@
     <logo [disableNavigation]="true"/>
   </div>
   <h3 class="text-center">ورود</h3>
-  <ng-input-text
+  <pw-input-text
     formControlName="email"
     [fluid]="true"
     labelPosition="side"
@@ -13,11 +13,11 @@
       required:'این فیلد الزامیست.',
       email:'ایمیل نامعتبر است.'
     }">
-    <ng-template ngTemplate="iconStart">
+    <ng-template pwTemplate="iconStart">
       <i class="pi pi-user"></i>
     </ng-template>
-  </ng-input-text>
-  <ng-input-text
+  </pw-input-text>
+  <pw-input-text
     type="password"
     [fluid]="true"
     [showRequiredStar]="false"
@@ -25,19 +25,19 @@
     formControlName="password"
     placeholder="رمز عبور"
     [validation]="{'required':'این فیلد الزامیست.'}">
-    <ng-template ngTemplate="iconStart">
+    <ng-template pwTemplate="iconStart">
       <i class="pi pi-key"></i>
     </ng-template>
-  </ng-input-text>
-  <ng-checkbox formControlName="rememberMe" label="مرا بخاطر بسپار"/>
-  <ng-button
+  </pw-input-text>
+  <pw-checkbox formControlName="rememberMe" label="مرا بخاطر بسپار"/>
+  <pw-button
     [async]="true"
     [fluid]="true"
     type="submit"
     label="ورود"
     (onClickAsync)="onSubmit($event)"/>
   <small class="flex items-center justify-center gap-2 text-stone-600">
-    <ng-button
+    <pw-button
       class="align-middle"
       size="small"
       appearance="link"

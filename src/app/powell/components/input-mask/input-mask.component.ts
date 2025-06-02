@@ -24,14 +24,14 @@ import {
   NgControl,
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgInputType, NgInputVariant, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {CssObject, InputType, InputVariant, LabelPosition, Size, Validation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {TemplateDirective} from "@powell/directives/template";
 import {$uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-input-mask',
+  selector: 'pw-input-mask',
   templateUrl: './input-mask.component.html',
   providers: [
     {
@@ -55,24 +55,24 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: LabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   @Input() fluid: boolean;
   // native properties
-  @Input() type: NgInputType = 'text';
+  @Input() type: InputType = 'text';
   @Input() slotChar: string = '_';
   @Input() autoClear: boolean = true;
   @Input() showClear: boolean = false;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() inputId: string = $uuid();
   @Input() styleClass: string;
   @Input() placeholder: string;
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Input() maxlength: number;
   @Input() tabindex: string;
   @Input() title: string;
-  @Input() variant: NgInputVariant;
+  @Input() variant: InputVariant;
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() ariaRequired: boolean = false;

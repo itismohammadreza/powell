@@ -2,17 +2,17 @@
      [attr.dir]="rtl ? 'rtl' : 'ltr'"
      [ngStyle]="style"
      [class]="styleClass">
-  <ng-form-field
+  <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
     [disabled]="disabled"
     [readonly]="readonly">
-    <ng-template ngTemplate="element">
+    <ng-template pwTemplate="element">
       <p-knob
         [(ngModel)]="value"
         [attr.id]="id"
@@ -37,5 +37,5 @@
         (onChange)="_onChange($event)">
       </p-knob>
     </ng-template>
-  </ng-form-field>
+  </pw-form-field>
 </div>

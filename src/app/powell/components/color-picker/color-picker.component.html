@@ -5,16 +5,16 @@
      [ngClass]="{
      'inline': inline
     }">
-  <ng-form-field
+  <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="inputId"
     [disabled]="disabled">
-    <ng-template ngTemplate="element" let-isInvalid="isInvalid">
+    <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-colorPicker
         [(ngModel)]="value"
         [style]="style"
@@ -34,5 +34,5 @@
         (onShow)="emitter('onShow',$event)"
         (onHide)="emitter('onHide',$event)"/>
     </ng-template>
-  </ng-form-field>
+  </pw-form-field>
 </div>

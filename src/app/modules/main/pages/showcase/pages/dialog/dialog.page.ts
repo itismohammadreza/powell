@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NgDialogOptions} from "@powell/models";
+import {DialogOptions} from "@powell/models";
 import {ButtonModule} from "@powell/components/button";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
@@ -28,7 +28,7 @@ export class DialogPage extends PreviewBase {
     {field: 'content', value: 'Some content inside dialog.'},
   ];
 
-  dialog: NgDialogOptions = {
+  dialog: DialogOptions = {
     header: 'Dialog',
     draggable: false,
     resizable: false,

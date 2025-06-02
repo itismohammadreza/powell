@@ -1,12 +1,12 @@
 import {Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
 import {
-  NgAsyncEvent,
-  NgDialogFormComponent,
-  NgDialogFormConfig,
-  NgDialogFormOptions,
-  NgDialogFormResult,
-  NgValidation
+  AsyncEvent,
+  DialogFormComponentName,
+  DialogFormConfig,
+  DialogFormOptions,
+  DialogFormResult,
+  Validation
 } from "@powell/models";
 import {$Dialog, $DomHandler} from "@powell/primeng";
 import {InputTextComponent} from "@powell/components/input-text";
@@ -45,7 +45,7 @@ import {takeUntil} from "rxjs";
 import {DestroyService} from "@core/utils";
 
 @Component({
-  selector: 'ng-dialog-form',
+  selector: 'pw-dialog-form',
   templateUrl: './dialog-form.component.html',
   providers: [DestroyService],
   standalone: false
@@ -90,14 +90,14 @@ export class DialogFormComponent {
 
   form: FormGroup = new FormGroup({});
   visible: boolean;
-  _config: NgDialogFormConfig[];
-  _options: NgDialogFormOptions = {};
-  onSubmit = new EventEmitter<NgDialogFormResult>();
+  _config: DialogFormConfig[];
+  _options: DialogFormOptions = {};
+  onSubmit = new EventEmitter<DialogFormResult>();
   onClose = new EventEmitter<void>();
   disableReject: boolean;
   configTimeout: any;
 
-  set config(value: NgDialogFormConfig[]) {
+  set config(value: DialogFormConfig[]) {
     this._config = value;
     for (const config of this._config) {
       if (config.key) {
@@ -109,7 +109,7 @@ export class DialogFormComponent {
     }
   }
 
-  set options(v: NgDialogFormOptions) {
+  set options(v: DialogFormOptions) {
     this._options = v;
     if (this._options.formValidator) {
       this.form.setValidators(this.options.formValidator.validator);
@@ -142,8 +142,8 @@ export class DialogFormComponent {
     this.destroy$.next();
   }
 
-  convertToComponentValidation(config: NgDialogFormConfig) {
-    const errObj: NgValidation = {};
+  convertToComponentValidation(config: DialogFormConfig) {
+    const errObj: Validation = {};
     if (!config.validations) {
       return errObj;
     }
@@ -155,10 +155,10 @@ export class DialogFormComponent {
         errObj[e.type] = e.message;
       }
     }
-    return errObj as NgValidation;
+    return errObj as Validation;
   }
 
-  handleConfigValidations(config: NgDialogFormConfig) {
+  handleConfigValidations(config: DialogFormConfig) {
     const control = this.form.get(config.key);
     if (config.validations) {
       const validators: ValidatorFn[] = [];
@@ -170,7 +170,7 @@ export class DialogFormComponent {
     }
   }
 
-  handleConfigVisibility(config: NgDialogFormConfig) {
+  handleConfigVisibility(config: DialogFormConfig) {
     let hidden = false;
     if (config.hidden == undefined) {
       return hidden;
@@ -191,7 +191,7 @@ export class DialogFormComponent {
     return hidden;
   }
 
-  handleConfigDisable(config: NgDialogFormConfig) {
+  handleConfigDisable(config: DialogFormConfig) {
     let disabled = false;
     if (config.disabled == undefined) {
       return disabled;
@@ -246,7 +246,7 @@ export class DialogFormComponent {
     this.handleEvent('onShow');
   }
 
-  onSubmitClick({loadingCallback}: NgAsyncEvent<MouseEvent>) {
+  onSubmitClick({loadingCallback}: AsyncEvent<MouseEvent>) {
     this.form.markAllAsTouched();
     if (this.form.invalid) {
       loadingCallback();
@@ -269,8 +269,8 @@ export class DialogFormComponent {
     this.options[event]?.(args);
   }
 
-  applyConfigToComponent(config: NgDialogFormConfig) {
-    const componentsMap: Partial<Record<NgDialogFormComponent, any>> = {
+  applyConfigToComponent(config: DialogFormConfig) {
+    const componentsMap: Partial<Record<DialogFormComponentName, any>> = {
       'auto-complete': this.autoCompleteComponent,
       'button': this.buttonComponent,
       'cascade-select': this.cascadeSelectComponent,

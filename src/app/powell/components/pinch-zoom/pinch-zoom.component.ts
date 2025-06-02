@@ -21,7 +21,7 @@ export const _defaultComponentProperties: PinchZoomComponentProperties = {
 };
 
 @Component({
-  selector: 'ng-pinch-zoom',
+  selector: 'pw-pinch-zoom',
   templateUrl: './pinch-zoom.component.html',
   standalone: false,
 })

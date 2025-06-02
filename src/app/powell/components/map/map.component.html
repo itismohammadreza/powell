@@ -5,27 +5,27 @@
      [ngClass]="{
      'clearable': showClear
     }">
-  <ng-form-field
+  <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
     [disabled]="disabled"
     [readonly]="readonly"
     [fluid]="true">
-    <ng-template ngTemplate="element">
+    <ng-template pwTemplate="element">
       <div>
         @if (!readonly && showClear) {
-          <ng-button
+          <pw-button
             class="clear-map-btn"
             [pTooltip]="clearTooltip"
             [icon]="clearIcon"
             size="small"
             (click)="clearMap()">
-            <ng-template ngTemplate="icon">
+            <ng-template pwTemplate="icon">
               @if (!clearIcon && !templateMap.clearicon) {
                 <TrashIcon/>
               }
@@ -33,7 +33,7 @@
                 <ng-template *ngTemplateOutlet="templateMap.clearicon"/>
               }
             </ng-template>
-          </ng-button>
+          </pw-button>
         }
         <div
           leaflet
@@ -70,5 +70,5 @@
         ></div>
       </div>
     </ng-template>
-  </ng-form-field>
+  </pw-form-field>
 </div>

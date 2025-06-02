@@ -24,7 +24,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgInputVariant, NgLabelPosition, NgSize, NgValidation} from '@powell/models';
+import {CssObject, InputVariant, LabelPosition, Size, Validation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
@@ -38,7 +38,7 @@ import {
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-cascade-select',
+  selector: 'pw-cascade-select',
   templateUrl: './cascade-select.component.html',
   providers: [
     {
@@ -62,8 +62,8 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: LabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   // native properties
   @Input() id: string;
@@ -77,7 +77,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() optionDisabled: any;
   @Input() autoOptionFocus: boolean = true;
   @Input() styleClass: string;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() options: any[];
   @Input() optionLabel: string;
   @Input() optionValue: string;
@@ -86,7 +86,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() placeholder: string;
   @Input() dataKey: string;
   @Input() inputId: string = $uuid();
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Input() tabindex: number;
   @Input() ariaLabelledBy: string;
   @Input() inputLabel: string;
@@ -95,10 +95,10 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() disabled: boolean;
   @Input() showClear: boolean = false;
   @Input() panelStyleClass: string;
-  @Input() panelStyle: NgCssObject;
+  @Input() panelStyle: CssObject;
   @Input() overlayOptions: $OverlayOptions;
   @Input() autofocus: boolean = false;
-  @Input() variant: NgInputVariant;
+  @Input() variant: InputVariant;
   @Input() loading: false;
   @Input() loadingIcon: string;
   @Input() fluid: boolean;

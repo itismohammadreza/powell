@@ -2,17 +2,17 @@
      [attr.dir]="rtl ? 'rtl' : 'ltr'"
      [ngStyle]="style"
      [class]="styleClass">
-  <ng-form-field
+  <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="inputId"
     [disabled]="disabled"
     [readonly]="readonly">
-    <ng-template ngTemplate="element" let-isInvalid="isInvalid">
+    <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <div class="toggle-switch-inner-wrapper">
         <p-toggleSwitch
           [(ngModel)]="value"
@@ -43,5 +43,5 @@
         }
       </div>
     </ng-template>
-  </ng-form-field>
+  </pw-form-field>
 </div>

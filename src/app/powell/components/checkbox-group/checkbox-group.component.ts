@@ -25,13 +25,13 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgCheckboxGroupChangeEvent,
-  NgCssObject,
-  NgFixLabelPosition,
-  NgInputVariant,
-  NgOrientation,
-  NgSize,
-  NgValidation
+  CheckboxGroupChangeEvent,
+  CssObject,
+  FixLabelPosition,
+  InputVariant,
+  Orientation,
+  Size,
+  Validation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {$CheckboxChangeEvent, $uuid} from "@powell/primeng";
@@ -39,7 +39,7 @@ import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-checkbox-group',
+  selector: 'pw-checkbox-group',
   templateUrl: './checkbox-group.component.html',
   providers: [
     {
@@ -63,14 +63,14 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';
   @Input() optionDisabled: string = 'disabled';
-  @Input() orientation: NgOrientation = 'vertical';
+  @Input() orientation: Orientation = 'vertical';
   @Input() groupName: string = $uuid();
   @Input() id: string = $uuid();
 
@@ -88,16 +88,16 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
 
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
-  @Input() style: NgCssObject;
-  @Input() inputStyle: NgCssObject;
+  @Input() style: CssObject;
+  @Input() inputStyle: CssObject;
   @Input() styleClass: string;
   @Input() inputClass: string;
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Input() checkboxIcon: string;
   @Input() readonly: boolean;
   @Input() autofocus: boolean = false;
-  @Input() variant: NgInputVariant;
-  @Output() onChange = new EventEmitter<NgCheckboxGroupChangeEvent>();
+  @Input() variant: InputVariant;
+  @Output() onChange = new EventEmitter<CheckboxGroupChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;

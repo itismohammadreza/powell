@@ -25,14 +25,14 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgChipDisplayMode,
-  NgCssObject,
-  NgFilterMatchMode,
-  NgInputVariant,
-  NgLabelPosition,
-  NgPosition,
-  NgSize,
-  NgValidation
+  ChipDisplayMode,
+  CssObject,
+  FilterMatchMode,
+  InputVariant,
+  LabelPosition,
+  Position,
+  Size,
+  Validation
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {
@@ -51,7 +51,7 @@ import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-multi-select',
+  selector: 'pw-multi-select',
   templateUrl: './multi-select.component.html',
   providers: [
     {
@@ -75,15 +75,15 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: LabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   // native properties
   @Input() id: string;
   @Input() ariaLabel: string;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
-  @Input() panelStyle: NgCssObject;
+  @Input() panelStyle: CssObject;
   @Input() panelStyleClass: string;
   @Input() inputId: string = $uuid();
   @Input() disabled: boolean;
@@ -95,7 +95,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() filterLocale: string;
   @Input() overlayVisible: boolean;
   @Input() tabindex: number;
-  @Input() variant: NgInputVariant;
+  @Input() variant: InputVariant;
   @Input() appendTo: any;
   @Input() dataKey: string;
   @Input() name: string;
@@ -126,15 +126,15 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() virtualScrollOptions: $ScrollerOptions;
   @Input() overlayOptions: $OverlayOptions;
   @Input() ariaFilterLabel: string;
-  @Input() filterMatchMode: NgFilterMatchMode = 'contains';
+  @Input() filterMatchMode: FilterMatchMode = 'contains';
   @Input() tooltip: string;
-  @Input() tooltipPosition: NgPosition = 'right';
+  @Input() tooltipPosition: Position = 'right';
   @Input() tooltipPositionStyle: string = 'absolute';
   @Input() tooltipStyleClass: string;
   @Input() autofocusFilter: boolean = true;
-  @Input() display: NgChipDisplayMode = 'comma';
+  @Input() display: ChipDisplayMode = 'comma';
   @Input() autocomplete: string = 'off';
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Input() showClear: boolean;
   @Input() autofocus: boolean;
   @Input() placeholder: string;

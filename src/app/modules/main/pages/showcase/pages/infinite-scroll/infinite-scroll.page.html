@@ -2,12 +2,12 @@
   class="[&_.p-panel-content]:overflow-scroll [&_.p-panel-content]:max-w-[500px]"
   component="InfiniteScroll"
   description="InfiniteScroll is a container to implement infinitely loading data.">
-  <ng-infinite-scroll [data]="list" (scrolled)="onScroll($event)">
-    <ng-template ngTemplate="content" let-item let-i="index">
+  <pw-infinite-scroll [data]="list" (scrolled)="onScroll($event)">
+    <ng-template pwTemplate="content" let-item let-i="index">
       <p>{{ i + 1 }} - {{ item }}</p>
     </ng-template>
-    <ng-template ngTemplate="loading">
+    <ng-template pwTemplate="loading">
       <i class="pi pi-spinner pi-spin h3"></i>
     </ng-template>
-  </ng-infinite-scroll>
+  </pw-infinite-scroll>
 </preview>

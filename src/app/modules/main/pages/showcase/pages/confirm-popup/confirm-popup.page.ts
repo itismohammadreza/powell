@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NgConfirmOptions} from "@powell/models";
+import {ConfirmOptions} from "@powell/models";
 import {ButtonModule} from "@powell/components/button";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
@@ -32,7 +32,7 @@ export class ConfirmPopupPage extends PreviewBase {
     {field: 'rtl', value: this.config.rtl},
   ];
 
-  confirmPopup: NgConfirmOptions = {
+  confirmPopup: ConfirmOptions = {
     message: 'Are you sure you want to proceed?',
     icon: 'pi pi-exclamation-triangle',
     acceptLabel: 'Yes',

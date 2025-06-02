@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {UtilsService} from "@powell/api";
 
 @Pipe({
-  name: 'ngToBase64',
+  name: 'pwToBase64',
   standalone: false
 })
 export class ToBase64Pipe implements PipeTransform {

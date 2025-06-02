@@ -24,14 +24,14 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgAsyncEvent, NgCssObject, NgInputVariant, NgSize, NgValidation} from '@powell/models';
+import {AsyncEvent, CssObject, InputVariant, Size, Validation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {$CheckboxChangeEvent, $uuid} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-checkbox',
+  selector: 'pw-checkbox',
   templateUrl: './checkbox.component.html',
   providers: [
     {
@@ -54,7 +54,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() validation: NgValidation;
+  @Input() validation: Validation;
   @Input() onLabel: string;
   @Input() offLabel: string;
   @Input() async: boolean;
@@ -68,22 +68,22 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   @Input() ariaLabel: string;
   @Input() tabindex: number;
   @Input() inputId: string = $uuid();
-  @Input() style: NgCssObject;
-  @Input() inputStyle: NgCssObject;
+  @Input() style: CssObject;
+  @Input() inputStyle: CssObject;
   @Input() styleClass: string;
   @Input() inputClass: string;
   @Input() indeterminate: boolean;
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Input() checkboxIcon: string;
   @Input() readonly: boolean = false;
   @Input() autofocus: boolean = false;
   @Input() trueValue: any = true;
   @Input() falseValue: any = false;
-  @Input() variant: NgInputVariant;
+  @Input() variant: InputVariant;
   @Output() onChange = new EventEmitter<$CheckboxChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
-  @Output() onChangeAsync = new EventEmitter<NgAsyncEvent<$CheckboxChangeEvent>>();
+  @Output() onChangeAsync = new EventEmitter<AsyncEvent<$CheckboxChangeEvent>>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   loading: boolean;

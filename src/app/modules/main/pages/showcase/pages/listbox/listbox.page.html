@@ -4,6 +4,6 @@
   [previewOptions]="previewOptions"
   (onOptionChange)="onOptionChange($event)">
   <form [formGroup]="form">
-    <ng-listbox formControlName="c1" [options]="options" [validation]="{ required: 'error' }"/>
+    <pw-listbox formControlName="c1" [options]="options" [validation]="{ required: 'error' }"/>
   </form>
 </preview>

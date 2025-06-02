@@ -26,12 +26,12 @@ import {
 import {takeUntil} from "rxjs";
 import {TemplateDirective} from '@powell/directives/template';
 import {
-  NgCssObject,
-  NgFixLabelPosition,
-  NgTreeFilterMode,
-  NgTreeLoadingMode,
-  NgTreeSelectionMode,
-  NgValidation
+  CssObject,
+  FixLabelPosition,
+  TreeFilterMode,
+  TreeLoadingMode,
+  TreeSelectionMode,
+  Validation
 } from '@powell/models';
 import {
   $ScrollerOptions,
@@ -53,7 +53,7 @@ import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-tree',
+  selector: 'pw-tree',
   templateUrl: './tree.component.html',
   providers: [
     {
@@ -76,16 +76,16 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   @Input() id: string = $uuid();
   // native properties
   @Input() items: any[];
-  @Input() selectionMode: NgTreeSelectionMode;
-  @Input() loadingMode: NgTreeLoadingMode = 'mask';
+  @Input() selectionMode: TreeSelectionMode;
+  @Input() loadingMode: TreeLoadingMode = 'mask';
   @Input() selection: any;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   @Input() contextMenu: any;
   @Input() draggableScope: any;
@@ -104,7 +104,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() validateDrop: boolean = false;
   @Input() filter: boolean = false;
   @Input() filterBy: string = 'label';
-  @Input() filterMode: NgTreeFilterMode = 'lenient';
+  @Input() filterMode: TreeFilterMode = 'lenient';
   @Input() filterPlaceholder: string;
   @Input() filteredNodes: $TreeNode<any>[];
   @Input() filterLocale: string;

@@ -24,14 +24,14 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgPosition, NgSize, NgValidation} from '@powell/models';
+import {CssObject, FixLabelPosition, Position, Size, Validation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {$ToggleButtonChangeEvent, $uuid} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-toggle-button',
+  selector: 'pw-toggle-button',
   templateUrl: './toggle-button.component.html',
   providers: [
     {
@@ -55,8 +55,8 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   // native properties
   @Input() onLabel: string;
@@ -66,12 +66,12 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() disabled: boolean;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   @Input() inputId: string = $uuid();
   @Input() tabindex: number;
-  @Input() size: NgSize;
-  @Input() iconPos: Exclude<NgPosition, 'top' | 'bottom'> = 'left';
+  @Input() size: Size;
+  @Input() iconPos: Exclude<Position, 'top' | 'bottom'> = 'left';
   @Input() autofocus: boolean = false;
   @Input() allowEmpty: boolean = false;
   @Output() onChange = new EventEmitter<$ToggleButtonChangeEvent>();

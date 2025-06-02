@@ -24,14 +24,14 @@ import {
   $uuid
 } from "@powell/primeng";
 import {
-  NgButtonProps,
-  NgConfirmOptions,
-  NgDialogFormConfig,
-  NgDialogFormOptions,
-  NgDialogFormResult,
-  NgDialogOptions,
-  NgHistoryState,
-  NgToastOptions
+  ButtonProps,
+  ConfirmOptions,
+  DialogFormConfig,
+  DialogFormOptions,
+  DialogFormResult,
+  DialogOptions,
+  HistoryState,
+  ToastOptions
 } from '@powell/models';
 
 @Injectable()
@@ -51,8 +51,8 @@ export class OverlayService {
   private dialogCmpRef: ComponentRef<DialogComponent>;
   private dialogFormCmpRef: ComponentRef<DialogFormComponent>;
   private dynamicDialogCmpRef: ComponentRef<DynamicDialogComponent>;
-  private states: NgHistoryState[] = [];
-  private stateChangeSubject = new Subject<NgHistoryState>();
+  private states: HistoryState[] = [];
+  private stateChangeSubject = new Subject<HistoryState>();
 
   constructor() {
     this.location.onPopState((e) => {
@@ -115,7 +115,7 @@ export class OverlayService {
     return dialogRef;
   }
 
-  showToast(options: NgToastOptions) {
+  showToast(options: ToastOptions) {
     if (!this.bodyContains(this.toastCmpRef)) {
       this.toastCmpRef = this.addToBody($Toast);
     }
@@ -150,7 +150,7 @@ export class OverlayService {
     });
   }
 
-  showConfirmPopup(options: NgConfirmOptions) {
+  showConfirmPopup(options: ConfirmOptions) {
     if (!this.bodyContains(this.confirmPopupCmpRef)) {
       this.confirmPopupCmpRef = this.addToBody($ConfirmPopup);
     }
@@ -166,7 +166,7 @@ export class OverlayService {
     }
     instance.styleClass = `confirm-popup-wrapper ${options.styleClass ?? ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`;
     return new Promise<boolean>((resolve) => {
-      const state: NgHistoryState = {component: 'confirmPopup'};
+      const state: HistoryState = {component: 'confirmPopup'};
       this.pushState(state)
       this.confirmationService.confirm({
         ...confirmation,
@@ -190,7 +190,7 @@ export class OverlayService {
     });
   }
 
-  showConfirmDialog(options: NgConfirmOptions) {
+  showConfirmDialog(options: ConfirmOptions) {
     if (!this.bodyContains(this.confirmCmpRef)) {
       this.confirmCmpRef = this.addToBody($ConfirmDialog);
     }
@@ -208,7 +208,7 @@ export class OverlayService {
     instance.appendTo = null;
     instance.styleClass = `confirm-dialog-wrapper ${options.styleClass ?? ''} ${!options.header && !options.closable ? 'header-less' : ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`;
     return new Promise<boolean>((resolve) => {
-      const state: NgHistoryState = {component: 'confirmDialog'};
+      const state: HistoryState = {component: 'confirmDialog'};
       let timeout: any;
       this.pushState(state)
       this.confirmationService.confirm({
@@ -244,7 +244,7 @@ export class OverlayService {
     })
   }
 
-  showDialog(options: NgDialogOptions) {
+  showDialog(options: DialogOptions) {
     if (!this.bodyContains(this.dialogCmpRef)) {
       this.dialogCmpRef = this.addToBody(DialogComponent);
     }
@@ -256,7 +256,7 @@ export class OverlayService {
       maximizeButtonProps: this.mapToButtonProps(options.maximizeButtonProps),
     }
     instance.show();
-    const state: NgHistoryState = {component: 'dialog'};
+    const state: HistoryState = {component: 'dialog'};
     this.pushState(state);
     return new Promise<void>((resolve) => {
       const subscription = instance.onClose.subscribe(() => {
@@ -273,7 +273,7 @@ export class OverlayService {
     });
   }
 
-  showDialogForm(config: NgDialogFormConfig[], options: NgDialogFormOptions = {}) {
+  showDialogForm(config: DialogFormConfig[], options: DialogFormOptions = {}) {
     if (!this.bodyContains(this.dialogFormCmpRef)) {
       this.dialogFormCmpRef = this.addToBody(DialogFormComponent);
     }
@@ -298,9 +298,9 @@ export class OverlayService {
       })
     };
     instance.show();
-    const state: NgHistoryState = {component: 'dialogForm'}
+    const state: HistoryState = {component: 'dialogForm'}
     this.pushState(state);
-    return new Observable<NgDialogFormResult>((resolve) => {
+    return new Observable<DialogFormResult>((resolve) => {
       const submitSubscription = instance.onSubmit.subscribe(res => {
         resolve.next(res);
       });
@@ -358,7 +358,7 @@ export class OverlayService {
     return this.document.body.contains(componentRef?.location.nativeElement);
   }
 
-  private mapToButtonProps(props: NgButtonProps = {}) {
+  private mapToButtonProps(props: ButtonProps = {}) {
     return {
       ...props,
       severity: props.severity ?? 'secondary',
@@ -369,7 +369,7 @@ export class OverlayService {
     } as $ButtonProps;
   }
 
-  pushState(state: NgHistoryState) {
+  pushState(state: HistoryState) {
     if (!state.key) {
       state.key = $uuid();
     }
@@ -385,7 +385,7 @@ export class OverlayService {
     return this.stateChangeSubject.asObservable()
   }
 
-  isPopped(state: NgHistoryState) {
+  isPopped(state: HistoryState) {
     return this.states.findIndex(s => s.key === state.key && s.component === state.component) === -1;
   }
 }

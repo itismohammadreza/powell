@@ -1,7 +1,7 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
-  name: 'ngDots',
+  name: 'pwDots',
   standalone: false
 })
 export class DotsPipe implements PipeTransform {

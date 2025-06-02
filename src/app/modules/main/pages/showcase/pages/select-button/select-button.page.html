@@ -5,7 +5,7 @@
   (onOptionChange)="onOptionChange($event)">
   <form [formGroup]="form">
     @if (render) {
-      <ng-select-button formControlName="c1" [validation]="{ required: 'error' }" [options]="options"/>
+      <pw-select-button formControlName="c1" [validation]="{ required: 'error' }" [options]="options"/>
     }
   </form>
 </preview>

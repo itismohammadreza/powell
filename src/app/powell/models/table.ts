@@ -1,27 +1,27 @@
 import {
-  NgAsyncEvent,
-  NgButtonAppearance,
-  NgCssObject,
-  NgFilterMatchMode,
-  NgPosition,
-  NgSeverity,
-  NgSize
+  AsyncEvent,
+  ButtonAppearance,
+  CssObject,
+  FilterMatchMode,
+  Position,
+  Severity,
+  Size
 } from '@powell/models';
 import {$FilterMetadata} from "@powell/primeng";
 
-export type NgTableRendererType = 'text' | 'ng-template';
-export type NgTableFilterDisplay = 'row' | 'menu';
-export type NgTableResponsiveLayout = 'stack' | 'scroll';
-export type NgTablePaginationPosition = 'bottom' | 'top' | 'both';
-export type NgTableScrollDirection = 'vertical' | 'horizontal' | 'both';
-export type NgTableSortMode = 'single' | 'multiple';
-export type NgTableRowExpandMode = 'single' | 'multiple';
-export type NgTableRowGroupMode = 'subheader' | 'rowspan';
-export type NgTableContextMenuSelectionMode = 'separate' | 'joint';
-export type NgTableCompareSelectionBy = 'equals' | 'deepEquals';
-export type NgTableColumnResizeMode = 'expand' | 'fit';
-export type NgTableStateStorage = 'session' | 'local';
-export type NgTableFilterType =
+export type TableRendererType = 'text' | 'ng-template';
+export type TableFilterDisplay = 'row' | 'menu';
+export type TableResponsiveLayout = 'stack' | 'scroll';
+export type TablePaginationPosition = 'bottom' | 'top' | 'both';
+export type TableScrollDirection = 'vertical' | 'horizontal' | 'both';
+export type TableSortMode = 'single' | 'multiple';
+export type TableRowExpandMode = 'single' | 'multiple';
+export type TableRowGroupMode = 'subheader' | 'rowspan';
+export type TableContextMenuSelectionMode = 'separate' | 'joint';
+export type TableCompareSelectionBy = 'equals' | 'deepEquals';
+export type TableColumnResizeMode = 'expand' | 'fit';
+export type TableStateStorage = 'session' | 'local';
+export type TableFilterType =
   | 'text'
   | 'multi-select'
   | 'select'
@@ -30,10 +30,10 @@ export type NgTableFilterType =
   | 'slider'
   | 'numeric';
 
-export type NgTableFilters = Record<string, $FilterMetadata | $FilterMetadata[]>;
+export type TableFilters = Record<string, $FilterMetadata | $FilterMetadata[]>;
 
-export interface NgTableFilter {
-  type?: NgTableFilterType;
+export interface TableFilter {
+  type?: TableFilterType;
   dateFormat?: any;
   header?: string;
   min?: number;
@@ -44,43 +44,43 @@ export interface NgTableFilter {
   placeholder?: string;
   range?: boolean;
   sliderValue?: [number, number] | number; // filled in table component when type is slider
-  matchMode?: NgFilterMatchMode; // only works in local mode
+  matchMode?: FilterMatchMode; // only works in local mode
   rowFilterShowMenu?: boolean;
 }
 
-export interface NgTableColDef<T = any> {
+export interface TableColDef<T = any> {
   header?: string;
   field?: string;
   width?: string;
   sort?: boolean;
-  filter?: NgTableFilter;
-  render?: NgTableRendererType | ((item: T) => string);
+  filter?: TableFilter;
+  render?: TableRendererType | ((item: T) => string);
   cellStyleClass?: string | ((item: T) => string);
-  cellStyle?: NgCssObject | ((item: T) => any);
+  cellStyle?: CssObject | ((item: T) => any);
   visible?: boolean;
 }
 
-export interface NgTableActionsConfig<T = any> {
+export interface TableActionsConfig<T = any> {
   header: string;
   inSameColumn: boolean;
-  actions: NgTableAction<T>[]
+  actions: TableAction<T>[]
 }
 
-export interface NgTableAction<T = any> {
+export interface TableAction<T = any> {
   header?: string;
   tooltip?: string;
-  tooltipPosition?: NgPosition;
+  tooltipPosition?: Position;
   icon?: string;
   label?: string;
-  severity?: NgSeverity;
+  severity?: Severity;
   styleClass?: string;
-  appearance?: NgButtonAppearance;
-  iconPos?: NgPosition;
+  appearance?: ButtonAppearance;
+  iconPos?: Position;
   rounded?: boolean;
   full?: boolean;
   async?: boolean;
-  size?: NgSize;
+  size?: Size;
   visible?: boolean | ((item: T) => boolean);
   onClick?: (item: T, index: number, event: Event) => any;
-  onClickAsync?: (item: T, index: number, event: NgAsyncEvent<MouseEvent>) => any;
+  onClickAsync?: (item: T, index: number, event: AsyncEvent<MouseEvent>) => any;
 }

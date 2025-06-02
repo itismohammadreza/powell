@@ -5,7 +5,7 @@
   (onOptionChange)="onOptionChange($event)">
   <form [formGroup]="form">
     @if (render) {
-      <ng-dual-label-switch
+      <pw-dual-label-switch
         formControlName="c1"
         [validation]="{ required: 'error' }"
         labelLeft="Left"

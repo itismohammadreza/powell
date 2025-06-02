@@ -2,7 +2,7 @@ import {inject, Pipe, PipeTransform} from '@angular/core';
 import {UtilsService} from "@powell/api";
 
 @Pipe({
-  name: 'ngFileName',
+  name: 'pwFileName',
   standalone: false
 })
 export class FileNamePipe implements PipeTransform {

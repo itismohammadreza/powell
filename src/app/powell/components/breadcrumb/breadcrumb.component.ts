@@ -15,13 +15,13 @@ import {BehaviorSubject, takeUntil} from 'rxjs';
 import {ActivatedRouteSnapshot, Data, NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs/operators";
 import {$BreadcrumbItemClickEvent, $MenuItem} from "@powell/primeng";
-import {NgCssObject} from "@powell/models";
+import {CssObject} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-breadcrumb',
+  selector: 'pw-breadcrumb',
   templateUrl: './breadcrumb.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DestroyService],
@@ -36,7 +36,7 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
   @Input() followConfig: boolean;
   // native properties
   @Input() items: $MenuItem[];
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   @Input() home: $MenuItem;
   @Input() homeAriaLabel: string;

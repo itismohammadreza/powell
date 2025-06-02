@@ -24,15 +24,15 @@ import {
   NgControl
 } from "@angular/forms";
 import {
-  NgCssObject,
-  NgDatepickerDateType,
-  NgDatepickerHourFormat,
-  NgDatepickerIconDisplay,
-  NgDatepickerSelectionMode,
-  NgInputVariant,
-  NgLabelPosition,
-  NgSize,
-  NgValidation
+  CssObject,
+  DatepickerDateType,
+  DatepickerHourFormat,
+  DatepickerIconDisplay,
+  DatepickerSelectionMode,
+  InputVariant,
+  LabelPosition,
+  Size,
+  Validation
 } from "@powell/models";
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@core/utils";
@@ -48,7 +48,7 @@ import {Moment} from "jalali-moment";
 import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
-  selector: 'ng-datepicker',
+  selector: 'pw-datepicker',
   templateUrl: './datepicker.component.html',
   providers: [
     {
@@ -72,15 +72,15 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: LabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   @Input() isJalali: boolean;
-  @Input() iconDisplay: NgDatepickerIconDisplay = 'button';
+  @Input() iconDisplay: DatepickerIconDisplay = 'button';
   // native properties
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
-  @Input() inputStyle: NgCssObject;
+  @Input() inputStyle: CssObject;
   @Input() inputId: string = $uuid();
   @Input() name: string;
   @Input() inputStyleClass: string;
@@ -101,7 +101,7 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   @Input() appendTo: any;
   @Input() readonlyInput: boolean;
   @Input() shortYearCutoff: string = '+10';
-  @Input() hourFormat: NgDatepickerHourFormat = '24';
+  @Input() hourFormat: DatepickerHourFormat = '24';
   @Input() timeOnly: boolean;
   @Input() stepHour: number = 1;
   @Input() stepMinute: number = 1;
@@ -112,8 +112,8 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   @Input() showWeek: boolean;
   @Input() startWeekFromFirstDayOfYear: boolean;
   @Input() showClear: boolean;
-  @Input() dataType: NgDatepickerDateType = 'date';
-  @Input() selectionMode: NgDatepickerSelectionMode = 'single';
+  @Input() dataType: DatepickerDateType = 'date';
+  @Input() selectionMode: DatepickerSelectionMode = 'single';
   @Input() maxDateCount: number;
   @Input() showButtonBar: boolean;
   @Input() todayButtonStyleClass: string = 'p-button-text';
@@ -122,7 +122,7 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: number = 0;
   @Input() panelStyleClass: string;
-  @Input() panelStyle: NgCssObject;
+  @Input() panelStyle: CssObject;
   @Input() keepInvalid: boolean;
   @Input() hideOnDateTimeSelect: boolean = true;
   @Input() touchUI: boolean;
@@ -131,8 +131,8 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
   @Input() tabindex: number;
-  @Input() variant: NgInputVariant = 'outlined';
-  @Input() size: NgSize;
+  @Input() variant: InputVariant = 'outlined';
+  @Input() size: Size;
   @Input() minDate: Date | Moment;
   @Input() maxDate: Date | Moment;
   @Input() disabledDates: (Date | Moment)[];

@@ -1,6 +1,6 @@
 import {inject, Injectable, isSignal, Signal} from '@angular/core';
 import {Subject} from "rxjs";
-import {NgConfig, NgConfigChangeEvent, NgInitialConfig} from "@powell/models";
+import {Config, ConfigChangeEvent, InitialConfig} from "@powell/models";
 import {ThemeService} from "@powell/api";
 import {$PrimeNG} from "@powell/primeng";
 
@@ -9,8 +9,8 @@ import {$PrimeNG} from "@powell/primeng";
 export class ConfigService {
   private primeNG = inject($PrimeNG);
   private themeService = inject(ThemeService);
-  private _config: Partial<NgConfig> = {};
-  private configChangeSubject = new Subject<NgConfigChangeEvent>();
+  private _config: Partial<Config> = {};
+  private configChangeSubject = new Subject<ConfigChangeEvent>();
   private initialized: boolean = false;
   private registeredComponents: {component: any; isFixLabel: boolean}[] = [];
   configChange$ = this.configChangeSubject.asObservable();
@@ -27,7 +27,7 @@ export class ConfigService {
     });
   }
 
-  update(config: NgConfig) {
+  update(config: Config) {
     this.handleConfigChanges(config);
     this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
     this.initialized = true;
@@ -46,8 +46,8 @@ export class ConfigService {
     })
   }
 
-  private syncComponentWithConfig(component: any, isFixLabel: boolean, config: Partial<NgConfig>, forceApply: boolean) {
-    Object.entries(config).forEach(([key, value]: [key: keyof NgConfig, value: any]) => {
+  private syncComponentWithConfig(component: any, isFixLabel: boolean, config: Partial<Config>, forceApply: boolean) {
+    Object.entries(config).forEach(([key, value]: [key: keyof Config, value: any]) => {
       let componentKey = this.getComponentConfigKey(key);
       if (!(componentKey in component)) {
         return;
@@ -70,7 +70,7 @@ export class ConfigService {
     })
   }
 
-  private handleConfigChanges(config: NgInitialConfig) {
+  private handleConfigChanges(config: InitialConfig) {
     this._config = {...this._config, ...config};
     for (const key in config) {
       if (key in this.primeNG && isSignal(this.primeNG[key] as Signal<any>)) {
@@ -99,7 +99,7 @@ export class ConfigService {
     this.themeService.applyConfigToDom({...config, injectDirectionToRoot: this._config.injectDirectionToRoot});
   }
 
-  private getComponentConfigKey(key: keyof NgConfig) {
+  private getComponentConfigKey(key: keyof Config) {
     if (key === 'fixLabelPosition') return 'labelPosition';
     if (key === 'inputStyle') return 'variant';
     return key;

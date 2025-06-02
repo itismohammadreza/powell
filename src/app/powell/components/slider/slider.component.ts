@@ -20,13 +20,13 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgOrientation, NgValidation} from '@powell/models';
+import {CssObject, FixLabelPosition, Orientation, Validation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {$SliderChangeEvent, $SliderSlideEndEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-slider',
+  selector: 'pw-slider',
   templateUrl: './slider.component.html',
   providers: [
     {
@@ -50,8 +50,8 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   @Input() id: string = $uuid();
   // native properties
@@ -59,10 +59,10 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   @Input() disabled: boolean;
   @Input() min: number = 0;
   @Input() max: number = 100;
-  @Input() orientation: NgOrientation = 'horizontal';
+  @Input() orientation: Orientation = 'horizontal';
   @Input() step: number;
   @Input() range: boolean = false;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;

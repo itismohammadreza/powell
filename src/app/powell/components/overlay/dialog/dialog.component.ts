@@ -1,16 +1,16 @@
 import {Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/core';
-import {NgDialogOptions} from '@powell/models';
+import {DialogOptions} from '@powell/models';
 import {$Dialog} from "@powell/primeng";
 
 @Component({
-  selector: 'ng-dialog',
+  selector: 'pw-dialog',
   templateUrl: './dialog.component.html',
   standalone: false
 })
 export class DialogComponent {
   private el = inject(ElementRef);
   onClose = new EventEmitter();
-  options: NgDialogOptions = {};
+  options: DialogOptions = {};
   visible: boolean = true;
   @ViewChild($Dialog, {static: true}) dialog: $Dialog;
 

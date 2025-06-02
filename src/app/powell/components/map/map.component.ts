@@ -45,14 +45,14 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgValidation} from "@powell/models";
+import {CssObject, FixLabelPosition, Validation} from "@powell/models";
 import {DestroyService} from "@core/utils";
 import {$uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
-  selector: 'ng-map',
+  selector: 'pw-map',
   templateUrl: './map.component.html',
   providers: [
     {
@@ -76,8 +76,8 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   @Input() disabled: boolean;
   @Input() multiple: boolean = true;
@@ -87,7 +87,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Input() clearIcon: string;
   @Input() selectionLimit: number;
   @Input() id: string = $uuid();
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   // native properties
   @Input() zoom: number = 10;

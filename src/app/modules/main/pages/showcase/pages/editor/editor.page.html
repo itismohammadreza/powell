@@ -5,7 +5,7 @@
   (onOptionChange)="onOptionChange($event)">
   <form [formGroup]="form">
     @if (render) {
-      <ng-editor formControlName="c1" [validation]="{ required: 'error' }"/>
+      <pw-editor formControlName="c1" [validation]="{ required: 'error' }"/>
     }
   </form>
 </preview>

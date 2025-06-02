@@ -18,9 +18,9 @@
   [showTransitionOptions]="showTransitionOptions"
   [hideTransitionOptions]="hideTransitionOptions">
   <ng-template pTemplate="preview" let-style="style" let-previewCallback="previewCallback">
-    <ng-pinch-zoom [properties]="pinchProperties" (onZoomControlClick)="previewCallback()">
+    <pw-pinch-zoom [properties]="pinchProperties" (onZoomControlClick)="previewCallback()">
       <img [ngStyle]="style" [src]="src" [alt]="alt" (click)="previewCallback()"/>
-    </ng-pinch-zoom>
+    </pw-pinch-zoom>
   </ng-template>
 
   @for (t of templates; track t) {

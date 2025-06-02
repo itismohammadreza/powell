@@ -8,11 +8,11 @@
   (onDragEnd)="handleEvent('onDragEnd',$event)"
   (onMaximize)="handleEvent('onMaximize',$event)">
   <ng-template pTemplate="content">
-    <div [innerHTML]="options.content | ngSafe:'html'"></div>
+    <div [innerHTML]="options.content | pwSafe:'html'"></div>
   </ng-template>
   <ng-template pTemplate="footer">
     @if (options.buttonProps) {
-      <ng-button [buttonProps]="options.buttonProps" (onClick)="onButtonClick()"/>
+      <pw-button [buttonProps]="options.buttonProps" (onClick)="onButtonClick()"/>
     }
   </ng-template>
 </p-dialog>

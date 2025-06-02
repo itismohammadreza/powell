@@ -3,7 +3,7 @@
   description="Table displays data in tabular format."
   [previewOptions]="previewOptions"
   (onOptionChange)="onOptionChange($event)">
-  <ng-table
+  <pw-table
     [items]="simpleCustomers"
     [colDef]="simpleColDef"
     [actionsConfig]="actionsConfig"
@@ -13,12 +13,12 @@
     [followConfig]="getOption('followConfig')"
     [showGridlines]="getOption('gridlines')"
     [stripedRows]="getOption('striped')">
-    <ng-template ngTemplate="activity" let-item>
+    <ng-template pwTemplate="activity" let-item>
       <span>Rendered by template: {{ item.activity }}</span>
     </ng-template>
-  </ng-table>
+  </pw-table>
   <hr class="my-4">
-  <ng-table
+  <pw-table
     [items]="paginationCustomers"
     [colDef]="paginatorColDef"
     header="Local Pagination"
@@ -33,9 +33,9 @@
     [showCurrentPageReport]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [rowsPerPageOptions]="[5,10,50]">
-  </ng-table>
+  </pw-table>
   <hr class="my-4">
-  <ng-table
+  <pw-table
     [items]="lazyCustomers"
     [colDef]="lazyColDef"
     header="Lazy"
@@ -58,5 +58,5 @@
     (onLazyLoad)="loadCustomers($event)"
     (selectionChange)="onSelectionChange($event)"
     (selectAllChange)="onSelectAllChange($event)">
-  </ng-table>
+  </pw-table>
 </preview>

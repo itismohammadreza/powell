@@ -1,25 +1,25 @@
-export type NgElementAdditionTemplate = 'element' | 'addonStart' | 'addonEnd' | 'iconStart' | 'iconEnd' | 'label';
-export type NgFilePickerMode = 'basic' | 'advanced';
-export type NgFilePickerMethod = 'post' | 'put';
-export type NgFileResultType = 'base64' | 'file' | 'none';
-export type NgLabelPosition = 'ifta' | 'float-in' | 'float-on' | 'float-over' | 'side' | 'top';
-export type NgFixLabelPosition = Exclude<NgLabelPosition, 'ifta' | 'float-in' | 'float-on' | 'float-over'>;
-export type NgAutoCompleteDropdownMode = 'blank' | 'current';
-export type NgChipDisplayMode = 'comma' | 'chip';
-export type NgDatepickerViewMode = 'date' | 'month' | 'year';
-export type NgDatepickerSelectionMode = 'single' | 'multiple' | 'range';
-export type NgDatepickerHourFormat = '12' | '24';
-export type NgDatepickerIconDisplay = 'input' | 'button';
-export type NgDatepickerDateType = 'date' | 'string';
-export type NgColorFormat = 'hex' | 'rgb' | 'hsb';
-export type NgNumberMode = 'decimal' | 'currency';
-export type NgNumberButtonLayout = 'stacked' | 'horizontal' | 'vertical';
-export type NgNumberLocaleMatcher = 'lookup' | 'best fit';
-export type NgCurrencyDisplay = 'symbol' | 'code' | 'name';
-export type NgValidation = Partial<Record<NgValidationType | string, string>>; // equal to : [validationType in NgValidationType]?: string;
-export type NgTreeFilterMode = 'strict' | 'lenient';
-export type NgInputVariant = 'outlined' | 'filled';
-export type NgFilterMatchMode =
+export type ElementAdditionTemplate = 'element' | 'addonStart' | 'addonEnd' | 'iconStart' | 'iconEnd' | 'label';
+export type FilePickerMode = 'basic' | 'advanced';
+export type FilePickerMethod = 'post' | 'put';
+export type FileResultType = 'base64' | 'file' | 'none';
+export type LabelPosition = 'ifta' | 'float-in' | 'float-on' | 'float-over' | 'side' | 'top';
+export type FixLabelPosition = Exclude<LabelPosition, 'ifta' | 'float-in' | 'float-on' | 'float-over'>;
+export type AutoCompleteDropdownMode = 'blank' | 'current';
+export type ChipDisplayMode = 'comma' | 'chip';
+export type DatepickerViewMode = 'date' | 'month' | 'year';
+export type DatepickerSelectionMode = 'single' | 'multiple' | 'range';
+export type DatepickerHourFormat = '12' | '24';
+export type DatepickerIconDisplay = 'input' | 'button';
+export type DatepickerDateType = 'date' | 'string';
+export type ColorFormat = 'hex' | 'rgb' | 'hsb';
+export type NumberMode = 'decimal' | 'currency';
+export type NumberButtonLayout = 'stacked' | 'horizontal' | 'vertical';
+export type NumberLocaleMatcher = 'lookup' | 'best fit';
+export type CurrencyDisplay = 'symbol' | 'code' | 'name';
+export type Validation = Partial<Record<ValidationType | string, string>>; // equal to : [validationType in NgValidationType]?: string;
+export type TreeFilterMode = 'strict' | 'lenient';
+export type InputVariant = 'outlined' | 'filled';
+export type FilterMatchMode =
   | 'contains'
   | 'startsWith'
   | 'endsWith'
@@ -31,7 +31,7 @@ export type NgFilterMatchMode =
   | 'gt'
   | 'gte';
 
-export type NgKeyFilter =
+export type KeyFilter =
   | 'pint' // Positive integers
   | 'int' // Integers
   | 'pnum' // Positive numbers
@@ -41,7 +41,7 @@ export type NgKeyFilter =
   | 'alpha' // Alphabetic
   | 'alphanum'; // Alphanumeric
 
-export type NgValidationType =
+export type ValidationType =
   | 'min'
   | 'max'
   | 'required'
@@ -50,9 +50,9 @@ export type NgValidationType =
   | 'maxlength'
   | 'pattern';
 
-export type NgInputMode = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
+export type InputMode = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 
-export type NgInputType =
+export type InputType =
   | 'button'
   | 'checkbox'
   | 'color'
@@ -76,7 +76,7 @@ export type NgInputType =
   | 'url'
   | 'week';
 
-export type NgCurrency =
+export type Currency =
   | 'AFN'
   | 'ALL'
   | 'DZD'
@@ -256,7 +256,7 @@ export type NgCurrency =
   | 'XPT'
   | 'XAG';
 
-export interface NgProvince {
+export interface Province {
   id: number;
   name: string;
   selected: boolean;
@@ -264,7 +264,7 @@ export interface NgProvince {
   d: string;
 }
 
-export interface NgCheckboxGroupChangeEvent {
+export interface CheckboxGroupChangeEvent {
   originalEvent: Event;
   value: any[];
 }

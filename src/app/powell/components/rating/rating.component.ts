@@ -24,14 +24,14 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {CssObject, FixLabelPosition, Validation} from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {DestroyService} from "@core/utils";
 import {$RatingRateEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-rating',
+  selector: 'pw-rating',
   templateUrl: './rating.component.html',
   providers: [
     {
@@ -55,20 +55,20 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   @Input() id: string = $uuid();
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   // native properties
   @Input() disabled: boolean;
   @Input() readonly: boolean = false;
   @Input() stars: number = 5;
   @Input() iconOnClass: string;
-  @Input() iconOnStyle: NgCssObject;
+  @Input() iconOnStyle: CssObject;
   @Input() iconOffClass: string;
-  @Input() iconOffStyle: NgCssObject;
+  @Input() iconOffStyle: CssObject;
   @Input() autofocus: boolean;
   @Output() onRate = new EventEmitter<$RatingRateEvent>();
   @Output() onCancel = new EventEmitter<Event>();

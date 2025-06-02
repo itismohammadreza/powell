@@ -1,8 +1,8 @@
-import {NgInitialConfig} from "@powell/models";
+import {InitialConfig} from "@powell/models";
 import {ConfigService, ThemeService} from "@powell/api";
 import {$ConfirmationService, $DialogService, $FilterService, $MessageService} from "@powell/primeng";
 
-export function providePowell(config?: NgInitialConfig) {
+export function providePowell(config?: InitialConfig) {
   return [
     ThemeService,
     $MessageService,

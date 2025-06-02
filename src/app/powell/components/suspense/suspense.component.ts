@@ -19,7 +19,7 @@ type SuspenseState<T> =
   | {loading: false; data: null; error: any};
 
 @Component({
-  selector: 'ng-suspense',
+  selector: 'pw-suspense',
   templateUrl: './suspense.component.html',
   standalone: false
 })

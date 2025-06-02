@@ -20,13 +20,13 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgInputVariant, NgOrientation, NgSize, NgValidation} from '@powell/models';
+import {CssObject, FixLabelPosition, InputVariant, Orientation, Size, Validation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {$RadioButtonClickEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-radio',
+  selector: 'pw-radio',
   templateUrl: './radio.component.html',
   providers: [
     {
@@ -50,10 +50,10 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
-  @Input() orientation: NgOrientation = 'vertical';
+  @Input() orientation: Orientation = 'vertical';
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';
@@ -72,13 +72,13 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
     return this._disabled;
   }
 
-  @Input() variant: NgInputVariant;
-  @Input() size: NgSize;
+  @Input() variant: InputVariant;
+  @Input() size: Size;
   @Input() tabindex: number;
   @Input() id: string = $uuid();
   @Input() ariaLabelledBy: string;
   @Input() ariaLabel: string;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   @Input() autofocus: boolean = false;
   @Input() binary: boolean = false;

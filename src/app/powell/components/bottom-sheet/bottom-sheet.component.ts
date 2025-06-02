@@ -14,13 +14,13 @@ import {
 } from '@angular/core';
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService, OverlayService} from "@powell/api";
-import {NgButtonProps, NgCssObject, NgHistoryState} from "@powell/models";
+import {ButtonProps, CssObject, HistoryState} from "@powell/models";
 import {Subject, takeUntil} from "rxjs";
 import {$uuid} from "@powell/primeng";
 import {DestroyService} from "@core/utils";
 
 @Component({
-  selector: 'ng-bottom-sheet',
+  selector: 'pw-bottom-sheet',
   templateUrl: './bottom-sheet.component.html',
   providers: [DestroyService],
   standalone: false
@@ -36,30 +36,30 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   // native properties
   @Input() appendTo: any;
   @Input() blockScroll: boolean;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   @Input() ariaCloseLabel: string;
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: number;
   @Input() modal: boolean = true;
-  @Input() closeButtonProps: NgButtonProps;
+  @Input() closeButtonProps: ButtonProps;
   @Input() dismissible: boolean = true;
   @Input() closeOnEscape: boolean = true;
   @Input() transitionOptions: string = '270ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() visible: boolean;
   @Input() fullScreen: boolean;
   @Input() header: string;
-  @Input() maskStyle: NgCssObject;
+  @Input() maskStyle: CssObject;
   @Input() closable: boolean = true;
   @Output() onShow = new EventEmitter<any>();
   @Output() onHide = new EventEmitter<any>();
   @Output() visibleChange = new EventEmitter<boolean>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
-  computedStyle: NgCssObject = {};
+  computedStyle: CssObject = {};
   hided$ = new Subject<boolean>();
   templateMap: Record<string, TemplateRef<any>> = {};
-  state: NgHistoryState = {
+  state: HistoryState = {
     component: 'bottomSheet',
     key: $uuid()
   }
@@ -106,7 +106,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
     }
   }
 
-  mapToButtonProps(props: NgButtonProps) {
+  mapToButtonProps(props: ButtonProps) {
     if (!props) {
       return {};
     }

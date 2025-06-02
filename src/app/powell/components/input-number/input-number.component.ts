@@ -25,14 +25,14 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgCssObject,
-  NgInputVariant,
-  NgLabelPosition,
-  NgNumberButtonLayout,
-  NgNumberLocaleMatcher,
-  NgNumberMode,
-  NgSize,
-  NgValidation
+  CssObject,
+  InputVariant,
+  LabelPosition,
+  NumberButtonLayout,
+  NumberLocaleMatcher,
+  NumberMode,
+  Size,
+  Validation
 } from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {$InputNumberInputEvent, $uuid} from "@powell/primeng";
@@ -40,7 +40,7 @@ import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-input-number',
+  selector: 'pw-input-number',
   templateUrl: './input-number.component.html',
   providers: [
     {
@@ -64,18 +64,18 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: LabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   // native properties
   @Input() showButtons: boolean = false;
   @Input() format: boolean = true;
-  @Input() buttonLayout: NgNumberButtonLayout = 'stacked';
+  @Input() buttonLayout: NumberButtonLayout = 'stacked';
   @Input() inputId: string = $uuid();
   @Input() styleClass: string;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() placeholder: string;
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Input() maxlength: number;
   @Input() tabindex: number;
   @Input() title: string;
@@ -95,17 +95,17 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() step: number = 1;
   @Input() allowEmpty: boolean = true;
   @Input() locale: string;
-  @Input() localeMatcher: NgNumberLocaleMatcher = 'best fit';
-  @Input() mode: NgNumberMode = 'decimal';
+  @Input() localeMatcher: NumberLocaleMatcher = 'best fit';
+  @Input() mode: NumberMode = 'decimal';
   @Input() currency: string;
   @Input() currencyDisplay: string;
   @Input() useGrouping: boolean = true;
-  @Input() variant: NgInputVariant;
+  @Input() variant: InputVariant;
   @Input() minFractionDigits: number;
   @Input() maxFractionDigits: number;
   @Input() prefix: string;
   @Input() suffix: string;
-  @Input() inputStyle: NgCssObject;
+  @Input() inputStyle: CssObject;
   @Input() inputStyleClass: string;
   @Input() showClear: boolean = false;
   @Input() autofocus: boolean = false;

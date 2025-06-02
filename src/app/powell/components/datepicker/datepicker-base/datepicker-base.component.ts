@@ -72,7 +72,7 @@ export interface DateMeta {
 }
 
 @Component({
-  selector: 'ng-datepicker-base',
+  selector: 'pw-datepicker-base',
   templateUrl: './datepicker-base.component.html',
   animations: [
     trigger('overlayAnimation', [

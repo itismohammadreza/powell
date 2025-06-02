@@ -11,18 +11,18 @@
      'addon-both': templateMap.addonStart && templateMap.addonEnd,
      'fluid': fluid
     }">
-  <ng-form-field
+  <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="inputId"
     [disabled]="disabled"
     [readonly]="readonly"
     [fluid]="fluid">
-    <ng-template ngTemplate="element" let-isInvalid="isInvalid">
+    <ng-template pwTemplate="element" let-isInvalid="isInvalid">
        <textarea
          pTextarea
          [(ngModel)]="value"
@@ -31,7 +31,7 @@
          [attr.aria-label]="ariaLabel"
          [attr.aria-labelledBy]="ariaLabelledBy"
          [attr.maxlength]="maxlength"
-         [attr.placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
+         [attr.placeholder]="placeholder | pwLabelStar:showRequiredStar:ngControl"
          [cols]="cols"
          [disabled]="disabled"
          [readonly]="readonly"
@@ -53,10 +53,10 @@
     </ng-template>
     @for (item of ['addonStart', 'addonEnd', 'iconStart', 'iconEnd', 'label']; track item) {
       @if (templateMap[item]) {
-        <ng-template [ngTemplate]="item">
+        <ng-template [pwTemplate]="item">
           <ng-container *ngTemplateOutlet="templateMap[item]"/>
         </ng-template>
       }
     }
-  </ng-form-field>
+  </pw-form-field>
 </div>

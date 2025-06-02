@@ -2,16 +2,16 @@
      [attr.dir]="rtl ? 'rtl' : 'ltr'"
      [ngStyle]="style"
      [class]="styleClass">
-  <ng-form-field
+  <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
     [fluid]="true">
-    <ng-template ngTemplate="element" let-isInvalid="isInvalid">
+    <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-tree
         [attr.id]="id"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
@@ -72,5 +72,5 @@
         }
       </p-tree>
     </ng-template>
-  </ng-form-field>
+  </pw-form-field>
 </div>

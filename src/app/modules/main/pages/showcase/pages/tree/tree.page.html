@@ -4,6 +4,6 @@
   [previewOptions]="previewOptions"
   (onOptionChange)="onOptionChange($event)">
   <form [formGroup]="form">
-    <ng-tree formControlName="c1" [validation]="{ required: 'error' }" [items]="items"/>
+    <pw-tree formControlName="c1" [validation]="{ required: 'error' }" [items]="items"/>
   </form>
 </preview>

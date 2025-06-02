@@ -1,5 +1,5 @@
 import {Component, inject, ViewChild} from '@angular/core';
-import {NgTableActionsConfig, NgTableColDef} from '@powell/models';
+import {TableActionsConfig, TableColDef} from '@powell/models';
 import {DataService} from "@core/http";
 import {TableComponent, TableModule} from "@powell/components/table";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
@@ -40,7 +40,7 @@ export class TablePage extends PreviewBase {
   ];
 
   simpleCustomers = this.dataService.getData().slice(0, 5)
-  simpleColDef: NgTableColDef<Customer>[] = [
+  simpleColDef: TableColDef<Customer>[] = [
     {
       header: 'name',
       field: 'name',
@@ -134,7 +134,7 @@ export class TablePage extends PreviewBase {
   ];
 
   lazyCustomers: Customer[];
-  lazyColDef: NgTableColDef<Customer>[] = [
+  lazyColDef: TableColDef<Customer>[] = [
     {
       header: 'name',
       field: 'name',
@@ -192,7 +192,7 @@ export class TablePage extends PreviewBase {
   ]
 
   paginationCustomers = this.dataService.getData()
-  paginatorColDef: NgTableColDef<Customer>[] = [
+  paginatorColDef: TableColDef<Customer>[] = [
     {
       header: 'name',
       field: 'name',
@@ -210,7 +210,7 @@ export class TablePage extends PreviewBase {
       field: 'representative.name',
     },
   ];
-  actionsConfig: NgTableActionsConfig<Customer> = {
+  actionsConfig: TableActionsConfig<Customer> = {
     inSameColumn: false,
     header: 'actions',
     actions: [

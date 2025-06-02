@@ -20,13 +20,13 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {CssObject, FixLabelPosition, Validation} from '@powell/models';
 import {DestroyService} from "@core/utils";
 import {$dt, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-knob',
+  selector: 'pw-knob',
   templateUrl: './knob.component.html',
   providers: [
     {
@@ -50,13 +50,13 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   @Input() id: string = $uuid();
   // native properties
   @Input() styleClass: string;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() ariaLabel: string;
   @Input() ariaLabelledBy: string;
   @Input() tabindex: number;

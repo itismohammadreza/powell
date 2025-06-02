@@ -15,7 +15,7 @@ import {
 import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
-  selector: 'ng-infinite-scroll',
+  selector: 'pw-infinite-scroll',
   templateUrl: './infinite-scroll.component.html',
   standalone: false
 })

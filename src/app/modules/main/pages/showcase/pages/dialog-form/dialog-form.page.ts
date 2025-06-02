@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {NgDialogFormOptions} from "@powell/models";
+import {DialogFormOptions} from "@powell/models";
 import {FormControl, Validators} from "@angular/forms";
 import {takeUntil} from "rxjs";
 import {ButtonModule} from "@powell/components/button";
@@ -36,7 +36,7 @@ export class DialogFormPage extends PreviewBase {
     {field: 'defaultFocus', selectOptions: 'defaultFocusTypes', value: 'accept'},
   ];
 
-  dialogForm: NgDialogFormOptions = {
+  dialogForm: DialogFormOptions = {
     header: 'Dialog',
     draggable: false,
     resizable: false,

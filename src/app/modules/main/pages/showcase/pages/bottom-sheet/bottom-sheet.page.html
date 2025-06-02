@@ -3,10 +3,10 @@
   description="BottomSheet can be used to open panels to the bottom of the screen."
   [previewOptions]="previewOptions"
   (onOptionChange)="onOptionChange($event)">
-  <ng-button (click)="visible = true" label="Open Bottom Sheet"/>
+  <pw-button (click)="visible = true" label="Open Bottom Sheet"/>
 </preview>
 
-<ng-bottom-sheet
+<pw-bottom-sheet
   [rtl]="getOption('rtl')"
   [followConfig]="getOption('followConfig')"
   [blockScroll]="getOption('blockScroll')"
@@ -17,7 +17,7 @@
   [header]="getOption('header')"
   [closable]="getOption('closable')"
   [(visible)]="visible">
-  <ng-template ngTemplate="content">
+  <ng-template pwTemplate="content">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
       voluptas?</p>
@@ -40,17 +40,17 @@
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
       voluptas?</p>
   </ng-template>
-  <ng-template ngTemplate="footer">
-    <ng-button
+  <ng-template pwTemplate="footer">
+    <pw-button
       (onClick)="visible2=true"
       appearance="outlined"
       severity="secondary"
       label="Open Second Bottom Sheet"
       [fluid]="true"/>
   </ng-template>
-</ng-bottom-sheet>
+</pw-bottom-sheet>
 
-<ng-bottom-sheet
+<pw-bottom-sheet
   [rtl]="getOption('rtl')"
   [followConfig]="getOption('followConfig')"
   [blockScroll]="getOption('blockScroll')"
@@ -61,7 +61,7 @@
   [header]="getOption('header')"
   [closable]="getOption('closable')"
   [(visible)]="visible2">
-  <ng-template ngTemplate="content">
+  <ng-template pwTemplate="content">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
       voluptas?</p>
@@ -75,13 +75,13 @@
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
       voluptas?</p>
   </ng-template>
-  <ng-template ngTemplate="footer">
-    <ng-button (onClick)="visible3=true" appearance="outlined" severity="success" label="Open Third Bottom Sheet"
+  <ng-template pwTemplate="footer">
+    <pw-button (onClick)="visible3=true" appearance="outlined" severity="success" label="Open Third Bottom Sheet"
                [fluid]="true"/>
   </ng-template>
-</ng-bottom-sheet>
+</pw-bottom-sheet>
 
-<ng-bottom-sheet
+<pw-bottom-sheet
   [rtl]="getOption('rtl')"
   [followConfig]="getOption('followConfig')"
   [blockScroll]="getOption('blockScroll')"
@@ -92,7 +92,7 @@
   [header]="getOption('header')"
   [closable]="getOption('closable')"
   [(visible)]="visible3">
-  <ng-template ngTemplate="content">
+  <ng-template pwTemplate="content">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
       voluptas?</p>
@@ -103,13 +103,13 @@
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
       voluptas?</p>
   </ng-template>
-  <ng-template ngTemplate="footer">
-    <ng-button (onClick)="openDialog()" appearance="outlined" severity="success" label="Open Dialog"
+  <ng-template pwTemplate="footer">
+    <pw-button (onClick)="openDialog()" appearance="outlined" severity="success" label="Open Dialog"
                [fluid]="true"/>
   </ng-template>
-</ng-bottom-sheet>
+</pw-bottom-sheet>
 
-<ng-bottom-sheet
+<pw-bottom-sheet
   [rtl]="getOption('rtl')"
   [followConfig]="getOption('followConfig')"
   [blockScroll]="getOption('blockScroll')"
@@ -120,7 +120,7 @@
   [header]="getOption('header')"
   [closable]="getOption('closable')"
   [(visible)]="visible4">
-  <ng-template ngTemplate="content">
+  <ng-template pwTemplate="content">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
       voluptas?</p>
@@ -131,4 +131,4 @@
       fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
       voluptas?</p>
   </ng-template>
-</ng-bottom-sheet>
+</pw-bottom-sheet>

@@ -25,14 +25,14 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgCssObject,
-  NgInputMode,
-  NgInputType,
-  NgInputVariant,
-  NgKeyFilter,
-  NgLabelPosition,
-  NgSize,
-  NgValidation
+  CssObject,
+  InputMode,
+  InputType,
+  InputVariant,
+  KeyFilter,
+  LabelPosition,
+  Size,
+  Validation
 } from '@powell/models';
 import {ConfigService} from "@powell/api";
 import {DestroyService} from "@core/utils";
@@ -40,7 +40,7 @@ import {$uuid} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
-  selector: 'ng-input-text',
+  selector: 'pw-input-text',
   templateUrl: './input-text.component.html',
   providers: [
     {
@@ -66,27 +66,27 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgLabelPosition;
+  @Input() labelPosition: LabelPosition;
   @Input() inputId: string = $uuid();
-  @Input() validation: NgValidation;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() maxlength: number;
   @Input() placeholder: string;
-  @Input() type: NgInputType = 'text';
-  @Input() inputMode: NgInputMode = 'text';
-  @Input() keyFilter: NgKeyFilter | RegExp = /.*/g;
+  @Input() type: InputType = 'text';
+  @Input() inputMode: InputMode = 'text';
+  @Input() keyFilter: KeyFilter | RegExp = /.*/g;
   @Input() showClear: boolean;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
-  @Input() inputStyle: NgCssObject;
+  @Input() inputStyle: CssObject;
   @Input() inputStyleClass: string;
   @Input() autocomplete: any;
   // native properties
-  @Input() variant: NgInputVariant;
+  @Input() variant: InputVariant;
   @Input() fluid: boolean;
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Output() onInput = new EventEmitter<Event>();
   @Output() onClick = new EventEmitter<Event>();
   @Output() onChange = new EventEmitter<Event>();

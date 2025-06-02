@@ -25,13 +25,13 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  NgAutoCompleteDropdownMode,
-  NgCssObject,
-  NgInputType,
-  NgInputVariant,
-  NgLabelPosition,
-  NgSize,
-  NgValidation
+  AutoCompleteDropdownMode,
+  CssObject,
+  InputType,
+  InputVariant,
+  LabelPosition,
+  Size,
+  Validation
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {
@@ -48,7 +48,7 @@ import {DestroyService} from "@core/utils";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-auto-complete',
+  selector: 'pw-auto-complete',
   templateUrl: './auto-complete.component.html',
   providers: [
     {
@@ -72,17 +72,17 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: LabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   // native properties
   @Input() minLength: number = 1;
   @Input() delay: number = 300;
-  @Input() style: NgCssObject;
-  @Input() panelStyle: NgCssObject;
+  @Input() style: CssObject;
+  @Input() panelStyle: CssObject;
   @Input() styleClass: string;
   @Input() panelStyleClass: string;
-  @Input() inputStyle: NgCssObject;
+  @Input() inputStyle: CssObject;
   @Input() inputId: string = $uuid();
   @Input() inputStyleClass: string;
   @Input() placeholder: string;
@@ -95,11 +95,11 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() virtualScrollOptions: $ScrollerOptions;
   @Input() maxlength: number;
   @Input() name: string;
-  @Input() size: NgSize;
+  @Input() size: Size;
   @Input() appendTo: any;
   @Input() autoHighlight: boolean = false;
   @Input() forceSelection: boolean = false;
-  @Input() type: NgInputType = 'text';
+  @Input() type: InputType = 'text';
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: number = 0;
   @Input() ariaLabel: string;
@@ -112,7 +112,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() showClear: boolean = false;
   @Input() dropdown: boolean = false;
   @Input() showEmptyMessage: boolean = true;
-  @Input() dropdownMode: NgAutoCompleteDropdownMode = 'blank';
+  @Input() dropdownMode: AutoCompleteDropdownMode = 'blank';
   @Input() multiple: boolean = false;
   @Input() tabindex: number;
   @Input() dataKey: string;
@@ -136,7 +136,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() searchLocale: boolean = false;
   @Input() optionDisabled: string;
   @Input() focusOnHover: boolean = true;
-  @Input() variant: NgInputVariant;
+  @Input() variant: InputVariant;
   @Input() fluid: boolean;
   @Output() completeMethod = new EventEmitter<$AutoCompleteCompleteEvent>();
   @Output() onSelect = new EventEmitter<$AutoCompleteSelectEvent>();

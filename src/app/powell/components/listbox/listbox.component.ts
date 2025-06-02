@@ -24,7 +24,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {NgCssObject, NgFilterMatchMode, NgFixLabelPosition, NgValidation} from '@powell/models';
+import {CssObject, FilterMatchMode, FixLabelPosition, Validation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@core/utils";
 import {
@@ -40,7 +40,7 @@ import {
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-listbox',
+  selector: 'pw-listbox',
   templateUrl: './listbox.component.html',
   providers: [
     {
@@ -64,8 +64,8 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
   @Input() followConfig: boolean;
   // native properties
   @Input() id: string = $uuid();
@@ -86,16 +86,16 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() scrollHeight: string = '14rem';
   @Input() tabindex: number;
   @Input() multiple: boolean = false;
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
-  @Input() listStyle: NgCssObject;
+  @Input() listStyle: CssObject;
   @Input() listStyleClass: string;
   @Input() readonly: boolean = false;
   @Input() disabled: boolean;
   @Input() checkbox: boolean = false;
   @Input() filter: boolean = false;
   @Input() filterBy: string;
-  @Input() filterMatchMode: NgFilterMatchMode = 'contains';
+  @Input() filterMatchMode: FilterMatchMode = 'contains';
   @Input() filterLocale: string;
   @Input() metaKeySelection: boolean = false;
   @Input() dataKey: string;

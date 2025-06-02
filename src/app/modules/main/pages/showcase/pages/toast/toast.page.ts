@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NgToastOptions} from "@powell/models";
+import {ToastOptions} from "@powell/models";
 import {ButtonModule} from "@powell/components/button";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
@@ -25,7 +25,7 @@ export class ToastPage extends PreviewBase {
     {field: 'position', selectOptions: 'toastPositions', value: 'top-right'},
   ];
 
-  toast: NgToastOptions = {
+  toast: ToastOptions = {
     life: 3000,
     sticky: false,
     rtl: this.config.rtl,

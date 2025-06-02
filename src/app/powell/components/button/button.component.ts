@@ -13,16 +13,16 @@ import {
   TemplateRef
 } from '@angular/core';
 import {
-  NgAsyncEvent,
-  NgButtonAppearance,
-  NgButtonProps,
-  NgButtonResponsiveSize,
-  NgButtonState,
-  NgButtonType,
-  NgCssObject,
-  NgPosition,
-  NgSeverity,
-  NgSize
+  AsyncEvent,
+  ButtonAppearance,
+  ButtonProps,
+  ButtonResponsiveSize,
+  ButtonState,
+  ButtonType,
+  CssObject,
+  Position,
+  Severity,
+  Size
 } from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {fromEvent} from "rxjs";
@@ -31,7 +31,7 @@ import {takeUntil} from "rxjs/operators";
 import {DestroyService} from "@core/utils";
 
 @Component({
-  selector: 'ng-button',
+  selector: 'pw-button',
   templateUrl: './button.component.html',
   host: {'[class.full]': 'fluid'},
   providers: [DestroyService],
@@ -41,17 +41,17 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   private document = inject(DOCUMENT);
   private destroy$ = inject(DestroyService);
 
-  @Input() appearance: NgButtonAppearance;
-  @Input() responsiveSize: NgButtonResponsiveSize;
+  @Input() appearance: ButtonAppearance;
+  @Input() responsiveSize: ButtonResponsiveSize;
   @Input() async: boolean;
   @Input() newLabel: string;
   @Input() newIcon: string;
-  @Input() newAppearance: NgButtonAppearance;
-  @Input() newSeverity: NgSeverity = 'primary';
-  @Input() state: NgButtonState = 1;
+  @Input() newAppearance: ButtonAppearance;
+  @Input() newSeverity: Severity = 'primary';
+  @Input() state: ButtonState = 1;
   // native properties
-  @Input() type: NgButtonType = 'button';
-  @Input() iconPos: NgPosition = 'left';
+  @Input() type: ButtonType = 'button';
+  @Input() iconPos: Position = 'left';
   @Input() icon: string;
   @Input() badge: string;
   @Input() label: string;
@@ -59,30 +59,30 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   @Input() loadingIcon: string;
   @Input() raised: boolean;
   @Input() rounded: boolean;
-  @Input() severity: NgSeverity = 'primary';
+  @Input() severity: Severity = 'primary';
   @Input() tabindex: number;
-  @Input() size: NgSize;
-  @Input() style: NgCssObject;
+  @Input() size: Size;
+  @Input() style: CssObject;
   @Input() styleClass: string;
-  @Input() badgeSeverity: NgSeverity = 'primary';
+  @Input() badgeSeverity: Severity = 'primary';
   @Input() ariaLabel: string;
   @Input() autofocus: boolean;
   @Input() fluid: boolean;
-  @Input() buttonProps: NgButtonProps;
+  @Input() buttonProps: ButtonProps;
   @Output() onClick = new EventEmitter<MouseEvent>();
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
-  @Output() stateChange = new EventEmitter<NgButtonState>();
-  @Output() onClickAsync = new EventEmitter<NgAsyncEvent<MouseEvent>>();
+  @Output() stateChange = new EventEmitter<ButtonState>();
+  @Output() onClickAsync = new EventEmitter<AsyncEvent<MouseEvent>>();
   @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
 
   loading: boolean;
   templateMap: Record<string, TemplateRef<any>> = {};
   _tmpLabel: string;
   _tmpIcon: string;
-  _tmpAppearance: NgButtonAppearance;
-  _tmpSeverity: NgSeverity;
-  _tmpSize: NgSize;
+  _tmpAppearance: ButtonAppearance;
+  _tmpSeverity: Severity;
+  _tmpSize: Size;
 
   ngOnChanges(changes: SimpleChanges) {
     const {buttonProps} = changes;
@@ -152,7 +152,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
     }
   }
 
-  toggleState(defaultState: NgButtonState) {
+  toggleState(defaultState: ButtonState) {
     if (!this.disabled) {
       this._tmpLabel = defaultState === 1 ? this.label : this.newLabel || this.label;
       this._tmpIcon = defaultState === 1 ? this.icon : this.newIcon || this.icon;

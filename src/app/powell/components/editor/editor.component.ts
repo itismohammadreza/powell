@@ -26,29 +26,29 @@ import {Core} from 'suneditor/src/lib/core';
 import {SunEditorOptions} from "suneditor/src/options";
 import plugins from 'suneditor/src/plugins';
 import {
-  NgCssObject,
-  NgEditorEvent,
-  NgEditorOnAudioUpload,
-  NgEditorOnAudioUploadBefore,
-  NgEditorOnAudioUploadError,
-  NgEditorOnChange,
-  NgEditorOnCopy,
-  NgEditorOnCut,
-  NgEditorOnDrop,
-  NgEditorOnImageUpload,
-  NgEditorOnImageUploadBefore,
-  NgEditorOnImageUploadError,
-  NgEditorOnLoadEvent,
-  NgEditorOnResizeEditor,
-  NgEditorOnVideoUpload,
-  NgEditorOnVideoUploadBefore,
-  NgEditorOnVideoUploadError,
-  NgEditorShowController,
-  NgEditorShowInline,
-  NgEditorToggleCodeView,
-  NgEditorToggleFullScreen,
-  NgFixLabelPosition,
-  NgValidation
+  CssObject,
+  EditorEvent,
+  EditorOnAudioUpload,
+  EditorOnAudioUploadBefore,
+  EditorOnAudioUploadError,
+  EditorOnChange,
+  EditorOnCopy,
+  EditorOnCut,
+  EditorOnDrop,
+  EditorOnImageUpload,
+  EditorOnImageUploadBefore,
+  EditorOnImageUploadError,
+  EditorOnLoadEvent,
+  EditorOnResizeEditor,
+  EditorOnVideoUpload,
+  EditorOnVideoUploadBefore,
+  EditorOnVideoUploadError,
+  EditorShowController,
+  EditorShowInline,
+  EditorToggleCodeView,
+  EditorToggleFullScreen,
+  FixLabelPosition,
+  Validation
 } from '@powell/models';
 import {EditorBaseComponent} from "@powell/components/editor";
 import {DestroyService} from "@core/utils";
@@ -56,7 +56,7 @@ import {$uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
 @Component({
-  selector: 'ng-editor',
+  selector: 'pw-editor',
   templateUrl: './editor.component.html',
   providers: [
     {
@@ -80,13 +80,13 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   @Input() hint: string;
   @Input() rtl: boolean;
   @Input() showRequiredStar: boolean;
-  @Input() labelPosition: NgFixLabelPosition;
-  @Input() validation: NgValidation;
+  @Input() labelPosition: FixLabelPosition;
+  @Input() validation: Validation;
   @Input() disabled: boolean;
   @Input() readonly: boolean;
   @Input() followConfig: boolean;
   @Input() inputId: string = $uuid();
-  @Input() style: NgCssObject;
+  @Input() style: CssObject;
   @Input() styleClass: string;
   // native properties
   @Input() options: SunEditorOptions;
@@ -105,33 +105,33 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   @Input() audioUploadHandler: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
   @Input() localStorageConfig = {id: 'ngxSunEditor', autoSave: false, autoLoad: false};
   @Output() created = new EventEmitter<EditorBaseComponent>();
-  @Output() onload = new EventEmitter<NgEditorOnLoadEvent>();
-  @Output() onScroll = new EventEmitter<NgEditorEvent>();
-  @Output() onMouseDown = new EventEmitter<NgEditorEvent>();
-  @Output() onClick = new EventEmitter<NgEditorEvent>();
-  @Output() onInput = new EventEmitter<NgEditorEvent>();
-  @Output() onKeyDown = new EventEmitter<NgEditorEvent>();
-  @Output() onKeyUp = new EventEmitter<NgEditorEvent>();
-  @Output() onFocus = new EventEmitter<NgEditorEvent>();
-  @Output() onBlur = new EventEmitter<NgEditorEvent>();
-  @Output() onResizeEditor = new EventEmitter<NgEditorOnResizeEditor>();
-  @Output() onAudioUploadBefore = new EventEmitter<NgEditorOnAudioUploadBefore>();
-  @Output() onVideoUploadError = new EventEmitter<NgEditorOnVideoUploadError>();
-  @Output() onVideoUploadBefore = new EventEmitter<NgEditorOnVideoUploadBefore>();
-  @Output() onImageUploadError = new EventEmitter<NgEditorOnImageUploadError>();
-  @Output() onImageUploadBefore = new EventEmitter<NgEditorOnImageUploadBefore>();
-  @Output() onAudioUploadError = new EventEmitter<NgEditorOnAudioUploadError>();
-  @Output() onDrop = new EventEmitter<NgEditorOnDrop>();
-  @Output() onChange = new EventEmitter<NgEditorOnChange>();
-  @Output() showController = new EventEmitter<NgEditorShowController>();
-  @Output() toggleFullScreen = new EventEmitter<NgEditorToggleFullScreen>();
-  @Output() toggleCodeView = new EventEmitter<NgEditorToggleCodeView>();
-  @Output() showInline = new EventEmitter<NgEditorShowInline>();
-  @Output() onAudioUpload = new EventEmitter<NgEditorOnAudioUpload>();
-  @Output() onVideoUpload = new EventEmitter<NgEditorOnVideoUpload>();
-  @Output() onImageUpload = new EventEmitter<NgEditorOnImageUpload>();
-  @Output() onCut = new EventEmitter<NgEditorOnCut>();
-  @Output() onCopy = new EventEmitter<NgEditorOnCopy>();
+  @Output() onload = new EventEmitter<EditorOnLoadEvent>();
+  @Output() onScroll = new EventEmitter<EditorEvent>();
+  @Output() onMouseDown = new EventEmitter<EditorEvent>();
+  @Output() onClick = new EventEmitter<EditorEvent>();
+  @Output() onInput = new EventEmitter<EditorEvent>();
+  @Output() onKeyDown = new EventEmitter<EditorEvent>();
+  @Output() onKeyUp = new EventEmitter<EditorEvent>();
+  @Output() onFocus = new EventEmitter<EditorEvent>();
+  @Output() onBlur = new EventEmitter<EditorEvent>();
+  @Output() onResizeEditor = new EventEmitter<EditorOnResizeEditor>();
+  @Output() onAudioUploadBefore = new EventEmitter<EditorOnAudioUploadBefore>();
+  @Output() onVideoUploadError = new EventEmitter<EditorOnVideoUploadError>();
+  @Output() onVideoUploadBefore = new EventEmitter<EditorOnVideoUploadBefore>();
+  @Output() onImageUploadError = new EventEmitter<EditorOnImageUploadError>();
+  @Output() onImageUploadBefore = new EventEmitter<EditorOnImageUploadBefore>();
+  @Output() onAudioUploadError = new EventEmitter<EditorOnAudioUploadError>();
+  @Output() onDrop = new EventEmitter<EditorOnDrop>();
+  @Output() onChange = new EventEmitter<EditorOnChange>();
+  @Output() showController = new EventEmitter<EditorShowController>();
+  @Output() toggleFullScreen = new EventEmitter<EditorToggleFullScreen>();
+  @Output() toggleCodeView = new EventEmitter<EditorToggleCodeView>();
+  @Output() showInline = new EventEmitter<EditorShowInline>();
+  @Output() onAudioUpload = new EventEmitter<EditorOnAudioUpload>();
+  @Output() onVideoUpload = new EventEmitter<EditorOnVideoUpload>();
+  @Output() onImageUpload = new EventEmitter<EditorOnImageUpload>();
+  @Output() onCut = new EventEmitter<EditorOnCut>();
+  @Output() onCopy = new EventEmitter<EditorOnCopy>();
 
   ngControl: NgControl;
   editorInstance: EditorBaseComponent;
@@ -214,28 +214,28 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
     (this[name] as EventEmitter<any>).emit(event);
   }
 
-  _onChange(event: NgEditorOnChange) {
+  _onChange(event: EditorOnChange) {
     this.onChange.emit(event);
     this.onModelChange(this.editorInstance.getText() ? event.core.getContents(false) : null);
   }
 
-  _onInput(event: NgEditorEvent) {
+  _onInput(event: EditorEvent) {
     this.onInput.emit(event);
     const result = this.editorInstance.getText() ? event.core.getContents(false) : null;
     this.onModelChange(result);
   }
 
-  _onKeyDown(event: NgEditorEvent) {
+  _onKeyDown(event: EditorEvent) {
     this.onKeyDown.emit(event);
     this.onModelChange(this.editorInstance.getText() ? event.core.getContents(false) : null);
   }
 
-  _onKeyUp(event: NgEditorEvent) {
+  _onKeyUp(event: EditorEvent) {
     this.onKeyUp.emit(event);
     this.onModelChange(this.editorInstance.getText() ? event.core.getContents(false) : null);
   }
 
-  _onBlur(event: NgEditorEvent) {
+  _onBlur(event: EditorEvent) {
     this.onBlur.emit(event);
     this.onModelTouched();
   }

@@ -15,18 +15,18 @@
      'inline': inline,
      'is-jalali': isJalali,
     }">
-  <ng-form-field
+  <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | ngLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar:showRequiredStar:ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="inputId"
     [disabled]="disabled"
     [fluid]="fluid">
-    <ng-template ngTemplate="element" let-isInvalid="isInvalid">
-      <ng-datepicker-base
+    <ng-template pwTemplate="element" let-isInvalid="isInvalid">
+      <pw-datepicker-base
         [(ngModel)]="value"
         [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
         [isJalali]="isJalali"
@@ -37,7 +37,7 @@
         [inputId]="inputId"
         [name]="name"
         [inputStyleClass]="inputStyleClass"
-        [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
+        [placeholder]="placeholder | pwLabelStar:showRequiredStar:ngControl"
         [ariaLabelledBy]="ariaLabelledBy"
         [ariaLabel]="ariaLabel"
         [iconAriaLabel]="iconAriaLabel"
@@ -111,10 +111,10 @@
     </ng-template>
     @for (item of ['addonStart', 'addonEnd', 'iconStart', 'iconEnd', 'label']; track item) {
       @if (templateMap[item]) {
-        <ng-template [ngTemplate]="item">
+        <ng-template [pwTemplate]="item">
           <ng-container *ngTemplateOutlet="templateMap[item]"/>
         </ng-template>
       }
     }
-  </ng-form-field>
+  </pw-form-field>
 </div>

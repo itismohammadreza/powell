@@ -4,7 +4,7 @@ import {ConfigService, ThemeService} from "@powell/api";
 import {SelectButtonModule} from "@powell/components/select-button";
 import {ButtonModule} from "@powell/components/button";
 import {$SelectChangeEvent} from "@powell/primeng";
-import {NgPresetName} from "@powell/models";
+import {PresetName} from "@powell/models";
 import {globalConfig} from "@core/config";
 import {SelectModule} from "@powell/components/select";
 import {ToggleSwitchModule} from "@powell/components/toggle-switch";
@@ -26,7 +26,7 @@ import {TranslationService} from "@core/utils";
   template: `
     <div class="mb-4 space-y-2 [&>*]:block">
       <div>Base Theme</div>
-      <ng-select-button
+      <pw-select-button
         [ngModel]="config.powellConfig.theme.name"
         (ngModelChange)="changePreset($event)"
         [options]="presets"
@@ -65,37 +65,37 @@ import {TranslationService} from "@core/utils";
       </div>
     </div>
     <div class="mb-4 grid gap-3 md:grid-cols-2">
-      <ng-select
+      <pw-select
         [label]="'lang' | translate"
         [fluid]="true"
         [value]="config.lang"
         [options]="[{label:'EN',value:'en'},{label:'FA',value:'fa'}]"
         (onChange)="changeLang($event)"/>
-      <ng-select
+      <pw-select
         [label]="'mode' | translate"
         [fluid]="true"
         [value]="config.powellConfig.theme.mode"
         [options]="[{label:'dark',value:'dark'},{label:'light',value:'light'},{label:'system',value:'system'}]"
         (onChange)="changeGlobalConfig('theme',{mode:$event.value})"/>
-      <ng-select
+      <pw-select
         [label]="'fixLabelPosition' | translate"
         [fluid]="true"
         [value]="config.powellConfig.fixLabelPosition"
         [options]="[{label:'side',value:'side'},{label:'top',value:'top'}]"
         (onChange)="changeGlobalConfig('fixLabelPosition',$event.value)"/>
-      <ng-select
+      <pw-select
         [label]="'labelPosition' | translate"
         [fluid]="true"
         [value]="config.powellConfig.labelPosition"
         [options]="[{label:'side',value:'side'},{label:'top',value:'top'},{label:'ifta',value:'ifta'},{label:'float-in',value:'float-in'},{label:'float-on',value:'float-on'},{label:'float-over',value:'float-over'}]"
         (onChange)="changeGlobalConfig('labelPosition',$event.value)"/>
-      <ng-select
+      <pw-select
         [label]="'size' | translate"
         [fluid]="true"
         [value]="config.powellConfig.inputSize ?? 'medium'"
         [options]="[{label:'small',value:'small'},{label:'medium',value:'medium'},{label:'large',value:'large'}]"
         (onChange)="changeGlobalConfig('size',$event.value)"/>
-      <ng-select
+      <pw-select
         [label]="'inputStyle' | translate"
         [fluid]="true"
         [value]="config.powellConfig.inputStyle"
@@ -103,25 +103,25 @@ import {TranslationService} from "@core/utils";
         (onChange)="changeGlobalConfig('inputStyle',$event.value)"/>
     </div>
     <div class="space-y-3 [&>*]:block">
-      <ng-toggle-switch
+      <pw-toggle-switch
         [label]="'showRequiredStar' | translate"
         labelPosition="side"
         [labelWidth]="170"
         [value]="config.powellConfig.showRequiredStar"
         (onChange)="changeGlobalConfig('showRequiredStar',$event.checked)"/>
-      <ng-toggle-switch
+      <pw-toggle-switch
         [label]="'ripple' | translate"
         labelPosition="side"
         [labelWidth]="170"
         [value]="config.powellConfig.ripple"
         (onChange)="changeGlobalConfig('ripple',$event.checked)"/>
-      <ng-toggle-switch
+      <pw-toggle-switch
         [label]="'rtl' | translate"
         labelPosition="side"
         [labelWidth]="170"
         [value]="config.rtl"
         (onChange)="changeGlobalConfig('rtl',$event.checked)"/>
-      <ng-toggle-switch
+      <pw-toggle-switch
         [label]="'injectDirectionToRoot' | translate"
         labelPosition="side"
         [labelWidth]="170"
@@ -474,7 +474,7 @@ export class DesignerComponent {
     event.stopPropagation();
   }
 
-  changePreset(value: NgPresetName) {
+  changePreset(value: PresetName) {
     this.configService.update({theme: {name: value}});
     this.selectedPrimaryColor = null;
     this.selectedSurfaceColor = null;
