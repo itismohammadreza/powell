@@ -3,7 +3,7 @@ import {LoaderService} from '@core/utils';
 import {NgClass} from "@angular/common";
 
 @Component({
-  selector: 'ng-loading',
+  selector: 'loading',
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
   imports: [

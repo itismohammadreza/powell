@@ -11,7 +11,7 @@
           <ng-button icon="pi pi-bars" appearance="text" (click)="toggleSidebarClick()"/>
         }
 
-        <ng-logo/>
+        <logo/>
 
         <div>
           <ng-button
@@ -37,7 +37,7 @@
         <p-menubar styleClass="overflow-auto [&_ul]:!flex-nowrap [&_ul]:!whitespace-nowrap" [model]="sidebarItems">
           <ng-template pTemplate="start">
             <ng-button class="me-2" (onClick)="op.toggle($event)" icon="pi pi-sparkles"/>
-            <ng-logo/>
+            <logo/>
           </ng-template>
         </p-menubar>
       }
@@ -97,7 +97,7 @@
   [closable]="true"
   [(visible)]="designerSidebarVisible"
   styleClass="!w-[48rem] max-w-full !bg-transparent backdrop-blur-lg">
-  <ng-designer/>
+  <designer/>
 </p-drawer>
 
 <p-popover #op>

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'ng-space',
+  selector: 'space',
   templateUrl: './space.component.html',
   styleUrls: ['./space.component.scss'],
   standalone: true

@@ -4,7 +4,7 @@ import {InputMaskComponent, InputMaskModule} from "@powell/components/input-mask
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-input-mask-page',
+  selector: 'input-mask-page',
   templateUrl: './input-mask.page.html',
   imports: [
     InputMaskModule,

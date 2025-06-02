@@ -12,7 +12,7 @@ import {TranslateModule} from "@ngx-translate/core";
 import {NgClass} from "@angular/common";
 
 @Component({
-  selector: 'ng-utils-page',
+  selector: 'utils-page',
   templateUrl: './utils.page.html',
   imports: [
     ButtonModule,

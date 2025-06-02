@@ -4,7 +4,7 @@ import {ButtonModule} from "@powell/components/button";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-dialog-page',
+  selector: 'dialog-page',
   templateUrl: './dialog.page.html',
   imports: [
     ButtonModule,

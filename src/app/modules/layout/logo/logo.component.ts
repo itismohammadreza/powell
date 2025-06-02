@@ -3,7 +3,7 @@ import {RouterModule} from "@angular/router";
 import {NgClass} from "@angular/common";
 
 @Component({
-  selector: 'ng-logo',
+  selector: 'logo',
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss'],
   imports: [RouterModule, NgClass],

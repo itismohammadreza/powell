@@ -4,7 +4,7 @@ import {TreeSelectComponent, TreeSelectModule} from "@powell/components/tree-sel
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-tree-select-page',
+  selector: 'tree-select-page',
   templateUrl: './tree-select.page.html',
   imports: [
     TreeSelectModule,

@@ -4,7 +4,7 @@ import {SelectComponent, SelectModule} from "@powell/components/select";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-select-page',
+  selector: 'select-page',
   templateUrl: './select.page.html',
   imports: [
     SelectModule,

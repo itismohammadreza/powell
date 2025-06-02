@@ -5,7 +5,7 @@ import {NgAsyncEvent} from "@powell/models";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'ng-preview-base',
+  selector: 'preview-base',
   template: '',
 })
 export abstract class PreviewBase implements AfterViewInit {

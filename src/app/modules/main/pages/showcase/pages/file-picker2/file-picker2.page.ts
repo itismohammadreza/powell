@@ -4,7 +4,7 @@ import {FilePicker2Component, FilePicker2Module} from "@powell/components/file-p
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-file-picker2-page',
+  selector: 'file-picker2-page',
   templateUrl: './file-picker2.page.html',
   imports: [
     FilePicker2Module,

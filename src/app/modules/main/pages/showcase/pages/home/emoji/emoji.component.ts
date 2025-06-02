@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 
 @Component({
-  selector: 'ng-emoji',
+  selector: 'emoji',
   templateUrl: './emoji.component.html',
   styleUrls: ['./emoji.component.scss'],
   standalone: true

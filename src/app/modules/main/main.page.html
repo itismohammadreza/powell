@@ -1,7 +1,7 @@
-<ng-navbar-menu>
+<navbar-menu>
   <span [@routeAnimation]="outlet.isActivated ? outlet.activatedRoute : ''">
     <router-outlet #outlet="outlet"></router-outlet>
   </span>
-</ng-navbar-menu>
-<ng-loading/>
+</navbar-menu>
+<loading/>
 <p-scrollTop/>

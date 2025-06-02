@@ -4,7 +4,7 @@ import {MultiSelectComponent, MultiSelectModule} from "@powell/components/multi-
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-multi-select-page',
+  selector: 'multi-select-page',
   templateUrl: './multi-select.page.html',
   imports: [
     MultiSelectModule,

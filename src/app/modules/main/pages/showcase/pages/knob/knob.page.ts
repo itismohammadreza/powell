@@ -4,7 +4,7 @@ import {KnobComponent, KnobModule} from "@powell/components/knob";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-knob-page',
+  selector: 'knob-page',
   templateUrl: './knob.page.html',
   imports: [
     KnobModule,

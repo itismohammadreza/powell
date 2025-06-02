@@ -4,7 +4,7 @@ import {RadioComponent, RadioModule} from "@powell/components/radio";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-radio-page',
+  selector: 'radio-page',
   templateUrl: './radio.page.html',
   imports: [
     RadioModule,

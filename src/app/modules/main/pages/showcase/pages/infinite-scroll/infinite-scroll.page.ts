@@ -3,7 +3,7 @@ import {InfiniteScrollModule} from "@powell/components/infinite-scroll";
 import {PreviewComponent} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-infinite-scroll-page',
+  selector: 'infinite-scroll-page',
   templateUrl: './infinite-scroll.page.html',
   imports: [
     InfiniteScrollModule,

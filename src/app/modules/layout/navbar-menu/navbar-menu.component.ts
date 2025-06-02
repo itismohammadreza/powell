@@ -28,7 +28,7 @@ import {DesignerComponent} from "@modules/main/pages/showcase/components";
 import {RadioModule} from "@powell/components/radio";
 
 @Component({
-  selector: 'ng-navbar-menu',
+  selector: 'navbar-menu',
   templateUrl: './navbar-menu.component.html',
   styleUrls: ['./navbar-menu.component.scss'],
   imports: [

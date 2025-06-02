@@ -4,7 +4,7 @@ import {ColorPickerComponent, ColorPickerModule} from "@powell/components/color-
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-color-picker-page',
+  selector: 'color-picker-page',
   templateUrl: './color-picker.page.html',
   imports: [
     ColorPickerModule,

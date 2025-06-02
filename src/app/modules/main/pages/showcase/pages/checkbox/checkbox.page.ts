@@ -4,7 +4,7 @@ import {CheckboxComponent, CheckboxModule} from "@powell/components/checkbox";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-checkbox-page',
+  selector: 'checkbox-page',
   templateUrl: './checkbox.page.html',
   imports: [
     CheckboxModule,

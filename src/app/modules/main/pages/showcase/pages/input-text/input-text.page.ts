@@ -4,7 +4,7 @@ import {InputTextComponent, InputTextModule} from "@powell/components/input-text
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-input-text-page',
+  selector: 'input-text-page',
   templateUrl: './input-text.page.html',
   imports: [
     InputTextModule,

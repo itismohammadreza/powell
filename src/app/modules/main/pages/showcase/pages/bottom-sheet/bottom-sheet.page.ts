@@ -4,7 +4,7 @@ import {ButtonModule} from "@powell/components/button";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-bottom-sheet-page',
+  selector: 'bottom-sheet-page',
   templateUrl: './bottom-sheet.page.html',
   imports: [
     BottomSheetModule,

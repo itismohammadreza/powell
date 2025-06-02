@@ -4,7 +4,7 @@ import {CascadeSelectComponent, CascadeSelectModule} from "@powell/components/ca
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-cascade-select-page',
+  selector: 'cascade-select-page',
   templateUrl: './cascade-select.page.html',
   imports: [
     CascadeSelectModule,

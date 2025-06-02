@@ -117,7 +117,7 @@ class App {
 }
 
 @Component({
-  selector: 'ng-smoke',
+  selector: 'smoke',
   templateUrl: './smoke.component.html',
   styleUrls: ['./smoke.component.scss'],
   standalone: true

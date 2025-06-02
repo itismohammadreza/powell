@@ -4,7 +4,7 @@ import {ButtonModule} from "@powell/components/button";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-toast-page',
+  selector: 'toast-page',
   templateUrl: './toast.page.html',
   imports: [
     ButtonModule,

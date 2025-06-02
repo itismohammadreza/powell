@@ -5,7 +5,7 @@ import {DatepickerComponent, DatepickerModule} from "@powell/components/datepick
 import {$DatePickerModule} from "@powell/primeng";
 
 @Component({
-  selector: 'ng-datepicker-page',
+  selector: 'datepicker-page',
   templateUrl: './datepicker.page.html',
   imports: [
     ReactiveFormsModule,

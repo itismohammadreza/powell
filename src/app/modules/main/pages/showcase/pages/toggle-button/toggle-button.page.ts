@@ -4,7 +4,7 @@ import {ToggleButtonComponent, ToggleButtonModule} from "@powell/components/togg
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-toggle-button-page',
+  selector: 'toggle-button-page',
   templateUrl: './toggle-button.page.html',
   imports: [
     ToggleButtonModule,

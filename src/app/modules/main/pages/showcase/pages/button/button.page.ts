@@ -3,7 +3,7 @@ import {ButtonComponent, ButtonModule} from "@powell/components/button";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-button-page',
+  selector: 'button-page',
   templateUrl: './button.page.html',
   imports: [
     ButtonModule,

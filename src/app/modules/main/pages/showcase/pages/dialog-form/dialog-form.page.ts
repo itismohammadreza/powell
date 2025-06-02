@@ -7,7 +7,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 import {DestroyService} from "@core/utils";
 
 @Component({
-  selector: 'ng-dialog-form-page',
+  selector: 'dialog-form-page',
   templateUrl: './dialog-form.page.html',
   imports: [
     ButtonModule,

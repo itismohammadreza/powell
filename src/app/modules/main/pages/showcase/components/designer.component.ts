@@ -13,7 +13,7 @@ import {lastValueFrom} from "rxjs";
 import {TranslationService} from "@core/utils";
 
 @Component({
-  selector: 'ng-designer',
+  selector: 'designer',
   standalone: true,
   imports: [
     SelectButtonModule,

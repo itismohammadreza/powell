@@ -19,7 +19,7 @@ interface Customer {
 }
 
 @Component({
-  selector: 'ng-table-page',
+  selector: 'table-page',
   templateUrl: './table.page.html',
   imports: [
     TableModule,

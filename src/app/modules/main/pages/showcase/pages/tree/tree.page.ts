@@ -4,7 +4,7 @@ import {TreeComponent, TreeModule} from "@powell/components/tree";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-tree-page',
+  selector: 'tree-page',
   templateUrl: './tree.page.html',
   imports: [
     TreeModule,

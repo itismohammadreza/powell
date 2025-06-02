@@ -4,7 +4,7 @@ import {InputTextareaComponent, InputTextareaModule} from "@powell/components/in
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-input-textarea-page',
+  selector: 'input-textarea-page',
   templateUrl: './input-textarea.page.html',
   imports: [
     InputTextareaModule,

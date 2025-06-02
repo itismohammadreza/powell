@@ -8,7 +8,7 @@ import {BubblesComponent} from "@modules/main/pages/showcase/pages/home/bubbles/
 import {SmokeComponent} from "@modules/main/pages/showcase/pages/home/smoke/smoke.component";
 
 @Component({
-  selector: 'ng-home-page',
+  selector: 'home-page',
   templateUrl: './home.page.html',
   imports: [
     EmojiComponent,

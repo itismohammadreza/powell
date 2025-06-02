@@ -4,7 +4,7 @@ import {ButtonModule} from "@powell/components/button";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'ng-confirm-popup-page',
+  selector: 'confirm-popup-page',
   templateUrl: './confirm-popup.page.html',
   imports: [
     ButtonModule,
