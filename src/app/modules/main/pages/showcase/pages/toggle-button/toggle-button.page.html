@@ -5,14 +5,7 @@
   (onOptionChange)="onOptionChange($event)">
   <form [formGroup]="form">
     @if (render) {
-      <ng-toggle-button formControlName="c1" [validation]="{ required: 'error' }">
-        @if (additions.addonStart) {
-          <ng-template ngTemplate="addonStart"><i class="pi pi-prime"></i></ng-template>
-        }
-        @if (additions.addonEnd) {
-          <ng-template ngTemplate="addonEnd"><i class="pi pi-prime"></i></ng-template>
-        }
-      </ng-toggle-button>
+      <ng-toggle-button formControlName="c1" [validation]="{ required: 'error' }"/>
     }
   </form>
 </ng-preview>
