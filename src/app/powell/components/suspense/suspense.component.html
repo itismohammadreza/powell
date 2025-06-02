@@ -1,0 +1,32 @@
+<div class="suspense-wrapper">
+  @if (state$ | async; as state) {
+    @if (state.loading) {
+      <ng-container *ngTemplateOutlet="templateMap.loading || defaultLoadingTpl"/>
+    }
+
+    @if (state.error) {
+      <ng-container *ngTemplateOutlet="templateMap.error || defaultErrorTpl; context: { $implicit: state.error }"/>
+    }
+
+    @if (!state.loading && !state.error) {
+      <ng-container *ngTemplateOutlet="templateMap.content; context: { $implicit: state.data }"/>
+    }
+  }
+
+  <ng-template #defaultLoadingTpl>
+    <div class="loading">
+      <p-progressSpinner
+        [strokeWidth]="spinnerStrokeWidth.toString()"
+        [fill]="spinnerFill"
+        [style]="{width:spinnerWidth,height:spinnerHeight}"/>
+    </div>
+  </ng-template>
+  <ng-template #defaultErrorTpl let-error>
+    <div class="error-container">
+      <div class="icon">&#9888;</div>
+      <div class="message">
+        <p>{{ error }}</p>
+      </div>
+    </div>
+  </ng-template>
+</div>

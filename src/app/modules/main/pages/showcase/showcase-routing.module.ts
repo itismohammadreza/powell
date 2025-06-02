@@ -149,9 +149,9 @@ export const routes: Routes = [
     title: 'Listbox'
   },
   {
-    path: 'loading-container',
-    loadComponent: () => import('./pages/loading-container').then(m => m.LoadingContainerPage),
-    title: 'Loading Container'
+    path: 'suspense',
+    loadComponent: () => import('./pages/suspense').then(m => m.SuspensePage),
+    title: 'Suspense'
   },
   {
     path: 'map',

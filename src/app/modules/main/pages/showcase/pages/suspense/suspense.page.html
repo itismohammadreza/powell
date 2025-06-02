@@ -1,0 +1,16 @@
+<ng-preview
+  component="Suspense"
+  description="Suspense is a container to show a loading template until data loaded.">
+  <ng-suspense [data]="list">
+    <!--<ng-template ngTemplate="loading">-->
+    <!--  <p>لطفا صبر کنید</p>-->
+    <!--</ng-template>-->
+    <ng-template ngTemplate="content" let-data>
+      <ul>
+        @for (item of data; track item) {
+          <li>item-{{ item }}</li>
+        }
+      </ul>
+    </ng-template>
+  </ng-suspense>
+</ng-preview>
