@@ -282,9 +282,6 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
       this.map.scrollWheelZoom.disable();
       this.map.boxZoom.disable();
       this.map.keyboard.disable();
-      if (this.map.tap) {
-        this.map.tap.disable();
-      }
     } else {
       this.readonly = false;
       this.map.dragging.enable();
@@ -293,9 +290,6 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
       this.map.scrollWheelZoom.enable();
       this.map.boxZoom.enable();
       this.map.keyboard.enable();
-      if (this.map.tap) {
-        this.map.tap.enable();
-      }
     }
   }
 
