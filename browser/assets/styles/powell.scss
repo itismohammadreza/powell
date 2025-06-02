@@ -1294,6 +1294,10 @@ ng-suspense {
 
 ng-map {
   .map-wrapper {
+    .form-field-wrapper .field-wrapper {
+      align-items: flex-start;
+    }
+
     .field {
       > div {
         display: block;
@@ -1852,7 +1856,8 @@ ng-dialog-form {
   }
 }
 
-.p-floatlabel, .p-iftalabel {
+.p-floatlabel,
+.p-iftalabel {
   display: inline-block;
 
   label {
@@ -1860,6 +1865,6 @@ ng-dialog-form {
   }
 }
 
-p-inputgroup.p-inputgroup :is(.p-floatlabel,.p-iftalabel,.p-inputwrapper) {
+p-inputgroup.p-inputgroup :is(.p-floatlabel, .p-iftalabel, .p-inputwrapper) {
   width: auto;
 }

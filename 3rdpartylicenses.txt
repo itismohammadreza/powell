@@ -491,7 +491,7 @@ License: "SEE LICENSE IN LICENSE"
 
 
 --------------------------------------------------------------------------------
-Package: @asymmetrik/ngx-leaflet
+Package: @bluehalo/ngx-leaflet
 License: "MIT"
 
 The MIT License (MIT)
