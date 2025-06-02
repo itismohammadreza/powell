@@ -22,7 +22,6 @@ export class ListboxPage extends PreviewBase {
     {field: 'rtl', value: this.config.rtl},
     {field: 'showRequiredStar', value: this.config.showRequiredStar},
     {field: 'labelPosition', selectOptions: 'fixLabelPositions', value: this.config.fixLabelPosition},
-    {field: 'additions', selectOptions: 'additions', value: 'none'},
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'multiple', value: false},
     {field: 'readonly', value: false},
