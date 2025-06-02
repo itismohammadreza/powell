@@ -41,7 +41,7 @@
   padding-inline-end: calc($end-padding + $extra-end-padding);
 }
 
-ng-auto-complete {
+pw-auto-complete {
   .auto-complete-wrapper {
     &.icon-start {
       .p-inputtext {
@@ -148,7 +148,7 @@ ng-auto-complete {
   }
 }
 
-ng-button {
+pw-button {
   display: inline-block;
 
   &.full {
@@ -181,7 +181,7 @@ ng-button {
   }
 }
 
-ng-cascade-select {
+pw-cascade-select {
   .cascade-select-wrapper {
     &.icon-start {
       .p-cascadeselect-label {
@@ -267,7 +267,7 @@ ng-cascade-select {
   }
 }
 
-ng-checkbox {
+pw-checkbox {
   .checkbox-inner-wrapper {
     display: flex;
     align-items: center;
@@ -282,7 +282,7 @@ ng-checkbox {
   }
 }
 
-ng-checkbox-group {
+pw-checkbox-group {
   .checkbox-group-wrapper {
     .form-field-wrapper .field-wrapper {
       align-items: flex-start;
@@ -323,7 +323,7 @@ ng-checkbox-group {
   }
 }
 
-ng-color-picker {
+pw-color-picker {
   .color-picker-wrapper {
     &.inline {
       .form-field-wrapper .field-wrapper {
@@ -333,7 +333,7 @@ ng-color-picker {
   }
 }
 
-ng-datepicker {
+pw-datepicker {
   .datepicker-wrapper {
     &.icon-start {
       .p-inputtext {
@@ -441,7 +441,7 @@ ng-datepicker {
   }
 }
 
-ng-dual-label-switch {
+pw-dual-label-switch {
   .dual-label-switch-wrapper {
     display: flex;
     position: relative;
@@ -468,7 +468,7 @@ ng-dual-label-switch {
   }
 }
 
-ng-empty {
+pw-empty {
   .empty-wrapper {
     display: flex;
     flex-direction: column;
@@ -496,7 +496,7 @@ ng-empty {
   }
 }
 
-ng-file-picker2 {
+pw-file-picker2 {
   .file-picker-wrapper {
     .field {
       &.ng-invalid.ng-dirty {
@@ -631,7 +631,7 @@ ng-file-picker2 {
   }
 }
 
-ng-form-field {
+pw-form-field {
   .form-field-wrapper {
     &, .p-inputtext {
       width: auto;
@@ -719,19 +719,19 @@ ng-form-field {
   }
 }
 
-ng-image {
+pw-image {
   .pinch-zoom-content {
     overflow: visible !important;
   }
 }
 
-ng-infinite-scroll {
+pw-infinite-scroll {
   .loading {
     text-align: center;
   }
 }
 
-ng-input-mask {
+pw-input-mask {
   .input-mask-wrapper {
     &.icon-start {
       .p-inputtext {
@@ -771,7 +771,7 @@ ng-input-mask {
   }
 }
 
-ng-input-number {
+pw-input-number {
   .input-number-wrapper {
     &.icon-start {
       .p-inputtext {
@@ -968,7 +968,7 @@ ng-input-number {
   }
 }
 
-ng-input-password {
+pw-input-password {
   .input-password-wrapper {
     &.icon-start {
       .p-inputtext {
@@ -1095,7 +1095,7 @@ ng-input-password {
   }
 }
 
-ng-input-text {
+pw-input-text {
   .input-text-wrapper {
     .field {
       position: relative;
@@ -1154,7 +1154,7 @@ ng-input-text {
   }
 }
 
-ng-input-textarea {
+pw-input-textarea {
   .input-textarea-wrapper {
     textarea {
       unicode-bidi: plaintext;
@@ -1180,7 +1180,7 @@ ng-input-textarea {
   }
 }
 
-ng-iran-map {
+pw-iran-map {
   .iran-map-wrapper {
     .field {
       .map {
@@ -1233,7 +1233,7 @@ ng-iran-map {
   }
 }
 
-ng-listbox {
+pw-listbox {
   .listbox-wrapper {
     .form-field-wrapper .field-wrapper {
       align-items: flex-start;
@@ -1241,7 +1241,7 @@ ng-listbox {
   }
 }
 
-ng-suspense {
+pw-suspense {
   .loading {
     display: flex;
     align-items: center;
@@ -1292,7 +1292,7 @@ ng-suspense {
   }
 }
 
-ng-map {
+pw-map {
   .map-wrapper {
     .form-field-wrapper .field-wrapper {
       align-items: flex-start;
@@ -1315,7 +1315,7 @@ ng-map {
   }
 }
 
-ng-multi-select {
+pw-multi-select {
   .multi-select-wrapper {
     &.icon-start {
       .p-multiselect-label {
@@ -1390,7 +1390,7 @@ ng-multi-select {
   }
 }
 
-ng-pinch-zoom {
+pw-pinch-zoom {
   position: relative;
   overflow: hidden;
   display: block;
@@ -1508,7 +1508,7 @@ ng-pinch-zoom {
   }
 }
 
-ng-radio {
+pw-radio {
   .radio-wrapper {
     .form-field-wrapper .field-wrapper {
       align-items: flex-start;
@@ -1549,7 +1549,7 @@ ng-radio {
   }
 }
 
-ng-select {
+pw-select {
   .select-wrapper {
     &.icon-start {
       .p-select-label {
@@ -1636,7 +1636,7 @@ ng-select {
   }
 }
 
-ng-table {
+pw-table {
   .table-wrapper {
     .caption {
       display: flex;
@@ -1697,7 +1697,7 @@ ng-table {
   }
 }
 
-ng-toggle-switch {
+pw-toggle-switch {
   .toggle-switch-wrapper {
     p-toggleSwitch {
       display: flex;
@@ -1718,7 +1718,7 @@ ng-toggle-switch {
   }
 }
 
-ng-tree-select {
+pw-tree-select {
   .tree-select-wrapper {
     &.icon-start {
       .p-treeselect-label {
@@ -1805,7 +1805,7 @@ ng-tree-select {
   }
 }
 
-ng-dialog-form {
+pw-dialog-form {
   .dialog-form-wrapper {
     form {
       > *:not(:last-child) {
