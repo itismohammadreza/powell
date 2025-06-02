@@ -1,7 +1,7 @@
 import {Directive, inject, Input, TemplateRef, ViewContainerRef,} from '@angular/core';
 
 @Directive({
-  selector: '[ngPermission]',
+  selector: '[permission]',
 })
 export class PermissionDirective {
   private templateRef = inject(TemplateRef<any>);
