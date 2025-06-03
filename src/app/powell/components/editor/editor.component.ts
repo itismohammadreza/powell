@@ -22,9 +22,8 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {Core} from 'suneditor/src/lib/core';
-import {SunEditorOptions} from "suneditor/src/options";
-import plugins from 'suneditor/src/plugins';
+import type {Core} from 'suneditor/src/lib/core';
+import type {SunEditorOptions} from 'suneditor/src/options';
 import {
   CssObject,
   EditorEvent,
@@ -140,10 +139,12 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   onModelTouched: Function = () => {
   };
 
-  ngOnInit() {
+  async ngOnInit() {
+    const SunEditorPlugins = await import('suneditor/src/plugins');
+
     if (!this.options) {
       this.options = {
-        plugins: plugins,
+        plugins: SunEditorPlugins.default,
         minWidth: '100%',
         buttonList: [
           ["undo", "redo"],

@@ -335,6 +335,14 @@ pw-color-picker {
 
 pw-datepicker {
   .datepicker-wrapper {
+    &.is-jalali {
+      .p-datepicker-day-view,
+      .p-datepicker-month-view,
+      .p-datepicker-year-view {
+        direction: rtl;
+      }
+    }
+
     &.icon-start {
       .p-inputtext {
         @include field-padding($icon-start: true, $icon-end: false, $has-clear: false);
@@ -438,6 +446,12 @@ pw-datepicker {
         }
       }
     }
+  }
+}
+
+pw-editor {
+  .sun-editor {
+    width: 100% !important;
   }
 }
 
@@ -1873,7 +1887,7 @@ pw-dialog-form {
   display: inline-block;
 
   label {
-    z-index: 500;
+    z-index: 10;
   }
 }
 
