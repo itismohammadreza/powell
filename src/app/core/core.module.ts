@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {EnvServiceProvider, TranslationService} from "@core/utils";
-import {MomentService, OverlayService, PersianService, UtilsService} from "@powell/api";
+import {OverlayService, PersianService, UtilsService} from "@powell/api";
 
 const httpLoaderFactory = (http: HttpClient) => {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -26,7 +26,6 @@ const initiateLanguage = (translationService: TranslationService) => {
   providers: [
     provideAppInitializer(() => initiateLanguage(inject(TranslationService))),
     EnvServiceProvider,
-    MomentService,
     OverlayService,
     PersianService,
     UtilsService,

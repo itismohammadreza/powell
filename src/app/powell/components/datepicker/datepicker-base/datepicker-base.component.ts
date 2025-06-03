@@ -59,8 +59,7 @@ import {
   $VoidListener,
   $ZIndexUtils
 } from '@powell/primeng';
-import {Moment} from "jalali-moment";
-import {MomentService} from "@powell/api";
+import jalaliMoment, {Moment, MomentFormatSpecification, MomentInput} from "jalali-moment";
 
 export interface DateMeta {
   day?: number,
@@ -114,7 +113,28 @@ export interface DateMeta {
 export class DatepickerBaseComponent extends $BaseComponent implements OnInit, AfterViewInit, AfterContentInit, OnDestroy, ControlValueAccessor {
   // CHANGES
   @Input() isJalali: boolean | undefined;
-  private momentService = inject(MomentService);
+
+  getJalaliMoment(input?: MomentInput, format?: MomentFormatSpecification, language?: string, strict?: boolean) {
+    return jalaliMoment(input, format, language, strict);
+  }
+
+  /*
+  * example usage for convert jalali to gregorian:
+  *
+  * `convertToGregorian('1392/6/3 16:40', 'YYYY/M/D HH:mm').format('YYYY-M-D HH:mm:ss');` `// 2013-8-25 16:40:00`
+  * */
+  convertToGregorian(input: string, format?: string) {
+    return jalaliMoment.from(input, 'fa', format);
+  }
+
+  /*
+  * example usage for convert gregorian to jalali:
+  *
+  * `convertToJalali('2013-8-25 16:40:00', 'YYYY-M-D HH:mm:ss').format('YYYY/M/D HH:mm:ss');` `// 1392/6/31 23:59:59`
+  */
+  convertToJalali(input: MomentInput, format?: MomentFormatSpecification) {
+    return jalaliMoment(input, format).locale('fa');
+  }
 
   getEqualProp(key: keyof Date) {
     const result = {
@@ -139,7 +159,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
 
   getEqualDateObj(input?: string | number | any[], format?: string) {
     if (this.isJalali) {
-      return this.momentService.getJalaliMoment(input, format)
+      return this.getJalaliMoment(input, format)
     } else {
       if (input) {
         if (Array.isArray(input)) {
@@ -1011,7 +1031,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
 
   formatDateMetaToDate(dateMeta: DateMeta) {
     if (this.isJalali) {
-      return this.momentService.convertToGregorian(`${dateMeta.year}/${dateMeta.month + 1}/${dateMeta.day}`, 'YYYY/MM/DD')
+      return this.convertToGregorian(`${dateMeta.year}/${dateMeta.month + 1}/${dateMeta.day}`, 'YYYY/MM/DD')
     } else {
       return this.getEqualDateObj([dateMeta.year, dateMeta.month, dateMeta.day]);
     }
@@ -1123,7 +1143,7 @@ export class DatepickerBaseComponent extends $BaseComponent implements OnInit, A
 
   getDaysCountInMonth(month: number, year: number) {
     if (this.isJalali) {
-      return (this.daylightSavingAdjust(this.momentService.getJalaliMoment(`${year}-${month + 1}`, "jYYYY-jMM")) as Moment).jDaysInMonth();
+      return (this.daylightSavingAdjust(this.getJalaliMoment(`${year}-${month + 1}`, "jYYYY-jMM")) as Moment).jDaysInMonth();
     } else {
       return 32 - (this.daylightSavingAdjust(new Date(year, month, 32)) as Date).getDate();
     }
