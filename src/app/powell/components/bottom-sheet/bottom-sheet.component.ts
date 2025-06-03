@@ -17,7 +17,7 @@ import {ConfigService, OverlayService} from "@powell/api";
 import {ButtonProps, CssObject, HistoryState} from "@powell/models";
 import {Subject, takeUntil} from "rxjs";
 import {$uuid} from "@powell/primeng";
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 
 @Component({
   selector: 'pw-bottom-sheet',

@@ -13,10 +13,11 @@ import {
 import {SelectComponent} from '@powell/components/select';
 import {InputTextComponent} from '@powell/components/input-text';
 import {CheckboxComponent} from '@powell/components/checkbox';
-import {DestroyService, TranslationService} from "@core/utils";
+import {TranslationService} from "@core/utils";
 import {takeUntil} from "rxjs";
 import {ConfigService} from "@powell/api";
 import {$DividerModule} from "@powell/primeng";
+import {DestroyService} from "@powell/utils";
 
 export type OptionType =
   'positions'

@@ -26,7 +26,7 @@ import {
 import {takeUntil} from "rxjs";
 import {CssObject, InputVariant, LabelPosition, Size, Validation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 import {
   $CascadeSelectBeforeHideEvent,
   $CascadeSelectBeforeShowEvent,

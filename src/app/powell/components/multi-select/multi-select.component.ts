@@ -47,7 +47,7 @@ import {
   $ScrollerOptions,
   $uuid
 } from "@powell/primeng";
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 import {ConfigService} from "@powell/api";
 
 @Component({

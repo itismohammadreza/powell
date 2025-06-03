@@ -21,7 +21,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {CssObject, FixLabelPosition, InputVariant, Orientation, Size, Validation} from '@powell/models';
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 import {$RadioButtonClickEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 

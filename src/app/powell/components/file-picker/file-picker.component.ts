@@ -52,7 +52,7 @@ import {
   $uuid
 } from "@powell/primeng";
 import {ConfigService, UtilsService} from "@powell/api";
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 
 @Component({
   selector: 'pw-file-picker',

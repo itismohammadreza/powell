@@ -23,7 +23,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 import {$uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 

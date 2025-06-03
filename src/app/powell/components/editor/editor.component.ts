@@ -50,7 +50,7 @@ import {
   Validation
 } from '@powell/models';
 import {EditorBaseComponent} from "@powell/components/editor";
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 import {$uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 

@@ -34,7 +34,7 @@ import {
   Size,
   Validation
 } from '@powell/models';
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 import {$InputNumberInputEvent, $uuid} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";

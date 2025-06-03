@@ -4,7 +4,7 @@ import {FormControl, Validators} from "@angular/forms";
 import {takeUntil} from "rxjs";
 import {ButtonModule} from "@powell/components/button";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 
 @Component({
   selector: 'dialog-form-page',

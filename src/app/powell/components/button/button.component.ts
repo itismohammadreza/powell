@@ -28,7 +28,7 @@ import {TemplateDirective} from "@powell/directives/template";
 import {fromEvent} from "rxjs";
 import {DOCUMENT} from "@angular/common";
 import {takeUntil} from "rxjs/operators";
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 
 @Component({
   selector: 'pw-button',

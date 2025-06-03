@@ -24,7 +24,7 @@ import {
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
 import {CssObject, FixLabelPosition, InputVariant, Size, Validation} from "@powell/models";
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 import {ConfigService} from "@powell/api";
 import {TemplateDirective} from "@powell/directives/template";
 import {$InputOtpChangeEvent} from "@powell/primeng";

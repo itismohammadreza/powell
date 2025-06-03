@@ -25,7 +25,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {AsyncEvent, CssObject, FixLabelPosition, Validation} from '@powell/models';
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 import {$ToggleSwitchChangeEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 import {TemplateDirective} from "@powell/directives/template";

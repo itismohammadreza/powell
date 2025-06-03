@@ -33,7 +33,7 @@ import {
   Validation
 } from '@powell/models';
 import {ConfigService, UtilsService} from "@powell/api";
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 import {$uuid} from "@powell/primeng";
 
 @Component({

@@ -35,7 +35,7 @@ import {
   Validation
 } from "@powell/models";
 import {takeUntil} from "rxjs";
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 import {
   $DatePickerMonthChangeEvent,
   $DatePickerResponsiveOptions,

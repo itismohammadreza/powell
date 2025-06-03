@@ -35,7 +35,7 @@ import {
   Validation
 } from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 import {
   $OverlayOnHideEvent,
   $OverlayOnShowEvent,

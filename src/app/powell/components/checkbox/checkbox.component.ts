@@ -25,7 +25,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {AsyncEvent, CssObject, InputVariant, Size, Validation} from '@powell/models';
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 import {$CheckboxChangeEvent, $uuid} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";

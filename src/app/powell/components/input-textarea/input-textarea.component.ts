@@ -26,7 +26,7 @@ import {
 import {takeUntil} from "rxjs";
 import {CssObject, InputVariant, LabelPosition, Size, Validation} from '@powell/models';
 import {ConfigService} from "@powell/api";
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 import {$uuid} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
 

@@ -42,7 +42,7 @@ import {TreeComponent} from "@powell/components/tree";
 import {TreeSelectComponent} from "@powell/components/tree-select";
 import {EditorComponent} from "@powell/components/editor";
 import {takeUntil} from "rxjs";
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 
 @Component({
   selector: 'pw-dialog-form',

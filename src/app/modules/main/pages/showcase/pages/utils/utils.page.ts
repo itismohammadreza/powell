@@ -6,7 +6,7 @@ import {takeUntil} from "rxjs";
 import {ButtonModule} from "@powell/components/button";
 import {InputNumberModule} from "@powell/components/input-number";
 import {PreviewBase, PreviewComponent} from "@modules/main/pages/showcase/components";
-import {DestroyService} from "@core/utils";
+import {DestroyService} from "@powell/utils";
 import {$DividerModule} from "@powell/primeng";
 import {TranslateModule} from "@ngx-translate/core";
 import {NgClass} from "@angular/common";
