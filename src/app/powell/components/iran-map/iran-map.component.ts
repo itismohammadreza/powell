@@ -11,14 +11,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import {
-  AsyncEvent,
-  CssObject,
-  FixLabelPosition,
-  MapChangeEvent,
-  Province,
-  Validation
-} from "@powell/models";
+import {AsyncEvent, CssObject, FixLabelPosition, MapChangeEvent, Province, Validation} from "@powell/models";
 import {
   AbstractControl,
   ControlContainer,
@@ -393,47 +386,24 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
     const tooltipEl = el.querySelector('.title') as any;
     el.querySelectorAll('svg g path').forEach(pathElement => {
       const provinceName = pathElement.getAttribute('data-name');
-      pathElement.addEventListener('mouseover', (event) => {
+      pathElement.addEventListener('mouseover', () => {
         tooltipEl.innerHTML = provinceName;
         tooltipEl.style.display = 'flex';
       });
-      pathElement.addEventListener('mouseout', (event) => {
+      pathElement.addEventListener('mouseout', () => {
         tooltipEl.innerHTML = '';
         tooltipEl.style.display = 'none';
       });
     });
 
-    el.querySelector('.iran-map-wrapper').addEventListener('mousemove', (e: any) => {
-      const wrapper = e.currentTarget;
-      const transform = getComputedStyle(wrapper.parentNode.parentNode).transform;
-      let matrixA = 1;
-      if (transform != 'none') {
-        let matrix: any = transform.split('(');
-        matrix.splice(0, 1);
-        matrix = matrix[0].slice(0, -1);
-        matrix = matrix.split(',').map(x => +x);
-        matrixA = matrix[0];
-      }
-      let posx = 0;
-      let posy = 0;
-      if (!e) {
-        e = window.event;
-      }
-      if (e.pageX || e.pageY) {
-        posx = e.pageX;
-        posy = e.pageY;
-      } else if (e.clientX || e.clientY) {
-        posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-        posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-      }
+    el.querySelector('.iran-map-wrapper .map').addEventListener('mousemove', (e: any) => {
       if (tooltipEl.innerHTML) {
-        const rect = wrapper.getBoundingClientRect();
-        const offset = {
-          top: rect.top + window.scrollY,
-          left: rect.left + window.scrollX,
-        };
-        const x = (posx - offset.left + 25) / matrixA;
-        const y = (posy - offset.top - 5) / matrixA;
+        const container = e.currentTarget;
+        const containerRect = container.getBoundingClientRect();
+        const tooltipOffsetX = 10;
+        const tooltipOffsetY = 20;
+        const x = e.clientX - containerRect.left + tooltipOffsetX;
+        const y = e.clientY - containerRect.top - tooltipOffsetY;
         tooltipEl.style.left = x + 'px';
         tooltipEl.style.top = y + 'px';
       }

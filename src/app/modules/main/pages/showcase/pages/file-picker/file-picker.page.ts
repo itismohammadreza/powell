@@ -27,7 +27,7 @@ export class FilePickerPage extends PreviewBase {
     {field: 'accept', value: 'image/*'},
     {field: 'disabled', value: false},
     {field: 'maxFileSize', value: 10000000000},
-    {field: 'fileLimit', value: 0},
+    {field: 'fileLimit', value: 10},
     {field: 'previewWidth', value: 50},
     {field: 'chooseLabel', value: 'انتخاب'},
     {field: 'uploadLabel', value: 'آپلود'},

@@ -490,9 +490,16 @@ pw-empty {
       font-size: 0.875em;
 
       &:not(.validation) {
-        color: #6c757d;
+        color: var(--p-text-muted-color);
       }
     }
+  }
+}
+
+pw-file-picker {
+  .p-fileupload-file-actions {
+    margin-left: 0;
+    margin-inline-start: auto;
   }
 }
 
@@ -502,7 +509,7 @@ pw-file-picker2 {
       &.ng-invalid.ng-dirty {
         .file-picker-single-wrapper .preview,
         .file-picker-multiple-wrapper .image-uploader {
-          border-color: #f44336;
+          border-color: var(--p-inputtext-invalid-border-color);
         }
       }
 
@@ -526,7 +533,7 @@ pw-file-picker2 {
       .pi-file, .pi-paperclip {
         font-size: calc(1.325rem + 0.9vw);
         vertical-align: middle;
-        color: #bdbdbd;
+        color: var(--p-text-muted-color);
       }
     }
 
@@ -535,17 +542,18 @@ pw-file-picker2 {
 
       .preview {
         text-align: center;
-        border: 1px solid #ced4da;
+        border: 1px solid var(--p-text-muted-color);
+        border-bottom: 0;
         padding: 1rem;
-        border-top-left-radius: var(--p-border-radius);
-        border-top-right-radius: var(--p-border-radius);
+        border-top-left-radius: var(--p-form-field-border-radius);
+        border-top-right-radius: var(--p-form-field-border-radius);
 
         .image-preview {
           padding: clamp(50%, 100%, 50%) 0
         }
 
         + pw-button {
-          ::ng-deep button {
+          button {
             border-top-left-radius: 0;
             border-top-right-radius: 0;
           }
@@ -563,12 +571,12 @@ pw-file-picker2 {
     .file-picker-multiple-wrapper {
       display: flex;
       flex-wrap: wrap;
+      gap: 0.5rem;
 
       .picker {
         width: 120px;
         height: 120px;
-        border: 1px dashed #bdbdbd;
-        border-radius: 3px;
+        border: 1px dashed var(--p-form-field-border-color);
         text-align: center;
         margin: 0 3px;
         cursor: pointer;
@@ -576,6 +584,7 @@ pw-file-picker2 {
         display: flex;
         align-items: center;
         justify-content: center;
+        border-radius: var(--p-form-field-border-radius);
       }
 
       .preview {
@@ -585,7 +594,8 @@ pw-file-picker2 {
         flex-direction: column;
         position: relative;
         overflow: hidden;
-        border: 2px solid #fff;
+        border: 2px solid var(--p-form-field-border-color);
+        border-radius: var(--p-form-field-border-radius);
         outline: none;
         transition: all 0.4s;
         margin-bottom: 0.5rem;
@@ -596,12 +606,12 @@ pw-file-picker2 {
           display: flex;
           align-items: center;
           justify-content: center;
-          border: 1px solid #bdbdbd;
+          border: 1px solid var(--p-form-field-border-color);
         }
 
         .image-preview {
           height: 116px;
-          background-color: #f5f5f5;
+          background-color: var(--p-text-muted-color);
         }
 
         pw-button {
@@ -617,7 +627,7 @@ pw-file-picker2 {
           font-size: 0.875em;
           padding: 0.25rem;
           background-color: rgba(33, 37, 41, 1);
-          color: #ffffff;
+          color: var(--p-text-muted-color);
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
@@ -672,11 +682,11 @@ pw-form-field {
       flex-direction: column;
 
       .message {
-        color: #64748b;
+        color: var(--p-text-muted-color);
         margin-top: 0.5rem;
 
         &.validation {
-          color: #dc2626;
+          color: var(--p-red-400);
         }
       }
     }
@@ -713,7 +723,7 @@ pw-form-field {
 
     &.is-invalid {
       .field-wrapper label {
-        color: #dc2626;
+        color: var(--p-red-400);
       }
     }
   }
@@ -1182,51 +1192,63 @@ pw-input-textarea {
 
 pw-iran-map {
   .iran-map-wrapper {
-    .field {
-      .map {
-        display: inline-flex;
-        flex-grow: 1;
-        transition: all 0.3s;
-
-        .title {
-          display: none;
-          position: absolute;
-          background-color: #fff;
-          color: #333;
-          text-align: center;
-          line-height: 26px;
-          border-radius: 5px;
-          padding: 5px;
-          flex-direction: column;
+    .form-field-wrapper {
+      &.disabled {
+        .map {
+          opacity: 0.6;
         }
+      }
 
-        .border path,
-        .island path {
-          fill: #ffffff
-        }
+      .field-wrapper {
+        align-items: flex-start;
 
-        .sea path,
-        .lake path {
-          fill: #78bbfc
-        }
+        .field {
+          .map {
+            display: inline-flex;
+            width: 100%;
+            transition: all 0.3s;
+            position: relative;
 
-        .province path {
-          fill: #C3E0E6;
+            .title {
+              display: none;
+              position: absolute;
+              background-color: var(--p-surface-0);
+              color: var(--p-text-muted-color);
+              text-align: center;
+              border-radius: 5px;
+              padding: 5px;
+              flex-direction: column;
+            }
 
-          &:not(.active):hover {
-            fill: #93c6d2 !important;
-            cursor: pointer
+            .border path,
+            .island path {
+              fill: var(--p-surface-400);
+            }
+
+            .sea path,
+            .lake path {
+              fill: #78bbfc
+            }
+
+            .province path {
+              fill: #C3E0E6;
+
+              &:not(.active):hover {
+                fill: #93c6d2;
+                cursor: pointer
+              }
+
+              &.active {
+                fill: #87c0cd;
+              }
+            }
+
+            path.disabled {
+              cursor: default;
+              pointer-events: none;
+              fill: #6c757d;
+            }
           }
-
-          &.active {
-            fill: #87c0cd !important;
-          }
-        }
-
-        path.disabled {
-          cursor: default !important;
-          pointer-events: none !important;
-          fill: #6c757d !important;
         }
       }
     }
@@ -1254,10 +1276,12 @@ pw-suspense {
     align-items: center;
     gap: 12px;
     padding: 16px;
-    border: 1px solid #f5c6cb;
-    background-color: #f8d7da;
-    color: #721c24;
-    border-radius: 8px;
+    border-radius: var(--p-message-border-radius);
+    outline-width: var(--p-message-border-width);
+    outline-style: solid;
+    outline-color: var(--p-message-error-border-color);
+    background: var(--p-message-error-background);
+    color: var(--p-message-error-color);
     text-align: center;
 
     .icon {
@@ -1274,19 +1298,6 @@ pw-suspense {
       p {
         margin: 0;
         font-size: 14px;
-      }
-    }
-
-    button {
-      padding: 6px 12px;
-      background-color: #f5c6cb;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-
-      &:hover {
-        background-color: #f1b0b7;
       }
     }
   }
@@ -1406,7 +1417,7 @@ pw-pinch-zoom {
   .pz-zoom-button {
     position: absolute;
     z-index: 1000;
-    color: #fff;
+    color: #ffffff;
     background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgc3R5bGU9IiI+PHJlY3QgaWQ9ImJhY2tncm91bmRyZWN0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSIwIiB5PSIwIiBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48ZyBjbGFzcz0iY3VycmVudExheWVyIiBzdHlsZT0iIj48dGl0bGU+TGF5ZXIgMTwvdGl0bGU+PHBhdGggZD0iTTE1LjUgMTRoLS43OWwtLjI4LS4yN0MxNS40MSAxMi41OSAxNiAxMS4xMSAxNiA5LjUgMTYgNS45MSAxMy4wOSAzIDkuNSAzUzMgNS45MSAzIDkuNSA1LjkxIDE2IDkuNSAxNmMxLjYxIDAgMy4wOS0uNTkgNC4yMy0xLjU3bC4yNy4yOHYuNzlsNSA0Ljk5TDIwLjQ5IDE5bC00Ljk5LTV6bS02IDBDNy4wMSAxNCA1IDExLjk5IDUgOS41UzcuMDEgNSA5LjUgNSAxNCA3LjAxIDE0IDkuNSAxMS45OSAxNCA5LjUgMTR6IiBpZD0ic3ZnXzEiIGNsYXNzPSIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMSIvPjxwYXRoIGQ9Ik0xMiAxMGgtMnYySDl2LTJIN1Y5aDJWN2gxdjJoMnYxeiIgaWQ9InN2Z18zIiBjbGFzcz0iIiBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjEiLz48L2c+PC9zdmc+"), url("data:image/svg+xml; base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHJlY3QgaWQ9ImJhY2tncm91bmRyZWN0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSIwIiB5PSIwIiBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48ZyBjbGFzcz0iY3VycmVudExheWVyIiBzdHlsZT0iIj48dGl0bGU+TGF5ZXIgMTwvdGl0bGU+PHBhdGggZD0iTTE1LjUgMTRoLS43OWwtLjI4LS4yN0MxNS40MSAxMi41OSAxNiAxMS4xMSAxNiA5LjUgMTYgNS45MSAxMy4wOSAzIDkuNSAzUzMgNS45MSAzIDkuNSA1LjkxIDE2IDkuNSAxNmMxLjYxIDAgMy4wOS0uNTkgNC4yMy0xLjU3bC4yNy4yOHYuNzlsNSA0Ljk5TDIwLjQ5IDE5bC00Ljk5LTV6bS02IDBDNy4wMSAxNCA1IDExLjk5IDUgOS41UzcuMDEgNSA5LjUgNSAxNCA3LjAxIDE0IDkuNSAxMS45OSAxNCA5LjUgMTR6TTcgOWg1djFIN3oiIGlkPSJzdmdfMiIgY2xhc3M9IiIgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIxIi8+PC9nPjwvc3ZnPg==");
     background-color: rgba(0, 0, 0, .8);
     background-position: center, -1000px;
