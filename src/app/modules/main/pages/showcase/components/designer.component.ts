@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {ConfigService, ThemeService} from "@powell/api";
 import {SelectButtonModule} from "@powell/components/select-button";
@@ -43,7 +43,7 @@ import {TranslationService} from "@core/utils";
             type="button"
             [title]="primaryColor.name"
             (click)="updateColors($event, 'primary', primaryColor)"
-            [class.!outline-black]="primaryColor.name === selectedPrimaryColor"
+            [style.outlineColor]="primaryColor.name === selectedPrimaryColor ? (primaryColor.name === 'noir' ? 'var(--p-text-color)' : primaryColor?.palette['500']) : 'transparent'"
             [style.backgroundColor]="primaryColor.name === 'noir' ? 'var(--p-text-color)' : primaryColor?.palette['500']"
           ></button>
         }
@@ -58,7 +58,7 @@ import {TranslationService} from "@core/utils";
             type="button"
             [title]="surface.name"
             (click)="updateColors($event, 'surface', surface)"
-            [class.!outline-black]="selectedSurfaceColor ? selectedSurfaceColor === surface.name : config.powellConfig.theme.mode === 'dark' ? surface.name === 'zinc' : surface.name === 'slate'"
+            [style.outlineColor]="selectedSurfaceColor === surface.name ? (surface.name === 'noir' ? 'var(--p-text-color)' : surface?.palette['500']) : 'transparent'"
             [style.backgroundColor]="surface.name === 'noir' ? 'var(--p-text-color)' : surface?.palette['500']"
           ></button>
         }
@@ -130,7 +130,7 @@ import {TranslationService} from "@core/utils";
     </div>
   `,
 })
-export class DesignerComponent {
+export class DesignerComponent implements OnInit {
   private themeService = inject(ThemeService);
   private translationService = inject(TranslationService);
   private configService = inject(ConfigService);
@@ -296,6 +296,11 @@ export class DesignerComponent {
   ];
   selectedPrimaryColor: string;
   selectedSurfaceColor: string;
+
+  ngOnInit() {
+    this.updateColors(null, 'primary', this.primaryColors[0])
+    this.updateColors(null, 'surface', this.surfaces[0])
+  }
 
   getPresetExt() {
     const color = this.primaryColors.find((c) => c.name === this.selectedPrimaryColor);
@@ -471,13 +476,11 @@ export class DesignerComponent {
     } else if (type === 'surface') {
       this.themeService.updateSurfacePalette(color.palette);
     }
-    event.stopPropagation();
+    event?.stopPropagation();
   }
 
   changePreset(value: PresetName) {
     this.configService.update({theme: {name: value}});
-    this.selectedPrimaryColor = null;
-    this.selectedSurfaceColor = null;
   }
 
   changeGlobalConfig(config: string, value: any) {
