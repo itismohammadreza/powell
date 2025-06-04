@@ -191,7 +191,7 @@ export const routes: Routes = [
   {
     path: 'toggle-switch',
     loadComponent: () => import('./pages/toggle-switch').then(m => m.ToggleSwitchPage),
-    title: 'ToggleSwitch'
+    title: 'Toggle Switch'
   },
   {
     path: 'table',
