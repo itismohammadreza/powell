@@ -992,6 +992,21 @@ pw-input-number {
   }
 }
 
+pw-input-otp {
+  .input-otp-wrapper {
+    .form-field-wrapper {
+      .p-inputotp {
+        direction: ltr;
+        display: inline-flex;
+
+        .p-inputotp-input {
+          width: 2.5rem;
+        }
+      }
+    }
+  }
+}
+
 pw-input-password {
   .input-password-wrapper {
     &.icon-start {
