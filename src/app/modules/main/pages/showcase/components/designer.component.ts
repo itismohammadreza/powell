@@ -90,7 +90,7 @@ import {TranslationService} from "@core/utils";
       <pw-select
         [label]="'size' | translate"
         [fluid]="true"
-        [value]="config.powellConfig.inputSize ?? 'medium'"
+        [value]="config.powellConfig.inputSize ?? null"
         [options]="[{label:'none',value:null},{label:'small',value:'small'},{label:'large',value:'large'}]"
         (onChange)="changeGlobalConfig('powellConfig.inputSize',$event.value)"/>
       <pw-select
