@@ -11,7 +11,7 @@
           <pw-button icon="pi pi-bars" appearance="text" (click)="toggleSidebarClick()"/>
         }
 
-        <logo/>
+        <logo [type]="config.powellConfig.theme.mode == 'light' ? 'dark-horizontal' : 'light-horizontal'"/>
 
         <div>
           <pw-button

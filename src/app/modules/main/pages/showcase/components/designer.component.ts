@@ -76,7 +76,7 @@ import {TranslationService} from "@core/utils";
         [fluid]="true"
         [value]="config.powellConfig.theme.mode"
         [options]="[{label:'dark',value:'dark'},{label:'light',value:'light'},{label:'system',value:'system'}]"
-        (onChange)="changeGlobalConfig('theme',{mode:$event.value})"/>
+        (onChange)="changeGlobalConfig('powellConfig.theme.mode',$event.value)"/>
       <pw-select
         [label]="'fixLabelPosition' | translate"
         [fluid]="true"
@@ -94,13 +94,13 @@ import {TranslationService} from "@core/utils";
         [fluid]="true"
         [value]="config.powellConfig.inputSize ?? 'medium'"
         [options]="[{label:'small',value:'small'},{label:'medium',value:'medium'},{label:'large',value:'large'}]"
-        (onChange)="changeGlobalConfig('size',$event.value)"/>
+        (onChange)="changeGlobalConfig('powellConfig.inputSize',$event.value)"/>
       <pw-select
         [label]="'inputStyle' | translate"
         [fluid]="true"
         [value]="config.powellConfig.inputStyle"
         [options]="[{label:'outlined',value:'outlined'},{label:'filled',value:'filled'}]"
-        (onChange)="changeGlobalConfig('inputStyle',$event.value)"/>
+        (onChange)="changeGlobalConfig('powellConfig.inputStyle',$event.value)"/>
     </div>
     <div class="space-y-3 [&>*]:block">
       <pw-toggle-switch
@@ -108,13 +108,13 @@ import {TranslationService} from "@core/utils";
         labelPosition="side"
         [labelWidth]="170"
         [value]="config.powellConfig.showRequiredStar"
-        (onChange)="changeGlobalConfig('showRequiredStar',$event.checked)"/>
+        (onChange)="changeGlobalConfig('powellConfig.showRequiredStar',$event.checked)"/>
       <pw-toggle-switch
         [label]="'ripple' | translate"
         labelPosition="side"
         [labelWidth]="170"
         [value]="config.powellConfig.ripple"
-        (onChange)="changeGlobalConfig('ripple',$event.checked)"/>
+        (onChange)="changeGlobalConfig('powellConfig.ripple',$event.checked)"/>
       <pw-toggle-switch
         [label]="'rtl' | translate"
         labelPosition="side"
@@ -126,7 +126,7 @@ import {TranslationService} from "@core/utils";
         labelPosition="side"
         [labelWidth]="170"
         [value]="config.powellConfig.injectDirectionToRoot"
-        (onChange)="changeGlobalConfig('injectDirectionToRoot',$event.checked)"/>
+        (onChange)="changeGlobalConfig('powellConfig.injectDirectionToRoot',$event.checked)"/>
     </div>
   `,
 })
@@ -479,16 +479,40 @@ export class DesignerComponent implements OnInit {
     event?.stopPropagation();
   }
 
-  changePreset(value: PresetName) {
-    this.configService.update({theme: {name: value}});
+  changePreset(name: PresetName) {
+    const preset = this.getPresetExt();
+    this.configService.update({theme: {name}});
+    this.configService.update({theme: {preset}})
+    this.setFieldValue(this.config, 'powellConfig.theme.name', name);
+    this.setFieldValue(this.config, 'powellConfig.theme.preset', preset);
   }
 
-  changeGlobalConfig(config: string, value: any) {
-    this.config[config] = value;
-    this.configService.update({[config]: value});
+  changeGlobalConfig(configPath: string, value: any) {
+    const modifiedConfig = this.buildObject(configPath.startsWith('powellConfig') ? configPath.slice(13) : configPath, value);
+    this.configService.update(modifiedConfig);
+    this.setFieldValue(this.config, configPath, value);
   }
 
   async changeLang(event: $SelectChangeEvent) {
     await lastValueFrom(this.translationService.use(event.value));
+    this.setFieldValue(this.config, 'lang', event.value);
+  }
+
+  setFieldValue(obj: any, path: string, value: any) {
+    const keys = path.split('.');
+    let current = obj;
+
+    for (let i = 0; i < keys.length - 1; i++) {
+      const key = keys[i];
+      if (!(key in current) || typeof current[key] !== 'object') {
+        current[key] = {};
+      }
+      current = current[key];
+    }
+    current[keys[keys.length - 1]] = value;
+  }
+
+  buildObject(path: string, value: any) {
+    return path.split('.').reverse().reduce((acc, key) => ({[key]: acc}), value);
   }
 }
