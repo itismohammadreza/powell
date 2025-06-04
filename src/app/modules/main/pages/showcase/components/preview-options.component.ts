@@ -18,6 +18,7 @@ import {takeUntil} from "rxjs";
 import {ConfigService} from "@powell/api";
 import {$DividerModule} from "@powell/primeng";
 import {DestroyService} from "@powell/utils";
+import {Config} from '@powell/models';
 
 export type OptionType =
   'positions'
@@ -137,8 +138,16 @@ export class PreviewOptionsComponent implements OnInit {
       if (!followConfig) {
         return
       }
+      const globalConfigMap: Partial<Record<keyof Config, string>> = {
+        showRequiredStar: 'Show Required Star',
+        rtl: 'RTL',
+        inputSize: 'Size',
+        inputStyle: 'Variant',
+        labelPosition: 'Label Position',
+        fixLabelPosition: 'Label Position',
+      }
       Object.entries(modifiedConfig).forEach(([key, value]) => {
-        const ref = this.cmpRefs.find(({instance}) => instance.key == key);
+        const ref = this.cmpRefs.find(({instance}) => instance.label == globalConfigMap[key]);
         if (ref) {
           ref.instance.value = value;
         }
