@@ -80,10 +80,12 @@ export class ThemeService {
 
   applyConfigToDom(config: Config) {
     this.handleBodyClasses(config);
-    if ('rtl' in config && config.injectDirectionToRoot) {
-      this.document.documentElement.setAttribute('dir', config.rtl ? 'rtl' : 'ltr');
-    } else {
-      this.document.documentElement.removeAttribute('dir');
+    if ('rtl' in config) {
+      if (config.injectDirectionToRoot) {
+        this.document.documentElement.setAttribute('dir', config.rtl ? 'rtl' : 'ltr');
+      } else {
+        this.document.documentElement.removeAttribute('dir');
+      }
     }
   }
 

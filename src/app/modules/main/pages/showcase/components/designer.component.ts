@@ -3,8 +3,6 @@ import {FormsModule} from '@angular/forms';
 import {ConfigService, ThemeService} from "@powell/api";
 import {SelectButtonModule} from "@powell/components/select-button";
 import {ButtonModule} from "@powell/components/button";
-import {$SelectChangeEvent} from "@powell/primeng";
-import {PresetName} from "@powell/models";
 import {globalConfig} from "@core/config";
 import {SelectModule} from "@powell/components/select";
 import {ToggleSwitchModule} from "@powell/components/toggle-switch";
@@ -28,7 +26,7 @@ import {TranslationService} from "@core/utils";
       <div>Base Theme</div>
       <pw-select-button
         [ngModel]="config.powellConfig.theme.name"
-        (ngModelChange)="changePreset($event)"
+        (onChange)="changeGlobalConfig('powellConfig.theme.name', $event.value)"
         [options]="presets"
         optionLabel="label"
         optionValue="value"
@@ -70,7 +68,7 @@ import {TranslationService} from "@core/utils";
         [fluid]="true"
         [value]="config.lang"
         [options]="[{label:'EN',value:'en'},{label:'FA',value:'fa'}]"
-        (onChange)="changeLang($event)"/>
+        (onChange)="changeGlobalConfig('lang', $event.value)"/>
       <pw-select
         [label]="'mode' | translate"
         [fluid]="true"
@@ -82,13 +80,13 @@ import {TranslationService} from "@core/utils";
         [fluid]="true"
         [value]="config.powellConfig.fixLabelPosition"
         [options]="[{label:'side',value:'side'},{label:'top',value:'top'}]"
-        (onChange)="changeGlobalConfig('fixLabelPosition',$event.value)"/>
+        (onChange)="changeGlobalConfig('powellConfig.fixLabelPosition',$event.value)"/>
       <pw-select
         [label]="'labelPosition' | translate"
         [fluid]="true"
         [value]="config.powellConfig.labelPosition"
         [options]="[{label:'side',value:'side'},{label:'top',value:'top'},{label:'ifta',value:'ifta'},{label:'float-in',value:'float-in'},{label:'float-on',value:'float-on'},{label:'float-over',value:'float-over'}]"
-        (onChange)="changeGlobalConfig('labelPosition',$event.value)"/>
+        (onChange)="changeGlobalConfig('powellConfig.labelPosition',$event.value)"/>
       <pw-select
         [label]="'size' | translate"
         [fluid]="true"
@@ -479,23 +477,28 @@ export class DesignerComponent implements OnInit {
     event?.stopPropagation();
   }
 
-  changePreset(name: PresetName) {
-    const preset = this.getPresetExt();
-    this.configService.update({theme: {name}});
-    this.configService.update({theme: {preset}})
-    this.setFieldValue(this.config, 'powellConfig.theme.name', name);
-    this.setFieldValue(this.config, 'powellConfig.theme.preset', preset);
-  }
-
   changeGlobalConfig(configPath: string, value: any) {
-    const modifiedConfig = this.buildObject(configPath.startsWith('powellConfig') ? configPath.slice(13) : configPath, value);
-    this.configService.update(modifiedConfig);
-    this.setFieldValue(this.config, configPath, value);
-  }
+    const cleanPath = configPath.startsWith('powellConfig.') ? configPath.slice(13) : configPath;
 
-  async changeLang(event: $SelectChangeEvent) {
-    await lastValueFrom(this.translationService.use(event.value));
-    this.setFieldValue(this.config, 'lang', event.value);
+    switch (cleanPath) {
+      case 'lang':
+        lastValueFrom(this.translationService.use(value));
+        break;
+      case 'theme.name':
+        const preset = this.getPresetExt();
+        this.configService.update({theme: {name: value}});
+        this.configService.update({theme: {preset}});
+        this.setFieldValue(this.config, 'powellConfig.theme.preset', preset);
+        break;
+      case 'theme.mode':
+        this.configService.update({theme: {mode: value}});
+        break;
+      default:
+        const nested = this.buildObject(cleanPath, value);
+        this.configService.update(nested);
+        break;
+    }
+    this.setFieldValue(this.config, configPath, value);
   }
 
   setFieldValue(obj: any, path: string, value: any) {
