@@ -13,6 +13,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {TemplateDirective} from "@powell/directives/template";
+import {CssObject} from "@powell/models";
 
 @Component({
   selector: 'pw-infinite-scroll',
@@ -23,6 +24,7 @@ export class InfiniteScrollComponent implements AfterContentInit, OnDestroy {
   private el = inject(ElementRef);
 
   @Input() data: any[];
+  @Input() style: CssObject;
   @Input() spinnerWidth: string = '40px';
   @Output() scrolled = new EventEmitter<Function>();
   @ViewChild('anchor', {static: true}) anchor: ElementRef<HTMLElement>;
