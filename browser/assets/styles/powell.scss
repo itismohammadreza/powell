@@ -750,8 +750,13 @@ pw-image {
 }
 
 pw-infinite-scroll {
+  .infinite-scroll-wrapper {
+    overflow: auto;
+  }
+
   .loading {
     text-align: center;
+    padding: 1.5rem 0;
   }
 }
 
