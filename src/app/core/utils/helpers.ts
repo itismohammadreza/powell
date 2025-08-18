@@ -1,7 +1,27 @@
 import {AbstractControl, FormArray, FormControl, FormGroup} from "@angular/forms";
 
 export const helpers = {
+  startPolling: <T>(apiFn: () => Promise<T>, interval: number, onResult: (result: T) => void, onError?: (err: any) => void) => {
+    let stopped = false;
 
+    async function poll() {
+      if (stopped) return;
+      try {
+        const result = await apiFn();
+        onResult(result);
+      } catch (err) {
+        onError?.(err);
+      }
+      if (!stopped) {
+        setTimeout(poll, interval);
+      }
+    }
+
+    poll();
+    return () => {
+      stopped = true;
+    };
+  },
   getDirtyControls: (form: FormGroup) => {
     const result = {};
     const isDirty = (control: AbstractControl) => {
