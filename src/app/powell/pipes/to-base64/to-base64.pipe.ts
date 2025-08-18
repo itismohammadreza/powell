@@ -1,14 +1,12 @@
-import {inject, Input, Pipe, PipeTransform} from '@angular/core';
+import {Input, Pipe, PipeTransform} from '@angular/core';
 import {Observable} from 'rxjs';
-import {UtilsService} from "@powell/api";
+import {helpers} from "@core/utils";
 
 @Pipe({
   name: 'pwToBase64',
   standalone: false
 })
 export class ToBase64Pipe implements PipeTransform {
-  private utilsService = inject(UtilsService);
-
   @Input() isUnknownImageUrl: boolean;
 
   transform(value: any) {
@@ -18,7 +16,7 @@ export class ToBase64Pipe implements PipeTransform {
   initImage(value: any) {
     return new Observable((observer) => {
       if (value instanceof File) {
-        this.utilsService.fileToBase64(value).then((res) => {
+        helpers.fileToBase64(value).then((res) => {
           observer.next(res);
           observer.complete();
         });
@@ -29,7 +27,7 @@ export class ToBase64Pipe implements PipeTransform {
           observer.complete();
           // value is a single url
         } else {
-          this.utilsService.urlToBase64(value).then((res) => {
+          helpers.urlToBase64(value).then((res) => {
             observer.next(res);
             observer.complete();
           });
@@ -37,7 +35,7 @@ export class ToBase64Pipe implements PipeTransform {
         // value is FileList
       } else if (value instanceof FileList) {
         const file: File = value.item(0);
-        this.utilsService.fileToBase64(file).then((res) => {
+        helpers.fileToBase64(file).then((res) => {
           observer.next(res);
           observer.complete();
         });

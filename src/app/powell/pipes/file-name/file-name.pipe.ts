@@ -1,18 +1,16 @@
-import {inject, Pipe, PipeTransform} from '@angular/core';
-import {UtilsService} from "@powell/api";
+import {Pipe, PipeTransform} from '@angular/core';
+import {helpers} from "@core/utils";
 
 @Pipe({
   name: 'pwFileName',
   standalone: false
 })
 export class FileNamePipe implements PipeTransform {
-  private utilsService = inject(UtilsService);
-
   transform(value: any) {
     if (value) {
       if (value instanceof File) {
         return value.name;
-      } else if (this.utilsService.isValidURL(value)) {
+      } else if (helpers.isValidURL(value)) {
         return value.replace(/^.*[\\\/]/, '');
       } else {
         return value;

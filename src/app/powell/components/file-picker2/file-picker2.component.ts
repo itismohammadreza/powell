@@ -32,9 +32,10 @@ import {
   FixLabelPosition,
   Validation
 } from '@powell/models';
-import {ConfigService, UtilsService} from "@powell/api";
+import {ConfigService} from "@powell/api";
 import {DestroyService} from "@powell/utils";
 import {$uuid} from "@powell/primeng";
+import {helpers} from "@core/utils";
 
 @Component({
   selector: 'pw-file-picker2',
@@ -54,7 +55,6 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   private injector = inject(Injector);
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
-  private utilsService = inject(UtilsService);
 
   @Input() value: any = [];
   @Input() label: string;
@@ -185,7 +185,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   }
 
   isValidFile(file: File) {
-    if (this.accept && !this.utilsService.isFileTypeValid(file, this.accept)) {
+    if (this.accept && !helpers.isFileTypeValid(file, this.accept)) {
       if (this.ngControl) {
         this.applyValidator(this.typeValidator);
       } else {
@@ -225,7 +225,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   }
 
   async handleFile(item: File) {
-    if (this.utilsService.isImage(item)) {
+    if (helpers.isImage(item)) {
       const blobUrl = window.URL.createObjectURL(new Blob([item], {type: item.type}));
       this.filesToShow.push({display: blobUrl, name: item.name});
     } else {
@@ -233,7 +233,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     }
     this.chooseLabel = item.name;
     if (this.resultType == 'base64') {
-      const base64 = await this.utilsService.fileToBase64(item);
+      const base64 = await helpers.fileToBase64(item);
       this.filesToEmit.push(base64);
     } else if (this.resultType == 'file') {
       this.filesToEmit.push(item);
@@ -248,18 +248,18 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
       if (this.resultType == 'base64') {
         this.filesToEmit.push(item);
       } else if (this.resultType == 'file') {
-        const file = this.utilsService.base64toFile(item, item.split('/').pop());
+        const file = helpers.base64toFile(item, item.split('/').pop());
         this.filesToEmit.push(file);
       } else {
         this.filesToEmit.push(item);
       }
     } else {
       this.filesToShow.push({display: item, name: '--'});
-      const base64 = await this.utilsService.urlToBase64(item);
+      const base64 = await helpers.urlToBase64(item);
       if (this.resultType == 'base64') {
         this.filesToEmit.push(base64);
       } else if (this.resultType == 'file') {
-        const file = this.utilsService.base64toFile(base64, item.split('/').pop())
+        const file = helpers.base64toFile(base64, item.split('/').pop())
         this.filesToEmit.push(file);
       } else {
         this.filesToEmit.push(item);
@@ -268,7 +268,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   }
 
   getFileType(file: any) {
-    const isImage = !!file && ((typeof file == 'string' && file.includes('blob')) || this.isUnknownImageUrl || this.utilsService.isImage(file));
+    const isImage = !!file && ((typeof file == 'string' && file.includes('blob')) || this.isUnknownImageUrl || helpers.isImage(file));
     if (isImage) {
       return 'image';
     } else {

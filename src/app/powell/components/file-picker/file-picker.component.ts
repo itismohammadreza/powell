@@ -51,8 +51,9 @@ import {
   $RemoveUploadedFileEvent,
   $uuid
 } from "@powell/primeng";
-import {ConfigService, UtilsService} from "@powell/api";
+import {ConfigService} from "@powell/api";
 import {DestroyService} from "@powell/utils";
+import {helpers} from "@core/utils";
 
 @Component({
   selector: 'pw-file-picker',
@@ -72,7 +73,6 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   private injector = inject(Injector);
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
-  private utilsService = inject(UtilsService);
 
   @Input() value: any = [];
   @Input() label: string;
@@ -176,7 +176,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.utilsService.isImage(this.value)) {
+    if (helpers.isImage(this.value)) {
       this.init(this.value);
     }
 
@@ -212,7 +212,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     this.selectedFiles = event.currentFiles;
     for (let file of event.currentFiles) {
       if (this.resultType == 'base64') {
-        this.filesToEmit.push(await this.utilsService.fileToBase64(file));
+        this.filesToEmit.push(await helpers.fileToBase64(file));
       } else if (this.resultType == 'file') {
         this.filesToEmit.push(file);
       } else {
@@ -239,7 +239,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
         if (item instanceof File) {
           dt.items.add(item);
           if (wantBase64) {
-            result.push(await this.utilsService.fileToBase64(item));
+            result.push(await helpers.fileToBase64(item));
           } else if (wantFile) {
             result.push(item);
           }
@@ -247,21 +247,21 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
         if (typeof item == 'string') {
           //Array of base64
           if (item.startsWith('src=')) {
-            dt.items.add(this.utilsService.base64toFile(item, item.split('/').pop()));
+            dt.items.add(helpers.base64toFile(item, item.split('/').pop()));
             if (wantBase64) {
               result.push(item);
             } else if (wantFile) {
-              result.push(this.utilsService.base64toFile(item, item.split('/').pop()));
+              result.push(helpers.base64toFile(item, item.split('/').pop()));
             }
           }
           //Array of url
           else {
-            const base64 = await this.utilsService.urlToBase64(item);
-            dt.items.add(this.utilsService.base64toFile(base64, item.split('/').pop()));
+            const base64 = await helpers.urlToBase64(item);
+            dt.items.add(helpers.base64toFile(base64, item.split('/').pop()));
             if (wantBase64) {
               result.push(base64);
             } else if (wantFile) {
-              result.push(this.utilsService.base64toFile(base64, item.split('/').pop()));
+              result.push(helpers.base64toFile(base64, item.split('/').pop()));
             }
           }
         }
@@ -275,8 +275,8 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
       dt.items.add(value);
       this.value = dt.files;
       if (wantBase64) {
-        this.filesToEmit.push(await this.utilsService.fileToBase64(value));
-        this.onModelChange(await this.utilsService.fileToBase64(value));
+        this.filesToEmit.push(await helpers.fileToBase64(value));
+        this.onModelChange(await helpers.fileToBase64(value));
       } else if (wantFile) {
         this.filesToEmit.push(value);
         this.onModelChange(value);
@@ -284,29 +284,29 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     } else if (typeof value == 'string') {
       //value is a single  base64
       if (value.startsWith('src=')) {
-        dt.items.add(this.utilsService.base64toFile(value, value.split('/').pop()));
+        dt.items.add(helpers.base64toFile(value, value.split('/').pop()));
         if (wantBase64) {
           this.onModelChange(value);
           this.filesToEmit.push(value);
         } else if (wantFile) {
           this.filesToEmit.push(
-            this.utilsService.base64toFile(value, value.split('/').pop())
+            helpers.base64toFile(value, value.split('/').pop())
           );
-          this.onModelChange(this.utilsService.base64toFile(value, value.split('/').pop()));
+          this.onModelChange(helpers.base64toFile(value, value.split('/').pop()));
         }
       }
       //value is a single  url
       else {
-        const base64 = await this.utilsService.urlToBase64(value);
-        dt.items.add(this.utilsService.base64toFile(base64, value.split('/').pop()));
+        const base64 = await helpers.urlToBase64(value);
+        dt.items.add(helpers.base64toFile(base64, value.split('/').pop()));
         this.value = dt.files;
         if (wantBase64) {
           this.onModelChange(base64);
           this.filesToEmit.push(base64);
         } else if (wantFile) {
-          this.onModelChange(this.utilsService.base64toFile(base64, value.split('/').pop()));
+          this.onModelChange(helpers.base64toFile(base64, value.split('/').pop()));
           this.filesToEmit.push(
-            this.utilsService.base64toFile(base64, value.split('/').pop())
+            helpers.base64toFile(base64, value.split('/').pop())
           );
         }
       }
@@ -317,8 +317,8 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
       for (let i = 0; i < value.length; i++) {
         const file: File = value.item(i);
         if (wantBase64) {
-          this.filesToEmit.push(await this.utilsService.fileToBase64(file));
-          result.push(await this.utilsService.fileToBase64(file));
+          this.filesToEmit.push(await helpers.fileToBase64(file));
+          result.push(await helpers.fileToBase64(file));
         } else if (wantFile) {
           this.filesToEmit.push(file);
           result.push(file);
@@ -339,7 +339,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   }
 
   writeValue(value: any) {
-    if (value && this.utilsService.isImage(value)) {
+    if (value && helpers.isImage(value)) {
       this.init(value);
     }
   }
