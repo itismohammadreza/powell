@@ -7,7 +7,6 @@ import {
   inject,
   OnInit
 } from '@angular/core';
-import {NgClass} from "@angular/common";
 import {LanguageChecker} from '@core/utils';
 import {GlobalConfig, SidebarType} from '@core/models';
 import {globalConfig} from "@core/config";
@@ -32,7 +31,8 @@ import {FormsModule} from "@angular/forms";
 import {LogoComponent} from "@modules/layout/logo/logo.component";
 import {routes} from "@modules/main/pages/showcase/showcase-routing.module";
 import {RadioModule} from "@powell/components/radio";
-import {DesignerComponent} from '@modules/main/pages/showcase/components';
+import {DesignerComponent} from '@modules/layout/designer/designer.component';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'navbar-menu',

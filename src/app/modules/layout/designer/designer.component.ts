@@ -12,6 +12,7 @@ import {helpers, TranslationService} from "@core/utils";
 
 @Component({
   selector: 'designer',
+  templateUrl: './designer.component.html',
   imports: [
     SelectButtonModule,
     ButtonModule,
@@ -20,112 +21,6 @@ import {helpers, TranslationService} from "@core/utils";
     ToggleSwitchModule,
     TranslateModule,
   ],
-  template: `
-    <div class="mb-4 space-y-2 [&>*]:block">
-      <div>Base Theme</div>
-      <pw-select-button
-        [ngModel]="config.powellConfig.theme.preset"
-        (onChange)="changeGlobalConfig('powellConfig.theme.preset', $event.value)"
-        [options]="presets"
-        optionLabel="label"
-        optionValue="value"
-        [allowEmpty]="false"/>
-    </div>
-    <div class="mb-4 space-y-2">
-      <div>Primary</div>
-      <div class="flex justify-start gap-2 flex-wrap">
-        @for (primaryColor of primaryColors; track primaryColor.name) {
-          <button
-            class="size-5 rounded-full [outline-style:solid] outline-transparent outline-2 outline-offset-1"
-            type="button"
-            [title]="primaryColor.name"
-            (click)="updateColors($event, 'primary', primaryColor)"
-            [style.outlineColor]="primaryColor.name === selectedPrimaryColor ? (primaryColor.name === 'noir' ? 'var(--p-text-color)' : primaryColor?.palette['500']) : 'transparent'"
-            [style.backgroundColor]="primaryColor.name === 'noir' ? 'var(--p-text-color)' : primaryColor?.palette['500']"
-          ></button>
-        }
-      </div>
-    </div>
-    <div class="mb-4 space-y-2">
-      <div>Surface</div>
-      <div class="flex justify-start gap-2 flex-wrap">
-        @for (surface of surfaces; track surface.name) {
-          <button
-            class="size-5 rounded-full [outline-style:solid] outline-transparent outline-2 outline-offset-1"
-            type="button"
-            [title]="surface.name"
-            (click)="updateColors($event, 'surface', surface)"
-            [style.outlineColor]="selectedSurfaceColor === surface.name ? (surface.name === 'noir' ? 'var(--p-text-color)' : surface?.palette['500']) : 'transparent'"
-            [style.backgroundColor]="surface.name === 'noir' ? 'var(--p-text-color)' : surface?.palette['500']"
-          ></button>
-        }
-      </div>
-    </div>
-    <div class="mb-4 grid gap-3 md:grid-cols-2">
-      <pw-select
-        [label]="'lang' | translate"
-        [fluid]="true"
-        [value]="config.lang"
-        [options]="[{label:'EN',value:'en'},{label:'FA',value:'fa'}]"
-        (onChange)="changeGlobalConfig('lang', $event.value)"/>
-      <pw-select
-        [label]="'mode' | translate"
-        [fluid]="true"
-        [value]="config.powellConfig.theme.mode"
-        [options]="[{label:'dark',value:'dark'},{label:'light',value:'light'},{label:'system',value:'system'}]"
-        (onChange)="changeGlobalConfig('powellConfig.theme.mode',$event.value)"/>
-      <pw-select
-        [label]="'fixLabelPosition' | translate"
-        [fluid]="true"
-        [value]="config.powellConfig.fixLabelPosition"
-        [options]="[{label:'side',value:'side'},{label:'top',value:'top'}]"
-        (onChange)="changeGlobalConfig('powellConfig.fixLabelPosition',$event.value)"/>
-      <pw-select
-        [label]="'labelPosition' | translate"
-        [fluid]="true"
-        [value]="config.powellConfig.labelPosition"
-        [options]="[{label:'side',value:'side'},{label:'top',value:'top'},{label:'ifta',value:'ifta'},{label:'float-in',value:'float-in'},{label:'float-on',value:'float-on'},{label:'float-over',value:'float-over'}]"
-        (onChange)="changeGlobalConfig('powellConfig.labelPosition',$event.value)"/>
-      <pw-select
-        [label]="'size' | translate"
-        [fluid]="true"
-        [value]="config.powellConfig.inputSize ?? null"
-        [options]="[{label:'none',value:null},{label:'small',value:'small'},{label:'large',value:'large'}]"
-        (onChange)="changeGlobalConfig('powellConfig.inputSize',$event.value)"/>
-      <pw-select
-        [label]="'inputVariant' | translate"
-        [fluid]="true"
-        [value]="config.powellConfig.inputVariant"
-        [options]="[{label:'outlined',value:'outlined'},{label:'filled',value:'filled'}]"
-        (onChange)="changeGlobalConfig('powellConfig.inputVariant',$event.value)"/>
-    </div>
-    <div class="space-y-3 [&>*]:block">
-      <pw-toggle-switch
-        [label]="'showRequiredStar' | translate"
-        labelPosition="side"
-        [labelWidth]="170"
-        [value]="config.powellConfig.showRequiredStar"
-        (onChange)="changeGlobalConfig('powellConfig.showRequiredStar',$event.checked)"/>
-      <pw-toggle-switch
-        [label]="'ripple' | translate"
-        labelPosition="side"
-        [labelWidth]="170"
-        [value]="config.powellConfig.ripple"
-        (onChange)="changeGlobalConfig('powellConfig.ripple',$event.checked)"/>
-      <pw-toggle-switch
-        [label]="'rtl' | translate"
-        labelPosition="side"
-        [labelWidth]="170"
-        [value]="config.rtl"
-        (onChange)="changeGlobalConfig('rtl',$event.checked)"/>
-      <pw-toggle-switch
-        [label]="'injectDirectionToRoot' | translate"
-        labelPosition="side"
-        [labelWidth]="170"
-        [value]="config.powellConfig.injectDirectionToRoot"
-        (onChange)="changeGlobalConfig('powellConfig.injectDirectionToRoot',$event.checked)"/>
-    </div>
-  `,
 })
 export class DesignerComponent implements OnInit {
   private themeService = inject(ThemeService);
