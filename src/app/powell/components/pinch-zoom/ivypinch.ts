@@ -4,13 +4,13 @@ import {defaultProperties} from './properties';
 
 export class IvyPinch {
   private readonly properties: PinchZoomOptions = defaultProperties;
-  private touches: Touches;
-  private readonly element: HTMLElement;
-  private readonly elementTarget: string;
-  private parentElement: HTMLElement;
+  private touches!: Touches;
+  private readonly element: Optional<HTMLElement>;
+  private readonly elementTarget!: string;
+  private parentElement!: HTMLElement;
   public scale: number = 1;
   private initialScale: number = 1;
-  private elementPosition: DOMRect;
+  private elementPosition!: DOMRect;
   private eventType: PinchEventType;
   private startX: number = 0;
   private startY: number = 0;
@@ -44,13 +44,13 @@ export class IvyPinch {
     if (typeof properties.limitZoom === 'number') {
       this.maxScale = properties.limitZoom;
     }
-    this.elementTarget = this.element.querySelector('*').tagName;
-    this.parentElement = this.element.parentElement;
+    this.elementTarget = this.element.querySelector('*')!.tagName;
+    this.parentElement = this.element.parentElement!;
     this.properties = Object.assign({}, defaultProperties, properties);
     this.detectLimitZoom();
 
     this.touches = new Touches({
-      element: properties.element,
+      element: properties.element!,
       listeners: properties.listeners,
       resize: properties.autoHeight,
       mouseListeners: {
@@ -435,7 +435,7 @@ export class IvyPinch {
   }
 
   private getElementPosition() {
-    this.elementPosition = this.element.parentElement.getBoundingClientRect();
+    this.elementPosition = this.element.parentElement!.getBoundingClientRect();
   }
 
   private getTouchstartPosition(event: TouchEvent | MouseEvent) {
@@ -583,6 +583,8 @@ export class IvyPinch {
     if (imgElement.length) {
       return imgElement[0] as HTMLElement;
     }
+
+    return undefined;
   }
 
   private getImageElements() {

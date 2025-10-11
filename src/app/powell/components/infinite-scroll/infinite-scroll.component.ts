@@ -23,19 +23,19 @@ import {CssObject} from "@powell/models";
 export class InfiniteScrollComponent implements AfterContentInit, OnDestroy {
   private el = inject(ElementRef);
 
-  @Input() data: any[];
-  @Input() style: CssObject;
+  @Input() data: Optional<any[]>;
+  @Input() style: Optional<CssObject>;
   @Input() spinnerWidth: string = '40px';
-  @Output() scrolled = new EventEmitter<Function>();
-  @ViewChild('anchor', {static: true}) anchor: ElementRef<HTMLElement>;
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @Output() scrolled = new EventEmitter();
+  @ViewChild('anchor', {static: true}) anchor!: ElementRef<HTMLElement>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  loading: boolean;
+  loading: boolean = false;
   templateMap: Record<string, TemplateRef<any>> = {};
-  observer: IntersectionObserver;
+  observer!: IntersectionObserver;
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });

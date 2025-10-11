@@ -3,7 +3,6 @@ import {
   CellEditor,
   ColumnFilter,
   ColumnFilterFormElement,
-  ColumnFilterProps,
   ContextMenuRow,
   EditableColumn,
   EditableRow,
@@ -25,7 +24,6 @@ import {
   TableBody,
   TableCheckbox,
   TableColResizeEvent,
-  TableColumnFilterTemplates,
   TableColumnReorderEvent,
   TableContextMenuSelectEvent,
   TableContextMenuSelectionChangeEvent,
@@ -53,28 +51,26 @@ import {$SortMeta} from "@powell/primeng/api";
 
 export {TableModule as $TableModule}
 export {Table as $Table}
-export {ColumnFilterProps as $ColumnFilterProps}
-export {TableColumnFilterTemplates as $TableColumnFilterTemplates}
-export {TableColumnReorderEvent as $TableColumnReorderEvent}
-export {TableEditEvent as $TableEditEvent}
-export {TableEditCancelEvent as $TableEditCancelEvent}
-export {TableEditCompleteEvent as $TableEditCompleteEvent}
-export {TableEditInitEvent as $TableEditInitEvent}
-export {TableFilterEvent as $TableFilterEvent}
-export {TablePageEvent as $TablePageEvent}
-export {TableColResizeEvent as $TableColResizeEvent}
-export {TableRowReorderEvent as $TableRowReorderEvent}
-export {TableRowExpandEvent as $TableRowExpandEvent}
-export {TableRowSelectEvent as $TableRowSelectEvent}
-export {TableContextMenuSelectEvent as $TableContextMenuSelectEvent}
-export {TableContextMenuSelectionChangeEvent as $TableContextMenuSelectionChangeEvent}
-export {TableHeaderCheckboxToggleEvent as $TableHeaderCheckboxToggleEvent}
-export {TableRowCollapseEvent as $TableRowCollapseEvent}
-export {TableSelectAllChangeEvent as $TableSelectAllChangeEvent}
-export {TableLazyLoadEvent as $TableLazyLoadEvent}
-export {TableRowUnSelectEvent as $TableRowUnSelectEvent}
-export {TableTemplates as $TableTemplates}
-export {ExportCSVOptions as $ExportCSVOptions}
+export {type TableColumnReorderEvent as $TableColumnReorderEvent}
+export {type TableEditEvent as $TableEditEvent}
+export {type TableEditCancelEvent as $TableEditCancelEvent}
+export {type TableEditCompleteEvent as $TableEditCompleteEvent}
+export {type TableEditInitEvent as $TableEditInitEvent}
+export {type TableFilterEvent as $TableFilterEvent}
+export {type TablePageEvent as $TablePageEvent}
+export {type TableColResizeEvent as $TableColResizeEvent}
+export {type TableRowReorderEvent as $TableRowReorderEvent}
+export {type TableRowExpandEvent as $TableRowExpandEvent}
+export {type TableRowSelectEvent as $TableRowSelectEvent}
+export {type TableContextMenuSelectEvent as $TableContextMenuSelectEvent}
+export {type TableContextMenuSelectionChangeEvent as $TableContextMenuSelectionChangeEvent}
+export {type TableHeaderCheckboxToggleEvent as $TableHeaderCheckboxToggleEvent}
+export {type TableRowCollapseEvent as $TableRowCollapseEvent}
+export {type TableSelectAllChangeEvent as $TableSelectAllChangeEvent}
+export {type TableLazyLoadEvent as $TableLazyLoadEvent}
+export {type TableRowUnSelectEvent as $TableRowUnSelectEvent}
+export {type TableTemplates as $TableTemplates}
+export {type ExportCSVOptions as $ExportCSVOptions}
 export {SortableColumn as $SortableColumn}
 export {SelectableRow as $SelectableRow}
 export {ReorderableColumn as $ReorderableColumn}

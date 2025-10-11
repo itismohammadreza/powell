@@ -7,7 +7,7 @@ import {helpers} from "@core/utils";
   standalone: false
 })
 export class ToBase64Pipe implements PipeTransform {
-  @Input() isUnknownImageUrl: boolean;
+  @Input() isUnknownImageUrl: boolean = false;
 
   transform(value: any) {
     return this.initImage(value);
@@ -34,7 +34,7 @@ export class ToBase64Pipe implements PipeTransform {
         }
         // value is FileList
       } else if (value instanceof FileList) {
-        const file: File = value.item(0);
+        const file: File = value.item(0)!;
         helpers.fileToBase64(file).then((res) => {
           observer.next(res);
           observer.complete();

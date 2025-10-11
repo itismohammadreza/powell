@@ -32,7 +32,7 @@ export interface EditorOnAudioUploadBefore {
   files: any[];
   info: audioInputInformation;
   core: Core;
-  uploadHandler: Function;
+  uploadHandler: Fn;
 }
 
 export interface EditorOnVideoUploadError {
@@ -45,7 +45,7 @@ export interface EditorOnVideoUploadBefore {
   files: any[];
   info: videoInputInformation;
   core: Core;
-  uploadHandler: Function;
+  uploadHandler: Fn;
 }
 
 export interface EditorOnImageUploadError {
@@ -58,7 +58,7 @@ export interface EditorOnImageUploadBefore {
   files: any[];
   info: imageInputInformation;
   core: Core;
-  uploadHandler: Function;
+  uploadHandler: Fn;
 }
 
 export interface EditorOnAudioUploadError {

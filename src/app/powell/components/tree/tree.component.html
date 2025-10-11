@@ -14,7 +14,7 @@
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-tree
         [attr.id]="id"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
+        [class.ng-invalid]="isInvalid"
         [value]="items"
         [selectionMode]="selectionMode"
         [loadingMode]="loadingMode"
@@ -31,7 +31,7 @@
         [propagateSelectionDown]="propagateSelectionDown"
         [loading]="loading"
         [loadingIcon]="loadingIcon"
-        [emptyMessage]="emptyMessage"
+        [emptyMessage]="emptyMessage ?? ''"
         [ariaLabel]="ariaLabel"
         [togglerAriaLabel]="togglerAriaLabel"
         [ariaLabelledBy]="ariaLabelledBy"

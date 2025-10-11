@@ -49,38 +49,38 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: FixLabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<FixLabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
   @Input() id: string = $uuid();
-  @Input() style: CssObject;
-  @Input() styleClass: string;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
   // native properties
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;
   @Input() stars: number = 5;
-  @Input() iconOnClass: string;
-  @Input() iconOnStyle: CssObject;
-  @Input() iconOffClass: string;
-  @Input() iconOffStyle: CssObject;
-  @Input() autofocus: boolean;
+  @Input() iconOnClass: Optional<string>;
+  @Input() iconOnStyle: Optional<CssObject>;
+  @Input() iconOffClass: Optional<string>;
+  @Input() iconOffStyle: Optional<CssObject>;
+  @Input() autofocus: boolean = false;
   @Output() onRate = new EventEmitter<$RatingRateEvent>();
   @Output() onCancel = new EventEmitter<Event>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  ngControl: NgControl;
+  ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<any>> = {};
-  onModelChange: Function = () => {
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -95,12 +95,12 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -113,7 +113,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -129,8 +129,8 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
     this.onModelChange(null);
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   writeValue(value: any) {
@@ -138,11 +138,11 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

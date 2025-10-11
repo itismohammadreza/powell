@@ -57,45 +57,45 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   private destroy$ = inject(DestroyService);
 
   @Input() value: any = [];
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: FixLabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
-  @Input() disabled: boolean;
-  @Input() readonly: boolean;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<FixLabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() readonly: boolean = false;
   @Input() multiple: boolean = true;
   @Input() isUnknownImageUrl: boolean = false;
-  @Input() accept: string;
-  @Input() maxFileSize: number;
-  @Input() fileLimit: number;
+  @Input() accept: Optional<string>;
+  @Input() maxFileSize: Optional<number>;
+  @Input() fileLimit: Optional<number>;
   @Input() resultType: FileResultType = 'file';
   @Input() chooseLabel: string = 'انتخاب';
-  @Input() chooseButtonProps: ButtonProps;
+  @Input() chooseButtonProps: Optional<ButtonProps>;
   @Input() invalidFileSizeMessage: string = 'سایز فایل نامعتبر است.';
   @Input() invalidFileTypeMessage: string = 'فرمت نامعتبر است.';
   @Input() id: string = $uuid();
-  @Input() style: CssObject;
-  @Input() styleClass: string;
-  @Input() fluid: boolean;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() fluid: boolean = false;
   @Output() onSelect = new EventEmitter<FilePickerSelectEvent>();
   @Output() onRemove = new EventEmitter<FilePickerRemoveEvent>();
 
-  ngControl: NgControl;
+  ngControl: Nullable<NgControl> = null;
   filesToShow: {display: string | ArrayBuffer, name: string}[] = [];
   filesToEmit: (string | ArrayBuffer | File)[] = [];
-  _chooseLabel: string;
+  _chooseLabel!: string;
   _validation: Validation = {};
-  invalidFileSize: boolean;
-  invalidFileType: boolean;
+  invalidFileSize: boolean = false;
+  invalidFileType: boolean = false;
   typeValidator: ValidatorFn = () => ({invalidType: this.invalidFileTypeMessage});
   sizeValidator: ValidatorFn = () => ({invalidSize: this.invalidFileSizeMessage});
-  onModelChange: Function = () => {
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -115,12 +115,12 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -133,7 +133,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.value) {
+    if (changes['value']) {
       this.init(this.value);
     }
   }
@@ -206,11 +206,12 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
 
   clearValidators() {
     if (this.ngControl) {
-      this.ngControl.control.removeValidators(this.typeValidator);
-      this.ngControl.control.removeValidators(this.sizeValidator);
-      this.ngControl.control.updateValueAndValidity();
-      delete this._validation.invalidSize;
-      delete this._validation.invalidType;
+      const control = this.ngControl.control!;
+      control.removeValidators(this.typeValidator);
+      control.removeValidators(this.sizeValidator);
+      control.updateValueAndValidity();
+      delete this._validation['invalidSize'];
+      delete this._validation['invalidType'];
     } else {
       this.invalidFileType = false;
       this.invalidFileSize = false;
@@ -218,10 +219,13 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   }
 
   applyValidator(validator: ValidatorFn) {
-    this.ngControl.control.addValidators(validator);
-    this.ngControl.control.updateValueAndValidity();
-    this.ngControl.control.markAsTouched();
-    this._validation = {...this.validation, ...validator(null)}
+    if (this.ngControl) {
+      const control = this.ngControl.control!;
+      control.addValidators(validator);
+      control.updateValueAndValidity();
+      control.markAsTouched();
+      this._validation = {...this.validation, ...validator(null as SafeAny)}
+    }
   }
 
   async handleFile(item: File) {
@@ -229,7 +233,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
       const blobUrl = window.URL.createObjectURL(new Blob([item], {type: item.type}));
       this.filesToShow.push({display: blobUrl, name: item.name});
     } else {
-      this.filesToShow.push({display: null, name: item.name});
+      this.filesToShow.push({display: '', name: item.name});
     }
     this.chooseLabel = item.name;
     if (this.resultType == 'base64') {
@@ -248,7 +252,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
       if (this.resultType == 'base64') {
         this.filesToEmit.push(item);
       } else if (this.resultType == 'file') {
-        const file = helpers.base64toFile(item, item.split('/').pop());
+        const file = helpers.base64toFile(item, item.split('/').pop()!);
         this.filesToEmit.push(file);
       } else {
         this.filesToEmit.push(item);
@@ -259,7 +263,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
       if (this.resultType == 'base64') {
         this.filesToEmit.push(base64);
       } else if (this.resultType == 'file') {
-        const file = helpers.base64toFile(base64, item.split('/').pop())
+        const file = helpers.base64toFile(base64, item.split('/').pop()!)
         this.filesToEmit.push(file);
       } else {
         this.filesToEmit.push(item);
@@ -306,11 +310,11 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     this.init(value);
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

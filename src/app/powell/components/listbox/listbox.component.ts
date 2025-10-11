@@ -58,61 +58,61 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: FixLabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<FixLabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
   // native properties
   @Input() id: string = $uuid();
   @Input() searchMessage: string = '{0} results are available';
   @Input() emptySelectionMessage: string = 'No selected item';
   @Input() selectionMessage: string = '{0} items selected';
   @Input() autoOptionFocus: boolean = true;
-  @Input() ariaLabel: string;
+  @Input() ariaLabel: Optional<string>;
   @Input() selectOnFocus: boolean = false;
   @Input() searchLocale: boolean = false;
   @Input() focusOnHover: boolean = true;
-  @Input() filterMessage: string;
-  @Input() filterFields: any[];
+  @Input() filterMessage: Optional<string>;
+  @Input() filterFields: Optional<any[]>;
   @Input() lazy: boolean = false;
   @Input() virtualScroll: boolean = false;
-  @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: $ScrollerOptions;
+  @Input() virtualScrollItemSize: Optional<number>;
+  @Input() virtualScrollOptions: Optional<$ScrollerOptions>;
   @Input() scrollHeight: string = '14rem';
-  @Input() tabindex: number;
+  @Input() tabindex: Optional<number>;
   @Input() multiple: boolean = false;
-  @Input() style: CssObject;
-  @Input() styleClass: string;
-  @Input() listStyle: CssObject;
-  @Input() listStyleClass: string;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() listStyle: Optional<CssObject>;
+  @Input() listStyleClass: Optional<string>;
   @Input() readonly: boolean = false;
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() checkbox: boolean = false;
   @Input() filter: boolean = false;
-  @Input() filterBy: string;
+  @Input() filterBy: Optional<string>;
   @Input() filterMatchMode: FilterMatchMode = 'contains';
-  @Input() filterLocale: string;
+  @Input() filterLocale: Optional<string>;
   @Input() metaKeySelection: boolean = false;
-  @Input() dataKey: string;
+  @Input() dataKey: Optional<string>;
   @Input() showToggleAll: boolean = true;
-  @Input() optionLabel: string;
-  @Input() optionValue: string;
+  @Input() optionLabel: Optional<string>;
+  @Input() optionValue: Optional<string>;
   @Input() optionGroupChildren: string = 'items';
   @Input() optionGroupLabel: string = 'label';
-  @Input() optionDisabled: string;
-  @Input() ariaFilterLabel: string;
-  @Input() filterPlaceHolder: string;
-  @Input() emptyFilterMessage: string;
-  @Input() emptyMessage: string;
+  @Input() optionDisabled: Optional<string>;
+  @Input() ariaFilterLabel: Optional<string>;
+  @Input() filterPlaceHolder: Optional<string>;
+  @Input() emptyFilterMessage: Optional<string>;
+  @Input() emptyMessage: Optional<string>;
   @Input() group: boolean = false;
-  @Input() options: any[];
-  @Input() filterValue: string;
-  @Input() selectAll: boolean = null;
+  @Input() options: Optional<any[]>;
+  @Input() filterValue: Optional<string>;
+  @Input() selectAll: Nullable<boolean> = null;
   @Input() striped: boolean = false;
   @Input() highlightOnSelect: boolean = true;
   @Input() checkmark: boolean = false;
@@ -124,13 +124,13 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onSelectAllChange = new EventEmitter<$ListboxSelectAllChangeEvent>();
   @Output() onLazyLoad = new EventEmitter<$ScrollerLazyLoadEvent>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  ngControl: NgControl;
+  ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<any>> = {};
-  onModelChange: Function = () => {
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -145,12 +145,12 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -163,14 +163,14 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   _onChange(event: $ListboxChangeEvent) {
@@ -193,11 +193,11 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

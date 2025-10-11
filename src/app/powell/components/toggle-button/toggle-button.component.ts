@@ -49,39 +49,39 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: FixLabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<FixLabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
   // native properties
-  @Input() onLabel: string;
-  @Input() offLabel: string;
-  @Input() onIcon: string;
-  @Input() offIcon: string;
-  @Input() ariaLabel: string;
-  @Input() ariaLabelledBy: string;
-  @Input() disabled: boolean;
-  @Input() style: CssObject;
-  @Input() styleClass: string;
+  @Input() onLabel: Optional<string>;
+  @Input() offLabel: Optional<string>;
+  @Input() onIcon: Optional<string>;
+  @Input() offIcon: Optional<string>;
+  @Input() ariaLabel: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
+  @Input() disabled: boolean = false;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
   @Input() inputId: string = $uuid();
-  @Input() tabindex: number;
-  @Input() size: Size;
+  @Input() tabindex: Optional<number>;
+  @Input() size: Optional<Size>;
   @Input() iconPos: Exclude<Position, 'top' | 'bottom'> = 'left';
   @Input() autofocus: boolean = false;
   @Input() allowEmpty: boolean = false;
   @Output() onChange = new EventEmitter<$ToggleButtonChangeEvent>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  ngControl: NgControl;
+  ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<any>> = {};
-  onModelChange: Function = () => {
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -96,12 +96,12 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -114,7 +114,7 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -131,11 +131,11 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

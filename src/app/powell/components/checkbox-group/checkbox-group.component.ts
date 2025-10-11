@@ -57,16 +57,16 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any[];
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: FixLabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
-  @Input() options: any[];
+  @Input() value: Optional<any[]>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<FixLabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
+  @Input() options: Optional<any[]>;
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';
   @Input() optionDisabled: string = 'disabled';
@@ -77,7 +77,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   // native properties
   @Input() set disabled(disabled: boolean) {
     this._disabled = disabled;
-    this.options.forEach(option => {
+    this.options?.forEach(option => {
       option[this.optionDisabled] = disabled;
     })
   };
@@ -86,28 +86,28 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
     return this._disabled;
   }
 
-  @Input() ariaLabelledBy: string;
-  @Input() ariaLabel: string;
-  @Input() style: CssObject;
-  @Input() inputStyle: CssObject;
-  @Input() styleClass: string;
-  @Input() inputClass: string;
-  @Input() size: Size;
-  @Input() checkboxIcon: string;
-  @Input() readonly: boolean;
+  @Input() ariaLabelledBy: Optional<string>;
+  @Input() ariaLabel: Optional<string>;
+  @Input() style: Optional<CssObject>;
+  @Input() inputStyle: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() inputClass: Optional<string>;
+  @Input() size: Optional<Size>;
+  @Input() checkboxIcon: Optional<string>;
+  @Input() readonly: boolean = false;
   @Input() autofocus: boolean = false;
-  @Input() variant: InputVariant;
+  @Input() variant: Optional<InputVariant>;
   @Output() onChange = new EventEmitter<CheckboxGroupChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   templateMap: Record<string, TemplateRef<any>> = {};
   _disabled: boolean = false;
-  ngControl: NgControl;
-  onModelChange: Function = () => {
+  ngControl: Nullable<NgControl> = null;
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -122,12 +122,12 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -140,7 +140,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -148,7 +148,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
 
   _onChange(event: $CheckboxChangeEvent) {
     this.value = event.checked;
-    this.onChange.emit({originalEvent: event.originalEvent, value: this.value});
+    this.onChange.emit({originalEvent: event.originalEvent!, value: this.value!});
     this.onModelChange(this.value);
   }
 
@@ -166,11 +166,11 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

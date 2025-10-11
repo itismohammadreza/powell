@@ -6,12 +6,12 @@
 
   <div class="inner-wrapper">
     <nav>
-      <div>
+      <div class="container">
         @if (!sidebarLock) {
           <pw-button icon="pi pi-bars" appearance="text" (click)="toggleSidebarClick()"/>
         }
 
-        <logo [type]="config.powellConfig.theme.mode == 'light' ? 'dark-horizontal' : 'light-horizontal'"/>
+        <logo [type]="config.powellConfig.theme?.mode == 'light' ? 'dark-horizontal' : 'light-horizontal'"/>
 
         <div>
           <pw-button
@@ -85,7 +85,6 @@
     </div>
   </ng-template>
   <p-panelMenu
-    [class]="!showBackdrop ? '[&_.p-panelmenu-panel]:!bg-transparent' : ''"
     [multiple]="false"
     [model]="sidebarItems | pwFilter:searchValue:'label'"/>
 </p-drawer>

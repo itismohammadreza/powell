@@ -49,41 +49,41 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: LabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
-  @Input() fluid: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<LabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
+  @Input() fluid: boolean = false;
   // native properties
   @Input() type: InputType = 'text';
   @Input() slotChar: string = '_';
   @Input() autoClear: boolean = true;
   @Input() showClear: boolean = false;
-  @Input() style: CssObject;
+  @Input() style: Optional<CssObject>;
   @Input() inputId: string = $uuid();
-  @Input() styleClass: string;
-  @Input() placeholder: string;
-  @Input() size: Size;
-  @Input() maxlength: number;
-  @Input() tabindex: string;
-  @Input() title: string;
-  @Input() variant: InputVariant;
-  @Input() ariaLabel: string;
-  @Input() ariaLabelledBy: string;
+  @Input() styleClass: Optional<string>;
+  @Input() placeholder: Optional<string>;
+  @Input() size: Optional<Size>;
+  @Input() maxlength: Optional<number>;
+  @Input() tabindex: Optional<string>;
+  @Input() title: Optional<string>;
+  @Input() variant: Optional<InputVariant>;
+  @Input() ariaLabel: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
   @Input() ariaRequired: boolean = false;
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;
   @Input() unmask: boolean = false;
-  @Input() name: string;
+  @Input() name: Optional<string>;
   @Input() required: boolean = false;
   @Input() characterPattern: string = '[A-Za-z]';
   @Input() autofocus: boolean = false;
-  @Input() autocomplete: string;
+  @Input() autocomplete: Optional<string>;
   @Input() keepBuffer: boolean = false;
   @Input() mask: string = '9999-9999';
   @Output() onComplete = new EventEmitter<void>();
@@ -92,13 +92,13 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @Output() onInput = new EventEmitter<Event>();
   @Output() onKeydown = new EventEmitter<Event>();
   @Output() onClear = new EventEmitter<void>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  ngControl: NgControl;
+  ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<any>> = {};
-  onModelChange: Function = () => {
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -113,12 +113,12 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -131,7 +131,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -154,8 +154,8 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
     this.onModelChange(null);
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   writeValue(value: any) {
@@ -163,11 +163,11 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

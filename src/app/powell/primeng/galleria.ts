@@ -2,5 +2,5 @@ import {Galleria, GalleriaModule, GalleriaResponsiveOptions, GalleriaTemplates,}
 
 export {GalleriaModule as $GalleriaModule}
 export {Galleria as $Galleria}
-export {GalleriaTemplates as $GalleriaTemplates}
-export {GalleriaResponsiveOptions as $GalleriaResponsiveOptions}
+export {type GalleriaTemplates as $GalleriaTemplates}
+export {type GalleriaResponsiveOptions as $GalleriaResponsiveOptions}

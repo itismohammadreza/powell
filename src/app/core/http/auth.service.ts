@@ -28,7 +28,7 @@ export class AuthService extends ApiService {
     if (!input || !input.length) {
       return true
     }
-    const userPermissions = this.currentUser.permissions;
+    const userPermissions: string[] = this.currentUser.permissions;
     if (Array.isArray(input)) {
       return userPermissions.some(p => input.includes(p))
     }

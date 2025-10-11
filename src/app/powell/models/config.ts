@@ -1,11 +1,24 @@
 import {FixLabelPosition, LabelPosition, Size} from "@powell/models";
-import {$Preset, $PrimeNG, $PrimeNGConfigType} from "@powell/primeng";
+import {$PrimeNG, $PrimeNGConfigType} from "@powell/primeng";
 
-type OmittedSignalsConfig =
-  Omit<$PrimeNG, "setTranslation" | "csp" | "getTranslation" | "inputStyle" | "ripple" | "theme">
-  & Omit<$PrimeNGConfigType, "theme">;
-
-export type PresetName = 'Aura' | 'Lara' | 'Material' | 'Nora' | 'none';
+type OmittedPrimeNgConfig =
+  Omit<$PrimeNG,
+    "baseStyle" |
+    "csp" |
+    "document" |
+    "inputVariant" |
+    "isThemeChanged" |
+    "loadCommonTheme" |
+    "onThemeChange" |
+    "overlayAppendTo" |
+    "ripple" |
+    "setConfig" |
+    "setThemeConfig" |
+    "theme" |
+    "translationObserver" |
+    "inputStyle" |
+    "ngOnDestroy">
+  & Omit<$PrimeNGConfigType, "theme" | "filterMatchModeOptions">;
 
 export interface ThemeOptions {
   prefix?: string;
@@ -17,14 +30,26 @@ export interface ThemeOptions {
 
 export type ThemeMode = 'dark' | 'light' | 'system';
 
-export type Theme = {name?: PresetName, preset?: $Preset<any>, mode?: ThemeMode};
+export type Theme = {
+  preset?: Record<string, SafeAny>;
+  options?: ThemeOptions;
+  mode?: ThemeMode;
+  primaryPalette?: SafeAny;
+  surfacePalette?: SafeAny;
+};
+
+export interface Preset {
+  components?: any;
+  semantic?: any;
+  primitive?: any;
+}
 
 export interface ConfigChangeEvent {
   currentConfig: Config;
   modifiedConfig: Config;
 }
 
-export interface Config extends Partial<OmittedSignalsConfig> {
+export interface Config extends Partial<OmittedPrimeNgConfig> {
   followConfig?: boolean;
   rtl?: boolean;
   labelPosition?: LabelPosition;
@@ -33,8 +58,4 @@ export interface Config extends Partial<OmittedSignalsConfig> {
   inputSize?: Size;
   theme?: Theme;
   injectDirectionToRoot?: boolean;
-}
-
-export interface InitialConfig extends Config {
-  themeOptions?: ThemeOptions;
 }

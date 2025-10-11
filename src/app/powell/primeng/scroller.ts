@@ -15,13 +15,13 @@ import {
 
 export {ScrollerModule as $ScrollerModule}
 export {Scroller as $Scroller}
-export {ScrollerContentOptions as $ScrollerContentOptions}
-export {ScrollerItemOptions as $ScrollerItemOptions}
-export {ScrollerLoaderOptions as $ScrollerLoaderOptions}
-export {ScrollerLoaderIconOptions as $ScrollerLoaderIconOptions}
-export {ScrollerToType as $ScrollerToType}
-export {ScrollerOrientationType as $ScrollerOrientationType}
-export {ScrollerTemplates as $ScrollerTemplates}
-export {ScrollerLazyLoadEvent as $ScrollerLazyLoadEvent}
-export {ScrollerScrollEvent as $ScrollerScrollEvent}
-export {ScrollerScrollIndexChangeEvent as $ScrollerScrollIndexChangeEvent}
+export {type ScrollerContentOptions as $ScrollerContentOptions}
+export {type ScrollerItemOptions as $ScrollerItemOptions}
+export {type ScrollerLoaderOptions as $ScrollerLoaderOptions}
+export {type ScrollerLoaderIconOptions as $ScrollerLoaderIconOptions}
+export {type ScrollerToType as $ScrollerToType}
+export {type ScrollerOrientationType as $ScrollerOrientationType}
+export {type ScrollerTemplates as $ScrollerTemplates}
+export {type ScrollerLazyLoadEvent as $ScrollerLazyLoadEvent}
+export {type ScrollerScrollEvent as $ScrollerScrollEvent}
+export {type ScrollerScrollIndexChangeEvent as $ScrollerScrollIndexChangeEvent}

@@ -23,7 +23,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import { takeUntil } from "rxjs";
 import {
   CssObject,
   InputMode,
@@ -34,10 +34,10 @@ import {
   Size,
   Validation
 } from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {DestroyService} from "@powell/utils";
-import {$uuid} from "@powell/primeng";
-import {TemplateDirective} from "@powell/directives/template";
+import { ConfigService } from "@powell/api";
+import { DestroyService } from "@powell/utils";
+import { $uuid } from "@powell/primeng";
+import { TemplateDirective } from "@powell/directives/template";
 
 @Component({
   selector: 'pw-input-text',
@@ -58,35 +58,35 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() ariaLabelledBy: string;
-  @Input() ariaLabel: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: LabelPosition;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
+  @Input() ariaLabel: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<LabelPosition>;
   @Input() inputId: string = $uuid();
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
-  @Input() readonly: boolean;
-  @Input() disabled: boolean;
-  @Input() maxlength: number;
-  @Input() placeholder: string;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
+  @Input() readonly: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() maxlength: Optional<number>;
+  @Input() placeholder: Optional<string>;
   @Input() type: InputType = 'text';
   @Input() inputMode: InputMode = 'text';
-  @Input() keyFilter: KeyFilter | RegExp = /.*/g;
-  @Input() showClear: boolean;
-  @Input() style: CssObject;
-  @Input() styleClass: string;
-  @Input() inputStyle: CssObject;
-  @Input() inputStyleClass: string;
-  @Input() autocomplete: any;
+  @Input() keyFilter: Optional<KeyFilter | RegExp>;
+  @Input() showClear: boolean = false;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() inputStyle: Optional<CssObject>;
+  @Input() inputStyleClass: Optional<string>;
+  @Input() autocomplete: Optional<any>;
   // native properties
-  @Input() variant: InputVariant;
-  @Input() fluid: boolean;
-  @Input() size: Size;
+  @Input() variant: Optional<InputVariant>;
+  @Input() fluid: boolean = false;
+  @Input() size: Optional<Size>;
   @Output() onInput = new EventEmitter<Event>();
   @Output() onClick = new EventEmitter<Event>();
   @Output() onChange = new EventEmitter<Event>();
@@ -96,13 +96,13 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
   @Output() onFocus = new EventEmitter<FocusEvent>();
   @Output() onClear = new EventEmitter<void>();
   @Output() onPaste = new EventEmitter<Event>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   templateMap: Record<string, TemplateRef<any>> = {};
-  ngControl: NgControl;
-  onModelChange: Function = () => {
+  ngControl: Nullable<NgControl> = null;
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -112,17 +112,17 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
     const controlContainer = this.injector.get(
       ControlContainer,
       null,
-      {optional: true, host: true, skipSelf: true}
+      { optional: true, host: true, skipSelf: true }
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -135,7 +135,7 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -159,13 +159,13 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
   }
 
   clear() {
-    this.value = null;
+    this.value = undefined;
     this.onModelChange(this.value);
     this.onClear.emit();
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   _onKeyDown(event: KeyboardEvent) {
@@ -185,11 +185,11 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

@@ -1,7 +1,18 @@
 import {NgModule} from "@angular/core";
-import {NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
+import {CommonModule, NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {$AutoFocusModule, $ButtonModule, $DatePickerModule, $InputTextModule, $RippleModule} from "@powell/primeng";
+import {
+  $AutoFocus,
+  $AutoFocusModule,
+  $Button,
+  $ButtonModule,
+  $DatePickerModule,
+  $InputText,
+  $InputTextModule,
+  $Ripple,
+  $RippleModule,
+  $SharedModule
+} from "@powell/primeng";
 import {
   $CalendarIcon,
   $ChevronDownIcon,
@@ -31,6 +42,13 @@ import {DatepickerBaseComponent} from "@powell/components/datepicker/datepicker-
     $ChevronDownIcon,
     $TimesIcon,
     $CalendarIcon,
+
+    CommonModule,
+    $Button,
+    $Ripple,
+    $AutoFocus,
+    $InputText,
+    $SharedModule
   ],
 })
 export class DatepickerBaseModule {

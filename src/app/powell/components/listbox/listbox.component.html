@@ -16,7 +16,7 @@
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-listbox
         [(ngModel)]="value"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
+        [invalid]="isInvalid"
         [id]="id"
         [searchMessage]="searchMessage"
         [emptySelectionMessage]="emptySelectionMessage"

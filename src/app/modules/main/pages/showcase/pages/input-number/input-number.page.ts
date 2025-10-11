@@ -36,7 +36,7 @@ export class InputNumberPage extends PreviewBase {
     {field: 'step', value: 1},
     {field: 'allowEmpty', value: true},
     {field: 'useGrouping', value: true},
-    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputVariant},
     {field: 'prefix', value: ''},
     {field: 'suffix', value: ''},
     {field: 'showClear', value: true},

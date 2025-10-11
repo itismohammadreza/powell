@@ -11,11 +11,11 @@ export class EmptyComponent implements OnInit {
   private configService = inject(ConfigService);
 
   @Input() imageType: EmptyIcon = 'box2';
-  @Input() icon: string;
-  @Input() imageSrc: string;
-  @Input() text: string;
-  @Input() rtl: boolean;
-  @Input() followConfig: boolean;
+  @Input() icon: Optional<string>;
+  @Input() imageSrc: Optional<string>;
+  @Input() text: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() followConfig: boolean = false;
 
   ngOnInit() {
     this.configService.configureComponent(this, true);

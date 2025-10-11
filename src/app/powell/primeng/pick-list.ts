@@ -17,15 +17,15 @@ import {
 
 export {PickListModule as $PickListModule}
 export {PickList as $PickList}
-export {PickListTemplates as $PickListTemplates}
-export {PickListFilterOptions as $PickListFilterOptions}
-export {PickListSourceFilterEvent as $PickListSourceFilterEvent}
-export {PickListMoveToSourceEvent as $PickListMoveToSourceEvent}
-export {PickListMoveAllToSourceEvent as $PickListMoveAllToSourceEvent}
-export {PickListMoveAllToTargetEvent as $PickListMoveAllToTargetEvent}
-export {PickListMoveToTargetEvent as $PickListMoveToTargetEvent}
-export {PickListSourceReorderEvent as $PickListSourceReorderEvent}
-export {PickListSourceSelectEvent as $PickListSourceSelectEvent}
-export {PickListTargetFilterEvent as $PickListTargetFilterEvent}
-export {PickListTargetReorderEvent as $PickListTargetReorderEvent}
-export {PickListTargetSelectEvent as $PickListTargetSelectEvent}
+export {type PickListTemplates as $PickListTemplates}
+export {type PickListFilterOptions as $PickListFilterOptions}
+export {type PickListSourceFilterEvent as $PickListSourceFilterEvent}
+export {type PickListMoveToSourceEvent as $PickListMoveToSourceEvent}
+export {type PickListMoveAllToSourceEvent as $PickListMoveAllToSourceEvent}
+export {type PickListMoveAllToTargetEvent as $PickListMoveAllToTargetEvent}
+export {type PickListMoveToTargetEvent as $PickListMoveToTargetEvent}
+export {type PickListSourceReorderEvent as $PickListSourceReorderEvent}
+export {type PickListSourceSelectEvent as $PickListSourceSelectEvent}
+export {type PickListTargetFilterEvent as $PickListTargetFilterEvent}
+export {type PickListTargetReorderEvent as $PickListTargetReorderEvent}
+export {type PickListTargetSelectEvent as $PickListTargetSelectEvent}

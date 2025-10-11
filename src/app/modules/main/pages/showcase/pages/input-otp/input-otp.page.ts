@@ -25,7 +25,7 @@ export class InputOtpPage extends PreviewBase {
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'disabled', value: false},
     {field: 'readonly', value: false},
-    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputVariant},
     {field: 'length', value: 4},
     {field: 'mask', value: false},
     {field: 'numbersOnly', value: true},

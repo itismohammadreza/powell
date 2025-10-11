@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import {AfterViewInit, Component, EventEmitter, inject, Input, NgZone, Output} from '@angular/core';
 import sunEditor from 'suneditor';
 import {SunEditorOptions} from "suneditor/src/options";
@@ -74,7 +76,7 @@ export class EditorBaseComponent implements AfterViewInit {
   /**
    * SunEditorOptions Object is used once when the editor is created
    */
-  @Input() options: SunEditorOptions;
+  @Input() options: Optional<SunEditorOptions>;
 
   /**
    * Parameter that is passed to the onDrop event to control the behavior.
@@ -306,7 +308,7 @@ export class EditorBaseComponent implements AfterViewInit {
     files: any[];
     info: audioInputInformation;
     core: Core;
-    uploadHandler: Function;
+    uploadHandler: Fn;
   }>();
 
   /**
@@ -325,7 +327,7 @@ export class EditorBaseComponent implements AfterViewInit {
     files: any[];
     info: videoInputInformation;
     core: Core;
-    uploadHandler: Function;
+    uploadHandler: Fn;
   }>();
 
   /**
@@ -344,7 +346,7 @@ export class EditorBaseComponent implements AfterViewInit {
     files: any[];
     info: imageInputInformation;
     core: Core;
-    uploadHandler: Function;
+    uploadHandler: Fn;
   }>();
 
   /**
@@ -1147,7 +1149,7 @@ export class EditorBaseComponent implements AfterViewInit {
       files: any[],
       info: imageInputInformation,
       core: Core,
-      uploadHandler: Function
+      uploadHandler: Fn
     ) => {
       this.onImageUploadBefore.emit({files, info, core, uploadHandler});
       return this.onImageUploadBefore_param;
@@ -1164,7 +1166,7 @@ export class EditorBaseComponent implements AfterViewInit {
       files: any[],
       info: videoInputInformation,
       core: Core,
-      uploadHandler: Function
+      uploadHandler: Fn
     ) => {
       this.onVideoUploadBefore.emit({files, info, core, uploadHandler});
       return this.onVideoUploadBefore_param;
@@ -1181,7 +1183,7 @@ export class EditorBaseComponent implements AfterViewInit {
       files: any[],
       info: audioInputInformation,
       core: Core,
-      uploadHandler: Function
+      uploadHandler: Fn
     ) => {
       this.onAudioUploadBefore.emit({files, info, core, uploadHandler});
       return this.onAudioUploadBefore_param;

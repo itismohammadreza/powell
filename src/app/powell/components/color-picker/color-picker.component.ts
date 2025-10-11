@@ -45,26 +45,25 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: LabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<LabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
   // native properties
-  @Input() style: CssObject;
-  @Input() styleClass: string;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
   @Input() inline: boolean = false;
   @Input() format: ColorFormat = 'hex';
-  @Input() appendTo: any;
-  @Input() disabled: boolean;
-  @Input() tabindex: string;
+  @Input() appendTo: Optional<any>;
+  @Input() disabled: boolean = false;
+  @Input() tabindex: Optional<string>;
   @Input() inputId: string = $uuid();
   @Input() autoZIndex: boolean = true;
-  @Input() baseZIndex: number = 0;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
   @Input() autofocus: boolean = false;
@@ -77,10 +76,10 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
 
-  ngControl: NgControl;
-  onModelChange: Function = () => {
+  ngControl: Nullable<NgControl> = null;
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -95,12 +94,12 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -117,8 +116,8 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
     this.onModelChange(event.value);
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   writeValue(value: any) {
@@ -126,11 +125,11 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

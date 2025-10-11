@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {NgClass, NgStyle} from "@angular/common";
+import {NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {CheckboxComponent} from "@powell/components/checkbox";
@@ -9,12 +9,13 @@ import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
   declarations: [CheckboxComponent],
-  exports: [CheckboxComponent],
+  exports: [CheckboxComponent, TemplateModule],
   imports: [
     $CheckboxModule,
     $ProgressSpinnerModule,
     NgStyle,
     NgClass,
+    NgTemplateOutlet,
     FormsModule,
     LabelStarModule,
     FormFieldModule,

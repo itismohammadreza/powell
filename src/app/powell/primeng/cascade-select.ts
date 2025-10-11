@@ -11,9 +11,9 @@ import {
 
 export {CascadeSelectModule as $CascadeSelectModule}
 export {CascadeSelect as $CascadeSelect}
-export {CascadeSelectTemplates as $CascadeSelectTemplates}
-export {CascadeSelectBeforeHideEvent as $CascadeSelectBeforeHideEvent}
-export {CascadeSelectBeforeShowEvent as $CascadeSelectBeforeShowEvent}
-export {CascadeSelectChangeEvent as $CascadeSelectChangeEvent}
-export {CascadeSelectShowEvent as $CascadeSelectShowEvent}
-export {CascadeSelectHideEvent as $CascadeSelectHideEvent}
+export {type CascadeSelectTemplates as $CascadeSelectTemplates}
+export {type CascadeSelectBeforeHideEvent as $CascadeSelectBeforeHideEvent}
+export {type CascadeSelectBeforeShowEvent as $CascadeSelectBeforeShowEvent}
+export {type CascadeSelectChangeEvent as $CascadeSelectChangeEvent}
+export {type CascadeSelectShowEvent as $CascadeSelectShowEvent}
+export {type CascadeSelectHideEvent as $CascadeSelectHideEvent}

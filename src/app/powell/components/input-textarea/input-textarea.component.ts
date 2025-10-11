@@ -49,33 +49,33 @@ export class InputTextareaComponent implements OnInit, AfterContentInit, Control
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() ariaLabelledBy: string;
-  @Input() ariaLabel: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: LabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
+  @Input() ariaLabel: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<LabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
   @Input() inputId: string = $uuid();
-  @Input() rows: number;
-  @Input() cols: number;
-  @Input() readonly: boolean;
-  @Input() disabled: boolean;
-  @Input() maxlength: number;
-  @Input() placeholder: string;
-  @Input() style: CssObject;
-  @Input() styleClass: string;
-  @Input() inputStyle: CssObject;
-  @Input() inputStyleClass: string;
+  @Input() rows: Optional<number>;
+  @Input() cols: Optional<number>;
+  @Input() readonly: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() maxlength: Optional<number>;
+  @Input() placeholder: Optional<string>;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() inputStyle: Optional<CssObject>;
+  @Input() inputStyleClass: Optional<string>;
   // native properties
   @Input() autoResize: boolean = false;
-  @Input() variant: InputVariant;
-  @Input() fluid: boolean;
-  @Input() size: Size;
+  @Input() variant: Optional<InputVariant>;
+  @Input() fluid: boolean = false;
+  @Input() size: Optional<Size>;
   @Output() onResize = new EventEmitter<Event | {}>();
   @Output() onInput = new EventEmitter<Event>();
   @Output() onChange = new EventEmitter<Event>();
@@ -83,13 +83,13 @@ export class InputTextareaComponent implements OnInit, AfterContentInit, Control
   @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   templateMap: Record<string, TemplateRef<any>> = {};
-  ngControl: NgControl;
-  onModelChange: Function = () => {
+  ngControl: Nullable<NgControl> = null;
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -104,12 +104,12 @@ export class InputTextareaComponent implements OnInit, AfterContentInit, Control
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -122,7 +122,7 @@ export class InputTextareaComponent implements OnInit, AfterContentInit, Control
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -170,11 +170,11 @@ export class InputTextareaComponent implements OnInit, AfterContentInit, Control
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

@@ -10,9 +10,9 @@
         <ng-container *ngTemplateOutlet="labelTemplate"/>
 
         <div class="field">
-          @if (templateMap.addonStart || templateMap.addonEnd) {
+          @if (templateMap['addonStart'] || templateMap['addonEnd']) {
             <ng-container *ngTemplateOutlet="inputGroup"/>
-          } @else if (templateMap.iconStart || templateMap.iconEnd) {
+          } @else if (templateMap['iconStart'] || templateMap['iconEnd']) {
             <ng-container *ngTemplateOutlet="elementWidthIcon"/>
           } @else {
             <ng-container *ngTemplateOutlet="element"/>
@@ -25,9 +25,9 @@
         <ng-container *ngTemplateOutlet="labelTemplate"/>
 
         <div class="field">
-          @if (templateMap.addonStart || templateMap.addonEnd) {
+          @if (templateMap['addonStart'] || templateMap['addonEnd']) {
             <ng-container *ngTemplateOutlet="inputGroup"/>
-          } @else if (templateMap.iconStart || templateMap.iconEnd) {
+          } @else if (templateMap['iconStart'] || templateMap['iconEnd']) {
             <ng-container *ngTemplateOutlet="elementWidthIcon"/>
           } @else {
             <ng-container *ngTemplateOutlet="element"/>
@@ -36,16 +36,16 @@
       </div>
     }
     @case ("ifta") {
-      <ng-container *ngTemplateOutlet="templateMap.addonStart || templateMap.addonEnd ? inputGroup : ifta"/>
+      <ng-container *ngTemplateOutlet="templateMap['addonStart'] || templateMap['addonEnd'] ? inputGroup : ifta"/>
     }
     @case ("float-in") {
-      <ng-container *ngTemplateOutlet="templateMap.addonStart || templateMap.addonEnd ? inputGroup : floatIn"/>
+      <ng-container *ngTemplateOutlet="templateMap['addonStart'] || templateMap['addonEnd'] ? inputGroup : floatIn"/>
     }
     @case ("float-on") {
-      <ng-container *ngTemplateOutlet="templateMap.addonStart || templateMap.addonEnd ? inputGroup : floatOn"/>
+      <ng-container *ngTemplateOutlet="templateMap['addonStart'] || templateMap['addonEnd'] ? inputGroup : floatOn"/>
     }
     @case ("float-over") {
-      <ng-container *ngTemplateOutlet="templateMap.addonStart || templateMap.addonEnd ? inputGroup : floatOver"/>
+      <ng-container *ngTemplateOutlet="templateMap['addonStart'] || templateMap['addonEnd'] ? inputGroup : floatOver"/>
     }
   }
 
@@ -62,48 +62,48 @@
 </div>
 
 <ng-template #element>
-  <ng-container *ngTemplateOutlet="templateMap.element;context:{isInvalid: isInvalid}"/>
+  <ng-container *ngTemplateOutlet="templateMap['element'];context:{isInvalid: isInvalid}"/>
 </ng-template>
 
 <ng-template #ifta>
   <p-iftaLabel>
-    <ng-container *ngTemplateOutlet="templateMap.iconStart || templateMap.iconEnd ? elementWidthIcon : element"/>
+    <ng-container *ngTemplateOutlet="templateMap['iconStart'] || templateMap['iconEnd'] ? elementWidthIcon : element"/>
     <ng-container *ngTemplateOutlet="labelTemplate"/>
   </p-iftaLabel>
 </ng-template>
 
 <ng-template #floatIn>
   <p-floatLabel variant="in">
-    <ng-container *ngTemplateOutlet="templateMap.iconStart || templateMap.iconEnd ? elementWidthIcon : element"/>
+    <ng-container *ngTemplateOutlet="templateMap['iconStart'] || templateMap['iconEnd'] ? elementWidthIcon : element"/>
     <ng-container *ngTemplateOutlet="labelTemplate"/>
   </p-floatLabel>
 </ng-template>
 
 <ng-template #floatOn>
   <p-floatLabel variant="on">
-    <ng-container *ngTemplateOutlet="templateMap.iconStart || templateMap.iconEnd ? elementWidthIcon : element"/>
+    <ng-container *ngTemplateOutlet="templateMap['iconStart'] || templateMap['iconEnd'] ? elementWidthIcon : element"/>
     <ng-container *ngTemplateOutlet="labelTemplate"/>
   </p-floatLabel>
 </ng-template>
 
 <ng-template #floatOver>
   <p-floatLabel variant="over">
-    <ng-container *ngTemplateOutlet="templateMap.iconStart || templateMap.iconEnd ? elementWidthIcon : element"/>
+    <ng-container *ngTemplateOutlet="templateMap['iconStart'] || templateMap['iconEnd'] ? elementWidthIcon : element"/>
     <ng-container *ngTemplateOutlet="labelTemplate"/>
   </p-floatLabel>
 </ng-template>
 
 <ng-template #elementWidthIcon>
   <p-iconField>
-    @if (templateMap.iconStart) {
+    @if (templateMap['iconStart']) {
       <p-inputIcon>
-        <ng-container *ngTemplateOutlet="templateMap.iconStart"/>
+        <ng-container *ngTemplateOutlet="templateMap['iconStart']"/>
       </p-inputIcon>
     }
     <ng-container *ngTemplateOutlet="element"/>
-    @if (templateMap.iconEnd) {
+    @if (templateMap['iconEnd']) {
       <p-inputIcon>
-        <ng-container *ngTemplateOutlet="templateMap.iconEnd"/>
+        <ng-container *ngTemplateOutlet="templateMap['iconEnd']"/>
       </p-inputIcon>
     }
   </p-iconField>
@@ -111,9 +111,9 @@
 
 <ng-template #inputGroup>
   <p-inputGroup>
-    @if (templateMap.addonStart) {
+    @if (templateMap['addonStart']) {
       <p-inputGroupAddon>
-        <ng-container *ngTemplateOutlet="templateMap.addonStart"/>
+        <ng-container *ngTemplateOutlet="templateMap['addonStart']"/>
       </p-inputGroupAddon>
     }
     @switch (labelPosition) {
@@ -136,28 +136,28 @@
         <ng-container *ngTemplateOutlet="floatOver"/>
       }
     }
-    @if (templateMap.addonEnd) {
+    @if (templateMap['addonEnd']) {
       <p-inputgroup-addon>
-        <ng-container *ngTemplateOutlet="templateMap.addonEnd"/>
+        <ng-container *ngTemplateOutlet="templateMap['addonEnd']"/>
       </p-inputgroup-addon>
     }
   </p-inputGroup>
 </ng-template>
 
 <ng-template #labelTemplate>
-  @if (label || templateMap.label) {
+  @if (label || templateMap['label']) {
     @if (labelPosition === 'side') {
       <label [style.minWidth.px]="labelWidth" [style.maxWidth.px]="labelWidth" [attr.for]="inputId">
-        @if (templateMap.label) {
-          <ng-container *ngTemplateOutlet="templateMap.label"/>
+        @if (templateMap['label']) {
+          <ng-container *ngTemplateOutlet="templateMap['label']"/>
         } @else {
           {{ label }}
         }
       </label>
     } @else {
       <label [attr.for]="inputId">
-        @if (templateMap.label) {
-          <ng-container *ngTemplateOutlet="templateMap.label"/>
+        @if (templateMap['label']) {
+          <ng-container *ngTemplateOutlet="templateMap['label']"/>
         } @else {
           {{ label }}
         }

@@ -1,5 +1,6 @@
 import {GlobalConfig} from "@core/models";
 import {RouteAnimation} from "@core/config";
+import {$Aura} from '@powell/primeng';
 
 export const globalConfig: GlobalConfig = {
   lang: 'en',
@@ -7,16 +8,16 @@ export const globalConfig: GlobalConfig = {
   requestTimeout: 15000,
   routeAnimation: RouteAnimation('fade2'),
   powellConfig: {
-    ripple: true,
+    ripple: false,
     followConfig: true,
     fixLabelPosition: 'side',
     labelPosition: 'ifta',
-    inputStyle: 'outlined',
+    inputVariant: 'outlined',
     showRequiredStar: true,
     injectDirectionToRoot: true,
     theme: {
-      name: 'Aura',
-      mode: 'dark'
+      preset: $Aura,
+      mode: 'system',
     }
   }
 };

@@ -71,52 +71,52 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: FixLabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<FixLabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
   @Input() id: string = $uuid();
   // native properties
-  @Input() items: any[];
-  @Input() selectionMode: TreeSelectionMode;
+  @Input() items: Optional<any[]>;
+  @Input() selectionMode: Optional<TreeSelectionMode>;
   @Input() loadingMode: TreeLoadingMode = 'mask';
-  @Input() selection: any;
-  @Input() style: CssObject;
-  @Input() styleClass: string;
-  @Input() contextMenu: any;
-  @Input() draggableScope: any;
-  @Input() droppableScope: any;
+  @Input() selection: Optional<any>;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() contextMenu: Optional<any>;
+  @Input() draggableScope: Optional<any>;
+  @Input() droppableScope: Optional<any>;
   @Input() draggableNodes: boolean = false;
   @Input() droppableNodes: boolean = false;
   @Input() metaKeySelection: boolean = false;
   @Input() propagateSelectionUp: boolean = true;
   @Input() propagateSelectionDown: boolean = true;
   @Input() loading: boolean = false;
-  @Input() loadingIcon: string;
-  @Input() emptyMessage: string;
-  @Input() ariaLabel: string;
-  @Input() togglerAriaLabel: string;
-  @Input() ariaLabelledBy: string;
+  @Input() loadingIcon: Optional<string>;
+  @Input() emptyMessage: Optional<string>;
+  @Input() ariaLabel: Optional<string>;
+  @Input() togglerAriaLabel: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
   @Input() validateDrop: boolean = false;
   @Input() filter: boolean = false;
   @Input() filterBy: string = 'label';
   @Input() filterMode: TreeFilterMode = 'lenient';
-  @Input() filterPlaceholder: string;
-  @Input() filteredNodes: $TreeNode<any>[];
-  @Input() filterLocale: string;
-  @Input() scrollHeight: string;
+  @Input() filterPlaceholder: Optional<string>;
+  @Input() filteredNodes: Optional<$TreeNode<any>[]>;
+  @Input() filterLocale: Optional<string>;
+  @Input() scrollHeight: Optional<string>;
   @Input() lazy: boolean = false;
   @Input() virtualScroll: boolean = false;
-  @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: $ScrollerOptions;
+  @Input() virtualScrollItemSize: Optional<number>;
+  @Input() virtualScrollOptions: Optional<$ScrollerOptions>;
   @Input() indentation: number = 1.5;
-  @Input() _templateMap: any;
-  @Input() trackBy: Function;
-  @Input() highlightOnSelect: boolean;
+  @Input() _templateMap: Optional<any>;
+  @Input() trackBy: Fn = (i: number, item: SafeAny) => i;
+  @Input() highlightOnSelect: boolean = false;
   @Output() selectionChange = new EventEmitter<$TreeSelectionChangeEvent>();
   @Output() onNodeSelect = new EventEmitter<$TreeNodeSelectEvent>();
   @Output() onNodeUnselect = new EventEmitter<$TreeNodeUnSelectEvent>();
@@ -128,13 +128,13 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Output() onScroll = new EventEmitter<$TreeScrollEvent>();
   @Output() onScrollIndexChange = new EventEmitter<$TreeScrollIndexChangeEvent>();
   @Output() onFilter = new EventEmitter<$TreeFilterEvent>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  ngControl: NgControl;
+  ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<any>> = {};
-  onModelChange: Function = () => {
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -149,12 +149,12 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           currentControl.markAsTouched();
@@ -165,20 +165,20 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
   }
 
-  _onSelectionChange(event: $TreeSelectionChangeEvent) {
+  _onSelectionChange(event: Nullable<$TreeSelectionChangeEvent>) {
     this.selection = event;
     this.selectionChange.emit(this.selection);
     this.onModelChange(this.selection);
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   writeValue(value: any) {
@@ -186,11 +186,11 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 }

@@ -44,17 +44,17 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: FixLabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<FixLabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
   @Input() orientation: Orientation = 'vertical';
-  @Input() options: any[];
+  @Input() options: Optional<any[]>;
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';
   @Input() optionDisabled: string = 'disabled';
@@ -63,7 +63,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
 
   @Input() set disabled(disabled: boolean) {
     this._disabled = disabled;
-    this.options.forEach(option => {
+    this.options?.forEach(option => {
       option[this.optionDisabled] = disabled
     })
   };
@@ -72,14 +72,14 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
     return this._disabled;
   }
 
-  @Input() variant: InputVariant;
-  @Input() size: Size;
-  @Input() tabindex: number;
+  @Input() variant: Optional<InputVariant>;
+  @Input() size: Optional<Size>;
+  @Input() tabindex: Optional<number>;
   @Input() id: string = $uuid();
-  @Input() ariaLabelledBy: string;
-  @Input() ariaLabel: string;
-  @Input() style: CssObject;
-  @Input() styleClass: string;
+  @Input() ariaLabelledBy: Optional<string>;
+  @Input() ariaLabel: Optional<string>;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
   @Input() autofocus: boolean = false;
   @Input() binary: boolean = false;
   @Output() onChange = new EventEmitter<$RadioButtonClickEvent>();
@@ -87,10 +87,10 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Output() onBlur = new EventEmitter<Event>();
 
   _disabled: boolean = false;
-  ngControl: NgControl;
-  onModelChange: Function = () => {
+  ngControl: Nullable<NgControl> = null;
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -105,12 +105,12 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -141,11 +141,11 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

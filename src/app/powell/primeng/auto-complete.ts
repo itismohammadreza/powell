@@ -11,9 +11,9 @@ import {
 
 export {AutoCompleteModule as $AutoCompleteModule}
 export {AutoComplete as $AutoComplete}
-export {AutoCompleteCompleteEvent as $AutoCompleteCompleteEvent}
-export {AutoCompleteDropdownClickEvent as $AutoCompleteDropdownClickEvent}
-export {AutoCompleteLazyLoadEvent as $AutoCompleteLazyLoadEvent}
-export {AutoCompleteSelectEvent as $AutoCompleteSelectEvent}
-export {AutoCompleteUnselectEvent as $AutoCompleteUnselectEvent}
-export {AutoCompleteTemplates as $AutoCompleteTemplates}
+export {type AutoCompleteCompleteEvent as $AutoCompleteCompleteEvent}
+export {type AutoCompleteDropdownClickEvent as $AutoCompleteDropdownClickEvent}
+export {type AutoCompleteLazyLoadEvent as $AutoCompleteLazyLoadEvent}
+export {type AutoCompleteSelectEvent as $AutoCompleteSelectEvent}
+export {type AutoCompleteUnselectEvent as $AutoCompleteUnselectEvent}
+export {type AutoCompleteTemplates as $AutoCompleteTemplates}

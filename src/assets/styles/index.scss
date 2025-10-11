@@ -1,11 +1,7 @@
 @use "sass:meta";
+@use "primeicons/primeicons.css";
 
-@import "tailwindcss/base.css" layer(tailwind-base);
-@import "tailwindcss/components.css" layer(tailwind-components);
-@import "tailwindcss/utilities.css" layer(tailwind-utilities);
-
-@import "primeicons/primeicons.css";
-
+@include meta.load-css("tailwind");
 @include meta.load-css("fonts/fonts");
 @include meta.load-css("powell");
 @include meta.load-css("styles");

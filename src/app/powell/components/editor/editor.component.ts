@@ -73,22 +73,22 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: FixLabelPosition;
-  @Input() validation: Validation;
-  @Input() disabled: boolean;
-  @Input() readonly: boolean;
-  @Input() followConfig: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<FixLabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() disabled: boolean = false;
+  @Input() readonly: boolean = false;
+  @Input() followConfig: boolean = false;
   @Input() inputId: string = $uuid();
-  @Input() style: CssObject;
-  @Input() styleClass: string;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
   // native properties
-  @Input() options: SunEditorOptions;
+  @Input() options: Optional<SunEditorOptions>;
   @Input() onDrop_param: boolean = true;
   @Input() onCopy_param: boolean = true;
   @Input() onCut_param: boolean = true;
@@ -99,9 +99,9 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   @Input() onVideoUploadError_param: boolean = true;
   @Input() onAudioUploadBefore_param: boolean = true;
   @Input() onResizeEditor_param: any = {};
-  @Input() imageUploadHandler: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
-  @Input() videoUploadHandler: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
-  @Input() audioUploadHandler: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
+  @Input() imageUploadHandler: Optional<(xmlHttp: XMLHttpRequest, info: any, core: Core) => void>;
+  @Input() videoUploadHandler: Optional<(xmlHttp: XMLHttpRequest, info: any, core: Core) => void>;
+  @Input() audioUploadHandler: Optional<(xmlHttp: XMLHttpRequest, info: any, core: Core) => void>;
   @Input() localStorageConfig = {id: 'ngxSunEditor', autoSave: false, autoLoad: false};
   @Output() created = new EventEmitter<EditorBaseComponent>();
   @Output() onload = new EventEmitter<EditorOnLoadEvent>();
@@ -132,11 +132,11 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   @Output() onCut = new EventEmitter<EditorOnCut>();
   @Output() onCopy = new EventEmitter<EditorOnCopy>();
 
-  ngControl: NgControl;
-  editorInstance: EditorBaseComponent;
-  onModelChange: Function = () => {
+  ngControl: Nullable<NgControl> = null;
+  editorInstance: Optional<EditorBaseComponent>;
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   async ngOnInit() {
@@ -173,12 +173,12 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -194,11 +194,11 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
     if (!this.editorInstance) {
       return
     }
-    if (changes.readonly) {
-      this.editorInstance.readOnly(changes.readonly.currentValue)
+    if (changes['readonly']) {
+      this.editorInstance.readOnly(changes['readonly'].currentValue)
     }
-    if (changes.disabled) {
-      if (changes.disabled.currentValue) {
+    if (changes['disabled']) {
+      if (changes['disabled'].currentValue) {
         this.editorInstance.disabled();
       } else {
         this.editorInstance.enabled()
@@ -211,29 +211,29 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
     this.created.emit(event)
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   _onChange(event: EditorOnChange) {
     this.onChange.emit(event);
-    this.onModelChange(this.editorInstance.getText() ? event.core.getContents(false) : null);
+    this.onModelChange(this.editorInstance?.getText() ? event.core.getContents(false) : null);
   }
 
   _onInput(event: EditorEvent) {
     this.onInput.emit(event);
-    const result = this.editorInstance.getText() ? event.core.getContents(false) : null;
+    const result = this.editorInstance?.getText() ? event.core.getContents(false) : null;
     this.onModelChange(result);
   }
 
   _onKeyDown(event: EditorEvent) {
     this.onKeyDown.emit(event);
-    this.onModelChange(this.editorInstance.getText() ? event.core.getContents(false) : null);
+    this.onModelChange(this.editorInstance?.getText() ? event.core.getContents(false) : null);
   }
 
   _onKeyUp(event: EditorEvent) {
     this.onKeyUp.emit(event);
-    this.onModelChange(this.editorInstance.getText() ? event.core.getContents(false) : null);
+    this.onModelChange(this.editorInstance?.getText() ? event.core.getContents(false) : null);
   }
 
   _onBlur(event: EditorEvent) {
@@ -246,11 +246,11 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

@@ -75,54 +75,54 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   private destroy$ = inject(DestroyService);
 
   @Input() value: any = [];
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: FixLabelPosition;
-  @Input() validation: Validation;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<FixLabelPosition>;
+  @Input() validation: Optional<Validation>;
   @Input() resultType: FileResultType = 'file';
-  @Input() followConfig: boolean;
+  @Input() followConfig: boolean = false;
   @Input() id: string = $uuid();
   // native properties
-  @Input() name: string;
-  @Input() url: string;
+  @Input() name: Optional<string>;
+  @Input() url: Optional<string>;
   @Input() method: FilePickerMethod = 'post';
   @Input() multiple: boolean = false;
-  @Input() accept: string;
-  @Input() disabled: boolean;
+  @Input() accept: Optional<string>;
+  @Input() disabled: boolean = false;
   @Input() auto: boolean = false;
   @Input() withCredentials: boolean = false;
-  @Input() maxFileSize: number;
+  @Input() maxFileSize: Optional<number>;
   @Input() invalidFileSizeMessageSummary: string = '{0}: Invalid file size';
   @Input() invalidFileSizeMessageDetail: string = 'maximum upload size is {0}';
   @Input() invalidFileTypeMessageSummary: string = '{0}: Invalid file type';
   @Input() invalidFileTypeMessageDetail: string = 'allowed file types: {0}';
   @Input() invalidFileLimitMessageDetail: string = 'limit is {0} at most';
   @Input() invalidFileLimitMessageSummary: string = 'Maximum number of files exceeded';
-  @Input() style: CssObject;
-  @Input() styleClass: string;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
   @Input() previewWidth: number = 50;
-  @Input() chooseLabel: string;
-  @Input() uploadLabel: string;
-  @Input() cancelLabel: string;
-  @Input() chooseIcon: string;
-  @Input() uploadIcon: string;
-  @Input() cancelIcon: string;
+  @Input() chooseLabel: Optional<string>;
+  @Input() uploadLabel: Optional<string>;
+  @Input() cancelLabel: Optional<string>;
+  @Input() chooseIcon: Optional<string>;
+  @Input() uploadIcon: Optional<string>;
+  @Input() cancelIcon: Optional<string>;
   @Input() showUploadButton: boolean = true;
   @Input() showCancelButton: boolean = true;
   @Input() mode: FilePickerMode = 'advanced';
-  @Input() headers: HttpHeaders;
+  @Input() headers: Optional<HttpHeaders>;
   @Input() customUpload: boolean = false;
-  @Input() fileLimit: number;
-  @Input() uploadStyleClass: string;
-  @Input() cancelStyleClass: string;
-  @Input() removeStyleClass: string;
-  @Input() chooseStyleClass: string;
-  @Input() chooseButtonProps: ButtonProps;
-  @Input() uploadButtonProps: ButtonProps;
-  @Input() cancelButtonProps: ButtonProps;
+  @Input() fileLimit: Optional<number>;
+  @Input() uploadStyleClass: Optional<string>;
+  @Input() cancelStyleClass: Optional<string>;
+  @Input() removeStyleClass: Optional<string>;
+  @Input() chooseStyleClass: Optional<string>;
+  @Input() chooseButtonProps: Optional<ButtonProps>;
+  @Input() uploadButtonProps: Optional<ButtonProps>;
+  @Input() cancelButtonProps: Optional<ButtonProps>;
   @Output() onBeforeUpload = new EventEmitter<$FileBeforeUploadEvent>();
   @Output() onSend = new EventEmitter<$FileSendEvent>();
   @Output() onUpload = new EventEmitter<$FileUploadEvent>();
@@ -134,16 +134,16 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Output() uploadHandler = new EventEmitter<$FileUploadHandlerEvent>();
   @Output() onImageError = new EventEmitter<Event>();
   @Output() onRemoveUploadedFile = new EventEmitter<$RemoveUploadedFileEvent>();
-  @ViewChild($FileUpload, {static: true}) fileUploadComponent: $FileUpload;
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ViewChild($FileUpload, {static: true}) fileUploadComponent!: $FileUpload;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  ngControl: NgControl;
+  ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<any>> = {};
   selectedFiles: any[] = [];
   filesToEmit: any[] = [];
-  onModelChange: Function = () => {
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -158,12 +158,12 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -196,7 +196,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -247,21 +247,21 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
         if (typeof item == 'string') {
           //Array of base64
           if (item.startsWith('src=')) {
-            dt.items.add(helpers.base64toFile(item, item.split('/').pop()));
+            dt.items.add(helpers.base64toFile(item, item.split('/').pop()!));
             if (wantBase64) {
               result.push(item);
             } else if (wantFile) {
-              result.push(helpers.base64toFile(item, item.split('/').pop()));
+              result.push(helpers.base64toFile(item, item.split('/').pop()!));
             }
           }
           //Array of url
           else {
             const base64 = await helpers.urlToBase64(item);
-            dt.items.add(helpers.base64toFile(base64, item.split('/').pop()));
+            dt.items.add(helpers.base64toFile(base64, item.split('/').pop()!));
             if (wantBase64) {
               result.push(base64);
             } else if (wantFile) {
-              result.push(helpers.base64toFile(base64, item.split('/').pop()));
+              result.push(helpers.base64toFile(base64, item.split('/').pop()!));
             }
           }
         }
@@ -284,29 +284,29 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     } else if (typeof value == 'string') {
       //value is a single  base64
       if (value.startsWith('src=')) {
-        dt.items.add(helpers.base64toFile(value, value.split('/').pop()));
+        dt.items.add(helpers.base64toFile(value, value.split('/').pop()!));
         if (wantBase64) {
           this.onModelChange(value);
           this.filesToEmit.push(value);
         } else if (wantFile) {
           this.filesToEmit.push(
-            helpers.base64toFile(value, value.split('/').pop())
+            helpers.base64toFile(value, value.split('/').pop()!)
           );
-          this.onModelChange(helpers.base64toFile(value, value.split('/').pop()));
+          this.onModelChange(helpers.base64toFile(value, value.split('/').pop()!));
         }
       }
       //value is a single  url
       else {
         const base64 = await helpers.urlToBase64(value);
-        dt.items.add(helpers.base64toFile(base64, value.split('/').pop()));
+        dt.items.add(helpers.base64toFile(base64, value.split('/').pop()!));
         this.value = dt.files;
         if (wantBase64) {
           this.onModelChange(base64);
           this.filesToEmit.push(base64);
         } else if (wantFile) {
-          this.onModelChange(helpers.base64toFile(base64, value.split('/').pop()));
+          this.onModelChange(helpers.base64toFile(base64, value.split('/').pop()!));
           this.filesToEmit.push(
-            helpers.base64toFile(base64, value.split('/').pop())
+            helpers.base64toFile(base64, value.split('/').pop()!)
           );
         }
       }
@@ -315,7 +315,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
       this.value = value;
       const result = [];
       for (let i = 0; i < value.length; i++) {
-        const file: File = value.item(i);
+        const file: File = value.item(i)!;
         if (wantBase64) {
           this.filesToEmit.push(await helpers.fileToBase64(file));
           result.push(await helpers.fileToBase64(file));
@@ -334,8 +334,8 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     this.onClear.emit();
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   writeValue(value: any) {
@@ -344,11 +344,11 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     }
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

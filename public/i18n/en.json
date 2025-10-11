@@ -7,7 +7,7 @@
   "theme": "Theme",
   "label": "Label",
   "variant": "Variant",
-  "inputStyle": "Input Style",
+  "inputVariant": "Input Variant",
   "outlined": "Outlined",
   "filled": "Filled",
   "labelWidth": "Label Width",

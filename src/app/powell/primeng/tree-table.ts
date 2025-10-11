@@ -19,17 +19,17 @@ import {
 
 export {TreeTableModule as $TreeTableModule}
 export {TreeTable as $TreeTable}
-export {TreeTableColResizeEvent as $TreeTableColResizeEvent}
-export {TreeTableEditEvent as $TreeTableEditEvent}
-export {TreeTableColumnReorderEvent as $TreeTableColumnReorderEvent}
-export {TreeTableContextMenuSelectEvent as $TreeTableContextMenuSelectEvent}
-export {TreeTableFilterEvent as $TreeTableFilterEvent}
-export {TreeTableLazyLoadEvent as $TreeTableLazyLoadEvent}
-export {TreeTableFilterOptions as $TreeTableFilterOptions}
-export {TreeTableHeaderCheckboxToggleEvent as $TreeTableHeaderCheckboxToggleEvent}
-export {TreeTableNodeSelectEvent as $TreeTableNodeSelectEvent}
-export {TreeTableNodeUnSelectEvent as $TreeTableNodeUnSelectEvent}
-export {TreeTableNodeCollapseEvent as $TreeTableNodeCollapseEvent}
-export {TreeTableNodeExpandEvent as $TreeTableNodeExpandEvent}
-export {TreeTableSortEvent as $TreeTableSortEvent}
-export {TreeTableTemplates as $TreeTableTemplates}
+export {type TreeTableColResizeEvent as $TreeTableColResizeEvent}
+export {type TreeTableEditEvent as $TreeTableEditEvent}
+export {type TreeTableColumnReorderEvent as $TreeTableColumnReorderEvent}
+export {type TreeTableContextMenuSelectEvent as $TreeTableContextMenuSelectEvent}
+export {type TreeTableFilterEvent as $TreeTableFilterEvent}
+export {type TreeTableLazyLoadEvent as $TreeTableLazyLoadEvent}
+export {type TreeTableFilterOptions as $TreeTableFilterOptions}
+export {type TreeTableHeaderCheckboxToggleEvent as $TreeTableHeaderCheckboxToggleEvent}
+export {type TreeTableNodeSelectEvent as $TreeTableNodeSelectEvent}
+export {type TreeTableNodeUnSelectEvent as $TreeTableNodeUnSelectEvent}
+export {type TreeTableNodeCollapseEvent as $TreeTableNodeCollapseEvent}
+export {type TreeTableNodeExpandEvent as $TreeTableNodeExpandEvent}
+export {type TreeTableSortEvent as $TreeTableSortEvent}
+export {type TreeTableTemplates as $TreeTableTemplates}

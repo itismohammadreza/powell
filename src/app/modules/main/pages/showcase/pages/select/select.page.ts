@@ -29,7 +29,7 @@ export class SelectPage extends PreviewBase {
     {field: 'readonly', value: false},
     {field: 'editable', value: false},
     {field: 'placeholder', value: ''},
-    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputVariant},
     {field: 'resetFilterOnHide', value: false},
     {field: 'checkmark', value: false},
     {field: 'dropdownIcon', value: ''},

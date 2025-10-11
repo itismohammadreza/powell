@@ -1,14 +1,13 @@
 <div class="auto-complete-wrapper"
      [attr.dir]="rtl ? 'rtl' : 'ltr'"
      [ngStyle]="style"
-     [class]="styleClass"
      [ngClass]="{
-     'icon-start': templateMap.iconStart && !templateMap.iconEnd,
-     'icon-end': templateMap.iconEnd && !templateMap.iconStart,
-     'icon-both': templateMap.iconStart && templateMap.iconEnd,
-     'addon-start': templateMap.addonStart && !templateMap.addonEnd,
-     'addon-end': templateMap.addonEnd && !templateMap.addonStart,
-     'addon-both': templateMap.addonStart && templateMap.addonEnd,
+     'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
+     'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
+     'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
+     'addon-start': templateMap['addonStart'] && !templateMap['addonEnd'],
+     'addon-end': templateMap['addonEnd'] && !templateMap['addonStart'],
+     'addon-both': templateMap['addonStart'] && templateMap['addonEnd'],
      'fluid': fluid,
      'clearable': showClear,
      'has-dropdown': dropdown
@@ -27,7 +26,7 @@
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-autoComplete
         [(ngModel)]="value"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
+        [invalid]="isInvalid"
         [minLength]="minLength"
         [delay]="delay"
         [style]="style"
@@ -45,9 +44,9 @@
         [virtualScroll]="virtualScroll"
         [virtualScrollItemSize]="virtualScrollItemSize"
         [virtualScrollOptions]="virtualScrollOptions"
-        [maxlength]="maxlength"
-        [name]="name"
-        [size]="size"
+        [maxlength]="$any(maxlength)"
+        [name]="$any(name)"
+        [size]="$any(size)"
         [appendTo]="appendTo"
         [autoHighlight]="autoHighlight"
         [forceSelection]="forceSelection"
@@ -76,7 +75,7 @@
         [optionGroupChildren]="optionGroupChildren"
         [optionGroupLabel]="optionGroupLabel"
         [overlayOptions]="overlayOptions"
-        [suggestions]="suggestions"
+        [suggestions]="$any(suggestions)"
         [optionLabel]="optionLabel"
         [optionValue]="optionValue"
         [id]="id"
@@ -88,7 +87,7 @@
         [searchLocale]="searchLocale"
         [optionDisabled]="optionDisabled"
         [focusOnHover]="focusOnHover"
-        [variant]="variant"
+        [variant]="$any(variant)"
         [fluid]="fluid"
         (completeMethod)="emitter('completeMethod', $event)"
         (onSelect)="_onSelect($event)"
@@ -96,7 +95,7 @@
         (onFocus)="emitter('onFocus', $event)"
         (onBlur)="_onBlur($event)"
         (onDropdownClick)="emitter('onDropdownClick', $event)"
-        (onClear)="_onClear($event)"
+        (onClear)="_onClear()"
         (onKeyUp)="_onKeyUp($event)"
         (onHide)="emitter('onHide', $event)"
         (onShow)="emitter('onShow', $event)"

@@ -2,4 +2,4 @@ import {ToggleSwitch, ToggleSwitchChangeEvent, ToggleSwitchModule} from "primeng
 
 export {ToggleSwitchModule as $ToggleSwitchModule}
 export {ToggleSwitch as $ToggleSwitch}
-export {ToggleSwitchChangeEvent as $ToggleSwitchChangeEvent}
+export {type ToggleSwitchChangeEvent as $ToggleSwitchChangeEvent}

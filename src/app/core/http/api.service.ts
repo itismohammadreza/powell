@@ -19,56 +19,60 @@ export class ApiService {
   private readonly envService = inject(EnvService);
   private readonly baseUrl = this.envService.apiUrl;
 
-  protected _get<T>(endpoint: string, options: RequestOptions = null) {
+  protected _get<T>(endpoint: string, options: Optional<RequestOptions> = undefined) {
     return this.http.get<T>(`${this.baseUrl}/${endpoint}`, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
-  protected _post<T>(endpoint: string, body: any, options: RequestOptions = null) {
+  protected _post<T>(endpoint: string, body: any, options: Optional<RequestOptions> = undefined) {
     return this.http.post<T>(`${this.baseUrl}/${endpoint}`, body, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
-  protected _put<T>(endpoint: string, body: any, options: RequestOptions = null) {
+  protected _put<T>(endpoint: string, body: any, options: Optional<RequestOptions> = undefined) {
     return this.http.put<T>(`${this.baseUrl}/${endpoint}`, body, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
-  protected _patch<T>(endpoint: string, body: any, options: RequestOptions = null) {
+  protected _patch<T>(endpoint: string, body: any, options: Optional<RequestOptions> = undefined) {
     return this.http.patch<T>(`${this.baseUrl}/${endpoint}`, body, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
-  protected _delete<T>(endpoint: string, options: RequestOptions = null) {
+  protected _delete<T>(endpoint: string, options: Optional<RequestOptions> = undefined) {
     return this.http.delete<T>(`${this.baseUrl}/${endpoint}`, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
-  protected _customRequest<T>(url: string, method: RequestMethod, body: any = null, options: RequestOptions = null): Observable<T> {
+  protected _customRequest<T>(url: string, method: RequestMethod, body: any = undefined, options: Optional<RequestOptions> = undefined): Observable<T> {
+    const opts = {
+      ...options,
+      params: this.getHttpParams(options?.params)
+    };
+
     switch (method.toLowerCase()) {
       case 'get':
+        return this.http.get<T>(url, opts);
       case 'delete':
-        return this.http[method.toLowerCase()]<T>(url, {
-          ...options,
-          params: this.getHttpParams(options?.params)
-        })
+        return this.http.delete<T>(url, opts);
       case 'post':
+        return this.http.post<T>(url, body, opts);
       case 'put':
+        return this.http.put<T>(url, body, opts);
       case 'patch':
-        return this.http[method.toLowerCase()]<T>(url, body, {
-          ...options,
-          params: this.getHttpParams(options?.params)
-        })
+        return this.http.patch<T>(url, body, opts);
+      default:
+        throw new Error(`Unsupported HTTP method: ${method}`);
     }
   }
 

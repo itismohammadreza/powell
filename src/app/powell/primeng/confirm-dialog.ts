@@ -2,4 +2,4 @@ import {ConfirmDialog, ConfirmDialogModule, ConfirmDialogTemplates} from "primen
 
 export {ConfirmDialogModule as $ConfirmDialogModule}
 export {ConfirmDialog as $ConfirmDialog}
-export {ConfirmDialogTemplates as $ConfirmDialogTemplates}
+export {type ConfirmDialogTemplates as $ConfirmDialogTemplates}

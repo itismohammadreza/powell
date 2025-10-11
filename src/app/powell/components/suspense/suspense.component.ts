@@ -13,10 +13,11 @@ import {TemplateDirective} from "@powell/directives/template";
 import {from, isObservable, Observable, of, startWith} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 
-type SuspenseState<T> =
-  | {loading: true; data: null; error: null}
-  | {loading: false; data: T; error: null}
-  | {loading: false; data: null; error: any};
+interface SuspenseState<T> {
+  loading: boolean;
+  data: Optional<T>;
+  error: Optional<SafeAny>;
+}
 
 @Component({
   selector: 'pw-suspense',
@@ -24,19 +25,19 @@ type SuspenseState<T> =
   standalone: false
 })
 export class SuspenseComponent<T> implements OnInit, OnChanges, AfterContentInit {
-  @Input() data: Observable<T> | Promise<T>;
-  @Input() validate: (data: T) => null | string | Error;
+  @Input() data: Optional<Observable<T> | Promise<T>>;
+  @Input() validate: Optional<(data: T) => null | string | Error>;
   @Input() spinnerStrokeWidth: number = 4;
-  @Input() spinnerFill: string;
+  @Input() spinnerFill: Optional<string>;
   @Input() spinnerWidth: string = '70px';
   @Input() spinnerHeight: string = '70px';
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   templateMap: Record<string, TemplateRef<any>> = {};
   state$!: Observable<SuspenseState<T>>;
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -44,7 +45,7 @@ export class SuspenseComponent<T> implements OnInit, OnChanges, AfterContentInit
 
   ngOnInit() {
     if (!this.data) {
-      this.state$ = of({loading: true, data: null, error: null});
+      this.state$ = of({loading: true, data: undefined, error: undefined});
       return;
     }
   }

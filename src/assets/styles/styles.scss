@@ -1,17 +1,22 @@
 @use "mixins";
+@use "node_modules/leaflet/dist/leaflet.css";
 
-@layer reset {
-  html,
-  body {
-    line-height: normal;
-    height: 100%;
+:root {
+  --app-font-vazirmatn: "Vazirmatn";
+  --app-font-roboto: "Roboto";
+  --app-font-family: var(--app-font-roboto), var(--app-font-vazirmatn), sans-serif;
+}
 
-    &,
-    .p-component,
-    .p-inputtext {
-      font-family: var(--font-family), sans-serif;
-    }
+html,
+body {
+  line-height: normal;
+  height: 100%;
 
-    @include mixins.scrollbar($thickness: 10px, $radius: 10px, $track-color: transparent, $thumb-color: #949494);
+  &,
+  .p-component,
+  .p-inputtext {
+    font-family: var(--app-font-family);
   }
+
+  @include mixins.scrollbar($thickness: 10px, $radius: 10px, $track-color: transparent, $thumb-color: #949494);
 }

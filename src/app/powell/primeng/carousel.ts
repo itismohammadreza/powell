@@ -8,6 +8,6 @@ import {
 
 export {CarouselModule as $CarouselModule}
 export {Carousel as $Carousel}
-export {CarouselPageEvent as $CarouselPageEvent}
-export {CarouselTemplates as $CarouselTemplates}
-export {CarouselResponsiveOptions as $CarouselResponsiveOptions}
+export {type CarouselPageEvent as $CarouselPageEvent}
+export {type CarouselTemplates as $CarouselTemplates}
+export {type CarouselResponsiveOptions as $CarouselResponsiveOptions}

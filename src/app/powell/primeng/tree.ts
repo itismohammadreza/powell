@@ -16,14 +16,14 @@ import {
 
 export {TreeModule as $TreeModule}
 export {Tree as $Tree}
-export {TreeFilterEvent as $TreeFilterEvent}
-export {TreeLazyLoadEvent as $TreeLazyLoadEvent}
-export {TreeScrollEvent as $TreeScrollEvent}
-export {TreeNodeCollapseEvent as $TreeNodeCollapseEvent}
-export {TreeNodeDropEvent as $TreeNodeDropEvent}
-export {TreeNodeExpandEvent as $TreeNodeExpandEvent}
-export {TreeNodeSelectEvent as $TreeNodeSelectEvent}
-export {TreeNodeContextMenuSelectEvent as $TreeNodeContextMenuSelectEvent}
-export {TreeTemplates as $TreeTemplates}
-export {TreeScrollIndexChangeEvent as $TreeScrollIndexChangeEvent}
-export {TreeNodeUnSelectEvent as $TreeNodeUnSelectEvent}
+export {type TreeFilterEvent as $TreeFilterEvent}
+export {type TreeLazyLoadEvent as $TreeLazyLoadEvent}
+export {type TreeScrollEvent as $TreeScrollEvent}
+export {type TreeNodeCollapseEvent as $TreeNodeCollapseEvent}
+export {type TreeNodeDropEvent as $TreeNodeDropEvent}
+export {type TreeNodeExpandEvent as $TreeNodeExpandEvent}
+export {type TreeNodeSelectEvent as $TreeNodeSelectEvent}
+export {type TreeNodeContextMenuSelectEvent as $TreeNodeContextMenuSelectEvent}
+export {type TreeTemplates as $TreeTemplates}
+export {type TreeScrollIndexChangeEvent as $TreeScrollIndexChangeEvent}
+export {type TreeNodeUnSelectEvent as $TreeNodeUnSelectEvent}

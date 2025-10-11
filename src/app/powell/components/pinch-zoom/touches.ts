@@ -11,14 +11,14 @@ import {
 
 export class Touches {
   private properties: TouchesProperties;
-  private element: HTMLElement;
+  private element: Optional<HTMLElement>;
   private elementPosition: DOMRect;
   private eventType: PinchEventType = undefined;
   private handlers: TouchListeners | MouseListeners | OtherListeners = {};
   private startX = 0;
   private startY = 0;
   private lastTap = 0;
-  private doubleTapTimeout: number;
+  private doubleTapTimeout: Optional<number>;
   private doubleTapMinTimeout = 300;
   private tapMinTimeout = 200;
   private touchstartTime = 0;
@@ -78,7 +78,8 @@ export class Touches {
     }
 
     for (const listener in listeners) {
-      const handler = listeners[listener];
+      const key = listener as keyof typeof listeners;
+      const handler = listeners[key];
 
       // Window
       if (listener === 'resize') {
@@ -99,30 +100,24 @@ export class Touches {
         // Element
       } else {
         if (action === 'addEventListener') {
-          this.element.addEventListener(listener, this[handler], false);
+          this.element?.addEventListener(listener, this[handler], false);
         }
         if (action === 'removeEventListener') {
-          this.element.removeEventListener(listener, this[handler], false);
+          this.element?.removeEventListener(listener, this[handler], false);
         }
       }
     }
   }
 
-  public addEventListeners(listener: string) {
+  public addEventListeners(listener: keyof typeof this._mouseListeners) {
     const handler: MouseHandler = this._mouseListeners[listener];
     window.addEventListener(listener, this[handler], false);
   }
 
-  public removeEventListeners(listener: string) {
+  public removeEventListeners(listener: keyof typeof this._mouseListeners) {
     const handler: MouseHandler = this._mouseListeners[listener];
     window.removeEventListener(listener, this[handler], false);
   }
-
-  /*
-   * Listeners
-   */
-
-  /* Touchstart */
 
   private handleTouchstart = (event: TouchEvent) => {
     this.elementPosition = this.getElementPosition();
@@ -134,8 +129,6 @@ export class Touches {
 
     this.runHandler('touchstart', event);
   };
-
-  /* Touchmove */
 
   private handleTouchmove = (event: TouchEvent) => {
     const touches = event.touches;
@@ -152,8 +145,6 @@ export class Touches {
   };
 
   private handleLinearSwipe(event: any) {
-    //event.preventDefault();
-
     this.i++;
 
     if (this.i > 3) {
@@ -174,12 +165,10 @@ export class Touches {
   private handleTouchend = (event: TouchEvent) => {
     const touches = event.touches;
 
-    // Double Tap
     if (this.detectDoubleTap()) {
       this.runHandler('double-tap', event);
     }
 
-    // Tap
     this.detectTap();
 
     this.runHandler('touchend', event);
@@ -208,8 +197,6 @@ export class Touches {
   /* Mousemove */
 
   private handleMousemove = (event: MouseEvent) => {
-    //event.preventDefault();
-
     if (!this.isMousedown) {
       return;
     }
@@ -220,13 +207,11 @@ export class Touches {
     // Linear swipe
     switch (this.detectLinearSwipe(event)) {
       case 'horizontal-swipe':
-        // FIXME: looks like an error
         // @ts-ignore
         event.swipeType = 'horizontal-swipe';
         this.runHandler('horizontal-swipe', event);
         break;
       case 'vertical-swipe':
-        // FIXME: looks like an error
         // @ts-ignore
         event.swipeType = 'vertical-swipe';
         this.runHandler('vertical-swipe', event);
@@ -248,7 +233,6 @@ export class Touches {
   private handleMouseup = (event: MouseEvent) => {
     // Tap
     this.detectTap();
-
     this.isMousedown = false;
     this.runHandler('mouseup', event);
     this.eventType = undefined;
@@ -273,9 +257,7 @@ export class Touches {
     }
   }
 
-  /*
-   * Detection
-   */
+  /* Detection */
 
   private detectPan(touches: TouchList) {
     return (touches.length === 1 && !this.eventType) || this.eventType === 'pan';
@@ -283,7 +265,7 @@ export class Touches {
 
   private detectDoubleTap() {
     if (this.eventType != undefined) {
-      return;
+      return false;
     }
 
     const currentTime = new Date().getTime();
@@ -361,7 +343,7 @@ export class Touches {
   }
 
   private getElementPosition() {
-    return this.element.getBoundingClientRect();
+    return this.element!.getBoundingClientRect();
   }
 
   private getTouchstartPosition(event: TouchEvent) {
@@ -404,8 +386,6 @@ export class Touches {
       return true;
     }
 
-    // include the 'heartz' as a way to have a non matching MQ to help terminate the join
-    // https://git.io/vznFH
     const query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
     return mq(query);
   }

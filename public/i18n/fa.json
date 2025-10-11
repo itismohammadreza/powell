@@ -7,7 +7,7 @@
   "theme": "تم",
   "label": "برچسب",
   "variant": "حالت اینپوت",
-  "inputStyle": "حالت اینپوت",
+  "inputVariant": "حالت اینپوت",
   "outlined": "Outlined",
   "filled": "Filled",
   "labelWidth": "عرض برچسب",

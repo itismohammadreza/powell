@@ -2,4 +2,4 @@ import {ConfirmPopup, ConfirmPopupModule, ConfirmPopupTemplates} from "primeng/c
 
 export {ConfirmPopupModule as $ConfirmPopupModule}
 export {ConfirmPopup as $ConfirmPopup}
-export {ConfirmPopupTemplates as $ConfirmPopupTemplates}
+export {type ConfirmPopupTemplates as $ConfirmPopupTemplates}

@@ -1,14 +1,13 @@
 <div class="cascade-select-wrapper"
      [attr.dir]="rtl ? 'rtl' : 'ltr'"
      [ngStyle]="style"
-     [class]="styleClass"
      [ngClass]="{
-     'icon-start': templateMap.iconStart && !templateMap.iconEnd,
-     'icon-end': templateMap.iconEnd && !templateMap.iconStart,
-     'icon-both': templateMap.iconStart && templateMap.iconEnd,
-     'addon-start': templateMap.addonStart && !templateMap.addonEnd,
-     'addon-end': templateMap.addonEnd && !templateMap.addonStart,
-     'addon-both': templateMap.addonStart && templateMap.addonEnd,
+     'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
+     'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
+     'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
+     'addon-start': templateMap['addonStart'] && !templateMap['addonEnd'],
+     'addon-end': templateMap['addonEnd'] && !templateMap['addonStart'],
+     'addon-both': templateMap['addonStart'] && templateMap['addonEnd'],
      'fluid': fluid,
      'clearable': showClear
     }">
@@ -25,7 +24,7 @@
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-cascadeSelect
         [(ngModel)]="value"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
+        [invalid]="isInvalid"
         [id]="id"
         [selectOnFocus]="selectOnFocus"
         [searchMessage]="searchMessage"
@@ -46,7 +45,7 @@
         [placeholder]="placeholder | pwLabelStar:showRequiredStar:ngControl"
         [dataKey]="dataKey"
         [inputId]="inputId"
-        [size]="size"
+        [size]="$any(size)"
         [tabindex]="tabindex"
         [ariaLabelledBy]="ariaLabelledBy"
         [inputLabel]="inputLabel"
@@ -58,7 +57,7 @@
         [panelStyle]="panelStyle"
         [overlayOptions]="overlayOptions"
         [autofocus]="autofocus"
-        [variant]="variant"
+        [variant]="$any(variant)"
         [loading]="loading"
         [loadingIcon]="loadingIcon"
         [fluid]="fluid"

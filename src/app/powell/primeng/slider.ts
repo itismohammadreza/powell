@@ -2,5 +2,5 @@ import {Slider, SliderChangeEvent, SliderModule, SliderSlideEndEvent} from "prim
 
 export {SliderModule as $SliderModule}
 export {Slider as $Slider}
-export {SliderChangeEvent as $SliderChangeEvent}
-export {SliderSlideEndEvent as $SliderSlideEndEvent}
+export {type SliderChangeEvent as $SliderChangeEvent}
+export {type SliderSlideEndEvent as $SliderSlideEndEvent}

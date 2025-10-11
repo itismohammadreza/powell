@@ -10,8 +10,8 @@ import {
 
 export {DataViewModule as $DataViewModule}
 export {DataView as $DataView}
-export {DataViewTemplates as $DataViewTemplates}
-export {DataViewLayoutChangeEvent as $DataViewLayoutChangeEvent}
-export {DataViewPageEvent as $DataViewPageEvent}
-export {DataViewLazyLoadEvent as $DataViewLazyLoadEvent}
-export {DataViewSortEvent as $DataViewSortEvent}
+export {type DataViewTemplates as $DataViewTemplates}
+export {type DataViewLayoutChangeEvent as $DataViewLayoutChangeEvent}
+export {type DataViewPageEvent as $DataViewPageEvent}
+export {type DataViewLazyLoadEvent as $DataViewLazyLoadEvent}
+export {type DataViewSortEvent as $DataViewSortEvent}

@@ -2,5 +2,5 @@ import {Rating, RatingModule, RatingRateEvent, RatingTemplates} from "primeng/ra
 
 export {RatingModule as $RatingModule}
 export {Rating as $Rating}
-export {RatingRateEvent as $RatingRateEvent}
-export {RatingTemplates as $RatingTemplates}
+export {type RatingRateEvent as $RatingRateEvent}
+export {type RatingTemplates as $RatingTemplates}

@@ -1,14 +1,13 @@
 <div class="datepicker-wrapper"
      [attr.dir]="rtl ? 'rtl' : 'ltr'"
      [ngStyle]="style"
-     [class]="styleClass"
      [ngClass]="{
-     'icon-start': templateMap.iconStart && !templateMap.iconEnd,
-     'icon-end': templateMap.iconEnd && !templateMap.iconStart,
-     'icon-both': templateMap.iconStart && templateMap.iconEnd,
-     'addon-start': templateMap.addonStart && !templateMap.addonEnd,
-     'addon-end': templateMap.addonEnd && !templateMap.addonStart,
-     'addon-both': templateMap.addonStart && templateMap.addonEnd,
+     'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
+     'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
+     'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
+     'addon-start': templateMap['addonStart'] && !templateMap['addonEnd'],
+     'addon-end': templateMap['addonEnd'] && !templateMap['addonStart'],
+     'addon-both': templateMap['addonStart'] && templateMap['addonEnd'],
      'fluid': fluid,
      'clearable': showClear,
      'has-icon': showIcon,
@@ -28,14 +27,14 @@
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <pw-datepicker-base
         [(ngModel)]="value"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
+        [invalid]="isInvalid"
         [isJalali]="isJalali"
         [iconDisplay]="iconDisplay"
         [style]="style"
         [styleClass]="styleClass"
         [inputStyle]="inputStyle"
         [inputId]="inputId"
-        [name]="name"
+        [name]="$any(name)"
         [inputStyleClass]="inputStyleClass"
         [placeholder]="placeholder | pwLabelStar:showRequiredStar:ngControl"
         [ariaLabelledBy]="ariaLabelledBy"
@@ -85,17 +84,17 @@
         [hideTransitionOptions]="hideTransitionOptions"
         [tabindex]="tabindex"
         [variant]="variant"
-        [size]="size"
+        [size]="$any(size)"
         [minDate]="minDate"
         [maxDate]="maxDate"
-        [disabledDates]="disabledDates"
-        [disabledDays]="disabledDays"
+        [disabledDates]="$any(disabledDates)"
+        [disabledDays]="$any(disabledDays)"
         [showTime]="showTime"
-        [responsiveOptions]="responsiveOptions"
+        [responsiveOptions]="$any(responsiveOptions)"
         [numberOfMonths]="numberOfMonths"
-        [firstDayOfWeek]="firstDayOfWeek"
+        [firstDayOfWeek]="$any(firstDayOfWeek)"
         [view]="view"
-        [defaultDate]="defaultDate"
+        [defaultDate]="$any(defaultDate)"
         (onFocus)="emitter('onFocus',$event)"
         (onBlur)="_onBlur($event)"
         (onClose)="emitter('onClose',$event)"

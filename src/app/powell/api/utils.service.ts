@@ -1,5 +1,5 @@
-import {inject, Injectable} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
+import {DOCUMENT, inject, Injectable} from '@angular/core';
+
 import {fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -9,8 +9,8 @@ export class UtilsService {
 
   checkOnlineState() {
     return merge(
-      fromEvent(this.document.defaultView, 'offline').pipe(map(() => false)),
-      fromEvent(this.document.defaultView, 'online').pipe(map(() => true)),
+      fromEvent(this.document.defaultView!, 'offline').pipe(map(() => false)),
+      fromEvent(this.document.defaultView!, 'online').pipe(map(() => true)),
       new Observable<boolean>(observer => {
         observer.next(navigator.onLine);
         observer.complete();

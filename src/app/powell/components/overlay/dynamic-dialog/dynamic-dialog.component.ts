@@ -30,16 +30,15 @@ import {DynamicDialogRef} from './dynamic-dialog-ref';
       padding: 8px;
     }
   `,
-  standalone: false
 })
 export class DynamicDialogComponent implements OnDestroy {
   private dialogRef = inject(DynamicDialogRef);
   private _onClose = new Subject<any>();
 
-  componentRef: ComponentRef<any>;
+  componentRef!: ComponentRef<any>;
   onClose = this._onClose.asObservable();
 
-  @ViewChild('insertion', {read: ViewContainerRef, static: true}) insertionPoint: ViewContainerRef;
+  @ViewChild('insertion', {read: ViewContainerRef, static: true}) insertionPoint!: ViewContainerRef;
 
   open(childComponent: Type<any>) {
     this.insertionPoint.clear();

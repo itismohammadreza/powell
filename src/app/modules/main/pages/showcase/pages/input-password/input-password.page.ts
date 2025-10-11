@@ -35,6 +35,6 @@ export class InputPasswordPage extends PreviewBase {
     {field: 'size', selectOptions: 'sizes', value: this.config.inputSize},
     {field: 'placeholder', value: ''},
     {field: 'showClear', value: true},
-    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputVariant},
   ];
 }

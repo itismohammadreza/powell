@@ -58,71 +58,71 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: number;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: LabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
+  @Input() value: Optional<number>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<LabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
   // native properties
   @Input() showButtons: boolean = false;
   @Input() format: boolean = true;
   @Input() buttonLayout: NumberButtonLayout = 'stacked';
   @Input() inputId: string = $uuid();
-  @Input() styleClass: string;
-  @Input() style: CssObject;
-  @Input() placeholder: string;
-  @Input() size: Size;
-  @Input() maxlength: number;
-  @Input() tabindex: number;
-  @Input() title: string;
-  @Input() ariaLabelledBy: string;
-  @Input() ariaLabel: string;
+  @Input() styleClass: Optional<string>;
+  @Input() style: Optional<CssObject>;
+  @Input() placeholder: Optional<string>;
+  @Input() size: Optional<Size>;
+  @Input() maxlength: Optional<number>;
+  @Input() tabindex: Optional<number>;
+  @Input() title: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
+  @Input() ariaLabel: Optional<string>;
   @Input() ariaRequired: boolean = false;
-  @Input() name: string;
+  @Input() name: Optional<string>;
   @Input() required: boolean = false;
-  @Input() autocomplete: string;
-  @Input() min: number;
-  @Input() max: number;
-  @Input() incrementButtonClass: string;
-  @Input() decrementButtonClass: string;
-  @Input() incrementButtonIcon: string;
-  @Input() decrementButtonIcon: string;
+  @Input() autocomplete: Optional<string>;
+  @Input() min: Optional<number>;
+  @Input() max: Optional<number>;
+  @Input() incrementButtonClass: Optional<string>;
+  @Input() decrementButtonClass: Optional<string>;
+  @Input() incrementButtonIcon: Optional<string>;
+  @Input() decrementButtonIcon: Optional<string>;
   @Input() readonly: boolean = false;
   @Input() step: number = 1;
   @Input() allowEmpty: boolean = true;
-  @Input() locale: string;
+  @Input() locale: Optional<string>;
   @Input() localeMatcher: NumberLocaleMatcher = 'best fit';
   @Input() mode: NumberMode = 'decimal';
-  @Input() currency: string;
-  @Input() currencyDisplay: string;
+  @Input() currency: Optional<string>;
+  @Input() currencyDisplay: Optional<string>;
   @Input() useGrouping: boolean = true;
-  @Input() variant: InputVariant;
-  @Input() minFractionDigits: number;
-  @Input() maxFractionDigits: number;
-  @Input() prefix: string;
-  @Input() suffix: string;
-  @Input() inputStyle: CssObject;
-  @Input() inputStyleClass: string;
+  @Input() variant: Optional<InputVariant>;
+  @Input() minFractionDigits: Optional<number>;
+  @Input() maxFractionDigits: Optional<number>;
+  @Input() prefix: Optional<string>;
+  @Input() suffix: Optional<string>;
+  @Input() inputStyle: Optional<CssObject>;
+  @Input() inputStyleClass: Optional<string>;
   @Input() showClear: boolean = false;
   @Input() autofocus: boolean = false;
-  @Input() disabled: boolean;
-  @Input() fluid: boolean;
+  @Input() disabled: boolean = false;
+  @Input() fluid: boolean = false;
   @Output() onInput = new EventEmitter<$InputNumberInputEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onKeyDown = new EventEmitter<KeyboardEvent>();
   @Output() onClear = new EventEmitter<void>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  ngControl: NgControl;
+  ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<any>> = {};
-  onModelChange: Function = () => {
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -137,12 +137,12 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -155,7 +155,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -189,11 +189,11 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

@@ -2,5 +2,5 @@ import {Breadcrumb, BreadcrumbItemClickEvent, BreadcrumbModule, BreadcumbTemplat
 
 export {BreadcrumbModule as $BreadcrumbModule}
 export {Breadcrumb as $Breadcrumb}
-export {BreadcrumbItemClickEvent as $BreadcrumbItemClickEvent}
-export {BreadcumbTemplates as $BreadcrumbTemplates}
+export {type BreadcrumbItemClickEvent as $BreadcrumbItemClickEvent}
+export {type BreadcumbTemplates as $BreadcrumbTemplates}

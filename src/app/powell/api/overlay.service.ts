@@ -1,6 +1,17 @@
-import {ApplicationRef, ComponentRef, createComponent, inject, Injectable, Injector, Type} from '@angular/core';
+import {
+  ApplicationRef,
+  ComponentFactoryResolver,
+  ComponentRef,
+  createComponent,
+  DOCUMENT,
+  EnvironmentInjector,
+  inject,
+  Injectable,
+  Injector,
+  Type
+} from '@angular/core';
 import {Router} from "@angular/router";
-import {DOCUMENT, LocationStrategy} from '@angular/common';
+import {LocationStrategy} from '@angular/common';
 import {Observable, Subject} from "rxjs";
 import {ConfigService} from "@powell/api";
 import {
@@ -43,14 +54,15 @@ export class OverlayService {
   private appRef = inject(ApplicationRef);
   private router = inject(Router);
   private location = inject(LocationStrategy);
-  private configService = inject(ConfigService);
+  private envInjector = inject(EnvironmentInjector);
+  private cfr = inject(ComponentFactoryResolver);
 
-  private toastCmpRef: ComponentRef<$Toast>;
-  private confirmPopupCmpRef: ComponentRef<$ConfirmPopup>;
-  private confirmCmpRef: ComponentRef<$ConfirmDialog>;
-  private dialogCmpRef: ComponentRef<DialogComponent>;
-  private dialogFormCmpRef: ComponentRef<DialogFormComponent>;
-  private dynamicDialogCmpRef: ComponentRef<DynamicDialogComponent>;
+  private toastCmpRef?: ComponentRef<$Toast>;
+  private confirmPopupCmpRef?: ComponentRef<$ConfirmPopup>;
+  private confirmCmpRef?: ComponentRef<$ConfirmDialog>;
+  private dialogCmpRef?: ComponentRef<DialogComponent>;
+  private dialogFormCmpRef?: ComponentRef<DialogFormComponent>;
+  private dynamicDialogCmpRef?: ComponentRef<DynamicDialogComponent>;
   private states: HistoryState[] = [];
   private stateChangeSubject = new Subject<HistoryState>();
 
@@ -62,10 +74,10 @@ export class OverlayService {
       }
       switch (currentState.component) {
         case 'dialog':
-          this.dialogCmpRef.instance.close();
+          this.dialogCmpRef!.instance.close();
           break;
         case 'dialogForm':
-          this.dialogFormCmpRef.instance.close();
+          this.dialogFormCmpRef!.instance.close();
           break;
         case 'confirmDialog':
         case 'confirmPopup':
@@ -84,7 +96,7 @@ export class OverlayService {
     map.set(DynamicDialogRef, dialogRef);
 
     const afterClosedSub = dialogRef.afterClosed.subscribe(() => {
-      this.removeFromBody(this.dynamicDialogCmpRef);
+      this.removeFromBody(this.dynamicDialogCmpRef!);
       afterClosedSub.unsubscribe();
     });
 
@@ -108,7 +120,7 @@ export class OverlayService {
     // });
     this.dynamicDialogCmpRef = this.addToBody(DynamicDialogComponent, new DynamicDialogInjector(this.injector, map))
     const onCloseSub = this.dynamicDialogCmpRef.instance.onClose.subscribe(() => {
-      this.removeFromBody(this.dynamicDialogCmpRef);
+      this.removeFromBody(this.dynamicDialogCmpRef!);
       onCloseSub.unsubscribe();
     });
     this.dynamicDialogCmpRef.instance.open(componentType);
@@ -119,17 +131,18 @@ export class OverlayService {
     if (!this.bodyContains(this.toastCmpRef)) {
       this.toastCmpRef = this.addToBody($Toast);
     }
-    const {instance} = this.toastCmpRef;
+    const {instance} = this.toastCmpRef!;
     const toast: $ToastMessageOptions = {
       severity: 'info',
       ...options,
     }
-    for (const key in options) {
+    for (const k in options) {
+      const key = k as keyof ComponentRef<$Toast> & keyof ToastOptions;
       instance[key] = options[key];
     }
     instance.styleClass = `toast-wrapper ${options.styleClass ?? ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`;
     instance.breakpoints = {'767px': {width: '100%', right: '0', left: '0'}, ...options.breakpoints};
-    instance.position = options.position;
+    instance.position = options.position ?? 'top-right';
     instance.showTransformOptions = options.showTransformOptions ?? 'translateY(100%)';
     instance.showTransitionOptions = options.showTransitionOptions ?? '300ms ease-out';
     instance.hideTransformOptions = options.hideTransformOptions ?? 'translateY(-100%)';
@@ -154,14 +167,15 @@ export class OverlayService {
     if (!this.bodyContains(this.confirmPopupCmpRef)) {
       this.confirmPopupCmpRef = this.addToBody($ConfirmPopup);
     }
-    const {instance} = this.confirmPopupCmpRef;
+    const {instance} = this.confirmPopupCmpRef!;
     const confirmation: $Confirmation = {
       ...options,
       acceptButtonProps: this.mapToButtonProps(options.acceptButtonProps),
       rejectButtonProps: this.mapToButtonProps(options.rejectButtonProps),
       closeButtonProps: this.mapToButtonProps(options.closeButtonProps),
     }
-    for (const key in options) {
+    for (const k in options) {
+      const key = k as keyof ComponentRef<$Confirmation> & keyof ConfirmOptions;
       instance[key] = options[key];
     }
     instance.styleClass = `confirm-popup-wrapper ${options.styleClass ?? ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`;
@@ -172,7 +186,7 @@ export class OverlayService {
         ...confirmation,
         accept: () => {
           this.popState();
-          this.removeFromBody(this.confirmPopupCmpRef);
+          this.removeFromBody(this.confirmPopupCmpRef!);
           const timeout = setTimeout(() => {
             resolve(true);
             clearTimeout(timeout);
@@ -180,7 +194,7 @@ export class OverlayService {
         },
         reject: () => {
           this.popState();
-          this.removeFromBody(this.confirmPopupCmpRef);
+          this.removeFromBody(this.confirmPopupCmpRef!);
           const timeout = setTimeout(() => {
             resolve(false);
             clearTimeout(timeout);
@@ -194,20 +208,21 @@ export class OverlayService {
     if (!this.bodyContains(this.confirmCmpRef)) {
       this.confirmCmpRef = this.addToBody($ConfirmDialog);
     }
-    const {instance} = this.confirmCmpRef;
+    const {instance} = this.confirmCmpRef!;
     const confirmation: $Confirmation = {
       ...options,
       acceptButtonProps: this.mapToButtonProps(options.acceptButtonProps),
       rejectButtonProps: this.mapToButtonProps(options.rejectButtonProps),
       closeButtonProps: this.mapToButtonProps(options.closeButtonProps),
     }
-    for (const key in options) {
+    for (const k in options) {
+      const key = k as keyof ComponentRef<$Confirmation> & keyof ConfirmOptions;
       instance[key] = options[key];
     }
-    instance.position = options.position;
-    instance.appendTo = null;
+    instance.position = options.position ?? 'center';
+    instance.appendTo = undefined;
     instance.styleClass = `confirm-dialog-wrapper ${options.styleClass ?? ''} ${!options.header && !options.closable ? 'header-less' : ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`;
-    return new Promise<boolean>((resolve) => {
+    return new Promise<Nullable<boolean>>((resolve) => {
       const state: HistoryState = {component: 'confirmDialog'};
       let timeout: any;
       this.pushState(state)
@@ -215,7 +230,7 @@ export class OverlayService {
         ...confirmation,
         accept: () => {
           this.popState();
-          this.removeFromBody(this.confirmCmpRef);
+          this.removeFromBody(this.confirmCmpRef!);
           timeout = setTimeout(() => {
             resolve(true);
             clearTimeout(timeout);
@@ -225,14 +240,14 @@ export class OverlayService {
           this.popState();
           switch (type) {
             case $ConfirmEventType.REJECT:
-              this.removeFromBody(this.confirmCmpRef);
+              this.removeFromBody(this.confirmCmpRef!);
               timeout = setTimeout(() => {
                 resolve(false);
                 clearTimeout(timeout);
               }, 5)
               break;
             case $ConfirmEventType.CANCEL:
-              this.removeFromBody(this.confirmCmpRef);
+              this.removeFromBody(this.confirmCmpRef!);
               timeout = setTimeout(() => {
                 resolve(null);
                 clearTimeout(timeout);
@@ -248,7 +263,7 @@ export class OverlayService {
     if (!this.bodyContains(this.dialogCmpRef)) {
       this.dialogCmpRef = this.addToBody(DialogComponent);
     }
-    const {instance} = this.dialogCmpRef;
+    const {instance} = this.dialogCmpRef!;
     instance.options = {
       ...options,
       styleClass: `dialog-wrapper ${options.styleClass ?? ''} ${!options.showHeader || (!options.header && !options.closable && !options.maximizable) ? 'header-less' : ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`,
@@ -264,7 +279,7 @@ export class OverlayService {
           this.popState()
         }
         subscription.unsubscribe();
-        this.removeFromBody(this.dialogCmpRef);
+        this.removeFromBody(this.dialogCmpRef!);
         const timeout = setTimeout(() => {
           resolve();
           clearTimeout(timeout);
@@ -277,11 +292,13 @@ export class OverlayService {
     if (!this.bodyContains(this.dialogFormCmpRef)) {
       this.dialogFormCmpRef = this.addToBody(DialogFormComponent);
     }
-    const {instance} = this.dialogFormCmpRef;
+    const {instance} = this.dialogFormCmpRef!;
+    const hostEl = this.dialogFormCmpRef.location.nativeElement;
+    hostEl.classList = `dialog-form-wrapper ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`;
     instance.config = config;
     instance.options = {
       ...options,
-      styleClass: `dialog-form-wrapper ${options.styleClass ?? ''} ${!options.showHeader || (!options.header && !options.closable && !options.maximizable) ? 'header-less' : ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`,
+      styleClass: `${options.styleClass ?? ''} ${!options.showHeader || (!options.header && !options.closable && !options.maximizable) ? 'header-less' : ''}`,
       closeButtonProps: this.mapToButtonProps(options.closeButtonProps),
       maximizeButtonProps: this.mapToButtonProps(options.maximizeButtonProps),
       acceptButtonProps: this.mapToButtonProps({
@@ -298,9 +315,13 @@ export class OverlayService {
       })
     };
     instance.show();
+    try {
+      this.dialogFormCmpRef!.changeDetectorRef.detectChanges();
+    } catch {
+    }
     const state: HistoryState = {component: 'dialogForm'}
     this.pushState(state);
-    return new Observable<DialogFormResult>((resolve) => {
+    return new Observable<Nullable<DialogFormResult>>((resolve) => {
       const submitSubscription = instance.onSubmit.subscribe(res => {
         resolve.next(res);
       });
@@ -310,7 +331,7 @@ export class OverlayService {
         }
         submitSubscription.unsubscribe();
         closeSubscription.unsubscribe();
-        this.removeFromBody(this.dialogFormCmpRef);
+        this.removeFromBody(this.dialogFormCmpRef!);
         resolve.next(null);
       })
     })
@@ -329,18 +350,32 @@ export class OverlayService {
   }
 
   private get config() {
-    return this.configService.get();
+    return this.injector.get(ConfigService).get();
   }
 
   private addToBody<T>(component: Type<T>, injector: Injector = this.injector) {
-    const componentRef = createComponent(component, {
-      environmentInjector: this.appRef.injector,
-      elementInjector: injector
-    })
-    this.document.body.appendChild(componentRef.location.nativeElement);
-    this.appRef.attachView(componentRef.hostView);
-    componentRef.changeDetectorRef.detectChanges();
-    return componentRef;
+    try {
+      const componentRef = createComponent(component as any, {
+        environmentInjector: this.envInjector,
+        elementInjector: injector
+      });
+      this.appRef.attachView(componentRef.hostView);
+      this.document.body.appendChild(componentRef.location.nativeElement);
+      componentRef.changeDetectorRef.detectChanges();
+      return componentRef;
+    } catch (err) {
+      try {
+        const factory = this.cfr.resolveComponentFactory(component as any);
+        const compRef = factory.create(injector);
+        const rootNode = (compRef.hostView as any).rootNodes?.[0] || (compRef as any).location?.nativeElement;
+        if (rootNode) this.document.body.appendChild(rootNode);
+        this.appRef.attachView(compRef.hostView);
+        compRef.changeDetectorRef.detectChanges();
+        return compRef as ComponentRef<any>;
+      } catch (e) {
+        throw e;
+      }
+    }
   }
 
   private removeFromBody(component: ComponentRef<any>) {
@@ -354,8 +389,11 @@ export class OverlayService {
     }, 300)
   }
 
-  private bodyContains(componentRef: ComponentRef<any>) {
-    return this.document.body.contains(componentRef?.location.nativeElement);
+  private bodyContains(componentRef: Optional<ComponentRef<any>>) {
+    if (!componentRef) {
+      return false;
+    }
+    return this.document.body.contains(componentRef.location.nativeElement);
   }
 
   private mapToButtonProps(props: ButtonProps = {}) {

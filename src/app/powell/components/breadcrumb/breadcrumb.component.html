@@ -1,6 +1,6 @@
 <p-breadcrumb
   [attr.dir]="rtl ? 'rtl' : 'ltr'"
-  [model]="breadcrumbs$ | async"
+  [model]="(breadcrumbs$ | async)!"
   [style]="style"
   [styleClass]="styleClass"
   [home]="home"

@@ -10,18 +10,18 @@ import {
   DatePickerYearChangeEvent,
   LocaleSettings,
   Month,
-  NavigationState
+  NavigationState,
 } from "primeng/datepicker";
 
 export {DatePicker as $DatePicker}
 export {DatePickerClasses as $DatePickerClasses}
 export {DatePickerModule as $DatePickerModule}
-export {DatePickerMonthChangeEvent as $DatePickerMonthChangeEvent}
-export {DatePickerResponsiveOptions as $DatePickerResponsiveOptions}
+export {type DatePickerMonthChangeEvent as $DatePickerMonthChangeEvent}
+export {type DatePickerResponsiveOptions as $DatePickerResponsiveOptions}
 export {DatePickerStyle as $DatePickerStyle}
-export {DatePickerTemplates as $DatePickerTemplates}
-export {DatePickerTypeView as $DatePickerTypeView}
-export {DatePickerYearChangeEvent as $DatePickerYearChangeEvent}
-export {LocaleSettings as $LocaleSettings}
-export {Month as $Month}
-export {NavigationState as $NavigationState}
+export {type DatePickerTemplates as $DatePickerTemplates}
+export {type DatePickerTypeView as $DatePickerTypeView}
+export {type DatePickerYearChangeEvent as $DatePickerYearChangeEvent}
+export {type LocaleSettings as $LocaleSettings}
+export {type Month as $Month}
+export {type NavigationState as $NavigationState}

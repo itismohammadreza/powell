@@ -31,7 +31,7 @@ export class InputTextareaPage extends PreviewBase {
     {field: 'maxlength', value: 100},
     {field: 'placeholder', value: ''},
     {field: 'autoResize', value: false},
-    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputVariant},
     {field: 'fluid', value: false},
     {field: 'size', selectOptions: 'sizes', value: this.config.inputSize}
   ]

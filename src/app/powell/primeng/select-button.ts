@@ -8,6 +8,6 @@ import {
 
 export {SelectButtonModule as $SelectButtonModule}
 export {SelectButton as $SelectButton}
-export {SelectButtonTemplates as $SelectButtonTemplates}
-export {SelectButtonChangeEvent as $SelectButtonChangeEvent}
-export {SelectButtonOptionClickEvent as $SelectButtonOptionClickEvent}
+export {type SelectButtonTemplates as $SelectButtonTemplates}
+export {type SelectButtonChangeEvent as $SelectButtonChangeEvent}
+export {type SelectButtonOptionClickEvent as $SelectButtonOptionClickEvent}

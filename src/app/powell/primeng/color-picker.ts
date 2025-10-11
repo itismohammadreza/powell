@@ -2,4 +2,4 @@ import {ColorPicker, ColorPickerChangeEvent, ColorPickerModule} from "primeng/co
 
 export {ColorPickerModule as $ColorPickerModule}
 export {ColorPicker as $ColorPicker}
-export {ColorPickerChangeEvent as $ColorPickerChangeEvent}
+export {type ColorPickerChangeEvent as $ColorPickerChangeEvent}

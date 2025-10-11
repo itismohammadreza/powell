@@ -6,7 +6,7 @@ import {AbstractControl, NgControl} from "@angular/forms";
   standalone: false
 })
 export class LabelStarPipe implements PipeTransform {
-  transform(label: string, showRequiredStar: boolean, ngControl: NgControl) {
+  transform(label: Optional<string>, showRequiredStar: boolean, ngControl: Nullable<NgControl>) {
     if (!label) {
       return '';
     }
@@ -20,12 +20,12 @@ export class LabelStarPipe implements PipeTransform {
     return value.concat(' *');
   }
 
-  isControlRequired(ngControl: NgControl) {
+  isControlRequired(ngControl: Nullable<NgControl>) {
     if (ngControl) {
-      const control = ngControl.control;
+      const control = ngControl.control!;
       if (control.validator) {
         const validator = control.validator({} as AbstractControl);
-        if (validator?.required) {
+        if (validator?.['required']) {
           return true;
         }
       }

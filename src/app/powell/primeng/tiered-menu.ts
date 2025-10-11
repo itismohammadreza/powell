@@ -2,4 +2,4 @@ import {TieredMenu, TieredMenuModule, TieredMenuTemplates} from "primeng/tieredm
 
 export {TieredMenuModule as $TieredMenuModule}
 export {TieredMenu as $TieredMenu}
-export {TieredMenuTemplates as $TieredMenuTemplates}
+export {type TieredMenuTemplates as $TieredMenuTemplates}

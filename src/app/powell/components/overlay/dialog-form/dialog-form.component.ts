@@ -1,5 +1,5 @@
-import {Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
+import {ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, inject, ViewChild} from '@angular/core';
+import {FormControl, FormGroup, ReactiveFormsModule, ValidatorFn} from "@angular/forms";
 import {
   AsyncEvent,
   DialogFormComponentName,
@@ -8,89 +8,140 @@ import {
   DialogFormResult,
   Validation
 } from "@powell/models";
-import {$Dialog, $DomHandler} from "@powell/primeng";
-import {InputTextComponent} from "@powell/components/input-text";
-import {AutoCompleteComponent} from "@powell/components/auto-complete";
-import {ButtonComponent} from "@powell/components/button";
-import {CascadeSelectComponent} from "@powell/components/cascade-select";
-import {CheckboxComponent} from "@powell/components/checkbox";
-import {CheckboxGroupComponent} from "@powell/components/checkbox-group";
-import {ColorPickerComponent} from "@powell/components/color-picker";
-import {SelectComponent} from "@powell/components/select";
-import {DualLabelSwitchComponent} from "@powell/components/dual-label-switch";
-import {FilePickerComponent} from "@powell/components/file-picker";
-import {FilePicker2Component} from "@powell/components/file-picker2";
-import {DatepickerComponent} from "@powell/components/datepicker";
-import {ImageComponent} from "@powell/components/image";
-import {InputMaskComponent} from "@powell/components/input-mask";
-import {InputNumberComponent} from "@powell/components/input-number";
-import {InputOtpComponent} from "@powell/components/input-otp";
-import {InputPasswordComponent} from "@powell/components/input-password";
-import {InputTextareaComponent} from "@powell/components/input-textarea";
-import {IranMapComponent} from "@powell/components/iran-map";
-import {KnobComponent} from "@powell/components/knob";
-import {ListboxComponent} from "@powell/components/listbox";
-import {MapComponent} from "@powell/components/map";
-import {MultiSelectComponent} from "@powell/components/multi-select";
-import {RadioComponent} from "@powell/components/radio";
-import {RatingComponent} from "@powell/components/rating";
-import {SelectButtonComponent} from "@powell/components/select-button";
-import {SliderComponent} from "@powell/components/slider";
-import {ToggleSwitchComponent} from "@powell/components/toggle-switch";
-import {ToggleButtonComponent} from "@powell/components/toggle-button";
-import {TreeComponent} from "@powell/components/tree";
-import {TreeSelectComponent} from "@powell/components/tree-select";
-import {EditorComponent} from "@powell/components/editor";
+import {
+  $ConfirmDialogModule,
+  $ConfirmPopupModule,
+  $Dialog,
+  $DialogModule,
+  $DomHandler,
+  $ToastModule
+} from "@powell/primeng";
+import {InputTextComponent, InputTextModule} from "@powell/components/input-text";
+import {AutoCompleteComponent, AutoCompleteModule} from "@powell/components/auto-complete";
+import {ButtonComponent, ButtonModule} from "@powell/components/button";
+import {CascadeSelectComponent, CascadeSelectModule} from "@powell/components/cascade-select";
+import {CheckboxComponent, CheckboxModule} from "@powell/components/checkbox";
+import {CheckboxGroupComponent, CheckboxGroupModule} from "@powell/components/checkbox-group";
+import {ColorPickerComponent, ColorPickerModule} from "@powell/components/color-picker";
+import {SelectComponent, SelectModule} from "@powell/components/select";
+import {DualLabelSwitchComponent, DualLabelSwitchModule} from "@powell/components/dual-label-switch";
+import {FilePickerComponent, FilePickerModule} from "@powell/components/file-picker";
+import {FilePicker2Component, FilePicker2Module} from "@powell/components/file-picker2";
+import {DatepickerComponent, DatepickerModule} from "@powell/components/datepicker";
+import {ImageComponent, ImageModule} from "@powell/components/image";
+import {InputMaskComponent, InputMaskModule} from "@powell/components/input-mask";
+import {InputNumberComponent, InputNumberModule} from "@powell/components/input-number";
+import {InputOtpComponent, InputOtpModule} from "@powell/components/input-otp";
+import {InputPasswordComponent, InputPasswordModule} from "@powell/components/input-password";
+import {InputTextareaComponent, InputTextareaModule} from "@powell/components/input-textarea";
+import {IranMapComponent, IranMapModule} from "@powell/components/iran-map";
+import {KnobComponent, KnobModule} from "@powell/components/knob";
+import {ListboxComponent, ListboxModule} from "@powell/components/listbox";
+import {MapComponent, MapModule} from "@powell/components/map";
+import {MultiSelectComponent, MultiSelectModule} from "@powell/components/multi-select";
+import {RadioComponent, RadioModule} from "@powell/components/radio";
+import {RatingComponent, RatingModule} from "@powell/components/rating";
+import {SelectButtonComponent, SelectButtonModule} from "@powell/components/select-button";
+import {SliderComponent, SliderModule} from "@powell/components/slider";
+import {ToggleSwitchComponent, ToggleSwitchModule} from "@powell/components/toggle-switch";
+import {ToggleButtonComponent, ToggleButtonModule} from "@powell/components/toggle-button";
+import {TreeComponent, TreeModule} from "@powell/components/tree";
+import {TreeSelectComponent, TreeSelectModule} from "@powell/components/tree-select";
+import {EditorComponent, EditorModule} from "@powell/components/editor";
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@powell/utils";
+import {NgClass, NgStyle} from '@angular/common';
+import {SafeModule} from '@powell/pipes/safe';
 
 @Component({
   selector: 'pw-dialog-form',
   templateUrl: './dialog-form.component.html',
   providers: [DestroyService],
-  standalone: false
+  imports: [
+    NgClass,
+    NgStyle,
+    ReactiveFormsModule,
+    forwardRef(() => $ConfirmDialogModule),
+    forwardRef(() => $ConfirmPopupModule),
+    forwardRef(() => $DialogModule),
+    forwardRef(() => $ToastModule),
+    forwardRef(() => SafeModule),
+    forwardRef(() => AutoCompleteModule),
+    forwardRef(() => ButtonModule),
+    forwardRef(() => CascadeSelectModule),
+    forwardRef(() => CheckboxModule),
+    forwardRef(() => ColorPickerModule),
+    forwardRef(() => SelectModule),
+    forwardRef(() => DualLabelSwitchModule),
+    forwardRef(() => EditorModule),
+    forwardRef(() => FilePickerModule),
+    forwardRef(() => FilePicker2Module),
+    forwardRef(() => DatepickerModule),
+    forwardRef(() => ImageModule),
+    forwardRef(() => InputMaskModule),
+    forwardRef(() => InputNumberModule),
+    forwardRef(() => InputOtpModule),
+    forwardRef(() => InputPasswordModule),
+    forwardRef(() => InputTextModule),
+    forwardRef(() => InputTextareaModule),
+    forwardRef(() => IranMapModule),
+    forwardRef(() => KnobModule),
+    forwardRef(() => ListboxModule),
+    forwardRef(() => MapModule),
+    forwardRef(() => CheckboxGroupModule),
+    forwardRef(() => MultiSelectModule),
+    forwardRef(() => RadioModule),
+    forwardRef(() => RatingModule),
+    forwardRef(() => SelectButtonModule),
+    forwardRef(() => SliderModule),
+    forwardRef(() => ToggleSwitchModule),
+    forwardRef(() => ToggleButtonModule),
+    forwardRef(() => TreeModule),
+    forwardRef(() => TreeSelectModule),
+  ]
 })
 export class DialogFormComponent {
   private el = inject(ElementRef);
   private destroy$ = inject(DestroyService);
+  private cd = inject(ChangeDetectorRef);
 
   @ViewChild($Dialog, {static: true}) dialog: $Dialog;
-  @ViewChild(AutoCompleteComponent) autoCompleteComponent: AutoCompleteComponent;
-  @ViewChild(ButtonComponent) buttonComponent: ButtonComponent;
-  @ViewChild(CascadeSelectComponent) cascadeSelectComponent: CascadeSelectComponent;
-  @ViewChild(CheckboxComponent) checkboxComponent: CheckboxComponent;
-  @ViewChild(CheckboxGroupComponent) checkboxGroupComponent: CheckboxGroupComponent;
-  @ViewChild(ColorPickerComponent) colorPickerComponent: ColorPickerComponent;
-  @ViewChild(SelectComponent) dropdownComponent: SelectComponent;
-  @ViewChild(DualLabelSwitchComponent) dualLabelSwitchComponent: DualLabelSwitchComponent;
-  @ViewChild(EditorComponent) editorComponent: EditorComponent;
-  @ViewChild(FilePickerComponent) filePickerComponent: FilePickerComponent;
-  @ViewChild(FilePicker2Component) filePicker2Component: FilePicker2Component;
-  @ViewChild(DatepickerComponent) datepickerComponent: DatepickerComponent;
-  @ViewChild(ImageComponent) imageComponent: ImageComponent;
-  @ViewChild(InputMaskComponent) inputMaskComponent: InputMaskComponent;
-  @ViewChild(InputNumberComponent) inputNumberComponent: InputNumberComponent;
-  @ViewChild(InputOtpComponent) inputOtpComponent: InputOtpComponent;
-  @ViewChild(InputPasswordComponent) inputPasswordComponent: InputPasswordComponent;
-  @ViewChild(InputTextComponent) inputTextComponent: InputTextComponent;
-  @ViewChild(InputTextareaComponent) inputTextareaComponent: InputTextareaComponent;
-  @ViewChild(IranMapComponent) iranMapComponent: IranMapComponent;
-  @ViewChild(KnobComponent) knobComponent: KnobComponent;
-  @ViewChild(ListboxComponent) listboxComponent: ListboxComponent;
-  @ViewChild(MapComponent) mapComponent: MapComponent;
-  @ViewChild(MultiSelectComponent) multiSelectComponent: MultiSelectComponent;
-  @ViewChild(RadioComponent) radioComponent: RadioComponent;
-  @ViewChild(RatingComponent) ratingComponent: RatingComponent;
-  @ViewChild(SelectButtonComponent) selectButtonComponent: SelectButtonComponent;
-  @ViewChild(SliderComponent) sliderComponent: SliderComponent;
-  @ViewChild(ToggleSwitchComponent) toggleSwitchComponent: ToggleSwitchComponent;
-  @ViewChild(ToggleButtonComponent) toggleButtonComponent: ToggleButtonComponent;
-  @ViewChild(TreeComponent) treeComponent: TreeComponent;
-  @ViewChild(TreeSelectComponent) treeSelectComponent: TreeSelectComponent;
+  @ViewChild(AutoCompleteComponent, {static: false}) autoCompleteComponent: AutoCompleteComponent;
+  @ViewChild(ButtonComponent, {static: false}) buttonComponent: ButtonComponent;
+  @ViewChild(CascadeSelectComponent, {static: false}) cascadeSelectComponent: CascadeSelectComponent;
+  @ViewChild(CheckboxComponent, {static: false}) checkboxComponent: CheckboxComponent;
+  @ViewChild(CheckboxGroupComponent, {static: false}) checkboxGroupComponent: CheckboxGroupComponent;
+  @ViewChild(ColorPickerComponent, {static: false}) colorPickerComponent: ColorPickerComponent;
+  @ViewChild(SelectComponent, {static: false}) dropdownComponent: SelectComponent;
+  @ViewChild(DualLabelSwitchComponent, {static: false}) dualLabelSwitchComponent: DualLabelSwitchComponent;
+  @ViewChild(EditorComponent, {static: false}) editorComponent: EditorComponent;
+  @ViewChild(FilePickerComponent, {static: false}) filePickerComponent: FilePickerComponent;
+  @ViewChild(FilePicker2Component, {static: false}) filePicker2Component: FilePicker2Component;
+  @ViewChild(DatepickerComponent, {static: false}) datepickerComponent: DatepickerComponent;
+  @ViewChild(ImageComponent, {static: false}) imageComponent: ImageComponent;
+  @ViewChild(InputMaskComponent, {static: false}) inputMaskComponent: InputMaskComponent;
+  @ViewChild(InputNumberComponent, {static: false}) inputNumberComponent: InputNumberComponent;
+  @ViewChild(InputOtpComponent, {static: false}) inputOtpComponent: InputOtpComponent;
+  @ViewChild(InputPasswordComponent, {static: false}) inputPasswordComponent: InputPasswordComponent;
+  @ViewChild(InputTextComponent, {static: false}) inputTextComponent: InputTextComponent;
+  @ViewChild(InputTextareaComponent, {static: false}) inputTextareaComponent: InputTextareaComponent;
+  @ViewChild(IranMapComponent, {static: false}) iranMapComponent: IranMapComponent;
+  @ViewChild(KnobComponent, {static: false}) knobComponent: KnobComponent;
+  @ViewChild(ListboxComponent, {static: false}) listboxComponent: ListboxComponent;
+  @ViewChild(MapComponent, {static: false}) mapComponent: MapComponent;
+  @ViewChild(MultiSelectComponent, {static: false}) multiSelectComponent: MultiSelectComponent;
+  @ViewChild(RadioComponent, {static: false}) radioComponent: RadioComponent;
+  @ViewChild(RatingComponent, {static: false}) ratingComponent: RatingComponent;
+  @ViewChild(SelectButtonComponent, {static: false}) selectButtonComponent: SelectButtonComponent;
+  @ViewChild(SliderComponent, {static: false}) sliderComponent: SliderComponent;
+  @ViewChild(ToggleSwitchComponent, {static: false}) toggleSwitchComponent: ToggleSwitchComponent;
+  @ViewChild(ToggleButtonComponent, {static: false}) toggleButtonComponent: ToggleButtonComponent;
+  @ViewChild(TreeComponent, {static: false}) treeComponent: TreeComponent;
+  @ViewChild(TreeSelectComponent, {static: false}) treeSelectComponent: TreeSelectComponent;
 
   form: FormGroup = new FormGroup({});
   visible: boolean;
-  _config: DialogFormConfig[];
+  _config: DialogFormConfig[] = [];
   _options: DialogFormOptions = {};
   onSubmit = new EventEmitter<DialogFormResult>();
   onClose = new EventEmitter<void>();
@@ -107,6 +158,7 @@ export class DialogFormComponent {
         this.applyConfigToComponent(config);
       })
     }
+
   }
 
   set options(v: DialogFormOptions) {
@@ -140,6 +192,7 @@ export class DialogFormComponent {
     this.handleEvent('onHide');
     clearTimeout(this.configTimeout);
     this.destroy$.next();
+    this.cd.detectChanges();
   }
 
   convertToComponentValidation(config: DialogFormConfig) {
@@ -258,8 +311,9 @@ export class DialogFormComponent {
       loadingCallback();
       this.visible = !hide;
       this.disableReject = false;
+      this.cd.detectChanges();
       if (hide) {
-        this.close()
+        this.close();
       }
     }
     this.onSubmit.emit({formValue: this.form.value, finalizeSubmit});
@@ -308,7 +362,7 @@ export class DialogFormComponent {
     component.rtl = config.rtl ?? this.options.rtl;
     for (const key in config) {
       if (config[key] == undefined) {
-        return;
+        continue;
       }
       if (component[key] instanceof EventEmitter) {
         component[key].pipe(takeUntil(this.destroy$)).subscribe((event) => {
@@ -322,9 +376,6 @@ export class DialogFormComponent {
       } else {
         if (Object.hasOwn(component, 'appendTo') && !config.appendTo) {
           component['appendTo'] = this.dialog;
-        }
-        if (key === 'validations') {
-          component['validation'] = this.convertToComponentValidation(config);
         }
         component[key] = config[key];
       }

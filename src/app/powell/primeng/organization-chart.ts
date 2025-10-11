@@ -10,8 +10,8 @@ import {
 
 export {OrganizationChartModule as $OrganizationChartModule}
 export {OrganizationChart as $OrganizationChart}
-export {OrganizationChartNodeExpandEvent as $OrganizationChartNodeExpandEvent}
-export {OrganizationChartNodeSelectEvent as $OrganizationChartNodeSelectEvent}
-export {OrganizationChartNodeCollapseEvent as $OrganizationChartNodeCollapseEvent}
-export {OrganizationChartNodeUnSelectEvent as $OrganizationChartNodeUnSelectEvent}
-export {OrganizationChartTemplates as $OrganizationChartTemplates}
+export {type OrganizationChartNodeExpandEvent as $OrganizationChartNodeExpandEvent}
+export {type OrganizationChartNodeSelectEvent as $OrganizationChartNodeSelectEvent}
+export {type OrganizationChartNodeCollapseEvent as $OrganizationChartNodeCollapseEvent}
+export {type OrganizationChartNodeUnSelectEvent as $OrganizationChartNodeUnSelectEvent}
+export {type OrganizationChartTemplates as $OrganizationChartTemplates}

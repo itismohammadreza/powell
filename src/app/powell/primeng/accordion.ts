@@ -13,5 +13,5 @@ export {AccordionModule as $AccordionModule}
 export {AccordionHeader as $AccordionHeader}
 export {AccordionContent as $AccordionContent}
 export {AccordionPanel as $AccordionPanel}
-export {AccordionTabCloseEvent as $AccordionTabCloseEvent}
-export {AccordionTabOpenEvent as $AccordionTabOpenEvent}
+export {type AccordionTabCloseEvent as $AccordionTabCloseEvent}
+export {type AccordionTabOpenEvent as $AccordionTabOpenEvent}

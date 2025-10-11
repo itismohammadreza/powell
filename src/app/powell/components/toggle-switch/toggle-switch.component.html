@@ -16,12 +16,12 @@
       <div class="toggle-switch-inner-wrapper">
         <p-toggleSwitch
           [(ngModel)]="value"
-          [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
+          [invalid]="isInvalid"
           [style]="style"
           [styleClass]="styleClass"
           [tabindex]="tabindex"
           [inputId]="inputId"
-          [name]="name"
+          [name]="$any(name)"
           [disabled]="disabled"
           [readonly]="readonly"
           [trueValue]="trueValue"

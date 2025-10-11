@@ -1,5 +1,5 @@
-import {inject, Injectable} from '@angular/core';
-import {DOCUMENT} from "@angular/common";
+import {DOCUMENT, inject, Injectable} from '@angular/core';
+
 import {TranslateService} from '@ngx-translate/core';
 import {globalConfig} from "@core/config";
 import {lastValueFrom} from "rxjs";
@@ -11,7 +11,7 @@ export class TranslationService {
   private document = inject(DOCUMENT);
   private translate = inject(TranslateService);
 
-  private currentLang: string;
+  private currentLang: string = '';
 
   async init() {
     this.onLangChange().subscribe(res => {
@@ -46,7 +46,7 @@ export class TranslationService {
    * Get language changes as observable
    */
   onLangChange() {
-    return this.translate.onLangChange.asObservable();
+    return this.translate.onLangChange;
   }
 
   /**
@@ -68,13 +68,6 @@ export class TranslationService {
    */
   use(lang: string) {
     return this.translate.use(lang);
-  }
-
-  /**
-   * Gets an object of translations for a given language with the current loader
-   */
-  getTranslation(lang: string) {
-    return this.translate.getTranslation(lang);
   }
 
   /**

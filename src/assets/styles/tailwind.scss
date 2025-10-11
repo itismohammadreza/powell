@@ -1,0 +1,127 @@
+@use "tailwindcss";
+
+@theme inline {
+  --font-vazirmatn: var(--app-font-vazirmatn);
+  --font-roboto: var(--app-font-roboto);
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1400px;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: --spacing(4);
+}
+
+@layer components {
+  h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  h1, .h1 {
+    font-size: calc(1.375rem + 1.5vw);
+  }
+
+  h2, .h2 {
+    font-size: calc(1.325rem + 0.9vw);
+  }
+
+  h3, .h3 {
+    font-size: calc(1.3rem + 0.6vw);
+  }
+
+  h4, .h4 {
+    font-size: calc(1.275rem + 0.3vw);
+  }
+
+  h5, .h5 {
+    font-size: 1.25rem;
+  }
+
+  h6, .h6 {
+    font-size: 1rem;
+  }
+
+  .display-1 {
+    font-size: calc(1.625rem + 4.5vw);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+
+  .display-2 {
+    font-size: calc(1.575rem + 3.9vw);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+
+  .display-3 {
+    font-size: calc(1.525rem + 3.3vw);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+
+  .display-4 {
+    font-size: calc(1.475rem + 2.7vw);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+
+  .display-5 {
+    font-size: calc(1.425rem + 2.1vw);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+
+  .display-6 {
+    font-size: calc(1.375rem + 1.5vw);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+
+  @screen xl {
+    h1, .h1 {
+      font-size: 2.5rem;
+    }
+
+    h2, .h2 {
+      font-size: 2rem;
+    }
+
+    h3, .h3 {
+      font-size: 1.75rem;
+    }
+
+    h4, .h4 {
+      font-size: 1.5rem;
+    }
+
+    .display-1 {
+      font-size: 5rem;
+    }
+
+    .display-2 {
+      font-size: 4.5rem;
+    }
+
+    .display-3 {
+      font-size: 4rem;
+    }
+
+    .display-4 {
+      font-size: 3.5rem;
+    }
+
+    .display-5 {
+      font-size: 3rem;
+    }
+
+    .display-6 {
+      font-size: 2.5rem;
+    }
+  }
+}

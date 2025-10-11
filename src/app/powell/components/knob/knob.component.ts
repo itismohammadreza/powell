@@ -44,41 +44,41 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: FixLabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<FixLabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
   @Input() id: string = $uuid();
   // native properties
-  @Input() styleClass: string;
-  @Input() style: CssObject;
-  @Input() ariaLabel: string;
-  @Input() ariaLabelledBy: string;
-  @Input() tabindex: number;
+  @Input() styleClass: Optional<string>;
+  @Input() style: Optional<CssObject>;
+  @Input() ariaLabel: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
+  @Input() tabindex: Optional<number>;
   @Input() valueColor: string = $dt('knob.value.background').variable;
   @Input() rangeColor: string = $dt('knob.range.background').variable;
   @Input() textColor: string = $dt('knob.text.color').variable;
   @Input() valueTemplate: string = '{value}';
-  @Input() name: string;
+  @Input() name: Optional<string>;
   @Input() size: number = 100;
   @Input() step: number = 1;
   @Input() min: number = 0;
   @Input() max: number = 100;
   @Input() strokeWidth: number = 14;
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() showValue: boolean = true;
   @Input() readonly: boolean = false;
   @Output() onChange = new EventEmitter<number>();
 
-  ngControl: NgControl;
-  onModelChange: Function = () => {
+  ngControl: Nullable<NgControl> = null;
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -93,12 +93,12 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -120,11 +120,11 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

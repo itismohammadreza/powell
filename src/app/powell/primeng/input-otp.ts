@@ -2,5 +2,5 @@ import {InputOtp, InputOtpChangeEvent, InputOtpModule, InputOtpTemplateEvents} f
 
 export {InputOtpModule as $InputOtpModule}
 export {InputOtp as $InputOtp}
-export {InputOtpTemplateEvents as $InputOtpTemplateEvents}
-export {InputOtpChangeEvent as $InputOtpChangeEvent}
+export {type InputOtpTemplateEvents as $InputOtpTemplateEvents}
+export {type InputOtpChangeEvent as $InputOtpChangeEvent}

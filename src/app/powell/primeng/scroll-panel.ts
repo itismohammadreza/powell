@@ -2,4 +2,4 @@ import {ScrollPanel, ScrollPanelModule, ScrollPanelTemplates} from "primeng/scro
 
 export {ScrollPanelModule as $ScrollPanelModule}
 export {ScrollPanel as $ScrollPanel}
-export {ScrollPanelTemplates as $ScrollPanelTemplates}
+export {type ScrollPanelTemplates as $ScrollPanelTemplates}

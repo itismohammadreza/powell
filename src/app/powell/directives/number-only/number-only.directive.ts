@@ -5,7 +5,7 @@ import {Directive, HostListener, Input} from '@angular/core';
   standalone: false
 })
 export class NumberOnlyDirective {
-  @Input() pwNumberOnly: boolean;
+  @Input() pwNumberOnly: boolean = false;
 
   @HostListener('keydown', ['$event'])
   onKeyDown(e: KeyboardEvent) {

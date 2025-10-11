@@ -1,5 +1,13 @@
-import {AfterContentInit, ChangeDetectionStrategy, Component, HostListener, inject, OnInit} from '@angular/core';
-import {DOCUMENT, NgClass} from "@angular/common";
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  DOCUMENT,
+  HostListener,
+  inject,
+  OnInit
+} from '@angular/core';
+import {NgClass} from "@angular/common";
 import {LanguageChecker} from '@core/utils';
 import {GlobalConfig, SidebarType} from '@core/models';
 import {globalConfig} from "@core/config";
@@ -9,7 +17,6 @@ import {
   $DrawerModule,
   $MenubarModule,
   $MenuItem,
-  $MenuModule,
   $PanelMenuModule,
   $PopoverModule,
   $SelectChangeEvent,
@@ -24,13 +31,13 @@ import {TranslateModule} from "@ngx-translate/core";
 import {FormsModule} from "@angular/forms";
 import {LogoComponent} from "@modules/layout/logo/logo.component";
 import {routes} from "@modules/main/pages/showcase/showcase-routing.module";
-import {DesignerComponent} from "@modules/main/pages/showcase/components";
 import {RadioModule} from "@powell/components/radio";
+import {DesignerComponent} from '@modules/main/pages/showcase/components';
 
 @Component({
   selector: 'navbar-menu',
   templateUrl: './navbar-menu.component.html',
-  styleUrls: ['./navbar-menu.component.scss'],
+  styleUrls: ['navbar-menu.component.scss'],
   imports: [
     NgClass,
     LogoComponent,
@@ -38,7 +45,6 @@ import {RadioModule} from "@powell/components/radio";
     $MenubarModule,
     $DrawerModule,
     $PanelMenuModule,
-    $MenuModule,
     $DividerModule,
     ButtonModule,
     InputTextModule,
@@ -49,8 +55,8 @@ import {RadioModule} from "@powell/components/radio";
     FormsModule,
     $PopoverModule,
     RadioModule,
-    DesignerComponent,
-    $TooltipModule
+    $TooltipModule,
+    DesignerComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -67,7 +73,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   tempSidebarType: SidebarType = this.sidebarType;
   searchValue: string;
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize', [])
   onResize() {
     this.handleResize()
   }
@@ -104,9 +110,9 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     this.sidebarTypes = sidebarTypes.map(t => ({label: t, value: t}));
     this.sidebarItems = routes.filter(item => !item.redirectTo).map(item => ({
       label: item.title as string,
+      icon: 'pi pi-minus',
       routerLink: `showcase/${item.path}`,
       routerLinkActiveOptions: item.path ? '' : {exact: true},
-      icon: 'pi pi-minus',
       command: () => {
         if ((!this.sidebarLock && this.showBackdrop) || item.path === 'home') {
           this.toggleSidebar(false);

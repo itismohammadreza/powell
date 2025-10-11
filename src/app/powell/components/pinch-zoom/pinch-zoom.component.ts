@@ -17,7 +17,7 @@ import {IvyPinch} from './ivypinch';
 export const _defaultComponentProperties: PinchZoomComponentProperties = {
   overflow: 'visible',
   disableZoomControl: 'auto',
-  backgroundColor: 'rgba(0,0,0,0.85)',
+  backgroundColor: 'transparent',
 };
 
 @Component({
@@ -26,7 +26,7 @@ export const _defaultComponentProperties: PinchZoomComponentProperties = {
   standalone: false,
 })
 export class PinchZoomComponent implements OnInit, OnDestroy, OnChanges {
-  private pinchZoom: IvyPinch;
+  private pinchZoom!: IvyPinch;
   private _properties!: PinchZoomComponentProperties;
   private readonly defaultComponentProperties!: PinchZoomComponentProperties;
   private _transitionDuration!: number;
@@ -233,19 +233,21 @@ export class PinchZoomComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     this._properties.limitZoom = this.limitZoom;
-    this._properties.element = this.elementRef.nativeElement.querySelector('.pinch-zoom-content');
+    this._properties.element = this.elementRef.nativeElement.querySelector('.pinch-zoom-content')!;
     this.pinchZoom = new IvyPinch(this.properties);
   }
 
   private getProperties(changes: SimpleChanges) {
     let properties: PinchZoomComponentProperties = {};
 
-    for (const prop in changes) {
-      if (prop !== 'properties') {
-        properties[prop] = changes[prop].currentValue;
+    for (const k in changes) {
+      const key = k as keyof PinchZoomComponentProperties & 'properties';
+      if (key !== 'properties') {
+        // @ts-ignore
+        properties[key] = changes[key].currentValue;
       }
-      if (prop === 'properties') {
-        properties = changes[prop].currentValue;
+      if (key === 'properties') {
+        properties = changes[key].currentValue;
       }
     }
     return properties;

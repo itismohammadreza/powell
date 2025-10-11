@@ -22,18 +22,20 @@ export const helpers = {
       stopped = true;
     };
   },
+
   getDirtyControls: (form: FormGroup) => {
     const result = {};
-    const isDirty = (control: AbstractControl) => {
+    const isDirty = (control: AbstractControl): boolean => {
       if (control instanceof FormGroup) {
-        return Object.values(control.controls).some((c: AbstractControl) => c.dirty && isDirty(c))
+        return Object.values(control.controls).some(c => c.dirty && isDirty(c))
       }
       if (control instanceof FormControl) {
-        return control.value && control.dirty
+        return !!(control.value && control.dirty)
       }
       if (control instanceof FormArray) {
         return control.controls.some(g => isDirty(g))
       }
+      return false;
     }
     const fillResult = (group: FormGroup, res: any) => Object.entries(group.controls).forEach(([name, control]) => {
       if (control instanceof FormControl && isDirty(control)) {
@@ -47,9 +49,9 @@ export const helpers = {
         fillResult(control, res[name])
       } else if (control instanceof FormArray && isDirty(control)) {
         res[name] = [];
-        control.controls.forEach((g: FormGroup) => {
+        control.controls.forEach(g => {
           if (isDirty(g)) {
-            fillResult(g, res[name])
+            fillResult(g as FormGroup, res[name])
           }
         })
       }
@@ -73,6 +75,7 @@ export const helpers = {
     result += '' + secs;
     return result;
   },
+
   getTypeClass: (fileType: string) => {
     return fileType.substring(0, fileType.indexOf('/'));
   },
@@ -80,11 +83,12 @@ export const helpers = {
   isWildcard: (fileType: string) => {
     return fileType.indexOf('*') !== -1;
   },
+
   checkConnectionSpeed(callback: any) {
     const imageUrl = 'https://via.placeholder.com/2000x2000';
     const downloadSize = 4995374;
-    let startTime;
-    let endTime;
+    let startTime: number;
+    let endTime: number;
     const download = new Image();
     download.onload = () => {
       endTime = (new Date()).getTime();
@@ -105,7 +109,7 @@ export const helpers = {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        resolve(reader.result);
+        resolve(reader.result!);
       };
       reader.onerror = (error) => reject(error);
     });
@@ -116,7 +120,9 @@ export const helpers = {
       headers: new Headers({
         Origin: '*',
       }),
-    }).then((response) => response.blob()).then((blob: File) => helpers.fileToBase64(blob));
+    })
+    .then((response) => response.blob())
+    .then((blob) => helpers.fileToBase64(blob as File));
   },
 
   base64toFile: (dataUrl: any, filename: string) => {
@@ -158,17 +164,17 @@ export const helpers = {
   isFileSizeValid: (file: File, max: number, min?: number) => {
     const size = file.size;
     const supportMin = min ? size >= min : true;
-    const supportMax = max ? size <= min : true;
+    const supportMax = size <= max;
     return supportMin && supportMax;
   },
 
   isImage: (value: any) => {
     if (!value) {
-      return
+      return false;
     }
 
     const isImageUrl = (url: string) => {
-      return /\.(jpeg|jpg|gif|png)$/.exec(url) != null;
+      return /\.(jpeg|jpg|gif|png)$/.exec(url) != undefined;
     }
 
     const isImageFile = (file: File) => {
@@ -197,7 +203,7 @@ export const helpers = {
       result = true;
     } else if (value instanceof FileList) {
       for (let i = 0; i < value.length; i++) {
-        if (isImageFile(value.item(i))) {
+        if (isImageFile(value.item(i)!)) {
           result = true;
         } else {
           result = false;
@@ -218,28 +224,22 @@ export const helpers = {
     return [...array1, ...array2.filter(x => !set1.has(x[field]))]
   },
 
-  findIndex: <T = any>(array: T[], conditions: T | Partial<T>) => {
-    return array.findIndex(item => Object.entries(conditions).reduce((prev, next) => prev && item[next[0]] === next[1], {}));
+  setFieldValue(obj: any, path: string, value: any) {
+    const keys = path.split('.');
+    let current = obj;
+
+    for (let i = 0; i < keys.length - 1; i++) {
+      const key = keys[i];
+      if (!(key in current) || typeof current[key] !== 'object') {
+        current[key] = {};
+      }
+      current = current[key];
+    }
+    current[keys[keys.length - 1]] = value;
   },
 
-// async downloadLink(url: string) {
-//   const res = await lastValueFrom(this._customRequest<any>(url, 'get', null, {
-//     observe: 'response',
-//     responseType: 'blob'
-//   }));
-//   const b64DecodeUnicode = (str: string) => {
-//     return decodeURIComponent(atob(str).split('').map(c =>{
-//       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-//     }).join(''));
-//   }
-// const disposition = b64DecodeUnicode(res.headers.get('content-disposition'));
-//   const fileName = disposition.split('filename=')[1].split(';')[0];
-//   let downloadLink = document.createElement('a');
-//   downloadLink.href = window.URL.createObjectURL(new Blob([res.body], {type: res.body.type}));
-//   downloadLink.setAttribute('download', fileName);
-//   document.body.appendChild(downloadLink);
-//   downloadLink.click();
-//   downloadLink.remove()
-// }
+  buildObjectFromPath(path: string, value: any) {
+    return path.split('.').reverse().reduce((acc, key) => ({[key]: acc}), value);
+  }
 }
 

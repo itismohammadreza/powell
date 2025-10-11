@@ -62,7 +62,6 @@
     [rowHover]="rowHover"
     [customSort]="customSort"
     [showInitialSortBadge]="showInitialSortBadge"
-    [autoLayout]="autoLayout"
     [exportFunction]="exportFunction"
     [exportHeader]="exportHeader"
     [stateKey]="stateKey"
@@ -139,7 +138,7 @@
                   size="small"
                   (onClick)="onResetSort($event)">
                   <ng-template pwTemplate="icon">
-                    <TimesIcon/>
+                    <svg data-p-icon="times"/>
                   </ng-template>
                 </pw-button>
               }
@@ -226,10 +225,10 @@
               }
             </th>
           }
-          @if (actionsConfig?.inSameColumn && actionsConfig?.actions.length) {
+          @if (actionsConfig?.inSameColumn && actionsConfig?.actions?.length) {
             <th class="action-header">{{ actionsConfig.header }}</th>
           }
-          @if (!actionsConfig?.inSameColumn && actionsConfig?.actions.length) {
+          @if (!actionsConfig?.inSameColumn && actionsConfig?.actions?.length) {
             @for (action of actionsConfig?.actions; track action) {
               @if (action.visible ?? true) {
                 <th class="action-header">{{ action.header }}</th>
@@ -259,10 +258,10 @@
               }
             </th>
           }
-          @if (actionsConfig?.inSameColumn && actionsConfig?.actions.length) {
+          @if (actionsConfig?.inSameColumn && actionsConfig?.actions?.length) {
             <th>{{ actionsConfig.header }}</th>
           }
-          @if (!actionsConfig?.inSameColumn && actionsConfig?.actions.length) {
+          @if (!actionsConfig?.inSameColumn && actionsConfig?.actions?.length) {
             @for (action of actionsConfig?.actions; track action) {
               @if (action.visible ?? true) {
                 <th class="action-header">{{ action.header }}</th>
@@ -363,8 +362,8 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-item let-frozen="frozen" let-index="rowIndex">
-      @if (templateMap.body) {
-        <ng-container *ngTemplateOutlet="templateMap.body;context:{$implicit:item,frozen,index}"/>
+      @if (templateMap['body']) {
+        <ng-container *ngTemplateOutlet="templateMap['body'];context:{$implicit:item,frozen,index}"/>
       } @else {
         <tr [pReorderableRow]="index"
             [pReorderableRowDisabled]="!reorderableRows"
@@ -373,7 +372,7 @@
             [pSelectableRowIndex]="index">
           @if (reorderableRows) {
             <td>
-              <BarsIcon/>
+              <svg data-p-icon="bars"/>
             </td>
           }
           @if (selectionMode == 'single' && showSelectionIndicator) {
@@ -418,8 +417,8 @@
                       [size]="action.size"
                       [pTooltip]="action.tooltip"
                       [tooltipPosition]="action.tooltipPosition ?? 'top'"
-                      (onClick)="action.onClick(item,index,$event)"
-                      (onClickAsync)="action.onClickAsync(item,index,$event)">
+                      (onClick)="action.onClick?.(item,index,$event)"
+                      (onClickAsync)="action.onClickAsync?.(item,index,$event)">
                     </pw-button>
                   }
                 }
@@ -443,8 +442,8 @@
                     [size]="action.size"
                     [pTooltip]="action.tooltip"
                     [tooltipPosition]="action.tooltipPosition ?? 'top'"
-                    (onClick)="action.onClick(item,index,$event)"
-                    (onClickAsync)="action.onClickAsync(item,index,$event)">
+                    (onClick)="action.onClick?.(item,index,$event)"
+                    (onClickAsync)="action.onClickAsync?.(item,index,$event)">
                   </pw-button>
                 }
               </td>
@@ -454,10 +453,10 @@
       }
     </ng-template>
 
-    @if (templateMap.caption || header) {
+    @if (templateMap['caption'] || header) {
       <ng-template pTemplate="caption">
-        @if (templateMap.caption) {
-          <ng-container *ngTemplateOutlet="templateMap.caption"/>
+        @if (templateMap['caption']) {
+          <ng-container *ngTemplateOutlet="templateMap['caption']"/>
         } @else {
           <div class="caption">
             <h5>{{ header }}</h5>
@@ -474,8 +473,8 @@
     }
 
     <ng-template let-columns let-frozen="frozen" pTemplate="emptymessage">
-      @if (templateMap.emptymessage) {
-        <ng-container *ngTemplateOutlet="templateMap.emptymessage;context:{columns,frozen}"/>
+      @if (templateMap['emptymessage']) {
+        <ng-container *ngTemplateOutlet="templateMap['emptymessage'];context:{columns,frozen}"/>
       } @else {
         <tr>
           <td class="empty-message-wrapper"

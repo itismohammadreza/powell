@@ -3,12 +3,12 @@
      [ngStyle]="style"
      [class]="styleClass"
      [ngClass]="{
-     'icon-start': templateMap.iconStart && !templateMap.iconEnd,
-     'icon-end': templateMap.iconEnd && !templateMap.iconStart,
-     'icon-both': templateMap.iconStart && templateMap.iconEnd,
-     'addon-start': templateMap.addonStart && !templateMap.addonEnd,
-     'addon-end': templateMap.addonEnd && !templateMap.addonStart,
-     'addon-both': templateMap.addonStart && templateMap.addonEnd,
+     'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
+     'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
+     'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
+     'addon-start': templateMap['addonStart'] && !templateMap['addonEnd'],
+     'addon-end': templateMap['addonEnd'] && !templateMap['addonStart'],
+     'addon-both': templateMap['addonStart'] && templateMap['addonEnd'],
      'fluid': fluid,
      'clearable': showClear
     }">
@@ -24,36 +24,66 @@
     [readonly]="readonly"
     [fluid]="fluid">
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
-      <input
-        pInputText
-        [(ngModel)]="value"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
-        [attr.id]="inputId"
-        [attr.maxlength]="maxlength"
-        [attr.placeholder]="placeholder | pwLabelStar:showRequiredStar:ngControl"
-        [attr.type]="type"
-        [attr.aria-label]="ariaLabel"
-        [attr.aria-labelledBy]="ariaLabelledBy"
-        [attr.inputmode]="inputMode"
-        [disabled]="disabled"
-        [readonly]="readonly"
-        [pKeyFilter]="keyFilter"
-        [ngStyle]="inputStyle"
-        [class]="inputStyleClass"
-        [autocomplete]="autocomplete"
-        [variant]="variant"
-        [fluid]="fluid"
-        [pSize]="size"
-        (blur)="_onBlur($event)"
-        (change)="_onChange($event)"
-        (click)="emitter('onClick', $event)"
-        (focus)="emitter('onFocus', $event)"
-        (input)="_onInput($event)"
-        (keydown)="_onKeyDown($event)"
-        (keyup)="_onKeyUp($event)"
-        (paste)="emitter('onPaste', $event)"/>
+      @if (keyFilter) {
+        <input
+          pInputText
+          [(ngModel)]="value"
+          [invalid]="isInvalid"
+          [attr.id]="inputId"
+          [attr.maxlength]="maxlength"
+          [attr.placeholder]="placeholder | pwLabelStar:showRequiredStar:ngControl"
+          [attr.type]="type"
+          [attr.aria-label]="ariaLabel"
+          [attr.aria-labelledBy]="ariaLabelledBy"
+          [attr.inputmode]="inputMode"
+          [disabled]="disabled"
+          [readonly]="readonly"
+          [pKeyFilter]="keyFilter"
+          [ngStyle]="inputStyle"
+          [class]="inputStyleClass"
+          [autocomplete]="autocomplete"
+          [variant]="variant"
+          [fluid]="fluid"
+          [pSize]="size"
+          (blur)="_onBlur($event)"
+          (change)="_onChange($event)"
+          (click)="emitter('onClick', $event)"
+          (focus)="emitter('onFocus', $event)"
+          (input)="_onInput($event)"
+          (keydown)="_onKeyDown($event)"
+          (keyup)="_onKeyUp($event)"
+          (paste)="emitter('onPaste', $event)"/>
+      } @else {
+        <input
+          pInputText
+          [(ngModel)]="value"
+          [invalid]="isInvalid"
+          [attr.id]="inputId"
+          [attr.maxlength]="maxlength"
+          [attr.placeholder]="placeholder | pwLabelStar:showRequiredStar:ngControl"
+          [attr.type]="type"
+          [attr.aria-label]="ariaLabel"
+          [attr.aria-labelledBy]="ariaLabelledBy"
+          [attr.inputmode]="inputMode"
+          [disabled]="disabled"
+          [readonly]="readonly"
+          [ngStyle]="inputStyle"
+          [class]="inputStyleClass"
+          [autocomplete]="autocomplete"
+          [variant]="variant"
+          [fluid]="fluid"
+          [pSize]="size"
+          (blur)="_onBlur($event)"
+          (change)="_onChange($event)"
+          (click)="emitter('onClick', $event)"
+          (focus)="emitter('onFocus', $event)"
+          (input)="_onInput($event)"
+          (keydown)="_onKeyDown($event)"
+          (keyup)="_onKeyUp($event)"
+          (paste)="emitter('onPaste', $event)"/>
+      }
       @if (showClear && !disabled && value) {
-        <TimesIcon class="clear-icon" (click)="clear()"/>
+        <svg data-p-icon="times" class="clear-icon" (click)="clear()"/>
       }
     </ng-template>
     @for (item of ['addonStart', 'addonEnd', 'iconStart', 'iconEnd', 'label']; track item) {

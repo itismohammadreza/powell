@@ -142,7 +142,7 @@ export class PreviewOptionsComponent implements OnInit {
         showRequiredStar: 'Show Required Star',
         rtl: 'RTL',
         inputSize: 'Size',
-        inputStyle: 'Variant',
+        inputVariant: 'Variant',
         labelPosition: 'Label Position',
         fixLabelPosition: 'Label Position',
       }
@@ -165,7 +165,7 @@ export class PreviewOptionsComponent implements OnInit {
     cmpRef.instance.value = value;
     cmpRef.instance.labelPosition = globalConfig.labelPosition;
     cmpRef.instance.rtl = globalConfig.rtl;
-    cmpRef.instance.variant = globalConfig.inputStyle;
+    cmpRef.instance.variant = globalConfig.inputVariant;
     cmpRef.instance.size = globalConfig.inputSize;
     this.translationService.stream(field).pipe(takeUntil(this.destroy$)).subscribe(res => {
       cmpRef.instance.label = res;

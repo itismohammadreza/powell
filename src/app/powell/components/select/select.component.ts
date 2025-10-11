@@ -65,76 +65,76 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: LabelPosition;
-  @Input() validation: Validation;
-  @Input() async: boolean;
-  @Input() followConfig: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<LabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() async: boolean = false;
+  @Input() followConfig: boolean = false;
   // native properties
-  @Input() id: string;
+  @Input() id: Optional<string>;
   @Input() scrollHeight: string = '200px';
   @Input() filter: boolean = false;
-  @Input() name: string;
-  @Input() style: CssObject;
-  @Input() panelStyle: CssObject;
-  @Input() styleClass: string;
-  @Input() panelStyleClass: string;
+  @Input() name: Optional<string>;
+  @Input() style: Optional<CssObject>;
+  @Input() panelStyle: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() panelStyleClass: Optional<string>;
   @Input() readonly: boolean = false;
   @Input() required: boolean = false;
   @Input() editable: boolean = false;
-  @Input() appendTo: any;
-  @Input() tabindex: number;
-  @Input() placeholder: string;
-  @Input() loadingIcon: string;
-  @Input() filterPlaceholder: string;
-  @Input() filterLocale: string;
-  @Input() variant: InputVariant;
+  @Input() appendTo: Optional<any>;
+  @Input() tabindex: Optional<number>;
+  @Input() placeholder: Optional<string>;
+  @Input() loadingIcon: Optional<string>;
+  @Input() filterPlaceholder: Optional<string>;
+  @Input() filterLocale: Optional<string>;
+  @Input() variant: Optional<InputVariant>;
   @Input() inputId: string = $uuid();
-  @Input() dataKey: string;
-  @Input() filterBy: string;
-  @Input() filterFields: any[];
+  @Input() dataKey: Optional<string>;
+  @Input() filterBy: Optional<string>;
+  @Input() filterFields: Optional<any[]>;
   @Input() autofocus: boolean = false;
   @Input() resetFilterOnHide: boolean = false;
   @Input() checkmark: boolean = false;
-  @Input() dropdownIcon: string;
-  @Input() loading: boolean;
-  @Input() optionLabel: string;
-  @Input() optionValue: string;
-  @Input() optionDisabled: string;
+  @Input() dropdownIcon: Optional<string>;
+  @Input() loading: boolean = false;
+  @Input() optionLabel: Optional<string>;
+  @Input() optionValue: Optional<string>;
+  @Input() optionDisabled: Optional<string>;
   @Input() optionGroupLabel: string = 'label';
   @Input() optionGroupChildren: string = 'items';
   @Input() group: boolean = false;
   @Input() showClear: boolean = false;
-  @Input() emptyFilterMessage: string;
-  @Input() emptyMessage: string;
+  @Input() emptyFilterMessage: Optional<string>;
+  @Input() emptyMessage: Optional<string>;
   @Input() lazy: boolean = false;
   @Input() virtualScroll: boolean = false;
-  @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: $ScrollerOptions;
-  @Input() size: Size;
-  @Input() overlayOptions: $OverlayOptions;
-  @Input() ariaFilterLabel: string;
-  @Input() ariaLabel: string;
-  @Input() ariaLabelledBy: string;
+  @Input() virtualScrollItemSize: Optional<number>;
+  @Input() virtualScrollOptions: Optional<$ScrollerOptions>;
+  @Input() size: Optional<Size>;
+  @Input() overlayOptions: Optional<$OverlayOptions>;
+  @Input() ariaFilterLabel: Optional<string>;
+  @Input() ariaLabel: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
   @Input() filterMatchMode: FilterMatchMode = 'contains';
-  @Input() maxlength: number;
-  @Input() tooltip: string;
+  @Input() maxlength: Optional<number>;
+  @Input() tooltip: Optional<string>;
   @Input() tooltipPosition: Position = 'right';
   @Input() tooltipPositionStyle: string = 'absolute';
-  @Input() tooltipStyleClass: string;
+  @Input() tooltipStyleClass: Optional<string>;
   @Input() focusOnHover: boolean = true;
   @Input() selectOnFocus: boolean = false;
   @Input() autoOptionFocus: boolean = true;
   @Input() autofocusFilter: boolean = true;
-  @Input() fluid: boolean;
-  @Input() disabled: boolean;
-  @Input() filterValue: string;
-  @Input() options: any[];
+  @Input() fluid: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() filterValue: Optional<string>;
+  @Input() options: Optional<any[]>;
   @Output() onChange = new EventEmitter<$SelectChangeEvent>();
   @Output() onFilter = new EventEmitter<$SelectFilterEvent>();
   @Output() onFocus = new EventEmitter<Event>();
@@ -145,15 +145,15 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Output() onClear = new EventEmitter<void>();
   @Output() onLazyLoad = new EventEmitter<$SelectLazyLoadEvent>();
   @Output() onChangeAsync = new EventEmitter<AsyncEvent<$SelectChangeEvent>>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  ngControl: NgControl;
+  ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<any>> = {};
-  _oldValue: string;
-  _newValue: string;
-  onModelChange: Function = () => {
+  _oldValue: Optional<string>;
+  _newValue: Optional<string>;
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -168,12 +168,12 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -186,7 +186,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -214,7 +214,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       this.value = this._newValue;
       this.onModelChange(this.value);
     } else {
-      this.value = null;
+      this.value = undefined;
       setTimeout(() => {
         this.value = this._oldValue + '';
         this.onModelChange(this.value);
@@ -233,8 +233,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this.onModelChange(null);
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   writeValue(value: any) {
@@ -242,11 +242,11 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

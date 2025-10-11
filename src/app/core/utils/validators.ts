@@ -2,8 +2,8 @@ import {FormGroup, Validators} from "@angular/forms";
 
 export const samePasswordsValidator = (passwordField: string, confirmPasswordField: string) => {
   return (group: FormGroup) => {
-    const pass = group.get(passwordField);
-    const confirmPass = group.get(confirmPasswordField);
+    const pass = group.get(passwordField)!;
+    const confirmPass = group.get(confirmPasswordField)!;
     return (pass.dirty && confirmPass.dirty) && (pass.value !== confirmPass.value) ? {notSame: true} : null;
   }
 }

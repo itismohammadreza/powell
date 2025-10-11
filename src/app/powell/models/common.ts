@@ -1,8 +1,6 @@
 import {$ButtonProps} from "@powell/primeng";
 import {ButtonAppearance} from "@powell/models";
 
-export type SafeAny = any;
-
 export type Severity =
   | 'primary'
   | 'secondary'

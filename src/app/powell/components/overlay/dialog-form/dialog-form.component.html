@@ -14,250 +14,287 @@
         @case ('hidden') {
           <input
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             type="hidden"
           />
         }
         @case ('auto-complete') {
           <pw-auto-complete
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
+            [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('button') {
           <pw-button
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('cascade-select') {
           <pw-cascade-select
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
+            [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('checkbox') {
           <pw-checkbox
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('color-picker') {
           <pw-color-picker
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('select') {
           <pw-select
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
+            [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('dual-label-switch') {
           <pw-dual-label-switch
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('editor') {
           <pw-editor
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('file-picker') {
           <pw-file-picker
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('file-picker2') {
           <pw-file-picker2
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('datepicker') {
           <pw-datepicker
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
+            [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('image') {
           <pw-image
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"/>
         }
         @case ('input-mask') {
           <pw-input-mask
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
+            [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('input-number') {
           <pw-input-number
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
+            [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('input-otp') {
           <pw-input-otp
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('input-password') {
           <pw-input-password
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
+            [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('input-text') {
           <pw-input-text
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
+            [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('input-textarea') {
           <pw-input-textarea
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
+            [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('iran-map') {
           <pw-iran-map
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('knob') {
           <pw-knob
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('listbox') {
           <pw-listbox
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('map') {
           <pw-map
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('checkbox-group') {
           <pw-checkbox-group
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('multi-select') {
           <pw-multi-select
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
+            [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('radio') {
           <pw-radio
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('rating') {
           <pw-rating
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('select-button') {
           <pw-select-button
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('slider') {
           <pw-slider
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('toggle-switch') {
           <pw-toggle-switch
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('toggle-button') {
           <pw-toggle-button
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('tree') {
           <pw-tree
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('tree-select') {
           <pw-tree-select
             [formControlName]="config.key"
-            [ngClass]="config.className"
+            [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+            [validation]="convertToComponentValidation(config)"/>
         }
         @case ('template') {
           <div
             [hidden]="handleConfigVisibility(config)"
-            [ngClass]="config.className"
+            [class]="config.className"
             [innerHTML]="config.template"
             [ngStyle]="config.style"
           ></div>
         }
       }
     }
-    @if (options.formValidator && form.hasError(options.formValidator.type)) {
-      <div>
-        <div class="validation" [ngStyle]="options.formValidator.style"
-             [innerHTML]="options.formValidator.message"></div>
-      </div>
-    }
   </form>
+  @if (options.formValidator && form.hasError(options.formValidator.type)) {
+    <div [ngStyle]="options.formValidator.style" [innerHTML]="options.formValidator.message"></div>
+  }
   <ng-template pTemplate="footer">
     <div class="footer">
       @if (options.rejectVisible) {

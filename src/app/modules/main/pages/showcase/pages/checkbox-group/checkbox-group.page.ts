@@ -27,6 +27,6 @@ export class CheckboxGroupPage extends PreviewBase {
     {field: 'disabled', value: false},
     {field: 'size', selectOptions: 'sizes', value: this.config.inputSize},
     {field: 'readonly', value: false},
-    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputVariant},
   ];
 }

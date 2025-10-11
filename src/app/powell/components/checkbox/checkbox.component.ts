@@ -49,49 +49,49 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() validation: Validation;
-  @Input() onLabel: string;
-  @Input() offLabel: string;
-  @Input() async: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() validation: Optional<Validation>;
+  @Input() onLabel: Optional<string>;
+  @Input() offLabel: Optional<string>;
+  @Input() async: boolean = false;
   @Input() showAsyncLoading: boolean = true;
-  @Input() followConfig: boolean;
+  @Input() followConfig: boolean = false;
   // native properties
-  @Input() name: string;
-  @Input() disabled: boolean;
+  @Input() name: Optional<string>;
+  @Input() disabled: boolean = false;
   @Input() binary: boolean = true;
-  @Input() ariaLabelledBy: string;
-  @Input() ariaLabel: string;
-  @Input() tabindex: number;
+  @Input() ariaLabelledBy: Optional<string>;
+  @Input() ariaLabel: Optional<string>;
+  @Input() tabindex: Optional<number>;
   @Input() inputId: string = $uuid();
-  @Input() style: CssObject;
-  @Input() inputStyle: CssObject;
-  @Input() styleClass: string;
-  @Input() inputClass: string;
-  @Input() indeterminate: boolean;
-  @Input() size: Size;
-  @Input() checkboxIcon: string;
+  @Input() style: Optional<CssObject>;
+  @Input() inputStyle: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() inputClass: Optional<string>;
+  @Input() indeterminate: boolean = false;
+  @Input() size: Optional<Size>;
+  @Input() checkboxIcon: Optional<string>;
   @Input() readonly: boolean = false;
   @Input() autofocus: boolean = false;
   @Input() trueValue: any = true;
   @Input() falseValue: any = false;
-  @Input() variant: InputVariant;
+  @Input() variant: Optional<InputVariant>;
   @Output() onChange = new EventEmitter<$CheckboxChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onChangeAsync = new EventEmitter<AsyncEvent<$CheckboxChangeEvent>>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  loading: boolean;
-  ngControl: NgControl;
+  loading: boolean = false;
+  ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<any>> = {};
-  onModelChange: Function = () => {
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -106,12 +106,12 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -125,7 +125,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -180,11 +180,11 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

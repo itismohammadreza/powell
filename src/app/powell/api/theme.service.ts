@@ -1,17 +1,17 @@
-import {inject, Injectable} from "@angular/core";
-import {DOCUMENT} from "@angular/common";
+import {DOCUMENT, inject, Injectable} from "@angular/core";
+
 import {
   $Aura,
   $Lara,
   $Material,
   $Nora,
-  $Preset,
-  $t,
   $updatePreset,
+  $updatePrimaryPalette,
   $updateSurfacePalette,
   $usePreset
 } from "@powell/primeng";
-import {Config, PresetName, Theme, ThemeMode} from "@powell/models";
+import {Config, Theme, ThemeMode} from "@powell/models";
+import {CONFIG_CLASS_PREFIX, DARK_MODE_CLASS, DARK_MODE_SELECTOR} from "@powell/api";
 
 type BodyClassRule = {
   condition: (value: any) => boolean;
@@ -22,27 +22,34 @@ type BodyClassRule = {
 @Injectable()
 export class ThemeService {
   private document = inject(DOCUMENT);
-  private _initialized: boolean = false;
-  private _presets: Partial<Record<PresetName, $Preset<any>>> = {
+  private _presets = {
     Aura: $Aura,
     Material: $Material,
     Lara: $Lara,
     Nora: $Nora,
   };
-  private _currentPreset: Theme = {preset: this.presets.Aura, name: 'Aura', mode: 'system'};
-  private _darkModeIdentifier: string = 'pw-dark';
-  private _darkModeSelector: string = `.${this._darkModeIdentifier}`;
-
-  init(preset: $Preset<any>) {
-    if (this._initialized) {
-      return;
-    }
-    $t().preset(preset).use({useDefaultOptions: true});
-    this._initialized = true;
-  }
+  private _currentPreset: Theme = {};
+  private _darkModeIdentifier = DARK_MODE_CLASS;
+  private _configClassPrefix = CONFIG_CLASS_PREFIX;
 
   updateSurfacePalette(palette: any) {
+    this._currentPreset.surfacePalette = palette;
     $updateSurfacePalette(palette);
+  }
+
+  updatePrimaryPalette(palette: any) {
+    this._currentPreset.primaryPalette = palette;
+    $updatePrimaryPalette(palette);
+  }
+
+  usePreset(preset: Theme["preset"]) {
+    $usePreset(preset);
+    this._currentPreset.preset = preset;
+  }
+
+  updatePreset(preset: Theme["preset"]) {
+    $updatePreset(preset);
+    this._currentPreset.preset = {...this._currentPreset.preset, ...preset};
   }
 
   updateMode(mode: ThemeMode) {
@@ -50,36 +57,9 @@ export class ThemeService {
     this.handleDarkModeTransition();
   }
 
-  usePreset(theme: Theme) {
-    const {name, preset, mode} = theme;
-    if (preset && !name) {
-      // if theme is only preset, it will update preset palette
-      this.updatePreset(preset);
-      return
-    }
-    // otherwise it change the preset
-    if (name || preset) {
-      let presetObj = preset ?? this.presets[name];
-      if (!this._initialized) {
-        this.init(presetObj);
-      } else {
-        $usePreset(presetObj);
-      }
-      this._currentPreset = {...this._currentPreset, preset: presetObj, name};
-    }
-    if (mode) {
-      this.updateMode(mode);
-      this._currentPreset.mode = mode;
-    }
-  }
-
-  private updatePreset(preset: $Preset<any>) {
-    $updatePreset(preset);
-    this._currentPreset = {...this._currentPreset, preset};
-  }
-
   applyConfigToDom(config: Config) {
     this.handleBodyClasses(config);
+
     if ('rtl' in config) {
       if (config.injectDirectionToRoot) {
         this.document.documentElement.setAttribute('dir', config.rtl ? 'rtl' : 'ltr');
@@ -95,10 +75,6 @@ export class ThemeService {
 
   get presets() {
     return this._presets;
-  }
-
-  get darkModeSelector() {
-    return this._darkModeSelector;
   }
 
   private handleDarkModeTransition() {
@@ -132,7 +108,7 @@ export class ThemeService {
           className: 'p-ripple-disabled',
         },
       ],
-      inputStyle: [
+      inputVariant: [
         {
           condition: (v) => v === 'filled',
           className: 'p-input-filled',
@@ -141,8 +117,8 @@ export class ThemeService {
     };
 
     for (const key in config) {
-      const value = key == 'theme' ? config.theme.name : config[key as keyof Config];
-      if (value === undefined || typeof value === 'object') continue;
+      const value = config[key as keyof Config];
+      if (value === undefined || typeof value === 'object' || typeof value === 'function') continue;
 
       const rules = specialBodyClassRules[key as keyof Config];
 
@@ -152,7 +128,7 @@ export class ThemeService {
           this.document.body.classList.toggle(rule.className, shouldApply);
         }
       } else {
-        const prefix = `powell-${this.kebabCase(key)}-`;
+        const prefix = `${this._configClassPrefix}-${this.kebabCase(key)}-`;
         this.document.body.classList.forEach((cls) => {
           if (cls.startsWith(prefix)) {
             this.document.body.classList.remove(cls);

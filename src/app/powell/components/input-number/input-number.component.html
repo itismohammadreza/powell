@@ -3,12 +3,12 @@
      [ngStyle]="style"
      [class]="styleClass"
      [ngClass]="{
-     'icon-start': templateMap.iconStart && !templateMap.iconEnd,
-     'icon-end': templateMap.iconEnd && !templateMap.iconStart,
-     'icon-both': templateMap.iconStart && templateMap.iconEnd,
-     'addon-start': templateMap.addonStart && !templateMap.addonEnd,
-     'addon-end': templateMap.addonEnd && !templateMap.addonStart,
-     'addon-both': templateMap.addonStart && templateMap.addonEnd,
+     'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
+     'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
+     'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
+     'addon-start': templateMap['addonStart'] && !templateMap['addonEnd'],
+     'addon-end': templateMap['addonEnd'] && !templateMap['addonStart'],
+     'addon-both': templateMap['addonStart'] && templateMap['addonEnd'],
      'fluid': fluid,
      'clearable': showClear,
      'button-stacked': showButtons && buttonLayout === 'stacked',
@@ -29,7 +29,7 @@
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-inputNumber
         [(ngModel)]="value"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
+        [invalid]="isInvalid"
         [showButtons]="showButtons"
         [format]="format"
         [buttonLayout]="buttonLayout"

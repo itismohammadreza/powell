@@ -27,7 +27,7 @@ export class MultiSelectPage extends PreviewBase {
     {field: 'disabled', value: false},
     {field: 'fluid', value: false},
     {field: 'readonly', value: false},
-    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputVariant},
     {field: 'displaySelectedLabel', value: true},
     {field: 'maxSelectedLabels', value: 3},
     {field: 'selectionLimit', value: ''},

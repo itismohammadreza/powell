@@ -9,7 +9,7 @@ import {
 
 export {EditorModule as $EditorModule}
 export {Editor as $Editor}
-export {EditorTemplates as $EditorTemplates}
-export {EditorInitEvent as $EditorInitEvent}
-export {EditorSelectionChangeEvent as $EditorSelectionChangeEvent}
-export {EditorTextChangeEvent as $EditorTextChangeEvent}
+export {type EditorTemplates as $EditorTemplates}
+export {type EditorInitEvent as $EditorInitEvent}
+export {type EditorSelectionChangeEvent as $EditorSelectionChangeEvent}
+export {type EditorTextChangeEvent as $EditorTextChangeEvent}

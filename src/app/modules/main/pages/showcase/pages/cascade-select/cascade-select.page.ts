@@ -28,7 +28,7 @@ export class CascadeSelectPage extends PreviewBase {
     {field: 'disabled', value: false},
     {field: 'placeholder', value: ''},
     {field: 'showClear', value: true},
-    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputVariant},
     {field: 'fluid', value: true},
   ];
 

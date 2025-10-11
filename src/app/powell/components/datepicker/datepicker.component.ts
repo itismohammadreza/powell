@@ -66,83 +66,83 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: LabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
-  @Input() isJalali: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<LabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
+  @Input() isJalali: boolean = false;
   @Input() iconDisplay: DatepickerIconDisplay = 'button';
   // native properties
-  @Input() style: CssObject;
-  @Input() styleClass: string;
-  @Input() inputStyle: CssObject;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() inputStyle: Optional<CssObject>;
   @Input() inputId: string = $uuid();
-  @Input() name: string;
-  @Input() inputStyleClass: string;
-  @Input() placeholder: string;
-  @Input() ariaLabelledBy: string;
-  @Input() ariaLabel: string;
-  @Input() iconAriaLabel: string;
-  @Input() disabled: boolean;
-  @Input() dateFormat: string;
+  @Input() name: Optional<string>;
+  @Input() inputStyleClass: Optional<string>;
+  @Input() placeholder: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
+  @Input() ariaLabel: Optional<string>;
+  @Input() iconAriaLabel: Optional<string>;
+  @Input() disabled: boolean = false;
+  @Input() dateFormat: Optional<string>;
   @Input() multipleSeparator: string = ',';
   @Input() rangeSeparator: string = '-';
-  @Input() inline: boolean;
+  @Input() inline: boolean = false;
   @Input() showOtherMonths: boolean = true;
-  @Input() selectOtherMonths: boolean;
-  @Input() showIcon: boolean;
-  @Input() fluid: boolean;
-  @Input() datepickerIcon: string;
-  @Input() appendTo: any;
-  @Input() readonlyInput: boolean;
+  @Input() selectOtherMonths: boolean = false;
+  @Input() showIcon: boolean = false;
+  @Input() fluid: boolean = false;
+  @Input() datepickerIcon: Optional<string>;
+  @Input() appendTo: Optional<any>;
+  @Input() readonlyInput: boolean = false;
   @Input() shortYearCutoff: string = '+10';
   @Input() hourFormat: DatepickerHourFormat = '24';
-  @Input() timeOnly: boolean;
+  @Input() timeOnly: boolean = false;
   @Input() stepHour: number = 1;
   @Input() stepMinute: number = 1;
   @Input() stepSecond: number = 1;
-  @Input() showSeconds: boolean;
-  @Input() required: boolean;
+  @Input() showSeconds: boolean = false;
+  @Input() required: boolean = false;
   @Input() showOnFocus: boolean = true;
-  @Input() showWeek: boolean;
-  @Input() startWeekFromFirstDayOfYear: boolean;
-  @Input() showClear: boolean;
+  @Input() showWeek: boolean = false;
+  @Input() startWeekFromFirstDayOfYear: boolean = false;
+  @Input() showClear: boolean = false;
   @Input() dataType: DatepickerDateType = 'date';
   @Input() selectionMode: DatepickerSelectionMode = 'single';
-  @Input() maxDateCount: number;
-  @Input() showButtonBar: boolean;
+  @Input() maxDateCount: Optional<number>;
+  @Input() showButtonBar: boolean = false;
   @Input() todayButtonStyleClass: string = 'p-button-text';
   @Input() clearButtonStyleClass: string = 'p-button-text';
-  @Input() autofocus: boolean;
+  @Input() autofocus: boolean = false;
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: number = 0;
-  @Input() panelStyleClass: string;
-  @Input() panelStyle: CssObject;
-  @Input() keepInvalid: boolean;
+  @Input() panelStyleClass: Optional<string>;
+  @Input() panelStyle: Optional<CssObject>;
+  @Input() keepInvalid: boolean = false;
   @Input() hideOnDateTimeSelect: boolean = true;
-  @Input() touchUI: boolean;
+  @Input() touchUI: boolean = false;
   @Input() timeSeparator: string = ':';
   @Input() focusTrap: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
-  @Input() tabindex: number;
+  @Input() tabindex: Optional<number>;
   @Input() variant: InputVariant = 'outlined';
-  @Input() size: Size;
-  @Input() minDate: Date | Moment;
-  @Input() maxDate: Date | Moment;
-  @Input() disabledDates: (Date | Moment)[];
-  @Input() disabledDays: number[];
-  @Input() showTime: boolean;
-  @Input() responsiveOptions: $DatePickerResponsiveOptions[];
+  @Input() size: Optional<Size>;
+  @Input() minDate: Optional<Date | Moment>;
+  @Input() maxDate: Optional<Date | Moment>;
+  @Input() disabledDates: Optional<(Date | Moment)[]>;
+  @Input() disabledDays: Optional<number[]>;
+  @Input() showTime: boolean = false;
+  @Input() responsiveOptions: Optional<$DatePickerResponsiveOptions[]>;
   @Input() numberOfMonths: number = 1;
-  @Input() firstDayOfWeek: number;
+  @Input() firstDayOfWeek: Optional<number>;
   @Input() view: $DatePickerTypeView = 'date';
-  @Input() defaultDate: Date | Moment;
+  @Input() defaultDate: Optional<Date | Moment>;
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onClose = new EventEmitter<AnimationEvent>();
@@ -155,13 +155,13 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   @Output() onYearChange = new EventEmitter<$DatePickerYearChangeEvent>();
   @Output() onClickOutside = new EventEmitter<Event>();
   @Output() onShow = new EventEmitter<AnimationEvent>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   templateMap: Record<string, TemplateRef<any>> = {};
-  ngControl: NgControl;
-  onModelChange: Function = () => {
+  ngControl: Nullable<NgControl> = null;
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -176,12 +176,12 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -194,7 +194,7 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -220,8 +220,8 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
     this.onModelChange(null);
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   writeValue(value: any) {
@@ -229,11 +229,11 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

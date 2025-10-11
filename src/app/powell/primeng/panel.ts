@@ -2,5 +2,5 @@ import {Panel, PanelAfterToggleEvent, PanelBeforeToggleEvent, PanelModule} from 
 
 export {PanelModule as $PanelModule}
 export {Panel as $Panel}
-export {PanelAfterToggleEvent as $PanelAfterToggleEvent}
-export {PanelBeforeToggleEvent as $PanelBeforeToggleEvent}
+export {type PanelAfterToggleEvent as $PanelAfterToggleEvent}
+export {type PanelBeforeToggleEvent as $PanelBeforeToggleEvent}

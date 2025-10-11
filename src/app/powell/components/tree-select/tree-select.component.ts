@@ -70,56 +70,55 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: LabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
-  @Input() style: CssObject;
-  @Input() styleClass: string;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<LabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
+  @Input() style: Optional<CssObject>;
   // native properties
   @Input() inputId: string = $uuid();
   @Input() scrollHeight: string = '400px';
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() metaKeySelection: boolean = false;
-  @Input() variant: InputVariant;
+  @Input() variant: Optional<InputVariant>;
   @Input() display: ChipDisplayMode = 'comma';
   @Input() selectionMode: TreeSelectionMode = 'single';
-  @Input() tabindex: string;
-  @Input() ariaLabel: string;
-  @Input() ariaLabelledBy: string;
-  @Input() placeholder: string;
-  @Input() panelClass: string;
-  @Input() panelStyle: CssObject;
-  @Input() fluid: boolean;
-  @Input() panelStyleClass: string;
-  @Input() containerStyle: CssObject;
-  @Input() containerStyleClass: string;
-  @Input() labelStyle: CssObject;
-  @Input() labelStyleClass: string;
-  @Input() overlayOptions: $OverlayOptions;
-  @Input() emptyMessage: string;
-  @Input() appendTo: any;
+  @Input() tabindex: Optional<string>;
+  @Input() ariaLabel: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
+  @Input() placeholder: Optional<string>;
+  @Input() panelClass: Optional<string>;
+  @Input() panelStyle: Optional<CssObject>;
+  @Input() fluid: boolean = false;
+  @Input() panelStyleClass: Optional<string>;
+  @Input() containerStyle: Optional<CssObject>;
+  @Input() containerStyleClass: Optional<string>;
+  @Input() labelStyle: Optional<CssObject>;
+  @Input() labelStyleClass: Optional<string>;
+  @Input() overlayOptions: Optional<$OverlayOptions>;
+  @Input() emptyMessage: Optional<string>;
+  @Input() appendTo: Optional<any>;
   @Input() filter: boolean = false;
   @Input() filterBy: string = 'label';
   @Input() filterMode: TreeFilterMode = 'lenient';
-  @Input() filterPlaceholder: string;
-  @Input() filterLocale: string;
+  @Input() filterPlaceholder: Optional<string>;
+  @Input() filterLocale: Optional<string>;
   @Input() filterInputAutoFocus: boolean = true;
   @Input() propagateSelectionDown: boolean = true;
   @Input() propagateSelectionUp: boolean = true;
   @Input() showClear: boolean = false;
   @Input() resetFilterOnHide: boolean = true;
   @Input() virtualScroll: boolean = false;
-  @Input() virtualScrollItemSize: number;
-  @Input() size: Size;
-  @Input() virtualScrollOptions: $ScrollerOptions;
+  @Input() virtualScrollItemSize: Optional<number>;
+  @Input() size: Optional<Size>;
+  @Input() virtualScrollOptions: Optional<$ScrollerOptions>;
   @Input() autofocus: boolean = false;
-  @Input() options: $TreeNode<any>[];
+  @Input() options: Optional<$TreeNode<any>[]>;
   @Input() loading: boolean = false;
   @Output() onNodeExpand = new EventEmitter<$TreeSelectNodeExpandEvent>();
   @Output() onNodeCollapse = new EventEmitter<$TreeSelectNodeCollapseEvent>();
@@ -131,13 +130,13 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onNodeUnselect = new EventEmitter<$TreeNodeUnSelectEvent>();
   @Output() onNodeSelect = new EventEmitter<$TreeNodeSelectEvent>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  ngControl: NgControl;
+  ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<any>> = {};
-  onModelChange: Function = () => {
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -152,12 +151,12 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -170,7 +169,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -196,8 +195,8 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
     this.onModelTouched();
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   writeValue(value: any) {
@@ -205,11 +204,11 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

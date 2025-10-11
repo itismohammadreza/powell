@@ -2,4 +2,4 @@ import {RadioButton, RadioButtonClickEvent, RadioButtonModule} from "primeng/rad
 
 export {RadioButtonModule as $RadioButtonModule}
 export {RadioButton as $RadioButton}
-export {RadioButtonClickEvent as $RadioButtonClickEvent}
+export {type RadioButtonClickEvent as $RadioButtonClickEvent}

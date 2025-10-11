@@ -2,5 +2,5 @@ import {Checkbox, CheckboxChangeEvent, CheckboxModule, CheckboxTemplates} from "
 
 export {CheckboxModule as $CheckboxModule}
 export {Checkbox as $Checkbox}
-export {CheckboxTemplates as $CheckboxTemplates}
-export {CheckboxChangeEvent as $CheckboxChangeEvent}
+export {type CheckboxTemplates as $CheckboxTemplates}
+export {type CheckboxChangeEvent as $CheckboxChangeEvent}

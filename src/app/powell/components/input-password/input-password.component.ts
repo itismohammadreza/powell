@@ -49,43 +49,43 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: LabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<LabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
   // native properties
-  @Input() ariaLabel: string;
-  @Input() fluid: boolean;
-  @Input() ariaLabelledBy: string;
-  @Input() disabled: boolean;
-  @Input() promptLabel: string;
+  @Input() ariaLabel: Optional<string>;
+  @Input() fluid: boolean = false;
+  @Input() ariaLabelledBy: Optional<string>;
+  @Input() disabled: boolean = false;
+  @Input() promptLabel: Optional<string>;
   @Input() mediumRegex: string = '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})';
   @Input() strongRegex: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})';
-  @Input() weakLabel: string;
-  @Input() mediumLabel: string;
-  @Input() maxLength: number;
-  @Input() strongLabel: string;
+  @Input() weakLabel: Optional<string>;
+  @Input() mediumLabel: Optional<string>;
+  @Input() maxLength: Optional<number>;
+  @Input() strongLabel: Optional<string>;
   @Input() inputId: string = $uuid();
   @Input() feedback: boolean = true;
-  @Input() appendTo: any;
+  @Input() appendTo: Optional<any>;
   @Input() toggleMask: boolean = false;
-  @Input() size: Size;
-  @Input() inputStyleClass: string;
-  @Input() styleClass: string;
-  @Input() style: CssObject;
-  @Input() inputStyle: CssObject;
+  @Input() size: Optional<Size>;
+  @Input() inputStyleClass: Optional<string>;
+  @Input() styleClass: Optional<string>;
+  @Input() style: Optional<CssObject>;
+  @Input() inputStyle: Optional<CssObject>;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
-  @Input() autocomplete: string;
-  @Input() placeholder: string;
+  @Input() autocomplete: Optional<string>;
+  @Input() placeholder: Optional<string>;
   @Input() showClear: boolean = false;
   @Input() autofocus: boolean = false;
-  @Input() variant: InputVariant;
+  @Input() variant: Optional<InputVariant>;
   @Output() onInput = new EventEmitter<Event>();
   @Output() onChange = new EventEmitter<Event>();
   @Output() onKeyDown = new EventEmitter<KeyboardEvent>();
@@ -93,13 +93,13 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onClear = new EventEmitter<void>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  ngControl: NgControl;
+  ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<any>> = {};
-  onModelChange: Function = () => {
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -114,12 +114,12 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -132,7 +132,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -181,11 +181,11 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

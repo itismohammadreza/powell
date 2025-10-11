@@ -44,37 +44,37 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: FixLabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<FixLabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
   @Input() id: string = $uuid();
   // native properties
   @Input() animate: boolean = false;
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() min: number = 0;
   @Input() max: number = 100;
   @Input() orientation: Orientation = 'horizontal';
-  @Input() step: number;
+  @Input() step: Optional<number>;
   @Input() range: boolean = false;
-  @Input() style: CssObject;
-  @Input() styleClass: string;
-  @Input() ariaLabel: string;
-  @Input() ariaLabelledBy: string;
-  @Input() tabindex: number;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() ariaLabel: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
+  @Input() tabindex: Optional<number>;
   @Input() autofocus: boolean = false;
   @Output() onChange = new EventEmitter<$SliderChangeEvent>();
   @Output() onSlideEnd = new EventEmitter<$SliderSlideEndEvent>();
 
-  ngControl: NgControl;
-  onModelChange: Function = () => {
+  ngControl: Nullable<NgControl> = null;
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -89,12 +89,12 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -107,12 +107,14 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   }
 
   _onChange(event: $SliderChangeEvent) {
-    this.onModelChange(event.value);
+    const value = this.range ? event.values : event.value;
+    this.onModelChange(value);
     this.onChange.emit(event);
   }
 
   _onSlideEnd(event: $SliderSlideEndEvent) {
-    this.onModelChange(event.value);
+    const value = this.range ? event.values : event.value;
+    this.onModelChange(value);
     this.onSlideEnd.emit(event);
   }
 
@@ -121,11 +123,11 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

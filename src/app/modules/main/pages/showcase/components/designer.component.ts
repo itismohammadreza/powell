@@ -8,11 +8,10 @@ import {SelectModule} from "@powell/components/select";
 import {ToggleSwitchModule} from "@powell/components/toggle-switch";
 import {TranslateModule} from "@ngx-translate/core";
 import {lastValueFrom} from "rxjs";
-import {TranslationService} from "@core/utils";
+import {helpers, TranslationService} from "@core/utils";
 
 @Component({
   selector: 'designer',
-  standalone: true,
   imports: [
     SelectButtonModule,
     ButtonModule,
@@ -25,8 +24,8 @@ import {TranslationService} from "@core/utils";
     <div class="mb-4 space-y-2 [&>*]:block">
       <div>Base Theme</div>
       <pw-select-button
-        [ngModel]="config.powellConfig.theme.name"
-        (onChange)="changeGlobalConfig('powellConfig.theme.name', $event.value)"
+        [ngModel]="config.powellConfig.theme.preset"
+        (onChange)="changeGlobalConfig('powellConfig.theme.preset', $event.value)"
         [options]="presets"
         optionLabel="label"
         optionValue="value"
@@ -94,11 +93,11 @@ import {TranslationService} from "@core/utils";
         [options]="[{label:'none',value:null},{label:'small',value:'small'},{label:'large',value:'large'}]"
         (onChange)="changeGlobalConfig('powellConfig.inputSize',$event.value)"/>
       <pw-select
-        [label]="'inputStyle' | translate"
+        [label]="'inputVariant' | translate"
         [fluid]="true"
-        [value]="config.powellConfig.inputStyle"
+        [value]="config.powellConfig.inputVariant"
         [options]="[{label:'outlined',value:'outlined'},{label:'filled',value:'filled'}]"
-        (onChange)="changeGlobalConfig('powellConfig.inputStyle',$event.value)"/>
+        (onChange)="changeGlobalConfig('powellConfig.inputVariant',$event.value)"/>
     </div>
     <div class="space-y-3 [&>*]:block">
       <pw-toggle-switch
@@ -134,7 +133,7 @@ export class DesignerComponent implements OnInit {
   private configService = inject(ConfigService);
 
   config = globalConfig;
-  presets = Object.keys(this.themeService.presets).map(p => ({label: p, value: p}))
+  presets = Object.entries(this.themeService.presets).map(([name, theme]) => ({label: name, value: theme}));
   surfaces = [
     {
       name: 'slate',
@@ -273,98 +272,73 @@ export class DesignerComponent implements OnInit {
       }
     }
   ];
-  primaryColors = [
-    {name: 'noir', palette: {}},
-    {name: 'amber', palette: this.themeService.currentPreset.preset.primitive['amber']},
-    {name: 'blue', palette: this.themeService.currentPreset.preset.primitive['blue']},
-    {name: 'cyan', palette: this.themeService.currentPreset.preset.primitive['cyan']},
-    {name: 'emerald', palette: this.themeService.currentPreset.preset.primitive['emerald']},
-    {name: 'fuchsia', palette: this.themeService.currentPreset.preset.primitive['fuchsia']},
-    {name: 'green', palette: this.themeService.currentPreset.preset.primitive['green']},
-    {name: 'indigo', palette: this.themeService.currentPreset.preset.primitive['indigo']},
-    {name: 'lime', palette: this.themeService.currentPreset.preset.primitive['lime']},
-    {name: 'orange', palette: this.themeService.currentPreset.preset.primitive['orange']},
-    {name: 'pink', palette: this.themeService.currentPreset.preset.primitive['pink']},
-    {name: 'purple', palette: this.themeService.currentPreset.preset.primitive['purple']},
-    {name: 'rose', palette: this.themeService.currentPreset.preset.primitive['rose']},
-    {name: 'sky', palette: this.themeService.currentPreset.preset.primitive['sky']},
-    {name: 'teal', palette: this.themeService.currentPreset.preset.primitive['teal']},
-    {name: 'violet', palette: this.themeService.currentPreset.preset.primitive['violet']},
-    {name: 'yellow', palette: this.themeService.currentPreset.preset.primitive['yellow']},
-  ];
-  selectedPrimaryColor: string;
-  selectedSurfaceColor: string;
+  primaryColors = [];
+  selectedPrimaryColor: string = 'amber';
+  selectedSurfaceColor: string = 'slate';
 
   ngOnInit() {
+    this.updatePrimaryColors();
     this.updateColors(null, 'primary', this.primaryColors[0])
     this.updateColors(null, 'surface', this.surfaces[0])
   }
 
-  getPresetExt() {
-    const color = this.primaryColors.find((c) => c.name === this.selectedPrimaryColor);
-    if (color.name === 'noir') {
-      return {
-        semantic: {
-          primary: {
-            50: '{surface.50}',
-            100: '{surface.100}',
-            200: '{surface.200}',
-            300: '{surface.300}',
-            400: '{surface.400}',
-            500: '{surface.500}',
-            600: '{surface.600}',
-            700: '{surface.700}',
-            800: '{surface.800}',
-            900: '{surface.900}',
-            950: '{surface.950}'
-          },
-          colorScheme: {
-            light: {
-              primary: {
-                color: '{primary.950}',
-                contrastColor: '#ffffff',
-                hoverColor: '{primary.800}',
-                activeColor: '{primary.700}'
-              },
-              highlight: {
-                background: '{primary.950}',
-                focusBackground: '{primary.700}',
-                color: '#ffffff',
-                focusColor: '#ffffff'
-              }
-            },
-            dark: {
-              primary: {
-                color: '{primary.50}',
-                contrastColor: '{primary.950}',
-                hoverColor: '{primary.200}',
-                activeColor: '{primary.300}'
-              },
-              highlight: {
-                background: '{primary.50}',
-                focusBackground: '{primary.300}',
-                color: '{primary.950}',
-                focusColor: '{primary.950}'
-              }
-            }
-          }
-        }
-      };
-    } else {
-      if (this.themeService.currentPreset.name === 'Nora') {
-        return {
+  updatePrimaryColors() {
+    this.primaryColors = [{name: 'noir', palette: {}}];
+    [
+      'amber',
+      'blue',
+      'cyan',
+      'emerald',
+      'fuchsia',
+      'green',
+      'indigo',
+      'lime',
+      'orange',
+      'pink',
+      'purple',
+      'rose',
+      'sky',
+      'teal',
+      'violet',
+      'yellow'
+    ].forEach(color => {
+      this.primaryColors.push({
+        name: color,
+        palette: this.themeService.currentPreset.preset['primitive'][color]
+      });
+    })
+  }
+
+  updateColors(event: any, type: 'primary' | 'surface', color: any) {
+    if (type === 'primary') {
+      this.selectedPrimaryColor = color.name;
+      let preset: SafeAny;
+      if (color.name === 'noir') {
+        preset = {
           semantic: {
-            primary: color.palette,
+            primary: {
+              50: '{surface.50}',
+              100: '{surface.100}',
+              200: '{surface.200}',
+              300: '{surface.300}',
+              400: '{surface.400}',
+              500: '{surface.500}',
+              600: '{surface.600}',
+              700: '{surface.700}',
+              800: '{surface.800}',
+              900: '{surface.900}',
+              950: '{surface.950}'
+            },
             colorScheme: {
               light: {
                 primary: {
-                  color: '{primary.600}',
+                  color: '{primary.950}',
                   contrastColor: '#ffffff',
-                  hoverColor: '{primary.700}',
-                  activeColor: '{primary.800}'
+                  hoverColor: '{primary.800}',
+                  activeColor: '{primary.700}'
                 },
                 highlight: {
-                  background: '{primary.600}',
+                  background: '{primary.950}',
                   focusBackground: '{primary.700}',
                   color: '#ffffff',
                   focusColor: '#ffffff'
@@ -372,59 +346,23 @@ export class DesignerComponent implements OnInit {
               },
               dark: {
                 primary: {
-                  color: '{primary.500}',
-                  contrastColor: '{surface.900}',
-                  hoverColor: '{primary.400}',
+                  color: '{primary.50}',
+                  contrastColor: '{primary.950}',
+                  hoverColor: '{primary.200}',
                   activeColor: '{primary.300}'
                 },
                 highlight: {
-                  background: '{primary.500}',
-                  focusBackground: '{primary.400}',
-                  color: '{surface.900}',
-                  focusColor: '{surface.900}'
+                  background: '{primary.50}',
+                  focusBackground: '{primary.300}',
+                  color: '{primary.950}',
+                  focusColor: '{primary.950}'
                 }
               }
             }
           }
-        };
-      } else if (this.themeService.currentPreset.name === 'Material') {
-        return {
-          semantic: {
-            primary: color.palette,
-            colorScheme: {
-              light: {
-                primary: {
-                  color: '{primary.500}',
-                  contrastColor: '#ffffff',
-                  hoverColor: '{primary.400}',
-                  activeColor: '{primary.300}'
-                },
-                highlight: {
-                  background: 'color-mix(in srgb, {primary.color}, transparent 88%)',
-                  focusBackground: 'color-mix(in srgb, {primary.color}, transparent 76%)',
-                  color: '{primary.700}',
-                  focusColor: '{primary.800}'
-                }
-              },
-              dark: {
-                primary: {
-                  color: '{primary.400}',
-                  contrastColor: '{surface.900}',
-                  hoverColor: '{primary.300}',
-                  activeColor: '{primary.200}'
-                },
-                highlight: {
-                  background: 'color-mix(in srgb, {primary.400}, transparent 84%)',
-                  focusBackground: 'color-mix(in srgb, {primary.400}, transparent 76%)',
-                  color: 'rgba(255,255,255,.87)',
-                  focusColor: 'rgba(255,255,255,.87)'
-                }
-              }
-            }
-          }
-        };
+        }
       } else {
-        return {
+        preset = {
           semantic: {
             primary: color.palette,
             colorScheme: {
@@ -460,19 +398,14 @@ export class DesignerComponent implements OnInit {
           }
         };
       }
-    }
-  }
-
-  updateColors(event: any, type: string, color: any) {
-    if (type === 'primary') {
-      this.selectedPrimaryColor = color.name;
+      this.themeService.updatePreset(preset);
     } else if (type === 'surface') {
       this.selectedSurfaceColor = color.name;
-    }
-    if (type === 'primary') {
-      this.configService.update({theme: {preset: this.getPresetExt()}})
-    } else if (type === 'surface') {
-      this.themeService.updateSurfacePalette(color.palette);
+      this.configService.update({
+        theme: {
+          surfacePalette: color.palette,
+        }
+      })
     }
     event?.stopPropagation();
   }
@@ -484,38 +417,32 @@ export class DesignerComponent implements OnInit {
       case 'lang':
         lastValueFrom(this.translationService.use(value));
         break;
-      case 'theme.name':
-        const preset = this.getPresetExt();
-        this.configService.update({theme: {name: value}});
-        this.configService.update({theme: {preset}});
-        this.setFieldValue(this.config, 'powellConfig.theme.preset', preset);
+      case 'theme.preset':
+        if (this.selectedPrimaryColor === 'noir') {
+          this.configService.update({theme: {preset: value}});
+          this.updateColors(null, 'primary', this.primaryColors[0]);
+        } else {
+          const primaryPalette = this.themeService.currentPreset.preset['primitive'][this.selectedPrimaryColor];
+          const surfacePalette = this.surfaces.find(s => s.name === this.selectedSurfaceColor).palette;
+          this.configService.update({
+            theme: {
+              preset: value,
+              primaryPalette,
+              surfacePalette
+            }
+          });
+        }
+        this.updatePrimaryColors();
+        helpers.setFieldValue(this.config, 'powellConfig.theme.preset', value);
         break;
       case 'theme.mode':
         this.configService.update({theme: {mode: value}});
         break;
       default:
-        const nested = this.buildObject(cleanPath, value);
+        const nested = helpers.buildObjectFromPath(cleanPath, value);
         this.configService.update(nested);
         break;
     }
-    this.setFieldValue(this.config, configPath, value);
-  }
-
-  setFieldValue(obj: any, path: string, value: any) {
-    const keys = path.split('.');
-    let current = obj;
-
-    for (let i = 0; i < keys.length - 1; i++) {
-      const key = keys[i];
-      if (!(key in current) || typeof current[key] !== 'object') {
-        current[key] = {};
-      }
-      current = current[key];
-    }
-    current[keys[keys.length - 1]] = value;
-  }
-
-  buildObject(path: string, value: any) {
-    return path.split('.').reverse().reduce((acc, key) => ({[key]: acc}), value);
+    helpers.setFieldValue(this.config, configPath, value);
   }
 }

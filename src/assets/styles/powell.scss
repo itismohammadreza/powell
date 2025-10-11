@@ -268,6 +268,12 @@ pw-cascade-select {
 }
 
 pw-checkbox {
+  pw-form-field .form-field-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .checkbox-inner-wrapper {
     display: flex;
     align-items: center;
@@ -285,7 +291,7 @@ pw-checkbox {
 pw-checkbox-group {
   .checkbox-group-wrapper {
     .form-field-wrapper .field-wrapper {
-      align-items: flex-start;
+      align-items: flex-start !important;
     }
 
     .field {
@@ -335,6 +341,16 @@ pw-color-picker {
 
 pw-datepicker {
   .datepicker-wrapper {
+    .p-datepicker-header {
+      direction: ltr;
+    }
+
+    &:dir(rtl) {
+      .p-datepicker-panel {
+        inset-inline-start: 0 !important;
+      }
+    }
+
     &.is-jalali {
       .p-datepicker-day-view,
       .p-datepicker-month-view,
@@ -1851,22 +1867,20 @@ pw-tree-select {
 }
 
 pw-dialog-form {
-  .dialog-form-wrapper {
-    form {
-      > *:not(:last-child) {
-        display: block;
-        margin-bottom: 0.75rem;
-      }
+  form {
+    > *:not(:last-child) {
+      display: block;
+      margin-bottom: 0.75rem;
     }
+  }
 
-    .footer {
-      gap: 0.75rem;
-      display: flex;
-      align-items: center;
+  .footer {
+    gap: 0.75rem;
+    display: flex;
+    align-items: center;
 
-      button {
-        margin: 0;
-      }
+    button {
+      margin: 0;
     }
   }
 }
@@ -1904,7 +1918,7 @@ pw-dialog-form {
 
 .p-floatlabel,
 .p-iftalabel {
-  display: inline-block;
+  display: inline-block !important;
 
   label {
     z-index: 10;

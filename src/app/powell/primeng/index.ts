@@ -5,6 +5,7 @@ export * from './auto-complete';
 export * from './auto-focus';
 export * from './avatar';
 export * from './badge';
+export * from './base-input';
 export * from './block-ui';
 export * from './breadcrumb';
 export * from './button';

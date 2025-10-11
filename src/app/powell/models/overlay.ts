@@ -1,5 +1,5 @@
-import {HttpHeaders} from '@angular/common/http';
-import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
+import { HttpHeaders } from '@angular/common/http';
+import { AbstractControl, FormGroup, ValidatorFn } from '@angular/forms';
 import {
   AutoCompleteDropdownMode,
   ButtonAppearance,
@@ -39,15 +39,15 @@ import {
   TreeSelectionMode,
   ValidationType
 } from '@powell/models';
-import {SunEditorOptions} from "suneditor/src/options";
-import {Core} from "suneditor/src/lib/core";
-import {LatLng, LatLngBounds} from "leaflet";
-import {$Confirmation, $ContextMenu, $ScrollerOptions, $ToastMessageOptions, $ToastPositionType} from "@powell/primeng";
-import {TemplateRef} from "@angular/core";
-import {Moment} from "jalali-moment";
+import { SunEditorOptions } from "suneditor/src/options";
+import { Core } from "suneditor/src/lib/core";
+import { LatLng, LatLngBounds } from "leaflet";
+import { $Confirmation, $ContextMenu, $ScrollerOptions, $ToastMessageOptions, $ToastPositionType } from "@powell/primeng";
+import { TemplateRef } from "@angular/core";
+import { Moment } from "jalali-moment";
 
 export type DefaultFocus = 'accept' | 'reject';
-export type HistoricComponent = 'confirmDialog' | 'confirmPopup' | 'dialog' | 'dialogForm' | 'bottomSheet';
+export type HistoricComponent = 'confirmDialog' | 'confirmPopup' | 'dialog' | 'dialogForm' | 'dialogForm2' | 'bottomSheet';
 
 export type DialogPosition =
   | 'top'
@@ -618,7 +618,7 @@ export interface DialogFormConfig {
   virtualScrollItemSize?: number;
   virtualScrollOptions?: $ScrollerOptions;
   lazy?: boolean;
-  trackBy?: Function;
+  trackBy?: Fn;
   indentation?: number;
   onNodeContextMenuSelect?: (dialogFormEvent?: DialogFormEvent) => void;
   onNodeDrop?: (dialogFormEvent?: DialogFormEvent) => void;

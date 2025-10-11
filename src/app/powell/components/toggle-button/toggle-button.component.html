@@ -15,7 +15,7 @@
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-toggleButton
         [(ngModel)]="value"
-        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid }"
+        [invalid]="isInvalid"
         [onLabel]="onLabel"
         [offLabel]="offLabel"
         [onIcon]="onIcon"
@@ -26,7 +26,7 @@
         [style]="style"
         [styleClass]="styleClass"
         [tabindex]="tabindex"
-        [size]="size"
+        [size]="$any(size)"
         [iconPos]="iconPos"
         [autofocus]="autofocus"
         [allowEmpty]="allowEmpty"

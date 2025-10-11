@@ -32,16 +32,16 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
   private destroy$ = inject(DestroyService);
   private configService = inject(ConfigService);
 
-  @Input() rtl: boolean;
-  @Input() followConfig: boolean;
+  @Input() rtl: boolean = false;
+  @Input() followConfig: boolean = false;
   // native properties
-  @Input() items: $MenuItem[];
-  @Input() style: CssObject;
-  @Input() styleClass: string;
-  @Input() home: $MenuItem;
-  @Input() homeAriaLabel: string;
+  @Input() items: Optional<$MenuItem[]>;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() home: Optional<$MenuItem>;
+  @Input() homeAriaLabel: Optional<string>;
   @Output() onItemClick = new EventEmitter<$BreadcrumbItemClickEvent>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   _breadcrumbs$ = new BehaviorSubject<$MenuItem[]>([]);
   breadcrumbs$ = this._breadcrumbs$.asObservable();
@@ -62,16 +62,16 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
   }
 
-  addBreadcrumb(route: ActivatedRouteSnapshot, parentUrl: string[], breadcrumbs: $MenuItem[]) {
+  addBreadcrumb(route: Nullable<ActivatedRouteSnapshot>, parentUrl: string[], breadcrumbs: $MenuItem[]) {
     if (route) {
       const routeUrl = parentUrl.concat(route.url.map(url => url.path));
-      if (route.data.breadcrumb) {
+      if (route.data['breadcrumb']) {
         const breadcrumb = {
           label: this.getLabel(route.data),
           routerLink: '/' + routeUrl.join('/')
@@ -83,7 +83,7 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
   }
 
   getLabel(data: Data) {
-    return typeof data.breadcrumb === 'function' ? data.breadcrumb(data) : data.breadcrumb;
+    return typeof data['breadcrumb'] === 'function' ? data['breadcrumb'](data) : data['breadcrumb'];
   }
 
   _onItemClick(event: $BreadcrumbItemClickEvent) {

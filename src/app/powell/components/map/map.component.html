@@ -26,11 +26,11 @@
             size="small"
             (click)="clearMap()">
             <ng-template pwTemplate="icon">
-              @if (!clearIcon && !templateMap.clearicon) {
-                <TrashIcon/>
+              @if (!clearIcon && !templateMap['clearicon']) {
+                <svg data-p-icon="trash"/>
               }
-              @if (!clearIcon && templateMap.clearicon) {
-                <ng-template *ngTemplateOutlet="templateMap.clearicon"/>
+              @if (!clearIcon && templateMap['clearicon']) {
+                <ng-template *ngTemplateOutlet="templateMap['clearicon']"/>
               }
             </ng-template>
           </pw-button>

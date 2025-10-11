@@ -9,7 +9,7 @@ import {
 
 export {OrderListModule as $OrderListModule}
 export {OrderList as $OrderList}
-export {OrderListTemplates as $OrderListTemplates}
-export {OrderListFilterEvent as $OrderListFilterEvent}
-export {OrderListFilterOptions as $OrderListFilterOptions}
-export {OrderListSelectionChangeEvent as $OrderListSelectionChangeEvent}
+export {type OrderListTemplates as $OrderListTemplates}
+export {type OrderListFilterEvent as $OrderListFilterEvent}
+export {type OrderListFilterOptions as $OrderListFilterOptions}
+export {type OrderListSelectionChangeEvent as $OrderListSelectionChangeEvent}

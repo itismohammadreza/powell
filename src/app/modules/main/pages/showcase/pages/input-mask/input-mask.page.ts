@@ -31,7 +31,7 @@ export class InputMaskPage extends PreviewBase {
     {field: 'placeholder', value: ''},
     {field: 'size', selectOptions: 'sizes', value: this.config.inputSize},
     {field: 'maxlength', value: 100},
-    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputVariant},
     {field: 'disabled', value: false},
     {field: 'readonly', value: false},
     {field: 'unmask', value: false},

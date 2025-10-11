@@ -29,6 +29,6 @@ export class SliderPage extends PreviewBase {
     {field: 'max', value: 100},
     {field: 'orientation', selectOptions: 'orientations', value: 'horizontal'},
     {field: 'step', value: 1},
-    {field: 'range', value: false},
+    {field: 'range', value: true},
   ];
 }

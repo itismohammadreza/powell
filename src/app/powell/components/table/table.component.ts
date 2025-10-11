@@ -64,36 +64,36 @@ import {ConfigService} from "@powell/api";
 export class TableComponent implements OnInit, AfterContentInit {
   private configService = inject(ConfigService);
 
-  @Input({required: true}) items: any[];
+  @Input() items: any[] = [];
   @Input() filterDisplay: TableFilterDisplay = 'menu';
-  @Input({required: true}) colDef: TableColDef[];
-  @Input() reorderableRows: boolean;
-  @Input() selectableRows: boolean;
-  @Input() actionsConfig: TableActionsConfig;
-  @Input() rtl: boolean;
-  @Input() emptyMessage: string;
-  @Input() emptyIcon: string;
-  @Input() emptyImageSrc: string;
+  @Input() colDef: TableColDef[] = [];
+  @Input() reorderableRows: boolean = false;
+  @Input() selectableRows: boolean = false;
+  @Input() actionsConfig: Optional<TableActionsConfig>;
+  @Input() rtl: boolean = false;
+  @Input() emptyMessage: Optional<string>;
+  @Input() emptyIcon: Optional<string>;
+  @Input() emptyImageSrc: Optional<string>;
   @Input() emptyImageType: EmptyIcon = 'box1';
-  @Input() header: string;
-  @Input() globalFilter: boolean;
-  @Input() globalFilterPlaceholder: string;
-  @Input() followConfig: boolean;
-  @Input() showSelectionIndicator: boolean;
+  @Input() header: Optional<string>;
+  @Input() globalFilter: boolean = false;
+  @Input() globalFilterPlaceholder: Optional<string>;
+  @Input() followConfig: boolean = false;
+  @Input() showSelectionIndicator: boolean = false;
   // native properties
-  @Input() frozenColumns: any[];
-  @Input() frozenValue: any[];
-  @Input() style: CssObject;
-  @Input() styleClass: string;
-  @Input() tableStyle: CssObject;
-  @Input() tableStyleClass: string;
+  @Input() frozenColumns: Optional<any[]>;
+  @Input() frozenValue: Optional<any[]>;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() tableStyle: Optional<CssObject>;
+  @Input() tableStyleClass: Optional<string>;
   @Input() paginator: boolean = false;
   @Input() pageLinks: number = 5;
-  @Input() rowsPerPageOptions: any[];
+  @Input() rowsPerPageOptions: Optional<any[]>;
   @Input() alwaysShowPaginator: boolean = true;
   @Input() paginatorPosition: TablePaginationPosition = 'bottom';
-  @Input() paginatorStyleClass: string;
-  @Input() paginatorDropdownAppendTo: any;
+  @Input() paginatorStyleClass: Optional<string>;
+  @Input() paginatorDropdownAppendTo: Optional<any>;
   @Input() paginatorDropdownScrollHeight: string = '200px';
   @Input() currentPageReportTemplate: string = '{currentPage} of {totalPages}';
   @Input() showCurrentPageReport: boolean = false;
@@ -104,63 +104,63 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() defaultSortOrder: number = 1;
   @Input() sortMode: TableSortMode = 'single';
   @Input() resetPageOnSort: boolean = true;
-  @Input() selectionMode: TableSelectionMode;
+  @Input() selectionMode: Optional<TableSelectionMode>;
   @Input() selectionPageOnly: boolean = false;
-  @Input() contextMenuSelection: any;
+  @Input() contextMenuSelection: Optional<any>;
   @Input() contextMenuSelectionMode: TableContextMenuSelectionMode = 'separate';
-  @Input() dataKey: string;
+  @Input() dataKey: Optional<string>;
   @Input() metaKeySelection: boolean = false;
-  @Input() rowSelectable: any;
-  @Input() rowTrackBy: Function;
+  @Input() rowSelectable: Optional<any>;
+  @Input() rowTrackBy: Optional<Fn>;
   @Input() lazy: boolean = false;
   @Input() lazyLoadOnInit: boolean = true;
   @Input() compareSelectionBy: TableCompareSelectionBy = 'deepEquals';
   @Input() csvSeparator: string = ',';
   @Input() exportFilename: string = 'download';
   @Input() filters: TableFilters = {};
-  @Input() globalFilterFields: string[];
+  @Input() globalFilterFields: Optional<string[]>;
   @Input() filterDelay: number = 300;
-  @Input() filterLocale: string;
+  @Input() filterLocale: Optional<string>;
   @Input() expandedRowKeys: Record<string, boolean> = {};
   @Input() rowExpandMode: TableRowExpandMode = 'multiple';
   @Input() scrollable: boolean = false;
-  @Input() rowGroupMode: TableRowGroupMode;
-  @Input() scrollHeight: string;
+  @Input() rowGroupMode: Optional<TableRowGroupMode>;
+  @Input() scrollHeight: Optional<string>;
   @Input() virtualScroll: boolean = false;
-  @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: $ScrollerOptions;
+  @Input() virtualScrollItemSize: Optional<number>;
+  @Input() virtualScrollOptions: Optional<$ScrollerOptions>;
   @Input() virtualScrollDelay: number = 250;
-  @Input() frozenWidth: string;
-  @Input() contextMenu: any;
+  @Input() frozenWidth: Optional<string>;
+  @Input() contextMenu: Optional<any>;
   @Input() resizableColumns: boolean = false;
   @Input() columnResizeMode: TableColumnResizeMode = 'fit';
   @Input() reorderableColumns: boolean = false;
-  @Input() loadingIcon: string;
+  @Input() loadingIcon: Optional<string>;
   @Input() showLoader: boolean = true;
   @Input() rowHover: boolean = false;
   @Input() customSort: boolean = false;
   @Input() showInitialSortBadge: boolean = true;
   @Input() autoLayout: boolean = false;
-  @Input() exportFunction: Function;
-  @Input() exportHeader: string;
-  @Input() stateKey: string;
+  @Input() exportFunction: Optional<Fn>;
+  @Input() exportHeader: Optional<string>;
+  @Input() stateKey: Optional<string>;
   @Input() stateStorage: TableStateStorage = 'session';
-  @Input() groupRowsBy: any;
-  @Input() size: Size;
+  @Input() groupRowsBy: Optional<any>;
+  @Input() size: Optional<Size>;
   @Input() showGridlines: boolean = true;
-  @Input() stripedRows: boolean;
+  @Input() stripedRows: boolean = false;
   @Input() groupRowsByOrder: number = 1;
   @Input() responsiveLayout: TableResponsiveLayout = 'scroll';
   @Input() breakpoint: string = '640px';
-  @Input() paginatorLocale: string;
+  @Input() paginatorLocale: Optional<string>;
   @Input() first: number = 0;
-  @Input() rows: number;
-  @Input() totalRecords: number;
-  @Input() sortField: string;
-  @Input() sortOrder: number;
-  @Input() multiSortMeta: $SortMeta[];
-  @Input() selection: any;
-  @Input() selectAll: boolean = null;
+  @Input() rows: Optional<number>;
+  @Input() totalRecords: Optional<number>;
+  @Input() sortField: Optional<string>;
+  @Input() sortOrder: Optional<number>;
+  @Input() multiSortMeta: Optional<$SortMeta[]>;
+  @Input() selection: Optional<any>;
+  @Input() selectAll: Nullable<boolean> = null;
   @Output() contextMenuSelectionChange = new EventEmitter<$TableContextMenuSelectionChangeEvent>();
   @Output() selectAllChange = new EventEmitter<$TableSelectAllChangeEvent>();
   @Output() selectionChange = new EventEmitter<any>();
@@ -183,18 +183,20 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Output() onStateSave = new EventEmitter<$TableState>();
   @Output() onStateRestore = new EventEmitter<$TableState>();
   @Output() onTableReady = new EventEmitter<$Table>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
-  @ViewChild('dataTable', {static: true}) dataTable: $Table;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
+  @ViewChild('dataTable', {static: true}) dataTable!: $Table;
 
   cellTemplates: Record<string, TemplateRef<any>> = {}
 
-  loading: boolean;
+  loading: boolean = false;
   templateMap: Record<string, TemplateRef<any>> = {};
-  activeSortField: string;
+  activeSortField: Optional<string>;
 
   ngOnInit() {
     this.onTableReady.emit(this.dataTable);
-    this.actionsConfig.actions = this.actionsConfig?.actions.filter(action => action.visible ?? true) || [];
+    if (this.actionsConfig) {
+      this.actionsConfig.actions = this.actionsConfig.actions.filter(action => action.visible ?? true) || [];
+    }
     this.colDef = this.colDef.filter(col => col.visible ?? true);
     this.colDef.forEach(conf => {
       if (conf.filter?.type == 'slider') {
@@ -207,9 +209,9 @@ export class TableComponent implements OnInit, AfterContentInit {
   _onSort(event: $TableSortEvent) {
     if (this.sortMode == 'multiple') {
       if (event.multisortmeta?.length > 1) {
-        this.activeSortField = null;
+        this.activeSortField = undefined;
       } else {
-        this.activeSortField = event.multisortmeta?.map(sortMeta => sortMeta.field)[0];
+        this.activeSortField = event.multisortmeta?.map((sortMeta: SafeAny) => sortMeta.field)[0];
       }
     } else {
       this.activeSortField = event.field;
@@ -219,7 +221,7 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   onResetSort(event: Event) {
     event.stopPropagation();
-    this.activeSortField = null;
+    this.activeSortField = undefined;
     this.dataTable.reset();
     this.dataTable._sortOrder = 1;
     this.dataTable._sortField = this.sortField || 'id';
@@ -227,7 +229,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       const templates = [
         'caption',
@@ -271,8 +273,8 @@ export class TableComponent implements OnInit, AfterContentInit {
     });
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   _onLazyLoad(event: $TableLazyLoadEvent) {
@@ -305,7 +307,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     this.contextMenuSelectionChange.emit(this.contextMenuSelection);
   }
 
-  resolveFieldData(obj: any, field: string | string[], value?: any) {
+  resolveFieldData(obj: any, field: string | string[], value?: any): SafeAny {
     if (typeof field == 'string') {
       return this.resolveFieldData(obj, field.split('.'), value);
     } else if (field.length == 1 && value !== undefined) {
@@ -317,9 +319,9 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  onChangeFilterValue(event: any, filterCallback: Function, col: TableColDef) {
+  onChangeFilterValue(event: any, filterCallback: Fn, col: TableColDef) {
     let filterValue;
-    switch (col.filter.type) {
+    switch (col.filter?.type) {
       case 'text':
         const inputElement = event.target as HTMLInputElement;
         filterValue = inputElement.value;
@@ -345,7 +347,10 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  handleCellStyleClass(cellStyleClass: Function | string, item: any) {
+  handleCellStyleClass(cellStyleClass: Fn | string, item: any) {
+    if (!cellStyleClass) {
+      return '';
+    }
     if (typeof cellStyleClass == 'function')
       return cellStyleClass(item);
     else {
@@ -353,7 +358,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  handleCellStyle(cellStyle: Function | CssObject, item: any) {
+  handleCellStyle(cellStyle: Fn | CssObject, item: any) {
     if (typeof cellStyle == 'function')
       return cellStyle(item);
     else {
@@ -365,7 +370,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     if (col.render && typeof col.render == 'function')
       return col.render(item);
     else {
-      return this.resolveFieldData(item, col.field)
+      return this.resolveFieldData(item, col.field as string);
     }
   }
 
@@ -385,7 +390,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   removeLoading = (ok: boolean = true) => {
     this.loading = false
     if (!ok) {
-      this.activeSortField = null
+      this.activeSortField = undefined;
     }
   }
 }

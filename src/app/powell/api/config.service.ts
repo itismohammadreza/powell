@@ -1,8 +1,12 @@
-import {inject, Injectable, isSignal, Signal} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Subject} from "rxjs";
-import {Config, ConfigChangeEvent, InitialConfig} from "@powell/models";
+import {Config, ConfigChangeEvent} from "@powell/models";
 import {ThemeService} from "@powell/api";
 import {$PrimeNG} from "@powell/primeng";
+
+type InServiceConfigType = Omit<Config, "theme" | "platformId" | "csp"> & {
+  theme?: Omit<Config["theme"], "options">;
+}
 
 // DON'T provide anywhere. will provide automatically after `providePowell` call.
 @Injectable()
@@ -11,8 +15,7 @@ export class ConfigService {
   private themeService = inject(ThemeService);
   private _config: Partial<Config> = {};
   private configChangeSubject = new Subject<ConfigChangeEvent>();
-  private initialized: boolean = false;
-  private registeredComponents: {component: any; isFixLabel: boolean}[] = [];
+  private registeredComponents: {component: SafeAny; isFixLabel: boolean}[] = [];
   configChange$ = this.configChangeSubject.asObservable();
 
   constructor() {
@@ -27,17 +30,16 @@ export class ConfigService {
     });
   }
 
-  update(config: Config) {
+  update(config: InServiceConfigType) {
     this.handleConfigChanges(config);
     this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
-    this.initialized = true;
   }
 
   get() {
     return this._config;
   }
 
-  configureComponent(component: any, isFixLabel?: boolean) {
+  configureComponent(component: any, isFixLabel: boolean = false) {
     this.registeredComponents.push({component, isFixLabel});
     this.syncComponentWithConfig(component, isFixLabel, this._config, false);
     const destroySubscription = component.destroy$?.subscribe(() => {
@@ -47,8 +49,8 @@ export class ConfigService {
   }
 
   private syncComponentWithConfig(component: any, isFixLabel: boolean, config: Partial<Config>, forceApply: boolean) {
-    Object.entries(config).forEach(([key, value]: [key: keyof Config, value: any]) => {
-      let componentKey = this.getComponentConfigKey(key);
+    Object.entries(config).forEach(([key, value]) => {
+      let componentKey = this.getComponentConfigKey(key as keyof Config);
       if (!(componentKey in component)) {
         return;
       }
@@ -70,30 +72,42 @@ export class ConfigService {
     })
   }
 
-  private handleConfigChanges(config: InitialConfig) {
+  private handleConfigChanges(config: InServiceConfigType) {
     this._config = {...this._config, ...config};
-    for (const key in config) {
-      if (key in this.primeNG && isSignal(this.primeNG[key] as Signal<any>)) {
-        if (key === 'theme') {
-          const theme = config.theme;
-          if (!this.initialized) {
-            const convertedTheme = {
-              preset: theme.name ? this.themeService.presets[theme.name] : theme.preset,
-              options: {
-                ...config.themeOptions,
-                darkModeSelector: this.themeService.darkModeSelector
-              }
-            }
-            this.primeNG.theme.set(convertedTheme);
-          }
-          this.themeService.usePreset(theme);
-        } else if (key === 'translation') {
-          this.primeNG.setTranslation(config.translation);
-        } else {
-          this.primeNG[key].set(config[key]);
+    for (const k in config) {
+      const key = k as keyof typeof this.primeNG & keyof Config;
+      if ([
+        'ripple',
+        'overlayAppendTo',
+        'inputVariant',
+        'csp',
+        'overlayOptions',
+        'translation',
+        'zIndex',
+        'filterMatchModeOptions',
+      ].includes(key)) {
+        this.primeNG.setConfig({
+          [key]: config[key]
+        })
+      }
+      if (key === 'theme') {
+        const {mode, preset, surfacePalette, primaryPalette} = config.theme;
+        if (preset) {
+          this.themeService.usePreset(preset);
         }
-      } else if (key in this.primeNG) {
-        this.primeNG[key] = config[key];
+        if (mode) {
+          this.themeService.updateMode(mode);
+        }
+        if (primaryPalette) {
+          setTimeout(() => {
+            this.themeService.updatePrimaryPalette(primaryPalette);
+          })
+        }
+        if (surfacePalette) {
+          setTimeout(() => {
+            this.themeService.updateSurfacePalette(surfacePalette);
+          })
+        }
       }
     }
     this.themeService.applyConfigToDom({...config, injectDirectionToRoot: this._config.injectDirectionToRoot});
@@ -101,7 +115,7 @@ export class ConfigService {
 
   private getComponentConfigKey(key: keyof Config) {
     if (key === 'fixLabelPosition') return 'labelPosition';
-    if (key === 'inputStyle') return 'variant';
+    if (key === 'inputVariant') return 'variant';
     return key;
   }
 
@@ -111,25 +125,35 @@ export class ConfigService {
 
   private initializeDefaultConfig() {
     // set default ripple to true, so 'ink' element will present in rippleable elements.
-    this.primeNG.ripple.set(true);
+    this.primeNG.setConfig({
+      ripple: true,
+    });
 
-    // add default primeng config to our config object
-    for (const key in this.primeNG) {
-      if (isSignal(this.primeNG[key])) {
-        this._config[key] = this.primeNG[key]();
-      } else {
-        this._config[key] = this.primeNG[key];
-      }
-    }
-    // and add other default config of our app
     this._config = {
-      ...this._config,
+      // PrimeNG configs
+      csp: this.primeNG.csp(),
+      filterMatchModeOptions: this.primeNG.filterMatchModeOptions,
+      getTranslation: this.primeNG.getTranslation,
+      injectDirectionToRoot: true,
+      inputSize: undefined,
+      inputVariant: this.primeNG.inputVariant(),
+      overlayAppendTo: this.primeNG.overlayAppendTo(),
+      overlayOptions: this.primeNG.overlayOptions,
+      platformId: this.primeNG.platformId,
+      ripple: true,
+      translation: this.primeNG.translation,
+      zIndex: this.primeNG.zIndex,
+      setTranslation: this.primeNG.setTranslation,
+      // non-PrimeNG configs
       followConfig: true,
       rtl: false,
       fixLabelPosition: 'side',
       labelPosition: 'side',
       showRequiredStar: true,
-      theme: this.themeService.currentPreset
+      theme: {
+        preset: this.themeService.presets['Aura'],
+        mode: 'system',
+      }
     }
   }
 }

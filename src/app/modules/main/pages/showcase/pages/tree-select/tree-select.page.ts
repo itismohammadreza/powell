@@ -25,7 +25,7 @@ export class TreeSelectPage extends PreviewBase {
     {field: 'additions', selectOptions: 'additions', value: 'none'},
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'disabled', value: false},
-    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputVariant},
     {field: 'display', selectOptions: 'displayTypes', value: 'comma'},
     {field: 'selectionMode', selectOptions: 'selectionModes', value: 'single'},
     {field: 'placeholder', value: ''},

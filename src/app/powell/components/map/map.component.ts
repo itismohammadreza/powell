@@ -70,34 +70,34 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: LatLngLiteral | LatLngLiteral[];
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: FixLabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
-  @Input() disabled: boolean;
+  @Input() value: Optional<LatLngLiteral | LatLngLiteral[]>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<FixLabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
+  @Input() disabled: boolean = false;
   @Input() multiple: boolean = true;
   @Input() clearMarkerOnClick: boolean = true;
-  @Input() showClear: boolean;
-  @Input() clearTooltip: string;
-  @Input() clearIcon: string;
-  @Input() selectionLimit: number;
+  @Input() showClear: boolean = false;
+  @Input() clearTooltip: Optional<string>;
+  @Input() clearIcon: Optional<string>;
+  @Input() selectionLimit: Optional<number>;
   @Input() id: string = $uuid();
-  @Input() style: CssObject;
-  @Input() styleClass: string;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
   // native properties
   @Input() zoom: number = 10;
   @Input() center: LatLng = latLng(35.68419775656676, 51.38983726501465);
   @Input() height: string = '50vh';
-  @Input() readonly: boolean;
+  @Input() readonly: boolean = false;
   @Input() leafletMinZoom: number = 3;
   @Input() leafletMaxZoom: number = 18;
-  @Input() leafletFitBounds: LatLngBounds;
-  @Input() leafletMaxBounds: LatLngBounds;
+  @Input() leafletFitBounds: Optional<LatLngBounds>;
+  @Input() leafletMaxBounds: Optional<LatLngBounds>;
   @Input() zoomOptions: ZoomOptions = {animate: undefined};
   @Input() panOptions: PanOptions = {
     animate: undefined,
@@ -112,7 +112,6 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     noMoveStart: false
   };
   @Input() fitBoundsOptions: FitBoundsOptions = {
-    maxZoom: null,
     animate: undefined,
     duration: 0.25,
     easeLinearity: 0.25,
@@ -134,7 +133,6 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     doubleClickZoom: true,
     dragging: true,
     crs: CRS.EPSG3857,
-    maxBounds: null,
     zoomAnimation: true,
     zoomAnimationThreshold: 4,
     fadeAnimation: true,
@@ -169,15 +167,15 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Output() onMapZoomStart = new EventEmitter<LeafletEvent>();
   @Output() onMapZoomEnd = new EventEmitter<LeafletEvent>();
   @Output() onClear = new EventEmitter<void>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   templateMap: Record<string, TemplateRef<any>> = {};
-  ngControl: NgControl;
-  map: Map;
+  ngControl: Nullable<NgControl> = null;
+  map!: Map;
   layers: Layer[] = [];
-  onModelChange: Function = () => {
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -192,12 +190,12 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -210,7 +208,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -237,11 +235,11 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 
@@ -254,8 +252,8 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     this.cd.markForCheck();
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   onMapReady(event: Map) {
@@ -342,7 +340,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
 
   clearMap() {
     this.layers = [];
-    this.value = null;
+    this.value = undefined;
     this.onModelChange(null);
     this.onClear.emit()
   }

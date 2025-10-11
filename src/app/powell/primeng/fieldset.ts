@@ -8,6 +8,6 @@ import {
 
 export {FieldsetModule as $FieldsetModule}
 export {Fieldset as $Fieldset}
-export {FieldsetTemplates as $FieldsetTemplates}
-export {FieldsetAfterToggleEvent as $FieldsetAfterToggleEvent}
-export {FieldsetBeforeToggleEvent as $FieldsetBeforeToggleEvent}
+export {type FieldsetTemplates as $FieldsetTemplates}
+export {type FieldsetAfterToggleEvent as $FieldsetAfterToggleEvent}
+export {type FieldsetBeforeToggleEvent as $FieldsetBeforeToggleEvent}

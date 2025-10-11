@@ -30,7 +30,7 @@ export class InputTextPage extends PreviewBase {
     {field: 'placeholder', value: ''},
     {field: 'keyFilter', selectOptions: 'keyFilters', value: /.*/g},
     {field: 'showClear', value: true},
-    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputVariant},
     {field: 'size', selectOptions: 'sizes', value: this.config.inputSize},
     {field: 'fluid', value: false},
   ]

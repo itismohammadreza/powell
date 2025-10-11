@@ -18,24 +18,24 @@ import {NgControl} from "@angular/forms";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormFieldComponent implements AfterContentInit {
-  @Input() ngControl: NgControl;
-  @Input() validation: Validation;
-  @Input() hint: string;
-  @Input() label: string;
-  @Input() inputId: string;
-  @Input() labelWidth: number;
-  @Input() disabled: boolean;
-  @Input() readonly: boolean;
-  @Input() labelPosition: LabelPosition;
-  @Input() fluid: boolean;
-  @Input() reverseLabel: boolean;
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @Input() ngControl: Nullable<NgControl> = null;
+  @Input() validation: Optional<Validation>;
+  @Input() hint: Optional<string>;
+  @Input() label: Optional<string>;
+  @Input() inputId: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() disabled: boolean = false;
+  @Input() readonly: boolean = false;
+  @Input() labelPosition: Optional<LabelPosition>;
+  @Input() fluid: boolean = false;
+  @Input() reverseLabel: boolean = false;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   templateMap: Partial<Record<ElementAdditionTemplate, TemplateRef<any>>> = {};
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
-      const name = item.type;
+    this.templates?.forEach(item => {
+      const name = item.type as ElementAdditionTemplate;
       this.templateMap[name] = item.templateRef;
     });
 
@@ -49,14 +49,14 @@ export class FormFieldComponent implements AfterContentInit {
 
   get isInvalid() {
     if (this.ngControl) {
-      const control = this.ngControl.control;
+      const control = this.ngControl.control!;
       return (!this.disabled && !this.readonly && (control.touched || control.dirty) && control.invalid);
     }
     return false
   }
 
   hasError(type: string) {
-    return this.isInvalid && this.ngControl.control.hasError(type);
+    return this.isInvalid && this.ngControl?.control?.hasError(type);
   }
 
   get showHint() {

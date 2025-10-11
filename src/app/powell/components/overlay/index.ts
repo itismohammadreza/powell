@@ -4,4 +4,3 @@ export * from './dynamic-dialog/dynamic-dialog.component';
 export * from './dynamic-dialog/dynamic-dialog-config';
 export * from './dynamic-dialog/dynamic-dialog-injector';
 export * from './dynamic-dialog/dynamic-dialog-ref';
-export * from './overlay.module';

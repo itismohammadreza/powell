@@ -5,7 +5,6 @@ import {DOCUMENT} from "@angular/common";
   selector: 'emoji',
   templateUrl: './emoji.component.html',
   styleUrls: ['./emoji.component.scss'],
-  standalone: true
 })
 export class EmojiComponent implements OnInit {
   private document = inject(DOCUMENT);

@@ -17,7 +17,7 @@
       <input
         #inputFile
         type="file"
-        onclick="this.value = null"
+        onclick="this.value = undefined"
         [accept]="accept"
         [attr.id]="id"
         [disabled]="disabled"
@@ -26,12 +26,14 @@
       @if (!multiple) {
         <div class="file-picker-single-wrapper">
           <div class="preview">
-            @switch (getFileType(filesToShow[0]?.display)) {
-              @case ('image') {
-                <div class="image-preview" [style.backgroundImage]="'url('+(filesToShow[0]?.display)+')'"></div>
-              }
-              @case ('file') {
-                <PlusIcon styleClass="file-preview"/>
+            @if (filesToShow.length != 0) {
+              @switch (getFileType(filesToShow[0].display)) {
+                @case ('image') {
+                  <div class="image-preview" [style.backgroundImage]="'url('+(filesToShow[0].display)+')'"></div>
+                }
+                @case ('file') {
+                  <svg data-p-icon="plus" class="file-preview"/>
+                }
               }
             }
           </div>
@@ -45,18 +47,17 @@
           @if (filesToShow.length != 0) {
             <pw-button severity="danger" size="small" (onClick)="onSingleDelete()">
               <ng-template pwTemplate="icon">
-                <TrashIcon/>
+                <svg data-p-icon="trash"/>
               </ng-template>
             </pw-button>
           }
         </div>
       }
-
       @if (multiple) {
         <div class="file-picker-multiple-wrapper">
           @if (!readonly && (fileLimit && filesToEmit.length < fileLimit)) {
             <div class="picker" (click)="inputFile.click()">
-              <PlusIcon/>
+              <svg data-p-icon="plus"/>
             </div>
           }
           @for (item of filesToShow; track item; let i = $index) {
@@ -67,7 +68,7 @@
                 }
                 @case ('file') {
                   <div class="file-preview">
-                    <UploadIcon/>
+                    <svg data-p-icon="upload"/>
                   </div>
                 }
               }
@@ -75,7 +76,7 @@
               @if (!readonly) {
                 <pw-button severity="danger" size="small" (onClick)="onMultipleDelete($event, i)">
                   <ng-template pwTemplate="icon">
-                    <TrashIcon/>
+                    <svg data-p-icon="trash"/>
                   </ng-template>
                 </pw-button>
               }

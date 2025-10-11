@@ -5,7 +5,7 @@ import {Directive, Input, TemplateRef} from '@angular/core';
   standalone: false
 })
 export class TemplateDirective {
-  @Input('pwTemplate') templateName: string;
+  @Input('pwTemplate') templateName: string = '';
 
   constructor(public templateRef: TemplateRef<any>) {
   }

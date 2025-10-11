@@ -5,7 +5,8 @@ import {
   $IftaLabelModule,
   $InputGroupAddonModule,
   $InputGroupModule,
-  $InputIconModule
+  $InputIconModule,
+  $MessageModule
 } from "@powell/primeng";
 import {FormFieldComponent} from "@powell/components/form-field/form-field.component";
 import {KeyValuePipe, NgClass, NgTemplateOutlet} from "@angular/common";
@@ -24,7 +25,8 @@ import {TemplateModule} from "@powell/directives/template";
     $InputIconModule,
     $InputGroupModule,
     $InputGroupAddonModule,
-    TemplateModule
+    $MessageModule,
+    TemplateModule,
   ],
 })
 export class FormFieldModule {

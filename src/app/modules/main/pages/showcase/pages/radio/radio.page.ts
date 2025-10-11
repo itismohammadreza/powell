@@ -25,7 +25,7 @@ export class RadioPage extends PreviewBase {
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'orientation', selectOptions: 'orientations', value: 'vertical'},
     {field: 'disabled', value: false},
-    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputVariant},
     {field: 'size', selectOptions: 'sizes', value: this.config.inputSize}
   ]
 }

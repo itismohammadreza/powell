@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   Component,
   ContentChildren,
+  DOCUMENT,
   EventEmitter,
   inject,
   Input,
@@ -26,7 +27,7 @@ import {
 } from '@powell/models';
 import {TemplateDirective} from "@powell/directives/template";
 import {fromEvent} from "rxjs";
-import {DOCUMENT} from "@angular/common";
+
 import {takeUntil} from "rxjs/operators";
 import {DestroyService} from "@powell/utils";
 
@@ -41,55 +42,56 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   private document = inject(DOCUMENT);
   private destroy$ = inject(DestroyService);
 
-  @Input() appearance: ButtonAppearance;
-  @Input() responsiveSize: ButtonResponsiveSize;
-  @Input() async: boolean;
-  @Input() newLabel: string;
-  @Input() newIcon: string;
-  @Input() newAppearance: ButtonAppearance;
+  @Input() appearance: Optional<ButtonAppearance>;
+  @Input() responsiveSize: Optional<ButtonResponsiveSize>;
+  @Input() async: boolean = false;
+  @Input() newLabel: Optional<string>;
+  @Input() newIcon: Optional<string>;
+  @Input() newAppearance: Optional<ButtonAppearance>;
   @Input() newSeverity: Severity = 'primary';
   @Input() state: ButtonState = 1;
   // native properties
   @Input() type: ButtonType = 'button';
   @Input() iconPos: Position = 'left';
-  @Input() icon: string;
-  @Input() badge: string;
-  @Input() label: string;
-  @Input() disabled: boolean;
-  @Input() loadingIcon: string;
-  @Input() raised: boolean;
-  @Input() rounded: boolean;
+  @Input() icon: Optional<string>;
+  @Input() badge: Optional<string>;
+  @Input() label: Optional<string>;
+  @Input() disabled: boolean = false;
+  @Input() loadingIcon: Optional<string>;
+  @Input() raised: boolean = false;
+  @Input() rounded: boolean = false;
   @Input() severity: Severity = 'primary';
-  @Input() tabindex: number;
-  @Input() size: Size;
-  @Input() style: CssObject;
-  @Input() styleClass: string;
+  @Input() tabindex: Optional<number>;
+  @Input() size: Optional<Size>;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
   @Input() badgeSeverity: Severity = 'primary';
-  @Input() ariaLabel: string;
-  @Input() autofocus: boolean;
-  @Input() fluid: boolean;
-  @Input() buttonProps: ButtonProps;
+  @Input() ariaLabel: Optional<string>;
+  @Input() autofocus: boolean = false;
+  @Input() fluid: boolean = false;
+  @Input() buttonProps: Optional<ButtonProps>;
   @Output() onClick = new EventEmitter<MouseEvent>();
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
   @Output() stateChange = new EventEmitter<ButtonState>();
   @Output() onClickAsync = new EventEmitter<AsyncEvent<MouseEvent>>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  loading: boolean;
+  loading: boolean = false;
   templateMap: Record<string, TemplateRef<any>> = {};
-  _tmpLabel: string;
-  _tmpIcon: string;
-  _tmpAppearance: ButtonAppearance;
-  _tmpSeverity: Severity;
-  _tmpSize: Size;
+  _tmpLabel: Optional<string>;
+  _tmpIcon: Optional<string>;
+  _tmpAppearance: Optional<ButtonAppearance>;
+  _tmpSeverity: Optional<Severity>;
+  _tmpSize: Optional<Size>;
 
   ngOnChanges(changes: SimpleChanges) {
     const {buttonProps} = changes;
     if (buttonProps) {
       const props = buttonProps.currentValue;
-      for (const property in props) {
-        this[property] = props[property];
+      for (const k in props) {
+        const key = k as keyof this;
+        this[key] = props[key];
       }
     }
 
@@ -102,29 +104,31 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
     this._tmpSize = this.size;
     const {md, sm, xl, xs, lg} = this.responsiveSize ?? {};
     const getButtonSize = () => {
-      const windowWidth = this.document.defaultView.innerWidth;
-      if (windowWidth <= 575.98) {
-        this.size = xs ?? this._tmpSize;
-      } else if (windowWidth <= 767.98) {
-        this.size = sm ?? this._tmpSize;
-      } else if (windowWidth <= 991.98) {
-        this.size = md ?? this._tmpSize;
-      } else if (windowWidth <= 1199.98) {
-        this.size = lg ?? this._tmpSize;
-      } else {
-        this.size = xl ?? this._tmpSize;
+      const windowWidth = this.document.defaultView?.innerWidth;
+      if (windowWidth) {
+        if (windowWidth <= 575.98) {
+          this.size = xs ?? this._tmpSize;
+        } else if (windowWidth <= 767.98) {
+          this.size = sm ?? this._tmpSize;
+        } else if (windowWidth <= 991.98) {
+          this.size = md ?? this._tmpSize;
+        } else if (windowWidth <= 1199.98) {
+          this.size = lg ?? this._tmpSize;
+        } else {
+          this.size = xl ?? this._tmpSize;
+        }
       }
     }
 
     getButtonSize();
 
-    fromEvent(this.document.defaultView, 'resize').pipe(takeUntil(this.destroy$)).subscribe(() => {
+    fromEvent(this.document.defaultView!, 'resize').pipe(takeUntil(this.destroy$)).subscribe(() => {
       getButtonSize();
     })
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -139,8 +143,8 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
     }
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   removeLoading = (toggle: boolean = false) => {

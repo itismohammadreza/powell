@@ -49,41 +49,41 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: FixLabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<FixLabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
   @Input() id: string = $uuid();
   // native properties
-  @Input() options: any[];
-  @Input() optionLabel: string;
-  @Input() optionValue: string;
-  @Input() optionDisabled: string;
+  @Input() options: Optional<any[]>;
+  @Input() optionLabel: Optional<string>;
+  @Input() optionValue: Optional<string>;
+  @Input() optionDisabled: Optional<string>;
   @Input() unselectable: boolean = false;
-  @Input() tabindex: number;
+  @Input() tabindex: Optional<number>;
   @Input() multiple: boolean = false;
   @Input() allowEmpty: boolean = true;
-  @Input() style: CssObject;
-  @Input() styleClass: string;
-  @Input() ariaLabelledBy: string;
-  @Input() size: Size;
-  @Input() disabled: boolean;
-  @Input() dataKey: string;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
+  @Input() size: Optional<Size>;
+  @Input() disabled: boolean = false;
+  @Input() dataKey: Optional<string>;
   @Input() autofocus: boolean = false;
   @Output() onOptionClick = new EventEmitter<$SelectButtonOptionClickEvent>();
   @Output() onChange = new EventEmitter<$SelectButtonChangeEvent>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  ngControl: NgControl;
+  ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<any>> = {};
-  onModelChange: Function = () => {
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -98,12 +98,12 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -116,7 +116,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -136,11 +136,11 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

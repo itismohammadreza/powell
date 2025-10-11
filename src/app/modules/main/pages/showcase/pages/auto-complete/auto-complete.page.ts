@@ -35,7 +35,7 @@ export class AutoCompletePage extends PreviewBase {
     {field: 'dropdown', value: false},
     {field: 'multiple', value: false},
     {field: 'emptyMessage', value: ''},
-    {field: 'variant', selectOptions: 'variants', value: this.config.inputStyle},
+    {field: 'variant', selectOptions: 'variants', value: this.config.inputVariant},
     {field: 'fluid', value: false},
   ];
 

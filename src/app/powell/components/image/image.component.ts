@@ -23,21 +23,21 @@ import {PinchZoomComponentProperties} from "@powell/components/pinch-zoom/interf
 })
 export class ImageComponent implements AfterContentInit {
   // native properties
-  @Input() imageClass: string;
-  @Input() imageStyle: CssObject;
-  @Input() styleClass: string;
-  @Input() style: CssObject;
-  @Input() src: string | SafeUrl;
-  @Input() srcSet: string | SafeUrl;
-  @Input() sizes: string;
-  @Input() previewImageSrc: string | SafeUrl;
-  @Input() previewImageSrcSet: string | SafeUrl;
-  @Input() previewImageSizes: string;
-  @Input() alt: string;
-  @Input() width: string;
-  @Input() height: string;
-  @Input() loading: ImageLoading;
-  @Input() appendTo: any;
+  @Input() imageClass: Optional<string>;
+  @Input() imageStyle: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() style: Optional<CssObject>;
+  @Input() src: Optional<string | SafeUrl>;
+  @Input() srcSet: Optional<string | SafeUrl>;
+  @Input() sizes: Optional<string>;
+  @Input() previewImageSrc: Optional<string | SafeUrl>;
+  @Input() previewImageSrcSet: Optional<string | SafeUrl>;
+  @Input() previewImageSizes: Optional<string>;
+  @Input() alt: Optional<string>;
+  @Input() width: Optional<string>;
+  @Input() height: Optional<string>;
+  @Input() loading: Optional<ImageLoading>;
+  @Input() appendTo: Optional<any>;
   @Input() preview: boolean = false;
   @Input() showTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
@@ -62,15 +62,15 @@ export class ImageComponent implements AfterContentInit {
   @Output() onShow = new EventEmitter<AnimationEvent>();
   @Output() onHide = new EventEmitter<AnimationEvent>();
   @Output() onImageError = new EventEmitter<Event>();
-  @ViewChild('mask') mask: ElementRef;
-  @ViewChild('previewButton') previewButton: ElementRef;
-  @ViewChild('closeButton') closeButton: ElementRef;
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ViewChild('mask') mask!: ElementRef;
+  @ViewChild('previewButton') previewButton!: ElementRef;
+  @ViewChild('closeButton') closeButton!: ElementRef;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   templateMap: Record<string, TemplateRef<any>> = {};
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });

@@ -17,7 +17,6 @@ export class SuspensePage implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.list = of([1, 2, 3, 4, 5])
-      // this.list = throwError('Not implemented');
     }, 3000)
   }
 }

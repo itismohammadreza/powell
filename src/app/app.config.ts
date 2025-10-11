@@ -1,25 +1,51 @@
-import {ApplicationConfig, importProvidersFrom, provideZoneChangeDetection} from '@angular/core';
-import {provideRouter} from '@angular/router';
-import {routes} from './app.routes';
-import {provideClientHydration} from '@angular/platform-browser';
-import {provideHttpClient, withFetch, withInterceptors} from "@angular/common/http";
-import {CoreModule} from "@core/core.module";
-import {authInterceptor, httpHandlerInterceptor} from "@core/interceptors";
-import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
-import {providePowell} from "@powell/api";
-import {globalConfig} from "@core/config";
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  inject,
+  provideAppInitializer,
+  provideBrowserGlobalErrorListeners,
+  provideZonelessChangeDetection
+} from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { routes } from './app.routes';
+import { CoreModule } from '@core/core.module';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { authInterceptor, httpHandlerInterceptor } from '@core/interceptors';
+import { TranslationService } from '@core/utils';
+import { provideTranslateService } from '@ngx-translate/core';
+import { providePowell } from '@powell/api';
+import { globalConfig } from '@core/config';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+
+const initiateLanguage = () => {
+  const translationService = inject(TranslationService);
+  return translationService.init();
+}
+
+const translationConfig = {
+  loader: provideTranslateHttpLoader({
+    prefix: '/i18n/',
+    suffix: '.json'
+  }),
+  fallbackLang: 'en',
+}
+
+const powellConfig = {
+  rtl: globalConfig.rtl,
+  ...globalConfig.powellConfig,
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({eventCoalescing: true}),
-    provideHttpClient(withFetch(), withInterceptors([authInterceptor, httpHandlerInterceptor])),
-    provideClientHydration(),
+    provideBrowserGlobalErrorListeners(),
+    provideZonelessChangeDetection(),
     provideAnimationsAsync(),
     provideRouter(routes),
-    providePowell({
-      rtl: globalConfig.rtl,
-      ...globalConfig.powellConfig,
-    }),
-    importProvidersFrom(CoreModule)
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor, httpHandlerInterceptor])),
+    provideAppInitializer(() => initiateLanguage()),
+    provideTranslateService(translationConfig),
+    importProvidersFrom(CoreModule),
+    providePowell(powellConfig),
   ]
 };

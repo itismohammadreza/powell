@@ -49,42 +49,42 @@ export class ToggleSwitchComponent implements OnInit, AfterContentInit, ControlV
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: FixLabelPosition;
-  @Input() validation: Validation;
-  @Input() onLabel: string;
-  @Input() offLabel: string;
-  @Input() async: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<FixLabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() onLabel: Optional<string>;
+  @Input() offLabel: Optional<string>;
+  @Input() async: boolean = false;
   @Input() showAsyncLoading: boolean = true;
-  @Input() followConfig: boolean;
+  @Input() followConfig: boolean = false;
   // native properties
-  @Input() style: CssObject;
-  @Input() styleClass: string;
-  @Input() tabindex: number;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() tabindex: Optional<number>;
   @Input() inputId: string = $uuid();
-  @Input() name: string;
-  @Input() disabled: boolean;
+  @Input() name: Optional<string>;
+  @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;
   @Input() trueValue: any = true;
   @Input() falseValue: any = false;
-  @Input() ariaLabel: string;
-  @Input() ariaLabelledBy: string;
+  @Input() ariaLabel: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
   @Input() autofocus: any = false;
   @Output() onChange = new EventEmitter<$ToggleSwitchChangeEvent>();
   @Output() onChangeAsync = new EventEmitter<AsyncEvent<$ToggleSwitchChangeEvent>>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  loading: boolean;
+  loading: boolean = false;
   templateMap: Record<string, TemplateRef<any>> = {};
-  ngControl: NgControl;
-  onModelChange: Function = () => {
+  ngControl: Nullable<NgControl> = null;
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -99,12 +99,12 @@ export class ToggleSwitchComponent implements OnInit, AfterContentInit, ControlV
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -118,7 +118,7 @@ export class ToggleSwitchComponent implements OnInit, AfterContentInit, ControlV
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -163,11 +163,11 @@ export class ToggleSwitchComponent implements OnInit, AfterContentInit, ControlV
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 

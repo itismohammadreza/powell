@@ -1,18 +1,26 @@
-import {Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/core';
 import {DialogOptions} from '@powell/models';
-import {$Dialog} from "@powell/primeng";
+import {$Dialog, $DialogModule} from "@powell/primeng";
+import {ButtonModule} from '@powell/components/button';
+import {SafeModule} from '@powell/pipes/safe';
 
 @Component({
   selector: 'pw-dialog',
   templateUrl: './dialog.component.html',
-  standalone: false
+  imports: [
+    $DialogModule,
+    ButtonModule,
+    SafeModule
+  ]
 })
 export class DialogComponent {
   private el = inject(ElementRef);
+  private cd = inject(ChangeDetectorRef);
+
   onClose = new EventEmitter();
   options: DialogOptions = {};
   visible: boolean = true;
-  @ViewChild($Dialog, {static: true}) dialog: $Dialog;
+  @ViewChild($Dialog, {static: true}) dialog!: $Dialog;
 
   show() {
     const footerEl = this.el.nativeElement.querySelector('.p-dialog-footer');
@@ -22,9 +30,11 @@ export class DialogComponent {
         footerEl.style.display = 'none';
       }
     }
-    for (const key in this.options) {
+    for (const k in this.options) {
+      const key = k as keyof DialogOptions & keyof $Dialog;
       const option = this.options[key];
       if (typeof option !== 'function') {
+        // @ts-ignore
         this.dialog[key] = option;
       }
     }
@@ -33,6 +43,7 @@ export class DialogComponent {
 
   close() {
     this.visible = false;
+    this.cd.detectChanges();
   }
 
   onButtonClick() {
@@ -45,7 +56,7 @@ export class DialogComponent {
     this.handleEvent('onHide');
   }
 
-  handleEvent(event: string, args?: any) {
+  handleEvent(event: keyof DialogOptions, args?: any) {
     this.options[event]?.(args);
   }
 }

@@ -1,4 +1,4 @@
-import {Component, QueryList, ViewChildren} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, QueryList, ViewChildren} from '@angular/core';
 import {BottomSheetComponent, BottomSheetModule} from "@powell/components/bottom-sheet";
 import {ButtonModule} from "@powell/components/button";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
@@ -14,7 +14,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 })
 export class BottomSheetPage extends PreviewBase {
   @ViewChildren(BottomSheetComponent) cmpRefs: QueryList<BottomSheetComponent>;
-
+  private cd = inject(ChangeDetectorRef);
   override previewOptions: PreviewOption[] = [
     {field: 'rtl', value: this.config.rtl},
     {field: 'followConfig', value: this.config.followConfig},
@@ -41,5 +41,6 @@ export class BottomSheetPage extends PreviewBase {
   async openDialog() {
     await this.overlayService.showConfirmDialog({message: 'Show another?'})
     this.visible4 = true;
+    this.cd.detectChanges();
   }
 }

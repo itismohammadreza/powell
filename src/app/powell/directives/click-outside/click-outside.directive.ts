@@ -1,5 +1,6 @@
 import {
   Directive,
+  DOCUMENT,
   ElementRef,
   EventEmitter,
   inject,
@@ -11,7 +12,7 @@ import {
   PLATFORM_ID,
   SimpleChanges
 } from '@angular/core';
-import {DOCUMENT, isPlatformBrowser} from '@angular/common';
+import {isPlatformBrowser} from '@angular/common';
 
 @Directive({
   selector: '[pwClickOutside]',
@@ -107,7 +108,7 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
       this._excludeCheck();
     }
 
-    if (!this._el.nativeElement.contains(ev.target) && !this._shouldExclude(ev.target)) {
+    if (!this._el.nativeElement.contains(ev.target) && !this._shouldExclude(ev.target as Node)) {
       this.pwClickOutside.emit(ev);
 
       if (this.attachOutsideOnClick) {
@@ -116,7 +117,7 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  _shouldExclude(target) {
+  _shouldExclude(target: Node) {
     for (let excludedNode of this._nodesExcluded) {
       if (excludedNode.contains(target)) {
         return true;

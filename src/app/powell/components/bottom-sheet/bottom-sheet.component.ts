@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   EventEmitter,
@@ -28,33 +29,34 @@ import {DestroyService} from "@powell/utils";
 export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges {
   private overlayService = inject(OverlayService);
   private configService = inject(ConfigService);
+  private cd = inject(ChangeDetectorRef);
   // used in `configureComponent` method
   private destroy$ = inject(DestroyService);
 
-  @Input() rtl: boolean;
-  @Input() followConfig: boolean;
+  @Input() rtl: boolean = false;
+  @Input() followConfig: boolean = false;
   // native properties
-  @Input() appendTo: any;
-  @Input() blockScroll: boolean;
-  @Input() style: CssObject;
-  @Input() styleClass: string;
-  @Input() ariaCloseLabel: string;
+  @Input() appendTo: Optional<any>;
+  @Input() blockScroll: boolean = false;
+  @Input() style: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() ariaCloseLabel: Optional<string>;
   @Input() autoZIndex: boolean = true;
-  @Input() baseZIndex: number;
+  @Input() baseZIndex: Optional<number>;
   @Input() modal: boolean = true;
-  @Input() closeButtonProps: ButtonProps;
+  @Input() closeButtonProps: Optional<ButtonProps>;
   @Input() dismissible: boolean = true;
   @Input() closeOnEscape: boolean = true;
   @Input() transitionOptions: string = '270ms cubic-bezier(0, 0, 0.2, 1)';
-  @Input() visible: boolean;
-  @Input() fullScreen: boolean;
-  @Input() header: string;
-  @Input() maskStyle: CssObject;
+  @Input() visible: boolean = false;
+  @Input() fullScreen: Optional<boolean>;
+  @Input() header: Optional<string>;
+  @Input() maskStyle: Optional<CssObject>;
   @Input() closable: boolean = true;
   @Output() onShow = new EventEmitter<any>();
   @Output() onHide = new EventEmitter<any>();
   @Output() visibleChange = new EventEmitter<boolean>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   computedStyle: CssObject = {};
   hided$ = new Subject<boolean>();
@@ -78,7 +80,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -94,6 +96,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
       }
     })
     this.overlayService.pushState(this.state);
+    this.cd.markForCheck();
   }
 
   _onHide() {
@@ -101,6 +104,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
     this.visibleChange.emit(this.visible);
     this.hided$?.next(true);
     this.hided$.complete();
+    this.cd.markForCheck();
     if (!this.overlayService.isPopped(this.state)) {
       this.overlayService.popState()
     }

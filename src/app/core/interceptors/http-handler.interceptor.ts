@@ -40,7 +40,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
       const testCase = isCustomApi ? request.urlWithParams : pathname;
       if (pathTemplate instanceof RegExp) {
         return pathTemplate.test(testCase);
-      } else if (pathTemplate.includes('*')) {
+      } else if (pathTemplate?.includes('*')) {
         const rep1 = pathTemplate.replace(/\*/g, '.*');
         const rep2 = rep1.replace(/\//g, "\\\/");
         const regex = new RegExp(rep2, 'g');
@@ -58,9 +58,12 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
 
   const getUrlParts = (url: string) => {
     const linkElement = document.createElement('a');
+    const keys: (keyof HTMLAnchorElement)[] = [
+      'href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'
+    ];
     const res: any = {};
     linkElement.href = url;
-    ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'].forEach((k) => {
+    keys.forEach((k) => {
       res[k] = linkElement[k];
     });
     linkElement.remove();
@@ -75,7 +78,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
     loaderService.setLoadingState(requestsQueue.length > 0);
   }
 
-  const getRequestProp = (request: HttpRequest<any>, response: HttpResponseBase, prop: keyof RequestConfig) => {
+  const getRequestProp = (request: HttpRequest<any>, response: Optional<HttpResponseBase>, prop: keyof RequestConfig) => {
     const requestConfig: any = getRequestConfig(request);
     if (!requestConfig) {
       return false;
@@ -95,8 +98,8 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
       const requestSearchParams = new URL(url).search;
       return new URLSearchParams(requestSearchParams).get('timeout');
     }
-    let configTimeout = getRequestProp(request, null, 'timeout');
-    let queryTimeout = getQueryTimeout(request.url);
+    let configTimeout = getRequestProp(request, undefined, 'timeout');
+    let queryTimeout = getQueryTimeout(request.url)!;
     if (configTimeout == 'none' || queryTimeout == 'none') {
       return identity;
     } else {
@@ -109,8 +112,8 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
   const loadingRequestsCounter = new Map<string, number>();
 
   const clonedReq = request.clone();
-  const shouldCatch = getRequestProp(request, null, 'catch');
-  const shouldLoading = getRequestProp(request, null, 'loading');
+  const shouldCatch = getRequestProp(request, undefined, 'catch');
+  const shouldLoading = getRequestProp(request, undefined, 'loading');
 
   if (shouldCatch) {
     const cachedResponse = cachedRequests.get(request.url);
@@ -120,8 +123,8 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
   }
 
   if (shouldLoading) {
-    const pathTemplate = getRequestProp(request, null, 'pathTemplate');
-    const loadingOnlyOnce = getRequestProp(request, null, 'loadingOnlyOnce');
+    const pathTemplate = getRequestProp(request, undefined, 'pathTemplate');
+    const loadingOnlyOnce = getRequestProp(request, undefined, 'loadingOnlyOnce');
     loadingRequestsCounter.set(pathTemplate, (loadingRequestsCounter.get(pathTemplate) ?? 0) + 1);
     if (!loadingOnlyOnce || (loadingOnlyOnce && loadingRequestsCounter.get(pathTemplate) == 1)) {
       requestsQueue.push(clonedReq);

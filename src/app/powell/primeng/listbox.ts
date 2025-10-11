@@ -12,10 +12,10 @@ import {
 
 export {ListboxModule as $ListboxModule}
 export {Listbox as $Listbox}
-export {ListboxChangeEvent as $ListboxChangeEvent}
-export {ListboxClickEvent as $ListboxClickEvent}
-export {ListboxFilterEvent as $ListboxFilterEvent}
-export {ListboxDoubleClickEvent as $ListboxDoubleClickEvent}
-export {ListboxFilterOptions as $ListboxFilterOptions}
-export {ListboxSelectAllChangeEvent as $ListboxSelectAllChangeEvent}
-export {ListboxTemplates as $ListboxTemplates}
+export {type ListboxChangeEvent as $ListboxChangeEvent}
+export {type ListboxClickEvent as $ListboxClickEvent}
+export {type ListboxFilterEvent as $ListboxFilterEvent}
+export {type ListboxDoubleClickEvent as $ListboxDoubleClickEvent}
+export {type ListboxFilterOptions as $ListboxFilterOptions}
+export {type ListboxSelectAllChangeEvent as $ListboxSelectAllChangeEvent}
+export {type ListboxTemplates as $ListboxTemplates}

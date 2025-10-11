@@ -73,7 +73,7 @@ export class DialogFormPage extends PreviewBase {
             {type: 'required', validator: Validators.required, message: 'is required'},
             {
               type: 'minlength',
-              validator: Validators.minLength(2),
+              validator: Validators.minLength(5),
               message: (control) => {
                 return `${control.value} is not a valid length`
               }
@@ -82,17 +82,15 @@ export class DialogFormPage extends PreviewBase {
           ],
           value: 'Default value',
           onInput: (eventObj) => {
-            // const {event, form, currentConfig, allConfig} = eventObj;
-            // allConfig.find(x => x.key == 'book').options = []
-            // if (event.target.value == '2') {
-            //   form.get('book').disable();
-            //   currentConfig.label = '123';
-            //   allConfig.find(x => x.key == 'book').hidden = false
-            // } else {
-            //   form.get('book').enable()
-            //   currentConfig.label = '456';
-            //   allConfig.find(x => x.key == 'book').hidden = true
-            // }
+            const {event, form, currentConfig, allConfig} = eventObj;
+            allConfig.find(x => x.key == 'book').options = [];
+            if (event.target.value == '2') {
+              form.get('book').disable();
+              allConfig.find(x => x.key == 'book').hidden = false;
+            } else {
+              form.get('book').enable();
+              allConfig.find(x => x.key == 'book').hidden = true;
+            }
           },
           hidden: false
         },
@@ -102,14 +100,12 @@ export class DialogFormPage extends PreviewBase {
           label: 'Birthdate',
           labelWidth: 150,
           touchUI: false,
-          fluid: true,
           showTime: true,
         },
         {
           component: 'multi-select',
           key: 'book',
           label: 'Book',
-          fluid: true,
           labelWidth: 150,
           validations: [
             {type: 'required', validator: Validators.required, message: 'is required'},
@@ -130,18 +126,18 @@ export class DialogFormPage extends PreviewBase {
           },
           type: 'invalidGr',
           message: 'Form is not valid',
-          style: {textAlign: 'center'}
+          style: {textAlign: 'center', marginTop: '1rem'}
         },
       }).pipe(takeUntil(this.destroy$)).subscribe(res => {
       if (!res) {
-        return
+        return;
       }
       const {formValue, finalizeSubmit} = res;
       this.flag = !this.flag;
-      alert(formValue);
+      alert(JSON.stringify(formValue));
       setTimeout(() => {
         finalizeSubmit(this.flag)
-      }, 2000)
+      }, 1000)
     })
   }
 

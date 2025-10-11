@@ -9,9 +9,9 @@ import {
 } from "primeng/select";
 
 export {Select as $Select}
-export {SelectChangeEvent as $SelectChangeEvent}
-export {SelectFilterEvent as $SelectFilterEvent}
-export {SelectFilterOptions as $SelectFilterOptions}
-export {SelectLazyLoadEvent as $SelectLazyLoadEvent}
+export {type SelectChangeEvent as $SelectChangeEvent}
+export {type SelectFilterEvent as $SelectFilterEvent}
+export {type SelectFilterOptions as $SelectFilterOptions}
+export {type SelectLazyLoadEvent as $SelectLazyLoadEvent}
 export {SelectModule as $SelectModule}
-export {SelectTemplates as $SelectTemplates}
+export {type SelectTemplates as $SelectTemplates}

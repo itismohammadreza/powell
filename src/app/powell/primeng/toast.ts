@@ -9,7 +9,7 @@ import {
 
 export {ToastModule as $ToastModule}
 export {Toast as $Toast}
-export {ToastTemplates as $ToastTemplates}
-export {ToastItemCloseEvent as $ToastItemCloseEvent}
-export {ToastCloseEvent as $ToastCloseEvent}
-export {ToastPositionType as $ToastPositionType}
+export {type ToastTemplates as $ToastTemplates}
+export {type ToastItemCloseEvent as $ToastItemCloseEvent}
+export {type ToastCloseEvent as $ToastCloseEvent}
+export {type ToastPositionType as $ToastPositionType}

@@ -2,4 +2,4 @@ import {SplitButton, SplitButtonModule, SplitButtonTemplates} from "primeng/spli
 
 export {SplitButtonModule as $SplitButtonModule}
 export {SplitButton as $SplitButton}
-export {SplitButtonTemplates as $SplitButtonTemplates}
+export {type SplitButtonTemplates as $SplitButtonTemplates}

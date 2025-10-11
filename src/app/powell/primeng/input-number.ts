@@ -2,5 +2,5 @@ import {InputNumber, InputNumberInputEvent, InputNumberModule, InputNumberTempla
 
 export {InputNumberModule as $InputNumberModule}
 export {InputNumber as $InputNumber}
-export {InputNumberTemplates as $InputNumberTemplates}
-export {InputNumberInputEvent as $InputNumberInputEvent}
+export {type InputNumberTemplates as $InputNumberTemplates}
+export {type InputNumberInputEvent as $InputNumberInputEvent}

@@ -6,13 +6,11 @@ export const authInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>
   const authService = inject(AuthService);
   if (authService.hasToken()) {
     const token = localStorage.getItem('token');
-    const clonedReq = request.clone({
+    request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`,
       },
     });
-    return next(clonedReq);
-  } else {
-    return next(request);
   }
+  return next(request);
 }

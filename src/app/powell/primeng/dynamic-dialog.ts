@@ -14,4 +14,4 @@ export {DynamicDialogConfig as $DynamicDialogConfig}
 export {DialogService as $DialogService}
 export {DynamicDialogInjector as $DynamicDialogInjector}
 export {DynamicDialogRef as $DynamicDialogRef}
-export {DynamicDialogTemplates as $DynamicDialogTemplates}
+export {type DynamicDialogTemplates as $DynamicDialogTemplates}

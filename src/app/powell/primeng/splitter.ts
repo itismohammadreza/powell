@@ -8,6 +8,6 @@ import {
 
 export {SplitterModule as $SplitterModule}
 export {Splitter as $Splitter}
-export {SplitterTemplates as $SplitterTemplates}
-export {SplitterResizeEndEvent as $SplitterResizeEndEvent}
-export {SplitterResizeStartEvent as $SplitterResizeStartEvent}
+export {type SplitterTemplates as $SplitterTemplates}
+export {type SplitterResizeEndEvent as $SplitterResizeEndEvent}
+export {type SplitterResizeStartEvent as $SplitterResizeStartEvent}

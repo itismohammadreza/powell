@@ -41,7 +41,6 @@ import {
 } from 'primeng/api';
 import {PrimeNG, PrimeNGConfigType, providePrimeNG, ThemeType} from 'primeng/config';
 import {ObjectUtils, UniqueComponentId, ZIndexUtils} from "primeng/utils";
-import {ConnectedOverlayScrollHandler, DomHandler} from 'primeng/dom';
 import {Nullable, VoidListener} from 'primeng/ts-helpers';
 import {BaseComponent} from 'primeng/basecomponent';
 import {
@@ -49,7 +48,6 @@ import {
   addClass,
   addStyle,
   appendChild,
-  blockBodyScroll,
   find,
   findSingle,
   getFocusableElements,
@@ -61,7 +59,6 @@ import {
   isTouchDevice,
   relativePosition,
   setAttribute,
-  unblockBodyScroll,
   uuid
 } from '@primeuix/utils';
 import {
@@ -87,9 +84,8 @@ import Aura from '@primeng/themes/aura';
 import Lara from '@primeng/themes/lara';
 import Material from '@primeng/themes/material';
 import Nora from '@primeng/themes/nora';
-import {Preset} from '@primeng/themes/types';
+import {blockBodyScroll, unblockBodyScroll, ConnectedOverlayScrollHandler, DomHandler} from 'primeng/dom';
 
-export {Preset as $Preset}
 export {Aura as $Aura}
 export {Lara as $Lara}
 export {Material as $Material}
@@ -132,51 +128,51 @@ export {uuid as $uuid}
 export {BaseComponent as $BaseComponent}
 export {PrimeNG as $PrimeNG}
 export {providePrimeNG as $providePrimeNG}
-export {PrimeNGConfigType as $PrimeNGConfigType}
-export {ThemeType as $ThemeType}
-export {Confirmation as $Confirmation}
+export {type PrimeNGConfigType as $PrimeNGConfigType}
+export {type ThemeType as $ThemeType}
+export {type Confirmation as $Confirmation}
 export {ConfirmationService as $ConfirmationService}
 export {ConfirmEventType as $ConfirmEventType}
 export {FilterMatchMode as $FilterMatchMode}
-export {FilterMetadata as $FilterMetadata}
+export {type FilterMetadata as $FilterMetadata}
 export {FilterOperator as $FilterOperator}
 export {FilterService as $FilterService}
-export {LazyLoadEvent as $LazyLoadEvent}
-export {LazyLoadMeta as $LazyLoadMeta}
-export {MenuItem as $MenuItem}
-export {MenuItemCommandEvent as $MenuItemCommandEvent}
+export {type LazyLoadEvent as $LazyLoadEvent}
+export {type LazyLoadMeta as $LazyLoadMeta}
+export {type MenuItem as $MenuItem}
+export {type MenuItemCommandEvent as $MenuItemCommandEvent}
 export {MessageService as $MessageService}
-export {OverlayListenerOptions as $OverlayListenerOptions}
-export {OverlayModeType as $OverlayModeType}
-export {OverlayOnBeforeHideEvent as $OverlayOnBeforeHideEvent}
-export {OverlayOnBeforeShowEvent as $OverlayOnBeforeShowEvent}
-export {OverlayOnHideEvent as $OverlayOnHideEvent}
-export {OverlayOnShowEvent as $OverlayOnShowEvent}
-export {OverlayOptions as $OverlayOptions}
+export {type OverlayListenerOptions as $OverlayListenerOptions}
+export {type OverlayModeType as $OverlayModeType}
+export {type OverlayOnBeforeHideEvent as $OverlayOnBeforeHideEvent}
+export {type OverlayOnBeforeShowEvent as $OverlayOnBeforeShowEvent}
+export {type OverlayOnHideEvent as $OverlayOnHideEvent}
+export {type OverlayOnShowEvent as $OverlayOnShowEvent}
+export {type OverlayOptions as $OverlayOptions}
 export {OverlayService as $OverlayService}
 export {PrimeIcons as $PrimeIcons}
 export {PrimeTemplate as $PrimeTemplate}
-export {ResponsiveOverlayDirectionType as $ResponsiveOverlayDirectionType}
-export {ResponsiveOverlayOptions as $ResponsiveOverlayOptions}
-export {ScrollerOptions as $ScrollerOptions}
-export {SelectItem as $SelectItem}
-export {SelectItemGroup as $SelectItemGroup}
+export {type ResponsiveOverlayDirectionType as $ResponsiveOverlayDirectionType}
+export {type ResponsiveOverlayOptions as $ResponsiveOverlayOptions}
+export {type ScrollerOptions as $ScrollerOptions}
+export {type SelectItem as $SelectItem}
+export {type SelectItemGroup as $SelectItemGroup}
 export {SharedModule as $SharedModule}
-export {SortEvent as $SortEvent}
-export {SortMeta as $SortMeta}
-export {TooltipOptions as $TooltipOptions}
-export {ToastMessageOptions as $ToastMessageOptions}
-export {Translation as $Translation}
+export {type SortEvent as $SortEvent}
+export {type SortMeta as $SortMeta}
+export {type TooltipOptions as $TooltipOptions}
+export {type ToastMessageOptions as $ToastMessageOptions}
+export {type Translation as $Translation}
 export {TranslationKeys as $TranslationKeys}
 export {TreeDragDropService as $TreeDragDropService}
-export {TreeNode as $TreeNode}
-export {TreeNodeDragEvent as $TreeNodeDragEvent}
-export {TreeTableNode as $TreeTableNode}
-export {TableState as $TableState}
+export {type TreeNode as $TreeNode}
+export {type TreeNodeDragEvent as $TreeNodeDragEvent}
+export {type TreeTableNode as $TreeTableNode}
+export {type TableState as $TableState}
 export {ObjectUtils as $ObjectUtils}
 export {UniqueComponentId as $UniqueComponentId}
 export {ZIndexUtils as $ZIndexUtils}
 export {ConnectedOverlayScrollHandler as $ConnectedOverlayScrollHandler}
 export {DomHandler as $DomHandler}
-export {Nullable as $Nullable}
-export {VoidListener as $VoidListener}
+export {type Nullable as $Nullable}
+export {type VoidListener as $VoidListener}

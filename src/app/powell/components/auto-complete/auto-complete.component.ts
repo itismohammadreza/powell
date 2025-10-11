@@ -66,46 +66,46 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any;
-  @Input() label: string;
-  @Input() labelWidth: number;
-  @Input() hint: string;
-  @Input() rtl: boolean;
-  @Input() showRequiredStar: boolean;
-  @Input() labelPosition: LabelPosition;
-  @Input() validation: Validation;
-  @Input() followConfig: boolean;
+  @Input() value: Optional<any>;
+  @Input() label: Optional<string>;
+  @Input() labelWidth: Optional<number>;
+  @Input() hint: Optional<string>;
+  @Input() rtl: boolean = false;
+  @Input() showRequiredStar: boolean = false;
+  @Input() labelPosition: Optional<LabelPosition>;
+  @Input() validation: Optional<Validation>;
+  @Input() followConfig: boolean = false;
   // native properties
   @Input() minLength: number = 1;
   @Input() delay: number = 300;
-  @Input() style: CssObject;
-  @Input() panelStyle: CssObject;
-  @Input() styleClass: string;
-  @Input() panelStyleClass: string;
-  @Input() inputStyle: CssObject;
+  @Input() style: Optional<CssObject>;
+  @Input() panelStyle: Optional<CssObject>;
+  @Input() styleClass: Optional<string>;
+  @Input() panelStyleClass: Optional<string>;
+  @Input() inputStyle: Optional<CssObject>;
   @Input() inputId: string = $uuid();
-  @Input() inputStyleClass: string;
-  @Input() placeholder: string;
+  @Input() inputStyleClass: Optional<string>;
+  @Input() placeholder: Optional<string>;
   @Input() readonly: boolean = false;
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   @Input() scrollHeight: string = '200px';
   @Input() lazy: boolean = false;
   @Input() virtualScroll: boolean = false;
-  @Input() virtualScrollItemSize: number;
-  @Input() virtualScrollOptions: $ScrollerOptions;
-  @Input() maxlength: number;
-  @Input() name: string;
-  @Input() size: Size;
-  @Input() appendTo: any;
+  @Input() virtualScrollItemSize: Optional<number>;
+  @Input() virtualScrollOptions: Optional<$ScrollerOptions>;
+  @Input() maxlength: Optional<number>;
+  @Input() name: Optional<string>;
+  @Input() size: Optional<Size>;
+  @Input() appendTo: Optional<any>;
   @Input() autoHighlight: boolean = false;
   @Input() forceSelection: boolean = false;
   @Input() type: InputType = 'text';
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: number = 0;
-  @Input() ariaLabel: string;
-  @Input() dropdownAriaLabel: string;
-  @Input() ariaLabelledBy: string;
-  @Input() dropdownIcon: string;
+  @Input() ariaLabel: Optional<string>;
+  @Input() dropdownAriaLabel: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
+  @Input() dropdownIcon: Optional<string>;
   @Input() unique: boolean = true;
   @Input() group: boolean = false;
   @Input() completeOnFocus: boolean = false;
@@ -114,48 +114,48 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() showEmptyMessage: boolean = true;
   @Input() dropdownMode: AutoCompleteDropdownMode = 'blank';
   @Input() multiple: boolean = false;
-  @Input() tabindex: number;
-  @Input() dataKey: string;
-  @Input() emptyMessage: string;
+  @Input() tabindex: Optional<number>;
+  @Input() dataKey: Optional<string>;
+  @Input() emptyMessage: Optional<string>;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
   @Input() autofocus: boolean = false;
   @Input() autocomplete: string = 'off';
   @Input() optionGroupChildren: string = 'items';
   @Input() optionGroupLabel: string = 'label';
-  @Input() overlayOptions: $OverlayOptions;
-  @Input() suggestions: any[];
-  @Input() optionLabel: string | ((item: any) => string);
-  @Input() optionValue: string | ((item: any) => string);
-  @Input() id: string;
-  @Input() searchMessage: string;
-  @Input() emptySelectionMessage: string;
-  @Input() selectionMessage: string;
+  @Input() overlayOptions: Optional<$OverlayOptions>;
+  @Input() suggestions: Optional<any[]>;
+  @Input() optionLabel: Optional<string | ((item: any) => string)>;
+  @Input() optionValue: Optional<string | ((item: any) => string)>;
+  @Input() id: Optional<string>;
+  @Input() searchMessage: Optional<string>;
+  @Input() emptySelectionMessage: Optional<string>;
+  @Input() selectionMessage: Optional<string>;
   @Input() autoOptionFocus: boolean = false;
   @Input() selectOnFocus: boolean = false;
   @Input() searchLocale: boolean = false;
-  @Input() optionDisabled: string;
+  @Input() optionDisabled: Optional<string>;
   @Input() focusOnHover: boolean = true;
-  @Input() variant: InputVariant;
-  @Input() fluid: boolean;
+  @Input() variant: Optional<InputVariant>;
+  @Input() fluid: boolean = false;
   @Output() completeMethod = new EventEmitter<$AutoCompleteCompleteEvent>();
   @Output() onSelect = new EventEmitter<$AutoCompleteSelectEvent>();
   @Output() onUnselect = new EventEmitter<$AutoCompleteUnselectEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onDropdownClick = new EventEmitter<$AutoCompleteDropdownClickEvent>();
-  @Output() onClear = new EventEmitter<Event>();
+  @Output() onClear = new EventEmitter();
   @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
   @Output() onShow = new EventEmitter<Event>();
   @Output() onHide = new EventEmitter<Event>();
   @Output() onLazyLoad = new EventEmitter<$AutoCompleteLazyLoadEvent>();
-  @ContentChildren(TemplateDirective) templates: QueryList<TemplateDirective>;
+  @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  ngControl: NgControl;
+  ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<any>> = {};
-  onModelChange: Function = () => {
+  onModelChange: Fn = () => {
   };
-  onModelTouched: Function = () => {
+  onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
@@ -170,12 +170,12 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
-      currentControl = this.ngControl.control;
+      currentControl = this.ngControl.control!;
       if (controlContainer) {
         parentForm = controlContainer.control;
         rootForm = controlContainer.formDirective as FormGroupDirective;
         if (this.ngControl instanceof FormControlName) {
-          currentControl = parentForm.get(this.ngControl.name.toString());
+          currentControl = parentForm.get(this.ngControl.name!.toString())!;
         }
         rootForm.ngSubmit.pipe(takeUntil(this.destroy$)).subscribe(() => {
           if (!this.disabled) {
@@ -188,7 +188,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   }
 
   ngAfterContentInit() {
-    this.templates.forEach(item => {
+    this.templates?.forEach(item => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -217,13 +217,13 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
     this.onModelChange(this.value);
   }
 
-  _onClear(event: Event) {
-    this.onClear.emit(event);
+  _onClear() {
+    this.onClear.emit();
     this.onModelChange(null);
   }
 
-  emitter(name: string, event: any) {
-    (this[name] as EventEmitter<any>).emit(event);
+  emitter(key: keyof this, event: SafeAny) {
+    (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
   writeValue(value: any) {
@@ -231,11 +231,11 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
     this.cd.markForCheck();
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: Fn) {
     this.onModelChange = fn;
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: Fn) {
     this.onModelTouched = fn;
   }
 
