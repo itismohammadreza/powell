@@ -4,7 +4,6 @@ import {RouterModule} from "@angular/router";
 @Component({
   selector: 'logo',
   templateUrl: './logo.component.html',
-  styleUrls: ['./logo.component.scss'],
   imports: [RouterModule]
 })
 export class LogoComponent {

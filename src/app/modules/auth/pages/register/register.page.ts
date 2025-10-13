@@ -7,7 +7,6 @@ import {samePasswordsValidator} from "@core/utils";
 @Component({
   selector: 'register-page',
   templateUrl: './register.page.html',
-  styleUrls: ['./register.page.scss'],
   standalone: false
 })
 export class RegisterPage {
