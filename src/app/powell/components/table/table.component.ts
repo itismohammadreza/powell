@@ -25,7 +25,6 @@ import {
   TableFilterDisplay,
   TableFilters,
   TablePaginationPosition,
-  TableResponsiveLayout,
   TableRowExpandMode,
   TableRowGroupMode,
   TableSelectionMode,
@@ -149,7 +148,6 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() showGridlines: boolean = true;
   @Input() stripedRows: boolean = false;
   @Input() groupRowsByOrder: number = 1;
-  @Input() responsiveLayout: TableResponsiveLayout = 'scroll';
   @Input() breakpoint: string = '640px';
   @Input() paginatorLocale: Optional<string>;
   @Input() first: number = 0;

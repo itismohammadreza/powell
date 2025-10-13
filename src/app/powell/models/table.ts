@@ -11,7 +11,6 @@ import {$FilterMetadata} from "@powell/primeng";
 
 export type TableRendererType = 'text' | 'ng-template';
 export type TableFilterDisplay = 'row' | 'menu';
-export type TableResponsiveLayout = 'stack' | 'scroll';
 export type TablePaginationPosition = 'bottom' | 'top' | 'both';
 export type TableScrollDirection = 'vertical' | 'horizontal' | 'both';
 export type TableSortMode = 'single' | 'multiple';
