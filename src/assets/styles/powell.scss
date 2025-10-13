@@ -1746,7 +1746,11 @@ pw-table {
       }
     }
 
-    &:dir(rtl) {
+    &.is-rtl {
+      td, th {
+        direction: rtl;
+      }
+
       .p-datatable-gridlines:has(.p-datatable-thead):has(.p-datatable-tbody) {
         .p-datatable-thead > tr {
           > th {

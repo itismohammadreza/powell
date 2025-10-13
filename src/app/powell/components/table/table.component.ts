@@ -80,6 +80,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() globalFilterPlaceholder: Optional<string>;
   @Input() followConfig: boolean = false;
   @Input() showSelectionIndicator: boolean = false;
+  @Input() frozenActions: boolean = true;
   // native properties
   @Input() frozenColumns: Optional<SafeAny[]>;
   @Input() frozenValue: Optional<SafeAny[]>;
@@ -191,6 +192,9 @@ export class TableComponent implements OnInit, AfterContentInit {
   activeSortField: Optional<string>;
 
   ngOnInit() {
+    if (this.frozenActions) {
+      this.scrollable = true;
+    }
     this.onTableReady.emit(this.dataTable);
     if (this.actionsConfig) {
       this.actionsConfig.actions = this.actionsConfig.actions.filter(action => action.visible ?? true) || [];

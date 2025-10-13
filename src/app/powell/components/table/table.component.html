@@ -1,4 +1,4 @@
-<div [attr.dir]="rtl ? 'rtl' : 'ltr'" class="table-wrapper">
+<div class="table-wrapper" [class.is-rtl]="rtl">
   <p-table
     #dataTable
     [value]="items"
@@ -114,6 +114,16 @@
           @if (reorderableRows) {
             <th scope="col" style="width: 3rem"></th>
           }
+          @if (actionsConfig?.inSameColumn && actionsConfig?.actions?.length && rtl) {
+            <th class="action-header" alignFrozen="left" pFrozenColumn [frozen]="frozenActions">{{ actionsConfig.header }}</th>
+          }
+          @if (!actionsConfig?.inSameColumn && actionsConfig?.actions?.length && rtl) {
+            @for (action of actionsConfig?.actions; track action) {
+              @if (action.visible ?? true) {
+                <th class="action-header" alignFrozen="left" pFrozenColumn [frozen]="frozenActions">{{ action.header }}</th>
+              }
+            }
+          }
           @if (selectionMode == 'multiple' && showSelectionIndicator) {
             <th scope="col" style="width: 3rem">
               <p-tableHeaderCheckbox/>
@@ -223,13 +233,13 @@
               }
             </th>
           }
-          @if (actionsConfig?.inSameColumn && actionsConfig?.actions?.length) {
-            <th class="action-header">{{ actionsConfig.header }}</th>
+          @if (actionsConfig?.inSameColumn && actionsConfig?.actions?.length && !rtl) {
+            <th class="action-header" alignFrozen="right" pFrozenColumn [frozen]="frozenActions">{{ actionsConfig.header }}</th>
           }
-          @if (!actionsConfig?.inSameColumn && actionsConfig?.actions?.length) {
+          @if (!actionsConfig?.inSameColumn && actionsConfig?.actions?.length && !rtl) {
             @for (action of actionsConfig?.actions; track action) {
               @if (action.visible ?? true) {
-                <th class="action-header">{{ action.header }}</th>
+                <th class="action-header" alignFrozen="right" pFrozenColumn [frozen]="frozenActions">{{ action.header }}</th>
               }
             }
           }
@@ -239,6 +249,16 @@
         <tr>
           @if (reorderableRows) {
             <th scope="col" style="width: 3rem"></th>
+          }
+          @if (actionsConfig?.inSameColumn && actionsConfig?.actions?.length && rtl) {
+            <th alignFrozen="left" pFrozenColumn [frozen]="frozenActions">{{ actionsConfig.header }}</th>
+          }
+          @if (!actionsConfig?.inSameColumn && actionsConfig?.actions?.length && rtl) {
+            @for (action of actionsConfig?.actions; track action) {
+              @if (action.visible ?? true) {
+                <th class="action-header" alignFrozen="left" pFrozenColumn [frozen]="frozenActions">{{ action.header }}</th>
+              }
+            }
           }
           @if (selectionMode == 'multiple' && showSelectionIndicator) {
             <th scope="col" style="width: 3rem">
@@ -256,13 +276,13 @@
               }
             </th>
           }
-          @if (actionsConfig?.inSameColumn && actionsConfig?.actions?.length) {
-            <th>{{ actionsConfig.header }}</th>
+          @if (actionsConfig?.inSameColumn && actionsConfig?.actions?.length && !rtl) {
+            <th alignFrozen="right" pFrozenColumn [frozen]="frozenActions">{{ actionsConfig.header }}</th>
           }
-          @if (!actionsConfig?.inSameColumn && actionsConfig?.actions?.length) {
+          @if (!actionsConfig?.inSameColumn && actionsConfig?.actions?.length && !rtl) {
             @for (action of actionsConfig?.actions; track action) {
               @if (action.visible ?? true) {
-                <th class="action-header">{{ action.header }}</th>
+                <th class="action-header" alignFrozen="right" pFrozenColumn [frozen]="frozenActions">{{ action.header }}</th>
               }
             }
           }
@@ -271,6 +291,14 @@
           @if (showSelectionIndicator) {
             <th scope="col" style="width: 3rem">
             </th>
+          }
+          @if (actionsConfig && actionsConfig.inSameColumn && rtl) {
+            <th alignFrozen="left" pFrozenColumn [frozen]="frozenActions"></th>
+          }
+          @if (actionsConfig && !actionsConfig.inSameColumn && rtl) {
+            @for (action of actionsConfig.actions; track action) {
+              <th alignFrozen="left" pFrozenColumn [frozen]="frozenActions"></th>
+            }
           }
           @for (col of colDef; track col) {
             <th scope="col" class="row-filter-wrapper">
@@ -347,12 +375,12 @@
               }
             </th>
           }
-          @if (actionsConfig && actionsConfig.inSameColumn) {
-            <th></th>
+          @if (actionsConfig && actionsConfig.inSameColumn && !rtl) {
+            <th alignFrozen="right" pFrozenColumn [frozen]="frozenActions"></th>
           }
-          @if (actionsConfig && !actionsConfig.inSameColumn) {
+          @if (actionsConfig && !actionsConfig.inSameColumn && !rtl) {
             @for (action of actionsConfig.actions; track action) {
-              <th></th>
+              <th alignFrozen="right" pFrozenColumn [frozen]="frozenActions"></th>
             }
           }
         </tr>
@@ -372,6 +400,56 @@
             <td>
               <svg data-p-icon="bars"/>
             </td>
+          }
+          @if (actionsConfig && actionsConfig.inSameColumn && rtl) {
+            <td class="same-column-actions-wrapper" alignFrozen="left" pFrozenColumn [frozen]="frozenActions">
+              <div>
+                @for (action of actionsConfig.actions; track action) {
+                  @if (handleActionVisibility(action, item)) {
+                    <pw-button
+                      [icon]="action.icon"
+                      [label]="action.label"
+                      [appearance]="action.appearance"
+                      [iconPos]="action.iconPos"
+                      [rounded]="action.rounded"
+                      [async]="action.async"
+                      [fluid]="action.full"
+                      [class]="action.styleClass"
+                      [severity]="action.severity"
+                      [size]="action.size"
+                      [pTooltip]="action.tooltip"
+                      [tooltipPosition]="action.tooltipPosition ?? 'top'"
+                      (onClick)="action.onClick?.(item,index,$event)"
+                      (onClickAsync)="action.onClickAsync?.(item,index,$event)">
+                    </pw-button>
+                  }
+                }
+              </div>
+            </td>
+          }
+          @if (actionsConfig && !actionsConfig.inSameColumn && rtl) {
+            @for (action of actionsConfig.actions; track action) {
+              <td class="action-wrapper" alignFrozen="left" pFrozenColumn [frozen]="frozenActions">
+                @if (handleActionVisibility(action, item)) {
+                  <pw-button
+                    [icon]="action.icon"
+                    [label]="action.label"
+                    [appearance]="action.appearance"
+                    [iconPos]="action.iconPos"
+                    [rounded]="action.rounded"
+                    [async]="action.async"
+                    [fluid]="action.full"
+                    [class]="action.styleClass"
+                    [severity]="action.severity"
+                    [size]="action.size"
+                    [pTooltip]="action.tooltip"
+                    [tooltipPosition]="action.tooltipPosition ?? 'top'"
+                    (onClick)="action.onClick?.(item,index,$event)"
+                    (onClickAsync)="action.onClickAsync?.(item,index,$event)">
+                  </pw-button>
+                }
+              </td>
+            }
           }
           @if (selectionMode == 'single' && showSelectionIndicator) {
             <td>
@@ -397,8 +475,8 @@
               }
             </td>
           }
-          @if (actionsConfig && actionsConfig.inSameColumn) {
-            <td class="same-column-actions-wrapper">
+          @if (actionsConfig && actionsConfig.inSameColumn && !rtl) {
+            <td class="same-column-actions-wrapper" alignFrozen="right" pFrozenColumn [frozen]="frozenActions">
               <div>
                 @for (action of actionsConfig.actions; track action) {
                   @if (handleActionVisibility(action, item)) {
@@ -423,9 +501,9 @@
               </div>
             </td>
           }
-          @if (actionsConfig && !actionsConfig.inSameColumn) {
+          @if (actionsConfig && !actionsConfig.inSameColumn && !rtl) {
             @for (action of actionsConfig.actions; track action) {
-              <td class="action-wrapper">
+              <td class="action-wrapper" alignFrozen="right" pFrozenColumn [frozen]="frozenActions">
                 @if (handleActionVisibility(action, item)) {
                   <pw-button
                     [icon]="action.icon"
