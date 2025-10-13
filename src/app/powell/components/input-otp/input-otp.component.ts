@@ -57,17 +57,17 @@ export class InputOtpComponent implements OnInit, ControlValueAccessor {
   @Input() labelPosition: Optional<FixLabelPosition>;
   @Input() validation: Optional<Validation>;
   @Input() followConfig: boolean = false;
-  @Input() style: Optional<CssObject>;
   // native properties
+  @Input() required: boolean = false;
   @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
   @Input() readonly: boolean = false;
-  @Input() variant: Optional<InputVariant>;
   @Input() tabindex: Optional<number>;
   @Input() length: number = 4;
-  @Input() styleClass: Optional<string>;
   @Input() mask: boolean = false;
   @Input() integerOnly: boolean = false;
   @Input() autofocus: boolean = false;
+  @Input() variant: Optional<InputVariant>;
   @Input() size: Optional<Size>;
   @Output() onChange = new EventEmitter<$InputOtpChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
@@ -75,7 +75,7 @@ export class InputOtpComponent implements OnInit, ControlValueAccessor {
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
@@ -124,7 +124,7 @@ export class InputOtpComponent implements OnInit, ControlValueAccessor {
     this.onFocus.emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

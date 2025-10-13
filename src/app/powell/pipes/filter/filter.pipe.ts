@@ -5,11 +5,11 @@ import {Pipe, PipeTransform} from '@angular/core';
   standalone: false
 })
 export class FilterPipe implements PipeTransform {
-  transform(value: any[], term: string, keys?: string) {
+  transform(value: SafeAny[], term: string, keys?: string) {
     if (!term) {
       return value;
     }
-    return (value || []).filter((item: any) => {
+    return (value || []).filter((item: SafeAny) => {
       if (keys) {
         return keys.split(',').some((key: string) => {
           return item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key])

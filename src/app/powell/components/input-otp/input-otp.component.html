@@ -1,7 +1,4 @@
-<div class="input-otp-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass">
+<div class="input-otp-wrapper" [attr.dir]="rtl ? 'rtl' : 'ltr'">
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
@@ -16,15 +13,16 @@
       <p-inputOtp
         [(ngModel)]="value"
         [invalid]="isInvalid"
+        [required]="required"
         [disabled]="disabled"
+        [name]="name"
         [readonly]="readonly"
-        [variant]="variant"
         [tabindex]="tabindex"
         [length]="length"
-        [styleClass]="styleClass"
         [mask]="mask"
         [integerOnly]="integerOnly"
         [autofocus]="autofocus"
+        [variant]="variant"
         [size]="size"
         (onChange)="_onChange($event)"
         (onFocus)="_onFocus($event)"

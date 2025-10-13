@@ -5,8 +5,6 @@
     [columns]="colDef"
     [frozenColumns]="frozenColumns"
     [frozenValue]="frozenValue"
-    [style]="style"
-    [styleClass]="styleClass"
     [tableStyle]="tableStyle"
     [tableStyleClass]="tableStyleClass"
     [paginator]="paginator"
@@ -387,8 +385,8 @@
           }
           @for (col of colDef; track col.header) {
             <td
-              [ngClass]="handleCellStyleClass(col.cellStyleClass,item)"
-              [ngStyle]="handleCellStyle(col.cellStyle,item)">
+              [class]="handleCellStyleClass(col.cellStyleClass,item)"
+              [style]="handleCellStyle(col.cellStyle,item)">
               @switch (col.render) {
                 @case ('ng-template') {
                   <ng-container *ngTemplateOutlet="cellTemplates[col.field];context:{$implicit:item}"/>
@@ -412,7 +410,7 @@
                       [rounded]="action.rounded"
                       [async]="action.async"
                       [fluid]="action.full"
-                      [styleClass]="action.styleClass"
+                      [class]="action.styleClass"
                       [severity]="action.severity"
                       [size]="action.size"
                       [pTooltip]="action.tooltip"
@@ -437,7 +435,7 @@
                     [rounded]="action.rounded"
                     [async]="action.async"
                     [fluid]="action.full"
-                    [styleClass]="action.styleClass"
+                    [class]="action.styleClass"
                     [severity]="action.severity"
                     [size]="action.size"
                     [pTooltip]="action.tooltip"

@@ -1,7 +1,6 @@
-<div class="color-picker-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [ngClass]="{
+<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [class]="{
+     'color-picker-wrapper': true,
      'inline': inline
     }">
   <pw-form-field
@@ -13,21 +12,23 @@
     [labelPosition]="labelPosition"
     [inputId]="inputId"
     [disabled]="disabled">
-    <ng-template pwTemplate="element">
+    <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-colorPicker
         [(ngModel)]="value"
-        [style]="style"
-        [styleClass]="styleClass"
+        [invalid]="isInvalid"
+        [required]="required"
+        [disabled]="disabled"
+        [name]="name"
         [inline]="inline"
         [format]="format"
-        [appendTo]="appendTo"
-        [disabled]="disabled"
         [tabindex]="tabindex"
         [inputId]="inputId"
         [autoZIndex]="autoZIndex"
         [showTransitionOptions]="showTransitionOptions"
         [hideTransitionOptions]="hideTransitionOptions"
         [autofocus]="autofocus"
+        [defaultColor]="defaultColor"
+        [appendTo]="appendTo"
         (onChange)="_onChangeColorPicker($event)"
         (onShow)="emitter('onShow',$event)"
         (onHide)="emitter('onHide',$event)"/>

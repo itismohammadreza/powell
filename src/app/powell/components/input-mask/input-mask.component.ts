@@ -49,7 +49,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -58,29 +58,33 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @Input() labelPosition: Optional<LabelPosition>;
   @Input() validation: Optional<Validation>;
   @Input() followConfig: boolean = false;
-  @Input() fluid: boolean = false;
   // native properties
+  @Input() required: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() name: string;
+  @Input() fluid: boolean = false;
+  @Input() variant: Optional<InputVariant>;
+  @Input() size: Optional<Size>;
+  @Input() inputSize: Optional<number>;
+  @Input() pattern: Optional<string>;
+  @Input() min: Optional<number>;
+  @Input() max: Optional<number>;
+  @Input() step: Optional<number>;
+  @Input() minlength: Optional<number>;
+  @Input() maxlength: Optional<number>;
   @Input() type: InputType = 'text';
   @Input() slotChar: string = '_';
   @Input() autoClear: boolean = true;
   @Input() showClear: boolean = false;
-  @Input() style: Optional<CssObject>;
   @Input() inputId: string = $uuid();
-  @Input() styleClass: Optional<string>;
   @Input() placeholder: Optional<string>;
-  @Input() size: Optional<Size>;
-  @Input() maxlength: Optional<number>;
   @Input() tabindex: Optional<string>;
   @Input() title: Optional<string>;
-  @Input() variant: Optional<InputVariant>;
   @Input() ariaLabel: Optional<string>;
   @Input() ariaLabelledBy: Optional<string>;
   @Input() ariaRequired: boolean = false;
-  @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;
   @Input() unmask: boolean = false;
-  @Input() name: Optional<string>;
-  @Input() required: boolean = false;
   @Input() characterPattern: string = '[A-Za-z]';
   @Input() autofocus: boolean = false;
   @Input() autocomplete: Optional<string>;
@@ -95,7 +99,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
@@ -158,7 +162,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
     (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

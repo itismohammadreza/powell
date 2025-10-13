@@ -12,7 +12,7 @@ import {Observable, of} from "rxjs";
   ]
 })
 export class SuspensePage implements OnInit {
-  list: Observable<any[]>;
+  list: Observable<SafeAny[]>;
 
   ngOnInit() {
     setTimeout(() => {

@@ -33,14 +33,14 @@ import {DynamicDialogRef} from './dynamic-dialog-ref';
 })
 export class DynamicDialogComponent implements OnDestroy {
   private dialogRef = inject(DynamicDialogRef);
-  private _onClose = new Subject<any>();
+  private _onClose = new Subject<SafeAny>();
 
-  componentRef!: ComponentRef<any>;
+  componentRef!: ComponentRef<SafeAny>;
   onClose = this._onClose.asObservable();
 
   @ViewChild('insertion', {read: ViewContainerRef, static: true}) insertionPoint!: ViewContainerRef;
 
-  open(childComponent: Type<any>) {
+  open(childComponent: Type<SafeAny>) {
     this.insertionPoint.clear();
     this.componentRef = this.insertionPoint.createComponent(childComponent);
   }

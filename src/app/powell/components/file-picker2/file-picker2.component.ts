@@ -56,7 +56,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any = [];
+  @Input() value: SafeAny = [];
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -78,8 +78,6 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() invalidFileSizeMessage: string = 'سایز فایل نامعتبر است.';
   @Input() invalidFileTypeMessage: string = 'فرمت نامعتبر است.';
   @Input() id: string = $uuid();
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Input() fluid: boolean = false;
   @Output() onSelect = new EventEmitter<FilePickerSelectEvent>();
   @Output() onRemove = new EventEmitter<FilePickerRemoveEvent>();
@@ -138,7 +136,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     }
   }
 
-  _onSelect(event: any) {
+  _onSelect(event: SafeAny) {
     const file: File = event.target.files[0];
     this.clearValidators();
     if (!this.isValidFile(file)) {
@@ -271,7 +269,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     }
   }
 
-  getFileType(file: any) {
+  getFileType(file: SafeAny) {
     const isImage = !!file && ((typeof file == 'string' && file.includes('blob')) || this.isUnknownImageUrl || helpers.isImage(file));
     if (isImage) {
       return 'image';
@@ -280,7 +278,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     }
   }
 
-  async init(value: any) {
+  async init(value: SafeAny) {
     if (!value) {
       return
     }
@@ -306,7 +304,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     this.cd.markForCheck();
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.init(value);
   }
 

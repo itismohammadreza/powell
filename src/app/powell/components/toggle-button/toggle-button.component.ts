@@ -24,7 +24,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {CssObject, FixLabelPosition, Position, Size, Validation} from '@powell/models';
+import {FixLabelPosition, Position, Size, Validation} from '@powell/models';
 import {DestroyService} from "@powell/utils";
 import {$ToggleButtonChangeEvent, $uuid} from "@powell/primeng";
 import {TemplateDirective} from "@powell/directives/template";
@@ -49,7 +49,7 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -59,26 +59,27 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() validation: Optional<Validation>;
   @Input() followConfig: boolean = false;
   // native properties
+  @Input() required: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
   @Input() onLabel: Optional<string>;
   @Input() offLabel: Optional<string>;
   @Input() onIcon: Optional<string>;
   @Input() offIcon: Optional<string>;
   @Input() ariaLabel: Optional<string>;
   @Input() ariaLabelledBy: Optional<string>;
-  @Input() disabled: boolean = false;
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Input() inputId: string = $uuid();
   @Input() tabindex: Optional<number>;
-  @Input() size: Optional<Size>;
   @Input() iconPos: Exclude<Position, 'top' | 'bottom'> = 'left';
   @Input() autofocus: boolean = false;
-  @Input() allowEmpty: boolean = false;
+  @Input() size: Optional<Size>;
+  @Input() allowEmpty: boolean = true;
+  @Input() fluid: boolean = false;
   @Output() onChange = new EventEmitter<$ToggleButtonChangeEvent>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
@@ -120,13 +121,14 @@ export class ToggleButtonComponent implements OnInit, AfterContentInit, ControlV
     });
   }
 
-  _onChange(event: any) {
+  _onChange(event: $ToggleButtonChangeEvent) {
     this.onModelChange(event.checked);
     this.onChange.emit(event);
     this.value = event.checked;
+    this.cd.detectChanges();
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

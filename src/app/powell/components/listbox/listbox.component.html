@@ -1,7 +1,4 @@
-<div class="listbox-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass">
+<div class="listbox-wrapper" [attr.dir]="rtl ? 'rtl' : 'ltr'">
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
@@ -17,6 +14,9 @@
       <p-listbox
         [(ngModel)]="value"
         [invalid]="isInvalid"
+        [required]="required"
+        [disabled]="disabled"
+        [name]="name"
         [id]="id"
         [searchMessage]="searchMessage"
         [emptySelectionMessage]="emptySelectionMessage"
@@ -35,12 +35,9 @@
         [scrollHeight]="scrollHeight"
         [tabindex]="tabindex"
         [multiple]="multiple"
-        [style]="style"
-        [styleClass]="styleClass"
         [listStyle]="listStyle"
         [listStyleClass]="listStyleClass"
         [readonly]="readonly"
-        [disabled]="disabled"
         [checkbox]="checkbox"
         [filter]="filter"
         [filterBy]="filterBy"
@@ -65,6 +62,9 @@
         [striped]="striped"
         [highlightOnSelect]="highlightOnSelect"
         [checkmark]="checkmark"
+        [dragdrop]="dragdrop"
+        [dropListData]="dropListData"
+        [fluid]="fluid"
         (onChange)="_onChange($event)"
         (onClick)="_onClick($event)"
         (onDblClick)="_onDblClick($event)"
@@ -72,7 +72,8 @@
         (onFocus)="emitter('onFocus', $event)"
         (onBlur)="emitter('onBlur', $event)"
         (onSelectAllChange)="emitter('onSelectAllChange', $event)"
-        (onLazyLoad)="emitter('onLazyLoad', $event)">
+        (onLazyLoad)="emitter('onLazyLoad', $event)"
+        (onDrop)="emitter('onDrop', $event)">
         @for (t of templates; track t) {
           @if (templateMap[t.type]) {
             <ng-template [pTemplate]="t.type" let-item let-options="options" let-index="index">

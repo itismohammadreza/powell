@@ -1,4 +1,4 @@
-<div class="infinite-scroll-wrapper" [ngStyle]="style">
+<div class="infinite-scroll-wrapper" [style]="style">
   @for (item of data; track item; let i = $index; let first = $first; let last = $last) {
     <ng-container *ngTemplateOutlet="templateMap['content'];context:{$implicit:item,index:i,first:first,last:last}"/>
   }

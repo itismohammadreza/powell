@@ -87,8 +87,6 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Input() clearIcon: Optional<string>;
   @Input() selectionLimit: Optional<number>;
   @Input() id: string = $uuid();
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   // native properties
   @Input() zoom: number = 10;
   @Input() center: LatLng = latLng(35.68419775656676, 51.38983726501465);
@@ -169,7 +167,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Output() onClear = new EventEmitter<void>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   ngControl: Nullable<NgControl> = null;
   map!: Map;
   layers: Layer[] = [];
@@ -221,7 +219,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     this.handleDisabledState();
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     if (value) {
       if (Array.isArray(value)) {
@@ -293,7 +291,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
 
   _onMapClick(event: LeafletMouseEvent) {
     if (!this.readonly && !this.disabled) {
-      const selectedLatLngs = this.layers.map((l: any) => l._latlng);
+      const selectedLatLngs = this.layers.map((l: SafeAny) => l._latlng);
       if (this.multiple) {
         if (selectedLatLngs.length == this.selectionLimit) {
           return
@@ -327,12 +325,12 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
       this.onMapMarkerClick.emit(event);
       if (this.clearMarkerOnClick) {
         const {latlng} = event;
-        const idx = this.layers.findIndex(({_latlng: {lat, lng}}: any) => lat == latlng.lat && lng == latlng.lng);
+        const idx = this.layers.findIndex(({_latlng: {lat, lng}}: SafeAny) => lat == latlng.lat && lng == latlng.lng);
         if (idx != -1) {
           this.layers.splice(idx, 1);
           this.cd.detectChanges()
         }
-        const selectedLatLngs = this.layers.map((l: any) => l._latlng);
+        const selectedLatLngs = this.layers.map((l: SafeAny) => l._latlng);
         this.onModelChange(this.multiple ? selectedLatLngs : selectedLatLngs[0])
       }
     });

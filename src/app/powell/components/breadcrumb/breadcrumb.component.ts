@@ -36,8 +36,6 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
   @Input() followConfig: boolean = false;
   // native properties
   @Input() items: Optional<$MenuItem[]>;
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Input() home: Optional<$MenuItem>;
   @Input() homeAriaLabel: Optional<string>;
   @Output() onItemClick = new EventEmitter<$BreadcrumbItemClickEvent>();
@@ -45,7 +43,7 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
 
   _breadcrumbs$ = new BehaviorSubject<$MenuItem[]>([]);
   breadcrumbs$ = this._breadcrumbs$.asObservable();
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
 
   ngOnInit() {
     if (this.items) {

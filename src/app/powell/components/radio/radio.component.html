@@ -1,8 +1,6 @@
-<div class="radio-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass"
-     [ngClass]="{
+<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [class]="{
+      'radio-wrapper': true,
       'layout-horizontal':orientation == 'horizontal',
       'layout-vertical':orientation == 'vertical'
       }">
@@ -20,7 +18,7 @@
         <div class="option-item">
           <p-radioButton
             [(ngModel)]="value"
-            [ngClass]="{'ng-invalid ng-dirty': isInvalid }"
+            [invalid]="isInvalid"
             [class]="item.styleClass"
             [value]="item[optionValue]"
             [name]="name"
@@ -31,8 +29,6 @@
             [inputId]="'id' + item[optionValue]"
             [ariaLabelledBy]="ariaLabelledBy"
             [ariaLabel]="ariaLabel"
-            [style]="style"
-            [styleClass]="styleClass"
             [autofocus]="autofocus"
             [binary]="binary"
             (onClick)="_onChange($event)"

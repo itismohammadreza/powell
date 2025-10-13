@@ -39,7 +39,7 @@ export class ConfigService {
     return this._config;
   }
 
-  configureComponent(component: any, isFixLabel: boolean = false) {
+  configureComponent(component: SafeAny, isFixLabel: boolean = false) {
     this.registeredComponents.push({component, isFixLabel});
     this.syncComponentWithConfig(component, isFixLabel, this._config, false);
     const destroySubscription = component.destroy$?.subscribe(() => {
@@ -48,7 +48,7 @@ export class ConfigService {
     })
   }
 
-  private syncComponentWithConfig(component: any, isFixLabel: boolean, config: Partial<Config>, forceApply: boolean) {
+  private syncComponentWithConfig(component: SafeAny, isFixLabel: boolean, config: Partial<Config>, forceApply: boolean) {
     Object.entries(config).forEach(([key, value]) => {
       let componentKey = this.getComponentConfigKey(key as keyof Config);
       if (!(componentKey in component)) {
@@ -119,7 +119,7 @@ export class ConfigService {
     return key;
   }
 
-  private unregisterComponent(component: any) {
+  private unregisterComponent(component: SafeAny) {
     this.registeredComponents = this.registeredComponents.filter(item => item.component !== component);
   }
 

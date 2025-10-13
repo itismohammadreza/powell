@@ -6,11 +6,11 @@ import {LoadingComponent} from "@modules/layout/loading/loading.component";
 import {LogoComponent} from "@modules/layout/logo/logo.component";
 import {NavbarMenuComponent} from "@modules/layout/navbar-menu/navbar-menu.component";
 
-export const DECLARATIONS: Type<any>[] = [
+export const DECLARATIONS: Type<SafeAny>[] = [
   MainPage,
 ];
 
-export const IMPORTS: Type<any>[] = [
+export const IMPORTS: Type<SafeAny>[] = [
   LoadingComponent,
   LogoComponent,
   NavbarMenuComponent,

@@ -56,7 +56,7 @@ export class DialogComponent {
     this.handleEvent('onHide');
   }
 
-  handleEvent(event: keyof DialogOptions, args?: any) {
+  handleEvent(event: keyof DialogOptions, args?: SafeAny) {
     this.options[event]?.(args);
   }
 }

@@ -45,7 +45,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -55,18 +55,19 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() validation: Optional<Validation>;
   @Input() followConfig: boolean = false;
   // native properties
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
-  @Input() inline: boolean = false;
-  @Input() format: ColorFormat = 'hex';
-  @Input() appendTo: Optional<any>;
+  @Input() required: boolean = false;
   @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
+  @Input() inline: boolean = false;
+  @Input() format: ColorFormat = "rgb";
   @Input() tabindex: Optional<string>;
   @Input() inputId: string = $uuid();
   @Input() autoZIndex: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
   @Input() autofocus: boolean = false;
+  @Input() defaultColor: string = 'ff0000';
+  @Input() appendTo: Optional<SafeAny>;
   @Output() onChange = new EventEmitter<$ColorPickerChangeEvent>();
   @Output() onShow = new EventEmitter<void>();
   @Output() onHide = new EventEmitter<void>();
@@ -120,7 +121,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
     (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

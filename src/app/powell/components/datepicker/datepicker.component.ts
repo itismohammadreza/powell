@@ -66,7 +66,7 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -76,19 +76,28 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   @Input() validation: Optional<Validation>;
   @Input() followConfig: boolean = false;
   @Input() isJalali: boolean = false;
-  @Input() iconDisplay: DatepickerIconDisplay = 'button';
   // native properties
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
-  @Input() inputStyle: Optional<CssObject>;
-  @Input() inputId: string = $uuid();
+  @Input() required: boolean = false;
+  @Input() disabled: boolean = false;
   @Input() name: Optional<string>;
+  @Input() fluid: boolean = false;
+  @Input() variant: Optional<InputVariant>;
+  @Input() size: Optional<Size>;
+  @Input() inputSize: Optional<number>;
+  @Input() pattern: Optional<string>;
+  @Input() min: Optional<number>;
+  @Input() max: Optional<number>;
+  @Input() step: Optional<number>;
+  @Input() minlength: Optional<number>;
+  @Input() maxlength: Optional<number>;
+  @Input() iconDisplay: DatepickerIconDisplay = 'button';
+  @Input() inputStyle: CssObject;
+  @Input() inputId: string = $uuid();
   @Input() inputStyleClass: Optional<string>;
   @Input() placeholder: Optional<string>;
   @Input() ariaLabelledBy: Optional<string>;
   @Input() ariaLabel: Optional<string>;
   @Input() iconAriaLabel: Optional<string>;
-  @Input() disabled: boolean = false;
   @Input() dateFormat: Optional<string>;
   @Input() multipleSeparator: string = ',';
   @Input() rangeSeparator: string = '-';
@@ -96,9 +105,7 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   @Input() showOtherMonths: boolean = true;
   @Input() selectOtherMonths: boolean = false;
   @Input() showIcon: boolean = false;
-  @Input() fluid: boolean = false;
-  @Input() datepickerIcon: Optional<string>;
-  @Input() appendTo: Optional<any>;
+  @Input() icon: Optional<string>;
   @Input() readonlyInput: boolean = false;
   @Input() shortYearCutoff: string = '+10';
   @Input() hourFormat: DatepickerHourFormat = '24';
@@ -107,7 +114,6 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   @Input() stepMinute: number = 1;
   @Input() stepSecond: number = 1;
   @Input() showSeconds: boolean = false;
-  @Input() required: boolean = false;
   @Input() showOnFocus: boolean = true;
   @Input() showWeek: boolean = false;
   @Input() startWeekFromFirstDayOfYear: boolean = false;
@@ -116,8 +122,8 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   @Input() selectionMode: DatepickerSelectionMode = 'single';
   @Input() maxDateCount: Optional<number>;
   @Input() showButtonBar: boolean = false;
-  @Input() todayButtonStyleClass: string = 'p-button-text';
-  @Input() clearButtonStyleClass: string = 'p-button-text';
+  @Input() todayButtonStyleClass: Optional<string>;
+  @Input() clearButtonStyleClass: Optional<string>;
   @Input() autofocus: boolean = false;
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: number = 0;
@@ -131,18 +137,17 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
   @Input() tabindex: Optional<number>;
-  @Input() variant: InputVariant = 'outlined';
-  @Input() size: Optional<Size>;
   @Input() minDate: Optional<Date | Moment>;
   @Input() maxDate: Optional<Date | Moment>;
   @Input() disabledDates: Optional<(Date | Moment)[]>;
   @Input() disabledDays: Optional<number[]>;
   @Input() showTime: boolean = false;
   @Input() responsiveOptions: Optional<$DatePickerResponsiveOptions[]>;
-  @Input() numberOfMonths: number = 1;
+  @Input() numberOfMonths: Optional<number>;
   @Input() firstDayOfWeek: Optional<number>;
   @Input() view: $DatePickerTypeView = 'date';
   @Input() defaultDate: Optional<Date | Moment>;
+  @Input() appendTo: Optional<SafeAny>;
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onClose = new EventEmitter<AnimationEvent>();
@@ -157,7 +162,7 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   @Output() onShow = new EventEmitter<AnimationEvent>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   ngControl: Nullable<NgControl> = null;
   onModelChange: Fn = () => {
   };
@@ -224,7 +229,7 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
     (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

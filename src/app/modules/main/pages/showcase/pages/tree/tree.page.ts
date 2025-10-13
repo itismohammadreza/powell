@@ -31,7 +31,7 @@ export class TreePage extends PreviewBase {
     {field: 'indentation', value: 1.5},
   ];
 
-  items: any[] = [
+  items: SafeAny[] = [
     {
       key: "0",
       label: "Documents",

@@ -36,10 +36,9 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   @Input() rtl: boolean = false;
   @Input() followConfig: boolean = false;
   // native properties
-  @Input() appendTo: Optional<any>;
+  @Input() appendTo: Optional<SafeAny>;
   @Input() blockScroll: boolean = false;
   @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Input() ariaCloseLabel: Optional<string>;
   @Input() autoZIndex: boolean = true;
   @Input() baseZIndex: Optional<number>;
@@ -49,25 +48,24 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   @Input() closeOnEscape: boolean = true;
   @Input() transitionOptions: string = '270ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() visible: boolean = false;
-  @Input() fullScreen: Optional<boolean>;
+  @Input() fullScreen: boolean = false;
   @Input() header: Optional<string>;
   @Input() maskStyle: Optional<CssObject>;
   @Input() closable: boolean = true;
-  @Output() onShow = new EventEmitter<any>();
-  @Output() onHide = new EventEmitter<any>();
+  @Output() onShow = new EventEmitter<SafeAny>();
+  @Output() onHide = new EventEmitter<SafeAny>();
   @Output() visibleChange = new EventEmitter<boolean>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   computedStyle: CssObject = {};
   hided$ = new Subject<boolean>();
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   state: HistoryState = {
     component: 'bottomSheet',
     key: $uuid()
   }
 
   ngOnInit() {
-    this.styleClass = `p-bottom-sheet ${this.styleClass}`;
     this.configService.configureComponent(this);
   }
 
@@ -119,7 +117,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
       link: props.appearance === 'link',
       outlined: props.appearance === 'outlined',
       text: props.appearance === 'text',
-    } as any;
+    } as SafeAny;
   }
 
   updateStyle() {

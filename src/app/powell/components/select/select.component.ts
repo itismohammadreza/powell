@@ -65,7 +65,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -76,28 +76,35 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() async: boolean = false;
   @Input() followConfig: boolean = false;
   // native properties
+  @Input() required: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
+  @Input() fluid: boolean = false;
+  @Input() variant: InputVariant = 'outlined';
+  @Input() size: Optional<Size>;
+  @Input() inputSize: Optional<number>;
+  @Input() pattern: Optional<string>;
+  @Input() min: Optional<number>;
+  @Input() max: Optional<number>;
+  @Input() step: Optional<number>;
+  @Input() minlength: Optional<number>;
+  @Input() maxlength: Optional<number>;
   @Input() id: Optional<string>;
   @Input() scrollHeight: string = '200px';
   @Input() filter: boolean = false;
-  @Input() name: Optional<string>;
-  @Input() style: Optional<CssObject>;
   @Input() panelStyle: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Input() panelStyleClass: Optional<string>;
   @Input() readonly: boolean = false;
-  @Input() required: boolean = false;
   @Input() editable: boolean = false;
-  @Input() appendTo: Optional<any>;
   @Input() tabindex: Optional<number>;
   @Input() placeholder: Optional<string>;
   @Input() loadingIcon: Optional<string>;
   @Input() filterPlaceholder: Optional<string>;
   @Input() filterLocale: Optional<string>;
-  @Input() variant: Optional<InputVariant>;
   @Input() inputId: string = $uuid();
   @Input() dataKey: Optional<string>;
   @Input() filterBy: Optional<string>;
-  @Input() filterFields: Optional<any[]>;
+  @Input() filterFields: Optional<SafeAny[]>;
   @Input() autofocus: boolean = false;
   @Input() resetFilterOnHide: boolean = false;
   @Input() checkmark: boolean = false;
@@ -106,8 +113,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() optionLabel: Optional<string>;
   @Input() optionValue: Optional<string>;
   @Input() optionDisabled: Optional<string>;
-  @Input() optionGroupLabel: string = 'label';
-  @Input() optionGroupChildren: string = 'items';
+  @Input() optionGroupLabel: Optional<string>;
+  @Input() optionGroupChildren: Optional<string>;
   @Input() group: boolean = false;
   @Input() showClear: boolean = false;
   @Input() emptyFilterMessage: Optional<string>;
@@ -116,25 +123,22 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: Optional<number>;
   @Input() virtualScrollOptions: Optional<$ScrollerOptions>;
-  @Input() size: Optional<Size>;
   @Input() overlayOptions: Optional<$OverlayOptions>;
   @Input() ariaFilterLabel: Optional<string>;
   @Input() ariaLabel: Optional<string>;
   @Input() ariaLabelledBy: Optional<string>;
-  @Input() filterMatchMode: FilterMatchMode = 'contains';
-  @Input() maxlength: Optional<number>;
+  @Input() filterMatchMode: FilterMatchMode = "contains";
   @Input() tooltip: Optional<string>;
-  @Input() tooltipPosition: Position = 'right';
-  @Input() tooltipPositionStyle: string = 'absolute';
+  @Input() tooltipPosition: Position = "right";
+  @Input() tooltipPositionStyle: string = "absolute";
   @Input() tooltipStyleClass: Optional<string>;
   @Input() focusOnHover: boolean = true;
   @Input() selectOnFocus: boolean = false;
-  @Input() autoOptionFocus: boolean = true;
+  @Input() autoOptionFocus: boolean = false;
   @Input() autofocusFilter: boolean = true;
-  @Input() fluid: boolean = false;
-  @Input() disabled: boolean = false;
   @Input() filterValue: Optional<string>;
-  @Input() options: Optional<any[]>;
+  @Input() options: Optional<SafeAny[]>;
+  @Input() appendTo: Optional<SafeAny>;
   @Output() onChange = new EventEmitter<$SelectChangeEvent>();
   @Output() onFilter = new EventEmitter<$SelectFilterEvent>();
   @Output() onFocus = new EventEmitter<Event>();
@@ -148,7 +152,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   _oldValue: Optional<string>;
   _newValue: Optional<string>;
   onModelChange: Fn = () => {
@@ -237,7 +241,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

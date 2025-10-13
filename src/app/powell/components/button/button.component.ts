@@ -63,8 +63,6 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   @Input() severity: Severity = 'primary';
   @Input() tabindex: Optional<number>;
   @Input() size: Optional<Size>;
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Input() badgeSeverity: Severity = 'primary';
   @Input() ariaLabel: Optional<string>;
   @Input() autofocus: boolean = false;
@@ -78,7 +76,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   loading: boolean = false;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   _tmpLabel: Optional<string>;
   _tmpIcon: Optional<string>;
   _tmpAppearance: Optional<ButtonAppearance>;

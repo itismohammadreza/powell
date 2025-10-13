@@ -76,7 +76,7 @@ export class TranslationService {
    */
   setTranslation(
     lang: string,
-    translations: any,
+    translations: SafeAny,
     shouldMerge: boolean = false
   ) {
     return this.translate.setTranslation(lang, translations, shouldMerge);
@@ -99,7 +99,7 @@ export class TranslationService {
   /**
    * Gets the translated value of a key (or an array of keys) or the key if the value was not found
    */
-  get(key: string | Array<string>, interpolateParams?: any) {
+  get(key: string | Array<string>, interpolateParams?: SafeAny) {
     return this.translate.get(key, interpolateParams);
   }
 
@@ -107,14 +107,14 @@ export class TranslationService {
    * Returns a stream of translated values of a key or the key if the value wasn't found.Without any
    * onTranslationChange events.
    */
-  getStreamOnTranslationChange(key: string | string[], interpolateParams?: any) {
+  getStreamOnTranslationChange(key: string | string[], interpolateParams?: SafeAny) {
     return this.translate.getStreamOnTranslationChange(key, interpolateParams);
   }
 
   /**
    * Returns a stream of translated values of a key (or an array of keys) or the key if the value was not found.
    */
-  stream(key: string | string[], interpolateParams?: any) {
+  stream(key: string | string[], interpolateParams?: SafeAny) {
     return this.translate.stream(key, interpolateParams);
   }
 
@@ -122,7 +122,7 @@ export class TranslationService {
    * Gets the instant translated value of a key. This method is synchronous and the default file loader is
    * asynchronous.
    */
-  instant(key: string | string[], interpolateParams?: any) {
+  instant(key: string | string[], interpolateParams?: SafeAny) {
     return this.translate.instant(key, interpolateParams);
   }
 

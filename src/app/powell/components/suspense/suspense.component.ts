@@ -33,7 +33,7 @@ export class SuspenseComponent<T> implements OnInit, OnChanges, AfterContentInit
   @Input() spinnerHeight: string = '70px';
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   state$!: Observable<SuspenseState<T>>;
 
   ngAfterContentInit() {

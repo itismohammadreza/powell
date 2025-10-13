@@ -6,15 +6,15 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 import {$TableSelectAllChangeEvent} from "@powell/primeng";
 
 interface Customer {
-  id: any;
+  id: SafeAny;
   name: string;
-  country: any;
+  country: SafeAny;
   company: string;
   date: string;
   status: string;
   verified: boolean;
   activity: number;
-  representative: any;
+  representative: SafeAny;
   balance: number;
 }
 
@@ -233,7 +233,7 @@ export class TablePage extends PreviewBase {
   }
   totalRecords: number;
   selectAll: boolean = null;
-  selectedCustomers: any[];
+  selectedCustomers: SafeAny[];
 
   loadCustomers({event, loadingCallback}) {
     const filters = {

@@ -30,7 +30,6 @@ import {
 import {takeUntil} from "rxjs";
 import {
   ButtonProps,
-  CssObject,
   FilePickerMethod,
   FilePickerMode,
   FileResultType,
@@ -74,7 +73,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: any = [];
+  @Input() value: SafeAny = [];
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -95,14 +94,12 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Input() auto: boolean = false;
   @Input() withCredentials: boolean = false;
   @Input() maxFileSize: Optional<number>;
-  @Input() invalidFileSizeMessageSummary: string = '{0}: Invalid file size';
-  @Input() invalidFileSizeMessageDetail: string = 'maximum upload size is {0}';
-  @Input() invalidFileTypeMessageSummary: string = '{0}: Invalid file type';
-  @Input() invalidFileTypeMessageDetail: string = 'allowed file types: {0}';
-  @Input() invalidFileLimitMessageDetail: string = 'limit is {0} at most';
-  @Input() invalidFileLimitMessageSummary: string = 'Maximum number of files exceeded';
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
+  @Input() invalidFileSizeMessageSummary: string = '{0}: Invalid file size.';
+  @Input() invalidFileSizeMessageDetail: string = 'maximum upload size is {0}.';
+  @Input() invalidFileTypeMessageSummary: string = '{0}: Invalid file type.';
+  @Input() invalidFileTypeMessageDetail: string = 'allowed file types: {0}.';
+  @Input() invalidFileLimitMessageDetail: string = 'limit is {0} at most.';
+  @Input() invalidFileLimitMessageSummary: string = 'maximum number of files exceeded.';
   @Input() previewWidth: number = 50;
   @Input() chooseLabel: Optional<string>;
   @Input() uploadLabel: Optional<string>;
@@ -138,9 +135,9 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
-  selectedFiles: any[] = [];
-  filesToEmit: any[] = [];
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
+  selectedFiles: SafeAny[] = [];
+  filesToEmit: SafeAny[] = [];
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
@@ -227,7 +224,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     this.onModelChange(this.filesToEmit);
   }
 
-  async init(value: any) {
+  async init(value: SafeAny) {
     const dt = new DataTransfer();
     const wantBase64 = this.resultType == 'base64';
     const wantFile = this.resultType == 'file';
@@ -338,7 +335,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     if (value && helpers.isImage(value)) {
       this.init(value);
     }
@@ -370,6 +367,6 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
       link: props.appearance === 'link',
       outlined: props.appearance === 'outlined',
       text: props.appearance === 'text',
-    } as any;
+    } as SafeAny;
   }
 }

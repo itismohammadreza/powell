@@ -49,7 +49,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -59,10 +59,10 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() validation: Optional<Validation>;
   @Input() followConfig: boolean = false;
   @Input() id: string = $uuid();
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   // native properties
+  @Input() required: boolean = false;
   @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
   @Input() readonly: boolean = false;
   @Input() stars: number = 5;
   @Input() iconOnClass: Optional<string>;
@@ -71,13 +71,12 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() iconOffStyle: Optional<CssObject>;
   @Input() autofocus: boolean = false;
   @Output() onRate = new EventEmitter<$RatingRateEvent>();
-  @Output() onCancel = new EventEmitter<Event>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
@@ -124,16 +123,11 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
     this.onModelChange(event.value);
   }
 
-  _onCancel(event: Event) {
-    this.onCancel.emit(event);
-    this.onModelChange(null);
-  }
-
   emitter(key: keyof this, event: SafeAny) {
     (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

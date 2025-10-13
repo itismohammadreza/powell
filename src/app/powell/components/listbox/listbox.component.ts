@@ -23,6 +23,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import {takeUntil} from "rxjs";
 import {CssObject, FilterMatchMode, FixLabelPosition, Validation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
@@ -58,7 +59,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -68,7 +69,10 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() validation: Optional<Validation>;
   @Input() followConfig: boolean = false;
   // native properties
-  @Input() id: string = $uuid();
+  @Input() required: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
+  @Input() id: Optional<string>;
   @Input() searchMessage: string = '{0} results are available';
   @Input() emptySelectionMessage: string = 'No selected item';
   @Input() selectionMessage: string = '{0} items selected';
@@ -78,7 +82,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() searchLocale: boolean = false;
   @Input() focusOnHover: boolean = true;
   @Input() filterMessage: Optional<string>;
-  @Input() filterFields: Optional<any[]>;
+  @Input() filterFields: Optional<SafeAny[]>;
   @Input() lazy: boolean = false;
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: Optional<number>;
@@ -86,16 +90,13 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() scrollHeight: string = '14rem';
   @Input() tabindex: Optional<number>;
   @Input() multiple: boolean = false;
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
-  @Input() listStyle: Optional<CssObject>;
+  @Input() listStyle: Optional<{ [klass: string]: SafeAny }>;
   @Input() listStyleClass: Optional<string>;
   @Input() readonly: boolean = false;
-  @Input() disabled: boolean = false;
   @Input() checkbox: boolean = false;
   @Input() filter: boolean = false;
   @Input() filterBy: Optional<string>;
-  @Input() filterMatchMode: FilterMatchMode = 'contains';
+  @Input() filterMatchMode: string = 'contains';
   @Input() filterLocale: Optional<string>;
   @Input() metaKeySelection: boolean = false;
   @Input() dataKey: Optional<string>;
@@ -104,18 +105,21 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() optionValue: Optional<string>;
   @Input() optionGroupChildren: string = 'items';
   @Input() optionGroupLabel: string = 'label';
-  @Input() optionDisabled: Optional<string>;
+  @Input() optionDisabled: Optional<string | Fn>;
   @Input() ariaFilterLabel: Optional<string>;
   @Input() filterPlaceHolder: Optional<string>;
   @Input() emptyFilterMessage: Optional<string>;
   @Input() emptyMessage: Optional<string>;
   @Input() group: boolean = false;
-  @Input() options: Optional<any[]>;
+  @Input() options: Optional<SafeAny[]>;
   @Input() filterValue: Optional<string>;
-  @Input() selectAll: Nullable<boolean> = null;
+  @Input() selectAll: Optional<boolean>;
   @Input() striped: boolean = false;
   @Input() highlightOnSelect: boolean = true;
   @Input() checkmark: boolean = false;
+  @Input() dragdrop: boolean = false;
+  @Input() dropListData: Optional<SafeAny[]>;
+  @Input() fluid: boolean = false;
   @Output() onChange = new EventEmitter<$ListboxChangeEvent>();
   @Output() onClick = new EventEmitter<$ListboxClickEvent>();
   @Output() onDblClick = new EventEmitter<$ListboxDoubleClickEvent>();
@@ -124,10 +128,11 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Output() onBlur = new EventEmitter<FocusEvent>();
   @Output() onSelectAllChange = new EventEmitter<$ListboxSelectAllChangeEvent>();
   @Output() onLazyLoad = new EventEmitter<$ScrollerLazyLoadEvent>();
+  @Output() onDrop = new EventEmitter<CdkDragDrop<string[]>>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
@@ -188,7 +193,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
     this.onModelChange(event.value);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

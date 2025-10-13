@@ -1,8 +1,6 @@
-<div class="multi-select-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass"
-     [ngClass]="{
+<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [class]="{
+     'multi-select-wrapper': true,
      'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
      'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
      'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
@@ -27,15 +25,14 @@
       <p-multiSelect
         [(ngModel)]="value"
         [invalid]="isInvalid"
+        [required]="required"
+        [disabled]="disabled"
+        [name]="name"
         [id]="id"
         [ariaLabel]="ariaLabel"
-        [style]="style"
-        [styleClass]="styleClass"
         [panelStyle]="panelStyle"
         [panelStyleClass]="panelStyleClass"
         [inputId]="inputId"
-        [disabled]="disabled"
-        [fluid]="fluid"
         [readonly]="readonly"
         [group]="group"
         [filter]="filter"
@@ -43,10 +40,7 @@
         [filterLocale]="filterLocale"
         [overlayVisible]="overlayVisible"
         [tabindex]="tabindex"
-        [variant]="variant"
-        [appendTo]="appendTo"
         [dataKey]="dataKey"
-        [name]="name"
         [ariaLabelledBy]="ariaLabelledBy"
         [displaySelectedLabel]="displaySelectedLabel"
         [maxSelectedLabels]="maxSelectedLabels"
@@ -82,7 +76,6 @@
         [autofocusFilter]="autofocusFilter"
         [display]="display"
         [autocomplete]="autocomplete"
-        [size]="size"
         [showClear]="showClear"
         [autofocus]="autofocus"
         [placeholder]="placeholder | pwLabelStar:showRequiredStar:ngControl"
@@ -93,6 +86,11 @@
         [filterFields]="filterFields"
         [selectOnFocus]="selectOnFocus"
         [autoOptionFocus]="autoOptionFocus"
+        [highlightOnSelect]="highlightOnSelect"
+        [size]="size"
+        [variant]="variant"
+        [fluid]="fluid"
+        [appendTo]="appendTo"
         (onChange)="_onChange($event)"
         (onFilter)="emitter('onFilter',$event)"
         (onFocus)="emitter('onFocus', $event)"

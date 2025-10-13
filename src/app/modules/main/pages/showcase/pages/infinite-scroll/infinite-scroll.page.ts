@@ -11,7 +11,7 @@ import {PreviewComponent} from "@modules/main/pages/showcase/components";
   ]
 })
 export class InfiniteScrollPage implements OnInit {
-  list: any[] = []
+  list: SafeAny[] = []
 
   ngOnInit() {
     this.initListLazy()

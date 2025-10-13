@@ -9,11 +9,11 @@ import {helpers} from "@core/utils";
 export class ToBase64Pipe implements PipeTransform {
   @Input() isUnknownImageUrl: boolean = false;
 
-  transform(value: any) {
+  transform(value: SafeAny) {
     return this.initImage(value);
   }
 
-  initImage(value: any) {
+  initImage(value: SafeAny) {
     return new Observable((observer) => {
       if (value instanceof File) {
         helpers.fileToBase64(value).then((res) => {

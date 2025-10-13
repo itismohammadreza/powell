@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
+import {NgTemplateOutlet} from "@angular/common";
 import {TableComponent} from "@powell/components/table";
 import {EmptyModule} from "@powell/components/empty";
 import {InputTextModule} from "@powell/components/input-text";
@@ -30,8 +30,6 @@ import {TemplateModule} from "@powell/directives/template";
     SelectModule,
     CheckboxModule,
     NgTemplateOutlet,
-    NgStyle,
-    NgClass,
     FormsModule,
     $TimesIcon,
     $BarsIcon,

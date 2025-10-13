@@ -1,7 +1,6 @@
-<div class="tree-select-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [ngClass]="{
+<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [class]="{
+     'tree-select-wrapper': true,
      'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
      'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
      'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
@@ -25,11 +24,12 @@
       <p-treeSelect
         [(ngModel)]="value"
         [invalid]="isInvalid"
+        [required]="required"
+        [disabled]="disabled"
+        [name]="name"
         [inputId]="inputId"
         [scrollHeight]="scrollHeight"
-        [disabled]="disabled"
         [metaKeySelection]="metaKeySelection"
-        [variant]="variant ?? 'outlined'"
         [display]="display"
         [selectionMode]="selectionMode"
         [tabindex]="tabindex"
@@ -38,15 +38,13 @@
         [placeholder]="placeholder | pwLabelStar:showRequiredStar:ngControl"
         [panelClass]="panelClass"
         [panelStyle]="panelStyle"
-        [fluid]="fluid"
         [panelStyleClass]="panelStyleClass"
         [containerStyle]="containerStyle"
         [containerStyleClass]="containerStyleClass"
         [labelStyle]="labelStyle"
         [labelStyleClass]="labelStyleClass"
         [overlayOptions]="overlayOptions"
-        [emptyMessage]="emptyMessage ?? ''"
-        [appendTo]="appendTo"
+        [emptyMessage]="emptyMessage"
         [filter]="filter"
         [filterBy]="filterBy"
         [filterMode]="filterMode"
@@ -59,11 +57,14 @@
         [resetFilterOnHide]="resetFilterOnHide"
         [virtualScroll]="virtualScroll"
         [virtualScrollItemSize]="virtualScrollItemSize"
-        [size]="size ?? 'small'"
         [virtualScrollOptions]="virtualScrollOptions"
         [autofocus]="autofocus"
         [options]="options"
         [loading]="loading"
+        [size]="size"
+        [variant]="variant"
+        [fluid]="fluid"
+        [appendTo]="appendTo"
         (onNodeExpand)="emitter('onNodeExpand',$event)"
         (onNodeCollapse)="emitter('onNodeCollapse',$event)"
         (onShow)="emitter('onShow',$event)"

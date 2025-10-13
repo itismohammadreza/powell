@@ -69,7 +69,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -79,15 +79,14 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() validation: Optional<Validation>;
   @Input() followConfig: boolean = false;
   // native properties
+  @Input() required: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
   @Input() id: Optional<string>;
   @Input() ariaLabel: Optional<string>;
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
-  @Input() panelStyle: Optional<CssObject>;
+  @Input() panelStyle: Optional<SafeAny>;
   @Input() panelStyleClass: Optional<string>;
   @Input() inputId: string = $uuid();
-  @Input() disabled: boolean = false;
-  @Input() fluid: boolean = false;
   @Input() readonly: boolean = false;
   @Input() group: boolean = false;
   @Input() filter: boolean = true;
@@ -95,13 +94,10 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() filterLocale: Optional<string>;
   @Input() overlayVisible: boolean = false;
   @Input() tabindex: Optional<number>;
-  @Input() variant: Optional<InputVariant>;
-  @Input() appendTo: Optional<any>;
   @Input() dataKey: Optional<string>;
-  @Input() name: Optional<string>;
   @Input() ariaLabelledBy: Optional<string>;
-  @Input() displaySelectedLabel: boolean = true;
-  @Input() maxSelectedLabels: number = 3;
+  @Input() displaySelectedLabel: boolean = false;
+  @Input() maxSelectedLabels: Optional<number>;
   @Input() selectionLimit: Optional<number>;
   @Input() selectedItemsLabel: Optional<string>;
   @Input() showToggleAll: boolean = true;
@@ -131,20 +127,24 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() tooltipPosition: Position = 'right';
   @Input() tooltipPositionStyle: string = 'absolute';
   @Input() tooltipStyleClass: Optional<string>;
-  @Input() autofocusFilter: boolean = true;
+  @Input() autofocusFilter: boolean = false;
   @Input() display: ChipDisplayMode = 'comma';
   @Input() autocomplete: string = 'off';
-  @Input() size: Optional<Size>;
   @Input() showClear: boolean = false;
   @Input() autofocus: boolean = false;
   @Input() placeholder: Optional<string>;
-  @Input() options: Optional<any[]>;
+  @Input() options: Optional<SafeAny[]>;
   @Input() filterValue: Optional<string>;
-  @Input() selectAll: Nullable<boolean> = null;
+  @Input() selectAll: Optional<boolean>;
   @Input() focusOnHover: boolean = true;
-  @Input() filterFields: Optional<any[]>;
+  @Input() filterFields: Optional<SafeAny[]>;
   @Input() selectOnFocus: boolean = false;
-  @Input() autoOptionFocus: boolean = true;
+  @Input() autoOptionFocus: boolean = false;
+  @Input() highlightOnSelect: boolean = true;
+  @Input() size: Optional<Size>;
+  @Input() variant: Optional<InputVariant>;
+  @Input() fluid: boolean = false;
+  @Input() appendTo: Optional<SafeAny>;
   @Output() onChange = new EventEmitter<$MultiSelectChangeEvent>();
   @Output() onFilter = new EventEmitter<$MultiSelectFilterEvent>();
   @Output() onFocus = new EventEmitter<$MultiSelectFocusEvent>();
@@ -159,7 +159,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
@@ -220,7 +220,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
     (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

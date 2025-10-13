@@ -20,7 +20,7 @@ export class RegisterPage {
     confirmPassword: new FormControl(null, [Validators.required]),
   }, {validators: samePasswordsValidator('password', 'confirmPassword')});
 
-  async onSubmit(callback: any) {
+  async onSubmit(callback: SafeAny) {
     if (this.form.invalid) {
       callback()
       return;

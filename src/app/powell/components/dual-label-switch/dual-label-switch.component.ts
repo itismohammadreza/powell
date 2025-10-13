@@ -24,7 +24,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {AsyncEvent, CssObject, FixLabelPosition, Validation} from "@powell/models";
+import {AsyncEvent, CssObject, FixLabelPosition, Size, Validation} from "@powell/models";
 import {DestroyService} from "@powell/utils";
 import {$ToggleSwitchChangeEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
@@ -49,7 +49,7 @@ export class DualLabelSwitchComponent implements OnInit, AfterContentInit, Contr
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelLeft: Optional<string>;
   @Input() labelRight: Optional<string>;
@@ -65,22 +65,24 @@ export class DualLabelSwitchComponent implements OnInit, AfterContentInit, Contr
   @Input() showAsyncLoading: boolean = true;
   @Input() followConfig: boolean = false;
   // native properties
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
+  @Input() required: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
   @Input() tabindex: Optional<number>;
   @Input() inputId: string = $uuid();
-  @Input() name: Optional<string>;
-  @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;
+  @Input() trueValue: SafeAny = true;
+  @Input() falseValue: SafeAny = false;
   @Input() ariaLabel: Optional<string>;
-  @Input() ariaLabelledBy: Optional<string>;
-  @Input() autofocus: any = false;
+  @Input() size: Optional<Size>;
+  @Input() ariaLabelledBy: string;
+  @Input() autofocus: boolean = false;
   @Output() onChange = new EventEmitter<$ToggleSwitchChangeEvent>();
   @Output() onChangeAsync = new EventEmitter<AsyncEvent<$ToggleSwitchChangeEvent>>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   loading: boolean = false;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   ngControl: Nullable<NgControl> = null;
   onModelChange: Fn = () => {
   };
@@ -152,7 +154,7 @@ export class DualLabelSwitchComponent implements OnInit, AfterContentInit, Contr
     }
   };
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.setInitValue()
     this.cd.markForCheck();

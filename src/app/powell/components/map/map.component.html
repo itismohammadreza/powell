@@ -1,8 +1,6 @@
-<div class="map-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass"
-     [ngClass]="{
+<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [class]="{
+     'map-wrapper': true,
      'clearable': showClear
     }">
   <pw-form-field

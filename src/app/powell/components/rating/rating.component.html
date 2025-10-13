@@ -1,7 +1,4 @@
-<div class="rating-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass">
+<div class="rating-wrapper" [attr.dir]="rtl ? 'rtl' : 'ltr'">
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
@@ -16,7 +13,9 @@
       <p-rating
         [attr.id]="id"
         [(ngModel)]="value"
+        [required]="required"
         [disabled]="disabled"
+        [name]="name"
         [readonly]="readonly"
         [stars]="stars"
         [iconOnClass]="iconOnClass"
@@ -25,7 +24,6 @@
         [iconOffStyle]="iconOffStyle"
         [autofocus]="autofocus"
         (onRate)="_onRate($event)"
-        (onCancel)="_onCancel($event)"
         (onFocus)="emitter('onFocus',$event)"
         (onBlur)="emitter('onBlur',$event)">
         @for (t of templates; track t) {

@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
+import {NgTemplateOutlet} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {TreeSelectComponent} from "@powell/components/tree-select";
 import {LabelStarModule} from "@powell/pipes/label-star";
@@ -12,8 +12,6 @@ import {FormFieldModule} from "@powell/components/form-field";
   exports: [TreeSelectComponent, TemplateModule],
   imports: [
     $TreeSelectModule,
-    NgClass,
-    NgStyle,
     NgTemplateOutlet,
     FormsModule,
     LabelStarModule,

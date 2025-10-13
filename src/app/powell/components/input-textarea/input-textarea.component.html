@@ -1,8 +1,6 @@
-<div class="input-textarea-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass"
-     [ngClass]="{
+<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [class]="{
+     'input-textarea-wrapper': true,
      'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
      'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
      'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
@@ -36,12 +34,12 @@
          [disabled]="disabled"
          [readonly]="readonly"
          [rows]="rows"
-         [ngStyle]="inputStyle"
+         [style]="inputStyle"
          [class]="inputStyleClass"
          [autoResize]="autoResize"
+         [pSize]="size"
          [variant]="variant"
          [fluid]="fluid"
-         [pSize]="size"
          (blur)="_onBlur($event)"
          (change)="_onChange($event)"
          (focus)="_onFocus($event)"

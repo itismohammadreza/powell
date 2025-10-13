@@ -39,9 +39,9 @@ export type Theme = {
 };
 
 export interface Preset {
-  components?: any;
-  semantic?: any;
-  primitive?: any;
+  components?: SafeAny;
+  semantic?: SafeAny;
+  primitive?: SafeAny;
 }
 
 export interface ConfigChangeEvent {

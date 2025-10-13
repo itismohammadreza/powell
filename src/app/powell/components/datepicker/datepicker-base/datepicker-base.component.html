@@ -24,7 +24,7 @@
     [attr.readonly]="readonlyInput ? '' : undefined"
     [attr.disabled]="$disabled() ? '' : undefined"
     (input)="onUserInput($event)"
-    [ngStyle]="inputStyle"
+    [style]="inputStyle"
     [class]="cn(cx('pcInputText'), inputStyleClass)"
     [attr.placeholder]="placeholder"
     [attr.tabindex]="tabindex"
@@ -54,7 +54,7 @@
     [disabled]="$disabled()"
     tabindex="0"
   >
-    <span *ngIf="icon" [ngClass]="icon"></span>
+    <span *ngIf="icon" [class]="icon"></span>
     <ng-container *ngIf="!icon">
       <svg data-p-icon="calendar" *ngIf="!triggerIconTemplate && !_triggerIconTemplate"/>
       <ng-template *ngTemplateOutlet="triggerIconTemplate || _triggerIconTemplate"></ng-template>
@@ -73,7 +73,7 @@
 <div
   #contentWrapper
   [attr.id]="panelId"
-  [ngStyle]="panelStyle"
+  [style]="panelStyle"
   [class]="cn(cx('panel'), panelStyleClass)"
   [@overlayAnimation]="{
       value: 'visible',
@@ -101,7 +101,7 @@
             (keydown)="onContainerButtonKeydown($event)"
             [styleClass]="cx('pcPrevButton')"
             (onClick)="onPrevButtonClick($event)"
-            [ngStyle]="{ visibility: i === 0 ? 'visible' : 'hidden' }"
+            [style]="{ visibility: i === 0 ? 'visible' : 'hidden' }"
             type="button"
             [ariaLabel]="prevIconAriaLabel"
           >
@@ -153,7 +153,7 @@
             (keydown)="onContainerButtonKeydown($event)"
             [styleClass]="cx('pcNextButton')"
             (onClick)="onNextButtonClick($event)"
-            [ngStyle]="{ visibility: i === months.length - 1 ? 'visible' : 'hidden' }"
+            [style]="{ visibility: i === months.length - 1 ? 'visible' : 'hidden' }"
             [ariaLabel]="nextIconAriaLabel"
           >
             <ng-template #icon>
@@ -185,7 +185,7 @@
               </td>
               <td *ngFor="let date of $any(week)" [attr.aria-label]="date.day" [class]="cx('dayCell', { date })">
                 <ng-container *ngIf="date.otherMonth ? showOtherMonths : true">
-                  <span [ngClass]="dayClass(date)" (click)="onDateSelect($event, date)"
+                  <span [class]="dayClass(date)" (click)="onDateSelect($event, date)"
                         draggable="false"
                         [attr.data-date]="formatDateKey(formatDateMetaToDate(date))"
                         (keydown)="onDateCellKeydown($event, date, i)" pRipple>
@@ -418,7 +418,7 @@
         [label]="getTranslation('today')"
         (keydown)="onContainerButtonKeydown($event)"
         (onClick)="onTodayButtonClick($event)"
-        [ngClass]="todayButtonStyleClass"
+        [class]="todayButtonStyleClass"
         severity="secondary"
         variant="text"
       />
@@ -428,7 +428,7 @@
         [label]="getTranslation('clear')"
         (keydown)="onContainerButtonKeydown($event)"
         (onClick)="onClearButtonClick($event)"
-        [ngClass]="clearButtonStyleClass"
+        [class]="clearButtonStyleClass"
         severity="secondary"
         variant="text"
       />

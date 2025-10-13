@@ -1,7 +1,4 @@
-<div class="slider-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass">
+<div class="slider-wrapper" [attr.dir]="rtl ? 'rtl' : 'ltr'">
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
@@ -15,17 +12,17 @@
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-slider
         [(ngModel)]="value"
-        [ngClass]="{'ng-invalid ng-dirty': isInvalid }"
+        [invalid]="isInvalid"
         [attr.id]="id"
-        [animate]="animate"
+        [required]="required"
         [disabled]="disabled"
+        [name]="name"
+        [animate]="animate"
         [min]="min"
         [max]="max"
         [orientation]="orientation"
         [step]="step"
         [range]="range"
-        [style]="style"
-        [styleClass]="styleClass"
         [ariaLabel]="ariaLabel"
         [ariaLabelledBy]="ariaLabelledBy"
         [tabindex]="tabindex"

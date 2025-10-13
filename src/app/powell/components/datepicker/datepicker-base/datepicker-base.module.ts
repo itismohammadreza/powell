@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {CommonModule, NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
+import {CommonModule, NgTemplateOutlet} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {
   $AutoFocus,
@@ -32,8 +32,6 @@ import {DatepickerBaseComponent} from "@powell/components/datepicker/datepicker-
     $RippleModule,
     $AutoFocusModule,
     $InputTextModule,
-    NgClass,
-    NgStyle,
     NgTemplateOutlet,
     FormsModule,
     $ChevronLeftIcon,

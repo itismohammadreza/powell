@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
+import {NgTemplateOutlet} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {DatepickerBaseModule} from "@powell/components/datepicker/datepicker-base";
@@ -12,8 +12,6 @@ import {TemplateModule} from "@powell/directives/template";
   exports: [DatepickerComponent, TemplateModule],
   imports: [
     DatepickerBaseModule,
-    NgClass,
-    NgStyle,
     NgTemplateOutlet,
     FormsModule,
     LabelStarModule,

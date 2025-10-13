@@ -70,7 +70,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -81,11 +81,12 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() followConfig: boolean = false;
   @Input() style: Optional<CssObject>;
   // native properties
+  @Input() required: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
   @Input() inputId: string = $uuid();
   @Input() scrollHeight: string = '400px';
-  @Input() disabled: boolean = false;
   @Input() metaKeySelection: boolean = false;
-  @Input() variant: Optional<InputVariant>;
   @Input() display: ChipDisplayMode = 'comma';
   @Input() selectionMode: TreeSelectionMode = 'single';
   @Input() tabindex: Optional<string>;
@@ -94,7 +95,6 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() placeholder: Optional<string>;
   @Input() panelClass: Optional<string>;
   @Input() panelStyle: Optional<CssObject>;
-  @Input() fluid: boolean = false;
   @Input() panelStyleClass: Optional<string>;
   @Input() containerStyle: Optional<CssObject>;
   @Input() containerStyleClass: Optional<string>;
@@ -102,7 +102,6 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() labelStyleClass: Optional<string>;
   @Input() overlayOptions: Optional<$OverlayOptions>;
   @Input() emptyMessage: Optional<string>;
-  @Input() appendTo: Optional<any>;
   @Input() filter: boolean = false;
   @Input() filterBy: string = 'label';
   @Input() filterMode: TreeFilterMode = 'lenient';
@@ -115,11 +114,14 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() resetFilterOnHide: boolean = true;
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: Optional<number>;
-  @Input() size: Optional<Size>;
   @Input() virtualScrollOptions: Optional<$ScrollerOptions>;
   @Input() autofocus: boolean = false;
-  @Input() options: Optional<$TreeNode<any>[]>;
+  @Input() options: Optional<$TreeNode<SafeAny>[]>;
   @Input() loading: boolean = false;
+  @Input() size: Optional<Size>;
+  @Input() variant: Optional<InputVariant>;
+  @Input() fluid: boolean = false;
+  @Input() appendTo: Optional<SafeAny>;
   @Output() onNodeExpand = new EventEmitter<$TreeSelectNodeExpandEvent>();
   @Output() onNodeCollapse = new EventEmitter<$TreeSelectNodeCollapseEvent>();
   @Output() onShow = new EventEmitter<$OverlayOnShowEvent>();
@@ -133,7 +135,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
@@ -199,7 +201,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
     (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

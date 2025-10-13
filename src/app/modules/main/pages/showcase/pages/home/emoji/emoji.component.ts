@@ -41,12 +41,12 @@ export class EmojiComponent implements OnInit {
     });
   }
 
-  onMouseOver(event: any) {
+  onMouseOver(event: SafeAny) {
     event.currentTarget.classList.add('scary');
     event.currentTarget.classList.remove('stressful');
   }
 
-  onMouseLeave(event: any) {
+  onMouseLeave(event: SafeAny) {
     event.currentTarget.classList.remove('scary');
   }
 }

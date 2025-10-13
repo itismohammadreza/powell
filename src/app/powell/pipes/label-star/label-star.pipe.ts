@@ -8,7 +8,7 @@ import {AbstractControl, NgControl} from "@angular/forms";
 export class LabelStarPipe implements PipeTransform {
   transform(label: Optional<string>, showRequiredStar: boolean, ngControl: Nullable<NgControl>) {
     if (!label) {
-      return '';
+      return null;
     }
     if (showRequiredStar && this.isControlRequired(ngControl)) {
       return this.starredLabel(label);

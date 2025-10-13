@@ -49,7 +49,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -59,10 +59,21 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() validation: Optional<Validation>;
   @Input() followConfig: boolean = false;
   // native properties
-  @Input() ariaLabel: Optional<string>;
-  @Input() fluid: boolean = false;
-  @Input() ariaLabelledBy: Optional<string>;
+  @Input() required: boolean = false;
   @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
+  @Input() fluid: boolean = false;
+  @Input() variant: InputVariant;
+  @Input() size: Optional<Size>;
+  @Input() inputSize: Optional<number>;
+  @Input() pattern: Optional<string>;
+  @Input() min: Optional<number>;
+  @Input() max: Optional<number>;
+  @Input() step: Optional<number>;
+  @Input() minlength: Optional<number>;
+  @Input() maxlength: Optional<number>;
+  @Input() ariaLabel: Optional<string>;
+  @Input() ariaLabelledBy: Optional<string>;
   @Input() promptLabel: Optional<string>;
   @Input() mediumRegex: string = '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})';
   @Input() strongRegex: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})';
@@ -72,12 +83,8 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() strongLabel: Optional<string>;
   @Input() inputId: string = $uuid();
   @Input() feedback: boolean = true;
-  @Input() appendTo: Optional<any>;
   @Input() toggleMask: boolean = false;
-  @Input() size: Optional<Size>;
   @Input() inputStyleClass: Optional<string>;
-  @Input() styleClass: Optional<string>;
-  @Input() style: Optional<CssObject>;
   @Input() inputStyle: Optional<CssObject>;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';
@@ -85,7 +92,8 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() placeholder: Optional<string>;
   @Input() showClear: boolean = false;
   @Input() autofocus: boolean = false;
-  @Input() variant: Optional<InputVariant>;
+  @Input() tabindex: Optional<number>;
+  @Input() appendTo: Optional<SafeAny>;
   @Output() onInput = new EventEmitter<Event>();
   @Output() onChange = new EventEmitter<Event>();
   @Output() onKeyDown = new EventEmitter<KeyboardEvent>();
@@ -96,7 +104,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
@@ -176,7 +184,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
     this.onFocus.emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

@@ -25,14 +25,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {TemplateDirective} from '@powell/directives/template';
-import {
-  CssObject,
-  FixLabelPosition,
-  TreeFilterMode,
-  TreeLoadingMode,
-  TreeSelectionMode,
-  Validation
-} from '@powell/models';
+import {FixLabelPosition, TreeFilterMode, TreeLoadingMode, TreeSelectionMode, Validation} from '@powell/models';
 import {
   $ScrollerOptions,
   $TreeFilterEvent,
@@ -40,6 +33,7 @@ import {
   $TreeNode,
   $TreeNodeCollapseEvent,
   $TreeNodeContextMenuSelectEvent,
+  $TreeNodeDoubleClickEvent,
   $TreeNodeDropEvent,
   $TreeNodeExpandEvent,
   $TreeNodeSelectEvent,
@@ -81,15 +75,13 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() followConfig: boolean = false;
   @Input() id: string = $uuid();
   // native properties
-  @Input() items: Optional<any[]>;
+  @Input() value: Optional<SafeAny[]>;
   @Input() selectionMode: Optional<TreeSelectionMode>;
   @Input() loadingMode: TreeLoadingMode = 'mask';
-  @Input() selection: Optional<any>;
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
-  @Input() contextMenu: Optional<any>;
-  @Input() draggableScope: Optional<any>;
-  @Input() droppableScope: Optional<any>;
+  @Input() selection: SafeAny;
+  @Input() contextMenu: Optional<SafeAny>;
+  @Input() draggableScope: Optional<SafeAny>;
+  @Input() droppableScope: Optional<SafeAny>;
   @Input() draggableNodes: boolean = false;
   @Input() droppableNodes: boolean = false;
   @Input() metaKeySelection: boolean = false;
@@ -103,10 +95,12 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() ariaLabelledBy: Optional<string>;
   @Input() validateDrop: boolean = false;
   @Input() filter: boolean = false;
+  @Input() filterInputAutoFocus: boolean = false;
   @Input() filterBy: string = 'label';
   @Input() filterMode: TreeFilterMode = 'lenient';
+  @Input() filterOptions: Optional<SafeAny>;
   @Input() filterPlaceholder: Optional<string>;
-  @Input() filteredNodes: Optional<$TreeNode<any>[]>;
+  @Input() filteredNodes: Optional<$TreeNode<SafeAny>[]>;
   @Input() filterLocale: Optional<string>;
   @Input() scrollHeight: Optional<string>;
   @Input() lazy: boolean = false;
@@ -114,7 +108,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() virtualScrollItemSize: Optional<number>;
   @Input() virtualScrollOptions: Optional<$ScrollerOptions>;
   @Input() indentation: number = 1.5;
-  @Input() _templateMap: Optional<any>;
+  @Input() _templateMap: Optional<SafeAny>;
   @Input() trackBy: Fn = (i: number, item: SafeAny) => i;
   @Input() highlightOnSelect: boolean = false;
   @Output() selectionChange = new EventEmitter<$TreeSelectionChangeEvent>();
@@ -123,6 +117,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Output() onNodeExpand = new EventEmitter<$TreeNodeExpandEvent>();
   @Output() onNodeCollapse = new EventEmitter<$TreeNodeCollapseEvent>();
   @Output() onNodeContextMenuSelect = new EventEmitter<$TreeNodeContextMenuSelectEvent>();
+  @Output() onNodeDoubleClick = new EventEmitter<$TreeNodeDoubleClickEvent>();
   @Output() onNodeDrop = new EventEmitter<$TreeNodeDropEvent>();
   @Output() onLazyLoad = new EventEmitter<$TreeLazyLoadEvent>();
   @Output() onScroll = new EventEmitter<$TreeScrollEvent>();
@@ -131,13 +126,16 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
   };
 
   ngOnInit() {
+    if ((this.selectionMode === 'multiple' || this.selectionMode === 'checkbox') && typeof this.selection == 'undefined') {
+      this.selection = [];
+    }
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -181,7 +179,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
     (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.selection = value;
     this.cd.markForCheck();
   }

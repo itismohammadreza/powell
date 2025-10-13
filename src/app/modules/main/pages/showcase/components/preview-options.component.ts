@@ -57,7 +57,7 @@ export type OptionType =
 
 export interface PreviewOption {
   field: string;
-  value: any;
+  value: SafeAny;
   selectOptions?: OptionType;
 }
 
@@ -83,10 +83,10 @@ export class PreviewOptionsComponent implements OnInit {
   @ViewChild('firstRow', {static: true, read: ViewContainerRef}) firstRow: ViewContainerRef;
   @ViewChild('secondRow', {static: true, read: ViewContainerRef}) secondRow: ViewContainerRef;
 
-  cmpRefs: ComponentRef<any>[] = [];
+  cmpRefs: ComponentRef<SafeAny>[] = [];
 
   ngOnInit() {
-    const dropdownOptionsMap: Record<OptionType, any[]> = {
+    const dropdownOptionsMap: Record<OptionType, SafeAny[]> = {
       positions: ['top', 'bottom', 'left', 'right'],
       displayTypes: ['comma', 'chip'],
       appearances: ['basic', 'text', 'outlined', 'link'],
@@ -155,7 +155,7 @@ export class PreviewOptionsComponent implements OnInit {
     })
   }
 
-  createComponent(cmp: Type<any>, previewOption: PreviewOption, row: 'firstRow' | 'secondRow') {
+  createComponent(cmp: Type<SafeAny>, previewOption: PreviewOption, row: 'firstRow' | 'secondRow') {
     const globalConfig = this.configService.get();
     const {field, value} = previewOption;
     const cmpRef = this[row].createComponent(cmp);

@@ -64,7 +64,7 @@ import {ConfigService} from "@powell/api";
 export class TableComponent implements OnInit, AfterContentInit {
   private configService = inject(ConfigService);
 
-  @Input() items: any[] = [];
+  @Input() items: SafeAny[] = [];
   @Input() filterDisplay: TableFilterDisplay = 'menu';
   @Input() colDef: TableColDef[] = [];
   @Input() reorderableRows: boolean = false;
@@ -81,19 +81,17 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() followConfig: boolean = false;
   @Input() showSelectionIndicator: boolean = false;
   // native properties
-  @Input() frozenColumns: Optional<any[]>;
-  @Input() frozenValue: Optional<any[]>;
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
+  @Input() frozenColumns: Optional<SafeAny[]>;
+  @Input() frozenValue: Optional<SafeAny[]>;
   @Input() tableStyle: Optional<CssObject>;
   @Input() tableStyleClass: Optional<string>;
   @Input() paginator: boolean = false;
   @Input() pageLinks: number = 5;
-  @Input() rowsPerPageOptions: Optional<any[]>;
+  @Input() rowsPerPageOptions: Optional<SafeAny[]>;
   @Input() alwaysShowPaginator: boolean = true;
   @Input() paginatorPosition: TablePaginationPosition = 'bottom';
   @Input() paginatorStyleClass: Optional<string>;
-  @Input() paginatorDropdownAppendTo: Optional<any>;
+  @Input() paginatorDropdownAppendTo: Optional<SafeAny>;
   @Input() paginatorDropdownScrollHeight: string = '200px';
   @Input() currentPageReportTemplate: string = '{currentPage} of {totalPages}';
   @Input() showCurrentPageReport: boolean = false;
@@ -106,11 +104,11 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() resetPageOnSort: boolean = true;
   @Input() selectionMode: Optional<TableSelectionMode>;
   @Input() selectionPageOnly: boolean = false;
-  @Input() contextMenuSelection: Optional<any>;
+  @Input() contextMenuSelection: Optional<SafeAny>;
   @Input() contextMenuSelectionMode: TableContextMenuSelectionMode = 'separate';
   @Input() dataKey: Optional<string>;
   @Input() metaKeySelection: boolean = false;
-  @Input() rowSelectable: Optional<any>;
+  @Input() rowSelectable: Optional<SafeAny>;
   @Input() rowTrackBy: Optional<Fn>;
   @Input() lazy: boolean = false;
   @Input() lazyLoadOnInit: boolean = true;
@@ -131,7 +129,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() virtualScrollOptions: Optional<$ScrollerOptions>;
   @Input() virtualScrollDelay: number = 250;
   @Input() frozenWidth: Optional<string>;
-  @Input() contextMenu: Optional<any>;
+  @Input() contextMenu: Optional<SafeAny>;
   @Input() resizableColumns: boolean = false;
   @Input() columnResizeMode: TableColumnResizeMode = 'fit';
   @Input() reorderableColumns: boolean = false;
@@ -145,7 +143,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() exportHeader: Optional<string>;
   @Input() stateKey: Optional<string>;
   @Input() stateStorage: TableStateStorage = 'session';
-  @Input() groupRowsBy: Optional<any>;
+  @Input() groupRowsBy: Optional<SafeAny>;
   @Input() size: Optional<Size>;
   @Input() showGridlines: boolean = true;
   @Input() stripedRows: boolean = false;
@@ -159,15 +157,15 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() sortField: Optional<string>;
   @Input() sortOrder: Optional<number>;
   @Input() multiSortMeta: Optional<$SortMeta[]>;
-  @Input() selection: Optional<any>;
+  @Input() selection: Optional<SafeAny>;
   @Input() selectAll: Nullable<boolean> = null;
   @Output() contextMenuSelectionChange = new EventEmitter<$TableContextMenuSelectionChangeEvent>();
   @Output() selectAllChange = new EventEmitter<$TableSelectAllChangeEvent>();
-  @Output() selectionChange = new EventEmitter<any>();
+  @Output() selectionChange = new EventEmitter<SafeAny>();
   @Output() onRowSelect = new EventEmitter<$TableRowSelectEvent>();
-  @Output() onRowUnselect = new EventEmitter<$TableRowUnSelectEvent<any>>();
+  @Output() onRowUnselect = new EventEmitter<$TableRowUnSelectEvent<SafeAny>>();
   @Output() onPage = new EventEmitter<$TablePageEvent>();
-  @Output() onSort = new EventEmitter<{multisortmeta: $SortMeta[]} | any>();
+  @Output() onSort = new EventEmitter<{multisortmeta: $SortMeta[]} | SafeAny>();
   @Output() onFilter = new EventEmitter<$TableFilterEvent>();
   @Output() onLazyLoad = new EventEmitter<AsyncEvent<$TableLazyLoadEvent>>();
   @Output() onRowExpand = new EventEmitter<$TableRowExpandEvent>();
@@ -177,7 +175,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Output() onColReorder = new EventEmitter<$TableColumnReorderEvent>();
   @Output() onRowReorder = new EventEmitter<$TableRowReorderEvent>();
   @Output() onHeaderCheckboxToggle = new EventEmitter<$TableHeaderCheckboxToggleEvent>();
-  @Output() sortFunction = new EventEmitter<any>();
+  @Output() sortFunction = new EventEmitter<SafeAny>();
   @Output() firstChange = new EventEmitter<number>();
   @Output() rowsChange = new EventEmitter<number>();
   @Output() onStateSave = new EventEmitter<$TableState>();
@@ -186,10 +184,10 @@ export class TableComponent implements OnInit, AfterContentInit {
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
   @ViewChild('dataTable', {static: true}) dataTable!: $Table;
 
-  cellTemplates: Record<string, TemplateRef<any>> = {}
+  cellTemplates: Record<string, TemplateRef<SafeAny>> = {}
 
   loading: boolean = false;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   activeSortField: Optional<string>;
 
   ngOnInit() {
@@ -297,7 +295,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     this.selectAllChange.emit(event);
   }
 
-  onSelectionChange(event: any[]) {
+  onSelectionChange(event: SafeAny[]) {
     this.selection = event;
     this.selectionChange.emit(this.selection);
   }
@@ -307,7 +305,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     this.contextMenuSelectionChange.emit(this.contextMenuSelection);
   }
 
-  resolveFieldData(obj: any, field: string | string[], value?: any): SafeAny {
+  resolveFieldData(obj: SafeAny, field: string | string[], value?: SafeAny): SafeAny {
     if (typeof field == 'string') {
       return this.resolveFieldData(obj, field.split('.'), value);
     } else if (field.length == 1 && value !== undefined) {
@@ -319,7 +317,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  onChangeFilterValue(event: any, filterCallback: Fn, col: TableColDef) {
+  onChangeFilterValue(event: SafeAny, filterCallback: Fn, col: TableColDef) {
     let filterValue;
     switch (col.filter?.type) {
       case 'text':
@@ -343,11 +341,11 @@ export class TableComponent implements OnInit, AfterContentInit {
     if (!this.lazy) {
       filterCallback(filterValue.toString());
     } else {
-      this.onFilter.emit({filteredValue: filterValue, col} as any)
+      this.onFilter.emit({filteredValue: filterValue, col} as SafeAny)
     }
   }
 
-  handleCellStyleClass(cellStyleClass: Fn | string, item: any) {
+  handleCellStyleClass(cellStyleClass: Fn | string, item: SafeAny) {
     if (!cellStyleClass) {
       return '';
     }
@@ -358,7 +356,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  handleCellStyle(cellStyle: Fn | CssObject, item: any) {
+  handleCellStyle(cellStyle: Fn | CssObject, item: SafeAny) {
     if (typeof cellStyle == 'function')
       return cellStyle(item);
     else {
@@ -366,7 +364,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  handleCellRenderer(col: TableColDef, item: any) {
+  handleCellRenderer(col: TableColDef, item: SafeAny) {
     if (col.render && typeof col.render == 'function')
       return col.render(item);
     else {
@@ -374,7 +372,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  handleActionVisibility(action: TableAction, item: any) {
+  handleActionVisibility(action: TableAction, item: SafeAny) {
     if (typeof action.visible == 'function')
       return action.visible(item);
     else {

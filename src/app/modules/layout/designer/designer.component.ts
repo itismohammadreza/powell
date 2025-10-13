@@ -204,7 +204,7 @@ export class DesignerComponent implements OnInit {
     })
   }
 
-  updateColors(event: any, type: 'primary' | 'surface', color: any) {
+  updateColors(event: SafeAny, type: 'primary' | 'surface', color: SafeAny) {
     if (type === 'primary') {
       this.selectedPrimaryColor = color.name;
       let preset: SafeAny;
@@ -305,7 +305,7 @@ export class DesignerComponent implements OnInit {
     event?.stopPropagation();
   }
 
-  changeGlobalConfig(configPath: string, value: any) {
+  changeGlobalConfig(configPath: string, value: SafeAny) {
     const cleanPath = configPath.startsWith('powellConfig.') ? configPath.slice(13) : configPath;
 
     switch (cleanPath) {
@@ -314,8 +314,13 @@ export class DesignerComponent implements OnInit {
         break;
       case 'theme.preset':
         if (this.selectedPrimaryColor === 'noir') {
+          const surfacePalette = this.surfaces.find(s => s.name === this.selectedSurfaceColor);
           this.configService.update({theme: {preset: value}});
           this.updateColors(null, 'primary', this.primaryColors[0]);
+          this.updateColors(null, 'surface', {
+            name: this.selectedSurfaceColor,
+            palette: surfacePalette.palette,
+          });
         } else {
           const primaryPalette = this.themeService.currentPreset.preset['primitive'][this.selectedPrimaryColor];
           const surfacePalette = this.surfaces.find(s => s.name === this.selectedSurfaceColor).palette;

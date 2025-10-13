@@ -18,7 +18,7 @@ export class UtilsService {
     );
   }
 
-  requestFullScreen(element?: any) {
+  requestFullScreen(element?: SafeAny) {
     if (!element) {
       element = this.document;
     }
@@ -32,7 +32,7 @@ export class UtilsService {
   }
 
   exitFullscreen() {
-    const doc = this.document as any;
+    const doc = this.document as SafeAny;
     if (doc.exitFullscreen) {
       doc.exitFullscreen();
     } else if (doc.webkitExitFullscreen) {

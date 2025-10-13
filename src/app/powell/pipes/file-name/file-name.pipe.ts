@@ -6,7 +6,7 @@ import {helpers} from "@core/utils";
   standalone: false
 })
 export class FileNamePipe implements PipeTransform {
-  transform(value: any) {
+  transform(value: SafeAny) {
     if (value) {
       if (value instanceof File) {
         return value.name;

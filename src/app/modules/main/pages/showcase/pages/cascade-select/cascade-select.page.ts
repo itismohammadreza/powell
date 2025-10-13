@@ -32,7 +32,7 @@ export class CascadeSelectPage extends PreviewBase {
     {field: 'fluid', value: true},
   ];
 
-  override options: any[] = [
+  override options: SafeAny[] = [
     {
       name: 'Australia',
       code: 'AU',

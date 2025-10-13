@@ -1,8 +1,6 @@
 <p-image
   [imageClass]="imageClass"
   [imageStyle]="imageStyle"
-  [styleClass]="styleClass"
-  [style]="style"
   [src]="src"
   [srcSet]="srcSet"
   [sizes]="sizes"
@@ -13,13 +11,13 @@
   [width]="width"
   [height]="height"
   [loading]="loading"
-  [appendTo]="appendTo"
   [preview]="preview"
   [showTransitionOptions]="showTransitionOptions"
-  [hideTransitionOptions]="hideTransitionOptions">
+  [hideTransitionOptions]="hideTransitionOptions"
+  [appendTo]="appendTo">
   <ng-template pTemplate="preview" let-style="style" let-previewCallback="previewCallback">
     <pw-pinch-zoom [properties]="pinchProperties" (onZoomControlClick)="previewCallback()">
-      <img [ngStyle]="style" [src]="src" [alt]="alt" (click)="previewCallback()"/>
+      <img [style]="style" [src]="src" [alt]="alt" (click)="previewCallback()"/>
     </pw-pinch-zoom>
   </ng-template>
 

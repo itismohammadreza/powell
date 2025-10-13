@@ -1,8 +1,6 @@
-<div class="input-text-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass"
-     [ngClass]="{
+<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [class]="{
+     'input-text-wrapper': true,
      'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
      'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
      'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
@@ -39,7 +37,7 @@
           [disabled]="disabled"
           [readonly]="readonly"
           [pKeyFilter]="keyFilter"
-          [ngStyle]="inputStyle"
+          [style]="inputStyle"
           [class]="inputStyleClass"
           [autocomplete]="autocomplete"
           [variant]="variant"
@@ -67,12 +65,12 @@
           [attr.inputmode]="inputMode"
           [disabled]="disabled"
           [readonly]="readonly"
-          [ngStyle]="inputStyle"
+          [style]="inputStyle"
           [class]="inputStyleClass"
           [autocomplete]="autocomplete"
+          [pSize]="size"
           [variant]="variant"
           [fluid]="fluid"
-          [pSize]="size"
           (blur)="_onBlur($event)"
           (change)="_onChange($event)"
           (click)="emitter('onClick', $event)"

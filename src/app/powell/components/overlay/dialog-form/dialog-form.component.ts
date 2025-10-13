@@ -50,7 +50,6 @@ import {TreeSelectComponent, TreeSelectModule} from "@powell/components/tree-sel
 import {EditorComponent, EditorModule} from "@powell/components/editor";
 import {takeUntil} from "rxjs";
 import {DestroyService} from "@powell/utils";
-import {NgClass, NgStyle} from '@angular/common';
 import {SafeModule} from '@powell/pipes/safe';
 
 @Component({
@@ -58,8 +57,6 @@ import {SafeModule} from '@powell/pipes/safe';
   templateUrl: './dialog-form.component.html',
   providers: [DestroyService],
   imports: [
-    NgClass,
-    NgStyle,
     ReactiveFormsModule,
     forwardRef(() => $ConfirmDialogModule),
     forwardRef(() => $ConfirmPopupModule),
@@ -146,7 +143,7 @@ export class DialogFormComponent {
   onSubmit = new EventEmitter<DialogFormResult>();
   onClose = new EventEmitter<void>();
   disableReject: boolean;
-  configTimeout: any;
+  configTimeout: SafeAny;
 
   set config(value: DialogFormConfig[]) {
     this._config = value;
@@ -319,12 +316,12 @@ export class DialogFormComponent {
     this.onSubmit.emit({formValue: this.form.value, finalizeSubmit});
   }
 
-  handleEvent(event: string, args?: any) {
+  handleEvent(event: string, args?: SafeAny) {
     this.options[event]?.(args);
   }
 
   applyConfigToComponent(config: DialogFormConfig) {
-    const componentsMap: Partial<Record<DialogFormComponentName, any>> = {
+    const componentsMap: Partial<Record<DialogFormComponentName, SafeAny>> = {
       'auto-complete': this.autoCompleteComponent,
       'button': this.buttonComponent,
       'cascade-select': this.cascadeSelectComponent,

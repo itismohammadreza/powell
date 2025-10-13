@@ -76,27 +76,20 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() validation: Optional<Validation>;
   @Input() followConfig: boolean = false;
   // native properties
-  @Input() minLength: number = 1;
+  @Input() minQueryLength: number = 1;
   @Input() delay: number = 300;
-  @Input() style: Optional<CssObject>;
   @Input() panelStyle: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Input() panelStyleClass: Optional<string>;
   @Input() inputStyle: Optional<CssObject>;
   @Input() inputId: string = $uuid();
   @Input() inputStyleClass: Optional<string>;
   @Input() placeholder: Optional<string>;
   @Input() readonly: boolean = false;
-  @Input() disabled: boolean = false;
   @Input() scrollHeight: string = '200px';
   @Input() lazy: boolean = false;
   @Input() virtualScroll: boolean = false;
   @Input() virtualScrollItemSize: Optional<number>;
   @Input() virtualScrollOptions: Optional<$ScrollerOptions>;
-  @Input() maxlength: Optional<number>;
-  @Input() name: Optional<string>;
-  @Input() size: Optional<Size>;
-  @Input() appendTo: Optional<any>;
   @Input() autoHighlight: boolean = false;
   @Input() forceSelection: boolean = false;
   @Input() type: InputType = 'text';
@@ -114,6 +107,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() showEmptyMessage: boolean = true;
   @Input() dropdownMode: AutoCompleteDropdownMode = 'blank';
   @Input() multiple: boolean = false;
+  @Input() addOnTab: boolean = false;
   @Input() tabindex: Optional<number>;
   @Input() dataKey: Optional<string>;
   @Input() emptyMessage: Optional<string>;
@@ -136,15 +130,32 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() searchLocale: boolean = false;
   @Input() optionDisabled: Optional<string | Fn<SafeAny>>;
   @Input() focusOnHover: boolean = true;
-  @Input() variant: Optional<InputVariant>;
+  @Input() typeahead: boolean = true;
+  @Input() addOnBlur: boolean = false;
+  @Input() separator: Optional<string | RegExp>;
+  @Input() appendTo: Optional<SafeAny>;
+  @Input() required: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
   @Input() fluid: boolean = false;
+  @Input() variant: Optional<InputVariant>;
+  @Input() size: Optional<Size>;
+  @Input() inputSize: Optional<number>;
+  @Input() pattern: Optional<string>;
+  @Input() min: Optional<number>;
+  @Input() max: Optional<number>;
+  @Input() step: Optional<number>;
+  @Input() minlength: Optional<number>;
+  @Input() maxlength: Optional<number>;
   @Output() completeMethod = new EventEmitter<$AutoCompleteCompleteEvent>();
   @Output() onSelect = new EventEmitter<$AutoCompleteSelectEvent>();
   @Output() onUnselect = new EventEmitter<$AutoCompleteUnselectEvent>();
+  @Output() onAdd = new EventEmitter<$AutoCompleteUnselectEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @Output() onDropdownClick = new EventEmitter<$AutoCompleteDropdownClickEvent>();
   @Output() onClear = new EventEmitter();
+  @Output() onInputKeydown = new EventEmitter<KeyboardEvent>();
   @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
   @Output() onShow = new EventEmitter<Event>();
   @Output() onHide = new EventEmitter<Event>();
@@ -152,7 +163,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
@@ -207,12 +218,12 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
     }
   }
 
-  _onSelect(event: any) {
+  _onSelect(event: SafeAny) {
     this.onSelect.emit(event);
     this.onModelChange(this.value);
   }
 
-  _onUnselect(event: any) {
+  _onUnselect(event: SafeAny) {
     this.onUnselect.emit(event);
     this.onModelChange(this.value);
   }
@@ -226,7 +237,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
     (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

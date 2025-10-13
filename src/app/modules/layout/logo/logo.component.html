@@ -1,4 +1,4 @@
-<div [ngClass]="{'cursor-pointer':!disableNavigation,'cursor-default':disableNavigation}">
+<div [class]="{'cursor-pointer':!disableNavigation,'cursor-default':disableNavigation}">
   @if (src) {
     <img [routerLink]="disableNavigation ? null : link" [src]="src" [style.width]="width" alt="logo"/>
   }

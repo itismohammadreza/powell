@@ -34,11 +34,11 @@ export type TableFilters = Record<string, $FilterMetadata | $FilterMetadata[]>;
 
 export interface TableFilter {
   type?: TableFilterType;
-  dateFormat?: any;
+  dateFormat?: SafeAny;
   header?: string;
   min?: number;
   max?: number;
-  options?: any[];
+  options?: SafeAny[];
   optionLabel?: string;
   optionValue?: string;
   placeholder?: string;
@@ -48,7 +48,7 @@ export interface TableFilter {
   rowFilterShowMenu?: boolean;
 }
 
-export interface TableColDef<T = any> {
+export interface TableColDef<T = SafeAny> {
   header?: string;
   field?: string;
   width?: string;
@@ -56,17 +56,17 @@ export interface TableColDef<T = any> {
   filter?: TableFilter;
   render?: TableRendererType | ((item: T) => string);
   cellStyleClass?: string | ((item: T) => string);
-  cellStyle?: CssObject | ((item: T) => any);
+  cellStyle?: CssObject | ((item: T) => SafeAny);
   visible?: boolean;
 }
 
-export interface TableActionsConfig<T = any> {
+export interface TableActionsConfig<T = SafeAny> {
   header: string;
   inSameColumn: boolean;
   actions: TableAction<T>[]
 }
 
-export interface TableAction<T = any> {
+export interface TableAction<T = SafeAny> {
   header?: string;
   tooltip?: string;
   tooltipPosition?: Position;
@@ -81,6 +81,6 @@ export interface TableAction<T = any> {
   async?: boolean;
   size?: Size;
   visible?: boolean | ((item: T) => boolean);
-  onClick?: (item: T, index: number, event: Event) => any;
-  onClickAsync?: (item: T, index: number, event: AsyncEvent<MouseEvent>) => any;
+  onClick?: (item: T, index: number, event: Event) => SafeAny;
+  onClickAsync?: (item: T, index: number, event: AsyncEvent<MouseEvent>) => SafeAny;
 }

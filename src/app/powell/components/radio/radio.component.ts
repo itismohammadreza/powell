@@ -44,7 +44,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -54,7 +54,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Input() validation: Optional<Validation>;
   @Input() followConfig: boolean = false;
   @Input() orientation: Orientation = 'vertical';
-  @Input() options: Optional<any[]>;
+  @Input() options: Optional<SafeAny[]>;
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';
   @Input() optionDisabled: string = 'disabled';
@@ -78,8 +78,6 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   @Input() id: string = $uuid();
   @Input() ariaLabelledBy: Optional<string>;
   @Input() ariaLabel: Optional<string>;
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Input() autofocus: boolean = false;
   @Input() binary: boolean = false;
   @Output() onChange = new EventEmitter<$RadioButtonClickEvent>();
@@ -136,7 +134,7 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
     this.onFocus.emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

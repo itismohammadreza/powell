@@ -88,7 +88,7 @@ export class OverlayService {
     })
   }
 
-  open(componentType: Type<any>, config: DynamicDialogConfig) {
+  open(componentType: Type<SafeAny>, config: DynamicDialogConfig) {
     const map = new WeakMap();
     map.set(DynamicDialogConfig, config);
 
@@ -219,12 +219,14 @@ export class OverlayService {
       const key = k as keyof ComponentRef<$Confirmation> & keyof ConfirmOptions;
       instance[key] = options[key];
     }
+    instance.breakpoints = options.breakpoints;
+    instance.draggable = options.draggable;
     instance.position = options.position ?? 'center';
     instance.appendTo = undefined;
     instance.styleClass = `confirm-dialog-wrapper ${options.styleClass ?? ''} ${!options.header && !options.closable ? 'header-less' : ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`;
     return new Promise<Nullable<boolean>>((resolve) => {
       const state: HistoryState = {component: 'confirmDialog'};
-      let timeout: any;
+      let timeout: SafeAny;
       this.pushState(state)
       this.confirmationService.confirm({
         ...confirmation,
@@ -355,7 +357,7 @@ export class OverlayService {
 
   private addToBody<T>(component: Type<T>, injector: Injector = this.injector) {
     try {
-      const componentRef = createComponent(component as any, {
+      const componentRef = createComponent(component as SafeAny, {
         environmentInjector: this.envInjector,
         elementInjector: injector
       });
@@ -365,20 +367,20 @@ export class OverlayService {
       return componentRef;
     } catch (err) {
       try {
-        const factory = this.cfr.resolveComponentFactory(component as any);
+        const factory = this.cfr.resolveComponentFactory(component as SafeAny);
         const compRef = factory.create(injector);
-        const rootNode = (compRef.hostView as any).rootNodes?.[0] || (compRef as any).location?.nativeElement;
+        const rootNode = (compRef.hostView as SafeAny).rootNodes?.[0] || (compRef as SafeAny).location?.nativeElement;
         if (rootNode) this.document.body.appendChild(rootNode);
         this.appRef.attachView(compRef.hostView);
         compRef.changeDetectorRef.detectChanges();
-        return compRef as ComponentRef<any>;
+        return compRef as ComponentRef<SafeAny>;
       } catch (e) {
         throw e;
       }
     }
   }
 
-  private removeFromBody(component: ComponentRef<any>) {
+  private removeFromBody(component: ComponentRef<SafeAny>) {
     if (!component) {
       return;
     }
@@ -389,7 +391,7 @@ export class OverlayService {
     }, 300)
   }
 
-  private bodyContains(componentRef: Optional<ComponentRef<any>>) {
+  private bodyContains(componentRef: Optional<ComponentRef<SafeAny>>) {
     if (!componentRef) {
       return false;
     }

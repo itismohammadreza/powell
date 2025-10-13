@@ -12,7 +12,7 @@ export class LanguageChecker {
     return this.translationService.fa;
   }
 
-  instant(key: string, interpolateParams?: any) {
-    return this.translationService.instant(key, interpolateParams) as any;
+  instant(key: string, interpolateParams?: SafeAny) {
+    return this.translationService.instant(key, interpolateParams) as SafeAny;
   }
 }

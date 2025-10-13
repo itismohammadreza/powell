@@ -44,7 +44,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -55,15 +55,15 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   @Input() followConfig: boolean = false;
   @Input() id: string = $uuid();
   // native properties
-  @Input() animate: boolean = false;
+  @Input() required: boolean = false;
   @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
+  @Input() animate: boolean = false;
   @Input() min: number = 0;
   @Input() max: number = 100;
   @Input() orientation: Orientation = 'horizontal';
   @Input() step: Optional<number>;
   @Input() range: boolean = false;
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Input() ariaLabel: Optional<string>;
   @Input() ariaLabelledBy: Optional<string>;
   @Input() tabindex: Optional<number>;
@@ -118,7 +118,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
     this.onSlideEnd.emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

@@ -10,6 +10,7 @@ import {
 import {ElementAdditionTemplate, LabelPosition, Validation} from "@powell/models";
 import {TemplateDirective} from "@powell/directives/template";
 import {NgControl} from "@angular/forms";
+import {$uuid} from '@powell/primeng';
 
 @Component({
   selector: 'pw-form-field',
@@ -22,7 +23,7 @@ export class FormFieldComponent implements AfterContentInit {
   @Input() validation: Optional<Validation>;
   @Input() hint: Optional<string>;
   @Input() label: Optional<string>;
-  @Input() inputId: Optional<string>;
+  @Input() inputId: string = $uuid();
   @Input() labelWidth: Optional<number>;
   @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;
@@ -31,7 +32,7 @@ export class FormFieldComponent implements AfterContentInit {
   @Input() reverseLabel: boolean = false;
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  templateMap: Partial<Record<ElementAdditionTemplate, TemplateRef<any>>> = {};
+  templateMap: Partial<Record<ElementAdditionTemplate, TemplateRef<SafeAny>>> = {};
 
   ngAfterContentInit() {
     this.templates?.forEach(item => {

@@ -1,7 +1,6 @@
-<div class="checkbox-group-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [ngClass]="{
+<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [class]="{
+      'checkbox-group-wrapper': true,
       'layout-horizontal':orientation == 'horizontal',
       'layout-vertical':orientation == 'vertical'
     }">
@@ -23,20 +22,18 @@
             [invalid]="isInvalid"
             [class]="item.styleClass"
             [value]="item[optionValue]"
-            [name]="groupName"
+            [inputId]="'id'+item[optionValue]"
             [disabled]="item[optionDisabled]"
+            [name]="groupName"
             [ariaLabelledBy]="ariaLabelledBy"
             [ariaLabel]="ariaLabel"
-            [inputId]="'id'+item[optionValue]"
-            [style]="style"
             [inputStyle]="inputStyle"
-            [styleClass]="styleClass"
             [inputClass]="inputClass"
-            [size]="$any(size)"
             [checkboxIcon]="checkboxIcon"
             [readonly]="readonly"
             [autofocus]="autofocus"
-            [variant]="$any(variant)"
+            [variant]="variant"
+            [size]="size"
             (onChange)="_onChange($event)"
             (onFocus)="_onFocus($event)"
             (onBlur)="_onBlur($event)">

@@ -73,7 +73,7 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -85,8 +85,6 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   @Input() readonly: boolean = false;
   @Input() followConfig: boolean = false;
   @Input() inputId: string = $uuid();
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   // native properties
   @Input() options: Optional<SunEditorOptions>;
   @Input() onDrop_param: boolean = true;
@@ -98,10 +96,10 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   @Input() onVideoUploadBefore_param: boolean = true;
   @Input() onVideoUploadError_param: boolean = true;
   @Input() onAudioUploadBefore_param: boolean = true;
-  @Input() onResizeEditor_param: any = {};
-  @Input() imageUploadHandler: Optional<(xmlHttp: XMLHttpRequest, info: any, core: Core) => void>;
-  @Input() videoUploadHandler: Optional<(xmlHttp: XMLHttpRequest, info: any, core: Core) => void>;
-  @Input() audioUploadHandler: Optional<(xmlHttp: XMLHttpRequest, info: any, core: Core) => void>;
+  @Input() onResizeEditor_param: SafeAny = {};
+  @Input() imageUploadHandler: Optional<(xmlHttp: XMLHttpRequest, info: SafeAny, core: Core) => void>;
+  @Input() videoUploadHandler: Optional<(xmlHttp: XMLHttpRequest, info: SafeAny, core: Core) => void>;
+  @Input() audioUploadHandler: Optional<(xmlHttp: XMLHttpRequest, info: SafeAny, core: Core) => void>;
   @Input() localStorageConfig = {id: 'ngxSunEditor', autoSave: false, autoLoad: false};
   @Output() created = new EventEmitter<EditorBaseComponent>();
   @Output() onload = new EventEmitter<EditorOnLoadEvent>();
@@ -241,7 +239,7 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
     this.onModelTouched();
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

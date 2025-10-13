@@ -49,7 +49,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() hint: Optional<string>;
   @Input() rtl: boolean = false;
@@ -68,18 +68,16 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   @Input() ariaLabel: Optional<string>;
   @Input() tabindex: Optional<number>;
   @Input() inputId: string = $uuid();
-  @Input() style: Optional<CssObject>;
   @Input() inputStyle: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Input() inputClass: Optional<string>;
   @Input() indeterminate: boolean = false;
-  @Input() size: Optional<Size>;
   @Input() checkboxIcon: Optional<string>;
   @Input() readonly: boolean = false;
   @Input() autofocus: boolean = false;
-  @Input() trueValue: any = true;
-  @Input() falseValue: any = false;
+  @Input() trueValue: SafeAny = true;
+  @Input() falseValue: SafeAny = false;
   @Input() variant: Optional<InputVariant>;
+  @Input() size: Optional<Size>;
   @Output() onChange = new EventEmitter<$CheckboxChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
@@ -88,7 +86,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
 
   loading: boolean = false;
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
@@ -174,7 +172,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
     this.setLabel();
   };
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.setLabel();
     this.cd.markForCheck();

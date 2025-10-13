@@ -1,7 +1,7 @@
 import {AbstractControl, FormArray, FormControl, FormGroup} from "@angular/forms";
 
 export const helpers = {
-  startPolling: <T>(apiFn: () => Promise<T>, interval: number, onResult: (result: T) => void, onError?: (err: any) => void) => {
+  startPolling: <T>(apiFn: () => Promise<T>, interval: number, onResult: (result: T) => void, onError?: (err: SafeAny) => void) => {
     let stopped = false;
 
     async function poll() {
@@ -37,7 +37,7 @@ export const helpers = {
       }
       return false;
     }
-    const fillResult = (group: FormGroup, res: any) => Object.entries(group.controls).forEach(([name, control]) => {
+    const fillResult = (group: FormGroup, res: SafeAny) => Object.entries(group.controls).forEach(([name, control]) => {
       if (control instanceof FormControl && isDirty(control)) {
         if (Array.isArray(res)) {
           res.push({[name]: control.value})
@@ -84,7 +84,7 @@ export const helpers = {
     return fileType.indexOf('*') !== -1;
   },
 
-  checkConnectionSpeed(callback: any) {
+  checkConnectionSpeed(callback: SafeAny) {
     const imageUrl = 'https://via.placeholder.com/2000x2000';
     const downloadSize = 4995374;
     let startTime: number;
@@ -125,7 +125,7 @@ export const helpers = {
     .then((blob) => helpers.fileToBase64(blob as File));
   },
 
-  base64toFile: (dataUrl: any, filename: string) => {
+  base64toFile: (dataUrl: SafeAny, filename: string) => {
     const arr = dataUrl.split(',');
     const mime = arr[0].match(/:(.*?);/)[1];
     const bstr = atob(arr[1]);
@@ -138,7 +138,7 @@ export const helpers = {
   },
 
   blobToFile: (blob: Blob, fileName: string) => {
-    const b = blob as any;
+    const b = blob as SafeAny;
     b.lastModifiedDate = new Date();
     b.name = fileName;
     return blob as File;
@@ -168,7 +168,7 @@ export const helpers = {
     return supportMin && supportMax;
   },
 
-  isImage: (value: any) => {
+  isImage: (value: SafeAny) => {
     if (!value) {
       return false;
     }
@@ -219,12 +219,12 @@ export const helpers = {
     return (res !== null)
   },
 
-  joinArraysWithoutDuplicates: (array1: any[], array2: any[], field: string) => {
+  joinArraysWithoutDuplicates: (array1: SafeAny[], array2: SafeAny[], field: string) => {
     const set1 = new Set(array1.map(x => x[field]));
     return [...array1, ...array2.filter(x => !set1.has(x[field]))]
   },
 
-  setFieldValue(obj: any, path: string, value: any) {
+  setFieldValue(obj: SafeAny, path: string, value: SafeAny) {
     const keys = path.split('.');
     let current = obj;
 
@@ -238,7 +238,7 @@ export const helpers = {
     current[keys[keys.length - 1]] = value;
   },
 
-  buildObjectFromPath(path: string, value: any) {
+  buildObjectFromPath(path: string, value: SafeAny) {
     return path.split('.').reverse().reduce((acc, key) => ({[key]: acc}), value);
   }
 }

@@ -34,7 +34,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
     });
   }
 
-  const getRequestConfig = (request: HttpRequest<any>) => {
+  const getRequestConfig = (request: HttpRequest<SafeAny>) => {
     const {pathname} = getUrlParts(request.url);
     const requestPathMatch = ({pathTemplate, isCustomApi}: RequestConfig) => {
       const testCase = isCustomApi ? request.urlWithParams : pathname;
@@ -61,7 +61,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
     const keys: (keyof HTMLAnchorElement)[] = [
       'href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'
     ];
-    const res: any = {};
+    const res: SafeAny = {};
     linkElement.href = url;
     keys.forEach((k) => {
       res[k] = linkElement[k];
@@ -70,7 +70,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
     return res;
   }
 
-  const removeRequestFromQueue = (request: HttpRequest<any>) => {
+  const removeRequestFromQueue = (request: HttpRequest<SafeAny>) => {
     const i = requestsQueue.indexOf(request);
     if (i >= 0) {
       requestsQueue.splice(i, 1);
@@ -78,8 +78,8 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
     loaderService.setLoadingState(requestsQueue.length > 0);
   }
 
-  const getRequestProp = (request: HttpRequest<any>, response: Optional<HttpResponseBase>, prop: keyof RequestConfig) => {
-    const requestConfig: any = getRequestConfig(request);
+  const getRequestProp = (request: HttpRequest<SafeAny>, response: Optional<HttpResponseBase>, prop: keyof RequestConfig) => {
+    const requestConfig: SafeAny = getRequestConfig(request);
     if (!requestConfig) {
       return false;
     }
@@ -90,7 +90,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
     }
   }
 
-  const handleTimeout = (request: HttpRequest<any>) => {
+  const handleTimeout = (request: HttpRequest<SafeAny>) => {
     const getQueryTimeout = (url: string) => {
       if (!url.includes('http')) {
         return 'none';
@@ -107,8 +107,8 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
     }
   }
 
-  const requestsQueue: HttpRequest<any>[] = [];
-  const cachedRequests = new Map<string, any>();
+  const requestsQueue: HttpRequest<SafeAny>[] = [];
+  const cachedRequests = new Map<string, SafeAny>();
   const loadingRequestsCounter = new Map<string, number>();
 
   const clonedReq = request.clone();
@@ -134,7 +134,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
 
   return next(clonedReq).pipe(
     handleTimeout(request),
-    tap((response: any) => {
+    tap((response: SafeAny) => {
       const successMessage = getRequestProp(request, response, 'successMessage');
       if (!(response instanceof HttpResponse) || /2\d+/.test(response.status.toString()) == false) {
         return;

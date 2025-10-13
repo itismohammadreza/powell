@@ -57,7 +57,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any[]>;
+  @Input() value: Optional<SafeAny[]>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -66,7 +66,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() labelPosition: Optional<FixLabelPosition>;
   @Input() validation: Optional<Validation>;
   @Input() followConfig: boolean = false;
-  @Input() options: Optional<any[]>;
+  @Input() options: Optional<SafeAny[]>;
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';
   @Input() optionDisabled: string = 'disabled';
@@ -88,21 +88,19 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
 
   @Input() ariaLabelledBy: Optional<string>;
   @Input() ariaLabel: Optional<string>;
-  @Input() style: Optional<CssObject>;
   @Input() inputStyle: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Input() inputClass: Optional<string>;
-  @Input() size: Optional<Size>;
   @Input() checkboxIcon: Optional<string>;
   @Input() readonly: boolean = false;
   @Input() autofocus: boolean = false;
   @Input() variant: Optional<InputVariant>;
+  @Input() size: Optional<Size>;
   @Output() onChange = new EventEmitter<CheckboxGroupChangeEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   _disabled: boolean = false;
   ngControl: Nullable<NgControl> = null;
   onModelChange: Fn = () => {

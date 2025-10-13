@@ -1,7 +1,4 @@
-<div class="select-button-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass">
+<div class="select-button-wrapper" [attr.dir]="rtl ? 'rtl' : 'ltr'">
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
@@ -16,7 +13,9 @@
       <p-selectButton
         [(ngModel)]="value"
         [invalid]="isInvalid"
-        [attr.id]="id"
+        [required]="required"
+        [disabled]="disabled"
+        [name]="name"
         [options]="options"
         [optionLabel]="optionLabel"
         [optionValue]="optionValue"
@@ -25,13 +24,11 @@
         [tabindex]="tabindex"
         [multiple]="multiple"
         [allowEmpty]="allowEmpty"
-        [style]="style"
-        [styleClass]="styleClass"
         [ariaLabelledBy]="ariaLabelledBy"
-        [size]="size"
-        [disabled]="disabled"
         [dataKey]="dataKey"
         [autofocus]="autofocus"
+        [size]="size"
+        [fluid]="fluid"
         (onChange)="_onChange($event)"
         (onOptionClick)="_onOptionClick($event)">
         @for (t of templates; track t) {

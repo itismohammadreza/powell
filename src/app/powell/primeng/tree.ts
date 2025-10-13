@@ -6,6 +6,7 @@ import {
   TreeNodeCollapseEvent,
   TreeNodeContextMenuSelectEvent,
   TreeNodeDropEvent,
+  TreeNodeDoubleClickEvent,
   TreeNodeExpandEvent,
   TreeNodeSelectEvent,
   TreeNodeUnSelectEvent,
@@ -21,6 +22,7 @@ export {type TreeLazyLoadEvent as $TreeLazyLoadEvent}
 export {type TreeScrollEvent as $TreeScrollEvent}
 export {type TreeNodeCollapseEvent as $TreeNodeCollapseEvent}
 export {type TreeNodeDropEvent as $TreeNodeDropEvent}
+export {type TreeNodeDoubleClickEvent as $TreeNodeDoubleClickEvent}
 export {type TreeNodeExpandEvent as $TreeNodeExpandEvent}
 export {type TreeNodeSelectEvent as $TreeNodeSelectEvent}
 export {type TreeNodeContextMenuSelectEvent as $TreeNodeContextMenuSelectEvent}

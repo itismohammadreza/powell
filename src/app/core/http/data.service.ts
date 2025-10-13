@@ -9,7 +9,7 @@ export class DataService extends ApiService {
   private endpoint: string = 'photos';
 
   get() {
-    const res = this._get<any>(this.endpoint, {params: {_start: 0, _limit: 20}});
+    const res = this._get<SafeAny>(this.endpoint, {params: {_start: 0, _limit: 20}});
     return lastValueFrom(res);
   }
 
@@ -9018,8 +9018,8 @@ export class DataService extends ApiService {
     ];
   }
 
-  getCustomers(filters?: any) {
-    const res = this._customRequest<any>('https://www.primefaces.org/data/customers', 'GET', null, {params: filters});
+  getCustomers(filters?: SafeAny) {
+    const res = this._customRequest<SafeAny>('https://www.primefaces.org/data/customers', 'GET', null, {params: filters});
     return lastValueFrom(res);
   }
 }

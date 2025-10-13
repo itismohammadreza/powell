@@ -12,7 +12,7 @@ export const EnvServiceProvider = {
   provide: EnvService,
   useFactory: () => {
     const env = new EnvService();
-    const browserWindow = window as Record<string, any>;
+    const browserWindow = window as Record<string, SafeAny>;
     const browserWindowEnv = browserWindow['__env'] || {};
     for (const key in browserWindowEnv) {
       if (browserWindowEnv.hasOwnProperty(key)) {

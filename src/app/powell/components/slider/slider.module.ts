@@ -1,5 +1,4 @@
 import {NgModule} from "@angular/core";
-import {NgClass, NgStyle} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {SliderComponent} from "@powell/components/slider";
 import {LabelStarModule} from "@powell/pipes/label-star";
@@ -11,8 +10,6 @@ import {FormFieldModule} from "@powell/components/form-field";
   exports: [SliderComponent],
   imports: [
     $SliderModule,
-    NgStyle,
-    NgClass,
     FormsModule,
     LabelStarModule,
     FormFieldModule

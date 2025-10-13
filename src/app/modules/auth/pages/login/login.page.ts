@@ -19,7 +19,7 @@ export class LoginPage {
     rememberMe: new FormControl(false),
   });
 
-  async onSubmit(callback: any) {
+  async onSubmit(callback: SafeAny) {
     if (this.form.invalid) {
       callback()
       return;

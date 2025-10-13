@@ -49,7 +49,7 @@ export class InputTextareaComponent implements OnInit, AfterContentInit, Control
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() ariaLabelledBy: Optional<string>;
   @Input() ariaLabel: Optional<string>;
@@ -67,15 +67,13 @@ export class InputTextareaComponent implements OnInit, AfterContentInit, Control
   @Input() disabled: boolean = false;
   @Input() maxlength: Optional<number>;
   @Input() placeholder: Optional<string>;
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Input() inputStyle: Optional<CssObject>;
   @Input() inputStyleClass: Optional<string>;
   // native properties
   @Input() autoResize: boolean = false;
+  @Input() size: Optional<Size>;
   @Input() variant: Optional<InputVariant>;
   @Input() fluid: boolean = false;
-  @Input() size: Optional<Size>;
   @Output() onResize = new EventEmitter<Event | {}>();
   @Output() onInput = new EventEmitter<Event>();
   @Output() onChange = new EventEmitter<Event>();
@@ -85,7 +83,7 @@ export class InputTextareaComponent implements OnInit, AfterContentInit, Control
   @Output() onFocus = new EventEmitter<FocusEvent>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   ngControl: Nullable<NgControl> = null;
   onModelChange: Fn = () => {
   };
@@ -165,7 +163,7 @@ export class InputTextareaComponent implements OnInit, AfterContentInit, Control
     this.onModelChange(inputElement.value);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

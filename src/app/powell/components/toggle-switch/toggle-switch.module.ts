@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
+import {NgTemplateOutlet} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {ToggleSwitchComponent} from "@powell/components/toggle-switch";
 import {LabelStarModule} from "@powell/pipes/label-star";
@@ -12,8 +12,6 @@ import {FormFieldModule} from "@powell/components/form-field";
   imports: [
     $ToggleSwitchModule,
     $ProgressSpinnerModule,
-    NgClass,
-    NgStyle,
     NgTemplateOutlet,
     FormsModule,
     LabelStarModule,

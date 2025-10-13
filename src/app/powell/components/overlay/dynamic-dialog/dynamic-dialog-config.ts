@@ -1,3 +1,3 @@
-export class DynamicDialogConfig<D = any> {
+export class DynamicDialogConfig<D = SafeAny> {
   data?: D;
 }

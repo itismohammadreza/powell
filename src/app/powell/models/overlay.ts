@@ -1,5 +1,5 @@
-import { HttpHeaders } from '@angular/common/http';
-import { AbstractControl, FormGroup, ValidatorFn } from '@angular/forms';
+import {HttpHeaders} from '@angular/common/http';
+import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {
   AutoCompleteDropdownMode,
   ButtonAppearance,
@@ -28,10 +28,10 @@ import {
   NumberLocaleMatcher,
   NumberMode,
   Orientation,
-  PinchOverflow,
   PinchDisableZoomControl,
   PinchLimitZoom,
   PinchListener,
+  PinchOverflow,
   Position,
   Severity,
   Size,
@@ -39,15 +39,20 @@ import {
   TreeSelectionMode,
   ValidationType
 } from '@powell/models';
-import { SunEditorOptions } from "suneditor/src/options";
-import { Core } from "suneditor/src/lib/core";
-import { LatLng, LatLngBounds } from "leaflet";
-import { $Confirmation, $ContextMenu, $ScrollerOptions, $ToastMessageOptions, $ToastPositionType } from "@powell/primeng";
-import { TemplateRef } from "@angular/core";
-import { Moment } from "jalali-moment";
+import {SunEditorOptions} from "suneditor/src/options";
+import {Core} from "suneditor/src/lib/core";
+import {LatLng, LatLngBounds} from "leaflet";
+import {$Confirmation, $ContextMenu, $ScrollerOptions, $ToastMessageOptions, $ToastPositionType} from "@powell/primeng";
+import {TemplateRef} from "@angular/core";
+import {Moment} from "jalali-moment";
 
 export type DefaultFocus = 'accept' | 'reject';
-export type HistoricComponent = 'confirmDialog' | 'confirmPopup' | 'dialog' | 'dialogForm' | 'dialogForm2' | 'bottomSheet';
+export type HistoricComponent =
+  'confirmDialog'
+  | 'confirmPopup'
+  | 'dialog'
+  | 'dialogForm'
+  | 'bottomSheet';
 
 export type DialogPosition =
   | 'top'
@@ -78,6 +83,7 @@ export interface ToastOptions extends $ToastMessageOptions {
 
 export interface ConfirmOptions extends $Confirmation {
   defaultFocus?: DefaultFocus;
+  breakpoints?: SafeAny;
   acceptButtonProps?: ButtonProps;
   rejectButtonProps?: ButtonProps;
   closeButtonProps?: ButtonProps;
@@ -85,6 +91,7 @@ export interface ConfirmOptions extends $Confirmation {
   style?: CssObject;
   styleClass?: string;
   rtl?: boolean;
+  draggable?: boolean;
 }
 
 interface DialogBase {
@@ -101,8 +108,8 @@ interface DialogBase {
   rtl?: boolean;
   closable?: boolean;
   responsive?: boolean;
-  appendTo?: any;
-  breakpoints?: any;
+  appendTo?: SafeAny;
+  breakpoints?: SafeAny;
   styleClass?: string;
   maskStyleClass?: string;
   maskStyle?: CssObject;
@@ -126,22 +133,22 @@ interface DialogBase {
   closeButtonProps?: ButtonProps;
   maximizeButtonProps?: ButtonProps;
   visible?: boolean;
-  style?: any;
+  style?: SafeAny;
   position?: DialogPosition;
-  headerTemplate?: TemplateRef<any>;
-  contentTemplate?: TemplateRef<any>;
-  footerTemplate?: TemplateRef<any>;
-  closeIconTemplate?: TemplateRef<any>;
-  maximizeIconTemplate?: TemplateRef<any>;
-  minimizeIconTemplate?: TemplateRef<any>;
-  headlessTemplate?: TemplateRef<any>;
-  onShow?: () => any;
-  onHide?: () => any;
-  visibleChange?: (event: any) => any;
-  onResizeInit?: (event: any) => any;
-  onResizeEnd?: (event: any) => any;
-  onDragEnd?: (event: any) => any;
-  onMaximize?: (event: any) => any;
+  headerTemplate?: TemplateRef<SafeAny>;
+  contentTemplate?: TemplateRef<SafeAny>;
+  footerTemplate?: TemplateRef<SafeAny>;
+  closeIconTemplate?: TemplateRef<SafeAny>;
+  maximizeIconTemplate?: TemplateRef<SafeAny>;
+  minimizeIconTemplate?: TemplateRef<SafeAny>;
+  headlessTemplate?: TemplateRef<SafeAny>;
+  onShow?: () => SafeAny;
+  onHide?: () => SafeAny;
+  visibleChange?: (event: SafeAny) => SafeAny;
+  onResizeInit?: (event: SafeAny) => SafeAny;
+  onResizeEnd?: (event: SafeAny) => SafeAny;
+  onDragEnd?: (event: SafeAny) => SafeAny;
+  onMaximize?: (event: SafeAny) => SafeAny;
 }
 
 export interface DialogOptions extends DialogBase {
@@ -167,7 +174,7 @@ export interface DialogFormOptions extends DialogBase {
 }
 
 export interface DialogFormResult {
-  formValue: any;
+  formValue: SafeAny;
   finalizeSubmit: (hide?: boolean) => void
 }
 
@@ -178,7 +185,7 @@ export interface DialogFormValidation {
 }
 
 export interface DialogFormEvent {
-  event?: any,
+  event?: SafeAny,
   form?: FormGroup;
   currentConfig?: DialogFormConfig;
   allConfig?: DialogFormConfig[];
@@ -222,7 +229,7 @@ export type DialogFormComponentName =
 
 export interface DialogFormConfig {
   ///////////////////////////////////////// auto-complete /////////////////////////////////////////
-  suggestions?: any[];
+  suggestions?: SafeAny[];
   dropdown?: boolean;
   fluid?: boolean;
   minlength?: number;
@@ -288,11 +295,11 @@ export interface DialogFormConfig {
   onVideoUploadBefore_param?: boolean;
   onVideoUploadError_param?: boolean;
   onAudioUploadBefore_param?: boolean;
-  onResizeEditor_param?: any;
-  imageUploadHandler?: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
-  videoUploadHandler?: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
-  audioUploadHandler?: (xmlHttp: XMLHttpRequest, info: any, core: Core) => void;
-  localStorageConfig?: any;
+  onResizeEditor_param?: SafeAny;
+  imageUploadHandler?: (xmlHttp: XMLHttpRequest, info: SafeAny, core: Core) => void;
+  videoUploadHandler?: (xmlHttp: XMLHttpRequest, info: SafeAny, core: Core) => void;
+  audioUploadHandler?: (xmlHttp: XMLHttpRequest, info: SafeAny, core: Core) => void;
+  localStorageConfig?: SafeAny;
   created?: (dialogFormEvent?: DialogFormEvent) => void;
   onload?: (dialogFormEvent?: DialogFormEvent) => void;
   onMouseDown?: (dialogFormEvent?: DialogFormEvent) => void;
@@ -366,8 +373,8 @@ export interface DialogFormConfig {
   shortYearCutoff?: string;
   minDate?: Date | Moment;
   maxDate?: Date | Moment;
-  disabledDates?: any[];
-  disabledDays?: any[];
+  disabledDates?: SafeAny[];
+  disabledDays?: SafeAny[];
   showTime?: boolean;
   hourFormat?: DatepickerHourFormat;
   timeOnly?: boolean;
@@ -545,7 +552,7 @@ export interface DialogFormConfig {
   itemSize?: number;
   maxSelectedLabels?: number;
   optionGroupLabel?: string;
-  optionGroupChildren?: any;
+  optionGroupChildren?: SafeAny;
   group?: boolean;
   overlayVisible?: boolean;
   panelStyle?: CssObject;
@@ -554,7 +561,7 @@ export interface DialogFormConfig {
   showHeader?: boolean;
   showTransitionOptions?: string;
   showToggleAll?: boolean;
-  tooltip?: any;
+  tooltip?: SafeAny;
   tooltipStyleClass?: string;
   tooltipPosition?: Position;
   tooltipPositionStyle?: string;
@@ -593,8 +600,8 @@ export interface DialogFormConfig {
   ///////////////////////////////////////// toggle-switch /////////////////////////////////////////
   async?: boolean;
   showAsyncLoading?: boolean;
-  trueValue?: any;
-  falseValue?: any;
+  trueValue?: SafeAny;
+  falseValue?: SafeAny;
   onChangeAsync?: (dialogFormEvent?: DialogFormEvent) => void;
   ///////////////////////////////////////// toggle-button /////////////////////////////////////////
   onLabel?: string;
@@ -603,8 +610,8 @@ export interface DialogFormConfig {
   offIcon?: string;
   onChange?: (dialogFormEvent?: DialogFormEvent) => void;
   ///////////////////////////////////////// tree /////////////////////////////////////////
-  items?: any[];
-  selection?: any;
+  items?: SafeAny[];
+  selection?: SafeAny;
   contextMenu?: $ContextMenu;
   layout?: Orientation;
   draggableScope?: string | string[];
@@ -654,14 +661,14 @@ export interface DialogFormConfig {
   onNodeExpand?: (dialogFormEvent?: DialogFormEvent) => void;
   onNodeCollapse?: (dialogFormEvent?: DialogFormEvent) => void;
   onClear?: (dialogFormEvent?: DialogFormEvent) => void;
-  value?: any;
+  value?: SafeAny;
   label?: string;
   variant?: InputVariant;
   hint?: string;
   rtl?: boolean;
   showRequiredStar?: boolean;
   disabled?: boolean | ((dialogFormEvent?: DialogFormEvent) => boolean);
-  tabindex?: any;
+  tabindex?: SafeAny;
   style?: CssObject;
   styleClass?: string;
   readonly?: boolean;
@@ -673,7 +680,7 @@ export interface DialogFormConfig {
   mode?: FilePickerMode | NumberMode;
   selectionMode?: DatepickerSelectionMode | TreeSelectionMode;
   labelPosition?: LabelPosition;
-  options?: SunEditorOptions | any[];
+  options?: SunEditorOptions | SafeAny[];
 
   // out of components
   template?: string;

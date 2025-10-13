@@ -1,8 +1,8 @@
-<div #mainContent class="main-content menu-{{tempSidebarType}}"
-     [ngClass]="{
-     'sidebar-lock': sidebarLock,
-     'sidebar-open': sidebarVisible,
-     'overflow-hidden': ['push', 'push-mask'].includes(sidebarType) && sidebarVisible && !sidebarLock }">
+<div #mainContent
+     class="main-content menu-{{tempSidebarType}}"
+     [class.sidebar-lock]="sidebarLock"
+     [class.sidebar-open]="sidebarVisible"
+     [class.overflow-hidden]="['push', 'push-mask'].includes(sidebarType) && sidebarVisible && !sidebarLock">
 
   <div class="inner-wrapper">
     <nav>
@@ -14,17 +14,11 @@
         <logo [type]="config.powellConfig.theme?.mode == 'light' ? 'dark-horizontal' : 'light-horizontal'"/>
 
         <div>
-          <pw-button
-            pTooltip="Design"
-            tooltipPosition="bottom"
-            severity="secondary"
-            (click)="designerSidebarVisible = !designerSidebarVisible"
-            icon="pi pi-cog animate-[spin_5s_linear_infinite]"/>
-          <pw-button
-            icon="pi pi-sparkles"
-            pTooltip="Overlay Types"
-            tooltipPosition="bottom"
-            (onClick)="op.toggle($event)"/>
+          <pw-button pTooltip="Design" tooltipPosition="bottom" severity="secondary"
+                     (click)="designerSidebarVisible = !designerSidebarVisible"
+                     icon="pi pi-cog animate-[spin_5s_linear_infinite]"/>
+          <pw-button icon="pi pi-sparkles" pTooltip="Overlay Types" tooltipPosition="bottom"
+                     (onClick)="op.toggle($event)"/>
           <a target="_blank" href="https://github.com/mohammadreza99/powell" pTooltip="Github" tooltipPosition="bottom">
             <pw-button appearance="text" severity="secondary" icon="pi pi-github"/>
           </a>
@@ -34,7 +28,7 @@
 
     <main>
       @if (tempSidebarType === 'horizontal') {
-        <p-menubar styleClass="overflow-auto [&_ul]:!flex-nowrap [&_ul]:!whitespace-nowrap" [model]="sidebarItems">
+        <p-menubar class="overflow-auto [&_ul]:!flex-nowrap [&_ul]:!whitespace-nowrap" [model]="sidebarItems">
           <ng-template pTemplate="start">
             <pw-button class="me-2" (onClick)="op.toggle($event)" icon="pi pi-sparkles"/>
             <logo/>
@@ -48,34 +42,16 @@
 
 </div>
 
-<p-drawer
-  [styleClass]="!showBackdrop ? '!bg-transparent backdrop-blur-lg' : ''"
-  [dismissible]="showBackdrop"
-  [closable]="false"
-  [modal]="showBackdrop"
-  [visible]="sidebarVisible"
-  [closeOnEscape]="false"
-  [blockScroll]="showBackdrop"
-  [position]="config.rtl ? 'right' : 'left'"
-  [appendTo]="mainContent"
-  (visibleChange)="toggleSidebar($event)">
+<p-drawer [styleClass]="!showBackdrop ? '!bg-transparent backdrop-blur-lg' : ''" [dismissible]="showBackdrop"
+          [closable]="false" [modal]="showBackdrop" [visible]="sidebarVisible" [closeOnEscape]="false"
+          [blockScroll]="showBackdrop" [position]="config.rtl ? 'right' : 'left'" [appendTo]="mainContent"
+          (visibleChange)="toggleSidebar($event)">
   <ng-template pTemplate="header">
     <div class="flex items-center w-full gap-2">
-      <pw-input-text
-        class="grow"
-        [fluid]="true"
-        labelPosition="top"
-        size="small"
-        [followConfig]="false"
-        [placeholder]="'searchComponents' | translate"
-        [(ngModel)]="searchValue"/>
+      <pw-input-text class="grow" [fluid]="true" labelPosition="top" size="small" [followConfig]="false"
+                     [placeholder]="'searchComponents' | translate" [(ngModel)]="searchValue"/>
       @if (!sidebarLock) {
-        <pw-button
-          appearance="text"
-          size="small"
-          [rounded]="true"
-          icon="pi pi-times"
-          (onClick)="toggleSidebarClick()"/>
+        <pw-button appearance="text" size="small" [rounded]="true" icon="pi pi-times" (onClick)="toggleSidebarClick()"/>
       }
       @if (!showBackdrop) {
         <i
@@ -84,18 +60,11 @@
       }
     </div>
   </ng-template>
-  <p-panelMenu
-    [multiple]="false"
-    [model]="sidebarItems | pwFilter:searchValue:'label'"/>
+  <p-panelMenu [multiple]="false" [model]="sidebarItems | pwFilter:searchValue:'label'"/>
 </p-drawer>
 
-<p-drawer
-  position="left"
-  [header]="'designSystem' | translate"
-  [modal]="false"
-  [closable]="true"
-  [(visible)]="designerSidebarVisible"
-  styleClass="!w-[48rem] max-w-full !bg-transparent backdrop-blur-lg">
+<p-drawer position="left" [header]="'designSystem' | translate" [modal]="false" [closable]="true"
+          [(visible)]="designerSidebarVisible" styleClass="!w-[48rem] max-w-full !bg-transparent backdrop-blur-lg">
   <designer/>
 </p-drawer>
 
@@ -104,5 +73,6 @@
 </p-popover>
 
 <p-popover #op>
-  <pw-radio [value]="tempSidebarType" [options]="sidebarTypes" (onChange)="changeSidebarType($event, true);op?.hide()"/>
+  <pw-radio [value]="tempSidebarType" [options]="sidebarTypes"
+            (onChange)="changeSidebarType($event, true);op?.hide()"/>
 </p-popover>

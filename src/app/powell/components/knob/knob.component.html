@@ -1,7 +1,4 @@
-<div class="knob-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass">
+<div class="knob-wrapper" [attr.dir]="rtl ? 'rtl' : 'ltr'">
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
@@ -12,12 +9,14 @@
     [inputId]="id"
     [disabled]="disabled"
     [readonly]="readonly">
-    <ng-template pwTemplate="element">
+    <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-knob
         [(ngModel)]="value"
+        [invalid]="isInvalid"
         [attr.id]="id"
-        [styleClass]="styleClass"
-        [style]="style"
+        [required]="required"
+        [disabled]="disabled"
+        [name]="name"
         [ariaLabel]="ariaLabel"
         [ariaLabelledBy]="ariaLabelledBy"
         [tabindex]="tabindex"
@@ -25,13 +24,11 @@
         [rangeColor]="rangeColor"
         [textColor]="textColor"
         [valueTemplate]="valueTemplate"
-        [name]="name"
         [size]="size"
-        [step]="step"
         [min]="min"
         [max]="max"
+        [step]="step"
         [strokeWidth]="strokeWidth"
-        [disabled]="disabled"
         [showValue]="showValue"
         [readonly]="readonly"
         (onChange)="_onChange($event)">

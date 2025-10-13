@@ -1,7 +1,4 @@
-<div class="toggle-switch-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass">
+<div class="toggle-switch-wrapper" [attr.dir]="rtl ? 'rtl' : 'ltr'">
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
@@ -17,16 +14,16 @@
         <p-toggleSwitch
           [(ngModel)]="value"
           [invalid]="isInvalid"
-          [style]="style"
-          [styleClass]="styleClass"
+          [required]="required"
+          [disabled]="disabled"
+          [name]="name"
           [tabindex]="tabindex"
           [inputId]="inputId"
-          [name]="$any(name)"
-          [disabled]="disabled"
           [readonly]="readonly"
           [trueValue]="trueValue"
           [falseValue]="falseValue"
           [ariaLabel]="ariaLabel"
+          [size]="size"
           [ariaLabelledBy]="ariaLabelledBy"
           [autofocus]="autofocus"
           (onChange)="_onChange($event)">

@@ -266,5 +266,5 @@ export interface Province {
 
 export interface CheckboxGroupChangeEvent {
   originalEvent: Event;
-  value: any[];
+  value: SafeAny[];
 }

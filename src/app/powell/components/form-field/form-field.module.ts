@@ -9,7 +9,7 @@ import {
   $MessageModule
 } from "@powell/primeng";
 import {FormFieldComponent} from "@powell/components/form-field/form-field.component";
-import {KeyValuePipe, NgClass, NgTemplateOutlet} from "@angular/common";
+import {KeyValuePipe, NgTemplateOutlet} from "@angular/common";
 import {TemplateModule} from "@powell/directives/template";
 
 @NgModule({
@@ -18,7 +18,6 @@ import {TemplateModule} from "@powell/directives/template";
   imports: [
     KeyValuePipe,
     NgTemplateOutlet,
-    NgClass,
     $IftaLabelModule,
     $FloatLabelModule,
     $IconFieldModule,

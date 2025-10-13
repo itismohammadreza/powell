@@ -14,7 +14,7 @@ import {Config, Theme, ThemeMode} from "@powell/models";
 import {CONFIG_CLASS_PREFIX, DARK_MODE_CLASS, DARK_MODE_SELECTOR} from "@powell/api";
 
 type BodyClassRule = {
-  condition: (value: any) => boolean;
+  condition: (value: SafeAny) => boolean;
   className: string;
 };
 
@@ -32,12 +32,12 @@ export class ThemeService {
   private _darkModeIdentifier = DARK_MODE_CLASS;
   private _configClassPrefix = CONFIG_CLASS_PREFIX;
 
-  updateSurfacePalette(palette: any) {
+  updateSurfacePalette(palette: SafeAny) {
     this._currentPreset.surfacePalette = palette;
     $updateSurfacePalette(palette);
   }
 
-  updatePrimaryPalette(palette: any) {
+  updatePrimaryPalette(palette: SafeAny) {
     this._currentPreset.primaryPalette = palette;
     $updatePrimaryPalette(palette);
   }
@@ -78,7 +78,7 @@ export class ThemeService {
   }
 
   private handleDarkModeTransition() {
-    const doc = this.document as any;
+    const doc = this.document as SafeAny;
     if (doc.startViewTransition) {
       doc.startViewTransition(() => this.toggleDarkMode());
     } else {

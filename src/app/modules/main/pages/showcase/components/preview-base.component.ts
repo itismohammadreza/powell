@@ -12,7 +12,7 @@ export abstract class PreviewBase implements AfterViewInit {
   private configService = inject(ConfigService);
   protected overlayService = inject(OverlayService);
   protected previewOptions: PreviewOption[] = [];
-  protected cmpRef: any;
+  protected cmpRef: SafeAny;
   protected config = this.configService.get();
   protected asyncFlag = false;
   protected render = true;
@@ -25,7 +25,7 @@ export abstract class PreviewBase implements AfterViewInit {
     iconStart: false,
     iconEnd: false,
   }
-  protected options: any[] = [
+  protected options: SafeAny[] = [
     {label: 'Australia', value: 'AU'},
     {label: 'Brazil', value: 'BR'},
     {label: 'China', value: 'CN'},
@@ -46,14 +46,14 @@ export abstract class PreviewBase implements AfterViewInit {
     }
   }
 
-  onChangeAsync({loadingCallback}: AsyncEvent<any>) {
+  onChangeAsync({loadingCallback}: AsyncEvent<SafeAny>) {
     this.asyncFlag = !this.asyncFlag;
     setTimeout(() => {
       loadingCallback(this.asyncFlag)
     }, 3000)
   }
 
-  onOptionChange(event: any) {
+  onOptionChange(event: SafeAny) {
     this.form.get('c1').markAsPristine();
     this.form.get('c1').markAsUntouched();
     const {field, value} = event;

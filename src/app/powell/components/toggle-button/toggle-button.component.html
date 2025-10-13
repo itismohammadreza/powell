@@ -1,7 +1,8 @@
-<div class="toggle-button-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass">
+<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
+     [class]="{
+     'toggle-button-wrapper': true,
+      'has-label': onLabel || offLabel
+     }">
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
@@ -16,20 +17,22 @@
       <p-toggleButton
         [(ngModel)]="value"
         [invalid]="isInvalid"
+        [required]="required"
+        [disabled]="disabled"
+        [name]="name"
         [onLabel]="onLabel"
         [offLabel]="offLabel"
         [onIcon]="onIcon"
         [offIcon]="offIcon"
         [ariaLabel]="ariaLabel"
         [ariaLabelledBy]="ariaLabelledBy"
-        [disabled]="disabled"
-        [style]="style"
-        [styleClass]="styleClass"
+        [inputId]="inputId"
         [tabindex]="tabindex"
-        [size]="$any(size)"
         [iconPos]="iconPos"
         [autofocus]="autofocus"
+        [size]="size"
         [allowEmpty]="allowEmpty"
+        [fluid]="fluid"
         (onChange)="_onChange($event)">
         @for (t of templates; track t) {
           @if (templateMap[t.type]) {

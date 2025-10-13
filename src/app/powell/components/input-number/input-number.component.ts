@@ -68,39 +68,43 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() validation: Optional<Validation>;
   @Input() followConfig: boolean = false;
   // native properties
+  @Input() required: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
+  @Input() fluid: boolean = false;
+  @Input() variant: InputVariant = 'outlined';
+  @Input() size: Size;
+  @Input() inputSize: Optional<number>;
+  @Input() pattern: Optional<string>;
+  @Input() min: Optional<number>;
+  @Input() max: Optional<number>;
+  @Input() step: Optional<number>;
+  @Input() minlength: Optional<number>;
+  @Input() maxlength: Optional<number>;
   @Input() showButtons: boolean = false;
   @Input() format: boolean = true;
   @Input() buttonLayout: NumberButtonLayout = 'stacked';
   @Input() inputId: string = $uuid();
-  @Input() styleClass: Optional<string>;
-  @Input() style: Optional<CssObject>;
   @Input() placeholder: Optional<string>;
-  @Input() size: Optional<Size>;
-  @Input() maxlength: Optional<number>;
   @Input() tabindex: Optional<number>;
   @Input() title: Optional<string>;
   @Input() ariaLabelledBy: Optional<string>;
+  @Input() ariaDescribedBy: Optional<string>;
   @Input() ariaLabel: Optional<string>;
   @Input() ariaRequired: boolean = false;
-  @Input() name: Optional<string>;
-  @Input() required: boolean = false;
   @Input() autocomplete: Optional<string>;
-  @Input() min: Optional<number>;
-  @Input() max: Optional<number>;
   @Input() incrementButtonClass: Optional<string>;
   @Input() decrementButtonClass: Optional<string>;
   @Input() incrementButtonIcon: Optional<string>;
   @Input() decrementButtonIcon: Optional<string>;
   @Input() readonly: boolean = false;
-  @Input() step: number = 1;
   @Input() allowEmpty: boolean = true;
   @Input() locale: Optional<string>;
   @Input() localeMatcher: NumberLocaleMatcher = 'best fit';
   @Input() mode: NumberMode = 'decimal';
   @Input() currency: Optional<string>;
-  @Input() currencyDisplay: Optional<string>;
+  @Input() currencyDisplay: Optional<SafeAny>;
   @Input() useGrouping: boolean = true;
-  @Input() variant: Optional<InputVariant>;
   @Input() minFractionDigits: Optional<number>;
   @Input() maxFractionDigits: Optional<number>;
   @Input() prefix: Optional<string>;
@@ -109,8 +113,6 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() inputStyleClass: Optional<string>;
   @Input() showClear: boolean = false;
   @Input() autofocus: boolean = false;
-  @Input() disabled: boolean = false;
-  @Input() fluid: boolean = false;
   @Output() onInput = new EventEmitter<$InputNumberInputEvent>();
   @Output() onFocus = new EventEmitter<Event>();
   @Output() onBlur = new EventEmitter<Event>();
@@ -119,7 +121,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
@@ -161,7 +163,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
     });
   }
 
-  _onInput(event: any) {
+  _onInput(event: SafeAny) {
     this.onInput.emit(event);
     this.onModelChange(event.value);
   }
@@ -184,7 +186,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
     this.onKeyDown.emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

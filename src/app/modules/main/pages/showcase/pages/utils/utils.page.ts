@@ -9,7 +9,6 @@ import {PreviewBase, PreviewComponent} from "@modules/main/pages/showcase/compon
 import {DestroyService} from "@powell/utils";
 import {$DividerModule} from "@powell/primeng";
 import {TranslateModule} from "@ngx-translate/core";
-import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'utils-page',
@@ -20,7 +19,6 @@ import {NgClass} from "@angular/common";
     PreviewComponent,
     $DividerModule,
     TranslateModule,
-    NgClass
   ],
   providers: [DestroyService],
 })
@@ -30,7 +28,7 @@ export class UtilsPage extends PreviewBase implements OnInit {
   private persianService = inject(PersianService);
   private utilsService = inject(UtilsService);
 
-  customDynamicDialogResult: any;
+  customDynamicDialogResult: SafeAny;
   persianWord: string;
   networkStatus: string;
 

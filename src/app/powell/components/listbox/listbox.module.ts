@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {NgClass, NgStyle, NgTemplateOutlet} from "@angular/common";
+import {NgTemplateOutlet} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {ListboxComponent} from "@powell/components/listbox";
@@ -12,8 +12,6 @@ import {FormFieldModule} from "@powell/components/form-field";
   exports: [ListboxComponent, TemplateModule],
   imports: [
     $ListboxModule,
-    NgStyle,
-    NgClass,
     NgTemplateOutlet,
     FormsModule,
     LabelStarModule,

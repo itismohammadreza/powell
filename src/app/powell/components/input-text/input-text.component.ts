@@ -58,7 +58,7 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() ariaLabelledBy: Optional<string>;
   @Input() ariaLabel: Optional<string>;
@@ -78,15 +78,13 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
   @Input() inputMode: InputMode = 'text';
   @Input() keyFilter: Optional<KeyFilter | RegExp>;
   @Input() showClear: boolean = false;
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Input() inputStyle: Optional<CssObject>;
   @Input() inputStyleClass: Optional<string>;
-  @Input() autocomplete: Optional<any>;
+  @Input() autocomplete: Optional<SafeAny>;
   // native properties
+  @Input() size: Optional<Size>;
   @Input() variant: Optional<InputVariant>;
   @Input() fluid: boolean = false;
-  @Input() size: Optional<Size>;
   @Output() onInput = new EventEmitter<Event>();
   @Output() onClick = new EventEmitter<Event>();
   @Output() onChange = new EventEmitter<Event>();
@@ -98,7 +96,7 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
   @Output() onPaste = new EventEmitter<Event>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   ngControl: Nullable<NgControl> = null;
   onModelChange: Fn = () => {
   };
@@ -180,7 +178,7 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
     this.onModelChange(inputElement.value);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

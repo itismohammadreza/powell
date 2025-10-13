@@ -25,8 +25,6 @@ export class ImageComponent implements AfterContentInit {
   // native properties
   @Input() imageClass: Optional<string>;
   @Input() imageStyle: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
-  @Input() style: Optional<CssObject>;
   @Input() src: Optional<string | SafeUrl>;
   @Input() srcSet: Optional<string | SafeUrl>;
   @Input() sizes: Optional<string>;
@@ -37,10 +35,10 @@ export class ImageComponent implements AfterContentInit {
   @Input() width: Optional<string>;
   @Input() height: Optional<string>;
   @Input() loading: Optional<ImageLoading>;
-  @Input() appendTo: Optional<any>;
   @Input() preview: boolean = false;
   @Input() showTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '150ms cubic-bezier(0, 0, 0.2, 1)';
+  @Input() appendTo: Optional<SafeAny>;
   // pinch-zoom properties
   @Input() pinchProperties: PinchZoomComponentProperties = {
     autoZoomOut: false,
@@ -67,7 +65,7 @@ export class ImageComponent implements AfterContentInit {
   @ViewChild('closeButton') closeButton!: ElementRef;
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
 
   ngAfterContentInit() {
     this.templates?.forEach(item => {

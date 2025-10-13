@@ -38,7 +38,7 @@ export class TreeSelectPage extends PreviewBase {
     {field: 'size', selectOptions: 'sizes', value: this.config.inputSize},
   ];
 
-  override options: any[] = [
+  override options: SafeAny[] = [
     {
       key: "0",
       label: "Documents",

@@ -1,7 +1,4 @@
-<div class="checkbox-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass">
+<div class="checkbox-wrapper" [attr.dir]="rtl ? 'rtl' : 'ltr'">
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
@@ -17,25 +14,23 @@
         <p-checkbox
           [(ngModel)]="value"
           [invalid]="isInvalid"
-          [name]="$any(name)"
+          [name]="name"
           [disabled]="disabled"
           [binary]="binary"
           [ariaLabelledBy]="ariaLabelledBy"
           [ariaLabel]="ariaLabel"
           [tabindex]="tabindex"
           [inputId]="inputId"
-          [style]="style"
           [inputStyle]="inputStyle"
-          [styleClass]="styleClass"
           [inputClass]="inputClass"
           [indeterminate]="indeterminate"
-          [size]="$any(size)"
           [checkboxIcon]="checkboxIcon"
           [readonly]="readonly"
           [autofocus]="autofocus"
           [trueValue]="trueValue"
           [falseValue]="falseValue"
-          [variant]="$any(variant)"
+          [variant]="variant"
+          [size]="size"
           (onChange)="_onChange($event)"
           (onFocus)="_onFocus($event)"
           (onBlur)="_onBlur($event)">

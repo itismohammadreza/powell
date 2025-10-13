@@ -49,7 +49,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -60,7 +60,10 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() followConfig: boolean = false;
   @Input() id: string = $uuid();
   // native properties
-  @Input() options: Optional<any[]>;
+  @Input() required: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
+  @Input() options: Optional<SafeAny[]>;
   @Input() optionLabel: Optional<string>;
   @Input() optionValue: Optional<string>;
   @Input() optionDisabled: Optional<string>;
@@ -68,19 +71,17 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
   @Input() tabindex: Optional<number>;
   @Input() multiple: boolean = false;
   @Input() allowEmpty: boolean = true;
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Input() ariaLabelledBy: Optional<string>;
-  @Input() size: Optional<Size>;
-  @Input() disabled: boolean = false;
   @Input() dataKey: Optional<string>;
   @Input() autofocus: boolean = false;
+  @Input() size: Optional<Size>;
+  @Input() fluid: boolean = false;
   @Output() onOptionClick = new EventEmitter<$SelectButtonOptionClickEvent>();
   @Output() onChange = new EventEmitter<$SelectButtonChangeEvent>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
@@ -131,7 +132,7 @@ export class SelectButtonComponent implements OnInit, AfterContentInit, ControlV
     this.onOptionClick.emit(event);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

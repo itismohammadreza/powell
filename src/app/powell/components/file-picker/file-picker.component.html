@@ -1,7 +1,4 @@
-<div class="file-picker-wrapper"
-     [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [ngStyle]="style"
-     [class]="styleClass">
+<div class="file-picker-wrapper" [attr.dir]="rtl ? 'rtl' : 'ltr'">
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
@@ -31,8 +28,6 @@
         [invalidFileTypeMessageDetail]="invalidFileTypeMessageDetail"
         [invalidFileLimitMessageDetail]="invalidFileLimitMessageDetail"
         [invalidFileLimitMessageSummary]="invalidFileLimitMessageSummary"
-        [style]="style"
-        [styleClass]="styleClass"
         [previewWidth]="previewWidth"
         [chooseLabel]="chooseLabel"
         [uploadLabel]="uploadLabel"

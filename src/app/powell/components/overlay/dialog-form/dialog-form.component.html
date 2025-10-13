@@ -8,7 +8,7 @@
   (onResizeEnd)="handleEvent('onResizeEnd',$event)"
   (onDragEnd)="handleEvent('onDragEnd',$event)"
   (onMaximize)="handleEvent('onMaximize',$event)">
-  <form [ngClass]="options.containerStyleClass" [ngStyle]="options.containerStyle" [formGroup]="form">
+  <form [class]="options.containerStyleClass" [style]="options.containerStyle" [formGroup]="form">
     @for (config of config; track config) {
       @switch (config.component) {
         @case ('hidden') {
@@ -286,14 +286,14 @@
             [hidden]="handleConfigVisibility(config)"
             [class]="config.className"
             [innerHTML]="config.template"
-            [ngStyle]="config.style"
+            [style]="config.style"
           ></div>
         }
       }
     }
   </form>
   @if (options.formValidator && form.hasError(options.formValidator.type)) {
-    <div [ngStyle]="options.formValidator.style" [innerHTML]="options.formValidator.message"></div>
+    <div [style]="options.formValidator.style" [innerHTML]="options.formValidator.message"></div>
   }
   <ng-template pTemplate="footer">
     <div class="footer">

@@ -96,4 +96,4 @@ export {FrozenColumn as $FrozenColumn}
 export {ColumnFilter as $ColumnFilter}
 export {ColumnFilterFormElement as $ColumnFilterFormElement}
 export {CellEditor as $CellEditor}
-export type $TableSortEvent = {multisortmeta: $SortMeta[]} | any;
+export type $TableSortEvent = {multisortmeta: $SortMeta[]} | SafeAny;

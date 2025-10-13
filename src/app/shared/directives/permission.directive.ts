@@ -4,7 +4,7 @@ import {Directive, inject, Input, TemplateRef, ViewContainerRef,} from '@angular
   selector: '[permission]',
 })
 export class PermissionDirective {
-  private templateRef = inject(TemplateRef<any>);
+  private templateRef = inject(TemplateRef<SafeAny>);
   private viewContainer = inject(ViewContainerRef);
 
   @Input() set hasPermission(val: string[]) {
@@ -17,7 +17,7 @@ export class PermissionDirective {
     this.updateView();
   }
 
-  currentUser: any;
+  currentUser: SafeAny;
   permissions: string[] = [];
   logicalOp: 'AND' | 'OR' = 'AND';
   isHidden: boolean = true;

@@ -56,7 +56,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -66,44 +66,45 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @Input() validation: Optional<Validation>;
   @Input() followConfig: boolean = false;
   // native properties
+  @Input() required: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() name: Optional<string>;
   @Input() id: Optional<string>;
-  @Input() selectOnFocus: boolean = false;
   @Input() searchMessage: string = '{0} results are available';
   @Input() emptyMessage: Optional<string>;
   @Input() selectionMessage: string = '{0} items selected';
   @Input() emptySearchMessage: string = 'No available options';
   @Input() emptySelectionMessage: string = 'No selected item';
   @Input() searchLocale: Optional<string>;
-  @Input() optionDisabled: Optional<any>;
-  @Input() autoOptionFocus: boolean = true;
-  @Input() styleClass: Optional<string>;
-  @Input() style: Optional<CssObject>;
-  @Input() options: Optional<any[]>;
+  @Input() optionDisabled: Optional<SafeAny>;
+  @Input() focusOnHover: boolean = true;
+  @Input() selectOnFocus: boolean = false;
+  @Input() autoOptionFocus: boolean = false;
+  @Input() options: Optional<SafeAny[]>;
   @Input() optionLabel: Optional<string>;
   @Input() optionValue: Optional<string>;
   @Input() optionGroupLabel: Optional<string>;
-  @Input() optionGroupChildren: Optional<string[] | string>;
+  @Input() optionGroupChildren: string | string[];
   @Input() placeholder: Optional<string>;
   @Input() dataKey: Optional<string>;
   @Input() inputId: string = $uuid();
-  @Input() size: Optional<Size>;
   @Input() tabindex: Optional<number>;
   @Input() ariaLabelledBy: Optional<string>;
   @Input() inputLabel: Optional<string>;
   @Input() ariaLabel: Optional<string>;
-  @Input() appendTo: Optional<any>;
-  @Input() disabled: boolean = false;
   @Input() showClear: boolean = false;
   @Input() panelStyleClass: Optional<string>;
   @Input() panelStyle: Optional<CssObject>;
   @Input() overlayOptions: Optional<$OverlayOptions>;
   @Input() autofocus: boolean = false;
-  @Input() variant: Optional<InputVariant>;
-  @Input() loading: Optional<false>;
+  @Input() loading: boolean = false;
   @Input() loadingIcon: Optional<string>;
-  @Input() fluid: boolean = false;
   @Input() breakpoint: string = '960px';
-  @Output() onChange = new EventEmitter<any>();
+  @Input() size: Optional<Size>;
+  @Input() variant: Optional<InputVariant>;
+  @Input() fluid: boolean = false;
+  @Input() appendTo: Optional<SafeAny>;
+  @Output() onChange = new EventEmitter<SafeAny>();
   @Output() onGroupChange = new EventEmitter<Event>();
   @Output() onShow = new EventEmitter<$CascadeSelectShowEvent>();
   @Output() onHide = new EventEmitter<$CascadeSelectHideEvent>();
@@ -115,7 +116,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
-  templateMap: Record<string, TemplateRef<any>> = {};
+  templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {
   };
   onModelTouched: Fn = () => {
@@ -157,7 +158,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
     });
   }
 
-  _onChange(event: any) {
+  _onChange(event: SafeAny) {
     this.onChange.emit(event);
     this.onModelChange(event.value);
   }
@@ -176,7 +177,7 @@ export class CascadeSelectComponent implements OnInit, AfterContentInit, Control
     this.onModelChange(null);
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     this.cd.markForCheck();
   }

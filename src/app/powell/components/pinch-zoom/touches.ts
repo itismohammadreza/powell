@@ -144,7 +144,7 @@ export class Touches {
     }
   };
 
-  private handleLinearSwipe(event: any) {
+  private handleLinearSwipe(event: SafeAny) {
     this.i++;
 
     if (this.i > 3) {

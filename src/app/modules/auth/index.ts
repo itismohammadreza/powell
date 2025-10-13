@@ -9,13 +9,13 @@ import {CheckboxModule} from "@powell/components/checkbox";
 import {ReactiveFormsModule} from "@angular/forms";
 import {LogoComponent} from "@modules/layout/logo/logo.component";
 
-export const DECLARATIONS: Type<any>[] = [
+export const DECLARATIONS: Type<SafeAny>[] = [
   AuthPage,
   LoginPage,
   RegisterPage
 ];
 
-export const IMPORTS: Type<any>[] = [
+export const IMPORTS: Type<SafeAny>[] = [
   ReactiveFormsModule,
   AuthRoutingModule,
   InputTextModule,

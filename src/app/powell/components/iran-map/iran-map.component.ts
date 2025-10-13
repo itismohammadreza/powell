@@ -62,8 +62,6 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
   @Input() disabledProvinces: Optional<number | number[]>;
   @Input() selectionLimit: Optional<number>;
   @Input() async: boolean = false;
-  @Input() style: Optional<CssObject>;
-  @Input() styleClass: Optional<string>;
   @Output() onClick = new EventEmitter<MouseEvent>();
   @Output() onChange = new EventEmitter<MapChangeEvent>();
   @Output() onChangeAsync = new EventEmitter<AsyncEvent<MapChangeEvent>>();
@@ -329,7 +327,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
     }
   }
 
-  writeValue(value: any) {
+  writeValue(value: SafeAny) {
     this.value = value;
     const resetSelection = () => {
       this._provinces.forEach(p => {
@@ -388,7 +386,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
       })
     }
     const el = this.el.nativeElement as HTMLElement;
-    const tooltipEl = el.querySelector('.title') as any;
+    const tooltipEl = el.querySelector('.title') as SafeAny;
     el.querySelectorAll('svg g path').forEach(pathElement => {
       const provinceName = pathElement.getAttribute('data-name');
       pathElement.addEventListener('mouseover', () => {
@@ -401,7 +399,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
       });
     });
 
-    el.querySelector('.iran-map-wrapper .map')!.addEventListener('mousemove', (e: any) => {
+    el.querySelector('.iran-map-wrapper .map')!.addEventListener('mousemove', (e: SafeAny) => {
       if (tooltipEl.innerHTML) {
         const container = e.currentTarget;
         const containerRect = container.getBoundingClientRect();

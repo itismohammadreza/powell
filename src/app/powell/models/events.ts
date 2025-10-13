@@ -8,7 +8,7 @@ import {
 } from "suneditor/src/lib/core";
 import {Context} from "suneditor/src/lib/context";
 
-export type LoadingCallback = (toggle?: boolean) => any;
+export type LoadingCallback = (toggle?: boolean) => SafeAny;
 export type FilePickerSelectEvent = (string | ArrayBuffer | File) | (string | ArrayBuffer | File)[];
 export type FilePickerRemoveEvent = (string | ArrayBuffer | File) | void;
 
@@ -29,7 +29,7 @@ export interface MapChangeEvent {
 }
 
 export interface EditorOnAudioUploadBefore {
-  files: any[];
+  files: SafeAny[];
   info: audioInputInformation;
   core: Core;
   uploadHandler: Fn;
@@ -37,12 +37,12 @@ export interface EditorOnAudioUploadBefore {
 
 export interface EditorOnVideoUploadError {
   errorMessage: string;
-  result: any;
+  result: SafeAny;
   core: Core;
 }
 
 export interface EditorOnVideoUploadBefore {
-  files: any[];
+  files: SafeAny[];
   info: videoInputInformation;
   core: Core;
   uploadHandler: Fn;
@@ -50,12 +50,12 @@ export interface EditorOnVideoUploadBefore {
 
 export interface EditorOnImageUploadError {
   errorMessage: string;
-  result: any;
+  result: SafeAny;
   core: Core;
 }
 
 export interface EditorOnImageUploadBefore {
-  files: any[];
+  files: SafeAny[];
   info: imageInputInformation;
   core: Core;
   uploadHandler: Fn;
@@ -63,7 +63,7 @@ export interface EditorOnImageUploadBefore {
 
 export interface EditorOnAudioUploadError {
   errorMessage: string;
-  result: any;
+  result: SafeAny;
   core: Core;
 }
 
@@ -130,13 +130,13 @@ export interface EditorOnImageUpload {
 
 export interface EditorOnCut {
   e: Event;
-  clipboardData: any;
+  clipboardData: SafeAny;
   core: Core;
 }
 
 export interface EditorOnCopy {
   e: Event;
-  clipboardData: any;
+  clipboardData: SafeAny;
   core: Core;
 }
 
