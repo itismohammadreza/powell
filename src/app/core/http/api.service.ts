@@ -7,10 +7,10 @@ import {RequestMethod} from "@core/models";
 interface RequestOptions {
   headers?: HttpHeaders | {[header: string]: string | string[]};
   context?: HttpContext;
-  observe?: any;
+  observe?: SafeAny;
   params?: HttpParams | {[param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;};
   reportProgress?: boolean;
-  responseType?: any;
+  responseType?: SafeAny;
   withCredentials?: boolean;
 }
 
@@ -26,21 +26,21 @@ export class ApiService {
     })
   }
 
-  protected _post<T>(endpoint: string, body: any, options: Optional<RequestOptions> = undefined) {
+  protected _post<T>(endpoint: string, body: SafeAny, options: Optional<RequestOptions> = undefined) {
     return this.http.post<T>(`${this.baseUrl}/${endpoint}`, body, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
-  protected _put<T>(endpoint: string, body: any, options: Optional<RequestOptions> = undefined) {
+  protected _put<T>(endpoint: string, body: SafeAny, options: Optional<RequestOptions> = undefined) {
     return this.http.put<T>(`${this.baseUrl}/${endpoint}`, body, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
-  protected _patch<T>(endpoint: string, body: any, options: Optional<RequestOptions> = undefined) {
+  protected _patch<T>(endpoint: string, body: SafeAny, options: Optional<RequestOptions> = undefined) {
     return this.http.patch<T>(`${this.baseUrl}/${endpoint}`, body, {
       ...options,
       params: this.getHttpParams(options?.params)
@@ -54,7 +54,7 @@ export class ApiService {
     })
   }
 
-  protected _customRequest<T>(url: string, method: RequestMethod, body: any = undefined, options: Optional<RequestOptions> = undefined): Observable<T> {
+  protected _customRequest<T>(url: string, method: RequestMethod, body: SafeAny = undefined, options: Optional<RequestOptions> = undefined): Observable<T> {
     const opts = {
       ...options,
       params: this.getHttpParams(options?.params)
@@ -76,7 +76,7 @@ export class ApiService {
     }
   }
 
-  protected _getFormData(obj: any, excludes: string[] = []) {
+  protected _getFormData(obj: SafeAny, excludes: string[] = []) {
     const formData = new FormData();
     for (const key in obj) {
       const value = obj[key];
@@ -103,7 +103,7 @@ export class ApiService {
     return formData;
   }
 
-  private getHttpParams(params: any) {
+  private getHttpParams(params: SafeAny) {
     let httpParams: HttpParams = new HttpParams();
     if (params) {
       Object.keys(params).map((x: string) => {

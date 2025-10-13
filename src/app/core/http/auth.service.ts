@@ -8,10 +8,10 @@ import {ApiService} from '@core/http';
 })
 export class AuthService extends ApiService {
   private readonly endpoint: string = 'auth';
-  private _currentUser: any;
+  private _currentUser: SafeAny;
   private router = inject(Router);
 
-  set currentUser(data: any) {
+  set currentUser(data: SafeAny) {
     this._currentUser = data;
   }
 
@@ -20,7 +20,7 @@ export class AuthService extends ApiService {
   }
 
   getProfile() {
-    const res = this._get<any>(`${this.endpoint}/self`);
+    const res = this._get<SafeAny>(`${this.endpoint}/self`);
     return lastValueFrom(res);
   }
 
@@ -35,12 +35,12 @@ export class AuthService extends ApiService {
     return userPermissions.includes(input)
   }
 
-  login(data: any) {
-    const res = this._post<any>(`${this.endpoint}/login`, data);
+  login(data: SafeAny) {
+    const res = this._post<SafeAny>(`${this.endpoint}/login`, data);
     return lastValueFrom(res);
   }
 
-  register(data: any) {
+  register(data: SafeAny) {
     const res = this._post(`${this.endpoint}/register`, data);
     return lastValueFrom(res);
   }

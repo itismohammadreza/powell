@@ -39,7 +39,7 @@ export class AutoCompletePage extends PreviewBase {
     {field: 'fluid', value: false},
   ];
 
-  items: any[] = [];
+  items: SafeAny[] = [];
 
   search(event: $AutoCompleteCompleteEvent) {
     this.items = [...Array(10).keys()].map(item => event.query + '-' + item);

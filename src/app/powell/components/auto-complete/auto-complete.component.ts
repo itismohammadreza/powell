@@ -66,7 +66,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<any>;
+  @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -124,9 +124,9 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() optionGroupChildren: string = 'items';
   @Input() optionGroupLabel: string = 'label';
   @Input() overlayOptions: Optional<$OverlayOptions>;
-  @Input() suggestions: Optional<any[]>;
-  @Input() optionLabel: Optional<string | ((item: any) => string)>;
-  @Input() optionValue: Optional<string | ((item: any) => string)>;
+  @Input() suggestions: Optional<SafeAny[]>;
+  @Input() optionLabel: Optional<string | ((item: SafeAny) => string)>;
+  @Input() optionValue: Optional<string | ((item: SafeAny) => string)>;
   @Input() id: Optional<string>;
   @Input() searchMessage: Optional<string>;
   @Input() emptySelectionMessage: Optional<string>;
@@ -134,7 +134,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() autoOptionFocus: boolean = false;
   @Input() selectOnFocus: boolean = false;
   @Input() searchLocale: boolean = false;
-  @Input() optionDisabled: Optional<string>;
+  @Input() optionDisabled: Optional<string | Fn<SafeAny>>;
   @Input() focusOnHover: boolean = true;
   @Input() variant: Optional<InputVariant>;
   @Input() fluid: boolean = false;

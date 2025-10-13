@@ -61,5 +61,4 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## TODOS:
 - add input transformers (transformToBoolean,...) to components.
-- update inputs from primeng docs.
 - rewrite components with signals.
