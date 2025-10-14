@@ -52,7 +52,7 @@
       }
       @if (multiple) {
         <div class="file-picker-multiple-wrapper">
-          @if (!readonly && (fileLimit && filesToEmit.length < fileLimit)) {
+          @if (!fileLimit || (!readonly && (fileLimit && filesToEmit.length < fileLimit))) {
             <div class="picker" (click)="inputFile.click()">
               <svg data-p-icon="plus"/>
             </div>
