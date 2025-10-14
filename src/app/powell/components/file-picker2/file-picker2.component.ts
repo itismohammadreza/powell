@@ -138,6 +138,9 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
 
   _onSelect(event: SafeAny) {
     const file: File = event.target.files[0];
+    if (!file) {
+      return;
+    }
     this.clearValidators();
     if (!this.isValidFile(file)) {
       return;
