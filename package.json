@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production --verbos --output-hashing all --build-optimizer=true",
+    "build": "ng build --configuration=production --verbose --output-hashing=all --optimization=true",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
