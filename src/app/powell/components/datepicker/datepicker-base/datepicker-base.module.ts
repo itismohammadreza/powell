@@ -6,21 +6,19 @@ import {
   $AutoFocusModule,
   $Button,
   $ButtonModule,
-  $DatePickerModule,
-  $InputText,
-  $InputTextModule,
-  $Ripple,
-  $RippleModule,
-  $SharedModule
-} from "@powell/primeng";
-import {
   $CalendarIcon,
   $ChevronDownIcon,
   $ChevronLeftIcon,
   $ChevronRightIcon,
   $ChevronUpIcon,
-  $TimesIcon,
-} from '@powell/primeng/icons';
+  $DatePickerModule,
+  $InputText,
+  $InputTextModule,
+  $Ripple,
+  $RippleModule,
+  $SharedModule,
+  $TimesIcon
+} from "@powell/primeng";
 import {DatepickerBaseComponent} from "@powell/components/datepicker/datepicker-base/datepicker-base.component";
 
 @NgModule({

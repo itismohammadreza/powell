@@ -38,6 +38,7 @@ import {
   $ConnectedOverlayScrollHandler,
   $DatePickerMonthChangeEvent,
   $DatePickerResponsiveOptions,
+  $DatePickerStyle,
   $DatePickerTypeView,
   $DatePickerYearChangeEvent,
   $find,
@@ -62,7 +63,6 @@ import {
   $VoidListener,
   $ZIndexUtils
 } from '@powell/primeng';
-import {$DatePickerStyle} from '@powell/primeng/datepicker';
 import jalaliMoment, {Moment, MomentFormatSpecification, MomentInput} from 'jalali-moment';
 
 export const DATEPICKER_VALUE_ACCESSOR: any = {
