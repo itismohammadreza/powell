@@ -397,7 +397,12 @@ export {
   MegaMenuModule as $MegaMenuModule,
   type MegaMenuTemplates as $MegaMenuTemplates
 } from "primeng/megamenu";
-export {Menu as $Menu, MenuItemContent as $MenuItemContent, MenuModule as $MenuModule} from "primeng/menu";
+export {
+  Menu as $Menu,
+  MenuItemContent as $MenuItemContent,
+  MenuModule as $MenuModule,
+  SafeHtmlPipe as $SafeHtmlPipe
+} from "primeng/menu";
 export {
   Menubar as $Menubar,
   MenubarModule as $MenubarModule,
