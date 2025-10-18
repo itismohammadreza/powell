@@ -401,7 +401,7 @@ export class OverlayService {
   private mapToButtonProps(props: ButtonProps = {}) {
     return {
       ...props,
-      severity: props.severity ?? 'secondary',
+      variant: props.severity ?? 'secondary',
       rounded: props.rounded ?? true,
       link: props.appearance === 'link',
       outlined: props.appearance === 'outlined',
