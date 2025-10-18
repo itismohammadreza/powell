@@ -1,13 +1,11 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {MainPage} from './main.page';
-import {userResolver} from "@core/guard";
-import {routePermissions} from "@core/config";
 
 const routes: Routes = [
   {
     path: '',
-    loadComponent: () => MainPage,
+    component: MainPage,
     // resolve: {user: userResolver},
     children: [
       {
