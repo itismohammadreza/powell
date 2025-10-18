@@ -25,7 +25,6 @@ import {
 import {takeUntil} from "rxjs";
 import {
   ButtonProps,
-  CssObject,
   FilePickerRemoveEvent,
   FilePickerSelectEvent,
   FileResultType,

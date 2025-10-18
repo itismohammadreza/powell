@@ -24,7 +24,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {AsyncEvent, CssObject, FixLabelPosition, Size, Validation} from "@powell/models";
+import {AsyncEvent, FixLabelPosition, Size, Validation} from "@powell/models";
 import {DestroyService} from "@powell/utils";
 import {$ToggleSwitchChangeEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
@@ -75,7 +75,7 @@ export class DualLabelSwitchComponent implements OnInit, AfterContentInit, Contr
   @Input() falseValue: SafeAny = false;
   @Input() ariaLabel: Optional<string>;
   @Input() size: Optional<Size>;
-  @Input() ariaLabelledBy: string;
+  @Input() ariaLabelledBy: Optional<string>;
   @Input() autofocus: boolean = false;
   @Output() onChange = new EventEmitter<$ToggleSwitchChangeEvent>();
   @Output() onChangeAsync = new EventEmitter<AsyncEvent<$ToggleSwitchChangeEvent>>();

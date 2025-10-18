@@ -91,7 +91,7 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   @Input() minlength: Optional<number>;
   @Input() maxlength: Optional<number>;
   @Input() iconDisplay: DatepickerIconDisplay = 'button';
-  @Input() inputStyle: CssObject;
+  @Input() inputStyle: Optional<CssObject>;
   @Input() inputId: string = $uuid();
   @Input() inputStyleClass: Optional<string>;
   @Input() placeholder: Optional<string>;

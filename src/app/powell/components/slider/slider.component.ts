@@ -20,7 +20,7 @@ import {
   NgControl
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {CssObject, FixLabelPosition, Orientation, Validation} from '@powell/models';
+import {FixLabelPosition, Orientation, Validation} from '@powell/models';
 import {DestroyService} from "@powell/utils";
 import {$SliderChangeEvent, $SliderSlideEndEvent, $uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";

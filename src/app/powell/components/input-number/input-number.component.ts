@@ -73,7 +73,7 @@ export class InputNumberComponent implements OnInit, AfterContentInit, ControlVa
   @Input() name: Optional<string>;
   @Input() fluid: boolean = false;
   @Input() variant: InputVariant = 'outlined';
-  @Input() size: Size;
+  @Input() size: Optional<Size>;
   @Input() inputSize: Optional<number>;
   @Input() pattern: Optional<string>;
   @Input() min: Optional<number>;

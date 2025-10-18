@@ -78,7 +78,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() value: Optional<SafeAny[]>;
   @Input() selectionMode: Optional<TreeSelectionMode>;
   @Input() loadingMode: TreeLoadingMode = 'mask';
-  @Input() selection: SafeAny;
+  @Input() selection: Optional<SafeAny>;
   @Input() contextMenu: Optional<SafeAny>;
   @Input() draggableScope: Optional<SafeAny>;
   @Input() droppableScope: Optional<SafeAny>;

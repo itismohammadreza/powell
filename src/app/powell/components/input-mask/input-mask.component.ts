@@ -24,7 +24,7 @@ import {
   NgControl,
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
-import {CssObject, InputType, InputVariant, LabelPosition, Size, Validation} from '@powell/models';
+import {InputType, InputVariant, LabelPosition, Size, Validation} from '@powell/models';
 import {DestroyService} from "@powell/utils";
 import {TemplateDirective} from "@powell/directives/template";
 import {$uuid} from "@powell/primeng";
@@ -61,7 +61,7 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   // native properties
   @Input() required: boolean = false;
   @Input() disabled: boolean = false;
-  @Input() name: string;
+  @Input() name: Optional<string>;
   @Input() fluid: boolean = false;
   @Input() variant: Optional<InputVariant>;
   @Input() size: Optional<Size>;

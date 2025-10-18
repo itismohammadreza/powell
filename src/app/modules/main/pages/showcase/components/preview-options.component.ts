@@ -78,7 +78,7 @@ export class PreviewOptionsComponent implements OnInit {
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() options: PreviewOption[];
+  @Input() options: PreviewOption[] = [];
   @Output() optionChange = new EventEmitter<PreviewOption>();
   @ViewChild('firstRow', {static: true, read: ViewContainerRef}) firstRow: ViewContainerRef;
   @ViewChild('secondRow', {static: true, read: ViewContainerRef}) secondRow: ViewContainerRef;

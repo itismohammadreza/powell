@@ -20,7 +20,6 @@ import {
   ButtonResponsiveSize,
   ButtonState,
   ButtonType,
-  CssObject,
   Position,
   Severity,
   Size

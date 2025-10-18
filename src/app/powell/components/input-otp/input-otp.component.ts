@@ -23,7 +23,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {CssObject, FixLabelPosition, InputVariant, Size, Validation} from "@powell/models";
+import {FixLabelPosition, InputVariant, Size, Validation} from "@powell/models";
 import {DestroyService} from "@powell/utils";
 import {ConfigService} from "@powell/api";
 import {TemplateDirective} from "@powell/directives/template";

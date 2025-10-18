@@ -63,7 +63,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() disabled: boolean = false;
   @Input() name: Optional<string>;
   @Input() fluid: boolean = false;
-  @Input() variant: InputVariant;
+  @Input() variant: Optional<InputVariant>;
   @Input() size: Optional<Size>;
   @Input() inputSize: Optional<number>;
   @Input() pattern: Optional<string>;

@@ -1,12 +1,4 @@
-import {
-  AsyncEvent,
-  ButtonAppearance,
-  CssObject,
-  FilterMatchMode,
-  Position,
-  Severity,
-  Size
-} from '@powell/models';
+import {AsyncEvent, ButtonAppearance, CssObject, FilterMatchMode, Position, Severity, Size} from '@powell/models';
 import {$FilterMetadata} from "@powell/primeng";
 
 export type TableRendererType = 'text' | 'ng-template';

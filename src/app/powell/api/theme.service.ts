@@ -11,7 +11,7 @@ import {
   $usePreset
 } from "@powell/primeng";
 import {Config, Theme, ThemeMode} from "@powell/models";
-import {CONFIG_CLASS_PREFIX, DARK_MODE_CLASS, DARK_MODE_SELECTOR} from "@powell/api";
+import {CONFIG_CLASS_PREFIX, DARK_MODE_CLASS} from "@powell/api";
 
 type BodyClassRule = {
   condition: (value: SafeAny) => boolean;

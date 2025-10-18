@@ -23,9 +23,9 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {takeUntil} from "rxjs";
-import {CssObject, FilterMatchMode, FixLabelPosition, Validation} from '@powell/models';
+import {CssObject, FixLabelPosition, Validation} from '@powell/models';
 import {TemplateDirective} from '@powell/directives/template';
 import {DestroyService} from "@powell/utils";
 import {
@@ -35,8 +35,7 @@ import {
   $ListboxFilterEvent,
   $ListboxSelectAllChangeEvent,
   $ScrollerLazyLoadEvent,
-  $ScrollerOptions,
-  $uuid
+  $ScrollerOptions
 } from "@powell/primeng";
 import {ConfigService} from "@powell/api";
 
@@ -90,7 +89,7 @@ export class ListboxComponent implements OnInit, AfterContentInit, ControlValueA
   @Input() scrollHeight: string = '14rem';
   @Input() tabindex: Optional<number>;
   @Input() multiple: boolean = false;
-  @Input() listStyle: Optional<{ [klass: string]: SafeAny }>;
+  @Input() listStyle: Optional<CssObject>;
   @Input() listStyleClass: Optional<string>;
   @Input() readonly: boolean = false;
   @Input() checkbox: boolean = false;

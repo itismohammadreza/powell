@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 import {NotFoundPage} from '@modules/layout/not-found/not-found.page';
 
 export const routes: Routes = [
@@ -13,7 +13,7 @@ export const routes: Routes = [
   },
   {
     path: '404',
-    component: NotFoundPage
+    loadComponent: () => NotFoundPage
   },
   {
     path: '**',

@@ -23,7 +23,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl
 } from '@angular/forms';
-import { takeUntil } from "rxjs";
+import {takeUntil} from "rxjs";
 import {
   CssObject,
   InputMode,
@@ -34,10 +34,10 @@ import {
   Size,
   Validation
 } from '@powell/models';
-import { ConfigService } from "@powell/api";
-import { DestroyService } from "@powell/utils";
-import { $uuid } from "@powell/primeng";
-import { TemplateDirective } from "@powell/directives/template";
+import {ConfigService} from "@powell/api";
+import {DestroyService} from "@powell/utils";
+import {$uuid} from "@powell/primeng";
+import {TemplateDirective} from "@powell/directives/template";
 
 @Component({
   selector: 'pw-input-text',
@@ -110,7 +110,7 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
     const controlContainer = this.injector.get(
       ControlContainer,
       null,
-      { optional: true, host: true, skipSelf: true }
+      {optional: true, host: true, skipSelf: true}
     ) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {

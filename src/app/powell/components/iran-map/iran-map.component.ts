@@ -11,7 +11,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import {AsyncEvent, CssObject, FixLabelPosition, MapChangeEvent, Province, Validation} from "@powell/models";
+import {AsyncEvent, FixLabelPosition, MapChangeEvent, Province, Validation} from "@powell/models";
 import {
   AbstractControl,
   ControlContainer,

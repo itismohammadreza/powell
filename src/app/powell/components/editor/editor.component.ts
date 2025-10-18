@@ -25,7 +25,6 @@ import {takeUntil} from "rxjs";
 import type {Core} from 'suneditor/src/lib/core';
 import type {SunEditorOptions} from 'suneditor/src/options';
 import {
-  CssObject,
   EditorEvent,
   EditorOnAudioUpload,
   EditorOnAudioUploadBefore,

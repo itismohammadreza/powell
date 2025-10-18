@@ -15,7 +15,6 @@ import {BehaviorSubject, takeUntil} from 'rxjs';
 import {ActivatedRouteSnapshot, Data, NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs/operators";
 import {$BreadcrumbItemClickEvent, $MenuItem} from "@powell/primeng";
-import {CssObject} from "@powell/models";
 import {DestroyService} from "@powell/utils";
 import {TemplateDirective} from "@powell/directives/template";
 import {ConfigService} from "@powell/api";

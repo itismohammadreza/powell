@@ -25,8 +25,7 @@ import {
 } from '@angular/forms';
 import {takeUntil} from "rxjs";
 import {
-  ChipDisplayMode,
-  CssObject,
+  ChipDisplayMode, CssObject,
   FilterMatchMode,
   InputVariant,
   LabelPosition,
@@ -84,7 +83,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() name: Optional<string>;
   @Input() id: Optional<string>;
   @Input() ariaLabel: Optional<string>;
-  @Input() panelStyle: Optional<SafeAny>;
+  @Input() panelStyle: Optional<CssObject>;
   @Input() panelStyleClass: Optional<string>;
   @Input() inputId: string = $uuid();
   @Input() readonly: boolean = false;

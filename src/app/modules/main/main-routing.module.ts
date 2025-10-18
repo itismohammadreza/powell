@@ -7,7 +7,7 @@ import {routePermissions} from "@core/config";
 const routes: Routes = [
   {
     path: '',
-    component: MainPage,
+    loadComponent: () => MainPage,
     // resolve: {user: userResolver},
     children: [
       {

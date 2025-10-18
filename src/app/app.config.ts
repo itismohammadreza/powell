@@ -6,17 +6,17 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { routes } from './app.routes';
-import { CoreModule } from '@core/core.module';
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { authInterceptor, httpHandlerInterceptor } from '@core/interceptors';
-import { TranslationService } from '@core/utils';
-import { provideTranslateService } from '@ngx-translate/core';
-import { providePowell } from '@powell/api';
-import { globalConfig } from '@core/config';
-import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import {provideRouter} from '@angular/router';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import {routes} from './app.routes';
+import {CoreModule} from '@core/core.module';
+import {provideHttpClient, withFetch, withInterceptors} from '@angular/common/http';
+import {authInterceptor, httpHandlerInterceptor} from '@core/interceptors';
+import {TranslationService} from '@core/utils';
+import {provideTranslateService} from '@ngx-translate/core';
+import {providePowell} from '@powell/api';
+import {globalConfig} from '@core/config';
+import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
 
 const initiateLanguage = () => {
   const translationService = inject(TranslationService);
