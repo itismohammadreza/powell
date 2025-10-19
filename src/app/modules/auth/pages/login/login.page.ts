@@ -4,7 +4,7 @@ import {AuthService} from '@core/http';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'login-page',
+  selector: 'app-login-page',
   templateUrl: './login.page.html',
   standalone: false
 })

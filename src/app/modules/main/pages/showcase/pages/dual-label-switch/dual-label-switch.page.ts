@@ -4,7 +4,7 @@ import {DualLabelSwitchComponent, DualLabelSwitchModule} from "@powell/component
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'dual-label-switch-page',
+  selector: 'app-dual-label-switch-page',
   templateUrl: './dual-label-switch.page.html',
   imports: [
     DualLabelSwitchModule,

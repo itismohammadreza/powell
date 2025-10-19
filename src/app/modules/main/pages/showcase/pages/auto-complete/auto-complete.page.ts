@@ -5,7 +5,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 import {$AutoCompleteCompleteEvent} from "@powell/primeng";
 
 @Component({
-  selector: 'auto-complete-page',
+  selector: 'app-auto-complete-page',
   templateUrl: './auto-complete.page.html',
   imports: [
     AutoCompleteModule,

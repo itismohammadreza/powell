@@ -4,7 +4,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 import {ToggleSwitchComponent, ToggleSwitchModule} from "@powell/components/toggle-switch";
 
 @Component({
-  selector: 'toggle-switch-page',
+  selector: 'app-toggle-switch-page',
   templateUrl: './toggle-switch.page.html',
   imports: [
     ToggleSwitchModule,

@@ -4,7 +4,7 @@ import {$CardModule, $DividerModule, $PanelModule} from "@powell/primeng";
 import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
-  selector: 'preview',
+  selector: 'app-preview',
   template: `
     <div class="container py-6 [&_.p-card-content]:hidden [&>*]:block [&>*:not(:last-child)]:mb-4">
       <p-card>
@@ -14,7 +14,7 @@ import {TranslateModule} from "@ngx-translate/core";
 
       @if (previewOptions?.length) {
         <p-panel [header]="'options' | translate">
-          <preview-options [options]="previewOptions" (optionChange)="onOptionChange.emit($event)"/>
+          <app-preview-options [options]="previewOptions" (optionChange)="onOptionChange.emit($event)"/>
         </p-panel>
       }
 

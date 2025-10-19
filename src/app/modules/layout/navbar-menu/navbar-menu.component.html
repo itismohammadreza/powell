@@ -11,7 +11,7 @@
           <pw-button icon="pi pi-bars" appearance="text" (click)="toggleSidebarClick()"/>
         }
 
-        <logo [type]="config.powellConfig.theme?.mode == 'light' ? 'dark-horizontal' : 'light-horizontal'"/>
+        <app-logo [type]="config.powellConfig.theme?.mode == 'light' ? 'dark-horizontal' : 'light-horizontal'"/>
 
         <div>
           <pw-button pTooltip="Design" tooltipPosition="bottom" severity="secondary"
@@ -31,7 +31,7 @@
         <p-menubar class="overflow-auto [&_ul]:!flex-nowrap [&_ul]:!whitespace-nowrap" [model]="sidebarItems">
           <ng-template pTemplate="start">
             <pw-button class="me-2" (onClick)="op.toggle($event)" icon="pi pi-sparkles"/>
-            <logo/>
+            <app-logo/>
           </ng-template>
         </p-menubar>
       }
@@ -65,7 +65,7 @@
 
 <p-drawer position="left" [header]="'designSystem' | translate" [modal]="false" [closable]="true"
           [(visible)]="designerSidebarVisible" styleClass="!w-[48rem] max-w-full !bg-transparent backdrop-blur-lg">
-  <designer/>
+  <app-designer/>
 </p-drawer>
 
 <p-popover #op>

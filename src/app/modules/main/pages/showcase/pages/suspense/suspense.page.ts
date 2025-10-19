@@ -4,7 +4,7 @@ import {PreviewComponent} from "@modules/main/pages/showcase/components";
 import {Observable, of} from "rxjs";
 
 @Component({
-  selector: 'suspense-page',
+  selector: 'app-suspense-page',
   templateUrl: './suspense.page.html',
   imports: [
     SuspenseModule,

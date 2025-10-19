@@ -4,7 +4,7 @@ import {EditorComponent, EditorModule} from "@powell/components/editor";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'editor-page',
+  selector: 'app-editor-page',
   templateUrl: './editor.page.html',
   imports: [
     EditorModule,

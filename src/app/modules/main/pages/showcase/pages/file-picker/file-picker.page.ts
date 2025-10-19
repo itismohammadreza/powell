@@ -4,7 +4,7 @@ import {FilePickerComponent, FilePickerModule} from "@powell/components/file-pic
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'file-picker-page',
+  selector: 'app-file-picker-page',
   templateUrl: './file-picker.page.html',
   imports: [
     FilePickerModule,

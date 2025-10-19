@@ -11,7 +11,7 @@ import {$DividerModule} from "@powell/primeng";
 import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
-  selector: 'utils-page',
+  selector: 'app-utils-page',
   templateUrl: './utils.page.html',
   imports: [
     ButtonModule,

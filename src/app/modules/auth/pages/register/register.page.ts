@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {samePasswordsValidator} from "@core/utils";
 
 @Component({
-  selector: 'register-page',
+  selector: 'app-register-page',
   templateUrl: './register.page.html',
   standalone: false
 })

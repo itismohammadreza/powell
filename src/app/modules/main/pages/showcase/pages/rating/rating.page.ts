@@ -4,7 +4,7 @@ import {RatingComponent, RatingModule} from "@powell/components/rating";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'rating-page',
+  selector: 'app-rating-page',
   templateUrl: './rating.page.html',
   imports: [
     RatingModule,

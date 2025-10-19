@@ -1,10 +1,10 @@
-<preview
+<app-preview
   component="BottomSheet"
   description="BottomSheet can be used to open panels to the bottom of the screen."
   [previewOptions]="previewOptions"
   (onOptionChange)="onOptionChange($event)">
   <pw-button (click)="visible = true" label="Open Bottom Sheet"/>
-</preview>
+</app-preview>
 
 <pw-bottom-sheet
   [rtl]="getOption('rtl')"

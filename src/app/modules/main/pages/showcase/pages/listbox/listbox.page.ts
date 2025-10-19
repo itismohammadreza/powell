@@ -4,7 +4,7 @@ import {ListboxComponent, ListboxModule} from "@powell/components/listbox";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'listbox-page',
+  selector: 'app-listbox-page',
   templateUrl: './listbox.page.html',
   imports: [
     ListboxModule,

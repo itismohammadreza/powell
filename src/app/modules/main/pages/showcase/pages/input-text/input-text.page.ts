@@ -4,7 +4,7 @@ import {InputTextComponent, InputTextModule} from "@powell/components/input-text
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'input-text-page',
+  selector: 'app-input-text-page',
   templateUrl: './input-text.page.html',
   imports: [
     InputTextModule,

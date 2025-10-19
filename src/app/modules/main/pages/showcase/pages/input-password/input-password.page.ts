@@ -4,7 +4,7 @@ import {InputPasswordComponent, InputPasswordModule} from "@powell/components/in
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'input-password-page',
+  selector: 'app-input-password-page',
   templateUrl: './input-password.page.html',
   imports: [
     InputPasswordModule,

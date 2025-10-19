@@ -62,7 +62,7 @@ export interface PreviewOption {
 }
 
 @Component({
-  selector: 'preview-options',
+  selector: 'app-preview-options',
   template: `
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
       <ng-container #firstRow/>

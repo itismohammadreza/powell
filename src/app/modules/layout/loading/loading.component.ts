@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {LoaderService} from '@core/utils';
 
 @Component({
-  selector: 'loading',
+  selector: 'app-loading',
   templateUrl: './loading.component.html'
 })
 export class LoadingComponent implements OnInit {

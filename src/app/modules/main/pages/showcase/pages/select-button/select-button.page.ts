@@ -4,7 +4,7 @@ import {SelectButtonComponent, SelectButtonModule} from "@powell/components/sele
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'select-button-page',
+  selector: 'app-select-button-page',
   templateUrl: './select-button.page.html',
   imports: [
     SelectButtonModule,

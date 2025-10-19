@@ -11,7 +11,7 @@ import {lastValueFrom} from "rxjs";
 import {helpers, TranslationService} from "@core/utils";
 
 @Component({
-  selector: 'designer',
+  selector: 'app-designer',
   templateUrl: './designer.component.html',
   imports: [
     SelectButtonModule,

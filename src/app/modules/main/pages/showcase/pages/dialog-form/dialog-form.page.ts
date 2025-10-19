@@ -7,7 +7,7 @@ import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/
 import {DestroyService} from "@powell/utils";
 
 @Component({
-  selector: 'dialog-form-page',
+  selector: 'app-dialog-form-page',
   templateUrl: './dialog-form.page.html',
   imports: [
     ButtonModule,

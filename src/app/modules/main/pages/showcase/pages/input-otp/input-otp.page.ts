@@ -4,7 +4,7 @@ import {InputOtpComponent, InputOtpModule} from "@powell/components/input-otp";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'input-otp-page',
+  selector: 'app-input-otp-page',
   templateUrl: './input-otp.page.html',
   imports: [
     InputOtpModule,

@@ -3,7 +3,7 @@ import {EmptyComponent, EmptyModule} from "@powell/components/empty";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'empty-page',
+  selector: 'app-empty-page',
   templateUrl: './empty.page.html',
   imports: [
     EmptyModule,

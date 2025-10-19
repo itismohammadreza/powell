@@ -4,7 +4,7 @@ import {MapComponent, MapModule} from "@powell/components/map";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'map-page',
+  selector: 'app-map-page',
   templateUrl: './map.page.html',
   imports: [
     MapModule,

@@ -4,7 +4,7 @@ import {SliderComponent, SliderModule} from "@powell/components/slider";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'slider-page',
+  selector: 'app-slider-page',
   templateUrl: './slider.page.html',
   imports: [
     SliderModule,

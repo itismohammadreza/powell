@@ -19,7 +19,7 @@ interface Customer {
 }
 
 @Component({
-  selector: 'table-page',
+  selector: 'app-table-page',
   templateUrl: './table.page.html',
   imports: [
     TableModule,

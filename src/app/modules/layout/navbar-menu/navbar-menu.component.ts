@@ -34,7 +34,7 @@ import {RadioModule} from "@powell/components/radio";
 import {DesignerComponent} from '@modules/layout/designer/designer.component';
 
 @Component({
-  selector: 'navbar-menu',
+  selector: 'app-navbar-menu',
   templateUrl: './navbar-menu.component.html',
   styleUrls: ['navbar-menu.component.scss'],
   imports: [

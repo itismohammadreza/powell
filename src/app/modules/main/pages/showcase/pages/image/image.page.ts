@@ -3,7 +3,7 @@ import {ImageComponent, ImageModule} from "@powell/components/image";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'image-page',
+  selector: 'app-image-page',
   templateUrl: './image.page.html',
   imports: [
     ImageModule,

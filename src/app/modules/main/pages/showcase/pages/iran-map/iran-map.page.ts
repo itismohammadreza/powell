@@ -4,7 +4,7 @@ import {IranMapComponent, IranMapModule} from "@powell/components/iran-map";
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'iran-map-page',
+  selector: 'app-iran-map-page',
   templateUrl: './iran-map.page.html',
   imports: [
     IranMapModule,

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'auth-page',
+  selector: 'app-auth-page',
   styleUrls: ['auth.page.scss'],
   templateUrl: './auth.page.html',
   standalone: false

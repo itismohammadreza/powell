@@ -4,7 +4,7 @@ import {CheckboxGroupComponent, CheckboxGroupModule} from "@powell/components/ch
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'checkbox-group-page',
+  selector: 'app-checkbox-group-page',
   templateUrl: './checkbox-group.page.html',
   imports: [
     CheckboxGroupModule,

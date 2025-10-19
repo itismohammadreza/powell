@@ -4,7 +4,7 @@ import {InputNumberComponent, InputNumberModule} from "@powell/components/input-
 import {PreviewBase, PreviewComponent, PreviewOption} from "@modules/main/pages/showcase/components";
 
 @Component({
-  selector: 'input-number-page',
+  selector: 'app-input-number-page',
   templateUrl: './input-number.page.html',
   imports: [
     InputNumberModule,

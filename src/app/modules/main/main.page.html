@@ -1,7 +1,7 @@
-<navbar-menu>
+<app-navbar-menu>
   <span [@routeAnimation]="outlet.isActivated ? outlet.activatedRoute : ''">
     <router-outlet #outlet="outlet"></router-outlet>
   </span>
-</navbar-menu>
-<loading/>
+</app-navbar-menu>
+<app-loading/>
 <p-scrollTop/>
