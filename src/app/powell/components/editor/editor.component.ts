@@ -76,13 +76,13 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
-  @Input() rtl: boolean = false;
-  @Input() showRequiredStar: boolean = false;
+  @Input() rtl: Optional<boolean>;
+  @Input() showRequiredStar: Optional<boolean>;
   @Input() labelPosition: Optional<FixLabelPosition>;
   @Input() validation: Optional<Validation>;
   @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;
-  @Input() followConfig: boolean = false;
+  @Input() followConfig: Optional<boolean>;
   @Input() inputId: string = $uuid();
   // native properties
   @Input() options: Optional<SunEditorOptions>;

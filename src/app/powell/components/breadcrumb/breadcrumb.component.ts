@@ -31,8 +31,8 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
   private destroy$ = inject(DestroyService);
   private configService = inject(ConfigService);
 
-  @Input() rtl: boolean = false;
-  @Input() followConfig: boolean = false;
+  @Input() rtl: Optional<boolean>;
+  @Input() followConfig: Optional<boolean>;
   // native properties
   @Input() items: Optional<$MenuItem[]>;
   @Input() home: Optional<$MenuItem>;

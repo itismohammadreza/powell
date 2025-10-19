@@ -14,8 +14,8 @@ export class EmptyComponent implements OnInit {
   @Input() icon: Optional<string>;
   @Input() imageSrc: Optional<string>;
   @Input() text: Optional<string>;
-  @Input() rtl: boolean = false;
-  @Input() followConfig: boolean = false;
+  @Input() rtl: Optional<boolean>;
+  @Input() followConfig: Optional<boolean>;
 
   ngOnInit() {
     this.configService.configureComponent(this, true);

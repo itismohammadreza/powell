@@ -52,14 +52,14 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   @Input() value: Optional<SafeAny>;
   @Input() label: Optional<string>;
   @Input() hint: Optional<string>;
-  @Input() rtl: boolean = false;
-  @Input() showRequiredStar: boolean = false;
+  @Input() rtl: Optional<boolean>;
+  @Input() showRequiredStar: Optional<boolean>;
   @Input() validation: Optional<Validation>;
   @Input() onLabel: Optional<string>;
   @Input() offLabel: Optional<string>;
   @Input() async: boolean = false;
   @Input() showAsyncLoading: boolean = true;
-  @Input() followConfig: boolean = false;
+  @Input() followConfig: Optional<boolean>;
   // native properties
   @Input() name: Optional<string>;
   @Input() disabled: boolean = false;

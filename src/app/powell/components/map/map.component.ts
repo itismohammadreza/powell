@@ -74,11 +74,11 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
-  @Input() rtl: boolean = false;
-  @Input() showRequiredStar: boolean = false;
+  @Input() rtl: Optional<boolean>;
+  @Input() showRequiredStar: Optional<boolean>;
   @Input() labelPosition: Optional<FixLabelPosition>;
   @Input() validation: Optional<Validation>;
-  @Input() followConfig: boolean = false;
+  @Input() followConfig: Optional<boolean>;
   @Input() disabled: boolean = false;
   @Input() multiple: boolean = true;
   @Input() clearMarkerOnClick: boolean = true;

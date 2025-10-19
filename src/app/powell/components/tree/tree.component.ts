@@ -68,11 +68,11 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
-  @Input() rtl: boolean = false;
-  @Input() showRequiredStar: boolean = false;
+  @Input() rtl: Optional<boolean>;
+  @Input() showRequiredStar: Optional<boolean>;
   @Input() labelPosition: Optional<FixLabelPosition>;
   @Input() validation: Optional<Validation>;
-  @Input() followConfig: boolean = false;
+  @Input() followConfig: Optional<boolean>;
   @Input() id: string = $uuid();
   // native properties
   @Input() value: Optional<SafeAny[]>;

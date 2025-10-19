@@ -69,7 +69,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() reorderableRows: boolean = false;
   @Input() selectableRows: boolean = false;
   @Input() actionsConfig: Optional<TableActionsConfig>;
-  @Input() rtl: boolean = false;
+  @Input() rtl: Optional<boolean>;
   @Input() emptyMessage: Optional<string>;
   @Input() emptyIcon: Optional<string>;
   @Input() emptyImageSrc: Optional<string>;
@@ -77,7 +77,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() header: Optional<string>;
   @Input() globalFilter: boolean = false;
   @Input() globalFilterPlaceholder: Optional<string>;
-  @Input() followConfig: boolean = false;
+  @Input() followConfig: Optional<boolean>;
   @Input() showSelectionIndicator: boolean = false;
   @Input() frozenActions: boolean = true;
   // native properties

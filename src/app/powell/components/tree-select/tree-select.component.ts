@@ -74,11 +74,11 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
-  @Input() rtl: boolean = false;
-  @Input() showRequiredStar: boolean = false;
+  @Input() rtl: Optional<boolean>;
+  @Input() showRequiredStar: Optional<boolean>;
   @Input() labelPosition: Optional<LabelPosition>;
   @Input() validation: Optional<Validation>;
-  @Input() followConfig: boolean = false;
+  @Input() followConfig: Optional<boolean>;
   @Input() style: Optional<CssObject>;
   // native properties
   @Input() required: boolean = false;

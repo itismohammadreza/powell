@@ -64,12 +64,12 @@ export class InputTextComponent implements OnInit, AfterContentInit, ControlValu
   @Input() ariaLabel: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
-  @Input() rtl: boolean = false;
-  @Input() showRequiredStar: boolean = false;
+  @Input() rtl: Optional<boolean>;
+  @Input() showRequiredStar: Optional<boolean>;
   @Input() labelPosition: Optional<LabelPosition>;
   @Input() inputId: string = $uuid();
   @Input() validation: Optional<Validation>;
-  @Input() followConfig: boolean = false;
+  @Input() followConfig: Optional<boolean>;
   @Input() readonly: boolean = false;
   @Input() disabled: boolean = false;
   @Input() maxlength: Optional<number>;

@@ -61,11 +61,11 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
-  @Input() rtl: boolean = false;
-  @Input() showRequiredStar: boolean = false;
+  @Input() rtl: Optional<boolean>;
+  @Input() showRequiredStar: Optional<boolean>;
   @Input() labelPosition: Optional<FixLabelPosition>;
   @Input() validation: Optional<Validation>;
-  @Input() followConfig: boolean = false;
+  @Input() followConfig: Optional<boolean>;
   @Input() options: Optional<SafeAny[]>;
   @Input() optionLabel: string = 'label';
   @Input() optionValue: string = 'value';

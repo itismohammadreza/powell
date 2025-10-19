@@ -33,8 +33,8 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   // used in `configureComponent` method
   private destroy$ = inject(DestroyService);
 
-  @Input() rtl: boolean = false;
-  @Input() followConfig: boolean = false;
+  @Input() rtl: Optional<boolean>;
+  @Input() followConfig: Optional<boolean>;
   // native properties
   @Input() appendTo: Optional<SafeAny>;
   @Input() blockScroll: boolean = false;
