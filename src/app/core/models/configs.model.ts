@@ -27,5 +27,6 @@ export interface RequestConfig {
   loading?: boolean | ((request: HttpRequest<SafeAny>) => boolean);
   isCustomApi?: boolean;
   loadingOnlyOnce?: boolean;
+  skipInterceptor?: boolean;
   timeout?: number | 'none' | ((request: HttpRequest<SafeAny>) => number | 'none');
 }
