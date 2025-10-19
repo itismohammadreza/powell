@@ -20,35 +20,35 @@ export class ApiService {
   private readonly baseUrl = this.envService.apiUrl;
 
   protected _get<T>(endpoint: string, options: Optional<RequestOptions> = undefined) {
-    return this.http.get<T>(`${this.baseUrl}/${endpoint}`, {
+    return this.http.get<T>(`${this.baseUrl}${endpoint ?? '/' + endpoint}`, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
   protected _post<T>(endpoint: string, body: SafeAny, options: Optional<RequestOptions> = undefined) {
-    return this.http.post<T>(`${this.baseUrl}/${endpoint}`, body, {
+    return this.http.post<T>(`${this.baseUrl}${endpoint ?? '/' + endpoint}`, body, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
   protected _put<T>(endpoint: string, body: SafeAny, options: Optional<RequestOptions> = undefined) {
-    return this.http.put<T>(`${this.baseUrl}/${endpoint}`, body, {
+    return this.http.put<T>(`${this.baseUrl}${endpoint ?? '/' + endpoint}`, body, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
   protected _patch<T>(endpoint: string, body: SafeAny, options: Optional<RequestOptions> = undefined) {
-    return this.http.patch<T>(`${this.baseUrl}/${endpoint}`, body, {
+    return this.http.patch<T>(`${this.baseUrl}${endpoint ?? '/' + endpoint}`, body, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
   }
 
   protected _delete<T>(endpoint: string, options: Optional<RequestOptions> = undefined) {
-    return this.http.delete<T>(`${this.baseUrl}/${endpoint}`, {
+    return this.http.delete<T>(`${this.baseUrl}${endpoint ?? '/' + endpoint}`, {
       ...options,
       params: this.getHttpParams(options?.params)
     })
