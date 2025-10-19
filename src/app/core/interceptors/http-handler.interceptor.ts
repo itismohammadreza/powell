@@ -1,19 +1,12 @@
 import {inject} from '@angular/core';
-import {
-  HttpErrorResponse,
-  HttpHandlerFn,
-  HttpInterceptorFn,
-  HttpRequest,
-  HttpResponse,
-  HttpResponseBase,
-} from '@angular/common/http';
+import {HttpErrorResponse, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse,} from '@angular/common/http';
 import {finalize, identity, of, tap, throwError, timeout} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {OverlayService} from '@powell/api';
 import {AuthService} from '@core/http';
-import {globalConfig, RequestsConfig} from "@core/config";
+import {globalConfig} from "@core/config";
 import {LoaderService} from "@core/utils";
-import {RequestConfig} from "@core/models";
+import {httpUtils} from '@core/interceptors/http-utils';
 
 export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>, next: HttpHandlerFn) => {
   const overlayService = inject(OverlayService);
@@ -34,60 +27,12 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
     });
   }
 
-  const getRequestConfig = (request: HttpRequest<SafeAny>) => {
-    const {pathname} = getUrlParts(request.url);
-    const requestPathMatch = ({pathTemplate, isCustomApi}: RequestConfig) => {
-      const testCase = isCustomApi ? request.urlWithParams : pathname;
-      if (pathTemplate instanceof RegExp) {
-        return pathTemplate.test(testCase);
-      } else if (pathTemplate?.includes('*')) {
-        const rep1 = pathTemplate.replace(/\*/g, '.*');
-        const rep2 = rep1.replace(/\//g, "\\\/");
-        const regex = new RegExp(rep2, 'g');
-        return regex.test(testCase);
-      } else {
-        return pathTemplate == testCase;
-      }
-    }
-    const idx = RequestsConfig.findIndex(config => {
-      const requestMethodMatch = config.method === request.method;
-      return requestMethodMatch && requestPathMatch(config);
-    });
-    return RequestsConfig[idx];
-  }
-
-  const getUrlParts = (url: string) => {
-    const linkElement = document.createElement('a');
-    const keys: (keyof HTMLAnchorElement)[] = [
-      'href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash'
-    ];
-    const res: SafeAny = {};
-    linkElement.href = url;
-    keys.forEach((k) => {
-      res[k] = linkElement[k];
-    });
-    linkElement.remove();
-    return res;
-  }
-
   const removeRequestFromQueue = (request: HttpRequest<SafeAny>) => {
     const i = requestsQueue.indexOf(request);
     if (i >= 0) {
       requestsQueue.splice(i, 1);
     }
     loaderService.setLoadingState(requestsQueue.length > 0);
-  }
-
-  const getRequestProp = (request: HttpRequest<SafeAny>, response: Optional<HttpResponseBase>, prop: keyof RequestConfig) => {
-    const requestConfig: SafeAny = getRequestConfig(request);
-    if (!requestConfig) {
-      return false;
-    }
-    if (typeof requestConfig[prop] === 'function') {
-      return requestConfig[prop](request, response);
-    } else {
-      return requestConfig[prop];
-    }
   }
 
   const handleTimeout = (request: HttpRequest<SafeAny>) => {
@@ -98,7 +43,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
       const requestSearchParams = new URL(url).search;
       return new URLSearchParams(requestSearchParams).get('timeout');
     }
-    let configTimeout = getRequestProp(request, undefined, 'timeout');
+    let configTimeout = httpUtils.getRequestProp(request, undefined, 'timeout');
     let queryTimeout = getQueryTimeout(request.url)!;
     if (configTimeout == 'none' || queryTimeout == 'none') {
       return identity;
@@ -112,8 +57,13 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
   const loadingRequestsCounter = new Map<string, number>();
 
   const clonedReq = request.clone();
-  const shouldCatch = getRequestProp(request, undefined, 'catch');
-  const shouldLoading = getRequestProp(request, undefined, 'loading');
+  const shouldCatch = httpUtils.getRequestProp(request, undefined, 'catch');
+  const shouldLoading = httpUtils.getRequestProp(request, undefined, 'loading');
+  const shouldSkip = httpUtils.getRequestProp(request, undefined, 'skipInterceptor');
+
+  if (shouldSkip) {
+    return next(clonedReq);
+  }
 
   if (shouldCatch) {
     const cachedResponse = cachedRequests.get(request.url);
@@ -123,8 +73,8 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
   }
 
   if (shouldLoading) {
-    const pathTemplate = getRequestProp(request, undefined, 'pathTemplate');
-    const loadingOnlyOnce = getRequestProp(request, undefined, 'loadingOnlyOnce');
+    const pathTemplate = httpUtils.getRequestProp(request, undefined, 'pathTemplate');
+    const loadingOnlyOnce = httpUtils.getRequestProp(request, undefined, 'loadingOnlyOnce');
     loadingRequestsCounter.set(pathTemplate, (loadingRequestsCounter.get(pathTemplate) ?? 0) + 1);
     if (!loadingOnlyOnce || (loadingOnlyOnce && loadingRequestsCounter.get(pathTemplate) == 1)) {
       requestsQueue.push(clonedReq);
@@ -135,7 +85,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
   return next(clonedReq).pipe(
     handleTimeout(request),
     tap((response: SafeAny) => {
-      const successMessage = getRequestProp(request, response, 'successMessage');
+      const successMessage = httpUtils.getRequestProp(request, response, 'successMessage');
       if (!(response instanceof HttpResponse) || /2\d+/.test(response.status.toString()) == false) {
         return;
       }
@@ -148,7 +98,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
       removeRequestFromQueue(clonedReq);
     }),
     catchError((httpError: HttpErrorResponse) => {
-      const failureMessage = getRequestProp(request, httpError, 'failureMessage');
+      const failureMessage = httpUtils.getRequestProp(request, httpError, 'failureMessage');
       if (![false, undefined].includes(failureMessage)) {
         const {error_description} = httpError.error;
         showFailureToast(failureMessage ?? error_description);

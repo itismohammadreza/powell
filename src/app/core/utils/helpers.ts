@@ -224,7 +224,7 @@ export const helpers = {
     return [...array1, ...array2.filter(x => !set1.has(x[field]))]
   },
 
-  setFieldValue(obj: SafeAny, path: string, value: SafeAny) {
+  setFieldValue: (obj: SafeAny, path: string, value: SafeAny) => {
     const keys = path.split('.');
     let current = obj;
 
@@ -238,7 +238,7 @@ export const helpers = {
     current[keys[keys.length - 1]] = value;
   },
 
-  buildObjectFromPath(path: string, value: SafeAny) {
+  buildObjectFromPath: (path: string, value: SafeAny) => {
     return path.split('.').reverse().reduce((acc, key) => ({[key]: acc}), value);
   }
 }
