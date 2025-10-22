@@ -43,7 +43,7 @@ import {SunEditorOptions} from "suneditor/src/options";
 import {Core} from "suneditor/src/lib/core";
 import {LatLng, LatLngBounds} from "leaflet";
 import {$Confirmation, $ContextMenu, $ScrollerOptions, $ToastMessageOptions, $ToastPositionType} from "@powell/primeng";
-import {TemplateRef} from "@angular/core";
+import {TemplateRef, Type} from "@angular/core";
 import {Moment} from "jalali-moment";
 
 export type DefaultFocus = 'accept' | 'reject';
@@ -189,6 +189,7 @@ export interface DialogFormEvent {
   form?: FormGroup;
   currentConfig?: DialogFormConfig;
   allConfig?: DialogFormConfig[];
+  componentRef?: Type<SafeAny>;
 }
 
 export type DialogFormComponentName =

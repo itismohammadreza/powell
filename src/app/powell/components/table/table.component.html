@@ -120,11 +120,9 @@
           }
           @if (!actionsConfig?.inSameColumn && actionsConfig?.actions?.length && rtl) {
             @for (action of actionsConfig?.actions; track action) {
-              @if (action.visible ?? true) {
-                <th class="action-header" alignFrozen="left" pFrozenColumn [frozen]="frozenActions">
-                  {{ action.header }}
-                </th>
-              }
+              <th class="action-header" alignFrozen="left" pFrozenColumn [frozen]="frozenActions">
+                {{ action.header }}
+              </th>
             }
           }
           @if (selectionMode == 'multiple' && showSelectionIndicator) {
@@ -243,11 +241,9 @@
           }
           @if (!actionsConfig?.inSameColumn && actionsConfig?.actions?.length && !rtl) {
             @for (action of actionsConfig?.actions; track action) {
-              @if (action.visible ?? true) {
-                <th class="action-header" alignFrozen="right" pFrozenColumn  [frozen]="frozenActions">
-                  {{ action.header }}
-                </th>
-              }
+              <th class="action-header" alignFrozen="right" pFrozenColumn [frozen]="frozenActions">
+                {{ action.header }}
+              </th>
             }
           }
         </tr>
@@ -262,11 +258,9 @@
           }
           @if (!actionsConfig?.inSameColumn && actionsConfig?.actions?.length && rtl) {
             @for (action of actionsConfig?.actions; track action) {
-              @if (action.visible ?? true) {
-                <th class="action-header" alignFrozen="left" pFrozenColumn [frozen]="frozenActions">
-                  {{ action.header }}
-                </th>
-              }
+              <th class="action-header" alignFrozen="left" pFrozenColumn [frozen]="frozenActions">
+                {{ action.header }}
+              </th>
             }
           }
           @if (selectionMode == 'multiple' && showSelectionIndicator) {
@@ -290,11 +284,9 @@
           }
           @if (!actionsConfig?.inSameColumn && actionsConfig?.actions?.length && !rtl) {
             @for (action of actionsConfig?.actions; track action) {
-              @if (action.visible ?? true) {
-                <th class="action-header" alignFrozen="right" pFrozenColumn [frozen]="frozenActions">
-                  {{ action.header }}
-                </th>
-              }
+              <th class="action-header" alignFrozen="right" pFrozenColumn [frozen]="frozenActions">
+                {{ action.header }}
+              </th>
             }
           }
         </tr>

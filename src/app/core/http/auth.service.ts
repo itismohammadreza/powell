@@ -50,7 +50,7 @@ export class AuthService extends ApiService {
     this.router.navigateByUrl('/auth/login');
   }
 
-  hasToken() {
-    return !!localStorage.getItem('token');
+  getToken() {
+    return localStorage.getItem('token');
   }
 }

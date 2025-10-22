@@ -140,7 +140,7 @@ export class OverlayService {
       const key = k as keyof ComponentRef<$Toast> & keyof ToastOptions;
       instance[key] = options[key];
     }
-    instance.styleClass = `toast-wrapper ${options.styleClass ?? ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`;
+    instance.styleClass = `toast-wrapper ${!options.summary ? 'no-summary' : ''} ${!options.detail ? 'no-detail' : ''} ${options.styleClass ?? ''} ${(options.rtl ?? this.config.rtl) ? 'is-rtl' : 'is-ltr'}`;
     instance.breakpoints = {'767px': {width: '100%', right: '0', left: '0'}, ...options.breakpoints};
     instance.position = options.position ?? 'top-right';
     instance.showTransformOptions = options.showTransformOptions ?? 'translateY(100%)';
@@ -300,6 +300,7 @@ export class OverlayService {
     instance.config = config;
     instance.options = {
       ...options,
+      rtl: options.rtl ?? this.config.rtl,
       styleClass: `${options.styleClass ?? ''} ${!options.showHeader || (!options.header && !options.closable && !options.maximizable) ? 'header-less' : ''}`,
       closeButtonProps: this.mapToButtonProps(options.closeButtonProps),
       maximizeButtonProps: this.mapToButtonProps(options.maximizeButtonProps),

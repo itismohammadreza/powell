@@ -11,7 +11,7 @@ export const authInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>
     return next(request);
   }
 
-  if (authService.hasToken()) {
+  if (!!authService.getToken()) {
     const token = localStorage.getItem('token');
     request = request.clone({
       setHeaders: {

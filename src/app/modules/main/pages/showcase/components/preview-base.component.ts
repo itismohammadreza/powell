@@ -1,13 +1,10 @@
-import {AfterViewInit, Component, inject} from '@angular/core';
+import {AfterViewInit, Component, Directive, inject} from '@angular/core';
 import {ConfigService, OverlayService} from "@powell/api";
 import {PreviewOption} from "@modules/main/pages/showcase/components/index";
 import {AsyncEvent} from "@powell/models";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
-@Component({
-  selector: 'preview-base',
-  template: '',
-})
+@Directive()
 export abstract class PreviewBase implements AfterViewInit {
   private configService = inject(ConfigService);
   protected overlayService = inject(OverlayService);

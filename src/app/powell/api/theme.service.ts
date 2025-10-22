@@ -15,7 +15,7 @@ import {CONFIG_CLASS_PREFIX, DARK_MODE_CLASS} from "@powell/api";
 
 type BodyClassRule = {
   condition: (value: SafeAny) => boolean;
-  className: string;
+  styleClass: string;
 };
 
 // DON'T provide anywhere. will provide automatically after `providePowell` call.
@@ -105,13 +105,13 @@ export class ThemeService {
       ripple: [
         {
           condition: (v) => v === false,
-          className: 'p-ripple-disabled',
+          styleClass: 'p-ripple-disabled',
         },
       ],
       inputVariant: [
         {
           condition: (v) => v === 'filled',
-          className: 'p-input-filled',
+          styleClass: 'p-input-filled',
         },
       ],
     };
@@ -125,7 +125,7 @@ export class ThemeService {
       if (rules && rules.length) {
         for (const rule of rules) {
           const shouldApply = rule.condition(value);
-          this.document.body.classList.toggle(rule.className, shouldApply);
+          this.document.body.classList.toggle(rule.styleClass, shouldApply);
         }
       } else {
         const prefix = `${this._configClassPrefix}-${this.kebabCase(key)}-`;

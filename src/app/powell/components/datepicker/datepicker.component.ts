@@ -143,7 +143,7 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   @Input() disabledDays: Optional<number[]>;
   @Input() showTime: boolean = false;
   @Input() responsiveOptions: Optional<$DatePickerResponsiveOptions[]>;
-  @Input() numberOfMonths: Optional<number>;
+  @Input() numberOfMonths: number = 1;
   @Input() firstDayOfWeek: Optional<number>;
   @Input() view: $DatePickerTypeView = 'date';
   @Input() defaultDate: Optional<Date | Moment>;

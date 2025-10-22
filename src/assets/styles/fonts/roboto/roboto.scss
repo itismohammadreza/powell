@@ -7,7 +7,9 @@
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Roboto-Thin.woff2") format("woff2"),
   url("#{$baseUrl}/ttf/Roboto-Thin.ttf") format("truetype");
-  unicode-range: U+0020-007F;
+  unicode-range:
+  U+0041-005A,   /* حروف بزرگ انگلیسی */
+  U+0061-007A;   /* حروف کوچک انگلیسی */
 }
 
 @font-face {
@@ -17,7 +19,9 @@
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Roboto-Regular.woff2") format("woff2"),
   url("#{$baseUrl}/ttf/Roboto-Regular.ttf") format("truetype");
-  unicode-range: U+0020-007F;
+  unicode-range:
+  U+0041-005A,   /* حروف بزرگ انگلیسی */
+  U+0061-007A;   /* حروف کوچک انگلیسی */
 }
 
 @font-face {
@@ -27,7 +31,9 @@
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Roboto-Light.woff2") format("woff2"),
   url("#{$baseUrl}/ttf/Roboto-Light.ttf") format("truetype");
-  unicode-range: U+0020-007F;
+  unicode-range:
+  U+0041-005A,   /* حروف بزرگ انگلیسی */
+  U+0061-007A;   /* حروف کوچک انگلیسی */
 }
 
 @font-face {
@@ -37,7 +43,9 @@
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Roboto-Medium.woff2") format("woff2"),
   url("#{$baseUrl}/ttf/Roboto-Medium.ttf") format("truetype");
-  unicode-range: U+0020-007F;
+  unicode-range:
+  U+0041-005A,   /* حروف بزرگ انگلیسی */
+  U+0061-007A;   /* حروف کوچک انگلیسی */
 }
 
 @font-face {
@@ -47,7 +55,9 @@
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Roboto-Bold.woff2") format("woff2"),
   url("#{$baseUrl}/ttf/Roboto-Bold.ttf") format("truetype");
-  unicode-range: U+0020-007F;
+  unicode-range:
+  U+0041-005A,   /* حروف بزرگ انگلیسی */
+  U+0061-007A;   /* حروف کوچک انگلیسی */
 }
 
 @font-face {
@@ -57,6 +67,8 @@
   font-display: swap;
   src: url("#{$baseUrl}/woff2/Roboto-Black.woff2") format("woff2"),
   url("#{$baseUrl}/ttf/Roboto-Black.ttf") format("truetype");
-  unicode-range: U+0020-007F;
+  unicode-range:
+  U+0041-005A,   /* حروف بزرگ انگلیسی */
+  U+0061-007A;   /* حروف کوچک انگلیسی */
 }
 

@@ -1,4 +1,14 @@
-import {ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, inject, ViewChild} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  inject,
+  QueryList,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, ValidatorFn} from "@angular/forms";
 import {
   AsyncEvent,
@@ -103,38 +113,38 @@ export class DialogFormComponent {
   private cd = inject(ChangeDetectorRef);
 
   @ViewChild($Dialog, {static: true}) dialog: $Dialog;
-  @ViewChild(AutoCompleteComponent, {static: false}) autoCompleteComponent: AutoCompleteComponent;
-  @ViewChild(ButtonComponent, {static: false}) buttonComponent: ButtonComponent;
-  @ViewChild(CascadeSelectComponent, {static: false}) cascadeSelectComponent: CascadeSelectComponent;
-  @ViewChild(CheckboxComponent, {static: false}) checkboxComponent: CheckboxComponent;
-  @ViewChild(CheckboxGroupComponent, {static: false}) checkboxGroupComponent: CheckboxGroupComponent;
-  @ViewChild(ColorPickerComponent, {static: false}) colorPickerComponent: ColorPickerComponent;
-  @ViewChild(SelectComponent, {static: false}) dropdownComponent: SelectComponent;
-  @ViewChild(DualLabelSwitchComponent, {static: false}) dualLabelSwitchComponent: DualLabelSwitchComponent;
-  @ViewChild(EditorComponent, {static: false}) editorComponent: EditorComponent;
-  @ViewChild(FilePickerComponent, {static: false}) filePickerComponent: FilePickerComponent;
-  @ViewChild(FilePicker2Component, {static: false}) filePicker2Component: FilePicker2Component;
-  @ViewChild(DatepickerComponent, {static: false}) datepickerComponent: DatepickerComponent;
-  @ViewChild(ImageComponent, {static: false}) imageComponent: ImageComponent;
-  @ViewChild(InputMaskComponent, {static: false}) inputMaskComponent: InputMaskComponent;
-  @ViewChild(InputNumberComponent, {static: false}) inputNumberComponent: InputNumberComponent;
-  @ViewChild(InputOtpComponent, {static: false}) inputOtpComponent: InputOtpComponent;
-  @ViewChild(InputPasswordComponent, {static: false}) inputPasswordComponent: InputPasswordComponent;
-  @ViewChild(InputTextComponent, {static: false}) inputTextComponent: InputTextComponent;
-  @ViewChild(InputTextareaComponent, {static: false}) inputTextareaComponent: InputTextareaComponent;
-  @ViewChild(IranMapComponent, {static: false}) iranMapComponent: IranMapComponent;
-  @ViewChild(KnobComponent, {static: false}) knobComponent: KnobComponent;
-  @ViewChild(ListboxComponent, {static: false}) listboxComponent: ListboxComponent;
-  @ViewChild(MapComponent, {static: false}) mapComponent: MapComponent;
-  @ViewChild(MultiSelectComponent, {static: false}) multiSelectComponent: MultiSelectComponent;
-  @ViewChild(RadioComponent, {static: false}) radioComponent: RadioComponent;
-  @ViewChild(RatingComponent, {static: false}) ratingComponent: RatingComponent;
-  @ViewChild(SelectButtonComponent, {static: false}) selectButtonComponent: SelectButtonComponent;
-  @ViewChild(SliderComponent, {static: false}) sliderComponent: SliderComponent;
-  @ViewChild(ToggleSwitchComponent, {static: false}) toggleSwitchComponent: ToggleSwitchComponent;
-  @ViewChild(ToggleButtonComponent, {static: false}) toggleButtonComponent: ToggleButtonComponent;
-  @ViewChild(TreeComponent, {static: false}) treeComponent: TreeComponent;
-  @ViewChild(TreeSelectComponent, {static: false}) treeSelectComponent: TreeSelectComponent;
+  @ViewChildren(AutoCompleteComponent) autoCompleteComponent: QueryList<AutoCompleteComponent>;
+  @ViewChildren(ButtonComponent) buttonComponent: QueryList<ButtonComponent>;
+  @ViewChildren(CascadeSelectComponent) cascadeSelectComponent: QueryList<CascadeSelectComponent>;
+  @ViewChildren(CheckboxComponent) checkboxComponent: QueryList<CheckboxComponent>;
+  @ViewChildren(CheckboxGroupComponent) checkboxGroupComponent: QueryList<CheckboxGroupComponent>;
+  @ViewChildren(ColorPickerComponent) colorPickerComponent: QueryList<ColorPickerComponent>;
+  @ViewChildren(SelectComponent) dropdownComponent: QueryList<SelectComponent>;
+  @ViewChildren(DualLabelSwitchComponent) dualLabelSwitchComponent: QueryList<DualLabelSwitchComponent>;
+  @ViewChildren(EditorComponent) editorComponent: QueryList<EditorComponent>;
+  @ViewChildren(FilePickerComponent) filePickerComponent: QueryList<FilePickerComponent>;
+  @ViewChildren(FilePicker2Component) filePicker2Component: QueryList<FilePicker2Component>;
+  @ViewChildren(DatepickerComponent) datepickerComponent: QueryList<DatepickerComponent>;
+  @ViewChildren(ImageComponent) imageComponent: QueryList<ImageComponent>;
+  @ViewChildren(InputMaskComponent) inputMaskComponent: QueryList<InputMaskComponent>;
+  @ViewChildren(InputNumberComponent) inputNumberComponent: QueryList<InputNumberComponent>;
+  @ViewChildren(InputOtpComponent) inputOtpComponent: QueryList<InputOtpComponent>;
+  @ViewChildren(InputPasswordComponent) inputPasswordComponent: QueryList<InputPasswordComponent>;
+  @ViewChildren(InputTextComponent) inputTextComponent: QueryList<InputTextComponent>;
+  @ViewChildren(InputTextareaComponent) inputTextareaComponent: QueryList<InputTextareaComponent>;
+  @ViewChildren(IranMapComponent) iranMapComponent: QueryList<IranMapComponent>;
+  @ViewChildren(KnobComponent) knobComponent: QueryList<KnobComponent>;
+  @ViewChildren(ListboxComponent) listboxComponent: QueryList<ListboxComponent>;
+  @ViewChildren(MapComponent) mapComponent: QueryList<MapComponent>;
+  @ViewChildren(MultiSelectComponent) multiSelectComponent: QueryList<MultiSelectComponent>;
+  @ViewChildren(RadioComponent) radioComponent: QueryList<RadioComponent>;
+  @ViewChildren(RatingComponent) ratingComponent: QueryList<RatingComponent>;
+  @ViewChildren(SelectButtonComponent) selectButtonComponent: QueryList<SelectButtonComponent>;
+  @ViewChildren(SliderComponent) sliderComponent: QueryList<SliderComponent>;
+  @ViewChildren(ToggleSwitchComponent) toggleSwitchComponent: QueryList<ToggleSwitchComponent>;
+  @ViewChildren(ToggleButtonComponent) toggleButtonComponent: QueryList<ToggleButtonComponent>;
+  @ViewChildren(TreeComponent) treeComponent: QueryList<TreeComponent>;
+  @ViewChildren(TreeSelectComponent) treeSelectComponent: QueryList<TreeSelectComponent>;
 
   form: FormGroup = new FormGroup({});
   visible: boolean;
@@ -144,18 +154,19 @@ export class DialogFormComponent {
   onClose = new EventEmitter<void>();
   disableReject: boolean;
   configTimeout: SafeAny;
+  componentIndexMap: Partial<Record<DialogFormComponentName, number>> = {};
 
   set config(value: DialogFormConfig[]) {
+    this.componentIndexMap = {};
     this._config = value;
-    for (const config of this._config) {
+    this._config.forEach((config) => {
       if (config.key) {
         this.form.addControl(config.key, new FormControl(config.value ?? null, config.validations?.map(v => v.validator) ?? []));
       }
       this.configTimeout = setTimeout(() => {
         this.applyConfigToComponent(config);
       })
-    }
-
+    })
   }
 
   set options(v: DialogFormOptions) {
@@ -322,40 +333,51 @@ export class DialogFormComponent {
 
   applyConfigToComponent(config: DialogFormConfig) {
     const componentsMap: Partial<Record<DialogFormComponentName, SafeAny>> = {
-      'auto-complete': this.autoCompleteComponent,
-      'button': this.buttonComponent,
-      'cascade-select': this.cascadeSelectComponent,
-      'checkbox': this.checkboxComponent,
-      'checkbox-group': this.checkboxGroupComponent,
-      'color-picker': this.colorPickerComponent,
-      'select': this.dropdownComponent,
-      'dual-label-switch': this.dualLabelSwitchComponent,
-      'editor': this.editorComponent,
-      'file-picker': this.filePickerComponent,
-      'file-picker2': this.filePicker2Component,
-      'datepicker': this.datepickerComponent,
-      'image': this.imageComponent,
-      'input-mask': this.inputMaskComponent,
-      'input-number': this.inputNumberComponent,
-      'input-otp': this.inputOtpComponent,
-      'input-password': this.inputPasswordComponent,
-      'input-text': this.inputTextComponent,
-      'input-textarea': this.inputTextareaComponent,
-      'iran-map': this.iranMapComponent,
-      'knob': this.knobComponent,
-      'listbox': this.listboxComponent,
-      'map': this.mapComponent,
-      'multi-select': this.multiSelectComponent,
-      'radio': this.radioComponent,
-      'rating': this.ratingComponent,
-      'select-button': this.selectButtonComponent,
-      'slider': this.sliderComponent,
-      'toggle-switch': this.toggleSwitchComponent,
-      'toggle-button': this.toggleButtonComponent,
-      'tree': this.treeComponent,
-      'tree-select': this.treeSelectComponent,
+      'auto-complete': this.autoCompleteComponent.toArray(),
+      'button': this.buttonComponent.toArray(),
+      'cascade-select': this.cascadeSelectComponent.toArray(),
+      'checkbox': this.checkboxComponent.toArray(),
+      'checkbox-group': this.checkboxGroupComponent.toArray(),
+      'color-picker': this.colorPickerComponent.toArray(),
+      'select': this.dropdownComponent.toArray(),
+      'dual-label-switch': this.dualLabelSwitchComponent.toArray(),
+      'editor': this.editorComponent.toArray(),
+      'file-picker': this.filePickerComponent.toArray(),
+      'file-picker2': this.filePicker2Component.toArray(),
+      'datepicker': this.datepickerComponent.toArray(),
+      'image': this.imageComponent.toArray(),
+      'input-mask': this.inputMaskComponent.toArray(),
+      'input-number': this.inputNumberComponent.toArray(),
+      'input-otp': this.inputOtpComponent.toArray(),
+      'input-password': this.inputPasswordComponent.toArray(),
+      'input-text': this.inputTextComponent.toArray(),
+      'input-textarea': this.inputTextareaComponent.toArray(),
+      'iran-map': this.iranMapComponent.toArray(),
+      'knob': this.knobComponent.toArray(),
+      'listbox': this.listboxComponent.toArray(),
+      'map': this.mapComponent.toArray(),
+      'multi-select': this.multiSelectComponent.toArray(),
+      'radio': this.radioComponent.toArray(),
+      'rating': this.ratingComponent.toArray(),
+      'select-button': this.selectButtonComponent.toArray(),
+      'slider': this.sliderComponent.toArray(),
+      'toggle-switch': this.toggleSwitchComponent.toArray(),
+      'toggle-button': this.toggleButtonComponent.toArray(),
+      'tree': this.treeComponent.toArray(),
+      'tree-select': this.treeSelectComponent.toArray(),
     }
-    const component = componentsMap[config.component];
+    const compType = config.component;
+    if (!(compType in this.componentIndexMap)) {
+      this.componentIndexMap[compType] = 0;
+    }
+    const compIndex = this.componentIndexMap[compType];
+    const component = componentsMap[compType]?.[compIndex];
+    this.componentIndexMap[compType]++;
+
+    if (!component) {
+      return;
+    }
+
     component.rtl = config.rtl ?? this.options.rtl;
     for (const key in config) {
       if (config[key] == undefined) {
@@ -367,7 +389,8 @@ export class DialogFormComponent {
             event,
             form: this.form,
             currentConfig: config,
-            allConfig: this.config
+            allConfig: this.config,
+            componentRef: component
           })
         });
       } else {

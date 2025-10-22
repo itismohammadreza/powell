@@ -95,8 +95,8 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() tabindex: Optional<number>;
   @Input() dataKey: Optional<string>;
   @Input() ariaLabelledBy: Optional<string>;
-  @Input() displaySelectedLabel: boolean = false;
-  @Input() maxSelectedLabels: Optional<number>;
+  @Input() displaySelectedLabel: boolean = true;
+  @Input() maxSelectedLabels: number = 3;
   @Input() selectionLimit: Optional<number>;
   @Input() selectedItemsLabel: Optional<string>;
   @Input() showToggleAll: boolean = true;
@@ -134,7 +134,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   @Input() placeholder: Optional<string>;
   @Input() options: Optional<SafeAny[]>;
   @Input() filterValue: Optional<string>;
-  @Input() selectAll: Optional<boolean>;
+  @Input() selectAll: Nullable<boolean> = null;
   @Input() focusOnHover: boolean = true;
   @Input() filterFields: Optional<SafeAny[]>;
   @Input() selectOnFocus: boolean = false;

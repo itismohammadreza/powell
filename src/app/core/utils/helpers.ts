@@ -240,6 +240,22 @@ export const helpers = {
 
   buildObjectFromPath: (path: string, value: SafeAny) => {
     return path.split('.').reverse().reduce((acc, key) => ({[key]: acc}), value);
+  },
+
+  copyToClipboard: (text: string) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+      return true;
+    }
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    const successful = document.execCommand('copy');
+    document.body.removeChild(textarea);
+    return successful;
   }
 }
 

@@ -130,7 +130,7 @@ export {
 export {AutoFocus as $AutoFocus, AutoFocusModule as $AutoFocusModule} from "primeng/autofocus";
 export {Avatar as $Avatar, AvatarModule as $AvatarModule} from "primeng/avatar";
 export {AvatarGroup as $AvatarGroup, AvatarGroupModule as $AvatarGroupModule} from "primeng/avatargroup";
-export {Badge as $Badge, BadgeModule as $BadgeModule} from "primeng/badge";
+export {Badge as $Badge, BadgeModule as $BadgeModule, BadgeDirective as $BadgeDirective} from "primeng/badge";
 export {BaseInput as $BaseInput} from "primeng/baseinput";
 export {
   BlockUI as $BlockUI,
