@@ -533,6 +533,7 @@ export interface DialogFormConfig {
   onMapZoom?: (dialogFormEvent?: DialogFormEvent) => void;
   onMapZoomStart?: (dialogFormEvent?: DialogFormEvent) => void;
   onMapZoomEnd?: (dialogFormEvent?: DialogFormEvent) => void;
+  onMapReady?: (dialogFormEvent?: DialogFormEvent) => void;
   ///////////////////////////////////////// message /////////////////////////////////////////
   inlineMessage?: string;
   summary?: string;

@@ -165,6 +165,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Output() onMapZoomStart = new EventEmitter<LeafletEvent>();
   @Output() onMapZoomEnd = new EventEmitter<LeafletEvent>();
   @Output() onClear = new EventEmitter<void>();
+  @Output() onMapReady = new EventEmitter<Map>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
@@ -254,8 +255,11 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
-  onMapReady(event: Map) {
+  _onMapReady(event: Map) {
     this.map = event;
+    setTimeout(() => {
+      this.map.invalidateSize();
+    }, 100)
     this.handleDisabledState();
   }
 

@@ -52,7 +52,7 @@
           (leafletZoomChange)="onZoomChange($event)"
           (leafletCenterChange)="onCenterChange($event)"
           (leafletClick)="_onMapClick($event)"
-          (leafletMapReady)="onMapReady($event)"
+          (leafletMapReady)="_onMapReady($event)"
           (leafletDoubleClick)="emitter('onMapDoubleClick',$event)"
           (leafletMouseDown)="emitter('onMapMouseDown',$event)"
           (leafletMouseUp)="emitter('onMapMouseUp',$event)"
