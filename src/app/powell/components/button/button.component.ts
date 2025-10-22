@@ -56,6 +56,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   @Input() badge: Optional<string>;
   @Input() label: Optional<string>;
   @Input() disabled: boolean = false;
+  @Input() loading: boolean = false;
   @Input() loadingIcon: Optional<string>;
   @Input() raised: boolean = false;
   @Input() rounded: boolean = false;
@@ -74,7 +75,6 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   @Output() onClickAsync = new EventEmitter<AsyncEvent<MouseEvent>>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  loading: boolean = false;
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
   _tmpLabel: Optional<string>;
   _tmpIcon: Optional<string>;

@@ -6,8 +6,6 @@ import {AutoCompleteComponent} from "@powell/components/auto-complete";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {TemplateModule} from "@powell/directives/template";
 import {FormFieldModule} from "@powell/components/form-field";
-import {InputText} from "primeng/inputtext";
-import {TimesIcon} from "primeng/icons";
 
 @NgModule({
   declarations: [AutoCompleteComponent],
@@ -18,8 +16,6 @@ import {TimesIcon} from "primeng/icons";
     FormsModule,
     LabelStarModule,
     FormFieldModule,
-    InputText,
-    TimesIcon,
   ]
 })
 export class AutoCompleteModule {

@@ -26,7 +26,7 @@ import {InputTextModule} from "@powell/components/input-text";
 import {SelectModule} from "@powell/components/select";
 import {ToggleSwitchModule} from "@powell/components/toggle-switch";
 import {FilterModule} from "@powell/pipes/filter";
-import {TranslateModule} from "@ngx-translate/core";
+import {TranslatePipe} from "@ngx-translate/core";
 import {FormsModule} from "@angular/forms";
 import {LogoComponent} from "@modules/layout/logo/logo.component";
 import {routes} from "@modules/main/pages/showcase/showcase-routing.module";
@@ -49,7 +49,7 @@ import {DesignerComponent} from '@modules/layout/designer/designer.component';
     SelectModule,
     ToggleSwitchModule,
     FilterModule,
-    TranslateModule,
+    TranslatePipe,
     FormsModule,
     $PopoverModule,
     RadioModule,

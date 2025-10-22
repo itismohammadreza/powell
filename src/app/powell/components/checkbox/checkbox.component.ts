@@ -60,6 +60,7 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   @Input() async: boolean = false;
   @Input() showAsyncLoading: boolean = true;
   @Input() followConfig: Optional<boolean>;
+  @Input() loading: boolean = false;
   // native properties
   @Input() name: Optional<string>;
   @Input() disabled: boolean = false;
@@ -84,7 +85,6 @@ export class CheckboxComponent implements OnInit, AfterContentInit, ControlValue
   @Output() onChangeAsync = new EventEmitter<AsyncEvent<$CheckboxChangeEvent>>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  loading: boolean = false;
   ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
   onModelChange: Fn = () => {

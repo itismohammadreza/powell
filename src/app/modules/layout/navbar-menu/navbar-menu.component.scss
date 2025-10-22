@@ -11,7 +11,7 @@ $sidebarWidth: 20rem;
     }
 
     nav {
-      @apply shadow-sm w-full !bg-transparent backdrop-blur-md h-[68px] sticky top-0 z-20 border-b border-[var(--p-primary-color)];
+      @apply shadow-sm w-full !bg-transparent backdrop-blur-md h-[68px] sticky top-0 z-30 border-b border-[var(--p-primary-color)];
 
       > div {
         @apply flex items-center justify-between h-full;

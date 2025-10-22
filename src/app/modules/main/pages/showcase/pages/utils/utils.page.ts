@@ -8,7 +8,7 @@ import {InputNumberModule} from "@powell/components/input-number";
 import {PreviewBase, PreviewComponent} from "@modules/main/pages/showcase/components";
 import {DestroyService} from "@powell/utils";
 import {$DividerModule} from "@powell/primeng";
-import {TranslateModule} from "@ngx-translate/core";
+import {TranslatePipe} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-utils-page',
@@ -18,7 +18,7 @@ import {TranslateModule} from "@ngx-translate/core";
     InputNumberModule,
     PreviewComponent,
     $DividerModule,
-    TranslateModule,
+    TranslatePipe,
   ],
   providers: [DestroyService],
 })

@@ -33,8 +33,8 @@
         (onOptionClick)="_onOptionClick($event)">
         @for (t of templates; track t) {
           @if (templateMap[t.type]) {
-            <ng-template [pTemplate]="t.type">
-              <ng-container *ngTemplateOutlet="templateMap[t.type]"/>
+            <ng-template [pTemplate]="t.type" let-item>
+              <ng-container *ngTemplateOutlet="templateMap[t.type];context:{$implicit:item}"/>
             </ng-template>
           }
         }

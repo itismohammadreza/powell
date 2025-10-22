@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {PreviewOption, PreviewOptionsComponent} from "@modules/main/pages/showcase/components/index";
 import {$CardModule, $DividerModule, $PanelModule} from "@powell/primeng";
-import {TranslateModule} from "@ngx-translate/core";
+import {TranslatePipe} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-preview',
@@ -27,7 +27,7 @@ import {TranslateModule} from "@ngx-translate/core";
     $CardModule,
     $PanelModule,
     $DividerModule,
-    TranslateModule,
+    TranslatePipe,
     PreviewOptionsComponent
   ]
 })

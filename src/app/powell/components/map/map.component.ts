@@ -259,7 +259,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     this.map = event;
     setTimeout(() => {
       this.map.invalidateSize();
-    }, 100)
+    }, 300)
     this.handleDisabledState();
   }
 

@@ -64,6 +64,7 @@ export class DualLabelSwitchComponent implements OnInit, AfterContentInit, Contr
   @Input() async: boolean = false;
   @Input() showAsyncLoading: boolean = true;
   @Input() followConfig: Optional<boolean>;
+  @Input() loading: boolean = false;
   // native properties
   @Input() required: boolean = false;
   @Input() disabled: boolean = false;
@@ -81,7 +82,6 @@ export class DualLabelSwitchComponent implements OnInit, AfterContentInit, Contr
   @Output() onChangeAsync = new EventEmitter<AsyncEvent<$ToggleSwitchChangeEvent>>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  loading: boolean = false;
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
   ngControl: Nullable<NgControl> = null;
   onModelChange: Fn = () => {

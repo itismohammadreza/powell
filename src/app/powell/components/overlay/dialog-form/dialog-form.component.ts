@@ -380,9 +380,6 @@ export class DialogFormComponent {
 
     component.rtl = config.rtl ?? this.options.rtl;
     for (const key in config) {
-      if (config[key] == undefined) {
-        continue;
-      }
       if (component[key] instanceof EventEmitter) {
         component[key].pipe(takeUntil(this.destroy$)).subscribe((event) => {
           config[key]({

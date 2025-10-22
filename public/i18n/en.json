@@ -220,7 +220,7 @@
   "preventDuplicates": "Prevent Duplicates",
   "async": "Async",
   "dismissible": "Dismissible",
-  "inputCount": "Input Count",
+  "length": "Length",
   "numbersOnly": "Numbers Only",
   "followConfig": "Follow Config",
   "showRequiredStar": "Show Required Star",

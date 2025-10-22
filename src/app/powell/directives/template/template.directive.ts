@@ -1,14 +1,13 @@
-import {Directive, Input, TemplateRef} from '@angular/core';
+import {Directive, inject, Input, TemplateRef} from '@angular/core';
 
 @Directive({
   selector: '[pwTemplate]',
   standalone: false
 })
 export class TemplateDirective {
-  @Input('pwTemplate') templateName: string = '';
+  public templateRef = inject(TemplateRef);
 
-  constructor(public templateRef: TemplateRef<SafeAny>) {
-  }
+  @Input('pwTemplate') templateName: string = '';
 
   get type() {
     return this.templateName;

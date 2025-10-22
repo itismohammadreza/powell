@@ -22,8 +22,8 @@
 
       @if (!multiple) {
         <div class="file-picker-single-wrapper">
-          <div class="preview">
-            @if (filesToShow.length != 0) {
+          @if (filesToShow.length != 0) {
+            <div class="preview">
               @switch (getFileType(filesToShow[0].display)) {
                 @case ('image') {
                   <div class="image-preview" [style.backgroundImage]="'url('+(filesToShow[0].display)+')'"></div>
@@ -32,8 +32,8 @@
                   <svg data-p-icon="plus" class="file-preview"/>
                 }
               }
-            }
-          </div>
+            </div>
+          }
           <pw-button
             [fluid]="true"
             [disabled]="disabled"

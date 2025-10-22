@@ -122,7 +122,7 @@ export interface DateMeta {
   }
 })
 export class DatepickerBaseComponent extends $BaseInput implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
-  // CHANGES START
+  // CHANGES
   @Input() isJalali: boolean | undefined;
 
   getJalaliMoment(input?: MomentInput, format?: MomentFormatSpecification, language?: string, strict?: boolean) {
@@ -184,6 +184,31 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     }
   }
 
+  // CHANGES
+  // Return a boundary date used for inclusive comparisons. If a boundary
+  // appears to be a date-only (time 00:00:00), treat max boundaries as
+  // end-of-day so users can select times during that day. Works for both
+  // Date and Moment objects.
+  private boundaryForCompare(boundary: Date | Moment | undefined | null, isMax: boolean) {
+    if (!boundary) return boundary;
+    if (this.isJalali) {
+      const m = (boundary as Moment).clone();
+      const h = m.hours();
+      const min = m.minutes();
+      const s = m.seconds();
+      if (isMax && h === 0 && min === 0 && s === 0) {
+        return m.endOf('day');
+      }
+      return m;
+    } else {
+      const d = boundary as Date;
+      if (isMax && d.getHours() === 0 && d.getMinutes() === 0 && d.getSeconds() === 0 && d.getMilliseconds() === 0) {
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59, 59, 999);
+      }
+      return d;
+    }
+  }
+
   getEqualDateMeta(dateMeta: DateMeta) {
     if (this.isJalali && dateMeta.year >= 1300 && dateMeta.year <= 1500) {
       const gregorianDate: Date = this.convertToGregorian(`${dateMeta.year}/${dateMeta.month + 1}/${dateMeta.day}`, 'YYYY/MM/DD').toDate();
@@ -197,7 +222,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     return dateMeta;
   }
 
-  // CHANGES END
+  // CHANGES
 
   @Input() iconDisplay: 'input' | 'button' = 'button';
   @Input() styleClass: string | undefined;
@@ -553,7 +578,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
 
   override ngOnInit() {
     super.ngOnInit();
-    // CHANGES START
+    // CHANGES
     if (this.isJalali) {
       this.config.setTranslation({
         dayNames: ['شنبه', 'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'],
@@ -573,7 +598,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
         dateFormat: 'mm/dd/yy'
       })
     }
-    // CHANGES END
+    // CHANGES
 
     this.attributeSelector = $uuid('pn_id_');
     this.panelId = this.attributeSelector + '_panel';
@@ -600,6 +625,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
   }
 
   override ngOnChanges(changes: any) {
+    // CHANGES
     if (changes.isJalali) {
       this.value = null;
       this.inputFieldValue = null;
@@ -1052,24 +1078,55 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
 
   inputFieldValue: Nullable<string> = null;
 
+  // CHANGES
   formatDateTime(date: Date | Moment) {
-    let formattedValue = this.keepInvalid ? date : null;
     const isDateValid = this.isValidDateForTimeConstraints(date);
 
-    if (this.isValidDate(date)) {
-      if (this.timeOnly) {
-        formattedValue = this.formatTime(date);
-      } else {
-        formattedValue = this.formatDate(date, this.getDateFormat());
-        if (this.showTime) {
-          formattedValue += ' ' + this.formatTime(date);
+    const getFormattedValue = (v) => {
+      let result = this.keepInvalid ? v : null;
+      if (this.isValidDate(v)) {
+        if (this.timeOnly) {
+          result = this.formatTime(v);
+        } else {
+          result = this.formatDate(v, this.getDateFormat());
+          if (this.showTime) {
+            result += ' ' + this.formatTime(v);
+          }
         }
+      } else if (this.dataType === 'string') {
+        result = v;
       }
-    } else if (this.dataType === 'string') {
-      formattedValue = date;
+      return result;
     }
-    formattedValue = isDateValid ? formattedValue : '';
-    return formattedValue;
+
+    if (isDateValid) {
+      return getFormattedValue(date);
+    } else {
+      // If date is invalid due to time constraints, prefer the boundary date
+      // (minDate or maxDate) instead of returning the current time.
+      let boundaryDate: Date | Moment = this.getEqualDateObj();
+
+      try {
+        if (this.minDate) {
+          const isBeforeMin = this.isJalali ? (this.minDate as Moment).isAfter(date) : (this.minDate > date);
+          if (isBeforeMin) {
+            boundaryDate = this.minDate as any;
+            return getFormattedValue(boundaryDate);
+          }
+        }
+
+        if (this.maxDate) {
+          const isAfterMax = this.isJalali ? (this.maxDate as Moment).isBefore(date) : (this.maxDate < date);
+          if (isAfterMax) {
+            boundaryDate = this.maxDate as any;
+            return getFormattedValue(boundaryDate);
+          }
+        }
+      } catch (err) {
+      }
+
+      return getFormattedValue(boundaryDate);
+    }
   }
 
   formatDateMetaToDate(dateMeta: any): Date | Moment {
@@ -1124,7 +1181,11 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
       this.currentSecond = date[this.getEqualProp('getSeconds')]();
     }
 
-    if (this.maxDate && (this.isJalali ? ((this.maxDate as Moment).isBefore(date)) : (this.maxDate < date))) {
+    // CHANGES
+    // Use adjusted maxDate for comparison so date-only maxDates behave as
+    // end-of-day boundaries (allow changing time within that day).
+    const compMaxDate = this.boundaryForCompare(this.maxDate as any, true);
+    if (this.maxDate && (this.isJalali ? ((compMaxDate as Moment).isBefore(date)) : ((compMaxDate as Date) < date))) {
       date = this.maxDate;
       this.setCurrentHourPM(date[this.getEqualProp('getHours')]());
       this.currentMinute = date[this.getEqualProp('getMinutes')]();
@@ -2278,7 +2339,36 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     if (this.isMultipleSelection()) {
       value = this.value[this.value.length - 1];
     }
-    value = value ? this.getEqualDateObj(value[this.getEqualProp('getTime')]()) : this.getEqualDateObj();
+    // CHANGES
+    // Determine the base date for time adjustments. Prefer the currently
+    // selected value, but if there's no value and a boundary (maxDate/minDate)
+    // is provided, use that as the base so time adjustments operate against
+    // the boundary instead of defaulting to "now".
+    let baseSource: Date | Moment | null = value || null;
+    if (!baseSource) {
+      // prefer maxDate when present (so increasing time clamps to it), otherwise minDate
+      baseSource = (this.maxDate as Date | Moment) || (this.minDate as Date | Moment) || null;
+    }
+
+    // CHANGES
+    // When using jalali (Moment), getTime maps to 'unix' which returns seconds.
+    // Moment constructor expects milliseconds when passed a number, so convert
+    // seconds -> milliseconds to avoid dates near 1970 (caused by interpreting
+    // seconds as milliseconds).
+    if (baseSource) {
+      let baseTime: any = null;
+      try {
+        baseTime = baseSource[this.getEqualProp('getTime')]();
+      } catch (err) {
+        baseTime = null;
+      }
+      if (this.isJalali && typeof baseTime === 'number') {
+        baseTime = baseTime * 1000;
+      }
+      value = this.getEqualDateObj(baseTime);
+    } else {
+      value = this.getEqualDateObj();
+    }
 
     if (this.hourFormat == '12') {
       if (this.currentHour === 12) value[this.getEqualProp('setHours')](this.pm ? 12 : 0);
@@ -2289,6 +2379,27 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
 
     value[this.getEqualProp('setMinutes')](this.currentMinute);
     value[this.getEqualProp('setSeconds')](this.currentSecond);
+    // CHANGES
+    // Ensure time changes do not exceed min/max constraints. If they do,
+    // clamp to the corresponding boundary. Use adjusted boundaries so
+    // date-only boundaries act as full-day limits.
+    const compMin = this.boundaryForCompare(this.minDate as any, false);
+    const compMax = this.boundaryForCompare(this.maxDate as any, true);
+
+    if (this.minDate && (this.isJalali ? ((compMin as Moment).isSameOrAfter(value)) : ((compMin as Date) > value))) {
+      value = this.minDate as any;
+      this.setCurrentHourPM(value[this.getEqualProp('getHours')]());
+      this.currentMinute = value[this.getEqualProp('getMinutes')]();
+      this.currentSecond = value[this.getEqualProp('getSeconds')]();
+    }
+
+    if (this.maxDate && (this.isJalali ? ((compMax as Moment).isSameOrBefore(value)) : ((compMax as Date) < value))) {
+      value = this.maxDate as any;
+      this.setCurrentHourPM(value[this.getEqualProp('getHours')]());
+      this.currentMinute = value[this.getEqualProp('getMinutes')]();
+      this.currentSecond = value[this.getEqualProp('getSeconds')]();
+    }
+
     if (this.isRangeSelection()) {
       if (this.value[1]) value = [this.value[0], value];
       else value = [value, null];
@@ -2948,7 +3059,18 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     if (this.keepInvalid) {
       return true; // If we are keeping invalid dates, we don't need to check for time constraints
     }
-    return (!this.minDate || (this.isJalali ? ((this.minDate as Moment).isBefore(selectedDate)) : (selectedDate >= this.minDate))) && (!this.maxDate || (this.isJalali ? ((this.maxDate as Moment).isAfter(selectedDate)) : (selectedDate <= this.maxDate)));
+    // CHANGES
+    // Use adjusted boundaries so date-only boundaries act as full-day limits.
+    const compMin: any = this.boundaryForCompare(this.minDate as any, false);
+    const compMax: any = this.boundaryForCompare(this.maxDate as any, true);
+
+    const validateJalaliMinDate = compMin ? (compMin as Moment).isSameOrBefore(selectedDate) : true;
+    const validateGregorianMinDate = compMin ? selectedDate[this.getEqualProp('getTime')]() >= compMin[this.getEqualProp('getTime')]() : true;
+    const validateMinDate = this.isJalali ? validateJalaliMinDate : validateGregorianMinDate;
+    const validateJalaliMaxDate = compMax ? (compMax as Moment).isSameOrAfter(selectedDate) : true;
+    const validateGregorianMaxDate = compMax ? selectedDate[this.getEqualProp('getTime')]() <= compMax[this.getEqualProp('getTime')]() : true;
+    const validateMaxDate = this.isJalali ? validateJalaliMaxDate : validateGregorianMaxDate;
+    return (!this.minDate || validateMinDate) && (!this.maxDate || validateMaxDate);
   }
 
   onTodayButtonClick(event: any) {

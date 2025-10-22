@@ -158,8 +158,6 @@ pw-button {
   }
 
   .p-button {
-    direction: ltr;
-
     &.p-button-icon-only {
       &.p-button-sm {
         width: 2rem;
@@ -265,6 +263,12 @@ pw-checkbox {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    &.label-side {
+      .field-wrapper {
+        gap: 0.25rem;
+      }
+    }
   }
 
   .checkbox-inner-wrapper {
@@ -289,13 +293,12 @@ pw-checkbox-group {
 
     .field {
       display: inline-flex;
-      gap: 0.25rem;
     }
 
     .option-item {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.25rem;
 
       label {
         margin-bottom: 0;
@@ -303,20 +306,17 @@ pw-checkbox-group {
     }
 
     &.layout-horizontal {
-      .option-item {
-        gap: 0.5rem;
-      }
-
       .field {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.25rem 1.25rem;
       }
     }
 
     &.layout-vertical {
       .field {
         flex-direction: column;
+        gap: 0.25rem;
       }
     }
   }
@@ -334,16 +334,6 @@ pw-color-picker {
 
 pw-datepicker {
   .datepicker-wrapper {
-    .p-datepicker-header {
-      direction: ltr;
-    }
-
-    &:dir(rtl) {
-      .p-datepicker-panel {
-        inset-inline-start: 0 !important;
-      }
-    }
-
     &.is-jalali {
       .p-datepicker-day-view,
       .p-datepicker-month-view,
@@ -455,6 +445,15 @@ pw-datepicker {
         }
       }
     }
+  }
+}
+
+.p-datepicker-panel {
+  .p-datepicker-header,
+  .p-datepicker-hour-picker,
+  .p-datepicker-minute-picker,
+  .p-datepicker-second-picker {
+    direction: ltr;
   }
 }
 
@@ -621,7 +620,6 @@ pw-file-picker2 {
         border-radius: var(--p-form-field-border-radius);
         outline: none;
         transition: all 0.4s;
-        margin-bottom: 0.5rem;
 
         .file-preview {
           width: 100%;
@@ -1378,6 +1376,14 @@ pw-map {
 }
 
 pw-multi-select {
+  .p-multiselect-label {
+    white-space: normal;
+  }
+
+  .p-multiselect-display-chip .p-multiselect-label {
+    flex-wrap: wrap;
+  }
+
   .multi-select-wrapper {
     &.icon-start {
       .p-multiselect-label {
@@ -1578,13 +1584,12 @@ pw-radio {
 
     .field {
       display: inline-flex;
-      gap: 0.25rem;
     }
 
     .option-item {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.25rem;
 
       label {
         margin-bottom: 0;
@@ -1592,20 +1597,17 @@ pw-radio {
     }
 
     &.layout-horizontal {
-      .option-item {
-        gap: 0.5rem;
-      }
-
       .field {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.25rem 1.25rem;
       }
     }
 
     &.layout-vertical {
       .field {
         flex-direction: column;
+        gap: 0.25rem;
       }
     }
   }
@@ -1733,6 +1735,10 @@ pw-table {
           justify-content: center;
           gap: 0.5rem;
         }
+      }
+
+      .p-datatable-frozen-column {
+        z-index: 1;
       }
 
       .action-wrapper, .action-header {
@@ -1962,4 +1968,8 @@ pw-dialog-form {
 
 p-inputgroup.p-inputgroup :is(.p-floatlabel, .p-iftalabel, .p-inputwrapper) {
   width: auto;
+}
+
+p-scrollTop p-button {
+  position: absolute;
 }

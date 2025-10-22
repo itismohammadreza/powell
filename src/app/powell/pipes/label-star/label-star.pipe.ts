@@ -3,7 +3,8 @@ import {AbstractControl, NgControl} from "@angular/forms";
 
 @Pipe({
   name: 'pwLabelStar',
-  standalone: false
+  standalone: false,
+  pure: false
 })
 export class LabelStarPipe implements PipeTransform {
   transform(label: Optional<string>, showRequiredStar: boolean, ngControl: Nullable<NgControl>) {

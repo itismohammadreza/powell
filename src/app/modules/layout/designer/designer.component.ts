@@ -6,7 +6,7 @@ import {ButtonModule} from "@powell/components/button";
 import {globalConfig} from "@core/config";
 import {SelectModule} from "@powell/components/select";
 import {ToggleSwitchModule} from "@powell/components/toggle-switch";
-import {TranslateModule} from "@ngx-translate/core";
+import {TranslatePipe} from "@ngx-translate/core";
 import {lastValueFrom} from "rxjs";
 import {helpers, TranslationService} from "@core/utils";
 
@@ -19,7 +19,7 @@ import {helpers, TranslationService} from "@core/utils";
     FormsModule,
     SelectModule,
     ToggleSwitchModule,
-    TranslateModule,
+    TranslatePipe,
   ],
 })
 export class DesignerComponent implements OnInit {

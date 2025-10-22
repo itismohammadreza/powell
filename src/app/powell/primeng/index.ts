@@ -572,7 +572,8 @@ export {
   StepPanel as $StepPanel,
   StepPanels as $StepPanels,
   Stepper as $Stepper,
-  StepperModule as $StepperModule
+  StepperModule as $StepperModule,
+  StepperSeparator as $StepperSeparator
 } from "primeng/stepper";
 export {Steps as $Steps, StepsModule as $StepsModule} from "primeng/steps";
 export {StyleClass as $StyleClass, StyleClassModule as $StyleClassModule} from "primeng/styleclass";

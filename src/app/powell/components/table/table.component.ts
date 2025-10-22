@@ -133,6 +133,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Input() resizableColumns: boolean = false;
   @Input() columnResizeMode: TableColumnResizeMode = 'fit';
   @Input() reorderableColumns: boolean = false;
+  @Input() loading: boolean = false;
   @Input() loadingIcon: Optional<string>;
   @Input() showLoader: boolean = true;
   @Input() rowHover: boolean = false;
@@ -184,8 +185,6 @@ export class TableComponent implements OnInit, AfterContentInit {
   @ViewChild('dataTable', {static: true}) dataTable!: $Table;
 
   cellTemplates: Record<string, TemplateRef<SafeAny>> = {}
-
-  loading: boolean = false;
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
   activeSortField: Optional<string>;
 

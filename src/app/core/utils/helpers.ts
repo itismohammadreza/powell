@@ -3,6 +3,7 @@ import {AbstractControl, FormArray, FormControl, FormGroup} from "@angular/forms
 export const helpers = {
   startPolling: <T>(apiFn: () => Promise<T>, interval: number, onResult: (result: T) => void, onError?: (err: SafeAny) => void) => {
     let stopped = false;
+    let timeoutId: number;
 
     async function poll() {
       if (stopped) return;
@@ -11,14 +12,16 @@ export const helpers = {
         onResult(result);
       } catch (err) {
         onError?.(err);
-      }
-      if (!stopped) {
-        setTimeout(poll, interval);
+      } finally {
+        if (!stopped) {
+          timeoutId = setTimeout(poll, interval);
+        }
       }
     }
 
     poll();
     return () => {
+      if (timeoutId) clearTimeout(timeoutId);
       stopped = true;
     };
   },
@@ -256,6 +259,8 @@ export const helpers = {
     const successful = document.execCommand('copy');
     document.body.removeChild(textarea);
     return successful;
-  }
+  },
+
+  isAsyncFunction: (fn: Fn) => fn?.constructor?.name === 'AsyncFunction',
 }
 

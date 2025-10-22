@@ -8,6 +8,8 @@ import {globalConfig} from "@core/config";
 import {LoaderService} from "@core/utils";
 import {httpUtils} from '@core/interceptors/http-utils';
 
+const loadingRequestsCounter = new Map<string, number>();
+
 export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>, next: HttpHandlerFn) => {
   const overlayService = inject(OverlayService);
   const loaderService = inject(LoaderService);
@@ -54,7 +56,6 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
 
   const requestsQueue: HttpRequest<SafeAny>[] = [];
   const cachedRequests = new Map<string, SafeAny>();
-  const loadingRequestsCounter = new Map<string, number>();
 
   const clonedReq = request.clone();
   const shouldCatch = httpUtils.getRequestProp(request, undefined, 'catch');

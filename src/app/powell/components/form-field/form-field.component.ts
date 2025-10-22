@@ -1,8 +1,9 @@
 import {
   AfterContentInit,
-  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
+  inject,
   Input,
   QueryList,
   TemplateRef
@@ -11,14 +12,19 @@ import {ElementAdditionTemplate, LabelPosition, Validation} from "@powell/models
 import {TemplateDirective} from "@powell/directives/template";
 import {NgControl} from "@angular/forms";
 import {$uuid} from '@powell/primeng';
+import {DestroyService} from '@powell/utils';
+import {takeUntil} from 'rxjs';
 
 @Component({
   selector: 'pw-form-field',
   standalone: false,
   templateUrl: './form-field.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  providers: [DestroyService]
 })
 export class FormFieldComponent implements AfterContentInit {
+  private cd = inject(ChangeDetectorRef);
+  private destroy = inject(DestroyService);
+
   @Input() ngControl: Nullable<NgControl> = null;
   @Input() validation: Optional<Validation>;
   @Input() hint: Optional<string>;
@@ -45,6 +51,12 @@ export class FormFieldComponent implements AfterContentInit {
 
     if (hasAddon && hasIcon) {
       console.warn('Both icon and addon detected. Priority is with the addon');
+    }
+
+    const control = this.ngControl?.control;
+    if (control) {
+      control.statusChanges.pipe(takeUntil(this.destroy)).subscribe(() => this.cd.markForCheck());
+      control.valueChanges.pipe(takeUntil(this.destroy)).subscribe(() => this.cd.markForCheck());
     }
   }
 

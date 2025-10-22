@@ -464,7 +464,7 @@ export interface DialogFormConfig {
   allowEmpty?: boolean;
   title?: string;
   ///////////////////////////////////////// input-otp /////////////////////////////////////////
-  inputCount?: number;
+  length?: number;
   allowedKeyCodes?: string[];
   numbersOnly?: boolean;
   autoFocusFirst?: boolean;

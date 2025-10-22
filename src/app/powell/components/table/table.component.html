@@ -15,7 +15,7 @@
     [paginatorStyleClass]="paginatorStyleClass"
     [paginatorDropdownAppendTo]="paginatorDropdownAppendTo"
     [paginatorDropdownScrollHeight]="paginatorDropdownScrollHeight"
-    [currentPageReportTemplate]="loading ? '' : currentPageReportTemplate"
+    [currentPageReportTemplate]="currentPageReportTemplate"
     [showCurrentPageReport]="showCurrentPageReport"
     [showJumpToPageDropdown]="showJumpToPageDropdown"
     [showJumpToPageInput]="showJumpToPageInput"
@@ -295,10 +295,10 @@
             <th scope="col" style="width: 3rem">
             </th>
           }
-          @if (actionsConfig && actionsConfig.inSameColumn && rtl) {
+          @if (actionsConfig && actionsConfig.inSameColumn && actionsConfig?.actions?.length && rtl) {
             <th alignFrozen="left" pFrozenColumn [frozen]="frozenActions"></th>
           }
-          @if (actionsConfig && !actionsConfig.inSameColumn && rtl) {
+          @if (actionsConfig && !actionsConfig.inSameColumn && actionsConfig?.actions?.length && rtl) {
             @for (action of actionsConfig.actions; track action) {
               <th alignFrozen="left" pFrozenColumn [frozen]="frozenActions"></th>
             }
@@ -378,10 +378,10 @@
               }
             </th>
           }
-          @if (actionsConfig && actionsConfig.inSameColumn && !rtl) {
+          @if (actionsConfig && actionsConfig.inSameColumn && actionsConfig?.actions?.length && !rtl) {
             <th alignFrozen="right" pFrozenColumn [frozen]="frozenActions"></th>
           }
-          @if (actionsConfig && !actionsConfig.inSameColumn && !rtl) {
+          @if (actionsConfig && !actionsConfig.inSameColumn && actionsConfig?.actions?.length && !rtl) {
             @for (action of actionsConfig.actions; track action) {
               <th alignFrozen="right" pFrozenColumn [frozen]="frozenActions"></th>
             }
@@ -404,7 +404,7 @@
               <svg data-p-icon="bars"/>
             </td>
           }
-          @if (actionsConfig && actionsConfig.inSameColumn && rtl) {
+          @if (actionsConfig && actionsConfig.inSameColumn && actionsConfig?.actions?.length && rtl) {
             <td class="same-column-actions-wrapper" alignFrozen="left" pFrozenColumn [frozen]="frozenActions">
               <div>
                 @for (action of actionsConfig.actions; track action) {
@@ -430,7 +430,7 @@
               </div>
             </td>
           }
-          @if (actionsConfig && !actionsConfig.inSameColumn && rtl) {
+          @if (actionsConfig && !actionsConfig.inSameColumn && actionsConfig?.actions?.length && rtl) {
             @for (action of actionsConfig.actions; track action) {
               <td class="action-wrapper" alignFrozen="left" pFrozenColumn [frozen]="frozenActions">
                 @if (handleActionVisibility(action, item)) {
@@ -478,7 +478,7 @@
               }
             </td>
           }
-          @if (actionsConfig && actionsConfig.inSameColumn && !rtl) {
+          @if (actionsConfig && actionsConfig.inSameColumn && actionsConfig?.actions?.length && !rtl) {
             <td class="same-column-actions-wrapper" alignFrozen="right" pFrozenColumn [frozen]="frozenActions">
               <div>
                 @for (action of actionsConfig.actions; track action) {
@@ -504,7 +504,7 @@
               </div>
             </td>
           }
-          @if (actionsConfig && !actionsConfig.inSameColumn && !rtl) {
+          @if (actionsConfig && !actionsConfig.inSameColumn && actionsConfig?.actions?.length && !rtl) {
             @for (action of actionsConfig.actions; track action) {
               <td class="action-wrapper" alignFrozen="right" pFrozenColumn [frozen]="frozenActions">
                 @if (handleActionVisibility(action, item)) {
