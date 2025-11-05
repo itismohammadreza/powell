@@ -221,7 +221,7 @@
   "preventDuplicates": "جلوگیری از تکرار",
   "async": "ناهمگام",
   "dismissible": "قابل اخراج",
-  "inputCount": "تعداد اینپوت",
+  "length": "تعداد",
   "numbersOnly": "فقط اعداد",
   "followConfig": "تاثیرپذیری از کانفیگ گلوبال",
   "showRequiredStar": "نمایش ستاره ضروری",
