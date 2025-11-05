@@ -261,6 +261,28 @@ export const helpers = {
     return successful;
   },
 
-  isAsyncFunction: (fn: Fn) => fn?.constructor?.name === 'AsyncFunction',
+  toggleFullScreen: (elem: any, activate: boolean) => {
+    if (activate) {
+      let methodToBeInvoked =
+        elem.requestFullscreen ||
+        elem["webkitRequestFullScreen"] ||
+        elem["mozRequestFullscreen"] ||
+        elem["msRequestFullscreen"];
+      if (methodToBeInvoked) methodToBeInvoked.call(elem);
+    } else {
+      const doc: any = document;
+      if (doc.fullscreenElement) {
+        if (doc.exitFullscreen) {
+          doc.exitFullscreen();
+        } else if (doc.mozCancelFullScreen) {
+          doc.mozCancelFullScreen();
+        } else if (doc.webkitExitFullscreen) {
+          doc.webkitExitFullscreen();
+        } else if (doc.msExitFullscreen) {
+          doc.msExitFullscreen();
+        }
+      }
+    }
+  }
 }
 
