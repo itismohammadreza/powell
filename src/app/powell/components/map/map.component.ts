@@ -12,7 +12,6 @@ import {
   OnInit,
   Output,
   QueryList,
-  SimpleChanges,
   TemplateRef,
 } from '@angular/core';
 import {
@@ -168,6 +167,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Output() onMapReady = new EventEmitter<Map>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
+  pendingLatLngs: LatLngLiteral[] | null = null;
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
   ngControl: Nullable<NgControl> = null;
   map!: Map;
@@ -213,25 +213,43 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     if (!this.map) {
       return;
     }
     this.handleDisabledState();
   }
 
-  writeValue(value: SafeAny) {
-    this.value = value;
-    if (value) {
-      if (Array.isArray(value)) {
-        value.forEach(latlng => {
-          this.layers.push(this.getMarkerLayer(latlng));
-        })
-      } else {
-        this.layers = [this.getMarkerLayer(value)];
-      }
+  writeValue(value: LatLngLiteral | LatLngLiteral[]) {
+    if (this.map && this.layers.length) {
+      this.layers.forEach(l => {
+        try {
+          this.map.removeLayer(l);
+        } catch {
+        }
+      });
     }
-    this.cd.markForCheck();
+    this.layers = [];
+
+    if (!value) {
+      this.pendingLatLngs = null;
+      this.cd.markForCheck();
+      return;
+    }
+    const latlngs: LatLngLiteral[] = Array.isArray(value) ? value : [value];
+
+    if (!this.map) {
+      this.pendingLatLngs = latlngs.map(l => ({lat: l.lat, lng: l.lng}));
+      this.cd.markForCheck();
+      return;
+    }
+
+    this.pendingLatLngs = null;
+    latlngs.forEach(latlng => {
+      const m = this.getMarkerLayer(latlng);
+      this.layers.push(m);
+      m.addTo(this.map);
+    });
   }
 
   registerOnChange(fn: Fn) {
@@ -257,9 +275,27 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
 
   _onMapReady(event: Map) {
     this.map = event;
+    this.onMapReady.emit(this.map);
     setTimeout(() => {
       this.map.invalidateSize();
-    }, 300)
+    }, 300);
+
+    if (this.layers && this.layers.length) {
+      this.layers.forEach(l => {
+        if (!this.map.hasLayer(l)) {
+          l.addTo(this.map);
+        }
+      });
+    }
+    if (this.pendingLatLngs && this.pendingLatLngs.length) {
+      this.pendingLatLngs.forEach(latlng => {
+        const m = this.getMarkerLayer(latlng);
+        this.layers.push(m);
+        m.addTo(this.map);
+      });
+      this.pendingLatLngs = null;
+    }
+
     this.handleDisabledState();
   }
 
@@ -304,11 +340,18 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
       const {lat, lng} = event.latlng;
       selectedLatLngs.push({lat, lng})
       if (this.multiple) {
-        this.layers.push(this.getMarkerLayer({lat, lng}));
+        const newMarker = this.getMarkerLayer({lat, lng});
+        this.layers.push(newMarker);
+        if (this.map) newMarker.addTo(this.map);
         this.value = selectedLatLngs;
         this.onModelChange(selectedLatLngs);
       } else {
-        this.layers = [this.getMarkerLayer({lat, lng})];
+        if (this.map && this.layers.length) {
+          this.layers.forEach(l => this.map.removeLayer(l));
+        }
+        const newMarker = this.getMarkerLayer({lat, lng});
+        this.layers = [newMarker];
+        if (this.map) newMarker.addTo(this.map);
         this.value = selectedLatLngs[0];
         this.onModelChange(selectedLatLngs[0]);
       }
@@ -341,6 +384,14 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   }
 
   clearMap() {
+    if (this.map && this.layers && this.layers.length) {
+      this.layers.forEach(l => {
+        try {
+          this.map.removeLayer(l);
+        } catch {
+        }
+      });
+    }
     this.layers = [];
     this.value = undefined;
     this.onModelChange(null);
