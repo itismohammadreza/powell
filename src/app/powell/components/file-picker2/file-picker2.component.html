@@ -37,7 +37,13 @@
 
         @for (item of filesToShow; track item; let i = $index) {
           <div class="file-item">
-            <div class="preview" [style.width.px]="previewWidth" [style.height.px]="previewWidth">
+            <div class="preview"
+                 [style.width.px]="previewWidth"
+                 [style.height.px]="previewWidth"
+                 [style.minWidth.px]="previewWidth"
+                 [style.minHeight.px]="previewWidth"
+                 [style.maxWidth.px]="previewWidth"
+                 [style.maxHeight.px]="previewWidth">
               @switch (getFileType(item.display)) {
                 @case ('image') {
                   <img [src]=" item.display" [alt]="item.name">

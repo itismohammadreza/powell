@@ -586,6 +586,10 @@ pw-file-picker2 {
               display: block;
             }
 
+            .file-name {
+              word-break: break-all;
+            }
+
             .file-error {
               color: var(--p-red-600);
             }
