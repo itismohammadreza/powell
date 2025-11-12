@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import {FilePicker2Component} from "@powell/components/file-picker2";
 import {LabelStarModule} from "@powell/pipes/label-star";
 import {ButtonModule} from "@powell/components/button";
-import {$PlusIcon, $TrashIcon, $UploadIcon} from "@powell/primeng";
+import {$TimesIcon,$UploadIcon} from "@powell/primeng";
 import {FormFieldModule} from "@powell/components/form-field";
 
 @NgModule({
@@ -11,9 +11,8 @@ import {FormFieldModule} from "@powell/components/form-field";
   imports: [
     ButtonModule,
     LabelStarModule,
+    $TimesIcon,
     $UploadIcon,
-    $PlusIcon,
-    $TrashIcon,
     FormFieldModule,
   ],
 })

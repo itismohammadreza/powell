@@ -148,17 +148,29 @@ export const helpers = {
   },
 
   getFileExtension: (file: File) => {
-    return '.' + file.name.split('.').pop();
+    return '.' + file.name.split('.').pop()?.toLowerCase();
   },
 
   isFileTypeValid: (file: File, acceptList: string, separator: string = ',') => {
-    let acceptableTypes = acceptList.split(separator).map((type) => type.trim());
-    for (let type of acceptableTypes) {
-      const checkTypeClass = helpers.getTypeClass(file.type) === helpers.getTypeClass(type);
-      const checkExtension = file.type == type || helpers.getFileExtension(file).toLowerCase() === type.toLowerCase();
-      let acceptable = helpers.isWildcard(type) ? checkTypeClass : checkExtension;
-      if (acceptable) {
-        return true;
+    if (!acceptList) return true;
+    const fileType = file.type;
+    const fileExt = helpers.getFileExtension(file);
+    const acceptableTypes = acceptList.split(separator).map(t => t.trim().toLowerCase());
+    for (const type of acceptableTypes) {
+      if (type.endsWith('/*')) {
+        const baseType = type.split('/')[0];
+        if (fileType.startsWith(baseType + '/')) {
+          return true;
+        }
+      } else if (type.includes('/')) {
+        if (fileType === type) {
+          return true;
+        }
+      } else {
+        const normalized = type.startsWith('.') ? type : '.' + type;
+        if (fileExt === normalized) {
+          return true;
+        }
       }
     }
     return false;

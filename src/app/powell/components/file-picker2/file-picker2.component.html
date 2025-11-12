@@ -11,84 +11,64 @@
     [readonly]="readonly"
     [fluid]="fluid">
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
-      <input
-        #inputFile
-        type="file"
-        onclick="this.value = ''"
-        [accept]="accept"
-        [attr.id]="id"
-        [disabled]="disabled"
-        (change)="_onSelect($event)"/>
+      <div class="picker" [class.invalid]="isInvalid">
+        <input
+          #inputFile
+          type="file"
+          onclick="this.value = ''"
+          [accept]="accept"
+          [attr.id]="id"
+          [disabled]="disabled || readonly || (fileLimit && filesToEmit.length == fileLimit)"
+          (change)="_onSelect($event)"/>
 
-      @if (!multiple) {
-        <div class="file-picker-single-wrapper">
-          @if (filesToShow.length != 0) {
-            <div class="preview">
-              @switch (getFileType(filesToShow[0].display)) {
-                @case ('image') {
-                  <div class="image-preview" [style.backgroundImage]="'url('+(filesToShow[0].display)+')'"></div>
-                }
-                @case ('file') {
-                  <svg data-p-icon="plus" class="file-preview"/>
-                }
-              }
-            </div>
-          }
-          <pw-button
-            [fluid]="true"
-            [disabled]="disabled"
-            (onClick)="inputFile.click()"
-            [buttonProps]="chooseButtonProps"
-            [label]="chooseLabel">
-          </pw-button>
-          @if (filesToShow.length != 0) {
-            <pw-button severity="danger" size="small" (onClick)="onSingleDelete()">
-              <ng-template pwTemplate="icon">
-                <svg data-p-icon="trash"/>
-              </ng-template>
-            </pw-button>
-          }
-        </div>
-      }
-      @if (multiple) {
-        <div class="file-picker-multiple-wrapper">
-          @if (!fileLimit || (!readonly && (fileLimit && filesToEmit.length < fileLimit))) {
-            <div class="picker" (click)="inputFile.click()">
-              <svg data-p-icon="plus"/>
-            </div>
-          }
-          @for (item of filesToShow; track item; let i = $index) {
-            <div class="preview">
+        <pw-button
+          appearance="text"
+          [fluid]="true"
+          [disabled]="disabled || readonly || (fileLimit && filesToEmit.length == fileLimit)"
+          (onClick)="inputFile.click()"
+          [buttonProps]="buttonProps"
+          [label]="buttonLabel"/>
+
+        @if (!filesToShow.length) {
+          <div class="empty-placeholder">
+            <p>{{ emptyMessage }}</p>
+          </div>
+        }
+
+        @for (item of filesToShow; track item; let i = $index) {
+          <div class="file-item">
+            <div class="preview" [style.width.px]="previewWidth" [style.height.px]="previewWidth">
               @switch (getFileType(item.display)) {
                 @case ('image') {
-                  <div [style.backgroundImage]="'url(' + item.display + ')'" class="image-preview"></div>
+                  <img [src]=" item.display" [alt]="item.name">
                 }
                 @case ('file') {
-                  <div class="file-preview">
-                    <svg data-p-icon="upload"/>
-                  </div>
+                  <svg data-p-icon="upload"/>
                 }
               }
-              <div class="file-name">{{ item.name }}</div>
-              @if (!readonly) {
-                <pw-button severity="danger" size="small" (onClick)="onMultipleDelete($event, i)">
-                  <ng-template pwTemplate="icon">
-                    <svg data-p-icon="trash"/>
-                  </ng-template>
-                </pw-button>
+            </div>
+            <div class="info">
+              <p class="file-name">{{ item.name || 'Unknown file' }}</p>
+              <small class="file-size">{{ formatSize(item.size) || '-' }}</small>
+              @if (item.invalidTypeError) {
+                <small class="file-error">{{ item.invalidTypeError }}</small>
+              }
+              @if (item.invalidSizeError) {
+                <small class="file-error">{{ item.invalidSizeError }}</small>
               }
             </div>
-          }
-        </div>
-      }
+            <pw-button
+              severity="danger"
+              [rounded]="true"
+              appearance="text"
+              (onClick)="onFileDelete($event, i)">
+              <ng-template pwTemplate="icon">
+                <svg data-p-icon="times"/>
+              </ng-template>
+            </pw-button>
+          </div>
+        }
+      </div>
     </ng-template>
   </pw-form-field>
-
-  <!-- show only if no validation and ngControl provided -->
-  @if (invalidFileSize) {
-    <small>{{ invalidFileSizeMessage }}</small>
-  }
-  @if (invalidFileType) {
-    <small>{{ invalidFileTypeMessage }}</small>
-  }
 </div>

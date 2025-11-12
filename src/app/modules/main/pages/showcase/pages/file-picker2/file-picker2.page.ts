@@ -25,7 +25,6 @@ export class FilePicker2Page extends PreviewBase {
     {field: 'followConfig', value: this.config.followConfig},
     {field: 'disabled', value: false},
     {field: 'readonly', value: false},
-    {field: 'multiple', value: false},
     {field: 'accept', value: ''},
     {field: 'maxFileSize', value: 10000000000},
     {field: 'fileLimit', value: 20000},
