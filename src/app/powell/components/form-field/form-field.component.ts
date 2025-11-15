@@ -63,7 +63,7 @@ export class FormFieldComponent implements AfterContentInit {
   get isInvalid() {
     if (this.ngControl) {
       const control = this.ngControl.control!;
-      return (!this.disabled && !this.readonly && (control.touched || control.dirty) && control.invalid);
+      return !this.disabled && !this.readonly && ((control.touched || control.dirty) && control.invalid);
     }
     return false
   }
