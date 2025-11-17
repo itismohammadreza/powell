@@ -28,6 +28,7 @@ import {
   Map,
   MapOptions,
   marker,
+  MarkerOptions,
   PanOptions,
   tileLayer,
   ZoomOptions,
@@ -44,7 +45,7 @@ import {
   NgControl
 } from "@angular/forms";
 import {takeUntil} from "rxjs";
-import {FixLabelPosition, Validation} from "@powell/models";
+import {FixLabelPosition, MAP_MARKER_EVENTS, MapMarker, MapMarkerEvent, Validation} from "@powell/models";
 import {DestroyService} from "@powell/utils";
 import {$uuid} from "@powell/primeng";
 import {ConfigService} from "@powell/api";
@@ -69,7 +70,15 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   private configService = inject(ConfigService);
   private destroy$ = inject(DestroyService);
 
-  @Input() value: Optional<LatLngLiteral | LatLngLiteral[]>;
+  @Input('value') set setValue(v: MapMarker | MapMarker[]) {
+    const markers = Array.isArray(v) ? v : [v];
+    if (!this.map) {
+      this.pendingLatLngs = markers;
+    } else {
+      this.addMarkers(markers);
+    }
+  };
+
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
   @Input() hint: Optional<string>;
@@ -86,6 +95,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Input() clearIcon: Optional<string>;
   @Input() selectionLimit: Optional<number>;
   @Input() id: string = $uuid();
+  @Input() markerOptions: (m: MapMarker) => MarkerOptions;
   // native properties
   @Input() zoom: number = 10;
   @Input() center: LatLng = latLng(35.68419775656676, 51.38983726501465);
@@ -149,7 +159,6 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   };
   @Output() zoomChange = new EventEmitter<number>();
   @Output() centerChange = new EventEmitter<LatLng>();
-  @Output() onMapMarkerClick = new EventEmitter<LeafletMouseEvent>();
   @Output() onMapClick = new EventEmitter<LeafletMouseEvent>();
   @Output() onMapDoubleClick = new EventEmitter<LeafletMouseEvent>();
   @Output() onMapMouseDown = new EventEmitter<LeafletMouseEvent>();
@@ -165,9 +174,11 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Output() onMapZoomEnd = new EventEmitter<LeafletEvent>();
   @Output() onClear = new EventEmitter<void>();
   @Output() onMapReady = new EventEmitter<Map>();
+  @Output() onMapMarkerClick = new EventEmitter<{event: LeafletMouseEvent; marker: MapMarker;}>();
+  @Output() markerEvents = new EventEmitter<MapMarkerEvent>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
-  pendingLatLngs: LatLngLiteral[] | null = null;
+  pendingLatLngs: LatLngLiteral[] = null;
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
   ngControl: Nullable<NgControl> = null;
   map!: Map;
@@ -220,14 +231,9 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     this.handleDisabledState();
   }
 
-  writeValue(value: LatLngLiteral | LatLngLiteral[]) {
+  writeValue(value: MapMarker | MapMarker[]) {
     if (this.map && this.layers.length) {
-      this.layers.forEach(l => {
-        try {
-          this.map.removeLayer(l);
-        } catch {
-        }
-      });
+      this.layers.forEach(l => this.map.removeLayer(l));
     }
     this.layers = [];
 
@@ -236,20 +242,14 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
       this.cd.markForCheck();
       return;
     }
-    const latlngs: LatLngLiteral[] = Array.isArray(value) ? value : [value];
-
+    const markers = Array.isArray(value) ? value : [value];
     if (!this.map) {
-      this.pendingLatLngs = latlngs.map(l => ({lat: l.lat, lng: l.lng}));
+      this.pendingLatLngs = [...markers];
       this.cd.markForCheck();
       return;
     }
-
+    this.addMarkers(markers);
     this.pendingLatLngs = null;
-    latlngs.forEach(latlng => {
-      const m = this.getMarkerLayer(latlng);
-      this.layers.push(m);
-      m.addTo(this.map);
-    });
   }
 
   registerOnChange(fn: Fn) {
@@ -273,6 +273,14 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     (this[key] as EventEmitter<SafeAny>).emit(event);
   }
 
+  addMarkers(markers: MapMarker[]) {
+    markers.forEach(latlng => {
+      const m = this.createMarker(latlng);
+      this.layers.push(m);
+      m.addTo(this.map);
+    });
+  }
+
   _onMapReady(event: Map) {
     this.map = event;
     this.onMapReady.emit(this.map);
@@ -287,12 +295,9 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
         }
       });
     }
+
     if (this.pendingLatLngs && this.pendingLatLngs.length) {
-      this.pendingLatLngs.forEach(latlng => {
-        const m = this.getMarkerLayer(latlng);
-        this.layers.push(m);
-        m.addTo(this.map);
-      });
+      this.addMarkers(this.pendingLatLngs);
       this.pendingLatLngs = null;
     }
 
@@ -339,49 +344,55 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
         return
       }
     }
-    const {lat, lng} = event.latlng;
-    selectedLatLngs.push({lat, lng})
+    selectedLatLngs.push(event.latlng)
     if (this.multiple) {
-      const newMarker = this.getMarkerLayer({lat, lng});
+      const newMarker = this.createMarker(event.latlng);
       this.layers.push(newMarker);
       if (this.map) newMarker.addTo(this.map);
-      this.value = selectedLatLngs;
       this.onModelChange(selectedLatLngs);
     } else {
       if (this.map && this.layers.length) {
         this.layers.forEach(l => this.map.removeLayer(l));
       }
-      const newMarker = this.getMarkerLayer({lat, lng});
+      const newMarker = this.createMarker(event.latlng);
       this.layers = [newMarker];
       if (this.map) newMarker.addTo(this.map);
-      this.value = selectedLatLngs[0];
       this.onModelChange(selectedLatLngs[0]);
     }
     this.cd.detectChanges();
     this.onMapClick.emit(event);
   }
 
-  getMarkerLayer(latLng: LatLngLiteral) {
-    return marker(latLng, {
+  createMarker(markerConfig: MapMarker) {
+    const mapMarker = marker(markerConfig, {
       icon: icon({
         iconSize: [25, 41],
         iconAnchor: [13, 41],
         iconUrl: 'assets/marker-icon.png',
         shadowUrl: 'assets/marker-shadow.png',
       }),
-    }).on('click', (event: LeafletMouseEvent) => {
-      this.onMapMarkerClick.emit(event);
-      if (this.clearMarkerOnClick) {
-        const {latlng} = event;
-        const idx = this.layers.findIndex(({_latlng: {lat, lng}}: SafeAny) => lat == latlng.lat && lng == latlng.lng);
-        if (idx != -1) {
-          this.layers.splice(idx, 1);
-          this.cd.detectChanges()
-        }
-        const selectedLatLngs = this.layers.map((l: SafeAny) => l._latlng);
-        this.onModelChange(this.multiple ? selectedLatLngs : selectedLatLngs[0])
-      }
+      ...(this.markerOptions?.(markerConfig) || {}),
     });
+
+    MAP_MARKER_EVENTS.forEach((eventType) => {
+      mapMarker.on(eventType, (event: LeafletMouseEvent) => {
+        this.markerEvents.emit({marker: markerConfig, type: eventType, event});
+        if (eventType === 'click' && this.clearMarkerOnClick) {
+          this.removeMarker(event.latlng);
+        }
+      });
+    });
+    return mapMarker;
+  }
+
+  removeMarker(latlng: LatLng) {
+    const idx = this.layers.findIndex(({_latlng: {lat, lng}}: SafeAny) => lat == latlng.lat && lng == latlng.lng);
+    if (idx != -1) {
+      this.layers.splice(idx, 1);
+      this.cd.detectChanges()
+    }
+    const selectedLatLngs = this.layers.map((l: SafeAny) => l._latlng);
+    this.onModelChange(this.multiple ? selectedLatLngs : selectedLatLngs[0])
   }
 
   clearMap() {
@@ -394,7 +405,6 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
       });
     }
     this.layers = [];
-    this.value = undefined;
     this.onModelChange(null);
     this.onClear.emit()
   }

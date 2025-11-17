@@ -1,3 +1,5 @@
+import {LatLngLiteral, LeafletMouseEvent} from 'leaflet';
+
 export type ElementAdditionTemplate = 'element' | 'addonStart' | 'addonEnd' | 'iconStart' | 'iconEnd' | 'label';
 export type FilePickerMode = 'basic' | 'advanced';
 export type FilePickerMethod = 'post' | 'put';
@@ -51,6 +53,20 @@ export type ValidationType =
   | 'pattern';
 
 export type InputMode = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
+
+export const MAP_MARKER_EVENTS = ['click', 'dblclick', 'mousedown', 'mouseup', 'mouseover', 'mouseout', 'mousemove', 'contextmenu', 'preclick'] as const;
+
+export type MapMarkerEventType = typeof MAP_MARKER_EVENTS[number];
+
+export interface MapMarkerEvent {
+  marker: MapMarker;
+  type: MapMarkerEventType;
+  event: LeafletMouseEvent;
+}
+
+export interface MapMarker<T = SafeAny> extends LatLngLiteral {
+  data?: T;
+}
 
 export type InputType =
   | 'button'
