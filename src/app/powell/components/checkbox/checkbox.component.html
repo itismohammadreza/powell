@@ -15,7 +15,7 @@
           [(ngModel)]="value"
           [invalid]="isInvalid"
           [name]="name"
-          [disabled]="disabled"
+          [disabled]="disabled || loading"
           [binary]="binary"
           [ariaLabelledBy]="ariaLabelledBy"
           [ariaLabel]="ariaLabel"

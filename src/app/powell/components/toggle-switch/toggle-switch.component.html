@@ -15,7 +15,7 @@
           [(ngModel)]="value"
           [invalid]="isInvalid"
           [required]="required"
-          [disabled]="disabled"
+          [disabled]="disabled || loading"
           [name]="name"
           [tabindex]="tabindex"
           [inputId]="inputId"
