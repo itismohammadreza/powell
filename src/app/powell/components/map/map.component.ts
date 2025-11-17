@@ -310,16 +310,16 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   }
 
   handleDisabledState() {
-    if (this.disabled) {
-      this.readonly = true;
-      this.map.dragging.disable();
+    if (this.disabled || this.readonly) {
       this.map.touchZoom.disable();
       this.map.doubleClickZoom.disable();
-      this.map.scrollWheelZoom.disable();
       this.map.boxZoom.disable();
       this.map.keyboard.disable();
+      if (this.disabled) {
+        this.map.dragging.disable();
+        this.map.scrollWheelZoom.disable();
+      }
     } else {
-      this.readonly = false;
       this.map.dragging.enable();
       this.map.touchZoom.enable();
       this.map.doubleClickZoom.enable();
@@ -330,33 +330,34 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   }
 
   _onMapClick(event: LeafletMouseEvent) {
-    if (!this.readonly && !this.disabled) {
-      const selectedLatLngs = this.layers.map((l: SafeAny) => l._latlng);
-      if (this.multiple) {
-        if (selectedLatLngs.length == this.selectionLimit) {
-          return
-        }
-      }
-      const {lat, lng} = event.latlng;
-      selectedLatLngs.push({lat, lng})
-      if (this.multiple) {
-        const newMarker = this.getMarkerLayer({lat, lng});
-        this.layers.push(newMarker);
-        if (this.map) newMarker.addTo(this.map);
-        this.value = selectedLatLngs;
-        this.onModelChange(selectedLatLngs);
-      } else {
-        if (this.map && this.layers.length) {
-          this.layers.forEach(l => this.map.removeLayer(l));
-        }
-        const newMarker = this.getMarkerLayer({lat, lng});
-        this.layers = [newMarker];
-        if (this.map) newMarker.addTo(this.map);
-        this.value = selectedLatLngs[0];
-        this.onModelChange(selectedLatLngs[0]);
-      }
-      this.cd.detectChanges();
+    if (this.readonly || this.disabled) {
+      return;
     }
+    const selectedLatLngs = this.layers.map((l: SafeAny) => l._latlng);
+    if (this.multiple) {
+      if (selectedLatLngs.length == this.selectionLimit) {
+        return
+      }
+    }
+    const {lat, lng} = event.latlng;
+    selectedLatLngs.push({lat, lng})
+    if (this.multiple) {
+      const newMarker = this.getMarkerLayer({lat, lng});
+      this.layers.push(newMarker);
+      if (this.map) newMarker.addTo(this.map);
+      this.value = selectedLatLngs;
+      this.onModelChange(selectedLatLngs);
+    } else {
+      if (this.map && this.layers.length) {
+        this.layers.forEach(l => this.map.removeLayer(l));
+      }
+      const newMarker = this.getMarkerLayer({lat, lng});
+      this.layers = [newMarker];
+      if (this.map) newMarker.addTo(this.map);
+      this.value = selectedLatLngs[0];
+      this.onModelChange(selectedLatLngs[0]);
+    }
+    this.cd.detectChanges();
     this.onMapClick.emit(event);
   }
 
