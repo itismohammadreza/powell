@@ -27,6 +27,7 @@ import {
   LeafletMouseEvent,
   Map,
   MapOptions,
+  Marker,
   marker,
   MarkerOptions,
   PanOptions,
@@ -95,7 +96,8 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Input() clearIcon: Optional<string>;
   @Input() selectionLimit: Optional<number>;
   @Input() id: string = $uuid();
-  @Input() markerOptions: (m: MapMarker) => MarkerOptions;
+  @Input() markerFactory: (m: MapMarker) => Marker;
+  @Input() markerOptionsFactory: (m: MapMarker) => MarkerOptions;
   // native properties
   @Input() zoom: number = 10;
   @Input() center: LatLng = latLng(35.68419775656676, 51.38983726501465);
@@ -364,15 +366,16 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   }
 
   createMarker(markerConfig: MapMarker) {
-    const mapMarker = marker(markerConfig, {
+    const defaultMarker = marker(markerConfig, {
       icon: icon({
         iconSize: [25, 41],
         iconAnchor: [13, 41],
         iconUrl: 'assets/marker-icon.png',
         shadowUrl: 'assets/marker-shadow.png',
       }),
-      ...(this.markerOptions?.(markerConfig) || {}),
+      ...(this.markerOptionsFactory?.(markerConfig) || {}),
     });
+    const mapMarker = this.markerFactory ? this.markerFactory(markerConfig) : defaultMarker;
 
     MAP_MARKER_EVENTS.forEach((eventType) => {
       mapMarker.on(eventType, (event: LeafletMouseEvent) => {
