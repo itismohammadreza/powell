@@ -32,8 +32,7 @@
     [rows]="10"
     [showCurrentPageReport]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [rowsPerPageOptions]="[5,10,50]">
-  </pw-table>
+    [rowsPerPageOptions]="[5,10,50]"/>
   <hr class="my-4">
   <pw-table
     [items]="lazyCustomers"
@@ -57,6 +56,5 @@
     [globalFilterFields]="['name','country.name', 'company', 'representative.name']"
     (onLazyLoad)="loadCustomers($event)"
     (selectionChange)="onSelectionChange($event)"
-    (selectAllChange)="onSelectAllChange($event)">
-  </pw-table>
+    (selectAllChange)="onSelectAllChange($event)"/>
 </app-preview>

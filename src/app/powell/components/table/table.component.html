@@ -169,15 +169,13 @@
                           labelPosition="side"
                           [fluid]="true"
                           [value]="value"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </pw-input-text>
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
                       }
                       @case ('numeric') {
                         <pw-input-number
                           labelPosition="side"
                           [fluid]="true"
-                          (onInput)="onChangeFilterValue($event,filterCallback,col)">
-                        </pw-input-number>
+                          (onInput)="onChangeFilterValue($event,filterCallback,col)"/>
                       }
                       @case ('multi-select') {
                         <pw-multi-select
@@ -188,8 +186,7 @@
                           [optionLabel]="filter.optionLabel"
                           [optionValue]="filter.optionValue"
                           [placeholder]="filter.placeholder"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </pw-multi-select>
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
                       }
                       @case ('select') {
                         <pw-select
@@ -200,8 +197,7 @@
                           [optionLabel]="filter.optionLabel"
                           [optionValue]="filter.optionValue"
                           [placeholder]="filter.placeholder"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </pw-select>
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
                       }
                       @case ('slider') {
                         <pw-slider
@@ -209,24 +205,21 @@
                           [min]="filter.min"
                           [max]="filter.max"
                           [range]="filter.range"
-                          (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
-                        </pw-slider>
+                          (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)"/>
                         <div dir="ltr">{{ filter.sliderValue[0] }}- {{ filter.sliderValue[1] }}
                         </div>
                       }
                       @case ('boolean') {
                         <pw-checkbox
                           [ngModel]="value == 'true'"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </pw-checkbox>
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
                       }
                       @case ('datepicker') {
                         <pw-datepicker
                           labelPosition="side"
                           [fluid]="true"
                           [dateFormat]="filter.dateFormat"
-                          (onSelect)="onChangeFilterValue($event,filterCallback,col)">
-                        </pw-datepicker>
+                          (onSelect)="onChangeFilterValue($event,filterCallback,col)"/>
                       }
                     }
                   </ng-template>
@@ -321,13 +314,10 @@
                       @case ('text') {
                         <pw-input-text
                           [value]="value"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </pw-input-text>
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
                       }
                       @case ('numeric') {
-                        <pw-input-number
-                          (onInput)="onChangeFilterValue($event,filterCallback,col)">
-                        </pw-input-number>
+                        <pw-input-number (onInput)="onChangeFilterValue($event,filterCallback,col)"/>
                       }
                       @case ('multi-select') {
                         <pw-multi-select
@@ -336,8 +326,7 @@
                           [optionLabel]="filter.optionLabel"
                           [optionValue]="filter.optionValue"
                           [placeholder]="filter.placeholder"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </pw-multi-select>
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
                       }
                       @case ('select') {
                         <pw-select
@@ -346,8 +335,7 @@
                           [optionLabel]="filter.optionLabel"
                           [optionValue]="filter.optionValue"
                           [placeholder]="filter.placeholder"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </pw-select>
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
                       }
                       @case ('slider') {
                         <pw-slider
@@ -355,22 +343,19 @@
                           [min]="filter.min"
                           [max]="filter.max"
                           [range]="filter.range"
-                          (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
-                        </pw-slider>
+                          (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)"/>
                         <div class="text-center mt-3" dir="ltr">{{ filter.sliderValue[0] }}- {{ filter.sliderValue[1] }}
                         </div>
                       }
                       @case ('boolean') {
                         <pw-checkbox
                           [ngModel]="value == 'true'"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)">
-                        </pw-checkbox>
+                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
                       }
                       @case ('datepicker') {
                         <pw-datepicker
                           [dateFormat]="filter.dateFormat"
-                          (onSelect)="onChangeFilterValue($event,filterCallback,col)">
-                        </pw-datepicker>
+                          (onSelect)="onChangeFilterValue($event,filterCallback,col)"/>
                       }
                     }
                   </ng-template>
@@ -423,8 +408,7 @@
                       [pTooltip]="action.tooltip"
                       [tooltipPosition]="action.tooltipPosition ?? 'top'"
                       (onClick)="action.onClick?.(item,index,$event)"
-                      (onClickAsync)="action.onClickAsync?.(item,index,$event)">
-                    </pw-button>
+                      (onClickAsync)="action.onClickAsync?.(item,index,$event)"/>
                   }
                 }
               </div>
@@ -448,8 +432,7 @@
                     [pTooltip]="action.tooltip"
                     [tooltipPosition]="action.tooltipPosition ?? 'top'"
                     (onClick)="action.onClick?.(item,index,$event)"
-                    (onClickAsync)="action.onClickAsync?.(item,index,$event)">
-                  </pw-button>
+                    (onClickAsync)="action.onClickAsync?.(item,index,$event)"/>
                 }
               </td>
             }
@@ -497,8 +480,7 @@
                       [pTooltip]="action.tooltip"
                       [tooltipPosition]="action.tooltipPosition ?? 'top'"
                       (onClick)="action.onClick?.(item,index,$event)"
-                      (onClickAsync)="action.onClickAsync?.(item,index,$event)">
-                    </pw-button>
+                      (onClickAsync)="action.onClickAsync?.(item,index,$event)"/>
                   }
                 }
               </div>
@@ -522,8 +504,7 @@
                     [pTooltip]="action.tooltip"
                     [tooltipPosition]="action.tooltipPosition ?? 'top'"
                     (onClick)="action.onClick?.(item,index,$event)"
-                    (onClickAsync)="action.onClickAsync?.(item,index,$event)">
-                  </pw-button>
+                    (onClickAsync)="action.onClickAsync?.(item,index,$event)"/>
                 }
               </td>
             }
@@ -543,8 +524,7 @@
               <pw-input-text
                 labelPosition="side"
                 [placeholder]="globalFilterPlaceholder"
-                (onKeyDown)="onGlobalFilterChange($event)">
-              </pw-input-text>
+                (onKeyDown)="onGlobalFilterChange($event)"/>
             }
           </div>
         }
