@@ -1148,6 +1148,17 @@ pw-input-text {
         }
       }
     }
+
+    &.clearable {
+      &.addon-end {
+        .label-side,
+        .label-top {
+          .clear-icon {
+            inset-inline-end: calc(var(--p-form-field-padding-x) + var(--p-inputgroup-addon-min-width));
+          }
+        }
+      }
+    }
   }
 }
 
