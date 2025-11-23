@@ -1,5 +1,7 @@
 @use "tailwindcss";
 
+@custom-variant dark (&:where(.pw-dark, .pw-dark *));
+
 @theme inline {
   --font-vazirmatn: var(--app-font-vazirmatn);
   --font-roboto: var(--app-font-roboto);
