@@ -1106,6 +1106,10 @@ pw-input-text {
       unicode-bidi: plaintext;
     }
 
+    input {
+      height: 100%;
+    }
+
     .clear-icon {
       position: absolute;
       top: 50%;
