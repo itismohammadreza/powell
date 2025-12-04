@@ -25,7 +25,7 @@ const initiateLanguage = () => {
 
 const translationConfig = {
   loader: provideTranslateHttpLoader({
-    prefix: '/i18n/',
+    prefix: 'i18n/',
     suffix: '.json'
   }),
   fallbackLang: 'en',
