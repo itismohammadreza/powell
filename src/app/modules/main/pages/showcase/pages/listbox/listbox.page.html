@@ -1,9 +1,0 @@
-<app-preview
-  component="Listbox"
-  description="Listbox is used to select one or more values from a list of items."
-  [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
-  <form [formGroup]="form">
-    <pw-listbox formControlName="c1" [options]="options" [validation]="{ required: 'error' }"/>
-  </form>
-</app-preview>

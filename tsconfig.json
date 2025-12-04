@@ -11,8 +11,11 @@
       "@core/*": [
         "src/app/core/*"
       ],
-      "@modules/*": [
-        "src/app/modules/*"
+      "@pages/*": [
+        "src/app/pages/*"
+      ],
+      "@layout/*": [
+        "src/app/layout/*"
       ],
       "@shared/*": [
         "src/app/shared/*"

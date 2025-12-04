@@ -1,9 +1,0 @@
-<app-preview
-  component="ColorPicker"
-  description="ColorPicker is an input component to select a color."
-  [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
-  <form [formGroup]="form">
-    <pw-color-picker formControlName="c1" [validation]="{ required: 'error' }"/>
-  </form>
-</app-preview>

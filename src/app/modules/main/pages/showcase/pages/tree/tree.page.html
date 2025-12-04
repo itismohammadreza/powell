@@ -1,9 +1,0 @@
-<app-preview
-  component="Tree"
-  description="Tree is used to display hierarchical data."
-  [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
-  <form [formGroup]="form">
-    <pw-tree formControlName="c1" [validation]="{ required: 'error' }" [value]="items"/>
-  </form>
-</app-preview>
