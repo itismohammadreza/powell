@@ -16,6 +16,7 @@
           #inputFile
           type="file"
           onclick="this.value = ''"
+          [multiple]="multiple"
           [accept]="accept"
           [attr.id]="id"
           [disabled]="disabled || readonly || (fileLimit && filesToEmit.length == fileLimit)"

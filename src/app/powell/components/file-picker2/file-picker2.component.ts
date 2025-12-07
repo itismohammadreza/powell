@@ -74,6 +74,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   @Input() followConfig: Optional<boolean>;
   @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;
+  @Input() multiple: boolean = false;
   @Input() isUnknownImageUrl: boolean = false;
   @Input() accept: Optional<string>;
   @Input() maxFileSize: Optional<number>;
@@ -101,6 +102,11 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   };
 
   ngOnInit() {
+    setTimeout(() => {
+      if (!this.multiple) {
+        this.fileLimit = 1;
+      }
+    })
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
@@ -136,16 +142,29 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   }
 
   async _onSelect(event: SafeAny) {
-    const file: File = event.target.files[0];
-    if (!file) {
+    const fileList: FileList = event.target.files;
+    const files = Array.from(fileList);
+    if (!files?.length) {
       return;
     }
-    if (this.filesToShow.findIndex(f => f.name == file.name) > -1) {
-      return;
+
+    const existingKeys = new Set(this.filesToShow.map(f => `${f.name}-${f.size}`));
+
+    let filteredFiles = files.filter(f => {
+      const key = `${f.name}-${f.size}`;
+      return !existingKeys.has(key);
+    });
+
+    if (this.fileLimit && filteredFiles.length + this.filesToShow.length > this.fileLimit) {
+      filteredFiles = filteredFiles.slice(0, this.fileLimit - this.filesToShow.length);
     }
-    await this.handleFile(file);
+
+    for (const file of filteredFiles) {
+      await this.handleFile(file);
+    }
+
     this.onSelect.emit(this.filesToEmit);
-    this.onModelChange(this.filesToEmit);
+    this.handleModelChange();
   }
 
   onFileDelete(event: MouseEvent, index: number) {
@@ -153,7 +172,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     this.onRemove.emit(this.filesToEmit[index]);
     this.filesToShow.splice(index, 1);
     this.filesToEmit.splice(index, 1);
-    this.onModelChange(this.filesToEmit.length ? this.filesToEmit : null);
+    this.handleModelChange();
     if (this.ngControl) {
       const control = this.ngControl.control;
       if (this.filesToShow.every(f => !f.invalidSizeError)) {
@@ -282,8 +301,13 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     } else if (typeof value == 'string') {
       await this.handleStringValue(value)
     }
-    this.onModelChange(this.filesToEmit);
+    this.handleModelChange();
     this.cd.markForCheck();
+  }
+
+  handleModelChange() {
+    const value = this.filesToEmit.length ? (this.multiple ? this.filesToEmit : this.filesToEmit[0]) : null;
+    this.onModelChange(value);
   }
 
   writeValue(value: SafeAny) {
