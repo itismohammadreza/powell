@@ -1,9 +1,6 @@
 // @ts-nocheck
 
-import {animate, AnimationEvent, state, style, transition, trigger} from '@angular/animations';
 import {
-  AfterContentInit,
-  AfterViewInit,
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
@@ -14,12 +11,11 @@ import {
   EventEmitter,
   forwardRef,
   inject,
+  InjectionToken,
   input,
   Input,
   NgZone,
   numberAttribute,
-  OnDestroy,
-  OnInit,
   Output,
   QueryList,
   TemplateRef,
@@ -34,9 +30,16 @@ import {
   $addStyle,
   $appendChild,
   $BaseInput,
+  $Bind,
   $blockBodyScroll,
   $ConnectedOverlayScrollHandler,
+  $DatePickerButtonBarTemplateContext,
+  $DatePickerDateTemplateContext,
+  $DatePickerDecadeTemplateContext,
+  $DatePickerDisabledDateTemplateContext,
+  $DatePickerInputIconTemplateContext,
   $DatePickerMonthChangeEvent,
+  $DatePickerPassThrough,
   $DatePickerResponsiveOptions,
   $DatePickerStyle,
   $DatePickerTypeView,
@@ -52,8 +55,11 @@ import {
   $isTouchDevice,
   $LocaleSettings,
   $Month,
+  $MotionEvent,
+  $MotionOptions,
   $NavigationState,
   $OverlayService,
+  $PARENT_INSTANCE,
   $PrimeTemplate,
   $relativePosition,
   $setAttribute,
@@ -80,40 +86,17 @@ export interface DateMeta {
   otherMonth?: boolean
 }
 
+const DATEPICKER_INSTANCE = new InjectionToken<DatepickerBaseComponent>('DATEPICKER_INSTANCE');
+
 @Component({
   selector: 'pw-datepicker-base',
-  templateUrl: './datepicker-base.component.html',
-  animations: [
-    trigger('overlayAnimation', [
-      state(
-        'visibleTouchUI',
-        style({
-          transform: 'translate(-50%,-50%)',
-          opacity: 1
-        })
-      ),
-      transition('void => visible', [style({
-        opacity: 0,
-        transform: 'scaleY(0.8)'
-      }), animate('{{showTransitionParams}}', style({opacity: 1, transform: '*'}))]),
-      transition('visible => void', [animate('{{hideTransitionParams}}', style({opacity: 0}))]),
-      transition('void => visibleTouchUI', [style({
-        opacity: 0,
-        transform: 'translate3d(-50%, -40%, 0) scale(0.9)'
-      }), animate('{{showTransitionParams}}')]),
-      transition('visibleTouchUI => void', [
-        animate(
-          '{{hideTransitionParams}}',
-          style({
-            opacity: 0,
-            transform: 'translate3d(-50%, -40%, 0) scale(0.9)'
-          })
-        )
-      ])
-    ])
-  ],
   standalone: false,
-  providers: [DATEPICKER_VALUE_ACCESSOR, $DatePickerStyle],
+  hostDirectives: [$Bind],
+  templateUrl: './datePicker-base.component.html',
+  providers: [DATEPICKER_VALUE_ACCESSOR, $DatePickerStyle, {
+    provide: DATEPICKER_INSTANCE,
+    useExisting: DatepickerBaseComponent
+  }, {provide: $PARENT_INSTANCE, useExisting: DatepickerBaseComponent}],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
@@ -121,8 +104,8 @@ export interface DateMeta {
     '[style]': "sx('root')"
   }
 })
-export class DatepickerBaseComponent extends $BaseInput implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
-  // CHANGES
+export class DatepickerBaseComponent extends $BaseInput<$DatePickerPassThrough> {
+  // CHANGES-start
   @Input() isJalali: boolean | undefined;
 
   getJalaliMoment(input?: MomentInput, format?: MomentFormatSpecification, language?: string, strict?: boolean) {
@@ -130,8 +113,6 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
   }
 
   /*
-  * example usage for convert jalali to gregorian:
-  *
   * `convertToGregorian('1392/6/3 16:40', 'YYYY/M/D HH:mm').format('YYYY-M-D HH:mm:ss');` `// 2013-8-25 16:40:00`
   * */
   convertToGregorian(input: string, format?: string) {
@@ -139,8 +120,6 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
   }
 
   /*
-  * example usage for convert gregorian to jalali:
-  *
   * `convertToJalali('2013-8-25 16:40:00', 'YYYY-M-D HH:mm:ss').format('YYYY/M/D HH:mm:ss');` `// 1392/6/31 23:59:59`
   */
   convertToJalali(input: MomentInput, format?: MomentFormatSpecification) {
@@ -184,11 +163,6 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     }
   }
 
-  // CHANGES
-  // Return a boundary date used for inclusive comparisons. If a boundary
-  // appears to be a date-only (time 00:00:00), treat max boundaries as
-  // end-of-day so users can select times during that day. Works for both
-  // Date and Moment objects.
   private boundaryForCompare(boundary: Date | Moment | undefined | null, isMax: boolean) {
     if (!boundary) return boundary;
     if (this.isJalali) {
@@ -209,20 +183,14 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     }
   }
 
-  getEqualDateMeta(dateMeta: DateMeta) {
-    if (this.isJalali && dateMeta.year >= 1300 && dateMeta.year <= 1500) {
-      const gregorianDate: Date = this.convertToGregorian(`${dateMeta.year}/${dateMeta.month + 1}/${dateMeta.day}`, 'YYYY/MM/DD').toDate();
-      return {
-        ...dateMeta,
-        day: gregorianDate.getDate(),
-        month: gregorianDate.getMonth(),
-        year: gregorianDate.getFullYear()
-      };
-    }
-    return dateMeta;
-  }
+  // CHANGES-end
 
-  // CHANGES
+  bindDirectiveInstance = inject($Bind, {self: true});
+
+  $pcDatePicker: DatepickerBaseComponent | undefined = inject(DATEPICKER_INSTANCE, {
+    optional: true,
+    skipSelf: true
+  }) ?? undefined;
 
   @Input() iconDisplay: 'input' | 'button' = 'button';
   @Input() styleClass: string | undefined;
@@ -415,24 +383,31 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
   }
 
   appendTo = input<HTMLElement | ElementRef | TemplateRef<any> | 'self' | 'body' | null | undefined | any>(undefined);
+  motionOptions = input<$MotionOptions | undefined>(undefined);
+  computedMotionOptions = computed<$MotionOptions>(() => {
+    return {
+      ...this.ptm('motion'),
+      ...this.motionOptions()
+    };
+  });
   @Output() onFocus: EventEmitter<Event> = new EventEmitter<Event>();
   @Output() onBlur: EventEmitter<Event> = new EventEmitter<Event>();
-  @Output() onClose: EventEmitter<AnimationEvent> = new EventEmitter<AnimationEvent>();
-  @Output() onSelect: EventEmitter<Date | Moment | (Date | Moment)[]> = new EventEmitter<Date | Moment | (Date | Moment)[]>();
+  @Output() onClose: EventEmitter<HTMLElement> = new EventEmitter<HTMLElement>();
+  @Output() onSelect: EventEmitter<Date> = new EventEmitter<Date>();
   @Output() onClear: EventEmitter<any> = new EventEmitter<any>();
   @Output() onInput: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onTodayClick: EventEmitter<Date | Moment> = new EventEmitter<Date | Moment>();
+  @Output() onTodayClick: EventEmitter<Date> = new EventEmitter<Date>();
   @Output() onClearClick: EventEmitter<any> = new EventEmitter<any>();
   @Output() onMonthChange: EventEmitter<$DatePickerMonthChangeEvent> = new EventEmitter<$DatePickerMonthChangeEvent>();
   @Output() onYearChange: EventEmitter<$DatePickerYearChangeEvent> = new EventEmitter<$DatePickerYearChangeEvent>();
   @Output() onClickOutside: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onShow: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onShow: EventEmitter<HTMLElement> = new EventEmitter<HTMLElement>();
   @ViewChild('inputfield', {static: false}) inputfieldViewChild: Nullable<ElementRef>;
 
   @ViewChild('contentWrapper', {static: false}) set content(content: ElementRef) {
     this.contentViewChild = content;
 
-    if (this.contentViewChild) {
+    if (this.contentViewChild && this.overlay) {
       if (this.isMonthNavigate) {
         Promise.resolve(null).then(() => this.updateFocus());
         this.isMonthNavigate = false;
@@ -446,7 +421,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
 
   _componentStyle = inject($DatePickerStyle);
   contentViewChild!: ElementRef;
-  value: Date | Moment;
+  value: any;
   dates: Nullable<Date[]>;
   months!: $Month[];
   weekDays: Nullable<string[]>;
@@ -459,9 +434,10 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
   pm: Nullable<boolean>;
   mask: Nullable<HTMLDivElement>;
   maskClickListener: $VoidListener;
-  overlay: Nullable<HTMLDivElement>;
+  overlay: Nullable<HTMLElement>;
   responsiveStyleElement: HTMLStyleElement | undefined | null;
   overlayVisible: Nullable<boolean>;
+  overlayMinWidth: Nullable<number>;
   $appendTo = computed(() => this.appendTo() || this.config.overlayAppendTo());
   calendarElement: Nullable<HTMLElement | ElementRef>;
   timePickerTimer: any;
@@ -478,11 +454,12 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
   _showTime!: boolean;
   _yearRange!: string;
   preventDocumentListener: Nullable<boolean>;
+  inputIconDataP: any;
 
+  // CHANGES-start
   dayClass(date) {
     // return this._componentStyle.classes.day({instance: this, date});
     let selectedDayClass = '';
-
     if (this.isRangeSelection() && this.isSelected(date) && date.selectable) {
       const startDate = this.value[0];
       const endDate = this.value[1];
@@ -501,34 +478,36 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     };
   }
 
-  @ContentChild('date', {descendants: false}) dateTemplate: Nullable<TemplateRef<any>>;
-  @ContentChild('header', {descendants: false}) headerTemplate: Nullable<TemplateRef<any>>;
-  @ContentChild('footer', {descendants: false}) footerTemplate: Nullable<TemplateRef<any>>;
-  @ContentChild('disabledDate', {descendants: false}) disabledDateTemplate: Nullable<TemplateRef<any>>;
-  @ContentChild('decade', {descendants: false}) decadeTemplate: Nullable<TemplateRef<any>>;
-  @ContentChild('previousicon', {descendants: false}) previousIconTemplate: Nullable<TemplateRef<any>>;
-  @ContentChild('nexticon', {descendants: false}) nextIconTemplate: Nullable<TemplateRef<any>>;
-  @ContentChild('triggericon', {descendants: false}) triggerIconTemplate: Nullable<TemplateRef<any>>;
-  @ContentChild('clearicon', {descendants: false}) clearIconTemplate: Nullable<TemplateRef<any>>;
-  @ContentChild('decrementicon', {descendants: false}) decrementIconTemplate: Nullable<TemplateRef<any>>;
-  @ContentChild('incrementicon', {descendants: false}) incrementIconTemplate: Nullable<TemplateRef<any>>;
-  @ContentChild('inputicon', {descendants: false}) inputIconTemplate: Nullable<TemplateRef<any>>;
-  @ContentChild('buttonbar', {descendants: false}) buttonBarTemplate: Nullable<TemplateRef<any>>;
+  // CHANGES-end
 
-  _dateTemplate: TemplateRef<any> | undefined;
-  _headerTemplate: TemplateRef<any> | undefined;
-  _footerTemplate: TemplateRef<any> | undefined;
-  _disabledDateTemplate: TemplateRef<any> | undefined;
-  _decadeTemplate: TemplateRef<any> | undefined;
-  _previousIconTemplate: TemplateRef<any> | undefined;
-  _nextIconTemplate: TemplateRef<any> | undefined;
-  _triggerIconTemplate: TemplateRef<any> | undefined;
-  _clearIconTemplate: TemplateRef<any> | undefined;
-  _decrementIconTemplate: TemplateRef<any> | undefined;
-  _incrementIconTemplate: TemplateRef<any> | undefined;
-  _inputIconTemplate: TemplateRef<any> | undefined;
-  _buttonBarTemplate: TemplateRef<any> | undefined;
-  _disabledDates!: Array<Date | Moment>;
+  @ContentChild('date', {descendants: false}) dateTemplate: Nullable<TemplateRef<$DatePickerDateTemplateContext>>;
+  @ContentChild('header', {descendants: false}) headerTemplate: Nullable<TemplateRef<void>>;
+  @ContentChild('footer', {descendants: false}) footerTemplate: Nullable<TemplateRef<void>>;
+  @ContentChild('disabledDate', {descendants: false}) disabledDateTemplate: Nullable<TemplateRef<$DatePickerDisabledDateTemplateContext>>;
+  @ContentChild('decade', {descendants: false}) decadeTemplate: Nullable<TemplateRef<$DatePickerDecadeTemplateContext>>;
+  @ContentChild('previousicon', {descendants: false}) previousIconTemplate: Nullable<TemplateRef<void>>;
+  @ContentChild('nexticon', {descendants: false}) nextIconTemplate: Nullable<TemplateRef<void>>;
+  @ContentChild('triggericon', {descendants: false}) triggerIconTemplate: Nullable<TemplateRef<void>>;
+  @ContentChild('clearicon', {descendants: false}) clearIconTemplate: Nullable<TemplateRef<void>>;
+  @ContentChild('decrementicon', {descendants: false}) decrementIconTemplate: Nullable<TemplateRef<void>>;
+  @ContentChild('incrementicon', {descendants: false}) incrementIconTemplate: Nullable<TemplateRef<void>>;
+  @ContentChild('inputicon', {descendants: false}) inputIconTemplate: Nullable<TemplateRef<$DatePickerInputIconTemplateContext>>;
+  @ContentChild('buttonbar', {descendants: false}) buttonBarTemplate: Nullable<TemplateRef<$DatePickerButtonBarTemplateContext>>;
+
+  _dateTemplate: TemplateRef<$DatePickerDateTemplateContext> | undefined;
+  _headerTemplate: TemplateRef<void> | undefined;
+  _footerTemplate: TemplateRef<void> | undefined;
+  _disabledDateTemplate: TemplateRef<$DatePickerDisabledDateTemplateContext> | undefined;
+  _decadeTemplate: TemplateRef<$DatePickerDecadeTemplateContext> | undefined;
+  _previousIconTemplate: TemplateRef<void> | undefined;
+  _nextIconTemplate: TemplateRef<void> | undefined;
+  _triggerIconTemplate: TemplateRef<void> | undefined;
+  _clearIconTemplate: TemplateRef<void> | undefined;
+  _decrementIconTemplate: TemplateRef<void> | undefined;
+  _incrementIconTemplate: TemplateRef<void> | undefined;
+  _inputIconTemplate: TemplateRef<$DatePickerInputIconTemplateContext> | undefined;
+  _buttonBarTemplate: TemplateRef<$DatePickerButtonBarTemplateContext> | undefined;
+  _disabledDates!: Array<Date>;
   _disabledDays!: Array<number>;
   selectElement: Nullable;
   todayElement: Nullable;
@@ -576,9 +555,8 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     this.window = this.document.defaultView as Window;
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
-    // CHANGES
+  override onInit() {
+    // CHANGES-start
     if (this.isJalali) {
       this.config.setTranslation({
         dayNames: ['شنبه', 'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'],
@@ -598,8 +576,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
         dateFormat: 'mm/dd/yy'
       })
     }
-    // CHANGES
-
+    // CHANGES-end
     this.attributeSelector = $uuid('pn_id_');
     this.panelId = this.attributeSelector + '_panel';
     const date = this.defaultDate || this.getEqualDateObj();
@@ -634,12 +611,11 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     }
   }
 
-  override ngAfterViewInit() {
-    super.ngAfterViewInit();
+  override onAfterViewInit() {
     if (this.inline) {
       this.contentViewChild && this.contentViewChild.nativeElement.setAttribute(this.attributeSelector, '');
-
-      if (!this.$disabled() && !this.inline) {
+    } else {
+      if (!this.$disabled() && this.overlay) {
         this.initFocusableCell();
         if (this.numberOfMonths === 1) {
           if (this.contentViewChild && this.contentViewChild.nativeElement) {
@@ -650,9 +626,13 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     }
   }
 
+  override onAfterViewChecked() {
+    this.bindDirectiveInstance.setAttrs(this.ptms(['host', 'root']));
+  }
+
   @ContentChildren($PrimeTemplate) templates!: QueryList<$PrimeTemplate>;
 
-  ngAfterContentInit() {
+  override onAfterContentInit() {
     this.templates.forEach((item) => {
       switch (item.getType()) {
         case 'date':
@@ -770,9 +750,11 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
   }
 
   getWeekNumber(date: Date | Moment) {
+    // CHANGES-start
     if (this.isJalali) {
       return date.week();
     }
+    // CHANGES-end
     let checkDate = this.getEqualDateObj(date[this.getEqualProp('getTime')]());
     if (this.startWeekFromFirstDayOfYear) {
       let firstDayOfWeek: number = +this.getFirstDateOfWeek();
@@ -978,11 +960,12 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     event.preventDefault();
   }
 
-  onDateSelect(event: Event, dateMeta: DateMeta) {
+  onDateSelect(event: Event, dateMeta: any) {
     if (this.$disabled() || !dateMeta.selectable) {
       event.preventDefault();
       return;
     }
+
     if (this.isMultipleSelection() && this.isSelected(dateMeta)) {
       this.value = this.value.filter((date: Date | Moment, i: number) => {
         return !this.isDateEquals(date, dateMeta);
@@ -1015,9 +998,11 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
   }
 
   shouldSelectDate(dateMeta: any) {
+    // CHANGES-start
     if (this.isMultipleSelection()) {
       return (this.maxDateCount != null && !isNaN(this.maxDateCount)) ? this.maxDateCount > (this.value ? this.value.length : 0) : true;
     } else return true;
+    // CHANGES-end
   }
 
   onMonthSelect(event: Event, index: number) {
@@ -1067,6 +1052,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
         }
       }
     }
+
     this.writeModelValue(formattedValue);
 
     this.inputFieldValue = formattedValue;
@@ -1078,7 +1064,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
 
   inputFieldValue: Nullable<string> = null;
 
-  // CHANGES
+  // CHANGES-start
   formatDateTime(date: Date | Moment) {
     const isDateValid = this.isValidDateForTimeConstraints(date);
 
@@ -1137,6 +1123,9 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     }
   }
 
+  // CHANGES-end
+
+
   formatDateKey(date: Date | Moment): string {
     return `${date[this.getEqualProp('getFullYear')]()}-${date[this.getEqualProp('getMonth')]()}-${date[this.getEqualProp('getDate')]()}`;
   }
@@ -1181,7 +1170,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
       this.currentSecond = date[this.getEqualProp('getSeconds')]();
     }
 
-    // CHANGES
+    // CHANGES-start
     // Use adjusted maxDate for comparison so date-only maxDates behave as
     // end-of-day boundaries (allow changing time within that day).
     const compMaxDate = this.boundaryForCompare(this.maxDate as any, true);
@@ -1191,6 +1180,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
       this.currentMinute = date[this.getEqualProp('getMinutes')]();
       this.currentSecond = date[this.getEqualProp('getSeconds')]();
     }
+    // CHANGES-end
 
     if (this.isSingleSelection()) {
       this.updateModel(date);
@@ -1198,8 +1188,8 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
       this.updateModel(this.value ? [...this.value, date] : [date]);
     } else if (this.isRangeSelection()) {
       if (this.value && this.value.length) {
-        let startDate: Date | Moment = this.value[0];
-        let endDate: Date | Moment = this.value[1];
+        let startDate = this.value[0];
+        let endDate = this.value[1];
 
         if (!endDate && date[this.getEqualProp('getTime')]() >= startDate[this.getEqualProp('getTime')]()) {
           endDate = date;
@@ -1209,17 +1199,15 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
         }
 
         this.updateModel([startDate, endDate]);
-        this.onSelect.emit([startDate, endDate]);
       } else {
         this.updateModel([date, null]);
-        this.onSelect.emit([date, null]);
       }
     }
 
     this.onSelect.emit(date);
   }
 
-  updateModel(value: Date | Moment | (Date | Moment)[]) {
+  updateModel(value: any) {
     this.value = value;
 
     if (this.dataType == 'date') {
@@ -1250,11 +1238,13 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
   }
 
   getDaysCountInMonth(month: number, year: number) {
+    // CHANGES-start
     if (this.isJalali) {
       return (this.daylightSavingAdjust(this.getJalaliMoment(`${year}-${month + 1}`, "jYYYY-jMM")) as Moment).jDaysInMonth();
     } else {
       return 32 - (this.daylightSavingAdjust(new Date(year, month, 32)) as Date).getDate();
     }
+    // CHANGES-end
   }
 
   getDaysCountInPrevMonth(month: number, year: number) {
@@ -1369,14 +1359,14 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     return false;
   }
 
-  isDateEquals(value: Date | Moment, dateMeta: any) {
+  isDateEquals(value: any, dateMeta: any) {
     if (value) return value[this.getEqualProp('getDate')]() === dateMeta.day && value[this.getEqualProp('getMonth')]() === dateMeta.month && value[this.getEqualProp('getFullYear')]() === dateMeta.year;
     else return false;
   }
 
   isDateBetween(start: Date | Moment, end: Date | Moment, dateMeta: any) {
     let between: boolean = false;
-    if (this.isValidDate(start) && this.isValidDate(end)) {
+    if ($isDate(start) && $isDate(end)) {
       let date: Date | Moment = this.formatDateMetaToDate(dateMeta);
       return start[this.getEqualProp('getTime')]() <= date[this.getEqualProp('getTime')]() && end[this.getEqualProp('getTime')]() >= date[this.getEqualProp('getTime')]();
     }
@@ -1464,6 +1454,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
   isDayDisabled(day: number, month: number, year: number): boolean {
     if (this.disabledDays) {
       let weekday = this.getEqualDateObj([year, month, day]);
+      ;
       let weekdayNumber = weekday[this.getEqualProp('getDay')]();
       return this.disabledDays.indexOf(weekdayNumber) !== -1;
     }
@@ -2158,7 +2149,9 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
       minHoursExceeds12 = this.minDate![this.getEqualProp('getHours')]() >= 12;
     }
 
-    switch (true) {
+    switch (
+      true // intentional fall through
+      ) {
       case isMinDate && minHoursExceeds12 && this.minDate![this.getEqualProp('getHours')]() === 12 && this.minDate![this.getEqualProp('getHours')]() > convertedHour:
         returnTimeTriple[0] = 11;
       case isMinDate && this.minDate![this.getEqualProp('getHours')]() === convertedHour && this.minDate![this.getEqualProp('getMinutes')]() > minute:
@@ -2332,7 +2325,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
   }
 
   updateTime() {
-    let value: Date | Moment | (Date | Moment)[] = this.value;
+    let value = this.value;
     if (this.isRangeSelection()) {
       value = this.value[1] || this.value[0];
     }
@@ -2350,7 +2343,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
       baseSource = (this.maxDate as Date | Moment) || (this.minDate as Date | Moment) || null;
     }
 
-    // CHANGES
+    // CHANGES-start
     // When using jalali (Moment), getTime maps to 'unix' which returns seconds.
     // Moment constructor expects milliseconds when passed a number, so convert
     // seconds -> milliseconds to avoid dates near 1970 (caused by interpreting
@@ -2379,7 +2372,6 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
 
     value[this.getEqualProp('setMinutes')](this.currentMinute);
     value[this.getEqualProp('setSeconds')](this.currentSecond);
-    // CHANGES
     // Ensure time changes do not exceed min/max constraints. If they do,
     // clamp to the corresponding boundary. Use adjusted boundaries so
     // date-only boundaries act as full-day limits.
@@ -2399,6 +2391,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
       this.currentMinute = value[this.getEqualProp('getMinutes')]();
       this.currentSecond = value[this.getEqualProp('getSeconds')]();
     }
+    // CHANGES-end
 
     if (this.isRangeSelection()) {
       if (this.value[1]) value = [this.value[0], value];
@@ -2458,7 +2451,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     return isValid;
   }
 
-  parseValueFromString(text: string): (Date | Moment)[] | null {
+  parseValueFromString(text: string): Date | Moment | Date[] | null {
     if (!text || text.trim().length === 0) {
       return null;
     }
@@ -2529,7 +2522,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
       propValue = propValue.length === 2 ? propValue[1] : propValue[0];
     }
 
-    let val: Date | Moment = this.defaultDate && this.isValidDate(this.defaultDate) && !this.value ? this.defaultDate : propValue && this.isValidDate(propValue) ? propValue : this.getEqualDateObj();
+    let val = this.defaultDate && this.isValidDate(this.defaultDate) && !this.value ? this.defaultDate : propValue && this.isValidDate(propValue) ? propValue : this.getEqualDateObj();
 
     this.currentMonth = val[this.getEqualProp('getMonth')]();
     this.currentYear = val[this.getEqualProp('getFullYear')]();
@@ -2550,6 +2543,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
         this.preventFocus = true;
       }
 
+      this.overlayMinWidth = this.el.nativeElement.offsetWidth;
       this.overlayVisible = true;
     }
   }
@@ -2577,52 +2571,27 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     }
   }
 
-  onOverlayAnimationStart(event: AnimationEvent) {
-    switch (event.toState) {
-      case 'visible':
-      case 'visibleTouchUI':
-        if (!this.inline) {
-          this.overlay = event.element;
-          this.attrSelector && this.overlay!.setAttribute(this.attrSelector, '');
-          const styles = !this.inline ? {position: 'absolute', top: '0'} : undefined;
-          $addStyle(this.overlay!, styles || {});
-
-          this.appendOverlay();
-          this.updateFocus();
-          if (this.autoZIndex) {
-            if (this.touchUI) $ZIndexUtils.set('modal', this.overlay, this.baseZIndex || this.config.zIndex.modal);
-            else $ZIndexUtils.set('overlay', this.overlay, this.baseZIndex || this.config.zIndex.overlay);
-          }
-
-          this.alignOverlay();
-          this.onShow.emit(event);
-        }
-        break;
-
-      case 'void':
-        this.onOverlayHide();
-        this.onClose.emit(event);
-        break;
-    }
+  onOverlayBeforeEnter(event: $MotionEvent) {
+    this.overlay = event.element as HTMLElement;
+    this.$attrSelector && this.overlay!.setAttribute(this.$attrSelector, '');
+    const styles = !this.inline ? {position: 'absolute', top: '0', minWidth: `${this.overlayMinWidth}px`} : undefined;
+    $addStyle(this.overlay!, styles || {});
+    this.appendOverlay();
+    this.alignOverlay();
+    this.setZIndex();
+    this.updateFocus();
+    this.bindListeners();
+    this.onShow.emit(event.element as HTMLElement);
   }
 
-  onOverlayAnimationDone(event: AnimationEvent) {
-    switch (event.toState) {
-      case 'visible':
-      case 'visibleTouchUI':
-        if (!this.inline) {
-          this.bindDocumentClickListener();
-          this.bindDocumentResizeListener();
-          this.bindScrollListener();
-        }
-        break;
-
-      case 'void':
-        if (this.autoZIndex) {
-          $ZIndexUtils.clear(event.element);
-        }
-        break;
+  onOverlayAfterLeave(event: $MotionEvent) {
+    if (this.autoZIndex) {
+      $ZIndexUtils.clear(event.element as HTMLElement);
     }
+    this.restoreOverlayAppend();
+    this.onOverlayHide();
+
+    this.onClose.emit(event.element as HTMLElement);
   }
 
   appendOverlay() {
@@ -2642,19 +2611,6 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     if (this.touchUI) {
       this.enableModality(this.overlay);
     } else if (this.overlay) {
-      if (this.view === 'date') {
-        if (!this.overlay.style.width) {
-          this.overlay.style.width = $getOuterWidth(this.overlay) + 'px';
-        }
-        if (!this.overlay.style.minWidth) {
-          this.overlay.style.minWidth = $getOuterWidth(this.inputfieldViewChild?.nativeElement) + 'px';
-        }
-      } else {
-        if (!this.overlay.style.width) {
-          this.overlay.style.width = $getOuterWidth(this.inputfieldViewChild?.nativeElement) + 'px';
-        }
-      }
-
       if (this.$appendTo() && this.$appendTo() !== 'self') {
         $absolutePosition(this.overlay, this.inputfieldViewChild?.nativeElement);
       } else {
@@ -2663,11 +2619,24 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     }
   }
 
+  bindListeners() {
+    this.bindDocumentClickListener();
+    this.bindDocumentResizeListener();
+    this.bindScrollListener();
+  }
+
+  setZIndex() {
+    if (this.autoZIndex) {
+      if (this.touchUI) $ZIndexUtils.set('modal', this.overlay, this.baseZIndex || this.config.zIndex.modal);
+      else $ZIndexUtils.set('overlay', this.overlay, this.baseZIndex || this.config.zIndex.overlay);
+    }
+  }
+
   enableModality(element: any) {
     if (!this.mask && this.touchUI) {
       this.mask = this.renderer.createElement('div');
       this.renderer.setStyle(this.mask, 'zIndex', String(parseInt(element.style.zIndex) - 1));
-      let maskStyleClass = 'p-overlay-mask p-datepicker-mask p-datepicker-mask-scrollblocker p-overlay-mask p-overlay-mask-enter';
+      let maskStyleClass = 'p-overlay-mask p-datepicker-mask p-datepicker-mask-scrollblocker p-overlay-mask p-overlay-mask-enter-active';
       $addClass(this.mask!, maskStyleClass);
 
       this.maskClickListener = this.renderer.listen(this.mask, 'click', (event: any) => {
@@ -2735,7 +2704,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
   }
 
   // Ported from jquery-ui datepicker formatDate
-  formatDate(date: Date | Moment, format: any) {
+  formatDate(date: any, format: any) {
     if (!date) {
       return '';
     }
@@ -2795,7 +2764,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
               output += date[this.getEqualProp('getTime')]();
               break;
             case '!':
-              output += date[this.getEqualProp('getTime')]() * 10000 + <number>this.ticksTo1970;
+              output += date[this.getEqualProp('getTime')] * 10000 + <number>this.ticksTo1970;
               break;
             case "'":
               if (lookAhead("'")) {
@@ -2813,7 +2782,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     return output;
   }
 
-  formatTime(date: Date | Moment) {
+  formatTime(date: any) {
     if (!date) {
       return '';
     }
@@ -2895,7 +2864,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
       day = -1,
       doy = -1,
       literal = false,
-      date: Date | Moment,
+      date,
       lookAhead = (match: any) => {
         let matches = iFormat + 1 < format.length && format.charAt(iFormat + 1) === match;
         if (matches) {
@@ -3045,7 +3014,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     return date;
   }
 
-  daylightSavingAdjust(date: Date | Moment) {
+  daylightSavingAdjust(date: any) {
     if (!date) {
       return null;
     }
@@ -3059,11 +3028,13 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     if (this.keepInvalid) {
       return true; // If we are keeping invalid dates, we don't need to check for time constraints
     }
-    // CHANGES
+    if (this.keepInvalid) {
+      return true; // If we are keeping invalid dates, we don't need to check for time constraints
+    }
+    // CHANGES-start
     // Use adjusted boundaries so date-only boundaries act as full-day limits.
     const compMin: any = this.boundaryForCompare(this.minDate as any, false);
     const compMax: any = this.boundaryForCompare(this.maxDate as any, true);
-
     const validateJalaliMinDate = compMin ? (compMin as Moment).isSameOrBefore(selectedDate) : true;
     const validateGregorianMinDate = compMin ? selectedDate[this.getEqualProp('getTime')]() >= compMin[this.getEqualProp('getTime')]() : true;
     const validateMinDate = this.isJalali ? validateJalaliMinDate : validateGregorianMinDate;
@@ -3071,10 +3042,11 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     const validateGregorianMaxDate = compMax ? selectedDate[this.getEqualProp('getTime')]() <= compMax[this.getEqualProp('getTime')]() : true;
     const validateMaxDate = this.isJalali ? validateJalaliMaxDate : validateGregorianMaxDate;
     return (!this.minDate || validateMinDate) && (!this.maxDate || validateMaxDate);
+    // CHANGES-end
   }
 
   onTodayButtonClick(event: any) {
-    const date: Date | Moment = this.getEqualDateObj();
+    const date: Date | Moment = new Date();
     const dateMeta = {
       day: date[this.getEqualProp('getDate')](),
       month: date[this.getEqualProp('getMonth')](),
@@ -3229,7 +3201,6 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     this.overlay = null;
   }
 
-
   override writeControlValue(value: any): void {
     this.value = value;
     if (this.value && typeof this.value === 'string') {
@@ -3247,7 +3218,7 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     this.cd.markForCheck();
   }
 
-  override ngOnDestroy() {
+  override onDestroy() {
     if (this.scrollHandler) {
       this.scrollHandler.destroy();
       this.scrollHandler = null;
@@ -3265,7 +3236,5 @@ export class DatepickerBaseComponent extends $BaseInput implements OnInit, After
     this.clearTimePickerTimer();
     this.restoreOverlayAppend();
     this.onOverlayHide();
-
-    super.ngOnDestroy();
   }
 }

@@ -1,19 +1,13 @@
-import {AnimationTransitionMetadata, AnimationTriggerMetadata} from "@angular/animations";
 import {HttpRequest, HttpResponseBase} from "@angular/common/http";
 import {Config} from "@powell/models";
 
 export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 export type SidebarType = 'overlay' | 'push' | 'overlay-mask' | 'push-mask' | 'static' | 'hover' | 'horizontal';
 
-export interface AnimationDefinition {
-  [key: string]: AnimationTransitionMetadata[]
-}
-
 export interface GlobalConfig {
   readonly lang: string;
   readonly rtl: boolean;
   readonly requestTimeout: number;
-  readonly routeAnimation: AnimationTriggerMetadata | null;
   readonly powellConfig: Omit<Config, "rtl">;
 }
 

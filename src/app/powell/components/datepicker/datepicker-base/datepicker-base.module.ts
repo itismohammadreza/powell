@@ -4,6 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {
   $AutoFocus,
   $AutoFocusModule,
+  $BindModule,
   $Button,
   $ButtonModule,
   $CalendarIcon,
@@ -14,6 +15,7 @@ import {
   $DatePickerModule,
   $InputText,
   $InputTextModule,
+  $MotionModule,
   $Ripple,
   $RippleModule,
   $SharedModule,
@@ -38,7 +40,8 @@ import {DatepickerBaseComponent} from "@powell/components/datepicker/datepicker-
     $ChevronDownIcon,
     $TimesIcon,
     $CalendarIcon,
-
+    $BindModule,
+    $MotionModule,
     CommonModule,
     $Button,
     $Ripple,

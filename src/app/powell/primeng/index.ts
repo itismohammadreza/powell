@@ -69,7 +69,7 @@ export {
   type Nullable as $Nullable,
   type VoidListener as $VoidListener
 } from "primeng/ts-helpers";
-export {BaseComponent as $BaseComponent} from "primeng/basecomponent";
+export {BaseComponent as $BaseComponent, PARENT_INSTANCE as $PARENT_INSTANCE} from "primeng/basecomponent";
 export {
   absolutePosition as $absolutePosition,
   addClass as $addClass,
@@ -88,6 +88,17 @@ export {
   setAttribute as $setAttribute,
   uuid as $uuid
 } from "@primeuix/utils";
+export {
+  Motion as $Motion,
+  MotionModule as $MotionModule,
+  MotionDirective as $MotionDirective
+} from "primeng/motion";
+
+export {type MotionEvent as $MotionEvent,type MotionOptions as $MotionOptions} from "@primeuix/motion"
+export {
+  Bind as $Bind,
+  BindModule as $BindModule
+} from "primeng/bind";
 export {
   $dt,
   $t,
@@ -141,7 +152,7 @@ export {
   Breadcrumb as $Breadcrumb,
   type BreadcrumbItemClickEvent as $BreadcrumbItemClickEvent,
   BreadcrumbModule as $BreadcrumbModule,
-  type BreadcumbTemplates as $BreadcrumbTemplates
+  type BreadcrumbTemplates as $BreadcrumbTemplates
 } from "primeng/breadcrumb";
 export {
   Button as $Button,
@@ -211,9 +222,15 @@ export {
   DatePicker as $DatePicker,
   DatePickerClasses as $DatePickerClasses,
   DatePickerModule as $DatePickerModule,
+  type DatePickerDisabledDateTemplateContext as $DatePickerDisabledDateTemplateContext,
+  type DatePickerInputIconTemplateContext as $DatePickerInputIconTemplateContext,
+  type DatePickerButtonBarTemplateContext as $DatePickerButtonBarTemplateContext,
+  type DatePickerDecadeTemplateContext as $DatePickerDecadeTemplateContext,
+  type DatePickerDateTemplateContext as $DatePickerDateTemplateContext,
   type DatePickerMonthChangeEvent as $DatePickerMonthChangeEvent,
   type DatePickerResponsiveOptions as $DatePickerResponsiveOptions,
   DatePickerStyle as $DatePickerStyle,
+  type DatePickerPassThrough as $DatePickerPassThrough,
   type DatePickerTemplates as $DatePickerTemplates,
   type DatePickerTypeView as $DatePickerTypeView,
   type DatePickerYearChangeEvent as $DatePickerYearChangeEvent,
@@ -236,7 +253,7 @@ export {
 } from "primeng/drawer";
 export {
   DialogService as $DialogService,
-  DynamicDialogComponent as $DynamicDialogComponent,
+  DynamicDialog as $DynamicDialog,
   DynamicDialogConfig as $DynamicDialogConfig,
   DynamicDialogInjector as $DynamicDialogInjector,
   DynamicDialogModule as $DynamicDialogModule,
@@ -519,7 +536,7 @@ export {
   type ScrollerLoaderIconOptions as $ScrollerLoaderIconOptions,
   type ScrollerLoaderOptions as $ScrollerLoaderOptions,
   ScrollerModule as $ScrollerModule,
-  type ScrollerOrientationType as $ScrollerOrientationType,
+  type VirtualScrollerOrientationType as $VirtualScrollerOrientationType,
   type ScrollerScrollEvent as $ScrollerScrollEvent,
   type ScrollerScrollIndexChangeEvent as $ScrollerScrollIndexChangeEvent,
   type ScrollerTemplates as $ScrollerTemplates,

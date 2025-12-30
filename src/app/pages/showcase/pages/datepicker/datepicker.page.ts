@@ -45,7 +45,7 @@ export class DatepickerPage extends PreviewBase {
     {field: 'showOnFocus', value: true},
     {field: 'showWeek', value: false},
     {field: 'showClear', value: false},
-    {field: 'selectionMode', selectOptions: 'datepickerSelectionModes', value: 'single'},
+    {field: 'selectionMode', selectOptions: 'datepickerSelectionModes', value: 'range'},
     {field: 'showButtonBar', value: false},
     {field: 'hideOnDateTimeSelect', value: true},
     {field: 'touchUI', value: false},

@@ -10,7 +10,6 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import {AnimationEvent} from "@angular/animations";
 import {CssObject, ImageLoading} from "@powell/models";
 import {SafeUrl} from "@angular/platform-browser";
 import {TemplateDirective} from "@powell/directives/template";
@@ -57,8 +56,8 @@ export class ImageComponent implements AfterContentInit {
     wheelZoomFactor: 0.2,
     zoomControlScale: 1,
   };
-  @Output() onShow = new EventEmitter<AnimationEvent>();
-  @Output() onHide = new EventEmitter<AnimationEvent>();
+  @Output() onShow = new EventEmitter<void>();
+  @Output() onHide = new EventEmitter<void>();
   @Output() onImageError = new EventEmitter<Event>();
   @ViewChild('mask') mask!: ElementRef;
   @ViewChild('previewButton') previewButton!: ElementRef;

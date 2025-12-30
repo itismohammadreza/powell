@@ -7,7 +7,7 @@ $sidebarWidth: 20rem;
     @apply h-full;
 
     .inner-wrapper {
-      @apply flex flex-col transition-all duration-200 relative;
+      @apply flex flex-col transition-all duration-[0.3s] ease-[cubic-bezier(0,0,0.2,1)] relative;
     }
 
     nav {
