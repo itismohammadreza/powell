@@ -69,10 +69,6 @@
 </p-drawer>
 
 <p-popover #op>
-  <pw-radio [value]="tempSidebarType" [options]="sidebarTypes" (onChange)="changeSidebarType($event, true)"/>
-</p-popover>
-
-<p-popover #op>
   <pw-radio [value]="tempSidebarType" [options]="sidebarTypes"
             (onChange)="changeSidebarType($event, true);op?.hide()"/>
 </p-popover>
