@@ -225,7 +225,7 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
 
   _onUnselect(event: SafeAny) {
     this.onUnselect.emit(event);
-    this.onModelChange(this.value);
+    this.onModelChange(this.value?.length ? this.value : null);
   }
 
   _onClear() {
