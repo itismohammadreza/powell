@@ -92,7 +92,7 @@ const DATEPICKER_INSTANCE = new InjectionToken<DatepickerBaseComponent>('DATEPIC
   selector: 'pw-datepicker-base',
   standalone: false,
   hostDirectives: [$Bind],
-  templateUrl: './datePicker-base.component.html',
+  templateUrl: './datepicker-base.component.html',
   providers: [DATEPICKER_VALUE_ACCESSOR, $DatePickerStyle, {
     provide: DATEPICKER_INSTANCE,
     useExisting: DatepickerBaseComponent
