@@ -1366,7 +1366,7 @@ export class DatepickerBaseComponent extends $BaseInput<$DatePickerPassThrough> 
 
   isDateBetween(start: Date | Moment, end: Date | Moment, dateMeta: any) {
     let between: boolean = false;
-    if ($isDate(start) && $isDate(end)) {
+    if (this.isValidDate(start) && this.isValidDate(end)) {
       let date: Date | Moment = this.formatDateMetaToDate(dateMeta);
       return start[this.getEqualProp('getTime')]() <= date[this.getEqualProp('getTime')]() && end[this.getEqualProp('getTime')]() >= date[this.getEqualProp('getTime')]();
     }
