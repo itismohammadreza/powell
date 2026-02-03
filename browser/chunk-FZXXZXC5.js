@@ -1,0 +1,2 @@
+import{Fb as o,Gb as a,bc as s,fb as n}from"./chunk-CGQZBOUT.js";import"./chunk-HZ6M6AS2.js";var i=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["app-not-found-page"]],decls:2,vars:0,consts:[[1,"size-full","flex","items-center","justify-center"]],template:function(e,c){e&1&&(o(0,"div",0),s(1,` 404 Not Found
+`),a())},encapsulation:2})};export{i as NotFoundPage};
