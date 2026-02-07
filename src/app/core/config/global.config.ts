@@ -15,6 +15,7 @@ export const globalConfig: GlobalConfig = {
     injectDirectionToRoot: true,
     theme: {
       preset: $Aura,
+      primaryPalette: $Aura.primitive.blue,
       mode: 'system',
     }
   }
