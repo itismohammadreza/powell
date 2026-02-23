@@ -1,5 +1,30 @@
 import {AbstractControl, FormArray, FormControl, FormGroup} from "@angular/forms";
 
+interface CountdownOptions {
+  onTick?: (time: string) => void;
+  onComplete?: () => void;
+  autoStart?: boolean;
+  format?: 'HH:mm' | 'HH:mm:ss' | 'mm:ss';
+}
+
+interface CountdownInstance {
+  start: () => void;
+  pause: () => void;
+  resume: () => void;
+  stop: () => void;
+  reset: (seconds?: number) => void;
+  getRemainingTime: () => number;
+  getFormattedTime: () => string;
+  isRunning: () => boolean;
+  isPaused: () => boolean;
+  destroy: () => void;
+}
+
+interface CountdownReturn {
+  instance: CountdownInstance;
+  formattedTime: string;
+}
+
 export const helpers = {
   startPolling: <T>(apiFn: () => Promise<T>, interval: number, onResult: (result: T) => void, onError?: (err: SafeAny) => void) => {
     let stopped = false;
@@ -295,6 +320,216 @@ export const helpers = {
         }
       }
     }
+  },
+
+  commafy: (value: string | number) => {
+    if (value === null || value === undefined) {
+      return '';
+    }
+    value = value.toString().replace(/,/g, '') as string;
+    value = Array.from(value).reverse() as SafeAny;
+    let tmpSeperatedNumber = '';
+    let j = 0;
+    for (let i = 0; i < (value as SafeAny).length; i++) {
+      tmpSeperatedNumber += value[i];
+      j++;
+      if (j == 3) {
+        tmpSeperatedNumber += ',';
+        j = 0;
+      }
+    }
+    value = Array.from(tmpSeperatedNumber).reverse().join('');
+    if (value[0] === ',') {
+      value = value.replace(',', '');
+    }
+    return value;
+  },
+
+  countDown: (seconds: number, options?: CountdownOptions): CountdownReturn => {
+    const config = {
+      onTick: () => {
+      },
+      onComplete: () => {
+      },
+      autoStart: true,
+      format: 'HH:mm' as const,
+      ...options
+    };
+
+    let remainingSeconds = seconds;
+    let timerId: any = null;
+    let isPaused = false;
+    let isActive = false;
+
+    const formatTime = (totalSeconds: number): string => {
+      if (totalSeconds <= 0) {
+        switch (config.format) {
+          case 'HH:mm':
+            return '00:00';
+          case 'HH:mm:ss':
+            return '00:00:00';
+          case 'mm:ss':
+            return '00:00';
+          default:
+            return '00:00';
+        }
+      }
+
+      const hours = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const secs = totalSeconds % 60;
+
+      switch (config.format) {
+        case 'HH:mm':
+          return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+
+        case 'HH:mm:ss':
+          return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+        case 'mm:ss':
+          const totalMinutes = Math.floor(totalSeconds / 60);
+          const remainingSecs = totalSeconds % 60;
+          return `${totalMinutes.toString().padStart(2, '0')}:${remainingSecs.toString().padStart(2, '0')}`;
+
+        default:
+          return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+      }
+    };
+
+    const tick = () => {
+      if (!isPaused && remainingSeconds > 0) {
+        remainingSeconds--;
+        config.onTick(formatTime(remainingSeconds));
+
+        if (remainingSeconds <= 0) {
+          stop();
+          config.onComplete();
+        }
+      }
+    };
+
+    const start = () => {
+      if (timerId || remainingSeconds <= 0) return;
+      isActive = true;
+      isPaused = false;
+      config.onTick(formatTime(remainingSeconds));
+      timerId = setInterval(tick, 1000);
+    };
+
+    const stop = () => {
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+      }
+      isActive = false;
+      isPaused = false;
+    };
+
+    const pause = () => {
+      if (isActive && !isPaused) {
+        isPaused = true;
+      }
+    };
+    const resume = () => {
+      if (isActive && isPaused) {
+        isPaused = false;
+      }
+    };
+    const reset = (newSeconds?: number) => {
+      stop();
+
+      if (newSeconds !== undefined) {
+        remainingSeconds = newSeconds;
+      } else {
+        remainingSeconds = seconds;
+      }
+
+      if (config.autoStart && remainingSeconds > 0) {
+        start();
+      } else {
+        config.onTick(formatTime(remainingSeconds));
+      }
+    };
+    const getRemainingTime = (): number => {
+      return remainingSeconds;
+    };
+    const getFormattedTime = (): string => {
+      return formatTime(remainingSeconds);
+    };
+    const isRunning = (): boolean => {
+      return isActive && !isPaused;
+    };
+
+    const isPausedState = (): boolean => {
+      return isPaused;
+    };
+    const destroy = () => {
+      stop();
+    };
+
+    const instance: CountdownInstance = {
+      start,
+      pause,
+      resume,
+      stop,
+      reset,
+      getRemainingTime,
+      getFormattedTime,
+      isRunning,
+      isPaused: isPausedState,
+      destroy
+    };
+
+    if (config.autoStart && seconds > 0) {
+      start();
+    } else {
+      config.onTick(formatTime(remainingSeconds));
+    }
+
+    return {
+      instance,
+      formattedTime: formatTime(remainingSeconds)
+    };
+  },
+
+  formatTime: (seconds: number, format: 'HH:mm' | 'HH:mm:ss' | 'mm:ss' = 'HH:mm'): string => {
+    if (seconds <= 0) {
+      return format === 'HH:mm' ? '00:00' :
+        format === 'HH:mm:ss' ? '00:00:00' : '00:00';
+    }
+
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+
+    switch (format) {
+      case 'HH:mm':
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+
+      case 'HH:mm:ss':
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+      case 'mm:ss':
+        const totalMinutes = Math.floor(seconds / 60);
+        return `${totalMinutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+      default:
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+    }
+  },
+
+  parseTimeToSeconds: (timeString: string): number => {
+    const parts = timeString.split(':').map(part => parseInt(part, 10));
+    if (parts.length === 3) {
+      return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    } else if (parts.length === 2) {
+      if (parts[0] > 23) {
+        return parts[0] * 60 + parts[1];
+      } else {
+        return parts[0] * 3600 + parts[1] * 60;
+      }
+    } else {
+      throw new Error('Invalid time format. Use HH:mm, HH:mm:ss or mm:ss');
+    }
   }
 }
-
