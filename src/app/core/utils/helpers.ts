@@ -531,5 +531,16 @@ export const helpers = {
     } else {
       throw new Error('Invalid time format. Use HH:mm, HH:mm:ss or mm:ss');
     }
+  },
+
+  formatSize: (bytes: number) => {
+    if (!bytes) {
+      return '';
+    }
+    if (bytes === 0) return '0 Bytes';
+    const units = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    const index = Math.floor(Math.log(bytes) / Math.log(1024));
+    const size = bytes / Math.pow(1024, index);
+    return `${size.toFixed(2)} ${units[index]}`;
   }
 }
