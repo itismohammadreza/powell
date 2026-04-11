@@ -52,7 +52,7 @@
       <small class="message">{{ hint }}</small>
     }
     @for (v of validation | keyvalue; track v) {
-      @if (hasError(v.key)) {
+      @if (hasError(v.key) && v.value) {
         <small class="message validation">{{ v.value }}</small>
       }
     }
