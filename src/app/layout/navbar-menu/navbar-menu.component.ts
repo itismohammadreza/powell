@@ -36,7 +36,7 @@ import {DesignerComponent} from '@layout/designer/designer.component';
 @Component({
   selector: 'app-navbar-menu',
   templateUrl: './navbar-menu.component.html',
-  styleUrls: ['navbar-menu.component.scss'],
+  styleUrl: 'navbar-menu.component.scss',
   imports: [
     LogoComponent,
     $AvatarModule,
