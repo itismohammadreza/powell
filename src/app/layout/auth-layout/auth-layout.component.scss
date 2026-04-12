@@ -29,7 +29,12 @@ $amount: 20;
         left: math.random(100) * 1%;
         transform-origin: (math.random(50) - 25) * 1vw (math.random(50) - 25) * 1vh;
         $blurRadius: (math.random() + 0.5) * $particleSize * 0.5;
-        $x: if(math.random() > 0.5, -1, 1);
+        $x: 1;
+        @if math.random() > 0.5 {
+          $x: -1;
+        } @else {
+          $x: 1;
+        }
         box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
       }
     }

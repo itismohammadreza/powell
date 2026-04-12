@@ -94,7 +94,7 @@ export {
   MotionDirective as $MotionDirective
 } from "primeng/motion";
 
-export {type MotionEvent as $MotionEvent,type MotionOptions as $MotionOptions} from "@primeuix/motion"
+export {type MotionEvent as $MotionEvent, type MotionOptions as $MotionOptions} from "@primeuix/motion"
 export {
   Bind as $Bind,
   BindModule as $BindModule
@@ -374,6 +374,7 @@ export {InputIcon as $InputIcon, InputIconModule as $InputIconModule} from "prim
 export {
   InputMask as $InputMask,
   InputMaskModule as $InputMaskModule,
+  InputMaskDirective as $InputMaskDirective,
   type InputMaskTemplates as $InputMaskTemplates
 } from "primeng/inputmask";
 export {
