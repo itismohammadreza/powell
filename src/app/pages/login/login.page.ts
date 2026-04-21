@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {AuthService} from '@core/http';
+import {DataService} from '@core/http';
 import {Router} from '@angular/router';
 import {InputTextModule} from '@powell/components/input-text';
 import {ButtonModule} from '@powell/components/button';
@@ -19,7 +19,7 @@ import {LogoComponent} from '@layout/logo/logo.component';
   ]
 })
 export class LoginPage {
-  private authService = inject(AuthService);
+  private dataService = inject(DataService);
   private router = inject(Router);
 
   form = new FormGroup({
@@ -34,7 +34,7 @@ export class LoginPage {
       return;
     }
     try {
-      const res = await this.authService.login(this.form.value);
+      const res = await this.dataService.login(this.form.value);
       callback();
       localStorage.setItem('token', res.token);
       this.router.navigate(['/dashboard']);

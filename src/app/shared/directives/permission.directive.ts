@@ -78,7 +78,7 @@ Usage Sample :
 /*
 Mode 2 for this directive :
   ngOnInit() {
-    if (this.authService.hasPermission(this.ngPermission)) {
+    if (this.dataService.hasPermission(this.ngPermission)) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     } else {
       this.viewContainer.clear();

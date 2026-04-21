@@ -1,20 +1,20 @@
 import {CanActivateFn, Router} from '@angular/router';
 import {inject} from "@angular/core";
-import {AuthService} from "@core/http";
+import {DataService} from "@core/http";
 
 export const authGuard: CanActivateFn = (next, state) => {
-  const authService = inject(AuthService);
+  const dataService = inject(DataService);
   const router = inject(Router);
   const {permissions} = next.data;
-  if (!!authService.getToken()) {
-    if (authService.hasPermission(permissions)) {
+  if (!!dataService.getToken()) {
+    if (dataService.hasPermission(permissions)) {
       return true
     } else {
       router.navigateByUrl('/404')
       return false
     }
   } else {
-    authService.logout();
+    dataService.logout();
     return false;
   }
 }

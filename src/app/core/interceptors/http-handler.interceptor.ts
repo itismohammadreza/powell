@@ -3,7 +3,7 @@ import {HttpErrorResponse, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpRe
 import {finalize, identity, of, tap, throwError, timeout} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {OverlayService} from '@powell/api';
-import {AuthService} from '@core/http';
+import {DataService} from '@core/http';
 import {globalConfig} from "@core/config";
 import {LoaderService} from "@core/utils";
 import {httpUtils} from '@core/interceptors/http-utils';
@@ -13,7 +13,7 @@ const loadingRequestsCounter = new Map<string, number>();
 export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>, next: HttpHandlerFn) => {
   const overlayService = inject(OverlayService);
   const loaderService = inject(LoaderService);
-  const authService = inject(AuthService);
+  const dataService = inject(DataService);
 
   const showSuccessToast = (message: string) => {
     overlayService.showToast({
@@ -105,7 +105,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
         showFailureToast(failureMessage ?? error_description);
       }
       if (httpError.status === 403) {
-        authService.logout();
+        dataService.logout();
       }
       removeRequestFromQueue(clonedReq);
       return throwError(() => httpError);

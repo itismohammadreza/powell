@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {AuthService} from '@core/http';
+import {DataService} from '@core/http';
 import {Router} from '@angular/router';
 import {samePasswordsValidator} from "@core/utils";
 import {InputTextModule} from '@powell/components/input-text';
@@ -20,7 +20,7 @@ import {LogoComponent} from '@layout/logo/logo.component';
   ]
 })
 export class RegisterPage {
-  private authService = inject(AuthService);
+  private dataService = inject(DataService);
   private router = inject(Router);
 
   form = new FormGroup({
@@ -35,7 +35,7 @@ export class RegisterPage {
       return;
     }
     try {
-      await this.authService.register(this.form.value);
+      await this.dataService.register(this.form.value);
       callback();
       this.router.navigate(['/auth/login']);
     } catch (e) {
