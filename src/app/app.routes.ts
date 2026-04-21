@@ -45,6 +45,10 @@ export const routes: Routes = [
     loadComponent: () => import('@pages/not-found/not-found.page').then((m) => m.NotFoundPage),
   },
   {
+    path: '403',
+    loadComponent: () => import('@pages/access-denied/access-denied.page').then((m) => m.AccessDeniedPage),
+  },
+  {
     path: '**',
     redirectTo: '/404',
     pathMatch: 'full',

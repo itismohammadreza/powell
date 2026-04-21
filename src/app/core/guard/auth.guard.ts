@@ -10,7 +10,7 @@ export const authGuard: CanActivateFn = (next, state) => {
     if (dataService.hasPermission(permissions)) {
       return true
     } else {
-      router.navigateByUrl('/404')
+      router.navigateByUrl('/403')
       return false
     }
   } else {
