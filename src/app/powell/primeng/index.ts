@@ -142,6 +142,7 @@ export {AutoFocus as $AutoFocus, AutoFocusModule as $AutoFocusModule} from "prim
 export {Avatar as $Avatar, AvatarModule as $AvatarModule} from "primeng/avatar";
 export {AvatarGroup as $AvatarGroup, AvatarGroupModule as $AvatarGroupModule} from "primeng/avatargroup";
 export {Badge as $Badge, BadgeModule as $BadgeModule, BadgeDirective as $BadgeDirective} from "primeng/badge";
+export {OverlayBadge as $OverlayBadge, OverlayBadgeModule as $OverlayBadgeModule} from "primeng/overlaybadge";
 export {BaseInput as $BaseInput} from "primeng/baseinput";
 export {
   BlockUI as $BlockUI,
