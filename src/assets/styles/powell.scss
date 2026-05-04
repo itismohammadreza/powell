@@ -754,6 +754,10 @@ pw-input-mask {
 }
 
 pw-input-number {
+  input {
+    unicode-bidi: plaintext;
+  }
+
   .input-number-wrapper {
     &.icon-start {
       .p-inputtext {
