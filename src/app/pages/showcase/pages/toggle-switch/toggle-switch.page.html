@@ -2,11 +2,13 @@
   component="InputSwitch"
   description="InputSwitch is used to select a boolean value."
   [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
+  (onOptionChange)="onOptionChange($event)"
+>
   <form [formGroup]="form">
     <pw-toggle-switch
       formControlName="c1"
       [validation]="{ required: 'error' }"
-      (onChangeAsync)="onChangeAsync($event)"/>
+      (onChangeAsync)="onChangeAsync($event)"
+    />
   </form>
 </app-preview>

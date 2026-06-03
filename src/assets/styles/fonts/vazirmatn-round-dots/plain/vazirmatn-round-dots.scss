@@ -1,12 +1,13 @@
-$baseUrl: "#{$baseUrl}";
+$baseUrl: '#{$baseUrl}';
 
 @font-face {
   font-family: Vazirmatn;
   font-weight: 100;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-RD-Thin.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-RD-Thin.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-RD-Thin.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-RD-Thin.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -15,8 +16,9 @@ $baseUrl: "#{$baseUrl}";
   font-weight: 200;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-RD-ExtraLight.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-RD-ExtraLight.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-RD-ExtraLight.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-RD-ExtraLight.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -25,8 +27,9 @@ $baseUrl: "#{$baseUrl}";
   font-weight: 300;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-RD-Light.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-RD-Light.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-RD-Light.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-RD-Light.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -35,8 +38,9 @@ $baseUrl: "#{$baseUrl}";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-RD-Regular.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-RD-Regular.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-RD-Regular.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-RD-Regular.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -45,8 +49,9 @@ $baseUrl: "#{$baseUrl}";
   font-weight: 500;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-RD-Medium.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-RD-Medium.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-RD-Medium.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-RD-Medium.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -55,8 +60,9 @@ $baseUrl: "#{$baseUrl}";
   font-weight: 600;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-RD-SemiBold.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-RD-SemiBold.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-RD-SemiBold.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-RD-SemiBold.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -65,8 +71,9 @@ $baseUrl: "#{$baseUrl}";
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-RD-Bold.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-RD-Bold.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-RD-Bold.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-RD-Bold.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -75,8 +82,9 @@ $baseUrl: "#{$baseUrl}";
   font-weight: 800;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-RD-ExtraBold.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-RD-ExtraBold.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-RD-ExtraBold.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-RD-ExtraBold.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -85,7 +93,8 @@ $baseUrl: "#{$baseUrl}";
   font-weight: 900;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-RD-Black.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-RD-Black.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-RD-Black.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-RD-Black.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }

@@ -1,4 +1,4 @@
-import {InjectionToken, InjectOptions, Injector, Type} from '@angular/core';
+import { InjectionToken, InjectOptions, Injector, Type } from '@angular/core';
 
 export class DynamicDialogInjector implements Injector {
   get<T>(token: Type<T> | InjectionToken<T>, notFoundValue?: T, flags?: InjectOptions): T;
@@ -13,6 +13,8 @@ export class DynamicDialogInjector implements Injector {
     return this._parentInjector.get<SafeAny>(token, notFoundValue);
   }
 
-  constructor(private _parentInjector: Injector, private _additionalTokens: WeakMap<SafeAny, SafeAny>) {
-  }
+  constructor(
+    private _parentInjector: Injector,
+    private _additionalTokens: WeakMap<SafeAny, SafeAny>,
+  ) {}
 }

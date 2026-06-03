@@ -1,8 +1,8 @@
-import {AfterViewInit, Component, Directive, inject} from '@angular/core';
-import {ConfigService, OverlayService} from "@powell/api";
-import {PreviewOption} from "@pages/showcase/components/index";
-import {AsyncEvent} from "@powell/models";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { AfterViewInit, Component, Directive, inject } from '@angular/core';
+import { ConfigService, OverlayService } from '@powell/api';
+import { PreviewOption } from '@pages/showcase/components/index';
+import { AsyncEvent } from '@powell/models';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Directive()
 export abstract class PreviewBase implements AfterViewInit {
@@ -21,46 +21,46 @@ export abstract class PreviewBase implements AfterViewInit {
     addonEnd: false,
     iconStart: false,
     iconEnd: false,
-  }
+  };
   protected options: SafeAny[] = [
-    {label: 'Australia', value: 'AU'},
-    {label: 'Brazil', value: 'BR'},
-    {label: 'China', value: 'CN'},
-    {label: 'Egypt', value: 'EG'},
-    {label: 'France', value: 'FR'},
-    {label: 'Germany', value: 'DE'},
-    {label: 'India', value: 'IN'},
-    {label: 'Japan', value: 'JP'},
-    {label: 'Spain', value: 'ES'},
-    {label: 'United States', value: 'US'}
+    { label: 'Australia', value: 'AU' },
+    { label: 'Brazil', value: 'BR' },
+    { label: 'China', value: 'CN' },
+    { label: 'Egypt', value: 'EG' },
+    { label: 'France', value: 'FR' },
+    { label: 'Germany', value: 'DE' },
+    { label: 'India', value: 'IN' },
+    { label: 'Japan', value: 'JP' },
+    { label: 'Spain', value: 'ES' },
+    { label: 'United States', value: 'US' },
   ];
 
   ngAfterViewInit() {
     if (this.cmpRef) {
-      this.previewOptions.forEach(item => {
-        this.cmpRef[item.field] = item.value
-      })
+      this.previewOptions.forEach((item) => {
+        this.cmpRef[item.field] = item.value;
+      });
     }
   }
 
-  onChangeAsync({loadingCallback}: AsyncEvent<SafeAny>) {
+  onChangeAsync({ loadingCallback }: AsyncEvent<SafeAny>) {
     this.asyncFlag = !this.asyncFlag;
     setTimeout(() => {
-      loadingCallback(this.asyncFlag)
-    }, 3000)
+      loadingCallback(this.asyncFlag);
+    }, 3000);
   }
 
   onOptionChange(event: SafeAny) {
     this.form.get('c1').markAsPristine();
     this.form.get('c1').markAsUntouched();
-    const {field, value} = event;
+    const { field, value } = event;
     if (field === 'additions') {
       this.additions = {
         addonStart: false,
         addonEnd: false,
         iconStart: false,
         iconEnd: false,
-      }
+      };
       switch (value) {
         case 'none':
           break;
@@ -70,7 +70,7 @@ export abstract class PreviewBase implements AfterViewInit {
             addonEnd: true,
             iconStart: false,
             iconEnd: false,
-          }
+          };
           break;
         case 'iconBoth':
           this.additions = {
@@ -78,19 +78,19 @@ export abstract class PreviewBase implements AfterViewInit {
             addonEnd: false,
             iconStart: true,
             iconEnd: true,
-          }
+          };
           break;
         default:
-          this.additions[value] = true
+          this.additions[value] = true;
           break;
       }
       this.reRenderComponent();
-      return
+      return;
     }
     if (this.cmpRef) {
       this.cmpRef[field] = value;
     }
-    this.previewOptions.find(option => option.field === field).value = value;
+    this.previewOptions.find((option) => option.field === field).value = value;
   }
 
   reRenderComponent() {
@@ -104,6 +104,6 @@ export abstract class PreviewBase implements AfterViewInit {
   }
 
   getOption(key: string) {
-    return this.previewOptions.find(option => option.field === key).value;
+    return this.previewOptions.find((option) => option.field === key).value;
   }
 }

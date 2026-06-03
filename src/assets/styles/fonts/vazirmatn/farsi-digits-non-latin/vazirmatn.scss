@@ -1,17 +1,18 @@
-$baseUrl: "/fonts/vazirmatn/farsi-digits-non-latin";
+$baseUrl: '/fonts/vazirmatn/farsi-digits-non-latin';
 
 @font-face {
   font-family: Vazirmatn;
   font-weight: 100;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-FD-NL-Thin.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-FD-NL-Thin.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-FD-NL-Thin.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-FD-NL-Thin.ttf') format('truetype');
   unicode-range:
-  U+0600-06FF,   /* حروف فارسی و عربی */
-  U+0660-0669,   /* اعداد عربی */
-  U+06F0-06F9,   /* اعداد فارسی */
-  U+0030-0039;   /* اعداد لاتین */
+    U+0600-06FF,
+    /* حروف فارسی و عربی */ U+0660-0669,
+    /* اعداد عربی */ U+06F0-06F9,
+    /* اعداد فارسی */ U+0030-0039; /* اعداد لاتین */
 }
 
 @font-face {
@@ -19,13 +20,14 @@ $baseUrl: "/fonts/vazirmatn/farsi-digits-non-latin";
   font-weight: 200;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-FD-NL-ExtraLight.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-FD-NL-ExtraLight.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-FD-NL-ExtraLight.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-FD-NL-ExtraLight.ttf') format('truetype');
   unicode-range:
-  U+0600-06FF,   /* حروف فارسی و عربی */
-  U+0660-0669,   /* اعداد عربی */
-  U+06F0-06F9,   /* اعداد فارسی */
-  U+0030-0039;   /* اعداد لاتین */
+    U+0600-06FF,
+    /* حروف فارسی و عربی */ U+0660-0669,
+    /* اعداد عربی */ U+06F0-06F9,
+    /* اعداد فارسی */ U+0030-0039; /* اعداد لاتین */
 }
 
 @font-face {
@@ -33,13 +35,14 @@ $baseUrl: "/fonts/vazirmatn/farsi-digits-non-latin";
   font-weight: 300;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-FD-NL-Light.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-FD-NL-Light.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-FD-NL-Light.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-FD-NL-Light.ttf') format('truetype');
   unicode-range:
-  U+0600-06FF,   /* حروف فارسی و عربی */
-  U+0660-0669,   /* اعداد عربی */
-  U+06F0-06F9,   /* اعداد فارسی */
-  U+0030-0039;   /* اعداد لاتین */
+    U+0600-06FF,
+    /* حروف فارسی و عربی */ U+0660-0669,
+    /* اعداد عربی */ U+06F0-06F9,
+    /* اعداد فارسی */ U+0030-0039; /* اعداد لاتین */
 }
 
 @font-face {
@@ -47,13 +50,14 @@ $baseUrl: "/fonts/vazirmatn/farsi-digits-non-latin";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-FD-NL-Regular.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-FD-NL-Regular.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-FD-NL-Regular.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-FD-NL-Regular.ttf') format('truetype');
   unicode-range:
-  U+0600-06FF,   /* حروف فارسی و عربی */
-  U+0660-0669,   /* اعداد عربی */
-  U+06F0-06F9,   /* اعداد فارسی */
-  U+0030-0039;   /* اعداد لاتین */
+    U+0600-06FF,
+    /* حروف فارسی و عربی */ U+0660-0669,
+    /* اعداد عربی */ U+06F0-06F9,
+    /* اعداد فارسی */ U+0030-0039; /* اعداد لاتین */
 }
 
 @font-face {
@@ -61,13 +65,14 @@ $baseUrl: "/fonts/vazirmatn/farsi-digits-non-latin";
   font-weight: 500;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-FD-NL-Medium.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-FD-NL-Medium.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-FD-NL-Medium.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-FD-NL-Medium.ttf') format('truetype');
   unicode-range:
-  U+0600-06FF,   /* حروف فارسی و عربی */
-  U+0660-0669,   /* اعداد عربی */
-  U+06F0-06F9,   /* اعداد فارسی */
-  U+0030-0039;   /* اعداد لاتین */
+    U+0600-06FF,
+    /* حروف فارسی و عربی */ U+0660-0669,
+    /* اعداد عربی */ U+06F0-06F9,
+    /* اعداد فارسی */ U+0030-0039; /* اعداد لاتین */
 }
 
 @font-face {
@@ -75,13 +80,14 @@ $baseUrl: "/fonts/vazirmatn/farsi-digits-non-latin";
   font-weight: 600;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-FD-NL-SemiBold.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-FD-NL-SemiBold.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-FD-NL-SemiBold.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-FD-NL-SemiBold.ttf') format('truetype');
   unicode-range:
-  U+0600-06FF,   /* حروف فارسی و عربی */
-  U+0660-0669,   /* اعداد عربی */
-  U+06F0-06F9,   /* اعداد فارسی */
-  U+0030-0039;   /* اعداد لاتین */
+    U+0600-06FF,
+    /* حروف فارسی و عربی */ U+0660-0669,
+    /* اعداد عربی */ U+06F0-06F9,
+    /* اعداد فارسی */ U+0030-0039; /* اعداد لاتین */
 }
 
 @font-face {
@@ -89,13 +95,14 @@ $baseUrl: "/fonts/vazirmatn/farsi-digits-non-latin";
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-FD-NL-Bold.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-FD-NL-Bold.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-FD-NL-Bold.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-FD-NL-Bold.ttf') format('truetype');
   unicode-range:
-  U+0600-06FF,   /* حروف فارسی و عربی */
-  U+0660-0669,   /* اعداد عربی */
-  U+06F0-06F9,   /* اعداد فارسی */
-  U+0030-0039;   /* اعداد لاتین */
+    U+0600-06FF,
+    /* حروف فارسی و عربی */ U+0660-0669,
+    /* اعداد عربی */ U+06F0-06F9,
+    /* اعداد فارسی */ U+0030-0039; /* اعداد لاتین */
 }
 
 @font-face {
@@ -103,13 +110,14 @@ $baseUrl: "/fonts/vazirmatn/farsi-digits-non-latin";
   font-weight: 800;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-FD-NL-ExtraBold.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-FD-NL-ExtraBold.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-FD-NL-ExtraBold.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-FD-NL-ExtraBold.ttf') format('truetype');
   unicode-range:
-  U+0600-06FF,   /* حروف فارسی و عربی */
-  U+0660-0669,   /* اعداد عربی */
-  U+06F0-06F9,   /* اعداد فارسی */
-  U+0030-0039;   /* اعداد لاتین */
+    U+0600-06FF,
+    /* حروف فارسی و عربی */ U+0660-0669,
+    /* اعداد عربی */ U+06F0-06F9,
+    /* اعداد فارسی */ U+0030-0039; /* اعداد لاتین */
 }
 
 @font-face {
@@ -117,11 +125,12 @@ $baseUrl: "/fonts/vazirmatn/farsi-digits-non-latin";
   font-weight: 900;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-FD-NL-Black.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-FD-NL-Black.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-FD-NL-Black.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-FD-NL-Black.ttf') format('truetype');
   unicode-range:
-  U+0600-06FF,   /* حروف فارسی و عربی */
-  U+0660-0669,   /* اعداد عربی */
-  U+06F0-06F9,   /* اعداد فارسی */
-  U+0030-0039;   /* اعداد لاتین */
+    U+0600-06FF,
+    /* حروف فارسی و عربی */ U+0660-0669,
+    /* اعداد عربی */ U+06F0-06F9,
+    /* اعداد فارسی */ U+0030-0039; /* اعداد لاتین */
 }

@@ -1,8 +1,7 @@
-import {NgModule} from '@angular/core';
-import {ShowcaseRoutingModule} from '@pages/showcase/showcase-routing.module';
+import { NgModule } from '@angular/core';
+import { ShowcaseRoutingModule } from '@pages/showcase/showcase-routing.module';
 
 @NgModule({
-  imports: [ShowcaseRoutingModule]
+  imports: [ShowcaseRoutingModule],
 })
-export class ShowcaseModule {
-}
+export class ShowcaseModule {}

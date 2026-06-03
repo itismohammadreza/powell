@@ -1,68 +1,73 @@
-$baseUrl: "/fonts/font-awesome";
+$baseUrl: '/fonts/font-awesome';
 
-@use "./icons";
+@use './icons';
 
 @font-face {
-  font-family: "Font Awesome 5 Pro";
+  font-family: 'Font Awesome 5 Pro';
   font-style: normal;
   font-weight: 900;
   font-display: auto;
-  src: url("#{$baseUrl}/solid/fa-solid-900.eot");
-  src: url("#{$baseUrl}/solid/fa-solid-900.eot?#iefix") format("embedded-opentype"),
-  url("#{$baseUrl}/solid/fa-solid-900.woff2") format("woff2"),
-  url("#{$baseUrl}/solid/fa-solid-900.woff") format("woff"),
-  url("#{$baseUrl}/solid/fa-solid-900.ttf") format("truetype"),
-  url("#{$baseUrl}/solid/fa-solid-900.svg#fontawesome") format("svg");
+  src: url('#{$baseUrl}/solid/fa-solid-900.eot');
+  src:
+    url('#{$baseUrl}/solid/fa-solid-900.eot?#iefix') format('embedded-opentype'),
+    url('#{$baseUrl}/solid/fa-solid-900.woff2') format('woff2'),
+    url('#{$baseUrl}/solid/fa-solid-900.woff') format('woff'),
+    url('#{$baseUrl}/solid/fa-solid-900.ttf') format('truetype'),
+    url('#{$baseUrl}/solid/fa-solid-900.svg#fontawesome') format('svg');
 }
 
 @font-face {
-  font-family: "Font Awesome 5 Brands";
+  font-family: 'Font Awesome 5 Brands';
   font-style: normal;
   font-weight: normal;
   font-display: auto;
-  src: url("#{$baseUrl}/brands/fa-brands-400.eot");
-  src: url("#{$baseUrl}/brands/fa-brands-400.eot?#iefix") format("embedded-opentype"),
-  url("#{$baseUrl}/brands/fa-brands-400.woff2") format("woff2"),
-  url("#{$baseUrl}/brands/fa-brands-400.woff") format("woff"),
-  url("#{$baseUrl}/brands/fa-brands-400.ttf") format("truetype"),
-  url("#{$baseUrl}/brands/fa-brands-400.svg#fontawesome") format("svg");
+  src: url('#{$baseUrl}/brands/fa-brands-400.eot');
+  src:
+    url('#{$baseUrl}/brands/fa-brands-400.eot?#iefix') format('embedded-opentype'),
+    url('#{$baseUrl}/brands/fa-brands-400.woff2') format('woff2'),
+    url('#{$baseUrl}/brands/fa-brands-400.woff') format('woff'),
+    url('#{$baseUrl}/brands/fa-brands-400.ttf') format('truetype'),
+    url('#{$baseUrl}/brands/fa-brands-400.svg#fontawesome') format('svg');
 }
 
 @font-face {
-  font-family: "Font Awesome 5 Duotone";
+  font-family: 'Font Awesome 5 Duotone';
   font-style: normal;
   font-weight: 900;
   font-display: auto;
-  src: url("#{$baseUrl}/duotone/fa-duotone-900.eot");
-  src: url("#{$baseUrl}/duotone/fa-duotone-900.eot?#iefix") format("embedded-opentype"),
-  url("#{$baseUrl}/duotone/fa-duotone-900.woff2") format("woff2"),
-  url("#{$baseUrl}/duotone/fa-duotone-900.woff") format("woff"),
-  url("#{$baseUrl}/duotone/fa-duotone-900.ttf") format("truetype"),
-  url("#{$baseUrl}/duotone/fa-duotone-900.svg#fontawesome") format("svg");
+  src: url('#{$baseUrl}/duotone/fa-duotone-900.eot');
+  src:
+    url('#{$baseUrl}/duotone/fa-duotone-900.eot?#iefix') format('embedded-opentype'),
+    url('#{$baseUrl}/duotone/fa-duotone-900.woff2') format('woff2'),
+    url('#{$baseUrl}/duotone/fa-duotone-900.woff') format('woff'),
+    url('#{$baseUrl}/duotone/fa-duotone-900.ttf') format('truetype'),
+    url('#{$baseUrl}/duotone/fa-duotone-900.svg#fontawesome') format('svg');
 }
 
 @font-face {
-  font-family: "Font Awesome 5 Pro";
+  font-family: 'Font Awesome 5 Pro';
   font-style: normal;
   font-weight: 300;
   font-display: auto;
-  src: url("#{$baseUrl}/light/fa-light-300.eot");
-  src: url("#{$baseUrl}/light/fa-light-300.eot?#iefix") format("embedded-opentype"),
-  url("#{$baseUrl}/light/fa-light-300.woff2") format("woff2"),
-  url("#{$baseUrl}/light/fa-light-300.woff") format("woff"),
-  url("#{$baseUrl}/light/fa-light-300.ttf") format("truetype"),
-  url("#{$baseUrl}/light/fa-light-300.svg#fontawesome") format("svg");
+  src: url('#{$baseUrl}/light/fa-light-300.eot');
+  src:
+    url('#{$baseUrl}/light/fa-light-300.eot?#iefix') format('embedded-opentype'),
+    url('#{$baseUrl}/light/fa-light-300.woff2') format('woff2'),
+    url('#{$baseUrl}/light/fa-light-300.woff') format('woff'),
+    url('#{$baseUrl}/light/fa-light-300.ttf') format('truetype'),
+    url('#{$baseUrl}/light/fa-light-300.svg#fontawesome') format('svg');
 }
 
 @font-face {
-  font-family: "Font Awesome 5 Pro";
+  font-family: 'Font Awesome 5 Pro';
   font-style: normal;
   font-weight: 400;
   font-display: auto;
-  src: url("#{$baseUrl}/regular/fa-regular-400.eot");
-  src: url("#{$baseUrl}/regular/fa-regular-400.eot?#iefix") format("embedded-opentype"),
-  url("#{$baseUrl}/regular/fa-regular-400.woff2") format("woff2"),
-  url("#{$baseUrl}/regular/fa-regular-400.woff") format("woff"),
-  url("#{$baseUrl}/regular/fa-regular-400.ttf") format("truetype"),
-  url("#{$baseUrl}/regular/fa-regular-400.svg#fontawesome") format("svg");
+  src: url('#{$baseUrl}/regular/fa-regular-400.eot');
+  src:
+    url('#{$baseUrl}/regular/fa-regular-400.eot?#iefix') format('embedded-opentype'),
+    url('#{$baseUrl}/regular/fa-regular-400.woff2') format('woff2'),
+    url('#{$baseUrl}/regular/fa-regular-400.woff') format('woff'),
+    url('#{$baseUrl}/regular/fa-regular-400.ttf') format('truetype'),
+    url('#{$baseUrl}/regular/fa-regular-400.svg#fontawesome') format('svg');
 }

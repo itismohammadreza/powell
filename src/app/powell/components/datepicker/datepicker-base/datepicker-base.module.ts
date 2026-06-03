@@ -1,6 +1,6 @@
-import {NgModule} from "@angular/core";
-import {CommonModule, NgTemplateOutlet} from "@angular/common";
-import {FormsModule} from "@angular/forms";
+import { NgModule } from '@angular/core';
+import { CommonModule, NgTemplateOutlet } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import {
   $AutoFocus,
   $AutoFocusModule,
@@ -19,9 +19,9 @@ import {
   $Ripple,
   $RippleModule,
   $SharedModule,
-  $TimesIcon
-} from "@powell/primeng";
-import {DatepickerBaseComponent} from "@powell/components/datepicker/datepicker-base/datepicker-base.component";
+  $TimesIcon,
+} from '@powell/primeng';
+import { DatepickerBaseComponent } from '@powell/components/datepicker/datepicker-base/datepicker-base.component';
 
 @NgModule({
   declarations: [DatepickerBaseComponent],
@@ -47,8 +47,7 @@ import {DatepickerBaseComponent} from "@powell/components/datepicker/datepicker-
     $Ripple,
     $AutoFocus,
     $InputText,
-    $SharedModule
+    $SharedModule,
   ],
 })
-export class DatepickerBaseModule {
-}
+export class DatepickerBaseModule {}

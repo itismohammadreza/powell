@@ -3,13 +3,14 @@
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | pwLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar: showRequiredStar : ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
     [disabled]="disabled"
     [readonly]="readonly"
-    [fluid]="fluid">
+    [fluid]="fluid"
+  >
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <div class="picker" [class.invalid]="isInvalid">
         <input
@@ -20,7 +21,8 @@
           [accept]="accept"
           [attr.id]="id"
           [disabled]="disabled || readonly || (fileLimit && filesToEmit.length == fileLimit)"
-          (change)="_onSelect($event)"/>
+          (change)="_onSelect($event)"
+        />
 
         <pw-button
           appearance="text"
@@ -28,7 +30,8 @@
           [disabled]="disabled || readonly || (fileLimit && filesToEmit.length == fileLimit)"
           (onClick)="inputFile.click()"
           [buttonProps]="buttonProps"
-          [label]="buttonLabel"/>
+          [label]="buttonLabel"
+        />
 
         @if (!filesToShow.length) {
           <div class="empty-placeholder">
@@ -38,19 +41,21 @@
 
         @for (item of filesToShow; track item; let i = $index) {
           <div class="file-item">
-            <div class="preview"
-                 [style.width.px]="previewWidth"
-                 [style.height.px]="previewWidth"
-                 [style.minWidth.px]="previewWidth"
-                 [style.minHeight.px]="previewWidth"
-                 [style.maxWidth.px]="previewWidth"
-                 [style.maxHeight.px]="previewWidth">
+            <div
+              class="preview"
+              [style.width.px]="previewWidth"
+              [style.height.px]="previewWidth"
+              [style.minWidth.px]="previewWidth"
+              [style.minHeight.px]="previewWidth"
+              [style.maxWidth.px]="previewWidth"
+              [style.maxHeight.px]="previewWidth"
+            >
               @switch (getFileType(item.display)) {
                 @case ('image') {
-                  <img [src]=" item.display" [alt]="item.name">
+                  <img [src]="item.display" [alt]="item.name" />
                 }
                 @case ('file') {
-                  <svg data-p-icon="upload"/>
+                  <svg data-p-icon="upload" />
                 }
               }
             </div>
@@ -68,9 +73,10 @@
               severity="danger"
               [rounded]="true"
               appearance="text"
-              (onClick)="onFileDelete($event, i)">
+              (onClick)="onFileDelete($event, i)"
+            >
               <ng-template pwTemplate="icon">
-                <svg data-p-icon="times"/>
+                <svg data-p-icon="times" />
               </ng-template>
             </pw-button>
           </div>

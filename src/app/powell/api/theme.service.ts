@@ -1,4 +1,4 @@
-import {DOCUMENT, inject, Injectable} from "@angular/core";
+import { DOCUMENT, inject, Injectable } from '@angular/core';
 
 import {
   $Aura,
@@ -8,10 +8,10 @@ import {
   $updatePreset,
   $updatePrimaryPalette,
   $updateSurfacePalette,
-  $usePreset
-} from "@powell/primeng";
-import {Config, Theme, ThemeMode} from "@powell/models";
-import {CONFIG_CLASS_PREFIX, DARK_MODE_CLASS} from "@powell/api";
+  $usePreset,
+} from '@powell/primeng';
+import { Config, Theme, ThemeMode } from '@powell/models';
+import { CONFIG_CLASS_PREFIX, DARK_MODE_CLASS } from '@powell/api';
 
 type BodyClassRule = {
   condition: (value: SafeAny) => boolean;
@@ -42,14 +42,14 @@ export class ThemeService {
     $updatePrimaryPalette(palette);
   }
 
-  usePreset(preset: Theme["preset"]) {
+  usePreset(preset: Theme['preset']) {
     $usePreset(preset);
     this._currentPreset.preset = preset;
   }
 
-  updatePreset(preset: Theme["preset"]) {
+  updatePreset(preset: Theme['preset']) {
     $updatePreset(preset);
-    this._currentPreset.preset = {...this._currentPreset.preset, ...preset};
+    this._currentPreset.preset = { ...this._currentPreset.preset, ...preset };
   }
 
   updateMode(mode: ThemeMode) {
@@ -89,7 +89,10 @@ export class ThemeService {
   private toggleDarkMode() {
     const htmlElement = this.document.querySelector('html');
     const systemIsDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (this._currentPreset.mode === 'dark' || (this._currentPreset.mode === 'system' && systemIsDark)) {
+    if (
+      this._currentPreset.mode === 'dark' ||
+      (this._currentPreset.mode === 'system' && systemIsDark)
+    ) {
       htmlElement?.classList.add(this._darkModeIdentifier);
     } else {
       htmlElement?.classList.remove(this._darkModeIdentifier);

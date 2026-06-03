@@ -1,22 +1,14 @@
-import {NgModule} from "@angular/core";
-import {NgTemplateOutlet} from "@angular/common";
-import {FormsModule} from "@angular/forms";
-import {ToggleButtonComponent} from "@powell/components/toggle-button";
-import {LabelStarModule} from "@powell/pipes/label-star";
-import {$ToggleButtonModule} from "@powell/primeng";
-import {FormFieldModule} from "@powell/components/form-field";
+import { NgModule } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ToggleButtonComponent } from '@powell/components/toggle-button';
+import { LabelStarModule } from '@powell/pipes/label-star';
+import { $ToggleButtonModule } from '@powell/primeng';
+import { FormFieldModule } from '@powell/components/form-field';
 
 @NgModule({
   declarations: [ToggleButtonComponent],
   exports: [ToggleButtonComponent],
-  imports: [
-    $ToggleButtonModule,
-    NgTemplateOutlet,
-    FormsModule,
-    LabelStarModule,
-    FormFieldModule
-  ],
+  imports: [$ToggleButtonModule, NgTemplateOutlet, FormsModule, LabelStarModule, FormFieldModule],
 })
-
-export class ToggleButtonModule {
-}
+export class ToggleButtonModule {}

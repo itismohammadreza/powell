@@ -11,7 +11,7 @@ import {
   OnInit,
   Output,
   QueryList,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -21,11 +21,17 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
+  NgControl,
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
-import {TemplateDirective} from '@powell/directives/template';
-import {FixLabelPosition, TreeFilterMode, TreeLoadingMode, TreeSelectionMode, Validation} from '@powell/models';
+import { takeUntil } from 'rxjs';
+import { TemplateDirective } from '@powell/directives/template';
+import {
+  FixLabelPosition,
+  TreeFilterMode,
+  TreeLoadingMode,
+  TreeSelectionMode,
+  Validation,
+} from '@powell/models';
 import {
   $ScrollerOptions,
   $TreeFilterEvent,
@@ -41,10 +47,10 @@ import {
   $TreeScrollEvent,
   $TreeScrollIndexChangeEvent,
   $TreeSelectionChangeEvent,
-  $uuid
-} from "@powell/primeng";
-import {DestroyService} from "@powell/utils";
-import {ConfigService} from "@powell/api";
+  $uuid,
+} from '@powell/primeng';
+import { DestroyService } from '@powell/utils';
+import { ConfigService } from '@powell/api';
 
 @Component({
   selector: 'pw-tree',
@@ -53,11 +59,11 @@ import {ConfigService} from "@powell/api";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TreeComponent),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class TreeComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
@@ -127,23 +133,24 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
 
   ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
-    if ((this.selectionMode === 'multiple' || this.selectionMode === 'checkbox') && typeof this.selection == 'undefined') {
+    if (
+      (this.selectionMode === 'multiple' || this.selectionMode === 'checkbox') &&
+      typeof this.selection == 'undefined'
+    ) {
       this.selection = [];
     }
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -163,7 +170,7 @@ export class TreeComponent implements OnInit, AfterContentInit, ControlValueAcce
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });

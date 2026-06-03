@@ -4,9 +4,9 @@ import {
   Core,
   fileInfo,
   imageInputInformation,
-  videoInputInformation
-} from "suneditor/src/lib/core";
-import {Context} from "suneditor/src/lib/context";
+  videoInputInformation,
+} from 'suneditor/src/lib/core';
+import { Context } from 'suneditor/src/lib/context';
 
 export type LoadingCallback = (toggle?: boolean) => SafeAny;
 export type FilePickerSelectEvent = (string | ArrayBuffer | File) | (string | ArrayBuffer | File)[];
@@ -142,10 +142,10 @@ export interface EditorOnCopy {
 
 export interface EditorEvent {
   e: Event;
-  core: Core
+  core: Core;
 }
 
 export interface EditorOnLoadEvent {
   core: Core;
-  reload: boolean
+  reload: boolean;
 }

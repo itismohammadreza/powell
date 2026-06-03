@@ -7,60 +7,63 @@ import {
   inject,
   QueryList,
   ViewChild,
-  ViewChildren
+  ViewChildren,
 } from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, ValidatorFn} from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import {
   AsyncEvent,
   DialogFormComponentName,
   DialogFormConfig,
   DialogFormOptions,
   DialogFormResult,
-  Validation
-} from "@powell/models";
+  Validation,
+} from '@powell/models';
 import {
   $ConfirmDialogModule,
   $ConfirmPopupModule,
   $Dialog,
   $DialogModule,
   $DomHandler,
-  $ToastModule
-} from "@powell/primeng";
-import {InputTextComponent, InputTextModule} from "@powell/components/input-text";
-import {AutoCompleteComponent, AutoCompleteModule} from "@powell/components/auto-complete";
-import {ButtonComponent, ButtonModule} from "@powell/components/button";
-import {CascadeSelectComponent, CascadeSelectModule} from "@powell/components/cascade-select";
-import {CheckboxComponent, CheckboxModule} from "@powell/components/checkbox";
-import {CheckboxGroupComponent, CheckboxGroupModule} from "@powell/components/checkbox-group";
-import {ColorPickerComponent, ColorPickerModule} from "@powell/components/color-picker";
-import {SelectComponent, SelectModule} from "@powell/components/select";
-import {DualLabelSwitchComponent, DualLabelSwitchModule} from "@powell/components/dual-label-switch";
-import {FilePickerComponent, FilePickerModule} from "@powell/components/file-picker";
-import {FilePicker2Component, FilePicker2Module} from "@powell/components/file-picker2";
-import {DatepickerComponent, DatepickerModule} from "@powell/components/datepicker";
-import {ImageComponent, ImageModule} from "@powell/components/image";
-import {InputMaskComponent, InputMaskModule} from "@powell/components/input-mask";
-import {InputNumberComponent, InputNumberModule} from "@powell/components/input-number";
-import {InputOtpComponent, InputOtpModule} from "@powell/components/input-otp";
-import {InputPasswordComponent, InputPasswordModule} from "@powell/components/input-password";
-import {InputTextareaComponent, InputTextareaModule} from "@powell/components/input-textarea";
-import {IranMapComponent, IranMapModule} from "@powell/components/iran-map";
-import {KnobComponent, KnobModule} from "@powell/components/knob";
-import {ListboxComponent, ListboxModule} from "@powell/components/listbox";
-import {MapComponent, MapModule} from "@powell/components/map";
-import {MultiSelectComponent, MultiSelectModule} from "@powell/components/multi-select";
-import {RadioComponent, RadioModule} from "@powell/components/radio";
-import {RatingComponent, RatingModule} from "@powell/components/rating";
-import {SelectButtonComponent, SelectButtonModule} from "@powell/components/select-button";
-import {SliderComponent, SliderModule} from "@powell/components/slider";
-import {ToggleSwitchComponent, ToggleSwitchModule} from "@powell/components/toggle-switch";
-import {ToggleButtonComponent, ToggleButtonModule} from "@powell/components/toggle-button";
-import {TreeComponent, TreeModule} from "@powell/components/tree";
-import {TreeSelectComponent, TreeSelectModule} from "@powell/components/tree-select";
-import {EditorComponent, EditorModule} from "@powell/components/editor";
-import {takeUntil} from "rxjs";
-import {DestroyService} from "@powell/utils";
-import {SafeModule} from '@powell/pipes/safe';
+  $ToastModule,
+} from '@powell/primeng';
+import { InputTextComponent, InputTextModule } from '@powell/components/input-text';
+import { AutoCompleteComponent, AutoCompleteModule } from '@powell/components/auto-complete';
+import { ButtonComponent, ButtonModule } from '@powell/components/button';
+import { CascadeSelectComponent, CascadeSelectModule } from '@powell/components/cascade-select';
+import { CheckboxComponent, CheckboxModule } from '@powell/components/checkbox';
+import { CheckboxGroupComponent, CheckboxGroupModule } from '@powell/components/checkbox-group';
+import { ColorPickerComponent, ColorPickerModule } from '@powell/components/color-picker';
+import { SelectComponent, SelectModule } from '@powell/components/select';
+import {
+  DualLabelSwitchComponent,
+  DualLabelSwitchModule,
+} from '@powell/components/dual-label-switch';
+import { FilePickerComponent, FilePickerModule } from '@powell/components/file-picker';
+import { FilePicker2Component, FilePicker2Module } from '@powell/components/file-picker2';
+import { DatepickerComponent, DatepickerModule } from '@powell/components/datepicker';
+import { ImageComponent, ImageModule } from '@powell/components/image';
+import { InputMaskComponent, InputMaskModule } from '@powell/components/input-mask';
+import { InputNumberComponent, InputNumberModule } from '@powell/components/input-number';
+import { InputOtpComponent, InputOtpModule } from '@powell/components/input-otp';
+import { InputPasswordComponent, InputPasswordModule } from '@powell/components/input-password';
+import { InputTextareaComponent, InputTextareaModule } from '@powell/components/input-textarea';
+import { IranMapComponent, IranMapModule } from '@powell/components/iran-map';
+import { KnobComponent, KnobModule } from '@powell/components/knob';
+import { ListboxComponent, ListboxModule } from '@powell/components/listbox';
+import { MapComponent, MapModule } from '@powell/components/map';
+import { MultiSelectComponent, MultiSelectModule } from '@powell/components/multi-select';
+import { RadioComponent, RadioModule } from '@powell/components/radio';
+import { RatingComponent, RatingModule } from '@powell/components/rating';
+import { SelectButtonComponent, SelectButtonModule } from '@powell/components/select-button';
+import { SliderComponent, SliderModule } from '@powell/components/slider';
+import { ToggleSwitchComponent, ToggleSwitchModule } from '@powell/components/toggle-switch';
+import { ToggleButtonComponent, ToggleButtonModule } from '@powell/components/toggle-button';
+import { TreeComponent, TreeModule } from '@powell/components/tree';
+import { TreeSelectComponent, TreeSelectModule } from '@powell/components/tree-select';
+import { EditorComponent, EditorModule } from '@powell/components/editor';
+import { takeUntil } from 'rxjs';
+import { DestroyService } from '@powell/utils';
+import { SafeModule } from '@powell/pipes/safe';
 
 @Component({
   selector: 'pw-dialog-form',
@@ -105,14 +108,14 @@ import {SafeModule} from '@powell/pipes/safe';
     forwardRef(() => ToggleButtonModule),
     forwardRef(() => TreeModule),
     forwardRef(() => TreeSelectModule),
-  ]
+  ],
 })
 export class DialogFormComponent {
   private el = inject(ElementRef);
   private destroy$ = inject(DestroyService);
   private cd = inject(ChangeDetectorRef);
 
-  @ViewChild($Dialog, {static: true}) dialog: $Dialog;
+  @ViewChild($Dialog, { static: true }) dialog: $Dialog;
   @ViewChildren(AutoCompleteComponent) autoCompleteComponent: QueryList<AutoCompleteComponent>;
   @ViewChildren(ButtonComponent) buttonComponent: QueryList<ButtonComponent>;
   @ViewChildren(CascadeSelectComponent) cascadeSelectComponent: QueryList<CascadeSelectComponent>;
@@ -120,7 +123,8 @@ export class DialogFormComponent {
   @ViewChildren(CheckboxGroupComponent) checkboxGroupComponent: QueryList<CheckboxGroupComponent>;
   @ViewChildren(ColorPickerComponent) colorPickerComponent: QueryList<ColorPickerComponent>;
   @ViewChildren(SelectComponent) dropdownComponent: QueryList<SelectComponent>;
-  @ViewChildren(DualLabelSwitchComponent) dualLabelSwitchComponent: QueryList<DualLabelSwitchComponent>;
+  @ViewChildren(DualLabelSwitchComponent)
+  dualLabelSwitchComponent: QueryList<DualLabelSwitchComponent>;
   @ViewChildren(EditorComponent) editorComponent: QueryList<EditorComponent>;
   @ViewChildren(FilePickerComponent) filePickerComponent: QueryList<FilePickerComponent>;
   @ViewChildren(FilePicker2Component) filePicker2Component: QueryList<FilePicker2Component>;
@@ -161,12 +165,15 @@ export class DialogFormComponent {
     this._config = value;
     this._config.forEach((config) => {
       if (config.key) {
-        this.form.addControl(config.key, new FormControl(config.value ?? null, config.validations?.map(v => v.validator) ?? []));
+        this.form.addControl(
+          config.key,
+          new FormControl(config.value ?? null, config.validations?.map((v) => v.validator) ?? []),
+        );
       }
       this.configTimeout = setTimeout(() => {
         this.applyConfigToComponent(config);
-      })
-    })
+      });
+    });
   }
 
   set options(v: DialogFormOptions) {
@@ -237,7 +244,7 @@ export class DialogFormComponent {
       return hidden;
     }
     if (typeof config.hidden == 'function') {
-      hidden = config.hidden({form: this.form, currentConfig: config, allConfig: this.config});
+      hidden = config.hidden({ form: this.form, currentConfig: config, allConfig: this.config });
     } else {
       hidden = config.hidden;
     }
@@ -258,7 +265,11 @@ export class DialogFormComponent {
       return disabled;
     }
     if (typeof config.disabled == 'function') {
-      disabled = config.disabled({form: this.form, currentConfig: config, allConfig: this.config});
+      disabled = config.disabled({
+        form: this.form,
+        currentConfig: config,
+        allConfig: this.config,
+      });
     } else {
       disabled = config.disabled;
     }
@@ -278,7 +289,7 @@ export class DialogFormComponent {
       return disabled;
     }
     if (typeof this.options.submitDisabled == 'function') {
-      disabled = this.options.submitDisabled({form: this.form, allConfig: this.config});
+      disabled = this.options.submitDisabled({ form: this.form, allConfig: this.config });
     } else {
       disabled = this.options.submitDisabled;
     }
@@ -307,7 +318,7 @@ export class DialogFormComponent {
     this.handleEvent('onShow');
   }
 
-  onSubmitClick({loadingCallback}: AsyncEvent<MouseEvent>) {
+  onSubmitClick({ loadingCallback }: AsyncEvent<MouseEvent>) {
     this.form.markAllAsTouched();
     if (this.form.invalid) {
       loadingCallback();
@@ -323,8 +334,8 @@ export class DialogFormComponent {
       if (hide) {
         this.close();
       }
-    }
-    this.onSubmit.emit({formValue: this.form.value, finalizeSubmit});
+    };
+    this.onSubmit.emit({ formValue: this.form.value, finalizeSubmit });
   }
 
   handleEvent(event: string, args?: SafeAny) {
@@ -334,18 +345,18 @@ export class DialogFormComponent {
   applyConfigToComponent(config: DialogFormConfig) {
     const componentsMap: Partial<Record<DialogFormComponentName, SafeAny>> = {
       'auto-complete': this.autoCompleteComponent.toArray(),
-      'button': this.buttonComponent.toArray(),
+      button: this.buttonComponent.toArray(),
       'cascade-select': this.cascadeSelectComponent.toArray(),
-      'checkbox': this.checkboxComponent.toArray(),
+      checkbox: this.checkboxComponent.toArray(),
       'checkbox-group': this.checkboxGroupComponent.toArray(),
       'color-picker': this.colorPickerComponent.toArray(),
-      'select': this.dropdownComponent.toArray(),
+      select: this.dropdownComponent.toArray(),
       'dual-label-switch': this.dualLabelSwitchComponent.toArray(),
-      'editor': this.editorComponent.toArray(),
+      editor: this.editorComponent.toArray(),
       'file-picker': this.filePickerComponent.toArray(),
       'file-picker2': this.filePicker2Component.toArray(),
-      'datepicker': this.datepickerComponent.toArray(),
-      'image': this.imageComponent.toArray(),
+      datepicker: this.datepickerComponent.toArray(),
+      image: this.imageComponent.toArray(),
       'input-mask': this.inputMaskComponent.toArray(),
       'input-number': this.inputNumberComponent.toArray(),
       'input-otp': this.inputOtpComponent.toArray(),
@@ -353,19 +364,19 @@ export class DialogFormComponent {
       'input-text': this.inputTextComponent.toArray(),
       'input-textarea': this.inputTextareaComponent.toArray(),
       'iran-map': this.iranMapComponent.toArray(),
-      'knob': this.knobComponent.toArray(),
-      'listbox': this.listboxComponent.toArray(),
-      'map': this.mapComponent.toArray(),
+      knob: this.knobComponent.toArray(),
+      listbox: this.listboxComponent.toArray(),
+      map: this.mapComponent.toArray(),
       'multi-select': this.multiSelectComponent.toArray(),
-      'radio': this.radioComponent.toArray(),
-      'rating': this.ratingComponent.toArray(),
+      radio: this.radioComponent.toArray(),
+      rating: this.ratingComponent.toArray(),
       'select-button': this.selectButtonComponent.toArray(),
-      'slider': this.sliderComponent.toArray(),
+      slider: this.sliderComponent.toArray(),
       'toggle-switch': this.toggleSwitchComponent.toArray(),
       'toggle-button': this.toggleButtonComponent.toArray(),
-      'tree': this.treeComponent.toArray(),
+      tree: this.treeComponent.toArray(),
       'tree-select': this.treeSelectComponent.toArray(),
-    }
+    };
     const compType = config.component;
     if (!(compType in this.componentIndexMap)) {
       this.componentIndexMap[compType] = 0;
@@ -387,8 +398,8 @@ export class DialogFormComponent {
             form: this.form,
             currentConfig: config,
             allConfig: this.config,
-            componentRef: component
-          })
+            componentRef: component,
+          });
         });
       } else {
         if (Object.hasOwn(component, 'appendTo') && !config.appendTo) {

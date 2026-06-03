@@ -8,20 +8,20 @@ import {
   Output,
   Type,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
-import {SelectComponent} from '@powell/components/select';
-import {InputTextComponent} from '@powell/components/input-text';
-import {CheckboxComponent} from '@powell/components/checkbox';
-import {TranslationService} from "@core/utils";
-import {takeUntil} from "rxjs";
-import {ConfigService} from "@powell/api";
-import {$DividerModule} from "@powell/primeng";
-import {DestroyService} from "@powell/utils";
-import {Config} from '@powell/models';
+import { SelectComponent } from '@powell/components/select';
+import { InputTextComponent } from '@powell/components/input-text';
+import { CheckboxComponent } from '@powell/components/checkbox';
+import { TranslationService } from '@core/utils';
+import { takeUntil } from 'rxjs';
+import { ConfigService } from '@powell/api';
+import { $DividerModule } from '@powell/primeng';
+import { DestroyService } from '@powell/utils';
+import { Config } from '@powell/models';
 
 export type OptionType =
-  'positions'
+  | 'positions'
   | 'displayTypes'
   | 'appearances'
   | 'buttonLayouts'
@@ -53,7 +53,7 @@ export type OptionType =
   | 'pinchOverflows'
   | 'pinchDisableZoomControls'
   | 'pinchListeners'
-  | 'variants'
+  | 'variants';
 
 export interface PreviewOption {
   field: string;
@@ -65,13 +65,13 @@ export interface PreviewOption {
   selector: 'app-preview-options',
   template: `
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-      <ng-container #firstRow/>
-      <p-divider class="md:col-span-2 lg:col-span-3"/>
-      <ng-container #secondRow/>
+      <ng-container #firstRow />
+      <p-divider class="md:col-span-2 lg:col-span-3" />
+      <ng-container #secondRow />
     </div>
   `,
   providers: [DestroyService],
-  imports: [$DividerModule]
+  imports: [$DividerModule],
 })
 export class PreviewOptionsComponent implements OnInit {
   private translationService = inject(TranslationService);
@@ -80,8 +80,8 @@ export class PreviewOptionsComponent implements OnInit {
 
   @Input() options: PreviewOption[] = [];
   @Output() optionChange = new EventEmitter<PreviewOption>();
-  @ViewChild('firstRow', {static: true, read: ViewContainerRef}) firstRow: ViewContainerRef;
-  @ViewChild('secondRow', {static: true, read: ViewContainerRef}) secondRow: ViewContainerRef;
+  @ViewChild('firstRow', { static: true, read: ViewContainerRef }) firstRow: ViewContainerRef;
+  @ViewChild('secondRow', { static: true, read: ViewContainerRef }) secondRow: ViewContainerRef;
 
   cmpRefs: ComponentRef<SafeAny>[] = [];
 
@@ -97,13 +97,30 @@ export class PreviewOptionsComponent implements OnInit {
       labelPositions: ['ifta', 'float-in', 'float-on', 'float-over', 'side', 'top'],
       orientations: ['horizontal', 'vertical'],
       dropdownModes: ['blank', 'current'],
-      severities: ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'help', 'contrast'],
+      severities: [
+        'primary',
+        'secondary',
+        'success',
+        'info',
+        'warning',
+        'danger',
+        'help',
+        'contrast',
+      ],
       hourFormats: ['12', '24'],
       views: ['date', 'month', 'year'],
       statuses: ['none', 'success', 'info', 'warning', 'error', '403', '404', '500'],
       imageTypes: ['none', 'box1', 'box2', 'magnifier'],
       iconDisplayTypes: ['input', 'button'],
-      additions: ['none', 'iconStart', 'iconEnd', 'iconBoth', 'addonStart', 'addonEnd', 'addonBoth'],
+      additions: [
+        'none',
+        'iconStart',
+        'iconEnd',
+        'iconBoth',
+        'addonStart',
+        'addonEnd',
+        'addonBoth',
+      ],
       sizes: ['none', 'small', 'large'],
       colorFormats: ['hex', 'rgb', 'hsb'],
       modes: ['basic', 'advanced'],
@@ -112,20 +129,41 @@ export class PreviewOptionsComponent implements OnInit {
       numberModes: ['decimal', 'currency'],
       fixLabelPositions: ['side', 'top'],
       defaultFocusTypes: ['none', 'accept', 'reject', 'close'],
-      toastPositions: ['top-right', 'top-left', 'bottom-right', 'bottom-left', 'top-center', 'bottom-center', 'center'],
-      toastSeverities: ["secondary", "success", "info", "warn", "error", "contrast"],
-      dialogPositions: ['top', 'bottom', 'left', 'right', 'topleft', 'topright', 'bottomleft', 'bottomright', 'center'],
+      toastPositions: [
+        'top-right',
+        'top-left',
+        'bottom-right',
+        'bottom-left',
+        'top-center',
+        'bottom-center',
+        'center',
+      ],
+      toastSeverities: ['secondary', 'success', 'info', 'warn', 'error', 'contrast'],
+      dialogPositions: [
+        'top',
+        'bottom',
+        'left',
+        'right',
+        'topleft',
+        'topright',
+        'bottomleft',
+        'bottomright',
+        'center',
+      ],
       pinchLimitZoomLevels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 'original image size'],
       pinchOverflows: ['hidden', 'visible'],
       pinchDisableZoomControls: ['disable', 'never', 'auto'],
       pinchListeners: ['auto', 'mouse and touch'],
       variants: ['outlined', 'filled'],
-    }
+    };
     for (const item of this.options) {
-      const {selectOptions, value} = item;
+      const { selectOptions, value } = item;
       if (selectOptions) {
         const cmpRef = this.createComponent(SelectComponent, item, 'firstRow');
-        cmpRef.instance.options = dropdownOptionsMap[selectOptions].map(v => ({label: v, value: v}));
+        cmpRef.instance.options = dropdownOptionsMap[selectOptions].map((v) => ({
+          label: v,
+          value: v,
+        }));
       } else if (typeof value === 'string' || typeof value === 'number') {
         this.createComponent(InputTextComponent, item, 'firstRow');
       } else if (typeof value === 'boolean') {
@@ -133,10 +171,10 @@ export class PreviewOptionsComponent implements OnInit {
       }
     }
 
-    this.configService.configChange$.subscribe(({modifiedConfig, currentConfig}) => {
-      const followConfig = this.options.find(item => item.field === 'followConfig')?.value;
+    this.configService.configChange$.subscribe(({ modifiedConfig, currentConfig }) => {
+      const followConfig = this.options.find((item) => item.field === 'followConfig')?.value;
       if (!followConfig) {
-        return
+        return;
       }
       const globalConfigMap: Partial<Record<keyof Config, string>> = {
         showRequiredStar: 'Show Required Star',
@@ -145,19 +183,19 @@ export class PreviewOptionsComponent implements OnInit {
         inputVariant: 'Variant',
         labelPosition: 'Label Position',
         fixLabelPosition: 'Label Position',
-      }
+      };
       Object.entries(modifiedConfig).forEach(([key, value]) => {
-        const ref = this.cmpRefs.find(({instance}) => instance.label == globalConfigMap[key]);
+        const ref = this.cmpRefs.find(({ instance }) => instance.label == globalConfigMap[key]);
         if (ref) {
           ref.instance.value = value;
         }
-      })
-    })
+      });
+    });
   }
 
   createComponent(cmp: Type<SafeAny>, previewOption: PreviewOption, row: 'firstRow' | 'secondRow') {
     const globalConfig = this.configService.get();
-    const {field, value} = previewOption;
+    const { field, value } = previewOption;
     const cmpRef = this[row].createComponent(cmp);
     cmpRef.instance.label = this.translationService.instant(field);
     cmpRef.instance.labelWidth = 130;
@@ -167,26 +205,29 @@ export class PreviewOptionsComponent implements OnInit {
     cmpRef.instance.rtl = globalConfig.rtl;
     cmpRef.instance.variant = globalConfig.inputVariant;
     cmpRef.instance.size = globalConfig.inputSize;
-    this.translationService.stream(field).pipe(takeUntil(this.destroy$)).subscribe(res => {
-      cmpRef.instance.label = res;
-    })
+    this.translationService
+      .stream(field)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res) => {
+        cmpRef.instance.label = res;
+      });
     switch (cmp) {
       case SelectComponent:
-        cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
-          this.optionChange.emit({field, value: event.value == 'none' ? null : event.value});
+        cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe((event) => {
+          this.optionChange.emit({ field, value: event.value == 'none' ? null : event.value });
         });
         if (value === undefined || value === null) {
           cmpRef.instance.value = 'none';
         }
         break;
       case InputTextComponent:
-        cmpRef.instance.onInput.pipe(takeUntil(this.destroy$)).subscribe(event => {
-          this.optionChange.emit({field, value: event.target.value});
+        cmpRef.instance.onInput.pipe(takeUntil(this.destroy$)).subscribe((event) => {
+          this.optionChange.emit({ field, value: event.target.value });
         });
         break;
       case CheckboxComponent:
-        cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe(event => {
-          this.optionChange.emit({field, value: event.checked});
+        cmpRef.instance.onChange.pipe(takeUntil(this.destroy$)).subscribe((event) => {
+          this.optionChange.emit({ field, value: event.checked });
         });
         break;
     }

@@ -1,10 +1,10 @@
-import {Input, Pipe, PipeTransform} from '@angular/core';
-import {Observable} from 'rxjs';
-import {helpers} from "@core/utils";
+import { Input, Pipe, PipeTransform } from '@angular/core';
+import { Observable } from 'rxjs';
+import { helpers } from '@core/utils';
 
 @Pipe({
   name: 'pwToBase64',
-  standalone: false
+  standalone: false,
 })
 export class ToBase64Pipe implements PipeTransform {
   @Input() isUnknownImageUrl: boolean = false;

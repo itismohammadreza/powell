@@ -59,5 +59,7 @@ export type TouchHandler = 'handleTouchstart' | 'handleTouchmove' | 'handleTouch
 export type MouseHandler = 'handleMousedown' | 'handleMousemove' | 'handleMouseup' | 'handleWheel';
 export type OtherHandler = 'handleResize';
 export type TouchListeners = Partial<Record<'touchstart' | 'touchmove' | 'touchend', TouchHandler>>;
-export type MouseListeners = Partial<Record<'mousedown' | 'mousemove' | 'mouseup' | 'wheel', MouseHandler>>;
+export type MouseListeners = Partial<
+  Record<'mousedown' | 'mousemove' | 'mouseup' | 'wheel', MouseHandler>
+>;
 export type OtherListeners = Partial<Record<'resize', OtherHandler>>;

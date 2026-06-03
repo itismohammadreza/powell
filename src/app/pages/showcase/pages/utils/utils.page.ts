@@ -1,25 +1,19 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {PersianService, UtilsService} from "@powell/api";
-import {DataService} from "@core/http";
-import {DynamicDialogSampleComponent} from "@pages/showcase/pages/utils";
-import {takeUntil} from "rxjs";
-import {ButtonModule} from "@powell/components/button";
-import {InputNumberModule} from "@powell/components/input-number";
-import {PreviewBase, PreviewComponent} from "@pages/showcase/components";
-import {DestroyService} from "@powell/utils";
-import {$DividerModule} from "@powell/primeng";
-import {TranslatePipe} from "@ngx-translate/core";
+import { Component, inject, OnInit } from '@angular/core';
+import { PersianService, UtilsService } from '@powell/api';
+import { DataService } from '@core/http';
+import { DynamicDialogSampleComponent } from '@pages/showcase/pages/utils';
+import { takeUntil } from 'rxjs';
+import { ButtonModule } from '@powell/components/button';
+import { InputNumberModule } from '@powell/components/input-number';
+import { PreviewBase, PreviewComponent } from '@pages/showcase/components';
+import { DestroyService } from '@powell/utils';
+import { $DividerModule } from '@powell/primeng';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-utils-page',
   templateUrl: './utils.page.html',
-  imports: [
-    ButtonModule,
-    InputNumberModule,
-    PreviewComponent,
-    $DividerModule,
-    TranslatePipe,
-  ],
+  imports: [ButtonModule, InputNumberModule, PreviewComponent, $DividerModule, TranslatePipe],
   providers: [DestroyService],
 })
 export class UtilsPage extends PreviewBase implements OnInit {
@@ -33,20 +27,23 @@ export class UtilsPage extends PreviewBase implements OnInit {
   networkStatus: string;
 
   ngOnInit() {
-    this.utilsService.checkOnlineState().subscribe(res => {
+    this.utilsService.checkOnlineState().subscribe((res) => {
       this.networkStatus = res ? 'online' : 'offline';
-    })
-  }
-
-  showCustomDynamicDialog() {
-    this.overlayService.open(DynamicDialogSampleComponent, {
-      data: {message: 'I am a dynamic component inside of a dialog!'}
-    }).afterClosed.pipe(takeUntil(this.destroy$)).subscribe(result => {
-      this.customDynamicDialogResult = result;
     });
   }
 
-  async request({loadingCallback}) {
+  showCustomDynamicDialog() {
+    this.overlayService
+      .open(DynamicDialogSampleComponent, {
+        data: { message: 'I am a dynamic component inside of a dialog!' },
+      })
+      .afterClosed.pipe(takeUntil(this.destroy$))
+      .subscribe((result) => {
+        this.customDynamicDialogResult = result;
+      });
+  }
+
+  async request({ loadingCallback }) {
     try {
       await this.dataService.get();
       loadingCallback();
@@ -56,6 +53,6 @@ export class UtilsPage extends PreviewBase implements OnInit {
   }
 
   onInputChange(event) {
-    this.persianWord = this.persianService.toPersianWord(event.value)
+    this.persianWord = this.persianService.toPersianWord(event.value);
   }
 }

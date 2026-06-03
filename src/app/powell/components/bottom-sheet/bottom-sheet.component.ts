@@ -11,20 +11,20 @@ import {
   Output,
   QueryList,
   SimpleChanges,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
-import {TemplateDirective} from "@powell/directives/template";
-import {ConfigService, OverlayService} from "@powell/api";
-import {ButtonProps, CssObject, HistoryState} from "@powell/models";
-import {Subject, takeUntil} from "rxjs";
-import {$uuid} from "@powell/primeng";
-import {DestroyService} from "@powell/utils";
+import { TemplateDirective } from '@powell/directives/template';
+import { ConfigService, OverlayService } from '@powell/api';
+import { ButtonProps, CssObject, HistoryState } from '@powell/models';
+import { Subject, takeUntil } from 'rxjs';
+import { $uuid } from '@powell/primeng';
+import { DestroyService } from '@powell/utils';
 
 @Component({
   selector: 'pw-bottom-sheet',
   templateUrl: './bottom-sheet.component.html',
   providers: [DestroyService],
-  standalone: false
+  standalone: false,
 })
 export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges {
   private overlayService = inject(OverlayService);
@@ -62,15 +62,15 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
   state: HistoryState = {
     component: 'bottomSheet',
-    key: $uuid()
-  }
+    key: $uuid(),
+  };
 
   ngOnInit() {
     this.configService.configureComponent(this);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const {closeButtonProps} = changes;
+    const { closeButtonProps } = changes;
     if (closeButtonProps) {
       const props = closeButtonProps.currentValue;
       this.closeButtonProps = this.mapToButtonProps(props);
@@ -78,7 +78,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -88,11 +88,14 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
     this.updateStyle();
     this.visible = true;
     this.visibleChange.emit(this.visible);
-    this.overlayService.stateChange().pipe(takeUntil(this.hided$)).subscribe(res => {
-      if (this.state.key === res.key) {
-        this._onHide()
-      }
-    })
+    this.overlayService
+      .stateChange()
+      .pipe(takeUntil(this.hided$))
+      .subscribe((res) => {
+        if (this.state.key === res.key) {
+          this._onHide();
+        }
+      });
     this.overlayService.pushState(this.state);
     this.cd.markForCheck();
   }
@@ -104,7 +107,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
     this.hided$.complete();
     this.cd.markForCheck();
     if (!this.overlayService.isPopped(this.state)) {
-      this.overlayService.popState()
+      this.overlayService.popState();
     }
   }
 
@@ -122,7 +125,7 @@ export class BottomSheetComponent implements OnInit, AfterContentInit, OnChanges
 
   updateStyle() {
     if (this.fullScreen) {
-      this.computedStyle = {...this.style};
+      this.computedStyle = { ...this.style };
       delete this.computedStyle['maxHeight'];
       delete this.computedStyle['height'];
     } else {

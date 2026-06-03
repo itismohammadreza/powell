@@ -3,12 +3,13 @@
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | pwLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar: showRequiredStar : ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
     [disabled]="disabled"
-    [readonly]="readonly">
+    [readonly]="readonly"
+  >
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-knob
         [(ngModel)]="value"
@@ -31,7 +32,8 @@
         [strokeWidth]="strokeWidth"
         [showValue]="showValue"
         [readonly]="readonly"
-        (onChange)="_onChange($event)">
+        (onChange)="_onChange($event)"
+      >
       </p-knob>
     </ng-template>
   </pw-form-field>

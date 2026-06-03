@@ -1,9 +1,8 @@
-import {NgModule} from '@angular/core';
-import {NumberOnlyDirective} from "@powell/directives/number-only";
+import { NgModule } from '@angular/core';
+import { NumberOnlyDirective } from '@powell/directives/number-only';
 
 @NgModule({
   declarations: [NumberOnlyDirective],
-  exports: [NumberOnlyDirective]
+  exports: [NumberOnlyDirective],
 })
-export class NumberOnlyModule {
-}
+export class NumberOnlyModule {}

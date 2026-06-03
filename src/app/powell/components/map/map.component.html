@@ -1,19 +1,22 @@
-<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [class]="{
-     'map-wrapper': true,
-     'clearable': showClear
-    }">
+<div
+  [attr.dir]="rtl ? 'rtl' : 'ltr'"
+  [class]="{
+    'map-wrapper': true,
+    clearable: showClear,
+  }"
+>
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | pwLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar: showRequiredStar : ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
     [disabled]="disabled"
     [readonly]="readonly"
-    [fluid]="true">
+    [fluid]="true"
+  >
     <ng-template pwTemplate="element">
       <div>
         @if (!readonly && showClear) {
@@ -22,13 +25,14 @@
             [pTooltip]="clearTooltip"
             [icon]="clearIcon"
             size="small"
-            (click)="clearMap()">
+            (click)="clearMap()"
+          >
             <ng-template pwTemplate="icon">
               @if (!clearIcon && !templateMap['clearicon']) {
-                <svg data-p-icon="trash"/>
+                <svg data-p-icon="trash" />
               }
               @if (!clearIcon && templateMap['clearicon']) {
-                <ng-template *ngTemplateOutlet="templateMap['clearicon']"/>
+                <ng-template *ngTemplateOutlet="templateMap['clearicon']" />
               }
             </ng-template>
           </pw-button>
@@ -53,18 +57,18 @@
           (leafletCenterChange)="onCenterChange($event)"
           (leafletClick)="_onMapClick($event)"
           (leafletMapReady)="_onMapReady($event)"
-          (leafletDoubleClick)="emitter('onMapDoubleClick',$event)"
-          (leafletMouseDown)="emitter('onMapMouseDown',$event)"
-          (leafletMouseUp)="emitter('onMapMouseUp',$event)"
-          (leafletMouseMove)="emitter('onMapMouseMove',$event)"
-          (leafletMouseOver)="emitter('onMapMouseOver',$event)"
-          (leafletMouseOut)="emitter('onMapMouseOut',$event)"
-          (leafletMapMove)="emitter('onMapMove',$event)"
-          (leafletMapMoveStart)="emitter('onMapMoveStart',$event)"
-          (leafletMapMoveEnd)="emitter('onMapMoveEnd',$event)"
-          (leafletMapZoom)="emitter('onMapZoom',$event)"
-          (leafletMapZoomStart)="emitter('onMapZoomStart',$event)"
-          (leafletMapZoomEnd)="emitter('onMapZoomEnd',$event)"
+          (leafletDoubleClick)="emitter('onMapDoubleClick', $event)"
+          (leafletMouseDown)="emitter('onMapMouseDown', $event)"
+          (leafletMouseUp)="emitter('onMapMouseUp', $event)"
+          (leafletMouseMove)="emitter('onMapMouseMove', $event)"
+          (leafletMouseOver)="emitter('onMapMouseOver', $event)"
+          (leafletMouseOut)="emitter('onMapMouseOut', $event)"
+          (leafletMapMove)="emitter('onMapMove', $event)"
+          (leafletMapMoveStart)="emitter('onMapMoveStart', $event)"
+          (leafletMapMoveEnd)="emitter('onMapMoveEnd', $event)"
+          (leafletMapZoom)="emitter('onMapZoom', $event)"
+          (leafletMapZoomStart)="emitter('onMapZoomStart', $event)"
+          (leafletMapZoomEnd)="emitter('onMapZoomEnd', $event)"
         ></div>
       </div>
     </ng-template>

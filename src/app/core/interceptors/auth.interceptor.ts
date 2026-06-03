@@ -1,9 +1,12 @@
-import {inject} from '@angular/core';
-import {HttpHandlerFn, HttpInterceptorFn, HttpRequest} from '@angular/common/http';
-import {DataService} from '@core/http';
-import {httpUtils} from '@core/interceptors/http-utils';
+import { inject } from '@angular/core';
+import { HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { DataService } from '@core/http';
+import { httpUtils } from '@core/interceptors/http-utils';
 
-export const authInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>, next: HttpHandlerFn) => {
+export const authInterceptor: HttpInterceptorFn = (
+  request: HttpRequest<unknown>,
+  next: HttpHandlerFn,
+) => {
   const dataService = inject(DataService);
   const shouldSkip = httpUtils.getRequestProp(request, undefined, 'skipInterceptor');
 
@@ -20,4 +23,4 @@ export const authInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>
     });
   }
   return next(request);
-}
+};

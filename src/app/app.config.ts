@@ -4,36 +4,36 @@ import {
   inject,
   provideAppInitializer,
   provideBrowserGlobalErrorListeners,
-  provideZonelessChangeDetection
+  provideZonelessChangeDetection,
 } from '@angular/core';
-import {provideRouter, withHashLocation, withViewTransitions} from '@angular/router';
-import {routes} from './app.routes';
-import {CoreModule} from '@core/core.module';
-import {provideHttpClient, withFetch, withInterceptors} from '@angular/common/http';
-import {authInterceptor, httpHandlerInterceptor} from '@core/interceptors';
-import {TranslationService} from '@core/utils';
-import {provideTranslateService} from '@ngx-translate/core';
-import {providePowell} from '@powell/api';
-import {globalConfig} from '@core/config';
-import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
+import { provideRouter, withHashLocation, withViewTransitions } from '@angular/router';
+import { routes } from './app.routes';
+import { CoreModule } from '@core/core.module';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { authInterceptor, httpHandlerInterceptor } from '@core/interceptors';
+import { TranslationService } from '@core/utils';
+import { provideTranslateService } from '@ngx-translate/core';
+import { providePowell } from '@powell/api';
+import { globalConfig } from '@core/config';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 const initiateLanguage = () => {
   const translationService = inject(TranslationService);
   return translationService.init();
-}
+};
 
 const translationConfig = {
   loader: provideTranslateHttpLoader({
     prefix: 'i18n/',
-    suffix: '.json'
+    suffix: '.json',
   }),
   fallbackLang: 'en',
-}
+};
 
 const powellConfig = {
   rtl: globalConfig.rtl,
   ...globalConfig.powellConfig,
-}
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -45,5 +45,5 @@ export const appConfig: ApplicationConfig = {
     provideTranslateService(translationConfig),
     importProvidersFrom(CoreModule),
     providePowell(powellConfig),
-  ]
+  ],
 };

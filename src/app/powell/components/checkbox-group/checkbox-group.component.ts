@@ -21,9 +21,9 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
+  NgControl,
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import { takeUntil } from 'rxjs';
 import {
   CheckboxGroupChangeEvent,
   CssObject,
@@ -31,12 +31,12 @@ import {
   InputVariant,
   Orientation,
   Size,
-  Validation
+  Validation,
 } from '@powell/models';
-import {DestroyService} from "@powell/utils";
-import {$CheckboxChangeEvent, $uuid} from "@powell/primeng";
-import {TemplateDirective} from "@powell/directives/template";
-import {ConfigService} from "@powell/api";
+import { DestroyService } from '@powell/utils';
+import { $CheckboxChangeEvent, $uuid } from '@powell/primeng';
+import { TemplateDirective } from '@powell/directives/template';
+import { ConfigService } from '@powell/api';
 
 @Component({
   selector: 'pw-checkbox-group',
@@ -45,11 +45,11 @@ import {ConfigService} from "@powell/api";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CheckboxGroupComponent),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class CheckboxGroupComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
@@ -77,10 +77,10 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   // native properties
   @Input() set disabled(disabled: boolean) {
     this._disabled = disabled;
-    this.options?.forEach(option => {
+    this.options?.forEach((option) => {
       option[this.optionDisabled] = disabled;
-    })
-  };
+    });
+  }
 
   get disabled() {
     return this._disabled;
@@ -103,20 +103,18 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
   _disabled: boolean = false;
   ngControl: Nullable<NgControl> = null;
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -138,7 +136,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -146,7 +144,7 @@ export class CheckboxGroupComponent implements OnInit, AfterContentInit, Control
 
   _onChange(event: $CheckboxChangeEvent) {
     this.value = event.checked;
-    this.onChange.emit({originalEvent: event.originalEvent!, value: this.value!});
+    this.onChange.emit({ originalEvent: event.originalEvent!, value: this.value! });
     this.onModelChange(this.value);
   }
 

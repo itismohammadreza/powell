@@ -1,4 +1,4 @@
-import {Directive, inject, Input, TemplateRef, ViewContainerRef,} from '@angular/core';
+import { Directive, inject, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
   selector: '[permission]',
@@ -39,7 +39,7 @@ export class PermissionDirective {
     if (this.currentUser && this.currentUser.permissions) {
       for (const checkPermission of this.permissions) {
         const permissionFound = this.currentUser.permissions.find(
-          (x) => x.toUpperCase() === checkPermission.toUpperCase()
+          (x) => x.toUpperCase() === checkPermission.toUpperCase(),
         );
 
         if (permissionFound) {
@@ -73,7 +73,6 @@ Usage Sample :
     Only users with can_write OR can_read can see this.
   </div>
 */
-
 
 /*
 Mode 2 for this directive :

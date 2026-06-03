@@ -1,4 +1,4 @@
-import {AbstractControl, FormArray, FormControl, FormGroup} from "@angular/forms";
+import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 
 interface CountdownOptions {
   onTick?: (time: string) => void;
@@ -26,7 +26,12 @@ interface CountdownReturn {
 }
 
 export const helpers = {
-  startPolling: <T>(apiFn: () => Promise<T>, interval: number, onResult: (result: T) => void, onError?: (err: SafeAny) => void) => {
+  startPolling: <T>(
+    apiFn: () => Promise<T>,
+    interval: number,
+    onResult: (result: T) => void,
+    onError?: (err: SafeAny) => void,
+  ) => {
     let stopped = false;
     let timeoutId: number;
 
@@ -55,35 +60,36 @@ export const helpers = {
     const result = {};
     const isDirty = (control: AbstractControl): boolean => {
       if (control instanceof FormGroup) {
-        return Object.values(control.controls).some(c => c.dirty && isDirty(c))
+        return Object.values(control.controls).some((c) => c.dirty && isDirty(c));
       }
       if (control instanceof FormControl) {
-        return !!(control.value && control.dirty)
+        return !!(control.value && control.dirty);
       }
       if (control instanceof FormArray) {
-        return control.controls.some(g => isDirty(g))
+        return control.controls.some((g) => isDirty(g));
       }
       return false;
-    }
-    const fillResult = (group: FormGroup, res: SafeAny) => Object.entries(group.controls).forEach(([name, control]) => {
-      if (control instanceof FormControl && isDirty(control)) {
-        if (Array.isArray(res)) {
-          res.push({[name]: control.value})
-        } else {
-          res[name] = control.value;
-        }
-      } else if (control instanceof FormGroup && isDirty(control)) {
-        res[name] = {};
-        fillResult(control, res[name])
-      } else if (control instanceof FormArray && isDirty(control)) {
-        res[name] = [];
-        control.controls.forEach(g => {
-          if (isDirty(g)) {
-            fillResult(g as FormGroup, res[name])
+    };
+    const fillResult = (group: FormGroup, res: SafeAny) =>
+      Object.entries(group.controls).forEach(([name, control]) => {
+        if (control instanceof FormControl && isDirty(control)) {
+          if (Array.isArray(res)) {
+            res.push({ [name]: control.value });
+          } else {
+            res[name] = control.value;
           }
-        })
-      }
-    })
+        } else if (control instanceof FormGroup && isDirty(control)) {
+          res[name] = {};
+          fillResult(control, res[name]);
+        } else if (control instanceof FormArray && isDirty(control)) {
+          res[name] = [];
+          control.controls.forEach((g) => {
+            if (isDirty(g)) {
+              fillResult(g as FormGroup, res[name]);
+            }
+          });
+        }
+      });
     fillResult(form, result);
     if (JSON.stringify(result) == '{}') {
       return null;
@@ -92,8 +98,8 @@ export const helpers = {
   },
 
   convertToTimeFormat: (seconds: number) => {
-    const hrs = Math.floor((seconds / 3600));
-    const mins = Math.floor(((seconds % 3600) / 60));
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
     const secs = Math.floor(seconds % 60);
     let result = '';
     if (hrs > 0) {
@@ -119,7 +125,7 @@ export const helpers = {
     let endTime: number;
     const download = new Image();
     download.onload = () => {
-      endTime = (new Date()).getTime();
+      endTime = new Date().getTime();
       const duration = (endTime - startTime) / 1000;
       const bitsLoaded = downloadSize * 8;
       const speedBps = +(bitsLoaded / duration).toFixed(2);
@@ -127,7 +133,7 @@ export const helpers = {
       const speedMbps = +(speedKbps / 1024).toFixed(2);
       callback(speedMbps);
     };
-    startTime = (new Date()).getTime();
+    startTime = new Date().getTime();
     const cacheBuster = '?nnn=' + startTime;
     download.src = imageUrl + cacheBuster;
   },
@@ -149,8 +155,8 @@ export const helpers = {
         Origin: '*',
       }),
     })
-    .then((response) => response.blob())
-    .then((blob) => helpers.fileToBase64(blob as File));
+      .then((response) => response.blob())
+      .then((blob) => helpers.fileToBase64(blob as File));
   },
 
   base64toFile: (dataUrl: SafeAny, filename: string) => {
@@ -162,7 +168,7 @@ export const helpers = {
     while (n--) {
       u8arr[n] = bstr.charCodeAt(n);
     }
-    return new File([u8arr], filename, {type: mime});
+    return new File([u8arr], filename, { type: mime });
   },
 
   blobToFile: (blob: Blob, fileName: string) => {
@@ -180,7 +186,7 @@ export const helpers = {
     if (!acceptList) return true;
     const fileType = file.type;
     const fileExt = helpers.getFileExtension(file);
-    const acceptableTypes = acceptList.split(separator).map(t => t.trim().toLowerCase());
+    const acceptableTypes = acceptList.split(separator).map((t) => t.trim().toLowerCase());
     for (const type of acceptableTypes) {
       if (type.endsWith('/*')) {
         const baseType = type.split('/')[0];
@@ -215,16 +221,16 @@ export const helpers = {
 
     const isImageUrl = (url: string) => {
       return /\.(jpeg|jpg|gif|png)$/.exec(url) != undefined;
-    }
+    };
 
     const isImageFile = (file: File) => {
       return file.type.split('/')[0] === 'image' || /^image\//.test(file.type);
-    }
+    };
 
     const isImageBase64 = (url: string) => {
       const ext = url.substring(url.indexOf('/') + 1, url.indexOf(';base64'));
       return ['png', 'jpg', 'jpeg', 'gif', 'tif', 'tiff'].indexOf(ext) > -1;
-    }
+    };
 
     let result = false;
     if (Array.isArray(value)) {
@@ -234,7 +240,9 @@ export const helpers = {
       if (value.every((item) => item instanceof File && isImageFile(item))) {
         result = true;
       }
-      if (value.every((item) => typeof item == 'string' && (isImageUrl(item) || isImageBase64(item)))) {
+      if (
+        value.every((item) => typeof item == 'string' && (isImageUrl(item) || isImageBase64(item)))
+      ) {
         result = true;
       }
     } else if (value instanceof File && isImageFile(value)) {
@@ -255,13 +263,15 @@ export const helpers = {
   },
 
   isValidURL: (url: string) => {
-    const res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
-    return (res !== null)
+    const res = url.match(
+      /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g,
+    );
+    return res !== null;
   },
 
   joinArraysWithoutDuplicates: (array1: SafeAny[], array2: SafeAny[], field: string) => {
-    const set1 = new Set(array1.map(x => x[field]));
-    return [...array1, ...array2.filter(x => !set1.has(x[field]))]
+    const set1 = new Set(array1.map((x) => x[field]));
+    return [...array1, ...array2.filter((x) => !set1.has(x[field]))];
   },
 
   setFieldValue: (obj: SafeAny, path: string, value: SafeAny) => {
@@ -279,7 +289,10 @@ export const helpers = {
   },
 
   buildObjectFromPath: (path: string, value: SafeAny) => {
-    return path.split('.').reverse().reduce((acc, key) => ({[key]: acc}), value);
+    return path
+      .split('.')
+      .reverse()
+      .reduce((acc, key) => ({ [key]: acc }), value);
   },
 
   copyToClipboard: (text: string) => {
@@ -302,9 +315,9 @@ export const helpers = {
     if (activate) {
       let methodToBeInvoked =
         elem.requestFullscreen ||
-        elem["webkitRequestFullScreen"] ||
-        elem["mozRequestFullscreen"] ||
-        elem["msRequestFullscreen"];
+        elem['webkitRequestFullScreen'] ||
+        elem['mozRequestFullscreen'] ||
+        elem['msRequestFullscreen'];
       if (methodToBeInvoked) methodToBeInvoked.call(elem);
     } else {
       const doc: any = document;
@@ -347,13 +360,11 @@ export const helpers = {
 
   countDown: (seconds: number, options?: CountdownOptions): CountdownReturn => {
     const config = {
-      onTick: () => {
-      },
-      onComplete: () => {
-      },
+      onTick: () => {},
+      onComplete: () => {},
       autoStart: true,
       format: 'HH:mm' as const,
-      ...options
+      ...options,
     };
 
     let remainingSeconds = seconds;
@@ -477,7 +488,7 @@ export const helpers = {
       getFormattedTime,
       isRunning,
       isPaused: isPausedState,
-      destroy
+      destroy,
     };
 
     if (config.autoStart && seconds > 0) {
@@ -488,14 +499,13 @@ export const helpers = {
 
     return {
       instance,
-      formattedTime: formatTime(remainingSeconds)
+      formattedTime: formatTime(remainingSeconds),
     };
   },
 
   formatTime: (seconds: number, format: 'HH:mm' | 'HH:mm:ss' | 'mm:ss' = 'HH:mm'): string => {
     if (seconds <= 0) {
-      return format === 'HH:mm' ? '00:00' :
-        format === 'HH:mm:ss' ? '00:00:00' : '00:00';
+      return format === 'HH:mm' ? '00:00' : format === 'HH:mm:ss' ? '00:00:00' : '00:00';
     }
 
     const hours = Math.floor(seconds / 3600);
@@ -519,7 +529,7 @@ export const helpers = {
   },
 
   parseTimeToSeconds: (timeString: string): number => {
-    const parts = timeString.split(':').map(part => parseInt(part, 10));
+    const parts = timeString.split(':').map((part) => parseInt(part, 10));
     if (parts.length === 3) {
       return parts[0] * 3600 + parts[1] * 60 + parts[2];
     } else if (parts.length === 2) {
@@ -542,5 +552,5 @@ export const helpers = {
     const index = Math.floor(Math.log(bytes) / Math.log(1024));
     const size = bytes / Math.pow(1024, index);
     return `${size.toFixed(2)} ${units[index]}`;
-  }
-}
+  },
+};

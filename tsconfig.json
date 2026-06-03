@@ -5,21 +5,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@powell/*": [
-        "src/app/powell/*"
-      ],
-      "@core/*": [
-        "src/app/core/*"
-      ],
-      "@pages/*": [
-        "src/app/pages/*"
-      ],
-      "@layout/*": [
-        "src/app/layout/*"
-      ],
-      "@shared/*": [
-        "src/app/shared/*"
-      ]
+      "@powell/*": ["src/app/powell/*"],
+      "@core/*": ["src/app/core/*"],
+      "@pages/*": ["src/app/pages/*"],
+      "@layout/*": ["src/app/layout/*"],
+      "@shared/*": ["src/app/shared/*"]
     },
     "strict": false,
     "noImplicitOverride": true,

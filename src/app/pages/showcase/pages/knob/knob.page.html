@@ -2,8 +2,9 @@
   component="Knob"
   description="Knob is a form component to define number inputs with a dial."
   [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
+  (onOptionChange)="onOptionChange($event)"
+>
   <form [formGroup]="form">
-    <pw-knob formControlName="c1" [validation]="{ required: 'error' }"/>
+    <pw-knob formControlName="c1" [validation]="{ required: 'error' }" />
   </form>
 </app-preview>

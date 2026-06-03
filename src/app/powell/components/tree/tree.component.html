@@ -3,11 +3,12 @@
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | pwLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar: showRequiredStar : ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
-    [fluid]="true">
+    [fluid]="true"
+  >
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-tree
         [attr.id]="id"
@@ -49,8 +50,8 @@
         [trackBy]="trackBy"
         [highlightOnSelect]="highlightOnSelect"
         (selectionChange)="_onSelectionChange($event)"
-        (onNodeSelect)="emitter('onNodeSelect',$event)"
-        (onNodeUnselect)="emitter('onNodeUnselect',$event)"
+        (onNodeSelect)="emitter('onNodeSelect', $event)"
+        (onNodeUnselect)="emitter('onNodeUnselect', $event)"
         (onNodeExpand)="emitter('onNodeExpand', $event)"
         (onNodeCollapse)="emitter('onNodeCollapse', $event)"
         (onNodeContextMenuSelect)="emitter('onNodeContextMenuSelect', $event)"
@@ -59,12 +60,22 @@
         (onLazyLoad)="emitter('onLazyLoad', $event)"
         (onScroll)="emitter('onScroll', $event)"
         (onScrollIndexChange)="emitter('onScrollIndexChange', $event)"
-        (onFilter)="emitter('onFilter', $event)">
+        (onFilter)="emitter('onFilter', $event)"
+      >
         @for (t of templates; track t) {
           @if (templateMap[t.type]) {
-            <ng-template [pTemplate]="t.type" let-item let-options="options" let-partialSelected="partialSelected">
+            <ng-template
+              [pTemplate]="t.type"
+              let-item
+              let-options="options"
+              let-partialSelected="partialSelected"
+            >
               <ng-container
-                *ngTemplateOutlet="templateMap[t.type];context:{$implicit:item,options,partialSelected}"/>
+                *ngTemplateOutlet="
+                  templateMap[t.type];
+                  context: { $implicit: item, options, partialSelected }
+                "
+              />
             </ng-template>
           }
         }

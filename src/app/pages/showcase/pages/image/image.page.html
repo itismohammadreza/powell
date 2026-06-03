@@ -2,7 +2,8 @@
   component="Image"
   description="Image displays an image with preview and transformation options."
   [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
+  (onOptionChange)="onOptionChange($event)"
+>
   <pw-image
     [width]="getOption('width')"
     [preview]="getOption('preview')"
@@ -22,5 +23,6 @@
       minScale: 0,
       transitionDuration: 200,
     }"
-    src="images/tiger.jpg"/>
+    src="images/tiger.jpg"
+  />
 </app-preview>

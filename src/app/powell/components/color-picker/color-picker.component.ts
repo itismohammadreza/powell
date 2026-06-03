@@ -7,7 +7,7 @@ import {
   Injector,
   Input,
   OnInit,
-  Output
+  Output,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -17,13 +17,13 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
+  NgControl,
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
-import {ColorFormat, LabelPosition, Validation} from '@powell/models';
-import {DestroyService} from "@powell/utils";
-import {$ColorPickerChangeEvent, $uuid} from "@powell/primeng";
-import {ConfigService} from "@powell/api";
+import { takeUntil } from 'rxjs';
+import { ColorFormat, LabelPosition, Validation } from '@powell/models';
+import { DestroyService } from '@powell/utils';
+import { $ColorPickerChangeEvent, $uuid } from '@powell/primeng';
+import { ConfigService } from '@powell/api';
 
 @Component({
   selector: 'pw-color-picker',
@@ -32,13 +32,12 @@ import {ConfigService} from "@powell/api";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ColorPickerComponent),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
-
 export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
   private injector = inject(Injector);
@@ -59,7 +58,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Input() disabled: boolean = false;
   @Input() name: Optional<string>;
   @Input() inline: boolean = false;
-  @Input() format: ColorFormat = "rgb";
+  @Input() format: ColorFormat = 'rgb';
   @Input() tabindex: Optional<string>;
   @Input() inputId: string = $uuid();
   @Input() autoZIndex: boolean = true;
@@ -78,20 +77,18 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   @Output() onFocus = new EventEmitter<FocusEvent>();
 
   ngControl: Nullable<NgControl> = null;
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;

@@ -1,9 +1,17 @@
 // @ts-nocheck
 
-import {AfterViewInit, Component, EventEmitter, inject, Input, NgZone, Output} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  NgZone,
+  Output,
+} from '@angular/core';
 import sunEditor from 'suneditor';
-import {SunEditorOptions} from "suneditor/src/options";
-import {Context} from 'suneditor/src/lib/context';
+import { SunEditorOptions } from 'suneditor/src/options';
+import { Context } from 'suneditor/src/lib/context';
 import SunEditor, {
   audioInputInformation,
   commands,
@@ -17,7 +25,7 @@ import SunEditor, {
 @Component({
   selector: 'pw-editor-base',
   templateUrl: './editor-base.component.html',
-  standalone: false
+  standalone: false,
 })
 export class EditorBaseComponent implements AfterViewInit {
   private ngZone = inject(NgZone);
@@ -142,23 +150,15 @@ export class EditorBaseComponent implements AfterViewInit {
   private _imageUploadHandler: (
     xmlHttp: XMLHttpRequest,
     info: imageInputInformation,
-    core: Core
+    core: Core,
   ) => void;
   /**
    * Callback to replace the default imageUploadHandler function
    */
   @Input() set imageUploadHandler(
-    callback: (
-      xmlHttp: XMLHttpRequest,
-      info: imageInputInformation,
-      core: Core
-    ) => void
+    callback: (xmlHttp: XMLHttpRequest, info: imageInputInformation, core: Core) => void,
   ) {
-    const handlerCallback = (
-      xmlHttp: XMLHttpRequest,
-      info: imageInputInformation,
-      core: Core
-    ) => {
+    const handlerCallback = (xmlHttp: XMLHttpRequest, info: imageInputInformation, core: Core) => {
       callback(xmlHttp, info, core);
     };
     this._imageUploadHandler = handlerCallback;
@@ -169,23 +169,15 @@ export class EditorBaseComponent implements AfterViewInit {
   private _videoUploadHandler: (
     xmlHttp: XMLHttpRequest,
     info: videoInputInformation,
-    core: Core
+    core: Core,
   ) => void;
   /**
    * Callback to replace the default videoUploadHandler function
    */
   @Input() set videoUploadHandler(
-    callback: (
-      xmlHttp: XMLHttpRequest,
-      info: videoInputInformation,
-      core: Core
-    ) => void
+    callback: (xmlHttp: XMLHttpRequest, info: videoInputInformation, core: Core) => void,
   ) {
-    const handlerCallback = (
-      xmlHttp: XMLHttpRequest,
-      info: videoInputInformation,
-      core: Core
-    ) => {
+    const handlerCallback = (xmlHttp: XMLHttpRequest, info: videoInputInformation, core: Core) => {
       callback(xmlHttp, info, core);
     };
     this._videoUploadHandler = handlerCallback;
@@ -196,23 +188,15 @@ export class EditorBaseComponent implements AfterViewInit {
   private _audioUploadHandler: (
     xmlHttp: XMLHttpRequest,
     info: audioInputInformation,
-    core: Core
+    core: Core,
   ) => void;
   /**
    * Callback to replace the default audioUploadHandler function
    */
   @Input() set audioUploadHandler(
-    callback: (
-      xmlHttp: XMLHttpRequest,
-      info: audioInputInformation,
-      core: Core
-    ) => void
+    callback: (xmlHttp: XMLHttpRequest, info: audioInputInformation, core: Core) => void,
   ) {
-    const handlerCallback = (
-      xmlHttp: XMLHttpRequest,
-      info: audioInputInformation,
-      core: Core
-    ) => {
+    const handlerCallback = (xmlHttp: XMLHttpRequest, info: audioInputInformation, core: Core) => {
       callback(xmlHttp, info, core);
     };
     this._audioUploadHandler = handlerCallback;
@@ -226,11 +210,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * autoLoad decides if the content should be automaticly loaded on startUp
    * @Default = {id: 'ngxSunEditor', autoSave: false, autoLoad: false}
    */
-  @Input() set localStorageConfig(config: {
-    id?: string;
-    autoSave?: boolean;
-    autoLoad?: boolean;
-  }) {
+  @Input() set localStorageConfig(config: { id?: string; autoSave?: boolean; autoLoad?: boolean }) {
     if (config.id) {
       this.localStorageId = config.id;
     }
@@ -250,47 +230,47 @@ export class EditorBaseComponent implements AfterViewInit {
   /**
    *  When reloaded with the "setOptions" method
    */
-  @Output() onload = new EventEmitter<{core: Core; reload: boolean}>();
+  @Output() onload = new EventEmitter<{ core: Core; reload: boolean }>();
 
   /**
    * Scroll event
    */
-  @Output() onScroll = new EventEmitter<{e: Event; core: Core}>();
+  @Output() onScroll = new EventEmitter<{ e: Event; core: Core }>();
 
   /**
    * Mouse down
    */
-  @Output() onMouseDown = new EventEmitter<{e: Event; core: Core}>();
+  @Output() onMouseDown = new EventEmitter<{ e: Event; core: Core }>();
 
   /**
    * clicked
    */
-  @Output() onClick = new EventEmitter<{e: Event; core: Core}>();
+  @Output() onClick = new EventEmitter<{ e: Event; core: Core }>();
 
   /**
    * Wysiwyg editor area Input event
    */
-  @Output() onInput = new EventEmitter<{e: Event; core: Core}>();
+  @Output() onInput = new EventEmitter<{ e: Event; core: Core }>();
 
   /**
    * keydown event
    */
-  @Output() onKeyDown = new EventEmitter<{e: Event; core: Core}>();
+  @Output() onKeyDown = new EventEmitter<{ e: Event; core: Core }>();
 
   /**
    * keyup event
    */
-  @Output() onKeyUp = new EventEmitter<{e: Event; core: Core}>();
+  @Output() onKeyUp = new EventEmitter<{ e: Event; core: Core }>();
 
   /**
    * Focus event
    */
-  @Output() onFocus = new EventEmitter<{e: Event; core: Core}>();
+  @Output() onFocus = new EventEmitter<{ e: Event; core: Core }>();
 
   /**
    * Blur event
    */
-  @Output() onBlur = new EventEmitter<{e: Event; core: Core}>();
+  @Output() onBlur = new EventEmitter<{ e: Event; core: Core }>();
 
   /**
    * Called when the editor is resized using the bottom bar
@@ -469,14 +449,11 @@ export class EditorBaseComponent implements AfterViewInit {
       if (this._content) this.options.value = this._content;
       this.editor = sunEditor.create(
         document.getElementById(this.editorID) || this.editorID,
-        this.options
+        this.options,
       );
-      if (this._imageUploadHandler)
-        this.editor.imageUploadHandler = this._imageUploadHandler;
-      if (this._videoUploadHandler)
-        this.editor.videoUploadHandler = this._videoUploadHandler;
-      if (this._audioUploadHandler)
-        this.editor.audioUploadHandler = this._audioUploadHandler;
+      if (this._imageUploadHandler) this.editor.imageUploadHandler = this._imageUploadHandler;
+      if (this._videoUploadHandler) this.editor.videoUploadHandler = this._videoUploadHandler;
+      if (this._audioUploadHandler) this.editor.audioUploadHandler = this._audioUploadHandler;
     });
     if (this.isAutoLoadToLocalStorage) {
       this.loadLocalStorageContent();
@@ -630,14 +607,9 @@ export class EditorBaseComponent implements AfterViewInit {
     html: string | Element,
     notCleaningData?: boolean | undefined,
     checkCharCount?: boolean | undefined,
-    rangeSelection?: boolean | undefined
+    rangeSelection?: boolean | undefined,
   ) {
-    this.editor.insertHTML(
-      html,
-      notCleaningData,
-      checkCharCount,
-      rangeSelection
-    );
+    this.editor.insertHTML(html, notCleaningData, checkCharCount, rangeSelection);
   }
 
   /**
@@ -889,11 +861,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * @param styleName Style attribute name (marginLeft, textAlign...)
    * @param value Style value
    */
-  public setStyle(
-    element: Element,
-    styleName: string,
-    value: string | number
-  ) {
+  public setStyle(element: Element, styleName: string, value: string | number) {
     this.editor.util.setStyle(element, styleName, value);
   }
 
@@ -903,11 +871,7 @@ export class EditorBaseComponent implements AfterViewInit {
    * @param listener listener
    * @param useCapture boolean
    */
-  public addDocEvent(
-    type: string,
-    listener: EventListener,
-    useCapture: boolean
-  ) {
+  public addDocEvent(type: string, listener: EventListener, useCapture: boolean) {
     this.editor.core.addDocEvent(type, listener, useCapture);
   }
 
@@ -929,7 +893,7 @@ export class EditorBaseComponent implements AfterViewInit {
   public actionCall(
     command: string,
     display: 'dialog' | 'command' | 'submenu' | 'container',
-    target: Element
+    target: Element,
   ) {
     this.editor.core.actionCall(command, display, target);
   }
@@ -1020,59 +984,52 @@ export class EditorBaseComponent implements AfterViewInit {
 
   private registerEvents() {
     this.editor.onload = (core, reload) => {
-      this.onload.emit({core, reload});
+      this.onload.emit({ core, reload });
     };
     this.editor.onScroll = (e, core) => {
-      this.onScroll.emit({e, core});
+      this.onScroll.emit({ e, core });
     };
     this.editor.onMouseDown = (e, core) => {
-      this.onMouseDown.emit({e, core});
+      this.onMouseDown.emit({ e, core });
     };
     this.editor.onClick = (e, core) => {
-      this.onClick.emit({e, core});
+      this.onClick.emit({ e, core });
     };
     this.editor.onInput = (e, core) => {
-      this.onInput.emit({e, core});
+      this.onInput.emit({ e, core });
     };
     this.editor.onKeyDown = (e, core) => {
-      this.onKeyDown.emit({e, core});
+      this.onKeyDown.emit({ e, core });
     };
     this.editor.onKeyUp = (e, core) => {
-      this.onKeyUp.emit({e, core});
+      this.onKeyUp.emit({ e, core });
     };
     this.editor.onChange = (content, core) => {
       this._content = content;
-      this.onChange.emit({content: this._content, core});
+      this.onChange.emit({ content: this._content, core });
       if (this.isAutoSaveToLocalStorage) {
         this.saveToLocalStorage();
       }
     };
     this.editor.onFocus = (e, core) => {
-      this.onFocus.emit({e, core});
+      this.onFocus.emit({ e, core });
     };
     this.editor.showController = (name, controllers, core) => {
-      this.showController.emit({name, controllers, core});
+      this.showController.emit({ name, controllers, core });
     };
     this.editor.toggleFullScreen = (isFullScreen, core) => {
-      this.toggleFullScreen.emit({isFullScreen, core});
+      this.toggleFullScreen.emit({ isFullScreen, core });
     };
     this.editor.toggleCodeView = (isCodeView, core) => {
-      this.toggleCodeView.emit({isCodeView, core});
+      this.toggleCodeView.emit({ isCodeView, core });
     };
     this.editor.showInline = (toolbar, context, core) => {
-      this.showInline.emit({toolbar, context, core});
+      this.showInline.emit({ toolbar, context, core });
     };
     this.editor.onBlur = (e, core) => {
-      this.onBlur.emit({e, core});
+      this.onBlur.emit({ e, core });
     };
-    this.editor.onAudioUpload = (
-      targetElement,
-      index,
-      state,
-      info,
-      remainingFilesCount,
-      core
-    ) => {
+    this.editor.onAudioUpload = (targetElement, index, state, info, remainingFilesCount, core) => {
       this.onAudioUpload.emit({
         targetElement,
         index,
@@ -1082,14 +1039,7 @@ export class EditorBaseComponent implements AfterViewInit {
         core,
       });
     };
-    this.editor.onVideoUpload = (
-      targetElement,
-      index,
-      state,
-      info,
-      remainingFilesCount,
-      core
-    ) => {
+    this.editor.onVideoUpload = (targetElement, index, state, info, remainingFilesCount, core) => {
       this.onVideoUpload.emit({
         targetElement,
         index,
@@ -1099,14 +1049,7 @@ export class EditorBaseComponent implements AfterViewInit {
         core,
       });
     };
-    this.editor.onImageUpload = (
-      targetElement,
-      index,
-      state,
-      info,
-      remainingFilesCount,
-      core
-    ) => {
+    this.editor.onImageUpload = (targetElement, index, state, info, remainingFilesCount, core) => {
       this.onImageUpload.emit({
         targetElement,
         index,
@@ -1119,81 +1062,60 @@ export class EditorBaseComponent implements AfterViewInit {
     // This functions needs to return a boolean. The type definition is wrong here.
     // https://github.com/JiHong88/SunEditor/pull/810
     this.editor.onCut = (e, clipboardData, core) => {
-      this.onCut.emit({e, clipboardData, core});
+      this.onCut.emit({ e, clipboardData, core });
       return this.onCut_param;
     };
     // This functions needs to return a boolean. The type definition is wrong here.
     // https://github.com/JiHong88/SunEditor/pull/810
     this.editor.onCopy = (e, clipboardData, core) => {
-      this.onCopy.emit({e, clipboardData, core});
+      this.onCopy.emit({ e, clipboardData, core });
       return this.onCopy_param;
     };
-    this.editor.onDrop = (
-      e: Event,
-      cleanData: string,
-      maxCharCount: number,
-      core: Core
-    ) => {
-      this.onDrop.emit({e, cleanData, maxCharCount, core});
+    this.editor.onDrop = (e: Event, cleanData: string, maxCharCount: number, core: Core) => {
+      this.onDrop.emit({ e, cleanData, maxCharCount, core });
       return this.onDrop_param;
     };
-    this.editor.onAudioUploadError = (
-      errorMessage: string,
-      result: any,
-      core: Core
-    ) => {
-      this.onAudioUploadError.emit({errorMessage, result, core});
+    this.editor.onAudioUploadError = (errorMessage: string, result: any, core: Core) => {
+      this.onAudioUploadError.emit({ errorMessage, result, core });
       return this.onAudioUploadError_param;
     };
     this.editor.onImageUploadBefore = (
       files: any[],
       info: imageInputInformation,
       core: Core,
-      uploadHandler: Fn
+      uploadHandler: Fn,
     ) => {
-      this.onImageUploadBefore.emit({files, info, core, uploadHandler});
+      this.onImageUploadBefore.emit({ files, info, core, uploadHandler });
       return this.onImageUploadBefore_param;
     };
-    this.editor.onImageUploadError = (
-      errorMessage: string,
-      result: any,
-      core: Core
-    ) => {
-      this.onImageUploadError.emit({errorMessage, result, core});
+    this.editor.onImageUploadError = (errorMessage: string, result: any, core: Core) => {
+      this.onImageUploadError.emit({ errorMessage, result, core });
       return this.onImageUploadError_param;
     };
     this.editor.onVideoUploadBefore = (
       files: any[],
       info: videoInputInformation,
       core: Core,
-      uploadHandler: Fn
+      uploadHandler: Fn,
     ) => {
-      this.onVideoUploadBefore.emit({files, info, core, uploadHandler});
+      this.onVideoUploadBefore.emit({ files, info, core, uploadHandler });
       return this.onVideoUploadBefore_param;
     };
-    this.editor.onVideoUploadError = (
-      errorMessage: string,
-      result: any,
-      core: Core
-    ) => {
-      this.onVideoUploadError.emit({errorMessage, result, core});
+    this.editor.onVideoUploadError = (errorMessage: string, result: any, core: Core) => {
+      this.onVideoUploadError.emit({ errorMessage, result, core });
       return this.onVideoUploadError_param;
     };
     this.editor.onAudioUploadBefore = (
       files: any[],
       info: audioInputInformation,
       core: Core,
-      uploadHandler: Fn
+      uploadHandler: Fn,
     ) => {
-      this.onAudioUploadBefore.emit({files, info, core, uploadHandler});
+      this.onAudioUploadBefore.emit({ files, info, core, uploadHandler });
       return this.onAudioUploadBefore_param;
     };
-    this.editor.onResizeEditor = (
-      height: number,
-      prevHeight: number,
-      core: Core
-    ) => {
-      this.onResizeEditor.emit({height, prevHeight, core});
+    this.editor.onResizeEditor = (height: number, prevHeight: number, core: Core) => {
+      this.onResizeEditor.emit({ height, prevHeight, core });
       return this.onResizeEditor_param;
     };
   }
@@ -1201,8 +1123,6 @@ export class EditorBaseComponent implements AfterViewInit {
   private generateID() {
     const min = Math.ceil(1);
     const max = Math.floor(100000);
-    return `ngxsuneditor_${(
-      Math.floor(Math.random() * (max - min)) + min
-    ).toString()}`;
+    return `ngxsuneditor_${(Math.floor(Math.random() * (max - min)) + min).toString()}`;
   }
 }

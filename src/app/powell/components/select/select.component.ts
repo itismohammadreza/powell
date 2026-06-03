@@ -11,7 +11,7 @@ import {
   OnInit,
   Output,
   QueryList,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -21,9 +21,9 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
+  NgControl,
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import { takeUntil } from 'rxjs';
 import {
   AsyncEvent,
   CssObject,
@@ -32,19 +32,19 @@ import {
   LabelPosition,
   Position,
   Size,
-  Validation
+  Validation,
 } from '@powell/models';
-import {TemplateDirective} from '@powell/directives/template';
+import { TemplateDirective } from '@powell/directives/template';
 import {
   $OverlayOptions,
   $ScrollerOptions,
   $SelectChangeEvent,
   $SelectFilterEvent,
   $SelectLazyLoadEvent,
-  $uuid
-} from "@powell/primeng";
-import {DestroyService} from "@powell/utils";
-import {ConfigService} from "@powell/api";
+  $uuid,
+} from '@powell/primeng';
+import { DestroyService } from '@powell/utils';
+import { ConfigService } from '@powell/api';
 
 @Component({
   selector: 'pw-select',
@@ -55,9 +55,9 @@ import {ConfigService} from "@powell/api";
       useExisting: forwardRef(() => SelectComponent),
       multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class SelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
@@ -127,10 +127,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() ariaFilterLabel: Optional<string>;
   @Input() ariaLabel: Optional<string>;
   @Input() ariaLabelledBy: Optional<string>;
-  @Input() filterMatchMode: FilterMatchMode = "contains";
+  @Input() filterMatchMode: FilterMatchMode = 'contains';
   @Input() tooltip: Optional<string>;
-  @Input() tooltipPosition: Position = "right";
-  @Input() tooltipPositionStyle: string = "absolute";
+  @Input() tooltipPosition: Position = 'right';
+  @Input() tooltipPositionStyle: string = 'absolute';
   @Input() tooltipStyleClass: Optional<string>;
   @Input() focusOnHover: boolean = true;
   @Input() selectOnFocus: boolean = false;
@@ -155,20 +155,18 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
   _oldValue: Optional<string>;
   _newValue: Optional<string>;
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -190,7 +188,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -202,7 +200,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       this._oldValue = this.value;
       this._newValue = event.value;
       this.loading = true;
-      this.onChangeAsync.emit({loadingCallback: this.removeLoading, event});
+      this.onChangeAsync.emit({ loadingCallback: this.removeLoading, event });
     } else {
       this.value = event.value;
       this.onChange.emit(event);
@@ -222,10 +220,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       setTimeout(() => {
         this.value = this._oldValue + '';
         this.onModelChange(this.value);
-      }, 0)
+      }, 0);
     }
-    this.cd.detectChanges()
-  }
+    this.cd.detectChanges();
+  };
 
   _onBlur(event: Event) {
     this.onBlur.emit(event);

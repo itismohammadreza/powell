@@ -11,7 +11,7 @@ import {
   OnInit,
   Output,
   QueryList,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -21,19 +21,20 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
+  NgControl,
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import { takeUntil } from 'rxjs';
 import {
-  ChipDisplayMode, CssObject,
+  ChipDisplayMode,
+  CssObject,
   FilterMatchMode,
   InputVariant,
   LabelPosition,
   Position,
   Size,
-  Validation
+  Validation,
 } from '@powell/models';
-import {TemplateDirective} from '@powell/directives/template';
+import { TemplateDirective } from '@powell/directives/template';
 import {
   $MultiSelectBlurEvent,
   $MultiSelectChangeEvent,
@@ -44,10 +45,10 @@ import {
   $MultiSelectSelectAllChangeEvent,
   $OverlayOptions,
   $ScrollerOptions,
-  $uuid
-} from "@powell/primeng";
-import {DestroyService} from "@powell/utils";
-import {ConfigService} from "@powell/api";
+  $uuid,
+} from '@powell/primeng';
+import { DestroyService } from '@powell/utils';
+import { ConfigService } from '@powell/api';
 
 @Component({
   selector: 'pw-multi-select',
@@ -56,11 +57,11 @@ import {ConfigService} from "@powell/api";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MultiSelectComponent),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class MultiSelectComponent implements OnInit, ControlValueAccessor, AfterContentInit {
   private cd = inject(ChangeDetectorRef);
@@ -159,20 +160,18 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
 
   ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -194,7 +193,7 @@ export class MultiSelectComponent implements OnInit, ControlValueAccessor, After
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });

@@ -1,5 +1,5 @@
-import {TranslationService} from '@core/utils';
-import {inject} from "@angular/core";
+import { TranslationService } from '@core/utils';
+import { inject } from '@angular/core';
 
 export class LanguageChecker {
   protected readonly translationService = inject(TranslationService);

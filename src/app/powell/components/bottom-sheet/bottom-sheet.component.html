@@ -17,11 +17,12 @@
   [maskStyle]="maskStyle"
   [closable]="closable"
   (onShow)="_onShow()"
-  (onHide)="_onHide()">
+  (onHide)="_onHide()"
+>
   @for (t of templates; track t) {
     @if (templateMap[t.type]) {
       <ng-template [pTemplate]="t.type">
-        <ng-container *ngTemplateOutlet="templateMap[t.type]"/>
+        <ng-container *ngTemplateOutlet="templateMap[t.type]" />
       </ng-template>
     }
   }

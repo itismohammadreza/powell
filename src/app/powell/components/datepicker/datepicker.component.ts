@@ -11,7 +11,7 @@ import {
   OnInit,
   Output,
   QueryList,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -21,8 +21,8 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
-} from "@angular/forms";
+  NgControl,
+} from '@angular/forms';
 import {
   CssObject,
   DatepickerDateType,
@@ -32,20 +32,20 @@ import {
   InputVariant,
   LabelPosition,
   Size,
-  Validation
-} from "@powell/models";
-import {takeUntil} from "rxjs";
-import {DestroyService} from "@powell/utils";
+  Validation,
+} from '@powell/models';
+import { takeUntil } from 'rxjs';
+import { DestroyService } from '@powell/utils';
 import {
   $DatePickerMonthChangeEvent,
   $DatePickerResponsiveOptions,
   $DatePickerTypeView,
   $DatePickerYearChangeEvent,
-  $uuid
-} from "@powell/primeng";
-import {ConfigService} from "@powell/api";
-import {Moment} from "jalali-moment";
-import {TemplateDirective} from "@powell/directives/template";
+  $uuid,
+} from '@powell/primeng';
+import { ConfigService } from '@powell/api';
+import { Moment } from 'jalali-moment';
+import { TemplateDirective } from '@powell/directives/template';
 
 @Component({
   selector: 'pw-datepicker',
@@ -56,9 +56,9 @@ import {TemplateDirective} from "@powell/directives/template";
       useExisting: forwardRef(() => DatepickerComponent),
       multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class DatepickerComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
@@ -164,20 +164,18 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
 
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
   ngControl: Nullable<NgControl> = null;
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -199,7 +197,7 @@ export class DatepickerComponent implements OnInit, AfterContentInit, ControlVal
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });

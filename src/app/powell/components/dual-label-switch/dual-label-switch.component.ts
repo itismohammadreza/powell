@@ -11,7 +11,7 @@ import {
   OnInit,
   Output,
   QueryList,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -21,14 +21,14 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
-} from "@angular/forms";
-import {takeUntil} from "rxjs";
-import {AsyncEvent, FixLabelPosition, Size, Validation} from "@powell/models";
-import {DestroyService} from "@powell/utils";
-import {$ToggleSwitchChangeEvent, $uuid} from "@powell/primeng";
-import {ConfigService} from "@powell/api";
-import {TemplateDirective} from "@powell/directives/template";
+  NgControl,
+} from '@angular/forms';
+import { takeUntil } from 'rxjs';
+import { AsyncEvent, FixLabelPosition, Size, Validation } from '@powell/models';
+import { DestroyService } from '@powell/utils';
+import { $ToggleSwitchChangeEvent, $uuid } from '@powell/primeng';
+import { ConfigService } from '@powell/api';
+import { TemplateDirective } from '@powell/directives/template';
 
 @Component({
   selector: 'pw-dual-label-switch',
@@ -37,11 +37,11 @@ import {TemplateDirective} from "@powell/directives/template";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DualLabelSwitchComponent),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class DualLabelSwitchComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
@@ -84,20 +84,18 @@ export class DualLabelSwitchComponent implements OnInit, AfterContentInit, Contr
 
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
   ngControl: Nullable<NgControl> = null;
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -120,17 +118,16 @@ export class DualLabelSwitchComponent implements OnInit, AfterContentInit, Contr
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
   }
 
-
   setInitValue() {
     if (!this.value) {
       this.value = this.leftValue;
-      this.onModelChange(this.value)
+      this.onModelChange(this.value);
     }
   }
 
@@ -139,7 +136,7 @@ export class DualLabelSwitchComponent implements OnInit, AfterContentInit, Contr
       this.loading = true;
       this.disabled = true;
       this.cd.detectChanges();
-      this.onChangeAsync.emit({loadingCallback: this.removeLoading, event});
+      this.onChangeAsync.emit({ loadingCallback: this.removeLoading, event });
     } else {
       this.onModelChange(event.checked);
       this.onChange.emit(event);
@@ -156,7 +153,7 @@ export class DualLabelSwitchComponent implements OnInit, AfterContentInit, Contr
 
   writeValue(value: SafeAny) {
     this.value = value;
-    this.setInitValue()
+    this.setInitValue();
     this.cd.markForCheck();
   }
 

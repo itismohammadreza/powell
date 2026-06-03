@@ -2,8 +2,9 @@
   component="BottomSheet"
   description="BottomSheet can be used to open panels to the bottom of the screen."
   [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
-  <pw-button (click)="visible = true" label="Open Bottom Sheet"/>
+  (onOptionChange)="onOptionChange($event)"
+>
+  <pw-button (click)="visible = true" label="Open Bottom Sheet" />
 </app-preview>
 
 <pw-bottom-sheet
@@ -16,29 +17,44 @@
   [fullScreen]="getOption('fullScreen')"
   [header]="getOption('header')"
   [closable]="getOption('closable')"
-  [(visible)]="visible">
+  [(visible)]="visible"
+>
   <ng-template pwTemplate="content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
   </ng-template>
   <ng-template pwTemplate="footer">
     <pw-button
@@ -46,7 +62,8 @@
       appearance="outlined"
       severity="secondary"
       label="Open Second Bottom Sheet"
-      [fluid]="true"/>
+      [fluid]="true"
+    />
   </ng-template>
 </pw-bottom-sheet>
 
@@ -60,24 +77,38 @@
   [fullScreen]="getOption('fullScreen')"
   [header]="getOption('header')"
   [closable]="getOption('closable')"
-  [(visible)]="visible2">
+  [(visible)]="visible2"
+>
   <ng-template pwTemplate="content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
   </ng-template>
   <ng-template pwTemplate="footer">
-    <pw-button (onClick)="visible3=true" appearance="outlined" severity="success" label="Open Third Bottom Sheet"
-               [fluid]="true"/>
+    <pw-button
+      (onClick)="visible3=true"
+      appearance="outlined"
+      severity="success"
+      label="Open Third Bottom Sheet"
+      [fluid]="true"
+    />
   </ng-template>
 </pw-bottom-sheet>
 
@@ -91,21 +122,33 @@
   [fullScreen]="getOption('fullScreen')"
   [header]="getOption('header')"
   [closable]="getOption('closable')"
-  [(visible)]="visible3">
+  [(visible)]="visible3"
+>
   <ng-template pwTemplate="content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
   </ng-template>
   <ng-template pwTemplate="footer">
-    <pw-button (onClick)="openDialog()" appearance="outlined" severity="success" label="Open Dialog"
-               [fluid]="true"/>
+    <pw-button
+      (onClick)="openDialog()"
+      appearance="outlined"
+      severity="success"
+      label="Open Dialog"
+      [fluid]="true"
+    />
   </ng-template>
 </pw-bottom-sheet>
 
@@ -119,16 +162,23 @@
   [fullScreen]="getOption('fullScreen')"
   [header]="getOption('header')"
   [closable]="getOption('closable')"
-  [(visible)]="visible4">
+  [(visible)]="visible4"
+>
   <ng-template pwTemplate="content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur doloribus earum fugiat
-      fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate voluptatem! Laborum odit reiciendis
-      voluptas?</p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda aut consequatur
+      doloribus earum fugiat fugit illo itaque, laborum, libero nisi nulla odit rerum voluptate
+      voluptatem! Laborum odit reiciendis voluptas?
+    </p>
   </ng-template>
 </pw-bottom-sheet>

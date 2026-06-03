@@ -1,38 +1,35 @@
-import {Component} from '@angular/core';
-import {ButtonModule} from "@powell/components/button";
-import {PreviewBase, PreviewComponent, PreviewOption} from "@pages/showcase/components";
-import {ConfirmOptions} from "@powell/models";
+import { Component } from '@angular/core';
+import { ButtonModule } from '@powell/components/button';
+import { PreviewBase, PreviewComponent, PreviewOption } from '@pages/showcase/components';
+import { ConfirmOptions } from '@powell/models';
 
 @Component({
   selector: 'app-confirm-dialog-page',
   templateUrl: './confirm-dialog.page.html',
-  imports: [
-    ButtonModule,
-    PreviewComponent
-  ]
+  imports: [ButtonModule, PreviewComponent],
 })
 export class ConfirmDialogPage extends PreviewBase {
   override previewOptions: PreviewOption[] = [
-    {field: 'closable', value: true},
-    {field: 'message', value: 'Are you sure?'},
-    {field: 'header', value: 'Confirmation'},
-    {field: 'acceptLabel', value: 'Yes'},
-    {field: 'rejectLabel', value: 'No'},
-    {field: 'acceptIcon', value: ''},
-    {field: 'rejectIcon', value: ''},
-    {field: 'acceptVisible', value: true},
-    {field: 'rejectVisible', value: true},
-    {field: 'acceptSeverity', selectOptions: 'severities', value: 'primary'},
-    {field: 'acceptAppearance', selectOptions: 'appearances', value: 'basic'},
-    {field: 'buttonSize', selectOptions: 'sizes', value: 'small'},
-    {field: 'rejectSeverity', selectOptions: 'severities', value: 'danger'},
-    {field: 'rejectAppearance', selectOptions: 'appearances', value: 'outlined'},
-    {field: 'closeOnEscape', value: false},
-    {field: 'dismissableMask', value: false},
-    {field: 'defaultFocus', selectOptions: 'defaultFocusTypes', value: 'accept'},
-    {field: 'blockScroll', value: false},
-    {field: 'position', selectOptions: 'dialogPositions', value: 'center'},
-    {field: 'rtl', value: this.config.rtl},
+    { field: 'closable', value: true },
+    { field: 'message', value: 'Are you sure?' },
+    { field: 'header', value: 'Confirmation' },
+    { field: 'acceptLabel', value: 'Yes' },
+    { field: 'rejectLabel', value: 'No' },
+    { field: 'acceptIcon', value: '' },
+    { field: 'rejectIcon', value: '' },
+    { field: 'acceptVisible', value: true },
+    { field: 'rejectVisible', value: true },
+    { field: 'acceptSeverity', selectOptions: 'severities', value: 'primary' },
+    { field: 'acceptAppearance', selectOptions: 'appearances', value: 'basic' },
+    { field: 'buttonSize', selectOptions: 'sizes', value: 'small' },
+    { field: 'rejectSeverity', selectOptions: 'severities', value: 'danger' },
+    { field: 'rejectAppearance', selectOptions: 'appearances', value: 'outlined' },
+    { field: 'closeOnEscape', value: false },
+    { field: 'dismissableMask', value: false },
+    { field: 'defaultFocus', selectOptions: 'defaultFocusTypes', value: 'accept' },
+    { field: 'blockScroll', value: false },
+    { field: 'position', selectOptions: 'dialogPositions', value: 'center' },
+    { field: 'rtl', value: this.config.rtl },
   ];
 
   confirmDialog: ConfirmOptions = {
@@ -51,16 +48,16 @@ export class ConfirmDialogPage extends PreviewBase {
     defaultFocus: 'accept',
     blockScroll: false,
     rtl: this.config.rtl,
-    style: {width: '400px'},
+    style: { width: '400px' },
     acceptButtonProps: {
       severity: this.getOption('acceptSeverity'),
-      appearance: this.getOption('acceptAppearance')
+      appearance: this.getOption('acceptAppearance'),
     },
     rejectButtonProps: {
       severity: this.getOption('rejectSeverity'),
-      appearance: this.getOption('rejectAppearance')
-    }
-  }
+      appearance: this.getOption('rejectAppearance'),
+    },
+  };
 
   override onOptionChange(event: PreviewOption) {
     switch (event.field) {
@@ -82,6 +79,6 @@ export class ConfirmDialogPage extends PreviewBase {
   }
 
   showConfirmDialog() {
-    this.overlayService.showConfirmDialog(this.confirmDialog)
+    this.overlayService.showConfirmDialog(this.confirmDialog);
   }
 }

@@ -6,8 +6,8 @@ import {
   PinchEventType,
   TouchesProperties,
   TouchHandler,
-  TouchListeners
-} from "@powell/components/pinch-zoom/interfaces";
+  TouchListeners,
+} from '@powell/components/pinch-zoom/interfaces';
 
 export class Touches {
   private properties: TouchesProperties;
@@ -319,7 +319,11 @@ export class Touches {
         return this.getLinearSwipeType(event);
       }
     } else {
-      if (!this.eventType || this.eventType === 'horizontal-swipe' || this.eventType === 'vertical-swipe') {
+      if (
+        !this.eventType ||
+        this.eventType === 'horizontal-swipe' ||
+        this.eventType === 'vertical-swipe'
+      ) {
         return this.getLinearSwipeType(event);
       }
     }

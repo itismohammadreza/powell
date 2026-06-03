@@ -1,26 +1,29 @@
-<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [class]="{
-     'input-text-wrapper': true,
-     'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
-     'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
-     'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
-     'addon-start': templateMap['addonStart'] && !templateMap['addonEnd'],
-     'addon-end': templateMap['addonEnd'] && !templateMap['addonStart'],
-     'addon-both': templateMap['addonStart'] && templateMap['addonEnd'],
-     'fluid': fluid,
-     'clearable': showClear
-    }">
+<div
+  [attr.dir]="rtl ? 'rtl' : 'ltr'"
+  [class]="{
+    'input-text-wrapper': true,
+    'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
+    'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
+    'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
+    'addon-start': templateMap['addonStart'] && !templateMap['addonEnd'],
+    'addon-end': templateMap['addonEnd'] && !templateMap['addonStart'],
+    'addon-both': templateMap['addonStart'] && templateMap['addonEnd'],
+    fluid: fluid,
+    clearable: showClear,
+  }"
+>
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | pwLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar: showRequiredStar : ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="inputId"
     [disabled]="disabled"
     [readonly]="readonly"
-    [fluid]="fluid">
+    [fluid]="fluid"
+  >
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       @if (keyFilter) {
         <input
@@ -29,7 +32,7 @@
           [invalid]="isInvalid"
           [attr.id]="inputId"
           [attr.maxlength]="maxlength"
-          [attr.placeholder]="placeholder | pwLabelStar:showRequiredStar:ngControl"
+          [attr.placeholder]="placeholder | pwLabelStar: showRequiredStar : ngControl"
           [attr.type]="type"
           [attr.aria-label]="ariaLabel"
           [attr.aria-labelledBy]="ariaLabelledBy"
@@ -50,7 +53,8 @@
           (input)="_onInput($event)"
           (keydown)="_onKeyDown($event)"
           (keyup)="_onKeyUp($event)"
-          (paste)="emitter('onPaste', $event)"/>
+          (paste)="emitter('onPaste', $event)"
+        />
       } @else {
         <input
           pInputText
@@ -58,7 +62,7 @@
           [invalid]="isInvalid"
           [attr.id]="inputId"
           [attr.maxlength]="maxlength"
-          [attr.placeholder]="placeholder | pwLabelStar:showRequiredStar:ngControl"
+          [attr.placeholder]="placeholder | pwLabelStar: showRequiredStar : ngControl"
           [attr.type]="type"
           [attr.aria-label]="ariaLabel"
           [attr.aria-labelledBy]="ariaLabelledBy"
@@ -78,16 +82,17 @@
           (input)="_onInput($event)"
           (keydown)="_onKeyDown($event)"
           (keyup)="_onKeyUp($event)"
-          (paste)="emitter('onPaste', $event)"/>
+          (paste)="emitter('onPaste', $event)"
+        />
       }
       @if (showClear && !disabled && value) {
-        <svg data-p-icon="times" class="clear-icon" (click)="clear()"/>
+        <svg data-p-icon="times" class="clear-icon" (click)="clear()" />
       }
     </ng-template>
     @for (item of ['addonStart', 'addonEnd', 'iconStart', 'iconEnd', 'label']; track item) {
       @if (templateMap[item]) {
         <ng-template [pwTemplate]="item">
-          <ng-container *ngTemplateOutlet="templateMap[item]"/>
+          <ng-container *ngTemplateOutlet="templateMap[item]" />
         </ng-template>
       }
     }

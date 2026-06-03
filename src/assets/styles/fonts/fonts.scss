@@ -1,10 +1,10 @@
-@use "sass:meta";
+@use 'sass:meta';
 
 // ICON FONT
-@include meta.load-css("font-awesome/font-awesome.scss");
+@include meta.load-css('font-awesome/font-awesome.scss');
 
 // FARSI FONT
-@include meta.load-css("vazirmatn/farsi-digits/vazirmatn");
+@include meta.load-css('vazirmatn/farsi-digits/vazirmatn');
 //include meta.load-css("vazirmatn/farsi-digits-non-latin/vazirmatn");
 //include meta.load-css("vazirmatn/non-latin/vazirmatn");
 //include meta.load-css("vazirmatn/plain/vazirmatn");
@@ -16,4 +16,4 @@
 //include meta.load-css("iran-sans/plain/iran-sans");
 
 // ENGLISH FONT
-@include meta.load-css("roboto/roboto");
+@include meta.load-css('roboto/roboto');

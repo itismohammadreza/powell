@@ -21,14 +21,14 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
+  NgControl,
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
-import {CssObject, FixLabelPosition, Validation} from '@powell/models';
-import {TemplateDirective} from "@powell/directives/template";
-import {DestroyService} from "@powell/utils";
-import {$RatingRateEvent, $uuid} from "@powell/primeng";
-import {ConfigService} from "@powell/api";
+import { takeUntil } from 'rxjs';
+import { CssObject, FixLabelPosition, Validation } from '@powell/models';
+import { TemplateDirective } from '@powell/directives/template';
+import { DestroyService } from '@powell/utils';
+import { $RatingRateEvent, $uuid } from '@powell/primeng';
+import { ConfigService } from '@powell/api';
 
 @Component({
   selector: 'pw-rating',
@@ -37,11 +37,11 @@ import {ConfigService} from "@powell/api";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => RatingComponent),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class RatingComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
@@ -77,20 +77,18 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
 
   ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -112,7 +110,7 @@ export class RatingComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });

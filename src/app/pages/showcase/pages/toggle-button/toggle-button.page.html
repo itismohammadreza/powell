@@ -2,10 +2,11 @@
   component="ToggleButton"
   description="ToggleButton is used to select a boolean value using a button."
   [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
+  (onOptionChange)="onOptionChange($event)"
+>
   <form [formGroup]="form">
     @if (render) {
-      <pw-toggle-button formControlName="c1" [validation]="{ required: 'error' }"/>
+    <pw-toggle-button formControlName="c1" [validation]="{ required: 'error' }" />
     }
   </form>
 </app-preview>

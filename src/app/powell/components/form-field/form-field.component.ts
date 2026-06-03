@@ -6,20 +6,20 @@ import {
   inject,
   Input,
   QueryList,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
-import {ElementAdditionTemplate, LabelPosition, Validation} from "@powell/models";
-import {TemplateDirective} from "@powell/directives/template";
-import {NgControl} from "@angular/forms";
-import {$uuid} from '@powell/primeng';
-import {DestroyService} from '@powell/utils';
-import {takeUntil} from 'rxjs';
+import { ElementAdditionTemplate, LabelPosition, Validation } from '@powell/models';
+import { TemplateDirective } from '@powell/directives/template';
+import { NgControl } from '@angular/forms';
+import { $uuid } from '@powell/primeng';
+import { DestroyService } from '@powell/utils';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'pw-form-field',
   standalone: false,
   templateUrl: './form-field.component.html',
-  providers: [DestroyService]
+  providers: [DestroyService],
 })
 export class FormFieldComponent implements AfterContentInit {
   private cd = inject(ChangeDetectorRef);
@@ -41,7 +41,7 @@ export class FormFieldComponent implements AfterContentInit {
   templateMap: Partial<Record<ElementAdditionTemplate, TemplateRef<SafeAny>>> = {};
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type as ElementAdditionTemplate;
       this.templateMap[name] = item.templateRef;
     });
@@ -63,9 +63,11 @@ export class FormFieldComponent implements AfterContentInit {
   get isInvalid() {
     if (this.ngControl) {
       const control = this.ngControl.control!;
-      return !this.disabled && !this.readonly && ((control.touched || control.dirty) && control.invalid);
+      return (
+        !this.disabled && !this.readonly && (control.touched || control.dirty) && control.invalid
+      );
     }
-    return false
+    return false;
   }
 
   hasError(type: string) {

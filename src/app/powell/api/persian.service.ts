@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PersianService {
@@ -81,7 +81,19 @@ export class PersianService {
     const negative = 'منفی ';
     const letters = [
       ['', 'یک', 'دو', 'سه', 'چهار', 'پنج', 'شش', 'هفت', 'هشت', 'نه'],
-      ['ده', 'یازده', 'دوازده', 'سیزده', 'چهارده', 'پانزده', 'شانزده', 'هفده', 'هجده', 'نوزده', 'بیست'],
+      [
+        'ده',
+        'یازده',
+        'دوازده',
+        'سیزده',
+        'چهارده',
+        'پانزده',
+        'شانزده',
+        'هفده',
+        'هجده',
+        'نوزده',
+        'بیست',
+      ],
       ['', '', 'بیست', 'سی', 'چهل', 'پنجاه', 'شصت', 'هفتاد', 'هشتاد', 'نود'],
       ['', 'یکصد', 'دویست', 'سیصد', 'چهارصد', 'پانصد', 'ششصد', 'هفتصد', 'هشتصد', 'نهصد'],
       [
@@ -106,7 +118,7 @@ export class PersianService {
         ' نانیلیون',
         ' نانیلیارد',
         ' دسیلیون',
-        ' دسیلیارد'
+        ' دسیلیارد',
       ],
     ];
     const decimalSuffixes = [
@@ -121,10 +133,10 @@ export class PersianService {
       'صدمیلیونوم',
       'میلیاردم',
       'ده‌میلیاردم',
-      'صد‌‌میلیاردم'
+      'صد‌‌میلیاردم',
     ];
     const convertDecimalPart = (num: string) => {
-      num = num.replace(/0*$/, "");
+      num = num.replace(/0*$/, '');
       if (num === '') {
         return '';
       }
@@ -154,9 +166,9 @@ export class PersianService {
       }
       const one = parsedInt % 10;
       const hundreds = (parsedInt - (parsedInt % 100)) / 100;
-      const ten = (parsedInt - ((hundreds * 100) + one)) / 10;
+      const ten = (parsedInt - (hundreds * 100 + one)) / 10;
       const out = [letters[3][hundreds]];
-      const secondPart = ((ten * 10) + one);
+      const secondPart = ten * 10 + one;
       if (secondPart === 0) {
         return out.join(delimiter);
       }
@@ -221,5 +233,5 @@ export class PersianService {
       decimalPart = convertDecimalPart(decimalPart);
     }
     return (isNegative ? negative : '') + out.join(delimiter) + decimalPart;
-  };
+  }
 }

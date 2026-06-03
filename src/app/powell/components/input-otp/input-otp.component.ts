@@ -10,7 +10,7 @@ import {
   OnInit,
   Output,
   QueryList,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -20,14 +20,14 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
-} from "@angular/forms";
-import {takeUntil} from "rxjs";
-import {FixLabelPosition, InputVariant, Size, Validation} from "@powell/models";
-import {DestroyService} from "@powell/utils";
-import {ConfigService} from "@powell/api";
-import {TemplateDirective} from "@powell/directives/template";
-import {$InputOtpChangeEvent} from "@powell/primeng";
+  NgControl,
+} from '@angular/forms';
+import { takeUntil } from 'rxjs';
+import { FixLabelPosition, InputVariant, Size, Validation } from '@powell/models';
+import { DestroyService } from '@powell/utils';
+import { ConfigService } from '@powell/api';
+import { TemplateDirective } from '@powell/directives/template';
+import { $InputOtpChangeEvent } from '@powell/primeng';
 
 @Component({
   selector: 'pw-input-otp',
@@ -36,11 +36,11 @@ import {$InputOtpChangeEvent} from "@powell/primeng";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputOtpComponent),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class InputOtpComponent implements OnInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
@@ -76,20 +76,18 @@ export class InputOtpComponent implements OnInit, ControlValueAccessor {
 
   ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -116,7 +114,7 @@ export class InputOtpComponent implements OnInit, ControlValueAccessor {
   }
 
   _onBlur(event: Event) {
-    this.onBlur.emit(event)
+    this.onBlur.emit(event);
     this.onModelTouched();
   }
 

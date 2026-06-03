@@ -1,25 +1,28 @@
-<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [class]="{
-     'cascade-select-wrapper': true,
-     'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
-     'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
-     'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
-     'addon-start': templateMap['addonStart'] && !templateMap['addonEnd'],
-     'addon-end': templateMap['addonEnd'] && !templateMap['addonStart'],
-     'addon-both': templateMap['addonStart'] && templateMap['addonEnd'],
-     'fluid': fluid,
-     'clearable': showClear
-    }">
+<div
+  [attr.dir]="rtl ? 'rtl' : 'ltr'"
+  [class]="{
+    'cascade-select-wrapper': true,
+    'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
+    'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
+    'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
+    'addon-start': templateMap['addonStart'] && !templateMap['addonEnd'],
+    'addon-end': templateMap['addonEnd'] && !templateMap['addonStart'],
+    'addon-both': templateMap['addonStart'] && templateMap['addonEnd'],
+    fluid: fluid,
+    clearable: showClear,
+  }"
+>
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | pwLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar: showRequiredStar : ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="inputId"
     [disabled]="disabled"
-    [fluid]="fluid">
+    [fluid]="fluid"
+  >
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-cascadeSelect
         [(ngModel)]="value"
@@ -43,7 +46,7 @@
         [optionValue]="optionValue"
         [optionGroupLabel]="optionGroupLabel"
         [optionGroupChildren]="optionGroupChildren"
-        [placeholder]="placeholder | pwLabelStar:showRequiredStar:ngControl"
+        [placeholder]="placeholder | pwLabelStar: showRequiredStar : ngControl"
         [dataKey]="dataKey"
         [inputId]="inputId"
         [tabindex]="tabindex"
@@ -70,11 +73,14 @@
         (onBeforeShow)="emitter('onBeforeShow', $event)"
         (onBeforeHide)="emitter('onBeforeHide', $event)"
         (onFocus)="emitter('onFocus', $event)"
-        (onBlur)="_onBlur($event)">
+        (onBlur)="_onBlur($event)"
+      >
         @for (t of templates; track t) {
           @if (templateMap[t.type]) {
             <ng-template [pTemplate]="t.type" let-item let-placeholder="placeholder">
-              <ng-container *ngTemplateOutlet="templateMap[t.type];context:{$implicit:item,placeholder}"/>
+              <ng-container
+                *ngTemplateOutlet="templateMap[t.type]; context: { $implicit: item, placeholder }"
+              />
             </ng-template>
           }
         }
@@ -83,7 +89,7 @@
     @for (item of ['addonStart', 'addonEnd', 'iconStart', 'iconEnd', 'label']; track item) {
       @if (templateMap[item]) {
         <ng-template [pwTemplate]="item">
-          <ng-container *ngTemplateOutlet="templateMap[item]"/>
+          <ng-container *ngTemplateOutlet="templateMap[item]" />
         </ng-template>
       }
     }

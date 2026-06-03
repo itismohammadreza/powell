@@ -11,7 +11,7 @@ import {
   OnInit,
   Output,
   QueryList,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -21,14 +21,14 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
+  NgControl,
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
-import {CssObject, InputVariant, LabelPosition, Size, Validation} from '@powell/models';
-import {TemplateDirective} from '@powell/directives/template';
-import {ConfigService} from "@powell/api";
-import {DestroyService} from "@powell/utils";
-import {$uuid} from "@powell/primeng";
+import { takeUntil } from 'rxjs';
+import { CssObject, InputVariant, LabelPosition, Size, Validation } from '@powell/models';
+import { TemplateDirective } from '@powell/directives/template';
+import { ConfigService } from '@powell/api';
+import { DestroyService } from '@powell/utils';
+import { $uuid } from '@powell/primeng';
 
 @Component({
   selector: 'pw-input-password',
@@ -37,11 +37,11 @@ import {$uuid} from "@powell/primeng";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputPasswordComponent),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class InputPasswordComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
@@ -75,7 +75,8 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   @Input() ariaLabel: Optional<string>;
   @Input() ariaLabelledBy: Optional<string>;
   @Input() promptLabel: Optional<string>;
-  @Input() mediumRegex: string = '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})';
+  @Input() mediumRegex: string =
+    '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})';
   @Input() strongRegex: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})';
   @Input() weakLabel: Optional<string>;
   @Input() mediumLabel: Optional<string>;
@@ -105,20 +106,18 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
 
   ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -140,7 +139,7 @@ export class InputPasswordComponent implements OnInit, AfterContentInit, Control
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });

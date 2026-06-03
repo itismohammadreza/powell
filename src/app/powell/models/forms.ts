@@ -1,11 +1,20 @@
-import {LatLngLiteral, LeafletMouseEvent} from 'leaflet';
+import { LatLngLiteral, LeafletMouseEvent } from 'leaflet';
 
-export type ElementAdditionTemplate = 'element' | 'addonStart' | 'addonEnd' | 'iconStart' | 'iconEnd' | 'label';
+export type ElementAdditionTemplate =
+  | 'element'
+  | 'addonStart'
+  | 'addonEnd'
+  | 'iconStart'
+  | 'iconEnd'
+  | 'label';
 export type FilePickerMode = 'basic' | 'advanced';
 export type FilePickerMethod = 'post' | 'put';
 export type FileResultType = 'base64' | 'file' | 'none';
 export type LabelPosition = 'ifta' | 'float-in' | 'float-on' | 'float-over' | 'side' | 'top';
-export type FixLabelPosition = Exclude<LabelPosition, 'ifta' | 'float-in' | 'float-on' | 'float-over'>;
+export type FixLabelPosition = Exclude<
+  LabelPosition,
+  'ifta' | 'float-in' | 'float-on' | 'float-over'
+>;
 export type AutoCompleteDropdownMode = 'blank' | 'current';
 export type ChipDisplayMode = 'comma' | 'chip';
 export type DatepickerViewMode = 'date' | 'month' | 'year';
@@ -52,11 +61,29 @@ export type ValidationType =
   | 'maxlength'
   | 'pattern';
 
-export type InputMode = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
+export type InputMode =
+  | 'none'
+  | 'text'
+  | 'decimal'
+  | 'numeric'
+  | 'tel'
+  | 'search'
+  | 'email'
+  | 'url';
 
-export const MAP_MARKER_EVENTS = ['click', 'dblclick', 'mousedown', 'mouseup', 'mouseover', 'mouseout', 'mousemove', 'contextmenu', 'preclick'] as const;
+export const MAP_MARKER_EVENTS = [
+  'click',
+  'dblclick',
+  'mousedown',
+  'mouseup',
+  'mouseover',
+  'mouseout',
+  'mousemove',
+  'contextmenu',
+  'preclick',
+] as const;
 
-export type MapMarkerEventType = typeof MAP_MARKER_EVENTS[number];
+export type MapMarkerEventType = (typeof MAP_MARKER_EVENTS)[number];
 
 export interface MapMarkerEvent {
   marker: MapMarker;

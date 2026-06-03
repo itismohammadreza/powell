@@ -2,15 +2,17 @@
   component="InputSwitch"
   description="InputSwitch is used to select a boolean value."
   [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
+  (onOptionChange)="onOptionChange($event)"
+>
   <form [formGroup]="form">
     @if (render) {
-      <pw-dual-label-switch
-        formControlName="c1"
-        [validation]="{ required: 'error' }"
-        labelLeft="Left"
-        labelRight="Right"
-        (onChangeAsync)="onChangeAsync($event)"/>
+    <pw-dual-label-switch
+      formControlName="c1"
+      [validation]="{ required: 'error' }"
+      labelLeft="Left"
+      labelRight="Right"
+      (onChangeAsync)="onChangeAsync($event)"
+    />
     }
   </form>
 </app-preview>

@@ -1,8 +1,8 @@
-import {Directive, inject, Input, TemplateRef} from '@angular/core';
+import { Directive, inject, Input, TemplateRef } from '@angular/core';
 
 @Directive({
   selector: '[pwTemplate]',
-  standalone: false
+  standalone: false,
 })
 export class TemplateDirective {
   public templateRef = inject(TemplateRef);

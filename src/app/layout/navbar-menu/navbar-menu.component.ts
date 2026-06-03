@@ -5,11 +5,11 @@ import {
   DOCUMENT,
   HostListener,
   inject,
-  OnInit
+  OnInit,
 } from '@angular/core';
-import {LanguageChecker} from '@core/utils';
-import {GlobalConfig, SidebarType} from '@core/models';
-import {globalConfig} from "@core/config";
+import { LanguageChecker } from '@core/utils';
+import { GlobalConfig, SidebarType } from '@core/models';
+import { globalConfig } from '@core/config';
 import {
   $AvatarModule,
   $DividerModule,
@@ -19,19 +19,19 @@ import {
   $PanelMenuModule,
   $PopoverModule,
   $SelectChangeEvent,
-  $TooltipModule
-} from "@powell/primeng";
-import {ButtonModule} from "@powell/components/button";
-import {InputTextModule} from "@powell/components/input-text";
-import {SelectModule} from "@powell/components/select";
-import {ToggleSwitchModule} from "@powell/components/toggle-switch";
-import {FilterModule} from "@powell/pipes/filter";
-import {TranslatePipe} from "@ngx-translate/core";
-import {FormsModule} from "@angular/forms";
-import {LogoComponent} from "@layout/logo/logo.component";
-import {routes} from "@pages/showcase/showcase-routing.module";
-import {RadioModule} from "@powell/components/radio";
-import {DesignerComponent} from '@layout/designer/designer.component';
+  $TooltipModule,
+} from '@powell/primeng';
+import { ButtonModule } from '@powell/components/button';
+import { InputTextModule } from '@powell/components/input-text';
+import { SelectModule } from '@powell/components/select';
+import { ToggleSwitchModule } from '@powell/components/toggle-switch';
+import { FilterModule } from '@powell/pipes/filter';
+import { TranslatePipe } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
+import { LogoComponent } from '@layout/logo/logo.component';
+import { routes } from '@pages/showcase/showcase-routing.module';
+import { RadioModule } from '@powell/components/radio';
+import { DesignerComponent } from '@layout/designer/designer.component';
 
 @Component({
   selector: 'app-navbar-menu',
@@ -54,9 +54,9 @@ import {DesignerComponent} from '@layout/designer/designer.component';
     $PopoverModule,
     RadioModule,
     $TooltipModule,
-    DesignerComponent
+    DesignerComponent,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterContentInit {
   private document = inject(DOCUMENT);
@@ -73,7 +73,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
 
   @HostListener('window:resize', [])
   onResize() {
-    this.handleResize()
+    this.handleResize();
   }
 
   ngOnInit() {
@@ -82,7 +82,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     if (this.sidebarLock && !this.sidebarVisible) {
       this.sidebarVisible = true;
     }
-    this.handleResize()
+    this.handleResize();
   }
 
   ngAfterContentInit() {
@@ -95,7 +95,7 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
     const windowWidth = this.document.defaultView.innerWidth;
     if (windowWidth < responsiveThreshold) {
       if (this.sidebarLock) {
-        this.toggleSidebarLock(false)
+        this.toggleSidebarLock(false);
       }
       this.changeSidebarType('overlay', false);
     } else if (windowWidth >= responsiveThreshold) {
@@ -104,19 +104,28 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
   }
 
   loadData() {
-    const sidebarTypes: SidebarType[] = ['overlay', 'overlay-mask', 'push', 'push-mask', 'static', 'horizontal'];
-    this.sidebarTypes = sidebarTypes.map(t => ({label: t, value: t}));
-    this.sidebarItems = routes.filter(item => !item.redirectTo).map(item => ({
-      label: item.title as string,
-      icon: 'pi pi-minus',
-      routerLink: `showcase/${item.path}`,
-      routerLinkActiveOptions: item.path ? '' : {exact: true},
-      command: () => {
-        if ((!this.sidebarLock && this.showBackdrop) || item.path === 'home') {
-          this.toggleSidebar(false);
-        }
-      }
-    }));
+    const sidebarTypes: SidebarType[] = [
+      'overlay',
+      'overlay-mask',
+      'push',
+      'push-mask',
+      'static',
+      'horizontal',
+    ];
+    this.sidebarTypes = sidebarTypes.map((t) => ({ label: t, value: t }));
+    this.sidebarItems = routes
+      .filter((item) => !item.redirectTo)
+      .map((item) => ({
+        label: item.title as string,
+        icon: 'pi pi-minus',
+        routerLink: `showcase/${item.path}`,
+        routerLinkActiveOptions: item.path ? '' : { exact: true },
+        command: () => {
+          if ((!this.sidebarLock && this.showBackdrop) || item.path === 'home') {
+            this.toggleSidebar(false);
+          }
+        },
+      }));
   }
 
   changeSidebarType(event: $SelectChangeEvent | SidebarType, assign: boolean) {

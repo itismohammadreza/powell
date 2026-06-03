@@ -2,8 +2,9 @@
   component="Rating"
   description="Rating component is a star based selection input."
   [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
+  (onOptionChange)="onOptionChange($event)"
+>
   <form [formGroup]="form">
-    <pw-rating formControlName="c1" [validation]="{ required: 'error' }"/>
+    <pw-rating formControlName="c1" [validation]="{ required: 'error' }" />
   </form>
 </app-preview>

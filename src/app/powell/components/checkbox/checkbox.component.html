@@ -4,11 +4,12 @@
     [validation]="validation"
     [hint]="hint"
     labelPosition="side"
-    [label]="label | pwLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar: showRequiredStar : ngControl"
     [inputId]="inputId"
     [disabled]="disabled"
     [readonly]="readonly"
-    [reverseLabel]="true">
+    [reverseLabel]="true"
+  >
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <div class="checkbox-inner-wrapper">
         <p-checkbox
@@ -33,17 +34,18 @@
           [size]="size"
           (onChange)="_onChange($event)"
           (onFocus)="_onFocus($event)"
-          (onBlur)="_onBlur($event)">
+          (onBlur)="_onBlur($event)"
+        >
           @for (t of templates; track t) {
             @if (templateMap[t.type]) {
               <ng-template [pTemplate]="t.type">
-                <ng-container *ngTemplateOutlet="templateMap[t.type]"/>
+                <ng-container *ngTemplateOutlet="templateMap[t.type]" />
               </ng-template>
             }
           }
         </p-checkbox>
         @if (loading && showAsyncLoading) {
-          <p-progressSpinner strokeWidth="4"/>
+          <p-progressSpinner strokeWidth="4" />
         }
       </div>
     </ng-template>

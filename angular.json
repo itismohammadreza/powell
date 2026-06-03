@@ -34,21 +34,12 @@
               },
               "src/env.js"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": [],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/assets/styles",
-                "src/assets"
-              ]
+              "includePaths": ["src/assets/styles", "src/assets"]
             },
-            "allowedCommonJsDependencies": [
-              "moment",
-              "jalali-moment",
-              "leaflet"
-            ]
+            "allowedCommonJsDependencies": ["moment", "jalali-moment", "leaflet"]
           },
           "configurations": {
             "production": {
@@ -108,9 +99,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ]
+            "styles": ["src/styles.scss"]
           }
         }
       }

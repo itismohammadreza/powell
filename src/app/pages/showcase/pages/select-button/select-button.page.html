@@ -2,10 +2,15 @@
   component="SelectButton"
   description="SelectButton is a form component to choose a value from a list of options using button elements."
   [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
+  (onOptionChange)="onOptionChange($event)"
+>
   <form [formGroup]="form">
     @if (render) {
-      <pw-select-button formControlName="c1" [validation]="{ required: 'error' }" [options]="options"/>
+    <pw-select-button
+      formControlName="c1"
+      [validation]="{ required: 'error' }"
+      [options]="options"
+    />
     }
   </form>
 </app-preview>

@@ -1,8 +1,8 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'pwFilter',
-  standalone: false
+  standalone: false,
 })
 export class FilterPipe implements PipeTransform {
   transform(value: SafeAny[], term: string, keys?: string) {
@@ -12,10 +12,10 @@ export class FilterPipe implements PipeTransform {
     return (value || []).filter((item: SafeAny) => {
       if (keys) {
         return keys.split(',').some((key: string) => {
-          return item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key])
-        })
+          return item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key]);
+        });
       } else {
-        return new RegExp(term, 'gi').test(item)
+        return new RegExp(term, 'gi').test(item);
       }
     });
   }

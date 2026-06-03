@@ -1,6 +1,6 @@
 // this file should be moved to 'powell' directory when it become a library
-@import "leaflet/dist/leaflet.css";
-@import "suneditor/dist/css/suneditor.min.css";
+@import 'leaflet/dist/leaflet.css';
+@import 'suneditor/dist/css/suneditor.min.css';
 
 @mixin radius-all($value) {
   @include radius-start($value);
@@ -17,7 +17,13 @@
   border-end-end-radius: $value;
 }
 
-@mixin field-padding($icon-start: false, $icon-end: false, $has-clear: false, $extra-end-padding: 0px, $extra-start-padding: 0px) {
+@mixin field-padding(
+  $icon-start: false,
+  $icon-end: false,
+  $has-clear: false,
+  $extra-end-padding: 0px,
+  $extra-start-padding: 0px
+) {
   $start-padding: var(--p-form-field-padding-x);
   $end-padding: var(--p-form-field-padding-x);
 
@@ -31,7 +37,9 @@
 
   @if $has-clear {
     @if $icon-end {
-      $end-padding: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + var(--p-icon-size));
+      $end-padding: calc(
+        (var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + var(--p-icon-size)
+      );
     } @else {
       $end-padding: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size));
     }
@@ -63,19 +71,19 @@ pw-auto-complete {
 
     &.addon-start {
       .p-inputtext {
-        @include radius-start(0)
+        @include radius-start(0);
       }
     }
 
     &.addon-end {
       .p-inputtext {
-        @include radius-end(0)
+        @include radius-end(0);
       }
     }
 
     &.addon-both {
       .p-inputtext {
-        @include radius-all(0)
+        @include radius-all(0);
       }
     }
 
@@ -133,7 +141,9 @@ pw-auto-complete {
 
         &.clearable {
           .p-autocomplete-clear-icon {
-            inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2.5rem);
+            inset-inline-end: calc(
+              (var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2.5rem
+            );
           }
         }
       }
@@ -141,7 +151,7 @@ pw-auto-complete {
       &.addon-end,
       &.addon-both {
         .p-autocomplete-dropdown {
-          @include radius-end(0)
+          @include radius-end(0);
         }
       }
     }
@@ -152,7 +162,8 @@ pw-button {
   display: inline-block;
 
   &.full {
-    &, .p-button {
+    &,
+    .p-button {
       width: 100%;
     }
   }
@@ -194,19 +205,19 @@ pw-cascade-select {
 
     &.addon-start {
       .p-cascadeselect {
-        @include radius-start(0)
+        @include radius-start(0);
       }
     }
 
     &.addon-end {
       .p-cascadeselect {
-        @include radius-end(0)
+        @include radius-end(0);
       }
     }
 
     &.addon-both {
       .p-cascadeselect {
-        @include radius-all(0)
+        @include radius-all(0);
       }
     }
 
@@ -277,7 +288,8 @@ pw-checkbox {
     gap: 1rem;
 
     p-progressSpinner {
-      &, .p-progressspinner {
+      &,
+      .p-progressspinner {
         width: 25px;
         height: 25px;
       }
@@ -362,19 +374,19 @@ pw-datepicker {
 
     &.addon-start {
       .p-inputtext {
-        @include radius-start(0)
+        @include radius-start(0);
       }
     }
 
     &.addon-end {
       .p-inputtext {
-        @include radius-end(0)
+        @include radius-end(0);
       }
     }
 
     &.addon-both {
       .p-inputtext {
-        @include radius-all(0)
+        @include radius-all(0);
       }
     }
 
@@ -433,7 +445,9 @@ pw-datepicker {
 
         &.clearable {
           .p-datepicker-clear-icon {
-            inset-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2.5rem);
+            inset-inline-end: calc(
+              (var(--p-form-field-padding-x) * 2) + var(--p-icon-size) + 2.5rem
+            );
           }
         }
       }
@@ -441,7 +455,7 @@ pw-datepicker {
       &.addon-end,
       &.addon-both {
         .p-datepicker-icon {
-          @include radius-end(0)
+          @include radius-end(0);
         }
       }
     }
@@ -481,7 +495,8 @@ pw-dual-label-switch {
       }
 
       p-progressSpinner {
-        &, .p-progressspinner {
+        &,
+        .p-progressspinner {
           width: 25px;
           height: 25px;
         }
@@ -541,7 +556,7 @@ pw-file-picker2 {
         border: 1px solid var(--p-form-field-border-color);
         border-radius: var(--p-form-field-border-radius);
 
-        input[type="file"] {
+        input[type='file'] {
           position: fixed;
           left: -100000px;
           top: -100000px;
@@ -582,7 +597,8 @@ pw-file-picker2 {
           .info {
             flex: 1;
 
-            p, small {
+            p,
+            small {
               display: block;
             }
 
@@ -610,7 +626,8 @@ pw-file-picker2 {
 
 pw-form-field {
   .form-field-wrapper {
-    &, .p-inputtext {
+    &,
+    .p-inputtext {
       width: auto;
     }
 
@@ -629,7 +646,9 @@ pw-form-field {
     }
 
     &.fluid {
-      &, .p-inputtext, & > * {
+      &,
+      .p-inputtext,
+      & > * {
         width: 100%;
       }
 
@@ -735,19 +754,19 @@ pw-input-mask {
 
     &.addon-start {
       .p-inputtext {
-        @include radius-start(0)
+        @include radius-start(0);
       }
     }
 
     &.addon-end {
       .p-inputtext {
-        @include radius-end(0)
+        @include radius-end(0);
       }
     }
 
     &.addon-both {
       .p-inputtext {
-        @include radius-all(0)
+        @include radius-all(0);
       }
     }
   }
@@ -779,19 +798,19 @@ pw-input-number {
 
     &.addon-start {
       .p-inputtext {
-        @include radius-start(0)
+        @include radius-start(0);
       }
     }
 
     &.addon-end {
       .p-inputtext {
-        @include radius-end(0)
+        @include radius-end(0);
       }
     }
 
     &.addon-both {
       .p-inputtext {
-        @include radius-all(0)
+        @include radius-all(0);
       }
     }
 
@@ -845,13 +864,23 @@ pw-input-number {
 
       &.icon-end {
         .p-inputtext {
-          @include field-padding($icon-start: false, $icon-end: true, $has-clear: false, $extra-end-padding: 2rem);
+          @include field-padding(
+            $icon-start: false,
+            $icon-end: true,
+            $has-clear: false,
+            $extra-end-padding: 2rem
+          );
         }
       }
 
       &.icon-both {
         .p-inputtext {
-          @include field-padding($icon-start: true, $icon-end: true, $has-clear: false, $extra-end-padding: 2rem);
+          @include field-padding(
+            $icon-start: true,
+            $icon-end: true,
+            $has-clear: false,
+            $extra-end-padding: 2rem
+          );
         }
       }
 
@@ -861,12 +890,22 @@ pw-input-number {
         }
 
         .p-inputtext {
-          @include field-padding($icon-start: false, $icon-end: false, $has-clear: true, $extra-end-padding: 2rem);
+          @include field-padding(
+            $icon-start: false,
+            $icon-end: false,
+            $has-clear: true,
+            $extra-end-padding: 2rem
+          );
         }
 
         &.icon-start {
           .p-inputtext {
-            @include field-padding($icon-start: true, $icon-end: false, $has-clear: true, $extra-end-padding: 2rem);
+            @include field-padding(
+              $icon-start: true,
+              $icon-end: false,
+              $has-clear: true,
+              $extra-end-padding: 2rem
+            );
           }
         }
 
@@ -876,7 +915,12 @@ pw-input-number {
           }
 
           .p-inputtext {
-            @include field-padding($icon-start: false, $icon-end: true, $has-clear: true, $extra-end-padding: 2rem);
+            @include field-padding(
+              $icon-start: false,
+              $icon-end: true,
+              $has-clear: true,
+              $extra-end-padding: 2rem
+            );
           }
         }
 
@@ -886,7 +930,12 @@ pw-input-number {
           }
 
           .p-inputtext {
-            @include field-padding($icon-start: true, $icon-end: true, $has-clear: true, $extra-end-padding: 2rem);
+            @include field-padding(
+              $icon-start: true,
+              $icon-end: true,
+              $has-clear: true,
+              $extra-end-padding: 2rem
+            );
           }
         }
       }
@@ -941,8 +990,12 @@ pw-input-number {
 
     &.button-vertical {
       .p-inputtext {
-        padding-inline-start: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size)) !important;
-        padding-inline-end: calc((var(--p-form-field-padding-x) * 2) + var(--p-icon-size)) !important;
+        padding-inline-start: calc(
+          (var(--p-form-field-padding-x) * 2) + var(--p-icon-size)
+        ) !important;
+        padding-inline-end: calc(
+          (var(--p-form-field-padding-x) * 2) + var(--p-icon-size)
+        ) !important;
       }
 
       .p-iconfield .p-inputicon {
@@ -991,19 +1044,19 @@ pw-input-password {
 
     &.addon-start {
       .p-inputtext {
-        @include radius-start(0)
+        @include radius-start(0);
       }
     }
 
     &.addon-end {
       .p-inputtext {
-        @include radius-end(0)
+        @include radius-end(0);
       }
     }
 
     &.addon-both {
       .p-inputtext {
-        @include radius-all(0)
+        @include radius-all(0);
       }
     }
 
@@ -1078,7 +1131,12 @@ pw-input-password {
           }
 
           .p-inputtext {
-            @include field-padding($icon-start: false, $icon-end: true, $has-clear: true, $extra-end-padding: 2rem);
+            @include field-padding(
+              $icon-start: false,
+              $icon-end: true,
+              $has-clear: true,
+              $extra-end-padding: 2rem
+            );
           }
         }
 
@@ -1088,7 +1146,12 @@ pw-input-password {
           }
 
           .p-inputtext {
-            @include field-padding($icon-start: true, $icon-end: true, $has-clear: true, $extra-end-padding: 2rem);
+            @include field-padding(
+              $icon-start: true,
+              $icon-end: true,
+              $has-clear: true,
+              $extra-end-padding: 2rem
+            );
           }
         }
       }
@@ -1102,11 +1165,11 @@ pw-input-text {
       position: relative;
     }
 
-    input:not([type="file"]),
-    input:not([type="image"]),
-    input:not([type="checkbox"]),
-    input:not([type="radio"]),
-    input:not([type="password"]) {
+    input:not([type='file']),
+    input:not([type='image']),
+    input:not([type='checkbox']),
+    input:not([type='radio']),
+    input:not([type='password']) {
       unicode-bidi: plaintext;
     }
 
@@ -1162,7 +1225,9 @@ pw-input-text {
         .label-side,
         .label-top {
           .clear-icon {
-            inset-inline-end: calc(var(--p-form-field-padding-x) + var(--p-inputgroup-addon-min-width));
+            inset-inline-end: calc(
+              var(--p-form-field-padding-x) + var(--p-inputgroup-addon-min-width)
+            );
           }
         }
       }
@@ -1241,15 +1306,15 @@ pw-iran-map {
 
             .sea path,
             .lake path {
-              fill: #78bbfc
+              fill: #78bbfc;
             }
 
             .province path {
-              fill: #C3E0E6;
+              fill: #c3e0e6;
 
               &:not(.active):hover {
                 fill: #93c6d2;
-                cursor: pointer
+                cursor: pointer;
               }
 
               &.active {
@@ -1370,19 +1435,19 @@ pw-multi-select {
 
     &.addon-start {
       .p-multiselect {
-        @include radius-start(0)
+        @include radius-start(0);
       }
     }
 
     &.addon-end {
       .p-multiselect {
-        @include radius-end(0)
+        @include radius-end(0);
       }
     }
 
     &.addon-both {
       .p-multiselect {
-        @include radius-all(0)
+        @include radius-all(0);
       }
     }
 
@@ -1440,9 +1505,13 @@ pw-pinch-zoom {
     position: absolute;
     z-index: 1000;
     color: #ffffff;
-    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgc3R5bGU9IiI+PHJlY3QgaWQ9ImJhY2tncm91bmRyZWN0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSIwIiB5PSIwIiBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48ZyBjbGFzcz0iY3VycmVudExheWVyIiBzdHlsZT0iIj48dGl0bGU+TGF5ZXIgMTwvdGl0bGU+PHBhdGggZD0iTTE1LjUgMTRoLS43OWwtLjI4LS4yN0MxNS40MSAxMi41OSAxNiAxMS4xMSAxNiA5LjUgMTYgNS45MSAxMy4wOSAzIDkuNSAzUzMgNS45MSAzIDkuNSA1LjkxIDE2IDkuNSAxNmMxLjYxIDAgMy4wOS0uNTkgNC4yMy0xLjU3bC4yNy4yOHYuNzlsNSA0Ljk5TDIwLjQ5IDE5bC00Ljk5LTV6bS02IDBDNy4wMSAxNCA1IDExLjk5IDUgOS41UzcuMDEgNSA5LjUgNSAxNCA3LjAxIDE0IDkuNSAxMS45OSAxNCA5LjUgMTR6IiBpZD0ic3ZnXzEiIGNsYXNzPSIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMSIvPjxwYXRoIGQ9Ik0xMiAxMGgtMnYySDl2LTJIN1Y5aDJWN2gxdjJoMnYxeiIgaWQ9InN2Z18zIiBjbGFzcz0iIiBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjEiLz48L2c+PC9zdmc+"), url("data:image/svg+xml; base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHJlY3QgaWQ9ImJhY2tncm91bmRyZWN0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSIwIiB5PSIwIiBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48ZyBjbGFzcz0iY3VycmVudExheWVyIiBzdHlsZT0iIj48dGl0bGU+TGF5ZXIgMTwvdGl0bGU+PHBhdGggZD0iTTE1LjUgMTRoLS43OWwtLjI4LS4yN0MxNS40MSAxMi41OSAxNiAxMS4xMSAxNiA5LjUgMTYgNS45MSAxMy4wOSAzIDkuNSAzUzMgNS45MSAzIDkuNSA1LjkxIDE2IDkuNSAxNmMxLjYxIDAgMy4wOS0uNTkgNC4yMy0xLjU3bC4yNy4yOHYuNzlsNSA0Ljk5TDIwLjQ5IDE5bC00Ljk5LTV6bS02IDBDNy4wMSAxNCA1IDExLjk5IDUgOS41UzcuMDEgNSA5LjUgNSAxNCA3LjAxIDE0IDkuNSAxMS45OSAxNCA5LjUgMTR6TTcgOWg1djFIN3oiIGlkPSJzdmdfMiIgY2xhc3M9IiIgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIxIi8+PC9nPjwvc3ZnPg==");
-    background-color: rgba(0, 0, 0, .8);
-    background-position: center, -1000px;
+    background-image:
+      url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgc3R5bGU9IiI+PHJlY3QgaWQ9ImJhY2tncm91bmRyZWN0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSIwIiB5PSIwIiBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48ZyBjbGFzcz0iY3VycmVudExheWVyIiBzdHlsZT0iIj48dGl0bGU+TGF5ZXIgMTwvdGl0bGU+PHBhdGggZD0iTTE1LjUgMTRoLS43OWwtLjI4LS4yN0MxNS40MSAxMi41OSAxNiAxMS4xMSAxNiA5LjUgMTYgNS45MSAxMy4wOSAzIDkuNSAzUzMgNS45MSAzIDkuNSA1LjkxIDE2IDkuNSAxNmMxLjYxIDAgMy4wOS0uNTkgNC4yMy0xLjU3bC4yNy4yOHYuNzlsNSA0Ljk5TDIwLjQ5IDE5bC00Ljk5LTV6bS02IDBDNy4wMSAxNCA1IDExLjk5IDUgOS41UzcuMDEgNSA5LjUgNSAxNCA3LjAxIDE0IDkuNSAxMS45OSAxNCA5LjUgMTR6IiBpZD0ic3ZnXzEiIGNsYXNzPSIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMSIvPjxwYXRoIGQ9Ik0xMiAxMGgtMnYySDl2LTJIN1Y5aDJWN2gxdjJoMnYxeiIgaWQ9InN2Z18zIiBjbGFzcz0iIiBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjEiLz48L2c+PC9zdmc+'),
+      url('data:image/svg+xml; base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHJlY3QgaWQ9ImJhY2tncm91bmRyZWN0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSIwIiB5PSIwIiBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48ZyBjbGFzcz0iY3VycmVudExheWVyIiBzdHlsZT0iIj48dGl0bGU+TGF5ZXIgMTwvdGl0bGU+PHBhdGggZD0iTTE1LjUgMTRoLS43OWwtLjI4LS4yN0MxNS40MSAxMi41OSAxNiAxMS4xMSAxNiA5LjUgMTYgNS45MSAxMy4wOSAzIDkuNSAzUzMgNS45MSAzIDkuNSA1LjkxIDE2IDkuNSAxNmMxLjYxIDAgMy4wOS0uNTkgNC4yMy0xLjU3bC4yNy4yOHYuNzlsNSA0Ljk5TDIwLjQ5IDE5bC00Ljk5LTV6bS02IDBDNy4wMSAxNCA1IDExLjk5IDUgOS41UzcuMDEgNSA5LjUgNSAxNCA3LjAxIDE0IDkuNSAxMS45OSAxNCA5LjUgMTR6TTcgOWg1djFIN3oiIGlkPSJzdmdfMiIgY2xhc3M9IiIgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIxIi8+PC9nPjwvc3ZnPg==');
+    background-color: rgba(0, 0, 0, 0.8);
+    background-position:
+      center,
+      -1000px;
     background-repeat: no-repeat, no-repeat;
     background-size: 40px;
     width: 56px;
@@ -1450,7 +1519,7 @@ pw-pinch-zoom {
     border-radius: 4px;
     opacity: 0.5;
     cursor: pointer;
-    transition: opacity .1s;
+    transition: opacity 0.1s;
     user-select: none;
   }
 
@@ -1481,7 +1550,7 @@ pw-pinch-zoom {
 
   .pz-zoom-control {
     position: absolute;
-    background-color: rgba(0, 0, 0, .8);
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 4px;
     overflow: hidden;
   }
@@ -1533,11 +1602,11 @@ pw-pinch-zoom {
   }
 
   .pz-zoom-in {
-    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgc3R5bGU9IiI+PHJlY3QgaWQ9ImJhY2tncm91bmRyZWN0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSIwIiB5PSIwIiBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48ZyBjbGFzcz0iY3VycmVudExheWVyIiBzdHlsZT0iIj48dGl0bGU+TGF5ZXIgMTwvdGl0bGU+PHBhdGggZD0iTTE5IDEzaC02djZoLTJ2LTZINXYtMmg2VjVoMnY2aDZ2MnoiIGlkPSJzdmdfMSIgY2xhc3M9IiIgc3Ryb2tlPSJub25lIiBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjEiLz48cGF0aCBkPSJNLTE1LjgzNjczNDQyMDQ2MTY1Myw0NC41MzU0MDkzMDY3MTAxOCBoNTguMjA0MDgwODI3NTkzMDkgdi02LjU3NjIyNjcyMzM2OTIyMTUgSC0xNS44MzY3MzQ0MjA0NjE2NTMgeiIgZmlsbD0ibm9uZSIgaWQ9InN2Z18yIiBjbGFzcz0iIiBzdHJva2U9Im5vbmUiLz48L2c+PC9zdmc+");
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgc3R5bGU9IiI+PHJlY3QgaWQ9ImJhY2tncm91bmRyZWN0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSIwIiB5PSIwIiBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48ZyBjbGFzcz0iY3VycmVudExheWVyIiBzdHlsZT0iIj48dGl0bGU+TGF5ZXIgMTwvdGl0bGU+PHBhdGggZD0iTTE5IDEzaC02djZoLTJ2LTZINXYtMmg2VjVoMnY2aDZ2MnoiIGlkPSJzdmdfMSIgY2xhc3M9IiIgc3Ryb2tlPSJub25lIiBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjEiLz48cGF0aCBkPSJNLTE1LjgzNjczNDQyMDQ2MTY1Myw0NC41MzU0MDkzMDY3MTAxOCBoNTguMjA0MDgwODI3NTkzMDkgdi02LjU3NjIyNjcyMzM2OTIyMTUgSC0xNS44MzY3MzQ0MjA0NjE2NTMgeiIgZmlsbD0ibm9uZSIgaWQ9InN2Z18yIiBjbGFzcz0iIiBzdHJva2U9Im5vbmUiLz48L2c+PC9zdmc+');
   }
 
   .pz-zoom-out {
-    background-image: url("data:image/svg+xml; base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHJlY3QgaWQ9ImJhY2tncm91bmRyZWN0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSIwIiB5PSIwIiBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48ZyBjbGFzcz0iY3VycmVudExheWVyIiBzdHlsZT0iIj48dGl0bGU+TGF5ZXIgMTwvdGl0bGU+PHBhdGggZD0iTTE5IDEzSDV2LTJoMTR2MnoiIGlkPSJzdmdfMSIgY2xhc3M9IiIgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIxIi8+PC9nPjwvc3ZnPg==");
+    background-image: url('data:image/svg+xml; base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHJlY3QgaWQ9ImJhY2tncm91bmRyZWN0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4PSIwIiB5PSIwIiBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48ZyBjbGFzcz0iY3VycmVudExheWVyIiBzdHlsZT0iIj48dGl0bGU+TGF5ZXIgMTwvdGl0bGU+PHBhdGggZD0iTTE5IDEzSDV2LTJoMTR2MnoiIGlkPSJzdmdfMSIgY2xhc3M9IiIgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIxIi8+PC9nPjwvc3ZnPg==');
   }
 }
 
@@ -1600,19 +1669,19 @@ pw-select {
 
     &.addon-start {
       .p-select {
-        @include radius-start(0)
+        @include radius-start(0);
       }
     }
 
     &.addon-end {
       .p-select {
-        @include radius-end(0)
+        @include radius-end(0);
       }
     }
 
     &.addon-both {
       .p-select {
-        @include radius-all(0)
+        @include radius-all(0);
       }
     }
 
@@ -1706,13 +1775,15 @@ pw-table {
         z-index: 1;
       }
 
-      .action-wrapper, .action-header {
+      .action-wrapper,
+      .action-header {
         text-align: center;
       }
     }
 
     &.is-rtl {
-      td, th {
+      td,
+      th {
         direction: rtl;
       }
     }
@@ -1741,7 +1812,8 @@ pw-toggle-switch {
       gap: 1rem;
 
       p-progressSpinner {
-        &, .p-progressspinner {
+        &,
+        .p-progressspinner {
           width: 25px;
           height: 25px;
         }
@@ -1788,19 +1860,19 @@ pw-tree-select {
 
     &.addon-start {
       .p-treeselect {
-        @include radius-start(0)
+        @include radius-start(0);
       }
     }
 
     &.addon-end {
       .p-treeselect {
-        @include radius-end(0)
+        @include radius-end(0);
       }
     }
 
     &.addon-both {
       .p-treeselect {
-        @include radius-all(0)
+        @include radius-all(0);
       }
     }
 

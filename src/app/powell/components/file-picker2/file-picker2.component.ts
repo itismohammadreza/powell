@@ -9,7 +9,7 @@ import {
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -20,21 +20,21 @@ import {
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
   NgControl,
-  ValidatorFn
+  ValidatorFn,
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import { takeUntil } from 'rxjs';
 import {
   ButtonProps,
   FilePickerRemoveEvent,
   FilePickerSelectEvent,
   FileResultType,
   FixLabelPosition,
-  Validation
+  Validation,
 } from '@powell/models';
-import {ConfigService} from "@powell/api";
-import {DestroyService} from "@powell/utils";
-import {$uuid} from "@powell/primeng";
-import {helpers} from "@core/utils";
+import { ConfigService } from '@powell/api';
+import { DestroyService } from '@powell/utils';
+import { $uuid } from '@powell/primeng';
+import { helpers } from '@core/utils';
 
 interface FileToShow {
   display?: string | ArrayBuffer;
@@ -51,11 +51,11 @@ interface FileToShow {
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => FilePicker2Component),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class FilePicker2Component implements OnInit, OnChanges, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
@@ -94,27 +94,25 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   ngControl: Nullable<NgControl> = null;
   filesToShow: FileToShow[] = [];
   filesToEmit: (string | ArrayBuffer | File)[] = [];
-  typeValidator: ValidatorFn = () => ({invalidType: ''});
-  sizeValidator: ValidatorFn = () => ({invalidSize: ''});
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  typeValidator: ValidatorFn = () => ({ invalidType: '' });
+  sizeValidator: ValidatorFn = () => ({ invalidSize: '' });
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     setTimeout(() => {
       if (!this.multiple) {
         this.fileLimit = 1;
       }
-    })
+    });
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -148,9 +146,9 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
       return;
     }
 
-    const existingKeys = new Set(this.filesToShow.map(f => `${f.name}-${f.size}`));
+    const existingKeys = new Set(this.filesToShow.map((f) => `${f.name}-${f.size}`));
 
-    let filteredFiles = files.filter(f => {
+    let filteredFiles = files.filter((f) => {
       const key = `${f.name}-${f.size}`;
       return !existingKeys.has(key);
     });
@@ -175,11 +173,11 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     this.handleModelChange();
     if (this.ngControl) {
       const control = this.ngControl.control;
-      if (this.filesToShow.every(f => !f.invalidSizeError)) {
+      if (this.filesToShow.every((f) => !f.invalidSizeError)) {
         control.removeValidators(this.sizeValidator);
         control.updateValueAndValidity();
       }
-      if (this.filesToShow.every(f => !f.invalidTypeError)) {
+      if (this.filesToShow.every((f) => !f.invalidTypeError)) {
         control.removeValidators(this.typeValidator);
         control.updateValueAndValidity();
       }
@@ -195,7 +193,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
     if (this.maxFileSize && file.size > this.maxFileSize) {
       invalidSize = true;
     }
-    return {invalidSize, invalidType}
+    return { invalidSize, invalidType };
   }
 
   applyValidator(validator: ValidatorFn) {
@@ -210,12 +208,12 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   async handleFile(file: File) {
     const fileToShow: FileToShow = {
       name: file.name,
-      size: file.size
+      size: file.size,
     };
     if (helpers.isImage(file)) {
-      fileToShow.display = window.URL.createObjectURL(new Blob([file], {type: file.type}));
+      fileToShow.display = window.URL.createObjectURL(new Blob([file], { type: file.type }));
     }
-    const {invalidType, invalidSize} = this.validateFile(file);
+    const { invalidType, invalidSize } = this.validateFile(file);
     if (invalidType) {
       fileToShow.invalidTypeError = this.invalidFileTypeMessage;
       this.applyValidator(this.typeValidator);
@@ -238,7 +236,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
 
   async handleStringValue(item: string) {
     if (item.indexOf('base64') != -1) {
-      this.filesToShow.push({display: item, name: undefined});
+      this.filesToShow.push({ display: item, name: undefined });
       if (this.resultType == 'base64') {
         this.filesToEmit.push(item);
       } else if (this.resultType == 'file') {
@@ -248,12 +246,12 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
         this.filesToEmit.push(item);
       }
     } else {
-      this.filesToShow.push({display: item, name: undefined});
+      this.filesToShow.push({ display: item, name: undefined });
       const base64 = await helpers.urlToBase64(item);
       if (this.resultType == 'base64') {
         this.filesToEmit.push(base64);
       } else if (this.resultType == 'file') {
-        const file = helpers.base64toFile(base64, item.split('/').pop()!)
+        const file = helpers.base64toFile(base64, item.split('/').pop()!);
         this.filesToEmit.push(file);
       } else {
         this.filesToEmit.push(item);
@@ -262,7 +260,11 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
   }
 
   getFileType(file: SafeAny) {
-    const isImage = !!file && ((typeof file == 'string' && file.includes('blob')) || this.isUnknownImageUrl || helpers.isImage(file));
+    const isImage =
+      !!file &&
+      ((typeof file == 'string' && file.includes('blob')) ||
+        this.isUnknownImageUrl ||
+        helpers.isImage(file));
     if (isImage) {
       return 'image';
     } else {
@@ -276,7 +278,7 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
 
   async init(value: SafeAny) {
     if (!value) {
-      return
+      return;
     }
     this.filesToShow = [];
     this.filesToEmit = [];
@@ -290,16 +292,20 @@ export class FilePicker2Component implements OnInit, OnChanges, ControlValueAcce
         }
       }
     } else if (value instanceof File) {
-      await this.handleFile(value)
+      await this.handleFile(value);
     } else if (typeof value == 'string') {
-      await this.handleStringValue(value)
+      await this.handleStringValue(value);
     }
     this.handleModelChange();
     this.cd.markForCheck();
   }
 
   handleModelChange() {
-    const value = this.filesToEmit.length ? (this.multiple ? this.filesToEmit : this.filesToEmit[0]) : null;
+    const value = this.filesToEmit.length
+      ? this.multiple
+        ? this.filesToEmit
+        : this.filesToEmit[0]
+      : null;
     this.onModelChange(value);
   }
 

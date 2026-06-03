@@ -9,7 +9,7 @@ import {
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -19,11 +19,11 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
+  NgControl,
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
-import type {Core} from 'suneditor/src/lib/core';
-import type {SunEditorOptions} from 'suneditor/src/options';
+import { takeUntil } from 'rxjs';
+import type { Core } from 'suneditor/src/lib/core';
+import type { SunEditorOptions } from 'suneditor/src/options';
 import {
   EditorEvent,
   EditorOnAudioUpload,
@@ -46,12 +46,12 @@ import {
   EditorToggleCodeView,
   EditorToggleFullScreen,
   FixLabelPosition,
-  Validation
+  Validation,
 } from '@powell/models';
-import {EditorBaseComponent} from "@powell/components/editor";
-import {DestroyService} from "@powell/utils";
-import {$uuid} from "@powell/primeng";
-import {ConfigService} from "@powell/api";
+import { EditorBaseComponent } from '@powell/components/editor';
+import { DestroyService } from '@powell/utils';
+import { $uuid } from '@powell/primeng';
+import { ConfigService } from '@powell/api';
 
 @Component({
   selector: 'pw-editor',
@@ -62,9 +62,9 @@ import {ConfigService} from "@powell/api";
       useExisting: forwardRef(() => EditorComponent),
       multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
@@ -96,10 +96,16 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
   @Input() onVideoUploadError_param: boolean = true;
   @Input() onAudioUploadBefore_param: boolean = true;
   @Input() onResizeEditor_param: SafeAny = {};
-  @Input() imageUploadHandler: Optional<(xmlHttp: XMLHttpRequest, info: SafeAny, core: Core) => void>;
-  @Input() videoUploadHandler: Optional<(xmlHttp: XMLHttpRequest, info: SafeAny, core: Core) => void>;
-  @Input() audioUploadHandler: Optional<(xmlHttp: XMLHttpRequest, info: SafeAny, core: Core) => void>;
-  @Input() localStorageConfig = {id: 'ngxSunEditor', autoSave: false, autoLoad: false};
+  @Input() imageUploadHandler: Optional<
+    (xmlHttp: XMLHttpRequest, info: SafeAny, core: Core) => void
+  >;
+  @Input() videoUploadHandler: Optional<
+    (xmlHttp: XMLHttpRequest, info: SafeAny, core: Core) => void
+  >;
+  @Input() audioUploadHandler: Optional<
+    (xmlHttp: XMLHttpRequest, info: SafeAny, core: Core) => void
+  >;
+  @Input() localStorageConfig = { id: 'ngxSunEditor', autoSave: false, autoLoad: false };
   @Output() created = new EventEmitter<EditorBaseComponent>();
   @Output() onload = new EventEmitter<EditorOnLoadEvent>();
   @Output() onScroll = new EventEmitter<EditorEvent>();
@@ -131,10 +137,8 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
 
   ngControl: Nullable<NgControl> = null;
   editorInstance: Optional<EditorBaseComponent>;
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   async ngOnInit() {
     const SunEditorPlugins = await import('suneditor/src/plugins');
@@ -144,29 +148,29 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
         plugins: SunEditorPlugins.default,
         minWidth: '100%',
         buttonList: [
-          ["undo", "redo"],
-          ["font", "fontSize", "formatBlock"],
-          ["paragraphStyle", "blockquote"],
-          ["bold", "underline", "italic", "strike", "subscript", "superscript"],
-          ["fontColor", "hiliteColor", "textStyle"],
-          ["removeFormat"],
-          ["outdent", "indent"],
-          ["align", "horizontalRule", "list", "lineHeight"],
-          ["table", "link", "image", "video", "audio"],
-          ["fullScreen", "showBlocks", "codeView"],
-          ["preview", "print"],
-          ["save", "template"],
+          ['undo', 'redo'],
+          ['font', 'fontSize', 'formatBlock'],
+          ['paragraphStyle', 'blockquote'],
+          ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+          ['fontColor', 'hiliteColor', 'textStyle'],
+          ['removeFormat'],
+          ['outdent', 'indent'],
+          ['align', 'horizontalRule', 'list', 'lineHeight'],
+          ['table', 'link', 'image', 'video', 'audio'],
+          ['fullScreen', 'showBlocks', 'codeView'],
+          ['preview', 'print'],
+          ['save', 'template'],
         ],
-      }
+      };
     }
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -189,23 +193,23 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
 
   ngOnChanges(changes: SimpleChanges) {
     if (!this.editorInstance) {
-      return
+      return;
     }
     if (changes['readonly']) {
-      this.editorInstance.readOnly(changes['readonly'].currentValue)
+      this.editorInstance.readOnly(changes['readonly'].currentValue);
     }
     if (changes['disabled']) {
       if (changes['disabled'].currentValue) {
         this.editorInstance.disabled();
       } else {
-        this.editorInstance.enabled()
+        this.editorInstance.enabled();
       }
     }
   }
 
   _created(event: EditorBaseComponent) {
     this.editorInstance = event;
-    this.created.emit(event)
+    this.created.emit(event);
   }
 
   emitter(key: keyof this, event: SafeAny) {
@@ -253,13 +257,13 @@ export class EditorComponent implements OnInit, OnChanges, ControlValueAccessor 
 
   setDisabledState(isDisabled: boolean) {
     if (!this.editorInstance) {
-      return
+      return;
     }
     if (isDisabled) {
-      this.editorInstance.disabled()
+      this.editorInstance.disabled();
     } else {
-      this.editorInstance.enabled()
+      this.editorInstance.enabled();
     }
-    this.cd.markForCheck()
+    this.cd.markForCheck();
   }
 }

@@ -82,28 +82,29 @@
     (contextMenuSelectionChange)="onContextMenuSelectionChange($event)"
     (selectAllChange)="onSelectAllChange($event)"
     (selectionChange)="onSelectionChange($event)"
-    (onRowSelect)="emitter('onRowSelect',$event)"
-    (onRowUnselect)="emitter('onRowUnselect',$event)"
+    (onRowSelect)="emitter('onRowSelect', $event)"
+    (onRowUnselect)="emitter('onRowUnselect', $event)"
     (onSort)="_onSort($event)"
-    (onPage)="emitter('onPage',$event)"
-    (onFilter)="emitter('onFilter',$event)"
+    (onPage)="emitter('onPage', $event)"
+    (onFilter)="emitter('onFilter', $event)"
     (onLazyLoad)="_onLazyLoad($event)"
-    (onRowExpand)="emitter('onRowExpand',$event)"
-    (onRowCollapse)="emitter('onRowCollapse',$event)"
-    (onContextMenuSelect)="emitter('onContextMenuSelect',$event)"
-    (onColResize)="emitter('onColResize',$event)"
-    (onColReorder)="emitter('onColReorder',$event)"
-    (onRowReorder)="emitter('onRowReorder',$event)"
-    (onHeaderCheckboxToggle)="emitter('onHeaderCheckboxToggle',$event)"
-    (sortFunction)="emitter('sortFunction',$event)"
+    (onRowExpand)="emitter('onRowExpand', $event)"
+    (onRowCollapse)="emitter('onRowCollapse', $event)"
+    (onContextMenuSelect)="emitter('onContextMenuSelect', $event)"
+    (onColResize)="emitter('onColResize', $event)"
+    (onColReorder)="emitter('onColReorder', $event)"
+    (onRowReorder)="emitter('onRowReorder', $event)"
+    (onHeaderCheckboxToggle)="emitter('onHeaderCheckboxToggle', $event)"
+    (sortFunction)="emitter('sortFunction', $event)"
     (firstChange)="onFirstChange($event)"
     (rowsChange)="onRowsChange($event)"
-    (onStateSave)="emitter('onStateSave',$event)"
-    (onStateRestore)="emitter('onStateRestore',$event)">
+    (onStateSave)="emitter('onStateSave', $event)"
+    (onStateRestore)="emitter('onStateRestore', $event)"
+  >
     @for (t of templates; track t) {
       @if (templateMap[t.type]) {
         <ng-template [pTemplate]="t.type">
-          <ng-container *ngTemplateOutlet="templateMap[t.type]"/>
+          <ng-container *ngTemplateOutlet="templateMap[t.type]" />
         </ng-template>
       }
     }
@@ -127,17 +128,19 @@
           }
           @if (selectionMode == 'multiple' && showSelectionIndicator) {
             <th scope="col" style="width: 3rem">
-              <p-tableHeaderCheckbox/>
+              <p-tableHeaderCheckbox />
             </th>
           }
           @for (col of colDef; track col) {
-            <th scope="col"
-                [pSortableColumn]="col.sort && col.field"
-                pReorderableColumn
-                [pReorderableColumnDisabled]="!reorderableColumns">
+            <th
+              scope="col"
+              [pSortableColumn]="col.sort && col.field"
+              pReorderableColumn
+              [pReorderableColumnDisabled]="!reorderableColumns"
+            >
               {{ col.header }}
               @if (col.sort) {
-                <p-sortIcon [field]="col.field"/>
+                <p-sortIcon [field]="col.field" />
               }
               @if (col.sort && activeSortField == col.field) {
                 <pw-button
@@ -145,22 +148,27 @@
                   [rounded]="true"
                   appearance="text"
                   size="small"
-                  (onClick)="onResetSort($event)">
+                  (onClick)="onResetSort($event)"
+                >
                   <ng-template pwTemplate="icon">
-                    <svg data-p-icon="times"/>
+                    <svg data-p-icon="times" />
                   </ng-template>
                 </pw-button>
               }
               @if (col.filter; as filter) {
-                <p-columnFilter [field]="col.field"
-                                display="menu"
-                                [matchMode]="filter.matchMode"
-                                [showApplyButton]="false"
-                                [showMatchModes]="false"
-                                [showOperator]="false"
-                                [showAddButton]="false">
+                <p-columnFilter
+                  [field]="col.field"
+                  display="menu"
+                  [matchMode]="filter.matchMode"
+                  [showApplyButton]="false"
+                  [showMatchModes]="false"
+                  [showOperator]="false"
+                  [showAddButton]="false"
+                >
                   <ng-template pTemplate="header">
-                    <div class="filter-header"><span>{{ filter.header }}</span></div>
+                    <div class="filter-header">
+                      <span>{{ filter.header }}</span>
+                    </div>
                   </ng-template>
                   <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback">
                     @switch (filter.type) {
@@ -169,13 +177,15 @@
                           labelPosition="side"
                           [fluid]="true"
                           [value]="value"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
+                          (onChange)="onChangeFilterValue($event, filterCallback, col)"
+                        />
                       }
                       @case ('numeric') {
                         <pw-input-number
                           labelPosition="side"
                           [fluid]="true"
-                          (onInput)="onChangeFilterValue($event,filterCallback,col)"/>
+                          (onInput)="onChangeFilterValue($event, filterCallback, col)"
+                        />
                       }
                       @case ('multi-select') {
                         <pw-multi-select
@@ -186,7 +196,8 @@
                           [optionLabel]="filter.optionLabel"
                           [optionValue]="filter.optionValue"
                           [placeholder]="filter.placeholder"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
+                          (onChange)="onChangeFilterValue($event, filterCallback, col)"
+                        />
                       }
                       @case ('select') {
                         <pw-select
@@ -197,7 +208,8 @@
                           [optionLabel]="filter.optionLabel"
                           [optionValue]="filter.optionValue"
                           [placeholder]="filter.placeholder"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
+                          (onChange)="onChangeFilterValue($event, filterCallback, col)"
+                        />
                       }
                       @case ('slider') {
                         <pw-slider
@@ -205,21 +217,25 @@
                           [min]="filter.min"
                           [max]="filter.max"
                           [range]="filter.range"
-                          (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)"/>
-                        <div dir="ltr">{{ filter.sliderValue[0] }}- {{ filter.sliderValue[1] }}
+                          (onSlideEnd)="onChangeFilterValue($event, filterCallback, col)"
+                        />
+                        <div dir="ltr">
+                          {{ filter.sliderValue[0] }}- {{ filter.sliderValue[1] }}
                         </div>
                       }
                       @case ('boolean') {
                         <pw-checkbox
                           [ngModel]="value == 'true'"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
+                          (onChange)="onChangeFilterValue($event, filterCallback, col)"
+                        />
                       }
                       @case ('datepicker') {
                         <pw-datepicker
                           labelPosition="side"
                           [fluid]="true"
                           [dateFormat]="filter.dateFormat"
-                          (onSelect)="onChangeFilterValue($event,filterCallback,col)"/>
+                          (onSelect)="onChangeFilterValue($event, filterCallback, col)"
+                        />
                       }
                     }
                   </ng-template>
@@ -247,7 +263,9 @@
             <th scope="col" style="width: 3rem"></th>
           }
           @if (actionsConfig?.inSameColumn && actionsConfig?.actions?.length && rtl) {
-            <th alignFrozen="left" pFrozenColumn [frozen]="frozenActions">{{ actionsConfig.header }}</th>
+            <th alignFrozen="left" pFrozenColumn [frozen]="frozenActions">
+              {{ actionsConfig.header }}
+            </th>
           }
           @if (!actionsConfig?.inSameColumn && actionsConfig?.actions?.length && rtl) {
             @for (action of actionsConfig?.actions; track action) {
@@ -258,22 +276,26 @@
           }
           @if (selectionMode == 'multiple' && showSelectionIndicator) {
             <th scope="col" style="width: 3rem">
-              <p-tableHeaderCheckbox/>
+              <p-tableHeaderCheckbox />
             </th>
           }
           @for (col of colDef; track col) {
-            <th scope="col"
-                [pSortableColumn]="col.field"
-                pReorderableColumn
-                [pReorderableColumnDisabled]="!reorderableColumns">
+            <th
+              scope="col"
+              [pSortableColumn]="col.field"
+              pReorderableColumn
+              [pReorderableColumnDisabled]="!reorderableColumns"
+            >
               {{ col.header }}
               @if (col.sort) {
-                <p-sortIcon [field]="col.field"/>
+                <p-sortIcon [field]="col.field" />
               }
             </th>
           }
           @if (actionsConfig?.inSameColumn && actionsConfig?.actions?.length && !rtl) {
-            <th alignFrozen="right" pFrozenColumn [frozen]="frozenActions">{{ actionsConfig.header }}</th>
+            <th alignFrozen="right" pFrozenColumn [frozen]="frozenActions">
+              {{ actionsConfig.header }}
+            </th>
           }
           @if (!actionsConfig?.inSameColumn && actionsConfig?.actions?.length && !rtl) {
             @for (action of actionsConfig?.actions; track action) {
@@ -285,13 +307,16 @@
         </tr>
         <tr>
           @if (showSelectionIndicator) {
-            <th scope="col" style="width: 3rem">
-            </th>
+            <th scope="col" style="width: 3rem"></th>
           }
-          @if (actionsConfig && actionsConfig.inSameColumn && actionsConfig?.actions?.length && rtl) {
+          @if (
+            actionsConfig && actionsConfig.inSameColumn && actionsConfig?.actions?.length && rtl
+          ) {
             <th alignFrozen="left" pFrozenColumn [frozen]="frozenActions"></th>
           }
-          @if (actionsConfig && !actionsConfig.inSameColumn && actionsConfig?.actions?.length && rtl) {
+          @if (
+            actionsConfig && !actionsConfig.inSameColumn && actionsConfig?.actions?.length && rtl
+          ) {
             @for (action of actionsConfig.actions; track action) {
               <th alignFrozen="left" pFrozenColumn [frozen]="frozenActions"></th>
             }
@@ -299,25 +324,32 @@
           @for (col of colDef; track col) {
             <th scope="col" class="row-filter-wrapper">
               @if (col.filter; as filter) {
-                <p-columnFilter [field]="col.field"
-                                [showMenu]="filter.rowFilterShowMenu"
-                                [matchMode]="filter.matchMode"
-                                [showApplyButton]="false"
-                                [showMatchModes]="false"
-                                [showOperator]="false"
-                                [showAddButton]="false">
+                <p-columnFilter
+                  [field]="col.field"
+                  [showMenu]="filter.rowFilterShowMenu"
+                  [matchMode]="filter.matchMode"
+                  [showApplyButton]="false"
+                  [showMatchModes]="false"
+                  [showOperator]="false"
+                  [showAddButton]="false"
+                >
                   <ng-template pTemplate="header">
-                    <div class="filter-header"><span>{{ filter.header }}</span></div>
+                    <div class="filter-header">
+                      <span>{{ filter.header }}</span>
+                    </div>
                   </ng-template>
                   <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback">
                     @switch (filter.type) {
                       @case ('text') {
                         <pw-input-text
                           [value]="value"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
+                          (onChange)="onChangeFilterValue($event, filterCallback, col)"
+                        />
                       }
                       @case ('numeric') {
-                        <pw-input-number (onInput)="onChangeFilterValue($event,filterCallback,col)"/>
+                        <pw-input-number
+                          (onInput)="onChangeFilterValue($event, filterCallback, col)"
+                        />
                       }
                       @case ('multi-select') {
                         <pw-multi-select
@@ -326,7 +358,8 @@
                           [optionLabel]="filter.optionLabel"
                           [optionValue]="filter.optionValue"
                           [placeholder]="filter.placeholder"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
+                          (onChange)="onChangeFilterValue($event, filterCallback, col)"
+                        />
                       }
                       @case ('select') {
                         <pw-select
@@ -335,7 +368,8 @@
                           [optionLabel]="filter.optionLabel"
                           [optionValue]="filter.optionValue"
                           [placeholder]="filter.placeholder"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
+                          (onChange)="onChangeFilterValue($event, filterCallback, col)"
+                        />
                       }
                       @case ('slider') {
                         <pw-slider
@@ -343,19 +377,23 @@
                           [min]="filter.min"
                           [max]="filter.max"
                           [range]="filter.range"
-                          (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)"/>
-                        <div class="text-center mt-3" dir="ltr">{{ filter.sliderValue[0] }}- {{ filter.sliderValue[1] }}
+                          (onSlideEnd)="onChangeFilterValue($event, filterCallback, col)"
+                        />
+                        <div class="text-center mt-3" dir="ltr">
+                          {{ filter.sliderValue[0] }}- {{ filter.sliderValue[1] }}
                         </div>
                       }
                       @case ('boolean') {
                         <pw-checkbox
                           [ngModel]="value == 'true'"
-                          (onChange)="onChangeFilterValue($event,filterCallback,col)"/>
+                          (onChange)="onChangeFilterValue($event, filterCallback, col)"
+                        />
                       }
                       @case ('datepicker') {
                         <pw-datepicker
                           [dateFormat]="filter.dateFormat"
-                          (onSelect)="onChangeFilterValue($event,filterCallback,col)"/>
+                          (onSelect)="onChangeFilterValue($event, filterCallback, col)"
+                        />
                       }
                     }
                   </ng-template>
@@ -363,10 +401,14 @@
               }
             </th>
           }
-          @if (actionsConfig && actionsConfig.inSameColumn && actionsConfig?.actions?.length && !rtl) {
+          @if (
+            actionsConfig && actionsConfig.inSameColumn && actionsConfig?.actions?.length && !rtl
+          ) {
             <th alignFrozen="right" pFrozenColumn [frozen]="frozenActions"></th>
           }
-          @if (actionsConfig && !actionsConfig.inSameColumn && actionsConfig?.actions?.length && !rtl) {
+          @if (
+            actionsConfig && !actionsConfig.inSameColumn && actionsConfig?.actions?.length && !rtl
+          ) {
             @for (action of actionsConfig.actions; track action) {
               <th alignFrozen="right" pFrozenColumn [frozen]="frozenActions"></th>
             }
@@ -377,20 +419,31 @@
 
     <ng-template pTemplate="body" let-item let-frozen="frozen" let-index="rowIndex">
       @if (templateMap['body']) {
-        <ng-container *ngTemplateOutlet="templateMap['body'];context:{$implicit:item,frozen,index}"/>
+        <ng-container
+          *ngTemplateOutlet="templateMap['body']; context: { $implicit: item, frozen, index }"
+        />
       } @else {
-        <tr [pReorderableRow]="index"
-            [pReorderableRowDisabled]="!reorderableRows"
-            [pSelectableRow]="item"
-            [pSelectableRowDisabled]="!selectionMode"
-            [pSelectableRowIndex]="index">
+        <tr
+          [pReorderableRow]="index"
+          [pReorderableRowDisabled]="!reorderableRows"
+          [pSelectableRow]="item"
+          [pSelectableRowDisabled]="!selectionMode"
+          [pSelectableRowIndex]="index"
+        >
           @if (reorderableRows) {
             <td>
-              <svg data-p-icon="bars"/>
+              <svg data-p-icon="bars" />
             </td>
           }
-          @if (actionsConfig && actionsConfig.inSameColumn && actionsConfig?.actions?.length && rtl) {
-            <td class="same-column-actions-wrapper" alignFrozen="left" pFrozenColumn [frozen]="frozenActions">
+          @if (
+            actionsConfig && actionsConfig.inSameColumn && actionsConfig?.actions?.length && rtl
+          ) {
+            <td
+              class="same-column-actions-wrapper"
+              alignFrozen="left"
+              pFrozenColumn
+              [frozen]="frozenActions"
+            >
               <div>
                 @for (action of actionsConfig.actions; track action) {
                   @if (handleActionVisibility(action, item)) {
@@ -407,14 +460,17 @@
                       [size]="action.size"
                       [pTooltip]="action.tooltip"
                       [tooltipPosition]="action.tooltipPosition ?? 'top'"
-                      (onClick)="action.onClick?.(item,index,$event)"
-                      (onClickAsync)="action.onClickAsync?.(item,index,$event)"/>
+                      (onClick)="action.onClick?.(item, index, $event)"
+                      (onClickAsync)="action.onClickAsync?.(item, index, $event)"
+                    />
                   }
                 }
               </div>
             </td>
           }
-          @if (actionsConfig && !actionsConfig.inSameColumn && actionsConfig?.actions?.length && rtl) {
+          @if (
+            actionsConfig && !actionsConfig.inSameColumn && actionsConfig?.actions?.length && rtl
+          ) {
             @for (action of actionsConfig.actions; track action) {
               <td class="action-wrapper" alignFrozen="left" pFrozenColumn [frozen]="frozenActions">
                 @if (handleActionVisibility(action, item)) {
@@ -431,38 +487,49 @@
                     [size]="action.size"
                     [pTooltip]="action.tooltip"
                     [tooltipPosition]="action.tooltipPosition ?? 'top'"
-                    (onClick)="action.onClick?.(item,index,$event)"
-                    (onClickAsync)="action.onClickAsync?.(item,index,$event)"/>
+                    (onClick)="action.onClick?.(item, index, $event)"
+                    (onClickAsync)="action.onClickAsync?.(item, index, $event)"
+                  />
                 }
               </td>
             }
           }
           @if (selectionMode == 'single' && showSelectionIndicator) {
             <td>
-              <p-tableRadioButton [value]="item"/>
+              <p-tableRadioButton [value]="item" />
             </td>
           }
           @if (selectionMode == 'multiple' && showSelectionIndicator) {
             <td>
-              <p-tableCheckbox [value]="item"/>
+              <p-tableCheckbox [value]="item" />
             </td>
           }
           @for (col of colDef; track col.header) {
             <td
-              [class]="handleCellStyleClass(col.cellStyleClass,item)"
-              [style]="handleCellStyle(col.cellStyle,item)">
+              [class]="handleCellStyleClass(col.cellStyleClass, item)"
+              [style]="handleCellStyle(col.cellStyle, item)"
+            >
               @switch (col.render) {
                 @case ('ng-template') {
-                  <ng-container *ngTemplateOutlet="cellTemplates[col.field];context:{$implicit:item}"/>
+                  <ng-container
+                    *ngTemplateOutlet="cellTemplates[col.field]; context: { $implicit: item }"
+                  />
                 }
                 @default {
-                  <span [innerHTML]="handleCellRenderer(col,item)"></span>
+                  <span [innerHTML]="handleCellRenderer(col, item)"></span>
                 }
               }
             </td>
           }
-          @if (actionsConfig && actionsConfig.inSameColumn && actionsConfig?.actions?.length && !rtl) {
-            <td class="same-column-actions-wrapper" alignFrozen="right" pFrozenColumn [frozen]="frozenActions">
+          @if (
+            actionsConfig && actionsConfig.inSameColumn && actionsConfig?.actions?.length && !rtl
+          ) {
+            <td
+              class="same-column-actions-wrapper"
+              alignFrozen="right"
+              pFrozenColumn
+              [frozen]="frozenActions"
+            >
               <div>
                 @for (action of actionsConfig.actions; track action) {
                   @if (handleActionVisibility(action, item)) {
@@ -479,14 +546,17 @@
                       [size]="action.size"
                       [pTooltip]="action.tooltip"
                       [tooltipPosition]="action.tooltipPosition ?? 'top'"
-                      (onClick)="action.onClick?.(item,index,$event)"
-                      (onClickAsync)="action.onClickAsync?.(item,index,$event)"/>
+                      (onClick)="action.onClick?.(item, index, $event)"
+                      (onClickAsync)="action.onClickAsync?.(item, index, $event)"
+                    />
                   }
                 }
               </div>
             </td>
           }
-          @if (actionsConfig && !actionsConfig.inSameColumn && actionsConfig?.actions?.length && !rtl) {
+          @if (
+            actionsConfig && !actionsConfig.inSameColumn && actionsConfig?.actions?.length && !rtl
+          ) {
             @for (action of actionsConfig.actions; track action) {
               <td class="action-wrapper" alignFrozen="right" pFrozenColumn [frozen]="frozenActions">
                 @if (handleActionVisibility(action, item)) {
@@ -503,8 +573,9 @@
                     [size]="action.size"
                     [pTooltip]="action.tooltip"
                     [tooltipPosition]="action.tooltipPosition ?? 'top'"
-                    (onClick)="action.onClick?.(item,index,$event)"
-                    (onClickAsync)="action.onClickAsync?.(item,index,$event)"/>
+                    (onClick)="action.onClick?.(item, index, $event)"
+                    (onClickAsync)="action.onClickAsync?.(item, index, $event)"
+                  />
                 }
               </td>
             }
@@ -516,7 +587,7 @@
     @if (templateMap['caption'] || header) {
       <ng-template pTemplate="caption">
         @if (templateMap['caption']) {
-          <ng-container *ngTemplateOutlet="templateMap['caption']"/>
+          <ng-container *ngTemplateOutlet="templateMap['caption']" />
         } @else {
           <div class="caption">
             <h5>{{ header }}</h5>
@@ -524,7 +595,8 @@
               <pw-input-text
                 labelPosition="side"
                 [placeholder]="globalFilterPlaceholder"
-                (onKeyDown)="onGlobalFilterChange($event)"/>
+                (onKeyDown)="onGlobalFilterChange($event)"
+              />
             }
           </div>
         }
@@ -533,18 +605,25 @@
 
     <ng-template let-columns let-frozen="frozen" pTemplate="emptymessage">
       @if (templateMap['emptymessage']) {
-        <ng-container *ngTemplateOutlet="templateMap['emptymessage'];context:{columns,frozen}"/>
+        <ng-container
+          *ngTemplateOutlet="templateMap['emptymessage']; context: { columns, frozen }"
+        />
       } @else {
         <tr>
-          <td class="empty-message-wrapper"
-              [attr.colspan]="columns.length +
+          <td
+            class="empty-message-wrapper"
+            [attr.colspan]="
+              columns.length +
               (actionsConfig?.inSameColumn ? 1 : actionsConfig?.actions?.length) +
-              (selectableRows && showSelectionIndicator ? 1 : 0)">
+              (selectableRows && showSelectionIndicator ? 1 : 0)
+            "
+          >
             <pw-empty
               [title]="emptyMessage"
               [icon]="emptyIcon"
               [imageSrc]="emptyImageSrc"
-              [imageType]="emptyImageType"/>
+              [imageType]="emptyImageType"
+            />
           </td>
         </tr>
       }

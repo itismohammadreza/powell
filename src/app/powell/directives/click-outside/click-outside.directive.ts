@@ -10,13 +10,13 @@ import {
   OnInit,
   Output,
   PLATFORM_ID,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
-import {isPlatformBrowser} from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 @Directive({
   selector: '[pwClickOutside]',
-  standalone: false
+  standalone: false,
 })
 export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
   private document = inject(DOCUMENT);
@@ -46,18 +46,18 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy() {
     if (isPlatformBrowser(this.platformId)) {
-
       if (this.attachOutsideOnClick) {
-        this._events.forEach(e => this._el.nativeElement.removeEventListener(e, this._initOnClickBody));
+        this._events.forEach((e) =>
+          this._el.nativeElement.removeEventListener(e, this._initOnClickBody),
+        );
       }
 
-      this._events.forEach(e => this.document.body.removeEventListener(e, this._onClickBody));
+      this._events.forEach((e) => this.document.body.removeEventListener(e, this._onClickBody));
     }
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (isPlatformBrowser(this.platformId)) {
-
       if (changes['attachOutsideOnClick'] || changes['exclude']) {
         this._init();
       }
@@ -72,7 +72,9 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
     this._excludeCheck();
 
     if (this.attachOutsideOnClick) {
-      this._events.forEach(e => this._el.nativeElement.addEventListener(e, this._initOnClickBody));
+      this._events.forEach((e) =>
+        this._el.nativeElement.addEventListener(e, this._initOnClickBody),
+      );
     } else {
       this._initOnClickBody();
     }
@@ -87,13 +89,15 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   _initClickListeners() {
-    this._events.forEach(e => this.document.body.addEventListener(e, this._onClickBody));
+    this._events.forEach((e) => this.document.body.addEventListener(e, this._onClickBody));
   }
 
   _excludeCheck() {
     if (this.exclude) {
       try {
-        const nodes = Array.from(this.document.querySelectorAll(this.exclude)) as Array<HTMLElement>;
+        const nodes = Array.from(
+          this.document.querySelectorAll(this.exclude),
+        ) as Array<HTMLElement>;
         if (nodes) {
           this._nodesExcluded = nodes;
         }
@@ -112,7 +116,7 @@ export class ClickOutsideDirective implements OnInit, OnChanges, OnDestroy {
       this.pwClickOutside.emit(ev);
 
       if (this.attachOutsideOnClick) {
-        this._events.forEach(e => this.document.body.removeEventListener(e, this._onClickBody));
+        this._events.forEach((e) => this.document.body.removeEventListener(e, this._onClickBody));
       }
     }
   }

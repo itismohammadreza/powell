@@ -11,7 +11,7 @@ import {
   OnInit,
   Output,
   QueryList,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -21,9 +21,9 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
-} from "@angular/forms";
-import {takeUntil} from "rxjs";
+  NgControl,
+} from '@angular/forms';
+import { takeUntil } from 'rxjs';
 import {
   ChipDisplayMode,
   CssObject,
@@ -32,10 +32,10 @@ import {
   Size,
   TreeFilterMode,
   TreeSelectionMode,
-  Validation
+  Validation,
 } from '@powell/models';
-import {TemplateDirective} from '@powell/directives/template';
-import {DestroyService} from "@powell/utils";
+import { TemplateDirective } from '@powell/directives/template';
+import { DestroyService } from '@powell/utils';
 import {
   $OverlayOnHideEvent,
   $OverlayOnShowEvent,
@@ -47,9 +47,9 @@ import {
   $TreeSelectFilterEvent,
   $TreeSelectNodeCollapseEvent,
   $TreeSelectNodeExpandEvent,
-  $uuid
-} from "@powell/primeng";
-import {ConfigService} from "@powell/api";
+  $uuid,
+} from '@powell/primeng';
+import { ConfigService } from '@powell/api';
 
 @Component({
   selector: 'pw-tree-select',
@@ -58,11 +58,11 @@ import {ConfigService} from "@powell/api";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TreeSelectComponent),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class TreeSelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
@@ -136,20 +136,18 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
 
   ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -171,7 +169,7 @@ export class TreeSelectComponent implements OnInit, AfterContentInit, ControlVal
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });

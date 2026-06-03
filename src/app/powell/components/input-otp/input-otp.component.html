@@ -3,12 +3,13 @@
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | pwLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar: showRequiredStar : ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [disabled]="disabled"
     [readonly]="readonly"
-    [fluid]="true">
+    [fluid]="true"
+  >
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-inputOtp
         [(ngModel)]="value"
@@ -26,7 +27,8 @@
         [size]="size"
         (onChange)="_onChange($event)"
         (onFocus)="_onFocus($event)"
-        (onBlur)="_onBlur($event)"/>
+        (onBlur)="_onBlur($event)"
+      />
     </ng-template>
   </pw-form-field>
 </div>

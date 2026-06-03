@@ -1,8 +1,8 @@
-import {Directive, HostListener, Input} from '@angular/core';
+import { Directive, HostListener, Input } from '@angular/core';
 
 @Directive({
   selector: '[pwNumberOnly]',
-  standalone: false
+  standalone: false,
 })
 export class NumberOnlyDirective {
   @Input() pwNumberOnly: boolean = false;
@@ -27,10 +27,7 @@ export class NumberOnlyDirective {
         return;
       }
       // Ensure that it is a number and stop the keypress
-      if (
-        (e.shiftKey || e.keyCode < 48 || e.keyCode > 57) &&
-        (e.keyCode < 96 || e.keyCode > 105)
-      ) {
+      if ((e.shiftKey || e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
         e.preventDefault();
       }
     }

@@ -1,13 +1,18 @@
 <div class="infinite-scroll-wrapper" [style]="style">
   @for (item of data; track item; let i = $index; let first = $first; let last = $last) {
-    <ng-container *ngTemplateOutlet="templateMap['content'];context:{$implicit:item,index:i,first:first,last:last}"/>
+    <ng-container
+      *ngTemplateOutlet="
+        templateMap['content'];
+        context: { $implicit: item, index: i, first: first, last: last }
+      "
+    />
   }
   <div class="loading">
     @if (loading) {
       @if (templateMap['loading']) {
-        <ng-container *ngTemplateOutlet="templateMap['loading']"/>
+        <ng-container *ngTemplateOutlet="templateMap['loading']" />
       } @else {
-        <p-progressSpinner [style]="{width:spinnerWidth}"/>
+        <p-progressSpinner [style]="{ width: spinnerWidth }" />
       }
     }
   </div>

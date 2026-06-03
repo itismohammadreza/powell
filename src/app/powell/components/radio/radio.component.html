@@ -1,18 +1,21 @@
-<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [class]="{
-      'radio-wrapper': true,
-      'layout-horizontal':orientation == 'horizontal',
-      'layout-vertical':orientation == 'vertical'
-      }">
+<div
+  [attr.dir]="rtl ? 'rtl' : 'ltr'"
+  [class]="{
+    'radio-wrapper': true,
+    'layout-horizontal': orientation == 'horizontal',
+    'layout-vertical': orientation == 'vertical',
+  }"
+>
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | pwLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar: showRequiredStar : ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
-    [disabled]="disabled">
+    [disabled]="disabled"
+  >
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       @for (item of options; track item) {
         <div class="option-item">
@@ -33,7 +36,8 @@
             [binary]="binary"
             (onClick)="_onChange($event)"
             (onFocus)="_onFocus($event)"
-            (onBlur)="_onBlur($event)"/>
+            (onBlur)="_onBlur($event)"
+          />
           <label [attr.for]="'id' + item[optionValue]" [class.p-disabled]="item[optionDisabled]">
             {{ item[optionLabel] }}
           </label>

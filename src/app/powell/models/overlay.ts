@@ -1,5 +1,5 @@
-import {HttpHeaders} from '@angular/common/http';
-import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
+import { HttpHeaders } from '@angular/common/http';
+import { AbstractControl, FormGroup, ValidatorFn } from '@angular/forms';
 import {
   AutoCompleteDropdownMode,
   ButtonAppearance,
@@ -37,18 +37,24 @@ import {
   Size,
   TreeFilterMode,
   TreeSelectionMode,
-  ValidationType
+  ValidationType,
 } from '@powell/models';
-import {SunEditorOptions} from "suneditor/src/options";
-import {Core} from "suneditor/src/lib/core";
-import {LatLng, LatLngBounds} from "leaflet";
-import {$Confirmation, $ContextMenu, $ScrollerOptions, $ToastMessageOptions, $ToastPositionType} from "@powell/primeng";
-import {TemplateRef, Type} from "@angular/core";
-import {Moment} from "jalali-moment";
+import { SunEditorOptions } from 'suneditor/src/options';
+import { Core } from 'suneditor/src/lib/core';
+import { LatLng, LatLngBounds } from 'leaflet';
+import {
+  $Confirmation,
+  $ContextMenu,
+  $ScrollerOptions,
+  $ToastMessageOptions,
+  $ToastPositionType,
+} from '@powell/primeng';
+import { TemplateRef, Type } from '@angular/core';
+import { Moment } from 'jalali-moment';
 
 export type DefaultFocus = 'accept' | 'reject';
 export type HistoricComponent =
-  'confirmDialog'
+  | 'confirmDialog'
   | 'confirmPopup'
   | 'dialog'
   | 'dialogForm'
@@ -166,16 +172,16 @@ export interface DialogFormOptions extends DialogBase {
   rejectButtonProps?: ButtonProps;
   submitDisabled?: boolean | ((dialogFormEvent?: DialogFormEvent) => boolean);
   formValidator?: {
-    type: string,
-    validator: ValidatorFn,
-    message: string,
-    style?: CssObject
+    type: string;
+    validator: ValidatorFn;
+    message: string;
+    style?: CssObject;
   };
 }
 
 export interface DialogFormResult {
   formValue: SafeAny;
-  finalizeSubmit: (hide?: boolean) => void
+  finalizeSubmit: (hide?: boolean) => void;
 }
 
 export interface DialogFormValidation {
@@ -185,7 +191,7 @@ export interface DialogFormValidation {
 }
 
 export interface DialogFormEvent {
-  event?: SafeAny,
+  event?: SafeAny;
   form?: FormGroup;
   currentConfig?: DialogFormConfig;
   allConfig?: DialogFormConfig[];
@@ -226,7 +232,7 @@ export type DialogFormComponentName =
   | 'toggle-switch'
   | 'toggle-button'
   | 'tree'
-  | 'tree-select'
+  | 'tree-select';
 
 export interface DialogFormConfig {
   ///////////////////////////////////////// auto-complete /////////////////////////////////////////

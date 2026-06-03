@@ -2,17 +2,18 @@
   [(visible)]="visible"
   (onShow)="handleEvent('onShow')"
   (onHide)="onHide()"
-  (visibleChange)="handleEvent('visibleChange',$event)"
-  (onResizeInit)="handleEvent('onResizeInit',$event)"
-  (onResizeEnd)="handleEvent('onResizeEnd',$event)"
-  (onDragEnd)="handleEvent('onDragEnd',$event)"
-  (onMaximize)="handleEvent('onMaximize',$event)">
+  (visibleChange)="handleEvent('visibleChange', $event)"
+  (onResizeInit)="handleEvent('onResizeInit', $event)"
+  (onResizeEnd)="handleEvent('onResizeEnd', $event)"
+  (onDragEnd)="handleEvent('onDragEnd', $event)"
+  (onMaximize)="handleEvent('onMaximize', $event)"
+>
   <ng-template pTemplate="content">
-    <div [innerHTML]="options.content | pwSafe:'html'"></div>
+    <div [innerHTML]="options.content | pwSafe: 'html'"></div>
   </ng-template>
   <ng-template pTemplate="footer">
     @if (options.buttonProps) {
-      <pw-button [buttonProps]="options.buttonProps" (onClick)="onButtonClick()"/>
+      <pw-button [buttonProps]="options.buttonProps" (onClick)="onButtonClick()" />
     }
   </ng-template>
 </p-dialog>

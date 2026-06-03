@@ -9,7 +9,7 @@ import {
   Output,
   QueryList,
   TemplateRef,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import {
   AsyncEvent,
@@ -29,9 +29,9 @@ import {
   TableRowGroupMode,
   TableSelectionMode,
   TableSortMode,
-  TableStateStorage
+  TableStateStorage,
 } from '@powell/models';
-import {TemplateDirective} from "@powell/directives/template";
+import { TemplateDirective } from '@powell/directives/template';
 import {
   $ScrollerOptions,
   $SortMeta,
@@ -52,13 +52,13 @@ import {
   $TableSelectAllChangeEvent,
   $TableSortEvent,
   $TableState,
-} from "@powell/primeng";
-import {ConfigService} from "@powell/api";
+} from '@powell/primeng';
+import { ConfigService } from '@powell/api';
 
 @Component({
   selector: 'pw-table',
   templateUrl: './table.component.html',
-  standalone: false
+  standalone: false,
 })
 export class TableComponent implements OnInit, AfterContentInit {
   private configService = inject(ConfigService);
@@ -165,7 +165,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Output() onRowSelect = new EventEmitter<$TableRowSelectEvent>();
   @Output() onRowUnselect = new EventEmitter<$TableRowUnSelectEvent<SafeAny>>();
   @Output() onPage = new EventEmitter<$TablePageEvent>();
-  @Output() onSort = new EventEmitter<{multisortmeta: $SortMeta[]} | SafeAny>();
+  @Output() onSort = new EventEmitter<{ multisortmeta: $SortMeta[] } | SafeAny>();
   @Output() onFilter = new EventEmitter<$TableFilterEvent>();
   @Output() onLazyLoad = new EventEmitter<AsyncEvent<$TableLazyLoadEvent>>();
   @Output() onRowExpand = new EventEmitter<$TableRowExpandEvent>();
@@ -182,9 +182,9 @@ export class TableComponent implements OnInit, AfterContentInit {
   @Output() onStateRestore = new EventEmitter<$TableState>();
   @Output() onTableReady = new EventEmitter<$Table>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
-  @ViewChild('dataTable', {static: true}) dataTable!: $Table;
+  @ViewChild('dataTable', { static: true }) dataTable!: $Table;
 
-  cellTemplates: Record<string, TemplateRef<SafeAny>> = {}
+  cellTemplates: Record<string, TemplateRef<SafeAny>> = {};
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
   activeSortField: Optional<string>;
 
@@ -194,12 +194,17 @@ export class TableComponent implements OnInit, AfterContentInit {
     }
     this.onTableReady.emit(this.dataTable);
     if (this.actionsConfig) {
-      this.actionsConfig.actions = this.actionsConfig.actions.filter(action => action.visible ?? true) || [];
+      this.actionsConfig.actions =
+        this.actionsConfig.actions.filter((action) => action.visible ?? true) || [];
     }
-    this.colDef = this.colDef.filter(col => col.visible ?? true);
-    this.colDef.forEach(conf => {
+    this.colDef = this.colDef.filter((col) => col.visible ?? true);
+    this.colDef.forEach((conf) => {
       if (conf.filter?.type == 'slider') {
-        Object.assign(conf.filter, {sliderValue: conf.filter.range ? [conf.filter.min || 0, conf.filter.max || 100] : conf.filter.max})
+        Object.assign(conf.filter, {
+          sliderValue: conf.filter.range
+            ? [conf.filter.min || 0, conf.filter.max || 100]
+            : conf.filter.max,
+        });
       }
     });
     this.configService.configureComponent(this, true);
@@ -228,7 +233,7 @@ export class TableComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       const templates = [
         'caption',
@@ -263,11 +268,11 @@ export class TableComponent implements OnInit, AfterContentInit {
         'sorticon',
         'checkboxicon',
         'headercheckboxicon',
-      ]
+      ];
       if (templates.includes(name)) {
         this.templateMap[name] = item.templateRef;
       } else {
-        this.cellTemplates[name] = item.templateRef
+        this.cellTemplates[name] = item.templateRef;
       }
     });
   }
@@ -278,7 +283,7 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   _onLazyLoad(event: $TableLazyLoadEvent) {
     this.loading = true;
-    this.onLazyLoad.emit({event, loadingCallback: this.removeLoading})
+    this.onLazyLoad.emit({ event, loadingCallback: this.removeLoading });
   }
 
   onFirstChange(event: number) {
@@ -310,7 +315,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     if (typeof field == 'string') {
       return this.resolveFieldData(obj, field.split('.'), value);
     } else if (field.length == 1 && value !== undefined) {
-      return obj[field[0]] = value;
+      return (obj[field[0]] = value);
     } else if (field.length == 0) {
       return obj;
     } else {
@@ -342,7 +347,7 @@ export class TableComponent implements OnInit, AfterContentInit {
     if (!this.lazy) {
       filterCallback(filterValue.toString());
     } else {
-      this.onFilter.emit({filteredValue: filterValue, col} as SafeAny)
+      this.onFilter.emit({ filteredValue: filterValue, col } as SafeAny);
     }
   }
 
@@ -350,32 +355,28 @@ export class TableComponent implements OnInit, AfterContentInit {
     if (!cellStyleClass) {
       return '';
     }
-    if (typeof cellStyleClass == 'function')
-      return cellStyleClass(item);
+    if (typeof cellStyleClass == 'function') return cellStyleClass(item);
     else {
-      return cellStyleClass
+      return cellStyleClass;
     }
   }
 
   handleCellStyle(cellStyle: Fn | CssObject, item: SafeAny) {
-    if (typeof cellStyle == 'function')
-      return cellStyle(item);
+    if (typeof cellStyle == 'function') return cellStyle(item);
     else {
-      return cellStyle
+      return cellStyle;
     }
   }
 
   handleCellRenderer(col: TableColDef, item: SafeAny) {
-    if (col.render && typeof col.render == 'function')
-      return col.render(item);
+    if (col.render && typeof col.render == 'function') return col.render(item);
     else {
       return this.resolveFieldData(item, col.field as string);
     }
   }
 
   handleActionVisibility(action: TableAction, item: SafeAny) {
-    if (typeof action.visible == 'function')
-      return action.visible(item);
+    if (typeof action.visible == 'function') return action.visible(item);
     else {
       return action.visible ?? true;
     }
@@ -383,13 +384,13 @@ export class TableComponent implements OnInit, AfterContentInit {
 
   onGlobalFilterChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
-    this.dataTable.filterGlobal(inputElement.value, 'contains')
+    this.dataTable.filterGlobal(inputElement.value, 'contains');
   }
 
   removeLoading = (ok: boolean = true) => {
-    this.loading = false
+    this.loading = false;
     if (!ok) {
       this.activeSortField = undefined;
     }
-  }
+  };
 }

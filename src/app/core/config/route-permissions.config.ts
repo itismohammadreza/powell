@@ -1,4 +1,4 @@
 export const routePermissions = {
-  'showcase': ['read', 'write'],
+  showcase: ['read', 'write'],
   'activity/daily-retention': [],
-}
+};

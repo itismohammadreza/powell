@@ -1,5 +1,5 @@
-import {GlobalConfig} from "@core/models";
-import {$Aura} from '@powell/primeng';
+import { GlobalConfig } from '@core/models';
+import { $Aura } from '@powell/primeng';
 
 export const globalConfig: GlobalConfig = {
   lang: 'en',
@@ -17,6 +17,6 @@ export const globalConfig: GlobalConfig = {
       preset: $Aura,
       primaryPalette: $Aura.primitive.blue,
       mode: 'system',
-    }
-  }
+    },
+  },
 };

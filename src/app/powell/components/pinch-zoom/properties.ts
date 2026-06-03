@@ -1,4 +1,4 @@
-import {PinchZoomOptions} from './interfaces';
+import { PinchZoomOptions } from './interfaces';
 
 export const defaultProperties: PinchZoomOptions = {
   transitionDuration: 200,
@@ -17,9 +17,13 @@ export const defaultProperties: PinchZoomOptions = {
 
 export const backwardCompatibilityProperties = {
   'transition-duration': 'transitionDuration',
-  transitionDurationBackwardCompatibility: 'transitionDuration', 'double-tap': 'doubleTap',
-  doubleTapBackwardCompatibility: 'doubleTap', 'double-tap-scale': 'doubleTapScale',
-  doubleTapScaleBackwardCompatibility: 'doubleTapScale', 'auto-zoom-out': 'autoZoomOut',
-  autoZoomOutBackwardCompatibility: 'autoZoomOut', 'limit-zoom': 'limitZoom',
+  transitionDurationBackwardCompatibility: 'transitionDuration',
+  'double-tap': 'doubleTap',
+  doubleTapBackwardCompatibility: 'doubleTap',
+  'double-tap-scale': 'doubleTapScale',
+  doubleTapScaleBackwardCompatibility: 'doubleTapScale',
+  'auto-zoom-out': 'autoZoomOut',
+  autoZoomOutBackwardCompatibility: 'autoZoomOut',
+  'limit-zoom': 'limitZoom',
   limitZoomBackwardCompatibility: 'limitZoom',
 };

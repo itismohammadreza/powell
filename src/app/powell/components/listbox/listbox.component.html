@@ -3,13 +3,14 @@
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | pwLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar: showRequiredStar : ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
     [disabled]="disabled"
     [readonly]="readonly"
-    [fluid]="true">
+    [fluid]="true"
+  >
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-listbox
         [(ngModel)]="value"
@@ -73,11 +74,17 @@
         (onBlur)="emitter('onBlur', $event)"
         (onSelectAllChange)="emitter('onSelectAllChange', $event)"
         (onLazyLoad)="emitter('onLazyLoad', $event)"
-        (onDrop)="emitter('onDrop', $event)">
+        (onDrop)="emitter('onDrop', $event)"
+      >
         @for (t of templates; track t) {
           @if (templateMap[t.type]) {
             <ng-template [pTemplate]="t.type" let-item let-options="options" let-index="index">
-              <ng-container *ngTemplateOutlet="templateMap[t.type];context:{$implicit:item,options,index}"/>
+              <ng-container
+                *ngTemplateOutlet="
+                  templateMap[t.type];
+                  context: { $implicit: item, options, index }
+                "
+              />
             </ng-template>
           }
         }

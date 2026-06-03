@@ -1,10 +1,10 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {AbstractControl, NgControl} from "@angular/forms";
+import { Pipe, PipeTransform } from '@angular/core';
+import { AbstractControl, NgControl } from '@angular/forms';
 
 @Pipe({
   name: 'pwLabelStar',
   standalone: false,
-  pure: false
+  pure: false,
 })
 export class LabelStarPipe implements PipeTransform {
   transform(label: Optional<string>, showRequiredStar: boolean, ngControl: Nullable<NgControl>) {

@@ -1,5 +1,13 @@
-import {AsyncEvent, ButtonAppearance, CssObject, FilterMatchMode, Position, Severity, Size} from '@powell/models';
-import {$FilterMetadata} from "@powell/primeng";
+import {
+  AsyncEvent,
+  ButtonAppearance,
+  CssObject,
+  FilterMatchMode,
+  Position,
+  Severity,
+  Size,
+} from '@powell/models';
+import { $FilterMetadata } from '@powell/primeng';
 
 export type TableRendererType = 'text' | 'ng-template';
 export type TableFilterDisplay = 'row' | 'menu';
@@ -54,7 +62,7 @@ export interface TableColDef<T = SafeAny> {
 export interface TableActionsConfig<T = SafeAny> {
   header: string;
   inSameColumn: boolean;
-  actions: TableAction<T>[]
+  actions: TableAction<T>[];
 }
 
 export interface TableAction<T = SafeAny> {

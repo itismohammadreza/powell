@@ -1,16 +1,25 @@
-import {inject} from '@angular/core';
-import {HttpErrorResponse, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse,} from '@angular/common/http';
-import {finalize, identity, of, tap, throwError, timeout} from 'rxjs';
-import {catchError} from 'rxjs/operators';
-import {OverlayService} from '@powell/api';
-import {DataService} from '@core/http';
-import {globalConfig} from "@core/config";
-import {LoaderService} from "@core/utils";
-import {httpUtils} from '@core/interceptors/http-utils';
+import { inject } from '@angular/core';
+import {
+  HttpErrorResponse,
+  HttpHandlerFn,
+  HttpInterceptorFn,
+  HttpRequest,
+  HttpResponse,
+} from '@angular/common/http';
+import { finalize, identity, of, tap, throwError, timeout } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { OverlayService } from '@powell/api';
+import { DataService } from '@core/http';
+import { globalConfig } from '@core/config';
+import { LoaderService } from '@core/utils';
+import { httpUtils } from '@core/interceptors/http-utils';
 
 const loadingRequestsCounter = new Map<string, number>();
 
-export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>, next: HttpHandlerFn) => {
+export const httpHandlerInterceptor: HttpInterceptorFn = (
+  request: HttpRequest<unknown>,
+  next: HttpHandlerFn,
+) => {
   const overlayService = inject(OverlayService);
   const loaderService = inject(LoaderService);
   const dataService = inject(DataService);
@@ -18,16 +27,16 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
   const showSuccessToast = (message: string) => {
     overlayService.showToast({
       severity: 'success',
-      detail: message ?? 'با موفقیت انجام شد'
+      detail: message ?? 'با موفقیت انجام شد',
     });
-  }
+  };
 
   const showFailureToast = (message: string) => {
     overlayService.showToast({
       severity: 'error',
-      detail: message ?? 'خطایی رخ داده است'
+      detail: message ?? 'خطایی رخ داده است',
     });
-  }
+  };
 
   const removeRequestFromQueue = (request: HttpRequest<SafeAny>) => {
     const i = requestsQueue.indexOf(request);
@@ -35,7 +44,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
       requestsQueue.splice(i, 1);
     }
     loaderService.setLoadingState(requestsQueue.length > 0);
-  }
+  };
 
   const handleTimeout = (request: HttpRequest<SafeAny>) => {
     const getQueryTimeout = (url: string) => {
@@ -44,7 +53,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
       }
       const requestSearchParams = new URL(url).search;
       return new URLSearchParams(requestSearchParams).get('timeout');
-    }
+    };
     let configTimeout = httpUtils.getRequestProp(request, undefined, 'timeout');
     let queryTimeout = getQueryTimeout(request.url)!;
     if (configTimeout == 'none' || queryTimeout == 'none') {
@@ -52,7 +61,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
     } else {
       return timeout(+queryTimeout || configTimeout || globalConfig.requestTimeout);
     }
-  }
+  };
 
   const requestsQueue: HttpRequest<SafeAny>[] = [];
   const cachedRequests = new Map<string, SafeAny>();
@@ -91,7 +100,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
         return;
       }
       if (![false, undefined].includes(successMessage)) {
-        showSuccessToast(successMessage ?? response.body.message)
+        showSuccessToast(successMessage ?? response.body.message);
       }
       if (shouldCatch) {
         cachedRequests.set(request.url, response);
@@ -101,7 +110,7 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
     catchError((httpError: HttpErrorResponse) => {
       const failureMessage = httpUtils.getRequestProp(request, httpError, 'failureMessage');
       if (![false, undefined].includes(failureMessage)) {
-        const {error_description} = httpError.error;
+        const { error_description } = httpError.error;
         showFailureToast(failureMessage ?? error_description);
       }
       if (httpError.status === 403) {
@@ -114,4 +123,4 @@ export const httpHandlerInterceptor: HttpInterceptorFn = (request: HttpRequest<u
       removeRequestFromQueue(clonedReq);
     }),
   );
-}
+};

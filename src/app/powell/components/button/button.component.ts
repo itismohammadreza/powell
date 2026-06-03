@@ -11,7 +11,7 @@ import {
   Output,
   QueryList,
   SimpleChanges,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import {
   AsyncEvent,
@@ -22,20 +22,20 @@ import {
   ButtonType,
   Position,
   Severity,
-  Size
+  Size,
 } from '@powell/models';
-import {TemplateDirective} from "@powell/directives/template";
-import {fromEvent} from "rxjs";
+import { TemplateDirective } from '@powell/directives/template';
+import { fromEvent } from 'rxjs';
 
-import {takeUntil} from "rxjs/operators";
-import {DestroyService} from "@powell/utils";
+import { takeUntil } from 'rxjs/operators';
+import { DestroyService } from '@powell/utils';
 
 @Component({
   selector: 'pw-button',
   templateUrl: './button.component.html',
-  host: {'[class.full]': 'fluid'},
+  host: { '[class.full]': 'fluid' },
   providers: [DestroyService],
-  standalone: false
+  standalone: false,
 })
 export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChanges {
   private document = inject(DOCUMENT);
@@ -83,7 +83,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   _tmpSize: Optional<Size>;
 
   ngOnChanges(changes: SimpleChanges) {
-    const {buttonProps} = changes;
+    const { buttonProps } = changes;
     if (buttonProps) {
       const props = buttonProps.currentValue;
       for (const k in props) {
@@ -99,7 +99,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
 
   ngAfterViewInit() {
     this._tmpSize = this.size;
-    const {md, sm, xl, xs, lg} = this.responsiveSize ?? {};
+    const { md, sm, xl, xs, lg } = this.responsiveSize ?? {};
     const getButtonSize = () => {
       const windowWidth = this.document.defaultView?.innerWidth;
       if (windowWidth) {
@@ -115,17 +115,19 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
           this.size = xl ?? this._tmpSize;
         }
       }
-    }
+    };
 
     getButtonSize();
 
-    fromEvent(this.document.defaultView!, 'resize').pipe(takeUntil(this.destroy$)).subscribe(() => {
-      getButtonSize();
-    })
+    fromEvent(this.document.defaultView!, 'resize')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        getButtonSize();
+      });
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -134,7 +136,7 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
   _onClick(event: MouseEvent) {
     if (this.async) {
       this.loading = true;
-      this.onClickAsync.emit({event, loadingCallback: this.removeLoading});
+      this.onClickAsync.emit({ event, loadingCallback: this.removeLoading });
     } else {
       this.onClick.emit(event);
     }
@@ -151,13 +153,14 @@ export class ButtonComponent implements AfterViewInit, AfterContentInit, OnChang
       this.stateChange.emit(this.state);
       this.toggleState(this.state);
     }
-  }
+  };
 
   toggleState(defaultState: ButtonState) {
     if (!this.disabled) {
       this._tmpLabel = defaultState === 1 ? this.label : this.newLabel || this.label;
       this._tmpIcon = defaultState === 1 ? this.icon : this.newIcon || this.icon;
-      this._tmpAppearance = defaultState === 1 ? this.appearance : this.newAppearance || this.appearance;
+      this._tmpAppearance =
+        defaultState === 1 ? this.appearance : this.newAppearance || this.appearance;
       this._tmpSeverity = defaultState === 1 ? this.severity : this.newSeverity || this.severity;
     } else {
       this.state = 1;

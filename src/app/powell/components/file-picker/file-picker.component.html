@@ -3,12 +3,13 @@
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | pwLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar: showRequiredStar : ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
     [disabled]="disabled"
-    [fluid]="true">
+    [fluid]="true"
+  >
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-fileUpload
         [attr.id]="id"
@@ -48,21 +49,22 @@
         [chooseButtonProps]="chooseButtonProps"
         [uploadButtonProps]="uploadButtonProps"
         [cancelButtonProps]="cancelButtonProps"
-        (onBeforeUpload)="emitter('onBeforeUpload',$event)"
-        (onSend)="emitter('onSend',$event)"
-        (onUpload)="emitter('onUpload',$event)"
-        (onError)="emitter('onError',$event)"
+        (onBeforeUpload)="emitter('onBeforeUpload', $event)"
+        (onSend)="emitter('onSend', $event)"
+        (onUpload)="emitter('onUpload', $event)"
+        (onError)="emitter('onError', $event)"
         (onClear)="_onClear()"
         (onRemove)="_onRemove($event)"
         (onSelect)="_onSelect($event)"
-        (onProgress)="emitter('onProgress',$event)"
-        (uploadHandler)="emitter('uploadHandler',$event)"
-        (onImageError)="emitter('onImageError',$event)"
-        (onRemoveUploadedFile)="emitter('onRemoveUploadedFile',$event)">
+        (onProgress)="emitter('onProgress', $event)"
+        (uploadHandler)="emitter('uploadHandler', $event)"
+        (onImageError)="emitter('onImageError', $event)"
+        (onRemoveUploadedFile)="emitter('onRemoveUploadedFile', $event)"
+      >
         @for (t of templates; track t) {
           @if (templateMap[t.type]) {
             <ng-template [pTemplate]="t.type" let-item>
-              <ng-container *ngTemplateOutlet="templateMap[t.type];context:{$implicit:item}"/>
+              <ng-container *ngTemplateOutlet="templateMap[t.type]; context: { $implicit: item }" />
             </ng-template>
           }
         }

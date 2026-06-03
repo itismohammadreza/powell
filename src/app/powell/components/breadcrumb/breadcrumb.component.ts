@@ -9,22 +9,22 @@ import {
   OnInit,
   Output,
   QueryList,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
-import {BehaviorSubject, takeUntil} from 'rxjs';
-import {ActivatedRouteSnapshot, Data, NavigationEnd, Router} from "@angular/router";
-import {filter} from "rxjs/operators";
-import {$BreadcrumbItemClickEvent, $MenuItem} from "@powell/primeng";
-import {DestroyService} from "@powell/utils";
-import {TemplateDirective} from "@powell/directives/template";
-import {ConfigService} from "@powell/api";
+import { BehaviorSubject, takeUntil } from 'rxjs';
+import { ActivatedRouteSnapshot, Data, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { $BreadcrumbItemClickEvent, $MenuItem } from '@powell/primeng';
+import { DestroyService } from '@powell/utils';
+import { TemplateDirective } from '@powell/directives/template';
+import { ConfigService } from '@powell/api';
 
 @Component({
   selector: 'pw-breadcrumb',
   templateUrl: './breadcrumb.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DestroyService],
-  standalone: false
+  standalone: false,
 })
 export class BreadcrumbComponent implements OnInit, AfterContentInit {
   private router = inject(Router);
@@ -49,29 +49,38 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
       this._breadcrumbs$.next(this.items);
       return;
     }
-    this.router.events.pipe(filter((event) => event instanceof NavigationEnd), takeUntil(this.destroy$)).subscribe(() => {
-      const root = this.router.routerState.snapshot.root;
-      const breadcrumbs: $MenuItem[] = [];
-      this.addBreadcrumb(root, [], breadcrumbs);
-      this._breadcrumbs$.next(breadcrumbs);
-    });
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        takeUntil(this.destroy$),
+      )
+      .subscribe(() => {
+        const root = this.router.routerState.snapshot.root;
+        const breadcrumbs: $MenuItem[] = [];
+        this.addBreadcrumb(root, [], breadcrumbs);
+        this._breadcrumbs$.next(breadcrumbs);
+      });
     this.configService.configureComponent(this);
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
   }
 
-  addBreadcrumb(route: Nullable<ActivatedRouteSnapshot>, parentUrl: string[], breadcrumbs: $MenuItem[]) {
+  addBreadcrumb(
+    route: Nullable<ActivatedRouteSnapshot>,
+    parentUrl: string[],
+    breadcrumbs: $MenuItem[],
+  ) {
     if (route) {
-      const routeUrl = parentUrl.concat(route.url.map(url => url.path));
+      const routeUrl = parentUrl.concat(route.url.map((url) => url.path));
       if (route.data['breadcrumb']) {
         const breadcrumb = {
           label: this.getLabel(route.data),
-          routerLink: '/' + routeUrl.join('/')
+          routerLink: '/' + routeUrl.join('/'),
         };
         breadcrumbs.push(breadcrumb);
       }
@@ -84,6 +93,6 @@ export class BreadcrumbComponent implements OnInit, AfterContentInit {
   }
 
   _onItemClick(event: $BreadcrumbItemClickEvent) {
-    this.onItemClick.emit(event)
+    this.onItemClick.emit(event);
   }
 }

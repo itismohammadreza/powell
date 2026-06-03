@@ -1,36 +1,33 @@
-import {Component, OnInit} from '@angular/core';
-import {InfiniteScrollModule} from "@powell/components/infinite-scroll";
-import {PreviewComponent} from "@pages/showcase/components";
+import { Component, OnInit } from '@angular/core';
+import { InfiniteScrollModule } from '@powell/components/infinite-scroll';
+import { PreviewComponent } from '@pages/showcase/components';
 
 @Component({
   selector: 'app-infinite-scroll-page',
   templateUrl: './infinite-scroll.page.html',
-  imports: [
-    InfiniteScrollModule,
-    PreviewComponent
-  ]
+  imports: [InfiniteScrollModule, PreviewComponent],
 })
 export class InfiniteScrollPage implements OnInit {
-  list: SafeAny[] = []
+  list: SafeAny[] = [];
 
   ngOnInit() {
-    this.initListLazy()
+    this.initListLazy();
   }
 
   initListLazy() {
     setTimeout(() => {
-      this.list.push(...this.generateList())
-    }, 2000)
+      this.list.push(...this.generateList());
+    }, 2000);
   }
 
   onScroll(callback: Function) {
     setTimeout(() => {
-      this.list.push(...this.generateList())
-      callback()
-    }, 2000)
+      this.list.push(...this.generateList());
+      callback();
+    }, 2000);
   }
 
   generateList() {
-    return Array.from(Array(20).keys(), () => 'item')
+    return Array.from(Array(20).keys(), () => 'item');
   }
 }

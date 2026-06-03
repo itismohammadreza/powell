@@ -1,31 +1,32 @@
-import {FixLabelPosition, LabelPosition, Size} from "@powell/models";
-import {$PrimeNG, $PrimeNGConfigType} from "@powell/primeng";
+import { FixLabelPosition, LabelPosition, Size } from '@powell/models';
+import { $PrimeNG, $PrimeNGConfigType } from '@powell/primeng';
 
-type OmittedPrimeNgConfig =
-  Omit<$PrimeNG,
-    "baseStyle" |
-    "csp" |
-    "document" |
-    "inputVariant" |
-    "isThemeChanged" |
-    "loadCommonTheme" |
-    "onThemeChange" |
-    "overlayAppendTo" |
-    "ripple" |
-    "setConfig" |
-    "setThemeConfig" |
-    "theme" |
-    "translationObserver" |
-    "inputStyle" |
-    "ngOnDestroy">
-  & Omit<$PrimeNGConfigType, "theme" | "filterMatchModeOptions">;
+type OmittedPrimeNgConfig = Omit<
+  $PrimeNG,
+  | 'baseStyle'
+  | 'csp'
+  | 'document'
+  | 'inputVariant'
+  | 'isThemeChanged'
+  | 'loadCommonTheme'
+  | 'onThemeChange'
+  | 'overlayAppendTo'
+  | 'ripple'
+  | 'setConfig'
+  | 'setThemeConfig'
+  | 'theme'
+  | 'translationObserver'
+  | 'inputStyle'
+  | 'ngOnDestroy'
+> &
+  Omit<$PrimeNGConfigType, 'theme' | 'filterMatchModeOptions'>;
 
 export interface ThemeOptions {
   prefix?: string;
   cssLayer?: {
     name?: string;
     order?: string;
-  }
+  };
 }
 
 export type ThemeMode = 'dark' | 'light' | 'system';

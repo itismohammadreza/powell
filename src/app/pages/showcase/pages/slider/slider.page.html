@@ -2,8 +2,9 @@
   component="Slider"
   description="Slider is an input component to provide a numerical input."
   [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
+  (onOptionChange)="onOptionChange($event)"
+>
   <form [formGroup]="form">
-    <pw-slider formControlName="c1" [validation]="{ required: 'error' }"/>
+    <pw-slider formControlName="c1" [validation]="{ required: 'error' }" />
   </form>
 </app-preview>

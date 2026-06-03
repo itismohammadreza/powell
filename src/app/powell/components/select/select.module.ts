@@ -1,22 +1,15 @@
-import {NgModule} from "@angular/core";
-import {NgTemplateOutlet} from "@angular/common";
-import {FormsModule} from "@angular/forms";
-import {SelectComponent} from "@powell/components/select";
-import {LabelStarModule} from "@powell/pipes/label-star";
-import {$SelectModule} from "@powell/primeng";
-import {TemplateModule} from "@powell/directives/template";
-import {FormFieldModule} from "@powell/components/form-field";
+import { NgModule } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { SelectComponent } from '@powell/components/select';
+import { LabelStarModule } from '@powell/pipes/label-star';
+import { $SelectModule } from '@powell/primeng';
+import { TemplateModule } from '@powell/directives/template';
+import { FormFieldModule } from '@powell/components/form-field';
 
 @NgModule({
   declarations: [SelectComponent],
   exports: [SelectComponent, TemplateModule],
-  imports: [
-    $SelectModule,
-    NgTemplateOutlet,
-    FormsModule,
-    LabelStarModule,
-    FormFieldModule,
-  ],
+  imports: [$SelectModule, NgTemplateOutlet, FormsModule, LabelStarModule, FormFieldModule],
 })
-export class SelectModule {
-}
+export class SelectModule {}

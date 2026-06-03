@@ -1,22 +1,16 @@
-import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {DataService} from '@core/http';
-import {Router} from '@angular/router';
-import {InputTextModule} from '@powell/components/input-text';
-import {ButtonModule} from '@powell/components/button';
-import {CheckboxModule} from '@powell/components/checkbox';
-import {LogoComponent} from '@layout/logo/logo.component';
+import { Component, inject } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DataService } from '@core/http';
+import { Router } from '@angular/router';
+import { InputTextModule } from '@powell/components/input-text';
+import { ButtonModule } from '@powell/components/button';
+import { CheckboxModule } from '@powell/components/checkbox';
+import { LogoComponent } from '@layout/logo/logo.component';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login.page.html',
-  imports: [
-    ReactiveFormsModule,
-    InputTextModule,
-    ButtonModule,
-    CheckboxModule,
-    LogoComponent
-  ]
+  imports: [ReactiveFormsModule, InputTextModule, ButtonModule, CheckboxModule, LogoComponent],
 })
 export class LoginPage {
   private dataService = inject(DataService);
@@ -30,7 +24,7 @@ export class LoginPage {
 
   async onSubmit(callback: SafeAny) {
     if (this.form.invalid) {
-      callback()
+      callback();
       return;
     }
     try {

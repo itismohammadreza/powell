@@ -1,19 +1,22 @@
-<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [class]="{
-      'checkbox-group-wrapper': true,
-      'layout-horizontal':orientation == 'horizontal',
-      'layout-vertical':orientation == 'vertical'
-    }">
+<div
+  [attr.dir]="rtl ? 'rtl' : 'ltr'"
+  [class]="{
+    'checkbox-group-wrapper': true,
+    'layout-horizontal': orientation == 'horizontal',
+    'layout-vertical': orientation == 'vertical',
+  }"
+>
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | pwLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar: showRequiredStar : ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
     [disabled]="disabled"
-    [readonly]="readonly">
+    [readonly]="readonly"
+  >
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       @for (item of options; track item) {
         <div class="option-item">
@@ -22,7 +25,7 @@
             [invalid]="isInvalid"
             [class]="item.styleClass"
             [value]="item[optionValue]"
-            [inputId]="'id'+item[optionValue]"
+            [inputId]="'id' + item[optionValue]"
             [disabled]="item[optionDisabled]"
             [name]="groupName"
             [ariaLabelledBy]="ariaLabelledBy"
@@ -36,16 +39,17 @@
             [size]="size"
             (onChange)="_onChange($event)"
             (onFocus)="_onFocus($event)"
-            (onBlur)="_onBlur($event)">
+            (onBlur)="_onBlur($event)"
+          >
             @for (t of templates; track t) {
               @if (templateMap[t.type]) {
                 <ng-template [pTemplate]="t.type">
-                  <ng-container *ngTemplateOutlet="templateMap[t.type]"/>
+                  <ng-container *ngTemplateOutlet="templateMap[t.type]" />
                 </ng-template>
               }
             }
           </p-checkbox>
-          <label [attr.for]="'id'+item[optionValue]" [class.p-disabled]="item[optionDisabled]">
+          <label [attr.for]="'id' + item[optionValue]" [class.p-disabled]="item[optionDisabled]">
             {{ item[optionLabel] }}
           </label>
         </div>

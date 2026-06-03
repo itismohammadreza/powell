@@ -2,8 +2,9 @@
   component="Map"
   description="Map component provides integration with Leaflet Maps API. This sample demontrates various uses cases like binding, overlays and events. Click the map to add a new item."
   [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
+  (onOptionChange)="onOptionChange($event)"
+>
   <form [formGroup]="form">
-    <pw-map formControlName="c1" [validation]="{ required: 'error' }"/>
+    <pw-map formControlName="c1" [validation]="{ required: 'error' }" />
   </form>
 </app-preview>

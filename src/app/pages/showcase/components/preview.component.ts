@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {PreviewOption, PreviewOptionsComponent} from "@pages/showcase/components/index";
-import {$CardModule, $DividerModule, $PanelModule} from "@powell/primeng";
-import {TranslatePipe} from "@ngx-translate/core";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { PreviewOption, PreviewOptionsComponent } from '@pages/showcase/components/index';
+import { $CardModule, $DividerModule, $PanelModule } from '@powell/primeng';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-preview',
@@ -14,22 +14,19 @@ import {TranslatePipe} from "@ngx-translate/core";
 
       @if (previewOptions?.length) {
         <p-panel [header]="'options' | translate">
-          <app-preview-options [options]="previewOptions" (optionChange)="onOptionChange.emit($event)"/>
+          <app-preview-options
+            [options]="previewOptions"
+            (optionChange)="onOptionChange.emit($event)"
+          />
         </p-panel>
       }
 
-      <p-panel [style]="{minHeight:'110px'}" [header]="'preview' | translate">
+      <p-panel [style]="{ minHeight: '110px' }" [header]="'preview' | translate">
         <ng-content></ng-content>
       </p-panel>
     </div>
   `,
-  imports: [
-    $CardModule,
-    $PanelModule,
-    $DividerModule,
-    TranslatePipe,
-    PreviewOptionsComponent
-  ]
+  imports: [$CardModule, $PanelModule, $DividerModule, TranslatePipe, PreviewOptionsComponent],
 })
 export class PreviewComponent {
   @Input() previewOptions: PreviewOption[] = [];

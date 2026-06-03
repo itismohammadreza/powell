@@ -1,12 +1,12 @@
-import {inject, Injectable} from '@angular/core';
-import {Subject} from "rxjs";
-import {Config, ConfigChangeEvent} from "@powell/models";
-import {ThemeService} from "@powell/api";
-import {$PrimeNG} from "@powell/primeng";
+import { inject, Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { Config, ConfigChangeEvent } from '@powell/models';
+import { ThemeService } from '@powell/api';
+import { $PrimeNG } from '@powell/primeng';
 
-type InServiceConfigType = Omit<Config, "theme" | "platformId" | "csp"> & {
-  theme?: Omit<Config["theme"], "options">;
-}
+type InServiceConfigType = Omit<Config, 'theme' | 'platformId' | 'csp'> & {
+  theme?: Omit<Config['theme'], 'options'>;
+};
 
 // DON'T provide anywhere. will provide automatically after `providePowell` call.
 @Injectable()
@@ -15,14 +15,14 @@ export class ConfigService {
   private themeService = inject(ThemeService);
   private _config: Partial<Config> = {};
   private configChangeSubject = new Subject<ConfigChangeEvent>();
-  private registeredComponents: {component: SafeAny; isFixLabel: boolean}[] = [];
+  private registeredComponents: { component: SafeAny; isFixLabel: boolean }[] = [];
   configChange$ = this.configChangeSubject.asObservable();
 
   constructor() {
     this.initializeDefaultConfig();
 
-    this.configChange$.subscribe(({modifiedConfig}) => {
-      this.registeredComponents.forEach(({component, isFixLabel}) => {
+    this.configChange$.subscribe(({ modifiedConfig }) => {
+      this.registeredComponents.forEach(({ component, isFixLabel }) => {
         if (component.followConfig) {
           this.syncComponentWithConfig(component, isFixLabel, modifiedConfig, true);
         }
@@ -32,7 +32,7 @@ export class ConfigService {
 
   update(config: InServiceConfigType) {
     this.handleConfigChanges(config);
-    this.configChangeSubject.next({currentConfig: this._config, modifiedConfig: config});
+    this.configChangeSubject.next({ currentConfig: this._config, modifiedConfig: config });
   }
 
   get() {
@@ -40,15 +40,20 @@ export class ConfigService {
   }
 
   configureComponent(component: SafeAny, isFixLabel: boolean = false) {
-    this.registeredComponents.push({component, isFixLabel});
+    this.registeredComponents.push({ component, isFixLabel });
     this.syncComponentWithConfig(component, isFixLabel, this._config, false);
     const destroySubscription = component.destroy$?.subscribe(() => {
-      this.unregisterComponent(component)
+      this.unregisterComponent(component);
       destroySubscription?.unsubscribe();
-    })
+    });
   }
 
-  private syncComponentWithConfig(component: SafeAny, isFixLabel: boolean, config: Partial<Config>, forceApply: boolean) {
+  private syncComponentWithConfig(
+    component: SafeAny,
+    isFixLabel: boolean,
+    config: Partial<Config>,
+    forceApply: boolean,
+  ) {
     Object.entries(config).forEach(([key, value]) => {
       let componentKey = this.getComponentConfigKey(key as keyof Config);
       if (!(componentKey in component)) {
@@ -69,29 +74,31 @@ export class ConfigService {
       } else {
         component[componentKey] = value;
       }
-    })
+    });
   }
 
   private handleConfigChanges(config: InServiceConfigType) {
-    this._config = {...this._config, ...config};
+    this._config = { ...this._config, ...config };
     for (const k in config) {
       const key = k as keyof typeof this.primeNG & keyof Config;
-      if ([
-        'ripple',
-        'overlayAppendTo',
-        'inputVariant',
-        'csp',
-        'overlayOptions',
-        'translation',
-        'zIndex',
-        'filterMatchModeOptions',
-      ].includes(key)) {
+      if (
+        [
+          'ripple',
+          'overlayAppendTo',
+          'inputVariant',
+          'csp',
+          'overlayOptions',
+          'translation',
+          'zIndex',
+          'filterMatchModeOptions',
+        ].includes(key)
+      ) {
         this.primeNG.setConfig({
-          [key]: config[key]
-        })
+          [key]: config[key],
+        });
       }
       if (key === 'theme') {
-        const {mode, preset, surfacePalette, primaryPalette} = config.theme;
+        const { mode, preset, surfacePalette, primaryPalette } = config.theme;
         if (preset) {
           this.themeService.usePreset(preset);
         }
@@ -101,16 +108,19 @@ export class ConfigService {
         if (primaryPalette) {
           setTimeout(() => {
             this.themeService.updatePrimaryPalette(primaryPalette);
-          })
+          });
         }
         if (surfacePalette) {
           setTimeout(() => {
             this.themeService.updateSurfacePalette(surfacePalette);
-          })
+          });
         }
       }
     }
-    this.themeService.applyConfigToDom({...config, injectDirectionToRoot: this._config.injectDirectionToRoot});
+    this.themeService.applyConfigToDom({
+      ...config,
+      injectDirectionToRoot: this._config.injectDirectionToRoot,
+    });
   }
 
   private getComponentConfigKey(key: keyof Config) {
@@ -120,7 +130,9 @@ export class ConfigService {
   }
 
   private unregisterComponent(component: SafeAny) {
-    this.registeredComponents = this.registeredComponents.filter(item => item.component !== component);
+    this.registeredComponents = this.registeredComponents.filter(
+      (item) => item.component !== component,
+    );
   }
 
   private initializeDefaultConfig() {
@@ -153,7 +165,7 @@ export class ConfigService {
       theme: {
         preset: this.themeService.presets['Aura'],
         mode: 'system',
-      }
-    }
+      },
+    };
   }
 }

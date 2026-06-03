@@ -1,9 +1,9 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {helpers} from "@core/utils";
+import { Pipe, PipeTransform } from '@angular/core';
+import { helpers } from '@core/utils';
 
 @Pipe({
   name: 'pwFileName',
-  standalone: false
+  standalone: false,
 })
 export class FileNamePipe implements PipeTransform {
   transform(value: SafeAny) {

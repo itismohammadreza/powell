@@ -1,9 +1,8 @@
-import {NgModule} from '@angular/core';
-import {FileNamePipe} from "@powell/pipes/file-name";
+import { NgModule } from '@angular/core';
+import { FileNamePipe } from '@powell/pipes/file-name';
 
 @NgModule({
   declarations: [FileNamePipe],
-  exports: [FileNamePipe]
+  exports: [FileNamePipe],
 })
-export class FileNameModule {
-}
+export class FileNameModule {}

@@ -1,8 +1,8 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'pwDots',
-  standalone: false
+  standalone: false,
 })
 export class DotsPipe implements PipeTransform {
   transform(value: string, args: SafeAny[]) {

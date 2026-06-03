@@ -2,8 +2,9 @@
   component="InputOtp"
   description="InputOtp renders some text field to enter otp code."
   [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
+  (onOptionChange)="onOptionChange($event)"
+>
   <form [formGroup]="form">
-    <pw-input-otp formControlName="c1" [validation]="{ required: 'error'}"/>
+    <pw-input-otp formControlName="c1" [validation]="{ required: 'error'}" />
   </form>
 </app-preview>

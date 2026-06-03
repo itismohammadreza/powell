@@ -1,12 +1,13 @@
-$baseUrl: "/fonts/vazirmatn/non-latin";
+$baseUrl: '/fonts/vazirmatn/non-latin';
 
 @font-face {
   font-family: Vazirmatn;
   font-weight: 100;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-NL-Thin.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-Thin.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-NL-Thin.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-NL-Thin.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -15,8 +16,9 @@ $baseUrl: "/fonts/vazirmatn/non-latin";
   font-weight: 200;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-NL-ExtraLight.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-ExtraLight.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-NL-ExtraLight.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-NL-ExtraLight.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -25,8 +27,9 @@ $baseUrl: "/fonts/vazirmatn/non-latin";
   font-weight: 300;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-NL-Light.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-Light.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-NL-Light.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-NL-Light.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -35,8 +38,9 @@ $baseUrl: "/fonts/vazirmatn/non-latin";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-NL-Regular.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-Regular.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-NL-Regular.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-NL-Regular.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -45,8 +49,9 @@ $baseUrl: "/fonts/vazirmatn/non-latin";
   font-weight: 500;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-NL-Medium.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-Medium.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-NL-Medium.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-NL-Medium.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -55,8 +60,9 @@ $baseUrl: "/fonts/vazirmatn/non-latin";
   font-weight: 600;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-NL-SemiBold.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-SemiBold.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-NL-SemiBold.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-NL-SemiBold.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -65,8 +71,9 @@ $baseUrl: "/fonts/vazirmatn/non-latin";
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-NL-Bold.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-Bold.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-NL-Bold.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-NL-Bold.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -75,8 +82,9 @@ $baseUrl: "/fonts/vazirmatn/non-latin";
   font-weight: 800;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-NL-ExtraBold.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-ExtraBold.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-NL-ExtraBold.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-NL-ExtraBold.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }
 
@@ -85,7 +93,8 @@ $baseUrl: "/fonts/vazirmatn/non-latin";
   font-weight: 900;
   font-style: normal;
   font-display: swap;
-  src: url("#{$baseUrl}/woff2/Vazirmatn-NL-Black.woff2") format("woff2"),
-  url("#{$baseUrl}/ttf/Vazirmatn-NL-Black.ttf") format("truetype");
+  src:
+    url('#{$baseUrl}/woff2/Vazirmatn-NL-Black.woff2') format('woff2'),
+    url('#{$baseUrl}/ttf/Vazirmatn-NL-Black.ttf') format('truetype');
   unicode-range: U+0600-06FF;
 }

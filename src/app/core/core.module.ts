@@ -1,14 +1,8 @@
-import {NgModule} from '@angular/core';
-import {EnvServiceProvider} from "@core/utils";
-import {OverlayService, PersianService, UtilsService} from "@powell/api";
+import { NgModule } from '@angular/core';
+import { EnvServiceProvider } from '@core/utils';
+import { OverlayService, PersianService, UtilsService } from '@powell/api';
 
 @NgModule({
-  providers: [
-    EnvServiceProvider,
-    OverlayService,
-    PersianService,
-    UtilsService,
-  ],
+  providers: [EnvServiceProvider, OverlayService, PersianService, UtilsService],
 })
-export class CoreModule {
-}
+export class CoreModule {}

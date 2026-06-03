@@ -8,17 +8,17 @@ import {
   Output,
   QueryList,
   TemplateRef,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
-import {CssObject, ImageLoading} from "@powell/models";
-import {SafeUrl} from "@angular/platform-browser";
-import {TemplateDirective} from "@powell/directives/template";
-import {PinchZoomComponentProperties} from "@powell/components/pinch-zoom/interfaces";
+import { CssObject, ImageLoading } from '@powell/models';
+import { SafeUrl } from '@angular/platform-browser';
+import { TemplateDirective } from '@powell/directives/template';
+import { PinchZoomComponentProperties } from '@powell/components/pinch-zoom/interfaces';
 
 @Component({
   selector: 'pw-image',
   templateUrl: './image.component.html',
-  standalone: false
+  standalone: false,
 })
 export class ImageComponent implements AfterContentInit {
   // native properties
@@ -41,16 +41,16 @@ export class ImageComponent implements AfterContentInit {
   // pinch-zoom properties
   @Input() pinchProperties: PinchZoomComponentProperties = {
     autoZoomOut: false,
-    backgroundColor: "rgba(0,0,0,0.85)",
-    disableZoomControl: "auto",
+    backgroundColor: 'rgba(0,0,0,0.85)',
+    disableZoomControl: 'auto',
     doubleTap: true,
     doubleTapScale: 2,
     draggableImage: false,
-    limitZoom: "original image size",
-    listeners: "mouse and touch",
+    limitZoom: 'original image size',
+    listeners: 'mouse and touch',
     minPanScale: 1.0001,
     minScale: 0,
-    overflow: "visible",
+    overflow: 'visible',
     transitionDuration: 200,
     wheel: true,
     wheelZoomFactor: 0.2,
@@ -67,7 +67,7 @@ export class ImageComponent implements AfterContentInit {
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });

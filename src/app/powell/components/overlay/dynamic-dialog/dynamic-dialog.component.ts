@@ -1,6 +1,14 @@
-import {Component, ComponentRef, inject, OnDestroy, Type, ViewChild, ViewContainerRef} from '@angular/core';
-import {Subject} from 'rxjs';
-import {DynamicDialogRef} from './dynamic-dialog-ref';
+import {
+  Component,
+  ComponentRef,
+  inject,
+  OnDestroy,
+  Type,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
+import { Subject } from 'rxjs';
+import { DynamicDialogRef } from './dynamic-dialog-ref';
 
 @Component({
   selector: 'pw-dynamic-dialog',
@@ -21,7 +29,9 @@ import {DynamicDialogRef} from './dynamic-dialog-ref';
     }
 
     .dialog {
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow:
+        0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
       background-color: white;
       width: 50%;
       height: 50%;
@@ -38,7 +48,8 @@ export class DynamicDialogComponent implements OnDestroy {
   componentRef!: ComponentRef<SafeAny>;
   onClose = this._onClose.asObservable();
 
-  @ViewChild('insertion', {read: ViewContainerRef, static: true}) insertionPoint!: ViewContainerRef;
+  @ViewChild('insertion', { read: ViewContainerRef, static: true })
+  insertionPoint!: ViewContainerRef;
 
   open(childComponent: Type<SafeAny>) {
     this.insertionPoint.clear();

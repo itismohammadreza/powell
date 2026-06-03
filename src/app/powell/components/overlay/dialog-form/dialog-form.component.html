@@ -3,20 +3,17 @@
   [(visible)]="visible"
   (onShow)="setDefaultFocus()"
   (onHide)="close()"
-  (visibleChange)="handleEvent('visibleChange',$event)"
-  (onResizeInit)="handleEvent('onResizeInit',$event)"
-  (onResizeEnd)="handleEvent('onResizeEnd',$event)"
-  (onDragEnd)="handleEvent('onDragEnd',$event)"
-  (onMaximize)="handleEvent('onMaximize',$event)">
+  (visibleChange)="handleEvent('visibleChange', $event)"
+  (onResizeInit)="handleEvent('onResizeInit', $event)"
+  (onResizeEnd)="handleEvent('onResizeEnd', $event)"
+  (onDragEnd)="handleEvent('onDragEnd', $event)"
+  (onMaximize)="handleEvent('onMaximize', $event)"
+>
   <form [class]="options.containerStyleClass" [style]="options.containerStyle" [formGroup]="form">
     @for (config of config; track config) {
       @switch (config.component) {
         @case ('hidden') {
-          <input
-            [formControlName]="config.key"
-            [class]="config.className"
-            type="hidden"
-          />
+          <input [formControlName]="config.key" [class]="config.className" type="hidden" />
         }
         @case ('auto-complete') {
           <pw-auto-complete
@@ -25,13 +22,15 @@
             [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('button') {
           <pw-button
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+          />
         }
         @case ('cascade-select') {
           <pw-cascade-select
@@ -40,7 +39,8 @@
             [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('checkbox') {
           <pw-checkbox
@@ -48,7 +48,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('color-picker') {
           <pw-color-picker
@@ -56,7 +57,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('select') {
           <pw-select
@@ -65,7 +67,8 @@
             [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('dual-label-switch') {
           <pw-dual-label-switch
@@ -73,7 +76,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('editor') {
           <pw-editor
@@ -81,7 +85,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('file-picker') {
           <pw-file-picker
@@ -89,7 +94,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('file-picker2') {
           <pw-file-picker2
@@ -97,7 +103,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('datepicker') {
           <pw-datepicker
@@ -106,14 +113,16 @@
             [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('image') {
           <pw-image
             [formControlName]="config.key"
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
-            [disabled]="handleConfigDisable(config)"/>
+            [disabled]="handleConfigDisable(config)"
+          />
         }
         @case ('input-mask') {
           <pw-input-mask
@@ -122,7 +131,8 @@
             [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('input-number') {
           <pw-input-number
@@ -131,7 +141,8 @@
             [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('input-otp') {
           <pw-input-otp
@@ -139,7 +150,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('input-password') {
           <pw-input-password
@@ -148,7 +160,8 @@
             [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('input-text') {
           <pw-input-text
@@ -157,7 +170,8 @@
             [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('input-textarea') {
           <pw-input-textarea
@@ -166,7 +180,8 @@
             [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('iran-map') {
           <pw-iran-map
@@ -174,7 +189,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('knob') {
           <pw-knob
@@ -182,7 +198,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('listbox') {
           <pw-listbox
@@ -190,7 +207,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('map') {
           <pw-map
@@ -198,7 +216,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('checkbox-group') {
           <pw-checkbox-group
@@ -206,7 +225,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('multi-select') {
           <pw-multi-select
@@ -215,7 +235,8 @@
             [fluid]="config.fluid ?? true"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('radio') {
           <pw-radio
@@ -223,7 +244,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('rating') {
           <pw-rating
@@ -231,7 +253,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('select-button') {
           <pw-select-button
@@ -239,7 +262,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('slider') {
           <pw-slider
@@ -247,7 +271,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('toggle-switch') {
           <pw-toggle-switch
@@ -255,7 +280,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('toggle-button') {
           <pw-toggle-button
@@ -263,7 +289,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('tree') {
           <pw-tree
@@ -271,7 +298,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('tree-select') {
           <pw-tree-select
@@ -279,7 +307,8 @@
             [class]="config.className"
             [hidden]="handleConfigVisibility(config)"
             [disabled]="handleConfigDisable(config)"
-            [validation]="convertToComponentValidation(config)"/>
+            [validation]="convertToComponentValidation(config)"
+          />
         }
         @case ('template') {
           <div
@@ -301,7 +330,8 @@
         <pw-button
           [buttonProps]="options.rejectButtonProps"
           [disabled]="disableReject"
-          (onClick)="close()"/>
+          (onClick)="close()"
+        />
       }
       @if (options.acceptVisible) {
         <pw-button
@@ -309,7 +339,8 @@
           [buttonProps]="options.acceptButtonProps"
           [disabled]="handleSubmitDisable"
           [async]="true"
-          (onClickAsync)="onSubmitClick($event)"/>
+          (onClickAsync)="onSubmitClick($event)"
+        />
       }
     </div>
   </ng-template>

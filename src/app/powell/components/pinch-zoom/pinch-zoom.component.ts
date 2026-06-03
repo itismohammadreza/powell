@@ -8,11 +8,11 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
-import {PinchZoomComponentProperties} from './interfaces';
-import {backwardCompatibilityProperties, defaultProperties} from './properties';
-import {IvyPinch} from './ivypinch';
+import { PinchZoomComponentProperties } from './interfaces';
+import { backwardCompatibilityProperties, defaultProperties } from './properties';
+import { IvyPinch } from './ivypinch';
 
 export const _defaultComponentProperties: PinchZoomComponentProperties = {
   overflow: 'visible',
@@ -254,7 +254,9 @@ export class PinchZoomComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private renameProperties(
-    properties: PinchZoomComponentProperties | Record<keyof typeof backwardCompatibilityProperties, unknown>
+    properties:
+      | PinchZoomComponentProperties
+      | Record<keyof typeof backwardCompatibilityProperties, unknown>,
   ) {
     for (const prop in properties) {
       if (backwardCompatibilityProperties[prop]) {
@@ -266,7 +268,10 @@ export class PinchZoomComponent implements OnInit, OnDestroy, OnChanges {
     return properties as PinchZoomComponentProperties;
   }
 
-  private applyPropertiesDefault(defaultProperties: PinchZoomComponentProperties, properties: PinchZoomComponentProperties) {
+  private applyPropertiesDefault(
+    defaultProperties: PinchZoomComponentProperties,
+    properties: PinchZoomComponentProperties,
+  ) {
     this.properties = Object.assign({}, defaultProperties, properties);
   }
 
@@ -308,6 +313,6 @@ export class PinchZoomComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private getDefaultComponentProperties() {
-    return {...defaultProperties, ..._defaultComponentProperties} as PinchZoomComponentProperties;
+    return { ...defaultProperties, ..._defaultComponentProperties } as PinchZoomComponentProperties;
   }
 }

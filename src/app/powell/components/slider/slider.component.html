@@ -3,12 +3,13 @@
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | pwLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar: showRequiredStar : ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="id"
     [disabled]="disabled"
-    [fluid]="true">
+    [fluid]="true"
+  >
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-slider
         [(ngModel)]="value"
@@ -28,7 +29,8 @@
         [tabindex]="tabindex"
         [autofocus]="autofocus"
         (onChange)="_onChange($event)"
-        (onSlideEnd)="_onSlideEnd($event)"/>
+        (onSlideEnd)="_onSlideEnd($event)"
+      />
     </ng-template>
   </pw-form-field>
 </div>

@@ -33,7 +33,7 @@ import {
   PanOptions,
   tileLayer,
   ZoomOptions,
-  ZoomPanOptions
+  ZoomPanOptions,
 } from 'leaflet';
 import {
   AbstractControl,
@@ -43,14 +43,20 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
-} from "@angular/forms";
-import {takeUntil} from "rxjs";
-import {FixLabelPosition, MAP_MARKER_EVENTS, MapMarker, MapMarkerEvent, Validation} from "@powell/models";
-import {DestroyService} from "@powell/utils";
-import {$uuid} from "@powell/primeng";
-import {ConfigService} from "@powell/api";
-import {TemplateDirective} from "@powell/directives/template";
+  NgControl,
+} from '@angular/forms';
+import { takeUntil } from 'rxjs';
+import {
+  FixLabelPosition,
+  MAP_MARKER_EVENTS,
+  MapMarker,
+  MapMarkerEvent,
+  Validation,
+} from '@powell/models';
+import { DestroyService } from '@powell/utils';
+import { $uuid } from '@powell/primeng';
+import { ConfigService } from '@powell/api';
+import { TemplateDirective } from '@powell/directives/template';
 
 @Component({
   selector: 'pw-map',
@@ -59,11 +65,11 @@ import {TemplateDirective} from "@powell/directives/template";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MapComponent),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class MapComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnChanges {
   private cd = inject(ChangeDetectorRef);
@@ -78,7 +84,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     } else {
       this.addMarkers(markers);
     }
-  };
+  }
 
   @Input() label: Optional<string>;
   @Input() labelWidth: Optional<number>;
@@ -107,18 +113,18 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Input() leafletMaxZoom: number = 18;
   @Input() leafletFitBounds: Optional<LatLngBounds>;
   @Input() leafletMaxBounds: Optional<LatLngBounds>;
-  @Input() zoomOptions: ZoomOptions = {animate: undefined};
+  @Input() zoomOptions: ZoomOptions = { animate: undefined };
   @Input() panOptions: PanOptions = {
     animate: undefined,
     duration: 0.25,
     easeLinearity: 0.25,
-    noMoveStart: false
-  }
+    noMoveStart: false,
+  };
   @Input() zoomPanOptions: ZoomPanOptions = {
     animate: undefined,
     duration: 0.25,
     easeLinearity: 0.25,
-    noMoveStart: false
+    noMoveStart: false,
   };
   @Input() fitBoundsOptions: FitBoundsOptions = {
     animate: undefined,
@@ -127,7 +133,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     noMoveStart: false,
     paddingTopLeft: [0, 0],
     paddingBottomRight: [0, 0],
-    padding: [0, 0]
+    padding: [0, 0],
   };
   @Input() options: MapOptions = {
     layers: [tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')],
@@ -157,7 +163,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     wheelDebounceTime: 40,
     wheelPxPerZoomLevel: 60,
     tapTolerance: 15,
-    bounceAtZoomLimits: true
+    bounceAtZoomLimits: true,
   };
   @Output() zoomChange = new EventEmitter<number>();
   @Output() centerChange = new EventEmitter<LatLng>();
@@ -176,7 +182,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   @Output() onMapZoomEnd = new EventEmitter<LeafletEvent>();
   @Output() onClear = new EventEmitter<void>();
   @Output() onMapReady = new EventEmitter<Map>();
-  @Output() onMapMarkerClick = new EventEmitter<{event: LeafletMouseEvent; marker: MapMarker;}>();
+  @Output() onMapMarkerClick = new EventEmitter<{ event: LeafletMouseEvent; marker: MapMarker }>();
   @Output() markerEvents = new EventEmitter<MapMarkerEvent>();
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
@@ -185,20 +191,18 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   ngControl: Nullable<NgControl> = null;
   map!: Map;
   layers: Layer[] = [];
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -220,7 +224,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -235,7 +239,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
 
   writeValue(value: MapMarker | MapMarker[]) {
     if (this.map && this.layers.length) {
-      this.layers.forEach(l => this.map.removeLayer(l));
+      this.layers.forEach((l) => this.map.removeLayer(l));
     }
     this.layers = [];
 
@@ -265,9 +269,9 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   setDisabledState(val: boolean) {
     this.disabled = val;
     if (!this.map) {
-      return
+      return;
     }
-    this.handleDisabledState()
+    this.handleDisabledState();
     this.cd.markForCheck();
   }
 
@@ -276,7 +280,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   }
 
   addMarkers(markers: MapMarker[]) {
-    markers.forEach(latlng => {
+    markers.forEach((latlng) => {
       const m = this.createMarker(latlng);
       this.layers.push(m);
       m.addTo(this.map);
@@ -291,7 +295,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     }, 300);
 
     if (this.layers && this.layers.length) {
-      this.layers.forEach(l => {
+      this.layers.forEach((l) => {
         if (!this.map.hasLayer(l)) {
           l.addTo(this.map);
         }
@@ -343,10 +347,10 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
     const selectedLatLngs = this.layers.map((l: SafeAny) => l._latlng);
     if (this.multiple) {
       if (selectedLatLngs.length == this.selectionLimit) {
-        return
+        return;
       }
     }
-    selectedLatLngs.push(event.latlng)
+    selectedLatLngs.push(event.latlng);
     if (this.multiple) {
       const newMarker = this.createMarker(event.latlng);
       this.layers.push(newMarker);
@@ -354,7 +358,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
       this.onModelChange(selectedLatLngs);
     } else {
       if (this.map && this.layers.length) {
-        this.layers.forEach(l => this.map.removeLayer(l));
+        this.layers.forEach((l) => this.map.removeLayer(l));
       }
       const newMarker = this.createMarker(event.latlng);
       this.layers = [newMarker];
@@ -379,7 +383,7 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
 
     MAP_MARKER_EVENTS.forEach((eventType) => {
       mapMarker.on(eventType, (event: LeafletMouseEvent) => {
-        this.markerEvents.emit({marker: markerConfig, type: eventType, event});
+        this.markerEvents.emit({ marker: markerConfig, type: eventType, event });
         if (eventType === 'click' && this.clearMarkerOnClick) {
           this.removeMarker(event.latlng);
         }
@@ -389,26 +393,27 @@ export class MapComponent implements OnInit, AfterContentInit, ControlValueAcces
   }
 
   removeMarker(latlng: LatLng) {
-    const idx = this.layers.findIndex(({_latlng: {lat, lng}}: SafeAny) => lat == latlng.lat && lng == latlng.lng);
+    const idx = this.layers.findIndex(
+      ({ _latlng: { lat, lng } }: SafeAny) => lat == latlng.lat && lng == latlng.lng,
+    );
     if (idx != -1) {
       this.layers.splice(idx, 1);
-      this.cd.detectChanges()
+      this.cd.detectChanges();
     }
     const selectedLatLngs = this.layers.map((l: SafeAny) => l._latlng);
-    this.onModelChange(this.multiple ? selectedLatLngs : selectedLatLngs[0])
+    this.onModelChange(this.multiple ? selectedLatLngs : selectedLatLngs[0]);
   }
 
   clearMap() {
     if (this.map && this.layers && this.layers.length) {
-      this.layers.forEach(l => {
+      this.layers.forEach((l) => {
         try {
           this.map.removeLayer(l);
-        } catch {
-        }
+        } catch {}
       });
     }
     this.layers = [];
     this.onModelChange(null);
-    this.onClear.emit()
+    this.onClear.emit();
   }
 }

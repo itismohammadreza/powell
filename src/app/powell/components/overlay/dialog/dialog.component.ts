@@ -1,17 +1,20 @@
-import {ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/core';
-import {DialogOptions} from '@powell/models';
-import {$Dialog, $DialogModule} from "@powell/primeng";
-import {ButtonModule} from '@powell/components/button';
-import {SafeModule} from '@powell/pipes/safe';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  inject,
+  ViewChild,
+} from '@angular/core';
+import { DialogOptions } from '@powell/models';
+import { $Dialog, $DialogModule } from '@powell/primeng';
+import { ButtonModule } from '@powell/components/button';
+import { SafeModule } from '@powell/pipes/safe';
 
 @Component({
   selector: 'pw-dialog',
   templateUrl: './dialog.component.html',
-  imports: [
-    $DialogModule,
-    ButtonModule,
-    SafeModule
-  ]
+  imports: [$DialogModule, ButtonModule, SafeModule],
 })
 export class DialogComponent {
   private el = inject(ElementRef);
@@ -20,12 +23,14 @@ export class DialogComponent {
   onClose = new EventEmitter();
   options: DialogOptions = {};
   visible: boolean = true;
-  @ViewChild($Dialog, {static: true}) dialog!: $Dialog;
+  @ViewChild($Dialog, { static: true }) dialog!: $Dialog;
 
   show() {
     const footerEl = this.el.nativeElement.querySelector('.p-dialog-footer');
     if (footerEl) {
-      const allChildrenAreComment = [...footerEl.childNodes].every(node => node.nodeType === Node.COMMENT_NODE);
+      const allChildrenAreComment = [...footerEl.childNodes].every(
+        (node) => node.nodeType === Node.COMMENT_NODE,
+      );
       if (allChildrenAreComment) {
         footerEl.style.display = 'none';
       }

@@ -17,13 +17,13 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
+  NgControl,
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
-import {FixLabelPosition, InputVariant, Orientation, Size, Validation} from '@powell/models';
-import {DestroyService} from "@powell/utils";
-import {$RadioButtonClickEvent, $uuid} from "@powell/primeng";
-import {ConfigService} from "@powell/api";
+import { takeUntil } from 'rxjs';
+import { FixLabelPosition, InputVariant, Orientation, Size, Validation } from '@powell/models';
+import { DestroyService } from '@powell/utils';
+import { $RadioButtonClickEvent, $uuid } from '@powell/primeng';
+import { ConfigService } from '@powell/api';
 
 @Component({
   selector: 'pw-radio',
@@ -32,11 +32,11 @@ import {ConfigService} from "@powell/api";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => RadioComponent),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class RadioComponent implements OnInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
@@ -63,10 +63,10 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
 
   @Input() set disabled(disabled: boolean) {
     this._disabled = disabled;
-    this.options?.forEach(option => {
-      option[this.optionDisabled] = disabled
-    })
-  };
+    this.options?.forEach((option) => {
+      option[this.optionDisabled] = disabled;
+    });
+  }
 
   get disabled() {
     return this._disabled;
@@ -86,20 +86,18 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
 
   _disabled: boolean = false;
   ngControl: Nullable<NgControl> = null;
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;

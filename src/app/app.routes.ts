@@ -1,30 +1,32 @@
-import {Routes} from '@angular/router';
+import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
     path: 'auth',
-    loadComponent: () => import('@layout/auth-layout/auth-layout.component').then((m) => m.AuthLayoutComponent),
+    loadComponent: () =>
+      import('@layout/auth-layout/auth-layout.component').then((m) => m.AuthLayoutComponent),
     children: [
       {
         path: 'login',
         loadComponent: () => import('@pages/login/login.page').then((m) => m.LoginPage),
-        title: 'ورود'
+        title: 'ورود',
       },
       {
         path: 'register',
         loadComponent: () => import('@pages/register/register.page').then((m) => m.RegisterPage),
-        title: 'ثبت نام'
+        title: 'ثبت نام',
       },
       {
         path: '',
         redirectTo: 'login',
-        pathMatch: 'full'
-      }
-    ]
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: '',
-    loadComponent: () => import('@layout/main-layout/main-layout.component').then((m) => m.MainLayoutComponent),
+    loadComponent: () =>
+      import('@layout/main-layout/main-layout.component').then((m) => m.MainLayoutComponent),
     // resolve: {user: userResolver},
     children: [
       {
@@ -36,7 +38,7 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'showcase',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
     ],
   },
@@ -46,7 +48,8 @@ export const routes: Routes = [
   },
   {
     path: '403',
-    loadComponent: () => import('@pages/access-denied/access-denied.page').then((m) => m.AccessDeniedPage),
+    loadComponent: () =>
+      import('@pages/access-denied/access-denied.page').then((m) => m.AccessDeniedPage),
   },
   {
     path: '**',

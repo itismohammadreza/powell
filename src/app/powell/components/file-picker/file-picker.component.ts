@@ -1,4 +1,4 @@
-import {HttpHeaders} from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import {
   AfterContentInit,
   ChangeDetectorRef,
@@ -15,7 +15,7 @@ import {
   QueryList,
   SimpleChanges,
   TemplateRef,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -25,18 +25,18 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
+  NgControl,
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
+import { takeUntil } from 'rxjs';
 import {
   ButtonProps,
   FilePickerMethod,
   FilePickerMode,
   FileResultType,
   FixLabelPosition,
-  Validation
+  Validation,
 } from '@powell/models';
-import {TemplateDirective} from "@powell/directives/template";
+import { TemplateDirective } from '@powell/directives/template';
 import {
   $FileBeforeUploadEvent,
   $FileProgressEvent,
@@ -48,11 +48,11 @@ import {
   $FileUploadEvent,
   $FileUploadHandlerEvent,
   $RemoveUploadedFileEvent,
-  $uuid
-} from "@powell/primeng";
-import {ConfigService} from "@powell/api";
-import {DestroyService} from "@powell/utils";
-import {helpers} from "@core/utils";
+  $uuid,
+} from '@powell/primeng';
+import { ConfigService } from '@powell/api';
+import { DestroyService } from '@powell/utils';
+import { helpers } from '@core/utils';
 
 @Component({
   selector: 'pw-file-picker',
@@ -61,13 +61,15 @@ import {helpers} from "@core/utils";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => FilePickerComponent),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
-export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit, ControlValueAccessor {
+export class FilePickerComponent
+  implements OnInit, OnChanges, AfterContentInit, ControlValueAccessor
+{
   private cd = inject(ChangeDetectorRef);
   private injector = inject(Injector);
   private configService = inject(ConfigService);
@@ -131,27 +133,25 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   @Output() uploadHandler = new EventEmitter<$FileUploadHandlerEvent>();
   @Output() onImageError = new EventEmitter<Event>();
   @Output() onRemoveUploadedFile = new EventEmitter<$RemoveUploadedFileEvent>();
-  @ViewChild($FileUpload, {static: true}) fileUploadComponent!: $FileUpload;
+  @ViewChild($FileUpload, { static: true }) fileUploadComponent!: $FileUpload;
   @ContentChildren(TemplateDirective) templates: Optional<QueryList<TemplateDirective>>;
 
   ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
   selectedFiles: SafeAny[] = [];
   filesToEmit: SafeAny[] = [];
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -177,7 +177,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
       this.init(this.value);
     }
 
-    const {chooseButtonProps, uploadButtonProps, cancelButtonProps} = changes;
+    const { chooseButtonProps, uploadButtonProps, cancelButtonProps } = changes;
     if (chooseButtonProps) {
       const props = chooseButtonProps.currentValue;
       this.chooseButtonProps = this.mapToButtonProps(props);
@@ -193,7 +193,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -219,7 +219,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
     this.onSelect.emit({
       files: this.filesToEmit,
       currentFiles: event.currentFiles,
-      originalEvent: event.originalEvent
+      originalEvent: event.originalEvent,
     });
     this.onModelChange(this.filesToEmit);
   }
@@ -286,9 +286,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
           this.onModelChange(value);
           this.filesToEmit.push(value);
         } else if (wantFile) {
-          this.filesToEmit.push(
-            helpers.base64toFile(value, value.split('/').pop()!)
-          );
+          this.filesToEmit.push(helpers.base64toFile(value, value.split('/').pop()!));
           this.onModelChange(helpers.base64toFile(value, value.split('/').pop()!));
         }
       }
@@ -302,9 +300,7 @@ export class FilePickerComponent implements OnInit, OnChanges, AfterContentInit,
           this.filesToEmit.push(base64);
         } else if (wantFile) {
           this.onModelChange(helpers.base64toFile(base64, value.split('/').pop()!));
-          this.filesToEmit.push(
-            helpers.base64toFile(base64, value.split('/').pop()!)
-          );
+          this.filesToEmit.push(helpers.base64toFile(base64, value.split('/').pop()!));
         }
       }
       //value is FileList

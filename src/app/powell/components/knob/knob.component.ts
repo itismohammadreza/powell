@@ -7,7 +7,7 @@ import {
   Injector,
   Input,
   OnInit,
-  Output
+  Output,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -17,13 +17,13 @@ import {
   FormGroup,
   FormGroupDirective,
   NG_VALUE_ACCESSOR,
-  NgControl
-} from "@angular/forms";
-import {takeUntil} from "rxjs";
-import {FixLabelPosition, Validation} from '@powell/models';
-import {DestroyService} from "@powell/utils";
-import {$dt, $uuid} from "@powell/primeng";
-import {ConfigService} from "@powell/api";
+  NgControl,
+} from '@angular/forms';
+import { takeUntil } from 'rxjs';
+import { FixLabelPosition, Validation } from '@powell/models';
+import { DestroyService } from '@powell/utils';
+import { $dt, $uuid } from '@powell/primeng';
+import { ConfigService } from '@powell/api';
 
 @Component({
   selector: 'pw-knob',
@@ -32,11 +32,11 @@ import {ConfigService} from "@powell/api";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => KnobComponent),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class KnobComponent implements OnInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
@@ -75,20 +75,18 @@ export class KnobComponent implements OnInit, ControlValueAccessor {
   @Output() onChange = new EventEmitter<number>();
 
   ngControl: Nullable<NgControl> = null;
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;

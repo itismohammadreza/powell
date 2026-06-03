@@ -1,5 +1,5 @@
-import {$ButtonProps} from "@powell/primeng";
-import {ButtonAppearance} from "@powell/models";
+import { $ButtonProps } from '@powell/primeng';
+import { ButtonAppearance } from '@powell/models';
 
 export type Severity =
   | 'primary'

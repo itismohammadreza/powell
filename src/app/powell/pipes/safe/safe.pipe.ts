@@ -1,11 +1,11 @@
-import {inject, Pipe, PipeTransform} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
+import { inject, Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 type TrustType = 'html' | 'style' | 'script' | 'url' | 'resourceUrl';
 
 @Pipe({
   name: 'pwSafe',
-  standalone: false
+  standalone: false,
 })
 export class SafePipe implements PipeTransform {
   protected sanitizer = inject(DomSanitizer);

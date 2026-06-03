@@ -1,29 +1,32 @@
-<div [attr.dir]="rtl ? 'rtl' : 'ltr'"
-     [class]="{
-     'input-number-wrapper': true,
-     'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
-     'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
-     'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
-     'addon-start': templateMap['addonStart'] && !templateMap['addonEnd'],
-     'addon-end': templateMap['addonEnd'] && !templateMap['addonStart'],
-     'addon-both': templateMap['addonStart'] && templateMap['addonEnd'],
-     'fluid': fluid,
-     'clearable': showClear,
-     'button-stacked': showButtons && buttonLayout === 'stacked',
-     'button-vertical': showButtons && buttonLayout === 'vertical',
-     'button-horizontal': showButtons && buttonLayout === 'horizontal',
-    }">
+<div
+  [attr.dir]="rtl ? 'rtl' : 'ltr'"
+  [class]="{
+    'input-number-wrapper': true,
+    'icon-start': templateMap['iconStart'] && !templateMap['iconEnd'],
+    'icon-end': templateMap['iconEnd'] && !templateMap['iconStart'],
+    'icon-both': templateMap['iconStart'] && templateMap['iconEnd'],
+    'addon-start': templateMap['addonStart'] && !templateMap['addonEnd'],
+    'addon-end': templateMap['addonEnd'] && !templateMap['addonStart'],
+    'addon-both': templateMap['addonStart'] && templateMap['addonEnd'],
+    fluid: fluid,
+    clearable: showClear,
+    'button-stacked': showButtons && buttonLayout === 'stacked',
+    'button-vertical': showButtons && buttonLayout === 'vertical',
+    'button-horizontal': showButtons && buttonLayout === 'horizontal',
+  }"
+>
   <pw-form-field
     [ngControl]="ngControl"
     [validation]="validation"
     [hint]="hint"
-    [label]="label | pwLabelStar:showRequiredStar:ngControl"
+    [label]="label | pwLabelStar: showRequiredStar : ngControl"
     [labelWidth]="labelWidth"
     [labelPosition]="labelPosition"
     [inputId]="inputId"
     [disabled]="disabled"
     [readonly]="readonly"
-    [fluid]="fluid">
+    [fluid]="fluid"
+  >
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-inputNumber
         [(ngModel)]="value"
@@ -45,7 +48,7 @@
         [format]="format"
         [buttonLayout]="buttonLayout"
         [inputId]="inputId"
-        [placeholder]="placeholder | pwLabelStar:showRequiredStar:ngControl"
+        [placeholder]="placeholder | pwLabelStar: showRequiredStar : ngControl"
         [tabindex]="tabindex"
         [title]="title"
         [ariaLabelledBy]="ariaLabelledBy"
@@ -77,11 +80,12 @@
         (onFocus)="_onFocus($event)"
         (onBlur)="_onBlur($event)"
         (onKeyDown)="_onKeyDown($event)"
-        (onClear)="_onClear()">
+        (onClear)="_onClear()"
+      >
         @for (t of templates; track t) {
           @if (templateMap[t.type]) {
             <ng-template [pTemplate]="t.type">
-              <ng-container *ngTemplateOutlet="templateMap[t.type]"/>
+              <ng-container *ngTemplateOutlet="templateMap[t.type]" />
             </ng-template>
           }
         }
@@ -90,7 +94,7 @@
     @for (item of ['addonStart', 'addonEnd', 'iconStart', 'iconEnd', 'label']; track item) {
       @if (templateMap[item]) {
         <ng-template [pwTemplate]="item">
-          <ng-container *ngTemplateOutlet="templateMap[item]"/>
+          <ng-container *ngTemplateOutlet="templateMap[item]" />
         </ng-template>
       }
     }

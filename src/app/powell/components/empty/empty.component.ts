@@ -1,11 +1,11 @@
-import {Component, inject, Input, OnInit} from '@angular/core';
-import {EmptyIcon} from "@powell/models";
-import {ConfigService} from "@powell/api";
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { EmptyIcon } from '@powell/models';
+import { ConfigService } from '@powell/api';
 
 @Component({
   selector: 'pw-empty',
   templateUrl: './empty.component.html',
-  standalone: false
+  standalone: false,
 })
 export class EmptyComponent implements OnInit {
   private configService = inject(ConfigService);

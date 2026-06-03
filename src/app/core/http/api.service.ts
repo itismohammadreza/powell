@@ -1,14 +1,16 @@
-import {HttpClient, HttpContext, HttpHeaders, HttpParams} from '@angular/common/http';
-import {inject} from "@angular/core";
-import {Observable} from 'rxjs';
-import {EnvService} from "@core/utils";
-import {RequestMethod} from "@core/models";
+import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { EnvService } from '@core/utils';
+import { RequestMethod } from '@core/models';
 
 interface RequestOptions {
-  headers?: HttpHeaders | {[header: string]: string | string[]};
+  headers?: HttpHeaders | { [header: string]: string | string[] };
   context?: HttpContext;
   observe?: SafeAny;
-  params?: HttpParams | {[param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;};
+  params?:
+    | HttpParams
+    | { [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean> };
   reportProgress?: boolean;
   responseType?: SafeAny;
   withCredentials?: boolean;
@@ -22,42 +24,59 @@ export class ApiService {
   protected _get<T>(endpoint: string, options: Optional<RequestOptions> = undefined) {
     return this.http.get<T>(`${this.baseUrl}${endpoint ?? '/' + endpoint}`, {
       ...options,
-      params: this.getHttpParams(options?.params)
-    })
+      params: this.getHttpParams(options?.params),
+    });
   }
 
-  protected _post<T>(endpoint: string, body: SafeAny, options: Optional<RequestOptions> = undefined) {
+  protected _post<T>(
+    endpoint: string,
+    body: SafeAny,
+    options: Optional<RequestOptions> = undefined,
+  ) {
     return this.http.post<T>(`${this.baseUrl}${endpoint ?? '/' + endpoint}`, body, {
       ...options,
-      params: this.getHttpParams(options?.params)
-    })
+      params: this.getHttpParams(options?.params),
+    });
   }
 
-  protected _put<T>(endpoint: string, body: SafeAny, options: Optional<RequestOptions> = undefined) {
+  protected _put<T>(
+    endpoint: string,
+    body: SafeAny,
+    options: Optional<RequestOptions> = undefined,
+  ) {
     return this.http.put<T>(`${this.baseUrl}${endpoint ?? '/' + endpoint}`, body, {
       ...options,
-      params: this.getHttpParams(options?.params)
-    })
+      params: this.getHttpParams(options?.params),
+    });
   }
 
-  protected _patch<T>(endpoint: string, body: SafeAny, options: Optional<RequestOptions> = undefined) {
+  protected _patch<T>(
+    endpoint: string,
+    body: SafeAny,
+    options: Optional<RequestOptions> = undefined,
+  ) {
     return this.http.patch<T>(`${this.baseUrl}${endpoint ?? '/' + endpoint}`, body, {
       ...options,
-      params: this.getHttpParams(options?.params)
-    })
+      params: this.getHttpParams(options?.params),
+    });
   }
 
   protected _delete<T>(endpoint: string, options: Optional<RequestOptions> = undefined) {
     return this.http.delete<T>(`${this.baseUrl}${endpoint ?? '/' + endpoint}`, {
       ...options,
-      params: this.getHttpParams(options?.params)
-    })
+      params: this.getHttpParams(options?.params),
+    });
   }
 
-  protected _customRequest<T>(url: string, method: RequestMethod, body: SafeAny = undefined, options: Optional<RequestOptions> = undefined): Observable<T> {
+  protected _customRequest<T>(
+    url: string,
+    method: RequestMethod,
+    body: SafeAny = undefined,
+    options: Optional<RequestOptions> = undefined,
+  ): Observable<T> {
     const opts = {
       ...options,
-      params: this.getHttpParams(options?.params)
+      params: this.getHttpParams(options?.params),
     };
 
     switch (method.toLowerCase()) {

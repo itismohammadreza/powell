@@ -1,4 +1,4 @@
-import {NgModule} from "@angular/core";
+import { NgModule } from '@angular/core';
 import {
   $FloatLabelModule,
   $IconFieldModule,
@@ -6,11 +6,11 @@ import {
   $InputGroupAddonModule,
   $InputGroupModule,
   $InputIconModule,
-  $MessageModule
-} from "@powell/primeng";
-import {FormFieldComponent} from "@powell/components/form-field/form-field.component";
-import {KeyValuePipe, NgTemplateOutlet} from "@angular/common";
-import {TemplateModule} from "@powell/directives/template";
+  $MessageModule,
+} from '@powell/primeng';
+import { FormFieldComponent } from '@powell/components/form-field/form-field.component';
+import { KeyValuePipe, NgTemplateOutlet } from '@angular/common';
+import { TemplateModule } from '@powell/directives/template';
 
 @NgModule({
   declarations: [FormFieldComponent],
@@ -28,5 +28,4 @@ import {TemplateModule} from "@powell/directives/template";
     TemplateModule,
   ],
 })
-export class FormFieldModule {
-}
+export class FormFieldModule {}

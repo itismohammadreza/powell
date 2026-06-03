@@ -1,9 +1,9 @@
-@use "mixins";
-@use "node_modules/leaflet/dist/leaflet.css";
+@use 'mixins';
+@use 'node_modules/leaflet/dist/leaflet.css';
 
 :root {
-  --app-font-vazirmatn: "Vazirmatn";
-  --app-font-roboto: "Roboto";
+  --app-font-vazirmatn: 'Vazirmatn';
+  --app-font-roboto: 'Roboto';
   --app-font-family: var(--app-font-roboto), var(--app-font-vazirmatn), sans-serif;
 }
 
@@ -18,7 +18,12 @@ body {
     font-family: var(--app-font-family);
   }
 
-  @include mixins.scrollbar($thickness: 10px, $radius: 10px, $track-color: transparent, $thumb-color: #949494);
+  @include mixins.scrollbar(
+    $thickness: 10px,
+    $radius: 10px,
+    $track-color: transparent,
+    $thumb-color: #949494
+  );
 }
 
 .fade-enter {

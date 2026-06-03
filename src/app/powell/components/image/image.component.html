@@ -14,17 +14,18 @@
   [preview]="preview"
   [showTransitionOptions]="showTransitionOptions"
   [hideTransitionOptions]="hideTransitionOptions"
-  [appendTo]="appendTo">
+  [appendTo]="appendTo"
+>
   <ng-template pTemplate="preview" let-style="style" let-previewCallback="previewCallback">
     <pw-pinch-zoom [properties]="pinchProperties" (onZoomControlClick)="previewCallback()">
-      <img [style]="style" [src]="src" [alt]="alt" (click)="previewCallback()"/>
+      <img [style]="style" [src]="src" [alt]="alt" (click)="previewCallback()" />
     </pw-pinch-zoom>
   </ng-template>
 
   @for (t of templates; track t) {
     @if (templateMap[t.type]) {
       <ng-template [pTemplate]="t.type">
-        <ng-container *ngTemplateOutlet="templateMap[t.type]"/>
+        <ng-container *ngTemplateOutlet="templateMap[t.type]" />
       </ng-template>
     }
   }

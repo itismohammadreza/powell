@@ -1,6 +1,6 @@
 <form [formGroup]="form" class="[&>*:not(small)]:block [&>*:not(small)]:mb-4">
   <div class="text-center">
-    <app-logo [disableNavigation]="true"/>
+    <app-logo [disableNavigation]="true" />
   </div>
   <h3 class="text-center">ورود</h3>
   <pw-input-text
@@ -12,7 +12,8 @@
     [validation]="{
       required:'این فیلد الزامیست.',
       email:'ایمیل نامعتبر است.'
-    }">
+    }"
+  >
     <ng-template pwTemplate="iconStart">
       <i class="pi pi-user"></i>
     </ng-template>
@@ -24,25 +25,28 @@
     labelPosition="side"
     formControlName="password"
     placeholder="رمز عبور"
-    [validation]="{'required':'این فیلد الزامیست.'}">
+    [validation]="{'required':'این فیلد الزامیست.'}"
+  >
     <ng-template pwTemplate="iconStart">
       <i class="pi pi-key"></i>
     </ng-template>
   </pw-input-text>
-  <pw-checkbox formControlName="rememberMe" label="مرا بخاطر بسپار"/>
+  <pw-checkbox formControlName="rememberMe" label="مرا بخاطر بسپار" />
   <pw-button
     [async]="true"
     [fluid]="true"
     type="submit"
     label="ورود"
-    (onClickAsync)="onSubmit($event)"/>
+    (onClickAsync)="onSubmit($event)"
+  />
   <small class="flex items-center justify-center gap-2 text-stone-600">
     <pw-button
       class="align-middle"
       size="small"
       appearance="link"
       routerLink="/auth/register"
-      label="ثبت نام کنید"/>
+      label="ثبت نام کنید"
+    />
     حساب کاربری ندارید؟
   </small>
 </form>

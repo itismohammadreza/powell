@@ -1,11 +1,11 @@
-import {DOCUMENT, inject, Injectable} from '@angular/core';
+import { DOCUMENT, inject, Injectable } from '@angular/core';
 
-import {TranslateService} from '@ngx-translate/core';
-import {globalConfig} from "@core/config";
-import {lastValueFrom} from "rxjs";
+import { TranslateService } from '@ngx-translate/core';
+import { globalConfig } from '@core/config';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TranslationService {
   private document = inject(DOCUMENT);
@@ -14,7 +14,7 @@ export class TranslationService {
   private currentLang: string = '';
 
   async init() {
-    this.onLangChange().subscribe(res => {
+    this.onLangChange().subscribe((res) => {
       this.storeLang(res.lang, this.currentLang);
       this.currentLang = res.lang;
     });
@@ -74,11 +74,7 @@ export class TranslationService {
    * Manually sets object of translations for a given language,set shouldMerge=true if want append the translations
    * insteadof replacing them
    */
-  setTranslation(
-    lang: string,
-    translations: SafeAny,
-    shouldMerge: boolean = false
-  ) {
+  setTranslation(lang: string, translations: SafeAny, shouldMerge: boolean = false) {
     return this.translate.setTranslation(lang, translations, shouldMerge);
   }
 

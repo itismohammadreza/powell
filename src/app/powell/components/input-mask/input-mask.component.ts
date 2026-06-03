@@ -23,12 +23,12 @@ import {
   NG_VALUE_ACCESSOR,
   NgControl,
 } from '@angular/forms';
-import {takeUntil} from "rxjs";
-import {InputType, InputVariant, LabelPosition, Size, Validation} from '@powell/models';
-import {DestroyService} from "@powell/utils";
-import {TemplateDirective} from "@powell/directives/template";
-import {$uuid} from "@powell/primeng";
-import {ConfigService} from "@powell/api";
+import { takeUntil } from 'rxjs';
+import { InputType, InputVariant, LabelPosition, Size, Validation } from '@powell/models';
+import { DestroyService } from '@powell/utils';
+import { TemplateDirective } from '@powell/directives/template';
+import { $uuid } from '@powell/primeng';
+import { ConfigService } from '@powell/api';
 
 @Component({
   selector: 'pw-input-mask',
@@ -37,11 +37,11 @@ import {ConfigService} from "@powell/api";
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputMaskComponent),
-      multi: true
+      multi: true,
     },
-    DestroyService
+    DestroyService,
   ],
-  standalone: false
+  standalone: false,
 })
 export class InputMaskComponent implements OnInit, AfterContentInit, ControlValueAccessor {
   private cd = inject(ChangeDetectorRef);
@@ -100,20 +100,18 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
 
   ngControl: Nullable<NgControl> = null;
   templateMap: Record<string, TemplateRef<SafeAny>> = {};
-  onModelChange: Fn = () => {
-  };
-  onModelTouched: Fn = () => {
-  };
+  onModelChange: Fn = () => {};
+  onModelTouched: Fn = () => {};
 
   ngOnInit() {
     let parentForm: FormGroup;
     let rootForm: FormGroupDirective;
     let currentControl: AbstractControl;
-    const controlContainer = this.injector.get(
-      ControlContainer,
-      null,
-      {optional: true, host: true, skipSelf: true}
-    ) as FormGroupDirective;
+    const controlContainer = this.injector.get(ControlContainer, null, {
+      optional: true,
+      host: true,
+      skipSelf: true,
+    }) as FormGroupDirective;
     this.ngControl = this.injector.get(NgControl, null);
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -135,12 +133,11 @@ export class InputMaskComponent implements OnInit, AfterContentInit, ControlValu
   }
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
   }
-
 
   _onInput(event: Event) {
     const inputElement = event.target as HTMLInputElement;

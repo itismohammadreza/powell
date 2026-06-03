@@ -1,6 +1,6 @@
-import {NgModule} from "@angular/core";
-import {NgTemplateOutlet} from "@angular/common";
-import {ImageComponent} from "@powell/components/image";
+import { NgModule } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { ImageComponent } from '@powell/components/image';
 import {
   $EyeIcon,
   $FocusTrapModule,
@@ -9,10 +9,10 @@ import {
   $SearchMinusIcon,
   $SearchPlusIcon,
   $TimesIcon,
-  $UndoIcon
-} from "@powell/primeng";
-import {TemplateModule} from "@powell/directives/template";
-import {PinchZoomModule} from "@powell/components/pinch-zoom";
+  $UndoIcon,
+} from '@powell/primeng';
+import { TemplateModule } from '@powell/directives/template';
+import { PinchZoomModule } from '@powell/components/pinch-zoom';
 
 @NgModule({
   declarations: [ImageComponent],
@@ -27,8 +27,7 @@ import {PinchZoomModule} from "@powell/components/pinch-zoom";
     $SearchMinusIcon,
     $SearchPlusIcon,
     $TimesIcon,
-    $FocusTrapModule
+    $FocusTrapModule,
   ],
 })
-export class ImageModule {
-}
+export class ImageModule {}

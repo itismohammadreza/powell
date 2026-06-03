@@ -2,10 +2,11 @@
   component="Editor"
   description="Editor is rich text editor component based on SubEditor."
   [previewOptions]="previewOptions"
-  (onOptionChange)="onOptionChange($event)">
+  (onOptionChange)="onOptionChange($event)"
+>
   <form [formGroup]="form">
     @if (render) {
-      <pw-editor formControlName="c1" [validation]="{ required: 'error' }"/>
+    <pw-editor formControlName="c1" [validation]="{ required: 'error' }" />
     }
   </form>
 </app-preview>

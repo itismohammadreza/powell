@@ -7,11 +7,11 @@ import {
   OnInit,
   QueryList,
   SimpleChanges,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
-import {TemplateDirective} from "@powell/directives/template";
-import {from, isObservable, Observable, of, startWith} from "rxjs";
-import {catchError, map} from "rxjs/operators";
+import { TemplateDirective } from '@powell/directives/template';
+import { from, isObservable, Observable, of, startWith } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 interface SuspenseState<T> {
   loading: boolean;
@@ -22,7 +22,7 @@ interface SuspenseState<T> {
 @Component({
   selector: 'pw-suspense',
   templateUrl: './suspense.component.html',
-  standalone: false
+  standalone: false,
 })
 export class SuspenseComponent<T> implements OnInit, OnChanges, AfterContentInit {
   @Input() data: Optional<Observable<T> | Promise<T>>;
@@ -37,7 +37,7 @@ export class SuspenseComponent<T> implements OnInit, OnChanges, AfterContentInit
   state$!: Observable<SuspenseState<T>>;
 
   ngAfterContentInit() {
-    this.templates?.forEach(item => {
+    this.templates?.forEach((item) => {
       const name = item.type;
       this.templateMap[name] = item.templateRef;
     });
@@ -45,7 +45,7 @@ export class SuspenseComponent<T> implements OnInit, OnChanges, AfterContentInit
 
   ngOnInit() {
     if (!this.data) {
-      this.state$ = of({loading: true, data: undefined, error: undefined});
+      this.state$ = of({ loading: true, data: undefined, error: undefined });
       return;
     }
   }
@@ -59,13 +59,13 @@ export class SuspenseComponent<T> implements OnInit, OnChanges, AfterContentInit
           if (this.validate) {
             const error = this.validate(data);
             if (error) {
-              return {loading: false, data: null, error};
+              return { loading: false, data: null, error };
             }
           }
-          return {loading: false, data, error: null};
+          return { loading: false, data, error: null };
         }),
-        startWith({loading: true, data: null, error: null}),
-        catchError(error => of({loading: false, data: null, error}))
+        startWith({ loading: true, data: null, error: null }),
+        catchError((error) => of({ loading: false, data: null, error })),
       );
     }
   }
