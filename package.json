@@ -22,21 +22,19 @@
     "@ngx-translate/http-loader": "^17.0.0",
     "@primeng/themes": "^20.2.0",
     "@primeuix/themes": "^2.0.2",
-    "@tailwindcss/postcss": "^4.1.13",
     "jalali-moment": "^3.3.11",
     "leaflet": "^1.9.4",
-    "postcss": "^8.5.6",
     "primeicons": "^7.0.0",
     "primeng": "^21.0.2",
     "rxjs": "~7.8.0",
     "suneditor": "^2.47.8",
-    "tailwindcss": "^4.1.13",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@angular/build": "^21.0.4",
     "@angular/cli": "^21.0.4",
     "@angular/compiler-cli": "^21.0.6",
+    "@tailwindcss/postcss": "^4.3.0",
     "@types/jasmine": "~5.1.0",
     "@types/leaflet": "^1.9.20",
     "eslint-config-prettier": "^10.1.8",
@@ -47,8 +45,9 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "postcss": "^8.5.3",
+    "postcss": "^8.5.15",
     "prettier": "^3.8.3",
+    "tailwindcss": "^4.3.0",
     "typescript": "~5.9.2"
   }
 }
