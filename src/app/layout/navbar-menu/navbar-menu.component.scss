@@ -1,6 +1,6 @@
 @reference "tailwindcss";
 
-$sidebarWidth: 20rem;
+$drawerWidth: 20rem;
 
 :host ::ng-deep {
   .main-content {
@@ -37,25 +37,25 @@ $sidebarWidth: 20rem;
       }
     }
 
-    &.sidebar-lock {
+    &.drawer-lock {
       .inner-wrapper,
-      .p-sidebar {
+      .p-drawer {
         transform: translateX(0);
       }
 
       .inner-wrapper {
-        width: calc(100% - $sidebarWidth);
+        width: calc(100% - $drawerWidth);
         margin-inline-start: auto;
       }
     }
 
-    &:is(.menu-push, .menu-push-mask, .menu-static).sidebar-open {
+    &:is(.menu-push, .menu-push-mask, .menu-static).drawer-open {
       .inner-wrapper {
-        margin-inline-start: $sidebarWidth;
+        margin-inline-start: $drawerWidth;
       }
     }
 
-    &:is(.menu-push, .menu-push-mask).sidebar-open {
+    &:is(.menu-push, .menu-push-mask).drawer-open {
       .inner-wrapper {
         width: 100%;
       }

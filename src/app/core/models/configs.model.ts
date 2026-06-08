@@ -2,7 +2,7 @@ import { HttpRequest, HttpResponseBase } from '@angular/common/http';
 import { Config } from '@powell/models';
 
 export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-export type SidebarType =
+export type DrawerType =
   | 'overlay'
   | 'push'
   | 'overlay-mask'

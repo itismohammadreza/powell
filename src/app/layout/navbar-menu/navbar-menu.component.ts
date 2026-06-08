@@ -8,7 +8,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { LanguageChecker } from '@core/utils';
-import { GlobalConfig, SidebarType } from '@core/models';
+import { GlobalConfig, DrawerType } from '@core/models';
 import { globalConfig } from '@core/config';
 import {
   $AvatarModule,
@@ -61,14 +61,14 @@ import { DesignerComponent } from '@layout/designer/designer.component';
 export class NavbarMenuComponent extends LanguageChecker implements OnInit, AfterContentInit {
   private document = inject(DOCUMENT);
 
-  sidebarType: SidebarType = 'static';
-  sidebarTypes: $MenuItem[];
-  sidebarVisible: boolean = true;
-  designerSidebarVisible: boolean;
-  sidebarLock: boolean; // overrides the sidebarVisible.
-  sidebarItems: $MenuItem[];
+  drawerType: DrawerType = 'static';
+  drawerTypes: $MenuItem[];
+  drawerVisible: boolean = true;
+  designerDrawerVisible: boolean;
+  drawerLock: boolean; // overrides the drawerVisible.
+  drawerItems: $MenuItem[];
   config: GlobalConfig = globalConfig;
-  tempSidebarType: SidebarType = this.sidebarType;
+  tempDrawerType: DrawerType = this.drawerType;
   searchValue: string;
 
   @HostListener('window:resize', [])
@@ -78,33 +78,33 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
 
   ngOnInit() {
     this.loadData();
-    this.tempSidebarType = this.sidebarType;
-    if (this.sidebarLock && !this.sidebarVisible) {
-      this.sidebarVisible = true;
+    this.tempDrawerType = this.drawerType;
+    if (this.drawerLock && !this.drawerVisible) {
+      this.drawerVisible = true;
     }
     this.handleResize();
   }
 
   ngAfterContentInit() {
-    this.toggleSidebar(this.sidebarVisible);
-    this.toggleSidebarLock(this.sidebarLock);
+    this.toggleDrawer(this.drawerVisible);
+    this.toggleDrawerLock(this.drawerLock);
   }
 
   handleResize() {
     const responsiveThreshold: number = 768;
     const windowWidth = this.document.defaultView.innerWidth;
     if (windowWidth < responsiveThreshold) {
-      if (this.sidebarLock) {
-        this.toggleSidebarLock(false);
+      if (this.drawerLock) {
+        this.toggleDrawerLock(false);
       }
-      this.changeSidebarType('overlay', false);
+      this.changeDrawerType('overlay', false);
     } else if (windowWidth >= responsiveThreshold) {
-      this.changeSidebarType(this.sidebarType, false);
+      this.changeDrawerType(this.drawerType, false);
     }
   }
 
   loadData() {
-    const sidebarTypes: SidebarType[] = [
+    const drawerTypes: DrawerType[] = [
       'overlay',
       'overlay-mask',
       'push',
@@ -112,8 +112,8 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
       'static',
       'horizontal',
     ];
-    this.sidebarTypes = sidebarTypes.map((t) => ({ label: t, value: t }));
-    this.sidebarItems = routes
+    this.drawerTypes = drawerTypes.map((t) => ({ label: t, value: t }));
+    this.drawerItems = routes
       .filter((item) => !item.redirectTo)
       .map((item) => ({
         label: item.title as string,
@@ -121,39 +121,39 @@ export class NavbarMenuComponent extends LanguageChecker implements OnInit, Afte
         routerLink: `showcase/${item.path}`,
         routerLinkActiveOptions: item.path ? '' : { exact: true },
         command: () => {
-          if ((!this.sidebarLock && this.showBackdrop) || item.path === 'home') {
-            this.toggleSidebar(false);
+          if ((!this.drawerLock && this.showBackdrop) || item.path === 'home') {
+            this.toggleDrawer(false);
           }
         },
       }));
   }
 
-  changeSidebarType(event: $SelectChangeEvent | SidebarType, assign: boolean) {
-    this.tempSidebarType = typeof event === 'string' ? event : event.value;
+  changeDrawerType(event: $SelectChangeEvent | DrawerType, assign: boolean) {
+    this.tempDrawerType = typeof event === 'string' ? event : event.value;
     if (assign) {
-      this.sidebarType = this.tempSidebarType;
+      this.drawerType = this.tempDrawerType;
     }
   }
 
-  toggleSidebarClick() {
-    this.sidebarVisible = !this.sidebarVisible;
-    this.toggleSidebar(this.sidebarVisible);
+  toggleDrawerClick() {
+    this.drawerVisible = !this.drawerVisible;
+    this.toggleDrawer(this.drawerVisible);
   }
 
-  toggleLockSidebarClick() {
-    this.sidebarLock = !this.sidebarLock;
-    this.toggleSidebarLock(this.sidebarLock);
+  toggleDrawerLockClick() {
+    this.drawerLock = !this.drawerLock;
+    this.toggleDrawerLock(this.drawerLock);
   }
 
-  toggleSidebar(activate: boolean) {
-    this.sidebarVisible = activate;
+  toggleDrawer(activate: boolean) {
+    this.drawerVisible = activate;
   }
 
-  toggleSidebarLock(activate: boolean) {
-    this.sidebarLock = activate;
+  toggleDrawerLock(activate: boolean) {
+    this.drawerLock = activate;
   }
 
   get showBackdrop() {
-    return ['overlay-mask', 'push-mask'].includes(this.tempSidebarType);
+    return ['overlay-mask', 'push-mask'].includes(this.tempDrawerType);
   }
 }
