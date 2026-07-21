@@ -1,0 +1,1 @@
+import{b as e}from"./chunk-UBXSZEFP.js";import"./chunk-CV5JLE47.js";import"./chunk-VE4CPJPE.js";import{J as t,sa as i}from"./chunk-ZST26TZS.js";import"./chunk-HZ6M6AS2.js";var r=class o{static \u0275fac=function(c){return new(c||o)};static \u0275mod=i({type:o});static \u0275inj=t({imports:[e]})};export{r as ShowcaseModule};
