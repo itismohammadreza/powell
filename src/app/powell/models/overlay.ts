@@ -247,6 +247,7 @@ export interface DialogFormConfig {
   forceSelection?: boolean;
   dropdownMode?: AutoCompleteDropdownMode;
   unique?: boolean;
+  typeahead?: boolean;
   autocomplete?: string;
   completeMethod?: (dialogFormEvent?: DialogFormEvent) => void;
   onUnselect?: (dialogFormEvent?: DialogFormEvent) => void;
