@@ -26,6 +26,7 @@
 
         <pw-button
           appearance="text"
+          [severity]="isInvalid ? 'danger' : 'primary'"
           [fluid]="true"
           [disabled]="disabled || readonly || (fileLimit && filesToEmit.length == fileLimit)"
           (onClick)="inputFile.click()"
