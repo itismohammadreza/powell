@@ -27,7 +27,8 @@
   >
     <ng-template pwTemplate="element" let-isInvalid="isInvalid">
       <p-autoComplete
-        [(ngModel)]="value"
+        [ngModel]="value"
+        (ngModelChange)="onInnerModelChange($event)"
         [invalid]="isInvalid"
         [minQueryLength]="minQueryLength"
         [delay]="delay"
@@ -109,7 +110,7 @@
         (onDropdownClick)="emitter('onDropdownClick', $event)"
         (onClear)="_onClear()"
         (onInputKeydown)="emitter('onInputKeydown', $event)"
-        (onKeyUp)="_onKeyUp($event)"
+        (onKeyUp)="emitter('onKeyUp', $event)"
         (onHide)="emitter('onHide', $event)"
         (onShow)="emitter('onShow', $event)"
         (onLazyLoad)="emitter('onLazyLoad', $event)"

@@ -208,14 +208,6 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
     this.onModelTouched();
   }
 
-  _onKeyUp(event: KeyboardEvent) {
-    const inputElement = event.target as HTMLInputElement;
-    this.onKeyUp.emit(event);
-    if (!this.forceSelection) {
-      this.onModelChange(inputElement.value);
-    }
-  }
-
   _onSelect(event: SafeAny) {
     this.onSelect.emit(event);
     this.onModelChange(this.value);
